@@ -1,0 +1,9 @@
+#Ant properties
+#Tue Mar 14 16:28:19 CET 2017
+builddate=20170314 1626
+description=braintreecustomersupportbackoffice
+name=braintreecustomersupportbackoffice
+releasedate=20160923 1341
+vendor=hybris
+version=6.2.0.5
+version.api=6.2.0

@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+		
+	<context:annotation-config/> 
+
+	<alias alias="simpleSuggestionFacade" name="defaultSimpleSuggestionFacade"/>
+	<bean id="defaultSimpleSuggestionFacade" class="com.enterprisewide.b2badvance.facades.suggestion.impl.DefaultSimpleSuggestionFacade" >
+		<property name="simpleSuggestionService" ref="simpleSuggestionService"/>
+		<property name="userService" ref="userService"/>
+		<property name="categoryService" ref="categoryService"/>
+		<property name="productService" ref="productService"/>
+		<property name="productConverter" ref="carouselProductConverter"/>
+		<property name="cartService" ref="cartService"/>
+	</bean>
+	
+	<bean id="carouselProductConverter" parent="defaultProductConverter">
+		<property name="populators">
+			<list merge="true">
+				<ref bean="productPricePopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="acceleratorVariantOptionDataConverter" alias="variantOptionDataConverter"/> 
+	<bean id="acceleratorVariantOptionDataConverter" parent="abstractPopulatingConverter">
+		<lookup-method name="createTarget" bean="variantOptionData"/>
+		<property name="populators">
+			<list>
+				<ref bean="acceleratorVariantOptionDataPopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultAcceleratorVariantOptionDataPopulator" alias="acceleratorVariantOptionDataPopulator"/>
+	<bean id="defaultAcceleratorVariantOptionDataPopulator"  class="com.enterprisewide.b2badvance.facades.populators.AcceleratorVariantOptionDataPopulator"
+	      parent="variantOptionDataPopulator" >
+		<property name="mediaService" ref="mediaService"/>
+		<property name="mediaContainerService" ref="mediaContainerService"/>
+		<property name="typeService" ref="typeService"/>
+		<property name="imageFormatMapping" ref="imageFormatMapping"/>
+		<property name="variantAttributeMapping">
+			<map>
+				<entry key="ApparelStyleVariantProduct.style" value="styleSwatch"/>
+			</map>
+		</property>
+	</bean>
+
+
+	<alias name="acceleratorGenderConverter" alias="genderConverter"/> 
+	<bean id="acceleratorGenderConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.enterprisewide.b2badvance.facades.product.data.GenderData"/>
+			<property name="populators">
+				<list>
+					<ref bean="genderDataPopulator"/>
+				</list>
+			</property>
+	</bean>
+
+	<alias name="defaultGenderDataPopulator" alias="genderDataPopulator"/>
+	<bean id="defaultGenderDataPopulator" class="com.enterprisewide.b2badvance.facades.populators.GenderDataPopulator" >
+		<property name="typeService" ref="typeService"/>
+	</bean>
+
+	<!--<bean id="apparelProductPopulator" class="com.enterprisewide.b2badvance.facades.populators.ApparelProductPopulator" >
+		<property name="genderConverter" ref="genderConverter"/>
+	</bean>-->
+
+	<!-- Add the apparelProductPopulator to the productConverter -->
+	<!--<bean parent="modifyPopulatorList">
+		<property name="list" ref="productConverter"/>
+		<property name="add" ref="apparelProductPopulator"/>
+	</bean>-->
+
+	<!-- accelerator Image Format Mappings -->
+	<alias name="acceleratorImageFormatMapping" alias="imageFormatMapping"/>
+	<bean id="acceleratorImageFormatMapping" parent="defaultImageFormatMapping">
+		<property name="mapping">
+			<map>
+				<entry key="superZoom" value="1200Wx1200H"/>
+				<entry key="zoom" value="515Wx515H"/>
+				<entry key="store" value="365Wx246H"/>
+				<entry key="product" value="300Wx300H"/>
+				<entry key="thumbnail" value="96Wx96H"/>
+				<entry key="cartIcon" value="65Wx65H"/>
+				<entry key="styleSwatch" value="30Wx30H"/>
+			</map>
+		</property>
+	</bean>
+
+	<alias name="acceleratorProductPrimaryImagePopulator" alias="productPrimaryImagePopulator" />
+	<bean id="acceleratorProductPrimaryImagePopulator" parent="defaultProductPrimaryImagePopulator">
+		<property name="imageFormats">
+			<list>
+				<value>zoom</value>
+				<value>product</value>
+				<value>thumbnail</value>
+				<value>cartIcon</value>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="acceleratorProductGalleryImagesPopulator" alias="productGalleryImagesPopulator" />
+	<bean id="acceleratorProductGalleryImagesPopulator" parent="defaultProductGalleryImagesPopulator">
+		<property name="imageFormats">
+			<list>
+				<value>superZoom</value>
+				<value>zoom</value>
+				<value>product</value>
+				<value>thumbnail</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="customerEmailContext" class="com.enterprisewide.b2badvance.facades.process.email.context.CustomerEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="customerConverter" ref="customerConverter"/>
+	</bean>
+
+	<bean id="forgottenPasswordEmailContext" class="com.enterprisewide.b2badvance.facades.process.email.context.ForgottenPasswordEmailContext" parent="customerEmailContext" scope="prototype" >
+		<property name="customerConverter" ref="customerConverter"/>
+	</bean>
+
+	<bean id="orderNotificationEmailContext" class="com.enterprisewide.b2badvance.facades.process.email.context.OrderNotificationEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="orderConverter" ref="orderConverter"/>
+	</bean>
+
+	<bean id="quoteNotificationEmailContext" class="com.enterprisewide.b2badvance.facades.process.email.context.QuoteNotificationEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="quoteService" ref="quoteService"/>
+		<property name="quoteConverter" ref="quoteConverter"/>
+	</bean>
+	
+	<bean id="deliverySentEmailContext" class="com.enterprisewide.b2badvance.facades.process.email.context.DeliverySentEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="consignmentConverter" ref="consignmentConverter"/>
+	</bean>
+	
+	<bean id="readyForPickupEmailContext" class="com.enterprisewide.b2badvance.facades.process.email.context.ReadyForPickupEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="consignmentConverter" ref="consignmentConverter"/>
+	</bean>
+	
+	<bean id="orderCancelledEmailContext" class="com.enterprisewide.b2badvance.facades.process.email.context.OrderCancelledEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="orderConverter" ref="orderConverter"/>
+	</bean>
+	
+	<bean id="orderRefundEmailContext" class="com.enterprisewide.b2badvance.facades.process.email.context.OrderRefundEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="orderConverter" ref="orderConverter"/>
+	</bean>
+	<bean id="consignmentCollectionReminderEmailContext" class="com.enterprisewide.b2badvance.facades.process.email.context.ConsignmentCollectionReminderEmailContext" parent="abstractEmailContext" scope="prototype">
+        <property name="consignmentConverter" ref="consignmentConverter"/>
+        <property name="formatFactory" ref="formatFactory"/>
+        <property name="customerServiceUncollectedConsignmentStrategy" ref="customerServiceUncollectedConsignmentStrategy" />
+        <property name="orderConverter" ref="orderConverter"/>
+    </bean>
+
+	<bean id="orderPartiallyModifiedEmailContext" class="com.enterprisewide.b2badvance.facades.process.email.context.OrderPartiallyModifiedEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="orderConverter" ref="orderConverter"/>
+		<property name="orderEntryConverter" ref="orderEntryConverter"/>
+		<property name="priceDataFactory" ref="priceDataFactory"/>		
+	</bean>
+
+	<bean id="orderPartiallyCanceledEmailContext" class="com.enterprisewide.b2badvance.facades.process.email.context.OrderPartiallyCanceledEmailContext" parent="orderPartiallyModifiedEmailContext" scope="prototype" >
+	</bean>
+
+	<bean id="orderPartiallyRefundedEmailContext" class="com.enterprisewide.b2badvance.facades.process.email.context.OrderPartiallyRefundedEmailContext" parent="orderPartiallyModifiedEmailContext" scope="prototype" >
+	</bean>
+
+	<bean id="notPickedUpConsignmentCanceledEmailContext" class="com.enterprisewide.b2badvance.facades.process.email.context.NotPickedUpConsignmentCanceledEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="consignmentConverter" ref="consignmentConverter"/>
+		<property name="priceDataFactory" ref="priceDataFactory"/>
+	</bean>
+
+	<alias name="yacceleratorSearchPagePointOfServiceDistancePopulator" alias="searchPagePointOfServiceDistancePopulator" />
+	<bean id="yacceleratorSearchPagePointOfServiceDistancePopulator" class="com.enterprisewide.b2badvance.facades.storefinder.populators.SearchPagePointOfServiceDistancePopulator" >
+		<property name="pointOfServiceDistanceConverter" ref="pointOfServiceDistanceConverter"/>
+	</bean>
+
+	<bean id="genderData" class="com.enterprisewide.b2badvance.facades.product.data.GenderData" scope="prototype"/>
+
+	<bean id="b2badvanceProductComparisonFacade" class="com.enterprisewide.b2badvance.facades.product.comparison.impl.B2badvanceProductComparisonFacadeImpl"/>
+
+	<alias name="b2badvanceProductPopulator" alias="productPopulator" />
+	<bean id="b2badvanceProductPopulator"
+		  class="com.enterprisewide.b2badvance.facades.product.populators.B2badvanceProductPopulator"
+		  parent="defaultProductPopulator">
+		<property name="sessionService" ref="sessionService" />
+	</bean>
+
+	<alias name="b2badvanceCategoryPopulator" alias="categoryPopulator" />
+	<bean id="b2badvanceCategoryPopulator"
+		  class="com.enterprisewide.b2badvance.facades.product.populators.B2badvanceCategoryPopulator"
+		  parent="defaultCategoryPopulator">
+	</bean>
+
+	<alias name="b2badvanceOrderEntryPopulator" alias="orderEntryPopulator" />
+	<bean id="b2badvanceOrderEntryPopulator" parent="defaultOrderEntryPopulator"
+		  class="com.enterprisewide.b2badvance.facades.populators.B2badvanceOrderEntryPopulator">
+	</bean>
+
+	<bean id="templateOrderPopulator" parent="cartPopulator"
+		  class="com.enterprisewide.b2badvance.facades.order.populators.TemplateOrderPopulator">
+		  <property name="orderEntryConverter" ref="templateOrderEntryConverter"></property>
+	</bean>
+	<bean id="templateOrderEntryPopulator" parent="defaultOrderEntryPopulator"
+		  class="com.enterprisewide.b2badvance.facades.order.populators.TemplateOrderEntryPopulator">
+		  <property name="productConfiguredPopulator" ref="productVariantConfiguredPopulator" />
+	</bean>
+	<bean id="templateConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.commercefacades.order.data.CartData" />
+		<property name="populators">
+			<list>
+				<ref bean="templateOrderPopulator"/>
+			</list>
+		</property>
+	</bean>
+	<bean id="templateOrderEntryConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.commercefacades.order.data.OrderEntryData"/>
+		<property name="populators">
+			<list>
+				<ref bean="templateOrderEntryPopulator"/>
+			</list>
+		</property>
+	</bean>
+	<alias name="b2badvancevariantCommerceSearchResultProductPopulator" alias="commerceSearchResultProductPopulator"/>
+	<bean id="b2badvancevariantCommerceSearchResultProductPopulator"
+		  class="com.enterprisewide.b2badvance.facades.search.converters.populator.B2badvanceSearchResultVariantProductPopulator"
+		  parent="defaultCommerceSearchResultProductPopulator">
+		<property name="categoryManager" ref="solrFirstVariantCategoryManager"/>
+		<property name="priceDataFactory" ref="priceDataFactory"/>
+	</bean>
+
+	<bean id="b2badvanceCheckoutFacade"
+		  class="com.enterprisewide.b2badvance.facades.checkout.flow.impl.B2badvanceCheckoutFacadeImpl"
+		  parent="defaultB2BAcceleratorCheckoutFacade">
+		<property name="checkoutFlowFacade" ref="sessionOverrideCheckoutFlowFacade" />
+	</bean>
+
+<!-- B2B advance additions -->
+
+	<bean id="b2badvanceOrderPopulator" class="com.enterprisewide.b2badvance.facades.order.populators.B2badvanceOrderDeliveryInstructionsPopulator" />
+
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="orderConverter" />
+		<property name="add" ref="b2badvanceOrderPopulator" />
+	</bean>
+
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="cartConverter" />
+		<property name="add" ref="b2badvanceOrderPopulator" />
+	</bean>
+
+	<bean id="b2badvanceOrderDetailsFacade" class="com.enterprisewide.b2badvance.facades.order.B2BAdvanceOrderDetailsFacade"
+		  parent="defaultOrderFacade">
+		  <property name="modelService" ref="modelService" />
+		  <property name="userService" ref="userService" />
+		  <property name="b2bOrderService" ref="b2bOrderService" />
+	</bean>
+	<bean id="bulkOrderFacade"
+		  class="com.enterprisewide.b2badvance.facades.bulkorder.impl.BulkOrderFacadeImpl">
+		<property name="sessionService" ref="sessionService" />
+		<property name="productFacade" ref="productFacade" />
+		<property name="productService" ref="productService" />
+		<property name="cartFacade" ref="cartFacade" />
+		<property name="productConverter" ref="productConverter" />
+		<property name="productConfiguredPopulator" ref="productConfiguredPopulator" />
+		<property name="bulkOrderCartItemConverter" ref="bulkOrderCartItemConverter" />
+		<property name="bulkOrderService" ref="bulkOrderService" />
+	</bean>
+
+	<bean id="bulkOrderCartItemConverter" parent="abstractPopulatingConverter">
+		<lookup-method name="createTarget" bean="bulkOrderCartItemData"/>
+		<property name="populators">
+			<list>
+				<ref bean="bulkOrderCartItemPopulator"/>
+				<ref bean="bulkOrderCartItemErrorPopulator" />
+			</list>
+		</property>
+	</bean>
+	<bean id="bulkOrderCartItemData" class="com.enterprisewide.b2badvance.bulkorder.data.BulkOrderCartItemData" scope="prototype"/>
+
+	<bean id="bulkOrderCartItemPopulator" class="com.enterprisewide.b2badvance.facades.bulkorder.converter.populator.BulkOrderCartItemPopulator" />
+
+	<bean id="bulkOrderCartItemErrorPopulator" class="com.enterprisewide.b2badvance.facades.bulkorder.converter.populator.BulkOrderCartItemErrorPopulator" />
+
+	<alias name="b2bAdvanceProductVariantFacade" alias="productVariantFacade" />
+	<bean id="b2bAdvanceProductVariantFacade"
+		class="com.enterprisewide.b2badvance.facades.product.impl.B2BAdvanceProductFacadeImpl" parent="defaultProductVariantFacade">
+		<property name="catalog" value="${default.catalog.version}" />
+		<property name="unitService" ref="unitService" />
+		<property name="stockService" ref="stockService" />
+		<property name="sessionService" ref="sessionService" />
+		<property name="baseSiteService" ref="baseSiteService" />
+		<property name="discountService" ref="discountService" />
+		<property name="warehouseService" ref="warehouseService" />
+		<property name="priceService" ref="b2bAdvancePriceService" />
+		<property name="catalogVersionService" ref="catalogVersionService" />
+		<property name="productReverseConverter" ref="productReverseConverter" />
+		<property name="variantProductReverseConverter" ref="variantProductReverseConverter" />
+	</bean>
+	
+	<alias name="b2bAdvanceSaveCartFacade" alias="saveCartFacade"/>
+    <bean id="b2bAdvanceSaveCartFacade" class="com.enterprisewide.b2badvance.facades.order.impl.B2BAdvanceSaveCartFacadeImpl" parent="defaultSaveCartFacade">
+    	<property name="templateConverter" ref="templateConverter" />
+    </bean>
+	
+	<alias name="b2bAdvanceProductCategoriesPopulator" alias="productCategoriesPopulator"/>
+	<bean id="b2bAdvanceProductCategoriesPopulator" parent="defaultProductCategoriesPopulator"
+			class="com.enterprisewide.b2badvance.facades.product.populators.B2BAdvanceProductCategoriesPopulator" />
+			
+	<alias name="b2bAdvancePriceDataFactory" alias="priceDataFactory" />
+	<bean id="b2bAdvancePriceDataFactory" class="com.enterprisewide.b2badvance.facades.product.impl.B2BAdvancePriceDataFactoryImpl" parent="defaultPriceDataFactory" />
+	
+	<alias name="b2bAdvanceInvoiceReverseConverter" alias="invoiceReverseConverter" />
+	<bean id="b2bAdvanceInvoiceReverseConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.enterprisewide.b2badvance.core.model.B2BAdvanceInvoiceModel" />
+		<property name="populators">
+			<list>
+				<ref bean="invoiceReversePopulator" />
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="b2bAdvanceInvoiceConverter" alias="invoiceConverter" />
+	<bean id="b2bAdvanceInvoiceConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.enterprisewide.b2badvance.facades.invoice.data.InvoiceData" />
+		<property name="populators">
+			<list>
+				<ref bean="invoicePopulator" />
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="b2bAdvanceInvoiceReversePopulator" alias="invoiceReversePopulator" />
+	<bean id="b2bAdvanceInvoiceReversePopulator" class="com.enterprisewide.b2badvance.facades.invoice.populators.B2BAdvanceInvoiceReversePopulator">
+		<property name="userService" ref="userService" />
+		<property name="baseSiteService" ref="baseSiteService" />
+		<property name="enumerationService" ref="enumerationService" />
+		<property name="customerAccountService" ref="customerAccountService" />
+	</bean>
+	
+	<alias name="b2bAdvanceInvoicePopulator" alias="invoicePopulator" />
+	<bean id="b2bAdvanceInvoicePopulator" class="com.enterprisewide.b2badvance.facades.invoice.populators.B2BAdvanceInvoicePopulator"/>
+
+	
+	<alias name="b2bAdvanceInvoiceFacade" alias="invoiceFacade" />
+	<bean id="b2bAdvanceInvoiceFacade" class="com.enterprisewide.b2badvance.facades.invoice.impl.B2BAdvanceInvoiceFacadeImpl">
+		<property name="modelService" ref="modelService" />
+		<property name="userService" ref="userService" />
+		<property name="invoiceService" ref="b2bAdvanceInvoiceService" />
+		<property name="invoiceReverseConverter" ref="invoiceReverseConverter" />
+		<property name="invoiceConverter" ref="invoiceConverter" />
+		
+	</bean>
+
+	<alias name="b2bAdvanceProductReversePopulator" alias="productReversePopulator" />
+	<bean id="b2bAdvanceProductReversePopulator"
+		class="com.enterprisewide.b2badvance.facades.product.populators.B2BAdvanceProductReversePopulator">
+		<property name="unitService" ref="unitService" />
+		<property name="baseSiteService" ref="baseSiteService" />
+		<property name="categoryService" ref="categoryService" />
+		<property name="catalog" value="${default.catalog.version}" />
+		<property name="catalogVersionService" ref="catalogVersionService" />
+	</bean>
+
+	<alias name="b2bAdvanceBaseProductReversePopulator" alias="baseProductReversePopulator" />
+	<bean id="b2bAdvanceBaseProductReversePopulator"
+		class="com.enterprisewide.b2badvance.facades.product.populators.B2BAdvanceBaseProductReversePopulator"
+		parent="productReversePopulator">
+		<property name="typeService" ref="typeService" />
+	</bean>
+
+	<alias name="b2bAdvanceBaseProductReverseConverter" alias="productReverseConverter" />
+	<bean id="b2bAdvanceBaseProductReverseConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.core.model.product.ProductModel" />
+		<property name="populators">
+			<list>
+				<ref bean="baseProductReversePopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="b2bAdvanceVariantProductReversePopulator" alias="variantProductReversePopulator" />
+	<bean id="b2bAdvanceVariantProductReversePopulator"
+		class="com.enterprisewide.b2badvance.facades.product.populators.B2BAdvanceVariantProductReversePopulator"
+		parent="productReversePopulator">
+		<property name="productService" ref="productService" />
+	</bean>
+
+	<alias name="b2bAdvanceVariantProductReverseConverter" alias="variantProductReverseConverter" />
+	<bean id="b2bAdvanceVariantProductReverseConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.variants.model.GenericVariantProductModel" />
+		<property name="populators">
+			<list>
+				<ref bean="variantProductReversePopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="b2bAdvanceGroupOrderEntryPopulator" alias="groupOrderEntryPopulator" />
+	<bean id="b2bAdvanceGroupOrderEntryPopulator"
+		class="com.enterprisewide.b2badvance.facades.order.populators.B2BAdvanceGroupOrderEntryPopulator"
+		parent="acceleratorGroupOrderEntryPopulator" />
+
+	<bean id="groupOrderConsignmentEntryPopulator"
+		class="com.enterprisewide.b2badvance.facades.order.populators.B2BAdvanceGroupOrderConsignmentEntryPopulator"
+		parent="groupOrderEntryPopulator" />
+</beans>

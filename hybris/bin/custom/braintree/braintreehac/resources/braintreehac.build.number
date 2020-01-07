@@ -1,0 +1,9 @@
+#Ant properties
+#Mon May 08 15:01:13 CEST 2017
+builddate=20170508 1457
+description=braintreehac
+name=braintreehac
+releasedate=20160923 1341
+vendor=hybris
+version=6.2.0.8
+version.api=6.2.0

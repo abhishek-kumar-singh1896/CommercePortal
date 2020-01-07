@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
+
+
+	<bean class="de.hybris.platform.core.servicelayer.data.PaginationData">
+		<description>POJO representation of search pagination.</description>
+		<property name="sortCode" type="java.lang.String" />
+	</bean>
+	
+	<bean class="com.enterprisewide.b2badvance.core.dto.OrderTemplateImportDTO">
+		<description>DTO for order template import.</description>
+		<property name="name" type="java.lang.String" />
+		<property name="description" type="java.lang.String" />
+		<property name="entries"
+				  type="java.util.List&lt;com.enterprisewide.b2badvance.core.dto.OrderTemplateImportEntryDTO>" />
+	</bean>
+	
+	<bean class="com.enterprisewide.b2badvance.core.dto.OrderTemplateImportEntryDTO">
+		<description>DTO for order template entry.</description>
+		<property name="productCode" type="java.lang.String" />
+		<property name="quantity" type="Long" />
+	</bean>
+	<bean class="com.enterprisewide.b2badvance.core.dto.InvoiceDTO">
+		<property name="invoiceNumber" type="String" />
+		<property name="hybrisOrderNumber" type="String" />
+		<property name="userId" type="String" />
+		<property name="erpOrderNumber" type="String" />
+		<property name="dueDate" type="java.util.Date" />
+		<property name="datePaid" type="java.util.Date" />
+		<property name="totalAmount" type="double" />
+		<property name="status" type="String" />
+		<property name="pdfUrl" type="String" />
+	</bean>
+	
+</beans>

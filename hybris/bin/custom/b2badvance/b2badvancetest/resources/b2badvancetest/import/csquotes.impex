@@ -1,0 +1,30 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+$defaultPassword=12341234
+
+$storeUid=electronics
+$siteUid=electronics
+
+# Create sample users
+INSERT_UPDATE Customer;originalUid[unique=true];uid[unique=true];title(code);name;description;sessionLanguage(isocode);sessionCurrency(isocode);password[default=$defaultPassword]
+
+# Create sample quotes
+INSERT_UPDATE Quote;code[unique=true];version[unique=true];currency(isocode);user(uid);date[dateformat=dd.MM.yyyy HH:mm:ss];state(code);net[default=false];calculated[default=false];site(uid);store(uid)
+
+# Set name and description for the quotes
+UPDATE Quote;code[unique=true];version[unique=true];name;description
+
+# Re-create employees from commerceorgsamplesaddon if it's not installed
+INSERT_UPDATE Employee;name;password[default=$defaultPassword];uid[unique=true]
+
+
+# Set assignees for some of the quotes
+UPDATE Quote;code[unique=true];version[unique=true];assignee(uid);

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<div width="100%" height="100%" class="csContentArea csOrderArea">
+    <attribute name="onCreate">
+        org.zkoss.zk.ui.util.Clients.evalJavaScript("tabLoaded('btcustomer');");
+    </attribute>
+    <div id="btCustomerActionsWidget" class="btCustomerActionsWidget"/>
+    <div id="btCustomerDetailsWidget" class="btCustomerDetailsWidget"/>
+    <div id="btCustomerPaymentMethodsDetailsWidget" class="btCustomerPaymentMethodsDetailsWidget"/>
+    <div id="btCustomerAddressBookDetailsWidget" class="btCustomerAddressBookDetailsWidget"/>
+</div>

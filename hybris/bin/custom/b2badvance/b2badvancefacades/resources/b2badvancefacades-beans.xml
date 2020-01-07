@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- [y] hybris Platform Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved. This software is the confidential 
+	and proprietary information of SAP ("Confidential Information"). You shall not disclose such Confidential Information and shall use 
+	it only in accordance with the terms of the license agreement you entered into with SAP. -->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
+
+	<bean class="de.hybris.platform.commercefacades.product.data.ProductData">
+		<property name="genders" type="java.util.List&lt;com.enterprisewide.b2badvance.facades.product.data.GenderData>" />
+		<property name="selectedForCompare" type="boolean" />
+		<property name="totalVariantCategories" type="int"></property>
+		<property name="baseProductName" type="String"></property>
+	</bean>
+
+	<bean class="com.enterprisewide.b2badvance.facades.product.data.GenderData">
+		<property name="code" type="String" />
+		<property name="name" type="String" />
+	</bean>
+
+	<!-- Changes for B2b Advance -->
+
+	<bean class="de.hybris.platform.commercefacades.product.data.CategoryData">
+		<property name="productCount" type="Long" />
+		<property name="thirdLevelNode" type="boolean" />
+	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.product.data.PromotionData">
+		<property name="productFixedUnitPrice" type="java.util.List&lt;String>" />
+		<property name="isSameCurrency" type="boolean" />
+	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.product.data.DiscountData">
+		<property name="discountString" type="String" />
+		<property name="value" type="String" />
+		<property name="sameCurrency" type="boolean" />
+	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.product.data.ProductData">
+		<property name="totalDiscounts" type="List&lt;de.hybris.platform.commercefacades.product.data.DiscountData>" />
+		<property name="shortDescription" type="String" />
+		<property name="partNumber" type="String" />
+	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.order.data.OrderEntryData">
+		<property name="sellingPrice" type="de.hybris.platform.commercefacades.product.data.PriceData" />
+	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.order.data.AbstractOrderData">
+		<property name="deliveryInstructions" type="String" />
+	</bean>
+
+	<bean class="de.hybris.platform.b2bacceleratorfacades.checkout.data.PlaceOrderData">
+		<property name="deliveryInstructions" type="String" />
+	</bean>
+
+	<bean class="com.enterprisewide.b2badvance.order.SalesApplicationData">
+		<property name="code" type="String" />
+		<property name="value" type="de.hybris.platform.commerceservices.enums.SalesApplication" />
+	</bean>
+
+	<bean class="de.hybris.platform.commerceservices.search.pagedata.PageableData">
+		<property name="salesApplication" type="de.hybris.platform.commerceservices.enums.SalesApplication" />
+	</bean>
+
+	<bean class="com.enterprisewide.b2badvance.bulkorder.data.BulkOrderCartItemData">
+		<property name="errorMsg" type="String" />
+		<property name="quantity" type="Long" />
+		<property name="product" type="de.hybris.platform.commercefacades.product.data.ProductData" />
+	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.product.data.PriceData">
+		<property name="currencySymbol" type="String" />
+	</bean>
+
+	<bean class="com.enterprisewide.b2badvance.facades.invoice.data.InvoiceData">
+		<property name="invoiceNumber" type="String" />
+		<property name="hybrisOrderNumber" type="String" />
+		<property name="userId" type="String" />
+		<property name="erpOrderNumber" type="String" />
+		<property name="dueDate" type="java.util.Date" />
+		<property name="datePaid" type="java.util.Date" />
+		<property name="totalAmount" type="double" />
+		<property name="status" type="String" />
+		<property name="pdfUrl" type="String" />
+	</bean>
+
+	<bean class="com.enterprisewide.b2badvance.facades.product.data.B2BAdvanceProductData">
+		<property name="articleNumber" type="String" />
+		<property name="categories" type="java.util.List&lt;java.lang.String>" />
+		<property name="salesUnit" type="String" />
+		<property name="productSummary" type="String" />
+		<property name="productName" type="String" />
+		<property name="onlineTo" type="java.util.Date" />
+		<property name="onlineFrom" type="java.util.Date" />
+		<property name="erpArticleNumber" type="String" />
+		<property name="action" type="String" />
+	</bean>
+
+	<bean class="com.enterprisewide.b2badvance.facades.product.data.B2BAdvanceBaseProductData"
+		extends="com.enterprisewide.b2badvance.facades.product.data.B2BAdvanceProductData">
+		<property name="variantCategories" type="java.util.List&lt;java.lang.String>" />
+	</bean>
+
+	<bean class="com.enterprisewide.b2badvance.facades.product.data.B2BAdvanceVariantProductData"
+		extends="com.enterprisewide.b2badvance.facades.product.data.B2BAdvanceProductData">
+		<property name="variantValueCategories" type="java.util.List&lt;java.lang.String>" />
+		<property name="baseProduct" type="String" />
+	</bean>
+	
+	<bean class="com.enterprisewide.b2badvance.facades.price.data.B2BAdvancePDTData">
+		<property name="articleNumber" type="String" />
+		<property name="erpArticleNumber" type="String" />
+		<property name="productName" type="String" />
+		<property name="startDate" type="java.util.Date" />
+		<property name="endDate" type="java.util.Date" />
+		<property name="currency" type="String" />
+	</bean>
+
+	<bean class="com.enterprisewide.b2badvance.facades.price.data.B2BAdvancePriceData"
+		extends="com.enterprisewide.b2badvance.facades.price.data.B2BAdvancePDTData">
+		<property name="price" type="java.lang.Double" />
+		<property name="isNetPrice" type="boolean" />
+		<property name="salesUnit" type="String" />
+		<property name="userPriceGroup" type="java.lang.String" />
+	</bean>
+
+	<bean class="com.enterprisewide.b2badvance.facades.price.data.B2BAdvanceDiscountData"
+		extends="com.enterprisewide.b2badvance.facades.price.data.B2BAdvancePDTData">
+		<property name="discount" type="java.lang.Double" />
+		<property name="discountType" type="String" />
+		<property name="discountCode" type="String" />
+		<property name="userDiscountGroup" type="java.lang.String" />
+	</bean>
+	
+	<bean class="com.enterprisewide.b2badvance.facades.stock.data.B2BAdvanceStockData">
+		<property name="articleNumber" type="String" />
+		<property name="erpArticleNumber" type="String" />
+		<property name="warehouseCode" type="String" />
+		<property name="stockAvailable" type="java.lang.Integer" />
+		<property name="inStockStatus" type="String" />
+	</bean>
+	
+	<bean class="com.enterprisewide.b2badvance.facades.order.data.B2BAdvanceOrderData">
+		<property name="hybrisOrderNumber" type="String" />
+		<property name="erpOrderNumber" type="String" />
+		<property name="status" type="String" />
+	</bean>
+	
+</beans>

@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2000-2013 hybris AG
+ All rights reserved.
+
+ This software is the confidential and proprietary information of hybris
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with hybris.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:int="http://www.springframework.org/schema/integration"
+    xmlns:file="http://www.springframework.org/schema/integration/file"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
+        http://www.springframework.org/schema/integration/file http://www.springframework.org/schema/integration/file/spring-integration-file-2.1.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+        
+    <bean id="baseDirectoryB2badvance" class="java.lang.String">
+        <constructor-arg value="#{baseDirectory}/${tenantId}/b2badvance/media" />
+    </bean>
+    
+    <bean id="b2badvanceImportUtil" class="com.enterprisewide.b2badvance.core.batch.util.B2badvanceImportUtil" >
+    	<property name="catalog" value="powertoolsProductCatalog" />
+    </bean>
+    
+    <bean id="b2badvanceProductMediaAttributeService" class="com.enterprisewide.b2badvance.core.batch.product.media.attribute.service.impl.B2badvanceProductMediaAttributeServiceImpl" >
+    	<property name="mainImageFormat" value="product" />
+    	<property name="thumbnailFormat" value="thumbnail" />
+    	<property name="thumbnailsFormat">
+			<list>
+				<value>thumbnail</value>
+			</list>
+		</property>
+		<property name="detailsImagesFormat">
+			<list>
+				<value>superZoom</value>
+			</list>
+		</property>
+		<property name="normalImagesFormat">
+			<list>
+				<value>product</value>
+			</list>
+		</property>
+		<property name="otherImagesFormat">
+			<list>
+				<value>zoom</value>
+				<value>cartIcon</value>
+				<value>styleSwatch</value>
+			</list>
+		</property>		
+    </bean>
+
+	<!-- 1) Scan for files -->
+	<file:inbound-channel-adapter id="batchFilesb2badvance"
+		directory="#{baseDirectoryB2badvance}" prevent-duplicates="false"
+		filename-regex="^(.*).zip" comparator="fileOrderComparator">
+		<int:poller fixed-rate="6000" />
+	</file:inbound-channel-adapter>
+
+
+	<int:service-activator input-channel="batchFilesb2badvance"
+		ref="imageZipFileHandler" method="createUnzipAndCreateCSV"
+		output-channel="batchFilesb2badvance" />
+	<bean id="imageZipFileHandler"
+		class="com.enterprisewide.b2badvance.core.batch.product.B2badvanceImageZipFileHandler">
+		<property name="imagePath" value="#{baseDirectoryB2badvance}/images"></property>
+		<property name="csvPath" value="#{baseDirectoryB2badvance}/media-1.csv"></property>
+		<property name="allowedExtensions" value="${allowedExtensions}"></property>
+		<property name="errorFilePath" value="#{baseDirectoryB2badvance}/error"></property>
+		<property name="zipFilePath" value="#{baseDirectoryB2badvance}"></property>
+	</bean>
+
+	<int:channel id="batchFilesb2badvance"></int:channel>
+
+	<!-- 2) move the file to processing and create header -->
+	<file:outbound-gateway request-channel="batchFilesb2badvance"
+		reply-channel="batchFilesb2badvanceProc" directory="#{baseDirectoryB2badvance}/processing"
+		delete-source-files="true" />
+	<int:service-activator input-channel="batchFilesb2badvanceProc"
+		output-channel="batchFilesHeaderInitb2badvance" ref="b2badvanceHeaderSetupTask"
+		method="execute" />
+	<bean id="b2badvanceHeaderSetupTask"
+		class="de.hybris.platform.acceleratorservices.dataimport.batch.task.HeaderSetupTask">
+		<property name="catalog" value="powertoolsProductCatalog" />
+		<property name="net" value="false" />
+		<property name="storeBaseDirectory" ref="baseDirectoryB2badvance" />
+	</bean>
+
+	<int:channel id="batchFilesHeaderInitb2badvance"></int:channel>
+	<int:service-activator input-channel="batchFilesHeaderInitb2badvance"
+		output-channel="batchFilesHeaderb2badvance" ref="headerInitTask" method="execute" />
+
+	<!-- 3) transform csv to impex file -->
+	<int:channel id="batchFilesHeaderb2badvance"></int:channel>
+	<int:service-activator input-channel="batchFilesHeaderb2badvance"
+		output-channel="batchdeleteOldMediaContainers" ref="batchTransformerTask"
+		method="execute" />
+		
+	<!-- 5) Remove the medais -->
+	<int:channel id="batchdeleteOldMediaContainers"></int:channel>
+	<int:service-activator input-channel="batchdeleteOldMediaContainers"
+		output-channel="batchFilesTranb2badvance" ref="b2badvanceMediaContainerRemovalService"
+		method="execute" />
+	<bean id="b2badvanceMediaContainerRemovalService"
+		class="com.enterprisewide.b2badvance.core.batch.media.service.B2badvanceMediaContainerRemovalService">
+	</bean>
+
+	<!-- 4) run impex import -->
+	<int:channel id="batchFilesTranb2badvance"></int:channel>
+	<int:service-activator input-channel="batchFilesTranb2badvance"
+		output-channel="batchMediaSetb2badvance" ref="batchRunnerTask"
+		method="execute" />
+	
+	<!-- 5) Run the media conversion -->
+	<int:channel id="batchMediaSetb2badvance"></int:channel>
+	<int:service-activator input-channel="batchMediaSetb2badvance"
+		output-channel="batchFilesImpb2badvance" ref="b2badvanceBatchMediaService"
+		method="execute" />
+	<bean id="b2badvanceBatchMediaService"
+		class="com.enterprisewide.b2badvance.core.batch.media.service.B2badvanceBatchMediaService">
+	</bean>
+
+	<!-- 6) Cleanup -->
+	<int:service-activator input-channel="batchFilesImpb2badvance"
+		ref="batchCleanupTask" method="execute" />
+	
+
+    <!-- Transformer converters mappings -->
+    <bean id="batchMediaConverterMapping"
+          class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+          p:mapping="media" p:converter-ref="batchMediaConverter"/>
+
+    <bean id="batchMediaContainerConverterMapping"
+          class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+          p:mapping="media" p:converter-ref="batchMediaContainerConverter"/>
+
+    <bean id="batchMediaProductConverterMapping"
+          class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+          p:mapping="media" p:converter-ref="batchMediaProductConverter"/>
+
+
+    <!-- Converters -->
+
+    <!--
+    Creates the media for each image. Also links each media to the previously
+    created media container.
+    NOTE: The code of the Media item will be the same as the code of the
+    Media Container item!
+    -->
+
+    <bean id="batchMediaConverter"
+          class="com.enterprisewide.b2badvance.core.batch.converter.impl.B2badvanceMultipleRowsImpexConverter">
+        <property name="header">
+            <value>#{defaultImpexProductHeader}
+                $importFolder=file:$BASE_SOURCE_DIR$/images
+                # Import media from filesystem
+    INSERT_UPDATE Media;mediaFormat(qualifier);code[unique=true];mime[default='image/jpeg'];$catalogVersion;folder(qualifier)[default=images];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator]
+            </value>
+        </property>
+        <property name="startDynamicValueIndex" value="1"/>
+        <property name="impexRow">
+            <value>;;{dynamic};;;;{dynamic};$importFolder/{dynamic}</value>
+        </property>
+        <property name="importUtil" ref="b2badvanceImportUtil"></property>
+    </bean>
+
+
+    <bean id="batchMediaContainerConverter"
+          class="com.enterprisewide.b2badvance.core.batch.converter.impl.B2badvanceMultipleRowsImpexConverter">
+        <property name="header">
+            <value>#{defaultImpexProductHeader}
+                # Import media containers
+                $medias=medias(code,$catalogVersion)[mode=append]
+                INSERT_UPDATE MediaContainer;$catalogVersion[unique=true];qualifier[unique=true];conversionGroup(code);$medias
+           </value>
+        </property>
+        <property name="startDynamicValueIndex" value="1"/>
+        <property name="impexRow">
+            <value>;;{qualifier};B2bAdvanceConversionGroup;{dynamic}</value>
+        </property>
+        <property name="importUtil" ref="b2badvanceImportUtil"></property>
+    </bean>
+
+
+    <!--
+        Updates a product with the main image, packaging image and gallery images.
+        Note that the inline snippet is required to cater for cases where only gallery images are included. The primary image and pack image 
+        then need an ignore flag in order not to be cleared.
+    -->
+    <bean id="batchMediaProductConverter"
+          class="com.enterprisewide.b2badvance.core.batch.converter.impl.ProductMultiplePicutreImpexConverter">
+        <property name="header">
+            <value>#{defaultImpexProductHeader}
+                $picture=picture(code, $catalogVersion)
+                $packagingImage=packagingImage(qualifier, $catalogVersion)
+                $galleryImages=galleryImages(qualifier, $catalogVersion)[mode=append]
+                # Import product media
+                UPDATE Product;code[unique=true];$picture;$galleryImages;$catalogVersion
+"#% beforeEach:
+   Integer col = Integer.valueOf(3);
+   String cellStr = (String) line.get(col);
+   if(cellStr == null || cellStr.length() == 0) {
+      line.put( col, de.hybris.platform.impex.constants.ImpExConstants.Syntax.IGNORE_PREFIX);
+   }
+   
+"
+            </value>
+        </property>
+        <property name="impexRow">
+            <value>;{productCode};{productPicture};{galleryImages};</value>
+        </property>
+        <property name="importUtil" ref="b2badvanceImportUtil"></property>
+    </bean>
+</beans>
+ 
+ 

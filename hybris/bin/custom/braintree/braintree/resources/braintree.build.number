@@ -1,0 +1,8 @@
+#Ant properties
+#Tue Sep 15 08:58:39 UTC 2015
+builddate=20150915 0858
+description=braintree
+name=braintree
+vendor=hybris
+version=5.2.0.9
+version.api=5.2.0

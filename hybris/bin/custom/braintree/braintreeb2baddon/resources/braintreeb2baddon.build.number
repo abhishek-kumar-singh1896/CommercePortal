@@ -1,0 +1,9 @@
+#Ant properties
+#Mon Apr 16 19:11:57 CEST 2018
+builddate=20180416 1910
+description=braintreeb2baddon
+name=braintreeb2baddon
+releasedate=20171129 1517
+vendor=hybris
+version=6.6.0.4
+version.api=6.6.0

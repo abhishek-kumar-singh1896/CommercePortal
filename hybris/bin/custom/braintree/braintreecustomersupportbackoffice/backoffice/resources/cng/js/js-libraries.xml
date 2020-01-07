@@ -1,0 +1,16 @@
+<libraries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/libraries.xsd">
+
+	<library>
+		<name>angular</name>
+	</library>
+
+	<library protocol="RESOURCE" url="widgets-angular.js" />
+
+	<library url="https://js.braintreegateway.com/web/3.38.0/js/client.min.js" protocol="HTTP"/>
+	<library url="https://js.braintreegateway.com/web/3.38.0/js/data-collector.min.js" protocol="HTTP"/>
+	<library url="https://js.braintreegateway.com/web/3.38.0/js/hosted-fields.min.js" protocol="HTTP"/>
+	<library url="https://js.braintreegateway.com/web/3.38.0/js/paypal.min.js" protocol="HTTP"/>
+	<library url="https://js.braintreegateway.com/web/3.38.0/js/three-d-secure.min.js" protocol="HTTP"/>
+	<library url="https://code.jquery.com/jquery-1.12.4.min.js" protocol="HTTP"/>
+</libraries>

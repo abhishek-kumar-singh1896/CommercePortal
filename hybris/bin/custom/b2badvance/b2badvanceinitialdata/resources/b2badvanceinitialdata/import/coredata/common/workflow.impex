@@ -1,0 +1,135 @@
+"INSERT_UPDATE WorkflowTemplate";"code[unique=true]";"name[lang=de]";"name[lang=en]";"owner(uid)";"description[lang=de]";"description[lang=en]";"activationscript";"visibleForPrincipals(uid)";;;
+;"ProductUpdate";"Update Approval Workflow";"Update Approval Workflow";"admin";;;;"backofficeproductmanagerg";;;
+
+
+"INSERT_UPDATE WorkflowActionTemplate";"code[unique=true]";"name[lang=de]";"name[lang=en]";"description[lang=de]";"description[lang=en]";"principalAssigned(uid)";"workflow(code)[unique=true]";"sendEmail";"emailAddress";"rendererTemplate(code)";"actionType(code)"
+;"NPR_Confirm";"Bestätigung von einem Administrator";"Confirmation by an administrator";;;"cuppyadmins";"NewPlayerRegistration";"false";;;"start"
+;"NPR_End";"Ende";"End";;;"cuppyadmins";"NewPlayerRegistration";"false";;;"end"
+
+
+"INSERT_UPDATE AutomatedWorkflowActionTemplate";"code[unique=true]";"name[lang=de]";"name[lang=en]";"description[lang=de]";"description[lang=en]";"principalAssigned(uid)";"workflow(code)[unique=true]";"sendEmail";"emailAddress";"rendererTemplate(code)";"actionType(code)";jobHandler
+;"NPR_Confirm_Positive";"Spieler bestätigt";"Player confirmed";;;"cuppyadmins";"NewPlayerRegistration";"false";;;"normal";approveUpdateActionJob
+;"NPR_Confirm_Negative";"Spieler nicht bestätigt";"Player declined";;;"cuppyadmins";"NewPlayerRegistration";"false";;;"normal";rejectUpdateActionJob
+
+
+"INSERT_UPDATE WorkflowDecisionTemplate";"code[unique=true]";"name[lang=de]";"name[lang=en]";"actionTemplate(code)";"description[allownull=true]";;;;;;
+;"NPR001";"Spieler bestätigen";"Confirm player";"NPR_Confirm";;;;;;;
+;"NPR002";"Spieler nicht bestätigen";"Decline player";"NPR_Confirm";;;;;;;
+;"NPR002";"Spieler nicht bestätigen";"Decline player";"NPR_Confirm";;;;;;;
+;"NPR003";"Ende";"End";"NPR_Confirm_Positive";;;;;;;
+;"NPR004";"Ende";"End";"NPR_Confirm_Negative";;;;;;;
+
+
+"INSERT_UPDATE WorkflowActionTemplateLinkTemplateRelation";"source(code)[unique=true]";"target(code)[unique=true]";"andConnectionTemplate";"qualifier";;;;;;;
+;"NPR001";"NPR_Confirm_Positive";"false";"WorkflowActionTemplateLinkTemplateRelation";;;;;;;
+;"NPR002";"NPR_Confirm_Negative";"false";"WorkflowActionTemplateLinkTemplateRelation";;;;;;;
+;"NPR003";"NPR_End";"false";"WorkflowActionTemplateLinkTemplateRelation";;;;;;;
+;"NPR004";"NPR_End";"false";"WorkflowActionTemplateLinkTemplateRelation";;;;;;;
+
+
+
+# Workflow Sample Data - Workflow B (B_ProductApproval).
+
+INSERT_UPDATE WorkflowTemplate; code[unique=true]; name[lang=en]   ; owner(uid); description[lang=en]                                                                                                                                                                                                      ; description[lang=de]; activationscript                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ; visibleForPrincipals(uid); ; ;
+                              ; M10_SupplierProductCreationApproval; Mitre 10 Supplier Product Create Approval; admin     ; "This workflow approves products created by the Suppliers group after being reviewed by product manager. It will also be automatically started when a product is created or saved and its approval status is check";                     ; "// this script will create a new workflow when a product is created or saved and its approval status is check
+(
+ // create new item
+ (action.equals(""create"") &&
+
+ // initialValues must be set
+ initialValues != null &&
+
+ // approvalStatus must be set
+ initialValues.get(""approvalstatus"") != null &&
+
+ // approvalStatus must be set to ""check""
+ initialValues.get(""approvalstatus"").getCode().equals(""check"")
+) ||
+
+// save item
+(action.equals(""save"") &&
+
+// currentValues must be set
+currentValues != null &&
+
+// approvalStatus must be set
+currentValues.get(""approvalstatus"") != null &&
+
+// approvalStatus must be set to ""check""
+currentValues.get(""approvalstatus"").getCode().equals(""check""))) &&
+
+// created or saved item is a product
+typeService.isAssignableFrom(""Product"", itemType.getCode())"; backofficeworkflowadmingroup,wfl_productManagementGroup;                             ;                             ;
+                              ;                  ;                 ;                 ;           ;                                                                                                                  ;                     ;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ;                             ;                             ;                             ;
+INSERT_UPDATE WorkflowActionTemplate; code[unique=true]                       ; name[lang=en]                      ; description[lang=de]; description[lang=en]; principalAssigned(uid)    ; workflow(code)[unique=true]; sendEmail; emailAddress; rendererTemplate(code); actionType(code)
+                                    ; M10_001_Approval_through_Product_Management; Approval through Mitre 10 Product Management;                     ;                     ; wfl_productManagementGroup; M10_SupplierProductCreationApproval          ; false    ;             ;                       ; start
+                                    ; M10_004_Approval_Product                   ; Product reviewed                   ;                     ;                     ; wfl_productManagementGroup        ; M10_SupplierProductCreationApproval          ; false    ;             ;                       ; end
+                                    ;                                         ;                    ;                                    ;                     ;                     ;                           ;                            ;          ;             ;                       ;
+                                    ;                                         ;                    ;                                    ;                     ;                     ;                           ;                            ;          ;             ;                       ;
+INSERT_UPDATE WorkflowDecisionTemplate; code[unique=true]; name[lang=de]    ; name[lang=en]             ; actionTemplate(code)                    ; description[allownull=true]; ; ; ; ; ;
+                                      ; M10_BB001            ; Approve         ; Approve                  ; M10_001_Approval_through_Product_Management ;                            ;                            ;                            ;                            ;                            ;                            ;
+                                        ; M10_BB002          ; Reject         ; Reject                  ; M10_001_Approval_through_Product_Management ;                            ;                            ;                            ;                            ;                            ;                            ;
+                                        ;                  ;                  ;                           ;                                         ;                            ;                            ;                            ;                            ;                            ;                            ;
+                                      ;                  ;                  ;                           ;                                         ;                            ;                            ;                            ;                            ;                            ;                            ;
+                                      ;                  ;                  ;                           ;                                         ;                            ;                            ;                            ;                            ;                            ;                            ;
+# new Workflow Model;;;;;;;;;;;
+insert_update WorkflowActionTemplateLinkTemplateRelation; source(code)[unique=true]; target(code)[unique=true]               ; andConnectionTemplate; qualifier; ; ; ; ; ; ;
+                                                        ; M10_BB001                    ; M10_004_Approval_Product ; false                 ; WorkflowActionTemplateLinkTemplateRelation;                                           ;                                           ;                                           ;                                           ;                                           ;                                           ;
+                                                        ; M10_BB002                    ; M10_004_Approval_Product ; false                 ; WorkflowActionTemplateLinkTemplateRelation;                                           ;                                           ;                                           ;                                           ;                                           ;                                           ;
+
+
+
+# M10 Product creation workflow
+
+INSERT_UPDATE WorkflowTemplate; code[unique=true]; name[lang=en]   ; owner(uid); description[lang=en]                                                                                                                                                                                                      ; description[lang=de]; activationscript                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ; visibleForPrincipals(uid); ; ;
+                              ; M10X_SupplierProductCreationApproval; Product creation workflow (SKU xxxxxxxx); admin     ; "This workflow is trigerred when a new product is created. ";                     ; "// this script will create a new workflow when a product is created or saved and its approval status is check
+(
+ // create new item
+ (action.equals(""create"") &&
+
+ // initialValues must be set
+ initialValues != null &&
+
+ // approvalStatus must be set
+ initialValues.get(""approvalstatus"") != null &&
+
+ // approvalStatus must be set to ""check""
+ initialValues.get(""approvalstatus"").getCode().equals(""check"")
+) ||
+
+// save item
+(action.equals(""save"") &&
+
+// currentValues must be set
+currentValues != null &&
+
+// approvalStatus must be set
+currentValues.get(""approvalstatus"") != null &&
+
+// approvalStatus must be set to ""check""
+currentValues.get(""approvalstatus"").getCode().equals(""check""))) &&
+
+// created or saved item is a product
+typeService.isAssignableFrom(""Product"", itemType.getCode())"; backofficeworkflowadmingroup,wfl_productManagementGroup;                             ;                             ;
+                              ;                  ;                 ;                 ;           ;                                                                                                                  ;                     ;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ;                             ;                             ;                             ;
+INSERT_UPDATE WorkflowActionTemplate; code[unique=true]                       ; name[lang=en]                      ; description[lang=de]; description[lang=en]; principalAssigned(uid)    ; workflow(code)[unique=true]; sendEmail; emailAddress; rendererTemplate(code); actionType(code)
+                                    ; M10_X00_Supplier_input                     ; Supplier input required                      ;                     ;                     ; wfl_omniSupplierGroup       ; M10X_SupplierProductCreationApproval          ; false    ;             ;                       ; start
+                                    ; M10_X01_Approval_through_Product_Management;  Review by Product Management;                     ;                     ; wfl_productManagementGroup  ; M10X_SupplierProductCreationApproval          ; false    ;             ;                       ; normal
+                                    ; M10_X03_Supplier_review                    ; Supplier review required                     ;                     ;                     ; wfl_omniSupplierGroup       ; M10X_SupplierProductCreationApproval          ; false    ;             ;                       ; normal
+                                    ; M10_X04_Approval_Product                   ; Product reviewed                             ;                     ;                     ; wfl_productManagementGroup  ; M10X_SupplierProductCreationApproval          ; false    ;             ;                       ; end
+                                    ;                                         ;                    ;                                    ;                     ;                     ;                           ;                            ;          ;             ;                       ;
+                                    ;                                         ;                    ;                                    ;                     ;                     ;                           ;                            ;          ;             ;                       ;
+INSERT_UPDATE WorkflowDecisionTemplate; code[unique=true]; name[lang=de]    ; name[lang=en]             ; actionTemplate(code)                    ; description[allownull=true]; ; ; ; ; ;
+                                      ; M10_XBB001            ; Done. Send it to admin for approval.         ; Done. Send it to admin for approval.                  ; M10_X00_Supplier_input ;                            ;                            ;                            ;                            ;                            ;                            ;
+                                      ; M10_XBB002            ; Approve                                      ; Approve                                               ; M10_X01_Approval_through_Product_Management ;                            ;                            ;                            ;                            ;                            ;                            ;
+                                      ; M10_XBB003            ; Reject and send it back to supplier          ; Reject and send it back to supplier                   ; M10_X01_Approval_through_Product_Management ;                            ;                            ;                            ;                            ;                            ;                            ;
+                                      ; M10_XBB004            ; Done. Send it to admin again.          ; Done. Send it to admin again.                    ; M10_X03_Supplier_review ;                            ;                            ;                            ;                            ;                            ;                            ;
+                   ;                  ;                  ;                           ;                                         ;                            ;                            ;                            ;                            ;                            ;                            ;
+                                      ;                  ;                  ;                           ;                                         ;                            ;                            ;                            ;                            ;                            ;                            ;
+                                      ;                  ;                  ;                           ;                                         ;                            ;                            ;                            ;                            ;                            ;                            ;
+# new Workflow Model;;;;;;;;;;;
+insert_update WorkflowActionTemplateLinkTemplateRelation; source(code)[unique=true]; target(code)[unique=true]               ; andConnectionTemplate; qualifier; ; ; ; ; ; ;
+                                                        ; M10_XBB001                    ; M10_X01_Approval_through_Product_Management ; false                 ; WorkflowActionTemplateLinkTemplateRelation;                                           ;                                           ;                                           ;                                           ;                                           ;                                           ;
+                                                        ; M10_XBB003                    ; M10_X03_Supplier_review ; false                 ; WorkflowActionTemplateLinkTemplateRelation;                                           ;                                           ;                                           ;                                           ;                                           ;                                           ;
+                                                        ; M10_XBB002                    ; M10_X04_Approval_Product ; false                 ; WorkflowActionTemplateLinkTemplateRelation;                                           ;                                           ;                                           ;                                           ;                                           ;                                           ;
+                                                        ; M10_XBB004                    ; M10_X01_Approval_through_Product_Management ; false                 ; WorkflowActionTemplateLinkTemplateRelation;                                           ;                                           ;                                           ;                                           ;                                           ;                                           ;

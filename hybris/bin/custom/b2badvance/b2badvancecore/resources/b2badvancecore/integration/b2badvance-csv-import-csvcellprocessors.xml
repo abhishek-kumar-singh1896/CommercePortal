@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- @author srishtySharma -->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:util="http://www.springframework.org/schema/util"
+
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+	<bean id="parseString" class="org.supercsv.cellprocessor.constraint.StrNotNullOrEmpty" />
+	<bean id="parseDouble" class="org.supercsv.cellprocessor.ParseDouble" />
+	<bean id="parseInt" class="org.supercsv.cellprocessor.ParseInt" />
+	<bean id="parseBool" class="org.supercsv.cellprocessor.ParseBool" />
+	<bean id="optional" class="org.supercsv.cellprocessor.Optional"/>
+	
+	<bean id="optionalDateProcessor" class="org.supercsv.cellprocessor.Optional">
+		<constructor-arg ref="b2bAdvanceDateProcessor" />
+	</bean>
+	
+	<bean id="optionalBooleanProcessor" class="org.supercsv.cellprocessor.Optional">
+		<constructor-arg ref="parseBool" />
+	</bean>
+
+	<bean id="b2bAdvanceDateProcessor" class="org.supercsv.cellprocessor.ParseDate">
+		<constructor-arg value="yyyy/MM/dd" />
+	</bean>
+
+</beans>

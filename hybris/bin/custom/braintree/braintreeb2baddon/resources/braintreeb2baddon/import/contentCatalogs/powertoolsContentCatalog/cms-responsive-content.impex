@@ -1,0 +1,55 @@
+$contentCatalog=powertoolsContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$jarResourceCms=jar:de.hybris.platform.yacceleratorcore.setup.CoreSystemSetup&/yacceleratorcore/import/cockpits/cmscockpit
+$siteResource=jar:com.braintree.constants.braintreeb2baddonConstants&/braintreeb2baddon/import/contentCatalogs/$contentCatalog
+
+# Language
+$lang=en
+
+# PayPal Standard UI Image Component
+INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];name;page
+;;PayPalCheckoutComponent;PayPal Checkout Display Component;/WEB-INF/views/addons/braintreeb2baddon/responsive/pages/cart/checkoutDisplay.jsp;
+;;BrainTreeAccountPaymentDetailsComponent;Brain Tree Account Payment Details Component;/WEB-INF/views/addons/braintreeb2baddon/responsive/pages/account/accountPaymentInfoPage.jsp;
+;;AccountAddPaymentMethodComponent;Account Add Payment Method Component;/WEB-INF/views/addons/braintreeb2baddon/responsive/pages/account/accountAddPaymentMethodPage.jsp;
+;;AccountEditPaymentMethodComponent;Account Edit Payment Method Component;/WEB-INF/views/addons/braintreeb2baddon/responsive/pages/account/accountEditPaymentMethodPage.jsp;
+
+INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];name;page;actions(uid,$contentCV);
+;;AccountOrderDetailsShippingComponent;Account Order Details Shipping Info Component;/WEB-INF/views/addons/braintreeb2baddon/responsive/pages/account/accountOrderDetailShippingInfo.jsp;;
+;;OrderConfirmationShippingComponent;Order Confirmation Shipping Info Component;/WEB-INF/views/addons/braintreeb2baddon/responsive/pages/account/accountOrderDetailShippingInfo.jsp;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV)[mode=remove]
+;;BottomContentSlot-cartPage;CheckoutComponent,CartSuggestions
+;;BodyContent-payment-details;AccountPaymentDetailsComponent
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV)[mode=append]
+;;BottomContentSlot-cartPage;PayPalCheckoutComponent,CartSuggestions
+;;BodyContent-payment-details;BrainTreeAccountPaymentDetailsComponent
+
+###### Account payment detail page
+# ContentSlot
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV)
+;;BodyContent-add-payment-method;Body Content Slot for Edit Payment Method;true;AccountAddPaymentMethodComponent
+;;BodyContent-edit-payment-method;Body Content Slot for Edit Payment Method;true;AccountEditPaymentMethodComponent
+
+###### Empty account page SideContent
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV);
+;;SideContent-add-payment-method;;
+;;SideContent-edit-payment-method;;
+
+# ContentSlotForPage
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='add-edit-payment-method'];contentSlot(uid,$contentCV)[unique=true];;;
+;;BodyContent-add-payment-method;BodyContent;;BodyContent-add-payment-method;;;
+;;SideContent-add-payment-method;SideContent;;SideContent-add-payment-method;;;
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='edit-payment-method'];contentSlot(uid,$contentCV)[unique=true];;;
+;;BodyContent-edit-payment-method;BodyContent;;BodyContent-edit-payment-method;;;
+;;SideContent-edit-payment-method;SideContent;;SideContent-edit-payment-method;;;
+
+# Preview Image for use in the CMS Cockpit for special ContentPages
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];mime;realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true]
+;;ContentPageModel__function_preview;text/gif;ContentPageModel__function_preview.gif;$jarResourceCms/preview-images/ContentPageModel__function_preview.gif
+
+# Functional Content Pages
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false'];previewImage(code, $contentCV)[default='ContentPageModel__function_preview']
+;;add-edit-payment-method;Add Edit Payment Method Page;AccountPageTemplate;add-edit-payment-method
+;;edit-payment-method;Edit Payment Method Page;AccountPageTemplate;edit-payment-method

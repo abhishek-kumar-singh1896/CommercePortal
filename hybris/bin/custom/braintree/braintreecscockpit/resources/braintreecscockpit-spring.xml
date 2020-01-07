@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2000-2013 hybris AG
+ All rights reserved.
+
+ This software is the confidential and proprietary information of hybris
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with hybris.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+    <alias name="braintreeTransactionSearchService" alias="transactionSearchService"/>
+    <bean id="braintreeTransactionSearchService" class="com.braintree.cscockpit.services.impl.BraintreeTransactionSearchServiceImpl">
+        <property name="commandFactoryRegistry" ref="commandFactoryRegistry"/>
+    </bean>
+
+    <alias name="braintreeCustomerSearchService" alias="customerSearchService"/>
+    <bean id="braintreeCustomerSearchService" class="com.braintree.cscockpit.services.impl.BraintreeCustomerSearchServiceImpl">
+        <property name="commandFactoryRegistry" ref="commandFactoryRegistry"/>
+    </bean>
+
+    <bean id="csBrainTreeFacade" class="com.braintree.cscockpit.facade.impl.CsBrainTreeFacadeImpl">
+        <property name="userService" ref="userService"/>
+        <property name="partialRefundService" ref="braintreePartialRefundService"/>
+        <property name="brainTreeTransactionConverter" ref="transactionSearchResultConverter"/>
+        <property name="braintreeResponseConverter" ref="transactionResponseConverter"/>
+        <property name="defaultResponseConverter" ref="defaultResponseConverter"/>
+        <property name="paymentMethodResponseConverter" ref="paymentMethodResponseConverter"/>
+        <property name="transactionSearchService" ref="transactionSearchService"/>
+        <property name="brainTreePaymentService" ref="brainTreePaymentService"/>
+        <property name="modelService" ref="modelService"/>
+        <property name="brainTreeTransactionService" ref="brainTreeTransactionService"/>
+        <property name="enumerationService" ref="enumerationService"/>
+        <property name="customerSearchService" ref="customerSearchService"/>
+        <property name="brainTreeConfigService" ref="brainTreeConfigService"/>
+        <property name="paymentInfoService" ref="paymentInfoService"/>
+        <property name="paymentMethodConverter" ref="paymentMethodConverter"/>
+        <property name="braintreeAddressService" ref="csBrainTreeAddressService"/>
+        <property name="sessionService" ref="sessionService"/>
+        <property name="braintreeCsCheckoutService" ref="csCheckoutService"/>
+        <property name="customFieldsService" ref="customFieldsService" />
+    </bean>
+
+    <alias name="braintreeDefaultResponseConverter" alias="defaultResponseConverter"/>
+    <bean id="braintreeDefaultResponseConverter"
+          class="com.braintree.cscockpit.converters.BraintreeDefaultResponseConverter">
+        <property name="targetClass" value="com.braintree.hybris.data.BrainTreeResponseResultData"/>
+    </bean>
+
+    <alias name="braintreePaymentMethodResponseConverter" alias="paymentMethodResponseConverter"/>
+    <bean id="braintreePaymentMethodResponseConverter"
+          class="com.braintree.cscockpit.converters.BraintreePaymentMethodResponseConverter">
+        <property name="targetClass" value=" com.braintree.cscockpit.data.BraintreePaymentMethodData"/>
+    </bean>
+
+    <alias name="braintreeResponseConverter" alias="transactionResponseConverter"/>
+    <bean id="braintreeResponseConverter"
+          class="com.braintree.cscockpit.converters.BraintreeResponseConverter">
+        <property name="targetClass" value="com.braintree.hybris.data.BrainTreeResponseResultData"/>
+    </bean>
+
+    <bean id="defaultUpdateCustomerStrategy" class="com.braintree.cscockpit.strategy.impl.UpdatePaymentMethodForCustomerStrategyImpl">
+        <property name="paymentMethodConverter" ref="paymentMethodConverter"/>
+    </bean>
+
+    <bean id="csBrainTreeAddressService" class="com.braintree.cscockpit.services.impl.DefaultBraintreeAddressServiceImpl">
+        <property name="brainTreeCustomerAccountDao" ref="brainTreeCustomerAccountDao"/>
+        <property name="brainTreePaymentService" ref="brainTreePaymentService"/>
+        <property name="braintreeAddressConverter" ref="braintreeAddressPopulator"/>
+        <property name="userService" ref="userService"/>
+        <property name="modelService" ref="modelService"/>
+    </bean>
+
+    <alias name="defaultBraintreeCsCheckoutService" alias="csCheckoutService"/>
+    <bean id="defaultBraintreeCsCheckoutService" class="com.braintree.cscockpit.widgets.services.chekout.DefaultBraintreeCsCheckoutService" parent="defaultCsCheckoutService">
+        <property name="modelService" ref="modelService"/>
+        <property name="brainTreeTransactionService" ref="brainTreeTransactionService"/>
+        <property name="brainTreePaymentService" ref="brainTreePaymentService"/>
+        <property name="commonI18NService" ref="commonI18NService"/>
+        <property name="regionI18NService" ref="regionI18NService"/>
+        <property name="commerceCheckoutService" ref="commerceCheckoutServiceSuper"/>
+
+    </bean>
+
+    <alias name="braintreeCommerceCheckoutServiceFactory" alias="commerceCheckoutServiceFactory"/>
+    <bean id="braintreeCommerceCheckoutServiceFactory" class="com.braintree.cscockpit.factory.CommerceCheckoutServiceFactory">
+        <property name="brainTreeConfigService" ref="brainTreeConfigService"/>
+    </bean>
+
+    <bean id="commerceCheckoutServiceSuper"  factory-bean="commerceCheckoutServiceFactory"
+          factory-method="getService"/>
+    
+    <alias alias="csCardPaymentService" name="defaultBTCsCardPaymentService"/>
+    <bean name="defaultBTCsCardPaymentService" class="com.braintree.cscockpit.widgets.services.chekout.BraintreeCsCardPaymentService"
+          parent="defaultCsCardPaymentService" scope="tenant">
+    </bean>
+
+    <alias alias="orderDao" name="defaultCsOrderDao"/>
+    <bean id="defaultCsOrderDao" class="com.braintree.cscockpit.dao.impl.DefaultCsOrderDao" parent="defaultOrderDao"/>
+
+    <alias alias="braintreeAddressValidator" name="defaultBraintreeAddressValidator"/>
+    <bean id="defaultBraintreeAddressValidator" class="com.braintree.cscockpit.validators.DefaultBraintreeAddressValidator"/>
+
+    <alias alias="braintreeOrderManagementActionsWidgetService" name="defaultBraintreeOrderManagementActionsWidgetService"/>
+    <bean id="defaultBraintreeOrderManagementActionsWidgetService" class="com.braintree.cscockpit.widgets.services.management.impl.DefaultBraintreeOrderManagementActionsWidgetService"/>
+
+</beans>

@@ -1,0 +1,84 @@
+# for root folder
+pom.xml
+build-tools/
+c4c-integration/
+hybris-dependencies/
+hybris-ems/
+hybris-Mobile-Apps-SDK/
+hybris-oms/
+hybris-sbg/
+installer/
+licenses/
+Mobile-Commerce-SDK/
+README
+
+# for hybris
+hybris/data/
+hybris/log/
+hybris/temp/
+hybris/sampleconfigurations/
+classes/
+**/eclipsebin/
+
+# filter only custom extension
+hybris/bin/*
+!hybris/bin/custom/
+*.class
+gensrc
+.idea
+**/platformhome.properties
+**/resources/hmc.xsd
+**/resources/beans.xsd
+**/resources/items.xsd
+**/extensioninfo.xsd
+**/hmc/bin
+**/config/solr/embedded
+*testclasses.xml
+*.iml
+.DS_Store
+build.xml
+hybris/config/local_tenant_junit.properties
+hybris/config/licence/
+hybris/config/solr/
+!hybris/config/hybris/build.xml
+
+# Ignoring files copied by addons
+hybris/bin/custom/**/web/addonsrc/
+hybris/bin/custom/**/web/webroot/_ui/addons/
+hybris/bin/custom/**/web/webroot/cmscockpit/
+hybris/bin/custom/**/web/webroot/cockpit/
+hybris/bin/custom/**/web/webroot/_ui/addons/
+hybris/bin/custom/**/web/webroot/_ui/responsive/theme-alpha/css
+hybris/bin/custom/**/web/webroot/_ui/responsive/theme-lambda/css
+hybris/bin/custom/**/web/webroot/WEB-INF/views/addons/
+hybris/bin/custom/**/web/webroot/WEB-INF/messages/addons/
+hybris/bin/custom/**/web/webroot/WEB-INF/tags/addons/
+hybris/bin/custom/**/web/webroot/WEB-INF/tld/addons/
+hybris/bin/custom/**/web/webroot/WEB-INF/_ui-src/addons/
+hybris/bin/custom/**/resources/wro_addons.xml
+
+# Ignoring files of commonwebsrc
+hybris/bin/custom/**/web/commonwebsrc/
+
+# filter to ignore hostname specific overrides from GIT
+hybris/config/hybris/server/*
+# E.g. to commit files for specific host. E.g. for dummy value for hostname - "uatsrvr1"
+# !hybris/config/hybris/server/uatsrvr1/
+
+.metadata/
+.recommenders/
+RemoteSystemsTempFiles/
+
+#  Addon specific copy folders
+**/_ui/addons
+**/views/addons
+**/tld/addons
+**/tags/addons
+**/messages/addons
+*_bof.jar
+
+#ignoring generated local.properties and localextensions
+#hybris/config/local.properties
+#hybris/config/localextensions.xml
+hybris/config/key
+!hybris/config/build.xml

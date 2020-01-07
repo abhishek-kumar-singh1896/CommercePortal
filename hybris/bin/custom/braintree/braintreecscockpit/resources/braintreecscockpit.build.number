@@ -1,0 +1,9 @@
+#Ant properties
+#Wed Nov 05 16:41:15 CET 2014
+builddate=20141105 1641
+description=braintreecscockpit
+name=braintreecscockpit
+releasedate=20140530 1917
+vendor=hybris
+version=5.2.0.0
+version.api=5.2.0
