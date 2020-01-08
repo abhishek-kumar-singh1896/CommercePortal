@@ -44,7 +44,6 @@
     "personalizationsearchsamplesaddon",
     "textfieldconfiguratortemplatebackoffice",
     "textfieldconfiguratortemplateaddon",
-    "assistedservicestorefront",
     "assistedservicewebservices",
     "assistedservicepromotionaddon",
     "pcmbackofficesamplesaddon",
@@ -102,7 +101,8 @@
   "useConfig": {
     "properties": [
       {
-        "location": "config/local.properties"
+        "location": "hybris/config/local-dev.properties",
+        "persona": "development"
       }
     ]
   },
@@ -141,6 +141,21 @@
       "addon": "personalizationaddon",
       "storefront": "b2badvancestorefront",
       "template": "yacceleratorstorefront"
+    },
+    {
+      "addon":"adaptivesearchsamplesaddon",
+      "storefront":"b2badvancestorefront",
+      "template":"yacceleratorstorefront"
+    },
+    {
+      "addon":"pcmbackofficesamplesaddon",
+      "storefront":"b2badvancestorefront",
+      "template":"yacceleratorstorefront"
+    },
+    {
+      "addon":"assistedservicestorefront",
+      "storefront":"b2badvancestorefront",
+      "template":"yacceleratorstorefront"
     }
   ],
   "aspects": [
@@ -158,12 +173,32 @@
         {
           "name": "backoffice",
           "contextPath": "/backoffice"
+        },
+        {
+          "name":"odata2webservices",
+          "contextPath":"/odata2webservices"
         }
       ]
     },
     {
       "name": "accstorefront",
       "properties":[
+        {
+          "key":"spring.session.enabled",
+          "value":"true"
+        },
+        {
+          "key":"spring.session.yacceleratorstorefront.save",
+          "value":"async"
+        },
+        {
+          "key":"spring.session.yacceleratorstorefront.cookie.name",
+          "value":"JSESSIONID"
+        },
+        {
+          "key":"spring.session.yacceleratorstorefront.cookie.path",
+          "value":"/"
+        },
         {
           "key":"storefrontContextRoot",
           "value":""
@@ -185,6 +220,22 @@
       ]
     },
     {
+      "name":"backgroundProcessing",
+      "properties":[
+
+      ],
+      "webapps":[
+        {
+          "name":"hac",
+          "contextPath":""
+        },
+        {
+          "name":"mediaweb",
+          "contextPath":"/medias"
+        }
+      ]
+    },
+    {
       "name": "api",
       "properties": [
         {
@@ -197,6 +248,10 @@
         }
       ],
       "webapps": [
+        {
+          "name":"adaptivesearchwebservices",
+          "contextPath":"/adaptivesearchwebservices"
+        },
         {
           "name": "b2badvancecommercewebservices",
           "contextPath": "/rest"
