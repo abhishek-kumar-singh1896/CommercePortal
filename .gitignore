@@ -13,16 +13,16 @@ Mobile-Commerce-SDK/
 README
 
 # for hybris
-hybris/data/
-hybris/log/
-hybris/temp/
-hybris/sampleconfigurations/
+core-customize/hybris/data/
+core-customize/hybris/log/
+core-customize/hybris/temp/
+core-customize/hybris/sampleconfigurations/
 classes/
 **/eclipsebin/
 
 # filter only custom extension
-hybris/bin/*
-!hybris/bin/custom/
+core-customize/hybris/bin/*
+!core-customize/hybris/bin/custom/
 *.class
 gensrc
 .idea
@@ -37,33 +37,33 @@ gensrc
 *.iml
 .DS_Store
 build.xml
-hybris/config/local_tenant_junit.properties
-hybris/config/licence/
-hybris/config/solr/
-!hybris/config/hybris/build.xml
+core-customize/hybris/config/local_tenant_junit.properties
+core-customize/hybris/config/licence/
+core-customize/hybris/config/solr/
+!core-customize/hybris/config/hybris/build.xml
 
 # Ignoring files copied by addons
-hybris/bin/custom/**/web/addonsrc/
-hybris/bin/custom/**/web/webroot/_ui/addons/
-hybris/bin/custom/**/web/webroot/cmscockpit/
-hybris/bin/custom/**/web/webroot/cockpit/
-hybris/bin/custom/**/web/webroot/_ui/addons/
-hybris/bin/custom/**/web/webroot/_ui/responsive/theme-alpha/css
-hybris/bin/custom/**/web/webroot/_ui/responsive/theme-lambda/css
-hybris/bin/custom/**/web/webroot/WEB-INF/views/addons/
-hybris/bin/custom/**/web/webroot/WEB-INF/messages/addons/
-hybris/bin/custom/**/web/webroot/WEB-INF/tags/addons/
-hybris/bin/custom/**/web/webroot/WEB-INF/tld/addons/
-hybris/bin/custom/**/web/webroot/WEB-INF/_ui-src/addons/
-hybris/bin/custom/**/resources/wro_addons.xml
+core-customize/hybris/bin/custom/**/web/addonsrc/
+core-customize/hybris/bin/custom/**/web/webroot/_ui/addons/
+core-customize/hybris/bin/custom/**/web/webroot/cmscockpit/
+core-customize/hybris/bin/custom/**/web/webroot/cockpit/
+core-customize/hybris/bin/custom/**/web/webroot/_ui/addons/
+core-customize/hybris/bin/custom/**/web/webroot/_ui/responsive/theme-alpha/css
+core-customize/hybris/bin/custom/**/web/webroot/_ui/responsive/theme-lambda/css
+core-customize/hybris/bin/custom/**/web/webroot/WEB-INF/views/addons/
+core-customize/hybris/bin/custom/**/web/webroot/WEB-INF/messages/addons/
+core-customize/hybris/bin/custom/**/web/webroot/WEB-INF/tags/addons/
+core-customize/hybris/bin/custom/**/web/webroot/WEB-INF/tld/addons/
+core-customize/hybris/bin/custom/**/web/webroot/WEB-INF/_ui-src/addons/
+core-customize/hybris/bin/custom/**/resources/wro_addons.xml
 
 # Ignoring files of commonwebsrc
-hybris/bin/custom/**/web/commonwebsrc/
+core-customize/hybris/bin/custom/**/web/commonwebsrc/
 
 # filter to ignore hostname specific overrides from GIT
-hybris/config/hybris/server/*
+core-customize/hybris/config/hybris/server/*
 # E.g. to commit files for specific host. E.g. for dummy value for hostname - "uatsrvr1"
-# !hybris/config/hybris/server/uatsrvr1/
+# !core-customize/hybris/config/hybris/server/uatsrvr1/
 
 .metadata/
 .recommenders/
@@ -80,5 +80,5 @@ RemoteSystemsTempFiles/
 #ignoring generated local.properties and localextensions
 #hybris/config/local.properties
 #hybris/config/localextensions.xml
-hybris/config/key
-!hybris/config/build.xml
+core-customize/hybris/config/key
+!core-customize/hybris/config/build.xml

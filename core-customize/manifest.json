@@ -103,12 +103,9 @@
   "useConfig": {
     "properties": [
       {
-        "location": "config/local.properties"
+        "location": "hybris/config/local.properties"
       }
-    ],
-	"extensions": {
-        "location": "config/localextensions.xml"
-	}
+    ]
   },
   "properties": [
     {
