@@ -220,18 +220,12 @@
       ]
     },
     {
-      "name":"backgroundProcessing",
-      "properties":[
-
-      ],
-      "webapps":[
+      "name": "backgroundProcessing",
+      "properties": [],
+      "webapps": [
         {
-          "name":"hac",
-          "contextPath":""
-        },
-        {
-          "name":"mediaweb",
-          "contextPath":"/medias"
+          "name": "hac",
+          "contextPath": "/hac"
         }
       ]
     },
