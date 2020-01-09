@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+     <context:annotation-config/>
+
+	<!-- Spring Integration -->
+	<import resource="classpath:/gallaghercore/integration/hot-folder-store-electronics-spring.xml"/>
+	<import resource="classpath:/gallaghercore/integration/hot-folder-store-apparel-spring.xml"/>
+	<import resource="classpath:/gallaghercore/integration/hot-folder-common-spring.xml"/>
+
+	<!-- SystemSetup for the GallagherCore -->
+	<bean id="acceleratorCoreSystemSetup" class="com.gallagher.core.setup.CoreSystemSetup"
+	       parent="abstractCoreSystemSetup"/>
+
+	<bean id="amB2CCategorySource" parent="abstractCategorySource">
+		<property name="rootCategory" value="1"/>
+		<!-- '1' is the root icecat category -->
+	</bean>
+	<bean id="amB2CBrandCategorySource" parent="abstractCategorySource">
+		<property name="rootCategory" value="brands"/>
+		<!-- 'brands' is the root of the brands hierarchy -->
+	</bean>
+
+	<bean id="amB2CCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider">
+		<property name="categorySource" ref="amB2CCategorySource"/>
+	</bean>
+	<bean id="amB2CBrandCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider">
+		<property name="categorySource" ref="amB2CBrandCategorySource"/>
+	</bean>
+	<bean id="amB2CCategoryNameValueProvider" parent="abstractCategoryNameValueProvider">
+		<property name="categorySource" ref="amB2CCategorySource"/>
+	</bean>
+	<bean id="amB2CBrandCategoryNameValueProvider" parent="abstractCategoryNameValueProvider">
+		<property name="categorySource" ref="amB2CBrandCategorySource"/>
+	</bean>
+
+</beans>

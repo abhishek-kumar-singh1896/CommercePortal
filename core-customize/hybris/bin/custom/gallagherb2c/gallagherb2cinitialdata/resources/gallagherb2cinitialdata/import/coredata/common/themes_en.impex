@@ -1,0 +1,14 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+#
+# Import Themes
+#
+
+# Language
+$lang=en
+
+# SiteTheme
+UPDATE SiteTheme;code[unique=true];name[lang=$lang]
+ ;amB2CUS;"Animal Management US B2C"
+ ;amB2CCA;"Animal Management CA B2C"

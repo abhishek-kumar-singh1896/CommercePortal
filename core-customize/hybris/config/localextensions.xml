@@ -9,8 +9,6 @@
     <extension name='commerceservicesbackoffice' />
     <extension name='solrfacetsearchbackoffice' />
     <extension name='solrserver' />
-    <!--<extension name='electronicsstore' />
-    <extension name='apparelstore' />-->
     <extension name='acceleratorwebservicesaddon' />
     <extension name='orderselfserviceaddon' />
     <extension name='customersupportbackoffice' />
@@ -55,10 +53,7 @@
     <extension name='pcmbackofficesamplesaddon' />
 
     <!-- B2B extensions -->
-    <!--<extension name='powertoolsstore' />-->
     <extension name='b2bcommercebackoffice' />
-    <!--<extension name='b2badmincockpit' />-->
-   <!--  <extension name='b2bacceleratoraddon' /> -->
     <extension name='commerceorgaddon' />
     <extension name='b2boccaddon' />
     <extension name='accountsummaryaddon' />
@@ -80,38 +75,17 @@
     <extension name="b2bapprovalprocessfacades"/>
     
     <!--B2B Advance extensions -->
-    <!--<extension name="b2badvancefulfilmentprocess"/>-->
+    <extension name="b2badvancefulfilmentprocess"/>
    <!-- <extension name="b2badvancecockpits"/>-->
     <extension name="b2badvancecore"/>
     <extension name="b2badvancefacades"/>
     <extension name="b2badvancetest"/>
-    <extension name="b2badvanceinitialdata"/>
-    <extension name="b2badvancestorefront"/>
 	<extension name='b2badvanceacceleratoraddon' />
 	<extension name="b2badvancecommercewebservices" />
 	<extension name="b2badvancebackoffice" />
 	<extension name="addonsupport"/>
 
-	<extension name="b2badvanceoutboundintegration"/>
-    <!-- Braintree custom extensions
-    <extension name="braintree" />
-    <extension name="braintreefacades" />
-    <extension name="braintreeb2bfacades" />
-    <extension name="braintreeb2baddon" />
-    <extension name="braintreecscockpit" />
-    <extension name="braintreecustomersupportbackoffice" />-->
-    <!--<extension name="braintree61fulfilmentprocess" />-->
-    <!--<extension name="braintreehac"/>-->
-
-    <!-- Braintree custom extensions -->
-    <extension name="braintree" />
-    <extension name="braintreefacades" />
-    <extension name="braintreeb2bfacades" />
-    <extension name="braintreeb2baddon" />
-    <!--<extension name="braintreecscockpit" />-->
-    <extension name="braintreecustomersupportbackoffice" />
-    <!--<extension name="braintree61fulfilmentprocess" />-->
-    <extension name="braintreehac"/>
+	<extension name="b2badvanceoutboundintegration"/>    
 
     <extension name="odata2webservices"/>
     <extension name="integrationbackoffice"/>
@@ -128,6 +102,16 @@
     <extension name="sapcpiorderexchangeomsb2b"/>
     <extension name="saporderexchangebackoffice"/>
     <extension name="sapcoretest"/>
+	
+	<extension name="gallagherfulfilmentprocess"/>
+    <extension name="gallaghercore"/>
+    <extension name="gallagherfacades"/>
+    <extension name="gallaghertest"/>
+    <extension name="gallagherbackoffice"/>
+    <extension name="gallagherb2binitialdata"/>
+    <extension name="gallagherb2bstorefront"/>
+    <extension name="gallagherb2cinitialdata"/>
+    <extension name="gallagherb2cstorefront"/>
 
 
   </extensions>

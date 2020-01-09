@@ -1,0 +1,2 @@
+## messageSource=classpath:/gallagherb2binitialdata/messages/email-replenishmentOrderPlacedSubject_$lang.properties
+${ctx.messages.emailSubject}

@@ -1,0 +1,61 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Categories into SecurityB2B Store 
+
+
+# Macros / Replacement Parameter definitions
+$productCatalog=securityB2BProductCatalog
+$productCatalogName=SecurityB2B Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+
+$lang=en
+
+INSERT_UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang];description[lang=$lang]
+ ;1;;Open Catalogue;;
+ ;106;;Components;;
+ ;1354;;Hand Saws;;
+ ;1355;;Tools;;
+ ;1356;;Hammers;;
+ ;1358;;Measuring & Layout Tools;;
+ ;1359;;Tongs;;
+ ;1360;;Power Drills;;
+ ;1386;;Tag Guns;labeling gun;
+ ;1505;;Cable Crimpers/Cutters/Strippers;;
+ ;1593;;Screwdrivers;;
+ ;1595;;Angle Grinders;;
+ ;1596;;Sanders;;
+ ;1597;;Punches Or Nail Sets;;
+ ;1598;;Stripping Tools;;
+ ;1631;;Circular Saws;;
+ ;1641;;Nut Drivers;;
+ ;1710;;Jigsaws;;
+ ;1711;;Rotary Hammers;;
+ ;1731;;Universal Cutters;;
+ ;830;;Cables For Computers And Peripherals;;
+ ;1810;;Hand Tools;;
+ ;1811;;All Products;;
+ ;0;;Bulk Order;;
+ ;3000;;Jackets;;
+ ;3001;;Men's Jackets;;
+ ;3002;;Women's Jackets;;
+ ;3003;;Power Drills;;
+ ;3004;;Power Drills 1;;
+ ;3005;;Power Drills 2;;
+ ;3006;;Power Drills 3;;
+ ;3007;;Power Drills 4;;
+ ;3008;;Category 1;;
+ ;3009;;Category 2;;
+ ;3010;;Category 3;;
+ ;3011;;Category 4;;
+ ;3012;;Punches;;
+ ;3013;;Nail Sets;;
+ ;3014;;Multibit;;
+ ;3015;;Bitset;;
