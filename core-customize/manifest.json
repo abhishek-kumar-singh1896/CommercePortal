@@ -1,6 +1,7 @@
 {
   "commerceSuiteVersion": "1905",
   "useCloudExtensionPack": true,
+  "enableImageProcessingService": true,
   "extensions": [
     "adaptivesearchsolr",
     "adaptivesearchbackoffice",
@@ -55,6 +56,8 @@
     "secureportaladdon",
     "savedorderformsoccaddon",
     "mediaconversion",
+	"cloudmediaconversion",        
+	"mediaconversionbackoffice"
     "ruleengineservices",
     "previewwebservices",
     "smartedit",
