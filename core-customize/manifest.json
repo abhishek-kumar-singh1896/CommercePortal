@@ -126,7 +126,7 @@
     },
     {
       "key": "default.catalog.version",
-      "value": "powertoolsProductCatalog"
+      "value": "securityB2BProductCatalog"
 
     },
     {
@@ -137,32 +137,42 @@
   "storefrontAddons": [
     {
       "addon": "customerticketingaddon",
-      "storefront": "b2badvancestorefront",
+      "storefront": "gallagherb2bstorefront",
       "template": "yacceleratorstorefront"
     },
     {
       "addon": "smarteditaddon",
-      "storefront": "b2badvancestorefront",
+      "storefront": "gallagherb2bstorefront",
+      "template": "yacceleratorstorefront"
+    },
+    {
+      "addon": "smarteditaddon",
+      "storefront": "gallagherb2cstorefront",
       "template": "yacceleratorstorefront"
     },
     {
       "addon": "personalizationaddon",
-      "storefront": "b2badvancestorefront",
+      "storefront": "gallagherb2bstorefront",
       "template": "yacceleratorstorefront"
     },
     {
       "addon":"adaptivesearchsamplesaddon",
-      "storefront":"b2badvancestorefront",
+      "storefront":"gallagherb2bstorefront",
       "template":"yacceleratorstorefront"
     },
     {
       "addon":"pcmbackofficesamplesaddon",
-      "storefront":"b2badvancestorefront",
+      "storefront":"gallagherb2bstorefront",
       "template":"yacceleratorstorefront"
     },
     {
       "addon":"assistedservicestorefront",
-      "storefront":"b2badvancestorefront",
+      "storefront":"gallagherb2bstorefront",
+      "template":"yacceleratorstorefront"
+    },
+    {
+      "addon":"assistedservicestorefront",
+      "storefront":"gallagherb2cstorefront",
       "template":"yacceleratorstorefront"
     }
   ],
@@ -210,6 +220,18 @@
         {
           "key":"storefrontContextRoot",
           "value":""
+        },
+        {
+          "key":"amB2CUS.storefrontContextRoot",
+          "value":"/am"
+        },
+         {
+          "key":"amB2CCA.storefrontContextRoot",
+          "value":"/am"
+        },
+         {
+          "key":"amB2BNZ.storefrontContextRoot",
+          "value":"/security"
         }
       ],
       "webapps": [
@@ -218,8 +240,12 @@
           "contextPath": "/medias"
         },
         {
-          "name": "b2badvancestorefront",
-          "contextPath": ""
+          "name": "gallagherb2cstorefront",
+          "contextPath": "/am"
+        },
+        {
+          "name": "gallagherb2bstorefront",
+          "contextPath": "/security"
         },
         {
           "name": "acceleratorservices",
@@ -246,7 +272,19 @@
         },
         {
           "key":"storefrontContextRoot",
-          "value":"/b2badvancestorefront"
+          "value":""
+        },
+        {
+          "key":"amB2CUS.storefrontContextRoot",
+          "value":"/am"
+        },
+         {
+          "key":"amB2CCA.storefrontContextRoot",
+          "value":"/am"
+        },
+         {
+          "key":"amB2BNZ.storefrontContextRoot",
+          "value":"/security"
         }
       ],
       "webapps": [
@@ -271,8 +309,12 @@
           "contextPath": "/permissionswebservices"
         },
         {
-          "name": "b2badvancestorefront",
-          "contextPath": "/b2badvancestorefront"
+          "name": "gallagherb2bstorefront",
+          "contextPath": "/security"
+        },
+        {
+          "name": "gallagherb2cstorefront",
+          "contextPath": "/am"
         },
         {
           "name": "smartedit",
