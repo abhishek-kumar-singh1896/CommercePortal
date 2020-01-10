@@ -26,7 +26,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
 
-import com.braintree.model.BrainTreePaymentInfoModel;
 import com.enterprisewide.b2badvance.outboundintegration.dtos.B2BAdvanceAddressDTO;
 import com.enterprisewide.b2badvance.outboundintegration.dtos.B2BAdvanceDeliveryDetailsDTO;
 import com.enterprisewide.b2badvance.outboundintegration.dtos.B2BAdvanceOrderContactDTO;
@@ -183,21 +182,7 @@ public class B2BAdvanceOrderRequestDTOPopulator implements Populator<OrderModel,
 				}
 				if (transaction.getInfo() != null) {
 					B2BAdvancePaymentDetailsDTO paymentDetails = new B2BAdvancePaymentDetailsDTO();
-					if (transaction.getInfo() instanceof BrainTreePaymentInfoModel) {
-						BrainTreePaymentInfoModel braintreePaymentInfo = ((BrainTreePaymentInfoModel) transaction
-								.getInfo());
-						paymentDetails.setPaymentType(braintreePaymentInfo.getPaymentProvider());
-						paymentDetails.setBraintreeChannel(braintreePaymentInfo.getBrainTreeChannel());
-						paymentDetails.setBraintreeCustomerID(braintreePaymentInfo.getCustomerId());
-						if (!braintreePaymentInfo.getPaymentProvider().contains("PayPal")) {
-							paymentDetails.setCardNumber(braintreePaymentInfo.getCardNumber());
-							paymentDetails.setCardOwner(braintreePaymentInfo.getCardholderName());
-							paymentDetails.setCardType(braintreePaymentInfo.getCardType().getType());
-						}
-						paymentDetails.setHybrisPaymentIdentifier(braintreePaymentInfo.getCode());
-						paymentDetails.setMethodNonce(braintreePaymentInfo.getNonce());
-						paymentDetails.setPaymentMethodToken(braintreePaymentInfo.getPaymentMethodToken());
-					} else if (transaction.getInfo() instanceof InvoicePaymentInfoModel) {
+					if (transaction.getInfo() instanceof InvoicePaymentInfoModel) {
 						InvoicePaymentInfoModel invoicePaymentInfo = ((InvoicePaymentInfoModel) transaction.getInfo());
 						paymentDetails.setPaymentType("INVOICE");
 						paymentDetails.setHybrisPaymentIdentifier(invoicePaymentInfo.getCode());
