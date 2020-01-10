@@ -103,6 +103,14 @@
       {
         "location": "hybris/config/local-dev.properties",
         "persona": "development"
+      },
+	  {
+        "location": "hybris/config/local-staging.properties",
+       "persona": "staging"
+      },
+	  {
+        "location": "hybris/config/local-production.properties",
+        "persona": "production"
       }
     ]
   },
