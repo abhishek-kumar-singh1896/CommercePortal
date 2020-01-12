@@ -43,5 +43,20 @@
 	<bean id="amB2CBrandCategoryNameValueProvider" parent="abstractCategoryNameValueProvider">
 		<property name="categorySource" ref="amB2CBrandCategorySource"/>
 	</bean>
+	
+	<!--Url Encoder Service -->
+	<alias name="gallaherUrlEncoderService" alias="urlEncoderService"/>
+	<bean id="gallaherUrlEncoderService" parent="defaultUrlEncoderService">
+		<property name="urlEncodingAttributeManagerMap">
+			<map merge="true">
+				<entry key="country" value-ref="countryAttributeManager"/>
+			</map>
+		</property>
+	</bean>
+	
+	<alias name="gallaherCountryAttributeManager" alias="countryAttributeManager"/>
+	<bean id="gallaherCountryAttributeManager"
+	      class="com.gallagher.core.urlencoder.attributes.impl.GallagherCountryAttributeManager"
+	      parent="urlEncodingAttributeManager"/>
 
 </beans>

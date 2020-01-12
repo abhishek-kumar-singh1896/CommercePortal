@@ -34,7 +34,7 @@ $storefrontContextRoot=$config-storefrontContextRoot
 
 # CMS Site
 INSERT_UPDATE CMSSite;uid[unique=true];theme(code);channel(code);stores(uid);contentCatalogs(id);defaultCatalog(id);defaultLanguage(isoCode);urlPatterns;active;previewURL;startingPage(uid,$contentCV);urlEncodingAttributes;defaultPromotionGroup(Identifier)[default=securityB2BNZPromoGrp];minimumSpendThreshold;thresholdMessage;minimumQuantityThreshold;thresholdQuantityMessage
-;$siteUidNZ;securityB2BNZ;B2B;$storeUidNZ;$contentCatalog;$productCatalog;$defaultLanguage;(?i)^https?://[^/]+(/[^?]*)?\?(.*\&)?(site=$siteUidNZ)(|\&.*)$,(?i)^https?://$siteUidNZ\.[^/]+(|/.*|\?.*)$,(?i)^https?://accstorefront.cj6th-gallagher1-d1-public.model-t.cc.commerce.ondemand.com/security/nz\.[^/]+(|/.*|\?.*)$;true;$storefrontContextRoot/?site=$siteUidNZ;homepage;storefront,country,language;;200;A minimum value of $2,000 is required. Please add more items to your cart.;3;Please add more items to your cart. A minimum of 3 items is required on each order.
+;$siteUidNZ;securityB2BNZ;B2B;$storeUidNZ;$contentCatalog;$productCatalog;$defaultLanguage;(?i)^https?://[^/]+(/[^?]*)?\?(.*\&)?(site=$siteUidNZ)(|\&.*)$,(?i)^https?://$siteUidNZ\.[^/]+(|/.*|\?.*)$,(?i)^https?://accstorefront.cj6th-gallagher1-d1-public.model-t.cc.commerce.ondemand.com/security/nz+(|/.*|\?.*)$,(?i)^https?://localhost:9002/security/nz+(|/.*|\?.*)$;true;$storefrontContextRoot/?site=$siteUidNZ;homepage;country,language;;200;A minimum value of $2,000 is required. Please add more items to your cart.;3;Please add more items to your cart. A minimum of 3 items is required on each order.
 
 # SiteMap Configuration
 # SiteMap Language Currencies
