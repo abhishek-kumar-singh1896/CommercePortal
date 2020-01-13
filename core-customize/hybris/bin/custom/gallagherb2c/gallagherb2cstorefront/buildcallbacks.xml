@@ -817,7 +817,7 @@
                                 	            			
                             </if>
                             	            			
-                            <create_wro_addons_xml cssPathsDesktop="${cssPathsDesktop}" cssPathsResponsive="${cssPathsResponsive}" extname="@{extname}" jsPathsDesktop="${jsPathsDesktop}" jsPathsResponsive="${jsPathsResponsive}"/>
+                            <gallagherb2cstorefront_create_wro_addons_xml cssPathsDesktop="${cssPathsDesktop}" cssPathsResponsive="${cssPathsResponsive}" extname="@{extname}" jsPathsDesktop="${jsPathsDesktop}" jsPathsResponsive="${jsPathsResponsive}"/>
                             	            		
                         </then>
                         	        		
@@ -831,7 +831,7 @@
         	
     </macrodef>
     	
-    <macrodef name="create_wro_addons_xml">
+    <macrodef name="gallagherb2cstorefront_create_wro_addons_xml">
         		
         <attribute name="extname"/>
         		

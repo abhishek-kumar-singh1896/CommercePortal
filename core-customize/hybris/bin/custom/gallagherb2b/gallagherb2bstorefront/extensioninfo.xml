@@ -9,118 +9,181 @@
  Information and shall use it only in accordance with the terms of the
  license agreement you entered into with SAP.
 --><extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
-                    	
+                                	
+    
+    
+    
     
     
     
     
     <extension abstractclassprefix="Generated" classprefix="B2badvanceStorefront" name="gallagherb2bstorefront" usemaven="true">
+                                                                        
+        
+        
+        
+        
+        
+        
+        
+        
+        <requires-extension name="assistedservicestorefront"/>
+        <requires-extension name="customerticketingaddon"/>
+                
+        <requires-extension name="personalizationaddon"/>
+                        
+        
+        <requires-extension name="sapcoreaddon"/>
+                                        
+        
+        
+        
+        <requires-extension name="commerceorgsamplesaddon"/>
+                                                
+        
+        
+        
+        
+        <requires-extension name="commerceorgaddon"/>
+                                
+        
+        
+        
+        
+                                                        
+        
+        
+        
+        
+        
+        
+        
+        <requires-extension name="accountsummaryaddon"/>
+                                                                
+        
+        
+        
+        
+        
+        
+        
+        <requires-extension name="b2boccaddon"/>
+                                                                
+        
+        
+        
+        
+        
+        
+        
+        <requires-extension name="secureportaladdon"/>
+                                                                
+        
+        
+        
+        
+        
+        
+        
+        <requires-extension name="savedorderformsoccaddon"/>
+                                                                
+        
+        
+        
+        
+        
+        
+        
+        <requires-extension name="b2badvanceacceleratoraddon"/>
+                                                                
+        
+        
+        
+        
+        
+        
+        
+        <requires-extension name="personalizationsearchsamplesaddon"/>
+                                                                
+        
+        
+        
+        
+        
+        
+        
+        <requires-extension name="pcmbackofficesamplesaddon"/>
+                                                                
+        
+        
+        
+        
+        
+        
+        
+        <requires-extension name="multicountrysampledataaddon"/>
+                                                                
+        
+        
+        
+        
+        
+        
+        
+        <requires-extension name="adaptivesearchsamplesaddon"/>
+                                                                
+        
+        
+        
+        
+        
+        
+        
+        <requires-extension name="orderselfserviceaddon"/>
+                                                                
+        
+        
+        
+        
+        
+        
                                                 
         
         
         
         
         
-        <requires-extension name="sapcoreaddon"/>
-                
-        <requires-extension name="commerceorgsamplesaddon"/>
-                        
-        
-        <requires-extension name="commerceorgaddon"/>
-        
-        
-        <requires-extension name="assistedservicestorefront"/>
-                                        
-        
-        
-        
-        
-        <requires-extension name="accountsummaryaddon"/>
-                                        
-        
-        
-        
-        
-        <requires-extension name="b2boccaddon"/>
-                                        
-        
-        
-        
-        
-        <requires-extension name="secureportaladdon"/>
-                                        
-        
-        
-        
-        
-        <requires-extension name="savedorderformsoccaddon"/>
-                                        
-        
-        
-        
-        
-        <requires-extension name="b2badvanceacceleratoraddon"/>
-                                        
-        
-        
-        
-        
-        <requires-extension name="personalizationsearchsamplesaddon"/>
-                                        
-        
-        
-        
-        
-        <requires-extension name="pcmbackofficesamplesaddon"/>
-                                        
-        
-        
-        
-        
-        <requires-extension name="multicountrysampledataaddon"/>
-                                        
-        
-        
-        
-        
-        <requires-extension name="adaptivesearchsamplesaddon"/>
-                                        
-        
-        
-        
-        
-        <requires-extension name="orderselfserviceaddon"/>
-                                        
-        
-        
-        
-        
-        <requires-extension name="customerticketingaddon"/>
-                                        
-        
-        
         
         
         <requires-extension name="assistedservicepromotionaddon"/>
-                                        
+                                                                
+        
+        
+        
         
         
         
         
         <requires-extension name="textfieldconfiguratortemplateaddon"/>
-                                        
+                                                                
+        
+        
+        
         
         
         
         
         <requires-extension name="smarteditaddon"/>
-                                        
+                                                                
+        
+        
+        
         
         
         
         
         <requires-extension name="promotionenginesamplesaddon"/>
-                                        
+                                                                
         
         
                 
@@ -128,20 +191,29 @@
         
         
         
+        
+        
+        
         <requires-extension name="acceleratorstorefrontcommons"/>
-                                        		
+                                                                		
+        
+        
+        
         
         
         
         
         <!-- <requires-extension name="b2badvancefacades"/> -->
-                                        		
+                                                                		
+        
+        
+        
         
         
         
         
         <webmodule jspcompile="false" webroot="/gallagherb2bstorefront"/>
-                                        		
+                                                                		
 		
         
         
@@ -152,8 +224,14 @@
     
     
     
+    
+    
+    
     </extension>
-                    
+                                
+
+
+
 
 
 

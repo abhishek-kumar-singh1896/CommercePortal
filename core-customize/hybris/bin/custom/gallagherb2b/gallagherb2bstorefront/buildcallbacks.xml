@@ -75,9 +75,9 @@
     	
     <property location="${ext.gallagherb2bstorefront.path}" name="ext.gallagherb2bstorefront.mapperToPath"/>
     	
-    <property name="wro.addons.template.path" value="${ext.gallagherb2bstorefront.path}/wro_addons_template.xml"/>
+    <property name="wro.addons.template.path.b2b" value="${ext.gallagherb2bstorefront.path}/wro_addons_template.xml"/>
     	
-    <property name="wro.addons.dest.path" value="${ext.gallagherb2bstorefront.path}/resources/wro_addons.xml"/>
+    <property name="wro.addons.dest.path.b2b" value="${ext.gallagherb2bstorefront.path}/resources/wro_addons.xml"/>
     	
     <property name="wro.group.node" value="&lt;groups xmlns=&quot;http://www.isdc.ro/wro&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;http://www.isdc.ro/wro wro.xsd&quot;&gt;"/>
     	
@@ -680,11 +680,11 @@
             			
             <if>
                         		
-                <available file="${wro.addons.dest.path}"/>
+                <available file="${wro.addons.dest.path.b2b}"/>
                 				
                 <then>
                     					
-                    <delete failonerror="false" file="${wro.addons.dest.path}"/>
+                    <delete failonerror="false" file="${wro.addons.dest.path.b2b}"/>
                     				
                 </then>
                 			
@@ -702,15 +702,15 @@
                 				
                 <not>
                     	        		
-                    <available file="${wro.addons.dest.path}"/>
+                    <available file="${wro.addons.dest.path.b2b}"/>
                     				
                 </not>
                 	        	
                 <then>
                     	        		
-                    <echo> *** ${wro.addons.dest.path} not found, creating an empty one from the template... ***</echo>
+                    <echo> *** ${wro.addons.dest.path.b2b} not found, creating an empty one from the template... ***</echo>
                     	        		
-                    <copy file="${wro.addons.template.path}" tofile="${wro.addons.dest.path}"/>
+                    <copy file="${wro.addons.template.path.b2b}" tofile="${wro.addons.dest.path.b2b}"/>
                             		
                 </then>
                 			
@@ -818,7 +818,7 @@
                                 	            			
                             </if>
                             	            			
-                            <create_wro_addons_xml cssPathsDesktop="${cssPathsDesktop}" cssPathsResponsive="${cssPathsResponsive}" extname="@{extname}" jsPathsDesktop="${jsPathsDesktop}" jsPathsResponsive="${jsPathsResponsive}"/>
+                            <gallagherb2bstorefront_create_wro_addons_xml cssPathsDesktop="${cssPathsDesktop}" cssPathsResponsive="${cssPathsResponsive}" extname="@{extname}" jsPathsDesktop="${jsPathsDesktop}" jsPathsResponsive="${jsPathsResponsive}"/>
                             	            		
                         </then>
                         	        		
@@ -832,7 +832,7 @@
         	
     </macrodef>
     	
-    <macrodef name="create_wro_addons_xml">
+    <macrodef name="gallagherb2bstorefront_create_wro_addons_xml">
         		
         <attribute name="extname"/>
         		
@@ -853,15 +853,15 @@
             			
             <if>
                 	        	
-                <available file="${wro.addons.template.path}"/>
+                <available file="${wro.addons.template.path.b2b}"/>
                 	        	
                 <then>
                     	        		
                     <gallagherb2bstorefront_create_empty_wro_addons_xml/>
                     	        		
-                    <xmltask destbuffer="buffer" omitHeader="true" source="${wro.addons.dest.path}"/>
+                    <xmltask destbuffer="buffer" omitHeader="true" source="${wro.addons.dest.path.b2b}"/>
                     	        		
-                    <xmltask dest="${wro.addons.dest.path}" omitHeader="true" sourcebuffer="buffer">
+                    <xmltask dest="${wro.addons.dest.path.b2b}" omitHeader="true" sourcebuffer="buffer">
                         						
                         <call path="/groups/group">
                             							
@@ -983,13 +983,13 @@
                         					
                     </xmltask>
                     			    	
-                    <xmltask dest="${wro.addons.dest.path}" omitHeader="true" outputter="simple:3" sourcebuffer="buffer"/>
+                    <xmltask dest="${wro.addons.dest.path.b2b}" omitHeader="true" outputter="simple:3" sourcebuffer="buffer"/>
                             		
                 </then>
                 				
                 <else>
                     					
-                    <echo message="-----------WARNING----------- : Could not find template wro file = ${wro.addons.template.path}..."/>
+                    <echo message="-----------WARNING----------- : Could not find template wro file = ${wro.addons.template.path.b2b}..."/>
                     				
                 </else>
                 			
@@ -1004,7 +1004,7 @@
         		
         <sequential>
             			
-            <replaceregexp file="${wro.addons.dest.path}" match="&lt;groups&gt;" replace="${wro.group.node}"/>
+            <replaceregexp file="${wro.addons.dest.path.b2b}" match="&lt;groups&gt;" replace="${wro.group.node}"/>
             		
         </sequential>
         	

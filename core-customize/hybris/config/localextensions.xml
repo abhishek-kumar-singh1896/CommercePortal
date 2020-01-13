@@ -44,7 +44,6 @@
     <extension name='personalizationsearchsamplesaddon' />
     <extension name='textfieldconfiguratortemplatebackoffice' />
     <extension name='textfieldconfiguratortemplateaddon' />
-    <extension name='assistedservicestorefront' />
     <extension name='assistedservicewebservices' />
     <extension name='assistedservicepromotionaddon' />
     <!--<extension name='assistedserviceatddtests' />-->
@@ -62,7 +61,8 @@
     <extension name='savedorderformsoccaddon' />
 
     <extension name='mediaconversion' />
-
+    <extension name='mediaconversionbackoffice' />
+	<extension name='personalizationaddon' />
 	<!-- smartedit related Extension -->
     <extension name='ruleengineservices' />
     <extension name="previewwebservices"/>
@@ -74,6 +74,8 @@
     <extension name="b2bapprovalprocess"/>
     <extension name="b2bapprovalprocessfacades"/>
     
+    <extension name='oauth2' />
+    <extension name='mediaweb' />
     <!--B2B Advance extensions -->
     <extension name="b2badvancefulfilmentprocess"/>
    <!-- <extension name="b2badvancecockpits"/>-->
@@ -87,8 +89,13 @@
 
 	<extension name="b2badvanceoutboundintegration"/>    
 
+	<extension name="outboundservices" />
+	<extension name="outboundsync" />
     <extension name="odata2webservices"/>
+    <extension name="odata2webservicesfeaturetests" />
     <extension name="integrationbackoffice"/>
+    <extension name="integrationmonitoringbackoffice" />
+	<extension name="outboundsyncbackoffice" />
     <extension name="sapcoreaddon"/>
     <extension name="sapcoreconfigurationbackoffice"/>
     <extension name="sapmodelbackoffice"/>
@@ -102,7 +109,10 @@
     <extension name="sapcpiorderexchangeomsb2b"/>
     <extension name="saporderexchangebackoffice"/>
     <extension name="sapcoretest"/>
-	
+	<extension name="scpiconnector" />
+	<extension name="scpiconnectorbackoffice" />
+	<extension name="sapc4ccustomerb2c" />
+	<extension name="webservicescommons" />
 	<extension name="gallagherfulfilmentprocess"/>
     <extension name="gallaghercore"/>
     <extension name="gallagherfacades"/>

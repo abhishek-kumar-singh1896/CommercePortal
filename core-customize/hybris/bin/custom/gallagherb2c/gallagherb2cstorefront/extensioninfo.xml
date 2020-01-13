@@ -9,7 +9,8 @@
         
         
         <requires-extension name="acceleratorstorefrontcommons"/>
-                		
+        <requires-extension name="smarteditaddon"/>  
+        <requires-extension name="assistedservicestorefront"/>      		
         
         <requires-extension name="gallagherfacades"/>
                 		
