@@ -572,7 +572,7 @@
                                     								
                                 </sequential>
                                 								
-                                <generate_wro_addons_xml extname="@{extname}"/>
+                                <gallagherb2bstorefront_generate_wro_addons_xml extname="@{extname}"/>
                                 							
                             </do>
                             						
@@ -630,9 +630,9 @@
             			
             <gallagherb2bstorefront_compileuisrc_executor/>
             			
-            <create_empty_wro_addons_xml/>
+            <gallagherb2bstorefront_create_empty_wro_addons_xml/>
             			
-            <fix_root_node_for_wro_addons_xml/>
+            <gallagherb2bstorefront_fix_root_node_for_wro_addons_xml/>
             		
         </sequential>
         	
@@ -646,7 +646,7 @@
             			
             <gallagherb2bstorefront_generatevariables/>
             			
-            <delete_wro_addons_xml/>
+            <gallagherb2bstorefront_delete_wro_addons_xml/>
             			
             <foreachext>
                 				
@@ -674,7 +674,7 @@
         	
     </macrodef>
     	
-    <macrodef name="delete_wro_addons_xml">
+    <macrodef name="gallagherb2bstorefront_delete_wro_addons_xml">
         		
         <sequential>
             			
@@ -694,7 +694,7 @@
         	
     </macrodef>
     	
-    <macrodef name="create_empty_wro_addons_xml">
+    <macrodef name="gallagherb2bstorefront_create_empty_wro_addons_xml">
         		
         <sequential>
             			
@@ -720,7 +720,7 @@
         	
     </macrodef>
     	
-    <macrodef name="generate_wro_addons_xml">
+    <macrodef name="gallagherb2bstorefront_generate_wro_addons_xml">
         		
         <attribute name="extname"/>
         		
@@ -732,7 +732,7 @@
                 	        	
                 <then>
                     	        		
-                    <echo>generate_wro_addons_xml for @{extname}</echo>
+                    <echo>gallagherb2bstorefront_generate_wro_addons_xml for @{extname}</echo>
                     	        		
                     <property file="${ext.@{extname}.path}/project.properties"/>
                     	        		
@@ -857,7 +857,7 @@
                 	        	
                 <then>
                     	        		
-                    <create_empty_wro_addons_xml/>
+                    <gallagherb2bstorefront_create_empty_wro_addons_xml/>
                     	        		
                     <xmltask destbuffer="buffer" omitHeader="true" source="${wro.addons.dest.path}"/>
                     	        		
@@ -1000,7 +1000,7 @@
             
     </macrodef>
     	
-    <macrodef name="fix_root_node_for_wro_addons_xml">
+    <macrodef name="gallagherb2bstorefront_fix_root_node_for_wro_addons_xml">
         		
         <sequential>
             			
@@ -1026,7 +1026,7 @@
             			
             <commonwebclean/>
             			
-            <delete_wro_addons_xml/>
+            <gallagherb2bstorefront_delete_wro_addons_xml/>
             		
         </sequential>
         	
