@@ -31,7 +31,7 @@ $siteUidNZ=securityB2BNZ
 
 # CMS Site Settings
 UPDATE CMSSite;uid[unique=true];defaultPreviewCategory(code, $productCV);defaultPreviewProduct(code, $productCV);theme(code)
-;$siteUidNZ;1355;2116282;lambda
+;$siteUidNZ;1355;2116282;securityB2BNZ
 
 ###### Navigation Start ######
 ## navigation is in tree structure ##
