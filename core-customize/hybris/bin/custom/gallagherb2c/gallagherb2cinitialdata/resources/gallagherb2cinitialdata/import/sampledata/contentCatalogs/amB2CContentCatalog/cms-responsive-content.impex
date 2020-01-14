@@ -19,7 +19,8 @@ $productResource=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstant
 
 # CMS Site Settings
 UPDATE CMSSite;uid[unique=true];defaultPreviewCategory(code, $productCV);defaultPreviewProduct(code, $productCV);defaultPreviewCatalog(id)
-;amB2C;575;2053367;$productCatalog
+;amB2CCA;575;2053367;$productCatalog
+;amB2CUS;575;2053367;$productCatalog
 
 # Site Logo
 INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];altText;folder(qualifier)[default='images']
