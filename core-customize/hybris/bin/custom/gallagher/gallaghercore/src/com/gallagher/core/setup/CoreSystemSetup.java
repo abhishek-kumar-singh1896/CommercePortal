@@ -43,7 +43,6 @@ public class CoreSystemSetup extends AbstractSystemSetup
 		importImpexFile(context, "/gallaghercore/import/common/themes.impex");
 		importImpexFile(context, "/gallaghercore/import/common/user-groups.impex");
 		importImpexFile(context, "/gallaghercore/import/common/cronjobs.impex");
-		importImpexFile(context, "/gallaghercore/import/common/essential-data-scpi.impex");
 	}
 
 	/**
@@ -85,6 +84,9 @@ public class CoreSystemSetup extends AbstractSystemSetup
 		processCockpit(context, importAccessRights, extensionNames, "customersupportbackoffice",
 				"/gallaghercore/import/cockpits/cscockpit/cscockpit-users.impex",
 				"/gallaghercore/import/cockpits/cscockpit/cscockpit-access-rights.impex");
+
+		importImpexFile(context, "/gallaghercore/import/common/essential-data-scpi.impex");
+
 	}
 
 	protected void processCockpit(final SystemSetupContext context, final boolean importAccessRights,
