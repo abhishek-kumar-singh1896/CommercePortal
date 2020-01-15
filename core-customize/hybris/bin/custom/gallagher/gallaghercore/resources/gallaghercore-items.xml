@@ -12,7 +12,58 @@
 
         <!-- TypeGroups are for structure of this file only -->
 
-      
+      <typegroup name="cms">
+
+			<itemtype code="GallagherFooterNavigationComponent" extends="FooterNavigationComponent" generate="true"
+				autocreate="true" jaloclass="com.gallagher.core.jalo.GallagherFooterNavigationComponent">
+				<description>CMS component to display the footer.</description>
+				<attributes>
+					<attribute type="SimpleBannerComponent" qualifier="siteLogo">
+						<persistence type="property" />
+						<description>Used to display the footer site Logo.</description>
+					</attribute>
+					<attribute type="CMSNavigationNode" qualifier="socialLinkNagivationNode">
+						<persistence type="property" />
+						<modifiers />
+						<description>The cms navigation node for the social links.</description>
+					</attribute>
+					<attribute type="CMSNavigationNode" qualifier="footerLinkNagivationNode">
+						<persistence type="property" />
+						<modifiers />
+						<description>The cms navigation node for the footer links.</description>
+					</attribute>
+					<attribute qualifier="noticeHeader" type="localized:java.lang.String">
+						<description>Intended to store a heading copyright notice or other text to be displayed in the footer</description>
+						<persistence type="property" />
+						<modifiers />
+					</attribute>
+				</attributes>
+			</itemtype>
+			
+			<itemtype code="GallagherIconLinkComponent" autocreate="true" generate="true" extends="CMSLinkComponent"
+				jaloclass="com.gallagher.core.jalo.LaminexQuickLinkComponent">
+				<description>CMS component to display icon/image link with text.</description>
+				<attributes>
+					<attribute type="CMSImageComponent" qualifier="icon">
+						<modifiers read="true" write="true" optional="true" />
+						<persistence type="property" />
+						<description>CMS component to display font icons.</description>
+					</attribute>
+				</attributes>
+			</itemtype>
+			
+			<itemtype code="GallagherIconComponent" extends="CMSImageComponent" generate="true" autocreate="true"
+				jaloclass="com.gallagher.core.jalo.LaminexIconComponent">
+				<description>CMS component to display font icon or image</description>
+				<attributes>
+					<attribute type="java.lang.String" qualifier="styleClass">
+						<modifiers read="true" write="true" optional="false" />
+						<persistence type="property" />
+						<description>Style class of the font icon.</description>
+					</attribute>
+				</attributes>
+			</itemtype>
+		</typegroup>
 
     </itemtypes>
 </items>
