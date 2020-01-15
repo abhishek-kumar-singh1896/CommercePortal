@@ -23,7 +23,7 @@ $lang=en
 
 # Site Logo Component
 UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
-;;SiteLogoComponent;/images/theme/logo_hybris_b2b_responsive.svg
+;;SiteLogoComponent;/images/theme/logo_gallagher_b2b_responsive.svg
 
 # CMS Link Components
 UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
