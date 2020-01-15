@@ -14,12 +14,10 @@
      <context:annotation-config/>
 
 	<!-- Spring Integration -->
-	<import resource="classpath:/gallaghercore/integration/hot-folder-store-electronics-spring.xml"/>
-	<import resource="classpath:/gallaghercore/integration/hot-folder-store-apparel-spring.xml"/>
 	<import resource="classpath:/gallaghercore/integration/hot-folder-common-spring.xml"/>
 
 	<!-- SystemSetup for the GallagherCore -->
-	<bean id="acceleratorCoreSystemSetup" class="com.gallagher.core.setup.CoreSystemSetup"
+	<bean id="gallagherCoreSystemSetup" class="com.gallagher.core.setup.CoreSystemSetup"
 	       parent="abstractCoreSystemSetup"/>
 
 	<bean id="amB2CCategorySource" parent="abstractCategorySource">
@@ -58,5 +56,9 @@
 	<bean id="gallaherCountryAttributeManager"
 	      class="com.gallagher.core.urlencoder.attributes.impl.GallagherCountryAttributeManager"
 	      parent="urlEncodingAttributeManager"/>
+	
+	<alias name="gallagherCoreDataImportService" alias="coreDataImportService" />
+	<bean id="gallagherCoreDataImportService" class="com.gallagher.core.dataimport.impl.GallagherCoreDataImportServiceImpl" parent="defaultCoreDataImportService" />
+	
 
 </beans>
