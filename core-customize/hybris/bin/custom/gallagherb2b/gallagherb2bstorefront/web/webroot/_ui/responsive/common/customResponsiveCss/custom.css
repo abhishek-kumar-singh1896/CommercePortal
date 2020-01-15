@@ -12,7 +12,7 @@
 		width: 251px;
 		position: absolute;
 		left: 219px;
-		border: 1px solid #0B1F58;
+		border: 1px solid #000000;
 		visibility: hidden;
 		overflow: visible;
 		z-index: 1009;
@@ -21,7 +21,7 @@
 		color: #3c3c3c;
 		line-height: 30px;
 		padding: 5px 15px 10px;
-		background-color: #0B1F58;
+		background-color: #000000;
 		margin-top: -30px;
 	}
 	.main-header .main-navigation>.nav>li .sub-navigation {
@@ -92,8 +92,8 @@
 		padding-left: 10px;
 	}
 	.navigation--bottom .nav__links--primary .sub__navigation {
-		background: #0B1F58;
-		border: 1px solid #0B1F58;
+		background: #000000;
+		border: 1px solid #000000;
 	}
 	.navigation--bottom .nav__links--primary .sub-navigation-section .title
 		{
@@ -1018,17 +1018,17 @@ position: absolute;
 	color: #FFF;
 }
 .prod_cat:hover h2 a {
-	background-color: #0B1F58;
+	background-color: #ff8400;
 	color: #FFF;
 	background-image: url(../images/icon-arrow-product-category_s.png);
 }
 .prod_cat h2 a:focus {
-	background-color: #0B1F58;
+	background-color: #ff8400;
 	color: #fff;
 }
 
 .prod_cat:hover {
-	border: 1px solid #0B1F58;
+	border: 1px solid #ff8400;
 }
 .prod_cat h2 a:active {
 	text-decoration: none;
