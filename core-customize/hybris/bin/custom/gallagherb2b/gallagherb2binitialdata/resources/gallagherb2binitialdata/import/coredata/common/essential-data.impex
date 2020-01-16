@@ -143,3 +143,6 @@ UPDATE SearchRestriction;code[unique=true];active[default=false]
 INSERT_UPDATE UserGroup;uid[unique=true];groups(uid);locname[lang=en];
 ;aud750off10korders;;AUD 750 Off 10k Orders;
 ;aud50offb2bAdvance;;AUD50OffB2bAdvance;
+
+INSERT_UPDATE Unit;unitType[unique=true];code[unique=true];name[lang=en];conversion;;;
+;EA;EA;Each;1
