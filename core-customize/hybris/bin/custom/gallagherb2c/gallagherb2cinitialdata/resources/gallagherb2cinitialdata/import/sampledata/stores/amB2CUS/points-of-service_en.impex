@@ -10,8 +10,8 @@ $productCatalog=amB2CProductCatalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 $storeImage=storeImage(qualifier, $catalogVersion)
  
-$standardHours=eamB2C-US-standard-hours
-$weekendHours=eamB2C-US-weekend-hours
+$standardHours=amB2C-US-standard-hours
+$weekendHours=amB2C-US-weekend-hours
  
 UPDATE StoreLocatorFeature ; code[unique=true]      ; name[lang=$lang]              
                            ; buyOnlinePickupInStore ; "Buy Online Pick Up In Store" 
