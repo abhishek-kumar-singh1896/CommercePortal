@@ -54,6 +54,7 @@
     <!-- B2B extensions -->
     <extension name='b2bcommercebackoffice' />
     <extension name='commerceorgaddon' />
+    <extension name='gallaghercommerceorgaddon' />
     <extension name='b2boccaddon' />
     <extension name='accountsummaryaddon' />
     <extension name='assistedservicestorefront' />
