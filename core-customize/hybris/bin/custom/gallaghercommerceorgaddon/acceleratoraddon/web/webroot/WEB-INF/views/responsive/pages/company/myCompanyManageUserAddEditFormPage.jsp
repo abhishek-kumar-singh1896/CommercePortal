@@ -55,24 +55,25 @@
             <form:form action="${saveUrl}" method="post" modelAttribute="b2BCustomerForm">
                 <div class="row">
                     <div class="col-xs-12 col-sm-6">
-                        <formElement:formSelectBoxDefaultEnabled idKey="user.title" labelKey="user.title" path="titleCode"
+                    	<formElement:formInputBox idKey="user.email" labelKey="user.email" path="email"
+                                                  inputCSS="text" mandatory="true"/>
+                        
+                    </div>
+                    <form:input type="hidden" name="uid" path="uid" id="uid"/>
+                    <div class="col-xs-12 col-sm-6">
+                    	<formElement:formSelectBoxDefaultEnabled idKey="user.title" labelKey="user.title" path="titleCode"
                                                    mandatory="true"
                                                    skipBlank="false"
                                                    skipBlankMessageKey="form.select.none"
                                                    selectCSSClass="form-control"
                                                    items="${titleData}"/>
                     </div>
-                    <form:input type="hidden" name="uid" path="uid" id="uid"/>
                     <div class="col-xs-12 col-sm-6">
-                        <formElement:formInputBox idKey="user.firstName" labelKey="user.firstName" path="firstName"
+                    	<formElement:formInputBox idKey="user.firstName" labelKey="user.firstName" path="firstName"
                                                   inputCSS="text" mandatory="true"/>
                     </div>
                     <div class="col-xs-12 col-sm-6">
-                        <formElement:formInputBox idKey="user.lastName" labelKey="user.lastName" path="lastName"
-                                                  inputCSS="text" mandatory="true"/>
-                    </div>
-                    <div class="col-xs-12 col-sm-6">
-                        <formElement:formInputBox idKey="user.email" labelKey="user.email" path="email"
+                    	<formElement:formInputBox idKey="user.lastName" labelKey="user.lastName" path="lastName"
                                                   inputCSS="text" mandatory="true"/>
                     </div>
                     <div class="col-xs-12 col-sm-6">
