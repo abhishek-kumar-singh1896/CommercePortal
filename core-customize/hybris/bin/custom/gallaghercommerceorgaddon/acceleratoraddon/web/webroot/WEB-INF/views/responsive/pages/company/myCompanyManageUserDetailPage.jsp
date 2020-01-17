@@ -120,7 +120,7 @@
                         </div>
                     </div> --%>
                 </div>
-            </div>xcdsfdsffffffffffffffffffffffff
+            </div>
             <div class="accountActions-link">
                 <%-- <div class="enable-link">
                     <a href="${fn:escapeXml(resetPasswordUrl)}">
