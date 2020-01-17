@@ -9,12 +9,12 @@ $productCatalogName=Animal Management B2C Product Catalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 $vendor=default
 
-INSERT_UPDATE Warehouse;code[unique=true];name[lang=en];vendor(code);default
-;am_warehouse;Animal Management Warehouse;$vendor;true
+INSERT_UPDATE Warehouse;code[unique=true];name[lang=en]
+;am_warehouse_s;Animal Management B2C Warehouse South;
 
 INSERT_UPDATE StockLevel;productCode[unique=true];warehouse(code)[unique=true,default=default];available;inStockStatus(code);maxPreOrder[default=1];maxStockLevelHistoryCount[default=-1];overSelling[default=0];preOrder[default=0];reserved[default=0]
-;solar-fence-energizer-s10;am_warehouse;414;notSpecified
+;solar-fence-energizer-s10;am_warehouse_s;414;notSpecified
 
 
 INSERT_UPDATE Product;code[unique=true];stockLevels(productCode,warehouse(code));vendors(code)[default=$vendor];$catalogVersion
-;solar-fence-energizer-s10;solar-fence-energizer-s10:am_warehouse
+;solar-fence-energizer-s10;solar-fence-energizer-s10:am_warehouse_s

@@ -9,13 +9,13 @@ $productCatalogName=Animal Management B2C Product Catalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 $vendor=default
 
-INSERT_UPDATE Warehouse;code[unique=true];name[lang=en];vendor(code);default
-;am_warehouse;Animal Management Warehouse;$vendor;true
+INSERT_UPDATE Warehouse;code[unique=true];name[lang=en]
+;am_warehouse_s;Animal Management B2C Warehouse South;
 
 INSERT_UPDATE StockLevel;productCode[unique=true];warehouse(code)[unique=true,default=default];available;inStockStatus(code);maxPreOrder[default=1];maxStockLevelHistoryCount[default=-1];overSelling[default=0];preOrder[default=0];reserved[default=0]
-;heavy-duty-leadout-cable-12.5-gauge-65-foot;am_warehouse;414;notSpecified
-;heavy-duty-leadout-cable-12.5-gauge-330-foot;am_warehouse;414;notSpecified
+;heavy-duty-leadout-cable-12.5-gauge-65-foot;am_warehouse_s;414;notSpecified
+;heavy-duty-leadout-cable-12.5-gauge-330-foot;am_warehouse_s;414;notSpecified
 
 INSERT_UPDATE Product;code[unique=true];stockLevels(productCode,warehouse(code));vendors(code)[default=$vendor];$catalogVersion
-;heavy-duty-leadout-cable-12.5-gauge-65-foot;heavy-duty-leadout-cable-12.5-gauge-65-foot:am_warehouse
-;heavy-duty-leadout-cable-12.5-gauge-330-foot;heavy-duty-leadout-cable-12.5-gauge-330-foot:am_warehouse
+;heavy-duty-leadout-cable-12.5-gauge-65-foot;heavy-duty-leadout-cable-12.5-gauge-65-foot:am_warehouse_s
+;heavy-duty-leadout-cable-12.5-gauge-330-foot;heavy-duty-leadout-cable-12.5-gauge-330-foot:am_warehouse_s

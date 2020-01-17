@@ -64,10 +64,10 @@ if (warehouse != null)
     line.clear();
 }"
 ;default;Default Warehouse;
-;pw_warehouse_s;;default
-;pw_warehouse_e;;default
-;pw_warehouse_w;;default
-;pw_warehouse_n;;default
+;security_warehouse_s;Security B2B Warehouse South;default
+;security_warehouse_e;Security B2B Warehouse East;default
+;security_warehouse_w;Security B2B Warehouse West;default
+;security_warehouse_n;Security B2B Warehouse North;default
 
 # Disable preview for email pages
 UPDATE CMSPageType;code[unique=true];previewDisabled
