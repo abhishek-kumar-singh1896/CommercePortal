@@ -13,6 +13,7 @@ yacceleratorstorefront.additionalWebSpringConfigs.gallaghercommerceorgaddon=clas
 
 
 
-gallaghercommerceorgaddon.javascript.paths.responsive=/responsive/common/js/gallaghercommerceorgaddon.js
-gallaghercommerceorgaddon.css.paths.responsive=/responsive/common/js/gallaghercommerceorgnavigation.js;/responsive/common/js/gallaghercommerceorgaddon.js;/responsive/common/js/jquery.validate.js
+gallaghercommerceorgaddon.javascript.paths.responsive=/responsive/common/js/gallaghercommerceorgaddon.js;/responsive/common/js/gallaghercommerceorgnavigation.js;/responsive/common/js/jquery.validate.js
+gallaghercommerceorgaddon.css.paths.responsive=/responsive/common/css/gallaghercommerceorgaddon.css
+
 gallaghercommerceorgaddon.search.pageSize=9
