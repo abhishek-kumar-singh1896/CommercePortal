@@ -14,7 +14,8 @@
            http://www.springframework.org/schema/context/spring-context.xsd">
            
     <context:annotation-config/> 
-
+    <context:component-scan base-package="com.gallagher.commerceorgaddon"
+                            scope-resolver="de.hybris.platform.spring.IgnoreTenantScopeMetadataResolver" />
 
 	<!-- Expose /acceleratoraddon/web/webroot/WEB-INF/messages/base.js.properties  resource bundle as javascript variables -->
 	<bean id="defaultGallaghercommerceorgaddonJavaScriptMessageResourceAccessor" parent="abstractJavaScriptMessageResourceAccessor">
@@ -33,5 +34,19 @@
 	<bean id="GallaghercommerceorgaddonBeforeViewHandlerListMergeDirective" depends-on="beforeViewHandlersList" parent="listMergeDirective">
 		<property name="add" ref="getGallaghercommerceorgaddonBeforeViewHandler"/>
 	</bean>
+	
+	<bean id="myCompanyBreadcrumbBuilder" class="com.gallagher.commerceorgaddon.breadcrumb.impl.MyCompanyBreadcrumbBuilder" >
+        <property name="messageSource" ref="storefrontMessageSource" />
+        <property name="i18nService" ref="i18nService" />
+    </bean>
+	
+	<bean depends-on="previewUrlResolverPageMappings" parent="mapMergeDirective">
+  		<property name="sourceMap">
+  			<map>
+  				<entry key="my-company" value="/my-company"/>
+				<entry key="my-company-login" value="/login/my-company"/>
+  			</map>
+  		</property>
+  	</bean>
 
 </beans>
