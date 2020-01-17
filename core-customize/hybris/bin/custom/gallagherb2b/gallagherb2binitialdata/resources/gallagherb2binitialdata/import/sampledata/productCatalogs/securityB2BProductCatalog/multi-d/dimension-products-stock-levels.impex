@@ -16,48 +16,48 @@ $productCatalogName=SecurityB2B Product Catalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 $vendor=default
 
-INSERT_UPDATE Warehouse;code[unique=true];name[lang=en];vendor(code)
-;sg_warehouse;SecurityB2B Warehouse;$vendor
+INSERT_UPDATE Warehouse;code[unique=true];name[lang=en]
+;security_warehouse_s;Security B2B Warehouse South;
 
 INSERT_UPDATE StockLevel;productCode[unique=true];warehouse(code)[unique=true,default=default];available;inStockStatus(code);maxPreOrder[default=1];maxStockLevelHistoryCount[default=-1];overSelling[default=0];preOrder[default=0];reserved[default=0]
-;t10-mifare-reader-black;sg_warehouse;414;notSpecified
-;t11-multi-tech-reader-black;sg_warehouse;228;notSpecified
-;t11-mifare-reader-black;sg_warehouse;335;notSpecified
-;t12-multi-tech-reader-black;sg_warehouse;161;notSpecified
-;t12-mifare-reader-black;sg_warehouse;215;notSpecified
-;t15-multi-tech-reader-black;sg_warehouse;122;notSpecified
-;t15-mifare-reader-black;sg_warehouse;496;notSpecified
-;t20-multi-tech-reader-black;sg_warehouse;241;notSpecified
-;t20-mifare-reader-black;sg_warehouse;386;notSpecified
+;t10-mifare-reader-black;security_warehouse_s;414;notSpecified
+;t11-multi-tech-reader-black;security_warehouse_s;228;notSpecified
+;t11-mifare-reader-black;security_warehouse_s;335;notSpecified
+;t12-multi-tech-reader-black;security_warehouse_s;161;notSpecified
+;t12-mifare-reader-black;security_warehouse_s;215;notSpecified
+;t15-multi-tech-reader-black;security_warehouse_s;122;notSpecified
+;t15-mifare-reader-black;security_warehouse_s;496;notSpecified
+;t20-multi-tech-reader-black;security_warehouse_s;241;notSpecified
+;t20-mifare-reader-black;security_warehouse_s;386;notSpecified
 
-;t10-mifare-reader-white;sg_warehouse;414;notSpecified
-;t11-multi-tech-reader-white;sg_warehouse;228;notSpecified
-;t11-mifare-reader-white;sg_warehouse;335;notSpecified
-;t12-multi-tech-reader-white;sg_warehouse;161;notSpecified
-;t12-mifare-reader-white;sg_warehouse;215;notSpecified
-;t15-multi-tech-reader-white;sg_warehouse;122;notSpecified
-;t15-mifare-reader-white;sg_warehouse;496;notSpecified
-;t20-multi-tech-reader-white;sg_warehouse;241;notSpecified
-;t20-mifare-reader-white;sg_warehouse;386;notSpecified
+;t10-mifare-reader-white;security_warehouse_s;414;notSpecified
+;t11-multi-tech-reader-white;security_warehouse_s;228;notSpecified
+;t11-mifare-reader-white;security_warehouse_s;335;notSpecified
+;t12-multi-tech-reader-white;security_warehouse_s;161;notSpecified
+;t12-mifare-reader-white;security_warehouse_s;215;notSpecified
+;t15-multi-tech-reader-white;security_warehouse_s;122;notSpecified
+;t15-mifare-reader-white;security_warehouse_s;496;notSpecified
+;t20-multi-tech-reader-white;security_warehouse_s;241;notSpecified
+;t20-mifare-reader-white;security_warehouse_s;386;notSpecified
 
 
 INSERT_UPDATE Product;code[unique=true];stockLevels(productCode,warehouse(code));vendors(code)[default=$vendor];$catalogVersion
-;t10-mifare-reader-black;t10-mifare-reader-black:sg_warehouse
-;t11-multi-tech-reader-black;t11-multi-tech-reader-black:sg_warehouse
-;t11-mifare-reader-black;t11-mifare-reader-black:sg_warehouse
-;t12-multi-tech-reader-black;t12-multi-tech-reader-black:sg_warehouse
-;t12-mifare-reader-black;t12-mifare-reader-black:sg_warehouse
-;t15-multi-tech-reader-black;t15-multi-tech-reader-black:sg_warehouse
-;t15-mifare-reader-black;t15-mifare-reader-black:sg_warehouse
-;t20-multi-tech-reader-black;t20-multi-tech-reader-black:sg_warehouse
-;t20-mifare-reader-black;t20-mifare-reader-black:sg_warehouse
+;t10-mifare-reader-black;t10-mifare-reader-black:security_warehouse_s
+;t11-multi-tech-reader-black;t11-multi-tech-reader-black:security_warehouse_s
+;t11-mifare-reader-black;t11-mifare-reader-black:security_warehouse_s
+;t12-multi-tech-reader-black;t12-multi-tech-reader-black:security_warehouse_s
+;t12-mifare-reader-black;t12-mifare-reader-black:security_warehouse_s
+;t15-multi-tech-reader-black;t15-multi-tech-reader-black:security_warehouse_s
+;t15-mifare-reader-black;t15-mifare-reader-black:security_warehouse_s
+;t20-multi-tech-reader-black;t20-multi-tech-reader-black:security_warehouse_s
+;t20-mifare-reader-black;t20-mifare-reader-black:security_warehouse_s
 
-;t10-mifare-reader-white;t10-mifare-reader-white:sg_warehouse
-;t11-multi-tech-reader-white;t11-multi-tech-reader-white:sg_warehouse
-;t11-mifare-reader-white;t11-mifare-reader-white:sg_warehouse
-;t12-multi-tech-reader-white;t12-multi-tech-reader-white:sg_warehouse
-;t12-mifare-reader-white;t12-mifare-reader-white:sg_warehouse
-;t15-multi-tech-reader-white;t15-multi-tech-reader-white:sg_warehouse
-;t15-mifare-reader-white;t15-mifare-reader-white:sg_warehouse
-;t20-multi-tech-reader-white;t20-multi-tech-reader-white:sg_warehouse
-;t20-mifare-reader-white;t20-mifare-reader-white:sg_warehouse
+;t10-mifare-reader-white;t10-mifare-reader-white:security_warehouse_s
+;t11-multi-tech-reader-white;t11-multi-tech-reader-white:security_warehouse_s
+;t11-mifare-reader-white;t11-mifare-reader-white:security_warehouse_s
+;t12-multi-tech-reader-white;t12-multi-tech-reader-white:security_warehouse_s
+;t12-mifare-reader-white;t12-mifare-reader-white:security_warehouse_s
+;t15-multi-tech-reader-white;t15-multi-tech-reader-white:security_warehouse_s
+;t15-mifare-reader-white;t15-mifare-reader-white:security_warehouse_s
+;t20-multi-tech-reader-white;t20-multi-tech-reader-white:security_warehouse_s
+;t20-mifare-reader-white;t20-mifare-reader-white:security_warehouse_s

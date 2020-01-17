@@ -6,23 +6,12 @@
 
 $productCatalog=amB2CProductCatalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default='$productCatalog:Staged']
-$taxGroup=Europe1PriceFactory_PTG(code)[default=jp-vat-full]
+$prices=Europe1prices[translator=de.hybris.platform.europe1.jalo.impex.Europe1PricesTranslator]
+$taxGroup=Europe1PriceFactory_PTG(code)[default=us-sales-tax-full]
 
 # Set product approval status to Approved only for those products that have prices.
 $approved=approvalstatus(code)[default='approved']
 
-UPDATE Product;code[unique=true];$approved;$catalogVersion;
-;1978440_md
-;1978440_md_red
-;1978440_md_green
-;1978440_md_blue
-
-INSERT_UPDATE PriceRow;productId[unique=true];unit(code[unique=true,default=pieces]);currency(isocode)[unique=true];price;minqtd;unitFactor;net
-;1978440_md;pieces;USD;558,4;1;1;false
-;1978440_md;pieces;CAD;558,4;1;1;false
-;1978440_md_red;pieces;USD;558,4;1;1;false
-;1978440_md_red;pieces;USD;558,4;1;1;false
-;1978440_md_green;pieces;USD;558,4;1;1;false
-;1978440_md_blue;pieces;USD;558,4;1;1;false
-;1978440_md_green;pieces;CAD;558,4;1;1;false
-;1978440_md_blue;pieces;CAD;558,4;1;1;false
+UPDATE Product;code[unique=true];$prices;$approved;$catalogVersion;$taxGroup
+;heavy-duty-leadout-cable-12.5-gauge-65-foot;1 EA = 117 AUD N
+;heavy-duty-leadout-cable-12.5-gauge-330-foot;1 EA = 333 AUD N

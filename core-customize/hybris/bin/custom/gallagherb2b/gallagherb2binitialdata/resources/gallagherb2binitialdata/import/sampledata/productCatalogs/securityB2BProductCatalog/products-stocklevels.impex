@@ -17,7 +17,6 @@ $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[defa
 $vendor=default
 
 INSERT_UPDATE Warehouse;code[unique=true];name[lang=en]
-;sg_warehouse;SecurityB2B Warehouse South
 
 INSERT_UPDATE StockLevel;productCode[unique=true];warehouse(code)[unique=true,default=default];available;inStockStatus(code);maxPreOrder[default=1];maxStockLevelHistoryCount[default=-1];overSelling[default=0];preOrder[default=0];reserved[default=0]
 

@@ -42,6 +42,11 @@
 		<property name="categorySource" ref="amB2CBrandCategorySource"/>
 	</bean>
 	
+	<bean id="amB2CPointOfServiceFacetDisplayNameProvider"
+		class="com.enterprisewide.b2badvance.core.search.solrfacetsearch.provider.impl.PointOfServiceFacetDisplayNameProvider">
+		<property name="pointOfServiceService" ref="pointOfServiceService" />
+	</bean>
+	
 	<!--Url Encoder Service -->
 	<alias name="gallaherUrlEncoderService" alias="urlEncoderService"/>
 	<bean id="gallaherUrlEncoderService" parent="defaultUrlEncoderService">
