@@ -80,7 +80,7 @@ UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=e
 
 # Lightbox Banner for Mini Cart (banner is not localizable so we must create a separate banner per language)
 INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];&imageRef;folder(qualifier)[default='images'];altText
-;;SecurityB2B_358x45_HomeDeliveryBanner_EN_01.gif;$siteResource/images/banners/site/Powertools_358x45_HomeDeliveryBanner_EN_01.gif;;SecurityB2B_358x45_HomeDeliveryBanner_EN_01.gif;;"Order before 6pm for next day delivery"
+;;SecurityB2B_358x45_HomeDeliveryBanner_EN_01.gif;$siteResource/images/banners/site/SecurityB2B_358x45_HomeDeliveryBanner_EN_01.gif;;SecurityB2B_358x45_HomeDeliveryBanner_EN_01.gif;;"Order before 6pm for next day delivery"
 
 UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
 ;;LightboxHomeDeliveryBannerComponent;SecurityB2B_358x45_HomeDeliveryBanner_EN_01.gif
@@ -279,9 +279,9 @@ UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[l
 
 INSERT_UPDATE Media;mediaFormat(qualifier);code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];realfilename;altText;mime[default='image/svg+xml'];$contentCV[unique=true];folder(qualifier)[default=images]
 ;widescreen;SecurityB2B_1400x401_ErrorPage_EN_1400W.svg;$siteResource/images/banners/site/SecurityB2B_1400x401_ErrorPage_EN_1400W.svg;SecurityB2B_1400x401_ErrorPage_EN_1400W.svg;"Page not found";
-;mobile;SecurityB2B_480x170_ErrorPage_EN_480W.svg;$siteResource/images/banners/site/Powertools_1400x401_ErrorPage_EN_1400W.svg;SecurityB2B_1400x401_ErrorPage_EN_1400W.svg;"Page not found";
-;tablet;SecurityB2B_770x221_ErrorPage_EN_770W.svg;$siteResource/images/banners/site/Powertools_1400x401_ErrorPage_EN_1400W.svg;SecurityB2B_1400x401_ErrorPage_EN_1400W.svg;"Page not found";
-;desktop;SecurityB2B_960x275_ErrorPage_EN_960W.svg;$siteResource/images/banners/site/Powertools_1400x401_ErrorPage_EN_1400W.svg;SecurityB2B_1400x401_ErrorPage_EN_1400W.svg;"Page not found";
+;mobile;SecurityB2B_480x170_ErrorPage_EN_480W.svg;$siteResource/images/banners/site/SecurityB2B_1400x401_ErrorPage_EN_1400W.svg;SecurityB2B_1400x401_ErrorPage_EN_1400W.svg;"Page not found";
+;tablet;SecurityB2B_770x221_ErrorPage_EN_770W.svg;$siteResource/images/banners/site/SecurityB2B_1400x401_ErrorPage_EN_1400W.svg;SecurityB2B_1400x401_ErrorPage_EN_1400W.svg;"Page not found";
+;desktop;SecurityB2B_960x275_ErrorPage_EN_960W.svg;$siteResource/images/banners/site/SecurityB2B_1400x401_ErrorPage_EN_1400W.svg;SecurityB2B_1400x401_ErrorPage_EN_1400W.svg;"Page not found";
 
 INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$contentCV[unique=true]
 ;securityB2B-errorpage-pagenotfound-en;SecurityB2B_480x170_ErrorPage_EN_480W.svg,SecurityB2B_770x221_ErrorPage_EN_770W.svg,SecurityB2B_960x275_ErrorPage_EN_960W.svg,SecurityB2B_1400x401_ErrorPage_EN_1400W.svg
@@ -442,3 +442,18 @@ UPDATE CMSNavigationNode;$contentCV[unique=true];uid[unique=true];title[lang=$la
 
 # CMS Navigation Nodes
 UPDATE CMSNavigationNode;$contentCV[unique=true];uid[unique=true];title[lang=en]
+
+### customerticketingaddon START
+UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
+ ;;add-support-ticket;"Add Support Ticket"
+ ;;support-tickets;"Support Tickets listing"
+ ;;update-support-ticket;"Update Support Ticket"
+
+# CMS Navigation Nodes
+UPDATE CMSNavigationNode;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
+ ;;SupportTicketNavNode;"Support Tickets"
+
+# CMS Link Components
+UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
+ ;;AccountSupportTicketHistoryLink;"Support Tickets"
+ ### customerticketingaddon END

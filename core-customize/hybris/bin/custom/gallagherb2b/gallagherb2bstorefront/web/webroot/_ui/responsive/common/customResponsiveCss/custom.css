@@ -1287,7 +1287,7 @@ position: absolute;
 .quick-order-container .quick-order-table-header {
   float: left;
   width: 100%;
-  background: #142939;
+  background: #000000;
 }
 .quick-order-container .quick-order-table-header .thead {
   display: -webkit-box;
@@ -1303,7 +1303,7 @@ position: absolute;
   font-stretch: normal;
   line-height: 1.5;
   text-align: left;
-  color: #f4f4f4;
+  color: #ffffff;
   padding: 1.5rem 1rem; 
   text-transform: uppercase;
 }
@@ -1887,7 +1887,7 @@ position: absolute;
   color: #3b3c40;
 }
 .quick-order-container .final-product-price .gst {
-  font-size: 0.8125rem;
+  font-size: 12px;
   font-weight: 500;
   font-style: normal;
   font-stretch: normal;
@@ -2382,7 +2382,7 @@ position: absolute;
   float: left;
   width: 100%;
   border-radius: 3px;
-  background-color: #fff;
+  background-color: #cccccc;
   border: 1px solid #C6A590;
   padding: 1.062rem 1.062rem 1.062rem 3.375rem;
   font-style: normal;

@@ -31,7 +31,7 @@ $siteUidNZ=securityB2BNZ
 
 # CMS Site Settings
 UPDATE CMSSite;uid[unique=true];defaultPreviewCategory(code, $productCV);defaultPreviewProduct(code, $productCV);theme(code)
-;$siteUidNZ;1355;2116282;securityB2BNZ
+;$siteUidNZ;Readers;t10-mifare-reader;securityB2BNZ
 
 ###### Navigation Start ######
 ## navigation is in tree structure ##
@@ -89,7 +89,7 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 
 ## links of the above navigation nodes ##
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow']
-;;AllProductsCategoryLink;All Products Category Link;/Open-Catalogue/c/1811;;AllProductsCategoryLink
+;;AllProductsCategoryLink;All Products Category Link;/Security/c/Security;;AllProductsCategoryLink
 ;;PowerDrillsCategoryLink;Power Drills Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Power-Drills/c/1360;PowerDrillsCategoryLink;PowerDrillsCategoryLink
 ;;ScrewdriversCategoryLink;Screwdrivers Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Screwdrivers/c/1593;ScrewdriversCategoryLink;ScrewdriversCategoryLink
 ;;AngleGrindersCategoryLink;Angle Grinders Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Angle-Grinders/c/1595;AngleGrindersCategoryLink;AngleGrindersCategoryLink
@@ -207,13 +207,11 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 
 ## level 3. children of Order Tools ##
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
-;OrderFormsNavNode;;Order Forms;OrderToolsNavNode;;OrderFormsNavNode
 ;QuickOrderNavNode;;Quick Order;OrderToolsNavNode;;QuickOrderNavNode
 ;ImportSavedCartNavNode;;Import Saved Cart;OrderToolsNavNode;;ImportSavedCartNavNode
 
 ## entries of the above navigation nodes ##
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(&linkRef);
-;OrderFormsNavNodeEntry;;OrderFormsNavNodeEntry;OrderFormsNavNode;OrderFormsLink;
 ;QuickOrderNavNodeEntry;;QuickOrderNavNodeEntry;QuickOrderNavNode;QuickOrderLink;
 ;ImportSavedCartNavNodeEntry;;ImportSavedCartNavNodeEntry;ImportSavedCartNavNode;ImportSavedCartLink;
 
@@ -582,8 +580,8 @@ INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique
 
 ## components in slot 3 ##
 INSERT_UPDATE ProductCarouselComponent;$contentCV[unique=true];uid[unique=true];name;products(code,$productCV);scroll(code);popup;&componentRef
-;;SecurityB2BHomepageNewProductCarouselComponent;What's New SecurityB2B Homepage Product Carousel;3755219,3881018,3592865,2116279,3755204,1128762,3092788;allVisible;false;SecurityB2BHomepageNewProductCarouselComponent
-;;SecurityB2BHomepageProductCarouselComponent;SecurityB2B Homepage Product Carousel;3755205,3755211,3756505,3793682,2221933,2116275,2116282;allVisible;false;SecurityB2BHomepageProductCarouselComponent
+;;SecurityB2BHomepageNewProductCarouselComponent;What's New SecurityB2B Homepage Product Carousel;t10-mifare-reader,t11-multi-tech-reader,t11-mifare-reader;allVisible;false;SecurityB2BHomepageNewProductCarouselComponent
+;;SecurityB2BHomepageProductCarouselComponent;SecurityB2B Homepage Product Carousel;t10-mifare-reader,t11-multi-tech-reader,t11-mifare-reader;allVisible;false;SecurityB2BHomepageProductCarouselComponent
 
 ## This component is not used currently, but still import for future use ##
 INSERT_UPDATE ProductCarouselComponent;$contentCV[unique=true];uid[unique=true];name;products(code,$productCV);scroll(code);popup;searchQuery;categoryCode;&componentRef
@@ -1309,41 +1307,17 @@ INSERT_UPDATE B2badvanceMegaMenuItemComponent;$contentCV[unique=true];&component
 INSERT_UPDATE B2badvanceMegaMenuComponent;$contentCV[unique=true];uid[unique=true];menuItems(uid,$contentCV);&componentRef;name
 
 INSERT_UPDATE B2badvanceMegaMenuItemComponent;$contentCV[unique=true];&componentRef;uid[unique=true];categoryCode;link(&componentRef);name;headline[lang=de];styleClass;dropDownLayout(code)[default=AUTO];wrapAfter;isBulkOrder[default=false];isAllProductsNode[default=false]
-                                                ;;AllProductsItem;AllProductsItem;1811;AllProductsCategoryLink;All Products;All Products;;;10;;true
-                                                ;;PowerDrillsItem;PowerDrillsItem;1360;PowerDrillsCategoryLink;Power Drills;Power Drills;;;10
-                                                ;;AngleGrindersItem;AngleGrindersItem;1595;AngleGrindersCategoryLink;Angle Grinders;Angle Grinders;;;10
-                                                ;;ScrewDriversItem;ScrewDriversItem;1593;ScrewdriversCategoryLink;Screwdrivers;Screw Drivers;;;10
-                                                ;;SandersItem;SandersItem;1596;SandersCategoryLink;Sanders;Sanders;;;10
-                                                ;;MeasuringLayoutToolsItem;MeasuringLayoutToolsItem;1358;MeasuringLayoutToolsCategoryLink;Measuring & Layout Tools;Measuring & Layout Tools;;;10
-                                                ;;HandToolsItem;HandToolsItem;1810;HandToolsCategoryLink;HandTools;Hand Tools;;;10
-                                                ;;SafetyItem;SafetyItem;1805;SafetyCategoryLink;Safety;Safety;;;10
-                                                ;;BulkOrderItem;BulkOrderItem;0;BulkOrderCategoryLink;Bulk Order; Bulk Order;;;;true
+                                                ;;AllProductsItem;AllProductsItem;Security;AllProductsCategoryLink;All Products;All Products;;;10;;true
 
 
 UPDATE B2badvanceMegaMenuItemComponent;$contentCV[unique=true];uid[unique=true]
                                          ;;AllProductsItem
-                                         ;;PowerDrillsItem
-                                         ;;AngleGrindersItem
-                                         ;;ScrewDriversItem
-                                         ;;SandersItem
-                                         ;;MeasuringLayoutToolsItem
-                                         ;;HandToolsItem
-                                         ;;SafetyItem
-                                         ;;BulkOrderItem
 
 UPDATE B2badvanceMegaMenuItemComponent;$contentCV[unique=true];uid[unique=true];headline[lang=de];content[lang=de]
                                          ;;AllProductsItem;AllProducts;
-                                         ;;PowerDrillsItem;PowerDrills;
-                                         ;;AngleGrindersItem;AngleGrinders;
-                                         ;;ScrewDriversItem;ScrewDrivers;
-                                         ;;SandersItem;Sanders;
-                                         ;;MeasuringLayoutToolsItem;MeasuringLayoutTools;
-                                         ;;HandToolsItem;HandTools;
-                                         ;;SafetyItem;Safety;
-                                         ;;BulkOrderItem;BulkOrder;
 
 INSERT_UPDATE B2badvanceMegaMenuComponent;$contentCV[unique=true];uid[unique=true];menuItems(uid,$contentCV);&componentRef;name
-                                            ;;B2badvanceMegaMenu;AllProductsItem,PowerDrillsItem,AngleGrindersItem,ScrewDriversItem,SandersItem,MeasuringLayoutToolsItem,HandToolsItem,SafetyItem,BulkOrderItem;B2badvanceMegaMenu;Mega Menu
+                                            ;;B2badvanceMegaMenu;AllProductsItem;B2badvanceMegaMenu;Mega Menu
 
 ######  Power Drills Landing Page ######
 
@@ -1355,10 +1329,6 @@ INSERT_UPDATE InformationBannerComponent;$contentCV[unique=true];uid[unique=true
                                         ;;PowerDrillsInfoBanner;Power Drills Information Banner;left;/Open-Catalogue/Tools/Power-Drills/c/1360?q=:relevance;#FFFFFF;#FFFFFF;#FFFFFF;
 
 INSERT_UPDATE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];name;category(code, $productCV);
-                                      ;;BoschPowerDrillsFeatureComponent;Bosch Power Drills;brand_753;
-                                      ;;SkilPowerDrillsFeatureComponent;Skil Power Drills;brand_4515;
-                                      ;;BlackAndDeckerPowerDrillsFeatureComponent;Black & Decker Power Drills;brand_980;
-                                      ;;EinhellPowerDrillsFeatureComponent;Einhell Power Drills;brand_4439;
 
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV)
                          ;;Section1Slot-PowerDrillsCategoryPage;Section1 Slot for Power Drills Landing Page;true;
@@ -1374,7 +1344,6 @@ INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];positi
 
 
 INSERT_UPDATE CMSCategoryRestriction;$contentCV;uid[unique=true];name;categories(code, $productCV);pages(uid, $contentCV)[unique=true]
-                                    ;;PowerDrillsRestriction;Restriction for Power Drills;1360;PowerDrillsCategoryPage
 
 
 ######## Angle Grinders Landing Page ########
@@ -1386,10 +1355,6 @@ INSERT_UPDATE InformationBannerComponent;$contentCV[unique=true];uid[unique=true
                                         ;;AngleGrindersInfoBanner;Angle Grinders Information Banner;left;/Open-Catalogue/Tools/Angle-Grinders/c/1595?q=:relevance;#FFFFFF;#FFFFFF;#FFFFFF;
 
 INSERT_UPDATE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];name;category(code, $productCV);
-                                      ;;BoschAngleGrindersFeatureComponent;Bosch Angle Grinders;brand_753;
-                                      ;;EinhellAngleGrindersFeatureComponent;Einhell Angle Grinder;brand_4439;
-                                      ;;SkilAngleGrindersFeatureComponent;Skil Angle Grinders;brand_4515;
-                                      ;;HitachiAngleGrindersFeatureComponent;Hitachi Angle Grinders;brand_169;
 
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV)
                          ;;Section1Slot-AngleGrindersCategoryPage;Section1 Slot for Angle Grinders Landing Page;true;
@@ -1404,7 +1369,6 @@ INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];positi
                                 ;;Section4-AngleGrindersCategoryPage;Section4;;Section4Slot-AngleGrindersCategoryPage
 
 INSERT_UPDATE CMSCategoryRestriction;$contentCV;uid[unique=true];name;categories(code, $productCV);pages(uid, $contentCV)[unique=true]
-                                    ;;AngleGrindersRestriction;Restriction for Angle Grinders;1595;AngleGrindersCategoryPage
 
 
 ######## Screwdrivers Landing Page ########
@@ -1416,10 +1380,6 @@ INSERT_UPDATE InformationBannerComponent;$contentCV[unique=true];uid[unique=true
                                         ;;ScrewdriversInfoBanner;Screwdrivers Information Banner;right;/Open-Catalogue/Tools/Screwdrivers/c/1593?q=:relevance;#FFFFFF;#FFFFFF;#FFFFFF;
 
 INSERT_UPDATE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];name;category(code, $productCV);
-                                      ;;BoschScrewdriversFeatureComponent;Bosch Screwdrivers;brand_753;
-                                      ;;EinhellScrewdriversFeatureComponent;Einhell Screwdrivers;brand_4439;
-                                      ;;SkilScrewdriversFeatureComponent;Skil Screwdrivers;brand_4515;
-                                      ;;BlackAndDeckerScrewdriversFeatureComponent;Black & Decker Screwdrivers;brand_980;
 
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV)
                          ;;Section1Slot-ScrewdriversCategoryPage;Section1 Slot for Screwdrivers Landing Page;true;
@@ -1434,7 +1394,6 @@ INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];positi
                                 ;;Section4-ScrewdriversCategoryPage;Section4;;Section4Slot-ScrewdriversCategoryPage
 
 INSERT_UPDATE CMSCategoryRestriction;$contentCV;uid[unique=true];name;categories(code, $productCV);pages(uid, $contentCV)[unique=true]
-                                    ;;ScrewdriversRestriction;Restriction for Screwdrivers;1593;ScrewdriversCategoryPage
 
 
 ######## Measuring And Layout Tools ########
@@ -1446,10 +1405,6 @@ INSERT_UPDATE InformationBannerComponent;$contentCV[unique=true];uid[unique=true
                                         ;;MeasuringAndLayoutToolsInfoBanner;Measuring & Layout Tools Information Banner;left;/Open-Catalogue/Tools/Measuring-%26-Layout-Tools/c/1358?q=:relevance;#FFFFFF;#FFFFFF;#000000;
 
 INSERT_UPDATE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];name;category(code, $productCV);
-                                      ;;BonecoMeasuringAndLayoutToolsFeatureComponent;Boneco Measuring And Layout Tools;brand_982
-                                      ;;EdnetMeasuringAndLayoutToolsFeatureComponent;Ednet Measuring And Layout Tools;brand_4434
-                                      ;;HamaMeasuringAndLayoutToolsFeatureComponent;Hama Measuring And Layout Tools;brand_912
-                                      ;;StarTech.comMeasuringAndLayoutToolsFeatureComponent;StarTech.com Measuring And Layout Tools;brand_1518
 
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV)
                          ;;Section1Slot-MeasuringAndLayoutToolsCategoryPage;Section1 Slot for Measuring And Layout Tools Landing Page;true;
@@ -1464,7 +1419,6 @@ INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];positi
                                 ;;Section4-MeasuringAndLayoutToolsCategoryPage;Section4;;Section4Slot-MeasuringAndLayoutToolsCategoryPage
 
 INSERT_UPDATE CMSCategoryRestriction;$contentCV;uid[unique=true];name;categories(code, $productCV);pages(uid, $contentCV)[unique=true]
-                                    ;;MeasuringAndLayoutToolsRestriction;Restriction for Measuring & Layout Tools;1358;MeasuringAndLayoutToolsCategoryPage
 
 
 ######## Sanders  ########
@@ -1490,7 +1444,6 @@ INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];positi
 
 
 INSERT_UPDATE CMSCategoryRestriction;$contentCV;uid[unique=true];name;categories(code, $productCV);pages(uid, $contentCV)[unique=true]
-                                    ;;SandersRestriction;Restriction for Sanders;1596;SandersCategoryPage
 
 ######## Hand Tools ########
 
@@ -1502,18 +1455,6 @@ INSERT_UPDATE InformationBannerComponent;$contentCV[unique=true];uid[unique=true
 
 
 INSERT_UPDATE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];name;category(code, $productCV);
-                                      ;;AngleGrindersFeatureComponent;Angle Grinders;1595
-                                      ;;CircularSawsFeatureComponent;Circular Saws;1631
-                                      ;;HandSawsFeatureComponent;Hand Saws;1354
-                                      ;;JigsawsFeatureComponent;Jigsaws;1710
-                                      ;;MeasuringAndLayoutToolsFeatureComponent;Measuring & Layout Tools;1358
-                                      ;;NutDriversFeatureComponent;Nut Drivers;1641
-                                      ;;PowerDrillsFeatureComponent;Power Drills;1360
-                                      ;;PunchesOrNailSetsFeatureComponent;Punches Or Nail Sets;1597
-                                      ;;RotaryHammersFeatureComponent;Rotary Hammers;1711
-                                      ;;SandersFeatureComponent;Sanders;1596
-                                      ;;ScrewdriversFeatureComponent;Screwdrivers;1593
-                                      ;;StrippingToolsFeatureComponent;Stripping Tools;1598
 
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV)
                          ;;Section2Slot-HandToolsCategoryPage;Section2 Slot for Hand Tools Landing Page;true;HandToolsInfoBanner
@@ -1527,7 +1468,6 @@ INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];positi
                                 ;;Section4-HandToolsCategoryPage;Section4;;Section4Slot-HandToolsCategoryPage
 
 INSERT_UPDATE CMSCategoryRestriction;$contentCV;uid[unique=true];name;categories(code, $productCV);pages(uid, $contentCV)[unique=true]
-                                    ;;HandToolsRestriction;Restriction for Hand Tools;1355;HandToolsCategoryPage
 
 ######## Brand Landing Page ########
 
@@ -1535,19 +1475,6 @@ INSERT_UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterT
                           ;;BrandCategoryPage;All Brands Landing Page;CategoryPageTemplate;false;
 
 INSERT_UPDATE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];name;category(code, $productCV);
-                                      ;;BlackAndDeckerBrandFeatureComponent;Black & Decker;brand_980;
-                                      ;;BonecoBrandFeatureComponent;Boneco;brand_982
-                                      ;;BoschBrandFeatureComponent;Bosch;brand_753;
-                                      ;;CablesToGoBrandFeatureComponent;Cables To Go;brand_2834;
-                                      ;;EdnetBrandFeatureComponent;Ednet;brand_4434
-                                      ;;EinhellBrandFeatureComponent;Einhell;brand_4439;
-                                      ;;HamaBrandFeatureComponent;Hamas;brand_912
-                                      ;;HisBrandFeatureComponent;His;brand_692
-                                      ;;HitachiBrandFeatureComponent;Hitachi;brand_169;
-                                      ;;IntronicsBrandFeatureComponent;Intronics;brand_240
-                                      ;;KaiserBrandFeatureComponent;Kaiser;brand_1714
-                                      ;;MakitaBrandFeatureComponent;Makita;brand_2929
-                                      ;;SkilBrandFeatureComponent;Skil;brand_4515;
 
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV)
                          ;;Section3Slot-BrandCategoryPage;Section3 Slot for All Brands Landing Page;true;BlackAndDeckerBrandFeatureComponent,BoschBrandFeatureComponent,CablesToGoBrandFeatureComponent,EdnetBrandFeatureComponent,EinhellBrandFeatureComponent,HamaBrandFeatureComponent,HisBrandFeatureComponent,HitachiBrandFeatureComponent,IntronicsBrandFeatureComponent,KaiserBrandFeatureComponent,MakitaBrandFeatureComponent,SkilBrandFeatureComponent
@@ -1559,7 +1486,6 @@ INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];positi
 
 
 INSERT_UPDATE CMSCategoryRestriction;$contentCV;uid[unique=true];name;categories(code, $productCV);pages(uid, $contentCV)[unique=true]
-                                    ;;BrandsRestriction;Restriction for All Brands;brands;BrandCategoryPage
 
 
 
@@ -1659,4 +1585,59 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;lin
 ;;MyTemplatesNavLink;My Templates Nav Link;Templates;my-account/quick-order-templates;MyTemplatesNavLink;MyTemplatesNavLink
 
 #################   QUICK ORDER  END ###########################
+
+### customerticketingaddon START
+$addonExtensionName=customerticketingaddon
+
+#cms-content.impex
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false'];previewImage(code, $contentCV)
+;;support-tickets;Support Tickets Page;AccountPageTemplate;support-tickets
+;;add-support-ticket;Add Support Ticket Page;AccountPageTemplate;add-support-ticket
+;;update-support-ticket;Update Support Ticket Page;AccountPageTemplate;update-support-ticket
+
+# ContentSlot
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;SideContent-support-tickets;Side Content Slot for My Account Support Tickets History;true;;;;
+;;BodyContent-support-tickets;Body Content Slot for My Account Support Tickets History;true;AccountSupportTicketsHistoryComponent;;;
+
+;;SideContent-add-support-ticket;Side Content Slot for AddSupport Ticket;true;;;;
+;;BodyContent-add-support-ticket;Body Content Slot for AddSupport Ticket;true;AccountAddSupportTicketComponent;;;
+
+;;SideContent-update-support-ticket;Side Content Slot for Update Support Ticket;true;;;;
+;;BodyContent-update-support-ticket;Body Content Slot for Update Support Ticket;true;AccountUpdateSupportTicketComponent;;;
+
+# ContentSlotForPage
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='support-tickets'];contentSlot(uid,$contentCV)[unique=true];;;
+;;SideContent-support-tickets;SideContent;;SideContent-support-tickets;;;
+;;BodyContent-support-tickets;BodyContent;;BodyContent-support-tickets;;;
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='add-support-ticket'];contentSlot(uid,$contentCV)[unique=true];;;
+;;SideContent-add-support-ticket;SideContent;;SideContent-add-support-ticket;;;
+;;BodyContent-add-support-ticket;BodyContent;;BodyContent-add-support-ticket;;;
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='update-support-ticket'];contentSlot(uid,$contentCV)[unique=true];;;
+;;SideContent-update-support-ticket;SideContent;;SideContent-update-support-ticket;;;
+;;BodyContent-update-support-ticket;BodyContent;;BodyContent-update-support-ticket;;;
+
+# components
+INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];name;page;&componentRef
+;;AccountSupportTicketsHistoryComponent;Account Support Tickets Component;/WEB-INF/views/addons/$addonExtensionName/responsive/pages/account/accountSupportTicketsPage.jsp;AccountSupportTicketsHistoryComponent
+;;AccountAddSupportTicketComponent;Account AddSupport Ticket Component;/WEB-INF/views/addons/$addonExtensionName/responsive/pages/account/accountAddSupportTicketPage.jsp;AccountAddSupportTicketComponent
+;;AccountUpdateSupportTicketComponent;Account Update Support Ticket Component;/WEB-INF/views/addons/$addonExtensionName/responsive/pages/account/accountUpdateSupportTicketPage.jsp;AccountUpdateSupportTicketComponent
+
+INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];name;page;&componentRef;
+;;AddMessageButtonComponent;Add Message Button Component;/WEB-INF/views/addons/$addonExtensionName/responsive/parts/addMessageButton.jsp;AddMessageButtonComponent;
+
+# CMS Navigation Nodes (children of my account)
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
+;SupportTicketNavNode;;SupportTicketNavNode;MyAccountNavNode;;SupportTicketNavNode
+
+# create cms navigation entry for nvaigation child nodes
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(&linkRef);
+;SupportTicketNavNodeEntry;;SupportTicketNavNodeEntry;SupportTicketNavNode;AccountSupportTicketHistoryLink;
+
+# CMS Link Components
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];$category;$product;
+;;AccountSupportTicketHistoryLink;AccountSupportTicketHistoryLink;/my-account/support-tickets;AccountSupportTicketHistoryLink;AccountSupportTicketHistoryLink;;;;
+### customerticketingaddon END
 

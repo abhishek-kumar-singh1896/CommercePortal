@@ -8034,7 +8034,7 @@ General
 *****************************************************************/
 a,
 button {
-  color: #0068b3;
+  color: #ff8400;
   text-decoration: none;
 }
 a:hover {
@@ -8198,11 +8198,11 @@ output {
   color: #3c3c3c;
 }
 .well.well-tertiary {
-  background-color: #142939;
+  background-color: #000000;
   color: #ffffff;
 }
 .well.well-tertiary .item-label {
-  color: #7f919e;
+  color: #ffffff;
 }
 .well.well-tertiary .item-value {
   color: #fff;
@@ -8553,7 +8553,7 @@ ul.nav__links::after {
 #accNavComponentDesktopOne,
 #accNavComponentDesktopTwo {
   padding: 0;
-  background-color: #003459;
+  background-color: #000000;
 }
 #accNavComponentDesktopOne ul.nav__links,
 #accNavComponentDesktopTwo ul.nav__links {
@@ -8574,7 +8574,7 @@ ul.nav__links::after {
 }
 #accNavComponentDesktopOne ul.nav__links li:hover,
 #accNavComponentDesktopTwo ul.nav__links li:hover {
-  background-color: #004678;
+  background-color: #575A5D;
 }
 #accNavComponentDesktopOne ul.nav__links li a,
 #accNavComponentDesktopTwo ul.nav__links li a {
@@ -9991,8 +9991,8 @@ fieldset[disabled] .btn-default:active,
 .btn-default[disabled].active,
 fieldset[disabled] .btn-default.active {
   color: #ffffff;
-  background-color: #cccccc;
-  border-color: #cccccc;
+  background-color: #CCCECF;
+  border-color: #CCCECF;
 }
 .btn-default .badge {
   color: #929292;
@@ -10010,8 +10010,8 @@ fieldset[disabled] .btn-default.active {
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
   color: #ffffff;
-  background-color: #e55a00;
-  border-color: #e55a00;
+  background-color: #000000;
+  border-color: #000000;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
@@ -10036,8 +10036,8 @@ fieldset[disabled] .btn-primary:active,
 .btn-primary[disabled].active,
 fieldset[disabled] .btn-primary.active {
   color: #ffffff;
-  background-color: #8cbbdd;
-  border-color: #8cbbdd;
+  background-color: #CCCECF;
+  border-color: #CCCECF;
 }
 .btn-primary .badge {
   color: #0068b3;
@@ -12377,6 +12377,7 @@ a.product__listing .product__listing--promo:focus {
 .item__list .item__name {
   font-size: 16px;
   font-weight: 700;
+  color: #000000;
 }
 .item__list .item__quantity {
   text-align: center;
@@ -12412,7 +12413,7 @@ a.product__listing .product__listing--promo:focus {
   background-color: transparent;
   padding: 0;
   border: 0;
-  color: #0068b3;
+  color: #ff8400;
 }
 .item__list .item__remove .btn .glyphicon,
 .item__list .item__menu .btn .glyphicon {
@@ -15608,7 +15609,7 @@ fieldset#startDate .form-group .control-label {
   top: 10px;
   background: transparent;
   border: 0 none;
-  color: #929292;
+  color: #ff8400;
   padding: 5px;
   font-size: 25px;
 }
@@ -16868,8 +16869,8 @@ table th {
   font-size: 13px;
   font-weight: 400;
   text-transform: uppercase;
-  background-color: #142939;
-  color: #7f919e;
+  background-color: #000000;
+  color: #ffffff;
   padding: 8px 10px;
   vertical-align: top;
 }
@@ -16947,7 +16948,7 @@ table td {
 }
 .responsive-table-item a:hover,
 .responsive-table-item a:focus {
-  color: #003c66;
+  color: #000000;
 }
 .responsive-table-item td:last-child {
   text-align: right;
@@ -16993,6 +16994,7 @@ label.uncased {
 }
 .form-control:focus {
   border-color: #0068b3;
+  background-color: #F4F4F4;
   outline: 0;
   box-shadow: none;
 }
