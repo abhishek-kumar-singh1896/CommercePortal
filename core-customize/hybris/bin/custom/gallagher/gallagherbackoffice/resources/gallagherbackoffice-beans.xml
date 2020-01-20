@@ -15,5 +15,17 @@
             <property name="flag" type="boolean"/>
         </bean>
     -->
+    
+    <bean class="de.hybris.platform.b2badvancebackoffice.data.CreateCustomerForm">
+    	<property name="email" type="String"/>
+        <property name="uid" type="String"/>
+        <property name="customerID" type="String"/>
+        <property name="name" type="String"/>
+        <property name="description" type="String"/>
+        <property name="sessionLanguage" type="String"/>
+    	<property name="sessionCurrency" type="String"/>
+    	<property name="groups" type="String"/>
+    </bean>
+    
 
 </beans>

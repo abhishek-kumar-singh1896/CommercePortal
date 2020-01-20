@@ -102,3 +102,7 @@ INSERT_UPDATE ServicelayerJob;code[unique=true];springId[unique=true]
 # Deactivate Frontend Restriction on category by default for perfomance purposes
 UPDATE SearchRestriction;code[unique=true];active[default=false]
 ;Frontend_RestrictedCategory
+
+#Impex to set up oauth Client             
+INSERT_UPDATE OAuthClientDetails;clientId[unique=true];authorities;authorizedGrantTypes;scope[default=basic];clientSecret
+;sitecore;ROLE_TRUSTED_CLIENT;refresh_token, client_credentials, password, authorization_code;;134435rgffg2wds8221836334ab9819

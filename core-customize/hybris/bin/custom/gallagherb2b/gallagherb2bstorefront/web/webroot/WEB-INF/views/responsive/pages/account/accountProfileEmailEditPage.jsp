@@ -18,12 +18,12 @@
 		<div class="account-section-content">
 			<div class="account-section-form">
 				<form:form action="update-email" method="post" modelAttribute="updateEmailForm">
-					<formElement:formInputBox idKey="profile.email" labelKey="profile.email" path="email" inputCSS="text" mandatory="true"/>
-					<formElement:formInputBox idKey="profile.checkEmail"  labelKey="profile.checkEmail" path="chkEmail" inputCSS="text" mandatory="true"/>
-					<formElement:formPasswordBox idKey="profile.pwd" labelKey="profile.pwd" path="password" inputCSS="text form-control" mandatory="true"/>
+					<formElement:formInputBox idKey="profile.email" labelKey="profile.email" path="email" inputCSS="text" mandatory="true" disabled="true"/>
+					<%-- <formElement:formInputBox idKey="profile.checkEmail"  labelKey="profile.checkEmail" path="chkEmail" inputCSS="text" mandatory="true"/>
+					<formElement:formPasswordBox idKey="profile.pwd" labelKey="profile.pwd" path="password" inputCSS="text form-control" mandatory="true"/> --%>
 					<input type="hidden" id="recaptchaChallangeAnswered" value="${requestScope.recaptchaChallangeAnswered}"/>
 					<div class="form_field-elements control-group js-recaptcha-captchaaddon"></div>
-					<div class="form-actions">
+					<%-- <div class="form-actions">
 						<div class="row">
 							<div class="col-sm-6 col-sm-push-6">
 								<div class="accountActions">
@@ -44,7 +44,7 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> --%>
 				</form:form>
 			</div>
 		</div>

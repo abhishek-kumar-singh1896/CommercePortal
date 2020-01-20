@@ -3,6 +3,7 @@
  Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
 -->
 <config xmlns="http://www.hybris.com/cockpit/config"
+	xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config"
 	xmlns:na="http://www.hybris.com/cockpitng/config/notifications">
 
 	<context merge-by="module" component="editorareaactions" type="Consignment">
@@ -22,5 +23,75 @@
 	        </na:notifications>
 	   </na:notification-area>
 	</context>
+	
+	<context component="create-wizard" type="Customer">
+        <wz:flow id="CustomerWizard" title="create.title(ctx.TYPE_CODE)">
+        	<wz:handler handlerId="verifyCustomerHandler1" handlerBean="verifyCustomerHandler">
+            </wz:handler>
+            <wz:prepare id="custPrepare">
+                <wz:initialize property="newCust" template-bean="createCustomerForm"/>
+            </wz:prepare>
+            <wz:step id="step1" label="create.customer.verification.label" sublabel="create.customer.verification.sublabel">
+                <wz:content id="step1.content">
+                    <wz:property-list root="newCust" merge-mode="REPLACE">
+                        <wz:property qualifier="email" type="java.lang.String" label="create.customer.verification.email"/>
+                    </wz:property-list>
+                </wz:content>
+                <wz:navigation id="step1.navigation" merge-mode="REPLACE">
+                    <wz:cancel/>
+                    <wz:custom label="Verify" composedHandler="verifyCustomerHandler1"/>
+                    <wz:next/>
+                </wz:navigation>
+            </wz:step>
+            <wz:step id="step2" label="create.customer.essential.label" sublabel="create.customer.essential.sublabel">
+                <wz:content id="step2.content">
+                    <wz:property-list root="newCust" merge-mode="REPLACE">
+                        <wz:property qualifier="uid" type="java.lang.String" label="create.customer.verification.uid"/>
+                        <wz:property qualifier="customerID" type="java.lang.String" label="create.customer.verification.customerID"/>
+                        <wz:property qualifier="name" type="java.lang.String" label="create.customer.verification.name"/>
+                        <wz:property qualifier="description" type="java.lang.String" label="create.customer.verification.description"/>
+                    </wz:property-list>
+                </wz:content>
+                <wz:navigation id="step2.navigation" merge-mode="REPLACE">
+                    <wz:cancel/>
+                    <wz:back/>
+                    <wz:next/>
+                    <wz:done>
+                        <wz:save property="newCust"/>
+                    </wz:done>
+                </wz:navigation>
+            </wz:step>
+            <wz:step id="step3" label="create.customer.locale.label" sublabel="create.customer.locale.sublabel">
+                <wz:content id="step3.content">
+                    <wz:property-list root="newCust" merge-mode="REPLACE">
+                        <wz:property qualifier="sessionLanguage" type="java.lang.String" label="create.customer.verification.sessionLanguage"/>
+                        <wz:property qualifier="sessionCurrency" type="java.lang.String" label="create.customer.verification.sessionCurrency"/>
+                    </wz:property-list>
+                </wz:content>
+                <wz:navigation id="step3.navigation" merge-mode="REPLACE">
+                    <wz:cancel/>
+                    <wz:back/>
+                    <wz:next/>
+                    <wz:done>
+                        <wz:save property="newCust"/>
+                    </wz:done>
+                </wz:navigation>
+            </wz:step>
+            <wz:step id="step4" label="create.customer.groups.label" sublabel="create.customer.groups.sublabel">
+                <wz:content id="step4.content">
+                    <wz:property-list root="newCust" merge-mode="REPLACE">
+                        <wz:property qualifier="groups" type="java.lang.String" label="create.customer.verification.groups"/>
+                    </wz:property-list>
+                </wz:content>
+                <wz:navigation id="step4.navigation" merge-mode="REPLACE">
+                    <wz:cancel/>
+                    <wz:back/>
+                    <wz:done>
+                        <wz:save property="newCust"/>
+                    </wz:done>
+                </wz:navigation>
+            </wz:step>
+        </wz:flow>
+    </context>
 
 </config>

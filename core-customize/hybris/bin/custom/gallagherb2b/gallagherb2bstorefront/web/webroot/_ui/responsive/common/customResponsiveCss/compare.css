@@ -284,7 +284,7 @@ div.classification-headline {
 .quick-order-product-search-wrapper .quick-order-product-search .keyword-enter-suggestion {
     float: left;
     width: fit-content;
-    font-size: 0.875rem;
+    font-size: 12px;
     font-weight: 300;
     font-style: normal;
     font-stretch: normal;

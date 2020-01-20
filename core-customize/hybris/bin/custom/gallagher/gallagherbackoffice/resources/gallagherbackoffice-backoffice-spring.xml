@@ -11,5 +11,9 @@
   		<property name="location" value="/gallagherbackoffice-backoffice-labels/"/>
   		<property name="name" value="labels"/>
   	</bean>
+  	
+  	<bean id="verifyCustomerHandler" class="com.gallagher.backoffice.handler.VerifyCustomerHandler"/>
+  	
+  	<bean id="createCustomerForm" class="de.hybris.platform.b2badvancebackoffice.data.CreateCustomerForm"/>
 
 </beans>
