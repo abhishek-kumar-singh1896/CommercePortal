@@ -1571,7 +1571,7 @@ INSERT_UPDATE NavigationComponent;$contentCV[unique=true];uid[unique=true];name;
 ;;QuickOrderComponent;Quick Order;QuickOrderComponent;QuickOrderNavNode
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&componentRef);&nodeRef
-;QuickOrderNavNode;;Quick Order;;;QuickOrderNavNode
+#;QuickOrderNavNode;;Quick Order;;;QuickOrderNavNode
 
 
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV)
