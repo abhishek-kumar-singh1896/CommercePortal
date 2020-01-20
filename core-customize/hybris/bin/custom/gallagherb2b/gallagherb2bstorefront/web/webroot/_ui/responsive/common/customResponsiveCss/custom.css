@@ -1907,6 +1907,10 @@ position: absolute;
   width: 22rem;
   margin: 0.3rem;
 }
+.js-create-template-link {
+  background-color: #575a5d;
+  border-color: #575a5d;
+}
 @media (max-width: 767.98px) {
   .quick-order-container .final-product-price .btn {
     width: 100%;
