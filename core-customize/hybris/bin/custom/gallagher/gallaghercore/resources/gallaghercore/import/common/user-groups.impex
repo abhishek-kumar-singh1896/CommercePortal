@@ -20,6 +20,8 @@ INSERT_UPDATE Customer;originalUid[unique=true];uid[unique=true];title(code);nam
 # Customer addresses
 INSERT_UPDATE Address;&addId;owner(&userId)[unique=true];streetname[unique=true];postalcode[unique=true];duplicate[unique=true];town;country(isocode);billingAddress;contactAddress;shippingAddress;unloadingAddress;firstname;lastname;email;gender(code);middlename;phone1;title(code);url;company;fax;department
 
+INSERT_UPDATE UserGroup;uid[unique=true];locname[lang=de];locname[lang=en];groups(uid)
+;customermanagergroup;Kunden Manager-Gruppe;Customer Manager Group;employeegroup
 
 INSERT_UPDATE Employee;groups(uid);uid[unique=true];name;password[default=$defaultPassword];
 ;customergroup,$customermanagergroup;sitecoremanager;"Site Core Manager";;
