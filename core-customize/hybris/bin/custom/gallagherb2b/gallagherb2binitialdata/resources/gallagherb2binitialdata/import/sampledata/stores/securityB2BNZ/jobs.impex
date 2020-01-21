@@ -34,8 +34,8 @@ if (exportDataCronJob != null)
 {
     line.clear();
 }"
-;googleLocationsSecurityB2B;exportDataJobPerformable;$storeUid;$storeUid;$defaultLanguage;$defaultCurrency;anonymous;$googleHost;$googleUserName;$googlePassword;exportGooglePosPipeline;$defaultLanguage
-;googleProductsSecurityB2B;exportDataJobPerformable;$storeUid;$storeUid;$defaultLanguage;$defaultCurrency;anonymous;$googleHost;$googleUserName;$googlePassword;exportGoogleProductPipeline;$defaultLanguage
+;googleLocationsSecurityB2B;exportDataJobPerformable;$storeUidNZ;$storeUidNZ;$defaultLanguage;$defaultCurrency;anonymous;$googleHost;$googleUserName;$googlePassword;exportGooglePosPipeline;$defaultLanguage
+;googleProductsSecurityB2B;exportDataJobPerformable;$storeUidNZ;$storeUidNZ;$defaultLanguage;$defaultCurrency;anonymous;$googleHost;$googleUserName;$googlePassword;exportGoogleProductPipeline;$defaultLanguage
 
 INSERT CronJob;code[unique=true];job(code);baseStore(uid);cmsSite(uid);sessionLanguage(isocode);sessionCurrency(isocode);sessionUser(uid);
 "#% beforeEach:
@@ -55,7 +55,7 @@ if (cronJob != null)
 {
     line.clear();
 }"
-;uploadExportsSecurityB2B;uploadDataJobPerformable;$siteUidNZ;$siteUidNZ;$defaultLanguage;$defaultCurrency;anonymous;
+;uploadExportsSecurityB2B;uploadDataJobPerformable;$storeUidNZ;$storeUidNZ;$defaultLanguage;$defaultCurrency;anonymous;
 ;quoteToExpireSoonJob;quoteToExpireSoonJobPerformable;;;en;;
 ;quoteExpiredJob;quoteExpiredJobPerformable;;;en;;
 

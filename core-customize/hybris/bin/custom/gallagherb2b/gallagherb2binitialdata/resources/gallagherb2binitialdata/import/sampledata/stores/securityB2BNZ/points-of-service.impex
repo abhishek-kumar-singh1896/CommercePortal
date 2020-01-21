@@ -44,7 +44,7 @@ INSERT_UPDATE SpecialOpeningDay;openingSchedule(code)[unique=true];date[unique=t
 
 INSERT_UPDATE StoreLocatorFeature;code[unique=true]
 
-INSERT_UPDATE PointOfService;name[unique=true];type(code);address(&addrID);latitude;longitude;geocodeTimestamp[dateformat=dd-MM-yyyy];$storeImage;openingSchedule(code);basestore(uid)[default=$storeUid];features(code)
+INSERT_UPDATE PointOfService;name[unique=true];type(code);address(&addrID);latitude;longitude;geocodeTimestamp[dateformat=dd-MM-yyyy];$storeImage;openingSchedule(code);basestore(uid)[default=$storeUidNZ];features(code)
 ;Hybris SecurityB2B Tulsa1		;STORE;addr1;36,08383;-95,86570;01-10-2011;securityB2B_store_01;$aucklandHours
 ;Hybris SecurityB2B Tulsa2		;STORE;addr2;36,08486;-95,86670;01-10-2011;securityB2B_store_01;$aucklandHours
 ;Hybris SecurityB2B Tulsa3		;STORE;addr3;36,08589;-95,86770;01-10-2011;securityB2B_store_01;$aucklandHours

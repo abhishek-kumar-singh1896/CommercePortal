@@ -38,7 +38,7 @@ INSERT_UPDATE PromotionGroup;Identifier[unique=true];
 
 # Base Store
 INSERT_UPDATE BaseStore;uid[unique=true];catalogs(id);currencies(isocode);net;taxGroup(code);storelocatorDistanceUnit(code);defaultCurrency(isocode);languages(isocode);defaultLanguage(isocode);deliveryCountries(isocode);submitOrderProcessCode;paymentProvider;pickupInStoreMode(code);customerAllowedToIgnoreSuggestions;expressCheckoutEnabled;maxRadiusForPoSSearch;checkoutFlowGroup;createReturnProcessCode;
-;$storeUidNZ;$productCatalog,$classificationCatalog;$currencies;$net;au-userTaxGroup;miles;$defaultCurrency;$languages;$defaultLanguage;$deliveryCountries;$orderProcessCode;$paymentProvider;$pickupInStoreMode;$customerAllowedToIgnoreSuggestions;$expressCheckoutEnabled;300;$checkoutGroup;$returnProcessCode;
+;$storeUidNZ;$productCatalog,$classificationCatalog;$currencies;$net;nz-userTaxGroup;miles;$defaultCurrency;$languages;$defaultLanguage;$deliveryCountries;$orderProcessCode;$paymentProvider;$pickupInStoreMode;$customerAllowedToIgnoreSuggestions;$expressCheckoutEnabled;300;$checkoutGroup;$returnProcessCode;
 
 INSERT_UPDATE BaseStore2DeliveryModeRel;source(uid)[unique=true];target(code)[unique=true]
 ;securityB2BNZ;premium-gross
