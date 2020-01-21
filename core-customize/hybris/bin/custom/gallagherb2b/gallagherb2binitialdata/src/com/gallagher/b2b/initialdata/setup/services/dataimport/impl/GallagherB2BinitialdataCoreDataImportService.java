@@ -10,14 +10,15 @@
  */
 package com.gallagher.b2b.initialdata.setup.services.dataimport.impl;
 
-import de.hybris.platform.commerceservices.dataimport.impl.CoreDataImportService;
+import com.gallagher.core.dataimport.impl.GallagherCoreDataImportServiceImpl;
 
 
 /**
  * Implementation to handle specific Core Data Import services to Gallagher B2B.
  */
-public class GallagherB2BinitialdataCoreDataImportService extends CoreDataImportService
+public class GallagherB2BinitialdataCoreDataImportService extends GallagherCoreDataImportServiceImpl
 {
+
 	/**
 	 * Imports store data related to Gallagher B2B. Imports a site-override impex if available.
 	 *
@@ -35,8 +36,8 @@ public class GallagherB2BinitialdataCoreDataImportService extends CoreDataImport
 
 		if (getConfigurationService().getConfiguration().getBoolean("setup.siteoverride", false))
 		{
-			getSetupImpexService()
-					.importImpexFile(String.format("/%s/import/coredata/stores/%s/site-override.impex", extensionName, storeName), false);
+			getSetupImpexService().importImpexFile(
+					String.format("/%s/import/coredata/stores/%s/site-override.impex", extensionName, storeName), false);
 		}
 	}
 }

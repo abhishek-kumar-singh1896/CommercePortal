@@ -33,7 +33,7 @@ if (exportDataCronJob != null)
 ;googleProductsAMB2CUS;exportDataJobPerformable;$storeUidUS;$storeUidUS;$defaultLanguage;$defaultCurrency;anonymous;$googleHost;$googleUserName;$googlePassword;exportGoogleProductPipeline;$defaultLanguage
 ;googleProductsAMB2CCA;exportDataJobPerformable;$storeUidCA;$storeUidCA;$defaultLanguage;$defaultCurrency;anonymous;$googleHost;$googleUserName;$googlePassword;exportGoogleProductPipeline;$defaultLanguage
 
-INSERT CronJob;code[unique=true];job(code)[forceWrite=true];baseStore(uid);cmsSite(uid);sessionLanguage(isocode);sessionCurrency(isocode);sessionUser(uid);
+INSERT ExportDataCronJob;code[unique=true];job(code)[forceWrite=true];baseStore(uid);cmsSite(uid);sessionLanguage(isocode);sessionCurrency(isocode);sessionUser(uid);
 "#% beforeEach:
 import de.hybris.platform.core.Registry;
 import de.hybris.platform.cronjob.model.CronJobModel;

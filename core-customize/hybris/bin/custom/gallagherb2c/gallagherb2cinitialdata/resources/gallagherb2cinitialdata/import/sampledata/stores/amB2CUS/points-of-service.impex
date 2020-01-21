@@ -69,11 +69,11 @@ INSERT_UPDATE SpecialOpeningDay ; openingSchedule(code)[unique=true] ; date[uniq
                                 ; $weekendHours                      ; 23.12.2014                              ; true   
                                 
                                 
-INSERT_UPDATE PointOfService ; name[unique=true] ; type(code) ; address(&addrID) ; latitude ; longitude ; geocodeTimestamp[dateformat=dd-MM-yyyy] ; $storeImage          ; openingSchedule(code) ; basestore(uid)[default=$storeUidUS] ; features(code) 
-                             ; NewYork           ; STORE      ; addr1            ; 35,7091  ; 139,6732  ; 29-04-2025                              ; electronics_store_01 ; $standardHours        
-                             ; Chicago           ; STORE      ; addr2            ; 35,6673  ; 139,75429 ; 29-04-2025                              ; electronics_store_02 ; $standardHours        
-                             ; Toronto           ; STORE      ; addr3            ; 35,6923  ; 139,8201  ; 29-04-2025                              ;                      ; $standardHours        ; $storeUidCA                         
-                             ; Vancouver         ; STORE      ; addr4            ; 35,8269  ; 139,8701  ; 29-04-2025                              ; electronics_store_01 ; $weekendHours         ; $storeUidCA                         
+INSERT_UPDATE PointOfService ; name[unique=true] ; type(code) ; address(&addrID) ; latitude ; longitude ; geocodeTimestamp[dateformat=dd-MM-yyyy] ; $storeImage ; openingSchedule(code) ; basestore(uid)[default=$storeUidUS] ; features(code) 
+                             ; NewYork           ; STORE      ; addr1            ; 35,7091  ; 139,6732  ; 29-04-2025                              ;             ; $standardHours        
+                             ; Chicago           ; STORE      ; addr2            ; 35,6673  ; 139,75429 ; 29-04-2025                              ;             ; $standardHours        
+                             ; Toronto           ; STORE      ; addr3            ; 35,6923  ; 139,8201  ; 29-04-2025                              ;             ; $standardHours        ; $storeUidCA                         
+                             ; Vancouver         ; STORE      ; addr4            ; 35,8269  ; 139,8701  ; 29-04-2025                              ;             ; $weekendHours         ; $storeUidCA                         
                              
 INSERT_UPDATE Address ; &addrID ; streetname        ; streetnumber ; postalcode[unique=true] ; town[unique=true] ; country(isocode) ; region(isocode) ; phone1        ; owner(PointOfService.name)[unique=true] 
                       ; addr1   ; Waseda Dori       ; 13           ;                         ; Tokio             ; US               ;                 ; +81 1988 3600 ; NewYork                                 
@@ -95,8 +95,8 @@ UPDATE PointOfService ; name[unique=true] ; features(code)                      
                       ; Vancouver         ; wheelchair,buyOnlinePickupInStore        ;  
                       
 INSERT_UPDATE PoS2WarehouseRel ; source(name)[unique=true] ; target(code)[unique=true] 
-                               ; NewYork                   ; NewYork                   
-                               ; Chicago                   ; Chicago                   
-                               ; Toronto                   ; Toronto                   
-                               ; Vancouver                 ; Vancouver                 
+                               ; NewYork                   ; am_warehouse_s                   
+                               ; Chicago                   ; am_warehouse_e                   
+                               ; Toronto                   ; am_warehouse_w                   
+                               ; Vancouver                 ; am_warehouse_n                 
                                
