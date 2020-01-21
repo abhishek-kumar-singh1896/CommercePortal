@@ -53,6 +53,7 @@
 	<jsp:invoke fragment="pageCss"/>
 	<analytics:analytics/>
 	<generatedVariables:generatedVariables/>
+	<script src="//qasecuritycms.gallagher.com/bundle/beacon"></script>
 </head>
 
 <body class="${pageBodyCssClasses} ${cmsPageRequestContextData.liveEdit ? ' yCmsLiveEdit' : ''} language-${fn:escapeXml(currentLanguage.isocode)}">
