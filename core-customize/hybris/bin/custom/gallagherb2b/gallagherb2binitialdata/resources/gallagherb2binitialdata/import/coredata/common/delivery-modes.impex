@@ -14,12 +14,10 @@
 #% impex.setLocale(Locale.GERMAN)
  
 # Currencies
-$auCurrency=AUD
 $nzCurrency=NZD
  
 # Delivery Zones
 INSERT_UPDATE Zone ; code[unique=true] ; countries(isocode) 
-                   ; au                ; AU                 
                    ; nz                ; NZ                 
                    
 # Zone Delivery Modes
@@ -29,12 +27,7 @@ INSERT_UPDATE ZoneDeliveryMode ; code[unique=true]      ; net   ; active[default
                                ; free-standard-shipping ; true  ; false                ;  
                                
 $numberFormat="numberformat=#.###,##"
-# Australia                    
-INSERT_UPDATE ZoneDeliveryModeValue ; deliveryMode(code)[unique=true] ; zone(code)[default='au'][unique=true] ; currency(isocode)[unique=true] ; value[$numberFormat] ; minimum[unique=true] 
-                                    ; premium-gross                   ;                                       ; $auCurrency                    ; 19.99                ; 0.00                 
-                                    ; standard-gross                  ;                                       ; $auCurrency                    ; 11.99                ; 0.00                 
-                                    ; free-standard-shipping          ;                                       ; $auCurrency                    ; 0.00                 ; 0.00                 
-                                    
+                   
 # New Zealand                       
 INSERT_UPDATE ZoneDeliveryModeValue ; deliveryMode(code)[unique=true] ; zone(code)[default='nz'][unique=true] ; currency(isocode)[unique=true] ; value[$numberFormat] ; minimum[unique=true] 
                                     ; premium-gross                   ;                                       ; $nzCurrency                    ; 19.99                ; 0.00                 

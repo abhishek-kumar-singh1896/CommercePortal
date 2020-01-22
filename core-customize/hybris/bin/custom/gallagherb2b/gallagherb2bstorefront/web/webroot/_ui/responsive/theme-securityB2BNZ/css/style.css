@@ -5,7 +5,7 @@
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
-  font-family: sans-serif;
+  font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -1071,7 +1071,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
   color: #3c3c3c;
@@ -1103,6 +1103,7 @@ figure {
 }
 img {
   vertical-align: middle;
+  width: 240px;
 }
 .img-responsive,
 .thumbnail > img,
@@ -1520,7 +1521,7 @@ code,
 kbd,
 pre,
 samp {
-  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
 }
 code {
   padding: 2px 4px;
@@ -3132,8 +3133,8 @@ fieldset[disabled] .btn-default.focus {
 .btn-primary.active.focus,
 .open > .dropdown-toggle.btn-primary.focus {
   color: #ffffff;
-  background-color: #00365c;
-  border-color: #001e33;
+  background-color: #ff8400;
+  border-color: #ff8400;
 }
 .btn-primary:active,
 .btn-primary.active,
@@ -4702,7 +4703,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   color: #3c3c3c;
 }
 .breadcrumb > .active {
-  color: #3c3c3c;
+  color: #575a5d;
 }
 .pagination {
   display: inline-block;
@@ -5977,7 +5978,7 @@ button.close {
   position: absolute;
   z-index: 1070;
   display: block;
-  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -6095,7 +6096,7 @@ button.close {
   display: none;
   max-width: 276px;
   padding: 1px;
-  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -7603,7 +7604,7 @@ body .ui-tooltip {
 /* Component containers
 ----------------------------------*/
 .ui-widget {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
   font-size: 1em;
 }
 .ui-widget .ui-widget {
@@ -7613,7 +7614,7 @@ body .ui-tooltip {
 .ui-widget select,
 .ui-widget textarea,
 .ui-widget button {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
   font-size: 1em;
 }
 .ui-widget.ui-widget-content {
@@ -8033,7 +8034,7 @@ General
 *****************************************************************/
 a,
 button {
-  color: #0068b3;
+  color: #ff8400;
   text-decoration: none;
 }
 a:hover {
@@ -8197,11 +8198,11 @@ output {
   color: #3c3c3c;
 }
 .well.well-tertiary {
-  background-color: #142939;
+  background-color: #000000;
   color: #ffffff;
 }
 .well.well-tertiary .item-label {
-  color: #7f919e;
+  color: #ffffff;
 }
 .well.well-tertiary .item-value {
   color: #fff;
@@ -8328,7 +8329,7 @@ output {
 }
 footer {
   margin-top: 30px;
-  background: #142939;
+  background: #575a5d;
   color: #ffffff;
   font-weight: 300;
 }
@@ -8436,7 +8437,7 @@ ul.nav__links::after {
   padding: 10px 0 9px 0;
   border-bottom: solid 1px #d9d9d9;
   z-index: 9999;
-  background-color: #f4f4f4;
+  background-color: #ff8400;
   padding-left: 30px;
   padding-right: 30px;
 }
@@ -8461,7 +8462,7 @@ ul.nav__links::after {
 }
 .navigation--top .nav__left .simple-banner-component img,
 .navigation--top .nav__left .banner__component img {
-  width: auto;
+  width: 240px;
 }
 .miniCartSlot > div[data-ng-transclude] {
   display: inline-block;
@@ -8481,7 +8482,7 @@ ul.nav__links::after {
 .navigation--top .nav__right .nav__links--account li {
   display: inline-block;
   font-size: 12px;
-  color: #0068b3;
+  color: #ffffff;
   font-weight: 400;
   text-transform: uppercase;
 }
@@ -8552,7 +8553,7 @@ ul.nav__links::after {
 #accNavComponentDesktopOne,
 #accNavComponentDesktopTwo {
   padding: 0;
-  background-color: #003459;
+  background-color: #000000;
 }
 #accNavComponentDesktopOne ul.nav__links,
 #accNavComponentDesktopTwo ul.nav__links {
@@ -8573,7 +8574,7 @@ ul.nav__links::after {
 }
 #accNavComponentDesktopOne ul.nav__links li:hover,
 #accNavComponentDesktopTwo ul.nav__links li:hover {
-  background-color: #004678;
+  background-color: #575A5D;
 }
 #accNavComponentDesktopOne ul.nav__links li a,
 #accNavComponentDesktopTwo ul.nav__links li a {
@@ -8771,7 +8772,7 @@ ul.nav__links::after {
 .navigation--middle .nav__right ul.nav__links--shop_info .nav-location span {
   font-size: 30px;
   top: 27%;
-  color: #0068b3;
+  color: #000000;
 }
 @media (min-width: 640px) {
   .navigation--middle .nav__right ul.nav__links--shop_info .nav-location {
@@ -8808,7 +8809,7 @@ ul.nav__links::after {
 .navigation--middle .nav-location:focus,
 .navigation--middle .nav-cart:focus,
 .navigation--middle .btn:focus {
-  background-color: #e5e5e5;
+  background-color: #e55a00;
   box-shadow: none;
 }
 .navigation--middle .nav-cart {
@@ -8840,7 +8841,7 @@ ul.nav__links::after {
   }
 }
 .navigation--middle .nav-cart .mini-cart-link {
-  color: #0068b3;
+  color: #000000;
 }
 @media (min-width: 640px) {
   .navigation--middle .nav-cart .mini-cart-link {
@@ -8853,7 +8854,7 @@ ul.nav__links::after {
     display: block;
   }
   .navigation--middle .nav-cart .mini-cart-link .mini-cart-icon {
-    color: #0068b3;
+    color: #000000;
     left: -7px;
     top: 10px;
   }
@@ -8873,7 +8874,7 @@ ul.nav__links::after {
   }
   .navigation--middle .nav-cart .mini-cart-link .nav-items-total {
     display: inline-block;
-    background-color: #0068b3;
+    background-color: #000000;
     border-radius: 50%;
     height: 25px;
     width: 25px;
@@ -8999,7 +9000,7 @@ ul.nav__links::after {
     text-decoration: none;
   }
   .navigation--middle .mobile__nav__row--btn span.glyphicon {
-    color: #0068b3;
+    color: #000000;
   }
 }
 .navigation--middle .mobile-menu {
@@ -9017,13 +9018,13 @@ ul.nav__links::after {
   position: relative;
   cursor: pointer;
   margin: 0 auto;
-  color: #0068b3;
+  color: #000000;
   font-size: 29px;
   top: 2px;
 }
 .navigation--bottom {
-  background-color: #142939;
-  border-bottom: 1px solid #142939;
+  background-color: #000000;
+  border-bottom: 1px solid #000000;
 }
 @media (max-width: 1023px) {
   .navigation--bottom {
@@ -9058,7 +9059,7 @@ ul.nav__links::after {
 }
 @media (max-width: 1023px) {
   .navigation--bottom.js-enquire-offcanvas-navigation .close-nav button {
-    background-color: #ffffff;
+    background-color: #e55a00;
     height: 100%;
     width: 100%;
     display: inline-block;
@@ -9068,7 +9069,7 @@ ul.nav__links::after {
   }
 }
 .navigation--bottom.js-enquire-offcanvas-navigation .close-nav button span {
-  color: #0068b3;
+  color: #ffffff;
   font-size: 25px;
 }
 .navigation--bottom:before,
@@ -9134,7 +9135,7 @@ ul.nav__links::after {
   .navigation--bottom .nav__links--products li {
     float: none;
     overflow: hidden;
-    background-color: #ffffff;
+    background-color: #e55a00;
     border-bottom: 1px solid #e5e5e5;
   }
 }
@@ -9174,7 +9175,7 @@ ul.nav__links::after {
 @media (max-width: 1023px) {
   .navigation--bottom .nav__links--products li a {
     margin-top: 0;
-    color: #0068b3;
+    color: #ffffff;
     text-transform: capitalize;
     padding: 20px 30% 20px 50px;
     display: block;
@@ -9276,7 +9277,7 @@ ul.nav__links::after {
 .navigation--bottom .nav__links--primary-has__sub .nav__link--drill__down {
   display: inline-block;
   width: 33%;
-  color: #0068b3;
+  color: #ffffff;
   min-height: 30px;
   padding: 20px 0;
 }
@@ -9572,14 +9573,14 @@ ul.nav__links::after {
   }
 }
 .sticky-nav-top .liUserSign {
-  background-color: #ffffff;
+  background-color: #e55a00;
 }
 @media (max-width: 1023px) {
   .sticky-nav-top .userSign {
     text-align: left;
     width: 80%;
     display: inline-block;
-    color: #0068b3;
+    color: #ffffff;
     padding: 20px 30% 20px 50px;
   }
 }
@@ -9621,7 +9622,7 @@ ul.nav__links::after {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   content: "\e032";
-  color: #0068b3;
+  color: #000000;
   font-size: 30px;
 }
 @media (max-width: 639px) {
@@ -9736,7 +9737,7 @@ ul.nav__links::after {
   font-weight: bold;
 }
 header {
-  background: #f4f4f4;
+  background: #ff8400;
   margin-bottom: 20px;
 }
 .page-cartPage header,
@@ -9955,17 +9956,17 @@ header {
 .btn-default {
   border: 3px solid;
   color: #ffffff;
-  background-color: #929292;
-  border-color: #929292;
+  background-color: #575a5d;
+  border-color: #575a5d;
 }
 .btn-default:hover,
 .btn-default:focus,
 .btn-default:active,
 .btn-default.active,
 .open .dropdown-toggle.btn-default {
-  color: #929292;
+  color: #575a5d;
   background-color: #ffffff;
-  border-color: #929292;
+  border-color: #575a5d;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
@@ -9990,8 +9991,8 @@ fieldset[disabled] .btn-default:active,
 .btn-default[disabled].active,
 fieldset[disabled] .btn-default.active {
   color: #ffffff;
-  background-color: #cccccc;
-  border-color: #cccccc;
+  background-color: #CCCECF;
+  border-color: #CCCECF;
 }
 .btn-default .badge {
   color: #929292;
@@ -10000,17 +10001,17 @@ fieldset[disabled] .btn-default.active {
 .btn-primary {
   border: 3px solid;
   color: #ffffff;
-  background-color: #0068b3;
-  border-color: #0068b3;
+  background-color: #ff8400;
+  border-color: #ff8400;
 }
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active,
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
-  color: #0068b3;
-  background-color: #ffffff;
-  border-color: #0068b3;
+  color: #ffffff;
+  background-color: #000000;
+  border-color: #000000;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
@@ -10035,8 +10036,8 @@ fieldset[disabled] .btn-primary:active,
 .btn-primary[disabled].active,
 fieldset[disabled] .btn-primary.active {
   color: #ffffff;
-  background-color: #8cbbdd;
-  border-color: #8cbbdd;
+  background-color: #CCCECF;
+  border-color: #CCCECF;
 }
 .btn-primary .badge {
   color: #0068b3;
@@ -10486,7 +10487,7 @@ fieldset[disabled] .btn-primary.active {
   float: left !important;
 }
 .rating .rating-stars span.active {
-  color: #0068b3;
+  color: #ff8400;
 }
 .rating.rating-set .rating-stars {
   cursor: pointer;
@@ -12376,6 +12377,7 @@ a.product__listing .product__listing--promo:focus {
 .item__list .item__name {
   font-size: 16px;
   font-weight: 700;
+  color: #000000;
 }
 .item__list .item__quantity {
   text-align: center;
@@ -12411,7 +12413,7 @@ a.product__listing .product__listing--promo:focus {
   background-color: transparent;
   padding: 0;
   border: 0;
-  color: #0068b3;
+  color: #ff8400;
 }
 .item__list .item__remove .btn .glyphicon,
 .item__list .item__menu .btn .glyphicon {
@@ -15607,7 +15609,7 @@ fieldset#startDate .form-group .control-label {
   top: 10px;
   background: transparent;
   border: 0 none;
-  color: #929292;
+  color: #ff8400;
   padding: 5px;
   font-size: 25px;
 }
@@ -16867,8 +16869,8 @@ table th {
   font-size: 13px;
   font-weight: 400;
   text-transform: uppercase;
-  background-color: #142939;
-  color: #7f919e;
+  background-color: #000000;
+  color: #ffffff;
   padding: 8px 10px;
   vertical-align: top;
 }
@@ -16946,7 +16948,7 @@ table td {
 }
 .responsive-table-item a:hover,
 .responsive-table-item a:focus {
-  color: #003c66;
+  color: #000000;
 }
 .responsive-table-item td:last-child {
   text-align: right;
@@ -16992,6 +16994,7 @@ label.uncased {
 }
 .form-control:focus {
   border-color: #0068b3;
+  background-color: #F4F4F4;
   outline: 0;
   box-shadow: none;
 }
@@ -19216,6 +19219,7 @@ select[multiple].input-sm {
   text-align: right;
   padding-left: 30px;
   padding-right: 30px;
+  padding-top: 40px;
 }
 @media (max-width: 1024px) {
   .account-section .account-section-content .accountActions-link {

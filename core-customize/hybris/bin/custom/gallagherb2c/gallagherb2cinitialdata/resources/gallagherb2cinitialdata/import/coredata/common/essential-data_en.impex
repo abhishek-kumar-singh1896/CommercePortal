@@ -42,16 +42,6 @@ UPDATE DistanceUnit;code[unique=true];name[lang=$lang]
  ;km;"km"
  ;miles;"miles"
 
-# MediaFormats
-UPDATE MediaFormat;qualifier[unique=true];name[lang=$lang];
- ;1200Wx1200H;"1200Wx1200H"
- ;300Wx300H;"300Wx300H"
- ;30Wx30H;"30Wx30H"
- ;365Wx246H;"365Wx246H"
- ;515Wx515H;"515Wx515H"
- ;65Wx65H;"65Wx65H"
- ;96Wx96H;"96Wx96H"
-
 # Product Tax Groups
 UPDATE ProductTaxGroup;code[unique=true];name[lang=$lang]
  ;ca-sales-tax-full;"CA Sales Tax"
@@ -76,3 +66,14 @@ UPDATE ConsignmentStatus;code[unique=true];name[lang=$lang]
  ;READY_FOR_PICKUP;"Ready for pickup"
  ;SHIPPED;"Shipped"
  ;WAITING;"Waiting"
+ 
+ # Media Formats     
+UPDATE ConversionMediaFormat ; qualifier[unique=true] ; name[lang=$lang]       ;  
+                             ; 1200Wx1200H            ; 1200Wx1200H            ;  
+                             ; 300Wx300H              ; 300Wx300H              ;  
+                             ; 30Wx30H                ; 30Wx30H                ;  
+                             ; 365Wx246H              ; 365Wx246H              ;  
+                             ; 515Wx515H              ; 515Wx515H              ;  
+                             ; 65Wx65H                ; 65Wx65H                ;  
+                             ; 96Wx96H                ; 96Wx96H                ;  
+                             ; B2BADVANCE-BF          ; B2Badvance Base format 

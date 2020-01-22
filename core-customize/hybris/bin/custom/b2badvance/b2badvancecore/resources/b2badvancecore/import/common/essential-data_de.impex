@@ -54,15 +54,6 @@ UPDATE DistanceUnit;code[unique=true];name[lang=$lang]
  ;km;"km"
  ;miles;"miles"
 
-# MediaFormats
-UPDATE MediaFormat;qualifier[unique=true];name[lang=$lang];
-;1200Wx1200H;1200Wx1200H;
-;300Wx300H;300Wx300H;
-;30Wx30H;30Wx30H;
-;365Wx246H;365Wx246H;
-;515Wx515H;515Wx515H;
-;65Wx65H;65Wx65H;
-;96Wx96H;96Wx96H;
 
 UPDATE ProductTaxGroup;code[unique=true];name[lang=$lang]
 #;ca-sales-tax-full;Kanadische Mehrwertsteuer;
@@ -96,13 +87,3 @@ UPDATE ConsignmentStatus;code[unique=true];name[lang=$lang]
  ;READY_FOR_PICKUP;"Abholbereit"
  ;SHIPPED;"Geliefert"
  ;WAITING;"Wartet"
-
-# Conversion Media formats
-UPDATE ConversionMediaFormat;qualifier[unique=true];name[lang=$lang]
-;B2BADVANCE-BF            ;B2badvance Base format
-;300Wx300H    ;300Wx300H
-;30Wx30H    ;30Wx30H
-;365Wx246H ;365Wx246H
-;515Wx515H ; 515Wx515H
-;65Wx65H ; 65Wx65H
-;96Wx96H ; 96Wx96H

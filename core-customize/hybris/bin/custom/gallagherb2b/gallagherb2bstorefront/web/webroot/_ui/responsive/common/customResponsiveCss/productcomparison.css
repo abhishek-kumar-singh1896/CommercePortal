@@ -293,9 +293,9 @@ tr.desc h2 {
 }
 
 .compare-button-panel button:enabled {
-	border-color: #0B1F58;
+	border-color: #575a5d;
 	color: white;
-	background-color: #0B1F58;
+	background-color: #575a5d;
 }
 
 .compare-button-panel button:disabled {

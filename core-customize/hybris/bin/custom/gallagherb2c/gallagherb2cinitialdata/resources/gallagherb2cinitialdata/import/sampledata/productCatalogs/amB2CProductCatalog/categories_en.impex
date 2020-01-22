@@ -16,31 +16,39 @@ $lang=en
 
 # Create Categories
 UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
- ;1;;Open Catalogue;
- ;106;;Components;
- ;1201;;Fixatives;
- ;1288;;Camera Kits;
- ;1421;;Binoculars;
- ;206;;Data storage;
- ;571;;Cameras;
- ;574;;Film cameras;
- ;575;;Digital Cameras;
- ;576;;Digital Compacts;
- ;577;;Webcams;
- ;578;;Digital SLR;
- ;584;;Hand-held Camcorders;
- ;585;;Camera Accessories & Supplies;
- ;586;;Camera Flashes;
- ;587;;Tripods;
- ;588;;Camera Lenses;
- ;597;;Colour Films;
- ;598;;Black & White Films;
- ;604;;Blank Video Tapes;
- ;814;;Rechargeable Batteries;
- ;816;;Power Supplies;
- ;827;;Power Adapters & Inverters;
- ;829;;Battery Chargers;
- ;902;;Flash Memory;
- ;934;;Camera Cables;
+;Animal Management;;Animal Management
+;Electric Fencing;;Electric Fencing
+;C Fence Energizers;;Fence Energizers
+;SC Fence Energizers;;Fence Energizers
+;Solar Panels;;Solar Panels
+;Batteries;;Batteries
+;Grounding;;Grounding
+;Power Management Tools;;Power Management Tools
+;Remotes and Fence Testers;;Remotes and Fence Testers
+;Cut Out Switchjes;;Cut Out Switchjes
+;Safety and Protection;;Safety and Protection
+;Monitoring and Alarms;;Monitoring and Alarms
+;Fence Connectors;;Fence Connectors
+;Fencing;;Fencing
+;Fence Contruction;;Fence Contruction
+;Fence Power;;Fence Power
+;Fence Conductors;;Fence Conductors
+;Fence Tools and Accesories;;Fence Tools and Accesories
+;1110 Volt Energizers;;1110 Volt Energizers
+;Multi Powered Energizers;;Multi Powered Energizers
+;Solar Energizers;;Solar Energizers
+;Battery  Energizers;;Battery  Energizers
+;Wire and Cable;;Wire and Cable
+;Clamps and Joiners;;Clamps and Joiners
+;Posts;;Posts
+;Strainers;;Strainers
+;Insulators;;Insulators
+;Offsets;;Offsets
+;Gates;;Gates
+;Tapes, Wires, Braids;;Tapes, Wires, Braids
+;Reels and Accessories;;Reels and Accessories
+;Posts - pigtails and Tread-ins;;Posts - pigtails and Tread-ins
+;Electric Fence Kits;;Electric Fence Kits
+;Netting;;Netting
 
 

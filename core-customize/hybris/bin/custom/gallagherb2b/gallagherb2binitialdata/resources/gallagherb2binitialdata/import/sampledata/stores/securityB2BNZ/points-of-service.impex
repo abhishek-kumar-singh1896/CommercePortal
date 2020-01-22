@@ -1,0 +1,59 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+# ImpEx for SecurityB2B Points of Service
+#% impex.setLocale( Locale.GERMAN );
+
+$storeUidNZ=securityB2BNZ
+$productCatalog=securityB2BProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$storeImage=storeImage(qualifier, $catalogVersion)
+
+$aucklandHours=auckland-standard-hours
+
+INSERT_UPDATE OpeningSchedule;code[unique=true]
+;$aucklandHours
+
+INSERT_UPDATE WeekdayOpeningDay;openingSchedule(code)[unique=true];dayOfWeek(code)[unique=true];openingTime[dateformat=hh:mm];closingTime[dateformat=hh:mm]
+;$aucklandHours;MONDAY   ; 08:00; 17:00
+;$aucklandHours;TUESDAY  ; 08:00; 17:00
+;$aucklandHours;WEDNESDAY; 08:00; 17:00
+;$aucklandHours;THURSDAY ; 08:00; 17:00
+;$aucklandHours;FRIDAY   ; 08:00; 17:00
+;$aucklandHours;SATURDAY ; 08:00; 12:00
+
+
+INSERT_UPDATE SpecialOpeningDay;openingSchedule(code)[unique=true];date[unique=true,dateformat=dd.MM.yyyy];closed[default=true];openingTime[dateformat=hh:mm];closingTime[dateformat=hh:mm]
+;$aucklandHours;	01.01.2013
+;$aucklandHours;	04.07.2013
+;$aucklandHours;	02.09.2013
+;$aucklandHours;	11.11.2013
+;$aucklandHours;	21.01.2013
+;$aucklandHours;	18.02.2013
+;$aucklandHours;	27.11.2013
+;$aucklandHours;	28.11.2013
+;$aucklandHours;	25.12.2013
+;$aucklandHours;	27.05.2013
+
+INSERT_UPDATE StoreLocatorFeature;code[unique=true]
+
+INSERT_UPDATE PointOfService;name[unique=true];type(code);address(&addrID);latitude;longitude;geocodeTimestamp[dateformat=dd-MM-yyyy];$storeImage;openingSchedule(code);basestore(uid)[default=$storeUidNZ];features(code)
+;Hybris SecurityB2B Tulsa1		;STORE;addr1;36,08383;-95,86570;01-10-2011;securityB2B_store_01;$aucklandHours
+;Hybris SecurityB2B Tulsa2		;STORE;addr2;36,08486;-95,86670;01-10-2011;securityB2B_store_01;$aucklandHours
+;Hybris SecurityB2B Tulsa3		;STORE;addr3;36,08589;-95,86770;01-10-2011;securityB2B_store_01;$aucklandHours
+;Hybris SecurityB2B Tulsa4		;STORE;addr4;36,08692;-95,86870;01-10-2011;securityB2B_store_01;$aucklandHours
+;Hybris SecurityB2B Tulsa5		;STORE;addr5;36,08795;-95,86970;01-10-2011;securityB2B_store_01;$aucklandHours
+
+INSERT_UPDATE Address;&addrID;streetnumber[unique=true];streetname;town;region(country(isocode),isocode);country(isocode);postalcode[unique=true];phone1;owner(PointOfService.name)[unique=true]
+;addr1;9909;East 55th Place;Tulsa;US:US-OK;US;74146;1-800-331-3333 (Customer Service);Hybris SecurityB2B Tulsa1
+;addr2;9909;East 56th Place;Tulsa;US:US-OK;US;74146;1-800-331-3334 (Customer Service);Hybris SecurityB2B Tulsa2
+;addr3;9909;East 57th Place;Tulsa;US:US-OK;US;74146;1-800-331-3335 (Customer Service);Hybris SecurityB2B Tulsa3
+;addr4;9909;East 58th Place;Tulsa;US:US-OK;US;74146;1-800-331-3336 (Customer Service);Hybris SecurityB2B Tulsa4
+;addr5;9909;East 59th Place;Tulsa;US:US-OK;US;74146;1-800-331-3337 (Customer Service);Hybris SecurityB2B Tulsa5

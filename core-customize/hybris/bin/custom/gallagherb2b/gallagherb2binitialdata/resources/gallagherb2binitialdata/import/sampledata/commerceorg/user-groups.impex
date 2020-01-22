@@ -52,27 +52,6 @@ INSERT_UPDATE B2BUserGroup;uid[unique=true];name;unit(uid);permissions(code,unit
 ;standardPermissions;Standard Permissions;Rustic;Rustic 5K AUD ORDER:Rustic,Rustic 15K AUD MONTH:Rustic;
 ;limitedPermissions;Limited Permissions;Rustic;Rustic 0K AUD ORDER:Rustic,Rustic 25K AUD MONTH:Rustic;
 
-INSERT_UPDATE B2BCustomer;description;uid[unique=true];originalUid;email;name;title(code);groups(uid);permissionGroups(uid);sessionCurrency(isocode)[default='AUD'];password[default=$defaultPassword];
-;Admin A;linda.wolf@rustic-hw.com;linda.wolf@rustic-hw.com;linda.wolf@rustic-hw.com;Linda Wolf;ms;Rustic,b2badmingroup;;;;;
-;AdminB;lars.bauer@rustic-hw.com;lars.bauer@rustic-hw.com;lars.bauer@rustic-hw.com;Lars Bauer;mr;Rustic Services, b2badmingroup;;;;;;
-;Approver A;hanna.schmidt@rustic-hw.com;hanna.schmidt@rustic-hw.com;hanna.schmidt@rustic-hw.com;Hanna Schmidt;ms;Rustic, b2bapprovergroup;;;;;;
-;Approver B;james.bell@rustic-hw.com;james.bell@rustic-hw.com;james.bell@rustic-hw.com;James Bell;mr;Rustic Services, b2bapprovergroup;;;;;;
-;Approver C;carla.torres@rustic-hw.com;carla.torres@rustic-hw.com;carla.torres@rustic-hw.com;Carla Torres;ms;Custom Retail, b2bapprovergroup;;;;;;
-;Approver D;matheu.silva@rustic-hw.com;matheu.silva@rustic-hw.com;matheu.silva@rustic-hw.com;Matheu Silva;mr;Services West, b2bapprovergroup, b2bcustomergroup, b2bmanagergroup, standardPermissions;;;;;;
-;Approver E;mingmei.wang@rustic-hw.com;mingmei.wang@rustic-hw.com;mingmei.wang@rustic-hw.com;Mingmei Wang;ms;Services East, b2bapprovergroup, b2bcustomergroup;;;;;;
-;Customer A;mark.rivers@rustic-hw.com;mark.rivers@rustic-hw.com;mark.rivers@rustic-hw.com;Mark Rivers;mr;Custom Retail, b2bcustomergroup, premiumPermissions;;;;;;
-;Customer B;anthony.lombardi@rustic-hw.com;anthony.lombardi@rustic-hw.com;anthony.lombardi@rustic-hw.com;Anthony Lombardi;mr;Custom Retail, b2bcustomergroup,limitedPermissions;;;;;;
-;Customer C;william.hunter@rustic-hw.com;william.hunter@rustic-hw.com;william.hunter@rustic-hw.com;William Hunter;mr;Custom Retail, b2bcustomergroup, limitedPermissions, standardPermissions;;;;;;
-;Customer D;marie.dubois@rustic-hw.com;marie.dubois@rustic-hw.com;marie.dubois@rustic-hw.com;Marie Dubois;ms;Custom Retail, b2bcustomergroup,standardPermissions;;;;;;
-;Customer E;axel.krause@rustic-hw.com;axel.krause@rustic-hw.com;axel.krause@rustic-hw.com;Axel Krause;mr;Custom Retail, b2bcustomergroup,standardPermissions;;;;;;
-;Customer F;ulf.becker@rustic-hw.com;ulf.becker@rustic-hw.com;ulf.becker@rustic-hw.com;Ulf Becker;mr;Services East, b2bcustomergroup,standardPermissions;;;;;;
-;Customer G;alejandro.navarro@rustic-hw.com;alejandro.navarro@rustic-hw.com;alejandro.navarro@rustic-hw.com;Alejandro Navarro;mr;Services East, b2bcustomergroup,standardPermissions;;;;;;
-;Customer H;lucas.kowalski@rustic-hw.com;lucas.kowalski@rustic-hw.com;lucas.kowalski@rustic-hw.com;Lucas Kowalski;mr;Services East, b2bcustomergroup,standardPermissions;;;;;;
-;Customer I;byung-soon.lee@rustic-hw.com;byung-soon.lee@rustic-hw.com;byung-soon.lee@rustic-hw.com;Byung-soon Lee;ms;Services West, b2bcustomergroup,standardPermissions;;;;;;
-;Customer J;gi.sun@rustic-hw.com;gi.sun@rustic-hw.com;gi.sun@rustic-hw.com;Gi Sun;mr;Services West, b2bcustomergroup,standardPermissions;;;;;;
-;Manager A;akiro.nakamura@rustic-hw.com;akiro.nakamura@rustic-hw.com;akiro.nakamura@rustic-hw.com;Akiro Nakamura;mr;Rustic, b2bmanagergroup;;;;;;
-;Manager B;anil.gupta@rustic-hw.com;anil.gupta@rustic-hw.com;anil.gupta@rustic-hw.com;Anil Gupta;mr;Rustic Retail, b2bmanagergroup, b2bcustomergroup, premiumPermissions;;;;;;
-;Manager C;salome.levi@rustic-hw.com;salome.levi@rustic-hw.com;salome.levi@rustic-hw.com;Salome Levi;ms;Rustic Services, b2bmanagergroup;;;;;;
 
 INSERT_UPDATE B2BCostCenter;code[unique=true];name[lang=en];Unit(uid);budgets(code);currency(isocode)[default='AUD']
 ;Rustic Global;Rustic Global;Rustic;Monthly 50K AUD;
@@ -116,16 +95,6 @@ UPDATE B2BUnit;uid[unique=true];approvers(uid);
 ;Services West;matheu.silva@rustic-hw.com,mingmei.wang@rustic-hw.com;
 ;Services East;mingmei.wang@rustic-hw.com;
 
-UPDATE B2BCustomer;originalUid[unique=true];uid[unique=true];permissions(code,Unit(uid));
-;hanna.schmidt@rustic-hw.com;hanna.schmidt@rustic-hw.com;Rustic 20K AUD ORDER:Rustic,Rustic Unlimited Timespan:Rustic,Rustic Budget Exceeded:Rustic;
-;salome.levi@rustic-hw.com;salome.levi@rustic-hw.com;Rustic 10K AUD MONTH:Rustic,Rustic Unlimited Timespan:Rustic,Rustic Budget Exceeded:Rustic;
-;carla.torres@rustic-hw.com;carla.torres@rustic-hw.com;Rustic 4K AUD ORDER:Rustic;
-;matheu.silva@rustic-hw.com;matheu.silva@rustic-hw.com;Rustic 5K AUD ORDER:Rustic;
-;mingmei.wang@rustic-hw.com;mingmei.wang@rustic-hw.com;Rustic 2K AUD ORDER:Rustic,Rustic 15K AUD ORDER:Rustic;
-;mark.rivers@rustic-hw.com;mark.rivers@rustic-hw.com;Rustic 3K AUD MONTH:Rustic;
-;ulf.becker@rustic-hw.com;ulf.becker@rustic-hw.com;Rustic 7K AUD ORDER:Rustic;
-;gi.sun@rustic-hw.com;gi.sun@rustic-hw.com;Rustic 20K AUD MONTH:Rustic;
-
 ###############################
 #  Pronto Hardware ORGANIZATION (KIS)
 
@@ -145,17 +114,6 @@ INSERT_UPDATE Address;streetname[unique=true];postalcode[unique=true];town;count
 INSERT_UPDATE B2BUserGroup;uid[unique=true];name;unit(uid);permissions(code,unit(uid));
 ;enhancedPermissions;Enhanced Permissions;Pronto;Pronto 12K AUD ORDER:Pronto,Pronto 15K AUD MONTH:Pronto;
 ;commonPermissions;Common Permissions;Pronto;Pronto 6K AUD ORDER:Pronto,Pronto 12K AUD MONTH:Pronto;
-
-INSERT_UPDATE B2BCustomer;description;uid[unique=true];email;name;title(code);groups(uid);permissionGroups(uid);sessionCurrency(isocode)[default='AUD'];password[default=$defaultPassword]
-;Admin A;linda.wolf@pronto-hw.com;linda.wolf@pronto-hw.com;Linda Wolf;ms;Pronto, b2badmingroup;
-;Approver A;hanna.schmidt@pronto-hw.com;hanna.schmidt@pronto-hw.com;Hanna Schmidt;ms;Pronto, b2bapprovergroup;
-;Approver B;james.bell@pronto-hw.com;james.bell@pronto-hw.com;James Bell;mr;Pronto Services, b2bapprovergroup;
-;Customer A;mark.rivers@pronto-hw.com;mark.rivers@pronto-hw.com;Mark Rivers;mr;Pronto Goods, b2bcustomergroup,enhancedPermissions;;
-;Customer B;mingmei.wang@pronto-hw.com;mingmei.wang@pronto-hw.com;Mingmei Wang;ms;Pronto Goods, b2bcustomergroup, commonPermissions;;
-;Customer C;william.hunter@pronto-hw.com;william.hunter@pronto-hw.com;William Hunter;mr;Pronto Services, b2bcustomergroup, enhancedPermissions;
-;Customer D;gi.sun@pronto-hw.com;gi.sun@pronto-hw.com;Gi Sun;mr;Pronto Services, b2bcustomergroup, commonPermissions;;
-;Manager A;akiro.nakamura@pronto-hw.com;akiro.nakamura@pronto-hw.com;Akiro Nakamura;mr;Pronto, b2bmanagergroup;
-;Manager B;anil.gupta@pronto-hw.com;anil.gupta@pronto-hw.com;Anil Gupta;mr;Pronto Goods, b2bmanagergroup;
 
 INSERT_UPDATE B2BBudget;code[unique=true];Unit(uid);budget;currency(isocode)[allownull=true];dateRange[dateformat=dd.MM.yyyy hh:mm:ss,allownull=true];name[lang=en];
 ;30K AUD/MONTH;Pronto;30000;AUD;01.01.2010 00:00:00,12.31.2021 12:59:59;30K AUD/MONTH;
@@ -180,6 +138,1044 @@ UPDATE B2BUnit;uid[unique=true];creditLimit(code);accountManager(uid);approvers(
 ;Pronto;Monthly30KAlert3K;acctmgrd;hanna.schmidt@pronto-hw.com;
 ;Pronto Services;;;james.bell@pronto-hw.com;
 
-UPDATE B2BCustomer;uid[unique=true];permissions(code,unit(uid));
-;hanna.schmidt@pronto-hw.com;Pronto Unlimited Threshold Timespan:Pronto,Pronto 10K AUD ORDER:Pronto;
-;james.bell@pronto-hw.com;Pronto 5K AUD ORDER:Pronto;
+###################################### Master user group impex start #####################################
+
+INSERT_UPDATE UserGroup;uid[unique=true];locname[lang=en];
+;salesemployeegroup;Sales Employee;
+;salesadmingroup;Sales Admin;
+;salesmanagergroup;Sales Manager;
+;salesapprovergroup;Sales Approver;
+
+INSERT_UPDATE PrincipalGroupRelation;source(uid)[unique=true];target(uid)[unique=true]
+;salesemployeegroup;orgemployeegroup;
+;salesadmingroup;salesemployeegroup;
+;salesmanagergroup;salesemployeegroup;
+;salesapprovergroup;salesemployeegroup;
+
+$START_USERRIGHTS;;;;;;;;;
+Type;UID;MemberOfGroups;Password;Target;read;change;create;remove;change_perm
+UserGroup;salesadmingroup;;;;;;;;
+;;;;OrgUnit;+;+;+;+;-
+;;;;Address;+;+;+;-;-
+;;;;Employee;+;+;+;-;-
+;;;;StoreEmployeeGroup;+;+;+;-;-
+
+UserGroup;salesmanagergroup;;;;;;;;
+;;;;OrgUnit;+;+;-;-;-
+;;;;Address;+;+;-;-;-
+;;;;Employee;+;+;-;-;-
+;;;;OrgUnit.groups;+;-;-;-;-;
+;;;;StoreEmployeeGroup;+;+;-;-;-;
+
+UserGroup;salesemployeegroup;;;;;;;;
+;;;;OrgUnit;+;-;-;-;-
+;;;;Address;+;-;-;-;-
+;;;;Employee;+;-;-;-;-
+;;;;StoreEmployeeGroup;+;-;-;-;-;
+;;;;UserGroup;+;-;-;-;-
+;;;;Quote;+;-;-;-;-
+$END_USERRIGHTS;;;;;;;;;
+# Sales Units
+INSERT_UPDATE OrgUnit;uid[unique=true];name;description;lineofbuisness(code);active;supplier
+;GALLAGHER;GALLAGHER;Root node of the GALLAGHER organization;trade;TRUE;TRUE
+;New Zealand;New Zealand sales region;New Zealand sales region;trade;TRUE;TRUE
+
+#  Assign SalesUnits to OrgUnits 
+INSERT_UPDATE PrincipalGroupRelation;source(uid)[unique=true];target(uid)[unique=true]
+;New Zealand;GALLAGHER;
+
+# Employees
+INSERT_UPDATE Employee;name;password[default=$defaultPassword];uid[unique=true];groups(uid)[mode=append]
+;Vada Rahm;;vada.rahm@gallagher.com;salesadmingroup
+;Brandon Leclair;;brandon.leclair@gallagher.com;salesemployeegroup
+;Yoshie Dority;;yoshie.dority@gallagher.com;salesmanagergroup
+;Glen Hofer;;glen.hofer@gallagher.com;salesapprovergroup
+
+#  Assign Employees to OrgUnits 
+INSERT_UPDATE PrincipalGroupRelation;source(uid)[unique=true];target(uid)[unique=true]
+;vada.rahm@gallagher.com;GALLAGHER;
+;brandon.leclair@gallagher.com;New Zealand;
+;yoshie.dority@gallagher.com;New Zealand;
+;glen.hofer@gallagher.com;New Zealand;
+
+####Master data for OrgUnit start####
+
+INSERT_UPDATE OrgUnit;uid[unique=true];supplier[default=true];country(Country.isocode);contactAddress(&id);name;description;locName[lang=en]
+                     ;0001_01_01;;;0001_01_01;"Sales Org. 001";"Sales Org. 001";"Sales Org. 001"
+                     ;CAM_EX_AC;;US;CAM_EX_AC;"OBSOLETE-Cdx America";"OBSOLETE-Cdx America";"OBSOLETE-Cdx America"
+                     ;CAM_EX_EL;;US;CAM_EX_EL;"OBSOLETE-Cdx America";"OBSOLETE-Cdx America";"OBSOLETE-Cdx America"
+                     ;CAM_EX_EN;;US;CAM_EX_EN;"OBSOLETE-Cdx America";"OBSOLETE-Cdx America";"OBSOLETE-Cdx America"
+                     ;CAM_EX_PM;;US;CAM_EX_PM;"OBSOLETE-Cdx America";"OBSOLETE-Cdx America";"OBSOLETE-Cdx America"
+                     ;CAM_EX_TS;;US;CAM_EX_TS;"OBSOLETE-Cdx America";"OBSOLETE-Cdx America";"OBSOLETE-Cdx America"
+                     ;CAM_IC_IC;;US;CAM_IC_IC;"OBSOLETE-Cdx America";"OBSOLETE-Cdx America";"OBSOLETE-Cdx America"
+                     ;CAM_US_AC;;US;CAM_US_AC;"OBSOLETE-Cdx America";"OBSOLETE-Cdx America";"OBSOLETE-Cdx America"
+                     ;CAM_US_EL;;US;CAM_US_EL;"OBSOLETE-Cdx America";"OBSOLETE-Cdx America";"OBSOLETE-Cdx America"
+                     ;CAM_US_EN;;US;CAM_US_EN;"OBSOLETE-Cdx America";"OBSOLETE-Cdx America";"OBSOLETE-Cdx America"
+                     ;CAM_US_PM;;US;CAM_US_PM;"OBSOLETE-Cdx America";"OBSOLETE-Cdx America";"OBSOLETE-Cdx America"
+                     ;CAM_US_TS;;US;CAM_US_TS;"OBSOLETE-Cdx America";"OBSOLETE-Cdx America";"OBSOLETE-Cdx America"
+                     ;CAU_AU_AC;;AU;CAU_AU_AC;"Security Australia";"Security Australia";"Security Australia"
+                     ;CAU_AU_CC;;AU;CAU_AU_CC;"Security Australia";"Security Australia";"Security Australia"
+                     ;CAU_AU_EL;;AU;CAU_AU_EL;"Security Australia";"Security Australia";"Security Australia"
+                     ;CAU_AU_EN;;AU;CAU_AU_EN;"Security Australia";"Security Australia";"Security Australia"
+                     ;CAU_AU_IC;;AU;CAU_AU_IC;"Security Australia";"Security Australia";"Security Australia"
+                     ;CAU_AU_SE;;AU;CAU_AU_SE;"Security Australia";"Security Australia";"Security Australia"
+                     ;CAU_AU_TS;;AU;CAU_AU_TS;"Security Australia";"Security Australia";"Security Australia"
+                     ;CAU_EX_AC;;AU;CAU_EX_AC;"Security Australia";"Security Australia";"Security Australia"
+                     ;CAU_EX_CC;;AU;CAU_EX_CC;"Security Australia";"Security Australia";"Security Australia"
+                     ;CAU_EX_SE;;AU;CAU_EX_SE;"Security Australia";"Security Australia";"Security Australia"
+                     ;CAU_EX_TS;;AU;CAU_EX_TS;"Security Australia";"Security Australia";"Security Australia"
+                     ;CAU_IC_IC;;AU;CAU_IC_IC;"Security Australia";"Security Australia";"Security Australia"
+                     ;CDX_EX_EN;;NZ;CDX_EX_EN;"OBSOLETE-Cardax";"OBSOLETE-Cardax";"OBSOLETE-Cardax"
+                     ;CDX_EX_SE;;NZ;CDX_EX_SE;"OBSOLETE-Cardax";"OBSOLETE-Cardax";"OBSOLETE-Cardax"
+                     ;CDX_IC_IC;;NZ;CDX_IC_IC;"OBSOLETE-Cardax";"OBSOLETE-Cardax";"OBSOLETE-Cardax"
+                     ;CDX_NZ_EN;;NZ;CDX_NZ_EN;"OBSOLETE-Cardax";"OBSOLETE-Cardax";"OBSOLETE-Cardax"
+                     ;CDX_NZ_SE;;NZ;CDX_NZ_SE;"OBSOLETE-Cardax";"OBSOLETE-Cardax";"OBSOLETE-Cardax"
+                     ;CEU_EX_AC;;GB;CEU_EX_AC;"Cardax Europe";"Cardax Europe";"Cardax Europe"
+                     ;CEU_EX_EL;;GB;CEU_EX_EL;"Cardax Europe";"Cardax Europe";"Cardax Europe"
+                     ;CEU_EX_EN;;GB;CEU_EX_EN;"Cardax Europe";"Cardax Europe";"Cardax Europe"
+                     ;CEU_EX_TS;;GB;CEU_EX_TS;"Cardax Europe";"Cardax Europe";"Cardax Europe"
+                     ;CEU_IC_AC;;GB;CEU_IC_AC;"Cardax Europe";"Cardax Europe";"Cardax Europe"
+                     ;CEU_IC_IC;;GB;CEU_IC_IC;"Cardax Europe";"Cardax Europe";"Cardax Europe"
+                     ;CEU_UK_AC;;GB;CEU_UK_AC;"Cardax Europe";"Cardax Europe";"Cardax Europe"
+                     ;CEU_UK_EL;;GB;CEU_UK_EL;"Cardax Europe";"Cardax Europe";"Cardax Europe"
+                     ;CEU_UK_EN;;GB;CEU_UK_EN;"Cardax Europe";"Cardax Europe";"Cardax Europe"
+                     ;CEU_UK_TS;;GB;CEU_UK_TS;"Cardax Europe";"Cardax Europe";"Cardax Europe"
+                     ;CZA_EX_AC;;ZA;CZA_EX_AC;"OBSOLETE-Cdx SA";"OBSOLETE-Cdx SA";"OBSOLETE-Cdx SA"
+                     ;CZA_EX_EL;;ZA;CZA_EX_EL;"OBSOLETE-Cdx SA";"OBSOLETE-Cdx SA";"OBSOLETE-Cdx SA"
+                     ;CZA_EX_IC;;ZA;CZA_EX_IC;"OBSOLETE-Cdx SA";"OBSOLETE-Cdx SA";"OBSOLETE-Cdx SA"
+                     ;CZA_EX_PM;;ZA;CZA_EX_PM;"OBSOLETE-Cdx SA";"OBSOLETE-Cdx SA";"OBSOLETE-Cdx SA"
+                     ;CZA_EX_TS;;ZA;CZA_EX_TS;"OBSOLETE-Cdx SA";"OBSOLETE-Cdx SA";"OBSOLETE-Cdx SA"
+                     ;CZA_IC_AC;;ZA;CZA_IC_AC;"OBSOLETE-Cdx SA";"OBSOLETE-Cdx SA";"OBSOLETE-Cdx SA"
+                     ;CZA_IC_IC;;ZA;CZA_IC_IC;"OBSOLETE-Cdx SA";"OBSOLETE-Cdx SA";"OBSOLETE-Cdx SA"
+                     ;CZA_ZA_AC;;ZA;CZA_ZA_AC;"OBSOLETE-Cdx SA";"OBSOLETE-Cdx SA";"OBSOLETE-Cdx SA"
+                     ;CZA_ZA_EL;;ZA;CZA_ZA_EL;"OBSOLETE-Cdx SA";"OBSOLETE-Cdx SA";"OBSOLETE-Cdx SA"
+                     ;CZA_ZA_IC;;ZA;CZA_ZA_IC;"OBSOLETE-Cdx SA";"OBSOLETE-Cdx SA";"OBSOLETE-Cdx SA"
+                     ;CZA_ZA_PM;;ZA;CZA_ZA_PM;"OBSOLETE-Cdx SA";"OBSOLETE-Cdx SA";"OBSOLETE-Cdx SA"
+                     ;CZA_ZA_TS;;ZA;CZA_ZA_TS;"OBSOLETE-Cdx SA";"OBSOLETE-Cdx SA";"OBSOLETE-Cdx SA"
+                     ;DUR_EX_PL;;NZ;DUR_EX_PL;"Durolla";"Durolla";"Durolla"
+                     ;DUR_NZ_PL;;NZ;DUR_NZ_PL;"Durolla";"Durolla";"Durolla"
+                     ;DUR_UK_PL;;NZ;DUR_UK_PL;"Durolla";"Durolla";"Durolla"
+                     ;FML_EX_AG;;NZ;FML_EX_AG;"OBSOLETE-Franklin";"OBSOLETE-Franklin";"OBSOLETE-Franklin"
+                     ;FML_EX_EN;;NZ;FML_EX_EN;"OBSOLETE-Franklin";"OBSOLETE-Franklin";"OBSOLETE-Franklin"
+                     ;FML_EX_EP;;NZ;FML_EX_EP;"OBSOLETE-Franklin";"OBSOLETE-Franklin";"OBSOLETE-Franklin"
+                     ;FML_EX_GR;;NZ;FML_EX_GR;"OBSOLETE-Franklin";"OBSOLETE-Franklin";"OBSOLETE-Franklin"
+                     ;FML_EX_HD;;NZ;FML_EX_HD;"OBSOLETE-Franklin";"OBSOLETE-Franklin";"OBSOLETE-Franklin"
+                     ;FML_EX_SE;;NZ;FML_EX_SE;"OBSOLETE-Franklin";"OBSOLETE-Franklin";"OBSOLETE-Franklin"
+                     ;FML_IC_IC;;NZ;FML_IC_IC;"OBSOLETE-Franklin";"OBSOLETE-Franklin";"OBSOLETE-Franklin"
+                     ;FML_NZ_AG;;NZ;FML_NZ_AG;"OBSOLETE-Franklin";"OBSOLETE-Franklin";"OBSOLETE-Franklin"
+                     ;FML_NZ_EL;;NZ;FML_NZ_EL;"OBSOLETE-Franklin";"OBSOLETE-Franklin";"OBSOLETE-Franklin"
+                     ;FML_NZ_EN;;NZ;FML_NZ_EN;"OBSOLETE-Franklin";"OBSOLETE-Franklin";"OBSOLETE-Franklin"
+                     ;FML_NZ_EP;;NZ;FML_NZ_EP;"OBSOLETE-Franklin";"OBSOLETE-Franklin";"OBSOLETE-Franklin"
+                     ;FML_NZ_GR;;NZ;FML_NZ_GR;"OBSOLETE-Franklin";"OBSOLETE-Franklin";"OBSOLETE-Franklin"
+                     ;FML_NZ_HD;;NZ;FML_NZ_HD;"OBSOLETE-Franklin";"OBSOLETE-Franklin";"OBSOLETE-Franklin"
+                     ;FML_NZ_SE;;NZ;FML_NZ_SE;"OBSOLETE-Franklin";"OBSOLETE-Franklin";"OBSOLETE-Franklin"
+                     ;GAU_AU_AC;;AU;GAU_AU_AC;"Gallagher Australia";"Gallagher Australia";"Gallagher Australia"
+                     ;GAU_AU_AG;;AU;GAU_AU_AG;"Gallagher Australia";"Gallagher Australia";"Gallagher Australia"
+                     ;GAU_AU_RP;;AU;GAU_AU_RP;"Gallagher Australia";"Gallagher Australia";"Gallagher Australia"
+                     ;GAU_AU_SE;;AU;GAU_AU_SE;"Gallagher Australia";"Gallagher Australia";"Gallagher Australia"
+                     ;GAU_EX_AC;;AU;GAU_EX_AC;"Gallagher Australia";"Gallagher Australia";"Gallagher Australia"
+                     ;GAU_EX_AG;;AU;GAU_EX_AG;"Gallagher Australia";"Gallagher Australia";"Gallagher Australia"
+                     ;GAU_EX_SE;;AU;GAU_EX_SE;"Gallagher Australia";"Gallagher Australia";"Gallagher Australia"
+                     ;GAU_IC_IC;;AU;GAU_IC_IC;"Gallagher Australia";"Gallagher Australia";"Gallagher Australia"
+                     ;GCA_CA_AC;;US;GCA_CA_AC;"GPF Canada";"GPF Canada";"GPF Canada"
+                     ;GCA_CA_AG;;US;GCA_CA_AG;"GPF Canada";"GPF Canada";"GPF Canada"
+                     ;GCA_CA_EL;;US;GCA_CA_EL;"GPF Canada";"GPF Canada";"GPF Canada"
+                     ;GCA_CA_TS;;US;GCA_CA_TS;"GPF Canada";"GPF Canada";"GPF Canada"
+                     ;GCA_EX_AC;;US;GCA_EX_AC;"GPF Canada";"GPF Canada";"GPF Canada"
+                     ;GCA_EX_AG;;US;GCA_EX_AG;"GPF Canada";"GPF Canada";"GPF Canada"
+                     ;GCA_EX_EL;;US;GCA_EX_EL;"GPF Canada";"GPF Canada";"GPF Canada"
+                     ;GCA_IC_AC;;US;GCA_IC_AC;"GPF Canada";"GPF Canada";"GPF Canada"
+                     ;GCA_IC_EL;;US;GCA_IC_EL;"GPF Canada";"GPF Canada";"GPF Canada"
+                     ;GCA_IC_IC;;US;GCA_IC_IC;"GPF Canada";"GPF Canada";"GPF Canada"
+                     ;GGL_EX_AC;;NZ;GGL_EX_AC;"Gallagher Group";"Gallagher Group";"Gallagher Group"
+                     ;GGL_EX_AG;;NZ;GGL_EX_AG;"Gallagher Group";"Gallagher Group";"Gallagher Group"
+                     ;GGL_EX_CC;;NZ;GGL_EX_CC;"Gallagher Group";"Gallagher Group";"Gallagher Group"
+                     ;GGL_EX_EL;;NZ;GGL_EX_EL;"Gallagher Group";"Gallagher Group";"Gallagher Group"
+                     ;GGL_EX_EN;;NZ;GGL_EX_EN;"Gallagher Group";"Gallagher Group";"Gallagher Group"
+                     ;GGL_EX_EP;;NZ;GGL_EX_EP;"Gallagher Group";"Gallagher Group";"Gallagher Group"
+                     ;GGL_EX_HD;;NZ;GGL_EX_HD;"Gallagher Group";"Gallagher Group";"Gallagher Group"
+                     ;GGL_EX_PL;;NZ;GGL_EX_PL;"Gallagher Group";"Gallagher Group";"Gallagher Group"
+                     ;GGL_EX_RP;;NZ;GGL_EX_RP;"Gallagher Group";"Gallagher Group";"Gallagher Group"
+                     ;GGL_EX_SE;;NZ;GGL_EX_SE;"Gallagher Group";"Gallagher Group";"Gallagher Group"
+                     ;GGL_EX_TD;;NZ;GGL_EX_TD;"Gallagher Group";"Gallagher Group";"Gallagher Group"
+                     ;GGL_EX_TS;;NZ;GGL_EX_TS;"Gallagher Group";"Gallagher Group";"Gallagher Group"
+                     ;GGL_IC_CC;;NZ;GGL_IC_CC;"Gallagher Group";"Gallagher Group";"Gallagher Group"
+                     ;GGL_IC_IC;;NZ;GGL_IC_IC;"Gallagher Group";"Gallagher Group";"Gallagher Group"
+                     ;GGL_NZ_AC;;NZ;GGL_NZ_AC;"Gallagher Group";"Gallagher Group";"Gallagher Group"
+                     ;GGL_NZ_AG;;NZ;GGL_NZ_AG;"Gallagher Group";"Gallagher Group";"Gallagher Group"
+                     ;GGL_NZ_CC;;NZ;GGL_NZ_CC;"Gallagher Group";"Gallagher Group";"Gallagher Group"
+                     ;GGL_NZ_CN;;NZ;GGL_NZ_CN;"Gallagher Group";"Gallagher Group";"Gallagher Group"
+                     ;GGL_NZ_EL;;NZ;GGL_NZ_EL;"Gallagher Group";"Gallagher Group";"Gallagher Group"
+                     ;GGL_NZ_EN;;NZ;GGL_NZ_EN;"Gallagher Group";"Gallagher Group";"Gallagher Group"
+                     ;GGL_NZ_EP;;NZ;GGL_NZ_EP;"Gallagher Group";"Gallagher Group";"Gallagher Group"
+                     ;GGL_NZ_HD;;NZ;GGL_NZ_HD;"Gallagher Group";"Gallagher Group";"Gallagher Group"
+                     ;GGL_NZ_PL;;NZ;GGL_NZ_PL;"Gallagher Group";"Gallagher Group";"Gallagher Group"
+                     ;GGL_NZ_RP;;NZ;GGL_NZ_RP;"Gallagher Group";"Gallagher Group";"Gallagher Group"
+                     ;GGL_NZ_SE;;NZ;GGL_NZ_SE;"Gallagher Group";"Gallagher Group";"Gallagher Group"
+                     ;GGL_NZ_TD;;NZ;GGL_NZ_TD;"Gallagher Group";"Gallagher Group";"Gallagher Group"
+                     ;GGL_NZ_TS;;NZ;GGL_NZ_TS;"Gallagher Group";"Gallagher Group";"Gallagher Group"
+                     ;GHK_HK_AC;;NZ;GHK_HK_AC;"Galgher HongKong Ltd";"Galgher HongKong Ltd";"Galgher HongKong Ltd"
+                     ;GHK_HK_CC;;NZ;GHK_HK_CC;"Galgher HongKong Ltd";"Galgher HongKong Ltd";"Galgher HongKong Ltd"
+                     ;GHK_HK_SE;;NZ;GHK_HK_SE;"Galgher HongKong Ltd";"Galgher HongKong Ltd";"Galgher HongKong Ltd"
+                     ;GHK_HK_TS;;NZ;GHK_HK_TS;"Galgher HongKong Ltd";"Galgher HongKong Ltd";"Galgher HongKong Ltd"
+                     ;GHK_IC_IC;;NZ;GHK_IC_IC;"Galgher HongKong Ltd";"Galgher HongKong Ltd";"Galgher HongKong Ltd"
+                     ;GRY_NZ_AG;;NZ;GRY_NZ_AG;"Greysons - History";"Greysons - History";"Greysons - History"
+                     ;GSF_EX_AC;;HK;GSF_EX_AC;"OBSOLETE-GalSec(Int)";"OBSOLETE-GalSec(Int)";"OBSOLETE-GalSec(Int)"
+                     ;GSF_EX_SE;;HK;GSF_EX_SE;"OBSOLETE-GalSec(Int)";"OBSOLETE-GalSec(Int)";"OBSOLETE-GalSec(Int)"
+                     ;GSF_EX_TS;;HK;GSF_EX_TS;"OBSOLETE-GalSec(Int)";"OBSOLETE-GalSec(Int)";"OBSOLETE-GalSec(Int)"
+                     ;GSF_IC_IC;;HK;GSF_IC_IC;"OBSOLETE-GalSec(Int)";"OBSOLETE-GalSec(Int)";"OBSOLETE-GalSec(Int)"
+                     ;GUS_CA_AC;;US;GUS_CA_AC;"Gallagher NthAmerica";"Gallagher NthAmerica";"Gallagher NthAmerica"
+                     ;GUS_CA_CC;;US;GUS_CA_CC;"Gallagher NthAmerica";"Gallagher NthAmerica";"Gallagher NthAmerica"
+                     ;GUS_CA_SE;;US;GUS_CA_SE;"Gallagher NthAmerica";"Gallagher NthAmerica";"Gallagher NthAmerica"
+                     ;GUS_CA_TS;;US;GUS_CA_TS;"Gallagher NthAmerica";"Gallagher NthAmerica";"Gallagher NthAmerica"
+                     ;GUS_EX_AC;;US;GUS_EX_AC;"Gallagher NthAmerica";"Gallagher NthAmerica";"Gallagher NthAmerica"
+                     ;GUS_EX_AG;;US;GUS_EX_AG;"Gallagher NthAmerica";"Gallagher NthAmerica";"Gallagher NthAmerica"
+                     ;GUS_EX_CC;;US;GUS_EX_CC;"Gallagher NthAmerica";"Gallagher NthAmerica";"Gallagher NthAmerica"
+                     ;GUS_EX_RP;;US;GUS_EX_RP;"Gallagher NthAmerica";"Gallagher NthAmerica";"Gallagher NthAmerica"
+                     ;GUS_EX_SE;;US;GUS_EX_SE;"Gallagher NthAmerica";"Gallagher NthAmerica";"Gallagher NthAmerica"
+                     ;GUS_EX_TS;;US;GUS_EX_TS;"Gallagher NthAmerica";"Gallagher NthAmerica";"Gallagher NthAmerica"
+                     ;GUS_IC_IC;;US;GUS_IC_IC;"Gallagher NthAmerica";"Gallagher NthAmerica";"Gallagher NthAmerica"
+                     ;GUS_US_AC;;US;GUS_US_AC;"Gallagher NthAmerica";"Gallagher NthAmerica";"Gallagher NthAmerica"
+                     ;GUS_US_AG;;US;GUS_US_AG;"Gallagher NthAmerica";"Gallagher NthAmerica";"Gallagher NthAmerica"
+                     ;GUS_US_CC;;US;GUS_US_CC;"Gallagher NthAmerica";"Gallagher NthAmerica";"Gallagher NthAmerica"
+                     ;GUS_US_RP;;US;GUS_US_RP;"Gallagher NthAmerica";"Gallagher NthAmerica";"Gallagher NthAmerica"
+                     ;GUS_US_SE;;US;GUS_US_SE;"Gallagher NthAmerica";"Gallagher NthAmerica";"Gallagher NthAmerica"
+                     ;GUS_US_TS;;US;GUS_US_TS;"Gallagher NthAmerica";"Gallagher NthAmerica";"Gallagher NthAmerica"
+                     ;GZA_EX_AC;;ZA;GZA_EX_AC;"Gallagher Sth Africa";"Gallagher Sth Africa";"Gallagher Sth Africa"
+                     ;GZA_EX_AG;;ZA;GZA_EX_AG;"Gallagher Sth Africa";"Gallagher Sth Africa";"Gallagher Sth Africa"
+                     ;GZA_EX_RP;;ZA;GZA_EX_RP;"Gallagher Sth Africa";"Gallagher Sth Africa";"Gallagher Sth Africa"
+                     ;GZA_EX_SE;;ZA;GZA_EX_SE;"Gallagher Sth Africa";"Gallagher Sth Africa";"Gallagher Sth Africa"
+                     ;GZA_EX_TS;;ZA;GZA_EX_TS;"Gallagher Sth Africa";"Gallagher Sth Africa";"Gallagher Sth Africa"
+                     ;GZA_IC_IC;;ZA;GZA_IC_IC;"Gallagher Sth Africa";"Gallagher Sth Africa";"Gallagher Sth Africa"
+                     ;GZA_ZA_AC;;ZA;GZA_ZA_AC;"Gallagher Sth Africa";"Gallagher Sth Africa";"Gallagher Sth Africa"
+                     ;GZA_ZA_AG;;ZA;GZA_ZA_AG;"Gallagher Sth Africa";"Gallagher Sth Africa";"Gallagher Sth Africa"
+                     ;GZA_ZA_RP;;ZA;GZA_ZA_RP;"Gallagher Sth Africa";"Gallagher Sth Africa";"Gallagher Sth Africa"
+                     ;GZA_ZA_SE;;ZA;GZA_ZA_SE;"Gallagher Sth Africa";"Gallagher Sth Africa";"Gallagher Sth Africa"
+                     ;GZA_ZA_TS;;ZA;GZA_ZA_TS;"Gallagher Sth Africa";"Gallagher Sth Africa";"Gallagher Sth Africa"
+                     ;PAM_EX_AC;;US;PAM_EX_AC;"OBSOLETE-P/fenceAm";"OBSOLETE-P/fenceAm";"OBSOLETE-P/fenceAm"
+                     ;PAM_EX_AG;;US;PAM_EX_AG;"OBSOLETE-P/fenceAm";"OBSOLETE-P/fenceAm";"OBSOLETE-P/fenceAm"
+                     ;PAM_EX_EL;;US;PAM_EX_EL;"OBSOLETE-P/fenceAm";"OBSOLETE-P/fenceAm";"OBSOLETE-P/fenceAm"
+                     ;PAM_EX_EN;;US;PAM_EX_EN;"OBSOLETE-P/fenceAm";"OBSOLETE-P/fenceAm";"OBSOLETE-P/fenceAm"
+                     ;PAM_EX_PM;;US;PAM_EX_PM;"OBSOLETE-P/fenceAm";"OBSOLETE-P/fenceAm";"OBSOLETE-P/fenceAm"
+                     ;PAM_EX_SE;;US;PAM_EX_SE;"OBSOLETE-P/fenceAm";"OBSOLETE-P/fenceAm";"OBSOLETE-P/fenceAm"
+                     ;PAM_EX_TS;;US;PAM_EX_TS;"OBSOLETE-P/fenceAm";"OBSOLETE-P/fenceAm";"OBSOLETE-P/fenceAm"
+                     ;PAM_IC_AG;;US;PAM_IC_AG;"OBSOLETE-P/fenceAm";"OBSOLETE-P/fenceAm";"OBSOLETE-P/fenceAm"
+                     ;PAM_IC_IC;;US;PAM_IC_IC;"OBSOLETE-P/fenceAm";"OBSOLETE-P/fenceAm";"OBSOLETE-P/fenceAm"
+                     ;PAM_IC_SE;;US;PAM_IC_SE;"OBSOLETE-P/fenceAm";"OBSOLETE-P/fenceAm";"OBSOLETE-P/fenceAm"
+                     ;PAM_US_AC;;US;PAM_US_AC;"OBSOLETE-P/fenceAm";"OBSOLETE-P/fenceAm";"OBSOLETE-P/fenceAm"
+                     ;PAM_US_AG;;US;PAM_US_AG;"OBSOLETE-P/fenceAm";"OBSOLETE-P/fenceAm";"OBSOLETE-P/fenceAm"
+                     ;PAM_US_EL;;US;PAM_US_EL;"OBSOLETE-P/fenceAm";"OBSOLETE-P/fenceAm";"OBSOLETE-P/fenceAm"
+                     ;PAM_US_EN;;US;PAM_US_EN;"OBSOLETE-P/fenceAm";"OBSOLETE-P/fenceAm";"OBSOLETE-P/fenceAm"
+                     ;PAM_US_PM;;US;PAM_US_PM;"OBSOLETE-P/fenceAm";"OBSOLETE-P/fenceAm";"OBSOLETE-P/fenceAm"
+                     ;PAM_US_SE;;US;PAM_US_SE;"OBSOLETE-P/fenceAm";"OBSOLETE-P/fenceAm";"OBSOLETE-P/fenceAm"
+                     ;PAM_US_TS;;US;PAM_US_TS;"OBSOLETE-P/fenceAm";"OBSOLETE-P/fenceAm";"OBSOLETE-P/fenceAm"
+                     ;PEC_AU_CM;;NZ;PEC_AU_CM;"PEC Marton";"PEC Marton";"PEC Marton"
+                     ;PEC_AU_FP;;NZ;PEC_AU_FP;"PEC Marton";"PEC Marton";"PEC Marton"
+                     ;PEC_AU_PC;;NZ;PEC_AU_PC;"PEC Marton";"PEC Marton";"PEC Marton"
+                     ;PEC_AU_RP;;NZ;PEC_AU_RP;"PEC Marton";"PEC Marton";"PEC Marton"
+                     ;PEC_AU_SC;;NZ;PEC_AU_SC;"PEC Marton";"PEC Marton";"PEC Marton"
+                     ;PEC_AU_SP;;NZ;PEC_AU_SP;"PEC Marton";"PEC Marton";"PEC Marton"
+                     ;PEC_AU_VS;;NZ;PEC_AU_VS;"PEC Marton";"PEC Marton";"PEC Marton"
+                     ;PEC_EX_CM;;NZ;PEC_EX_CM;"PEC Marton";"PEC Marton";"PEC Marton"
+                     ;PEC_EX_FP;;NZ;PEC_EX_FP;"PEC Marton";"PEC Marton";"PEC Marton"
+                     ;PEC_EX_PC;;NZ;PEC_EX_PC;"PEC Marton";"PEC Marton";"PEC Marton"
+                     ;PEC_EX_RP;;NZ;PEC_EX_RP;"PEC Marton";"PEC Marton";"PEC Marton"
+                     ;PEC_EX_SC;;NZ;PEC_EX_SC;"PEC Marton";"PEC Marton";"PEC Marton"
+                     ;PEC_EX_SP;;NZ;PEC_EX_SP;"PEC Marton";"PEC Marton";"PEC Marton"
+                     ;PEC_EX_VS;;NZ;PEC_EX_VS;"PEC Marton";"PEC Marton";"PEC Marton"
+                     ;PEC_IC_CM;;NZ;PEC_IC_CM;"PEC Marton";"PEC Marton";"PEC Marton"
+                     ;PEC_IC_IC;;NZ;PEC_IC_IC;"PEC Marton";"PEC Marton";"PEC Marton"
+                     ;PEC_NZ_CM;;NZ;PEC_NZ_CM;"PEC Marton";"PEC Marton";"PEC Marton"
+                     ;PEC_NZ_FP;;NZ;PEC_NZ_FP;"PEC Marton";"PEC Marton";"PEC Marton"
+                     ;PEC_NZ_PC;;NZ;PEC_NZ_PC;"PEC Marton";"PEC Marton";"PEC Marton"
+                     ;PEC_NZ_RP;;NZ;PEC_NZ_RP;"PEC Marton";"PEC Marton";"PEC Marton"
+                     ;PEC_NZ_SC;;NZ;PEC_NZ_SC;"PEC Marton";"PEC Marton";"PEC Marton"
+                     ;PEC_NZ_SP;;NZ;PEC_NZ_SP;"PEC Marton";"PEC Marton";"PEC Marton"
+                     ;PEC_NZ_VS;;NZ;PEC_NZ_VS;"PEC Marton";"PEC Marton";"PEC Marton"
+                     ;PEU_EX_AG;;GB;PEU_EX_AG;"Powerfence Europe";"Powerfence Europe";"Powerfence Europe"
+                     ;PEU_EX_EL;;GB;PEU_EX_EL;"Powerfence Europe";"Powerfence Europe";"Powerfence Europe"
+                     ;PEU_EX_EN;;GB;PEU_EX_EN;"Powerfence Europe";"Powerfence Europe";"Powerfence Europe"
+                     ;PEU_EX_SE;;GB;PEU_EX_SE;"Powerfence Europe";"Powerfence Europe";"Powerfence Europe"
+                     ;PEU_EX_TS;;GB;PEU_EX_TS;"Powerfence Europe";"Powerfence Europe";"Powerfence Europe"
+                     ;PEU_IC_AG;;GB;PEU_IC_AG;"Powerfence Europe";"Powerfence Europe";"Powerfence Europe"
+                     ;PEU_IC_IC;;GB;PEU_IC_IC;"Powerfence Europe";"Powerfence Europe";"Powerfence Europe"
+                     ;PEU_IC_SE;;GB;PEU_IC_SE;"Powerfence Europe";"Powerfence Europe";"Powerfence Europe"
+                     ;PEU_UK_AG;;GB;PEU_UK_AG;"Powerfence Europe";"Powerfence Europe";"Powerfence Europe"
+                     ;PEU_UK_EL;;GB;PEU_UK_EL;"Powerfence Europe";"Powerfence Europe";"Powerfence Europe"
+                     ;PEU_UK_EN;;GB;PEU_UK_EN;"Powerfence Europe";"Powerfence Europe";"Powerfence Europe"
+                     ;PEU_UK_SE;;GB;PEU_UK_SE;"Powerfence Europe";"Powerfence Europe";"Powerfence Europe"
+                     ;PEU_UK_TS;;GB;PEU_UK_TS;"Powerfence Europe";"Powerfence Europe";"Powerfence Europe"
+                     ;PZA_EX_AG;;ZA;PZA_EX_AG;"OBSOLETE-P/Fence ZA";"OBSOLETE-P/Fence ZA";"OBSOLETE-P/Fence ZA"
+                     ;PZA_EX_EL;;ZA;PZA_EX_EL;"OBSOLETE-P/Fence ZA";"OBSOLETE-P/Fence ZA";"OBSOLETE-P/Fence ZA"
+                     ;PZA_EX_IC;;ZA;PZA_EX_IC;"OBSOLETE-P/Fence ZA";"OBSOLETE-P/Fence ZA";"OBSOLETE-P/Fence ZA"
+                     ;PZA_EX_PM;;ZA;PZA_EX_PM;"OBSOLETE-P/Fence ZA";"OBSOLETE-P/Fence ZA";"OBSOLETE-P/Fence ZA"
+                     ;PZA_EX_SE;;ZA;PZA_EX_SE;"OBSOLETE-P/Fence ZA";"OBSOLETE-P/Fence ZA";"OBSOLETE-P/Fence ZA"
+                     ;PZA_EX_TS;;ZA;PZA_EX_TS;"OBSOLETE-P/Fence ZA";"OBSOLETE-P/Fence ZA";"OBSOLETE-P/Fence ZA"
+                     ;PZA_IC_AG;;ZA;PZA_IC_AG;"OBSOLETE-P/Fence ZA";"OBSOLETE-P/Fence ZA";"OBSOLETE-P/Fence ZA"
+                     ;PZA_IC_IC;;ZA;PZA_IC_IC;"OBSOLETE-P/Fence ZA";"OBSOLETE-P/Fence ZA";"OBSOLETE-P/Fence ZA"
+                     ;PZA_IC_SE;;ZA;PZA_IC_SE;"OBSOLETE-P/Fence ZA";"OBSOLETE-P/Fence ZA";"OBSOLETE-P/Fence ZA"
+                     ;PZA_ZA_AG;;ZA;PZA_ZA_AG;"OBSOLETE-P/Fence ZA";"OBSOLETE-P/Fence ZA";"OBSOLETE-P/Fence ZA"
+                     ;PZA_ZA_EL;;ZA;PZA_ZA_EL;"OBSOLETE-P/Fence ZA";"OBSOLETE-P/Fence ZA";"OBSOLETE-P/Fence ZA"
+                     ;PZA_ZA_IC;;ZA;PZA_ZA_IC;"OBSOLETE-P/Fence ZA";"OBSOLETE-P/Fence ZA";"OBSOLETE-P/Fence ZA"
+                     ;PZA_ZA_PM;;ZA;PZA_ZA_PM;"OBSOLETE-P/Fence ZA";"OBSOLETE-P/Fence ZA";"OBSOLETE-P/Fence ZA"
+                     ;PZA_ZA_SE;;ZA;PZA_ZA_SE;"OBSOLETE-P/Fence ZA";"OBSOLETE-P/Fence ZA";"OBSOLETE-P/Fence ZA"
+                     ;PZA_ZA_TS;;ZA;PZA_ZA_TS;"OBSOLETE-P/Fence ZA";"OBSOLETE-P/Fence ZA";"OBSOLETE-P/Fence ZA"
+                     ;SUN_EX_EL;;NZ;SUN_EX_EL;"OBSOLETE-Sunplas";"OBSOLETE-Sunplas";"OBSOLETE-Sunplas"
+                     ;SUN_EX_EN;;NZ;SUN_EX_EN;"OBSOLETE-Sunplas";"OBSOLETE-Sunplas";"OBSOLETE-Sunplas"
+                     ;SUN_IC_IC;;NZ;SUN_IC_IC;"OBSOLETE-Sunplas";"OBSOLETE-Sunplas";"OBSOLETE-Sunplas"
+                     ;SUN_NZ_EL;;NZ;SUN_NZ_EL;"OBSOLETE-Sunplas";"OBSOLETE-Sunplas";"OBSOLETE-Sunplas"
+                     ;SUN_NZ_EN;;NZ;SUN_NZ_EN;"OBSOLETE-Sunplas";"OBSOLETE-Sunplas";"OBSOLETE-Sunplas"
+INSERT_UPDATE Address;&id;owner(OrgUnit.uid)[unique=true];streetname;streetnumber;postalcode;town;country(Country.isocode);pobox
+                     ;0001_01_01;0001_01_01;;;;;;
+                     ;CAM_EX_AC;CAM_EX_AC;;;;;US;
+                     ;CAM_EX_EL;CAM_EX_EL;;;;;US;
+                     ;CAM_EX_EN;CAM_EX_EN;;;;;US;
+                     ;CAM_EX_PM;CAM_EX_PM;;;;;US;
+                     ;CAM_EX_TS;CAM_EX_TS;;;;;US;
+                     ;CAM_IC_IC;CAM_IC_IC;;;;;US;
+                     ;CAM_US_AC;CAM_US_AC;;;;;US;
+                     ;CAM_US_EL;CAM_US_EL;;;;;US;
+                     ;CAM_US_EN;CAM_US_EN;;;;;US;
+                     ;CAM_US_PM;CAM_US_PM;;;;;US;
+                     ;CAM_US_TS;CAM_US_TS;;;;;US;
+                     ;CAU_AU_AC;CAU_AU_AC;;;;;AU;
+                     ;CAU_AU_CC;CAU_AU_CC;;;;;AU;
+                     ;CAU_AU_EL;CAU_AU_EL;;;;;AU;
+                     ;CAU_AU_EN;CAU_AU_EN;;;;;AU;
+                     ;CAU_AU_IC;CAU_AU_IC;;;;;AU;
+                     ;CAU_AU_SE;CAU_AU_SE;;;;;AU;
+                     ;CAU_AU_TS;CAU_AU_TS;;;;;AU;
+                     ;CAU_EX_AC;CAU_EX_AC;;;;;AU;
+                     ;CAU_EX_CC;CAU_EX_CC;;;;;AU;
+                     ;CAU_EX_SE;CAU_EX_SE;;;;;AU;
+                     ;CAU_EX_TS;CAU_EX_TS;;;;;AU;
+                     ;CAU_IC_IC;CAU_IC_IC;;;;;AU;
+                     ;CDX_EX_EN;CDX_EX_EN;;;;;NZ;
+                     ;CDX_EX_SE;CDX_EX_SE;;;;;NZ;
+                     ;CDX_IC_IC;CDX_IC_IC;;;;;NZ;
+                     ;CDX_NZ_EN;CDX_NZ_EN;;;;;NZ;
+                     ;CDX_NZ_SE;CDX_NZ_SE;;;;;NZ;
+                     ;CEU_EX_AC;CEU_EX_AC;;;;;GB;
+                     ;CEU_EX_EL;CEU_EX_EL;;;;;GB;
+                     ;CEU_EX_EN;CEU_EX_EN;;;;;GB;
+                     ;CEU_EX_TS;CEU_EX_TS;;;;;GB;
+                     ;CEU_IC_AC;CEU_IC_AC;;;;;GB;
+                     ;CEU_IC_IC;CEU_IC_IC;;;;;GB;
+                     ;CEU_UK_AC;CEU_UK_AC;;;;;GB;
+                     ;CEU_UK_EL;CEU_UK_EL;;;;;GB;
+                     ;CEU_UK_EN;CEU_UK_EN;;;;;GB;
+                     ;CEU_UK_TS;CEU_UK_TS;;;;;GB;
+                     ;CZA_EX_AC;CZA_EX_AC;6 Charlie Avenue;;1467;Johannesburg;ZA;
+                     ;CZA_EX_EL;CZA_EX_EL;6 Charlie Avenue;;1467;Johannesburg;ZA;
+                     ;CZA_EX_IC;CZA_EX_IC;6 Charlie Avenue;;1467;Johannesburg;ZA;
+                     ;CZA_EX_PM;CZA_EX_PM;6 Charlie Avenue;;1467;Johannesburg;ZA;
+                     ;CZA_EX_TS;CZA_EX_TS;6 Charlie Avenue;;1467;Johannesburg;ZA;
+                     ;CZA_IC_AC;CZA_IC_AC;6 Charlie Avenue;;1467;Johannesburg;ZA;
+                     ;CZA_IC_IC;CZA_IC_IC;6 Charlie Avenue;;1467;Johannesburg;ZA;
+                     ;CZA_ZA_AC;CZA_ZA_AC;6 Charlie Avenue;;1467;Johannesburg;ZA;
+                     ;CZA_ZA_EL;CZA_ZA_EL;6 Charlie Avenue;;1467;Johannesburg;ZA;
+                     ;CZA_ZA_IC;CZA_ZA_IC;6 Charlie Avenue;;1467;Johannesburg;ZA;
+                     ;CZA_ZA_PM;CZA_ZA_PM;6 Charlie Avenue;;1467;Johannesburg;ZA;
+                     ;CZA_ZA_TS;CZA_ZA_TS;6 Charlie Avenue;;1467;Johannesburg;ZA;
+                     ;DUR_EX_PL;DUR_EX_PL;;;;;NZ;
+                     ;DUR_NZ_PL;DUR_NZ_PL;;;;;NZ;
+                     ;DUR_UK_PL;DUR_UK_PL;;;;;NZ;
+                     ;FML_EX_AG;FML_EX_AG;;;;;NZ;
+                     ;FML_EX_EN;FML_EX_EN;;;;;NZ;
+                     ;FML_EX_EP;FML_EX_EP;;;;;NZ;
+                     ;FML_EX_GR;FML_EX_GR;;;;;NZ;
+                     ;FML_EX_HD;FML_EX_HD;;;;;NZ;
+                     ;FML_EX_SE;FML_EX_SE;;;;;NZ;
+                     ;FML_IC_IC;FML_IC_IC;;;;;NZ;
+                     ;FML_NZ_AG;FML_NZ_AG;;;;;NZ;
+                     ;FML_NZ_EL;FML_NZ_EL;;;;;NZ;
+                     ;FML_NZ_EN;FML_NZ_EN;;;;;NZ;
+                     ;FML_NZ_EP;FML_NZ_EP;;;;;NZ;
+                     ;FML_NZ_GR;FML_NZ_GR;;;;;NZ;
+                     ;FML_NZ_HD;FML_NZ_HD;;;;;NZ;
+                     ;FML_NZ_SE;FML_NZ_SE;;;;;NZ;
+                     ;GAU_AU_AC;GAU_AU_AC;65 Scanlon Drive,Epping;;3076;Melbourne;AU;
+                     ;GAU_AU_AG;GAU_AU_AG;65 Scanlon Drive,Epping;;3076;Melbourne;AU;
+                     ;GAU_AU_RP;GAU_AU_RP;65 Scanlon Drive,Epping;;3076;Melbourne;AU;
+                     ;GAU_AU_SE;GAU_AU_SE;65 Scanlon Drive,Epping;;3076;Melbourne;AU;
+                     ;GAU_EX_AC;GAU_EX_AC;65 Scanlon Drive,Epping;;3076;Melbourne;AU;
+                     ;GAU_EX_AG;GAU_EX_AG;65 Scanlon Drive,Epping;;3076;Melbourne;AU;
+                     ;GAU_EX_SE;GAU_EX_SE;65 Scanlon Drive,Epping;;3076;Melbourne;AU;
+                     ;GAU_IC_IC;GAU_IC_IC;65 Scanlon Drive,Epping;;3076;Melbourne;AU;
+                     ;GCA_CA_AC;GCA_CA_AC;;;;;US;
+                     ;GCA_CA_AG;GCA_CA_AG;;;;;US;
+                     ;GCA_CA_EL;GCA_CA_EL;;;;;US;
+                     ;GCA_CA_TS;GCA_CA_TS;;;;;US;
+                     ;GCA_EX_AC;GCA_EX_AC;;;;;US;
+                     ;GCA_EX_AG;GCA_EX_AG;;;;;US;
+                     ;GCA_EX_EL;GCA_EX_EL;;;;;US;
+                     ;GCA_IC_AC;GCA_IC_AC;;;;;US;
+                     ;GCA_IC_EL;GCA_IC_EL;;;;;US;
+                     ;GCA_IC_IC;GCA_IC_IC;;;;;US;
+                     ;GGL_EX_AC;GGL_EX_AC;;;;;NZ;
+                     ;GGL_EX_AG;GGL_EX_AG;;;;;NZ;
+                     ;GGL_EX_CC;GGL_EX_CC;;;;;NZ;
+                     ;GGL_EX_EL;GGL_EX_EL;;;;;NZ;
+                     ;GGL_EX_EN;GGL_EX_EN;;;;;NZ;
+                     ;GGL_EX_EP;GGL_EX_EP;;;;;NZ;
+                     ;GGL_EX_HD;GGL_EX_HD;;;;;NZ;
+                     ;GGL_EX_PL;GGL_EX_PL;;;;;NZ;
+                     ;GGL_EX_RP;GGL_EX_RP;;;;;NZ;
+                     ;GGL_EX_SE;GGL_EX_SE;;;;;NZ;
+                     ;GGL_EX_TD;GGL_EX_TD;;;;;NZ;
+                     ;GGL_EX_TS;GGL_EX_TS;;;;;NZ;
+                     ;GGL_IC_CC;GGL_IC_CC;;;;;NZ;
+                     ;GGL_IC_IC;GGL_IC_IC;;;;;NZ;
+                     ;GGL_NZ_AC;GGL_NZ_AC;;;;;NZ;
+                     ;GGL_NZ_AG;GGL_NZ_AG;;;;;NZ;
+                     ;GGL_NZ_CC;GGL_NZ_CC;;;;;NZ;
+                     ;GGL_NZ_CN;GGL_NZ_CN;;;;;NZ;
+                     ;GGL_NZ_EL;GGL_NZ_EL;;;;;NZ;
+                     ;GGL_NZ_EN;GGL_NZ_EN;;;;;NZ;
+                     ;GGL_NZ_EP;GGL_NZ_EP;;;;;NZ;
+                     ;GGL_NZ_HD;GGL_NZ_HD;;;;;NZ;
+                     ;GGL_NZ_PL;GGL_NZ_PL;;;;;NZ;
+                     ;GGL_NZ_RP;GGL_NZ_RP;;;;;NZ;
+                     ;GGL_NZ_SE;GGL_NZ_SE;;;;;NZ;
+                     ;GGL_NZ_TD;GGL_NZ_TD;;;;;NZ;
+                     ;GGL_NZ_TS;GGL_NZ_TS;;;;;NZ;
+                     ;GHK_HK_AC;GHK_HK_AC;181 Kahikatea Drive;;3206;Hamilton;NZ;
+                     ;GHK_HK_CC;GHK_HK_CC;181 Kahikatea Drive;;3206;Hamilton;NZ;
+                     ;GHK_HK_SE;GHK_HK_SE;181 Kahikatea Drive;;3206;Hamilton;NZ;
+                     ;GHK_HK_TS;GHK_HK_TS;181 Kahikatea Drive;;3206;Hamilton;NZ;
+                     ;GHK_IC_IC;GHK_IC_IC;181 Kahikatea Drive;;3206;Hamilton;NZ;
+                     ;GRY_NZ_AG;GRY_NZ_AG;;;;;NZ;
+                     ;GSF_EX_AC;GSF_EX_AC;;;;;HK;
+                     ;GSF_EX_SE;GSF_EX_SE;;;;;HK;
+                     ;GSF_EX_TS;GSF_EX_TS;;;;;HK;
+                     ;GSF_IC_IC;GSF_IC_IC;;;;;HK;
+                     ;GUS_CA_AC;GUS_CA_AC;5005 NW 41st Street;;64150;Riverside;US;
+                     ;GUS_CA_CC;GUS_CA_CC;5005 NW 41st Street;;64150;Riverside;US;
+                     ;GUS_CA_SE;GUS_CA_SE;5005 NW 41st Street;;64150;Riverside;US;
+                     ;GUS_CA_TS;GUS_CA_TS;5005 NW 41st Street;;64150;Riverside;US;
+                     ;GUS_EX_AC;GUS_EX_AC;5005 NW 41st Street;;64150;Riverside;US;
+                     ;GUS_EX_AG;GUS_EX_AG;5005 NW 41st Street;;64150;Riverside;US;
+                     ;GUS_EX_CC;GUS_EX_CC;5005 NW 41st Street;;64150;Riverside;US;
+                     ;GUS_EX_RP;GUS_EX_RP;5005 NW 41st Street;;64150;Riverside;US;
+                     ;GUS_EX_SE;GUS_EX_SE;5005 NW 41st Street;;64150;Riverside;US;
+                     ;GUS_EX_TS;GUS_EX_TS;5005 NW 41st Street;;64150;Riverside;US;
+                     ;GUS_IC_IC;GUS_IC_IC;5005 NW 41st Street;;64150;Riverside;US;
+                     ;GUS_US_AC;GUS_US_AC;5005 NW 41st Street;;64150;Riverside;US;
+                     ;GUS_US_AG;GUS_US_AG;5005 NW 41st Street;;64150;Riverside;US;
+                     ;GUS_US_CC;GUS_US_CC;5005 NW 41st Street;;64150;Riverside;US;
+                     ;GUS_US_RP;GUS_US_RP;5005 NW 41st Street;;64150;Riverside;US;
+                     ;GUS_US_SE;GUS_US_SE;5005 NW 41st Street;;64150;Riverside;US;
+                     ;GUS_US_TS;GUS_US_TS;5005 NW 41st Street;;64150;Riverside;US;
+                     ;GZA_EX_AC;GZA_EX_AC;43 Saturn Crescent;;2090;Johannesburg;ZA;
+                     ;GZA_EX_AG;GZA_EX_AG;43 Saturn Crescent;;2090;Johannesburg;ZA;
+                     ;GZA_EX_RP;GZA_EX_RP;43 Saturn Crescent;;2090;Johannesburg;ZA;
+                     ;GZA_EX_SE;GZA_EX_SE;43 Saturn Crescent;;2090;Johannesburg;ZA;
+                     ;GZA_EX_TS;GZA_EX_TS;43 Saturn Crescent;;2090;Johannesburg;ZA;
+                     ;GZA_IC_IC;GZA_IC_IC;43 Saturn Crescent;;2090;Johannesburg;ZA;
+                     ;GZA_ZA_AC;GZA_ZA_AC;43 Saturn Crescent;;2090;Johannesburg;ZA;
+                     ;GZA_ZA_AG;GZA_ZA_AG;43 Saturn Crescent;;2090;Johannesburg;ZA;
+                     ;GZA_ZA_RP;GZA_ZA_RP;43 Saturn Crescent;;2090;Johannesburg;ZA;
+                     ;GZA_ZA_SE;GZA_ZA_SE;43 Saturn Crescent;;2090;Johannesburg;ZA;
+                     ;GZA_ZA_TS;GZA_ZA_TS;43 Saturn Crescent;;2090;Johannesburg;ZA;
+                     ;PAM_EX_AC;PAM_EX_AC;;;;;US;
+                     ;PAM_EX_AG;PAM_EX_AG;;;;;US;
+                     ;PAM_EX_EL;PAM_EX_EL;;;;;US;
+                     ;PAM_EX_EN;PAM_EX_EN;;;;;US;
+                     ;PAM_EX_PM;PAM_EX_PM;;;;;US;
+                     ;PAM_EX_SE;PAM_EX_SE;;;;;US;
+                     ;PAM_EX_TS;PAM_EX_TS;;;;;US;
+                     ;PAM_IC_AG;PAM_IC_AG;;;;;US;
+                     ;PAM_IC_IC;PAM_IC_IC;;;;;US;
+                     ;PAM_IC_SE;PAM_IC_SE;;;;;US;
+                     ;PAM_US_AC;PAM_US_AC;;;;;US;
+                     ;PAM_US_AG;PAM_US_AG;;;;;US;
+                     ;PAM_US_EL;PAM_US_EL;;;;;US;
+                     ;PAM_US_EN;PAM_US_EN;;;;;US;
+                     ;PAM_US_PM;PAM_US_PM;;;;;US;
+                     ;PAM_US_SE;PAM_US_SE;;;;;US;
+                     ;PAM_US_TS;PAM_US_TS;;;;;US;
+                     ;PEC_AU_CM;PEC_AU_CM;;;;;NZ;
+                     ;PEC_AU_FP;PEC_AU_FP;;;;;NZ;
+                     ;PEC_AU_PC;PEC_AU_PC;;;;;NZ;
+                     ;PEC_AU_RP;PEC_AU_RP;;;;;NZ;
+                     ;PEC_AU_SC;PEC_AU_SC;;;;;NZ;
+                     ;PEC_AU_SP;PEC_AU_SP;;;;;NZ;
+                     ;PEC_AU_VS;PEC_AU_VS;;;;;NZ;
+                     ;PEC_EX_CM;PEC_EX_CM;;;;;NZ;
+                     ;PEC_EX_FP;PEC_EX_FP;;;;;NZ;
+                     ;PEC_EX_PC;PEC_EX_PC;;;;;NZ;
+                     ;PEC_EX_RP;PEC_EX_RP;;;;;NZ;
+                     ;PEC_EX_SC;PEC_EX_SC;;;;;NZ;
+                     ;PEC_EX_SP;PEC_EX_SP;;;;;NZ;
+                     ;PEC_EX_VS;PEC_EX_VS;;;;;NZ;
+                     ;PEC_IC_CM;PEC_IC_CM;;;;;NZ;
+                     ;PEC_IC_IC;PEC_IC_IC;;;;;NZ;
+                     ;PEC_NZ_CM;PEC_NZ_CM;;;;;NZ;
+                     ;PEC_NZ_FP;PEC_NZ_FP;;;;;NZ;
+                     ;PEC_NZ_PC;PEC_NZ_PC;;;;;NZ;
+                     ;PEC_NZ_RP;PEC_NZ_RP;;;;;NZ;
+                     ;PEC_NZ_SC;PEC_NZ_SC;;;;;NZ;
+                     ;PEC_NZ_SP;PEC_NZ_SP;;;;;NZ;
+                     ;PEC_NZ_VS;PEC_NZ_VS;;;;;NZ;
+                     ;PEU_EX_AG;PEU_EX_AG;;;;;GB;
+                     ;PEU_EX_EL;PEU_EX_EL;;;;;GB;
+                     ;PEU_EX_EN;PEU_EX_EN;;;;;GB;
+                     ;PEU_EX_SE;PEU_EX_SE;;;;;GB;
+                     ;PEU_EX_TS;PEU_EX_TS;;;;;GB;
+                     ;PEU_IC_AG;PEU_IC_AG;;;;;GB;
+                     ;PEU_IC_IC;PEU_IC_IC;;;;;GB;
+                     ;PEU_IC_SE;PEU_IC_SE;;;;;GB;
+                     ;PEU_UK_AG;PEU_UK_AG;;;;;GB;
+                     ;PEU_UK_EL;PEU_UK_EL;;;;;GB;
+                     ;PEU_UK_EN;PEU_UK_EN;;;;;GB;
+                     ;PEU_UK_SE;PEU_UK_SE;;;;;GB;
+                     ;PEU_UK_TS;PEU_UK_TS;;;;;GB;
+                     ;PZA_EX_AG;PZA_EX_AG;6 Charlie Avenue;;1467;Johannesburg;ZA;
+                     ;PZA_EX_EL;PZA_EX_EL;6 Charlie Avenue;;1467;Johannesburg;ZA;
+                     ;PZA_EX_IC;PZA_EX_IC;6 Charlie Avenue;;1467;Johannesburg;ZA;
+                     ;PZA_EX_PM;PZA_EX_PM;6 Charlie Avenue;;1467;Johannesburg;ZA;
+                     ;PZA_EX_SE;PZA_EX_SE;6 Charlie Avenue;;1467;Johannesburg;ZA;
+                     ;PZA_EX_TS;PZA_EX_TS;6 Charlie Avenue;;1467;Johannesburg;ZA;
+                     ;PZA_IC_AG;PZA_IC_AG;6 Charlie Avenue;;1467;Johannesburg;ZA;
+                     ;PZA_IC_IC;PZA_IC_IC;6 Charlie Avenue;;1467;Johannesburg;ZA;
+                     ;PZA_IC_SE;PZA_IC_SE;6 Charlie Avenue;;1467;Johannesburg;ZA;
+                     ;PZA_ZA_AG;PZA_ZA_AG;6 Charlie Avenue;;1467;Johannesburg;ZA;
+                     ;PZA_ZA_EL;PZA_ZA_EL;6 Charlie Avenue;;1467;Johannesburg;ZA;
+                     ;PZA_ZA_IC;PZA_ZA_IC;6 Charlie Avenue;;1467;Johannesburg;ZA;
+                     ;PZA_ZA_PM;PZA_ZA_PM;6 Charlie Avenue;;1467;Johannesburg;ZA;
+                     ;PZA_ZA_SE;PZA_ZA_SE;6 Charlie Avenue;;1467;Johannesburg;ZA;
+                     ;PZA_ZA_TS;PZA_ZA_TS;6 Charlie Avenue;;1467;Johannesburg;ZA;
+                     ;SUN_EX_EL;SUN_EX_EL;;;;;NZ;
+                     ;SUN_EX_EN;SUN_EX_EN;;;;;NZ;
+                     ;SUN_IC_IC;SUN_IC_IC;;;;;NZ;
+                     ;SUN_NZ_EL;SUN_NZ_EL;;;;;NZ;
+                     ;SUN_NZ_EN;SUN_NZ_EN;;;;;NZ;
+
+					 
+#  Assign SalesUnits to OrgUnits 
+INSERT_UPDATE PrincipalGroupRelation;source(uid)[unique=true];target(uid)[unique=true]
+									;CAM_EX_AC;0001_01_01;
+									;CAM_EX_EL;0001_01_01;
+									;CAM_EX_EN;0001_01_01;
+									;CAM_EX_PM;0001_01_01;
+									;CAM_EX_TS;0001_01_01;
+									;CAM_IC_IC;0001_01_01;
+									;CAM_US_AC;0001_01_01;
+									;CAM_US_EL;0001_01_01;
+									;CAM_US_EN;0001_01_01;
+									;CAM_US_PM;0001_01_01;
+									;CAM_US_TS;0001_01_01;
+									;CAU_AU_AC;0001_01_01;
+									;CAU_AU_CC;0001_01_01;
+									;CAU_AU_EL;0001_01_01;
+									;CAU_AU_EN;0001_01_01;
+									;CAU_AU_IC;0001_01_01;
+									;CAU_AU_SE;0001_01_01;
+									;CAU_AU_TS;0001_01_01;
+									;CAU_EX_AC;0001_01_01;
+									;CAU_EX_CC;0001_01_01;
+									;CAU_EX_SE;0001_01_01;
+									;CAU_EX_TS;0001_01_01;
+									;CAU_IC_IC;0001_01_01;
+									;CDX_EX_EN;0001_01_01;
+									;CDX_EX_SE;0001_01_01;
+									;CDX_IC_IC;0001_01_01;
+									;CDX_NZ_EN;0001_01_01;
+									;CDX_NZ_SE;0001_01_01;
+									;CEU_EX_AC;0001_01_01;
+									;CEU_EX_EL;0001_01_01;
+									;CEU_EX_EN;0001_01_01;
+									;CEU_EX_TS;0001_01_01;
+									;CEU_IC_AC;0001_01_01;
+									;CEU_IC_IC;0001_01_01;
+									;CEU_UK_AC;0001_01_01;
+									;CEU_UK_EL;0001_01_01;
+									;CEU_UK_EN;0001_01_01;
+									;CEU_UK_TS;0001_01_01;
+									;CZA_EX_AC;0001_01_01;
+									;CZA_EX_EL;0001_01_01;
+									;CZA_EX_IC;0001_01_01;
+									;CZA_EX_PM;0001_01_01;
+									;CZA_EX_TS;0001_01_01;
+									;CZA_IC_AC;0001_01_01;
+									;CZA_IC_IC;0001_01_01;
+									;CZA_ZA_AC;0001_01_01;
+									;CZA_ZA_EL;0001_01_01;
+									;CZA_ZA_IC;0001_01_01;
+									;CZA_ZA_PM;0001_01_01;
+									;CZA_ZA_TS;0001_01_01;
+									;DUR_EX_PL;0001_01_01;
+									;DUR_NZ_PL;0001_01_01;
+									;DUR_UK_PL;0001_01_01;
+									;FML_EX_AG;0001_01_01;
+									;FML_EX_EN;0001_01_01;
+									;FML_EX_EP;0001_01_01;
+									;FML_EX_GR;0001_01_01;
+									;FML_EX_HD;0001_01_01;
+									;FML_EX_SE;0001_01_01;
+									;FML_IC_IC;0001_01_01;
+									;FML_NZ_AG;0001_01_01;
+									;FML_NZ_EL;0001_01_01;
+									;FML_NZ_EN;0001_01_01;
+									;FML_NZ_EP;0001_01_01;
+									;FML_NZ_GR;0001_01_01;
+									;FML_NZ_HD;0001_01_01;
+									;FML_NZ_SE;0001_01_01;
+									;GAU_AU_AC;0001_01_01;
+									;GAU_AU_AG;0001_01_01;
+									;GAU_AU_RP;0001_01_01;
+									;GAU_AU_SE;0001_01_01;
+									;GAU_EX_AC;0001_01_01;
+									;GAU_EX_AG;0001_01_01;
+									;GAU_EX_SE;0001_01_01;
+									;GAU_IC_IC;0001_01_01;
+									;GCA_CA_AC;0001_01_01;
+									;GCA_CA_AG;0001_01_01;
+									;GCA_CA_EL;0001_01_01;
+									;GCA_CA_TS;0001_01_01;
+									;GCA_EX_AC;0001_01_01;
+									;GCA_EX_AG;0001_01_01;
+									;GCA_EX_EL;0001_01_01;
+									;GCA_IC_AC;0001_01_01;
+									;GCA_IC_EL;0001_01_01;
+									;GCA_IC_IC;0001_01_01;
+									;GGL_EX_AC;0001_01_01;
+									;GGL_EX_AG;0001_01_01;
+									;GGL_EX_CC;0001_01_01;
+									;GGL_EX_EL;0001_01_01;
+									;GGL_EX_EN;0001_01_01;
+									;GGL_EX_EP;0001_01_01;
+									;GGL_EX_HD;0001_01_01;
+									;GGL_EX_PL;0001_01_01;
+									;GGL_EX_RP;0001_01_01;
+									;GGL_EX_SE;0001_01_01;
+									;GGL_EX_TD;0001_01_01;
+									;GGL_EX_TS;0001_01_01;
+									;GGL_IC_CC;0001_01_01;
+									;GGL_IC_IC;0001_01_01;
+									;GGL_NZ_AC;0001_01_01;
+									;GGL_NZ_AG;0001_01_01;
+									;GGL_NZ_CC;0001_01_01;
+									;GGL_NZ_CN;0001_01_01;
+									;GGL_NZ_EL;0001_01_01;
+									;GGL_NZ_EN;0001_01_01;
+									;GGL_NZ_EP;0001_01_01;
+									;GGL_NZ_HD;0001_01_01;
+									;GGL_NZ_PL;0001_01_01;
+									;GGL_NZ_RP;0001_01_01;
+									;GGL_NZ_SE;0001_01_01;
+									;GGL_NZ_TD;0001_01_01;
+									;GGL_NZ_TS;0001_01_01;
+									;GHK_HK_AC;0001_01_01;
+									;GHK_HK_CC;0001_01_01;
+									;GHK_HK_SE;0001_01_01;
+									;GHK_HK_TS;0001_01_01;
+									;GHK_IC_IC;0001_01_01;
+									;GRY_NZ_AG;0001_01_01;
+									;GSF_EX_AC;0001_01_01;
+									;GSF_EX_SE;0001_01_01;
+									;GSF_EX_TS;0001_01_01;
+									;GSF_IC_IC;0001_01_01;
+									;GUS_CA_AC;0001_01_01;
+									;GUS_CA_CC;0001_01_01;
+									;GUS_CA_SE;0001_01_01;
+									;GUS_CA_TS;0001_01_01;
+									;GUS_EX_AC;0001_01_01;
+									;GUS_EX_AG;0001_01_01;
+									;GUS_EX_CC;0001_01_01;
+									;GUS_EX_RP;0001_01_01;
+									;GUS_EX_SE;0001_01_01;
+									;GUS_EX_TS;0001_01_01;
+									;GUS_IC_IC;0001_01_01;
+									;GUS_US_AC;0001_01_01;
+									;GUS_US_AG;0001_01_01;
+									;GUS_US_CC;0001_01_01;
+									;GUS_US_RP;0001_01_01;
+									;GUS_US_SE;0001_01_01;
+									;GUS_US_TS;0001_01_01;
+									;GZA_EX_AC;0001_01_01;
+									;GZA_EX_AG;0001_01_01;
+									;GZA_EX_RP;0001_01_01;
+									;GZA_EX_SE;0001_01_01;
+									;GZA_EX_TS;0001_01_01;
+									;GZA_IC_IC;0001_01_01;
+									;GZA_ZA_AC;0001_01_01;
+									;GZA_ZA_AG;0001_01_01;
+									;GZA_ZA_RP;0001_01_01;
+									;GZA_ZA_SE;0001_01_01;
+									;GZA_ZA_TS;0001_01_01;
+									;PAM_EX_AC;0001_01_01;
+									;PAM_EX_AG;0001_01_01;
+									;PAM_EX_EL;0001_01_01;
+									;PAM_EX_EN;0001_01_01;
+									;PAM_EX_PM;0001_01_01;
+									;PAM_EX_SE;0001_01_01;
+									;PAM_EX_TS;0001_01_01;
+									;PAM_IC_AG;0001_01_01;
+									;PAM_IC_IC;0001_01_01;
+									;PAM_IC_SE;0001_01_01;
+									;PAM_US_AC;0001_01_01;
+									;PAM_US_AG;0001_01_01;
+									;PAM_US_EL;0001_01_01;
+									;PAM_US_EN;0001_01_01;
+									;PAM_US_PM;0001_01_01;
+									;PAM_US_SE;0001_01_01;
+									;PAM_US_TS;0001_01_01;
+									;PEC_AU_CM;0001_01_01;
+									;PEC_AU_FP;0001_01_01;
+									;PEC_AU_PC;0001_01_01;
+									;PEC_AU_RP;0001_01_01;
+									;PEC_AU_SC;0001_01_01;
+									;PEC_AU_SP;0001_01_01;
+									;PEC_AU_VS;0001_01_01;
+									;PEC_EX_CM;0001_01_01;
+									;PEC_EX_FP;0001_01_01;
+									;PEC_EX_PC;0001_01_01;
+									;PEC_EX_RP;0001_01_01;
+									;PEC_EX_SC;0001_01_01;
+									;PEC_EX_SP;0001_01_01;
+									;PEC_EX_VS;0001_01_01;
+									;PEC_IC_CM;0001_01_01;
+									;PEC_IC_IC;0001_01_01;
+									;PEC_NZ_CM;0001_01_01;
+									;PEC_NZ_FP;0001_01_01;
+									;PEC_NZ_PC;0001_01_01;
+									;PEC_NZ_RP;0001_01_01;
+									;PEC_NZ_SC;0001_01_01;
+									;PEC_NZ_SP;0001_01_01;
+									;PEC_NZ_VS;0001_01_01;
+									;PEU_EX_AG;0001_01_01;
+									;PEU_EX_EL;0001_01_01;
+									;PEU_EX_EN;0001_01_01;
+									;PEU_EX_SE;0001_01_01;
+									;PEU_EX_TS;0001_01_01;
+									;PEU_IC_AG;0001_01_01;
+									;PEU_IC_IC;0001_01_01;
+									;PEU_IC_SE;0001_01_01;
+									;PEU_UK_AG;0001_01_01;
+									;PEU_UK_EL;0001_01_01;
+									;PEU_UK_EN;0001_01_01;
+									;PEU_UK_SE;0001_01_01;
+									;PEU_UK_TS;0001_01_01;
+									;PZA_EX_AG;0001_01_01;
+									;PZA_EX_EL;0001_01_01;
+									;PZA_EX_IC;0001_01_01;
+									;PZA_EX_PM;0001_01_01;
+									;PZA_EX_SE;0001_01_01;
+									;PZA_EX_TS;0001_01_01;
+									;PZA_IC_AG;0001_01_01;
+									;PZA_IC_IC;0001_01_01;
+									;PZA_IC_SE;0001_01_01;
+									;PZA_ZA_AG;0001_01_01;
+									;PZA_ZA_EL;0001_01_01;
+									;PZA_ZA_IC;0001_01_01;
+									;PZA_ZA_PM;0001_01_01;
+									;PZA_ZA_SE;0001_01_01;
+									;PZA_ZA_TS;0001_01_01;
+									;SUN_EX_EL;0001_01_01;
+									;SUN_EX_EN;0001_01_01;
+									;SUN_IC_IC;0001_01_01;
+									;SUN_NZ_EL;0001_01_01;
+									;SUN_NZ_EN;0001_01_01;
+									
+# Employees
+INSERT_UPDATE Employee;name;password[default=$defaultPassword];uid[unique=true];groups(uid)[mode=append]
+
+;Naira Rahm;;naira.rahm@gallagher.com;salesadmingroup
+;Nancy Leclair;;nancy.leclair@gallagher.com;salesemployeegroup
+;Alsa Dority;;alsa.dority@gallagher.com;salesmanagergroup
+;Jenifer Hofer;;jenifer.hofer@gallagher.com;salesapprovergroup
+
+;Neha Gupta;;neha.gupta@gallagher.com;salesadmingroup
+;Ankita Rawat;;ankita.rawat@gallagher.com;salesemployeegroup
+;Subhash Sharma;;subhash.sharma@gallagher.com;salesmanagergroup
+;Jiya Khan;;jiya.khan@gallagher.com;salesapprovergroup
+
+;Disha Gupta;;disha.gupta@gallagher.com;salesadmingroup
+;Ashu Rawat;;ashu.rawat@gallagher.com;salesemployeegroup
+;Suraj Sharma;;suraj.sharma@gallagher.com;salesmanagergroup
+;Jigyasa Khan;;jigyasa.khan@gallagher.com;salesapprovergroup
+
+#  Assign Employees to OrgUnits 
+INSERT_UPDATE PrincipalGroupRelation;source(uid)[unique=true];target(uid)[unique=true]
+
+;naira.rahm@gallagher.com;CAM_EX_AC;
+;nancy.leclair@gallagher.com;CAM_EX_AC;
+;alsa.dority@gallagher.com;CAM_EX_AC;
+;jenifer.hofer@gallagher.com;CAM_EX_AC;
+
+;neha.gupta@gallagher.com;CAU_AU_AC;
+;ankita.rawat@gallagher.com;CAU_AU_AC;
+;subhash.sharma@gallagher.com;CAU_AU_AC;
+;jiya.khan@gallagher.com;CAU_AU_AC;
+
+;disha.gupta@gallagher.com;CDX_EX_EN;
+;ashu.rawat@gallagher.com;CDX_EX_EN;
+;suraj.sharma@gallagher.com;CDX_EX_EN;
+;jigyasa.khan@gallagher.com;CDX_EX_EN;
+
+####Master data for OrgUnit end####
+
+INSERT_UPDATE Address;streetname[unique=true];postalcode[unique=true];town;country(isocode);billingAddress;contactAddress;shippingAddress;unloadingAddress;firstname;lastname;email;title(code);&addId;owner(&B2BUnitID)[unique=true];
+;999 South Wacker Drive;60606;Sydney;AU;TRUE;TRUE;TRUE;TRUE;Akiro;Nakamura;akiro.nakamura@gglrustic-hw.com;mr;AJAddrID1;AJID1;
+
+INSERT_UPDATE B2BUnit;description;uid[unique=true];name;locName[lang=en];groups(uid);reportingOrganization(uid);Addresses(&addId);&B2BUnitID;accountManager(uid);creditLimit(code);approvalProcessCode;
+;Hierarchical;A&JCommunications;A & J Communications;A & J Communications;;A&JCommunications;AJAddrID1;AJID1;acctmgra;Monthly40KAlert10Percent;accApproval;
+;Unit AJC;A&JUnit;A & J Unit;A & J Unit;A&JCommunications;A&JCommunications;;GallagherRusticID2;acctmgrb;Monthly15KAlert3K
+
+INSERT_UPDATE PrincipalGroupRelation;source(uid)[unique=true];target(uid)[unique=true]
+;A&JUnit;New Zealand
+;A&JUnit;CAM_EX_AC
+;A&JUnit;CAM_EX_EL
+;A&JUnit;CAM_EX_EN
+;A&JUnit;CAM_EX_PM
+;A&JUnit;CAM_EX_TS
+;A&JUnit;CAM_IC_IC
+;A&JUnit;CAM_US_AC
+;A&JUnit;CAM_US_EL
+;A&JUnit;CAM_US_EN
+;A&JUnit;CAM_US_PM
+;A&JUnit;CAM_US_TS
+;A&JUnit;CAU_AU_AC
+;A&JUnit;CAU_AU_CC
+;A&JUnit;CAU_AU_EL
+;A&JUnit;CAU_AU_EN
+;A&JUnit;CAU_AU_IC
+;A&JUnit;CAU_AU_SE
+;A&JUnit;CAU_AU_TS
+;A&JUnit;CAU_EX_AC
+;A&JUnit;CAU_EX_CC
+;A&JUnit;CAU_EX_SE
+;A&JUnit;CAU_EX_TS
+;A&JUnit;CAU_IC_IC
+;A&JUnit;CDX_EX_EN
+;A&JUnit;CDX_EX_SE
+;A&JUnit;CDX_IC_IC
+;A&JUnit;CDX_NZ_EN
+;A&JUnit;CDX_NZ_SE
+;A&JUnit;CEU_EX_AC
+;A&JUnit;CEU_EX_EL
+;A&JUnit;CEU_EX_EN
+;A&JUnit;CEU_EX_TS
+;A&JUnit;CEU_IC_AC
+;A&JUnit;CEU_IC_IC
+;A&JUnit;CEU_UK_AC
+;A&JUnit;CEU_UK_EL
+;A&JUnit;CEU_UK_EN
+;A&JUnit;CEU_UK_TS
+;A&JUnit;CZA_EX_AC
+;A&JUnit;CZA_EX_EL
+;A&JUnit;CZA_EX_IC
+;A&JUnit;CZA_EX_PM
+;A&JUnit;CZA_EX_TS
+;A&JUnit;CZA_IC_AC
+;A&JUnit;CZA_IC_IC
+;A&JUnit;CZA_ZA_AC
+;A&JUnit;CZA_ZA_EL
+;A&JUnit;CZA_ZA_IC
+;A&JUnit;CZA_ZA_PM
+;A&JUnit;CZA_ZA_TS
+;A&JUnit;DUR_EX_PL
+;A&JUnit;DUR_NZ_PL
+;A&JUnit;DUR_UK_PL
+;A&JUnit;FML_EX_AG
+;A&JUnit;FML_EX_EN
+;A&JUnit;FML_EX_EP
+;A&JUnit;FML_EX_GR
+;A&JUnit;FML_EX_HD
+;A&JUnit;FML_EX_SE
+;A&JUnit;FML_IC_IC
+;A&JUnit;FML_NZ_AG
+;A&JUnit;FML_NZ_EL
+;A&JUnit;FML_NZ_EN
+;A&JUnit;FML_NZ_EP
+;A&JUnit;FML_NZ_GR
+;A&JUnit;FML_NZ_HD
+;A&JUnit;FML_NZ_SE
+;A&JUnit;GAU_AU_AC
+;A&JUnit;GAU_AU_AG
+;A&JUnit;GAU_AU_RP
+;A&JUnit;GAU_AU_SE
+;A&JUnit;GAU_EX_AC
+;A&JUnit;GAU_EX_AG
+;A&JUnit;GAU_EX_SE
+;A&JUnit;GAU_IC_IC
+;A&JUnit;GCA_CA_AC
+;A&JUnit;GCA_CA_AG
+;A&JUnit;GCA_CA_EL
+;A&JUnit;GCA_CA_TS
+;A&JUnit;GCA_EX_AC
+;A&JUnit;GCA_EX_AG
+;A&JUnit;GCA_EX_EL
+;A&JUnit;GCA_IC_AC
+;A&JUnit;GCA_IC_EL
+;A&JUnit;GCA_IC_IC
+;A&JUnit;GGL_EX_AC
+;A&JUnit;GGL_EX_AG
+;A&JUnit;GGL_EX_CC
+;A&JUnit;GGL_EX_EL
+;A&JUnit;GGL_EX_EN
+;A&JUnit;GGL_EX_EP
+;A&JUnit;GGL_EX_HD
+;A&JUnit;GGL_EX_PL
+;A&JUnit;GGL_EX_RP
+;A&JUnit;GGL_EX_SE
+;A&JUnit;GGL_EX_TD
+;A&JUnit;GGL_EX_TS
+;A&JUnit;GGL_IC_CC
+;A&JUnit;GGL_IC_IC
+;A&JUnit;GGL_NZ_AC
+;A&JUnit;GGL_NZ_AG
+;A&JUnit;GGL_NZ_CC
+;A&JUnit;GGL_NZ_CN
+;A&JUnit;GGL_NZ_EL
+;A&JUnit;GGL_NZ_EN
+;A&JUnit;GGL_NZ_EP
+;A&JUnit;GGL_NZ_HD
+;A&JUnit;GGL_NZ_PL
+;A&JUnit;GGL_NZ_RP
+;A&JUnit;GGL_NZ_SE
+;A&JUnit;GGL_NZ_TD
+;A&JUnit;GGL_NZ_TS
+;A&JUnit;GHK_HK_AC
+;A&JUnit;GHK_HK_CC
+;A&JUnit;GHK_HK_SE
+;A&JUnit;GHK_HK_TS
+;A&JUnit;GHK_IC_IC
+;A&JUnit;GRY_NZ_AG
+;A&JUnit;GSF_EX_AC
+;A&JUnit;GSF_EX_SE
+;A&JUnit;GSF_EX_TS
+;A&JUnit;GSF_IC_IC
+;A&JUnit;GUS_CA_AC
+;A&JUnit;GUS_CA_CC
+;A&JUnit;GUS_CA_SE
+;A&JUnit;GUS_CA_TS
+;A&JUnit;GUS_EX_AC
+;A&JUnit;GUS_EX_AG
+;A&JUnit;GUS_EX_CC
+;A&JUnit;GUS_EX_RP
+;A&JUnit;GUS_EX_SE
+;A&JUnit;GUS_EX_TS
+;A&JUnit;GUS_IC_IC
+;A&JUnit;GUS_US_AC
+;A&JUnit;GUS_US_AG
+;A&JUnit;GUS_US_CC
+;A&JUnit;GUS_US_RP
+;A&JUnit;GUS_US_SE
+;A&JUnit;GUS_US_TS
+;A&JUnit;GZA_EX_AC
+;A&JUnit;GZA_EX_AG
+;A&JUnit;GZA_EX_RP
+;A&JUnit;GZA_EX_SE
+;A&JUnit;GZA_EX_TS
+;A&JUnit;GZA_IC_IC
+;A&JUnit;GZA_ZA_AC
+;A&JUnit;GZA_ZA_AG
+;A&JUnit;GZA_ZA_RP
+;A&JUnit;GZA_ZA_SE
+;A&JUnit;GZA_ZA_TS
+;A&JUnit;PAM_EX_AC
+;A&JUnit;PAM_EX_AG
+;A&JUnit;PAM_EX_EL
+;A&JUnit;PAM_EX_EN
+;A&JUnit;PAM_EX_PM
+;A&JUnit;PAM_EX_SE
+;A&JUnit;PAM_EX_TS
+;A&JUnit;PAM_IC_AG
+;A&JUnit;PAM_IC_IC
+;A&JUnit;PAM_IC_SE
+;A&JUnit;PAM_US_AC
+;A&JUnit;PAM_US_AG
+;A&JUnit;PAM_US_EL
+;A&JUnit;PAM_US_EN
+;A&JUnit;PAM_US_PM
+;A&JUnit;PAM_US_SE
+;A&JUnit;PAM_US_TS
+;A&JUnit;PEC_AU_CM
+;A&JUnit;PEC_AU_FP
+;A&JUnit;PEC_AU_PC
+;A&JUnit;PEC_AU_RP
+;A&JUnit;PEC_AU_SC
+;A&JUnit;PEC_AU_SP
+;A&JUnit;PEC_AU_VS
+;A&JUnit;PEC_EX_CM
+;A&JUnit;PEC_EX_FP
+;A&JUnit;PEC_EX_PC
+;A&JUnit;PEC_EX_RP
+;A&JUnit;PEC_EX_SC
+;A&JUnit;PEC_EX_SP
+;A&JUnit;PEC_EX_VS
+;A&JUnit;PEC_IC_CM
+;A&JUnit;PEC_IC_IC
+;A&JUnit;PEC_NZ_CM
+;A&JUnit;PEC_NZ_FP
+;A&JUnit;PEC_NZ_PC
+;A&JUnit;PEC_NZ_RP
+;A&JUnit;PEC_NZ_SC
+;A&JUnit;PEC_NZ_SP
+;A&JUnit;PEC_NZ_VS
+;A&JUnit;PEU_EX_AG
+;A&JUnit;PEU_EX_EL
+;A&JUnit;PEU_EX_EN
+;A&JUnit;PEU_EX_SE
+;A&JUnit;PEU_EX_TS
+;A&JUnit;PEU_IC_AG
+;A&JUnit;PEU_IC_IC
+;A&JUnit;PEU_IC_SE
+;A&JUnit;PEU_UK_AG
+;A&JUnit;PEU_UK_EL
+;A&JUnit;PEU_UK_EN
+;A&JUnit;PEU_UK_SE
+;A&JUnit;PEU_UK_TS
+;A&JUnit;PZA_EX_AG
+;A&JUnit;PZA_EX_EL
+;A&JUnit;PZA_EX_IC
+;A&JUnit;PZA_EX_PM
+;A&JUnit;PZA_EX_SE
+;A&JUnit;PZA_EX_TS
+;A&JUnit;PZA_IC_AG
+;A&JUnit;PZA_IC_IC
+;A&JUnit;PZA_IC_SE
+;A&JUnit;PZA_ZA_AG
+;A&JUnit;PZA_ZA_EL
+;A&JUnit;PZA_ZA_IC
+;A&JUnit;PZA_ZA_PM
+;A&JUnit;PZA_ZA_SE
+;A&JUnit;PZA_ZA_TS
+;A&JUnit;SUN_EX_EL
+;A&JUnit;SUN_EX_EN
+;A&JUnit;SUN_IC_IC
+;A&JUnit;SUN_NZ_EL
+;A&JUnit;SUN_NZ_EN
+
+INSERT_UPDATE B2BCustomer;description;uid[unique=true];originalUid;email;name;title(code);groups(uid);permissionGroups(uid);sessionCurrency(isocode)[default='AUD'];password[default=$defaultPassword];
+;Customer A;mark.deaville@chubb.com.au;mark.deaville@chubb.com.au;mark.deaville@chubb.com.au;Mark Deaville;mr;A&JUnit, b2bcustomergroup,standardPermissions;;;;;;
+;Customer B;david.tarento@chubb.com.au;david.tarento@chubb.com.au;david.tarento@chubb.com.au;David Tarento;mr;A&JUnit, b2bcustomergroup,standardPermissions;;;;;;
+;Customer C;rick.reed@chubb.com;rick.reed@chubb.com;rick.reed@chubb.com;Rick Reed;mr;A&JUnit, b2bcustomergroup,standardPermissions;;;;;;
+
+#
+# Add restriction on salesemployeegroup. salesemployeegroup shall only see the employees from salesemployeegroup.
+#
+INSERT_UPDATE SearchRestriction;code[unique=true];name[lang=en];query;principal(UID);restrictedType(code);active;generate
+;salesemployeegroupEmployeesVisibility;A member of salesemployeegroup shall only see the employees from salesemployeegroup;EXISTS ({{ SELECT {pk} FROM {PrincipalGroupRelation as pgr LEFT JOIN UserGroup as ug ON {pgr:target}={ug:pk}} WHERE {pgr:source}={item:pk} AND {ug:uid} IN ('salesemployeegroup', 'salesadmingroup', 'salesmanagergroup', 'salesapprovergroup')}});salesemployeegroup;Employee;true;true
+
+#
+# Add restriction on salesemployeegroup. salesemployeegroup shall only see the addresses where their owners are Org Units.
+#
+INSERT_UPDATE SearchRestriction;code[unique=true];name[lang=en];query;principal(UID);restrictedType(code);active;generate
+;addressesVisibilitySalesUnits;A sales employee shall only see addresses where the owner is of type OrgUnit and has supplier flag set to TRUE;EXISTS ({{ select {adr.pk} from {Address as adr JOIN OrgUnit as org on {org.pk}={adr.owner} JOIN Type as type on {type.pk}={org.itemtype}} WHERE {type.code}='OrgUnit' AND {org.supplier}=TRUE AND {adr.pk}={item.pk} }});salesemployeegroup;Address;true;true
+
+#
+# Restrict quotes so that sales employees can only see the latest versions of quotes that are linked to their sales units.
+#
+INSERT_UPDATE SearchRestriction;code[unique=true];name[lang=en];query;principal(UID);restrictedType(code);active;generate
+;salesemployeegroupQuotesMaxVersionRestriction;A sales employee can only see the latest version of a quote with a given code;EXISTS ( SELECT CODE_MAX_VERSION.code, CODE_MAX_VERSION.maxVersion FROM ({{ SELECT {code} as code, max({version}) as maxVersion FROM {Quote} GROUP BY {code} }}) CODE_MAX_VERSION WHERE {item:code} = CODE_MAX_VERSION.code AND {item:version} = CODE_MAX_VERSION.maxVersion );salesemployeegroup;Quote;true;true
+
+#
+# Restrict organizational units for member of salesemployeegroup so that they can only see units in their branch of the organization.
+#
+INSERT_UPDATE SearchRestriction;code[unique=true];name[lang=en];query;principal(UID);restrictedType(code);active;generate
+;salesemployeegroupOrgUnitVisibility;A member of salesemployeegroup shall only see sales units in their branch;NOT EXISTS({{ SELECT {unit:pk} FROM {OrgUnit! as unit} WHERE {unit:pk}={item:pk} }}) OR EXISTS({{ SELECT {unit:pk} FROM { Employee as empl JOIN PrincipalGroupRelation as rel ON {empl:pk} = {rel:source} JOIN OrgUnit as unit ON {unit:PK} = {rel:target} } WHERE {empl:pk} = (?session.user) AND {item:path} LIKE CONCAT({unit:path},'%') }});salesemployeegroup;OrgUnit;true;true
+
+####################### Master User Group Impex End #######################################

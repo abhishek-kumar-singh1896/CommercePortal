@@ -133,12 +133,12 @@
                         <c:choose>
                             <c:when test="${ycommerce:isQuoteUserSalesRep()}">
                                 <formElement:formInputBox idKey="js-quote-description"
-                                                          labelKey="text.quote.description.label" path="description"
+                                                          labelKey="text.quote.OrderRequiredBy.label" path="description"
                                                           inputCSS="text" mandatory="false" disabled="true" maxlength="255"/>
                             </c:when>
                             <c:otherwise>
                                 <formElement:formInputBox idKey="js-quote-description"
-                                                          labelKey="text.quote.description.label" path="description"
+                                                          labelKey="text.quote.OrderRequiredBy.label" path="description"
                                                           inputCSS="text" mandatory="false" maxlength="255"/>
                             </c:otherwise>
                         </c:choose>

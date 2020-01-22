@@ -48,9 +48,9 @@ INSERT_UPDATE Trigger;cronJob(code)[unique=true];second[default=0];minute[defaul
 
 #Cron Impex for CSV import 
 INSERT_UPDATE B2BAdvanceCSVImportCronJob;code[unique=true];job(code);sessionLanguage(isoCode)[default=en];baseStore(uid);importType
-;b2badvanceProductImportCronJob;b2bAdvanceProductImportJob;;powertools;baseProduct
-;b2badvanceVariantProductImportCronJob;b2bAdvanceVariantProductImportJob;;powertools;variantProduct
-;b2badvanceInvoiceImportCronJob;b2bAdvanceInvoiceImportJob;;powertools;invoice
-;b2badvancePriceImportCronJob;b2bAdvancePriceImportJob;;powertools;priceRow
-;b2badvanceDiscountImportCronJob;b2bAdvanceDiscountImportJob;;powertools;discountRow
-;b2badvanceStockImportCronJob;b2bAdvanceStockImportJob;;powertools;stockLevel
+#;b2badvanceProductImportCronJob;b2bAdvanceProductImportJob;;powertools;baseProduct
+#;b2badvanceVariantProductImportCronJob;b2bAdvanceVariantProductImportJob;;powertools;variantProduct
+#;b2badvanceInvoiceImportCronJob;b2bAdvanceInvoiceImportJob;;powertools;invoice
+#;b2badvancePriceImportCronJob;b2bAdvancePriceImportJob;;powertools;priceRow
+#;b2badvanceDiscountImportCronJob;b2bAdvanceDiscountImportJob;;powertools;discountRow
+#;b2badvanceStockImportCronJob;b2bAdvanceStockImportJob;;powertools;stockLevel

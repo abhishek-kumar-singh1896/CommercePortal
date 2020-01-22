@@ -51,6 +51,7 @@ public class GallagherB2BInitialDataSystemSetup extends AbstractSystemSetup
 	private GallagherB2BinitialdataSampleDataImportService sampleDataImportService;
 
 	public static final String SECURITY_B2B = "securityB2B";
+	public static final String SECURITY_B2B_NZ = "securityB2BNZ";
 
 	/**
 	 * Generates the Dropdown and Multi-select boxes for the project data import
@@ -61,7 +62,7 @@ public class GallagherB2BInitialDataSystemSetup extends AbstractSystemSetup
 	{
 		final List<SystemSetupParameter> params = new ArrayList<SystemSetupParameter>();
 
-		params.add(createBooleanSystemSetupParameter(IMPORT_CORE_DATA, "Import Core Dataxxx", true));
+		params.add(createBooleanSystemSetupParameter(IMPORT_CORE_DATA, "Import Core Data", true));
 		params.add(createBooleanSystemSetupParameter(IMPORT_SAMPLE_DATA, "Import Sample Data", true));
 		params.add(createBooleanSystemSetupParameter(ACTIVATE_SOLR_CRON_JOBS, "Activate Solr Cron Jobs", true));
 		params.add(createBooleanSystemSetupParameter("NEW OPTION", "New Option", true));
@@ -115,7 +116,7 @@ public class GallagherB2BInitialDataSystemSetup extends AbstractSystemSetup
 		final ImportData securityB2BImportData = new ImportData();
 		securityB2BImportData.setProductCatalogName(SECURITY_B2B);
 		securityB2BImportData.setContentCatalogNames(Arrays.asList(SECURITY_B2B));
-		securityB2BImportData.setStoreNames(Arrays.asList(SECURITY_B2B));
+		securityB2BImportData.setStoreNames(Arrays.asList(SECURITY_B2B_NZ));
 		importData.add(securityB2BImportData);
 
 		getCoreDataImportService().execute(this, context, importData);

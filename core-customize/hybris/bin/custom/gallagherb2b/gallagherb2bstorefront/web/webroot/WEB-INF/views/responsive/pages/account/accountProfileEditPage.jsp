@@ -20,11 +20,11 @@
             <div class="account-section-form">
                 <form:form action="update-profile" method="post" modelAttribute="updateProfileForm">
 
-                    <formElement:formSelectBox idKey="profile.title" labelKey="profile.title" path="titleCode" mandatory="true" skipBlank="false" skipBlankMessageKey="form.select.empty" items="${titleData}" selectCSSClass="form-control"/>
-                    <formElement:formInputBox idKey="profile.firstName" labelKey="profile.firstName" path="firstName" inputCSS="text" mandatory="true"/>
-                    <formElement:formInputBox idKey="profile.lastName" labelKey="profile.lastName" path="lastName" inputCSS="text" mandatory="true"/>
+                    <formElement:formSelectBox idKey="profile.title" labelKey="profile.title" path="titleCode" mandatory="true" skipBlank="false" skipBlankMessageKey="form.select.empty" items="${titleData}" selectCSSClass="form-control" disabled="true"/>
+                    <formElement:formInputBox idKey="profile.firstName" labelKey="profile.firstName" path="firstName" inputCSS="text" mandatory="true" disabled="true"/>
+                    <formElement:formInputBox idKey="profile.lastName" labelKey="profile.lastName" path="lastName" inputCSS="text" mandatory="true" disabled="true"/>
 
-                    <div class="row">
+                    <%-- <div class="row">
                         <div class="col-sm-6 col-sm-push-6">
                             <div class="accountActions">
                                 <ycommerce:testId code="personalDetails_savePersonalDetails_button">
@@ -43,7 +43,7 @@
                                 </ycommerce:testId>
                             </div>
                         </div>
-                    </div>
+                    </div> --%>
                 </form:form>
             </div>
         </div>

@@ -501,3 +501,21 @@ INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique
 # CMS Footer Navigation Component
 UPDATE FooterNavigationComponent;$contentCV[unique=true];uid[unique=true];notice[lang=en][translator=de.hybris.platform.acceleratorservices.dataimport.batch.converter.CopyrightTranslator,dateFormat=yyyy]
 ;;FooterNavigationComponent;"Copyright © {0} SAP SE or an SAP affiliate company. All rights reserved."
+
+###### Gallagher Navigation Footer Component Refactor Start ######
+
+# Gallagher Footer Navigation Component
+INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];notice[lang=en]
+;;GallagherFooterNavigationComponent;"<br><p>© Gallagher Group Limited 2017. All right reserved.</p>"
+
+INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];noticeHeader[lang=en]
+;;GallagherFooterNavigationComponent;"<p>Other Gallagher divisions</p>"
+
+##Footer Links 
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
+;;PrivacyLink;"Privacy"
+;;DisclaimerLink;"Disclaimer"
+;;SiteMapLink;"Site Map"
+
+
+###### Gallagher Navigation Footer Component Refactor End ######

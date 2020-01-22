@@ -14,12 +14,10 @@
      <context:annotation-config/>
 
 	<!-- Spring Integration -->
-	<import resource="classpath:/gallaghercore/integration/hot-folder-store-electronics-spring.xml"/>
-	<import resource="classpath:/gallaghercore/integration/hot-folder-store-apparel-spring.xml"/>
 	<import resource="classpath:/gallaghercore/integration/hot-folder-common-spring.xml"/>
 
 	<!-- SystemSetup for the GallagherCore -->
-	<bean id="acceleratorCoreSystemSetup" class="com.gallagher.core.setup.CoreSystemSetup"
+	<bean id="gallagherCoreSystemSetup" class="com.gallagher.core.setup.CoreSystemSetup"
 	       parent="abstractCoreSystemSetup"/>
 
 	<bean id="amB2CCategorySource" parent="abstractCategorySource">
@@ -44,6 +42,11 @@
 		<property name="categorySource" ref="amB2CBrandCategorySource"/>
 	</bean>
 	
+	<bean id="amB2CPointOfServiceFacetDisplayNameProvider"
+		class="com.enterprisewide.b2badvance.core.search.solrfacetsearch.provider.impl.PointOfServiceFacetDisplayNameProvider">
+		<property name="pointOfServiceService" ref="pointOfServiceService" />
+	</bean>
+	
 	<!--Url Encoder Service -->
 	<alias name="gallaherUrlEncoderService" alias="urlEncoderService"/>
 	<bean id="gallaherUrlEncoderService" parent="defaultUrlEncoderService">
@@ -58,5 +61,9 @@
 	<bean id="gallaherCountryAttributeManager"
 	      class="com.gallagher.core.urlencoder.attributes.impl.GallagherCountryAttributeManager"
 	      parent="urlEncodingAttributeManager"/>
+	
+	<alias name="gallagherCoreDataImportService" alias="coreDataImportService" />
+	<bean id="gallagherCoreDataImportService" class="com.gallagher.core.dataimport.impl.GallagherCoreDataImportServiceImpl" parent="defaultCoreDataImportService" />
+	
 
 </beans>

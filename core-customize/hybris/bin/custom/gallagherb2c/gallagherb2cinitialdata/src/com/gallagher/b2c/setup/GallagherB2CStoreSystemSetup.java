@@ -27,6 +27,8 @@ import com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants;
 public class GallagherB2CStoreSystemSetup extends AbstractSystemSetup
 {
 	public static final String AM_B2C = "amB2C";
+	public static final String AM_B2C_CA = "amB2CUS";
+	public static final String AM_B2C_US = "amB2CCA";
 
 	private static final String IMPORT_CORE_DATA = "importCoreData";
 	private static final String IMPORT_SAMPLE_DATA = "importSampleData";
@@ -62,7 +64,7 @@ public class GallagherB2CStoreSystemSetup extends AbstractSystemSetup
 		final ImportData amB2CImportData = new ImportData();
 		amB2CImportData.setProductCatalogName(AM_B2C);
 		amB2CImportData.setContentCatalogNames(Arrays.asList(AM_B2C));
-		amB2CImportData.setStoreNames(Arrays.asList(AM_B2C));
+		amB2CImportData.setStoreNames(Arrays.asList(AM_B2C_US, AM_B2C_CA));
 		importData.add(amB2CImportData);
 
 		getCoreDataImportService().execute(this, context, importData);
