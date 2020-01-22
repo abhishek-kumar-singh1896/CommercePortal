@@ -29,18 +29,17 @@
         	<wz:handler handlerId="verifyCustomerHandler1" handlerBean="verifyCustomerHandler">
             </wz:handler>
             <wz:prepare id="custPrepare">
-                <wz:initialize property="newCust" template-bean="createCustomerForm"/>
+                <wz:initialize property="newCust" template-bean="ctx.TYPE_CODE"/>
             </wz:prepare>
             <wz:step id="step1" label="create.customer.verification.label" sublabel="create.customer.verification.sublabel">
                 <wz:content id="step1.content">
                     <wz:property-list root="newCust" merge-mode="REPLACE">
-                        <wz:property qualifier="email" type="java.lang.String" label="create.customer.verification.email"/>
+                        <wz:property qualifier="uid" type="java.lang.String" label="create.customer.verification.email"/>
                     </wz:property-list>
                 </wz:content>
                 <wz:navigation id="step1.navigation" merge-mode="REPLACE">
                     <wz:cancel/>
                     <wz:custom label="Verify" composedHandler="verifyCustomerHandler1"/>
-                    <wz:next/>
                 </wz:navigation>
             </wz:step>
             <wz:step id="step2" label="create.customer.essential.label" sublabel="create.customer.essential.sublabel">
@@ -93,5 +92,11 @@
             </wz:step>
         </wz:flow>
     </context>
-
+	<context component="notification-area">
+		<na:notification-area>
+			<na:notifications eventType="duplicateCustomer" level="FAILURE">
+				<na:message>duplicate.customer.failure</na:message>
+			</na:notifications>
+		</na:notification-area>
+	</context>
 </config>
