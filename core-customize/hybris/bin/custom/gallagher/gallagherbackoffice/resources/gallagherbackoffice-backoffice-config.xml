@@ -31,7 +31,7 @@
         	<wz:handler handlerId="verifyCustomerHandler1" handlerBean="verifyCustomerHandler">
             </wz:handler>
             <wz:prepare id="custPrepare">
-                <wz:initialize property="newCust" template-bean="ctx.TYPE_CODE"/>
+                <wz:initialize property="newCust" type="Customer"/>
             </wz:prepare>
             <wz:step id="step1" label="create.customer.verification.label" sublabel="create.customer.verification.sublabel">
                 <wz:content id="step1.content">

@@ -13,7 +13,6 @@ import javax.annotation.Resource;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.log4j.Logger;
 
-import com.hybris.backoffice.excel.ExcelConstants;
 import com.hybris.cockpitng.config.jaxb.wizard.CustomType;
 import com.hybris.cockpitng.util.notifications.NotificationService;
 import com.hybris.cockpitng.util.notifications.event.NotificationEvent;
@@ -37,19 +36,17 @@ public class VerifyCustomerHandler implements FlowActionHandler
 	public void perform(final CustomType customType, final FlowActionHandlerAdapter adapter, final Map<String, String> parameters)
 	{
 		/* final CreateCustomerForm cc = */
-		final String email = adapter.getWidgetInstanceManager().getModel().getValue("newCust.uid", String.class);
+		final String email = adapter.getWidgetInstanceManager().getModel().getValue("newCust.email", String.class);
 
 		final ConfigurableFlowController controller = (ConfigurableFlowController) adapter.getWidgetInstanceManager()
 				.getWidgetslot().getAttribute("widgetController");
-		adapter.done();
 
 		final List<CustomerModel> existingCustomers = getExistingCustomerFromC4C(email);
 
 		// This if needs to be removed once correct C4C endpoint connected
 		if (email.equals("vikram.bishnoi@nagarro.com"))
 		{
-			notificationService.notifyUser(ExcelConstants.NOTIFICATION_SOURCE_EXCEL_IMPORT,
-					ExcelConstants.NOTIFICATION_EVENT_TYPE_MISSING_EXCEL_FILE, NotificationEvent.Level.FAILURE);
+			notificationService.notifyUser((String) null, "duplicateCustomer", NotificationEvent.Level.FAILURE);
 		}
 		else if (CollectionUtils.isEmpty(existingCustomers) || existingCustomers.size() == 1)
 		{
