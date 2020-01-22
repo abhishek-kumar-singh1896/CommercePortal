@@ -36,7 +36,7 @@ public class VerifyCustomerHandler implements FlowActionHandler
 	public void perform(final CustomType customType, final FlowActionHandlerAdapter adapter, final Map<String, String> parameters)
 	{
 		/* final CreateCustomerForm cc = */
-		final String email = adapter.getWidgetInstanceManager().getModel().getValue("newCust.email", String.class);
+		final String email = adapter.getWidgetInstanceManager().getModel().getValue("newCust.uid", String.class);
 
 		final ConfigurableFlowController controller = (ConfigurableFlowController) adapter.getWidgetInstanceManager()
 				.getWidgetslot().getAttribute("widgetController");
@@ -44,7 +44,7 @@ public class VerifyCustomerHandler implements FlowActionHandler
 		final List<CustomerModel> existingCustomers = getExistingCustomerFromC4C(email);
 
 		// This if needs to be removed once correct C4C endpoint connected
-		if (email.equals("vikram.bishnoi@nagarro.com"))
+		if ("vikram.bishnoi@nagarro.com".equals(email))
 		{
 			notificationService.notifyUser((String) null, "duplicateCustomer", NotificationEvent.Level.FAILURE);
 		}
