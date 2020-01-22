@@ -71,9 +71,9 @@
 		</property>
 	</bean>
 	
-	<security:authentication-manager id="b2bAcceleratorAuthenticationManager">
-		<security:authentication-provider ref="b2bAcceleratorAuthenticationProvider"/>
-	</security:authentication-manager>
+<!-- 	<security:authentication-manager id="b2bAcceleratorAuthenticationManager"> -->
+<!-- 		<security:authentication-provider ref="b2bAcceleratorAuthenticationProvider"/> -->
+<!-- 	</security:authentication-manager> -->
 	
 	<bean id="b2bAcceleratorAuthenticationProvider" parent="abstractAcceleratorAuthenticationProvider"
 		  class="com.enterprisewide.b2badvanceacceleratoraddon.security.B2BAcceleratorAuthenticationProvider">
