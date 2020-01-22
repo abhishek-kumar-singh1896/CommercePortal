@@ -10487,7 +10487,7 @@ fieldset[disabled] .btn-primary.active {
   float: left !important;
 }
 .rating .rating-stars span.active {
-  color: #0068b3;
+  color: #ff8400;
 }
 .rating.rating-set .rating-stars {
   cursor: pointer;
