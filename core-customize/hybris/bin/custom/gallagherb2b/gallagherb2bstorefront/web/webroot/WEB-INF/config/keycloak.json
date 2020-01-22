@@ -1,8 +1,0 @@
-{
-  "realm": "Gallagher",
-  "auth-server-url": "http://powertools.local:8080/auth/",
-  "ssl-required": "none",
-  "resource": "Gallagher-Storefront",
-  "public-client": true,
-  "confidential-port": 0
-}
