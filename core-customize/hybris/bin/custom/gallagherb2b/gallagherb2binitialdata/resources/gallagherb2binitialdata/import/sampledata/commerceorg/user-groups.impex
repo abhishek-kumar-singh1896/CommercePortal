@@ -115,17 +115,6 @@ INSERT_UPDATE B2BUserGroup;uid[unique=true];name;unit(uid);permissions(code,unit
 ;enhancedPermissions;Enhanced Permissions;Pronto;Pronto 12K AUD ORDER:Pronto,Pronto 15K AUD MONTH:Pronto;
 ;commonPermissions;Common Permissions;Pronto;Pronto 6K AUD ORDER:Pronto,Pronto 12K AUD MONTH:Pronto;
 
-INSERT_UPDATE B2BCustomer;description;uid[unique=true];email;name;title(code);groups(uid);permissionGroups(uid);sessionCurrency(isocode)[default='AUD'];password[default=$defaultPassword]
-;Admin A;linda.wolf@pronto-hw.com;linda.wolf@pronto-hw.com;Linda Wolf;ms;Pronto, b2badmingroup;
-;Approver A;hanna.schmidt@pronto-hw.com;hanna.schmidt@pronto-hw.com;Hanna Schmidt;ms;Pronto, b2bapprovergroup;
-;Approver B;james.bell@pronto-hw.com;james.bell@pronto-hw.com;James Bell;mr;Pronto Services, b2bapprovergroup;
-;Customer A;mark.rivers@pronto-hw.com;mark.rivers@pronto-hw.com;Mark Rivers;mr;Pronto Goods, b2bcustomergroup,enhancedPermissions;;
-;Customer B;mingmei.wang@pronto-hw.com;mingmei.wang@pronto-hw.com;Mingmei Wang;ms;Pronto Goods, b2bcustomergroup, commonPermissions;;
-;Customer C;william.hunter@pronto-hw.com;william.hunter@pronto-hw.com;William Hunter;mr;Pronto Services, b2bcustomergroup, enhancedPermissions;
-;Customer D;gi.sun@pronto-hw.com;gi.sun@pronto-hw.com;Gi Sun;mr;Pronto Services, b2bcustomergroup, commonPermissions;;
-;Manager A;akiro.nakamura@pronto-hw.com;akiro.nakamura@pronto-hw.com;Akiro Nakamura;mr;Pronto, b2bmanagergroup;
-;Manager B;anil.gupta@pronto-hw.com;anil.gupta@pronto-hw.com;Anil Gupta;mr;Pronto Goods, b2bmanagergroup;
-
 INSERT_UPDATE B2BBudget;code[unique=true];Unit(uid);budget;currency(isocode)[allownull=true];dateRange[dateformat=dd.MM.yyyy hh:mm:ss,allownull=true];name[lang=en];
 ;30K AUD/MONTH;Pronto;30000;AUD;01.01.2010 00:00:00,12.31.2021 12:59:59;30K AUD/MONTH;
 ;20K AUD/MONTH;Pronto;20000;AUD;01.01.2010 00:00:00,12.31.2021 12:59:59;20K AUD/MONTH;
@@ -148,10 +137,6 @@ INSERT_UPDATE B2BOrderThresholdTimespanPermission;code[unique=true];Unit(uid);th
 UPDATE B2BUnit;uid[unique=true];creditLimit(code);accountManager(uid);approvers(uid)
 ;Pronto;Monthly30KAlert3K;acctmgrd;hanna.schmidt@pronto-hw.com;
 ;Pronto Services;;;james.bell@pronto-hw.com;
-
-UPDATE B2BCustomer;uid[unique=true];permissions(code,unit(uid));
-;hanna.schmidt@pronto-hw.com;Pronto Unlimited Threshold Timespan:Pronto,Pronto 10K AUD ORDER:Pronto;
-;james.bell@pronto-hw.com;Pronto 5K AUD ORDER:Pronto;
 
 ###################################### Master user group impex start #####################################
 
