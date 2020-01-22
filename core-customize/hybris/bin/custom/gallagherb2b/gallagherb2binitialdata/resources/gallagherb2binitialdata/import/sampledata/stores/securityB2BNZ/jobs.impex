@@ -16,7 +16,7 @@ $googleUserName=setgoogleusername
 $googlePassword=setgooglepassword
 
 
-INSERT ExportDataCronJob;code[unique=true];job(code);baseStore(uid);cmsSite(uid);language(isocode);currency(isocode);user(uid);thirdPartyHost;thirdPartyUsername;thirdPartyPassword;dataGenerationPipeline;sessionLanguage(isocode)
+INSERT_UPDATE ExportDataCronJob;code[unique=true];job(code);baseStore(uid);cmsSite(uid);language(isocode);currency(isocode);user(uid);thirdPartyHost;thirdPartyUsername;thirdPartyPassword;dataGenerationPipeline;sessionLanguage(isocode)
 "#% beforeEach:
 import de.hybris.platform.core.Registry;
 import de.hybris.platform.acceleratorservices.model.export.ExportDataCronJobModel;
@@ -34,10 +34,10 @@ if (exportDataCronJob != null)
 {
     line.clear();
 }"
-;googleLocationsSecurityB2B;exportDataJobPerformable;$storeUid;$storeUid;$defaultLanguage;$defaultCurrency;anonymous;$googleHost;$googleUserName;$googlePassword;exportGooglePosPipeline;$defaultLanguage
-;googleProductsSecurityB2B;exportDataJobPerformable;$storeUid;$storeUid;$defaultLanguage;$defaultCurrency;anonymous;$googleHost;$googleUserName;$googlePassword;exportGoogleProductPipeline;$defaultLanguage
+;googleLocationsSecurityB2B;exportDataJobPerformable;$storeUidNZ;$storeUidNZ;$defaultLanguage;$defaultCurrency;anonymous;$googleHost;$googleUserName;$googlePassword;exportGooglePosPipeline;$defaultLanguage
+;googleProductsSecurityB2B;exportDataJobPerformable;$storeUidNZ;$storeUidNZ;$defaultLanguage;$defaultCurrency;anonymous;$googleHost;$googleUserName;$googlePassword;exportGoogleProductPipeline;$defaultLanguage
 
-INSERT CronJob;code[unique=true];job(code);baseStore(uid);cmsSite(uid);sessionLanguage(isocode);sessionCurrency(isocode);sessionUser(uid);
+INSERT_UPDATE ExportDataCronJob;code[unique=true];job(code);baseStore(uid);cmsSite(uid);sessionLanguage(isocode);sessionCurrency(isocode);sessionUser(uid);dataGenerationPipeline
 "#% beforeEach:
 import de.hybris.platform.core.Registry;
 import de.hybris.platform.cronjob.model.CronJobModel;
@@ -55,9 +55,9 @@ if (cronJob != null)
 {
     line.clear();
 }"
-;uploadExportsSecurityB2B;uploadDataJobPerformable;$siteUidNZ;$siteUidNZ;$defaultLanguage;$defaultCurrency;anonymous;
-;quoteToExpireSoonJob;quoteToExpireSoonJobPerformable;;;en;;
-;quoteExpiredJob;quoteExpiredJobPerformable;;;en;;
+;uploadExportsSecurityB2B;uploadDataJobPerformable;$storeUidNZ;$storeUidNZ;$defaultLanguage;$defaultCurrency;anonymous;uploadExportPipeline
+;quoteToExpireSoonJob;quoteToExpireSoonJobPerformable;;;en;;;quoteExpirePipeline
+;quoteExpiredJob;quoteExpiredJobPerformable;;;en;;;quoteExpirePipeline
 
 INSERT_UPDATE Trigger;active;second;minute;hour;day;month;year;cronExpression;cronJob(code)[unique=true];relative
 ;true;0;0;0;0;0;0;0 0 6/12 * * ?;quoteToExpireSoonJob;true
