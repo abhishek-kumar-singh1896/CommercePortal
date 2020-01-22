@@ -8,7 +8,7 @@
                 		
         
         <requires-extension name="acceleratorservices"/>
-                		
+        <requires-extension name="gallaghercore" />        		
         
         <coremodule generated="true" manager="com.gallagher.b2c.jalo.Gallagherb2cinitialdataManager" packageroot="com.gallagher.b2c"/>
                 	

@@ -16,6 +16,8 @@
 # * MediaFormats
 # * Tax & Tax Groups
 # * Jobs
+ 
+$baseFormat=B2BADVANCE-BF
 
 # Languages
 INSERT_UPDATE Language;isocode[unique=true];fallbackLanguages(isocode);active[default=true]
@@ -57,10 +59,10 @@ if (warehouse != null)
     line.clear();
 }"
 ;default;Default Warehouse;
-;warehouse_s;Warehouse South;default;
-;warehouse_e;Warehouse East;default;
-;warehouse_w;Warehouse West;default;
-;warehouse_n;Warehouse North;default;
+;am_warehouse_s;Animal Management B2C Warehouse South;default;
+;am_warehouse_e;Animal Management B2C Warehouse East;default;
+;am_warehouse_w;Animal Management B2C Warehouse West;default;
+;am_warehouse_n;Animal Management B2C Warehouse North;default;
 
 # Disable preview for email pages
 UPDATE CMSPageType;code[unique=true];previewDisabled
@@ -84,13 +86,13 @@ INSERT_UPDATE MediaFolder;qualifier[unique=true];path[unique=true]
 
 # Media formats
 INSERT_UPDATE MediaFormat;qualifier[unique=true]
-;1200Wx1200H
-;515Wx515H
-;365Wx246H
-;300Wx300H
-;96Wx96H
-;65Wx65H
-;30Wx30H
+#;1200Wx1200H
+#;515Wx515H
+#;365Wx246H
+#;300Wx300H
+#;96Wx96H
+#;65Wx65H
+#;30Wx30H
 ;mobile
 ;tablet
 ;desktop
@@ -112,3 +114,19 @@ INSERT_UPDATE Tax;code[unique=true];value;currency(isocode)
 INSERT_UPDATE ServicelayerJob;code[unique=true];springId[unique=true]
 ;cartRemovalJob;cartRemovalJob
 ;siteMapMediaJob;siteMapMediaJob
+
+INSERT_UPDATE Unit ; unitType[unique=true] ; code[unique=true] ; name[lang=en] ; conversion ;  ;  ;  
+                   ; EA                    ; EA                ; Each          ; 1         
+                   
+# Conversion Media formats
+INSERT_UPDATE ConversionMediaFormat ; qualifier[unique=true] ; conversion                                                        ; inputFormat(qualifier) ; mimeType ; mediaAddOns(code,catalogVersion(catalog(id),version)) ; conversionStrategy[default=imageMagickMediaConversionStrategy] 
+#qualifier                          ; conversion             ; inputFormat                                                       
+                                    ; $baseFormat            ; -resize 1200x> -colorspace RGB                                    
+                                    ; 1200Wx1200H            ; -resize 1200x> -colorspace RGB                                    ; $baseFormat            
+                                    ; 300Wx300H              ; -resize 300x300 -background white -gravity center -extent 300x300 ; $baseFormat            
+                                    ; 30Wx30H                ; -resize 30x30 -background white -gravity center -extent 30x30     ; $baseFormat            
+                                    ; 365Wx246H              ; -resize 365x246 -background white -gravity center -extent 365x246 ; $baseFormat            
+                                    ; 515Wx515H              ; -resize 515x515 -background white -gravity center -extent 515x515 ; $baseFormat            
+                                    ; 65Wx65H                ; -resize 65x65 -background white -gravity center -extent 65x65     ; $baseFormat            
+                                    ; 96Wx96H                ; -resize 96x96 -background white -gravity center -extent 96x96     ; $baseFormat            
+                                    

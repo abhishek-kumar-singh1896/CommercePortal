@@ -11,5 +11,20 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 		
 	<context:annotation-config/> 
+	
+	<alias name="gallagherVariantOptionDataMediaPopulator" alias="variantOptionDataMediaPopulator"/>
+	<bean id="gallagherVariantOptionDataMediaPopulator"
+		class="com.gallagher.facades.product.converters.populator.variantoptions.GallagherVariantOptionDataMediaPopulator">
+		<property name="acceleratorImageFormatMapping" ref="imageFormatMapping" />
+		<property name="imageFormats">
+			<list>
+				<value>zoom</value>
+				<value>product</value>
+				<value>thumbnail</value>
+				<value>cartIcon</value>
+				<value>styleSwatch</value>
+			</list>
+		</property>
+	</bean>
 
 </beans>

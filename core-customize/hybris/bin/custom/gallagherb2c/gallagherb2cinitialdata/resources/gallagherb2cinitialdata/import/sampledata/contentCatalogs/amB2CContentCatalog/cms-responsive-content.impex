@@ -19,7 +19,8 @@ $productResource=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstant
 
 # CMS Site Settings
 UPDATE CMSSite;uid[unique=true];defaultPreviewCategory(code, $productCV);defaultPreviewProduct(code, $productCV);defaultPreviewCatalog(id)
-;amB2C;575;2053367;$productCatalog
+;amB2CCA;575;2053367;$productCatalog
+;amB2CUS;575;2053367;$productCatalog
 
 # Site Logo
 INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];altText;folder(qualifier)[default='images']
@@ -293,10 +294,10 @@ UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];previewImage(code, 
 ###### Animal Management B2C Homepage ######
 
 INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];altText;&imageRef;folder(qualifier)[default='images']
-;;1934793_1719.jpg;$productResource/images/96Wx96H/1934793_1719.jpg;;"Canon PowerShot A480";1934793_1719.jpg
-;;1992695-Sony-DSC-S930P-11441.jpg;$productResource/images/96Wx96H/1992695-Sony-DSC-S930P-11441.jpg;;"Sony Cybershot DSC-S930";1992695-Sony-DSC-S930P-11441.jpg
-;;1320808-1767.jpg;$productResource/images/96Wx96H/1320808-1767.jpg;;"Kodak EASYSHARE V1253";1320808-1767.jpg
-;;1978440-Sony-DSC-H20-114081.jpg;$productResource/images/96Wx96H/1978440-Sony-DSC-H20-114081.jpg;;"Sony DSC-H20";1978440-Sony-DSC-H20-114081.jpg
+#;;1934793_1719.jpg;$productResource/images/96Wx96H/1934793_1719.jpg;;"Canon PowerShot A480";1934793_1719.jpg
+#;;1992695-Sony-DSC-S930P-11441.jpg;$productResource/images/96Wx96H/1992695-Sony-DSC-S930P-11441.jpg;;"Sony Cybershot DSC-S930";1992695-Sony-DSC-S930P-11441.jpg
+#;;1320808-1767.jpg;$productResource/images/96Wx96H/1320808-1767.jpg;;"Kodak EASYSHARE V1253";1320808-1767.jpg
+#;;1978440-Sony-DSC-H20-114081.jpg;$productResource/images/96Wx96H/1978440-Sony-DSC-H20-114081.jpg;;"Sony DSC-H20";1978440-Sony-DSC-H20-114081.jpg
 
 INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink
 ;;BrandsGaloreBanner;Brands Galore Banner;BrandsGaloreBanner;/Brands/c/brands
@@ -802,9 +803,10 @@ UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(&compo
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid, $contentCV)
 ;;TopContent-cartPage;Top Slot for Cart Page;true;CartComponent
 
-# Site Logo
+# Site Logo (Gallagher logo)
 INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/svg+xml'];altText;folder(qualifier)[default='images']
-;;/images/theme/logo_hybris_responsive.svg;logo_hybris_responsive.svg;$siteResource/images/theme/logo_hybris_responsive.svg;image/svg+xml;hybris Accelerator;
+#;;/images/theme/logo_hybris_responsive.svg;logo_hybris_responsive.svg;$siteResource/images/theme/logo_hybris_responsive.svg;image/svg+xml;hybris Accelerator;
+;;/images/theme/logo_hybris_responsive.svg;gglogo.png;$siteResource/images/theme/gglogo.jpg;;hybris Accelerator;
 
 ###  Responsive Error page #######
 
@@ -1252,3 +1254,139 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 ;FacebookNavNodeEntry;;Facebook Navigation Node Entry;FacebookNavNode;FacebookLink;
 ;TwitterNavNodeEntry;;Twitter Navigation Node Entry;TwitterNavNode;TwitterLink;
 ###### Footer Component Refactor End ######
+
+###### Gallagher Navigation Footer Component Refactor Start ######
+
+#added Gallagher Footer Navigation Component in footer slot
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV)
+;;FooterSlot;GallagherFooterNavigationComponent
+
+##Footer Link navigation component start 
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;children(uid,$contentCV)[mode=append]
+;root;;root;;
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&componentRef);&nodeRef;children(uid, $contentCV)
+;FooterLinkNavNode;;Footer Link Pages;root;;FooterLinkNavNode;PrivacyNavNode,DisclaimerNavNode,SiteMapNavNode
+
+##---- children of Footer Link navigation component ----##
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
+;PrivacyNavNode;;Privacy Page;FooterLinkNavNode;;PrivacyNavNode
+;DisclaimerNavNode;;Disclaimer Page;FooterLinkNavNode;;DisclaimerNavNode
+;SiteMapNavNode;;Site Map Page;FooterLinkNavNode;;SiteMapNavNode
+
+## entries of the above navigation nodes ##
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;PrivacyNavNodeEntry;;Privacy Navigation Node Entry;PrivacyNavNode;PrivacyLink;
+;DisclaimerNavNodeEntry;;Disclaimer Navigation Node Entry;DisclaimerNavNode;DisclaimerLink;
+;SiteMapNavNodeEntry;;Site Map Navigation Node Entry;SiteMapNavNode;SiteMapLink;
+
+## Links of the above navigation node entries ##
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];
+;;PrivacyLink;Privacy Policy Link;"#";PrivacyLink;PrivacyLink;;;
+;;DisclaimerLink;Terms of Use Link;"#";DisclaimerLink;DisclaimerLink;;;
+;;SiteMapLink;Legal Link;"#";SiteMapLink;SiteMapLink;;;
+
+INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];footerLinkNagivationNode(&nodeRef);&componentRef
+;;GallagherFooterNavigationComponent;FooterLinkNavNode;GallagherFooterNavigationComponent
+
+##Footer Link navigation component End 
+
+## Footer Navigation node start
+
+# the order of children is the same as the display order on the site
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);&nodeRef;children(uid,$contentCV)
+;FooterNavNode;;Footer Pages;root;FooterNavNode;SAPCommerceNavNode,SAPCustomerExperienceNavNode
+
+# children of FooterNavNode #
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef)
+;SAPCommerceNavNode;;SAP Commerce Cloud Pages;SAPCommerceNavNode;AboutSAPCommerceNavNode,FAQNavNode
+;SAPCustomerExperienceNavNode;;SAP Customer Experience Pages;SAPCustomerExperienceNavNode;AboutSAPCustomerExperienceNavNode,ContactUsNavNode
+#;FollowUsNavNode;;Follow Us Pages;FollowUsNavNode;AgileCommerceBlogNavNode,LinkedInNavNode,FacebookNavNode,TwitterNavNode
+
+# children of above navigation nodes #
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef);
+;AboutSAPCommerceNavNode;;About SAP Commerce Cloud Page;AboutSAPCommerceNavNode
+;FAQNavNode;;FAQ Page;FAQNavNode
+;AboutSAPCustomerExperienceNavNode;;About Hybris Page;AboutSAPCustomerExperienceNavNode
+;ContactUsNavNode;;Contact Us Page;ContactUsNavNode
+#;AgileCommerceBlogNavNode;;Agile Commerce Blog Page;AgileCommerceBlogNavNode
+#;LinkedInNavNode;;LinkedIn Page;LinkedInNavNode
+#;FacebookNavNode;;Facebook Page;FacebookNavNode
+#;TwitterNavNode;;Twitter Page;TwitterNavNode
+
+# entries of the above navigation nodes ##
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;AboutSAPCommerceNavNodeEntry;;About SAP Commerce Cloud Navigation Node Entry;AboutSAPCommerceNavNode;AboutSAPCommerceLink;
+;FAQNavNodeEntry;;FAQ Navigation Node Entry;FAQNavNode;FAQLink;
+;AboutSAPCustomerExperienceNavNodeEntry;;About Hybris Navigation Node Entry;AboutSAPCustomerExperienceNavNode;VisitSAPLink;
+;ContactUsNavNodeEntry;;Contact Us Navigation Node Entry;ContactUsNavNode;ContactUsLink;
+#;AgileCommerceBlogNavNodeEntry;;Agile Commerce Blog Navigation Node Entry;AgileCommerceBlogNavNode;AgileCommerceBlogLink;
+#;LinkedInNavNodeEntry;;LinkedIn Navigation Node Entry;LinkedInNavNode;LinkedInLink;
+#;FacebookNavNodeEntry;;Facebook Navigation Node Entry;FacebookNavNode;FacebookLink;
+#;TwitterNavNodeEntry;;Twitter Navigation Node Entry;TwitterNavNode;TwitterLink;
+
+INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];wrapAfter;&componentRef;showLanguageCurrency;navigationNode(&nodeRef)
+;;GallagherFooterNavigationComponent;4;GallagherFooterNavigationComponent;false;FooterNavNode;
+
+###### Footer Component Refactor End ######
+
+# CMS Link Components
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];$category;$product;
+;;AboutSAPCommerceLink;About SAP Commerce Cloud Link;"http://www.cx.sap.com/products/commerce";AboutSAPCommerceLink;AboutSAPCommerceLink;newWindow;;;
+;;DocumentationLink;Documentation Link;"https://help.hybris.com";DocumentationLink;DocumentationLink;newWindow;;;
+;;VisitSAPLink;Visit SAP Link;"http://www.cx.sap.com";VisitSAPLink;VisitSAPLink;newWindow;;;
+;;ContactUsLink;Contact Us Link;"http://www.cx.sap.com/contact";ContactUsLink;ContactUsLink;newWindow;;;
+#;;FacebookLink;Facebook Link;"http://www.facebook.com/sapcx/";FacebookLink;FacebookLink;newWindow;;;
+#;;TwitterLink;Twitter Link;"http://www.twitter.com/SAP_CX";TwitterLink;TwitterLink;newWindow;;;
+#;;AgileCommerceBlogLink;Agile Commerce Blog Link;"http://www.agile-commerce.com/";AgileCommerceBlogLink;AgileCommerceBlogLink;newWindow;;;
+#;;LinkedInLink;Linked In Link;"http://www.linkedin.com/groups/5063400";LinkedInLink;LinkedInLink;newWindow;;;
+;;FAQLink;FAQ Link;/faq;FAQLink;FAQLin;;;;
+;;TermsAndConditionsLink;Terms and Conditions Link;/termsAndConditions;TermsAndConditionsLink;TermsAndConditionsLink;;;;
+
+## Footer Navigation node end
+
+## Social link Navigation start
+
+NSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&componentRef);&nodeRef;children(uid, $contentCV)
+;SocialLinkNavNode;;Social Links;root;;SocialLinkNavNode;LinkedInNavNode,PintrestNavNode,InstagramNode,YoutubeNavNode,FacebookNavNode
+
+##---- level 4. children of SocialLinkNavNode ----##
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
+;LinkedInNavNode;;Linked In Page;SocialLinkNavNode;;LinkedInNavNode
+;PintrestNavNode;;Pintrest Page;SocialLinkNavNode;;PintrestNavNode
+;InstagramNode;;Instagram Page;SocialLinkNavNode;;InstagramNode
+;YoutubeNavNode;;Youtube Page;SocialLinkNavNode;;YoutubeNavNode
+;FacebookNavNode;;Facebook Page;SocialLinkNavNode;;FacebookNavNode
+
+## entries of the above navigation nodes ##
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(GallagherIconLinkComponent.uid,GallagherIconLinkComponent.$contentCV);
+;LinkedInNavNodeEntry;;Linked In Navigation Node Entry;LinkedInNavNode;LinkedInIconLinkComponent
+;PintrestNavNodeEntry;;Pintrest Navigation Node Entry;PintrestNavNode;PintrestIconLinkComponent
+;InstagramNodeEntry;;Instagram Navigation Node Entry;InstagramNode;InstagramIconLinkComponent
+;YoutubeNavNodeEntry;;Youtube Navigation Node Entry;YoutubeNavNode;YoutubeIconLinkComponent
+;FacebookNavNodeEntry;;Facebook Navigation Node Entry;FacebookNavNode;FacebookIconLinkComponent
+
+INSERT_UPDATE GallagherIconLinkComponent;$contentCV[unique=true];uid[unique=true];name;icon(uid, $contentCV);url;&componentRef
+;;LinkedInIconLinkComponent;LinkedIn Icon Link Component;LinkedInIcon;"#";LinkedInIconLinkComponent
+;;PintrestIconLinkComponent;Pintrest Icon Link Component;PintrestIcon;"#";PintrestIconLinkComponent
+;;InstagramIconLinkComponent;Instagram Icon Link Component;InstagramIcon;"#";InstagramIconLinkComponent
+;;YoutubeIconLinkComponent;Youtube Icon Link Component;YoutubeIcon;"#";YoutubeIconLinkComponent
+;;FacebookIconLinkComponent;Facebook Icon Link Component;FacebookIcon;"#";FacebookIconLinkComponent
+
+INSERT_UPDATE GallagherIconComponent;$contentCV[unique=true];uid[unique=true];name;styleClass
+;;LinkedInIcon;LinkedIn Icon;icon--linkedin
+;;PintrestIcon;Pintrest Icon;icon--pintrest
+;;InstagramIcon;Instagram Icon;icon--instagram
+;;YoutubeIcon;Youtube Icon;icon--youtube
+;;FacebookIcon;Facebook Icon;icon--facebook
+
+INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];&componentRef;socialLinkNagivationNode(&nodeRef)
+;;GallagherFooterNavigationComponent;GallagherFooterNavigationComponent;SocialLinkNavNode;
+
+## Social link Navigation end
+
+# site logo
+INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];&componentRef;siteLogo(uid,$contentCV)
+;;GallagherFooterNavigationComponent;GallagherFooterNavigationComponent;SiteLogoComponent
+###### Gallagher Navigation Footer Component Refactor End ######

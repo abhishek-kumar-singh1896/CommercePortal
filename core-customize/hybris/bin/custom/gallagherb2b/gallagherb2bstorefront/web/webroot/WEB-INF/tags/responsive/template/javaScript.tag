@@ -10,6 +10,7 @@
 
 <template:javaScriptVariables/>
 
+<script src="//qasecuritycms.gallagher.com/bundle/beacon"></script>
 <c:choose>
 	<c:when test="${wro4jEnabled}">
 	  	<script type="text/javascript" src="${contextPath}/wro/all_responsive.js"></script>

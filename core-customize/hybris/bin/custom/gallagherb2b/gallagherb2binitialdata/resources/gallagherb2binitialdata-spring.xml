@@ -25,7 +25,7 @@
 		  parent="sampleDataImportService">
 	</bean>
 	<bean id="gallagherb2binitialdataCoreDataImportService" class="com.gallagher.b2b.initialdata.setup.services.dataimport.impl.GallagherB2BinitialdataCoreDataImportService"
-		  parent="coreDataImportService">
+		  parent="gallagherCoreDataImportService">
 	</bean>
 
 	<alias alias="b2bAcceleratorCoreSystemSetup" name="gallagherB2BInitialDataSystemSetup" />

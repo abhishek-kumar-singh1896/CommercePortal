@@ -11,10 +11,11 @@ import de.hybris.platform.core.initialization.SystemSetup.Type;
 import de.hybris.platform.core.initialization.SystemSetupContext;
 import de.hybris.platform.core.initialization.SystemSetupParameter;
 import de.hybris.platform.core.initialization.SystemSetupParameterMethod;
-import com.gallagher.core.constants.GallagherCoreConstants;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.gallagher.core.constants.GallagherCoreConstants;
 
 
 /**
@@ -83,6 +84,9 @@ public class CoreSystemSetup extends AbstractSystemSetup
 		processCockpit(context, importAccessRights, extensionNames, "customersupportbackoffice",
 				"/gallaghercore/import/cockpits/cscockpit/cscockpit-users.impex",
 				"/gallaghercore/import/cockpits/cscockpit/cscockpit-access-rights.impex");
+
+		importImpexFile(context, "/gallaghercore/import/common/essential-data-scpi.impex");
+
 	}
 
 	protected void processCockpit(final SystemSetupContext context, final boolean importAccessRights,
