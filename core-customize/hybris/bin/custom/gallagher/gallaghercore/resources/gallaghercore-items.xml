@@ -8,7 +8,19 @@
     <itemtypes>
 
         <!-- Add your item definitions here -->
-
+			<!-- Add your item definitions here -->
+		<itemtype code="Customer" autocreate="false" generate="false">
+			<description>Extending Customer type with an additional attribute.</description>
+			<attributes>
+				<attribute autocreate="true" generate="true"
+					qualifier="duplicate" type="java.lang.Boolean">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<defaultvalue>java.lang.Boolean.FALSE</defaultvalue>
+					<description>Indicates if customer is duplicate or not</description>
+				</attribute>
+			</attributes>
+		</itemtype>
 
         <!-- TypeGroups are for structure of this file only -->
 

@@ -54,9 +54,9 @@ INSERT_UPDATE Customer;originalUid[unique=true];uid[unique=true];title(code);nam
 ;PromotionUser@test.com;promotionuser@test.com;mr;promotions test user;a test user for order threshold promotions etc;en;GBP;$regulargroup;;user1
 ;PaymentUser@test.com;paymentuser@test.com;mr;payments test user;a test user for payments;en;GBP;$customergroup;;user2
 ;OrderHistoryUser@test.com;orderhistoryuser@test.com;mr;orders test user;a test user for orders;en;GBP;$customergroup;;user3
-;TestUser1@test.com;testuser1@test.com;mr;test user 1;test user;en;GBP;$customergroup;;user4
-;TestUser2@test.com;testuser2@test.com;mr;test user 2;test user;de;USD;$customergroup;;user5
-;TestUser3@test.com;testuser3@test.com;mr;test user 3;test user;ja;JPY;$customergroup;;user6
+#;TestUser1@test.com;testuser1@test.com;mr;test user 1;test user;en;GBP;$customergroup;;user4
+#;TestUser2@test.com;testuser2@test.com;mr;test user 2;test user;de;USD;$customergroup;;user5
+#;TestUser3@test.com;testuser3@test.com;mr;test user 3;test user;ja;JPY;$customergroup;;user6
 ;EnterpriseUser@test.com;enterpriseuser@test.com;mr;enterprise test user;an enterprise test user for orders;en;USD;$customergroup;;user7
 
 # Sample customer addresses
@@ -64,9 +64,9 @@ INSERT_UPDATE Address;&addId;owner(&userId)[unique=true];streetname[unique=true]
 ;addr1;user1;10 Yamashita-cho;231-8520;false;Yokohama;JP;;true;true;true;true;Promotion;User;PromotionUser@test.com;MALE;;+48 32 44 00 800;mr;;Hybris;;
 ;addr2;user2;49 Landsberger Allee;10249;false;Berlin;DE;;true;true;true;true;Payment;User;PaymentUser@test.com;MALE;;+77364758;mr;;Hybris;;
 ;addr3;user3;21 Trumpington Street;CB2 1RB;false;Cambridge;GB;;true;true;true;true;OrderHistory;User;OrderHistoryUser@test.com;MALE;;+60616707;mr;;Hybris;;
-;addr4;user4;11 Test Street;AB1 CD2;false;Edinburgh;GB;;true;true;true;true;Test1;User;TestUser1@test.com;MALE;;+11 1234567;mr;;Hybris;;
-;addr5;user5;22 Test Street;AB1 CD2;false;Munich;DE;;true;true;true;true;Test2;User;TestUser2@test.com;MALE;;+22 1234567;mr;;Hybris;;
-;addr6;user6;33 Test Street;AB1 CD2;false;Tokyo;JP;;true;true;true;true;Test3;User;TestUser3@test.com;MALE;;+33 1234567;mr;;Hybris;;
+#;addr4;user4;11 Test Street;AB1 CD2;false;Edinburgh;GB;;true;true;true;true;Test1;User;TestUser1@test.com;MALE;;+11 1234567;mr;;Hybris;;
+#;addr5;user5;22 Test Street;AB1 CD2;false;Munich;DE;;true;true;true;true;Test2;User;TestUser2@test.com;MALE;;+22 1234567;mr;;Hybris;;
+#;addr6;user6;33 Test Street;AB1 CD2;false;Tokyo;JP;;true;true;true;true;Test3;User;TestUser3@test.com;MALE;;+33 1234567;mr;;Hybris;;
 ;addr7;user7;44 Test Street;AB1 CD2;false;New York;US;US-NY;true;true;true;true;Enterprise;User;EnterpriseUser@test.com;MALE;;+44 1234567;mr;;Hybris;;
 
 # Set default payment and shipping addresses for sample customers
@@ -74,9 +74,9 @@ UPDATE Customer;uid[unique=true];defaultPaymentAddress(&addId);defaultShipmentAd
 ;promotionuser@test.com;addr1;addr1
 ;paymentuser@test.com;addr2;addr2
 ;orderhistoryuser@test.com;addr3;addr3
-;testuser1@test.com;addr4;addr4
-;testuser2@test.com;addr5;addr5
-;testuser3@test.com;addr6;addr6
+#;testuser1@test.com;addr4;addr4
+#;testuser2@test.com;addr5;addr5
+#;testuser3@test.com;addr6;addr6
 ;enterpriseuser@test.com;addr7;addr7
 
 INSERT_UPDATE Customer;uid[unique=true];originalUid;name;sessionLanguage(isocode);sessionCurrency(isocode);groups(uid);password[default=$defaultPassword];

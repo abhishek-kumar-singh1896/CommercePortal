@@ -4,7 +4,9 @@
 -->
 <config xmlns="http://www.hybris.com/cockpit/config"
 	xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config"
-	xmlns:na="http://www.hybris.com/cockpitng/config/notifications">
+	xmlns:na="http://www.hybris.com/cockpitng/config/notifications"
+	xmlns:list-view="http://www.hybris.com/cockpitng/component/listView"
+	xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
 
 	<context merge-by="module" component="editorareaactions" type="Consignment">
 		<y:actions xmlns:y="http://www.hybris.com/cockpit/config/hybris">
@@ -29,18 +31,17 @@
         	<wz:handler handlerId="verifyCustomerHandler1" handlerBean="verifyCustomerHandler">
             </wz:handler>
             <wz:prepare id="custPrepare">
-                <wz:initialize property="newCust" template-bean="createCustomerForm"/>
+                <wz:initialize property="newCust" type="Customer"/>
             </wz:prepare>
             <wz:step id="step1" label="create.customer.verification.label" sublabel="create.customer.verification.sublabel">
                 <wz:content id="step1.content">
                     <wz:property-list root="newCust" merge-mode="REPLACE">
-                        <wz:property qualifier="email" type="java.lang.String" label="create.customer.verification.email"/>
+                        <wz:property qualifier="uid" type="java.lang.String" label="create.customer.verification.email"/>
                     </wz:property-list>
                 </wz:content>
                 <wz:navigation id="step1.navigation" merge-mode="REPLACE">
                     <wz:cancel/>
                     <wz:custom label="Verify" composedHandler="verifyCustomerHandler1"/>
-                    <wz:next/>
                 </wz:navigation>
             </wz:step>
             <wz:step id="step2" label="create.customer.essential.label" sublabel="create.customer.essential.sublabel">
@@ -92,6 +93,28 @@
                 </wz:navigation>
             </wz:step>
         </wz:flow>
+    </context>
+	<context component="notification-area">
+		<na:notification-area>
+			<na:notifications eventType="duplicateCustomer" level="FAILURE">
+				<na:message>duplicate.customer.failure</na:message>
+			</na:notifications>
+		</na:notification-area>
+	</context>
+    <context merge-by="type" parent="User" type="Customer" component="listview">
+		<list-view:list-view>
+			<list-view:column qualifier="duplicate" label="type.Customer.duplicate" />
+		</list-view:list-view>
+	</context>
+	
+	<context merge-by="type" parent="User" type="Customer" component="editor-area">
+        <editorArea:editorArea name="">
+            <editorArea:tab name="hmc.gallagher" position="11">
+                <editorArea:section name="hmc.section.duplicacy">
+                    <editorArea:attribute qualifier="duplicate" label="hmc.duplicacy.label"/>
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
     </context>
 
 </config>

@@ -16,10 +16,10 @@ INSERT_UPDATE BaseStore2WarehouseRel;source(uid)[unique=true];target(code)[uniqu
 ;$storeUidCA;am_warehouse_n
 
 INSERT_UPDATE PointOfService;name[unique=true];displayName;warehouses(code);address(&addrID);latitude;longitude;geocodeTimestamp[dateformat=dd.MM.yyyy];type(code)[default=WAREHOUSE]
-;am_warehouse_s;Warehouse South;warehouse_s;am_warehouse_s;33,5933317;130,3515247;11.12.2025
-;am_warehouse_e;Warehouse East;warehouse_e;am_warehouse_e;35,7116188;139,7082147;11.12.2025
-;am_warehouse_w;Warehouse West;warehouse_w;am_warehouse_w;33,5869355;130,3948605;11.12.2025
-;am_warehouse_n;Warehouse North;warehouse_n;am_warehouse_n;43,070542;141,3533259;11.12.2025
+;am_warehouse_s;Warehouse South;am_warehouse_s;am_warehouse_s;33,5933317;130,3515247;11.12.2025
+;am_warehouse_e;Warehouse East;am_warehouse_e;am_warehouse_e;35,7116188;139,7082147;11.12.2025
+;am_warehouse_w;Warehouse West;am_warehouse_w;am_warehouse_w;33,5869355;130,3948605;11.12.2025
+;am_warehouse_n;Warehouse North;am_warehouse_n;am_warehouse_n;43,070542;141,3533259;11.12.2025
 
 INSERT_UPDATE Address;&addrID;streetnumber[unique=true];streetname;town;country(isocode);postalcode[unique=true];phone1;owner(PointOfService.name)[unique=true]
 ;am_warehouse_s;2-3-26 Momochihama;Sawara Ward;Fukuoka;JP;814-0001;+81 92-823-0236;am_warehouse_s

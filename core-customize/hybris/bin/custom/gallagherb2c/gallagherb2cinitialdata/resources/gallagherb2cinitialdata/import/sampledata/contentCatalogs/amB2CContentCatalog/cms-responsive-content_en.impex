@@ -24,39 +24,10 @@ UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$
 ;;AboutSAPCommerceLink;"About SAP Commerce Cloud"
 ;;AgileCommerceBlogLink;"Agile Commerce Blog"
 ;;AllBrandsCategoryLink;"Brands"
-;;BlackAndWhiteFilmsCategoryLink;"Black & White Films"
-;;BlankVideotapesCategoryLink;"Blank Videotapes"
-;;CameraAccessoriesCategoryLink;"Camera Accessories & Supplies"
-;;CameraLensesCategoryLink;"Camera Lenses"
-;;CamerasCategoryLink;"Cameras"
-;;CamerasFlashesCategoryLink;"Camera Flashes"
-;;CanonBrandCategoryLink;"Canon"
-;;ColourFilmsCategoryLink;"Color Films"
-;;ComponentsCategoryLink;"Components"
-;;ContactUsLink;"Contact Us"
-;;DigitalCamerasCategoryLink;"Digital Cameras"
-;;DigitalCompactsCategoryLink;"Compact Cameras"
-;;DigitalSLRCategoryLink;"SLR Cameras"
 ;;DocumentationLink;"Documentation"
 ;;FAQLink;"FAQ"
 ;;FacebookLink;"Facebook"
-;;FilmCamerasCategoryLink;"Film Cameras"
-;;FlashMemoryCategoryLink;"Flash Memory"
-;;FujifilmBrandCategoryLink;"Fujifilm"
-;;HandheldCamcordersCategoryLink;"Hand Held Camcorders"
 ;;HomepageNavLink;"Home"
-;;IciduBrandCategoryLink;"Icidu"
-;;KingstonBrandCategoryLink;"Kingston"
-;;KodakBrandCategoryLink;"Kodak"
-;;LinkedInLink;"Linked In"
-;;PowerSuppliesCategoryLink;"Power Supplies"
-;;SamsungBrandCategoryLink;"Samsung"
-;;SonyBrandCategoryLink;"Sony"
-;;SpecialOffersLink;"Special Offers"
-;;SweexBrandCategoryLink;"Sweex"
-;;TDKBrandCategoryLink;"TDK"
-;;ToshibaBrandCategoryLink;"Toshiba"
-;;TripodsCategoryLink;"Tripods"
 ;;TwitterLink;"Twitter"
 ;;VisitSAPLink;"Visit SAP"
 
@@ -90,7 +61,7 @@ UPDATE ProductReferencesComponent;$contentCV[unique=true];uid[unique=true];title
 
 # CMS PurchasedCategorySuggestion Components
 UPDATE PurchasedCategorySuggestionComponent;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
-;;PurchasedCategorySuggestions;"You may also like..."
+#;;PurchasedCategorySuggestions;"You may also like..."
 
 # CMS CartSuggestion Components
 UPDATE CartSuggestionComponent;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
@@ -164,16 +135,12 @@ UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[l
 
 UPDATE BannerComponent;$contentCV[unique=true];uid[unique=true];headline[lang=$lang];$picture[lang=$lang];content[lang=$lang]
 ;;AccessoriesBannerComponent;Camera Accessories and Supplies;Elec_228x178_HomeCat_Accessories_EN_01.jpg;"Everything you need to accessorise your camera"
-;;CanonPowershotBannerComponent;Canon PowerShot A480;1934793_1719.jpg;"Affordable, intuitive and fun!"
 ;;CarouselCamcorderBanner;New - Ignite your passion for film with the latest HD camcorder...;Elec_468x418_HomeCarouselCamcorder_EN_01.jpg;""
 ;;CarouselCyberBanner;What colour are you? Sony Cybershot - a colour for any mood.;Elec_468x418_HomeCarouselCyber_EN_01.jpg;""
 ;;CarouselFunBanner;Fun on the run  - Never miss a memory!;Elec_468x418_HomeCarouselFun_EN_01.jpg;""
 ;;DigitalCompactCamerasBannerComponent;Digital Compact Cameras;Elec_228x178_HomeCat_DigiCom_EN_01.jpg;"Find the perfect camera to capture those special moments"
 ;;DigitalSLRCamerasBannerComponent;Digital SLR Cameras;Elec_228x178_HomeCat_DigiSLR_EN_01.jpg;"See the latest DSLR technology from the leading brands"
-;;KodakEasyshareBannerComponent;Kodak EASYSHARE V1253;1320808-1767.jpg;"Seize the moment with 12 megapixel photos!"
 ;;MemoryBannerComponent;Camera and Camcorder Memory;Elec_228x178_HomeCat_Memory_EN_01.jpg;"Exclusive discounts on our memory cards"
-;;SonyCybershotBannerComponent;Sony Cybershot DSC-S930;1992695-Sony-DSC-S930P-11441.jpg;"Compact, easy to use and amazingly affordable."
-;;SonyDSCBannerComponent;Sony DSC-H20;1978440-Sony-DSC-H20-114081.jpg;"Perfect for serious performance in a compact design."
 
 UPDATE ProductCarouselComponent;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
 ;;AMB2CHomepageProductCarouselComponent;Our Bestselling Products
@@ -194,12 +161,6 @@ INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=
 ;;Elec_96x96_CatVTapes_EN_01.jpg;$siteResource/images/banners/homepage/Elec_96x96_CatVTapes_EN_01.jpg;;;""
 
 UPDATE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];title[lang=$lang];$picture[lang=$lang];description[lang=$lang]
-;;BlackAndWhiteFilmsFeatureComponent;Black & White Films;Elec_96x96_CatBWFilm_EN_01.jpg;"Find the right film for authentic photo art"
-;;BlankVideoTapesFeatureComponent;Blank Video Tapes;Elec_96x96_CatVTapes_EN_01.jpg;"High quality VHS and 8mm Camcorder Tapes"
-;;CameraFlashesFeatureComponent;Camera Flashes;Elec_96x96_CatFlash_EN_01.jpg;"Bring extra quality to your pictures with a Flashgun..."
-;;CameraLensesFeatureComponent;Camera Lenses;Elec_96x96_CatLenses_EN_01.jpg;"Change lenses to suit a huge range of scenes & situations"
-;;ColourFilmsFeatureComponent;Colour Films;Elec_96x96_CatColFilm_EN_01.jpg;"Colour film to make you feel like a true photo hero"
-;;TripodFeatureComponent;Tripods;Elec_96x96_CatTripod_EN_01.jpg;"The photo and film enthusiasts 3-legged friend"
 
 UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
 ;;BuyOnlineBanner;Elec_788x120_Save_EN_01.jpg
@@ -465,7 +426,6 @@ UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$
 ;;SavedCartsLink;"Saved Carts"
 ;;UpdateEmailLink;"Email Address"
 ;;UpdatePasswordLink;"Password"
-;;WebcamsCategoryLink;"Webcams"
 
 # CMS Navigation Nodes
 UPDATE CMSNavigationNode;$contentCV[unique=true];uid[unique=true];title[lang=$lang]

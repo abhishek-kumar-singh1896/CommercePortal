@@ -130,3 +130,8 @@ INSERT_UPDATE ConversionMediaFormat ; qualifier[unique=true] ; conversion       
                                     ; 65Wx65H                ; -resize 65x65 -background white -gravity center -extent 65x65     ; $baseFormat            
                                     ; 96Wx96H                ; -resize 96x96 -background white -gravity center -extent 96x96     ; $baseFormat            
                                     
+# Conversion Group                  
+INSERT_UPDATE ConversionGroup ; code[unique=true]              ; supportedFormats(qualifier)                                       
+                              ; B2bAdvanceConversionGroup      ; 300Wx300H,30Wx30H,365Wx246H,515Wx515H,65Wx65H,96Wx96H,1200Wx1200H 
+                              ; B2bAdvanceEmptyConversionGroup ;                                                                   
+                                    
