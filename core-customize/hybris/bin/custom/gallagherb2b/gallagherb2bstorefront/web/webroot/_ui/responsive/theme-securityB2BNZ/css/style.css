@@ -8541,7 +8541,7 @@ ul.nav__links::after {
 }
 .navigation--top .nav__right .nav__links--account .myAccountLinksHeader.show,
 .navigation--top .nav__right .nav__links--account .myCompanyLinksHeader.show {
-  background-color: #003459;
+  background-color: #000000;
   color: #ffffff;
   text-decoration: none;
   display: block;
@@ -8569,8 +8569,8 @@ ul.nav__links::after {
   color: #0068b3;
   font-weight: 400;
   padding: 0;
-  border-right: 1px solid #265272;
-  border-bottom: 1px solid #265272;
+  border-right: 1px solid #575A5D;
+  border-bottom: 1px solid #575A5D;
 }
 #accNavComponentDesktopOne ul.nav__links li:hover,
 #accNavComponentDesktopTwo ul.nav__links li:hover {
@@ -10487,7 +10487,7 @@ fieldset[disabled] .btn-primary.active {
   float: left !important;
 }
 .rating .rating-stars span.active {
-  color: #ff8400;
+  color: #0068b3;
 }
 .rating.rating-set .rating-stars {
   cursor: pointer;
@@ -16993,7 +16993,7 @@ label.uncased {
   font-style: italic;
 }
 .form-control:focus {
-  border-color: #0068b3;
+  border-color: #CCCCCC;
   background-color: #F4F4F4;
   outline: 0;
   box-shadow: none;
