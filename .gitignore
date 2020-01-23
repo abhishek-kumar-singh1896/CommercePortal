@@ -14,6 +14,7 @@ README
 
 # for hybris
 core-customize/hybris/data/
+core-customize/hybris/config/manifest.json
 core-customize/hybris/log/
 core-customize/hybris/temp/
 core-customize/hybris/sampleconfigurations/
@@ -56,6 +57,11 @@ core-customize/hybris/bin/custom/**/web/webroot/WEB-INF/tags/addons/
 core-customize/hybris/bin/custom/**/web/webroot/WEB-INF/tld/addons/
 core-customize/hybris/bin/custom/**/web/webroot/WEB-INF/_ui-src/addons/
 core-customize/hybris/bin/custom/**/resources/wro_addons.xml
+
+core-customize/hybris/bin/custom/gallagherb2b/gallagherb2bstorefront/web/webroot/WEB-INF/lib/.lastupdate
+core-customize/hybris/bin/custom/gallagherb2c/gallagherb2cstorefront/web/webroot/WEB-INF/lib/.lastupdate
+core-customize/hybris/bin/custom/gallagherb2b/gallagherb2bstorefront/web/webroot/WEB-INF/lib/*.jar
+core-customize/hybris/bin/custom/gallagherb2c/gallagherb2cstorefront/web/webroot/WEB-INF/lib/*.jar
 
 # Ignoring files of commonwebsrc
 core-customize/hybris/bin/custom/**/web/commonwebsrc/
