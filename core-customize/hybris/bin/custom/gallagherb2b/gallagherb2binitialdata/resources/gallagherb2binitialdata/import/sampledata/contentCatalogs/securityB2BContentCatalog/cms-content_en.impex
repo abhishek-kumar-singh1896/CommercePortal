@@ -291,49 +291,8 @@ INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique
 
 
 UPDATE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang];title[lang=$lang];description[lang=$lang];
-;;BlackAndDeckerPowerDrillsFeatureComponent;power_drills_black_and_decker.jpg;Power Drills from Black & Decker;Powerful Solutions
-;;BlackAndDeckerScrewdriversFeatureComponent;screwdrivers_black_and_decker.jpg;Screwdrivers from Black & Decker;Powerful Solutions
-;;BonecoMeasuringAndLayoutToolsFeatureComponent;measuring_and_layout_tools_boneco.jpg;Boneco Measuring and Layout Tools;Swiss engineering, Swiss technology, Swiss quality
-;;BoschAngleGrindersFeatureComponent;angle_grinders_bosch.jpg;Angle Grinders from Bosch;Invented for Life
-;;BoschPowerDrillsFeatureComponent;power_drills_bosch.jpg;Power Drills from Bosch;Invented for Life
-;;BoschScrewdriversFeatureComponent;screwdrivers_bosch.jpg;Screwdrivers from Bosch;Invented for Life
-;;EdnetMeasuringAndLayoutToolsFeatureComponent;measuring_and_layout_tools_ednet.jpg;Ednet Measuring and Layout Tools;One idea smarter!
-;;EinhellAngleGrindersFeatureComponent;angle_grinders_einhell.jpg;Angle Grinders from Einhell;Quality tools at affordable prices
-;;EinhellPowerDrillsFeatureComponent;power_drills_einhell.jpg;Power Drills from Einhell;Quality tools at affordable prices
-;;EinhellScrewdriversFeatureComponent;screwdrivers_einhell.jpg;Screwdrivers from Einhell;Quality tools at affordable prices
-;;HamaMeasuringAndLayoutToolsFeatureComponent;measuring_and_layout_tools_hama.jpg;Hama Measuring and Layout Tools;Made by Ideas!
-;;HitachiAngleGrindersFeatureComponent;angle_grinders_hitachi.jpg;Angle Grinders from Hitachi;Inspire the Next
-;;SkilAngleGrindersFeatureComponent;angle_grinders_skil.jpg;Angle Grinders from Skil;Everything You Need
-;;SkilPowerDrillsFeatureComponent;power_drills_skil.jpg;Power Drills from Skil;Everything You Need
-;;SkilScrewdriversFeatureComponent;screwdrivers_skil.jpg;Screwdrivers from Skil;Everything You Need
-;;StarTech.comMeasuringAndLayoutToolsFeatureComponent;measuring_and_layout_tools_startech.jpg;StarTech.com Measuring and Layout Tools;Hard-to-find made easy
 
 UPDATE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang];title[lang=$lang];description[lang=$lang];
-;;AngleGrindersFeatureComponent;hand_tools_angle_grinders.jpg;Angle Grinders;High quality angle grinders operate with less vibration and noise improving operational safety
-;;BlackAndDeckerBrandFeatureComponent;hand_tools_black_and_decker.jpg;Black & Decker;Powerful Solutions
-;;BonecoBrandFeatureComponent;hand_tools_boneco.jpg;Boneco;Swiss engineering, Swiss technology, Swiss quality
-;;BoschBrandFeatureComponent;hand_tools_bosch.jpg;Bosch;Invented for Life
-;;CablesToGoBrandFeatureComponent;hand_tools_cables_to_go.jpg;Cables To Go;Get Connected 
-;;CircularSawsFeatureComponent;hand_tools_circular_saws.jpg;Circular Saws;Our products are carefully selected to offer you the widest range at price points to suit all budgets
-;;EdnetBrandFeatureComponent;hand_tools_ednet.jpg;Ednet;One idea smarter!
-;;EinhellBrandFeatureComponent;hand_tools_einhell.jpg;Einhell;Quality tools at affordable prices
-;;HamaBrandFeatureComponent;hand_tools_hama.jpg;Hama;Made by Ideas!
-;;HandSawsFeatureComponent;hand_tools_hand_saws.jpg;Hand Saws;Browsing our range will help you to find the tool for the job.
-;;HisBrandFeatureComponent;hand_tools_his.jpg;HIS;Performance leading and award-wining products
-;;HitachiBrandFeatureComponent;hand_tools_hitachi.jpg;Hitachi;Inspire the Next
-;;IntronicsBrandFeatureComponent;hand_tools_intronics.jpg;Intronics;Strong in connectivity
-;;JigsawsFeatureComponent;hand_tools_Jigsaws.jpg;Jigsaws;Ergonomic, compact designs allow you to get closer to the work surface
-;;KaiserBrandFeatureComponent;hand_Tools_kaiser.jpg;Kaiser;Everything Under Control
-;;MakitaBrandFeatureComponent;hand_tools_makita.jpg;Makita;Made for the best
-;;MeasuringAndLayoutToolsFeatureComponent;hand_tools_measuring_and_layout_tools.jpg;Measuring & Layout Tools;Our carefully selected range fit a multitude of general applications and precise requirements
-;;NutDriversFeatureComponent;hand_tools_nut_drivers.jpg;Nut Drivers;A wide selection of drivers plus replacement parts and accessories across the range.
-;;PowerDrillsFeatureComponent;hand_tools_power_drills.jpg;Power Drills;A wide range of rotary, hammer, AC and cordless drills from the most trusted brands on the market
-;;PunchesOrNailSetsFeatureComponent;hand_tools_punches_or_nail_sets.jpg;Punches Or Nail Sets;All the essential extra bits for your toolbox
-;;RotaryHammersFeatureComponent;hand_tools_rotary_hammers.jpg;Rotary Hammers;Our wide range of rotary hammers will ensure you find exactly what you're looking for
-;;SandersFeatureComponent;hand_tools_sanders.jpg;Sanders;A wide range of sanding tools and accessories from product leaders Bosch and Black & Decker
-;;ScrewdriversFeatureComponent;hand_tools_screwdrivers.jpg;Screwdrivers;Extensive range of powered and self operated screwdrivers from selected leading manufacturers
-;;SkilBrandFeatureComponent;hand_tools_skil.jpg;Skil;Everything You Need
-;;StrippingToolsFeatureComponent;hand_tools_stripping_tools.jpg;Stripping Tools;Our range of stripping tools are designed for general and specific applications alike
 
 INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];altText;&imageRef;folder(qualifier)[default='images']
 ;;Info_Banner_788x300_Angle_Grinders.jpg;$siteResource/images/landingpages/Info_Banner_788x300_Angle_Grinders.jpg;;View our range of Angle Grinders;

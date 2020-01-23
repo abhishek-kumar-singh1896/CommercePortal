@@ -1341,7 +1341,6 @@ INSERT_UPDATE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV)
                          ;;Section1Slot-PowerDrillsCategoryPage;Section1 Slot for Power Drills Landing Page;true;
                          ;;Section2Slot-PowerDrillsCategoryPage;Section2 Slot for Power Drills Landing Page;true;PowerDrillsInfoBanner
-                         ;;Section3Slot-PowerDrillsCategoryPage;Section3 Slot for Power Drills Landing Page;true;BoschPowerDrillsFeatureComponent,SkilPowerDrillsFeatureComponent,BlackAndDeckerPowerDrillsFeatureComponent,EinhellPowerDrillsFeatureComponent
                          ;;Section4Slot-PowerDrillsCategoryPage;Section4 Slot for Power Drills Landing Page;true;RefinementFacetComponent
 
 INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='PowerDrillsCategoryPage'];contentSlot(uid,$contentCV)[unique=true]
@@ -1367,7 +1366,6 @@ INSERT_UPDATE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV)
                          ;;Section1Slot-AngleGrindersCategoryPage;Section1 Slot for Angle Grinders Landing Page;true;
                          ;;Section2Slot-AngleGrindersCategoryPage;Section2 Slot for Angle Grinders Landing Page;true;AngleGrindersInfoBanner
-                         ;;Section3Slot-AngleGrindersCategoryPage;Section3 Slot for Angle Grinders Landing Page;true;BoschAngleGrindersFeatureComponent,EinhellAngleGrindersFeatureComponent,HitachiAngleGrindersFeatureComponent,SkilAngleGrindersFeatureComponent
                          ;;Section4Slot-AngleGrindersCategoryPage;Section4 Slot for Angle Grinders Landing Page;true;RefinementFacetComponent
 
 INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='AngleGrindersCategoryPage'];contentSlot(uid,$contentCV)[unique=true]
@@ -1392,7 +1390,6 @@ INSERT_UPDATE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV)
                          ;;Section1Slot-ScrewdriversCategoryPage;Section1 Slot for Screwdrivers Landing Page;true;
                          ;;Section2Slot-ScrewdriversCategoryPage;Section2 Slot for Screwdrivers Landing Page;true;ScrewdriversInfoBanner
-                         ;;Section3Slot-ScrewdriversCategoryPage;Section3 Slot for Screwdrivers Landing Page;true;BoschScrewdriversFeatureComponent,EinhellScrewdriversFeatureComponent,SkilScrewdriversFeatureComponent,BlackAndDeckerScrewdriversFeatureComponent
                          ;;Section4Slot-ScrewdriversCategoryPage;Section4 Slot for Screwdrivers Landing Page;true;RefinementFacetComponent
 
 INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='ScrewdriversCategoryPage'];contentSlot(uid,$contentCV)[unique=true]
@@ -1417,7 +1414,6 @@ INSERT_UPDATE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV)
                          ;;Section1Slot-MeasuringAndLayoutToolsCategoryPage;Section1 Slot for Measuring And Layout Tools Landing Page;true;
                          ;;Section2Slot-MeasuringAndLayoutToolsCategoryPage;Section2 Slot for Measuring And Layout Tools Landing Page;true;MeasuringAndLayoutToolsInfoBanner
-                         ;;Section3Slot-MeasuringAndLayoutToolsCategoryPage;Section3 Slot for Measuring And Layout Tools Landing Page;true;BonecoMeasuringAndLayoutToolsFeatureComponent,EdnetMeasuringAndLayoutToolsFeatureComponent,HamaMeasuringAndLayoutToolsFeatureComponent,StarTech.comMeasuringAndLayoutToolsFeatureComponent
                          ;;Section4Slot-MeasuringAndLayoutToolsCategoryPage;Section4 Slot for Measuring And Layout Tools Landing Page;true;RefinementFacetComponent
 
 INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='MeasuringAndLayoutToolsCategoryPage'];contentSlot(uid,$contentCV)[unique=true]
@@ -1466,7 +1462,6 @@ INSERT_UPDATE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];
 
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV)
                          ;;Section2Slot-HandToolsCategoryPage;Section2 Slot for Hand Tools Landing Page;true;HandToolsInfoBanner
-                         ;;Section3Slot-HandToolsCategoryPage;Section3 Slot for Hand Tools Landing Page;true;AngleGrindersFeatureComponent,CircularSawsFeatureComponent,HandSawsFeatureComponent,JigsawsFeatureComponent,MeasuringAndLayoutToolsFeatureComponent,NutDriversFeatureComponent,PowerDrillsFeatureComponent,PunchesOrNailSetsFeatureComponent,RotaryHammersFeatureComponent,SandersFeatureComponent,ScrewdriversFeatureComponent,StrippingToolsFeatureComponent
                          ;;Section4Slot-HandToolsCategoryPage;Section4 Slot for Hand Tools Landing Page;true;RefinementFacetComponent
 
 
@@ -1485,7 +1480,6 @@ INSERT_UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterT
 INSERT_UPDATE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];name;category(code, $productCV);
 
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV)
-                         ;;Section3Slot-BrandCategoryPage;Section3 Slot for All Brands Landing Page;true;BlackAndDeckerBrandFeatureComponent,BoschBrandFeatureComponent,CablesToGoBrandFeatureComponent,EdnetBrandFeatureComponent,EinhellBrandFeatureComponent,HamaBrandFeatureComponent,HisBrandFeatureComponent,HitachiBrandFeatureComponent,IntronicsBrandFeatureComponent,KaiserBrandFeatureComponent,MakitaBrandFeatureComponent,SkilBrandFeatureComponent
                          ;;Section4Slot-BrandCategoryPage;Section4 Slot for  All Brands Landing Page;true;RefinementFacetComponent
 
 INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='BrandCategoryPage'];contentSlot(uid,$contentCV)[unique=true]
