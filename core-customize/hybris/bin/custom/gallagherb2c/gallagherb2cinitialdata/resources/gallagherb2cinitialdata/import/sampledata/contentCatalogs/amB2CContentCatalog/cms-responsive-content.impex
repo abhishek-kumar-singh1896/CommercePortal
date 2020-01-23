@@ -37,7 +37,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;StoreFinderLink;Store Finder Link;/store-finder;StoreFinderLink;StoreFinderLink;;;;
 ;;LoginLink;Login Link;/login;LoginLink;LoginLink;;;;
 ;;AllBrandsCategoryLink;All Brands Link;/Animal-Management/c/Animal%20Management;AllBrandsCategoryLink;AllBrandsCategoryLink;;Animal Management;;
-;;ElectricFencingCategoryLink;Sony Link;/Animal-Management/Electric-Fencing/c/Electric%20Fencing;ElectricFencingCategoryLink;SonyBrandCategoryLink;;Electric Fencing;;
+;;ElectricFencingCategoryLink;Sony Link;/Animal-Management/Electric-Fencing/c/Electric%20Fencing;ElectricFencingCategoryLink;ElectricFencingCategoryLink;;Electric Fencing;;
 ;;SpecialOffersLink;Special Offers Link;"/Open-Catalogue/c/1?q=%3AtopRated%3AallPromotions%3ABOGOFAMB2C%3AallPromotions%3A10DiscountCanonEOS450D%3AallPromotions%3AMultiBuyAMB2C%3AallPromotions%3APerfectPartnerAMB2C%3AallPromotions%3AProductBundleAMB2C";SpecialOffersLink;SpecialOffersLink;;Electric Fencing;;
 ;;AboutSAPCommerceLink;About SAP Commerce Cloud Link;"http://www.cx.sap.com/products/commerce";AboutSAPCommerceLink;AboutSAPCommerceLink;newWindow;;;
 ;;DocumentationLink;Documentation Link;"https://help.hybris.com";DocumentationLink;DocumentationLink;newWindow;;;
@@ -174,7 +174,7 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;pa
 ;SiteRootNode;;SiteRootNode;root;;SiteRootNode
 ;AMB2CNavNode;;Animal Management Site;SiteRootNode;HomepageNavLink;AMB2CNavNode
 ;BrandsNavNode;;Brand Links;AMB2CNavNode;AllBrandsCategoryLink;BrandsNavNode
-;BrandLinksNavNode;;Brand Links;BrandsNavNode;ElectricFencingCategoryLink;BrandLinksNavNode
+;ElectricFencingNavNode;;Electric Fencin Links;BrandsNavNode;ElectricFencingCategoryLink;ElectricFencingNavNode
 ;SAPCommerceNavNode;;SAP Commerce Cloud Pages;AMB2CNavNode;AboutSAPCommerceLink,FAQLink;SAPCommerceNavNode
 ;SAPCustomerExperienceNavNode;;SAP Customer Experience Pages;AMB2CNavNode;VisitSAPLink,ContactUsLink;SAPCustomerExperienceNavNode
 ;FollowUsNavNode;;Follow Us Pages;AMB2CNavNode;AgileCommerceBlogLink,LinkedInLink,FacebookLink,TwitterLink;FollowUsNavNode
@@ -1078,21 +1078,17 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents
 ## level 2. children of SiteRoot ##
 # the following order of children is the display order on the site
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);&nodeRef;children(uid,$contentCV)
-;AMB2CCategoryNavNode;;Categories;AMB2CNavNode;AMB2CCategoryNavNode;BrandsNavNode,DigitalCamerasNavNode,FilmCamerasNavNode,HandheldCamcordersNavNode,WebcamsNavNode,PowerSuppliesNavNode,FlashMemoryNavNode,CameraAccessoriesNavNode
+;AMB2CCategoryNavNode;;Categories;AMB2CNavNode;AMB2CCategoryNavNode;BrandsNavNode,ElectricFencingNavNode
 
 ## level 3. children of Category Nav ##
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef);
-;BrandsNavNode;;Brand Links;BrandsNavNode;BrandLinksNavNode,AccessoryBrandLinksNavNode
-;DigitalCamerasNavNode;;Digital Cameras Category;DigitalCamerasNavNode;DigitalCompactsNavNode,DigitalSLRNavNode
-;FilmCamerasNavNode;;Film Cameras Category;FilmCamerasNavNode
-;HandheldCamcordersNavNode;;Hand-held Camcorders Category;HandheldCamcordersNavNode
-;WebcamsNavNode;;Webcams Category;WebcamsNavNode
-;PowerSuppliesNavNode;;Power Supplies Category;PowerSuppliesNavNode
-;FlashMemoryNavNode;;Flash Memory Category;FlashMemoryNavNode
-;CameraAccessoriesNavNode;;Camera Accessories Category;CameraAccessoriesNavNode;AccessoriesNavNode,SuppliesNavNode
+;BrandsNavNode;;Brand Links;BrandsNavNode;ElectricFencingNavNode
+;ElectricFencingNavNode;;Electric Fencing Links;ElectricFencingNavNode
 
 ## entries of the above navigation nodes ##
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;BrandsNavNodeEntry;;Brands Navigation Node Entry;BrandsNavNode;AllBrandsCategoryLink;
+;ElectricFencingNavNodeEntry;;Electric Fencing Node Entry;ElectricFencingNavNode;ElectricFencingCategoryLink;
 
 # CMS Link Components
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];$category;$product;
@@ -1102,14 +1098,8 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ## level 4. children of NavNode (the following order of children is the display order on the site) ##
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef);
 ## children of BrandsNavNode
-;BrandLinksNavNode;;Brand Links;BrandLinksNavNode;CanonBrandNavNode,SonyBrandNavNode,KodakBrandNavNode,SamsungBrandNavNode,ToshibaBrandNavNode,FujifilmBrandNavNode
-;AccessoryBrandLinksNavNode;;Accessory Brand Links;AccessoryBrandLinksNavNode;KingstonBrandNavNode,IciduBrandNavNode,TDKBrandNavNode,SweexBrandNavNode
 ## children of DigitalCamerasNavNode
-;DigitalCompactsNavNode;;Digital Compacts Links;DigitalCompactsNavNode
-;DigitalSLRNavNode;;Digital SLR Links;DigitalSLRNavNode
-## children of CameraAccessoriesNavNode
-;AccessoriesNavNode;;Accessories Links;AccessoriesNavNode;CamerasFlashesNavNode,TripodsNavNode,CameraLensesNavNode
-;SuppliesNavNode;;Supplies Links;SuppliesNavNode;ColourFilmsNavNode,BlackAndWhiteFilmsNavNode,BlankVideotapesNavNode
+;ElectricFencingNavNode;;Electric Fencing Links;ElectricFencingNavNode
 
 
 ## level 5. children of above (level 4) nodes ##
