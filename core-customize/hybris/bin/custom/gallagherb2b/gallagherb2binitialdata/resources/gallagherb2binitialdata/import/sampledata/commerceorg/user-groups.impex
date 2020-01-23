@@ -36,7 +36,7 @@ INSERT_UPDATE B2BUnit;description;uid[unique=true];name;locName[lang=en];groups(
 ;Hierarchical;Rustic;Rustic;Rustic;;Rustic;RusticAddrID1;RusticID1;acctmgra;Monthly40KAlert10Percent;accApproval;
 ;Unit A;Rustic Retail;Rustic Retail;Rustic Retail;Rustic;Rustic;RusticAddrID2;RusticID3;;;
 ;Unit B;Rustic Services;Rustic Services;Rustic Services;Rustic;Rustic;;RusticID2;acctmgrb;Monthly15KAlert3K
-;Unit C;Custom Retail;Custom Retail;Custom Retail;Rustic Retail;Rustic;RusticAddrID5;RusticID4;
+;Unit C;A&JUnit;A&JUnit;A&JUnit;Rustic Retail;Rustic;RusticAddrID5;RusticID4;
 ;Unit D;Services East;Services East;Services East;Rustic Services;Rustic;RusticAddrID3;RusticID5;
 ;Unit E;Services West;Services West;Services West;Rustic Services;Rustic;RusticAddrID4;RusticID6;acctmgrc;
 
@@ -56,14 +56,14 @@ INSERT_UPDATE B2BUserGroup;uid[unique=true];name;unit(uid);permissions(code,unit
 INSERT_UPDATE B2BCostCenter;code[unique=true];name[lang=en];Unit(uid);budgets(code);currency(isocode)[default='AUD']
 ;Rustic Global;Rustic Global;Rustic;Monthly 50K AUD;
 ;Rustic Retail;Retail;Rustic Retail;Monthly 2.5K AUD;
-;Custom Retail;Custom Retail;Custom Retail;Monthly 4K AUD;
+;A&JUnit;A&JUnit;A&JUnit;Monthly 4K AUD;
 ;Services East;Services East;Services East;Weekly 2.5K AUD;
 ;Services West;Services West;Services West;Monthly 20K AUD;
 
 INSERT_UPDATE B2BBudget;code[unique=true];Unit(uid);budget;currency(isocode)[allownull=true];dateRange[dateformat=dd.MM.yyyy hh:mm:ss,allownull=true];name[lang=en];;
 ;Monthly 50K AUD;Rustic;50000;AUD;01.01.2010 00:00:00,12.31.2032 12:59:59;Monthly 50K AUD;
 ;Monthly 20K AUD;Services West;20000;AUD;01.01.2010 00:00:00,12.31.2032 12:59:59;Monthly 20K AUD;
-;Monthly 4K AUD;Custom Retail;4000;AUD;01.01.2010 00:00:00,12.31.2032 12:59:59;Monthly 4K AUD;
+;Monthly 4K AUD;A&JUnit;4000;AUD;01.01.2010 00:00:00,12.31.2032 12:59:59;Monthly 4K AUD;
 ;Monthly 2.5K AUD;Rustic Retail;2500;AUD;01.01.2010 00:00:00,12.31.2032 12:59:59;Monthly 2.5K AUD;
 ;Weekly 2.5K AUD;Services East;2500;AUD;01.01.2010 00:00:00,12.31.2032 12:59:59;Weekly 2.5K AUD;
 
@@ -91,7 +91,7 @@ INSERT_UPDATE B2BBudgetExceededPermission;code[unique=true];Unit(uid);
 UPDATE B2BUnit;uid[unique=true];approvers(uid);
 ;Rustic;hanna.schmidt@rustic-hw.com;
 ;Rustic Retail;james.bell@rustic-hw.com;
-;Custom Retail;carla.torres@rustic-hw.com;
+;A&JUnit;carla.torres@rustic-hw.com;
 ;Services West;matheu.silva@rustic-hw.com,mingmei.wang@rustic-hw.com;
 ;Services East;mingmei.wang@rustic-hw.com;
 
@@ -1149,10 +1149,27 @@ INSERT_UPDATE PrincipalGroupRelation;source(uid)[unique=true];target(uid)[unique
 ;A&JUnit;SUN_NZ_EL
 ;A&JUnit;SUN_NZ_EN
 
-INSERT_UPDATE B2BCustomer;description;uid[unique=true];originalUid;email;name;title(code);groups(uid);permissionGroups(uid);sessionCurrency(isocode)[default='AUD'];password[default=$defaultPassword];
+INSERT_UPDATE B2BCustomer;description;uid[unique=true];originalUid;email;name;title(code);groups(uid);permissionGroups(uid);sessionCurrency(isocode)[default='NZD'];password[default=$defaultPassword];
+;Admin A;linda.wolf@chubb.com.au;linda.wolf@chubb.com.au;linda.wolf@chubb.com.au;Linda Wolf;ms;A&JCommunications,b2badmingroup;;;;;
+;AdminB;lars.bauer@chubb.com.au;lars.bauer@chubb.com.au;lars.bauer@chubb.com.au;Lars Bauer;mr;A&JUnit, b2badmingroup;;;;;;
+;Approver A;hanna.schmidt@chubb.com.au;hanna.schmidt@chubb.com.au;hanna.schmidt@chubb.com.au;Hanna Schmidt;ms;A&JCommunications, b2bapprovergroup;;;;;;
+;Approver B;james.bell@chubb.com.au;james.bell@chubb.com.au;james.bell@chubb.com.au;James Bell;mr;A&JUnit, b2bapprovergroup;;;;;;
+;Approver C;carla.torres@chubb.com.au;carla.torres@chubb.com.au;carla.torres@chubb.com.au;Carla Torres;ms;A&JUnit, b2bapprovergroup;;;;;;
+;Approver D;matheu.silva@chubb.com.au;matheu.silva@chubb.com.au;matheu.silva@chubb.com.au;Matheu Silva;mr;A&JUnit, b2bapprovergroup, b2bcustomergroup, b2bmanagergroup, standardPermissions;;;;;;
+;Approver E;mingmei.wang@chubb.com.au;mingmei.wang@chubb.com.au;mingmei.wang@chubb.com.au;Mingmei Wang;ms;A&JUnit, b2bapprovergroup, b2bcustomergroup;;;;;;
 ;Customer A;mark.deaville@chubb.com.au;mark.deaville@chubb.com.au;mark.deaville@chubb.com.au;Mark Deaville;mr;A&JUnit, b2bcustomergroup,standardPermissions;;;;;;
 ;Customer B;david.tarento@chubb.com.au;david.tarento@chubb.com.au;david.tarento@chubb.com.au;David Tarento;mr;A&JUnit, b2bcustomergroup,standardPermissions;;;;;;
 ;Customer C;rick.reed@chubb.com;rick.reed@chubb.com;rick.reed@chubb.com;Rick Reed;mr;A&JUnit, b2bcustomergroup,standardPermissions;;;;;;
+;Customer D;marie.dubois@chubb.com.au;marie.dubois@chubb.com.au;marie.dubois@chubb.com.au;Marie Dubois;ms;A&JUnit, b2bcustomergroup,standardPermissions;;;;;;
+;Customer F;ulf.becker@chubb.com.au;ulf.becker@chubb.com.au;ulf.becker@chubb.com.au;Ulf Becker;mr;A&JUnit, b2bcustomergroup,standardPermissions;;;;;;
+;Customer G;alejandro.navarro@chubb.com.au;alejandro.navarro@chubb.com.au;alejandro.navarro@chubb.com.au;Alejandro Navarro;mr;A&JUnit, b2bcustomergroup,standardPermissions;;;;;;
+;Customer H;lucas.kowalski@chubb.com.au;lucas.kowalski@chubb.com.au;lucas.kowalski@chubb.com.au;Lucas Kowalski;mr;A&JUnit, b2bcustomergroup,standardPermissions;;;;;;
+;Customer I;byung-soon.lee@chubb.com.au;byung-soon.lee@chubb.com.au;byung-soon.lee@chubb.com.au;Byung-soon Lee;ms;A&JUnit, b2bcustomergroup,standardPermissions;;;;;;
+;Customer J;gi.sun@chubb.com.au;gi.sun@chubb.com.au;gi.sun@chubb.com.au;Gi Sun;mr;A&JUnit, b2bcustomergroup,standardPermissions;;;;;;
+;Manager A;akiro.nakamura@chubb.com.au;akiro.nakamura@chubb.com.au;akiro.nakamura@chubb.com.au;Akiro Nakamura;mr;Rustic, b2bmanagergroup;;;;;;
+;Manager B;anil.gupta@chubb.com.au;anil.gupta@chubb.com.au;anil.gupta@chubb.com.au;Anil Gupta;mr;A&JUnit, b2bmanagergroup, b2bcustomergroup, premiumPermissions;;;;;;
+;Manager C;salome.levi@chubb.com.au;salome.levi@chubb.com.au;salome.levi@chubb.com.au;Salome Levi;ms;A&JUnit, b2bmanagergroup;;;;;;
+
 
 #
 # Add restriction on salesemployeegroup. salesemployeegroup shall only see the employees from salesemployeegroup.
