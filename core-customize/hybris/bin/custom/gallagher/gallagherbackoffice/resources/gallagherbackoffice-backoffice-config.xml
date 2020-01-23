@@ -96,8 +96,11 @@
     </context>
 	<context component="notification-area">
 		<na:notification-area>
-			<na:notifications eventType="duplicateCustomer" level="FAILURE">
-				<na:message>duplicate.customer.failure</na:message>
+			<na:notifications eventType="duplicateC4CCustomer" level="FAILURE">
+				<na:message>duplicate.customer.c4c.failure</na:message>
+			</na:notifications>
+			<na:notifications eventType="duplicateHybrisCustomer" level="FAILURE">
+				<na:message>duplicate.customer.hybris.failure</na:message>
 			</na:notifications>
 		</na:notification-area>
 	</context>
@@ -106,7 +109,6 @@
 			<list-view:column qualifier="duplicate" label="type.Customer.duplicate" />
 		</list-view:list-view>
 	</context>
-	
 	<context merge-by="type" parent="User" type="Customer" component="editor-area">
         <editorArea:editorArea name="">
             <editorArea:tab name="hmc.gallagher" position="11">
@@ -116,5 +118,31 @@
             </editorArea:tab>
         </editorArea:editorArea>
     </context>
-
+    <context merge-by="type" parent="Customer" type="B2BCustomer" component="create-wizard">
+        <wz:flow xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config" id="CustomerWizard" title="create.title(ctx.TYPE_CODE)">
+			<wz:handler handlerId="verifyCustomerHandler1" handlerBean="verifyCustomerHandler">
+			</wz:handler>
+			<wz:prepare id="custPrepare">
+				<wz:initialize property="newCust" type="B2BCustomer"/>
+			</wz:prepare>
+			<wz:step id="step1" label="create.customer.essential.label" sublabel="create.customer.essential.sublabel">
+				<wz:content id="step1.content">
+					<wz:property-list root="newCust" merge-mode="REPLACE">
+						<wz:property qualifier="uid" type="java.lang.String"/>
+					</wz:property-list>
+				</wz:content>
+				<wz:navigation id="step1.navigation" merge-mode="REPLACE">
+						<wz:cancel/>
+						<wz:custom label="Verify" composedHandler="verifyCustomerHandler1"/>
+				</wz:navigation>
+			</wz:step>
+			<wz:step id="step3" label="create.customer.groups.label" sublabel="create.customer.groups.sublabel">
+				<wz:content id="step3.content">
+					<wz:property-list root="newCust">
+						<wz:property qualifier="defaultB2BUnit"/>
+					</wz:property-list>
+				</wz:content>
+			</wz:step>
+        </wz:flow>
+    </context>
 </config>

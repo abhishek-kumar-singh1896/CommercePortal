@@ -1,6 +1,7 @@
 package com.gallagher.backoffice.handler;
 
 import de.hybris.platform.core.model.user.CustomerModel;
+import de.hybris.platform.servicelayer.user.impl.DefaultUserService;
 
 import java.util.List;
 
@@ -32,6 +33,9 @@ public class VerifyCustomerHandler implements FlowActionHandler
 	@Resource
 	private NotificationService notificationService;
 
+	@Resource
+	private DefaultUserService userService;
+
 	@Override
 	public void perform(final CustomType customType, final FlowActionHandlerAdapter adapter, final Map<String, String> parameters)
 	{
@@ -41,26 +45,44 @@ public class VerifyCustomerHandler implements FlowActionHandler
 		final ConfigurableFlowController controller = (ConfigurableFlowController) adapter.getWidgetInstanceManager()
 				.getWidgetslot().getAttribute("widgetController");
 
-		final List<CustomerModel> existingCustomers = getExistingCustomerFromC4C(email);
+		final boolean existingHybris = getExistingCustomerFromHybris(email);
 
 		// This if needs to be removed once correct C4C endpoint connected
 		if ("vikram.bishnoi@nagarro.com".equals(email))
 		{
-			notificationService.notifyUser((String) null, "duplicateCustomer", NotificationEvent.Level.FAILURE);
+			notificationService.notifyUser((String) null, "duplicateC4CCustomer", NotificationEvent.Level.FAILURE);
 		}
-		else if (CollectionUtils.isEmpty(existingCustomers) || existingCustomers.size() == 1)
+		else if (Boolean.TRUE.compareTo(existingHybris) == 0)
 		{
-			if ("step1".equals(controller.getCurrentStep().getId()))
-			{
-				adapter.getWidgetInstanceManager().getModel().setValue("newCust.uid", email);
-				controller.getRenderer().refreshView();
-				adapter.custom();
-				adapter.next();
-			}
+			notificationService.notifyUser((String) null, "duplicateHybrisCustomer", NotificationEvent.Level.FAILURE);
 		}
 		else
 		{
-			notificationService.notifyUser((String) null, "duplicateCustomer", NotificationEvent.Level.FAILURE);
+			final List<CustomerModel> existingCustomers = getExistingCustomerFromC4C(email);
+			if (CollectionUtils.isEmpty(existingCustomers))
+			{
+				if ("step1".equals(controller.getCurrentStep().getId()))
+				{
+					adapter.getWidgetInstanceManager().getModel().setValue("newCust.uid", email);
+					controller.getRenderer().refreshView();
+					adapter.custom();
+					adapter.next();
+				}
+			}
+			else if (existingCustomers.size() == 1)
+			{
+				if ("step1".equals(controller.getCurrentStep().getId()))
+				{
+					adapter.getWidgetInstanceManager().getModel().setValue("newCust.uid", email);
+					controller.getRenderer().refreshView();
+					adapter.custom();
+					adapter.next();
+				}
+			}
+			else
+			{
+				notificationService.notifyUser((String) null, "duplicateCustomer", NotificationEvent.Level.FAILURE);
+			}
 		}
 		return;
 	}
@@ -73,6 +95,11 @@ public class VerifyCustomerHandler implements FlowActionHandler
 	{
 		// TODO
 		return null;
+	}
+
+	private boolean getExistingCustomerFromHybris(final String uid)
+	{
+		return userService.isUserExisting(uid);
 	}
 
 	protected NotificationService getNotificationService()
