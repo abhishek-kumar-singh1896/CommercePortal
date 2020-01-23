@@ -14,9 +14,9 @@ import org.apache.log4j.Logger;
 /**
  * Registration event, implementation of {@link AbstractCommerceUserEvent}
  */
-public class GallagherRegisterEvent extends AbstractCommerceUserEvent<BaseSiteModel> implements ClusterAwareEvent
+public class GallagherDuplicateRegistrationEvent extends AbstractCommerceUserEvent<BaseSiteModel> implements ClusterAwareEvent
 {
-	private static final Logger LOG = Logger.getLogger(GallagherRegisterEvent.class);
+	private static final Logger LOG = Logger.getLogger(GallagherDuplicateRegistrationEvent.class);
 
 	@Override
 	public boolean canPublish(final PublishEventContext publishEventContext)

@@ -22,7 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * Listener for duplicate customer registration events.
  */
-public class GallagherCustomerRegisterationEventListener extends AbstractEventListener<GallagherRegisterEvent>
+public class GallagherDuplicateCustomerRegisterationEventListener extends AbstractEventListener<GallagherDuplicateRegistrationEvent>
 {
 	private final EmailService emailService;
 	private final ConfigurationService configurationService;
@@ -41,7 +41,7 @@ public class GallagherCustomerRegisterationEventListener extends AbstractEventLi
 
 
 	@Autowired
-	public GallagherCustomerRegisterationEventListener(final ConfigurationService configurationService,
+	public GallagherDuplicateCustomerRegisterationEventListener(final ConfigurationService configurationService,
 			final EmailService emailService)
 	{
 		this.configurationService = configurationService;
@@ -50,7 +50,7 @@ public class GallagherCustomerRegisterationEventListener extends AbstractEventLi
 
 
 	@Override
-	protected void onEvent(final GallagherRegisterEvent event)
+	protected void onEvent(final GallagherDuplicateRegistrationEvent event)
 	{
 		final CustomerModel customer = event.getCustomer();
 

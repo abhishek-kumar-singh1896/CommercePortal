@@ -14,7 +14,7 @@ import de.hybris.platform.core.model.user.CustomerModel;
 
 import org.springframework.util.Assert;
 
-import com.gallagher.core.events.GallagherRegisterEvent;
+import com.gallagher.core.events.GallagherDuplicateRegistrationEvent;
 
 
 /**
@@ -34,7 +34,7 @@ public class GallagherCustomerFacadeImpl extends DefaultCustomerFacade
 		setCommonPropertiesForRegister(registerData, newCustomer);
 		getCustomerAccountService().register(newCustomer, registerData.getPassword());
 
-		getEventService().publishEvent(initializeEvent(new GallagherRegisterEvent(), newCustomer));
+		getEventService().publishEvent(initializeEvent(new GallagherDuplicateRegistrationEvent(), newCustomer));
 	}
 
 	protected AbstractCommerceUserEvent initializeEvent(final AbstractCommerceUserEvent event, final CustomerModel customerModel)
