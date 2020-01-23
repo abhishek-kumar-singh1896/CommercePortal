@@ -111,7 +111,8 @@ public class DefaultAutoLoginStrategy implements AutoLoginStrategy
 	 */
 	public void login(final Authentication token, final HttpServletRequest request, final HttpServletResponse response)
 	{
-		// XXX Auto-generated method stub
+		getCustomerFacade().loginSuccess();
+		getGuidCookieStrategy().setCookie(request, response);
 
 	}
 }

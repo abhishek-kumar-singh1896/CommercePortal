@@ -8,11 +8,18 @@ import de.hybris.platform.jalo.JaloSession;
 import de.hybris.platform.jalo.user.User;
 import de.hybris.platform.jalo.user.UserManager;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import org.apache.log4j.Logger;
+import org.keycloak.adapters.springsecurity.account.KeycloakRole;
 import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.mapping.GrantedAuthoritiesMapper;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
@@ -24,6 +31,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 public class GallagherAuthenticationProvider extends AbstractAcceleratorAuthenticationProvider
 {
 	private static final Logger LOGGER = Logger.getLogger(GallagherAuthenticationProvider.class);
+	private GrantedAuthoritiesMapper grantedAuthoritiesMapper;
 
 	public GallagherAuthenticationProvider()
 	{
@@ -41,6 +49,7 @@ public class GallagherAuthenticationProvider extends AbstractAcceleratorAuthenti
 	{
 
 		final String username = getUserEmailFromAuthentication(authentication);
+		final KeycloakAuthenticationToken token = (KeycloakAuthenticationToken) authentication;
 
 		UserDetails userDetails = null;
 		try
@@ -54,9 +63,24 @@ public class GallagherAuthenticationProvider extends AbstractAcceleratorAuthenti
 		}
 		final User user = UserManager.getInstance().getUserByLogin(userDetails.getUsername());
 		JaloSession.getCurrentSession().setUser(user);
+		List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
 
-		return super.createSuccessAuthentication(authentication, userDetails);
+		for (final String role : token.getAccount().getRoles())
+		{
+			grantedAuthorities.add(new KeycloakRole(role));
+		}
+		//		return super.createSuccessAuthentication(authentication, userDetails);
+		return new KeycloakAuthenticationToken(token.getAccount(), token.isInteractive(), mapAuthorities(grantedAuthorities));
+	}
 
+	public void setGrantedAuthoritiesMapper(final GrantedAuthoritiesMapper grantedAuthoritiesMapper)
+	{
+		this.grantedAuthoritiesMapper = grantedAuthoritiesMapper;
+	}
+
+	private Collection<? extends GrantedAuthority> mapAuthorities(final Collection<? extends GrantedAuthority> authorities)
+	{
+		return grantedAuthoritiesMapper != null ? grantedAuthoritiesMapper.mapAuthorities(authorities) : authorities;
 	}
 
 	private String getUserEmailFromAuthentication(final Authentication authentication)
