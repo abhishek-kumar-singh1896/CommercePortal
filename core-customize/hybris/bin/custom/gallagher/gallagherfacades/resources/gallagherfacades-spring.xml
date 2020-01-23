@@ -26,5 +26,10 @@
 			</list>
 		</property>
 	</bean>
+	
+	<alias alias="customerFacade" name="gallagherCustomerFacade" />
+	<bean id="gallagherCustomerFacade" class="com.gallagher.facades.customer.impl.GallagherCustomerFacadeImpl"
+		parent="defaultCustomerFacade">
+	</bean>
 
 </beans>

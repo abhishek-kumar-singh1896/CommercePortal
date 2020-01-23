@@ -65,5 +65,6 @@
 	<alias name="gallagherCoreDataImportService" alias="coreDataImportService" />
 	<bean id="gallagherCoreDataImportService" class="com.gallagher.core.dataimport.impl.GallagherCoreDataImportServiceImpl" parent="defaultCoreDataImportService" />
 	
+	<bean id="gallagherCustomerRegisterationEventListener" class="com.gallagher.core.events.GallagherCustomerRegisterationEventListener" parent="abstractEventListener" />
 
 </beans>
