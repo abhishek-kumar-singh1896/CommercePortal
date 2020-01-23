@@ -256,35 +256,7 @@ th {
   font-family: 'Glyphicons Halflings';
   src: url('../fonts/glyphicons-halflings-regular.eot');
   src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
-  font-family: 'font-icons';
-  src: url("../fonts/font-icons/font-icons-ttf.ttf") format("truetype"), url("../fonts/font-icons/font-icons-woff.woff") format("woff"), url("../fonts/font-icons/font-icons-woff2.woff2") format("woff2"), url("../fonts/font-icons/font-icons-svg.svg#font-icons") format("svg"); }
   }
-  
-.icon--alert::before, .icon--arrow-small-left::before, .icon--arrow-small-right::before, .icon--bin::before, .icon--bulb::before, .icon--cart::before, .icon--chat::before, .icon--chevron-small-down::before, .icon--chevron-small-left::before, .icon--chevron-small-right::before, .icon--chevron-small-up::before, .icon--compass::before, .icon--document::before, .icon--email::before, .icon--facebook::before, .icon--globe::before, .icon--hammer::before, .icon--help::before, .icon--information::before, .icon--instagram::before, .icon--laminex-logo::before, .icon--leaf::before, .icon--linkedin::before, .icon--list::before, .icon--loading::before, .icon--location::before, .icon--menu::before, .icon--pencil::before, .icon--phone::before, .icon--pintrest::before, .icon--play::before, .icon--plus-solid::before, .icon--plus::before, .icon--products::before, .icon--quick-order::before, .icon--search::before, .icon--stack::before, .icon--swatch::before, .icon--thin-arrow-left::before, .icon--thin-arrow-right::before, .icon--tick-circle::before, .icon--tick-thick::before, .icon--tick-thin::before, .icon--tick::before, .custom-checkbox .custom-checkbox-icon::before, .icon--trash::before, .icon--truck::before, .icon--twitter::before, .icon--user::before, .icon--x-close::before, .icon--youtube::before, .image-slider__direction--prev::before, .image-slider__direction--next::before, .facet-checkbox-group__head-collapse::before, .collapsed > .facet-checkbox-group__head-collapse::before {
-  font-family: 'font-icons' !important;
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; }
-
-.icon--linkedin::before {
-  content: ""; }
-  
-  .icon--pintrest::before {
-  content: ""; }
-  
-  icon--instagram::before {
-  content: ""; }
-  
-  .icon--youtube::before {
-  content: ""; }
-  
-  .icon--facebook::before {
-  content: ""; }
   
 .glyphicon,
 .product__listing.product__list .product__list--item.tag-highlighted:after,
