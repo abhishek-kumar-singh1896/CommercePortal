@@ -23,7 +23,7 @@
             </label>
             <p class="modal__top--text">${fn:escapeXml(quoteData.name)}</p>
             <label class="modal__top--label">
-                <spring:theme code="text.quote.description.label"/>
+                <spring:theme code="text.quote.OrderRequiredBy.label"/>
             </label>
             <p class="modal__top--text">${fn:escapeXml(quoteData.description)}</p>
         </div>
