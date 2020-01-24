@@ -23,7 +23,8 @@ UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[l
 UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
 ;;AboutSAPCommerceLink;"About SAP Commerce Cloud"
 ;;AgileCommerceBlogLink;"Agile Commerce Blog"
-;;AllBrandsCategoryLink;"Brands"
+;;AllBrandsCategoryLink;"Animal Management"
+;;ElectricFencingCategoryLink;"Electric Fencing"
 ;;DocumentationLink;"Documentation"
 ;;FAQLink;"FAQ"
 ;;FacebookLink;"Facebook"
@@ -74,23 +75,13 @@ UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
 
 # CMS Navigation Nodes
 UPDATE CMSNavigationNode;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
-;;AccessoriesNavNode;"Accessories"
-;;AccessoryBrandLinksNavNode;"Accessories"
-;;BrandLinksNavNode;"Cameras"
 ;;BrandsNavNode;"Brands"
-;;CameraAccessoriesNavNode;"Camera Accessories & Supplies"
-;;DigitalCamerasNavNode;"Digital Cameras"
+;;ElectricFencingNavNode;"Electric Fencing"
 ;;AMB2CNavNode;"Animal Management Site"
-;;FilmCamerasNavNode;"Film Cameras"
-;;FlashMemoryNavNode;"Flash Memory"
 ;;FollowUsNavNode;"Follow Us"
-;;HandheldCamcordersNavNode;"Hand Held Camcorders"
-;;PowerSuppliesNavNode;"Power Supplies"
 ;;SAPCommerceNavNode;"SAP Commerce Cloud"
 ;;SAPCustomerExperienceNavNode;"SAP Customer Experience"
 ;;SiteRootNode;"SiteRoot"
-;;SuppliesNavNode;"Supplies"
-;;WebcamsNavNode;"Webcams"
 
 # Animal Management B2C FAQ Page 
 

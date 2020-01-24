@@ -114,12 +114,12 @@
 	<extension name="scpiconnectorbackoffice" />
 	<extension name="sapc4ccustomerb2c" />
 	<extension name="webservicescommons" />
-	<extension name="b2bsappricing" />
+	<!-- <extension name="b2bsappricing" />
 	<extension name="sappricing" />
 	<extension name="sappricingbol" />
 	<extension name="sappricingproductcarouseladdon" />
 	<extension name="sappricingbackoffice" />
-	<extension name="sapmodel" />
+	<extension name="sapmodel" /> -->
 	<extension name="gallagherfulfilmentprocess" />
 	<extension name="gallaghercore" />
 	<extension name="gallagherfacades" />

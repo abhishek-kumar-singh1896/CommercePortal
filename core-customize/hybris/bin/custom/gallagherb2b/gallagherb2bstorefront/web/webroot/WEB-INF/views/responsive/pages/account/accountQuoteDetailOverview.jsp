@@ -109,7 +109,7 @@
                     </div>
                     <div class="col-sm-12">
                         <div class="item-group">
-                            <span class="item-label"><spring:theme code="text.quote.description.label"/></span>
+                            <span class="item-label"><spring:theme code="text.quote.OrderRequiredBy.label"/></span>
                             <span class="item-value">
 	                            <c:choose>
                                   <c:when test="${quoteData.description ne null}">
