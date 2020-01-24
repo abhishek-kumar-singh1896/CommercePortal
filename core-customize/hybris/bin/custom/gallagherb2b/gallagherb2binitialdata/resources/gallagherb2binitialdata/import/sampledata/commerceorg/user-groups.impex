@@ -918,10 +918,11 @@ INSERT_UPDATE PrincipalGroupRelation;source(uid)[unique=true];target(uid)[unique
 
 INSERT_UPDATE Address;streetname[unique=true];postalcode[unique=true];town;country(isocode);billingAddress;contactAddress;shippingAddress;unloadingAddress;firstname;lastname;email;title(code);&addId;owner(&B2BUnitID)[unique=true];
 ;999 South Wacker Drive;60606;Sydney;AU;TRUE;TRUE;TRUE;TRUE;Akiro;Nakamura;akiro.nakamura@gglrustic-hw.com;mr;AJAddrID1;AJID1;
+;1000 South Wacker Drive;60606;Sydney;AU;TRUE;TRUE;TRUE;TRUE;Jhon;Geller;jhon.geller@gglrustic-hw.com;mr;AJAddrID2;AJID2;
 
 INSERT_UPDATE B2BUnit;description;uid[unique=true];name;locName[lang=en];groups(uid);reportingOrganization(uid);Addresses(&addId);&B2BUnitID;accountManager(uid);creditLimit(code);approvalProcessCode;
 ;Hierarchical;A&JCommunications;A & J Communications;A & J Communications;;A&JCommunications;AJAddrID1;AJID1;acctmgra;Monthly40KAlert10Percent;accApproval;
-;Unit AJC;A&JUnit;A & J Unit;A & J Unit;A&JCommunications;A&JCommunications;;GallagherRusticID2;acctmgrb;Monthly15KAlert3K
+;Unit AJC;A&JUnit;A & J Unit;A & J Unit;A&JCommunications;A&JCommunications;AJAddrID2;AJID2;acctmgrb;Monthly15KAlert3K
 
 INSERT_UPDATE PrincipalGroupRelation;source(uid)[unique=true];target(uid)[unique=true]
 ;A&JUnit;New Zealand
