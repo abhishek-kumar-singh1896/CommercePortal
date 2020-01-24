@@ -10487,7 +10487,7 @@ fieldset[disabled] .btn-primary.active {
   float: left !important;
 }
 .rating .rating-stars span.active {
-  color: #0068b3;
+  color: #ff8400;
 }
 .rating.rating-set .rating-stars {
   cursor: pointer;
@@ -12348,8 +12348,8 @@ a.product__listing .product__listing--promo:focus {
 }
 .item__list .item__list--header li {
   display: table-cell;
-  background-color: #142939;
-  color: #7f919e;
+  background-color: #000000;
+  color: #ffffff;
   font-size: 13px;
   text-transform: uppercase;
   padding: 7px 10px;
