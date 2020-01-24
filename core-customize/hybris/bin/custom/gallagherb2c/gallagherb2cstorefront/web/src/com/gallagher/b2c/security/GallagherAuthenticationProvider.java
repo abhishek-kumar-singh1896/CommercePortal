@@ -69,6 +69,7 @@ public class GallagherAuthenticationProvider extends AbstractAcceleratorAuthenti
 		{
 			grantedAuthorities.add(new KeycloakRole(role));
 		}
+		grantedAuthorities.addAll(userDetails.getAuthorities());
 		//		return super.createSuccessAuthentication(authentication, userDetails);
 		return new KeycloakAuthenticationToken(token.getAccount(), token.isInteractive(), mapAuthorities(grantedAuthorities));
 	}

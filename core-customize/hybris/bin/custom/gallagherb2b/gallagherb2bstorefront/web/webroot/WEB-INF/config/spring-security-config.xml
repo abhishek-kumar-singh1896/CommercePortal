@@ -145,7 +145,7 @@
     	<constructor-arg name="authenticationManager" ref="authenticationManager" />
     	<constructor-arg name="requiresAuthenticationRequestMatcher">
             <bean class="org.springframework.security.web.util.matcher.AntPathRequestMatcher">
-                <constructor-arg name="pattern" value="/login" />
+                <constructor-arg name="pattern" value="/login/**" />
                 <constructor-arg name="httpMethod" value="GET" />
             </bean>
         </constructor-arg>
