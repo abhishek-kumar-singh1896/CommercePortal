@@ -303,7 +303,7 @@ public class QuoteController extends AbstractCartPageController
 		model.addAttribute(ThirdPartyConstants.SeoRobots.META_ROBOTS, ThirdPartyConstants.SeoRobots.NOINDEX_NOFOLLOW);
 
 		final double quoteThreshold = getQuoteFacade().getQuoteRequestThreshold(quoteCode);
-		if (quoteThreshold >= 0
+		if (quoteThreshold > 0
 				&& !(GlobalMessages.containsMessage(model, GlobalMessages.ERROR_MESSAGES_HOLDER, QUOTE_REJECT_INITIATION_REQUEST)))
 		{
 			// Display quote request minimum threshold only if it's set and quote version is equal to 1
@@ -452,9 +452,10 @@ public class QuoteController extends AbstractCartPageController
 		{
 			final double quoteThreshold = getQuoteFacade().getQuoteRequestThreshold(quoteCode);
 			LOG.error(String.format("Quote %s under threshold", quoteCode), e);
+			if (quoteThreshold > 0) {
 			GlobalMessages.addFlashMessage(redirectModel, GlobalMessages.ERROR_MESSAGES_HOLDER, QUOTE_REJECT_INITIATION_REQUEST,
 					new Object[]
-					{ getFormattedPriceValue(quoteThreshold) });
+					{ getFormattedPriceValue(quoteThreshold) });}
 			return String.format(REDIRECT_QUOTE_EDIT_URL, urlEncode(quoteCode));
 		}
 		catch (final IllegalStateException | UnknownIdentifierException | ModelSavingException | IllegalArgumentException e)
