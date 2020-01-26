@@ -47,7 +47,6 @@ import de.hybris.platform.servicelayer.exceptions.ModelSavingException;
 import de.hybris.platform.servicelayer.exceptions.SystemException;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 import de.hybris.platform.servicelayer.internal.model.impl.ItemModelCloneCreator.CannotCloneException;
-import com.gallagher.b2b.storefront.util.QuoteExpirationTimeConverter;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -78,6 +77,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
+
+import com.gallagher.b2b.storefront.util.QuoteExpirationTimeConverter;
 
 
 /**
@@ -303,7 +304,7 @@ public class QuoteController extends AbstractCartPageController
 		model.addAttribute(ThirdPartyConstants.SeoRobots.META_ROBOTS, ThirdPartyConstants.SeoRobots.NOINDEX_NOFOLLOW);
 
 		final double quoteThreshold = getQuoteFacade().getQuoteRequestThreshold(quoteCode);
-		if (quoteThreshold > 0
+		if (quoteThreshold >= 0
 				&& !(GlobalMessages.containsMessage(model, GlobalMessages.ERROR_MESSAGES_HOLDER, QUOTE_REJECT_INITIATION_REQUEST)))
 		{
 			// Display quote request minimum threshold only if it's set and quote version is equal to 1
