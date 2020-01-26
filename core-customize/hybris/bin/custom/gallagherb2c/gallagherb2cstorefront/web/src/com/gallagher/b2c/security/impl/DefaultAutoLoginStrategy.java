@@ -96,4 +96,16 @@ public class DefaultAutoLoginStrategy implements AutoLoginStrategy
 	{
 		this.rememberMeServices = rememberMeServices;
 	}
+
+	/**
+	 * @param token
+	 * @param request
+	 * @param response
+	 */
+	public void login(final Authentication token, final HttpServletRequest request, final HttpServletResponse response)
+	{
+		getCustomerFacade().loginSuccess();
+		getGuidCookieStrategy().setCookie(request, response);
+
+	}
 }

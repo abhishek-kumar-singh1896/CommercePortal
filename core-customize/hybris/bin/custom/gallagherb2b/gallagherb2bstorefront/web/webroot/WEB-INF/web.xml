@@ -142,6 +142,10 @@
         <listener-class>org.springframework.web.util.HttpSessionMutexListener</listener-class>
     </listener>
     
+    <listener>
+    	<listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
+	</listener>
+    
 	<!-- config -->
 	<context-param>
 		<description>

@@ -24,33 +24,33 @@
 		http://www.springframework.org/schema/util/spring-util.xsd">
 		
 	<context:annotation-config/>
+	<context:component-scan base-package="org.keycloak.adapters.springsecurity" />
 
 	<security:http pattern="/_ui/**" security="none" />
 
 	<!--Security config for checkout - it has its own login page-->
-	<security:http pattern="/checkout/**">
+ 	<security:http pattern="/checkout/**" entry-point-ref="keycloakAuthenticationEntryPoint">
         <security:anonymous username="anonymous" granted-authority="ROLE_ANONYMOUS" />
-		<security:access-denied-handler error-page="/login"/>
+<!-- 		<security:access-denied-handler error-page="/login"/> -->
 		<security:session-management session-authentication-strategy-ref="fixation" />
 		<security:intercept-url pattern="/**" requires-channel="https" />
 		<security:csrf token-repository-ref="csrfTokenRepository" request-matcher-ref="csrfProtectionMatcher" />
 		<security:custom-filter before="CSRF_FILTER" ref="logoutFilter" />
-
-		<security:form-login
-				login-page="/login/checkout"
-				authentication-failure-handler-ref="loginCheckoutAuthenticationFailureHandler"
-				authentication-success-handler-ref="loginCheckoutGuidAuthenticationSuccessHandler"
-				username-parameter="j_username" 
-				password-parameter="j_password"
-				login-processing-url="/checkout/j_spring_security_check"
-				 />
+		<security:custom-filter ref="keycloakPreAuthActionsFilter" before="LOGOUT_FILTER" />
+        <security:custom-filter ref="keycloakAuthenticationProcessingFilter" before="FORM_LOGIN_FILTER" />
+<!-- 		<security:form-login -->
+<!-- 				login-page="/login/checkout" -->
+<!-- 				authentication-failure-handler-ref="loginCheckoutAuthenticationFailureHandler" -->
+<!-- 				authentication-success-handler-ref="loginCheckoutGuidAuthenticationSuccessHandler" -->
+<!-- 				username-parameter="j_username"  -->
+<!-- 				password-parameter="j_password" -->
+<!-- 				login-processing-url="/checkout/j_spring_security_check" -->
+<!-- 				 /> -->
 
 		<security:port-mappings>
 			<security:port-mapping http="#{configurationService.configuration.getProperty('tomcat.http.port')}"
 			                       https="#{configurationService.configuration.getProperty('tomcat.ssl.port')}" />
 			<security:port-mapping http="80" https="443" />
-			<!--security:port-mapping http="#{configurationService.configuration.getProperty('proxy.http.port')}"
-				https="#{configurationService.configuration.getProperty('proxy.ssl.port')}" /-->
 		</security:port-mappings>
 
 		<security:request-cache ref="httpSessionRequestCache" />
@@ -75,13 +75,14 @@
 	<bean id="antPathMatcher" class="org.springframework.util.AntPathMatcher" />
 
 	<!-- Default security config -->
-	<security:http request-matcher-ref="excludeUrlRequestMatcher">
+	<security:http request-matcher-ref="excludeUrlRequestMatcher" entry-point-ref="keycloakAuthenticationEntryPoint">
 		<security:anonymous username="anonymous" granted-authority="ROLE_ANONYMOUS" />
-		<security:access-denied-handler error-page="/login"/>
+<!-- 		<security:access-denied-handler error-page="/login"/> -->
 		<security:session-management session-authentication-strategy-ref="fixation" />
 		<security:csrf token-repository-ref="csrfTokenRepository" request-matcher-ref="csrfProtectionMatcher" />
 		<security:custom-filter before="CSRF_FILTER" ref="logoutFilter" />
-
+		<security:custom-filter ref="keycloakPreAuthActionsFilter" before="LOGOUT_FILTER" />
+        <security:custom-filter ref="keycloakAuthenticationProcessingFilter" before="FORM_LOGIN_FILTER" />
 		<!-- RememberMe -->
 		<security:remember-me key="gallagherb2bstorefront" services-ref="rememberMeServices" />
 
@@ -92,17 +93,18 @@
 		<security:intercept-url pattern="/my-account/order/*/getReadOnlyProductVariantMatrix" access="hasAnyRole('ROLE_ANONYMOUS','ROLE_CUSTOMERGROUP')" requires-channel="https" />
 		<security:intercept-url pattern="/my-account/**" access="hasRole('ROLE_CUSTOMERGROUP')" requires-channel="https" />
 		<security:intercept-url pattern="/quote/**" access="hasRole('ROLE_CUSTOMERGROUP')" requires-channel="https" />
+		<security:intercept-url pattern="/login/**" access="hasAnyRole('ROLE_ANONYMOUS','ROLE_CUSTOMERGROUP')" requires-channel="https" />
 
 		<security:intercept-url pattern="/**" requires-channel="https" /> <!-- Everything should be secure -->
 
-		<security:form-login
-				login-page="/login"
-				authentication-failure-handler-ref="loginAuthenticationFailureHandler"
-				authentication-success-handler-ref="loginGuidAuthenticationSuccessHandler"
-				username-parameter="j_username" 
-				password-parameter="j_password" 
-				login-processing-url="/j_spring_security_check"
-				  />
+<!-- 		<security:form-login -->
+<!-- 				login-page="/login" -->
+<!-- 				authentication-failure-handler-ref="loginAuthenticationFailureHandler" -->
+<!-- 				authentication-success-handler-ref="loginGuidAuthenticationSuccessHandler" -->
+<!-- 				username-parameter="j_username"  -->
+<!-- 				password-parameter="j_password"  -->
+<!-- 				login-processing-url="/j_spring_security_check" -->
+<!-- 				  /> -->
 
 		<security:port-mappings>
 			<security:port-mapping http="#{configurationService.configuration.getProperty('tomcat.http.port')}"
@@ -120,15 +122,42 @@
 
 	</security:http>
 
-	<security:authentication-manager alias="authenticationManager">
-		<security:authentication-provider ref="acceleratorAuthenticationProvider" />
-	</security:authentication-manager>
+    <security:authentication-manager alias="authenticationManager">
+        <security:authentication-provider ref="keycloakAuthenticationProvider" />
+    </security:authentication-manager>
 
-	<bean id="acceleratorAuthenticationProvider" parent="abstractAcceleratorAuthenticationProvider" 
+    <bean id="adapterDeploymentContext" class="org.keycloak.adapters.springsecurity.AdapterDeploymentContextFactoryBean">
+        <constructor-arg value="#{configurationService.configuration.getProperty('keycloak.config')}" />
+    </bean>
+
+    <bean id="keycloakAuthenticationEntryPoint" class="org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticationEntryPoint">
+    	<constructor-arg ref="adapterDeploymentContext" />
+    	<property name="loginUri" value="/login" />
+    </bean>
+<!--     <bean id="keycloakAuthenticationProvider" class="org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticationProvider" /> -->
+    <bean id="keycloakAuthenticationProvider" parent="abstractAcceleratorAuthenticationProvider" class="com.gallagher.b2b.storefront.security.GallagherAuthenticationProvider" />
+    <bean id="keycloakPreAuthActionsFilter" class="org.keycloak.adapters.springsecurity.filter.KeycloakPreAuthActionsFilter" />
+<!--     <alias name="keycloakAuthenticationProcessingFilterr" alias="keycloakAuthenticationProcessingFilterr"/>
+    <bean id="keycloakAuthenticationProcessingFilterr" class="org.keycloak.adapters.springsecurity.filter.KeycloakAuthenticationProcessingFilter">
+        <constructor-arg name="authenticationManager" ref="authenticationManager" />
+    </bean> -->
+	<bean id="keycloakAuthenticationProcessingFilter" class="com.gallagher.b2b.storefront.security.GallagherKeycloakAuthenticationProcessingFilter">
+    	<constructor-arg name="authenticationManager" ref="authenticationManager" />
+    	<constructor-arg name="requiresAuthenticationRequestMatcher">
+            <bean class="org.springframework.security.web.util.matcher.AntPathRequestMatcher">
+                <constructor-arg name="pattern" value="/login/**" />
+                <constructor-arg name="httpMethod" value="GET" />
+            </bean>
+        </constructor-arg>
+    	<property name="defaultAutoLoginStrategy" ref="defaultAutoLoginStrategy" />
+    </bean>
+
+<!-- 	<bean id="acceleratorAuthenticationProvider" parent="abstractAcceleratorAuthenticationProvider" 
 			class="com.gallagher.b2b.storefront.security.AcceleratorAuthenticationProvider">
 		<property name="adminGroup" value="ROLE_ADMINGROUP"/>
-	</bean>
+	</bean> -->
 
+<!-- 	<bean id="loginStrategy" parent="defaultAutoLoginStrategy" class="com.gallagher.b2b.storefront.security.impl.GallagharAutoLoginStrategy"/> -->
 	<bean id="coreUserDetailsService" class="de.hybris.platform.spring.security.CoreUserDetailsService"  />
 
 	<bean id="guidCookieStrategy" class="com.gallagher.b2b.storefront.security.impl.DefaultGUIDCookieStrategy"
@@ -284,7 +313,27 @@
 		<property name="sessionService" ref="sessionService"/>
 	</bean>
 	
-     <bean id="logoutFilter" class="org.springframework.security.web.authentication.logout.LogoutFilter">
+	<bean id="keycloakLogoutHandler" class="org.keycloak.adapters.springsecurity.authentication.KeycloakLogoutHandler">
+        <constructor-arg ref="adapterDeploymentContext" />
+    </bean>
+
+    <bean id="logoutFilter" class="org.springframework.security.web.authentication.logout.LogoutFilter">
+        <constructor-arg name="logoutSuccessUrl" value="/" />
+        <constructor-arg name="handlers">
+            <list>
+                <ref bean="keycloakLogoutHandler" />
+                <bean class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler" />
+            </list>
+        </constructor-arg>
+        <property name="logoutRequestMatcher">
+            <bean class="org.springframework.security.web.util.matcher.AntPathRequestMatcher">
+                <constructor-arg name="pattern" value="/logout**" />
+                <constructor-arg name="httpMethod" value="GET" />
+            </bean>
+        </property>
+    </bean>
+	
+<!--      <bean id="logoutFilter" class="org.springframework.security.web.authentication.logout.LogoutFilter">
  		<constructor-arg name="logoutSuccessHandler" ref="logoutSuccessHandler" />
  		<constructor-arg name="handlers">
  			<list>
@@ -292,7 +341,7 @@
  				<ref bean="rememberMeServices" />
  			</list>
  		</constructor-arg>
- 	</bean>
+ 	</bean> -->
 
 	<!-- Remember Me -->
 
