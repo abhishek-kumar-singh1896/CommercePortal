@@ -127,7 +127,7 @@
     </security:authentication-manager>
 
     <bean id="adapterDeploymentContext" class="org.keycloak.adapters.springsecurity.AdapterDeploymentContextFactoryBean">
-        <constructor-arg value="/WEB-INF/keycloak.json" />
+        <constructor-arg value="#{configurationService.configuration.getProperty('keycloak.config')}" />
     </bean>
 
     <bean id="keycloakAuthenticationEntryPoint" class="org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticationEntryPoint">
