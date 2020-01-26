@@ -42,7 +42,7 @@
 		<property name="categorySource" ref="amB2CBrandCategorySource"/>
 	</bean>
 	
-	<bean id="amB2CPointOfServiceFacetDisplayNameProvider"
+	<bean id="gallagherPointOfServiceFacetDisplayNameProvider"
 		class="com.enterprisewide.b2badvance.core.search.solrfacetsearch.provider.impl.PointOfServiceFacetDisplayNameProvider">
 		<property name="pointOfServiceService" ref="pointOfServiceService" />
 	</bean>
