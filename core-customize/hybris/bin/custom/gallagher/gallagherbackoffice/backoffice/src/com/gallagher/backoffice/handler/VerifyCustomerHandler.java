@@ -12,6 +12,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.validator.routines.EmailValidator;
 import org.apache.log4j.Logger;
 
 import com.hybris.cockpitng.config.jaxb.wizard.CustomType;
@@ -46,9 +47,14 @@ public class VerifyCustomerHandler implements FlowActionHandler
 				.getWidgetslot().getAttribute("widgetController");
 
 		final boolean existingHybris = getExistingCustomerFromHybris(email);
+		final boolean emailValidity = isValidEmail(email);
 
+		if (Boolean.FALSE.compareTo(emailValidity) == 0)
+		{
+			notificationService.notifyUser((String) null, "invalidEmailAddress", NotificationEvent.Level.FAILURE);
+		}
 		// This if needs to be removed once correct C4C endpoint connected
-		if ("vikram.bishnoi@nagarro.com".equals(email))
+		else if ("vikram.bishnoi@nagarro.com".equals(email))
 		{
 			notificationService.notifyUser((String) null, "duplicateC4CCustomer", NotificationEvent.Level.FAILURE);
 		}
@@ -105,6 +111,12 @@ public class VerifyCustomerHandler implements FlowActionHandler
 	protected NotificationService getNotificationService()
 	{
 		return notificationService;
+	}
+
+	private boolean isValidEmail(final String email)
+	{
+		final EmailValidator eValidator = EmailValidator.getInstance();
+		return eValidator.isValid(email) ? true : false;
 	}
 
 }
