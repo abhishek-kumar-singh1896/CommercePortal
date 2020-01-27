@@ -21,21 +21,21 @@ $taxGroup=Europe1PriceFactory_PTG(code)[default=nz-gst]
 $approved=approvalstatus(code)[default='approved']
 
 UPDATE Product;code[unique=true];$prices;$approved;$catalogVersion;$taxGroup
-;t10-mifare-reader-black;1 EA = 117 AUD N
-;t10-mifare-reader-white;1 EA = 117 AUD N
-;t11-multi-tech-reader-black;1 EA = 16 AUD N, 10 EA = 14,89 AUD N, 30 EA = 13,49 AUD N, 50 EA = 11,19 AUD N, 100 EA = 9,99 AUD N
-;t11-multi-tech-reader-white;1 EA = 16 AUD N, 10 EA = 14,89 AUD N, 30 EA = 13,49 AUD N, 50 EA = 11,19 AUD N, 100 EA = 9,99 AUD N
-;t11-mifare-reader-black;1 EA = 21 AUD N
-;t11-mifare-reader-white;1 EA = 21 AUD N
-;t12-multi-tech-reader-black;1 EA = 80 AUD N
-;t12-multi-tech-reader-white;1 EA = 80 AUD N
-;t12-mifare-reader-black;1 EA = 36 AUD N
-;t12-mifare-reader-white;1 EA = 36 AUD N
-;t15-multi-tech-reader-black;1 EA = 75 AUD N
-;t15-multi-tech-reader-white;1 EA = 75 AUD N
-;t15-mifare-reader-black;1 EA = 73 AUD N
-;t15-mifare-reader-white;1 EA = 73 AUD N
-;t20-multi-tech-reader-black;1 EA = 73 AUD N
-;t20-multi-tech-reader-white;1 EA = 73 AUD N
-;t20-mifare-reader-black;1 EA = 130 AUD N
-;t20-mifare-reader-white;1 EA = 130 AUD N
+;t10-mifare-reader-black;1 EA = 117 NZD N
+;t10-mifare-reader-white;1 EA = 117 NZD N
+;t11-multi-tech-reader-black;1 EA = 16 NZD N, 10 EA = 14,89 NZD N, 30 EA = 13,49 NZD N, 50 EA = 11,19 NZD N, 100 EA = 9,99 NZD N
+;t11-multi-tech-reader-white;1 EA = 16 NZD N, 10 EA = 14,89 NZD N, 30 EA = 13,49 NZD N, 50 EA = 11,19 NZD N, 100 EA = 9,99 NZD N
+;t11-mifare-reader-black;1 EA = 21 NZD N
+;t11-mifare-reader-white;1 EA = 21 NZD N
+;t12-multi-tech-reader-black;1 EA = 80 NZD N
+;t12-multi-tech-reader-white;1 EA = 86 NZD N
+;t12-mifare-reader-black;1 EA = 36 NZD N
+;t12-mifare-reader-white;1 EA = 36 NZD N
+;t15-multi-tech-reader-black;1 EA = 75 NZD N
+;t15-multi-tech-reader-white;1 EA = 75 NZD N
+;t15-mifare-reader-black;1 EA = 73 NZD N
+;t15-mifare-reader-white;1 EA = 83 NZD N
+;t20-multi-tech-reader-black;1 EA = 73 NZD N
+;t20-multi-tech-reader-white;1 EA = 73 NZD N
+;t20-mifare-reader-black;1 EA = 130 NZD N
+;t20-mifare-reader-white;1 EA = 130 NZD N
