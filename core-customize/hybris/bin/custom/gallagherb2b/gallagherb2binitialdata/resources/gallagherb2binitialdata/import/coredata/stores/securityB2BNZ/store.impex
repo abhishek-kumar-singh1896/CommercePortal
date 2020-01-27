@@ -45,3 +45,8 @@ INSERT_UPDATE BaseStore2DeliveryModeRel;source(uid)[unique=true];target(code)[un
 ;securityB2BNZ;standard-gross
 ;securityB2BNZ;free-standard-shipping
 
+INSERT_UPDATE AtpFormula;code[unique=true];availability;allocation;cancellation;increase;reserved;shrinkage;wastage
+;Default_Formula;true;true;true;true;true;true;true;true
+ 
+UPDATE BaseStore;uid[unique=true];defaultAtpFormula(code);
+;securityB2BNZ;Default_Formula;
