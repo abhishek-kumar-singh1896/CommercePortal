@@ -101,7 +101,7 @@ UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];title[lang=e
 
 # CMS Footer Component
 UPDATE FooterNavigationComponent;$contentCV[unique=true];uid[unique=true];notice[lang=$lang]
-;;FooterNavigationComponent;"© 2016 hybris software"
+;;FooterNavigationComponent;"© 2020 Hybris Software"
 
 # CMS Paragraph Component (Contact information)
 UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=$lang]
