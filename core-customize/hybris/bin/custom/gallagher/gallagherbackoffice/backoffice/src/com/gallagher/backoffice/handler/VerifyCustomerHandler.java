@@ -1,5 +1,6 @@
 package com.gallagher.backoffice.handler;
 
+import de.hybris.platform.b2b.model.B2BCustomerModel;
 import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.servicelayer.user.impl.DefaultUserService;
 
@@ -40,8 +41,17 @@ public class VerifyCustomerHandler implements FlowActionHandler
 	@Override
 	public void perform(final CustomType customType, final FlowActionHandlerAdapter adapter, final Map<String, String> parameters)
 	{
-		/* final CreateCustomerForm cc = */
-		final String email = adapter.getWidgetInstanceManager().getModel().getValue("newCust.uid", String.class);
+		String email;
+		boolean isB2B = false;
+		if (adapter.getWidgetInstanceManager().getModel().getValue("newCust", CustomerModel.class) instanceof B2BCustomerModel)
+		{
+			isB2B = true;
+			email = adapter.getWidgetInstanceManager().getModel().getValue("newCust.email", String.class);
+		}
+		else
+		{
+			email = adapter.getWidgetInstanceManager().getModel().getValue("newCust.uid", String.class);
+		}
 
 		final ConfigurableFlowController controller = (ConfigurableFlowController) adapter.getWidgetInstanceManager()
 				.getWidgetslot().getAttribute("widgetController");
@@ -65,29 +75,27 @@ public class VerifyCustomerHandler implements FlowActionHandler
 		else
 		{
 			final List<CustomerModel> existingCustomers = getExistingCustomerFromC4C(email);
-			if (CollectionUtils.isEmpty(existingCustomers))
+			if (CollectionUtils.isNotEmpty(existingCustomers) && existingCustomers.size() > 1)
 			{
-				if ("step1".equals(controller.getCurrentStep().getId()))
-				{
-					adapter.getWidgetInstanceManager().getModel().setValue("newCust.uid", email);
-					controller.getRenderer().refreshView();
-					adapter.custom();
-					adapter.next();
-				}
-			}
-			else if (existingCustomers.size() == 1)
-			{
-				if ("step1".equals(controller.getCurrentStep().getId()))
-				{
-					adapter.getWidgetInstanceManager().getModel().setValue("newCust.uid", email);
-					controller.getRenderer().refreshView();
-					adapter.custom();
-					adapter.next();
-				}
+				notificationService.notifyUser((String) null, "duplicateCustomer", NotificationEvent.Level.FAILURE);
 			}
 			else
 			{
-				notificationService.notifyUser((String) null, "duplicateCustomer", NotificationEvent.Level.FAILURE);
+				if ("step1".equals(controller.getCurrentStep().getId()))
+				{
+					if (CollectionUtils.isNotEmpty(existingCustomers))
+					{
+						//TODO add data from C4C
+					}
+					if (isB2B)
+					{
+						adapter.getWidgetInstanceManager().getModel().setValue("newCust.email", email);
+					}
+					adapter.getWidgetInstanceManager().getModel().setValue("newCust.uid", email);
+					controller.getRenderer().refreshView();
+					adapter.custom();
+					adapter.next();
+				}
 			}
 		}
 		return;

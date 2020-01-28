@@ -48,7 +48,6 @@
                 <wz:content id="step2.content">
                     <wz:property-list root="newCust">
                         <wz:property qualifier="uid" type="java.lang.String" label="create.customer.verification.email" read-only="true"/>
-                        <wz:property qualifier="uid" type="java.lang.String" label="create.customer.verification.uid" readonly="true"/>
                         <wz:property qualifier="customerID" type="java.lang.String" label="create.customer.verification.customerID"/>
                         <wz:property qualifier="name" type="java.lang.String" label="create.customer.verification.name"/>
                         <wz:property qualifier="description" type="java.lang.String" label="create.customer.verification.description"/>
@@ -132,7 +131,7 @@
 			<wz:step id="step1" label="create.customer.verification.label" sublabel="create.customer.verification.sublabel" merge-mode="REPLACE">
 				<wz:content id="step1.content">
 					<wz:property-list root="newCust">
-						<wz:property qualifier="uid" type="java.lang.String" label="create.customer.verification.email"/>
+						<wz:property qualifier="email" type="java.lang.String"/>
 					</wz:property-list>
 				</wz:content>
 				<wz:navigation id="step1.navigation">
@@ -143,7 +142,7 @@
 	        <wz:step id="step2" label="create.customer.essential.label" sublabel="create.customer.essential.sublabel">
 	            <wz:content id="step2.content">
 	                <wz:property-list root="newCust" merge-mode="REPLACE">
-	                    <wz:property qualifier="uid" type="java.lang.String" label="create.customer.verification.uid"/>
+	                    <wz:property qualifier="uid" type="java.lang.String" label="create.customer.verification.email" readonly="true"/>
 	                    <wz:property qualifier="customerID" type="java.lang.String" label="create.customer.verification.customerID"/>
 	                    <wz:property qualifier="name" type="java.lang.String" label="create.customer.verification.name"/>
 	                    <wz:property qualifier="description" type="java.lang.String" label="create.customer.verification.description"/>
