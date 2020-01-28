@@ -33,9 +33,9 @@
             <wz:prepare id="custPrepare">
                 <wz:initialize property="newCust" type="Customer"/>
             </wz:prepare>
-            <wz:step id="step1" label="create.customer.verification.label" sublabel="create.customer.verification.sublabel">
+            <wz:step id="step1" label="create.customer.verification.label" sublabel="create.customer.verification.sublabel" merge-mode="REPLACE">
                 <wz:content id="step1.content">
-                    <wz:property-list root="newCust" merge-mode="REPLACE">
+                    <wz:property-list root="newCust" >
                         <wz:property qualifier="uid" type="java.lang.String" label="create.customer.verification.email"/>
                     </wz:property-list>
                 </wz:content>
@@ -44,10 +44,11 @@
                     <wz:custom label="Verify" composedHandler="verifyCustomerHandler1"/>
                 </wz:navigation>
             </wz:step>
-            <wz:step id="step2" label="create.customer.essential.label" sublabel="create.customer.essential.sublabel">
+            <wz:step id="step2" label="create.customer.essential.label" sublabel="create.customer.essential.sublabel" merge-mode="REPLACE">
                 <wz:content id="step2.content">
-                    <wz:property-list root="newCust" merge-mode="REPLACE">
-                        <wz:property qualifier="uid" type="java.lang.String" label="create.customer.verification.uid"/>
+                    <wz:property-list root="newCust">
+                        <wz:property qualifier="uid" type="java.lang.String" label="create.customer.verification.email" read-only="true"/>
+                        <wz:property qualifier="uid" type="java.lang.String" label="create.customer.verification.uid" readonly="true"/>
                         <wz:property qualifier="customerID" type="java.lang.String" label="create.customer.verification.customerID"/>
                         <wz:property qualifier="name" type="java.lang.String" label="create.customer.verification.name"/>
                         <wz:property qualifier="description" type="java.lang.String" label="create.customer.verification.description"/>
@@ -96,6 +97,9 @@
     </context>
 	<context component="notification-area">
 		<na:notification-area>
+			<na:notifications eventType="invalidEmailAddress" level="FAILURE">
+				<na:message>customer.invalid.emailAddress.failure</na:message>
+			</na:notifications>
 			<na:notifications eventType="duplicateC4CCustomer" level="FAILURE">
 				<na:message>duplicate.customer.c4c.failure</na:message>
 			</na:notifications>
@@ -118,31 +122,57 @@
             </editorArea:tab>
         </editorArea:editorArea>
     </context>
-    <context merge-by="type" parent="Customer" type="B2BCustomer" component="create-wizard">
-        <wz:flow xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config" id="CustomerWizard" title="create.title(ctx.TYPE_CODE)">
+	<context merge-by="type" parent="Customer" type="B2BCustomer" component="create-wizard">
+	    <wz:flow xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config" id="CustomerWizard" title="create.title(ctx.TYPE_CODE)">
 			<wz:handler handlerId="verifyCustomerHandler1" handlerBean="verifyCustomerHandler">
 			</wz:handler>
 			<wz:prepare id="custPrepare">
 				<wz:initialize property="newCust" type="B2BCustomer"/>
 			</wz:prepare>
-			<wz:step id="step1" label="create.customer.essential.label" sublabel="create.customer.essential.sublabel">
+			<wz:step id="step1" label="create.customer.verification.label" sublabel="create.customer.verification.sublabel" merge-mode="REPLACE">
 				<wz:content id="step1.content">
-					<wz:property-list root="newCust" merge-mode="REPLACE">
-						<wz:property qualifier="uid" type="java.lang.String"/>
+					<wz:property-list root="newCust">
+						<wz:property qualifier="uid" type="java.lang.String" label="create.customer.verification.email"/>
 					</wz:property-list>
 				</wz:content>
-				<wz:navigation id="step1.navigation" merge-mode="REPLACE">
+				<wz:navigation id="step1.navigation">
 						<wz:cancel/>
 						<wz:custom label="Verify" composedHandler="verifyCustomerHandler1"/>
 				</wz:navigation>
 			</wz:step>
-			<wz:step id="step3" label="create.customer.groups.label" sublabel="create.customer.groups.sublabel">
+	        <wz:step id="step2" label="create.customer.essential.label" sublabel="create.customer.essential.sublabel">
+	            <wz:content id="step2.content">
+	                <wz:property-list root="newCust" merge-mode="REPLACE">
+	                    <wz:property qualifier="uid" type="java.lang.String" label="create.customer.verification.uid"/>
+	                    <wz:property qualifier="customerID" type="java.lang.String" label="create.customer.verification.customerID"/>
+	                    <wz:property qualifier="name" type="java.lang.String" label="create.customer.verification.name"/>
+	                    <wz:property qualifier="description" type="java.lang.String" label="create.customer.verification.description"/>
+	                </wz:property-list>
+	            </wz:content>
+	            <wz:navigation id="step2.navigation" merge-mode="REPLACE">
+	                <wz:cancel/>
+	                <wz:back/>
+	                <wz:next/>
+	            </wz:navigation>
+	        </wz:step>		
+			<wz:step id="step3" label="create.customer.locale.label" sublabel="create.customer.locale.sublabel" merge-mode="REPLACE">
+				<wz:info id="step3.intro" label="create.b2bcustomer.memberships.intro" position="top"/>
 				<wz:content id="step3.content">
 					<wz:property-list root="newCust">
-						<wz:property qualifier="defaultB2BUnit"/>
+						<wz:property qualifier="sessionLanguage" type="java.lang.String" label="create.customer.verification.sessionLanguage"/>
+                        <wz:property qualifier="sessionCurrency" type="java.lang.String" label="create.customer.verification.sessionCurrency"/>
+                   		<wz:property qualifier="defaultB2BUnit"/>
 					</wz:property-list>
 				</wz:content>
+				<wz:navigation id="step3.navigation">
+					<wz:back/>
+					<wz:cancel/>
+					<wz:next visible="newCust.defaultB2BUnit != null"/>
+					<wz:done visible="newCust.defaultB2BUnit != null">
+						<wz:save property="newCust"/>
+					</wz:done>
+				</wz:navigation>
 			</wz:step>
-        </wz:flow>
-    </context>
+	    </wz:flow>
+	</context>
 </config>
