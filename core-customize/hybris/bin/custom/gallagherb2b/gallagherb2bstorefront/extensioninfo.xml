@@ -17,7 +17,7 @@
     
     
     
-    <extension abstractclassprefix="Generated" classprefix="B2badvanceStorefront" name="gallagherb2bstorefront" usemaven="false">
+    <extension abstractclassprefix="Generated" classprefix="B2badvanceStorefront" name="gallagherb2bstorefront" usemaven="true">
                                                                         
         
         
