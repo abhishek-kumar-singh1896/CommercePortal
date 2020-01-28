@@ -28,9 +28,9 @@ INSERT_UPDATE Employee;uid[unique=true];name;groups(uid)[mode=append];password[d
 # Rustic Hardware ORGANIZATION (Hierarchy)
 
 INSERT_UPDATE B2BCreditLimit;code[unique=true];alertRateType(code,itemtype(code));alertThreshold;amount;currency(isocode);dateRange(code,itemtype(code));datePeriod[dateformat=dd.MM.yyyy hh:mm:ss];
-;Monthly40KAlert10Percent;PERCENTAGE:B2BRateType;10;40000;AUD;MONTH:B2BPeriodRange;;
-;Monthly30KAlert3K;CURRENCY:B2BRateType;3000;30000;AUD;MONTH:B2BPeriodRange;;
-;Monthly15KAlert3K;CURRENCY:B2BRateType;3000;15000;AUD;MONTH:B2BPeriodRange;;
+;Monthly40KAlert10Percent;PERCENTAGE:B2BRateType;10;40000;NZD;MONTH:B2BPeriodRange;;
+;Monthly30KAlert3K;CURRENCY:B2BRateType;3000;30000;NZD;MONTH:B2BPeriodRange;;
+;Monthly15KAlert3K;CURRENCY:B2BRateType;3000;15000;NZD;MONTH:B2BPeriodRange;;
 
 INSERT_UPDATE B2BUnit;description;uid[unique=true];name;locName[lang=en];groups(uid);reportingOrganization(uid);Addresses(&addId);&B2BUnitID;accountManager(uid);creditLimit(code);approvalProcessCode;
 ;Hierarchical;Rustic;Rustic;Rustic;;Rustic;RusticAddrID1;RusticID1;acctmgra;Monthly40KAlert10Percent;accApproval;
@@ -48,42 +48,42 @@ INSERT_UPDATE Address;streetname[unique=true];postalcode[unique=true];town;count
 ;1000 Bagby Street;Texas;Sydney;AU;TRUE;TRUE;TRUE;TRUE;Carla;Torres;carla.torres@rustic-hw.com;ms;RusticAddrID5;RusticID4;
 
 INSERT_UPDATE B2BUserGroup;uid[unique=true];name;unit(uid);permissions(code,unit(uid));
-;premiumPermissions;Premium Permissions;Rustic;Rustic 7K AUD ORDER:Rustic,Rustic 25K AUD MONTH:Rustic;
-;standardPermissions;Standard Permissions;Rustic;Rustic 5K AUD ORDER:Rustic,Rustic 15K AUD MONTH:Rustic;
-;limitedPermissions;Limited Permissions;Rustic;Rustic 0K AUD ORDER:Rustic,Rustic 25K AUD MONTH:Rustic;
+;premiumPermissions;Premium Permissions;Rustic;Rustic 7K NZD ORDER:Rustic,Rustic 25K NZD MONTH:Rustic;
+;standardPermissions;Standard Permissions;Rustic;Rustic 5K NZD ORDER:Rustic,Rustic 15K NZD MONTH:Rustic;
+;limitedPermissions;Limited Permissions;Rustic;Rustic 0K NZD ORDER:Rustic,Rustic 25K NZD MONTH:Rustic;
 
 
-INSERT_UPDATE B2BCostCenter;code[unique=true];name[lang=en];Unit(uid);budgets(code);currency(isocode)[default='AUD']
-;Rustic Global;Rustic Global;Rustic;Monthly 50K AUD;
-;Rustic Retail;Retail;Rustic Retail;Monthly 2.5K AUD;
-;A&JUnit;A&JUnit;A&JUnit;Monthly 4K AUD;
-;Services East;Services East;Services East;Weekly 2.5K AUD;
-;Services West;Services West;Services West;Monthly 20K AUD;
+INSERT_UPDATE B2BCostCenter;code[unique=true];name[lang=en];Unit(uid);budgets(code);currency(isocode)[default='NZD']
+;Rustic Global;Rustic Global;Rustic;Monthly 50K NZD;
+;Rustic Retail;Retail;Rustic Retail;Monthly 2.5K NZD;
+;A&JUnit;A&JUnit;A&JUnit;Monthly 4K NZD;
+;Services East;Services East;Services East;Weekly 2.5K NZD;
+;Services West;Services West;Services West;Monthly 20K NZD;
 
 INSERT_UPDATE B2BBudget;code[unique=true];Unit(uid);budget;currency(isocode)[allownull=true];dateRange[dateformat=dd.MM.yyyy hh:mm:ss,allownull=true];name[lang=en];;
-;Monthly 50K AUD;Rustic;50000;AUD;01.01.2010 00:00:00,12.31.2032 12:59:59;Monthly 50K AUD;
-;Monthly 20K AUD;Services West;20000;AUD;01.01.2010 00:00:00,12.31.2032 12:59:59;Monthly 20K AUD;
-;Monthly 4K AUD;A&JUnit;4000;AUD;01.01.2010 00:00:00,12.31.2032 12:59:59;Monthly 4K AUD;
-;Monthly 2.5K AUD;Rustic Retail;2500;AUD;01.01.2010 00:00:00,12.31.2032 12:59:59;Monthly 2.5K AUD;
-;Weekly 2.5K AUD;Services East;2500;AUD;01.01.2010 00:00:00,12.31.2032 12:59:59;Weekly 2.5K AUD;
+;Monthly 50K NZD;Rustic;50000;NZD;01.01.2010 00:00:00,12.31.2032 12:59:59;Monthly 50K NZD;
+;Monthly 20K NZD;Services West;20000;NZD;01.01.2010 00:00:00,12.31.2032 12:59:59;Monthly 20K NZD;
+;Monthly 4K NZD;A&JUnit;4000;NZD;01.01.2010 00:00:00,12.31.2032 12:59:59;Monthly 4K NZD;
+;Monthly 2.5K NZD;Rustic Retail;2500;NZD;01.01.2010 00:00:00,12.31.2032 12:59:59;Monthly 2.5K NZD;
+;Weekly 2.5K NZD;Services East;2500;NZD;01.01.2010 00:00:00,12.31.2032 12:59:59;Weekly 2.5K NZD;
 
-INSERT_UPDATE B2BOrderThresholdPermission;code[unique=true];Unit(uid);threshold;currency(isocode)[default='AUD'];
-;Rustic 0K AUD ORDER;Rustic;0;
-;Rustic 1K AUD ORDER;Rustic;1000;
-;Rustic 2K AUD ORDER;Rustic;2000;
-;Rustic 4K AUD ORDER;Rustic;4000;
-;Rustic 5K AUD ORDER;Rustic;5000;
-;Rustic 7K AUD ORDER;Rustic;7000;
-;Rustic 15K AUD ORDER;Rustic;15000;
-;Rustic 20K AUD ORDER;Rustic;20000;
+INSERT_UPDATE B2BOrderThresholdPermission;code[unique=true];Unit(uid);threshold;currency(isocode)[default='NZD'];
+;Rustic 0K NZD ORDER;Rustic;0;
+;Rustic 1K NZD ORDER;Rustic;1000;
+;Rustic 2K NZD ORDER;Rustic;2000;
+;Rustic 4K NZD ORDER;Rustic;4000;
+;Rustic 5K NZD ORDER;Rustic;5000;
+;Rustic 7K NZD ORDER;Rustic;7000;
+;Rustic 15K NZD ORDER;Rustic;15000;
+;Rustic 20K NZD ORDER;Rustic;20000;
 
 INSERT_UPDATE B2BOrderThresholdTimespanPermission;code[unique=true];Unit(uid);threshold;currency(isocode);range(code,itemtype(code));
-;Rustic 3K AUD MONTH;Rustic;3000;AUD;MONTH:B2BPeriodRange;
-;Rustic 10K AUD MONTH;Rustic;10000;AUD;MONTH:B2BPeriodRange;
-;Rustic 15K AUD MONTH;Rustic;15000;AUD;MONTH:B2BPeriodRange;
-;Rustic 20K AUD MONTH;Rustic;20000;AUD;MONTH:B2BPeriodRange;
-;Rustic 25K AUD MONTH;Rustic;25000;AUD;MONTH:B2BPeriodRange;
-;Rustic Unlimited Timespan;Rustic;999999999;AUD;MONTH:B2BPeriodRange;
+;Rustic 3K NZD MONTH;Rustic;3000;NZD;MONTH:B2BPeriodRange;
+;Rustic 10K NZD MONTH;Rustic;10000;NZD;MONTH:B2BPeriodRange;
+;Rustic 15K NZD MONTH;Rustic;15000;NZD;MONTH:B2BPeriodRange;
+;Rustic 20K NZD MONTH;Rustic;20000;NZD;MONTH:B2BPeriodRange;
+;Rustic 25K NZD MONTH;Rustic;25000;NZD;MONTH:B2BPeriodRange;
+;Rustic Unlimited Timespan;Rustic;999999999;NZD;MONTH:B2BPeriodRange;
 
 INSERT_UPDATE B2BBudgetExceededPermission;code[unique=true];Unit(uid);
 ;Rustic Budget Exceeded;Rustic;
@@ -99,7 +99,7 @@ UPDATE B2BUnit;uid[unique=true];approvers(uid);
 #  Pronto Hardware ORGANIZATION (KIS)
 
 INSERT_UPDATE B2BCreditLimit;code[unique=true];alertRateType(code,itemtype(code));alertThreshold;amount;currency(isocode);dateRange(code,itemtype(code));datePeriod[dateformat=dd.MM.yyyy hh:mm:ss];
-;Monthly30KAlert3K;CURRENCY:B2BRateType;3000;30000;AUD;MONTH:B2BPeriodRange;;
+;Monthly30KAlert3K;CURRENCY:B2BRateType;3000;30000;NZD;MONTH:B2BPeriodRange;;
 
 INSERT_UPDATE B2BUnit;description;uid[unique=true];name;locName[lang=en];groups(uid);reportingOrganization(uid);Addresses(&addId);&B2BUnitID;accountManager(uid);accountManagerGroups(uid);creditLimit(code);approvalProcessCode;
 ;KIS;Pronto;Pronto;Pronto;;Pronto;ProntoAddrID1;ProntoID1;acctmgrd;SuperAccountMangers;Monthly30KAlert3K;accApproval;
@@ -112,27 +112,27 @@ INSERT_UPDATE Address;streetname[unique=true];postalcode[unique=true];town;count
 ;11000 Bagby Street Houston;Texas;Houston;US;TRUE;TRUE;TRUE;TRUE;James;Bell;james.bell@Pronto-hw.com;mr;ProntoAddrID3;ProntoID3;
 
 INSERT_UPDATE B2BUserGroup;uid[unique=true];name;unit(uid);permissions(code,unit(uid));
-;enhancedPermissions;Enhanced Permissions;Pronto;Pronto 12K AUD ORDER:Pronto,Pronto 15K AUD MONTH:Pronto;
-;commonPermissions;Common Permissions;Pronto;Pronto 6K AUD ORDER:Pronto,Pronto 12K AUD MONTH:Pronto;
+;enhancedPermissions;Enhanced Permissions;Pronto;Pronto 12K NZD ORDER:Pronto,Pronto 15K NZD MONTH:Pronto;
+;commonPermissions;Common Permissions;Pronto;Pronto 6K NZD ORDER:Pronto,Pronto 12K NZD MONTH:Pronto;
 
 INSERT_UPDATE B2BBudget;code[unique=true];Unit(uid);budget;currency(isocode)[allownull=true];dateRange[dateformat=dd.MM.yyyy hh:mm:ss,allownull=true];name[lang=en];
-;30K AUD/MONTH;Pronto;30000;AUD;01.01.2010 00:00:00,12.31.2021 12:59:59;30K AUD/MONTH;
-;20K AUD/MONTH;Pronto;20000;AUD;01.01.2010 00:00:00,12.31.2021 12:59:59;20K AUD/MONTH;
+;30K NZD/MONTH;Pronto;30000;NZD;01.01.2010 00:00:00,12.31.2021 12:59:59;30K NZD/MONTH;
+;20K NZD/MONTH;Pronto;20000;NZD;01.01.2010 00:00:00,12.31.2021 12:59:59;20K NZD/MONTH;
 
 INSERT_UPDATE B2BCostCenter;code[unique=true];Unit(uid);currency(isocode);budgets(code);name[lang=en];
-;Pronto Goods;Pronto Goods;AUD;30K AUD/MONTH;Pronto Goods;
-;Pronto Services;Pronto Services;AUD;20K AUD/MONTH;Pronto Services;
+;Pronto Goods;Pronto Goods;NZD;30K NZD/MONTH;Pronto Goods;
+;Pronto Services;Pronto Services;NZD;20K NZD/MONTH;Pronto Services;
 
 INSERT_UPDATE B2BOrderThresholdPermission;code[unique=true];Unit(uid);threshold;currency(isocode);
-;Pronto 5K AUD ORDER;Pronto;5000;AUD; -
-;Pronto 6K AUD ORDER;Pronto;6000;AUD; -
-;Pronto 10K AUD ORDER;Pronto;10000;AUD; -
-;Pronto 12K AUD ORDER;Pronto;12000;AUD; -
+;Pronto 5K NZD ORDER;Pronto;5000;NZD; -
+;Pronto 6K NZD ORDER;Pronto;6000;NZD; -
+;Pronto 10K NZD ORDER;Pronto;10000;NZD; -
+;Pronto 12K NZD ORDER;Pronto;12000;NZD; -
 
 INSERT_UPDATE B2BOrderThresholdTimespanPermission;code[unique=true];Unit(uid);threshold;currency(isocode);range(code,itemtype(code));
-;Pronto 15K AUD MONTH;Pronto;15000;AUD;MONTH:B2BPeriodRange;
-;Pronto 12K AUD MONTH;Pronto;12000;AUD;MONTH:B2BPeriodRange;
-;Pronto Unlimited Threshold Timespan;Pronto;999999999;AUD;MONTH:B2BPeriodRange;
+;Pronto 15K NZD MONTH;Pronto;15000;NZD;MONTH:B2BPeriodRange;
+;Pronto 12K NZD MONTH;Pronto;12000;NZD;MONTH:B2BPeriodRange;
+;Pronto Unlimited Threshold Timespan;Pronto;999999999;NZD;MONTH:B2BPeriodRange;
 
 UPDATE B2BUnit;uid[unique=true];creditLimit(code);accountManager(uid);approvers(uid)
 ;Pronto;Monthly30KAlert3K;acctmgrd;hanna.schmidt@pronto-hw.com;
