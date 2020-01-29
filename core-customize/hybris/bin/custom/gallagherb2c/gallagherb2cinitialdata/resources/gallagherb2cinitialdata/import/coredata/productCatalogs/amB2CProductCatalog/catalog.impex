@@ -31,3 +31,7 @@ INSERT_UPDATE ClassificationSystemVersion;catalog(id)[unique=true];version[uniqu
 INSERT_UPDATE TaxRow;$catalogVersion;tax(code)[unique=true];pg(code)[unique=true];ug(code)[unique=true]
 ;;us-sales-tax-full;us-sales-tax-full;us-taxes
 ;;ca-sales-tax-full;ca-sales-tax-full;ca-taxes
+
+INSERT_UPDATE CatalogVersionToRuleEngineContextMapping;context(name)[unique=true];catalogVersion(catalog(id),version)[unique=true]
+;promotions-context;$productCatalog:Online
+;promotions-preview-context;$productCatalog:Staged

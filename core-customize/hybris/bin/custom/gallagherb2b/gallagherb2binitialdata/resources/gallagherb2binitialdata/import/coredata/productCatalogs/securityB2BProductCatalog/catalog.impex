@@ -40,3 +40,7 @@ INSERT_UPDATE TaxRow;$catalogVersion;tax(code)[unique=true];pg(code)[unique=true
 #;;ca-sales-tax-full;ca-sales-tax-full;ca-taxes
 ;;au-gst;;
 ;;nz-gst;;nz-userTaxGroup
+
+INSERT_UPDATE CatalogVersionToRuleEngineContextMapping;context(name)[unique=true];catalogVersion(catalog(id),version)[unique=true]
+;promotions-context;$productCatalog:Online
+;promotions-preview-context;$productCatalog:Staged

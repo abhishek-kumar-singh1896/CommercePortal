@@ -15,7 +15,7 @@
 $productCatalog=securityB2BProductCatalog
 $classificationCatalog=SecurityB2BClassification
 $currencies=NZD
-$net=true
+$net=false
 $storeUidNZ=securityB2BNZ
 $defaultCurrency=NZD
 $languages=en

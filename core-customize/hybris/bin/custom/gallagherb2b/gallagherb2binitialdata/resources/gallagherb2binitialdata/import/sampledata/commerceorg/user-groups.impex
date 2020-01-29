@@ -19,9 +19,6 @@ INSERT_UPDATE UserGroup;uid[unique=true];groups(uid);locname[lang=en];
 
 INSERT_UPDATE Employee;uid[unique=true];name;groups(uid)[mode=append];password[default=$defaultPassword];
 ;acctmgra;Alistair Thompson;employeegroup,acctmgrgroup,SuperAccountMangers,admingroup,backofficeadministratorrole;
-;acctmgrb;Elke Vogel;employeegroup,acctmgrgroup,admingroup,backofficeadministratorrole;
-;acctmgrc;Sergio Vega;employeegroup,acctmgrgroup,admingroup,backofficeadministratorrole;
-;acctmgrd;Bruce Rivers;employeegroup,acctmgrgroup,admingroup,backofficeadministratorrole;
 
 
 ###############################
@@ -33,110 +30,47 @@ INSERT_UPDATE B2BCreditLimit;code[unique=true];alertRateType(code,itemtype(code)
 ;Monthly15KAlert3K;CURRENCY:B2BRateType;3000;15000;NZD;MONTH:B2BPeriodRange;;
 
 INSERT_UPDATE B2BUnit;description;uid[unique=true];name;locName[lang=en];groups(uid);reportingOrganization(uid);Addresses(&addId);&B2BUnitID;accountManager(uid);creditLimit(code);approvalProcessCode;
-;Hierarchical;Rustic;Rustic;Rustic;;Rustic;RusticAddrID1;RusticID1;acctmgra;Monthly40KAlert10Percent;accApproval;
-;Unit A;Rustic Retail;Rustic Retail;Rustic Retail;Rustic;Rustic;RusticAddrID2;RusticID3;;;
-;Unit B;Rustic Services;Rustic Services;Rustic Services;Rustic;Rustic;;RusticID2;acctmgrb;Monthly15KAlert3K
-;Unit C;A&JUnit;A&JUnit;A&JUnit;Rustic Retail;Rustic;RusticAddrID5;RusticID4;
-;Unit D;Services East;Services East;Services East;Rustic Services;Rustic;RusticAddrID3;RusticID5;
-;Unit E;Services West;Services West;Services West;Rustic Services;Rustic;RusticAddrID4;RusticID6;acctmgrc;
+;Hierarchical;A&JCommunications;A & J Communications;A & J Communications;;A&JCommunications;AJAddrID1;AJID1;acctmgra;Monthly40KAlert10Percent;accApproval;
+;Unit AJC;A&JUnit;A & J Unit;A & J Unit;A&JCommunications;A&JCommunications;AJAddrID2;AJID2;acctmgrb;Monthly15KAlert3K
 
 INSERT_UPDATE Address;streetname[unique=true];postalcode[unique=true];town;country(isocode);billingAddress;contactAddress;shippingAddress;unloadingAddress;firstname;lastname;email;title(code);&addId;owner(&B2BUnitID)[unique=true];
-;999 South Wacker Drive;60606;Sydney;AU;TRUE;TRUE;TRUE;TRUE;Akiro;Nakamura;akiro.nakamura@rustic-hw.com;mr;RusticAddrID1;RusticID1;
-;3000 Lombard Street;94123;Melbourne;AU;TRUE;TRUE;TRUE;TRUE;Anil;Gupta;anil.gupta@rustic-hw.com;mr;RusticAddrID2;RusticID3;
-;700 E 50th Street;10022;Sydney;AU;TRUE;TRUE;TRUE;TRUE;Mingmei;Wang;mingmei.wang@rustic-hw.com;ms;RusticAddrID3;RusticID5;
-;3000 Canyon Lake Drive;90068;Sydney;AU;TRUE;TRUE;TRUE;TRUE;Matheu;Silva;matheu.silva@rustic-hw.com;mr;RusticAddrID4;RusticID6;
-;1000 Bagby Street;Texas;Sydney;AU;TRUE;TRUE;TRUE;TRUE;Carla;Torres;carla.torres@rustic-hw.com;ms;RusticAddrID5;RusticID4;
+;999 South Wacker Drive;60606;Sydney;NZ;TRUE;TRUE;TRUE;TRUE;Akiro;Nakamura;akiro.nakamura@gallagher.com;mr;AJAddrID1;AJID1;
+;1000 South Wacker Drive;60606;Sydney;NZ;TRUE;TRUE;TRUE;TRUE;Jhon;Geller;jhon.geller@gallagher.com;mr;AJAddrID2;AJID2;
 
 INSERT_UPDATE B2BUserGroup;uid[unique=true];name;unit(uid);permissions(code,unit(uid));
-;premiumPermissions;Premium Permissions;Rustic;Rustic 7K NZD ORDER:Rustic,Rustic 25K NZD MONTH:Rustic;
-;standardPermissions;Standard Permissions;Rustic;Rustic 5K NZD ORDER:Rustic,Rustic 15K NZD MONTH:Rustic;
-;limitedPermissions;Limited Permissions;Rustic;Rustic 0K NZD ORDER:Rustic,Rustic 25K NZD MONTH:Rustic;
-
+;premiumPermissions;Premium Permissions;A&JCommunications;A&JCommunications 7K NZD ORDER:A&JCommunications,A&JCommunications 25K NZD MONTH:A&JCommunications;
+;standardPermissions;Standard Permissions;A&JCommunications;A&JCommunications 5K NZD ORDER:A&JCommunications,A&JCommunications 15K NZD MONTH:A&JCommunications;
+;limitedPermissions;Limited Permissions;A&JCommunications;A&JCommunications 0K NZD ORDER:A&JCommunications,A&JCommunications 25K NZD MONTH:A&JCommunications;
 
 INSERT_UPDATE B2BCostCenter;code[unique=true];name[lang=en];Unit(uid);budgets(code);currency(isocode)[default='NZD']
-;Rustic Global;Rustic Global;Rustic;Monthly 50K NZD;
-;Rustic Retail;Retail;Rustic Retail;Monthly 2.5K NZD;
 ;A&JUnit;A&JUnit;A&JUnit;Monthly 4K NZD;
-;Services East;Services East;Services East;Weekly 2.5K NZD;
-;Services West;Services West;Services West;Monthly 20K NZD;
 
 INSERT_UPDATE B2BBudget;code[unique=true];Unit(uid);budget;currency(isocode)[allownull=true];dateRange[dateformat=dd.MM.yyyy hh:mm:ss,allownull=true];name[lang=en];;
-;Monthly 50K NZD;Rustic;50000;NZD;01.01.2010 00:00:00,12.31.2032 12:59:59;Monthly 50K NZD;
-;Monthly 20K NZD;Services West;20000;NZD;01.01.2010 00:00:00,12.31.2032 12:59:59;Monthly 20K NZD;
 ;Monthly 4K NZD;A&JUnit;4000;NZD;01.01.2010 00:00:00,12.31.2032 12:59:59;Monthly 4K NZD;
-;Monthly 2.5K NZD;Rustic Retail;2500;NZD;01.01.2010 00:00:00,12.31.2032 12:59:59;Monthly 2.5K NZD;
-;Weekly 2.5K NZD;Services East;2500;NZD;01.01.2010 00:00:00,12.31.2032 12:59:59;Weekly 2.5K NZD;
 
 INSERT_UPDATE B2BOrderThresholdPermission;code[unique=true];Unit(uid);threshold;currency(isocode)[default='NZD'];
-;Rustic 0K NZD ORDER;Rustic;0;
-;Rustic 1K NZD ORDER;Rustic;1000;
-;Rustic 2K NZD ORDER;Rustic;2000;
-;Rustic 4K NZD ORDER;Rustic;4000;
-;Rustic 5K NZD ORDER;Rustic;5000;
-;Rustic 7K NZD ORDER;Rustic;7000;
-;Rustic 15K NZD ORDER;Rustic;15000;
-;Rustic 20K NZD ORDER;Rustic;20000;
+;A&JCommunications 0K NZD ORDER;A&JCommunications;0;
+;A&JCommunications 1K NZD ORDER;A&JCommunications;1000;
+;A&JCommunications 2K NZD ORDER;A&JCommunications;2000;
+;A&JCommunications 4K NZD ORDER;A&JCommunications;4000;
+;A&JCommunications 5K NZD ORDER;A&JCommunications;5000;
+;A&JCommunications 7K NZD ORDER;A&JCommunications;7000;
+;A&JCommunications 15K NZD ORDER;A&JCommunications;15000;
+;A&JCommunications 20K NZD ORDER;A&JCommunications;20000;
 
 INSERT_UPDATE B2BOrderThresholdTimespanPermission;code[unique=true];Unit(uid);threshold;currency(isocode);range(code,itemtype(code));
-;Rustic 3K NZD MONTH;Rustic;3000;NZD;MONTH:B2BPeriodRange;
-;Rustic 10K NZD MONTH;Rustic;10000;NZD;MONTH:B2BPeriodRange;
-;Rustic 15K NZD MONTH;Rustic;15000;NZD;MONTH:B2BPeriodRange;
-;Rustic 20K NZD MONTH;Rustic;20000;NZD;MONTH:B2BPeriodRange;
-;Rustic 25K NZD MONTH;Rustic;25000;NZD;MONTH:B2BPeriodRange;
-;Rustic Unlimited Timespan;Rustic;999999999;NZD;MONTH:B2BPeriodRange;
+;A&JCommunications 3K NZD MONTH;A&JCommunications;3000;NZD;MONTH:B2BPeriodRange;
+;A&JCommunications 10K NZD MONTH;A&JCommunications;10000;NZD;MONTH:B2BPeriodRange;
+;A&JCommunications 15K NZD MONTH;A&JCommunications;15000;NZD;MONTH:B2BPeriodRange;
+;A&JCommunications 20K NZD MONTH;A&JCommunications;20000;NZD;MONTH:B2BPeriodRange;
+;A&JCommunications 25K NZD MONTH;A&JCommunications;25000;NZD;MONTH:B2BPeriodRange;
+;A&JCommunications Unlimited Timespan;A&JCommunications;999999999;NZD;MONTH:B2BPeriodRange;
 
 INSERT_UPDATE B2BBudgetExceededPermission;code[unique=true];Unit(uid);
-;Rustic Budget Exceeded;Rustic;
+;A&JCommunications Budget Exceeded;A&JCommunications;
 
 UPDATE B2BUnit;uid[unique=true];approvers(uid);
-;Rustic;hanna.schmidt@rustic-hw.com;
-;Rustic Retail;james.bell@rustic-hw.com;
-;A&JUnit;carla.torres@rustic-hw.com;
-;Services West;matheu.silva@rustic-hw.com,mingmei.wang@rustic-hw.com;
-;Services East;mingmei.wang@rustic-hw.com;
-
-###############################
-#  Pronto Hardware ORGANIZATION (KIS)
-
-INSERT_UPDATE B2BCreditLimit;code[unique=true];alertRateType(code,itemtype(code));alertThreshold;amount;currency(isocode);dateRange(code,itemtype(code));datePeriod[dateformat=dd.MM.yyyy hh:mm:ss];
-;Monthly30KAlert3K;CURRENCY:B2BRateType;3000;30000;NZD;MONTH:B2BPeriodRange;;
-
-INSERT_UPDATE B2BUnit;description;uid[unique=true];name;locName[lang=en];groups(uid);reportingOrganization(uid);Addresses(&addId);&B2BUnitID;accountManager(uid);accountManagerGroups(uid);creditLimit(code);approvalProcessCode;
-;KIS;Pronto;Pronto;Pronto;;Pronto;ProntoAddrID1;ProntoID1;acctmgrd;SuperAccountMangers;Monthly30KAlert3K;accApproval;
-;Unit A;Pronto Goods;Pronto Goods;Pronto Goods;Pronto;Pronto;ProntoAddrID2;ProntoID2;;;;
-;Unit B;Pronto Services;Pronto Services;Pronto Services;Pronto;Pronto;ProntoAddrID3;ProntoID3;;;;
-
-INSERT_UPDATE Address;streetname[unique=true];postalcode[unique=true];town;country(isocode);billingAddress;contactAddress;shippingAddress;unloadingAddress;firstname;lastname;email;title(code);&addId;owner(&B2BUnitID)[unique=true];
-;3000 Lombard Street;94123;San Francisco;US;TRUE;TRUE;TRUE;TRUE;Akiro;Nakamura;akiro.nakamura@pronto-hw.com;mr;ProntoAddrID1;ProntoID1;
-;700 E 50th Street;10022;New York;US;TRUE;TRUE;TRUE;TRUE;Gi;Sun;gi.sun@pronto-hw.com;mr;ProntoAddrID2;ProntoID2;
-;11000 Bagby Street Houston;Texas;Houston;US;TRUE;TRUE;TRUE;TRUE;James;Bell;james.bell@Pronto-hw.com;mr;ProntoAddrID3;ProntoID3;
-
-INSERT_UPDATE B2BUserGroup;uid[unique=true];name;unit(uid);permissions(code,unit(uid));
-;enhancedPermissions;Enhanced Permissions;Pronto;Pronto 12K NZD ORDER:Pronto,Pronto 15K NZD MONTH:Pronto;
-;commonPermissions;Common Permissions;Pronto;Pronto 6K NZD ORDER:Pronto,Pronto 12K NZD MONTH:Pronto;
-
-INSERT_UPDATE B2BBudget;code[unique=true];Unit(uid);budget;currency(isocode)[allownull=true];dateRange[dateformat=dd.MM.yyyy hh:mm:ss,allownull=true];name[lang=en];
-;30K NZD/MONTH;Pronto;30000;NZD;01.01.2010 00:00:00,12.31.2021 12:59:59;30K NZD/MONTH;
-;20K NZD/MONTH;Pronto;20000;NZD;01.01.2010 00:00:00,12.31.2021 12:59:59;20K NZD/MONTH;
-
-INSERT_UPDATE B2BCostCenter;code[unique=true];Unit(uid);currency(isocode);budgets(code);name[lang=en];
-;Pronto Goods;Pronto Goods;NZD;30K NZD/MONTH;Pronto Goods;
-;Pronto Services;Pronto Services;NZD;20K NZD/MONTH;Pronto Services;
-
-INSERT_UPDATE B2BOrderThresholdPermission;code[unique=true];Unit(uid);threshold;currency(isocode);
-;Pronto 5K NZD ORDER;Pronto;5000;NZD; -
-;Pronto 6K NZD ORDER;Pronto;6000;NZD; -
-;Pronto 10K NZD ORDER;Pronto;10000;NZD; -
-;Pronto 12K NZD ORDER;Pronto;12000;NZD; -
-
-INSERT_UPDATE B2BOrderThresholdTimespanPermission;code[unique=true];Unit(uid);threshold;currency(isocode);range(code,itemtype(code));
-;Pronto 15K NZD MONTH;Pronto;15000;NZD;MONTH:B2BPeriodRange;
-;Pronto 12K NZD MONTH;Pronto;12000;NZD;MONTH:B2BPeriodRange;
-;Pronto Unlimited Threshold Timespan;Pronto;999999999;NZD;MONTH:B2BPeriodRange;
-
-UPDATE B2BUnit;uid[unique=true];creditLimit(code);accountManager(uid);approvers(uid)
-;Pronto;Monthly30KAlert3K;acctmgrd;hanna.schmidt@pronto-hw.com;
-;Pronto Services;;;james.bell@pronto-hw.com;
+;A&JUnit;carla.torres@chubb.com.au;
 
 ###################################### Master user group impex start #####################################
 
@@ -880,7 +814,6 @@ INSERT_UPDATE PrincipalGroupRelation;source(uid)[unique=true];target(uid)[unique
 									
 # Employees
 INSERT_UPDATE Employee;name;password[default=$defaultPassword];uid[unique=true];groups(uid)[mode=append]
-
 ;Naira Rahm;;naira.rahm@gallagher.com;salesadmingroup
 ;Nancy Leclair;;nancy.leclair@gallagher.com;salesemployeegroup
 ;Alsa Dority;;alsa.dority@gallagher.com;salesmanagergroup
@@ -916,239 +849,8 @@ INSERT_UPDATE PrincipalGroupRelation;source(uid)[unique=true];target(uid)[unique
 
 ####Master data for OrgUnit end####
 
-INSERT_UPDATE Address;streetname[unique=true];postalcode[unique=true];town;country(isocode);billingAddress;contactAddress;shippingAddress;unloadingAddress;firstname;lastname;email;title(code);&addId;owner(&B2BUnitID)[unique=true];
-;999 South Wacker Drive;60606;Sydney;AU;TRUE;TRUE;TRUE;TRUE;Akiro;Nakamura;akiro.nakamura@gglrustic-hw.com;mr;AJAddrID1;AJID1;
-;1000 South Wacker Drive;60606;Sydney;AU;TRUE;TRUE;TRUE;TRUE;Jhon;Geller;jhon.geller@gglrustic-hw.com;mr;AJAddrID2;AJID2;
-
-INSERT_UPDATE B2BUnit;description;uid[unique=true];name;locName[lang=en];groups(uid);reportingOrganization(uid);Addresses(&addId);&B2BUnitID;accountManager(uid);creditLimit(code);approvalProcessCode;
-;Hierarchical;A&JCommunications;A & J Communications;A & J Communications;;A&JCommunications;AJAddrID1;AJID1;acctmgra;Monthly40KAlert10Percent;accApproval;
-;Unit AJC;A&JUnit;A & J Unit;A & J Unit;A&JCommunications;A&JCommunications;AJAddrID2;AJID2;acctmgrb;Monthly15KAlert3K
-
 INSERT_UPDATE PrincipalGroupRelation;source(uid)[unique=true];target(uid)[unique=true]
 ;A&JUnit;New Zealand
-;A&JUnit;CAM_EX_AC
-;A&JUnit;CAM_EX_EL
-;A&JUnit;CAM_EX_EN
-;A&JUnit;CAM_EX_PM
-;A&JUnit;CAM_EX_TS
-;A&JUnit;CAM_IC_IC
-;A&JUnit;CAM_US_AC
-;A&JUnit;CAM_US_EL
-;A&JUnit;CAM_US_EN
-;A&JUnit;CAM_US_PM
-;A&JUnit;CAM_US_TS
-;A&JUnit;CAU_AU_AC
-;A&JUnit;CAU_AU_CC
-;A&JUnit;CAU_AU_EL
-;A&JUnit;CAU_AU_EN
-;A&JUnit;CAU_AU_IC
-;A&JUnit;CAU_AU_SE
-;A&JUnit;CAU_AU_TS
-;A&JUnit;CAU_EX_AC
-;A&JUnit;CAU_EX_CC
-;A&JUnit;CAU_EX_SE
-;A&JUnit;CAU_EX_TS
-;A&JUnit;CAU_IC_IC
-;A&JUnit;CDX_EX_EN
-;A&JUnit;CDX_EX_SE
-;A&JUnit;CDX_IC_IC
-;A&JUnit;CDX_NZ_EN
-;A&JUnit;CDX_NZ_SE
-;A&JUnit;CEU_EX_AC
-;A&JUnit;CEU_EX_EL
-;A&JUnit;CEU_EX_EN
-;A&JUnit;CEU_EX_TS
-;A&JUnit;CEU_IC_AC
-;A&JUnit;CEU_IC_IC
-;A&JUnit;CEU_UK_AC
-;A&JUnit;CEU_UK_EL
-;A&JUnit;CEU_UK_EN
-;A&JUnit;CEU_UK_TS
-;A&JUnit;CZA_EX_AC
-;A&JUnit;CZA_EX_EL
-;A&JUnit;CZA_EX_IC
-;A&JUnit;CZA_EX_PM
-;A&JUnit;CZA_EX_TS
-;A&JUnit;CZA_IC_AC
-;A&JUnit;CZA_IC_IC
-;A&JUnit;CZA_ZA_AC
-;A&JUnit;CZA_ZA_EL
-;A&JUnit;CZA_ZA_IC
-;A&JUnit;CZA_ZA_PM
-;A&JUnit;CZA_ZA_TS
-;A&JUnit;DUR_EX_PL
-;A&JUnit;DUR_NZ_PL
-;A&JUnit;DUR_UK_PL
-;A&JUnit;FML_EX_AG
-;A&JUnit;FML_EX_EN
-;A&JUnit;FML_EX_EP
-;A&JUnit;FML_EX_GR
-;A&JUnit;FML_EX_HD
-;A&JUnit;FML_EX_SE
-;A&JUnit;FML_IC_IC
-;A&JUnit;FML_NZ_AG
-;A&JUnit;FML_NZ_EL
-;A&JUnit;FML_NZ_EN
-;A&JUnit;FML_NZ_EP
-;A&JUnit;FML_NZ_GR
-;A&JUnit;FML_NZ_HD
-;A&JUnit;FML_NZ_SE
-;A&JUnit;GAU_AU_AC
-;A&JUnit;GAU_AU_AG
-;A&JUnit;GAU_AU_RP
-;A&JUnit;GAU_AU_SE
-;A&JUnit;GAU_EX_AC
-;A&JUnit;GAU_EX_AG
-;A&JUnit;GAU_EX_SE
-;A&JUnit;GAU_IC_IC
-;A&JUnit;GCA_CA_AC
-;A&JUnit;GCA_CA_AG
-;A&JUnit;GCA_CA_EL
-;A&JUnit;GCA_CA_TS
-;A&JUnit;GCA_EX_AC
-;A&JUnit;GCA_EX_AG
-;A&JUnit;GCA_EX_EL
-;A&JUnit;GCA_IC_AC
-;A&JUnit;GCA_IC_EL
-;A&JUnit;GCA_IC_IC
-;A&JUnit;GGL_EX_AC
-;A&JUnit;GGL_EX_AG
-;A&JUnit;GGL_EX_CC
-;A&JUnit;GGL_EX_EL
-;A&JUnit;GGL_EX_EN
-;A&JUnit;GGL_EX_EP
-;A&JUnit;GGL_EX_HD
-;A&JUnit;GGL_EX_PL
-;A&JUnit;GGL_EX_RP
-;A&JUnit;GGL_EX_SE
-;A&JUnit;GGL_EX_TD
-;A&JUnit;GGL_EX_TS
-;A&JUnit;GGL_IC_CC
-;A&JUnit;GGL_IC_IC
-;A&JUnit;GGL_NZ_AC
-;A&JUnit;GGL_NZ_AG
-;A&JUnit;GGL_NZ_CC
-;A&JUnit;GGL_NZ_CN
-;A&JUnit;GGL_NZ_EL
-;A&JUnit;GGL_NZ_EN
-;A&JUnit;GGL_NZ_EP
-;A&JUnit;GGL_NZ_HD
-;A&JUnit;GGL_NZ_PL
-;A&JUnit;GGL_NZ_RP
-;A&JUnit;GGL_NZ_SE
-;A&JUnit;GGL_NZ_TD
-;A&JUnit;GGL_NZ_TS
-;A&JUnit;GHK_HK_AC
-;A&JUnit;GHK_HK_CC
-;A&JUnit;GHK_HK_SE
-;A&JUnit;GHK_HK_TS
-;A&JUnit;GHK_IC_IC
-;A&JUnit;GRY_NZ_AG
-;A&JUnit;GSF_EX_AC
-;A&JUnit;GSF_EX_SE
-;A&JUnit;GSF_EX_TS
-;A&JUnit;GSF_IC_IC
-;A&JUnit;GUS_CA_AC
-;A&JUnit;GUS_CA_CC
-;A&JUnit;GUS_CA_SE
-;A&JUnit;GUS_CA_TS
-;A&JUnit;GUS_EX_AC
-;A&JUnit;GUS_EX_AG
-;A&JUnit;GUS_EX_CC
-;A&JUnit;GUS_EX_RP
-;A&JUnit;GUS_EX_SE
-;A&JUnit;GUS_EX_TS
-;A&JUnit;GUS_IC_IC
-;A&JUnit;GUS_US_AC
-;A&JUnit;GUS_US_AG
-;A&JUnit;GUS_US_CC
-;A&JUnit;GUS_US_RP
-;A&JUnit;GUS_US_SE
-;A&JUnit;GUS_US_TS
-;A&JUnit;GZA_EX_AC
-;A&JUnit;GZA_EX_AG
-;A&JUnit;GZA_EX_RP
-;A&JUnit;GZA_EX_SE
-;A&JUnit;GZA_EX_TS
-;A&JUnit;GZA_IC_IC
-;A&JUnit;GZA_ZA_AC
-;A&JUnit;GZA_ZA_AG
-;A&JUnit;GZA_ZA_RP
-;A&JUnit;GZA_ZA_SE
-;A&JUnit;GZA_ZA_TS
-;A&JUnit;PAM_EX_AC
-;A&JUnit;PAM_EX_AG
-;A&JUnit;PAM_EX_EL
-;A&JUnit;PAM_EX_EN
-;A&JUnit;PAM_EX_PM
-;A&JUnit;PAM_EX_SE
-;A&JUnit;PAM_EX_TS
-;A&JUnit;PAM_IC_AG
-;A&JUnit;PAM_IC_IC
-;A&JUnit;PAM_IC_SE
-;A&JUnit;PAM_US_AC
-;A&JUnit;PAM_US_AG
-;A&JUnit;PAM_US_EL
-;A&JUnit;PAM_US_EN
-;A&JUnit;PAM_US_PM
-;A&JUnit;PAM_US_SE
-;A&JUnit;PAM_US_TS
-;A&JUnit;PEC_AU_CM
-;A&JUnit;PEC_AU_FP
-;A&JUnit;PEC_AU_PC
-;A&JUnit;PEC_AU_RP
-;A&JUnit;PEC_AU_SC
-;A&JUnit;PEC_AU_SP
-;A&JUnit;PEC_AU_VS
-;A&JUnit;PEC_EX_CM
-;A&JUnit;PEC_EX_FP
-;A&JUnit;PEC_EX_PC
-;A&JUnit;PEC_EX_RP
-;A&JUnit;PEC_EX_SC
-;A&JUnit;PEC_EX_SP
-;A&JUnit;PEC_EX_VS
-;A&JUnit;PEC_IC_CM
-;A&JUnit;PEC_IC_IC
-;A&JUnit;PEC_NZ_CM
-;A&JUnit;PEC_NZ_FP
-;A&JUnit;PEC_NZ_PC
-;A&JUnit;PEC_NZ_RP
-;A&JUnit;PEC_NZ_SC
-;A&JUnit;PEC_NZ_SP
-;A&JUnit;PEC_NZ_VS
-;A&JUnit;PEU_EX_AG
-;A&JUnit;PEU_EX_EL
-;A&JUnit;PEU_EX_EN
-;A&JUnit;PEU_EX_SE
-;A&JUnit;PEU_EX_TS
-;A&JUnit;PEU_IC_AG
-;A&JUnit;PEU_IC_IC
-;A&JUnit;PEU_IC_SE
-;A&JUnit;PEU_UK_AG
-;A&JUnit;PEU_UK_EL
-;A&JUnit;PEU_UK_EN
-;A&JUnit;PEU_UK_SE
-;A&JUnit;PEU_UK_TS
-;A&JUnit;PZA_EX_AG
-;A&JUnit;PZA_EX_EL
-;A&JUnit;PZA_EX_IC
-;A&JUnit;PZA_EX_PM
-;A&JUnit;PZA_EX_SE
-;A&JUnit;PZA_EX_TS
-;A&JUnit;PZA_IC_AG
-;A&JUnit;PZA_IC_IC
-;A&JUnit;PZA_IC_SE
-;A&JUnit;PZA_ZA_AG
-;A&JUnit;PZA_ZA_EL
-;A&JUnit;PZA_ZA_IC
-;A&JUnit;PZA_ZA_PM
-;A&JUnit;PZA_ZA_SE
-;A&JUnit;PZA_ZA_TS
-;A&JUnit;SUN_EX_EL
-;A&JUnit;SUN_EX_EN
-;A&JUnit;SUN_IC_IC
-;A&JUnit;SUN_NZ_EL
-;A&JUnit;SUN_NZ_EN
 
 INSERT_UPDATE B2BCustomer;description;uid[unique=true];originalUid;email;name;title(code);groups(uid);permissionGroups(uid);sessionCurrency(isocode)[default='NZD'];password[default=$defaultPassword];
 ;Admin A;linda.wolf@chubb.com.au;linda.wolf@chubb.com.au;linda.wolf@chubb.com.au;Linda Wolf;ms;A&JCommunications,b2badmingroup;;;;;
@@ -1170,7 +872,6 @@ INSERT_UPDATE B2BCustomer;description;uid[unique=true];originalUid;email;name;ti
 ;Manager A;akiro.nakamura@chubb.com.au;akiro.nakamura@chubb.com.au;akiro.nakamura@chubb.com.au;Akiro Nakamura;mr;Rustic, b2bmanagergroup;;;;;;
 ;Manager B;anil.gupta@chubb.com.au;anil.gupta@chubb.com.au;anil.gupta@chubb.com.au;Anil Gupta;mr;A&JUnit, b2bmanagergroup, b2bcustomergroup, premiumPermissions;;;;;;
 ;Manager C;salome.levi@chubb.com.au;salome.levi@chubb.com.au;salome.levi@chubb.com.au;Salome Levi;ms;A&JUnit, b2bmanagergroup;;;;;;
-
 
 #
 # Add restriction on salesemployeegroup. salesemployeegroup shall only see the employees from salesemployeegroup.
