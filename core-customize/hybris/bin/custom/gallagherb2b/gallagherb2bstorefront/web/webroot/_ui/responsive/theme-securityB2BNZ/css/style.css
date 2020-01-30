@@ -8462,7 +8462,7 @@ ul.nav__links::after {
 }
 .navigation--top .nav__left .simple-banner-component img,
 .navigation--top .nav__left .banner__component img {
-  width: 240px;
+  width: 125px;
 }
 .miniCartSlot > div[data-ng-transclude] {
   display: inline-block;
@@ -8490,7 +8490,7 @@ ul.nav__links::after {
   padding-right: 0;
 }
 .navigation--top .nav__right .nav__links--account li.logged_in {
-  padding: 10px;
+  padding: 16px 10px;
 }
 .navigation--top .nav__right .nav__links--account li button {
   background: transparent none repeat scroll 0% 0%;
@@ -8509,7 +8509,7 @@ ul.nav__links::after {
   cursor: pointer;
   text-transform: uppercase;
   font-weight: 400;
-  padding: 12px;
+  padding: 16px 12px;
   display: block;
   font-size: 1em;
   line-height: 1.329em;
@@ -8523,10 +8523,10 @@ ul.nav__links::after {
   background-color: transparent;
   color: inherit;
   display: block;
-  height: 40px;
+  height: 49px;
   line-height: 40px;
   cursor: pointer;
-  padding: 0 12px;
+  padding: 4px 12px;
 }
 .navigation--top .nav__right .nav__links--account .myAccountLinksHeader::after,
 .navigation--top .nav__right .nav__links--account .myCompanyLinksHeader::after {
@@ -8545,10 +8545,10 @@ ul.nav__links::after {
   color: #ffffff;
   text-decoration: none;
   display: block;
-  height: 40px;
+  height: 49px;
   line-height: 40px;
   cursor: pointer;
-  padding: 0 12px;
+  padding: 4px 12px;
 }
 #accNavComponentDesktopOne,
 #accNavComponentDesktopTwo {

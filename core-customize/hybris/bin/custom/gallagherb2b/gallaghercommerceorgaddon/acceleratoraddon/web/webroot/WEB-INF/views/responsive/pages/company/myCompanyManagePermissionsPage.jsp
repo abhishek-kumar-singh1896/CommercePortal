@@ -28,11 +28,13 @@
         </div>
 
         <c:if test="${empty searchPageData.results}">
+         <div class="row">
             <div class="col-md-6 col-md-push-3">
                 <div class="account-section-content	content-empty">
                     <spring:theme code="text.company.noentries"/>
                 </div>
             </div>
+           </div> 
         </c:if>
 
         <c:if test="${not empty searchPageData.results}">

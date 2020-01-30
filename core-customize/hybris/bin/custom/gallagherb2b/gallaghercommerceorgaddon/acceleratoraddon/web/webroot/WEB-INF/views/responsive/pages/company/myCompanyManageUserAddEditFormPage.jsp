@@ -68,6 +68,8 @@
                                                    selectCSSClass="form-control"
                                                    items="${titleData}"/>
                     </div>
+                 </div>
+                 <div class="row">   
                     <div class="col-xs-12 col-sm-6">
                     	<formElement:formInputBox idKey="user.firstName" labelKey="user.firstName" path="firstName"
                                                   inputCSS="text" mandatory="true"/>
@@ -76,6 +78,8 @@
                     	<formElement:formInputBox idKey="user.lastName" labelKey="user.lastName" path="lastName"
                                                   inputCSS="text" mandatory="true"/>
                     </div>
+                 </div>
+                 <div class="row">   
                     <div class="col-xs-12 col-sm-6">
                         <formElement:formSelectBox idKey="text.company.user.unit.title" skipBlank="false"
                                                    labelKey="text.company.user.unit.title" path="parentB2BUnit" selectCSSClass="form-control"
@@ -86,6 +90,8 @@
                         <customFormElement:formCheckboxes idKey="text.company.user.roles" labelKey="text.company.user.roles"
                                                           path="roles" items="${roles}" disabled="${not empty param.unit and not empty param.role}"/>
                     </div>
+                 </div>
+                 <div class="row">   
                     <div class="col-xs-12">
                         <div class="accountActions-bottom">
                             <div class="row">
