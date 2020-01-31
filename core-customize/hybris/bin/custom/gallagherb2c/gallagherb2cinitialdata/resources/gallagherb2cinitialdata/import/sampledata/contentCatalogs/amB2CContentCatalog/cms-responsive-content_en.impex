@@ -457,10 +457,10 @@ UPDATE FooterNavigationComponent;$contentCV[unique=true];uid[unique=true];notice
 
 # Gallagher Footer Navigation Component
 INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];notice[lang=en]
-;;GallagherFooterNavigationComponent;"<br><p>© Gallagher Group Limited 2017. All right reserved.</p>"
+;;GallagherFooterNavigationComponent;"© Gallagher Group Limited 2017. All right reserved."
 
 INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];noticeHeader[lang=en]
-;;GallagherFooterNavigationComponent;"<p>Other Gallagher divisions</p>"
+;;GallagherFooterNavigationComponent;Other Gallagher divisions"
 
 ##Footer Links 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
