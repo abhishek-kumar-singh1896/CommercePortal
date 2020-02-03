@@ -13,7 +13,8 @@ ACC.commerceorg = {
 	    "disablePermissionConfirmation",
         "bindPermissionTypeSelectionForAddNew",
         "bindToRemoveUserFromUnit",
-        "budgetFormInit"
+        "budgetFormInit",
+        "bindCustomerInfoForExistingCustomer"
     ],
 
     bindToSelectBudget: function()
@@ -248,6 +249,49 @@ ACC.commerceorg = {
                     date: false
                 }
             }
+        });
+    },
+
+    bindCustomerInfoForExistingCustomer: function ()
+    {
+        $('#user\\.email').on("change", function (e)
+        {
+        	ACC.common.showLoader();
+            $.ajax({
+            	type: 'GET',
+                url: ACC.config.encodedContextPath + '/my-company/organization-management/manage-users/create/verifyCustomer',
+                async: true,
+                data: {'email':$(this).val(), 'b2BCustomerForm':$('#b2BCustomerForm').val()},
+                success: function(data){
+                	ACC.common.hideLoader();
+                	var emailError = data.emailError;
+                	var statusCode = data.StatusCode;
+                	if(emailError == 'duplicate') {
+                			$('.email-duplicate-error').show();
+                			$('.email-invalid-error').hide();
+                	}
+                	else if(emailError == 'invalid') {
+                			$('.email-duplicate-error').hide();
+                			$('.email-invalid-error').show();
+                	}
+                	else if(statusCode == '2') {
+                			$('.email-invalid-error').hide();
+                			$('.email-duplicate-error').hide();
+                		
+                			var firstName = $('#user\\.firstName');
+                			var lastName = $('#user\\.lastName');
+                			var duplicate = $('#duplicate');
+                    
+                			firstName.val(data.FirstName);
+                			lastName.val(data.LastName);
+                			duplicate.val(data.duplicate);
+                	}
+                	else {
+            				$('.email-invalid-error').hide();
+            				$('.email-duplicate-error').hide();
+                	}
+                }
+            });
         });
     }
 };

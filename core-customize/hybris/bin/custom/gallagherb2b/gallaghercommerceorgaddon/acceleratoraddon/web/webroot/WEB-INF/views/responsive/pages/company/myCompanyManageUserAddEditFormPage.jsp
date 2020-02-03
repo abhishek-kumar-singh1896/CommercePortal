@@ -57,9 +57,16 @@
                     <div class="col-xs-12 col-sm-6">
                     	<formElement:formInputBox idKey="user.email" labelKey="user.email" path="email"
                                                   inputCSS="text" mandatory="true"/>
+						<div class="help-block email-duplicate-error">
+							<span id="email.errors"><spring:message  code="asm.createCustomer.duplicate.error" /></span>
+						</div>
+						<div class="help-block email-invalid-error">
+							<span id="email.errors"><spring:message  code="profile.email.invalid" /></span>
+						</div>
                         
                     </div>
                     <form:input type="hidden" name="uid" path="uid" id="uid"/>
+                    <form:input type="hidden" name="duplicate" path="duplicate" id="duplicate"/>
                     <div class="col-xs-12 col-sm-6">
                     	<formElement:formSelectBoxDefaultEnabled idKey="user.title" labelKey="user.title" path="titleCode"
                                                    mandatory="true"

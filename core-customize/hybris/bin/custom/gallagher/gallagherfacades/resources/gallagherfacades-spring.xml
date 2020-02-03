@@ -26,5 +26,14 @@
 			</list>
 		</property>
 	</bean>
+	
+	<alias name="gallagherB2BCustomerReversePopulator" alias="b2BCustomerReversePopulator"/>
+	<bean id="gallagherB2BCustomerReversePopulator" class="com.gallagher.facades.company.converters.populators.GallagherB2BCustomerReversePopulator" >
+		<property name="customerNameStrategy" ref="customerNameStrategy"/>
+		<property name="b2BCommerceB2BUserGroupService" ref="b2bCommerceB2BUserGroupService"/>
+		<property name="userService" ref="userService"/>
+		<property name="b2BUserGroupsLookUpStrategy" ref="b2bUserGroupsLookUpStrategy"/>
+		<property name="b2BUnitService" ref="b2bUnitService"/>	
+	</bean>
 
 </beans>

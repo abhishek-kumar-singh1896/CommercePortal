@@ -4,10 +4,8 @@ import de.hybris.platform.b2b.model.B2BCustomerModel;
 import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.servicelayer.user.impl.DefaultUserService;
 
+import java.util.ArrayList;
 import java.util.List;
-
-//import de.hybris.platform.b2badvancebackoffice.data.CreateCustomerForm;
-
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -15,7 +13,10 @@ import javax.annotation.Resource;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import com.gallagher.outboundservices.dto.inbound.customer.response.GallagherInboundCustomerEntry;
+import com.gallagher.outboundservices.facade.GallagherOutboundServiceFacade;
 import com.hybris.cockpitng.config.jaxb.wizard.CustomType;
 import com.hybris.cockpitng.util.notifications.NotificationService;
 import com.hybris.cockpitng.util.notifications.event.NotificationEvent;
@@ -37,6 +38,19 @@ public class VerifyCustomerHandler implements FlowActionHandler
 
 	@Resource
 	private DefaultUserService userService;
+
+	private final GallagherOutboundServiceFacade gallagherOutboundServiceFacade;
+
+	public GallagherOutboundServiceFacade getGallagherOutboundServiceFacade()
+	{
+		return gallagherOutboundServiceFacade;
+	}
+
+	@Autowired
+	public VerifyCustomerHandler(final GallagherOutboundServiceFacade gallagherOutboundServiceFacade)
+	{
+		this.gallagherOutboundServiceFacade = gallagherOutboundServiceFacade;
+	}
 
 	@Override
 	public void perform(final CustomType customType, final FlowActionHandlerAdapter adapter, final Map<String, String> parameters)
@@ -74,7 +88,17 @@ public class VerifyCustomerHandler implements FlowActionHandler
 		}
 		else
 		{
-			final List<CustomerModel> existingCustomers = getExistingCustomerFromC4C(email);
+			List<GallagherInboundCustomerEntry> existingCustomers = new ArrayList<>();
+
+			if (null != getGallagherOutboundServiceFacade().getCustomerInfoFromC4C(email)
+					&& null != getGallagherOutboundServiceFacade().getCustomerInfoFromC4C(email).getCustomerInfo()
+					&& null != getGallagherOutboundServiceFacade().getCustomerInfoFromC4C(email).getCustomerInfo()
+							.getCustomerEntries())
+			{
+				existingCustomers = getGallagherOutboundServiceFacade().getCustomerInfoFromC4C(email).getCustomerInfo()
+						.getCustomerEntries();
+			}
+
 			if (CollectionUtils.isNotEmpty(existingCustomers) && existingCustomers.size() > 1)
 			{
 				notificationService.notifyUser((String) null, "duplicateCustomer", NotificationEvent.Level.FAILURE);
@@ -85,7 +109,11 @@ public class VerifyCustomerHandler implements FlowActionHandler
 				{
 					if (CollectionUtils.isNotEmpty(existingCustomers))
 					{
-						//TODO add data from C4C
+						final GallagherInboundCustomerEntry existingCustomer = existingCustomers.get(0);
+						adapter.getWidgetInstanceManager().getModel().setValue("newCust.email", existingCustomer.getEmail());
+						adapter.getWidgetInstanceManager().getModel().setValue("newCust.uid", existingCustomer.getEmail());
+						adapter.getWidgetInstanceManager().getModel().setValue("newCust.customerID", existingCustomer.getContactID());
+						adapter.getWidgetInstanceManager().getModel().setValue("newCust.name", existingCustomer.getName());
 					}
 					if (isB2B)
 					{
@@ -99,16 +127,6 @@ public class VerifyCustomerHandler implements FlowActionHandler
 			}
 		}
 		return;
-	}
-
-	/**
-	 * @param email
-	 * @return
-	 */
-	private List<CustomerModel> getExistingCustomerFromC4C(final String email)
-	{
-		// TODO
-		return null;
 	}
 
 	private boolean getExistingCustomerFromHybris(final String uid)

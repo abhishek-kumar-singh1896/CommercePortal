@@ -2676,3 +2676,10 @@ position: absolute;
 .mini-cart .mini-cart-body .mini-cart-list .mini-cart-item{
 	min-height:100px;
 }
+
+.email-duplicate-error {
+	display:none;
+}
+.email-invalid-error {
+	display:none;
+}

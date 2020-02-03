@@ -27,6 +27,7 @@ public class B2BCustomerForm extends UpdateProfileForm
 	private Collection<CustomerData> approvers;
 	private Collection<B2BUserGroupData> approverGroups;
 	private String email;
+	private boolean duplicate;
 
 	public String getUid()
 	{
@@ -99,5 +100,15 @@ public class B2BCustomerForm extends UpdateProfileForm
 	public void setEmail(final String email)
 	{
 		this.email = email;
+	}
+
+	public boolean isDuplicate()
+	{
+		return duplicate;
+	}
+
+	public void setDuplicate(final boolean duplicate)
+	{
+		this.duplicate = duplicate;
 	}
 }
