@@ -13,4 +13,5 @@ $taxGroup=Europe1PriceFactory_PTG(code)[default=us-sales-tax-full]
 $approved=approvalstatus(code)[default='approved']
 
 UPDATE Product;code[unique=true];$prices;$approved;$catalogVersion;$taxGroup
-;solar-fence-energizer-s10;1 EA = 117 AUD N
+;solar-fence-energizer-s10;1 EA = 117 USD N
+;solar-fence-energizer-s10;1 EA = 117 CAD N
