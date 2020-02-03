@@ -3,7 +3,7 @@
 <%@ taglib prefix="theme" tagdir="/WEB-INF/tags/shared/theme"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="common" tagdir="/WEB-INF/tags/responsive/common"%>
-<%@ taglib prefix="company" tagdir="/WEB-INF/tags/addons/commerceorgaddon/responsive/company"%>
+<%@ taglib prefix="company" tagdir="/WEB-INF/tags/addons/gallaghercommerceorgaddon/responsive/company"%>
 <spring:htmlEscape defaultHtmlEscape="true" />
 
 <spring:url value="/my-company/organization-management/manage-permissions" var="cancelUrl" htmlEscape="false"/>

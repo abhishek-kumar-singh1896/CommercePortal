@@ -4,8 +4,6 @@
 <%@ taglib prefix="cms" uri="http://hybris.com/tld/cmstags"%>
 <!--<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>-->
 
-
-
 <div class="tabs js-tabs tabs-responsive">
 
 <!--
@@ -75,20 +73,16 @@
 		</div>
 		</div>
 
-
+hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
 <div id="video" class="tabhead">
 		<a href="">Video</a> <span
 			class="glyphicon"></span>
 	</div>
 	<div class="tabbody">
 		<div class="container-lg">
-
 <iframe width="560" height="315" src="https://www.youtube.com/embed/kQIkXlpJ2Vg" frameborder="0" allowfullscreen></iframe>
 		</div>
 	</div>
-
-
-
 	<div id="tabreview" class="tabhead">
 		<a href="">Reviews</a> <span
 			class="glyphicon"></span>
