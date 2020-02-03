@@ -10010,8 +10010,8 @@ fieldset[disabled] .btn-default.active {
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
   color: #ffffff;
-  background-color: #000000;
-  border-color: #000000;
+  background-color: #ff8400;
+  border-color: #ff8400;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
@@ -11151,7 +11151,7 @@ fieldset[disabled] .btn-primary.active {
 }
 .simple-banner-component a,
 .banner__component a {
-  display: block;
+  display: inline-block;
 }
 .simple-banner-component img,
 .banner__component img {
