@@ -638,7 +638,8 @@ public class UserManagementPageController extends MyCompanyPageController
 			final List<GallagherInboundCustomerEntry> existingCustomers = getGallagherOutboundServiceFacade()
 					.getCustomerInfoFromC4C(email).getCustomerInfo().getCustomerEntries();
 
-			if (null != existingCustomers && CollectionUtils.isNotEmpty(existingCustomers) && existingCustomers.size() == 1)
+			if (null != existingCustomers && CollectionUtils.isNotEmpty(existingCustomers) && existingCustomers.size() == 1
+					&& existingCustomers.get(0).getStatusCode().equals("2"))
 			{
 				existingCustomer = existingCustomers.get(0);
 			}

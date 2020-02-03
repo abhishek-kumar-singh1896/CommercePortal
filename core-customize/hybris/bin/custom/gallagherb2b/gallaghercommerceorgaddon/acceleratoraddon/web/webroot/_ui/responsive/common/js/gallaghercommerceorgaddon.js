@@ -264,8 +264,9 @@ ACC.commerceorg = {
                 data: {'email':$(this).val(), 'b2BCustomerForm':$('#b2BCustomerForm').val()},
                 success: function(data){
                 	ACC.common.hideLoader();
+                	$('.email-invalid-error').hide();
+    				$('.email-duplicate-error').hide();
                 	var emailError = data.emailError;
-                	var statusCode = data.StatusCode;
                 	if(emailError == 'duplicate') {
                 			$('.email-duplicate-error').show();
                 			$('.email-invalid-error').hide();
@@ -274,21 +275,13 @@ ACC.commerceorg = {
                 			$('.email-duplicate-error').hide();
                 			$('.email-invalid-error').show();
                 	}
-                	else if(statusCode == '2') {
+                	else {
                 			$('.email-invalid-error').hide();
                 			$('.email-duplicate-error').hide();
                 		
-                			var firstName = $('#user\\.firstName');
-                			var lastName = $('#user\\.lastName');
-                			var duplicate = $('#duplicate');
-                    
-                			firstName.val(data.FirstName);
-                			lastName.val(data.LastName);
-                			duplicate.val(data.duplicate);
-                	}
-                	else {
-            				$('.email-invalid-error').hide();
-            				$('.email-duplicate-error').hide();
+                			$('#user\\.firstName').val(data.FirstName);
+                			$('#user\\.lastName').val(data.LastName);
+                			$('#duplicate').val(data.duplicate);
                 	}
                 }
             });

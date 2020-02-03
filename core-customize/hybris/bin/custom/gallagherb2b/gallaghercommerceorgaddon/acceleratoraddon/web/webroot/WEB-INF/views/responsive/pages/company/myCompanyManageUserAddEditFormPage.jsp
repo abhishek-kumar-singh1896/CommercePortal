@@ -58,7 +58,7 @@
                     	<formElement:formInputBox idKey="user.email" labelKey="user.email" path="email"
                                                   inputCSS="text" mandatory="true"/>
 						<div class="help-block email-duplicate-error">
-							<span id="email.errors"><spring:message  code="asm.createCustomer.duplicate.error" /></span>
+							<span id="email.errors"><spring:message  code="profile.email.duplicate" /></span>
 						</div>
 						<div class="help-block email-invalid-error">
 							<span id="email.errors"><spring:message  code="profile.email.invalid" /></span>

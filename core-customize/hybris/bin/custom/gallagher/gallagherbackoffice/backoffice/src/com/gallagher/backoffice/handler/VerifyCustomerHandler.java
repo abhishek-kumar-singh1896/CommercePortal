@@ -16,8 +16,10 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.gallagher.outboundservices.dto.inbound.customer.response.GallagherInboundCustomerEntry;
+import com.gallagher.outboundservices.dto.inbound.customer.response.GallagherInboundCustomerInfo;
 import com.gallagher.outboundservices.facade.GallagherOutboundServiceFacade;
 import com.hybris.cockpitng.config.jaxb.wizard.CustomType;
+import com.hybris.cockpitng.core.model.WidgetModel;
 import com.hybris.cockpitng.util.notifications.NotificationService;
 import com.hybris.cockpitng.util.notifications.event.NotificationEvent;
 import com.hybris.cockpitng.widgets.configurableflow.ConfigurableFlowController;
@@ -41,7 +43,7 @@ public class VerifyCustomerHandler implements FlowActionHandler
 
 	private final GallagherOutboundServiceFacade gallagherOutboundServiceFacade;
 
-	public GallagherOutboundServiceFacade getGallagherOutboundServiceFacade()
+	protected GallagherOutboundServiceFacade getGallagherOutboundServiceFacade()
 	{
 		return gallagherOutboundServiceFacade;
 	}
@@ -89,11 +91,10 @@ public class VerifyCustomerHandler implements FlowActionHandler
 		else
 		{
 			List<GallagherInboundCustomerEntry> existingCustomers = new ArrayList<>();
-
-			if (null != getGallagherOutboundServiceFacade().getCustomerInfoFromC4C(email)
-					&& null != getGallagherOutboundServiceFacade().getCustomerInfoFromC4C(email).getCustomerInfo()
-					&& null != getGallagherOutboundServiceFacade().getCustomerInfoFromC4C(email).getCustomerInfo()
-							.getCustomerEntries())
+			final GallagherInboundCustomerInfo existingCustomerInfo = getGallagherOutboundServiceFacade()
+					.getCustomerInfoFromC4C(email);
+			if (null != existingCustomerInfo && null != existingCustomerInfo.getCustomerInfo()
+					&& null != existingCustomerInfo.getCustomerInfo().getCustomerEntries())
 			{
 				existingCustomers = getGallagherOutboundServiceFacade().getCustomerInfoFromC4C(email).getCustomerInfo()
 						.getCustomerEntries();
@@ -107,19 +108,20 @@ public class VerifyCustomerHandler implements FlowActionHandler
 			{
 				if ("step1".equals(controller.getCurrentStep().getId()))
 				{
+					final WidgetModel widget = adapter.getWidgetInstanceManager().getModel();
 					if (CollectionUtils.isNotEmpty(existingCustomers))
 					{
 						final GallagherInboundCustomerEntry existingCustomer = existingCustomers.get(0);
-						adapter.getWidgetInstanceManager().getModel().setValue("newCust.email", existingCustomer.getEmail());
-						adapter.getWidgetInstanceManager().getModel().setValue("newCust.uid", existingCustomer.getEmail());
-						adapter.getWidgetInstanceManager().getModel().setValue("newCust.customerID", existingCustomer.getContactID());
-						adapter.getWidgetInstanceManager().getModel().setValue("newCust.name", existingCustomer.getName());
+						widget.setValue("newCust.email", existingCustomer.getEmail());
+						widget.setValue("newCust.uid", existingCustomer.getEmail());
+						widget.setValue("newCust.customerID", existingCustomer.getContactID());
+						widget.setValue("newCust.name", existingCustomer.getName());
 					}
 					if (isB2B)
 					{
-						adapter.getWidgetInstanceManager().getModel().setValue("newCust.email", email);
+						widget.setValue("newCust.email", email);
 					}
-					adapter.getWidgetInstanceManager().getModel().setValue("newCust.uid", email);
+					widget.setValue("newCust.uid", email);
 					controller.getRenderer().refreshView();
 					adapter.custom();
 					adapter.next();
