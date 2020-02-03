@@ -89,9 +89,9 @@
                     </div>
                     <div class="col-sm-2">
                         <div class="item-action">
-                            <a href="${fn:escapeXml(editUnitUrl)}" class="edit btn btn-block btn-primary">
+                          <%--   <a href="${fn:escapeXml(editUnitUrl)}" class="edit btn btn-block btn-primary">
                                 <spring:theme code="text.company.manage.units.button.editUnit"/>
-                            </a>
+                            </a> --%>
                         </div>
                     </div>
                 </div>
@@ -101,14 +101,14 @@
                 <c:choose>
                     <c:when test="${unit.active}">
                         <c:if test="${unit.uid != user.unit.uid}">
-                        <span class="js-action-confirmation-modal disable-link">
+                     <%--    <span class="js-action-confirmation-modal disable-link">
                             <ycommerce:testId code="Unit_DisableUnit_button">
                                 <a href="#" data-action-confirmation-modal-title="<spring:theme code="text.company.manage.units.button.disableUnit"/>"
                                    data-action-confirmation-modal-id="disable">
                                     <spring:theme code="text.company.manage.units.button.disableUnit"/>
                                 </a>
                             </ycommerce:testId>
-                        </span>
+                        </span> --%>
                             <company:actionConfirmationModal id="disable" targetUrl="${disableUnitUrl}"
                                                              messageKey="text.company.manage.units.disableUnit.confirmation"/>
                         </c:if>
@@ -134,8 +134,11 @@
 
             <div class="account-list">
 
-                <org-common:selectEntityHeadline url="${addUnitAddressUrl}" labelKey="text.company.manage.units.addresses"
-                                                 count="${fn:length(unit.addresses)}" addNew="true"/>
+<%--                 <org-common:selectEntityHeadline url="${addUnitAddressUrl}" labelKey="text.company.manage.units.addresses"
+                                                 count="${fn:length(unit.addresses)}" addNew="true"/> --%>
+                <div class="account-list-header">
+                    <spring:theme code="text.company.manage.units.addresses"/> (${fn:length(unit.addresses)})
+                </div>                                 
                 <div class="account-cards">
                     <div class="row">
                         <c:forEach items="${unit.addresses}" var="address">
@@ -213,8 +216,12 @@
                     </div>
                 </div>
 
-                <org-common:selectEntityHeadline url="${createUnitUrl}" labelKey="text.company.manage.units.childUnits"
-                                                 count="${fn:length(unit.children)}" addNew="true"/>
+<%--                 <org-common:selectEntityHeadline url="${createUnitUrl}" labelKey="text.company.manage.units.childUnits"
+                                                 count="${fn:length(unit.children)}" addNew="true"/> --%>
+                
+                 <div class="account-list-header">
+                    <spring:theme code="text.company.manage.units.childUnits"/> (${fn:length(unit.children)})
+                </div>                                 
                 <div class="account-cards">
                     <div class="row">
                         <c:forEach items="${unit.children}" var="unit">
