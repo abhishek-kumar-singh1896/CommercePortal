@@ -2,6 +2,7 @@ package com.gallagher.backoffice.handler;
 
 import de.hybris.platform.b2b.model.B2BCustomerModel;
 import de.hybris.platform.core.model.user.CustomerModel;
+import de.hybris.platform.servicelayer.user.impl.DefaultUserService;
 
 import java.util.List;
 import java.util.Map;
@@ -13,7 +14,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.gallagher.c4c.outboundservices.facade.GallagherC4COutboundServiceFacade;
-import com.gallagher.outboundservices.dto.inbound.customer.response.GallagherInboundCustomerEntry;
+import com.gallagher.outboundservices.response.dto.GallagherInboundCustomerEntry;
 import com.hybris.cockpitng.config.jaxb.wizard.CustomType;
 import com.hybris.cockpitng.core.model.WidgetModel;
 import com.hybris.cockpitng.util.notifications.NotificationService;
@@ -33,6 +34,9 @@ public class VerifyCustomerHandler implements FlowActionHandler
 
 	@Resource
 	private NotificationService notificationService;
+
+	@Resource(name = "userService")
+	private DefaultUserService userService;
 
 	private final GallagherC4COutboundServiceFacade gallagherC4COutboundServiceFacade;
 
@@ -79,7 +83,7 @@ public class VerifyCustomerHandler implements FlowActionHandler
 				{
 					notificationService.notifyUser((String) null, "invalidEmailAddress", NotificationEvent.Level.FAILURE);
 				}
-				else if (existingCustomers.get(0).getEmailError().equals("duplicate"))
+				else if (userService.isUserExisting(email))
 				{
 					notificationService.notifyUser((String) null, "duplicateHybrisCustomer", NotificationEvent.Level.FAILURE);
 				}

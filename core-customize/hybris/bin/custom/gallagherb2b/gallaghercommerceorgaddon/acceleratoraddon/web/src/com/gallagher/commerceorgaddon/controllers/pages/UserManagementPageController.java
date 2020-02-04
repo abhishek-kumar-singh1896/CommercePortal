@@ -47,7 +47,7 @@ import com.gallagher.commerceorgaddon.controllers.GallaghercommerceorgaddonContr
 import com.gallagher.commerceorgaddon.forms.B2BCustomerForm;
 import com.gallagher.commerceorgaddon.forms.B2BPermissionForm;
 import com.gallagher.commerceorgaddon.forms.CustomerResetPasswordForm;
-import com.gallagher.outboundservices.dto.inbound.customer.response.GallagherInboundCustomerEntry;
+import com.gallagher.outboundservices.response.dto.GallagherInboundCustomerEntry;
 
 
 /**
@@ -624,11 +624,16 @@ public class UserManagementPageController extends MyCompanyPageController
 		final List<GallagherInboundCustomerEntry> existingCustomers = getGallagherC4COutboundServiceFacade()
 				.getCustomerInfoFromC4C(email);
 
+
 		if (CollectionUtils.isNotEmpty(existingCustomers) && existingCustomers.size() == 1
 				&& ((null != existingCustomers.get(0).getStatusCode() && existingCustomers.get(0).getStatusCode().equals("2"))
 						|| null != existingCustomers.get(0).getEmailError()))
 		{
 			existingCustomer = existingCustomers.get(0);
+		}
+		else if (userService.isUserExisting(email))
+		{
+			existingCustomer.setEmailError("duplicate");
 		}
 		else if ((CollectionUtils.isNotEmpty(existingCustomers) && existingCustomers.size() > 1) || email.contains("shishir"))
 		{

@@ -1,4 +1,4 @@
-package com.gallagher.outboundservices.dto.inbound.customer.response;
+package com.gallagher.outboundservices.response.dto;
 
 import java.util.List;
 
