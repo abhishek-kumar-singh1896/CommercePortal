@@ -67,6 +67,18 @@ UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$
 ;;TripodsCategoryLink;"Tripods"
 ;;TwitterLink;"Twitter"
 ;;VisitSAPLink;"Visit SAP"
+;;ProductsFooterLink;"Products"
+;;ElectricFencingFooterLink;"Electric Fencing"
+;;WeighingEIDFooterLink;"Weighing and EID"
+;;SteelGatesHardwareFooterLink;"Steel Gates and Hardware"
+;;WirelessMonitoringFooterLink;"Wireless Water Monitoring"
+;;FarmInfoToolsFooterLink;"Farm Information Tools"
+;;StockProdsFooterLink;"Stock Prods"
+;;AboutUsFooterLink;"About Us"
+;;SupportFooterLink;"Support"
+;;ContactFooterLink;"Contact Us"
+;;NewsEventsFooterLink;"News & Events"
+;;InnovationAwardsFooterLink;"Innovation & Awards"
 
 # Lightbox Banner for Mini Cart (banner is not localizable so we must create a separate banner per language)
 INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];&imageRef;folder(qualifier)[default='images'];altText

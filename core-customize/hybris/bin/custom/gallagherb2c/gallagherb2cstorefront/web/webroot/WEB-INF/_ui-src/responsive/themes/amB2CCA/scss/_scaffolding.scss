@@ -1,0 +1,195 @@
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: $body-background;
+  color: $gray-9;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  font-family: $font-family-sans-serif;
+}
+
+.container {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.gallagher-logo {
+  svg {
+    fill: $logo-color;
+    width: 148px;
+    height: 40px;
+  }
+}
+
+a {
+  color: $terciary;
+  text-decoration: none;
+
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: underline;
+  }
+
+  &:visited {
+    text-decoration: none;
+    color: $link-visited-color;
+  }
+}
+
+h1 {
+  &.primary-title {
+    font-size: 1.42857em;
+    font-weight: bold;
+    color: $gray-9;
+    margin: 20px 0;
+    padding: 0;
+  }
+}
+
+h2 {
+  &.secondary-title {
+    font-size: 1.142857em;
+    color: $gray-9;
+    margin: 20px 0;
+    padding: 0;
+  }
+}
+
+.sub-title {
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.error {
+  border: 1px solid $danger;
+}
+
+.xs-header-right-section {
+  display: none;
+}
+
+.accordion-card {
+  background-color: $white;
+
+  .card-header {
+    background-color: transparent;
+    border-radius: 0;
+    padding: 0;
+    border: none;
+
+    a {
+      padding: 6px 6px 6px 20px;
+      color: $gray-9;
+      font-size: 1.1428571em;
+      line-height: 24px;
+      display: block;
+      text-decoration: none;
+      position: relative;
+      transition: all ease-in-out 0.3s;
+
+      .arrow {
+        width: 12px;
+        height: 12px;
+        display: inline-block;
+        position: relative;
+        margin: 0;
+        color: $primary-color;
+
+        &.left-align {
+          position: absolute;
+          left: 0;
+          top: 10px;
+        }
+      }
+
+      &[aria-expanded="true"] {
+        .arrow {
+          span {
+            top: 0.5rem;
+            position: absolute;
+            width: 8px;
+            height: 2px;
+            background-color: $primary-color;
+            display: inline-block;
+            // -webkit-transition: all 0.2s ease;
+            // transition: all 0.2s ease;
+
+            &:first-of-type {
+              -webkit-transform: rotate(45deg);
+              transform: rotate(45deg);
+              left: 0;
+            }
+
+            &:last-of-type {
+              -webkit-transform: rotate(-45deg);
+              transform: rotate(-45deg);
+              right: 0;
+            }
+          }
+        }
+      }
+
+      &[aria-expanded="false"] {
+        .arrow {
+          span {
+            top: 0.5rem;
+            position: absolute;
+            width: 8px;
+            height: 2px;
+            background-color: $primary-color;
+            display: inline-block;
+            // -webkit-transition: all 0.2s ease;
+            // transition: all 0.2s ease;
+
+            &:first-of-type {
+              left: 0;
+              top: 6px;
+              -webkit-transform: rotate(45deg);
+              transform: rotate(45deg);
+            }
+
+            &:last-of-type {
+              left: 0;
+              top: 10px;
+              -webkit-transform: rotate(-45deg);
+              transform: rotate(-45deg);
+            }
+          }
+        }
+      }
+
+      &:hover {
+        color: $primary-color;
+
+        .arrow {
+          span {
+            background-color: $primary-color;
+          }
+        }
+      }
+    }
+  }
+
+  .card-body {
+    padding-top: 0;
+  }
+}
+
+.dropdown-menu {
+  border-radius: 8px;
+  box-shadow: 0 4px 11px 0 rgba(0, 0, 0, 0.1);
+  border: none;
+}

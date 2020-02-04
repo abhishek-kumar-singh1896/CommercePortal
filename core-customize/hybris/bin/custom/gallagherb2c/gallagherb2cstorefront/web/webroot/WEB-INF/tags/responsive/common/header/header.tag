@@ -15,16 +15,51 @@
 	<cms:component component="${component}" />
 </cms:pageSlot>
 
-<header class="js-mainHeader">
-	<nav class="navigation navigation--top hidden-xs hidden-sm">
-		<div class="row">
-			<div class="col-sm-12 col-md-4">
-				<div class="nav__left js-site-logo">
+<header class="main-header-out">
+	<div class="container">
+		<div>
+			<div class="header-left-section">
+				<div class="logo-out gallagher-logo">
 					<cms:pageSlot position="SiteLogo" var="logo" limit="1">
-						<cms:component component="${logo}" element="div" class="yComponentWrapper"/>
+						<cms:component component="${logo}" element="div"/>
 					</cms:pageSlot>
 				</div>
 			</div>
+			
+			<div class="header-middle-section">
+				<div class="main-nav-out">
+					<cms:pageSlot position="ggB2CNavBar" var="feature">
+						<ul>
+							<c:forEach items="${feature.navigationNode.children}" var="childLevel1">
+								<c:forEach items="${childLevel1.entries}" var="entry">
+									<cms:component component="${entry.item}"
+										evaluateRestriction="true" element="li"/>
+								</c:forEach>
+							</c:forEach>
+						</ul>
+					</cms:pageSlot>
+                </div>
+            </div>
+			
+			<div class="header-right-section text-right">
+				<div class="search-out">
+					<div class="search-link">
+						<svg class="search-icon">
+							<use xlink:href="_ui/responsive/common/images/gallaher-icons.svg#search" />
+	                    </svg>
+						<div class="search-text">
+							<cms:pageSlot position="SearchBox" var="component">
+								<cms:component component="${component}" element="div"/>
+							</cms:pageSlot>
+						</div>
+						<span class="arrow-up">
+							<svg class="arrow-up-icon">
+								<use xlink:href="_ui/responsive/common/images/gallaher-icons.svg#arrow-up" />
+                            </svg>
+                        </span>
+					</div>
+                    
+			
 			<div class="col-sm-12 col-md-8">
 				<div class="nav__right">
 					<ul class="nav__links nav__links--account">
@@ -83,7 +118,7 @@
 				</div>
 			</div>
 		</div>
-	</nav>
+	</div>
 	<%-- a hook for the my account links in desktop/wide desktop--%>
 	<div class="hidden-xs hidden-sm js-secondaryNavAccount collapse" id="accNavComponentDesktopOne">
 		<ul class="nav__links">
