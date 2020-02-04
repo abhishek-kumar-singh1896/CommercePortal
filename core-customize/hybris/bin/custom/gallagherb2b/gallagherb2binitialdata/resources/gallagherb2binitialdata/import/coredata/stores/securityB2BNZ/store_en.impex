@@ -17,6 +17,10 @@
 $lang=en
 
 $storeUidNZ=securityB2BNZ
+$storeUidAU=securityB2BAU
+$storeUidGlobal=securityB2BGlobal
 
 UPDATE BaseStore;uid[unique=true];name[lang=$lang]
-;$storeUidNZ;"Security B2B Store";
+;$storeUidNZ;"Security B2B NZ Store";
+;$storeUidAU;"Security B2B AU Store";
+;$storeUidGlobal;"Security B2B Global Store";
