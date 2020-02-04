@@ -24,7 +24,7 @@ UPDATE CMSSite;uid[unique=true];defaultPreviewCategory(code, $productCV);default
 
 # Site Logo
 INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];altText;folder(qualifier)[default='images']
-;;/images/theme/logo-hybris.png;logo-hybris.png;$siteResource/images/theme/logo-hybris.png;image/png;hybris Accelerator;
+;;/images/theme/logo-hybris.png;logo-gallagher.svg;$siteResource/images/theme/logo-gallagher.svg;image/svg+xml;hybris Accelerator;
 ;;/images/theme/logo-hybris_zh.png;logo-hybris_zh.png;$siteResource/images/theme/logo-hybris_zh.png;image/png;hybris Accelerator;
 
 # Site Logo Component

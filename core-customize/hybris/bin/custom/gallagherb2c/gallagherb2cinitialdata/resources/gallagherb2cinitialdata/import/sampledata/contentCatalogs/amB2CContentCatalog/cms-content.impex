@@ -25,7 +25,7 @@ UPDATE CMSSite;uid[unique=true];defaultPreviewCategory(code, $productCV);default
 
 # Site Logo
 INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];altText;folder(qualifier)[default='images']
-;;/images/theme/logo-hybris.png;logo-hybris.png;$siteResource/images/theme/logo-hybris.png;image/png;hybris Accelerator;
+;;/images/theme/logo-hybris.png;logo-gallagher.svg;$siteResource/images/theme/logo-gallagher.svg;image/svg+xml;hybris Accelerator;
 ;;/images/theme/logo-hybris_zh.png;logo-hybris_zh.png;$siteResource/images/theme/logo-hybris_zh.png;image/png;hybris Accelerator;
 
 # Site Logo Component
@@ -281,6 +281,18 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;pa
 ;AccountOrderHistoryNavNode;;Order History;AccountLeftNavNode;AccountViewOrderHistoryLink;AccountOrderHistoryNavNode
 ;SAPCommerceNavNode;;SAP Commerce Cloud Pages;AMB2CNavNode; ProductsFooterLink,ElectricFencingFooterLink,WeighingEIDFooterLink,WirelessMonitoringFooterLink,SteelGatesHardwareFooterLink,FarmInfoToolsFooterLink,StockProdsFooterLink;SAPCommerceNavNode
 ;SAPCustomerExperienceNavNode;;SAP Customer Experience Pages;AMB2CNavNode; AboutUsFooterLink,SupportFooterLink,ContactFooterLink,NewsEventsFooterLink,InnovationAwardsFooterLink;SAPCustomerExperienceNavNode
+;ProductsFooterNode;;Products Footer Node;SAPCommerceNavNode;;ProductsFooterNode
+;ElectricFencingFooterNode;;Electric Fencing Footer Node;SAPCommerceNavNode;;ElectricFencingFooterNode
+;WeighingEIDFooterNode;;Weighing EID Footer Node;SAPCommerceNavNode;;WeighingEIDFooterNode
+;WirelessWtaerMonitoringFooterNode;;Wireless Wtaer Monitoring Footer Node;SAPCommerceNavNode;;WirelessWtaerMonitoringFooterNode
+;SteelGatesHardwareFooterNode;;Steel Gates Hardware Footer Node;SAPCommerceNavNode;;SteelGatesHardwareFooterNode
+;FarmInformationToolsFooterNode;;Farm Information Tools Footer Node;SAPCommerceNavNode;;FarmInformationToolsFooterNode
+;StockProdsFooterNode;;Stock Prods Footer Node;SAPCommerceNavNode;;StockProdsFooterNode
+;AboutUsFooterNode;;About Us Footer Node;SAPCustomerExperienceNavNode;;AboutUsFooterNode
+;SupportFooterNode;;Support Footer Node;SAPCustomerExperienceNavNode;;SupportFooterNode
+;ContactFooterNode;;Contact Footer Node;SAPCustomerExperienceNavNode;;ContactFooterNode
+;NewsEventsFooterNode;;News Events Footer Node;SAPCustomerExperienceNavNode;;NewsEventsFooterNode
+;InnovationAwardsFooterNode;;Innovation Awards Footer Node;SAPCustomerExperienceNavNode;;InnovationAwardsFooterNode
 
 # Navigation Bar Component
 INSERT_UPDATE NavigationBarComponent;$contentCV[unique=true];uid[unique=true];navigationNode(&nodeRef);dropDownLayout(code)
