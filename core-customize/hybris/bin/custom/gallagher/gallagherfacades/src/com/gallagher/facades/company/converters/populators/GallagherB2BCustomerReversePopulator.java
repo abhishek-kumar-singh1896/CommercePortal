@@ -11,6 +11,8 @@ import de.hybris.platform.servicelayer.dto.converter.ConversionException;
 
 /**
  * Gallagher Populator to populate B2BCustomerModel with values from CustomerData
+ *
+ * @author shishirkant
  */
 public class GallagherB2BCustomerReversePopulator extends B2BCustomerReversePopulator
 {
@@ -19,6 +21,7 @@ public class GallagherB2BCustomerReversePopulator extends B2BCustomerReversePopu
 	{
 		super.populate(source, target);
 
+		target.setCustomerID(source.getCustomerId());
 		target.setDuplicate(source.getDuplicate());
 	}
 }

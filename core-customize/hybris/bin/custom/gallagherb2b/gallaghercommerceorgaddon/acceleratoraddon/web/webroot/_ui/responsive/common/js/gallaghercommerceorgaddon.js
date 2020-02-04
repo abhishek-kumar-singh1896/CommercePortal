@@ -269,15 +269,16 @@ ACC.commerceorg = {
                 	var emailError = data.emailError;
                 	
                 	if(emailError == 'duplicate') {
-                			$('.email-duplicate-error').show();
+                		$('.email-duplicate-error').show();
                 	}
                 	else if(emailError == 'invalid') {
-                			$('.email-invalid-error').show();
+                		$('.email-invalid-error').show();
                 	}
                 	else {
-                			$('#user\\.firstName').val(data.FirstName);
-                			$('#user\\.lastName').val(data.LastName);
-                			$('#duplicate').val(data.duplicate);
+                		$('#user\\.firstName').val(data.FirstName);
+                		$('#user\\.lastName').val(data.LastName);
+                		$('#customerID').val(data.ContactID);
+                		$('#duplicate').val(data.duplicate);
                 	}
                 }
             });

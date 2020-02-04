@@ -414,6 +414,7 @@ public class MyCompanyPageController extends AbstractSearchPageController
 		b2bCustomerData.setDisplayUid(b2BCustomerForm.getEmail());
 		b2bCustomerData.setUnit(b2bUnitFacade.getUnitForUid(b2BCustomerForm.getParentB2BUnit()));
 		b2bCustomerData.setRoles(b2BCustomerForm.getRoles());
+		b2bCustomerData.setCustomerId(b2BCustomerForm.getCustomerId());
 		b2bCustomerData.setDuplicate(b2BCustomerForm.isDuplicate());
 		model.addAttribute(b2BCustomerForm);
 		model.addAttribute("titleData", getUserFacade().getTitles());

@@ -11,7 +11,8 @@ import javax.annotation.Resource;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.validator.routines.EmailValidator;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.gallagher.c4c.outboundservices.facade.GallagherC4COutboundServiceFacade;
@@ -32,7 +33,7 @@ import com.hybris.cockpitng.widgets.configurableflow.FlowActionHandlerAdapter;
  */
 public class VerifyCustomerHandler implements FlowActionHandler
 {
-	private static final Logger LOG = Logger.getLogger(VerifyCustomerHandler.class.getName());
+	private static final Logger LOGGER = LoggerFactory.getLogger(VerifyCustomerHandler.class);
 
 	@Resource
 	private NotificationService notificationService;

@@ -11,7 +11,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.validator.routines.EmailValidator;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -32,7 +33,7 @@ import com.gallagher.outboundservices.response.dto.GallagherInboundCustomerInfo;
 public class GallagherC4COutboundServiceFacadeImpl extends DefaultOutboundServiceFacade
 		implements GallagherC4COutboundServiceFacade
 {
-	private static final Logger LOGGER = Logger.getLogger(GallagherC4COutboundServiceFacadeImpl.class.getName());
+	private static final Logger LOGGER = LoggerFactory.getLogger(GallagherC4COutboundServiceFacadeImpl.class);
 	private static final String OUTBOUND_CONTACT_COLLECTION_DESTINATION = "scpiContactCollectionDestination";
 
 	/**

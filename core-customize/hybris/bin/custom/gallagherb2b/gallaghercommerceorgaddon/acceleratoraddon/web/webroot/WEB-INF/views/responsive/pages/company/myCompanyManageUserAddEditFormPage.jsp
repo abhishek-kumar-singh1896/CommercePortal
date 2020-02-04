@@ -67,6 +67,7 @@
                     </div>
                     <form:input type="hidden" name="uid" path="uid" id="uid"/>
                     <form:input type="hidden" name="duplicate" path="duplicate" id="duplicate"/>
+                    <form:input type="hidden" name="customerID" path="customerID" id="customerID"/>
                     <div class="col-xs-12 col-sm-6">
                     	<formElement:formSelectBoxDefaultEnabled idKey="user.title" labelKey="user.title" path="titleCode"
                                                    mandatory="true"
