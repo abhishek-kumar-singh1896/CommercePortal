@@ -277,7 +277,7 @@ ACC.commerceorg = {
                 	else {
                 		$('#user\\.firstName').val(data.FirstName);
                 		$('#user\\.lastName').val(data.LastName);
-                		$('#customerID').val(data.ContactID);
+                		$('#customerId').val(data.ContactID);
                 		$('#duplicate').val(data.duplicate);
                 	}
                 }

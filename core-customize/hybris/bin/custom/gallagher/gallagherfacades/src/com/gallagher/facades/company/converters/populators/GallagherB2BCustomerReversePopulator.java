@@ -21,7 +21,7 @@ public class GallagherB2BCustomerReversePopulator extends B2BCustomerReversePopu
 	{
 		super.populate(source, target);
 
-		target.setCustomerID(source.getCustomerId());
+		target.setSapContactID(source.getCustomerId());
 		target.setDuplicate(source.getDuplicate());
 	}
 }
