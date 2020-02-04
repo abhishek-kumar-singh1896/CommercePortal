@@ -242,10 +242,6 @@
          {
           "key":"securityB2BNZ.storefrontContextRoot",
           "value":"/security"
-        },
-		{
-          "key":"xss.filter.header.X-Frame-Options",
-          "value":""
         }
       ],
       "webapps": [
