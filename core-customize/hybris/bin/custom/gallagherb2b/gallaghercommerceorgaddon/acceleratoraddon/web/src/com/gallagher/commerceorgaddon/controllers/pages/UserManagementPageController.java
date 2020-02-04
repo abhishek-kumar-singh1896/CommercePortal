@@ -31,7 +31,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.validator.routines.EmailValidator;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,12 +42,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.gallagher.c4c.outboundservices.facade.GallagherC4COutboundServiceFacade;
 import com.gallagher.commerceorgaddon.controllers.GallaghercommerceorgaddonControllerConstants;
 import com.gallagher.commerceorgaddon.forms.B2BCustomerForm;
 import com.gallagher.commerceorgaddon.forms.B2BPermissionForm;
 import com.gallagher.commerceorgaddon.forms.CustomerResetPasswordForm;
 import com.gallagher.outboundservices.dto.inbound.customer.response.GallagherInboundCustomerEntry;
-import com.gallagher.outboundservices.facade.GallagherOutboundServiceFacade;
 
 
 /**
@@ -66,17 +65,17 @@ public class UserManagementPageController extends MyCompanyPageController
 	@Resource(name = "userService")
 	private DefaultUserService userService;
 
-	private final GallagherOutboundServiceFacade gallagherOutboundServiceFacade;
+	private final GallagherC4COutboundServiceFacade gallagherC4COutboundServiceFacade;
 
-	public GallagherOutboundServiceFacade getGallagherOutboundServiceFacade()
+	public GallagherC4COutboundServiceFacade getGallagherC4COutboundServiceFacade()
 	{
-		return gallagherOutboundServiceFacade;
+		return gallagherC4COutboundServiceFacade;
 	}
 
 	@Autowired
-	public UserManagementPageController(final GallagherOutboundServiceFacade gallagherOutboundServiceFacade)
+	public UserManagementPageController(final GallagherC4COutboundServiceFacade gallagherC4COutboundServiceFacade)
 	{
-		this.gallagherOutboundServiceFacade = gallagherOutboundServiceFacade;
+		this.gallagherC4COutboundServiceFacade = gallagherC4COutboundServiceFacade;
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
@@ -622,32 +621,18 @@ public class UserManagementPageController extends MyCompanyPageController
 	final String email, final Model model)
 	{
 		GallagherInboundCustomerEntry existingCustomer = new GallagherInboundCustomerEntry();
-		final EmailValidator eValidator = EmailValidator.getInstance();
-		if (!eValidator.isValid(email))
-		{
-			existingCustomer.setEmailError("invalid");
-		}
-		else if (userService.isUserExisting(email))
-		{
-			existingCustomer.setEmailError("duplicate");
-		}
-		else if (null != getGallagherOutboundServiceFacade().getCustomerInfoFromC4C(email)
-				&& null != getGallagherOutboundServiceFacade().getCustomerInfoFromC4C(email).getCustomerInfo()
-				&& null != getGallagherOutboundServiceFacade().getCustomerInfoFromC4C(email).getCustomerInfo().getCustomerEntries())
-		{
-			final List<GallagherInboundCustomerEntry> existingCustomers = getGallagherOutboundServiceFacade()
-					.getCustomerInfoFromC4C(email).getCustomerInfo().getCustomerEntries();
+		final List<GallagherInboundCustomerEntry> existingCustomers = getGallagherC4COutboundServiceFacade()
+				.getCustomerInfoFromC4C(email);
 
-			if (null != existingCustomers && CollectionUtils.isNotEmpty(existingCustomers) && existingCustomers.size() == 1
-					&& existingCustomers.get(0).getStatusCode().equals("2"))
-			{
-				existingCustomer = existingCustomers.get(0);
-			}
-			else if ((null != existingCustomers && CollectionUtils.isNotEmpty(existingCustomers) && existingCustomers.size() > 1)
-					|| email.contains("shishir"))
-			{
-				existingCustomer.setDuplicate(true);
-			}
+		if (CollectionUtils.isNotEmpty(existingCustomers) && existingCustomers.size() == 1
+				&& ((null != existingCustomers.get(0).getStatusCode() && existingCustomers.get(0).getStatusCode().equals("2"))
+						|| null != existingCustomers.get(0).getEmailError()))
+		{
+			existingCustomer = existingCustomers.get(0);
+		}
+		else if ((CollectionUtils.isNotEmpty(existingCustomers) && existingCustomers.size() > 1) || email.contains("shishir"))
+		{
+			existingCustomer.setDuplicate(true);
 		}
 
 		return existingCustomer;

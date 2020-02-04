@@ -83,6 +83,6 @@
         <property name="flexibleSearchService" ref="flexibleSearchService"/>
     </bean>
     
-    <bean id="gallagherOutboundServiceFacade" class="com.gallagher.outboundservices.facade.impl.GallagherOutboundServiceFacadeImpl" />
+    <bean id="gallagherC4COutboundServiceFacade" class="com.gallagher.c4c.outboundservices.facade.impl.GallagherC4COutboundServiceFacadeImpl" />
 			
 </beans>

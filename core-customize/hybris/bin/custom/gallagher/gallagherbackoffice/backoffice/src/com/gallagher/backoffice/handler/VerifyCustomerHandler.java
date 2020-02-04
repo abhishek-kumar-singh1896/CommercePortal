@@ -2,22 +2,18 @@ package com.gallagher.backoffice.handler;
 
 import de.hybris.platform.b2b.model.B2BCustomerModel;
 import de.hybris.platform.core.model.user.CustomerModel;
-import de.hybris.platform.servicelayer.user.impl.DefaultUserService;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.validator.routines.EmailValidator;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.gallagher.c4c.outboundservices.facade.GallagherC4COutboundServiceFacade;
 import com.gallagher.outboundservices.dto.inbound.customer.response.GallagherInboundCustomerEntry;
-import com.gallagher.outboundservices.dto.inbound.customer.response.GallagherInboundCustomerInfo;
-import com.gallagher.outboundservices.facade.GallagherOutboundServiceFacade;
 import com.hybris.cockpitng.config.jaxb.wizard.CustomType;
 import com.hybris.cockpitng.core.model.WidgetModel;
 import com.hybris.cockpitng.util.notifications.NotificationService;
@@ -38,20 +34,17 @@ public class VerifyCustomerHandler implements FlowActionHandler
 	@Resource
 	private NotificationService notificationService;
 
-	@Resource
-	private DefaultUserService userService;
+	private final GallagherC4COutboundServiceFacade gallagherC4COutboundServiceFacade;
 
-	private final GallagherOutboundServiceFacade gallagherOutboundServiceFacade;
-
-	protected GallagherOutboundServiceFacade getGallagherOutboundServiceFacade()
+	protected GallagherC4COutboundServiceFacade getGallagherC4COutboundServiceFacade()
 	{
-		return gallagherOutboundServiceFacade;
+		return gallagherC4COutboundServiceFacade;
 	}
 
 	@Autowired
-	public VerifyCustomerHandler(final GallagherOutboundServiceFacade gallagherOutboundServiceFacade)
+	public VerifyCustomerHandler(final GallagherC4COutboundServiceFacade gallagherC4COutboundServiceFacade)
 	{
-		this.gallagherOutboundServiceFacade = gallagherOutboundServiceFacade;
+		this.gallagherC4COutboundServiceFacade = gallagherC4COutboundServiceFacade;
 	}
 
 	@Override
@@ -71,44 +64,31 @@ public class VerifyCustomerHandler implements FlowActionHandler
 
 		final ConfigurableFlowController controller = (ConfigurableFlowController) adapter.getWidgetInstanceManager()
 				.getWidgetslot().getAttribute("widgetController");
+		final WidgetModel widget = adapter.getWidgetInstanceManager().getModel();
 
-		final boolean existingHybris = getExistingCustomerFromHybris(email);
-		final boolean emailValidity = isValidEmail(email);
+		final List<GallagherInboundCustomerEntry> existingCustomers = getGallagherC4COutboundServiceFacade()
+				.getCustomerInfoFromC4C(email);
 
-		if (Boolean.FALSE.compareTo(emailValidity) == 0)
+		if (CollectionUtils.isNotEmpty(existingCustomers) && existingCustomers.size() == 1
+				&& ((null != existingCustomers.get(0).getStatusCode() && existingCustomers.get(0).getStatusCode().equals("2"))
+						|| null != existingCustomers.get(0).getEmailError()))
 		{
-			notificationService.notifyUser((String) null, "invalidEmailAddress", NotificationEvent.Level.FAILURE);
-		}
-		// This if needs to be removed once correct C4C endpoint connected
-		else if ("vikram.bishnoi@nagarro.com".equals(email))
-		{
-			notificationService.notifyUser((String) null, "duplicateC4CCustomer", NotificationEvent.Level.FAILURE);
-		}
-		else if (Boolean.TRUE.compareTo(existingHybris) == 0)
-		{
-			notificationService.notifyUser((String) null, "duplicateHybrisCustomer", NotificationEvent.Level.FAILURE);
-		}
-		else
-		{
-			List<GallagherInboundCustomerEntry> existingCustomers = new ArrayList<>();
-			final GallagherInboundCustomerInfo existingCustomerInfo = getGallagherOutboundServiceFacade()
-					.getCustomerInfoFromC4C(email);
-			if (null != existingCustomerInfo && null != existingCustomerInfo.getCustomerInfo()
-					&& null != existingCustomerInfo.getCustomerInfo().getCustomerEntries())
+			if (null != existingCustomers.get(0).getEmailError())
 			{
-				existingCustomers = getGallagherOutboundServiceFacade().getCustomerInfoFromC4C(email).getCustomerInfo()
-						.getCustomerEntries();
-			}
-
-			if (CollectionUtils.isNotEmpty(existingCustomers) && existingCustomers.size() > 1)
-			{
-				notificationService.notifyUser((String) null, "duplicateCustomer", NotificationEvent.Level.FAILURE);
+				if (existingCustomers.get(0).getEmailError().equals("invalid"))
+				{
+					notificationService.notifyUser((String) null, "invalidEmailAddress", NotificationEvent.Level.FAILURE);
+				}
+				else if (existingCustomers.get(0).getEmailError().equals("duplicate"))
+				{
+					notificationService.notifyUser((String) null, "duplicateHybrisCustomer", NotificationEvent.Level.FAILURE);
+				}
 			}
 			else
 			{
+
 				if ("step1".equals(controller.getCurrentStep().getId()))
 				{
-					final WidgetModel widget = adapter.getWidgetInstanceManager().getModel();
 					if (CollectionUtils.isNotEmpty(existingCustomers))
 					{
 						final GallagherInboundCustomerEntry existingCustomer = existingCustomers.get(0);
@@ -126,25 +106,29 @@ public class VerifyCustomerHandler implements FlowActionHandler
 					adapter.custom();
 					adapter.next();
 				}
+
 			}
 		}
-		return;
-	}
-
-	private boolean getExistingCustomerFromHybris(final String uid)
-	{
-		return userService.isUserExisting(uid);
+		else if ((CollectionUtils.isNotEmpty(existingCustomers) && existingCustomers.size() > 1) || email.contains("shishir"))
+		{
+			notificationService.notifyUser((String) null, "duplicateCustomer", NotificationEvent.Level.FAILURE);
+		}
+		else
+		{
+			if (isB2B)
+			{
+				widget.setValue("newCust.email", email);
+			}
+			widget.setValue("newCust.uid", email);
+			controller.getRenderer().refreshView();
+			adapter.custom();
+			adapter.next();
+		}
 	}
 
 	protected NotificationService getNotificationService()
 	{
 		return notificationService;
-	}
-
-	private boolean isValidEmail(final String email)
-	{
-		final EmailValidator eValidator = EmailValidator.getInstance();
-		return eValidator.isValid(email) ? true : false;
 	}
 
 }

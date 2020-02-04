@@ -10,7 +10,7 @@ import de.hybris.platform.servicelayer.dto.converter.ConversionException;
 
 
 /**
- *
+ * Gallagher Populator to populate B2BCustomerModel with values from CustomerData
  */
 public class GallagherB2BCustomerReversePopulator extends B2BCustomerReversePopulator
 {

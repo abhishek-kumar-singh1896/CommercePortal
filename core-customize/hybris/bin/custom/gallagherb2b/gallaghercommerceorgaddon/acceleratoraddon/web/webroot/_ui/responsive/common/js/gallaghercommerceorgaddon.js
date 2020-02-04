@@ -267,18 +267,14 @@ ACC.commerceorg = {
                 	$('.email-invalid-error').hide();
     				$('.email-duplicate-error').hide();
                 	var emailError = data.emailError;
+                	
                 	if(emailError == 'duplicate') {
                 			$('.email-duplicate-error').show();
-                			$('.email-invalid-error').hide();
                 	}
                 	else if(emailError == 'invalid') {
-                			$('.email-duplicate-error').hide();
                 			$('.email-invalid-error').show();
                 	}
                 	else {
-                			$('.email-invalid-error').hide();
-                			$('.email-duplicate-error').hide();
-                		
                 			$('#user\\.firstName').val(data.FirstName);
                 			$('#user\\.lastName').val(data.LastName);
                 			$('#duplicate').val(data.duplicate);

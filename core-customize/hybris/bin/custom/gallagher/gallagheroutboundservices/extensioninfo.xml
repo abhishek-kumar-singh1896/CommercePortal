@@ -23,9 +23,6 @@
       
         
         <coremodule generated="true" manager="com.gallagher.outboundservices.jalo.GallagheroutboundservicesManager" packageroot="com.gallagher.outboundservices"/>
-                      
-        
-        <webmodule jspcompile="false" webroot="/gallagheroutboundservices"/>
                 					
 	
         
