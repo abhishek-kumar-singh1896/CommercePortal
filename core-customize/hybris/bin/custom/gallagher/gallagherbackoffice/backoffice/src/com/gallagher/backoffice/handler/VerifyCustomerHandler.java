@@ -10,10 +10,12 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.validator.routines.EmailValidator;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.gallagher.c4c.outboundservices.facade.GallagherC4COutboundServiceFacade;
+import com.gallagher.outboundservices.constants.GallagheroutboundservicesConstants;
 import com.gallagher.outboundservices.response.dto.GallagherInboundCustomerEntry;
 import com.hybris.cockpitng.config.jaxb.wizard.CustomType;
 import com.hybris.cockpitng.core.model.WidgetModel;
@@ -66,59 +68,38 @@ public class VerifyCustomerHandler implements FlowActionHandler
 			email = adapter.getWidgetInstanceManager().getModel().getValue("newCust.uid", String.class);
 		}
 
-		final ConfigurableFlowController controller = (ConfigurableFlowController) adapter.getWidgetInstanceManager()
-				.getWidgetslot().getAttribute("widgetController");
-		final WidgetModel widget = adapter.getWidgetInstanceManager().getModel();
+		final EmailValidator eValidator = EmailValidator.getInstance();
 
-		final List<GallagherInboundCustomerEntry> existingCustomers = getGallagherC4COutboundServiceFacade()
-				.getCustomerInfoFromC4C(email);
-
-		if (CollectionUtils.isNotEmpty(existingCustomers) && existingCustomers.size() == 1
-				&& ((null != existingCustomers.get(0).getStatusCode() && existingCustomers.get(0).getStatusCode().equals("2"))
-						|| null != existingCustomers.get(0).getEmailError()))
+		if (!eValidator.isValid(email))
 		{
-			if (null != existingCustomers.get(0).getEmailError())
-			{
-				if (existingCustomers.get(0).getEmailError().equals("invalid"))
-				{
-					notificationService.notifyUser((String) null, "invalidEmailAddress", NotificationEvent.Level.FAILURE);
-				}
-				else if (userService.isUserExisting(email))
-				{
-					notificationService.notifyUser((String) null, "duplicateHybrisCustomer", NotificationEvent.Level.FAILURE);
-				}
-			}
-			else
-			{
-
-				if ("step1".equals(controller.getCurrentStep().getId()))
-				{
-					if (CollectionUtils.isNotEmpty(existingCustomers))
-					{
-						final GallagherInboundCustomerEntry existingCustomer = existingCustomers.get(0);
-						widget.setValue("newCust.email", existingCustomer.getEmail());
-						widget.setValue("newCust.uid", existingCustomer.getEmail());
-						widget.setValue("newCust.customerID", existingCustomer.getContactID());
-						widget.setValue("newCust.name", existingCustomer.getName());
-					}
-					if (isB2B)
-					{
-						widget.setValue("newCust.email", email);
-					}
-					widget.setValue("newCust.uid", email);
-					controller.getRenderer().refreshView();
-					adapter.custom();
-					adapter.next();
-				}
-
-			}
+			notificationService.notifyUser((String) null, "invalidEmailAddress", NotificationEvent.Level.FAILURE);
 		}
-		else if ((CollectionUtils.isNotEmpty(existingCustomers) && existingCustomers.size() > 1) || email.contains("shishir"))
+		else if (userService.isUserExisting(email))
 		{
-			notificationService.notifyUser((String) null, "duplicateCustomer", NotificationEvent.Level.FAILURE);
+			notificationService.notifyUser((String) null, "duplicateHybrisCustomer", NotificationEvent.Level.FAILURE);
 		}
 		else
 		{
+			final ConfigurableFlowController controller = (ConfigurableFlowController) adapter.getWidgetInstanceManager()
+					.getWidgetslot().getAttribute("widgetController");
+			final WidgetModel widget = adapter.getWidgetInstanceManager().getModel();
+
+			final List<GallagherInboundCustomerEntry> existingCustomers = getGallagherC4COutboundServiceFacade()
+					.getCustomerInfoFromC4C(email);
+
+			if ((CollectionUtils.isNotEmpty(existingCustomers) && existingCustomers.size() > 1))
+			{
+				notificationService.notifyUser((String) null, "duplicateCustomer", NotificationEvent.Level.FAILURE);
+			}
+			else if (CollectionUtils.isNotEmpty(existingCustomers)
+					&& GallagheroutboundservicesConstants.C4C_CONTACT_ACTIVE_CODE.equals(existingCustomers.get(0).getStatusCode()))
+			{
+				final GallagherInboundCustomerEntry existingCustomer = existingCustomers.get(0);
+				widget.setValue("newCust.email", existingCustomer.getEmail());
+				widget.setValue("newCust.uid", existingCustomer.getEmail());
+				widget.setValue("newCust.customerID", existingCustomer.getContactID());
+				widget.setValue("newCust.name", existingCustomer.getName());
+			}
 			if (isB2B)
 			{
 				widget.setValue("newCust.email", email);

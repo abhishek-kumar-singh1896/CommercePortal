@@ -18,4 +18,5 @@ public final class GallagheroutboundservicesConstants extends GeneratedGallagher
 	// implement here constants used by this extension
 
 	public static final String PLATFORM_LOGO_CODE = "gallagheroutboundservicesPlatformLogo";
+	public static final String C4C_CONTACT_ACTIVE_CODE = "2";
 }

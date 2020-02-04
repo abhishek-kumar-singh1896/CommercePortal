@@ -31,6 +31,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.validator.routines.EmailValidator;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,6 +48,7 @@ import com.gallagher.commerceorgaddon.controllers.GallaghercommerceorgaddonContr
 import com.gallagher.commerceorgaddon.forms.B2BCustomerForm;
 import com.gallagher.commerceorgaddon.forms.B2BPermissionForm;
 import com.gallagher.commerceorgaddon.forms.CustomerResetPasswordForm;
+import com.gallagher.outboundservices.constants.GallagheroutboundservicesConstants;
 import com.gallagher.outboundservices.response.dto.GallagherInboundCustomerEntry;
 
 
@@ -621,23 +623,30 @@ public class UserManagementPageController extends MyCompanyPageController
 	final String email, final Model model)
 	{
 		GallagherInboundCustomerEntry existingCustomer = new GallagherInboundCustomerEntry();
-		final List<GallagherInboundCustomerEntry> existingCustomers = getGallagherC4COutboundServiceFacade()
-				.getCustomerInfoFromC4C(email);
 
+		final EmailValidator eValidator = EmailValidator.getInstance();
 
-		if (CollectionUtils.isNotEmpty(existingCustomers) && existingCustomers.size() == 1
-				&& ((null != existingCustomers.get(0).getStatusCode() && existingCustomers.get(0).getStatusCode().equals("2"))
-						|| null != existingCustomers.get(0).getEmailError()))
+		if (!eValidator.isValid(email))
 		{
-			existingCustomer = existingCustomers.get(0);
+			existingCustomer.setEmailError("invalid");
 		}
 		else if (userService.isUserExisting(email))
 		{
 			existingCustomer.setEmailError("duplicate");
 		}
-		else if ((CollectionUtils.isNotEmpty(existingCustomers) && existingCustomers.size() > 1) || email.contains("shishir"))
+		else
 		{
-			existingCustomer.setDuplicate(true);
+			final List<GallagherInboundCustomerEntry> existingCustomers = getGallagherC4COutboundServiceFacade()
+					.getCustomerInfoFromC4C(email);
+			if (CollectionUtils.isNotEmpty(existingCustomers) && existingCustomers.size() > 1)
+			{
+				existingCustomer.setDuplicate(true);
+			}
+			else if (CollectionUtils.isNotEmpty(existingCustomers)
+					&& GallagheroutboundservicesConstants.C4C_CONTACT_ACTIVE_CODE.equals(existingCustomers.get(0).getStatusCode()))
+			{
+				existingCustomer = existingCustomers.get(0);
+			}
 		}
 
 		return existingCustomer;

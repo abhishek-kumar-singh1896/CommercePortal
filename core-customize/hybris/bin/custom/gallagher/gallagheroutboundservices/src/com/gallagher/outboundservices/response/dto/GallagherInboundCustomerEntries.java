@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 /**
- * Representation of results
+ * Representation of contact info list
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GallagherInboundCustomerEntries
