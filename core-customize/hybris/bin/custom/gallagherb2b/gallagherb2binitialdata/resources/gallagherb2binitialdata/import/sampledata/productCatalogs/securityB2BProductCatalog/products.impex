@@ -22,7 +22,7 @@ $approved=approvalstatus(code)[default='check']
 $lang=en
 
 # Insert Products
-INSERT_UPDATE Product;code[unique=true];$supercategories;manufacturerName;manufacturerAID;ean;variantType(code);unit(code)[default=pieces];$approved;$catalogVersion
+INSERT_UPDATE Product;code[unique=true];$supercategories;manufacturerName;manufacturerAID;partNumber;variantType(code);unit(code)[default=pieces];$approved;$catalogVersion
 ;t10-mifare-reader;T-Series Readers;;;;;EA;approved
 ;t11-multi-tech-reader;T-Series Readers;;;;;EA;approved
 ;t11-mifare-reader;T-Series Readers;;;;;EA;approved
