@@ -913,7 +913,8 @@ INSERT_UPDATE NavigationComponent;$contentCV[unique=true];uid[unique=true];name;
 
 # Content Slots
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid, $contentCV)
-;;MiniCartSlot;OrderComponent,MiniCart
+#;;MiniCartSlot;OrderComponent,MiniCart
+;;MiniCartSlot;MiniCart
 
 # create a user restriction
 INSERT_UPDATE CMSUserRestriction;$contentCV[unique=true];&userRestriction;name;uid[unique=true];users(uid)
