@@ -46,6 +46,7 @@ ACC.productorderform = {
         });
 
         ACC.productorderform.$addToCartOrderForm.on('focusin', skuQuantityClass, function (event) {
+        	$(skuQuantityClass).data('done', false);
             quantityBefore = jQuery.trim(this.value);
 
             //reset
@@ -63,6 +64,16 @@ ACC.productorderform = {
         });
 
         $(skuQuantityClass).on('blur keypress', function (event) {
+        	
+        	  if (event.type == 'blur' || event.keyCode == 13) {
+        	        if (!$(skuQuantityClass).data('done')) {
+        	            $(skuQuantityClass).data('done', true);
+        	        }else {
+        	        	return;
+        	        }
+        	     }
+        	  
+        	  
             var code = event.keyCode || event.which || event.charCode;
 
             if (code != 13 && code != undefined) {
@@ -163,6 +174,11 @@ ACC.productorderform = {
 
             $('.js-total-price').html(ACC.productorderform.formatTotalsCurrency(totalPrice));
             $('.js-total-price-value').val(totalPrice);
+            
+            if(code==13){
+	        	$(skuQuantityClass).blur();
+	        	
+	        }
         });
 
         // MOBILE
