@@ -1154,11 +1154,11 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 
 
 ###### Footer Component Refactor Start ######
-INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV)
-;;FooterSlot;FooterNavigationComponent
+#INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV)
+#;;FooterSlot;FooterNavigationComponent
 
-INSERT_UPDATE FooterNavigationComponent;$contentCV[unique=true];uid[unique=true];wrapAfter;&componentRef;showLanguageCurrency;navigationNode(&nodeRef)
-;;FooterNavigationComponent;4;FooterNavigationComponent;true;FooterNavNode;
+#INSERT_UPDATE FooterNavigationComponent;$contentCV[unique=true];uid[unique=true];wrapAfter;&componentRef;showLanguageCurrency;navigationNode(&nodeRef)
+#;;FooterNavigationComponent;4;FooterNavigationComponent;true;FooterNavNode;
 
 # the order of children is the same as the display order on the site
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);&nodeRef;children(uid,$contentCV)
@@ -1244,7 +1244,70 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];footerLinkNagivationNode(&nodeRef);&componentRef
 ;;GallagherFooterNavigationComponent;FooterLinkNavNode;GallagherFooterNavigationComponent
 
-##Footer Link navigation component End 
+##Footer Link navigation component End
+
+##Gallagher Other division drop-down
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;linkName;&linkRef;&componentRef;target(code)[default='sameWindow'];$category;$product;
+;;gallagherDivision1LnkCom;Gallagher Division 1;/gallagher/division/1;Division 1;gallagherDivision1LnkCom;gallagherDivision1LnkCom
+;;gallagherDivision2LnkCom;Gallagher Division 2;/gallagher/division/2;Division 2;gallagherDivision2LnkCom;gallagherDivision2LnkCom
+;;gallagherDivision3LnkCom;Gallagher Division 3;/gallagher/division/3;Division 3;gallagherDivision3LnkCom;gallagherDivision3LnkCom
+
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;gallagherDivision1NavEty;;Gallagher Division 1 navigation entry;gallagherDivision1NavNod;gallagherDivision1LnkCom
+;gallagherDivision2NavEty;;Gallagher Division 2 navigation entry;gallagherDivision2NavNod;gallagherDivision2LnkCom
+;gallagherDivision3NavEty;;Gallagher Division 3 navigation entry;gallagherDivision3NavNod;gallagherDivision3LnkCom
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef);
+;gallagherDivision1NavNod;;Gallagher Division 1 navigation node;gallagherDivision1NavNod
+;gallagherDivision2NavNod;;Gallagher Division 2 navigation node;gallagherDivision2NavNod
+;gallagherDivision3NavNod;;Gallagher Division 3 navigation node;gallagherDivision3NavNod
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&componentRef);&nodeRef;children(uid, $contentCV)
+;othersDivisionsNavNod;;Other division drop down;root;;othersDivisionsNavNod;gallagherDivision1NavNod,gallagherDivision2NavNod,gallagherDivision3NavNod
+
+INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];gallagherDivisionsLinkNagivationNode(&nodeRef);&componentRef
+;;GallagherFooterNavigationComponent;othersDivisionsNavNod;GallagherFooterNavigationComponent
+
+
+##Gallagher Other division drop-down End
+
+##Country dropdown for different websites
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;linkName;&linkRef;&componentRef;target(code)[default='sameWindow'];$category;$product;
+;;newZealandLnkCom;New Zealand Link;/am/nz;New Zealand;newZealandLnkCom;newZealandLnkCom
+;;australiaLnkCom;Australia Link;/au;Australia;australiaLnkCom;australiaLnkCom
+;;canadaEnLnkCom;Canada English Link;/ca/en;Canada (EN);canadaEnLnkCom;canadaEnLnkCom
+;;canadaFrLnkCom;Canada French Link;/ca/fr;Canada (FR);canadaFrLnkCom;canadaFrLnkCom
+;;globalLnkCom;Global Link;/global;Global;globalLnkCom;globalLnkCom
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;newZealandNavEty;;New Zealand navigation entry;newZealandNavNod;newZealandLnkCom
+;australiaNavEty;;Australia navigation entry;australiaNavNod;australiaLnkCom
+;canadaEnNavEty;;Canada English navigation entry;canadaEnNavNod;canadaEnLnkCom
+;canadaFrNavEty;;Canada French navigation entry;canadaFrNavNod;canadaFrLnkCom
+;globalNavEty;;Global navigation entry;globalNavNod;globalLnkCom
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef);
+;newZealandNavNod;;New Zealand navigation node;newZealandNavNod
+;australiaNavNod;;Australia navigation node;australiaNavNod
+;canadaEnNavNod;;Canada English navigation node;canadaEnNavNod
+;canadaFrNavNod;;Canada French navigation node;canadaFrNavNod
+;globalNavNod;;Global navigation node;globalNavNod
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&componentRef);&nodeRef;children(uid, $contentCV)
+;countryDropdownNavNod;;Country drop down;root;;countryDropdownNavNod;newZealandNavNod,australiaNavNod,canadaEnNavNod,canadaFrNavNod,globalNavNod
+
+INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];countryDropdownLinkNagivationNode(&nodeRef);&componentRef
+;;GallagherFooterNavigationComponent;countryDropdownNavNod;GallagherFooterNavigationComponent
+
+
+##Country dropdown for different websites End
+ 
 
 ## Footer Navigation node start
 
