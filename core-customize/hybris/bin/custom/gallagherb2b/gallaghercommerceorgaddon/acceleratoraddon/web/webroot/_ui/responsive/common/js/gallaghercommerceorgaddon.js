@@ -13,7 +13,8 @@ ACC.commerceorg = {
 	    "disablePermissionConfirmation",
         "bindPermissionTypeSelectionForAddNew",
         "bindToRemoveUserFromUnit",
-        "budgetFormInit"
+        "budgetFormInit",
+        "bindCustomerInfoForExistingCustomer"
     ],
 
     bindToSelectBudget: function()
@@ -248,6 +249,39 @@ ACC.commerceorg = {
                     date: false
                 }
             }
+        });
+    },
+
+    bindCustomerInfoForExistingCustomer: function ()
+    {
+        $('#user\\.email').on("change", function (e)
+        {
+        	ACC.common.showLoader();
+            $.ajax({
+            	type: 'GET',
+                url: ACC.config.encodedContextPath + '/my-company/organization-management/manage-users/create/verifyCustomer',
+                async: true,
+                data: {'email':$(this).val(), 'b2BCustomerForm':$('#b2BCustomerForm').val()},
+                success: function(data){
+                	ACC.common.hideLoader();
+                	$('.email-invalid-error').hide();
+    				$('.email-duplicate-error').hide();
+                	var emailError = data.emailError;
+                	
+                	if(emailError == 'duplicate') {
+                		$('.email-duplicate-error').show();
+                	}
+                	else if(emailError == 'invalid') {
+                		$('.email-invalid-error').show();
+                	}
+                	else {
+                		$('#user\\.firstName').val(data.FirstName);
+                		$('#user\\.lastName').val(data.LastName);
+                		$('#customerId').val(data.ContactID);
+                		$('#duplicate').val(data.duplicate);
+                	}
+                }
+            });
         });
     }
 };
