@@ -27,8 +27,8 @@ import com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants;
 public class GallagherB2CStoreSystemSetup extends AbstractSystemSetup
 {
 	public static final String AM_B2C = "amB2C";
-	public static final String AM_B2C_CA = "amB2CUS";
-	public static final String AM_B2C_US = "amB2CCA";
+	public static final String AM_B2C_CA = "amB2CCA";
+	public static final String AM_B2C_US = "amB2CUS";
 	public static final String AM_B2C_AU = "amB2CAU";
 	public static final String AM_B2C_NZ = "amB2CNZ";
 	public static final String AM_B2C_GLOBAL = "amB2CGlobal";
@@ -73,7 +73,7 @@ public class GallagherB2CStoreSystemSetup extends AbstractSystemSetup
 		final ImportData amB2CCAImportData = new ImportData();
 		amB2CCAImportData.setProductCatalogName(AM_B2C_CA);
 		amB2CCAImportData.setStoreNames(Arrays.asList(AM_B2C_CA));
-		importData.add(amB2CUSImportData);
+		importData.add(amB2CCAImportData);
 
 		final ImportData amB2CAUImportData = new ImportData();
 		amB2CAUImportData.setProductCatalogName(AM_B2C_AU);

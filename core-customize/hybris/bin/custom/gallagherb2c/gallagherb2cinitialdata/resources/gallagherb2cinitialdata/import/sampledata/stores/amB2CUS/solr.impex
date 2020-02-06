@@ -11,7 +11,7 @@ $classAttribute=classificationAttribute(code,$classSystemVersion)
 $classClass=classificationClass(code,$classCatalogVersion)
 $classAttributeAssignment=classAttributeAssignment($classClass,$classAttribute,$classSystemVersion)
 $contentCatalogName=amB2CContentCatalog
-$solrIndexedType=amB2CProductType
+$solrIndexedType=amB2CUSProductType
 $contentCatalogVersion=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalogName]),CatalogVersion.version[default=Staged])[default=$contentCatalogName:Staged]
 $productCatalog=amB2CUSProductCatalog
 $productCatalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
@@ -30,17 +30,17 @@ INSERT_UPDATE SolrValueRange;&rangeValueRefID;solrValueRangeSet(name)[unique=tru
 
 
 INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);sortableType(code);currency[default=false];localized[default=false];multiValue[default=false];facet[default=false];facetType(code);facetSort(code);priority;visible;fieldValueProvider;customFacetSortProvider;rangeSets(name);$classAttributeAssignment
-;amB2CProductType;Stored Energy          ;double;; ;    ; ;true;MultiSelectOr;Custom;1000;true;commerceClassificationPropertyValueProvider;numericFacetSortProviderDesc;StoredEnergyRange;Solar Energizers:::Stored Energy::::
-;amB2CProductType;Warranty               ;string;; ;    ; ;true;Refine;Alpha;1000;true;commerceClassificationPropertyValueProvider;;;Solar Energizers:::Warranty::::
+;$solrIndexedType;Stored Energy          ;double;; ;    ; ;true;MultiSelectOr;Custom;1000;true;commerceClassificationPropertyValueProvider;numericFacetSortProviderDesc;StoredEnergyRange;Solar Energizers:::Stored Energy::::
+;$solrIndexedType;Warranty               ;string;; ;    ; ;true;Refine;Alpha;1000;true;commerceClassificationPropertyValueProvider;;;Solar Energizers:::Warranty::::
 
 # Import classification features
 INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);localized[default=true];multiValue[default=false];fieldValueProvider;$classAttributeAssignment
-;amB2CProductType;feature-clean-wire-fence-distance;string;false;false;commerceClassificationPropertyValueProvider;Solar Energizers:::Clean Wire Fence distance::::
-;amB2CProductType;feature-output-energy;string;false;false;commerceClassificationPropertyValueProvider;Solar Energizers:::Output Energy::::
-;amB2CProductType;feature-battery-is-included;string;false;false;commerceClassificationPropertyValueProvider;Solar Energizers:::Battery is included::::
-;amB2CProductType;feature-height;string;false;false;commerceClassificationPropertyValueProvider;Solar Energizers:::Height::::
-;amB2CProductType;feature-width-or-length;string;false;false;commerceClassificationPropertyValueProvider;Solar Energizers:::Width or Length::::
-;amB2CProductType;feature-product-weight;string;false;false;commerceClassificationPropertyValueProvider;Solar Energizers:::Product Weight::::
+;$solrIndexedType;feature-clean-wire-fence-distance;string;false;false;commerceClassificationPropertyValueProvider;Solar Energizers:::Clean Wire Fence distance::::
+;$solrIndexedType;feature-output-energy;string;false;false;commerceClassificationPropertyValueProvider;Solar Energizers:::Output Energy::::
+;$solrIndexedType;feature-battery-is-included;string;false;false;commerceClassificationPropertyValueProvider;Solar Energizers:::Battery is included::::
+;$solrIndexedType;feature-height;string;false;false;commerceClassificationPropertyValueProvider;Solar Energizers:::Height::::
+;$solrIndexedType;feature-width-or-length;string;false;false;commerceClassificationPropertyValueProvider;Solar Energizers:::Width or Length::::
+;$solrIndexedType;feature-product-weight;string;false;false;commerceClassificationPropertyValueProvider;Solar Energizers:::Product Weight::::
 
 # Show the classification features in the product lister
 INSERT_UPDATE ClassAttributeAssignment;$classClass[unique=true];$classAttribute[unique=true];$classSystemVersion[unique=true];listable

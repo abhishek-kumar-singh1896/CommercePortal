@@ -2,9 +2,9 @@
 # Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
 # -----------------------------------------------------------------------
 # ImpEx for Solr for Animal Management B2C Store
-$indexedType=amB2CProductType
+$indexedType=amB2CUSProductType
 $solrIndexedType=solrIndexedType(identifier[default=$indexedType])[unique=true]
-$facetSearchConfigName=amB2CIndex
+$facetSearchConfigName=amB2CUSIndex
 $contentCatalogName=amB2CContentCatalog
 $contentCatalogVersion=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalogName]),CatalogVersion.version[default=Staged])[default=$contentCatalogName:Staged]
 $productCatalog=amB2CUSProductCatalog
