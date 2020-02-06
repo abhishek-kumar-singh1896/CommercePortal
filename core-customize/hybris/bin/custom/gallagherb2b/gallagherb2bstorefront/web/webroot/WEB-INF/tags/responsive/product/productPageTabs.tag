@@ -4,11 +4,9 @@
 <%@ taglib prefix="cms" uri="http://hybris.com/tld/cmstags"%>
 <!--<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>-->
 
-
-
 <div class="tabs js-tabs tabs-responsive">
 
-<!--
+	<!--
 <sec:authorize access="hasAnyRole('ROLE_DISTRIBUTOR')">
 	<div class="tabhead">
 		<a href=""><spring:theme code="product.product.details" /></a> <span
@@ -30,22 +28,22 @@
 -->
 
 
-<div id="details" class="tabhead">
-		<a href="">Product details</a> <span
-			class="glyphicon"></span>
+	<div id="details" class="tabhead">
+		<a href="">Product details</a> <span class="glyphicon"></span>
 	</div>
 	<div class="tabbody">
 		<div class="container-lg">
-            <a target="_blank" href="http://raymor.co.nz/wp-content/uploads/2016/10/567903_Raymor_WallBasins_Quartz-WEB.pdf">
-                         <button id="btn-print-statement" class="btn-primary" style="float: left" type="button">CLICK TO DOWNLOAD PRODUCT DETAILS</button>
-                        </a>
-                        <br>
+			<a target="_blank"
+				href="http://raymor.co.nz/wp-content/uploads/2016/10/567903_Raymor_WallBasins_Quartz-WEB.pdf">
+				<button id="btn-print-statement" class="btn-primary"
+					style="float: left" type="button">CLICK TO DOWNLOAD
+					PRODUCT DETAILS</button>
+			</a> <br>
 		</div>
-		</div>
+	</div>
 
 	<div class="tabhead">
-		<a href="">Technical Spec</a> <span
-			class="glyphicon"></span>
+		<a href="">Technical Spec</a> <span class="glyphicon"></span>
 	</div>
 
 	<div class="tabbody">
@@ -62,43 +60,39 @@
 
 
 
-<div id="installation" class="tabhead">
-		<a href="">Installation manual</a> <span
-			class="glyphicon"></span>
+	<div id="installation" class="tabhead">
+		<a href="">Installation manual</a> <span class="glyphicon"></span>
 	</div>
 	<div class="tabbody">
 		<div class="container-lg">
-            <a target="_blank" href="http://localhost:9001//medias/bathroom-shower.pdf?context=bWFzdGVyfGltYWdlc3wzMDkwMzV8YXBwbGljYXRpb24vcGRmfGltYWdlcy9oZTIvaGVmLzg3OTc3MzM5NzgxNDIucGRmfGY0ODljMTcyN2Y4ZjUwMmNjZDk5YTcxNWFkNzI4ODQ4NTdmMWY0NGUyZDZhMmFiNTFmYTIyNWFlZDZhMTYzMmU">
-                         <button id="btn-print-statement" class="btn-primary" style="float: left" type="button">CLICK TO DOWNLOAD INSTALLATION MANUAL</button>
-                        </a>
-                        <br>
+			<a target="_blank"
+				href="http://localhost:9001//medias/bathroom-shower.pdf?context=bWFzdGVyfGltYWdlc3wzMDkwMzV8YXBwbGljYXRpb24vcGRmfGltYWdlcy9oZTIvaGVmLzg3OTc3MzM5NzgxNDIucGRmfGY0ODljMTcyN2Y4ZjUwMmNjZDk5YTcxNWFkNzI4ODQ4NTdmMWY0NGUyZDZhMmFiNTFmYTIyNWFlZDZhMTYzMmU">
+				<button id="btn-print-statement" class="btn-primary"
+					style="float: left" type="button">CLICK TO DOWNLOAD
+					INSTALLATION MANUAL</button>
+			</a> <br>
 		</div>
-		</div>
+	</div>
 
-
-<div id="video" class="tabhead">
-		<a href="">Video</a> <span
-			class="glyphicon"></span>
+	<div id="video" class="tabhead">
+		<a href="">Video</a> <span class="glyphicon"></span>
 	</div>
 	<div class="tabbody">
 		<div class="container-lg">
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/kQIkXlpJ2Vg" frameborder="0" allowfullscreen></iframe>
+			<iframe width="560" height="315"
+				src="https://www.youtube.com/embed/kQIkXlpJ2Vg" frameborder="0"
+				allowfullscreen></iframe>
 		</div>
 	</div>
-
-
-
 	<div id="tabreview" class="tabhead">
-		<a href="">Reviews</a> <span
-			class="glyphicon"></span>
+		<a href="">Reviews</a> <span class="glyphicon"></span>
 	</div>
 	<div class="tabbody">
 		<div class="container-lg">
 			<div class="row">
 				<div class=" col-md-6 col-lg-4">
 					<div class="tab-container">
-<product:productPageReviewsTab product="${product}" />
+						<product:productPageReviewsTab product="${product}" />
 					</div>
 				</div>
 			</div>
@@ -106,7 +100,7 @@
 	</div>
 
 
-<!--<sec:authorize access="hasAnyRole('ROLE_BUILDER')">
+	<!--<sec:authorize access="hasAnyRole('ROLE_BUILDER')">
 <div id="tabreview" class="tabhead">
 		<a href="">Product Warranty</a> <span
 			class="glyphicon"></span>
