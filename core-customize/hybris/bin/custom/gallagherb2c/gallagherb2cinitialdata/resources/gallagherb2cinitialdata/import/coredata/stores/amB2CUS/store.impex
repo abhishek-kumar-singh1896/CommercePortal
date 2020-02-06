@@ -24,7 +24,7 @@ $expressCheckoutEnabled=true
 $returnProcessCode=return-process
 
 INSERT_UPDATE PromotionGroup;Identifier[unique=true];
-;amB2CPromoGrp;
+;amB2CUSPromoGrp;
 
 # Base Store
 INSERT_UPDATE BaseStore;uid[unique=true];catalogs(id);currencies(isocode);net;taxGroup(code);storelocatorDistanceUnit(code);defaultCurrency(isocode);languages(isocode);defaultLanguage(isocode);deliveryCountries(isocode);billingCountries(isocode);submitOrderProcessCode;pickupInStoreMode(code);customerAllowedToIgnoreSuggestions;paymentProvider;expressCheckoutEnabled;maxRadiusForPoSSearch;checkoutFlowGroup;createReturnProcessCode;

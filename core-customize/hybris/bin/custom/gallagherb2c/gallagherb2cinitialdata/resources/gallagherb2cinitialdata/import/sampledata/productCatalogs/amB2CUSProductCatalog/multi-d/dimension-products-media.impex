@@ -4,7 +4,7 @@
 # ImPex for Importing Product Media into Animal Management B2C Store
 
 # Macros / Replacement Parameter definitions
-$productCatalog=amB2CProductCatalog
+$productCatalog=amB2CUSProductCatalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 $thumbnail=thumbnail(code, $catalogVersion)
 $picture=picture(code, $catalogVersion)

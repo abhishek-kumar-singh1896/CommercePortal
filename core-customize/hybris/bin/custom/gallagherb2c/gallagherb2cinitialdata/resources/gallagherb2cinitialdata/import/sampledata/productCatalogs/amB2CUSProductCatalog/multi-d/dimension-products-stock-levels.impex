@@ -4,7 +4,7 @@
 # ImpEx for Importing Products stock levels into Powertools Store
 
 # Macros / Replacement Parameter definitions
-$productCatalog=amB2CProductCatalog
+$productCatalog=amB2CUSProductCatalog
 $productCatalogName=Animal Management B2C Product Catalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 $vendor=default

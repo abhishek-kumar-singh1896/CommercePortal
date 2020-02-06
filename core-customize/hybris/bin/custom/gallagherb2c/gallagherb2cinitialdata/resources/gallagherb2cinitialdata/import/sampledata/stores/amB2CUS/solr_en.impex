@@ -7,7 +7,7 @@ $solrIndexedType=solrIndexedType(identifier[default=$indexedType])[unique=true]
 $facetSearchConfigName=amB2CIndex
 $contentCatalogName=amB2CContentCatalog
 $contentCatalogVersion=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalogName]),CatalogVersion.version[default=Staged])[default=$contentCatalogName:Staged]
-$productCatalog=amB2CProductCatalog
+$productCatalog=amB2CUSProductCatalog
 $productCatalogVersion=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$productCatalog]),CatalogVersion.version[default=Staged])[default=$productCatalog:Staged]
 
 # Language

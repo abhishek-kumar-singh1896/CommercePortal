@@ -4,7 +4,7 @@
 #PRODUCTS
 
 # Macros / Replacement Parameter definitions
-$productCatalog=amB2CProductCatalog
+$productCatalog=amB2CUSProductCatalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 $supercategories=supercategories(code, $catalogVersion)
 $baseProduct=baseProduct(code,$catalogVersion)

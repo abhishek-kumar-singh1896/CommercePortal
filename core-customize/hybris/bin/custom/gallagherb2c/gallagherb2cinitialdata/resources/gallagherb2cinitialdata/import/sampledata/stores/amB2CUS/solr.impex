@@ -13,7 +13,7 @@ $classAttributeAssignment=classAttributeAssignment($classClass,$classAttribute,$
 $contentCatalogName=amB2CContentCatalog
 $solrIndexedType=amB2CProductType
 $contentCatalogVersion=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalogName]),CatalogVersion.version[default=Staged])[default=$contentCatalogName:Staged]
-$productCatalog=amB2CProductCatalog
+$productCatalog=amB2CUSProductCatalog
 $productCatalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 
 # Define range set

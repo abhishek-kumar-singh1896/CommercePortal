@@ -29,6 +29,9 @@ public class GallagherB2CStoreSystemSetup extends AbstractSystemSetup
 	public static final String AM_B2C = "amB2C";
 	public static final String AM_B2C_CA = "amB2CUS";
 	public static final String AM_B2C_US = "amB2CCA";
+	public static final String AM_B2C_AU = "amB2CAU";
+	public static final String AM_B2C_NZ = "amB2CNZ";
+	public static final String AM_B2C_GLOBAL = "amB2CGlobal";
 
 	private static final String IMPORT_CORE_DATA = "importCoreData";
 	private static final String IMPORT_SAMPLE_DATA = "importSampleData";
@@ -61,11 +64,31 @@ public class GallagherB2CStoreSystemSetup extends AbstractSystemSetup
 	{
 		final List<ImportData> importData = new ArrayList<ImportData>();
 
-		final ImportData amB2CImportData = new ImportData();
-		amB2CImportData.setProductCatalogName(AM_B2C);
-		amB2CImportData.setContentCatalogNames(Arrays.asList(AM_B2C));
-		amB2CImportData.setStoreNames(Arrays.asList(AM_B2C_US, AM_B2C_CA));
-		importData.add(amB2CImportData);
+		final ImportData amB2CUSImportData = new ImportData();
+		amB2CUSImportData.setProductCatalogName(AM_B2C_US);
+		amB2CUSImportData.setContentCatalogNames(Arrays.asList(AM_B2C));
+		amB2CUSImportData.setStoreNames(Arrays.asList(AM_B2C_US));
+		importData.add(amB2CUSImportData);
+
+		final ImportData amB2CCAImportData = new ImportData();
+		amB2CCAImportData.setProductCatalogName(AM_B2C_CA);
+		amB2CCAImportData.setStoreNames(Arrays.asList(AM_B2C_CA));
+		importData.add(amB2CUSImportData);
+
+		final ImportData amB2CAUImportData = new ImportData();
+		amB2CAUImportData.setProductCatalogName(AM_B2C_AU);
+		amB2CAUImportData.setStoreNames(Arrays.asList(AM_B2C_AU));
+		importData.add(amB2CAUImportData);
+
+		final ImportData amB2CNZImportData = new ImportData();
+		amB2CNZImportData.setProductCatalogName(AM_B2C_NZ);
+		amB2CNZImportData.setStoreNames(Arrays.asList(AM_B2C_NZ));
+		importData.add(amB2CNZImportData);
+
+		final ImportData amB2CGlobalImportData = new ImportData();
+		amB2CGlobalImportData.setProductCatalogName(AM_B2C_GLOBAL);
+		amB2CGlobalImportData.setStoreNames(Arrays.asList(AM_B2C_GLOBAL));
+		importData.add(amB2CGlobalImportData);
 
 		getCoreDataImportService().execute(this, context, importData);
 		getEventService().publishEvent(new CoreDataImportedEvent(context, importData));

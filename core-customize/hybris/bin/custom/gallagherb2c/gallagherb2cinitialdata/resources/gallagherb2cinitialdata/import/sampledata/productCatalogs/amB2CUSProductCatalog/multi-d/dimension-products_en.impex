@@ -5,7 +5,7 @@
 # ImpEx template for Importing all Localisations for Products in the Animal Management B2C Store
 
 # Macros / Replacement Parameter definitions
-$productCatalog=amB2CProductCatalog
+$productCatalog=amB2CUSProductCatalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 $approved=approvalstatus(code)[default='approved']
 

@@ -31,14 +31,14 @@ INSERT_UPDATE Currency ; isocode[unique=true] ; symbol ; sapCode ; digits ; conv
                        ; EUR                  ; €      ; EUR     ; 2      ; 1          ;                      
                        ; USD                  ; $      ; USD     ; 2      ; 1,4        ;                      
                        ; JPY                  ; ¥      ; JPY     ; 0      ; 120        ;                      
-                       ; AUD                  ; AUD    ; AUD     ; 2      ;            ;                      
-                       ; CAD                  ; CAD    ; CAD     ; 2      ;            ;                      
-                       ; HKD                  ; HKD    ; HKD     ; 2      ;            ;                      
-                       ; INR                  ; INR    ; INR     ; 2      ;            ;                      
-                       ; NZD                  ; NZD    ; NZD     ; 2      ;            ;                      
-                       ; ZAR                  ; ZAR    ; ZAR     ; 2      ;            ;                      
-                       
-# Vendor        
+                       ; AUD                  ; AU$    ; AUD     ; 2      ; 1          ;                      
+                       ; CAD                  ; CAD    ; CAD     ; 2      ; 1          ;                      
+                       ; HKD                  ; HKD    ; HKD     ; 2      ; 1          ;                      
+                       ; INR                  ; INR    ; INR     ; 2      ; 1          ;                      
+                       ; NZD                  ; NZ$    ; NZD     ; 2      ; 1.12       ;                      
+                       ; ZAR                  ; ZAR    ; ZAR     ; 2      ; 1          ;                      
+ 
+# Vendor               
 INSERT_UPDATE Vendor ; code[unique=true] ; name           
                      ; default           ; Default Vendor 
                      
@@ -47,19 +47,19 @@ UPDATE CMSPageType ; code[unique=true] ; previewDisabled
                    ; EmailPage         ; true            
                    
 # Titles           
-INSERT_UPDATE Title;code[unique=true];name[lang=en]
-;0001;"Ms."
-;0002;"Mr."
-;Z001;"Mrs."
-;Z002;"Miss."
-;Z003;"Sir"
-;Z004;"Lady"
-;Z005;"Dr."
-;Z006;"Colonel"
-;Z007;"Major"
-;Z008;"Sergeant"
-;Z009;"Captain"
-;Z010;"Officer"               
+INSERT_UPDATE Title ; code[unique=true] ; name[lang=en] 
+                    ; 0001              ; "Ms."         
+                    ; 0002              ; "Mr."         
+                    ; Z001              ; "Mrs."        
+                    ; Z002              ; "Miss."       
+                    ; Z003              ; "Sir"         
+                    ; Z004              ; "Lady"        
+                    ; Z005              ; "Dr."         
+                    ; Z006              ; "Colonel"     
+                    ; Z007              ; "Major"       
+                    ; Z008              ; "Sergeant"    
+                    ; Z009              ; "Captain"     
+                    ; Z010              ; "Officer"     
                     
 # Media Folders     
 INSERT_UPDATE MediaFolder ; qualifier[unique=true] ; path[unique=true] 

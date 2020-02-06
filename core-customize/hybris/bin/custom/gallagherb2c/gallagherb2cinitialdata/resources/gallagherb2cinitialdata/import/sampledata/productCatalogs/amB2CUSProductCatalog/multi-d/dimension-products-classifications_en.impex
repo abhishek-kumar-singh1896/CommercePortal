@@ -6,7 +6,7 @@
 #% impex.setLocale(Locale.ENGLISH);
 
 # Macros / Replacement Parameter definitions
-$productCatalog=amB2CProductCatalog
+$productCatalog=amB2CUSProductCatalog
 $productCatalogName=Animal Management B2C Product Catalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 $clAttrModifiers=system='AMB2CClassification',version='1.0',translator=de.hybris.platform.catalog.jalo.classification.impex.ClassificationAttributeTranslator,lang=en
