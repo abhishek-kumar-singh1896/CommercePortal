@@ -17,4 +17,4 @@ $lang=en
 
 # SiteTheme
 UPDATE SiteTheme;code[unique=true];name[lang=$lang]
- ;securityB2BNZ;"Security B2B NZ"
+ ;securityB2B;"Security B2B"

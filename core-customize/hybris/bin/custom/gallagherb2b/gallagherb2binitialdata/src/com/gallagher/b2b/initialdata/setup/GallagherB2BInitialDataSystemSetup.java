@@ -52,6 +52,8 @@ public class GallagherB2BInitialDataSystemSetup extends AbstractSystemSetup
 
 	public static final String SECURITY_B2B = "securityB2B";
 	public static final String SECURITY_B2B_NZ = "securityB2BNZ";
+	public static final String SECURITY_B2B_AU = "securityB2BAU";
+	public static final String SECURITY_B2B_GLOBAL = "securityB2BGlobal";
 
 	/**
 	 * Generates the Dropdown and Multi-select boxes for the project data import
@@ -113,11 +115,26 @@ public class GallagherB2BInitialDataSystemSetup extends AbstractSystemSetup
 	{
 		final List<ImportData> importData = new ArrayList<ImportData>();
 
-		final ImportData securityB2BImportData = new ImportData();
-		securityB2BImportData.setProductCatalogName(SECURITY_B2B);
-		securityB2BImportData.setContentCatalogNames(Arrays.asList(SECURITY_B2B));
-		securityB2BImportData.setStoreNames(Arrays.asList(SECURITY_B2B_NZ));
-		importData.add(securityB2BImportData);
+		// import NZ Catalog data
+		final ImportData securityNZImportData = new ImportData();
+		securityNZImportData.setProductCatalogName(SECURITY_B2B_NZ);
+		securityNZImportData.setContentCatalogNames(Arrays.asList(SECURITY_B2B));
+		securityNZImportData.setStoreNames(Arrays.asList(SECURITY_B2B_NZ));
+		importData.add(securityNZImportData);
+
+		//import AU catalog data
+		final ImportData securityAUImportData = new ImportData();
+		securityAUImportData.setProductCatalogName(SECURITY_B2B_AU);
+		//securityAUImportData.setContentCatalogNames(Arrays.asList(SECURITY_B2B));
+		securityAUImportData.setStoreNames(Arrays.asList(SECURITY_B2B_AU));
+		importData.add(securityAUImportData);
+
+		//import GLOBAL catalog data
+		final ImportData securityGlobalImportData = new ImportData();
+		securityGlobalImportData.setProductCatalogName(SECURITY_B2B_GLOBAL);
+		//securityAUImportData.setContentCatalogNames(Arrays.asList(SECURITY_B2B));
+		securityGlobalImportData.setStoreNames(Arrays.asList(SECURITY_B2B_GLOBAL));
+		importData.add(securityGlobalImportData);
 
 		getCoreDataImportService().execute(this, context, importData);
 		getEventService().publishEvent(new CoreDataImportedEvent(context, importData));

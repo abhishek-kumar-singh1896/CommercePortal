@@ -5,6 +5,11 @@
 # Import the CMS Site configuration for the Animal Management B2C store
 #
 $productCatalog=amB2CProductCatalog
+$productCatalogNZ=amB2CNZProductCatalog
+$productCatalogAU=amB2CAUProductCatalog
+$productCatalogUS=amB2CUSProductCatalog
+$productCatalogCA=amB2CCAProductCatalog
+$productCatalogGlobal=amB2CGlobalProductCatalog
 $contentCatalog=amB2CContentCatalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
 $defaultLanguage=en
@@ -12,10 +17,19 @@ $storeUidUS=amB2CUS
 $siteUidUS=amB2CUS
 $storeUidCA=amB2CCA
 $siteUidCA=amB2CCA
+$storeUidAU=amB2CAU
+$siteUidAU=amB2CAU
+$storeUidNZ=amB2CNZ
+$siteUidNZ=amB2CNZ
+$storeUidGlobal=amB2CGlobal
+$siteUidGlobal=amB2CGlobal
 $webServiceSiteUid=$siteUidWS
 $siteMapUrlLimitPerFile=50000
 $siteMapLangCurUS=enUsd
 $siteMapLangCurCA=enCad,frCad
+$siteMapLangCurNZ=enAud
+$siteMapLangCurAU=enNzd
+$siteMapLangCurGlobal=enUsd
 $siteMapPage=Homepage,Product,CategoryLanding,Category,Store,Content,Custom
 $customSiteMapUrls=/Open-Catalogue/c/1?q=%3AtopRated%3AallPromotions%3ABOGOFElectronics%3AallPromotions%3A10DiscountCanonEOS450D%3AallPromotions%3AMultiBuyElectronics%3AallPromotions%3APerfectPartnerElectronics%3AallPromotions%3AProductBundleElectronics,/Brands/c/brands?q=%3Arelevance%3Abrand%3Abrand_5%3Acategory%3A575,/Open-Catalogue/Cameras/Hand-held-Camcorders/c/584?q=%3Arelevance%3Abrand%3Abrand_2,/Open-Catalogue/Components/Power-Supplies/c/816?q=%3Arelevance%3Abrand%3Abrand_5,/Open-Catalogue/Data-storage/Flash-Memory/c/902?q=%3Arelevance%3Abrand%3Abrand_18
  
@@ -31,23 +45,29 @@ UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.Conf
 $jarResource=$config-jarResource                                                                           
                                                                                                            
 # Load the storefront context root config param                                                            
-$storefrontContextRoot=$config-storefrontContextRoot
-$amB2CUSContextRoot=$config-amB2CUS.storefrontContextRoot
-$amB2CCAContextRoot=$config-amB2CCA.storefrontContextRoot                                                       
+$storefrontContextRoot=$config-storefrontContextRoot                                                       
                                                                                                            
 # SiteMap Configuration                                                                                    
 INSERT_UPDATE SiteMapLanguageCurrency ; &siteMapLanguageCurrency ; language(isoCode)[unique=true] ; currency(isocode)[unique=true] ;  
                                       ; enUsd                    ; en                             ; USD                            
                                       ; enCad                    ; en                             ; CAD                            
-                                      ; frCad                    ; fr                             ; CAD                            
+                                      ; frCad                    ; fr                             ; CAD   
+                                      ; enAud                    ; en                             ; AUD                            
+                                      ; enNzd                    ; en                             ; NZD                            
                                       
 INSERT_UPDATE CatalogUnawareMedia ; &siteMapMediaId         ; code[unique=true]       ; realfilename       ; @media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator] ; mime[default='text/plain'] 
                                   ; $siteUidUS-siteMapMedia ; $siteUidUS-siteMapMedia ; siteMapTemplate.vm ; $jarResource/site-siteMapTemplate.vm                                       ;                            
-                                  ; $siteUidCA-siteMapMedia ; $siteUidCA-siteMapMedia ; siteMapTemplate.vm ; $jarResource/site-siteMapTemplate.vm                                       ;                            
+                                  ; $siteUidCA-siteMapMedia ; $siteUidCA-siteMapMedia ; siteMapTemplate.vm ; $jarResource/site-siteMapTemplate.vm    
+                                  ; $siteUidAU-siteMapMedia ; $siteUidAU-siteMapMedia ; siteMapTemplate.vm ; $jarResource/site-siteMapTemplate.vm                                       ;                            
+                                  ; $siteUidNZ-siteMapMedia ; $siteUidNZ-siteMapMedia ; siteMapTemplate.vm ; $jarResource/site-siteMapTemplate.vm     
+                                  ; $siteUidGlobal-siteMapMedia ; $siteUidGlobal-siteMapMedia ; siteMapTemplate.vm ; $jarResource/site-siteMapTemplate.vm                                   ;                            
                                   
 INSERT_UPDATE RendererTemplate ; &siteMapRenderer           ; code[unique=true]          ; content(&siteMapMediaId) ; contextClass                                                           ; rendererType(code)[default='velocity'] ;  
                                ; $siteUidUS-siteMapTemplate ; $siteUidUS-siteMapTemplate ; $siteUidUS-siteMapMedia  ; de.hybris.platform.acceleratorservices.sitemap.renderer.SiteMapContext ;                                        
-                               ; $siteUidCA-siteMapTemplate ; $siteUidCA-siteMapTemplate ; $siteUidCA-siteMapMedia  ; de.hybris.platform.acceleratorservices.sitemap.renderer.SiteMapContext ;                                        
+                               ; $siteUidCA-siteMapTemplate ; $siteUidCA-siteMapTemplate ; $siteUidCA-siteMapMedia  ; de.hybris.platform.acceleratorservices.sitemap.renderer.SiteMapContext ;
+                               ; $siteUidAU-siteMapTemplate ; $siteUidAU-siteMapTemplate ; $siteUidAU-siteMapMedia  ; de.hybris.platform.acceleratorservices.sitemap.renderer.SiteMapContext ;                                        
+                               ; $siteUidNZ-siteMapTemplate ; $siteUidNZ-siteMapTemplate ; $siteUidNZ-siteMapMedia  ; de.hybris.platform.acceleratorservices.sitemap.renderer.SiteMapContext ;                                           
+                               ; $siteUidGlobal-siteMapTemplate ; $siteUidGlobal-siteMapTemplate ; $siteUidGlobal-siteMapMedia  ; de.hybris.platform.acceleratorservices.sitemap.renderer.SiteMapContext ;                                           
                                
 INSERT_UPDATE SiteMapPage ; &siteMapPage    ; code(code)[unique=true] ; frequency(code)[unique=true] ; priority[unique=true] ; active[default=true] 
                           ; Homepage        ; Homepage                ; daily                        ; 1.0                   ;                      ;  
@@ -60,28 +80,43 @@ INSERT_UPDATE SiteMapPage ; &siteMapPage    ; code(code)[unique=true] ; frequenc
                           
 INSERT_UPDATE SiteMapConfig ; &siteMapConfigId        ; configId[unique=true]   ; siteMapLanguageCurrencies(&siteMapLanguageCurrency) ; siteMapPages(&siteMapPage) ; siteMapTemplate(&siteMapRenderer)[unique=true] ; customUrls         ;  
                             ; $siteUidUSSiteMapConfig ; $siteUidUSSiteMapConfig ; $siteMapLangCurUS                                   ; $siteMapPage               ; $siteUidUS-siteMapTemplate                     ; $customSiteMapUrls ;  
-                            ; $siteUidCASiteMapConfig ; $siteUidCASiteMapConfig ; $siteMapLangCurCA                                   ; $siteMapPage               ; $siteUidCA-siteMapTemplate                     ; $customSiteMapUrls ;  
+                            ; $siteUidCASiteMapConfig ; $siteUidCASiteMapConfig ; $siteMapLangCurCA                                   ; $siteMapPage               ; $siteUidCA-siteMapTemplate                     ; $customSiteMapUrls ;
+                            ; $siteUidAUSiteMapConfig ; $siteUidAUSiteMapConfig ; $siteMapLangCurAU                                   ; $siteMapPage               ; $siteUidAU-siteMapTemplate                     ; $customSiteMapUrls ;  
+                            ; $siteUidNZSiteMapConfig ; $siteUidNZSiteMapConfig ; $siteMapLangCurNZ                                   ; $siteMapPage               ; $siteUidNZ-siteMapTemplate                     ; $customSiteMapUrls ;  
+                            ; $siteUidGlobalSiteMapConfig ; $siteUidGlobalSiteMapConfig ; $siteMapLangCurGlobal                                   ; $siteMapPage               ; $siteUidGlobal-siteMapTemplate                     ; $customSiteMapUrls ;    
                             
                             
 # CMS Site                  
 INSERT_UPDATE CMSSite ; uid[unique=true] ; theme(code) ; channel(code) ; stores(uid) ; contentCatalogs(id) ; defaultCatalog(id) ; defaultLanguage(isoCode) ; siteMapConfig(&siteMapConfigId) ; urlPatterns                                                                                                                                                                                                                                                                                                                                                         ; active ; previewURL                              ; startingPage(uid,$contentCV) ; urlEncodingAttributes ; defaultPromotionGroup(Identifier)[default=amB2CPromoGrp] 
-                      ; $siteUidUS       ; $siteUidUS  ; B2C           ; $storeUidUS ; $contentCatalog     ; $productCatalog    ; $defaultLanguage         ; $siteUidUSSiteMapConfig         ; (?i)^https?://[^/]+(/[^?]*)?\?(.*\&)?(site=$siteUidUS)(|\&.*)$,(?i)^https?://$siteUidUS\.[^/]+(|/.*|\?.*)$,(?i)^https?://api\.hybrisdev\.com(:[\d]+)?/rest/.*$,(?i)^https?://localhost(:[\d]+)?/rest/.*$,(?i)^https?://accstorefront.cj6th-gallagher1-d1-public.model-t.cc.commerce.ondemand.com/am/us+(|/.*|\?.*)$,(?i)^https?://localhost:9002/am/us+(|/.*|\?.*)$ ; true   ; $amB2CUSContextRoot/?site=$siteUidUS ; homepage                     ; country,language      
-                      ; $siteUidCA       ; $siteUidCA  ; B2C           ; $storeUidCA ; $contentCatalog     ; $productCatalog    ; $defaultLanguage         ; $siteUidCASiteMapConfig         ; (?i)^https?://[^/]+(/[^?]*)?\?(.*\&)?(site=$siteUidCA)(|\&.*)$,(?i)^https?://$siteUidCA\.[^/]+(|/.*|\?.*)$,(?i)^https?://api\.hybrisdev\.com(:[\d]+)?/rest/.*$,(?i)^https?://localhost(:[\d]+)?/rest/.*$,(?i)^https?://accstorefront.cj6th-gallagher1-d1-public.model-t.cc.commerce.ondemand.com/am/ca+(|/.*|\?.*)$,(?i)^https?://localhost:9002/am/ca+(|/.*|\?.*)$ ; true   ; $amB2CCAContextRoot/?site=$siteUidCA ; homepage                     ; country,language      
+                      ; $siteUidUS       ; $siteUidUS  ; B2C           ; $storeUidUS ; $contentCatalog     ; $productCatalogUS    ; $defaultLanguage         ; $siteUidUSSiteMapConfig         ; (?i)^https?://[^/]+(/[^?]*)?\?(.*\&)?(site=$siteUidUS)(|\&.*)$,(?i)^https?://$siteUidUS\.[^/]+(|/.*|\?.*)$,(?i)^https?://api\.hybrisdev\.com(:[\d]+)?/rest/.*$,(?i)^https?://localhost(:[\d]+)?/rest/.*$,(?i)^https?://accstorefront.cj6th-gallagher1-d1-public.model-t.cc.commerce.ondemand.com/am/us+(|/.*|\?.*)$,(?i)^https?://localhost:9002/am/us+(|/.*|\?.*)$ ; true   ; $storefrontContextRoot/?site=$siteUidUS ; homepage                     ; country,language      
+                      ; $siteUidCA       ; $siteUidCA  ; B2C           ; $storeUidCA ; $contentCatalog     ; $productCatalogCA    ; $defaultLanguage         ; $siteUidCASiteMapConfig         ; (?i)^https?://[^/]+(/[^?]*)?\?(.*\&)?(site=$siteUidCA)(|\&.*)$,(?i)^https?://$siteUidCA\.[^/]+(|/.*|\?.*)$,(?i)^https?://api\.hybrisdev\.com(:[\d]+)?/rest/.*$,(?i)^https?://localhost(:[\d]+)?/rest/.*$,(?i)^https?://accstorefront.cj6th-gallagher1-d1-public.model-t.cc.commerce.ondemand.com/am/ca+(|/.*|\?.*)$,(?i)^https?://localhost:9002/am/ca+(|/.*|\?.*)$ ; true   ; $storefrontContextRoot/?site=$siteUidCA ; homepage                     ; country,language
+                      ; $siteUidAU       ; $siteUidAU  ; B2C           ; $storeUidAU ; $contentCatalog     ; $productCatalogAU    ; $defaultLanguage         ; $siteUidAUSiteMapConfig         ; (?i)^https?://[^/]+(/[^?]*)?\?(.*\&)?(site=$siteUidAU)(|\&.*)$,(?i)^https?://$siteUidAU\.[^/]+(|/.*|\?.*)$,(?i)^https?://api\.hybrisdev\.com(:[\d]+)?/rest/.*$,(?i)^https?://localhost(:[\d]+)?/rest/.*$,(?i)^https?://accstorefront.cj6th-gallagher1-d1-public.model-t.cc.commerce.ondemand.com/am/au+(|/.*|\?.*)$,(?i)^https?://localhost:9002/am/au+(|/.*|\?.*)$ ; true   ; $storefrontContextRoot/?site=$siteUidAU ; homepage                     ; country,language      
+                      ; $siteUidNZ       ; $siteUidNZ  ; B2C           ; $storeUidNZ ; $contentCatalog     ; $productCatalogNZ    ; $defaultLanguage         ; $siteUidNZSiteMapConfig         ; (?i)^https?://[^/]+(/[^?]*)?\?(.*\&)?(site=$siteUidNZ)(|\&.*)$,(?i)^https?://$siteUidNZ\.[^/]+(|/.*|\?.*)$,(?i)^https?://api\.hybrisdev\.com(:[\d]+)?/rest/.*$,(?i)^https?://localhost(:[\d]+)?/rest/.*$,(?i)^https?://accstorefront.cj6th-gallagher1-d1-public.model-t.cc.commerce.ondemand.com/am/nz+(|/.*|\?.*)$,(?i)^https?://localhost:9002/am/nz+(|/.*|\?.*)$ ; true   ; $storefrontContextRoot/?site=$siteUidNZ ; homepage                     ; country,language      
+                      ; $siteUidGlobal       ; $siteUidGlobal  ; B2C           ; $storeUidGlobal ; $contentCatalog     ; $productCatalogGlobal    ; $defaultLanguage         ; $siteUidGlobalSiteMapConfig         ; (?i)^https?://[^/]+(/[^?]*)?\?(.*\&)?(site=$siteUidGlobal)(|\&.*)$,(?i)^https?://$siteUidGlobal\.[^/]+(|/.*|\?.*)$,(?i)^https?://api\.hybrisdev\.com(:[\d]+)?/rest/.*$,(?i)^https?://localhost(:[\d]+)?/rest/.*$,(?i)^https?://accstorefront.cj6th-gallagher1-d1-public.model-t.cc.commerce.ondemand.com/am/global+(|/.*|\?.*)$,(?i)^https?://localhost:9002/am/global+(|/.*|\?.*)$ ; true   ; $storefrontContextRoot/?site=$siteUidGlobal ; homepage                     ; country,language            
                       
 # Cart Cleanup CronJobs
 INSERT_UPDATE CartRemovalCronJob ; code[unique=true]         ; job(code)[default=cartRemovalJob] ; sites(uid)[default=$siteUidUS] ; sessionLanguage(isoCode)[default=en] 
                                  ; $siteUidUS-CartRemovalJob ;                                   ; $siteUidUS                     ;                                      
-                                 ; $siteUidCA-CartRemovalJob ;                                   ; $siteUidCA                     ;                                      
+                                 ; $siteUidCA-CartRemovalJob ;                                   ; $siteUidCA                     ;  
+                                 ; $siteUidAU-CartRemovalJob ;                                   ; $siteUidAU                     ;                                      
+                                 ; $siteUidNZ-CartRemovalJob ;                                   ; $siteUidNZ                     ; 
+                                 ; $siteUidGlobal-CartRemovalJob ;                                   ; $siteUidGlobal                     ;                                   
                                  
 # Uncollected orders cronjob     
 INSERT_UPDATE UncollectedOrdersCronJob ; code[unique=true]               ; job(code)[default=uncollectedOrdersJob] ; sites(uid)[default=$siteUid] ; sessionLanguage(isoCode)[default=en] 
                                        ; $siteUidUS-UncollectedOrdersJob ;                                         ; $siteUidUS                   
-                                       ; $siteUidCA-UncollectedOrdersJob ;                                         ; $siteUidUS                   
+                                       ; $siteUidCA-UncollectedOrdersJob ;                                         ; $siteUidCA 
+                                       ; $siteUidAU-UncollectedOrdersJob ;                                         ; $siteUidAU                   
+                                       ; $siteUidNZ-UncollectedOrdersJob ;                                         ; $siteUidNZ                   
+                                       ; $siteUidGlobal-UncollectedOrdersJob ;                                         ; $siteUidGlobal                      
                                        
 # Sitemap Generation CronJobs          
 INSERT_UPDATE SiteMapMediaCronJob ; code[unique=true]          ; job(code)[default=siteMapMediaJob] ; contentSite(uid)[default=$siteUid] ; sessionLanguage(isoCode)[default=en] ; siteMapUrlLimitPerFile  ; active ;  
                                   ; $siteUidUS-SiteMapMediaJob ;                                    ; $siteUidUS                         ;                                      ; $siteMapUrlLimitPerFile ; false  ;  
-                                  ; $siteUidCA-SiteMapMediaJob ;                                    ; $siteUidCA                         ;                                      ; $siteMapUrlLimitPerFile ; false  ;  
+                                  ; $siteUidCA-SiteMapMediaJob ;                                    ; $siteUidCA                         ;                                      ; $siteMapUrlLimitPerFile ; false  ;
+                                  ; $siteUidAU-SiteMapMediaJob ;                                    ; $siteUidAU                         ;                                      ; $siteMapUrlLimitPerFile ; false  ;  
+                                  ; $siteUidNZ-SiteMapMediaJob ;                                    ; $siteUidNZ                         ;                                      ; $siteMapUrlLimitPerFile ; false  ;  
+                                  ; $siteUidGlobal-SiteMapMediaJob ;                                    ; $siteUidGlobal                         ;                                      ; $siteMapUrlLimitPerFile ; false  ;    
                                   
 INSERT_UPDATE Trigger ; cronJob(code)[unique=true]      ; second ; minute ; hour ; day ; month ; year ; relative ; active ; maxAcceptableDelay 
                       ; $siteUidUS-CartRemovalJob       ; 0      ; 5      ; 4    ; -1  ; -1    ; -1   ; false    ; true   ; -1                 
@@ -89,4 +124,13 @@ INSERT_UPDATE Trigger ; cronJob(code)[unique=true]      ; second ; minute ; hour
                       ; $siteUidUS-SiteMapMediaJob      ; 0      ; 0      ; 6    ; -1  ; -1    ; -1   ; true     ; false  ; -1                 
                       ; $siteUidCA-CartRemovalJob       ; 0      ; 5      ; 4    ; -1  ; -1    ; -1   ; false    ; true   ; -1                 
                       ; $siteUidCA-UncollectedOrdersJob ; 0      ; 0      ; 6    ; -1  ; -1    ; -1   ; true     ; false  ; -1                 
-                      ; $siteUidCA-SiteMapMediaJob      ; 0      ; 0      ; 6    ; -1  ; -1    ; -1   ; true     ; false  ; -1                 
+                      ; $siteUidCA-SiteMapMediaJob      ; 0      ; 0      ; 6    ; -1  ; -1    ; -1   ; true     ; false  ; -1     
+                      ; $siteUidAU-CartRemovalJob       ; 0      ; 5      ; 4    ; -1  ; -1    ; -1   ; false    ; true   ; -1                 
+                      ; $siteUidAU-UncollectedOrdersJob ; 0      ; 0      ; 6    ; -1  ; -1    ; -1   ; true     ; false  ; -1                 
+                      ; $siteUidAU-SiteMapMediaJob      ; 0      ; 0      ; 6    ; -1  ; -1    ; -1   ; true     ; false  ; -1                 
+                      ; $siteUidNZ-CartRemovalJob       ; 0      ; 5      ; 4    ; -1  ; -1    ; -1   ; false    ; true   ; -1                 
+                      ; $siteUidNZ-UncollectedOrdersJob ; 0      ; 0      ; 6    ; -1  ; -1    ; -1   ; true     ; false  ; -1                 
+                      ; $siteUidNZ-SiteMapMediaJob      ; 0      ; 0      ; 6    ; -1  ; -1    ; -1   ; true     ; false  ; -1    
+                      ; $siteUidGlobal-CartRemovalJob       ; 0      ; 5      ; 4    ; -1  ; -1    ; -1   ; false    ; true   ; -1                 
+                      ; $siteUidGlobal-UncollectedOrdersJob ; 0      ; 0      ; 6    ; -1  ; -1    ; -1   ; true     ; false  ; -1                 
+                      ; $siteUidGlobal-SiteMapMediaJob      ; 0      ; 0      ; 6    ; -1  ; -1    ; -1   ; true     ; false  ; -1                            

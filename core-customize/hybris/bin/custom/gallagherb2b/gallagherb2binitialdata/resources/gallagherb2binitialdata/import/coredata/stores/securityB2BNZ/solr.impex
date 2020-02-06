@@ -11,12 +11,12 @@
 #
 # Import the Solr configuration for the SecurityB2B store
 #
-$productCatalog=securityB2BProductCatalog
+$productCatalog=securityB2BNZProductCatalog
 $catalogVersions=catalogVersions(catalog(id),version); 
-$facetSearchConfigName=securityB2BIndex
-$facetSearchConfigDescription=SecurityB2B Solr Index
-$searchIndexNamePrefix=securityB2B
-$solrIndexedType=securityB2BProductType
+$facetSearchConfigName=securityB2BNZIndex
+$facetSearchConfigDescription=Security B2B NZ Solr Index
+$searchIndexNamePrefix=securityB2BNZ
+$solrIndexedType=securityB2BNZProductType
 $indexBaseSite=securityB2BNZ
 $indexLanguages=en
 $indexCurrencies=NZD
