@@ -36,11 +36,13 @@
 			<spring:theme code="text.skipToNavigation" var="skipToNavigation" />
 			<a href="#skiptonavigation" class="skiptonavigation" data-role="none">${fn:escapeXml(skipToNavigation)}</a>
 
-
-			<header:header hideHeaderLinks="${hideHeaderLinks}" />
-
-
+			<div class="loader" style="display: none;">
+				<div class="loader-text">
+				<spring:theme code="gallagher.loader.text" />
+				</div>
+			</div>
 			
+			<header:header hideHeaderLinks="${hideHeaderLinks}" />
 			
 			<a id="skip-to-content"></a>
 		
