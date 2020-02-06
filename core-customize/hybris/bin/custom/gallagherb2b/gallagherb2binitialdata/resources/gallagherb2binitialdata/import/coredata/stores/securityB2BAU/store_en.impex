@@ -8,13 +8,15 @@
 # Information and shall use it only in accordance with the terms of the
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
+# 
+# Import the SecurityB2B BaseStore
 #
-# Import Themes
+# Localization en
 #
 
-# Language
 $lang=en
 
-# SiteTheme
-UPDATE SiteTheme;code[unique=true];name[lang=$lang]
- ;securityB2B;"Security B2B"
+$storeUidAU=securityB2BAU
+
+UPDATE BaseStore;uid[unique=true];name[lang=$lang]
+;$storeUidAU;"Security B2B AU Store";

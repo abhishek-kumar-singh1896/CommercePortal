@@ -9,12 +9,13 @@
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
 #
-# Import Themes
+# Import the Solr CronJob Trigger configuration for the SecurityB2B Product Catalog
 #
 
-# Language
-$lang=en
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
 
-# SiteTheme
-UPDATE SiteTheme;code[unique=true];name[lang=$lang]
- ;securityB2B;"Security B2B"
+# Run the full-securityB2BIndex-cronJob at 3:05 AM every day
+;full-securityB2BAUIndex-cronJob;0;5;3;-1;-1;-1;false;false;-1
+
+# Run the update-securityB2BIndex-cronJob every 1 minutes
+;update-securityB2BAUIndex-cronJob;0;1;-1;-1;-1;-1;true;false;-1

@@ -8,13 +8,16 @@
 # Information and shall use it only in accordance with the terms of the
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
-#
-# Import Themes
-#
+# ImpEx for Importing Suppliers into SecurityB2B Store (English)
+
+# Macros / Replacement Parameter definitions
+$productCatalog=securityB2BNZProductCatalog
+$productCatalogName=Security B2B NZ Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$superCategories=superCategories(code, $catalogVersion)
 
 # Language
 $lang=en
 
-# SiteTheme
-UPDATE SiteTheme;code[unique=true];name[lang=$lang]
- ;securityB2B;"Security B2B"
+UPDATE Category;$catalogVersion;code[unique=true];name[lang=$lang];description[lang=$lang]
+

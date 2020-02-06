@@ -9,12 +9,13 @@
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
 #
-# Import Themes
+# Import the CMS Site configuration for the SecurityB2B store
 #
+$siteUidGlobal=securityB2BGlobal
 
-# Language
-$lang=en
+# Load the storefront context root config param
+$storefrontContextRoot=/yb2bacceleratorstorefront
 
-# SiteTheme
-UPDATE SiteTheme;code[unique=true];name[lang=$lang]
- ;securityB2B;"Security B2B"
+# CMS Site
+INSERT_UPDATE CMSSite;uid[unique=true];previewURL
+;$siteUidGlobal;$storefrontContextRoot/?site=$siteUidGlobal

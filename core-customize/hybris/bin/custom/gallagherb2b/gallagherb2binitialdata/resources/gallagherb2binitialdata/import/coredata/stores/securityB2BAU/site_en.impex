@@ -9,12 +9,12 @@
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
 #
-# Import Themes
+# Import the CMS Site configuration for the SecurityB2B store
 #
 
 # Language
 $lang=en
 
-# SiteTheme
-UPDATE SiteTheme;code[unique=true];name[lang=$lang]
- ;securityB2B;"Security B2B"
+# Create CMS Site
+UPDATE CMSSite;uid[unique=true];name[lang=$lang];locale[lang=$lang]
+ ;securityB2BAU;"Security B2B AU Site";en_AU

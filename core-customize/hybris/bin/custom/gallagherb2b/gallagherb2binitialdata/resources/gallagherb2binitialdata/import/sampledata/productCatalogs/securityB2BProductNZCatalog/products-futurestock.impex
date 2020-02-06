@@ -8,13 +8,12 @@
 # Information and shall use it only in accordance with the terms of the
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
-#
-# Import Themes
-#
+# ImpEx for importing products Future Stock into SecurityB2B Store
 
-# Language
-$lang=en
+# Macros / Replacement Parameter definitions
+$productCatalog=securityB2BNZProductCatalog
+$productCatalogName=Security B2B NZ Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 
-# SiteTheme
-UPDATE SiteTheme;code[unique=true];name[lang=$lang]
- ;securityB2B;"Security B2B"
+
+INSERT_UPDATE FutureStock;productCode[unique=true];quantity;date[unique=true,dateformat=yyyy-MM-dd]

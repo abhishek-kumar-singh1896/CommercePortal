@@ -1,5 +1,5 @@
 # ImpEx for Importing cronjobs
-$productCatalog=securityB2BNZProductCatalog
+$productCatalog=securityB2BGlobalProductCatalog
 $stagedVersion=Staged
 $onlineVersion=Online
 $productCVStaged=catalogVersion(catalog(id[default=$productCatalog]),version[default=$stagedVersion])[unique=true,default=$productCatalog:$stagedVersion]
@@ -8,11 +8,11 @@ $includedFormats=300Wx300H,30Wx30H,365Wx246H,515Wx515H,65Wx65H,96Wx96H,1200Wx120
 
 INSERT_UPDATE MediaConversionCronJob;$productCVStaged[unique=true];code[unique=true];job(code);nodeId[default=0];includedFormats(qualifier);sessionLanguage(isocode)[default=en]
 # code								;job			   ;nodeId ;includedFormats
-;;B2badvanceMediaConversionNZ	;mediaConversionJob;       ;$includedFormats
+;;B2badvanceMediaConversionGlobal	;mediaConversionJob;       ;$includedFormats
 
 INSERT_UPDATE Trigger;cronJob(code)[unique=true];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
 #cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
-;B2badvanceMediaConversionNZ			;0		;5		;0		;0		;0		;0		;true		;true	;-1
+;B2badvanceMediaConversionGlobal			;0		;5		;0		;0		;0		;0		;true		;true	;-1
 
 
 
@@ -20,13 +20,4 @@ INSERT_UPDATE ServicelayerJob;code[unique=true];springId[unique=true]
 ;clearMegaMenuCacheJob;clearMegaMenuCacheJob
 
 INSERT_UPDATE CronJob;code[unique=true];job(code);sessionlanguage(isocode);sessioncurrency(isocode);active;logtofile;loglevelfile(code)
-;b2badvanceClearMegaMenuCacheJob;clearMegaMenuCacheJob;en;NZD;1;0;ERROR
-
-
-INSERT_UPDATE B2BAdvanceCSVImportCronJob;code[unique=true];job(code);sessionLanguage(isoCode)[default=en];baseStore(uid);importType
-#;b2badvanceProductImportCronJob;b2bAdvanceProductImportJob;;securityB2BNZ;baseProduct
-#;b2badvanceVariantProductImportCronJob;b2bAdvanceVariantProductImportJob;;securityB2BNZ;variantProduct
-#;b2badvanceInvoiceImportCronJob;b2bAdvanceInvoiceImportJob;;securityB2BNZ;invoice
-#;b2badvancePriceImportCronJob;b2bAdvancePriceImportJob;;securityB2BNZ;priceRow
-#;b2badvanceDiscountImportCronJob;b2bAdvanceDiscountImportJob;;securityB2BNZ;discountRow
-#;b2badvanceStockImportCronJob;b2bAdvanceStockImportJob;;securityB2BNZ;stockLevel
+;b2badvanceClearMegaMenuCacheJob;clearMegaMenuCacheJob;en;AUD;1;0;ERROR

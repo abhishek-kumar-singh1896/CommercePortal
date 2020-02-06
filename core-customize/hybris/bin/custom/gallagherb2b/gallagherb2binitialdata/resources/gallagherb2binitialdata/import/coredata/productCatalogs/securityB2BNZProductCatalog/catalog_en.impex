@@ -8,13 +8,17 @@
 # Information and shall use it only in accordance with the terms of the
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
+# 
+# Import the Product Catalog and Classification Catalog
 #
-# Import Themes
+# Localization en
 #
 
-# Language
 $lang=en
 
-# SiteTheme
-UPDATE SiteTheme;code[unique=true];name[lang=$lang]
- ;securityB2B;"Security B2B"
+$productCatalog=securityB2BNZProductCatalog
+$classificationCatalog=SecurityB2BClassification
+
+UPDATE Catalog;id[unique=true];name[lang=$lang]
+;$classificationCatalog;"Security B2B Classification";
+;$productCatalog;"Security B2B NZ Product Catalog";

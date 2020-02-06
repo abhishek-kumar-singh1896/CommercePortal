@@ -16,93 +16,105 @@
 # * MediaFormats                               s
 # * Tax & Tax Groups
 # * Jobs
-#% impex.setLocale(Locale.GERMAN);
-
+#% impex.setLocale(Locale.GERMAN); 
+ 
 # Languages
-INSERT_UPDATE Language;isocode[unique=true];fallbackLanguages(isocode);active[default=true]
-;en;;;
-;de;en;;
-;ja;en;;
-;zh;en;;
-
-# Currencies
-INSERT_UPDATE Currency;isocode[unique=true];conversion;digits;symbol
-;GBP;1;2;£
-;EUR;1;2;€
-;USD;1,4;2;$
-;JPY;120;0;¥
-
-# Vendor
-INSERT_UPDATE Vendor;code[unique=true];name
-;default;Default Vendor
-
+INSERT_UPDATE Language ; isocode[unique=true] ; fallbackLanguages(isocode) ; active[default=true] 
+                       ; en                   ;                            ;                      ;  
+                       ; de                   ; en                         ;                      ;  
+                       ; ja                   ; en                         ;                      ;  
+                       ; zh                   ; en                         ;                      ;  
+                       
+                       
+INSERT_UPDATE Currency ; isocode[unique=true] ; symbol ; sapCode ; digits ; conversion ; active[default=true] 
+                       ; GBP                  ; £      ; GBP     ; 2      ; 1          ;                      
+                       ; EUR                  ; €      ; EUR     ; 2      ; 1          ;                      
+                       ; USD                  ; $      ; USD     ; 2      ; 1,4        ;                      
+                       ; JPY                  ; ¥      ; JPY     ; 0      ; 120        ;                      
+                       ; AUD                  ; AUD    ; AUD     ; 2      ;            ;                      
+                       ; CAD                  ; CAD    ; CAD     ; 2      ;            ;                      
+                       ; HKD                  ; HKD    ; HKD     ; 2      ;            ;                      
+                       ; INR                  ; INR    ; INR     ; 2      ;            ;                      
+                       ; NZD                  ; NZD    ; NZD     ; 2      ;            ;                      
+                       ; ZAR                  ; ZAR    ; ZAR     ; 2      ;            ;                      
+                       
+# Vendor        
+INSERT_UPDATE Vendor ; code[unique=true] ; name           
+                     ; default           ; Default Vendor 
+                     
 # Disable preview for email pages
-UPDATE CMSPageType;code[unique=true];previewDisabled
-;EmailPage;true
-
-# Titles
-INSERT_UPDATE Title;code[unique=true]
-;mr
-;mrs
-;miss
-;ms
-;dr
-;rev
-
-# Media Folders
-INSERT_UPDATE MediaFolder;qualifier[unique=true];path[unique=true]
-;images;images
-;email-body;email-body
-;email-attachments;email-attachments
-
-# Media formats
-INSERT_UPDATE MediaFormat;qualifier[unique=true]
-#;1200Wx1200H
-#;515Wx515H
-#;365Wx246H
-#;300Wx300H
-#;96Wx96H
-#;65Wx65H
-#;30Wx30H
-;mobile
-;tablet
-;desktop
-;widescreen
-
-# Tax & Tax Groups
-INSERT_UPDATE UserTaxGroup;code[unique=true]
-;de-taxes
-;jp-taxes
-;uk-taxes
-;us-taxes
-;ca-taxes
-
-INSERT_UPDATE ProductTaxGroup;code[unique=true]
-;jp-vat-full
-;eu-vat-full
-;eu-vat-half
-;us-sales-tax-full
-;ca-sales-tax-full
-
-INSERT_UPDATE Tax;code[unique=true];value;currency(isocode)
-;de-vat-full;19
-;de-vat-half;7
-;jp-vat-full;5
-;uk-vat-full;20
-;uk-vat-half;5
-;us-sales-tax-full;0
-;ca-sales-tax-full;0
-
-INSERT_UPDATE ServicelayerJob;code[unique=true];springId[unique=true]
-;cartRemovalJob;cartRemovalJob
-;siteMapMediaJob;siteMapMediaJob
-;quoteToExpireSoonJobPerformable;quoteToExpireSoonJobPerformable
-;quoteExpiredJobPerformable;quoteExpiredJobPerformable
-
+UPDATE CMSPageType ; code[unique=true] ; previewDisabled 
+                   ; EmailPage         ; true            
+                   
+# Titles           
+INSERT_UPDATE Title;code[unique=true];name[lang=en]
+;0001;"Ms."
+;0002;"Mr."
+;Z001;"Mrs."
+;Z002;"Miss."
+;Z003;"Sir"
+;Z004;"Lady"
+;Z005;"Dr."
+;Z006;"Colonel"
+;Z007;"Major"
+;Z008;"Sergeant"
+;Z009;"Captain"
+;Z010;"Officer"               
+                    
+# Media Folders     
+INSERT_UPDATE MediaFolder ; qualifier[unique=true] ; path[unique=true] 
+                          ; images                 ; images            
+                          ; email-body             ; email-body        
+                          ; email-attachments      ; email-attachments 
+                          
+# Media formats           
+INSERT_UPDATE MediaFormat ; qualifier[unique=true] 
+#                         ; 1200Wx1200H            
+#                         ; 515Wx515H              
+#                         ; 365Wx246H              
+#                         ; 300Wx300H              
+#                         ; 96Wx96H                
+#                         ; 65Wx65H                
+#                         ; 30Wx30H                
+                          ; mobile                 
+                          ; tablet                 
+                          ; desktop                
+                          ; widescreen             
+                          
+# Tax & Tax Groups        
+INSERT_UPDATE UserTaxGroup ; code[unique=true] 
+                           ; de-taxes          
+                           ; jp-taxes          
+                           ; uk-taxes          
+                           ; us-taxes          
+                           ; ca-taxes          
+                           
+INSERT_UPDATE ProductTaxGroup ; code[unique=true] 
+                              ; jp-vat-full       
+                              ; eu-vat-full       
+                              ; eu-vat-half       
+                              ; us-sales-tax-full 
+                              ; ca-sales-tax-full 
+                              
+INSERT_UPDATE Tax ; code[unique=true] ; value ; currency(isocode) 
+                  ; de-vat-full       ; 19    
+                  ; de-vat-half       ; 7     
+                  ; jp-vat-full       ; 5     
+                  ; uk-vat-full       ; 20    
+                  ; uk-vat-half       ; 5     
+                  ; us-sales-tax-full ; 0     
+                  ; ca-sales-tax-full ; 0     
+                  
+INSERT_UPDATE ServicelayerJob ; code[unique=true]               ; springId[unique=true]           
+                              ; cartRemovalJob                  ; cartRemovalJob                  
+                              ; siteMapMediaJob                 ; siteMapMediaJob                 
+                              ; quoteToExpireSoonJobPerformable ; quoteToExpireSoonJobPerformable 
+                              ; quoteExpiredJobPerformable      ; quoteExpiredJobPerformable      
+                              
 # Deactivate Frontend Restriction on category by default for perfomance purposes
-UPDATE SearchRestriction;code[unique=true];active[default=false]
-;Frontend_RestrictedCategory
-
-#Impex to set up oauth Client             
-INSERT_UPDATE OAuthClientDetails;clientId[unique=true];authorities;authorizedGrantTypes;scope[default=basic];clientSecret
-;sitecore;ROLE_TRUSTED_CLIENT;refresh_token, client_credentials, password, authorization_code;;134435rgffg2wds8221836334ab9819
+UPDATE SearchRestriction ; code[unique=true]           ; active[default=false] 
+                         ; Frontend_RestrictedCategory 
+                         
+#Impex to set up oauth Client
+INSERT_UPDATE OAuthClientDetails ; clientId[unique=true] ; authorities         ; authorizedGrantTypes                                            ; scope[default=basic] ; clientSecret                    
+                                 ; sitecore              ; ROLE_TRUSTED_CLIENT ; refresh_token, client_credentials, password, authorization_code ;                      ; 134435rgffg2wds8221836334ab9819 
