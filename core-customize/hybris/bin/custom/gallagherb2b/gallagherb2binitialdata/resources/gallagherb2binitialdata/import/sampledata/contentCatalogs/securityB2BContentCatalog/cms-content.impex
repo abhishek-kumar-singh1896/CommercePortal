@@ -15,8 +15,8 @@ UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.Conf
 $contentCatalog=securityB2BContentCatalog
 $contentCatalogName=Security B2B Content Catalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
-$productCatalog=securityB2BProductCatalog
-$productCatalogName=SecurityB2B Product Catalog
+$productCatalog=securityB2BNZProductCatalog
+$productCatalogName=Security B2B Product Catalog
 $productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 $picture=media(code, $contentCV);
 $image=image(code, $contentCV);
