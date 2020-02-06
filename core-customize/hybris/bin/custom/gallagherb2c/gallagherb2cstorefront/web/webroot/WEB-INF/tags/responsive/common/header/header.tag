@@ -17,7 +17,11 @@
 	<cms:component component="${component}" />
 </cms:pageSlot>
 
-<header class="main-header-out">
+
+
+    
+
+<header class="main-header-out shadow-sm fixed-top">
 	<div class="container">
 		<div>
 			<div class="header-left-section">
@@ -71,8 +75,8 @@
                                 <button id="btnGroupDrop1" type="button" class="btn right-btn dropdown-toggle"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <cms:pageSlot position="MiniCart" var="cart" >
-										<cms:component component="${cart}"/>
-									</cms:pageSlot>
+													<cms:component component="${cart}"/>
+												</cms:pageSlot>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
                                     <div class="your-cart-title">Your Cart</div>
@@ -136,15 +140,157 @@
 
                 </div>
                 
-			<div class="xs-header-right-section">
-			<!-- mini cart for responsive -->
-			<div class="header-right-btn-group">
-                 <button id="btnGroupDrop2" type="button" class="btn right-btn dropdown-toggle"
+			<!-- Ipad and Mobile Header Right Section-->
+                <div class="xs-header-right-section">
+
+                    <!-- For Ipad Cart Section-->
+                    
+                  <div class="header-right-btn-group for-ipad-view">
+                        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                            <button type="button" class="btn left-btn">Register</button>
+                            <button type="button" class="btn">Login</button>
+
+                            <div class="btn-group" role="group">
+                                <button id="btnGroupDrop2" type="button" class="btn right-btn dropdown-toggle"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<cms:pageSlot position="MiniCart" var="cart" >
 						<cms:component component="${cart}"/>
 					</cms:pageSlot>  
                  </button>
+                 
+                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop2">
+                                    <div class="your-cart-title">Your Cart</div>
+                                    <div class="mini-cart-item-out">
+                                        <ul>
+                                            <li>
+                                                <div class="row">
+                                                    <div class="col-2"></div>
+                                                    <div class="col-10">
+                                                        <div class="mini-cart-title">1 x S100 Portable Solar Fence
+                                                            Energizer</div>
+                                                        <div class="row mt-2">
+                                                            <div class="col-6">
+                                                                <div class="mini-cart-id">
+                                                                    G61150
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-6 text-right">
+                                                                <div class="mini-cart-price">
+                                                                    $123.00
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="row">
+                                                    <div class="col-2"></div>
+                                                    <div class="col-10">
+                                                        <div class="mini-cart-title">1 x S100 Portable Solar Fence
+                                                            Energizer</div>
+                                                        <div class="row mt-2">
+                                                            <div class="col-6">
+                                                                <div class="mini-cart-id">
+                                                                    G61150
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-6 text-right">
+                                                                <div class="mini-cart-price">
+                                                                    $123.00
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                        <div class="mini-cart-total">
+                                            <span class="total-text">Total</span>
+                                            <span class="total-value">$246.00</span>
+                                        </div>
+                                    </div>
+
+                                    <button type="button" class="btn btn-view-cart">View Cart</button>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>  
+                    
+                    
+                    
+                    
+                    
+                    
+         <!-- For Mobile Cart Section-->           
+			<div class="header-right-btn-group for-mobile-view">
+                 <button id="btnGroupDrop3" type="button" class="btn right-btn dropdown-toggle"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<cms:pageSlot position="MiniCart" var="cart" >
+						<cms:component component="${cart}"/>
+					</cms:pageSlot>  
+                 </button>
+                 
+                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop3">
+                                    <div class="your-cart-title">Your Cart</div>
+                                    <div class="mini-cart-item-out">
+                                        <ul>
+                                            <li>
+                                                <div class="row">
+                                                    <div class="col-2"></div>
+                                                    <div class="col-10">
+                                                        <div class="mini-cart-title">1 x S100 Portable Solar Fence
+                                                            Energizer</div>
+                                                        <div class="row mt-2">
+                                                            <div class="col-6">
+                                                                <div class="mini-cart-id">
+                                                                    G61150
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-6 text-right">
+                                                                <div class="mini-cart-price">
+                                                                    $123.00
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="row">
+                                                    <div class="col-2"></div>
+                                                    <div class="col-10">
+                                                        <div class="mini-cart-title">1 x S100 Portable Solar Fence
+                                                            Energizer</div>
+                                                        <div class="row mt-2">
+                                                            <div class="col-6">
+                                                                <div class="mini-cart-id">
+                                                                    G61150
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-6 text-right">
+                                                                <div class="mini-cart-price">
+                                                                    $123.00
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                        <div class="mini-cart-total">
+                                            <span class="total-text">Total</span>
+                                            <span class="total-value">$246.00</span>
+                                        </div>
+                                    </div>
+
+                                    <button type="button" class="btn btn-view-cart">View Cart</button>
+                                </div>
+                                
+                                
             </div>
 			<div class="search-out">
 				<a href="javascript:void(0)" class="search-link">

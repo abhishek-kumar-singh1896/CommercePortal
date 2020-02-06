@@ -81,9 +81,9 @@
 		<script src="${commonResourcePathHtml}/js/acc.consent.js"></script>
 		<script src="${commonResourcePathHtml}/js/acc.cookienotification.js"></script>
 		<script src="${commonResourcePathHtml}/js/acc.closeaccount.js"></script>
-
+		<script src="${commonResourcePathHtml}/js/bootstrap.bundle.min.js"></script>
 		<script src="${commonResourcePathHtml}/js/acc.csv-import.js"></script>
-
+		<script src="${commonResourcePathHtml}js/select2.min.js"></script>
 		<script src="${commonResourcePathHtml}/js/_autoload.js"></script>
 		<script src="${commonResourcePathHtml}/js/custom/acc.header.js"></script>
 		

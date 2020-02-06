@@ -99,9 +99,10 @@
       display: inline-block;
 
       svg {
-        width: 16px;
-        height: 16px;
+        width: 18px;
+        height: 18px;
         fill: $white;
+        vertical-align: bottom;
       }
     }
   }

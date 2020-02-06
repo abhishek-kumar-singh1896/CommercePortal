@@ -3,8 +3,46 @@
   background: $black;
   color: $white;
 
+  &.with-logged-in-user {
+    .header-right-btn-group {
+      .btn {
+        background: linear-gradient(to bottom, $button-highlight-top-color 0%, $button-highlight-bottom-color 100%);
+
+        .user-icon {
+          min-width: 10px;
+          display: block;
+          svg {
+            width: 24px;
+            height: 24px;
+            fill: $gray-9;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+          }
+        }
+
+        &:hover {
+          color: $white;
+
+          svg {
+            fill: $white;
+          }
+        }
+      }
+
+      .info-number {
+        background-color: $white;
+        color: $gray-9;
+        border: 1px solid $primary-color;
+      }
+    }
+  }
+
   .logo-out {
-    padding: 24px 0;
+    padding: 20px 0;
     display: block;
 
     img {
@@ -33,7 +71,7 @@
   }
 
   .main-nav-out {
-    margin-top: 20px;
+    margin-top: 13px;
     ul {
       margin: 0;
       padding: 0;
@@ -45,7 +83,7 @@
 
         a {
           display: block;
-          padding: 12px 24px 28px 24px;
+          padding: 15px 24px 25px 24px;
           color: $white;
           text-decoration: none;
           box-sizing: border-box;
@@ -60,13 +98,13 @@
 
   .search-out {
     display: inline-block;
-    margin-top: 20px;
+    margin-top: 13px;
     margin-right: 15px;
 
     .search-link {
       color: $white;
       text-decoration: none;
-      padding: 12px 12px 28px 12px;
+      padding: 15px 12px 25px 12px;
       display: inline-block;
       box-sizing: border-box;
       position: relative;
@@ -271,16 +309,17 @@
       border-radius: 20px;
       color: $white;
       text-align: center;
-      top: 8px;
+      top: 4px;
       right: 5px;
       border: 1px solid $white;
 
       .info-text {
-        font-size: 0.857142em;
+        font-size: 0.75em;
         display: inline-block;
         vertical-align: middle;
-        padding-top: 3px;
+        padding-top: 0;
         text-align: center;
+        font-family: $font-family-bold;
       }
     }
 
@@ -306,11 +345,13 @@
       svg {
         &.cart-icon {
           position: absolute;
-          width: 30px;
-          height: 30px;
+          width: 24px;
+          height: 24px;
           fill: $gray-9;
-          left: 5px;
-          top: 4px;
+          left: 12px;
+          top: 0;
+          bottom: 0;
+          margin: auto;
         }
       }
 
@@ -348,7 +389,10 @@
   }
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 1023px) {
+  body {
+    padding-top: 55px;
+  }
   .main-header-out {
     .header-left-section {
       width: 90px;
@@ -363,11 +407,11 @@
     }
 
     .logo-out {
-      padding: 12px 0;
+      padding: 10px 0;
       svg,
       img {
-        width: 90px;
-        height: 24px;
+        width: 119px;
+        height: 32px;
       }
     }
 
@@ -381,6 +425,9 @@
         margin: 0;
         .search-link {
           padding: 12px;
+          svg {
+            fill: $gray-4;
+          }
 
           &.active {
             .arrow-up {
@@ -396,38 +443,30 @@
       }
 
       .header-right-btn-group {
-        .right-btn {
-          background: linear-gradient(to bottom, $black 0%, $black 100%);
-          border-radius: 0;
-          padding: 22px 0;
-          display: block;
-          box-shadow: none;
-          border-bottom: 4px solid $black;
-          min-height: 50px;
+        &.for-ipad-view {
+          display: inline-block;
 
-          svg {
-            fill: $white;
-            width: 32px;
-            height: 32px;
-            top: 7px;
-          }
+          .btn {
+            padding: 19px 12px;
 
-          .info-number {
-            top: 7px;
-            right: 1px;
-            border-color: $black;
-          }
-        }
+            &.left-btn {
+              border-top-left-radius: 0;
+              border-bottom-left-radius: 0;
+            }
 
-        &.show {
-          .right-btn {
-            border-bottom: 4px solid $primary-color;
+            &.right-btn {
+              border-top-right-radius: 0;
+              border-bottom-right-radius: 0;
+
+              .info-number {
+                top: 10px;
+              }
+            }
           }
         }
 
-        .dropdown-menu {
-          top: 10px !important;
-          left: 0 !important;
+        &.for-mobile-view {
+          display: none;
         }
       }
 
@@ -438,7 +477,7 @@
         a {
           display: block;
           width: 24px;
-
+          cursor: pointer;
           padding: 18px 0;
 
           .line1,
@@ -452,6 +491,83 @@
           }
           .line3 {
             margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  body {
+    padding-top: 52px;
+  }
+  .main-header-out {
+    .xs-header-right-section {
+      .header-right-btn-group {
+        &.for-ipad-view {
+          display: none;
+        }
+
+        &.for-mobile-view {
+          display: inline-block;
+        }
+
+        .btn:not(:disabled):not(.disabled):active,
+        .btn:not(:disabled):not(.disabled).active,
+        .show > .btn.dropdown-toggle {
+          border-bottom: 4px solid $primary-color;
+        }
+
+        .right-btn {
+          background: linear-gradient(to bottom, $black 0%, $black 100%);
+          border-radius: 0;
+          padding: 22px 0;
+          display: block;
+          box-shadow: none;
+          border-bottom: 4px solid $black;
+          min-height: 52px;
+          min-width: 38px;
+          overflow: inherit;
+
+          svg {
+            fill: $gray-4;
+            width: 24px;
+            height: 24px;
+            top: 3px;
+            left: 7px;
+          }
+
+          .info-number {
+            top: 9px;
+            right: -7px;
+            border-color: $black;
+          }
+        }
+
+        &.show {
+          .right-btn {
+            border-bottom: 4px solid $primary-color;
+          }
+        }
+
+        .dropdown-menu {
+          top: 0 !important;
+          left: 0 !important;
+        }
+      }
+
+      .xs-menu-out {
+        padding: 0 0 0 5px;
+      }
+    }
+
+    &.with-logged-in-user {
+      .header-right-btn-group {
+        .btn {
+          .info-number {
+            background-color: $terciary;
+            color: $white;
           }
         }
       }
