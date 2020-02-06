@@ -26,7 +26,9 @@ import com.gallagher.keycloak.outboundservices.service.GallagherKeycloakService;
 
 
 /**
+ * Implementation of GallagherKeycloakService
  *
+ * @author shishirkant
  */
 public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 {
@@ -50,6 +52,9 @@ public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 		this.userService = userService;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean sendUpdatePasswordNotification(final String customerUid)
 	{
@@ -99,6 +104,9 @@ public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 		return new OAuth2RestTemplate(resource);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String createKeycloakUser(final CustomerData customerData)
 	{
