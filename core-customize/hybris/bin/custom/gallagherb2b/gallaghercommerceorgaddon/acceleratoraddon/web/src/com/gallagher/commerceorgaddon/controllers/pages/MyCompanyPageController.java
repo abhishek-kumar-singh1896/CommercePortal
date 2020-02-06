@@ -71,6 +71,7 @@ import com.gallagher.commerceorgaddon.forms.B2BCustomerForm;
 import com.gallagher.commerceorgaddon.forms.B2BPermissionForm;
 import com.gallagher.commerceorgaddon.forms.validation.B2BBudgetFormValidator;
 import com.gallagher.commerceorgaddon.forms.validation.B2BPermissionFormValidator;
+import com.gallagher.keycloak.outboundservices.service.GallagherKeycloakService;
 
 
 /**
@@ -160,6 +161,13 @@ public class MyCompanyPageController extends AbstractSearchPageController
 	@Resource(name = "baseStoreService")
 	protected BaseStoreService baseStoreService;
 
+	@Resource(name = "gallagherKeycloakService")
+	private GallagherKeycloakService gallagherKeycloakService;
+
+	public GallagherKeycloakService getGallagherKeycloakService()
+	{
+		return gallagherKeycloakService;
+	}
 
 	@Override
 	protected UserFacade getUserFacade()
@@ -416,6 +424,10 @@ public class MyCompanyPageController extends AbstractSearchPageController
 		b2bCustomerData.setRoles(b2BCustomerForm.getRoles());
 		b2bCustomerData.setCustomerId(b2BCustomerForm.getCustomerId());
 		b2bCustomerData.setDuplicate(b2BCustomerForm.isDuplicate());
+
+		final String keycloakGUID = getGallagherKeycloakService().createKeycloakUser(b2bCustomerData);
+		b2bCustomerData.setKeycloakGUID(keycloakGUID);
+
 		model.addAttribute(b2BCustomerForm);
 		model.addAttribute("titleData", getUserFacade().getTitles());
 		model.addAttribute("roles", populateRolesCheckBoxes(b2bUserGroupFacade.getUserGroups()));

@@ -9,7 +9,7 @@ INSERT_UPDATE OAuthClientDetails; clientId[unique = true]; oAuthUrl; scope
                                 ; CommerceCloud_Dev              ; https://oauthasservices-c3d61cfcf.ap1.hana.ondemand.com/oauth2/api/v1/token
                                 
 INSERT_UPDATE ExposedOAuthCredential; id[unique = true]   ; oAuthClientDetails(clientId); password
-                                    ; scpiOauthCredential ; CommerceCloud_Dev           ; samplePassword
+                                    ; scpiOauthCredential ; CommerceCloud_Dev           ; Integration123!
 
 #********************#
 #*** Customer URL ***#

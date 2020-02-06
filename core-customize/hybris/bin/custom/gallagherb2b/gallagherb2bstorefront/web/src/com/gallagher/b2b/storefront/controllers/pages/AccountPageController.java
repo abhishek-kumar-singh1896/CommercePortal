@@ -91,6 +91,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.enterprisewide.b2badvance.facades.order.B2BAdvanceOrderDetailsFacade;
 import com.enterprisewide.b2badvance.order.SalesApplicationData;
 import com.gallagher.b2b.storefront.controllers.ControllerConstants;
+import com.gallagher.keycloak.outboundservices.service.GallagherKeycloakService;
 
 
 /**
@@ -205,6 +206,9 @@ public class AccountPageController extends AbstractSearchPageController
 	@Resource(name = "addressDataUtil")
 	private AddressDataUtil addressDataUtil;
 
+	@Resource(name = "gallagherKeycloakService")
+	private GallagherKeycloakService gallagherKeycloakService;
+
 	protected PasswordValidator getPasswordValidator()
 	{
 		return passwordValidator;
@@ -238,6 +242,11 @@ public class AccountPageController extends AbstractSearchPageController
 	protected AddressVerificationResultHandler getAddressVerificationResultHandler()
 	{
 		return addressVerificationResultHandler;
+	}
+
+	public GallagherKeycloakService getGallagherKeycloakService()
+	{
+		return gallagherKeycloakService;
 	}
 
 	@ModelAttribute("countries")
@@ -686,15 +695,18 @@ public class AccountPageController extends AbstractSearchPageController
 	@RequireHardLogIn
 	public String updatePassword(final Model model) throws CMSItemNotFoundException
 	{
-		final UpdatePasswordForm updatePasswordForm = new UpdatePasswordForm();
+		final String customerUid = getCustomerFacade().getCurrentCustomerUid();
 
-		model.addAttribute("updatePasswordForm", updatePasswordForm);
+		final boolean success = getGallagherKeycloakService().sendUpdatePasswordNotification(customerUid);
+
+		model.addAttribute("success", success);
 
 		storeCmsPageInModel(model, getContentPageForLabelOrId(UPDATE_PASSWORD_CMS_PAGE));
 		setUpMetaDataForContentPage(model, getContentPageForLabelOrId(UPDATE_PASSWORD_CMS_PAGE));
 
 		model.addAttribute(BREADCRUMBS_ATTR, accountBreadcrumbBuilder.getBreadcrumbs("text.account.profile.updatePasswordForm"));
 		model.addAttribute(ThirdPartyConstants.SeoRobots.META_ROBOTS, ThirdPartyConstants.SeoRobots.NOINDEX_NOFOLLOW);
+
 		return getViewForPage(model);
 	}
 
