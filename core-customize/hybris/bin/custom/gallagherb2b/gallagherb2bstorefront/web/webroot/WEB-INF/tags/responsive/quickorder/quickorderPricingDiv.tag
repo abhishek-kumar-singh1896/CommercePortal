@@ -18,14 +18,14 @@
 	<input type="text"
 		class="js-quick-order-qty disable-paste js-qty-input" value="${quantity}"
 		maxlength="5" autocomplete="off" autocorrect="off" data-html="true"
-		data-placement="bottom" data-updated="false" data-prevQty="0" 
+		data-placement="bottom" data-updated="false" data-prevQty="0" oninput="this.value=this.value.replace(/[^0-9]/g,'');"
 		data-original-title="<spring:theme code='text.quickOrder.page.error.quantityMoreThanStock' />" />
 	</c:when>
 	<c:otherwise>
 		<input type="text"
 		class="js-quick-order-qty disable-paste js-qty-input" value="${0}"
 		maxlength="5" autocomplete="off" autocorrect="off" data-html="true"
-		data-placement="bottom" data-updated="false" data-prevQty="0" 
+		data-placement="bottom" data-updated="false" data-prevQty="0" oninput="this.value=this.value.replace(/[^0-9]/g,'');"
 		 data-original-title="<spring:theme code='text.quickOrder.page.error.quantityMoreThanStock'/>" />
 	</c:otherwise>
 	</c:choose>
