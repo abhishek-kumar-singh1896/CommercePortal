@@ -12,6 +12,7 @@
         <requires-extension name="addonsupport"/>
         <requires-extension name="acceleratorstorefrontcommons"/>
         <requires-extension name="b2bapprovalprocessfacades"/>
+        <requires-extension name="gallagheroutboundservices"/>
         
         <coremodule generated="true" manager="com.gallagher.commerceorgaddon.jalo.GallaghercommerceorgaddonManager" packageroot="com.gallagher.commerceorgaddon"/>
   

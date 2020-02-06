@@ -31,7 +31,15 @@ ACC.common = {
 				}
 			}
 		});
-	}
+	},
+	
+	showLoader : function () {
+	       $('.loader').show();
+	    },
+	    
+	hideLoader : function () {
+	       $('.loader').hide();
+	    } 
 };
 
 
@@ -77,4 +85,3 @@ $.ajaxPrefilter(function (options, originalOptions, jqXHR)
 		
 	}
 });
-
