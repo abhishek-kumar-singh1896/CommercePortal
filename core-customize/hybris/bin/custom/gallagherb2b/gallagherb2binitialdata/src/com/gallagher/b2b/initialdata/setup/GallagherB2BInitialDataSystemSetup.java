@@ -23,6 +23,7 @@ import de.hybris.platform.core.initialization.SystemSetupParameterMethod;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -125,14 +126,14 @@ public class GallagherB2BInitialDataSystemSetup extends AbstractSystemSetup
 		//import AU catalog data
 		final ImportData securityAUImportData = new ImportData();
 		securityAUImportData.setProductCatalogName(SECURITY_B2B_AU);
-		//securityAUImportData.setContentCatalogNames(Arrays.asList(SECURITY_B2B));
+		securityAUImportData.setContentCatalogNames(Collections.EMPTY_LIST);
 		securityAUImportData.setStoreNames(Arrays.asList(SECURITY_B2B_AU));
 		importData.add(securityAUImportData);
 
 		//import GLOBAL catalog data
 		final ImportData securityGlobalImportData = new ImportData();
 		securityGlobalImportData.setProductCatalogName(SECURITY_B2B_GLOBAL);
-		//securityAUImportData.setContentCatalogNames(Arrays.asList(SECURITY_B2B));
+		securityGlobalImportData.setContentCatalogNames(Collections.EMPTY_LIST);
 		securityGlobalImportData.setStoreNames(Arrays.asList(SECURITY_B2B_GLOBAL));
 		importData.add(securityGlobalImportData);
 

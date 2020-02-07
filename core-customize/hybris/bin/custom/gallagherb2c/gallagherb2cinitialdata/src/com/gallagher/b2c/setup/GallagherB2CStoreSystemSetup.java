@@ -16,6 +16,7 @@ import de.hybris.platform.core.initialization.SystemSetupParameterMethod;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Required;
@@ -72,21 +73,25 @@ public class GallagherB2CStoreSystemSetup extends AbstractSystemSetup
 
 		final ImportData amB2CCAImportData = new ImportData();
 		amB2CCAImportData.setProductCatalogName(AM_B2C_CA);
+		amB2CCAImportData.setContentCatalogNames(Collections.EMPTY_LIST);
 		amB2CCAImportData.setStoreNames(Arrays.asList(AM_B2C_CA));
 		importData.add(amB2CCAImportData);
 
 		final ImportData amB2CAUImportData = new ImportData();
 		amB2CAUImportData.setProductCatalogName(AM_B2C_AU);
+		amB2CAUImportData.setContentCatalogNames(Collections.EMPTY_LIST);
 		amB2CAUImportData.setStoreNames(Arrays.asList(AM_B2C_AU));
 		importData.add(amB2CAUImportData);
 
 		final ImportData amB2CNZImportData = new ImportData();
 		amB2CNZImportData.setProductCatalogName(AM_B2C_NZ);
+		amB2CNZImportData.setContentCatalogNames(Collections.EMPTY_LIST);
 		amB2CNZImportData.setStoreNames(Arrays.asList(AM_B2C_NZ));
 		importData.add(amB2CNZImportData);
 
 		final ImportData amB2CGlobalImportData = new ImportData();
 		amB2CGlobalImportData.setProductCatalogName(AM_B2C_GLOBAL);
+		amB2CGlobalImportData.setContentCatalogNames(Collections.EMPTY_LIST);
 		amB2CGlobalImportData.setStoreNames(Arrays.asList(AM_B2C_GLOBAL));
 		importData.add(amB2CGlobalImportData);
 

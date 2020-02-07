@@ -17,7 +17,7 @@ $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCata
 $defaultLanguage=en
 $storeUidGlobal=securityB2BGlobal
 $siteUidGlobal=securityB2BGlobal
-$webServiceSiteUid=$siteUidNZWS
+$webServiceSiteUid=$siteUidGlobalWS
 $siteMapLangCurGlobal=enUsd
 $siteMapUrlLimitPerFile=50000
 $siteMapPage=Homepage,Product,CategoryLanding,Category,Store,Content,Custom
@@ -61,11 +61,11 @@ INSERT_UPDATE SiteMapConfig;&siteMapConfigId;configId[unique=true];siteMapLangua
 
 
 # Cart Cleanup CronJobs
-INSERT_UPDATE CartRemovalCronJob;code[unique=true];job(code)[default=cartRemovalJob];sites(uid)[default=$siteUidNZ];sessionLanguage(isoCode)[default=en]
+INSERT_UPDATE CartRemovalCronJob;code[unique=true];job(code)[default=cartRemovalJob];sites(uid)[default=$siteUidGlobal];sessionLanguage(isoCode)[default=en]
 ;$siteUidGlobal-CartRemovalJob
 
 # Uncollected orders cronjob
-INSERT_UPDATE UncollectedOrdersCronJob;code[unique=true];job(code)[default=uncollectedOrdersJob];sites(uid)[default=$siteUidNZ];sessionLanguage(isoCode)[default=en]
+INSERT_UPDATE UncollectedOrdersCronJob;code[unique=true];job(code)[default=uncollectedOrdersJob];sites(uid)[default=$siteUidGlobal];sessionLanguage(isoCode)[default=en]
 ;$siteUidGlobal-UncollectedOrdersJob
 
 INSERT_UPDATE Trigger;cronJob(code)[unique=true];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
