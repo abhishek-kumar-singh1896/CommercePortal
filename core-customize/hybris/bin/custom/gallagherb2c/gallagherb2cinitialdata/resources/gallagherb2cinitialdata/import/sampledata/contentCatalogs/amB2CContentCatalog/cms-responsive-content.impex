@@ -1250,9 +1250,9 @@ INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[uni
 ##Gallagher Other division drop-down
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;linkName;&linkRef;&componentRef;target(code)[default='sameWindow'];$category;$product;
-;;gallagherDivision1LnkCom;Gallagher Division 1;"#";Division 1;gallagherDivision1LnkCom;gallagherDivision1LnkCom
-;;gallagherDivision2LnkCom;Gallagher Division 2;"#";Division 2;gallagherDivision2LnkCom;gallagherDivision2LnkCom
-;;gallagherDivision3LnkCom;Gallagher Division 3;"#";Division 3;gallagherDivision3LnkCom;gallagherDivision3LnkCom
+;;gallagherDivision1LnkCom;Gallagher Division 1;/gallagher/division/1;Division 1;gallagherDivision1LnkCom;gallagherDivision1LnkCom
+;;gallagherDivision2LnkCom;Gallagher Division 2;/gallagher/division/2;Division 2;gallagherDivision2LnkCom;gallagherDivision2LnkCom
+;;gallagherDivision3LnkCom;Gallagher Division 3;/gallagher/division/3;Division 3;gallagherDivision3LnkCom;gallagherDivision3LnkCom
 
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
@@ -1279,11 +1279,11 @@ INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[uni
 ##Country dropdown for different websites
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;linkName;&linkRef;&componentRef;target(code)[default='sameWindow'];$category;$product;
-;;newZealandLnkCom;New Zealand Link;"#";New Zealand;newZealandLnkCom;newZealandLnkCom
-;;australiaLnkCom;Australia Link;"#";australiaLnkCom;australiaLnkCom
-;;canadaEnLnkCom;Canada English Link;"#";Canada (EN);canadaEnLnkCom;canadaEnLnkCom
-;;canadaFrLnkCom;Canada French Link;"#";Canada (FR);canadaFrLnkCom;canadaFrLnkCom
-;;globalLnkCom;Global Link;"#";Global;globalLnkCom;globalLnkCom
+;;newZealandLnkCom;New Zealand Link;/am/nz;New Zealand;newZealandLnkCom;newZealandLnkCom
+;;australiaLnkCom;Australia Link;/au;Australia;australiaLnkCom;australiaLnkCom
+;;canadaEnLnkCom;Canada English Link;/ca/en;Canada (EN);canadaEnLnkCom;canadaEnLnkCom
+;;canadaFrLnkCom;Canada French Link;/ca/fr;Canada (FR);canadaFrLnkCom;canadaFrLnkCom
+;;globalLnkCom;Global Link;/global;Global;globalLnkCom;globalLnkCom
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
 ;newZealandNavEty;;New Zealand navigation entry;newZealandNavNod;newZealandLnkCom
