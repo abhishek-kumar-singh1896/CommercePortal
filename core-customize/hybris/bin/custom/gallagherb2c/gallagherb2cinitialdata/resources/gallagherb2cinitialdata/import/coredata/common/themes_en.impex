@@ -10,8 +10,4 @@ $lang=en
  
 # SiteTheme
 UPDATE SiteTheme ; code[unique=true] ; name[lang=$lang]               
-                 ; amB2CUS           ; "Animal Management US B2C"     
-                 ; amB2CCA           ; "Animal Management CA B2C"     
-                 ; amB2CAU           ; "Animal Management AU B2C"     
-                 ; amB2CNZ           ; "Animal Management NZ B2C"     
-                 ; amB2CGlobal       ; "Animal Management Global B2C" 
+                 ; amB2C           	 ; "Animal Management B2C" 
