@@ -11,4 +11,3 @@ $lang=en
 # Create CMS Site
 UPDATE CMSSite;uid[unique=true];name[lang=$lang];locale[lang=$lang]
  ;amB2CUS;"Animal Management US B2C Site";en_US
- ;amB2CCA;"Animal Management CA B2C Site";en_CA

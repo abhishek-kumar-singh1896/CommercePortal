@@ -30,15 +30,6 @@ UPDATE Currency;isocode[unique=true];name[lang=$lang]
 ;AUD;Australian Dollar
 ;NZD;New Zealand Dollar
 
-# Titles
-UPDATE Title;code[unique=true];name[lang=$lang]
- ;dr;"Dr."
- ;miss;"Miss"
- ;mr;"Mr."
- ;mrs;"Mrs."
- ;ms;"Ms."
- ;rev;"Rev."
-
 # Credit / Debit Cards
 UPDATE CreditCardType;code[unique=true];name[lang=$lang]
  ;amex;"American Express"

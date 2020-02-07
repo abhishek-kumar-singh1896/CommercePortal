@@ -11,7 +11,7 @@
 # ImpEx for Importing Medias into SecurityB2B Store
 
 # Macros / Replacement Parameter definitions
-$productCatalog=securityB2BProductCatalog
+$productCatalog=securityB2BNZProductCatalog
 
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 $media=@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator]

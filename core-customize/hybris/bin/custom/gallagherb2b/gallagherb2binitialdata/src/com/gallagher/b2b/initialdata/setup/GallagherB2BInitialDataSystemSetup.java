@@ -23,6 +23,7 @@ import de.hybris.platform.core.initialization.SystemSetupParameterMethod;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -51,6 +52,7 @@ public class GallagherB2BInitialDataSystemSetup extends AbstractSystemSetup
 	private GallagherB2BinitialdataSampleDataImportService sampleDataImportService;
 
 	public static final String SECURITY_B2B = "securityB2B";
+	public static final String SECURITY_B2B_MASTER = "securityB2BMaster";
 	public static final String SECURITY_B2B_NZ = "securityB2BNZ";
 	public static final String SECURITY_B2B_AU = "securityB2BAU";
 	public static final String SECURITY_B2B_GLOBAL = "securityB2BGlobal";
@@ -116,23 +118,30 @@ public class GallagherB2BInitialDataSystemSetup extends AbstractSystemSetup
 		final List<ImportData> importData = new ArrayList<ImportData>();
 
 		// import NZ Catalog data
+		final ImportData securityMasterImportData = new ImportData();
+		securityMasterImportData.setProductCatalogName(SECURITY_B2B_MASTER);
+		securityMasterImportData.setContentCatalogNames(Arrays.asList(SECURITY_B2B));
+		securityMasterImportData.setStoreNames(Collections.EMPTY_LIST);
+		importData.add(securityMasterImportData);
+
+		// import NZ Catalog data
 		final ImportData securityNZImportData = new ImportData();
 		securityNZImportData.setProductCatalogName(SECURITY_B2B_NZ);
-		securityNZImportData.setContentCatalogNames(Arrays.asList(SECURITY_B2B));
+		securityNZImportData.setContentCatalogNames(Collections.EMPTY_LIST);
 		securityNZImportData.setStoreNames(Arrays.asList(SECURITY_B2B_NZ));
 		importData.add(securityNZImportData);
 
 		//import AU catalog data
 		final ImportData securityAUImportData = new ImportData();
 		securityAUImportData.setProductCatalogName(SECURITY_B2B_AU);
-		//securityAUImportData.setContentCatalogNames(Arrays.asList(SECURITY_B2B));
+		securityAUImportData.setContentCatalogNames(Collections.EMPTY_LIST);
 		securityAUImportData.setStoreNames(Arrays.asList(SECURITY_B2B_AU));
 		importData.add(securityAUImportData);
 
 		//import GLOBAL catalog data
 		final ImportData securityGlobalImportData = new ImportData();
 		securityGlobalImportData.setProductCatalogName(SECURITY_B2B_GLOBAL);
-		//securityAUImportData.setContentCatalogNames(Arrays.asList(SECURITY_B2B));
+		securityGlobalImportData.setContentCatalogNames(Collections.EMPTY_LIST);
 		securityGlobalImportData.setStoreNames(Arrays.asList(SECURITY_B2B_GLOBAL));
 		importData.add(securityGlobalImportData);
 

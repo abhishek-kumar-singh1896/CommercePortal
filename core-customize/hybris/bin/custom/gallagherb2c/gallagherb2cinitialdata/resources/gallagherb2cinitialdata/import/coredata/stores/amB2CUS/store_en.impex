@@ -8,10 +8,8 @@
 # Language
 $lang=en
 
-$storeUidUS=amB2CUS
-$storeUidCA=amB2CCA
+$storeUid=amB2CUS
 
 # Create Base Store
 UPDATE BaseStore;uid[unique=true];name[lang=$lang]
- ;$storeUidUS;"Animal Management US B2C Store"
- ;$storeUidCA;"Animal Management CA B2C Store"
+ ;$storeUid;"Animal Management US B2C Store"

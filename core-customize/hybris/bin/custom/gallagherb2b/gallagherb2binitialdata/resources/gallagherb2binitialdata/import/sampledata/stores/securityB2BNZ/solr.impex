@@ -13,9 +13,9 @@ $classCatalogVersion=catalogVersion(catalog(id[default='SecurityB2BClassificatio
 $classAttribute=classificationAttribute(code,$classSystemVersion)
 $classClass=classificationClass(code,$classCatalogVersion)
 $classAttributeAssignment=classAttributeAssignment($classClass,$classAttribute,$classSystemVersion)
-$productCatalog=securityB2BProductCatalog
+$productCatalog=securityB2BNZProductCatalog
 $productCatalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
-$solrIndexedType=securityB2BProductType
+$solrIndexedType=securityB2BNZProductType
 
 #
 # Add additional indexed properties for the classification features that we want to index

@@ -70,7 +70,7 @@ public class GallagherAfterSaveListener implements AfterSaveListener
 			{
 				final PK pk = event.getPk();
 
-				if (getModelService().get(pk) instanceof CustomerModel)
+				if (pk.getTypeCode() == 4 && getModelService().get(pk) instanceof CustomerModel)
 				{
 					final CustomerModel customer = getModelService().get(pk);
 

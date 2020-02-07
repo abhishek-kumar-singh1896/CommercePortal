@@ -11,7 +11,7 @@
 # ImpEx for SecurityB2B Points of Service
 
 $storeUidNZ=securityB2BNZ
-$productCatalog=securityB2BProductCatalog
+$productCatalog=securityB2BNZProductCatalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 $storeImage=storeImage(qualifier, $catalogVersion)
 

@@ -1,0 +1,80 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Category Classifications into SecurityB2B Store
+
+# Macros / Replacement Parameter definitions
+$productCatalog=securityB2BMasterProductCatalog
+$productCatalogName=Security B2B NZ Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$classCatalogVersion=catalogversion(catalog(id[default='SecurityB2BClassification']),version[default='1.0'])[unique=true,default='SecurityB2BClassification:1.0']
+$classSystemVersion=systemVersion(catalog(id[default='SecurityB2BClassification']),version[default='1.0'])[unique=true]
+$class=classificationClass(ClassificationClass.code,$classCatalogVersion)[unique=true]
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+$attribute=classificationAttribute(code,$classSystemVersion)[unique=true]
+$unit=unit(code,$classSystemVersion)
+
+# Insert Classifications
+INSERT_UPDATE ClassificationClass;$classCatalogVersion;code[unique=true];allowedPrincipals(uid)[default='customergroup'];;;;;
+;;Assigned Features
+;;Cable specifications (HBUS data only)
+
+# Insert Classification Attributes
+INSERT_UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true];;;;;;
+;;Maximum Read distance - MIFARE
+;;MIFARE DESFire
+;;MIFARE DESFire EV2
+;;MIFARE Plus
+;;125kHz
+;;Mobile Connect
+;;Dimensions mm
+;;Dimensions inches
+;;Environmental protection
+;;Impact rating
+;;UV Stability
+;;Voltage
+;;Idle current 13.6Vdc - MIFARE
+;;Idle current 13.6Vdc - Multi
+;;Operational Temperature Range
+;;Humidity
+
+;;Cat5e††
+;;Gallagher HBUS Cable††
+;;Standards Compliance
+
+# Links ClassificationClasses to Categories
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories;;;;;;
+;T-Series Readers;Assigned Features;
+;T-Series Readers;Cable specifications (HBUS data only);
+
+
+INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attributeType(code[default=string]);multiValued[default=false];range[default=false];localized[default=false]
+;Assigned Features;Maximum Read distance - MIFARE;0;mm
+;Assigned Features;MIFARE DESFire;1;mm
+;Assigned Features;MIFARE DESFire EV2;2;mm
+;Assigned Features;MIFARE Plus;3;mm
+;Assigned Features;125kHz;4;mm
+;Assigned Features;Mobile Connect;5;
+;Assigned Features;Dimensions mm;6;
+;Assigned Features;Dimensions inches;7;
+;Assigned Features;Environmental protection;8;
+;Assigned Features;Impact rating;9;
+;Assigned Features;UV Stability;10;
+;Assigned Features;Voltage;11;Vdc
+;Assigned Features;Idle current 13.6Vdc - MIFARE;12;mA
+;Assigned Features;Idle current 13.6Vdc - Multi;13;mA
+;Assigned Features;Operational Temperature Range;14;
+;Assigned Features;Humidity;15;
+
+;Cable specifications (HBUS data only);Cat5e††;0;
+;Cable specifications (HBUS data only);Gallagher HBUS Cable††;1;
+;Cable specifications (HBUS data only);Standards Compliance;2;
+ 

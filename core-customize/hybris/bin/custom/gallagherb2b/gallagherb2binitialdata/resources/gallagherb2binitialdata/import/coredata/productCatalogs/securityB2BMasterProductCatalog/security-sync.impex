@@ -46,3 +46,27 @@ INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetPr
 
 INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetProductCVGlobal;
 ;sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged;;;;
+
+INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
+;sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
+
+INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
+;sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
+
+INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
+;sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
+
+INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
+;sync securityB2BNZProductCatalog:Staged->Online						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
+
+INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
+;sync securityB2BAUProductCatalog:Staged->Online						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
+
+INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
+;sync securityB2BGlobalProductCatalog:Staged->Online						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1

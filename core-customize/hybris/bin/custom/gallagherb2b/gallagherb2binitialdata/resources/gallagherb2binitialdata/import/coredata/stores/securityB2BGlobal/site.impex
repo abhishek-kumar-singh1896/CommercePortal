@@ -17,7 +17,7 @@ $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCata
 $defaultLanguage=en
 $storeUidGlobal=securityB2BGlobal
 $siteUidGlobal=securityB2BGlobal
-$webServiceSiteUid=$siteUidNZWS
+$webServiceSiteUid=$siteUidGlobalWS
 $siteMapLangCurGlobal=enUsd
 $siteMapUrlLimitPerFile=50000
 $siteMapPage=Homepage,Product,CategoryLanding,Category,Store,Content,Custom
@@ -33,7 +33,7 @@ $jarResource=$config-jarResource
 $storefrontContextRoot=$config-storefrontContextRoot
 
 # CMS Site
-INSERT_UPDATE CMSSite;uid[unique=true];theme(code);channel(code);stores(uid);contentCatalogs(id);defaultCatalog(id);defaultLanguage(isoCode);urlPatterns;active;previewURL;startingPage(uid,$contentCV);urlEncodingAttributes;defaultPromotionGroup(Identifier)[default=securityB2BNZPromoGrp];minimumSpendThreshold;thresholdMessage;minimumQuantityThreshold;thresholdQuantityMessage
+INSERT_UPDATE CMSSite;uid[unique=true];theme(code);channel(code);stores(uid);contentCatalogs(id);defaultCatalog(id);defaultLanguage(isoCode);urlPatterns;active;previewURL;startingPage(uid,$contentCV);urlEncodingAttributes;defaultPromotionGroup(Identifier)[default=securityB2BGlobalPromoGrp];minimumSpendThreshold;thresholdMessage;minimumQuantityThreshold;thresholdQuantityMessage
 ;$siteUidGlobal;securityB2B;B2B;$storeUidGlobal;$contentCatalog;$productCatalogGlobal;$defaultLanguage;(?i)^https?://[^/]+(/[^?]*)?\?(.*\&)?(site=$siteUidGlobal)(|\&.*)$,(?i)^https?://$siteUidGlobal\.[^/]+(|/.*|\?.*)$,(?i)^https?://accstorefront.cj6th-gallagher1-d1-public.model-t.cc.commerce.ondemand.com/security/global+(|/.*|\?.*)$,(?i)^https?://localhost:9002/security/global+(|/.*|\?.*)$;true;$storefrontContextRoot/?site=$siteUidGlobal;homepage;country,language;;;;;
 
 # SiteMap Configuration
@@ -61,11 +61,11 @@ INSERT_UPDATE SiteMapConfig;&siteMapConfigId;configId[unique=true];siteMapLangua
 
 
 # Cart Cleanup CronJobs
-INSERT_UPDATE CartRemovalCronJob;code[unique=true];job(code)[default=cartRemovalJob];sites(uid)[default=$siteUidNZ];sessionLanguage(isoCode)[default=en]
+INSERT_UPDATE CartRemovalCronJob;code[unique=true];job(code)[default=cartRemovalJob];sites(uid)[default=$siteUidGlobal];sessionLanguage(isoCode)[default=en]
 ;$siteUidGlobal-CartRemovalJob
 
 # Uncollected orders cronjob
-INSERT_UPDATE UncollectedOrdersCronJob;code[unique=true];job(code)[default=uncollectedOrdersJob];sites(uid)[default=$siteUidNZ];sessionLanguage(isoCode)[default=en]
+INSERT_UPDATE UncollectedOrdersCronJob;code[unique=true];job(code)[default=uncollectedOrdersJob];sites(uid)[default=$siteUidGlobal];sessionLanguage(isoCode)[default=en]
 ;$siteUidGlobal-UncollectedOrdersJob
 
 INSERT_UPDATE Trigger;cronJob(code)[unique=true];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay

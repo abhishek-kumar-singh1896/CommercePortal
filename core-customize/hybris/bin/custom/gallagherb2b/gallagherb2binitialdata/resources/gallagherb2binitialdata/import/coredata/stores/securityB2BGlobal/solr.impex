@@ -13,7 +13,7 @@
 #
 $productCatalog=securityB2BGlobalProductCatalog
 $catalogVersions=catalogVersions(catalog(id),version); 
-$facetSearchConfigName=securityB2BIndexGlobal
+$facetSearchConfigName=securityB2BGlobalIndex
 $facetSearchConfigDescription=Security B2B Global Solr Index
 $searchIndexNamePrefix=securityB2BGlobal
 $solrIndexedType=securityB2BGlobalProductType

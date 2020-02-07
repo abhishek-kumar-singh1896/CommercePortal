@@ -18,15 +18,6 @@ UPDATE Currency;isocode[unique=true];name[lang=$lang]
  ;CAD;"Canadian Dollar"
  ;USD;"US Dollar"
 
-# Titles
-UPDATE Title;code[unique=true];name[lang=$lang]
- ;dr;"Dr."
- ;miss;"Miss"
- ;mr;"Mr."
- ;mrs;"Mrs."
- ;ms;"Ms."
- ;rev;"Rev."
-
 # Credit / Debit Cards
 UPDATE CreditCardType;code[unique=true];name[lang=$lang]
  ;amex;"American Express"
