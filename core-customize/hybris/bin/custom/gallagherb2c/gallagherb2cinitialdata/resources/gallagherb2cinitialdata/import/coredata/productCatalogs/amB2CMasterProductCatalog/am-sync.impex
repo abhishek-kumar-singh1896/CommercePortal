@@ -6,6 +6,10 @@ $targetProductCV=targetVersion(catalog(id[default=$productCatalog]),version[defa
 INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetProductCV;
 ;sync amB2CNZProductCatalog:Staged->Online;;;;
 
+INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
+;sync amB2CNZProductCatalog:Staged->Online						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
+
 #----------------------------------------------------------------------
 
 $productCatalog=amB2CAUProductCatalog
@@ -15,6 +19,10 @@ $targetProductCV=targetVersion(catalog(id[default=$productCatalog]),version[defa
 
 INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetProductCV;
 ;sync amB2CAUProductCatalog:Staged->Online;;;;
+
+INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
+;sync amB2CAUProductCatalog:Staged->Online						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
 
 #----------------------------------------------------------------------
 
@@ -26,6 +34,10 @@ $targetProductCV=targetVersion(catalog(id[default=$productCatalog]),version[defa
 INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetProductCV;
 ;sync amB2CUSProductCatalog:Staged->Online;;;;
 
+INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
+;sync amB2CUSProductCatalog:Staged->Online						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
+
 #----------------------------------------------------------------------
 
 $productCatalog=amB2CCAProductCatalog
@@ -36,6 +48,10 @@ $targetProductCV=targetVersion(catalog(id[default=$productCatalog]),version[defa
 INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetProductCV;
 ;sync amB2CCAProductCatalog:Staged->Online;;;;
 
+INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
+;sync amB2CCAProductCatalog:Staged->Online						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
+
 #----------------------------------------------------------------------
 
 $productCatalog=amB2CGlobalProductCatalog
@@ -45,6 +61,10 @@ $targetProductCV=targetVersion(catalog(id[default=$productCatalog]),version[defa
 
 INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetProductCV;
 ;sync amB2CGlobalProductCatalog:Staged->Online;;;;
+
+INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
+;sync amB2CGlobalProductCatalog:Staged->Online						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
 
 #----------------------------------------------------------------------
 
@@ -65,14 +85,35 @@ $targetProductCVGlobal=targetVersion(catalog(id[default=$productCatalogGlobal]),
 INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetProductCVNZ;
 ;sync amB2CMasterProductCatalog:Staged->amB2CNZProductCatalog:Staged;;;;
 
+INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
+;sync amB2CMasterProductCatalog:Staged->amB2CNZProductCatalog:Staged						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
+
+
 INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetProductCVAU;
 ;sync amB2CMasterProductCatalog:Staged->amB2CAUProductCatalog:Staged;;;;
+
+INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
+;sync amB2CMasterProductCatalog:Staged->amB2CAUProductCatalog:Staged						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
 
 INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetProductCVUS;
 ;sync amB2CMasterProductCatalog:Staged->amB2CUSProductCatalog:Staged;;;;
 
+INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
+;sync amB2CMasterProductCatalog:Staged->amB2CUSProductCatalog:Staged						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
+
 INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetProductCVCA;
 ;sync amB2CMasterProductCatalog:Staged->amB2CCAProductCatalog:Staged;;;;
 
+INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
+;sync amB2CMasterProductCatalog:Staged->amB2CCAProductCatalog:Staged						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
+
 INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetProductCVGlobal;
 ;sync amB2CMasterProductCatalog:Staged->amB2CGlobalProductCatalog:Staged;;;;
+
+INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
+;sync amB2CMasterProductCatalog:Staged->amB2CGlobalProductCatalog:Staged						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1

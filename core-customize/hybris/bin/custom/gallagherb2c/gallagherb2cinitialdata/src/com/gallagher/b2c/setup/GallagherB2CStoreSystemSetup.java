@@ -33,6 +33,7 @@ public class GallagherB2CStoreSystemSetup extends AbstractSystemSetup
 	public static final String AM_B2C_AU = "amB2CAU";
 	public static final String AM_B2C_NZ = "amB2CNZ";
 	public static final String AM_B2C_GLOBAL = "amB2CGlobal";
+	public static final String AM_B2C_MASTER = "amB2CMaster";
 
 	private static final String IMPORT_CORE_DATA = "importCoreData";
 	private static final String IMPORT_SAMPLE_DATA = "importSampleData";
@@ -65,9 +66,15 @@ public class GallagherB2CStoreSystemSetup extends AbstractSystemSetup
 	{
 		final List<ImportData> importData = new ArrayList<ImportData>();
 
+		final ImportData amB2CMasterImportData = new ImportData();
+		amB2CMasterImportData.setProductCatalogName(AM_B2C_MASTER);
+		amB2CMasterImportData.setContentCatalogNames(Arrays.asList(AM_B2C));
+		amB2CMasterImportData.setStoreNames(Collections.EMPTY_LIST);
+		importData.add(amB2CMasterImportData);
+
 		final ImportData amB2CUSImportData = new ImportData();
 		amB2CUSImportData.setProductCatalogName(AM_B2C_US);
-		amB2CUSImportData.setContentCatalogNames(Arrays.asList(AM_B2C));
+		amB2CUSImportData.setContentCatalogNames(Collections.EMPTY_LIST);
 		amB2CUSImportData.setStoreNames(Arrays.asList(AM_B2C_US));
 		importData.add(amB2CUSImportData);
 

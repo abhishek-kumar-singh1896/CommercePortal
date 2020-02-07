@@ -16,10 +16,6 @@ $siteMapLangCur=enCad
 $siteMapPage=Homepage,Product,CategoryLanding,Category,Store,Content,Custom
 $customSiteMapUrls=/Open-Catalogue/c/1?q=%3AtopRated%3AallPromotions%3ABOGOFElectronics%3AallPromotions%3A10DiscountCanonEOS450D%3AallPromotions%3AMultiBuyElectronics%3AallPromotions%3APerfectPartnerElectronics%3AallPromotions%3AProductBundleElectronics,/Brands/c/brands?q=%3Arelevance%3Abrand%3Abrand_5%3Acategory%3A575,/Open-Catalogue/Cameras/Hand-held-Camcorders/c/584?q=%3Arelevance%3Abrand%3Abrand_2,/Open-Catalogue/Components/Power-Supplies/c/816?q=%3Arelevance%3Abrand%3Abrand_5,/Open-Catalogue/Data-storage/Flash-Memory/c/902?q=%3Arelevance%3Abrand%3Abrand_18
  
-# Remove black and blue themes for responsive
-REMOVE SiteTheme ; code[unique=true] 
-                 ; black             
-                 ; blue              
                  
 # Import config properties into impex macros
 UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor] ; pk[unique=true] 

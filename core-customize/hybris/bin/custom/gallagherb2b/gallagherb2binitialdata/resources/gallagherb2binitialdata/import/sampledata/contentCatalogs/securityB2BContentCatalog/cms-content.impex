@@ -15,7 +15,7 @@ UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.Conf
 $contentCatalog=securityB2BContentCatalog
 $contentCatalogName=Security B2B Content Catalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
-$productCatalog=securityB2BNZProductCatalog
+$productCatalog=securityB2BMasterProductCatalog
 $productCatalogName=Security B2B Product Catalog
 $productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 $picture=media(code, $contentCV);
@@ -36,10 +36,6 @@ $siteUidNZ=securityB2BNZ
 $keycloakBaseURL=$config-keycloak.base.url
 $keycloakAuthURL=$config-keycloak.auth.url/$config-keycloak.realm
 $keycloakPasswordURL=$config-keycloak.password.url
-
-# CMS Site Settings
-UPDATE CMSSite;uid[unique=true];defaultPreviewCategory(code, $productCV);defaultPreviewProduct(code, $productCV);theme(code)
-;$siteUidNZ;Readers;t10-mifare-reader;securityB2BNZ
 
 ###### Navigation Start ######
 ## navigation is in tree structure ##

@@ -4,12 +4,12 @@
 #
 # Import the Solr configuration for the Animal Management B2C store
 #
-$productCatalog=amB2CAUProductCatalog
+$productCatalog=amB2CNZProductCatalog
 $catalogVersions=catalogVersions(catalog(id),version); 
-$facetSearchConfigName=amB2CAUIndex
+$facetSearchConfigName=amB2CNZIndex
 $facetSearchConfigDescription=Animal Management B2C NZ Solr Index
 $searchIndexNamePrefix=amB2CNZ
-$solrIndexedType=amB2CAUProductType
+$solrIndexedType=amB2CNZProductType
 $indexBaseSite=amB2CNZ
 $indexLanguages=en
 $indexCurrencies=NZD
@@ -33,15 +33,15 @@ UPDATE BaseSite ; uid[unique=true] ; solrFacetSearchConfiguration(name)
                 
 # Define price range set
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true]  ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                                
-                                ; amB2CPriceRangeAUD ; NZD       ; double ; rangeRefAUD1,rangeRefAUD2,rangeRefAUD3,rangeRefAUD4,rangeRefAUD5 
+                                ; amB2CPriceRangeNZD ; NZD       ; double ; rangeRefNZD1,rangeRefNZD2,rangeRefNZD3,rangeRefNZD4,rangeRefNZD5 
                                 
 # Define price ranges           
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to     
-                             ; rangeRefAUD1     ; amB2CPriceRangeAUD                   ; $0-$49.99         ; 0    ; 49.99  
-                             ; rangeRefAUD2     ; amB2CPriceRangeAUD                   ; $50-$199.99       ; 50   ; 199.99 
-                             ; rangeRefAUD3     ; amB2CPriceRangeAUD                   ; $200-$499.99      ; 200  ; 499.99 
-                             ; rangeRefAUD4     ; amB2CPriceRangeAUD                   ; $500-$999.99      ; 500  ; 999.99 
-                             ; rangeRefAUD5     ; amB2CPriceRangeAUD                   ; $1,000-$100,000   ; 1000 ; 100000 
+                             ; rangeRefNZD1     ; amB2CPriceRangeNZD                   ; $0-$49.99         ; 0    ; 49.99  
+                             ; rangeRefNZD2     ; amB2CPriceRangeNZD                   ; $50-$199.99       ; 50   ; 199.99 
+                             ; rangeRefNZD3     ; amB2CPriceRangeNZD                   ; $200-$499.99      ; 200  ; 499.99 
+                             ; rangeRefNZD4     ; amB2CPriceRangeNZD                   ; $500-$999.99      ; 500  ; 999.99 
+                             ; rangeRefNZD5     ; amB2CPriceRangeNZD                   ; $1,000-$100,000   ; 1000 ; 100000 
                              
                              
 # Non-facet properties       
@@ -85,7 +85,7 @@ INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; n
                                   
 # Other facet properties          
 INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=true] ; facetType(code) ; facetSort(code) ; priority ; visible ; useForSpellchecking[default=false] ; useForAutocomplete[default=false] ; fieldValueProvider             ; facetDisplayNameProvider                    ; customFacetSortProvider       ; topValuesProvider        ; rangeSets(name)                             
-                                  ; $solrIndexedType                         ; price             ; double     ;                    ; true                    ;                          ;                           ;                     ; MultiSelectOr   ; Alpha           ; 4000     ; true    ;                                    ;                                   ; productPriceValueProvider      ;                                             ;                               ; defaultTopValuesProvider ; amB2CPriceRangeAUD 
+                                  ; $solrIndexedType                         ; price             ; double     ;                    ; true                    ;                          ;                           ;                     ; MultiSelectOr   ; Alpha           ; 4000     ; true    ;                                    ;                                   ; productPriceValueProvider      ;                                             ;                               ; defaultTopValuesProvider ; amB2CPriceRangeNZD 
                                   ; $solrIndexedType                         ; allPromotions     ; string     ;                    ;                         ;                          ; true                      ;                     ; MultiSelectOr   ; Alpha           ; 0        ; false   ;                                    ;                                   ; promotionCodeValueProvider     ; promotionFacetDisplayNameProvider           ;                               ;                          
                                   ; $solrIndexedType                         ; availableInStores ; string     ;                    ;                         ;                          ; true                      ;                     ; MultiSelectOr   ; Custom          ; 10000    ; true    ;                                    ;                                   ; productStoreStockValueProvider ; gallagherPointOfServiceFacetDisplayNameProvider ; distanceAttributeSortProvider 
                                   
