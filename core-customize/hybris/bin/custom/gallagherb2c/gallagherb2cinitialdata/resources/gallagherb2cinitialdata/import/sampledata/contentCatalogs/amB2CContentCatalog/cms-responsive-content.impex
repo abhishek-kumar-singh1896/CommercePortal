@@ -190,8 +190,8 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;pa
 #;SAPCommerceNavNode;;SAP Commerce Cloud Pages;AMB2CNavNode;AboutSAPCommerceLink,FAQLink;SAPCommerceNavNode
 #;SAPCustomerExperienceNavNode;;SAP Customer Experience Pages;AMB2CNavNode;VisitSAPLink,ContactUsLink;SAPCustomerExperienceNavNode
 ;FollowUsNavNode;;Follow Us Pages;AMB2CNavNode;AgileCommerceBlogLink,LinkedInLink,FacebookLink,TwitterLink;FollowUsNavNode
-;SAPCommerceNavNode;;SAP Commerce Cloud Pages;AMB2CNavNode; ProductsFooterLink,ElectricFencingFooterLink,WeighingEIDFooterLink,WirelessMonitoringFooterLink,SteelGatesHardwareFooterLink,FarmInfoToolsFooterLink,StockProdsFooterLink;SAPCommerceNavNode
-;SAPCustomerExperienceNavNode;;SAP Customer Experience Pages;AMB2CNavNode; AboutUsFooterLink,SupportFooterLink,ContactFooterLink,NewsEventsFooterLink,InnovationAwardsFooterLink;SAPCustomerExperienceNavNode
+;SAPCommerceNavNode;;SAP Commerce Cloud Pages;AMB2CNavNode;ProductsFooterLink,ElectricFencingFooterLink,WeighingEIDFooterLink,WirelessMonitoringFooterLink,SteelGatesHardwareFooterLink,FarmInfoToolsFooterLink,StockProdsFooterLink;SAPCommerceNavNode
+;SAPCustomerExperienceNavNode;;SAP Customer Experience Pages;AMB2CNavNode;AboutUsFooterLink,SupportFooterLink,ContactFooterLink,NewsEventsFooterLink,InnovationAwardsFooterLink;SAPCustomerExperienceNavNode
 
 # Preview Image for use in the CMS Cockpit for special ContentPages
 INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];mime;realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];folder(qualifier)[default='images']
@@ -1094,6 +1094,7 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);&nodeRef;children(uid,$contentCV)
 ;AMB2CCategoryNavNode;;Categories;AMB2CNavNode;AMB2CCategoryNavNode;BrandsNavNode,ElectricFencingNavNode
 
+
 ## level 3. children of Category Nav ##
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef);
 ;BrandsNavNode;;Brand Links;BrandsNavNode;ElectricFencingNavNode
@@ -1166,13 +1167,27 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;pa
 #;FooterNavNode;;Footer Pages;AMB2CNavNode;FooterNavNode;SAPCommerceNavNode,SAPCustomerExperienceNavNode,FollowUsNavNode
 ;FooterNavNode;;Footer Pages;AMB2CNavNode;FooterNavNode;SAPCommerceNavNode,SAPCustomerExperienceNavNode
 
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
+;ProductsFooterNode;;Products Footer Node;SAPCommerceNavNode;;ProductsFooterNode
+;ElectricFencingFooterNode;;Electric Fencing Footer Node;SAPCommerceNavNode;;ElectricFencingFooterNode
+;WeighingEIDFooterNode;;Weighing EID Footer Node;SAPCommerceNavNode;;WeighingEIDFooterNode
+;WirelessWtaerMonitoringFooterNode;;Wireless Wtaer Monitoring Footer Node;SAPCommerceNavNode;;WirelessWtaerMonitoringFooterNode
+;SteelGatesHardwareFooterNode;;Steel Gates Hardware Footer Node;SAPCommerceNavNode;;SteelGatesHardwareFooterNode
+;FarmInformationToolsFooterNode;;Farm Information Tools Footer Node;SAPCommerceNavNode;;FarmInformationToolsFooterNode
+;StockProdsFooterNode;;Stock Prods Footer Node;SAPCommerceNavNode;;StockProdsFooterNode
+;AboutUsFooterNode;;About Us Footer Node;SAPCustomerExperienceNavNode;;AboutUsFooterNode
+;SupportFooterNode;;Support Footer Node;SAPCustomerExperienceNavNode;;SupportFooterNode
+;ContactFooterNode;;Contact Footer Node;SAPCustomerExperienceNavNode;;ContactFooterNode
+;NewsEventsFooterNode;;News Events Footer Node;SAPCustomerExperienceNavNode;;NewsEventsFooterNode
+;InnovationAwardsFooterNode;;Innovation Awards Footer Node;SAPCustomerExperienceNavNode;;InnovationAwardsFooterNode
+
 # children of FooterNavNode #
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef)
 #;SAPCommerceNavNode;;SAP Commerce Cloud Pages;SAPCommerceNavNode;AboutSAPCommerceNavNode,FAQNavNode
 #;SAPCustomerExperienceNavNode;;SAP Customer Experience Pages;SAPCustomerExperienceNavNode;AboutSAPCustomerExperienceNavNode,ContactUsNavNode
 #;FollowUsNavNode;;Follow Us Pages;FollowUsNavNode;AgileCommerceBlogNavNode,LinkedInNavNode,FacebookNavNode,TwitterNavNode
-;SAPCommerceNavNode;;SAP Commerce Cloud Pages;AMB2CNavNode; ProductsFooterLink,ElectricFencingFooterLink,WeighingEIDFooterLink,WirelessMonitoringFooterLink,SteelGatesHardwareFooterLink,FarmInfoToolsFooterLink,StockProdsFooterLink;SAPCommerceNavNode
-;SAPCustomerExperienceNavNode;;SAP Customer Experience Pages;AMB2CNavNode; AboutUsFooterLink,SupportFooterLink,ContactFooterLink,NewsEventsFooterLink,InnovationAwardsFooterLink;SAPCustomerExperienceNavNode
+;SAPCommerceNavNode;;SAP Commerce Cloud Pages;SAPCommerceNavNode;ProductsFooterNode,ElectricFencingFooterNode,WeighingEIDFooterNode,WirelessWtaerMonitoringFooterNode,SteelGatesHardwareFooterNode,FarmInformationToolsFooterNode,StockProdsFooterNode
+;SAPCustomerExperienceNavNode;;SAP Customer Experience Pages;SAPCustomerExperienceNavNode;AboutUsFooterNode,SupportFooterNode,ContactFooterNode,NewsEventsFooterNode,InnovationAwardsFooterNode
 
 # children of above navigation nodes #
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef);
@@ -1375,7 +1390,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 #;;LinkedInLink;Linked In Link;"http://www.linkedin.com/groups/5063400";LinkedInLink;LinkedInLink;newWindow;;;
 ;;FAQLink;FAQ Link;/faq;FAQLink;FAQLin;;;;
 ;;TermsAndConditionsLink;Terms and Conditions Link;/termsAndConditions;TermsAndConditionsLink;TermsAndConditionsLink;;;;
-ProductsFooterLink;Products Footer Link;'/';ProductsFooterLink;ProductsFooterLink;;;
+;;ProductsFooterLink;Products Footer Link;'/';ProductsFooterLink;ProductsFooterLink;;;
 ;;ElectricFencingFooterLink;Electric Fencing Footer Link;'/';ElectricFencingFooterLink;ElectricFencingFooterLink;;;
 ;;WeighingEIDFooterLink;Weighing and EID Footer Link;'/';WeighingEIDFooterLink;WeighingEIDFooterLink;;;
 ;;SteelGatesHardwareFooterLink;Steel Gates and Hardware Footer Link;'/';SteelGatesHardwareFooterLink;SteelGatesHardwareFooterLink;;;
