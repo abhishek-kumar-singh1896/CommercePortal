@@ -31,7 +31,7 @@
         data-mini-cart-items-text="<spring:theme code="basket.items"/>"
         > --%>
         <svg class="cart-icon">
-			<use xlink:href="_ui/responsive/common/images/gallagher-icons.svg#cart" />
+			<use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#cart" />
         </svg>
         <span class="info-number">
         	<span class="info-text">

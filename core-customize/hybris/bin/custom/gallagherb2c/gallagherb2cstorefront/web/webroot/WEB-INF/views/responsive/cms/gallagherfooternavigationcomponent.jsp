@@ -42,19 +42,19 @@
 					<div class="col-md-4 col-lg-3">
 						<div class="social-icons">
 							<a href="https://www.facebook.com/" title="Facebook" target="_blank">
-								<img src="_ui/responsive/common/images/facebook.png" alt="Facebook">
+								<img src="${commonResourcePath}/images/facebook.png" alt="Facebook">
 							</a> 
 							<a href="https://www.youtube.com/" title="Youtuebe" target="_blank">
-								<img src="_ui/responsive/common/images/youtube.png" alt="Youtube">
+								<img src="${commonResourcePath}/images/youtube.png" alt="Youtube">
 							</a>
 							<a href="https://www.linkedin.com/" title="Linkedin" target="_blank">
-								<img src="_ui/responsive/common/images/linkedin.png" alt="Linkedin">
+								<img src="${commonResourcePath}/images/linkedin.png" alt="Linkedin">
 							</a>
 							<a href="https://www.twitter.com/" title="Twitter" target="_blank">
-								<img src="_ui/responsive/common/images/twitter.png" alt="Twitter">
+								<img src="${commonResourcePath}/images/twitter.png" alt="Twitter">
 							</a>
 							<a href="https://www.instagram.com/" title="Instagram" target="_blank"> 
-								<img src="_ui/responsive/common/images/instagram.png" alt="Instagram">
+								<img src="${commonResourcePath}/images/instagram.png" alt="Instagram">
 							</a>
 						</div>
 					</div>
@@ -79,7 +79,7 @@
 											${dropdownValue.item.linkName} <span class="down-arrow-icon">
 												<svg>
                                 <use
-														xlink:href="_ui/responsive/common/images/gallagher-icons.svg#arrow-down" />
+														xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-down" />
                             </svg>
 										</span>
 										</a>
@@ -118,7 +118,7 @@
 
 											<span class="down-arrow-icon"> <svg>
                                 <use
-														xlink:href="_ui/responsive/common/images/gallagher-icons.svg#arrow-down" />
+														xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-down" />
                             </svg>
 										</span>
 										</a>
@@ -162,7 +162,7 @@
 											aria-haspopup="true" aria-expanded="false"> <span
 											class="country-text"> ${dropdownValue.item.linkName} </span>
 											<span class="down-arrow-icon"> <svg>
-                                				<use xlink:href="_ui/responsive/common/images/gallagher-icons.svg#arrow-down" />
+                                				<use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-down" />
                             				</svg>
 										</span> </span>
 										</a>
