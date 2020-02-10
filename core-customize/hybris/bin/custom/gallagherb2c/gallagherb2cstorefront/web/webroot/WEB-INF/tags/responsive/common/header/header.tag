@@ -103,56 +103,11 @@
 										<cms:component component="${cart}" />
 									</cms:pageSlot>
 								</button>
-							</div>
-							<div class="dropdown-menu dropdown-menu-right"
+							
+							<div class="dropdown-menu dropdown-menu-right mini-cart"
 								aria-labelledby="btnGroupDrop1">
-								<div class="your-cart-title">Your Cart</div>
-								<div class="mini-cart-item-out">
-									<ul>
-										<li>
-											<div class="row">
-												<div class="col-2"></div>
-												<div class="col-10">
-													<div class="mini-cart-title">1 x S100 Portable Solar
-														Fence Energizer</div>
-													<div class="row mt-2">
-														<div class="col-6">
-															<div class="mini-cart-id">G61150</div>
-														</div>
-														<div class="col-6 text-right">
-															<div class="mini-cart-price">$123.00</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="row">
-												<div class="col-2"></div>
-												<div class="col-10">
-													<div class="mini-cart-title">1 x S100 Portable Solar
-														Fence Energizer</div>
-													<div class="row mt-2">
-														<div class="col-6">
-															<div class="mini-cart-id">G61150</div>
-														</div>
-														<div class="col-6 text-right">
-															<div class="mini-cart-price">$123.00</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</li>
-									</ul>
-
-									<div class="mini-cart-total">
-										<span class="total-text">Total</span> <span
-											class="total-value">$246.00</span>
-									</div>
-								</div>
-
-								<button type="button" class="btn btn-view-cart">View
-									Cart</button>
+								
+							</div>
 							</div>
 						</div>
 					</div>
@@ -188,64 +143,19 @@
 										<cms:component component="${cart}" />
 									</cms:pageSlot>
 								</button>
+							
+
+							<div class="dropdown-menu dropdown-menu-right mini-cart"
+								aria-labelledby="btnGroupDrop1">
+								
 							</div>
-
-							<div class="dropdown-menu dropdown-menu-right"
-								aria-labelledby="btnGroupDrop2">
-								<div class="your-cart-title">Your Cart</div>
-								<div class="mini-cart-item-out">
-									<ul>
-										<li>
-											<div class="row">
-												<div class="col-2"></div>
-												<div class="col-10">
-													<div class="mini-cart-title">1 x S100 Portable Solar
-														Fence Energizer</div>
-													<div class="row mt-2">
-														<div class="col-6">
-															<div class="mini-cart-id">G61150</div>
-														</div>
-														<div class="col-6 text-right">
-															<div class="mini-cart-price">$123.00</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="row">
-												<div class="col-2"></div>
-												<div class="col-10">
-													<div class="mini-cart-title">1 x S100 Portable Solar
-														Fence Energizer</div>
-													<div class="row mt-2">
-														<div class="col-6">
-															<div class="mini-cart-id">G61150</div>
-														</div>
-														<div class="col-6 text-right">
-															<div class="mini-cart-price">$123.00</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</li>
-									</ul>
-
-									<div class="mini-cart-total">
-										<span class="total-text">Total</span> <span
-											class="total-value">$246.00</span>
-									</div>
-								</div>
-
-								<button type="button" class="btn btn-view-cart">View
-									Cart</button>
 							</div>
 						</div>
 					</div>
 
 					<!-- For Mobile Cart Section-->
 					<div class="header-right-btn-group for-mobile-view">
-						<button id="btnGroupDrop3" type="button"
+						<button id="btnGroupDrop1" type="button"
 							class="btn right-btn dropdown-toggle" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false">
 							<cms:pageSlot position="MiniCart" var="cart">
@@ -253,54 +163,9 @@
 							</cms:pageSlot>
 						</button>
 
-						<div class="dropdown-menu dropdown-menu-right"
-							aria-labelledby="btnGroupDrop3">
-							<div class="your-cart-title">Your Cart</div>
-							<div class="mini-cart-item-out">
-								<ul>
-									<li>
-										<div class="row">
-											<div class="col-2"></div>
-											<div class="col-10">
-												<div class="mini-cart-title">1 x S100 Portable Solar
-													Fence Energizer</div>
-												<div class="row mt-2">
-													<div class="col-6">
-														<div class="mini-cart-id">G61150</div>
-													</div>
-													<div class="col-6 text-right">
-														<div class="mini-cart-price">$123.00</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</li>
-									<li>
-										<div class="row">
-											<div class="col-2"></div>
-											<div class="col-10">
-												<div class="mini-cart-title">1 x S100 Portable Solar
-													Fence Energizer</div>
-												<div class="row mt-2">
-													<div class="col-6">
-														<div class="mini-cart-id">G61150</div>
-													</div>
-													<div class="col-6 text-right">
-														<div class="mini-cart-price">$123.00</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</li>
-								</ul>
-
-								<div class="mini-cart-total">
-									<span class="total-text">Total</span> <span class="total-value">$246.00</span>
-								</div>
-							</div>
-
-							<button type="button" class="btn btn-view-cart">View
-								Cart</button>
+						<div class="dropdown-menu dropdown-menu-right mini-cart"
+							aria-labelledby="btnGroupDrop1">
+							
 						</div>
 					</div>
 					<div class="search-out">
@@ -423,56 +288,11 @@
 										<cms:component component="${cart}" />
 									</cms:pageSlot>
 								</button>
-							</div>
-							<div class="dropdown-menu dropdown-menu-right"
+							
+							<div class="dropdown-menu dropdown-menu-right mini-cart"
 								aria-labelledby="btnGroupDrop1">
-								<div class="your-cart-title">Your Cart</div>
-								<div class="mini-cart-item-out">
-									<ul>
-										<li>
-											<div class="row">
-												<div class="col-2"></div>
-												<div class="col-10">
-													<div class="mini-cart-title">1 x S100 Portable Solar
-														Fence Energizer</div>
-													<div class="row mt-2">
-														<div class="col-6">
-															<div class="mini-cart-id">G61150</div>
-														</div>
-														<div class="col-6 text-right">
-															<div class="mini-cart-price">$123.00</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="row">
-												<div class="col-2"></div>
-												<div class="col-10">
-													<div class="mini-cart-title">1 x S100 Portable Solar
-														Fence Energizer</div>
-													<div class="row mt-2">
-														<div class="col-6">
-															<div class="mini-cart-id">G61150</div>
-														</div>
-														<div class="col-6 text-right">
-															<div class="mini-cart-price">$123.00</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</li>
-									</ul>
-
-									<div class="mini-cart-total">
-										<span class="total-text">Total</span> <span
-											class="total-value">$246.00</span>
-									</div>
-								</div>
-
-								<button type="button" class="btn btn-view-cart">View
-									Cart</button>
+								
+							</div>
 							</div>
 						</div>
 					</div>
@@ -509,64 +329,19 @@
 										<cms:component component="${cart}" />
 									</cms:pageSlot>
 								</button>
+							
+
+							<div class="dropdown-menu dropdown-menu-right mini-cart"
+								aria-labelledby="btnGroupDrop1">
+								
 							</div>
-
-							<div class="dropdown-menu dropdown-menu-right"
-								aria-labelledby="btnGroupDrop2">
-								<div class="your-cart-title">Your Cart</div>
-								<div class="mini-cart-item-out">
-									<ul>
-										<li>
-											<div class="row">
-												<div class="col-2"></div>
-												<div class="col-10">
-													<div class="mini-cart-title">1 x S100 Portable Solar
-														Fence Energizer</div>
-													<div class="row mt-2">
-														<div class="col-6">
-															<div class="mini-cart-id">G61150</div>
-														</div>
-														<div class="col-6 text-right">
-															<div class="mini-cart-price">$123.00</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="row">
-												<div class="col-2"></div>
-												<div class="col-10">
-													<div class="mini-cart-title">1 x S100 Portable Solar
-														Fence Energizer</div>
-													<div class="row mt-2">
-														<div class="col-6">
-															<div class="mini-cart-id">G61150</div>
-														</div>
-														<div class="col-6 text-right">
-															<div class="mini-cart-price">$123.00</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</li>
-									</ul>
-
-									<div class="mini-cart-total">
-										<span class="total-text">Total</span> <span
-											class="total-value">$246.00</span>
-									</div>
-								</div>
-
-								<button type="button" class="btn btn-view-cart">View
-									Cart</button>
 							</div>
 						</div>
 					</div>
 
 					<!-- For Mobile Cart Section-->
 					<div class="header-right-btn-group for-mobile-view">
-						<button id="btnGroupDrop3" type="button"
+						<button id="btnGroupDrop1" type="button"
 							class="btn right-btn dropdown-toggle" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false">
 							<cms:pageSlot position="MiniCart" var="cart">
@@ -574,54 +349,9 @@
 							</cms:pageSlot>
 						</button>
 
-						<div class="dropdown-menu dropdown-menu-right"
-							aria-labelledby="btnGroupDrop3">
-							<div class="your-cart-title">Your Cart</div>
-							<div class="mini-cart-item-out">
-								<ul>
-									<li>
-										<div class="row">
-											<div class="col-2"></div>
-											<div class="col-10">
-												<div class="mini-cart-title">1 x S100 Portable Solar
-													Fence Energizer</div>
-												<div class="row mt-2">
-													<div class="col-6">
-														<div class="mini-cart-id">G61150</div>
-													</div>
-													<div class="col-6 text-right">
-														<div class="mini-cart-price">$123.00</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</li>
-									<li>
-										<div class="row">
-											<div class="col-2"></div>
-											<div class="col-10">
-												<div class="mini-cart-title">1 x S100 Portable Solar
-													Fence Energizer</div>
-												<div class="row mt-2">
-													<div class="col-6">
-														<div class="mini-cart-id">G61150</div>
-													</div>
-													<div class="col-6 text-right">
-														<div class="mini-cart-price">$123.00</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</li>
-								</ul>
-
-								<div class="mini-cart-total">
-									<span class="total-text">Total</span> <span class="total-value">$246.00</span>
-								</div>
-							</div>
-
-							<button type="button" class="btn btn-view-cart">View
-								Cart</button>
+						<div class="dropdown-menu dropdown-menu-right mini-cart mini-cart"
+							aria-labelledby="btnGroupDrop1">
+							
 						</div>
 					</div>
 					<div class="search-out">
