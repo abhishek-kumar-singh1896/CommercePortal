@@ -77,6 +77,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -86,6 +87,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.enterprisewide.b2badvance.facades.order.B2BAdvanceOrderDetailsFacade;
@@ -696,9 +698,16 @@ public class AccountPageController extends AbstractSearchPageController
 	public String updatePassword(final Model model) throws CMSItemNotFoundException
 	{
 		final String customerUid = getCustomerFacade().getCurrentCustomerUid();
-
-		final boolean success = getGallagherKeycloakService().sendUpdatePasswordNotification(customerUid);
-
+		boolean success = false;
+		try
+		{
+			success = getGallagherKeycloakService().sendUpdatePasswordNotification(customerUid);
+		}
+		catch (final RestClientException | OAuth2Exception exception)
+		{
+			LOG.error("Exception occured while creationg user in Keycloak : " + exception);
+			success = false;
+		}
 		model.addAttribute("success", success);
 
 		storeCmsPageInModel(model, getContentPageForLabelOrId(UPDATE_PASSWORD_CMS_PAGE));

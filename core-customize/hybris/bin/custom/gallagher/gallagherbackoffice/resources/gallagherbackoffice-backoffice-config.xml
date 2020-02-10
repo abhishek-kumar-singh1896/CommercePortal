@@ -105,6 +105,9 @@
 			<na:notifications eventType="duplicateHybrisCustomer" level="FAILURE">
 				<na:message>duplicate.customer.hybris.failure</na:message>
 			</na:notifications>
+			<na:notifications eventType="c4cConnectionError" level="FAILURE">
+				<na:message>text.connection.exception.error</na:message>
+			</na:notifications>
 		</na:notification-area>
 	</context>
     <context merge-by="type" parent="User" type="Customer" component="listview">
@@ -115,8 +118,9 @@
 	<context merge-by="type" parent="User" type="Customer" component="editor-area">
         <editorArea:editorArea name="">
             <editorArea:tab name="hmc.gallagher" position="11">
-                <editorArea:section name="hmc.section.duplicacy">
+                <editorArea:section name="hmc.section.gallagher">
                     <editorArea:attribute qualifier="duplicate" label="hmc.duplicacy.label"/>
+                    <editorArea:attribute qualifier="keycloakGUID" label="hmc.keycloakGUID.label"/>
                 </editorArea:section>
             </editorArea:tab>
         </editorArea:editorArea>

@@ -14,6 +14,8 @@ import org.apache.commons.validator.routines.EmailValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
+import org.springframework.web.client.RestClientException;
 
 import com.gallagher.c4c.outboundservices.facade.GallagherC4COutboundServiceFacade;
 import com.gallagher.outboundservices.constants.GallagheroutboundservicesConstants;
@@ -81,34 +83,42 @@ public class VerifyCustomerHandler implements FlowActionHandler
 		}
 		else
 		{
-			final ConfigurableFlowController controller = (ConfigurableFlowController) adapter.getWidgetInstanceManager()
-					.getWidgetslot().getAttribute("widgetController");
-			final WidgetModel widget = adapter.getWidgetInstanceManager().getModel();
+			try
+			{
+				final ConfigurableFlowController controller = (ConfigurableFlowController) adapter.getWidgetInstanceManager()
+						.getWidgetslot().getAttribute("widgetController");
+				final WidgetModel widget = adapter.getWidgetInstanceManager().getModel();
 
-			final List<GallagherInboundCustomerEntry> existingCustomers = getGallagherC4COutboundServiceFacade()
-					.getCustomerInfoFromC4C(email);
+				final List<GallagherInboundCustomerEntry> existingCustomers = getGallagherC4COutboundServiceFacade()
+						.getCustomerInfoFromC4C(email);
 
-			if ((CollectionUtils.isNotEmpty(existingCustomers) && existingCustomers.size() > 1))
-			{
-				notificationService.notifyUser((String) null, "duplicateCustomer", NotificationEvent.Level.FAILURE);
+				if ((CollectionUtils.isNotEmpty(existingCustomers) && existingCustomers.size() > 1))
+				{
+					notificationService.notifyUser((String) null, "duplicateCustomer", NotificationEvent.Level.FAILURE);
+				}
+				else if (CollectionUtils.isNotEmpty(existingCustomers)
+						&& GallagheroutboundservicesConstants.C4C_CONTACT_ACTIVE_CODE.equals(existingCustomers.get(0).getStatusCode()))
+				{
+					final GallagherInboundCustomerEntry existingCustomer = existingCustomers.get(0);
+					widget.setValue("newCust.email", existingCustomer.getEmail());
+					widget.setValue("newCust.uid", existingCustomer.getEmail());
+					widget.setValue("newCust.sapContactID", existingCustomer.getContactID());
+					widget.setValue("newCust.name", existingCustomer.getName());
+				}
+				if (isB2B)
+				{
+					widget.setValue("newCust.email", email);
+				}
+				widget.setValue("newCust.uid", email);
+				controller.getRenderer().refreshView();
+				adapter.custom();
+				adapter.next();
 			}
-			else if (CollectionUtils.isNotEmpty(existingCustomers)
-					&& GallagheroutboundservicesConstants.C4C_CONTACT_ACTIVE_CODE.equals(existingCustomers.get(0).getStatusCode()))
+			catch (final RestClientException | OAuth2Exception exception)
 			{
-				final GallagherInboundCustomerEntry existingCustomer = existingCustomers.get(0);
-				widget.setValue("newCust.email", existingCustomer.getEmail());
-				widget.setValue("newCust.uid", existingCustomer.getEmail());
-				widget.setValue("newCust.customerID", existingCustomer.getContactID());
-				widget.setValue("newCust.name", existingCustomer.getName());
+				LOGGER.error("Exception occured while connecting to C4C : " + exception);
+				notificationService.notifyUser((String) null, "c4cConnectionError", NotificationEvent.Level.FAILURE);
 			}
-			if (isB2B)
-			{
-				widget.setValue("newCust.email", email);
-			}
-			widget.setValue("newCust.uid", email);
-			controller.getRenderer().refreshView();
-			adapter.custom();
-			adapter.next();
 		}
 	}
 

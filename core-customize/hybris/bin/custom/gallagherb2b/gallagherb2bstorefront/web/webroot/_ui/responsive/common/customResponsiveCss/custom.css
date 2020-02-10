@@ -2683,3 +2683,6 @@ position: absolute;
 .email-invalid-error {
 	display:none;
 }
+.email-exception-error {
+	display:none;
+}

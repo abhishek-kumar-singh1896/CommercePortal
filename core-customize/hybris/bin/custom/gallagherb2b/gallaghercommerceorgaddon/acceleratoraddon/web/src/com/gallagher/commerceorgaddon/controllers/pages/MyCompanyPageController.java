@@ -53,14 +53,17 @@ import javax.annotation.Resource;
 import javax.validation.Valid;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.validator.routines.EmailValidator;
 import org.apache.log4j.Logger;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gallagher.commerceorgaddon.breadcrumb.impl.MyCompanyBreadcrumbBuilder;
@@ -414,6 +417,15 @@ public class MyCompanyPageController extends AbstractSearchPageController
 			return editUser(b2BCustomerForm.getUid(), model);
 		}
 
+		final EmailValidator eValidator = EmailValidator.getInstance();
+		if (null != b2BCustomerForm.getEmail() && !eValidator.isValid(b2BCustomerForm.getEmail()))
+		{
+			bindingResult.rejectValue("email", "profile.email.invalid");
+			GlobalMessages.addErrorMessage(model, "form.global.error");
+			model.addAttribute("b2BCustomerForm", b2BCustomerForm);
+			return editUser(b2BCustomerForm.getUid(), model);
+		}
+
 		final CustomerData b2bCustomerData = new CustomerData();
 		b2bCustomerData.setTitleCode(b2BCustomerForm.getTitleCode());
 		b2bCustomerData.setFirstName(b2BCustomerForm.getFirstName());
@@ -425,8 +437,18 @@ public class MyCompanyPageController extends AbstractSearchPageController
 		b2bCustomerData.setCustomerId(b2BCustomerForm.getCustomerId());
 		b2bCustomerData.setDuplicate(b2BCustomerForm.isDuplicate());
 
-		final String keycloakGUID = getGallagherKeycloakService().createKeycloakUser(b2bCustomerData);
-		b2bCustomerData.setKeycloakGUID(keycloakGUID);
+		try
+		{
+			final String keycloakGUID = getGallagherKeycloakService().createKeycloakUser(b2bCustomerData);
+			b2bCustomerData.setKeycloakGUID(keycloakGUID);
+		}
+		catch (final RestClientException | OAuth2Exception exception)
+		{
+			LOG.error("Exception occured while creationg user in Keycloak : " + exception);
+			GlobalMessages.addErrorMessage(model, "text.connection.exception.error");
+			model.addAttribute("b2BCustomerForm", b2BCustomerForm);
+			return editUser(b2BCustomerForm.getUid(), model);
+		}
 
 		model.addAttribute(b2BCustomerForm);
 		model.addAttribute("titleData", getUserFacade().getTitles());

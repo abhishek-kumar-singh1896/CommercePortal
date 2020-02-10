@@ -17,12 +17,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.token.grant.password.ResourceOwnerPasswordResourceDetails;
 
 import com.gallagher.keycloak.outboundservices.service.GallagherKeycloakService;
+import com.gallagher.outboundservices.request.dto.GallagherKeycloakUserRequest;
 
 
 /**
@@ -72,13 +74,14 @@ public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 
 		final UserModel user = getUserService().getUserForUID(customerUid);
 		final String keycloakGUID = ((CustomerModel) user).getKeycloakGUID();
+		final String redirectURI = "https://localhost:9002/security/nz/en";
 
-		final String url = MessageFormat
-				.format(getConfigurationService().getConfiguration().getString("keycloak.reset.password.url"), keycloakGUID);
+		final String url = MessageFormat.format(
+				getConfigurationService().getConfiguration().getString("keycloak.reset.password.url"), keycloakGUID, redirectURI);
 
 		final ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.PUT, entity, String.class);
 
-		if (200 == response.getStatusCodeValue())
+		if (HttpStatus.OK.equals(response.getStatusCode()))
 		{
 			status = true;
 		}
@@ -116,13 +119,16 @@ public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
-		final String request = "{\"username\":\"" + customerData.getEmail() + "\", \"firstName\":\"" + customerData.getFirstName()
-				+ "\",\"lastName\":\"" + customerData.getLastName() + "\", \"email\":\"" + customerData.getEmail()
-				+ "\", \"enabled\":\"true\"}";
+		final GallagherKeycloakUserRequest request = new GallagherKeycloakUserRequest();
+		request.setUsername(customerData.getEmail());
+		request.setFirstName(customerData.getFirstName());
+		request.setLastName(customerData.getLastName());
+		request.setEmail(customerData.getEmail());
+		request.setEnabled(true);
 
-		final HttpEntity<String> entity = new HttpEntity<>(request, headers);
+		final HttpEntity<GallagherKeycloakUserRequest> entity = new HttpEntity<>(request, headers);
 
-		final String url = getConfigurationService().getConfiguration().getString("keycloak.create.user.url");
+		final String url = getConfigurationService().getConfiguration().getString("keycloak.user.url");
 
 		final ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
 

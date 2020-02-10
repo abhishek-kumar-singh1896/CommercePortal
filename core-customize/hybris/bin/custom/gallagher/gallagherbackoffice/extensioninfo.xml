@@ -15,8 +15,6 @@
                 		
         
         <requires-extension name="gallaghercore"/>
-        
-        <requires-extension name="gallagheroutboundservices"/>
                 		
         
         <coremodule generated="true" manager="org.gallagherbackoffice.jalo.YacceleratorbackofficeManager" packageroot="org.gallagherbackoffice"/>
