@@ -775,7 +775,7 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;c
 # Site Logo (Gallagher logo)
 INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/svg+xml'];altText;folder(qualifier)[default='images']
 #;;/images/theme/logo_hybris_responsive.svg;logo_hybris_responsive.svg;$siteResource/images/theme/logo_hybris_responsive.svg;image/svg+xml;hybris Accelerator;
-;;/images/theme/logo_hybris_responsive.svg;gglogo.png;$siteResource/images/theme/gglogo.jpg;;hybris Accelerator;
+;;/images/theme/logo-gallagher.svg;logo-gallagher.svg;$siteResource/images/theme/logo-gallagher.svg;;Gallagher;
 
 ###  Responsive Error page #######
 
