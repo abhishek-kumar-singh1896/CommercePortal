@@ -9,22 +9,24 @@
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
-<spring:theme code="text.addToCart" var="addToCartText"/>
-<spring:theme code="text.popupCartTitle" var="popupCartTitleText"/>
-<c:url value="/cart" var="cartUrl"/>
-<c:url value="/cart/checkout" var="checkoutUrl"/>
+<spring:theme code="text.addToCart" var="addToCartText" />
+<spring:theme code="text.popupCartTitle" var="popupCartTitleText" />
+<spring:theme code="cart.page.continue" var="viewCart" />
+<spring:theme code="popup.cart.total" var="total" />
+<c:url value="/cart" var="cartUrl" />
+<c:url value="/cart/checkout" var="checkoutUrl" />
 
 <c:choose>
 	<c:when test="${not empty cartData.quoteData}">
-		<c:set var="miniCartProceed" value="quote.view"/>
+		<c:set var="miniCartProceed" value="quote.view" />
 	</c:when>
 	<c:otherwise>
-		<c:set var="miniCartProceed" value="checkout.checkout"/>
+		<c:set var="miniCartProceed" value="checkout.checkout" />
 	</c:otherwise>
 </c:choose>
-			
 
-<div class="mini-cart js-mini-cart">
+
+<%-- <div class="mini-cart js-mini-cart">
 	<ycommerce:testId code="mini-cart-popup">
 		<div class="mini-cart-body">
 			<c:choose>
@@ -34,7 +36,7 @@
 							<c:if test="${numberItemsInCart > numberShowing}">
 								<a href="${fn:escapeXml(cartUrl)}"><spring:theme code="popup.cart.showall"/></a>
 							</c:if>
-						</div>
+						</div> 
 
 						<ol class="mini-cart-list">
 							<c:forEach items="${entries}" var="entry" end="${numberShowing - 1}">
@@ -96,12 +98,49 @@
 
 					<button class="btn btn-block" disabled="disabled">
 						<spring:theme code="${miniCartProceed }" />
-					</button>
+					</button> 
 					<a href="" class="btn btn-default btn-block js-mini-cart-close-button">
 						<spring:theme text="Continue Shopping" code="cart.page.continue"/>
-					</a>
+					</a> 
 				</c:otherwise>
 			</c:choose>
 		</div>
 	</ycommerce:testId>
+</div> --%>
+
+<div class="your-cart-title">${popupCartTitleText}</div>
+<div class="mini-cart-item-out">
+	<ul>
+
+		<c:forEach items="${entries}" var="entry" end="${numberShowing - 1}">
+			<li>
+				<div class="row">
+					<div class="col-2"></div>
+					<div class="col-10">
+						<div class="mini-cart-title">${fn:escapeXml(entry.quantity)}
+							x ${fn:escapeXml(entry.product.name)}</div>
+						<div class="row mt-2">
+							<div class="col-6">
+								<div class="mini-cart-id">${entry.product.code}</div>
+							</div>
+							<div class="col-6 text-right">
+								<div class="mini-cart-price">
+									<format:price priceData="${entry.basePrice}" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+		</c:forEach>
+
+	</ul>
+
+	<div class="mini-cart-total">
+
+		<span class="total-text">${total}</span> <span class="total-value"><format:price
+				priceData="${cartData.totalPrice}" /></span>
+	</div>
 </div>
+
+<button type="button" class="btn btn-view-cart">${viewCart}</button>

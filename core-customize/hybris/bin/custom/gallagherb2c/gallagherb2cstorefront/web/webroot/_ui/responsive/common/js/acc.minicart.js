@@ -8,17 +8,20 @@ ACC.minicart = {
 
 		$(document).on("click",".js-mini-cart-link", function(e){
 			e.preventDefault();
-			var url = $(this).data("miniCartUrl");
+			var cartUrl = $(this).data("miniCartUrl");
 			var cartName = ($(this).find(".js-mini-cart-count").html() != 0) ? $(this).data("miniCartName"):$(this).data("miniCartEmptyName");
-
-			ACC.colorbox.open(ACC.common.encodeHtml(cartName),{
-				href: url,
-				maxWidth:"100%",
-				width:"380px",
-				initialWidth :"380px"
-			});
+			
+			var minicart = {
+				url :cartUrl,
+				type:'GET',
+				success:function(data){
+					$('.mini-cart').html(data);
+				}
+			};
+			$.ajax(minicart);
+			
 		});
-
+		
 		$(document).on("click",".js-mini-cart-close-button", function(e){
 			e.preventDefault();
 			ACC.colorbox.close();

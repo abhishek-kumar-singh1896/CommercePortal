@@ -36,7 +36,7 @@
 			<button type="submit" class="search-btn">
                             <svg class="search-icon">
                             
-                                <use xlink:href="_ui/responsive/common/images/gallagher-icons.svg#search" />
+                                <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#search" />
                             </svg>
                         </button>
 

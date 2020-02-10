@@ -17,318 +17,378 @@
 	<cms:component component="${component}" />
 </cms:pageSlot>
 
-
-
-    
-
-<header class="main-header-out shadow-sm fixed-top">
-	<div class="container">
-		<div>
-			<div class="header-left-section">
-				<div class="logo-out gallagher-logo">
-					<cms:pageSlot position="SiteLogo" var="logo" limit="1">
-						<cms:component component="${logo}" element="div" />
-					</cms:pageSlot>
+<sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')">
+	<header class="main-header-out shadow-sm fixed-top">
+		<div class="container">
+			<div>
+				<div class="header-left-section">
+					<div class="logo-out gallagher-logo">
+						<cms:pageSlot position="SiteLogo" var="logo" limit="1">
+							<cms:component component="${logo}" element="div" />
+						</cms:pageSlot>
+					</div>
 				</div>
-			</div>
 
-			<div class="header-middle-section">
-				<div class="main-nav-out">
-					<cms:pageSlot position="ggB2CNavBar" var="feature">
-						<ul>
-							<c:forEach items="${feature.navigationNode.children}"
-								var="childLevel1">
-								<c:forEach items="${childLevel1.entries}" var="entry">
-									<cms:component component="${entry.item}"
-										evaluateRestriction="true" element="li" />
+				<div class="header-middle-section">
+					<div class="main-nav-out">
+						<cms:pageSlot position="ggB2CNavBar" var="feature">
+							<ul>
+								<c:forEach items="${feature.navigationNode.children}"
+									var="childLevel1">
+									<c:forEach items="${childLevel1.entries}" var="entry">
+										<cms:component component="${entry.item}"
+											evaluateRestriction="true" element="li">
+											<span class="avtive-arrow d-none"> <svg
+													class="arrow-up-icon">
+                                            <use
+														xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-up" />
+                                        	</svg>
+											</span>
+
+											<span class="hover-arrow d-none"> <svg
+													class="arrow-down-icon">
+                                            <use
+														xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-down" />
+                                        </svg>
+											</span>
+										</cms:component>
+									</c:forEach>
 								</c:forEach>
-							</c:forEach>
-						</ul>
-					</cms:pageSlot>
+							</ul>
+						</cms:pageSlot>
+					</div>
 				</div>
-			</div>
 
-			<div class="header-right-section text-right">
+				<div class="header-right-section text-right">
 
-				<div class="search-out">
-					<a href="javascript:void(0)" class="search-link">
-						<svg class="search-icon">
-							<use xlink:href="_ui/responsive/common/images/gallagher-icons.svg#search" />
-                        </svg> 
-	                    <span class="search-text">
-	                    	<spring:theme code="search.placeholder"/>
-	                    </span> 
-		                <span class="arrow-up"> 
-		                    <svg class="arrow-up-icon">
-		                         <use xlink:href="_ui/responsive/common/images/gallagher-icons.svg#arrow-up" />
+					<div class="search-out">
+						<a href="javascript:void(0)" class="search-link"> <svg
+								class="search-icon">
+							<use
+									xlink:href="${commonResourcePath}/images/gallagher-icons.svg#search" />
+                        </svg> <span class="search-text"> <spring:theme
+									code="search.placeholder" />
+						</span> <span class="arrow-up"> <svg class="arrow-up-icon">
+		                         <use
+										xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-up" />
 	                        </svg>
 						</span>
-					</a>
+						</a>
+					</div>
+					<!--  Add button and cart here-->
+					<div class="header-right-btn-group">
+						<div class="btn-group" role="group"
+							aria-label="Button group with nested dropdown">
+							<ycommerce:testId code="header_Register_link">
+								<c:url value="/login" var="registerUrl" />
+								<button type="button" class="btn left-btn"
+									onclick="window.location.href = '${fn:escapeXml(registerUrl)}'">
+									<spring:theme code="header.link.register" />
+								</button>
+							</ycommerce:testId>
+							<ycommerce:testId code="header_Login_link">
+								<c:url value="/login" var="loginUrl" />
+								<button type="button" class="btn"
+									onclick="window.location.href = '${fn:escapeXml(loginUrl)}'">
+									<spring:theme code="header.link.login" />
+								</button>
+							</ycommerce:testId>
+
+
+							<div class="btn-group" role="group">
+								<button id="btnGroupDrop1" type="button"
+									class="btn right-btn dropdown-toggle" data-toggle="dropdown"
+									aria-haspopup="true" aria-expanded="false">
+									<cms:pageSlot position="MiniCart" var="cart">
+										<cms:component component="${cart}" />
+									</cms:pageSlot>
+								</button>
+							
+							<div class="dropdown-menu dropdown-menu-right mini-cart"
+								aria-labelledby="btnGroupDrop1">
+								
+							</div>
+							</div>
+						</div>
+					</div>
 				</div>
-				<!--  Add there button and cart-->
-				<div class="header-right-btn-group">
-					<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-						<button type="button" class="btn left-btn">Register</button>
-                            <button type="button" class="btn">Login</button>
 
-                            <div class="btn-group" role="group">
-                                <button id="btnGroupDrop1" type="button" class="btn right-btn dropdown-toggle"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <cms:pageSlot position="MiniCart" var="cart" >
-													<cms:component component="${cart}"/>
-												</cms:pageSlot>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
-                                    <div class="your-cart-title">Your Cart</div>
-                                    <div class="mini-cart-item-out">
-                                        <ul>
-                                            <li>
-                                                <div class="row">
-                                                    <div class="col-2"></div>
-                                                    <div class="col-10">
-                                                        <div class="mini-cart-title">1 x S100 Portable Solar Fence
-                                                            Energizer</div>
-                                                        <div class="row mt-2">
-                                                            <div class="col-6">
-                                                                <div class="mini-cart-id">
-                                                                    G61150
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-6 text-right">
-                                                                <div class="mini-cart-price">
-                                                                    $123.00
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="row">
-                                                    <div class="col-2"></div>
-                                                    <div class="col-10">
-                                                        <div class="mini-cart-title">1 x S100 Portable Solar Fence
-                                                            Energizer</div>
-                                                        <div class="row mt-2">
-                                                            <div class="col-6">
-                                                                <div class="mini-cart-id">
-                                                                    G61150
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-6 text-right">
-                                                                <div class="mini-cart-price">
-                                                                    $123.00
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
+				<!-- Ipad and Mobile Header Right Section-->
+				<div class="xs-header-right-section">
 
-                                        <div class="mini-cart-total">
-                                            <span class="total-text">Total</span>
-                                            <span class="total-value">$246.00</span>
-                                        </div>
-                                    </div>
+					<!-- For Ipad Cart Section-->
+					<div class="header-right-btn-group for-ipad-view">
+						<div class="btn-group" role="group"
+							aria-label="Button group with nested dropdown">
+							<ycommerce:testId code="header_Register_link">
+								<c:url value="/login" var="registerUrl" />
+								<button type="button" class="btn left-btn"
+									onclick="window.location.href = '${fn:escapeXml(registerUrl)}'">
+									<spring:theme code="header.link.register" />
+								</button>
+							</ycommerce:testId>
+							<ycommerce:testId code="header_Login_link">
+								<c:url value="/login" var="loginUrl" />
+								<button type="button" class="btn"
+									onclick="window.location.href = '${fn:escapeXml(loginUrl)}'">
+									<spring:theme code="header.link.login" />
+								</button>
+							</ycommerce:testId>
 
-                                    <button type="button" class="btn btn-view-cart">View Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+							<div class="btn-group" role="group">
+								<button id="btnGroupDrop1" type="button"
+									class="btn right-btn dropdown-toggle" data-toggle="dropdown"
+									aria-haspopup="true" aria-expanded="false">
+									<cms:pageSlot position="MiniCart" var="cart">
+										<cms:component component="${cart}" />
+									</cms:pageSlot>
+								</button>
+							
 
-                </div>
-                
-			<!-- Ipad and Mobile Header Right Section-->
-                <div class="xs-header-right-section">
+							<div class="dropdown-menu dropdown-menu-right mini-cart"
+								aria-labelledby="btnGroupDrop1">
+								
+							</div>
+							</div>
+						</div>
+					</div>
 
-                    <!-- For Ipad Cart Section-->
-                    
-                  <div class="header-right-btn-group for-ipad-view">
-                        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                            <button type="button" class="btn left-btn">Register</button>
-                            <button type="button" class="btn">Login</button>
+					<!-- For Mobile Cart Section-->
+					<div class="header-right-btn-group for-mobile-view">
+						<button id="btnGroupDrop1" type="button"
+							class="btn right-btn dropdown-toggle" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">
+							<cms:pageSlot position="MiniCart" var="cart">
+								<cms:component component="${cart}" />
+							</cms:pageSlot>
+						</button>
 
-                            <div class="btn-group" role="group">
-                                <button id="btnGroupDrop2" type="button" class="btn right-btn dropdown-toggle"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<cms:pageSlot position="MiniCart" var="cart" >
-						<cms:component component="${cart}"/>
-					</cms:pageSlot>  
-                 </button>
-                 
-                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop2">
-                                    <div class="your-cart-title">Your Cart</div>
-                                    <div class="mini-cart-item-out">
-                                        <ul>
-                                            <li>
-                                                <div class="row">
-                                                    <div class="col-2"></div>
-                                                    <div class="col-10">
-                                                        <div class="mini-cart-title">1 x S100 Portable Solar Fence
-                                                            Energizer</div>
-                                                        <div class="row mt-2">
-                                                            <div class="col-6">
-                                                                <div class="mini-cart-id">
-                                                                    G61150
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-6 text-right">
-                                                                <div class="mini-cart-price">
-                                                                    $123.00
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="row">
-                                                    <div class="col-2"></div>
-                                                    <div class="col-10">
-                                                        <div class="mini-cart-title">1 x S100 Portable Solar Fence
-                                                            Energizer</div>
-                                                        <div class="row mt-2">
-                                                            <div class="col-6">
-                                                                <div class="mini-cart-id">
-                                                                    G61150
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-6 text-right">
-                                                                <div class="mini-cart-price">
-                                                                    $123.00
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-
-                                        <div class="mini-cart-total">
-                                            <span class="total-text">Total</span>
-                                            <span class="total-value">$246.00</span>
-                                        </div>
-                                    </div>
-
-                                    <button type="button" class="btn btn-view-cart">View Cart</button>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>  
-                    
-                    
-                    
-                    
-                    
-                    
-         <!-- For Mobile Cart Section-->           
-			<div class="header-right-btn-group for-mobile-view">
-                 <button id="btnGroupDrop3" type="button" class="btn right-btn dropdown-toggle"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<cms:pageSlot position="MiniCart" var="cart" >
-						<cms:component component="${cart}"/>
-					</cms:pageSlot>  
-                 </button>
-                 
-                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop3">
-                                    <div class="your-cart-title">Your Cart</div>
-                                    <div class="mini-cart-item-out">
-                                        <ul>
-                                            <li>
-                                                <div class="row">
-                                                    <div class="col-2"></div>
-                                                    <div class="col-10">
-                                                        <div class="mini-cart-title">1 x S100 Portable Solar Fence
-                                                            Energizer</div>
-                                                        <div class="row mt-2">
-                                                            <div class="col-6">
-                                                                <div class="mini-cart-id">
-                                                                    G61150
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-6 text-right">
-                                                                <div class="mini-cart-price">
-                                                                    $123.00
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="row">
-                                                    <div class="col-2"></div>
-                                                    <div class="col-10">
-                                                        <div class="mini-cart-title">1 x S100 Portable Solar Fence
-                                                            Energizer</div>
-                                                        <div class="row mt-2">
-                                                            <div class="col-6">
-                                                                <div class="mini-cart-id">
-                                                                    G61150
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-6 text-right">
-                                                                <div class="mini-cart-price">
-                                                                    $123.00
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-
-                                        <div class="mini-cart-total">
-                                            <span class="total-text">Total</span>
-                                            <span class="total-value">$246.00</span>
-                                        </div>
-                                    </div>
-
-                                    <button type="button" class="btn btn-view-cart">View Cart</button>
-                                </div>
-                                
-                                
-            </div>
-			<div class="search-out">
-				<a href="javascript:void(0)" class="search-link">
-					<svg class="search-icon">
-						<use xlink:href="_ui/responsive/common/images/gallagher-icons.svg#search" />
-                    </svg> 
-                    <span class="arrow-up">
-                    	<svg class="arrow-up-icon">
-                    		<use xlink:href="_ui/responsive/common/images/gallagher-icons.svg#arrow-up" />
+						<div class="dropdown-menu dropdown-menu-right mini-cart"
+							aria-labelledby="btnGroupDrop1">
+							
+						</div>
+					</div>
+					<div class="search-out">
+						<a href="javascript:void(0)" class="search-link"> <svg
+								class="search-icon">
+						<use
+									xlink:href="${commonResourcePath}/images/gallagher-icons.svg#search" />
+                    </svg> <span class="arrow-up"> <svg
+									class="arrow-up-icon">
+                    		<use
+										xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-up" />
                          </svg>
-					</span>
-				</a>
+						</span>
+						</a>
+					</div>
+
+					<div class="xs-menu-out">
+						<a href="javascript:void(0)" class="hamburger-icon"> <span
+							class="line1"> </span> <span class="line2"> </span> <span
+							class="line3"> </span>
+						</a>
+					</div>
+				</div>
 			</div>
 
-				<div class="xs-menu-out">
-					<a href="javascript:void(0)" class="hamburger-icon">
-						<span class="line1">
-						</span>
-						<span class="line2">
-						</span>
-						<span class="line3">
-						</span>
-					</a>
+			<div class="search-result-out d-none">
+				<div class="container">
+					<div class="search-text-box-out">
+						<cms:pageSlot position="SearchBox" var="component">
+							<cms:component component="${component}" element="div" class="" />
+						</cms:pageSlot>
+					</div>
 				</div>
 			</div>
 		</div>
+	</header>
+</sec:authorize>
 
-		<div class="search-result-out d-none">
-			<div class="container">
-				<div class="search-text-box-out">
-					<cms:pageSlot position="SearchBox" var="component">
-						<cms:component component="${component}" element="div" class="" />
-					</cms:pageSlot>
+<sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
+	<header class="main-header-out shadow-sm with-logged-in-user fixed-top">
+		<div class="container">
+			<div>
+				<div class="header-left-section">
+					<div class="logo-out gallagher-logo">
+						<cms:pageSlot position="SiteLogo" var="logo" limit="1">
+							<cms:component component="${logo}" element="div" />
+						</cms:pageSlot>
+					</div>
+				</div>
+
+				<div class="header-middle-section">
+					<div class="main-nav-out">
+						<cms:pageSlot position="ggB2CNavBar" var="feature">
+							<ul>
+								<c:forEach items="${feature.navigationNode.children}"
+									var="childLevel1">
+									<c:forEach items="${childLevel1.entries}" var="entry">
+										<cms:component component="${entry.item}"
+											evaluateRestriction="true" element="li">
+											<span class="avtive-arrow d-none"> <svg
+													class="arrow-up-icon">
+                                            <use
+														xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-up" />
+                                        	</svg>
+											</span>
+
+											<span class="hover-arrow d-none"> <svg
+													class="arrow-down-icon">
+                                            <use
+														xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-down" />
+                                        </svg>
+											</span>
+										</cms:component>
+									</c:forEach>
+								</c:forEach>
+							</ul>
+						</cms:pageSlot>
+					</div>
+				</div>
+
+				<div class="header-right-section text-right">
+
+					<div class="search-out">
+						<a href="javascript:void(0)" class="search-link"> <svg
+								class="search-icon">
+							<use
+									xlink:href="${commonResourcePath}/images/gallagher-icons.svg#search" />
+                        </svg> <span class="search-text"> <spring:theme
+									code="search.placeholder" />
+						</span> <span class="arrow-up"> <svg class="arrow-up-icon">
+		                         <use
+										xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-up" />
+	                        </svg>
+						</span>
+						</a>
+					</div>
+					<!--  Add button and cart here-->
+					<div class="header-right-btn-group">
+						<div class="btn-group" role="group"
+							aria-label="Button group with nested dropdown">
+							<ycommerce:testId code="header_MyApp_link">
+								<c:url value="/" var="myApp" />
+								<button type="button" class="btn left-btn"
+									onclick="window.location.href = '${fn:escapeXml(myApp)}'">
+									<spring:theme code="header.link.app" />
+								</button>
+							</ycommerce:testId>
+							<button type="button" class="btn">
+								<span class="user-icon"> <svg>
+                                        <use
+											xlink:href="${commonResourcePath}/images/gallagher-icons.svg#user" />
+                                    </svg>
+								</span>
+							</button>
+							<div class="btn-group" role="group">
+								<button id="btnGroupDrop1" type="button"
+									class="btn right-btn dropdown-toggle" data-toggle="dropdown"
+									aria-haspopup="true" aria-expanded="false">
+									<cms:pageSlot position="MiniCart" var="cart">
+										<cms:component component="${cart}" />
+									</cms:pageSlot>
+								</button>
+							
+							<div class="dropdown-menu dropdown-menu-right mini-cart"
+								aria-labelledby="btnGroupDrop1">
+								
+							</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Ipad and Mobile Header Right Section-->
+				<div class="xs-header-right-section">
+
+					<!-- For Ipad Cart Section-->
+					<div class="header-right-btn-group for-ipad-view">
+						<div class="btn-group" role="group"
+							aria-label="Button group with nested dropdown">
+
+							<c:url value="/" var="myAppUrl" />
+							<ycommerce:testId code="header_MyApp_link">
+								<c:url value="/" var="myApp" />
+								<button type="button" class="btn left-btn"
+									onclick="window.location.href = '${fn:escapeXml(myApp)}'">
+									<spring:theme code="header.link.app" />
+								</button>
+							</ycommerce:testId>
+							<button type="button" class="btn">
+								<span class="user-icon"> <svg>
+                        	    	<use
+											xlink:href="${commonResourcePath}/images/gallagher-icons.svg#user" />
+                                </svg>
+								</span>
+							</button>
+							<div class="btn-group" role="group">
+								<button id="btnGroupDrop1" type="button"
+									class="btn right-btn dropdown-toggle" data-toggle="dropdown"
+									aria-haspopup="true" aria-expanded="false">
+									<cms:pageSlot position="MiniCart" var="cart">
+										<cms:component component="${cart}" />
+									</cms:pageSlot>
+								</button>
+							
+
+							<div class="dropdown-menu dropdown-menu-right mini-cart"
+								aria-labelledby="btnGroupDrop1">
+								
+							</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- For Mobile Cart Section-->
+					<div class="header-right-btn-group for-mobile-view">
+						<button id="btnGroupDrop1" type="button"
+							class="btn right-btn dropdown-toggle" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">
+							<cms:pageSlot position="MiniCart" var="cart">
+								<cms:component component="${cart}" />
+							</cms:pageSlot>
+						</button>
+
+						<div class="dropdown-menu dropdown-menu-right mini-cart mini-cart"
+							aria-labelledby="btnGroupDrop1">
+							
+						</div>
+					</div>
+					<div class="search-out">
+						<a href="javascript:void(0)" class="search-link"> <svg
+								class="search-icon">
+						<use
+									xlink:href="${commonResourcePath}/images/gallagher-icons.svg#search" />
+                    </svg> <span class="arrow-up"> <svg
+									class="arrow-up-icon">
+                    		<use
+										xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-up" />
+                         </svg>
+						</span>
+						</a>
+					</div>
+
+					<div class="xs-menu-out">
+						<a href="javascript:void(0)" class="hamburger-icon"> <span
+							class="line1"> </span> <span class="line2"> </span> <span
+							class="line3"> </span>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="search-result-out d-none">
+				<div class="container">
+					<div class="search-text-box-out">
+						<cms:pageSlot position="SearchBox" var="component">
+							<cms:component component="${component}" element="div" class="" />
+						</cms:pageSlot>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</header>
+	</header>
+</sec:authorize>
 
 <cms:pageSlot position="BottomHeaderSlot" var="component" element="div"
 	class="container-fluid">
