@@ -6,9 +6,9 @@ $productCVStaged=catalogVersion(catalog(id[default=$productCatalog]),version[def
 $productCVOnline=catalogVersion(catalog(id[default=$productCatalog]),version[default=$onlineVersion])[unique=true,default=$productCatalog:$onlineVersion]
 $includedFormats=300Wx300H,30Wx30H,365Wx246H,515Wx515H,65Wx65H,96Wx96H,1200Wx1200H
 
-INSERT_UPDATE MediaConversionCronJob;$productCVStaged[unique=true];code[unique=true];job(code);nodeId[default=0];includedFormats(qualifier);sessionLanguage(isocode)[default=en]
+INSERT_UPDATE MediaConversionCronJob;$productCVStaged[unique=true];code[unique=true];active[default=false];job(code);nodeId[default=0];includedFormats(qualifier);sessionLanguage(isocode)[default=en]
 # code								;job			   ;nodeId ;includedFormats
-;;amB2CConversionCA	;mediaConversionJob;       ;$includedFormats
+;;amB2CConversionCA	;;mediaConversionJob;       ;$includedFormats
 
 INSERT_UPDATE Trigger;cronJob(code)[unique=true];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
 #cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
