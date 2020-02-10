@@ -6,24 +6,12 @@
 	
 	<import>classpath:wro_addons.xml</import>
 
-	<group name="amB2CUS_responsive">
-		<css>/_ui/responsive/common/bootstrap/css/bootstrap.min.css</css>
-		<css>/_ui/responsive/theme-amB2CUS/css/style.css</css>
-		<css>/_ui/responsive/theme-amB2CUS/css/theme.css</css>
-		
-	</group>
-
-	<group name="amB2CCA_responsive">
-		<css>/_ui/responsive/common/bootstrap/css/bootstrap.min.css</css>
-		<css>/_ui/responsive/theme-amB2CCA/css/style.css</css>
-		<css>/_ui/responsive/theme-amB2CCA/css/theme.css</css>
-		
+	<group name="amB2C_responsive">
+		<css>/_ui/responsive/theme-amB2C/css/style.css</css>
 	</group>
 	
 	<group name="all_responsive">
-        <css>/_ui-src/responsive/themes/amB2CUS/scss/bootstrap.min.css</css>
-        <css>/_ui/responsive/theme-amB2CCA/css/style.css</css>
-		<css>/_ui/responsive/theme-amB2CCA/css/theme.css</css>
+        
 		<!-- jquery -->
 		<js minimize="false">/_ui/responsive/common/js/jquery-3.2.1.min.js</js>
 		

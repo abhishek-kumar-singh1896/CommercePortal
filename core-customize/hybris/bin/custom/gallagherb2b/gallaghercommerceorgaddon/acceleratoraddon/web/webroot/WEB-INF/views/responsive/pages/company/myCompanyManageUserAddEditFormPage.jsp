@@ -6,8 +6,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags" %>
-<%@ taglib prefix="org-common" tagdir="/WEB-INF/tags/addons/commerceorgaddon/responsive/common" %>
-<%@ taglib prefix="customFormElement" tagdir="/WEB-INF/tags/addons/commerceorgaddon/responsive/customFormElement" %>
+<%@ taglib prefix="org-common" tagdir="/WEB-INF/tags/addons/gallaghercommerceorgaddon/responsive/common" %>
+<%@ taglib prefix="customFormElement" tagdir="/WEB-INF/tags/addons/gallaghercommerceorgaddon/responsive/customFormElement" %>
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
@@ -57,9 +57,17 @@
                     <div class="col-xs-12 col-sm-6">
                     	<formElement:formInputBox idKey="user.email" labelKey="user.email" path="email"
                                                   inputCSS="text" mandatory="true"/>
+						<div class="help-block email-duplicate-error">
+							<span id="email.errors"><spring:message  code="profile.email.duplicate" /></span>
+						</div>
+						<div class="help-block email-invalid-error">
+							<span id="email.errors"><spring:message  code="profile.email.invalid" /></span>
+						</div>
                         
                     </div>
                     <form:input type="hidden" name="uid" path="uid" id="uid"/>
+                    <form:input type="hidden" name="duplicate" path="duplicate" id="duplicate"/>
+                    <form:input type="hidden" name="customerId" path="customerId" id="customerId"/>
                     <div class="col-xs-12 col-sm-6">
                     	<formElement:formSelectBoxDefaultEnabled idKey="user.title" labelKey="user.title" path="titleCode"
                                                    mandatory="true"
@@ -68,6 +76,8 @@
                                                    selectCSSClass="form-control"
                                                    items="${titleData}"/>
                     </div>
+                 </div>
+                 <div class="row">   
                     <div class="col-xs-12 col-sm-6">
                     	<formElement:formInputBox idKey="user.firstName" labelKey="user.firstName" path="firstName"
                                                   inputCSS="text" mandatory="true"/>
@@ -76,6 +86,8 @@
                     	<formElement:formInputBox idKey="user.lastName" labelKey="user.lastName" path="lastName"
                                                   inputCSS="text" mandatory="true"/>
                     </div>
+                 </div>
+                 <div class="row">   
                     <div class="col-xs-12 col-sm-6">
                         <formElement:formSelectBox idKey="text.company.user.unit.title" skipBlank="false"
                                                    labelKey="text.company.user.unit.title" path="parentB2BUnit" selectCSSClass="form-control"
@@ -86,6 +98,8 @@
                         <customFormElement:formCheckboxes idKey="text.company.user.roles" labelKey="text.company.user.roles"
                                                           path="roles" items="${roles}" disabled="${not empty param.unit and not empty param.role}"/>
                     </div>
+                 </div>
+                 <div class="row">   
                     <div class="col-xs-12">
                         <div class="accountActions-bottom">
                             <div class="row">

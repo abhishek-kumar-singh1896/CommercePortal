@@ -1,0 +1,52 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+#******************************This file is generated - please do not edit it. It will be regenerated after every build.********************************#
+# ImpEx for Importing Classification Categories into Animal Management B2C Store 
+
+# Macros / Replacement Parameter definitions
+$productCatalog=amB2CMasterProductCatalog
+$productCatalogName=Animal Management B2C US Product Catalog
+$classCatalogVersion=catalogversion(catalog(id[default='AMB2CClassification']),version[default='1.0'])[unique=true,default='AMB2CClassification:1.0']
+$classSystemVersion=systemVersion(catalog(id[default='AMB2CClassification']),version[default='1.0'])[unique=true]
+
+# Language
+$lang=en
+
+
+# Create Categories
+UPDATE ClassificationClass;code[unique=true];name[lang=$lang];$classCatalogVersion
+;1110 Volt Energizers;1110 Volt Energizers
+;Multi Powered Energizers;Multi Powered Energizers
+;Solar Energizers;Solar Energizers
+;Battery  Energizers;Battery  Energizers
+;Remotes and Fence Testers;Remotes and Fence Testers
+;Cut Out Switchjes;Cut Out Switchjes
+;Safety and Protection;Safety and Protection
+;Monitoring and Alarms;Monitoring and Alarms
+;Fence Connectors;Fence Connectors
+;Wire and Cable;Wire and Cable
+;Clamps and Joiners;Clamps and Joiners
+;Posts;Posts
+;Strainers;Strainers
+;Insulators;Insulators
+;Offsets;Offsets
+;Gates;Gates
+;Tapes, Wires, Braids;Tapes, Wires, Braids
+;Reels and Accessories;Reels and Accessories
+;Posts - pigtails and Tread-ins;Posts - pigtails and Tread-ins
+;Electric Fence Kits;Electric Fence Kits
+;Netting;Netting
+
+
+
+# Create Categories
+UPDATE ClassificationAttribute;code[unique=true];$classSystemVersion;name[lang=$lang]
+;Warranty;;Warranty
+;Stored Energy;;Stored Energy
+;Clean Wire Fence distance;;Clean Wire Fence distance
+;Output Energy;;Output Energy
+;Battery is included;;Battery is included
+;Height;;Height
+;Width or Length;;Width or Length
+;Product Weight;;Product Weight

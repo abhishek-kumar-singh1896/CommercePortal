@@ -11,14 +11,14 @@
 #
 # Import the CMS Site configuration for the SecurityB2B store
 #
-$productCatalog=securityB2BProductCatalog
+$productCatalogNZ=securityB2BNZProductCatalog
 $contentCatalog=securityB2BContentCatalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
 $defaultLanguage=en
 $storeUidNZ=securityB2BNZ
 $siteUidNZ=securityB2BNZ
 $webServiceSiteUid=$siteUidNZWS
-$siteMapLangCur=enNzd
+$siteMapLangCurNZ=enNzd
 $siteMapUrlLimitPerFile=50000
 $siteMapPage=Homepage,Product,CategoryLanding,Category,Store,Content,Custom
 $customSiteMapUrls=
@@ -34,7 +34,7 @@ $storefrontContextRoot=$config-storefrontContextRoot
 
 # CMS Site
 INSERT_UPDATE CMSSite;uid[unique=true];theme(code);channel(code);stores(uid);contentCatalogs(id);defaultCatalog(id);defaultLanguage(isoCode);urlPatterns;active;previewURL;startingPage(uid,$contentCV);urlEncodingAttributes;defaultPromotionGroup(Identifier)[default=securityB2BNZPromoGrp];minimumSpendThreshold;thresholdMessage;minimumQuantityThreshold;thresholdQuantityMessage
-;$siteUidNZ;securityB2BNZ;B2B;$storeUidNZ;$contentCatalog;$productCatalog;$defaultLanguage;(?i)^https?://[^/]+(/[^?]*)?\?(.*\&)?(site=$siteUidNZ)(|\&.*)$,(?i)^https?://$siteUidNZ\.[^/]+(|/.*|\?.*)$,(?i)^https?://accstorefront.cj6th-gallagher1-d1-public.model-t.cc.commerce.ondemand.com/security/nz+(|/.*|\?.*)$,(?i)^https?://localhost:9002/security/nz+(|/.*|\?.*)$;true;$storefrontContextRoot/?site=$siteUidNZ;homepage;country,language;;;;;
+;$siteUidNZ;securityB2B;B2B;$storeUidNZ;$contentCatalog;$productCatalogNZ;$defaultLanguage;(?i)^https?://[^/]+(/[^?]*)?\?(.*\&)?(site=$siteUidNZ)(|\&.*)$,(?i)^https?://$siteUidNZ\.[^/]+(|/.*|\?.*)$,(?i)^https?://accstorefront.cj6th-gallagher1-d1-public.model-t.cc.commerce.ondemand.com/security/nz+(|/.*|\?.*)$,(?i)^https?://localhost:9002/security/nz+(|/.*|\?.*)$;true;$storefrontContextRoot/?site=$siteUidNZ;homepage;country,language;;;;;
 
 # SiteMap Configuration
 # SiteMap Language Currencies
@@ -57,7 +57,7 @@ INSERT_UPDATE SiteMapPage;&siteMapPage;code(code)[unique=true];frequency(code)[u
 ;Custom;Custom;daily;1.0;;
 
 INSERT_UPDATE SiteMapConfig;&siteMapConfigId;configId[unique=true];siteMapLanguageCurrencies(&siteMapLanguageCurrency);siteMapPages(&siteMapPage);siteMapTemplate(&siteMapRenderer)[unique=true];
-;$siteUidNZSiteMapConfig;$siteUidNZSiteMapConfig;$siteMapLangCur;$siteMapPage;$siteUidNZ-siteMapTemplate;$customSiteMapUrls;
+;$siteUidNZSiteMapConfig;$siteUidNZSiteMapConfig;$siteMapLangCurNZ;$siteMapPage;$siteUidNZ-siteMapTemplate;$customSiteMapUrls;
 
 
 # Cart Cleanup CronJobs

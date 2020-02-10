@@ -121,6 +121,7 @@
 	<extension name="sappricingbackoffice" />
 	<extension name="sapmodel" /> -->
 	<extension name="gallagherfulfilmentprocess" />
+	<extension name="gallagheroutboundservices" />
 	<extension name="gallaghercore" />
 	<extension name="gallagherfacades" />
 	<extension name="gallaghertest" />

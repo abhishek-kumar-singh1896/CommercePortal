@@ -21,6 +21,7 @@ import de.hybris.platform.commerceservices.search.pagedata.PageableData;
 import de.hybris.platform.commerceservices.search.pagedata.SearchPageData;
 import de.hybris.platform.core.model.user.UserModel;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
+import de.hybris.platform.servicelayer.user.impl.DefaultUserService;
 
 import java.text.ParseException;
 import java.util.List;
@@ -29,7 +30,10 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.validator.routines.EmailValidator;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -39,10 +43,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.gallagher.c4c.outboundservices.facade.GallagherC4COutboundServiceFacade;
 import com.gallagher.commerceorgaddon.controllers.GallaghercommerceorgaddonControllerConstants;
 import com.gallagher.commerceorgaddon.forms.B2BCustomerForm;
 import com.gallagher.commerceorgaddon.forms.B2BPermissionForm;
 import com.gallagher.commerceorgaddon.forms.CustomerResetPasswordForm;
+import com.gallagher.outboundservices.constants.GallagheroutboundservicesConstants;
+import com.gallagher.outboundservices.response.dto.GallagherInboundCustomerEntry;
 
 
 /**
@@ -56,6 +63,22 @@ public class UserManagementPageController extends MyCompanyPageController
 
 	@Resource(name = "profileValidator")
 	private ProfileValidator profileValidator;
+
+	@Resource(name = "userService")
+	private DefaultUserService userService;
+
+	private final GallagherC4COutboundServiceFacade gallagherC4COutboundServiceFacade;
+
+	public GallagherC4COutboundServiceFacade getGallagherC4COutboundServiceFacade()
+	{
+		return gallagherC4COutboundServiceFacade;
+	}
+
+	@Autowired
+	public UserManagementPageController(final GallagherC4COutboundServiceFacade gallagherC4COutboundServiceFacade)
+	{
+		this.gallagherC4COutboundServiceFacade = gallagherC4COutboundServiceFacade;
+	}
 
 	@RequestMapping(method = RequestMethod.GET)
 	@RequireHardLogIn
@@ -591,5 +614,41 @@ public class UserManagementPageController extends MyCompanyPageController
 		{
 			return String.format(REDIRECT_TO_USER_DETAILS, urlEncode(user));
 		}
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/create/verifyCustomer", method = RequestMethod.GET)
+	@RequireHardLogIn
+	public GallagherInboundCustomerEntry verifyCustomer(@RequestParam("email")
+	final String email, final Model model)
+	{
+		GallagherInboundCustomerEntry existingCustomer = new GallagherInboundCustomerEntry();
+
+		final EmailValidator eValidator = EmailValidator.getInstance();
+
+		if (!eValidator.isValid(email))
+		{
+			existingCustomer.setEmailError("invalid");
+		}
+		else if (userService.isUserExisting(email))
+		{
+			existingCustomer.setEmailError("duplicate");
+		}
+		else
+		{
+			final List<GallagherInboundCustomerEntry> existingCustomers = getGallagherC4COutboundServiceFacade()
+					.getCustomerInfoFromC4C(email);
+			if (CollectionUtils.isNotEmpty(existingCustomers) && existingCustomers.size() > 1)
+			{
+				existingCustomer.setDuplicate(true);
+			}
+			else if (CollectionUtils.isNotEmpty(existingCustomers)
+					&& GallagheroutboundservicesConstants.C4C_CONTACT_ACTIVE_CODE.equals(existingCustomers.get(0).getStatusCode()))
+			{
+				existingCustomer = existingCustomers.get(0);
+			}
+		}
+
+		return existingCustomer;
 	}
 }

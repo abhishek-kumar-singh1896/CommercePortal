@@ -48,13 +48,13 @@ UPDATE CMSPageType;code[unique=true];previewDisabled
 ;EmailPage;true
 
 # Titles
-INSERT_UPDATE Title;code[unique=true]
-;mr
-;mrs
-;miss
-;ms
-;dr
-;rev
+#INSERT_UPDATE Title;code[unique=true]
+#;mr
+#;mrs
+#;miss
+#;ms
+#;dr
+#;rev
 
 # Media Folders
 INSERT_UPDATE MediaFolder;qualifier[unique=true];path[unique=true]

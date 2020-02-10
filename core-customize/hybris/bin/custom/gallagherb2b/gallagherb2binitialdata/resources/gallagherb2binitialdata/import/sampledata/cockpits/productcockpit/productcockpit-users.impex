@@ -22,5 +22,9 @@ INSERT_UPDATE Employee;UID[unique=true];password[default=$defaultPassword];descr
 ;productmanager;;Product manager;Product Manager;productmanagergroup;en;EUR
 
 UPDATE CatalogVersion;catalog(id)[unique=true];version[unique=true];writePrincipals(uid);
-;securityB2BProductCatalog;Online;productmanagergroup,productmanager;
-;securityB2BProductCatalog;Staged;productmanagergroup,productmanager;
+;securityB2BAUProductCatalog;Online;productmanagergroup,productmanager;
+;securityB2BAUProductCatalog;Staged;productmanagergroup,productmanager;
+;securityB2BNZProductCatalog;Online;productmanagergroup,productmanager;
+;securityB2BNZProductCatalog;Staged;productmanagergroup,productmanager;
+;securityB2BGlobalProductCatalog;Online;productmanagergroup,productmanager;
+;securityB2BGlobalProductCatalog;Staged;productmanagergroup,productmanager;

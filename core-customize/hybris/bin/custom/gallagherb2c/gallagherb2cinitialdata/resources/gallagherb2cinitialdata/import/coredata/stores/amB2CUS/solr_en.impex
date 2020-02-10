@@ -6,7 +6,7 @@
 #
 
 # Index Type
-$solrIndexedType=amB2CProductType
+$solrIndexedType=amB2CUSProductType
 
 # Language
 $lang=en

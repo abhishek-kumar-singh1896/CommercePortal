@@ -1,0 +1,72 @@
+$productCatalog=securityB2BNZProductCatalog
+
+$sourceProductCV=sourceVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default='$productCatalog:Staged']
+$targetProductCV=targetVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default='$productCatalog:Online']
+
+INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetProductCV;
+;sync securityB2BNZProductCatalog:Staged->Online;;;;
+
+#----------------------------------------------------------------------
+
+$productCatalog=securityB2BAUProductCatalog
+
+$sourceProductCV=sourceVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default='$productCatalog:Staged']
+$targetProductCV=targetVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default='$productCatalog:Online']
+
+INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetProductCV;
+;sync securityB2BAUProductCatalog:Staged->Online;;;;
+
+#----------------------------------------------------------------------
+
+$productCatalog=securityB2BGlobalProductCatalog
+
+$sourceProductCV=sourceVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default='$productCatalog:Staged']
+$targetProductCV=targetVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default='$productCatalog:Online']
+
+INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetProductCV;
+;sync securityB2BGlobalProductCatalog:Staged->Online;;;;
+
+#----------------------------------------------------------------------
+
+$productCatalogMaster=securityB2BMasterProductCatalog
+$productCatalogNZ=securityB2BNZProductCatalog
+$productCatalogAU=securityB2BAUProductCatalog
+$productCatalogGlobal=securityB2BGlobalProductCatalog
+
+$sourceProductCV=sourceVersion(catalog(id[default=$productCatalogMaster]),version[default='Staged'])[unique=true,default='$productCatalogMaster:Staged']
+$targetProductCVNZ=targetVersion(catalog(id[default=$productCatalogNZ]),version[default='Staged'])[unique=true,default='$productCatalogNZ:Staged']
+$targetProductCVAU=targetVersion(catalog(id[default=$productCatalogAU]),version[default='Staged'])[unique=true,default='$productCatalogAU:Staged']
+$targetProductCVGlobal=targetVersion(catalog(id[default=$productCatalogGlobal]),version[default='Staged'])[unique=true,default='$productCatalogGlobal:Staged']
+
+INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetProductCVNZ;
+;sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged;;;;
+
+INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetProductCVAU;
+;sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged;;;;
+
+INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetProductCVGlobal;
+;sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged;;;;
+
+INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
+;sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
+
+INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
+;sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
+
+INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
+;sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
+
+INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
+;sync securityB2BNZProductCatalog:Staged->Online						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
+
+INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
+;sync securityB2BAUProductCatalog:Staged->Online						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
+
+INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
+;sync securityB2BGlobalProductCatalog:Staged->Online						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1

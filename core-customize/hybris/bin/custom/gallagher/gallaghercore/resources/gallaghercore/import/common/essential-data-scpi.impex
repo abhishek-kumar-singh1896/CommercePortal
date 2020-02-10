@@ -9,7 +9,7 @@ INSERT_UPDATE OAuthClientDetails; clientId[unique = true]; oAuthUrl; scope
                                 ; CommerceCloud_Dev              ; https://oauthasservices-c3d61cfcf.ap1.hana.ondemand.com/oauth2/api/v1/token
                                 
 INSERT_UPDATE ExposedOAuthCredential; id[unique = true]   ; oAuthClientDetails(clientId); password
-                                    ; scpiOauthCredential ; CommerceCloud_Dev                   ; samplePassword
+                                    ; scpiOauthCredential ; CommerceCloud_Dev           ; samplePassword
 
 #********************#
 #*** Customer URL ***#
@@ -35,6 +35,12 @@ $orderVersion = v=1
 $cancelOrderUrl = https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com/gw/odata/SAP/REPLICATE-ORDER-CANCELLATIONS-FROM-SAP-COMMERCE-CLOUD-TO-SAP-ERP$metadata
 $cancelOrderVersion = v=1
 
+#******************************#
+#*** Contact Collection URL ***#
+#******************************#
+$contactCollectionUrl = https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com/gw/odata/SAP/GGL_C4C_ODATAAPI
+$contactCollectionVersion = v=1
+
 #****************************#
 #***  Destination Target  ***#
 #****************************#
@@ -44,18 +50,20 @@ INSERT_UPDATE DestinationTarget; id[unique = true]
 #******************#
 #***  Endpoints ***#
 #******************#
-INSERT_UPDATE Endpoint; id[unique = true]             ; version[unique = true]; specUrl                                ; name
-                      ; scpiCustomerEndpoint          ; unknown               ; "$customerUrl;$customerVersion/"       ; scpiCustomerEndpoint
-                      ; scpiB2BCustomerEndpoint       ; unknown               ; "$b2bCustomerUrl;$b2bCustomerVersion/" ; scpiB2BCustomerEndpoint
-                      ; scpiOrderEndpoint             ; unknown               ; "$orderUrl;$orderVersion/"             ; scpiOrderEndpoint
-                      ; scpiOrderCancellationEndpoint ; unknown               ; "$cancelOrderUrl;$cancelOrderVersion/" ; scpiOrderCancellationEndpoint
+INSERT_UPDATE Endpoint; id[unique = true]             ; version[unique = true]; specUrl                                            ; name
+                      ; scpiCustomerEndpoint          ; unknown               ; "$customerUrl;$customerVersion/"                   ; scpiCustomerEndpoint
+                      ; scpiB2BCustomerEndpoint       ; unknown               ; "$b2bCustomerUrl;$b2bCustomerVersion/"             ; scpiB2BCustomerEndpoint
+                      ; scpiOrderEndpoint             ; unknown               ; "$orderUrl;$orderVersion/"                         ; scpiOrderEndpoint
+                      ; scpiOrderCancellationEndpoint ; unknown               ; "$cancelOrderUrl;$cancelOrderVersion/" 				  ; scpiOrderCancellationEndpoint
+                      ; scpiContactCollectionEndpoint ; unknown               ; "$contactCollectionUrl;$contactCollectionVersion/" ; scpiContactCollectionEndpoint
                       
                       
 #*******************************#
 #***  Consumed Destinations  ***#
 #*******************************#
-INSERT_UPDATE ConsumedDestination; id[unique = true]                ; url                                                                    ; endpoint(id, version)                 ; credential(id)      ; additionalProperties(key, value)[map-delimiter = |]; destinationTarget(id)[default = scpiDestinationTarget]
-                                 ; scpiCustomerDestination          ; "$customerUrl;$customerVersion/SAPCpiOutboundCustomers"                ; scpiCustomerEndpoint:unknown          ; scpiOauthCredential ; "csrfURL->$customerUrl;$customerVersion/"          ;
-                                 ; scpiB2BCustomerDestination       ; "$b2bCustomerUrl;$b2bCustomerVersion/SAPCpiOutboundB2BCustomers"       ; scpiB2BCustomerEndpoint:unknown       ; scpiOauthCredential ; "csrfURL->$b2bCustomerUrl;$b2bCustomerVersion/"    ;
-                                 ; scpiOrderDestination             ; "$orderUrl;$orderVersion/SAPCpiOutboundOrders"                         ; scpiOrderEndpoint:unknown             ; scpiOauthCredential ; "csrfURL->$orderUrl;$orderVersion/"                ;
-                                 ; scpiOrderCancellationDestination ; "$cancelOrderUrl;$cancelOrderVersion/SAPCpiOutboundOrderCancellations" ; scpiOrderCancellationEndpoint:unknown ; scpiOauthCredential ; "csrfURL->$cancelOrderUrl;$cancelOrderVersion/"    ;
+INSERT_UPDATE ConsumedDestination; id[unique = true]                ; url                                                                    ; endpoint(id, version)                 ; credential(id)      ; additionalProperties(key, value)[map-delimiter = |]            ; destinationTarget(id)[default = scpiDestinationTarget]
+                                 ; scpiCustomerDestination          ; "$customerUrl;$customerVersion/SAPCpiOutboundCustomers"                ; scpiCustomerEndpoint:unknown          ; scpiOauthCredential ; "csrfURL->$customerUrl;$customerVersion/"                      ;
+                                 ; scpiB2BCustomerDestination       ; "$b2bCustomerUrl;$b2bCustomerVersion/SAPCpiOutboundB2BCustomers"       ; scpiB2BCustomerEndpoint:unknown       ; scpiOauthCredential ; "csrfURL->$b2bCustomerUrl;$b2bCustomerVersion/"                ;
+                                 ; scpiOrderDestination             ; "$orderUrl;$orderVersion/SAPCpiOutboundOrders"                         ; scpiOrderEndpoint:unknown             ; scpiOauthCredential ; "csrfURL->$orderUrl;$orderVersion/"                            ;
+                                 ; scpiOrderCancellationDestination ; "$cancelOrderUrl;$cancelOrderVersion/SAPCpiOutboundOrderCancellations" ; scpiOrderCancellationEndpoint:unknown ; scpiOauthCredential ; "csrfURL->$cancelOrderUrl;$cancelOrderVersion/"                ;
+                                 ; scpiContactCollectionDestination ; "$contactCollectionUrl;$contactCollectionVersion/ContactCollection"    ; scpiContactCollectionEndpoint:unknown ; scpiOauthCredential ; "csrfURL->$contactCollectionUrl;$contactCollectionVersion/"    ;

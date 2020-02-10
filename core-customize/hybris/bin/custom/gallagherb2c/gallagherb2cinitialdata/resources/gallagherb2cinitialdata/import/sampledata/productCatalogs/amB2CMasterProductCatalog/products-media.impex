@@ -1,0 +1,38 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# ImPex for Importing Product Media into Animal Management B2C Store
+
+# Macros / Replacement Parameter definitions
+$productCatalog=amB2CMasterProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$thumbnail=thumbnail(code, $catalogVersion)
+$picture=picture(code, $catalogVersion)
+$thumbnails=thumbnails(code, $catalogVersion)
+$detail=detail(code, $catalogVersion)
+$normal=normal(code, $catalogVersion)
+$others=others(code, $catalogVersion)
+$data_sheet=data_sheet(code, $catalogVersion)
+$medias=medias(code, $catalogVersion)
+$galleryImages=galleryImages(qualifier, $catalogVersion)
+$siteResource=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/productCatalogs/$productCatalog
+$conversionGroup=conversionGroup(code[default=B2bAdvanceConversionGroup])
+
+INSERT_UPDATE MediaFolder;qualifier[unique=true];path[unique=true]
+;images;images
+
+INSERT_UPDATE Media;mediaFormat(qualifier);code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];$catalogVersion;folder(qualifier)[default=images]
+;B2BADVANCE-BF;/B2BADVANCE-BF/solar-fence-energizer-s10.jpg;$siteResource/images/B2BADVANCE-BF/solar-fence-energizer-s10.jpg
+;B2BADVANCE-BF;/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge.jpg;$siteResource/images/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge.jpg
+
+
+INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$catalogVersion;$conversionGroup
+;solar-fence-energizer-s10;/B2BADVANCE-BF/solar-fence-energizer-s10.jpg,/B2BADVANCE-BF/solar-fence-energizer-s10.jpg,/B2BADVANCE-BF/solar-fence-energizer-s10.jpg,/B2BADVANCE-BF/solar-fence-energizer-s10.jpg,/B2BADVANCE-BF/solar-fence-energizer-s10.jpg,/B2BADVANCE-BF/solar-fence-energizer-s10.jpg
+;heavy-duty-leadout-cable-12.5-gauge;/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge.jpg,/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge.jpg,/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge.jpg,/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge.jpg,/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge.jpg,/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge.jpg
+
+
+
+
+INSERT_UPDATE Product;code[unique=true];$picture;$thumbnail;$detail;$others;$normal;$thumbnails;$galleryImages;$catalogVersion
+;solar-fence-energizer-s10;/B2BADVANCE-BF/solar-fence-energizer-s10.jpg;/B2BADVANCE-BF/solar-fence-energizer-s10.jpg;/B2BADVANCE-BF/solar-fence-energizer-s10.jpg;/B2BADVANCE-BF/solar-fence-energizer-s10.jpg,/B2BADVANCE-BF/solar-fence-energizer-s10.jpg,/B2BADVANCE-BF/solar-fence-energizer-s10.jpg;/B2BADVANCE-BF/solar-fence-energizer-s10.jpg;/B2BADVANCE-BF/solar-fence-energizer-s10.jpg;solar-fence-energizer-s10
+;heavy-duty-leadout-cable-12.5-gauge;/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge.jpg;/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge.jpg;/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge.jpg;/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge.jpg,/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge.jpg,/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge.jpg;/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge.jpg;/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge.jpg;heavy-duty-leadout-cable-12.5-gauge

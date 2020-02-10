@@ -78,8 +78,7 @@
 											aria-haspopup="true" aria-expanded="false">
 											${dropdownValue.item.linkName} <span class="down-arrow-icon">
 												<svg>
-                                <use
-														xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-down" />
+                                <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-down" />
                             </svg>
 										</span>
 										</a>

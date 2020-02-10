@@ -6,7 +6,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="company" tagdir="/WEB-INF/tags/addons/commerceorgaddon/responsive/company" %>
+<%@ taglib prefix="company" tagdir="/WEB-INF/tags/addons/gallaghercommerceorgaddon/responsive/company" %>
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags" %>
 <spring:htmlEscape defaultHtmlEscape="true"/>
 
@@ -28,11 +28,13 @@
         </div>
 
         <c:if test="${empty searchPageData.results}">
+         <div class="row">
             <div class="col-md-6 col-md-push-3">
                 <div class="account-section-content	content-empty">
                     <spring:theme code="text.company.noentries"/>
                 </div>
             </div>
+           </div> 
         </c:if>
 
         <c:if test="${not empty searchPageData.results}">

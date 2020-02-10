@@ -13,8 +13,8 @@
 	
 	<import>classpath:wro_addons.xml</import>
 
-	<group name="securityB2BNZ_responsive">
-		<css>/_ui/responsive/theme-securityB2BNZ/css/style.css</css>
+	<group name="securityB2B_responsive">
+		<css>/_ui/responsive/theme-securityB2B/css/style.css</css>
 	</group>
 	
 	<group name="all_responsive">
