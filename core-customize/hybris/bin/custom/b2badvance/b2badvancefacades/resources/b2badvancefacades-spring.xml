@@ -417,4 +417,9 @@
 	<bean id="groupOrderConsignmentEntryPopulator"
 		class="com.enterprisewide.b2badvance.facades.order.populators.B2BAdvanceGroupOrderConsignmentEntryPopulator"
 		parent="groupOrderEntryPopulator" />
+		
+		<bean parent="modifyPopulatorList">
+		<property name="list" ref="cartConverter"/>
+		<property name="remove" ref="groupOrderEntryPopulator"/>
+	</bean>
 </beans>
