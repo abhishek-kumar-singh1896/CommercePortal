@@ -190,5 +190,245 @@ h2 {
   border-radius: 8px;
   box-shadow: 0 4px 11px 0 rgba(0, 0, 0, 0.1);
   border: none;
+  font-size: 1em;
 }
 
+.main-nav-out {
+  margin-top: 13px;
+  margin-left: 30px;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      display: inline-block;
+      padding: 0;
+      position: relative;
+
+      a {
+        display: block;
+        padding: 15px 24px 25px 24px;
+        color: $white;
+        text-decoration: none;
+        box-sizing: border-box;
+        border-bottom: 4px solid transparent;
+        transition: all ease-in-out 0.3s;
+
+        .arrow-down-icon {
+          display: none;
+
+          svg {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            fill: $gray-5;
+            bottom: 3px;
+            left: 0;
+            right: 0;
+            margin: auto;
+          }
+        }
+
+        &:hover {
+          background-color: $gray-9;
+        }
+      }
+
+      &.with-dropdown {
+        a {
+          &:hover {
+            .arrow-down-icon {
+              display: block;
+            }
+          }
+        }
+
+        &.active {
+          a {
+            .arrow-down-icon {
+              display: block;
+              -webkit-transform: rotate(-180deg);
+              transform: rotate(-180deg);
+              svg {
+                fill: $primary-color;
+              }
+            }
+
+            border-bottom: 4px solid $primary-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+.second-level-menu {
+  position: absolute;
+  max-width: 1410px;
+  width: 100%;
+  background: $gray-9;
+  letter-spacing: 0.1px;
+
+  .contact-us-container {
+    padding: 20px;
+
+    .call-us-contact-number {
+      font-size: 1.428571em;
+      color: $primary-color;
+      line-height: 24px;
+      margin: 8px 0;
+    }
+
+    .contact-us-description {
+      font-size: 1em;
+      line-height: 17px;
+      color: $gray-5;
+    }
+  }
+
+  .menu-container-title {
+    color: $white;
+    margin-bottom: 24px;
+    .arrow-right-icon {
+      svg {
+        fill: $white;
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    &.less-margin {
+      margin-bottom: 8px;
+    }
+  }
+
+  .third-level-menu {
+    .left-menu-container {
+      background-color: $black;
+      padding-left: 0;
+      padding-right: 0;
+
+      .left-menu-inner {
+        margin-bottom: 16px;
+      }
+
+      .nav-tabs {
+        border: none;
+        padding: 0 4px;
+
+        .nav-link {
+          border: none;
+          border-radius: 0;
+          padding: 0;
+          position: relative;
+
+          display: block;
+          padding: 16px 20px 16px 8px;
+          color: $white;
+          font-size: 1em;
+          text-decoration: none;
+          transition: all ease-in-out 0.2s;
+          border-left: 4px transparent;
+
+          .arrow-right-icon {
+            svg {
+              position: absolute;
+              width: 24px;
+              height: 24px;
+              fill: $gray-5;
+              right: 5px;
+              top: 0;
+              bottom: 0;
+              margin: auto;
+            }
+          }
+
+          &:hover {
+            color: $primary-color;
+
+            svg {
+              fill: $primary-color;
+            }
+          }
+
+          &.active {
+            color: $primary-color;
+            border-left: 4px solid $primary-color;
+            font-family: $font-family-bold;
+            background-color: transparent;
+
+            .arrow-right-icon {
+              svg {
+                fill: $primary-color;
+              }
+            }
+          }
+        }
+
+        .nav-item {
+          margin: 0;
+          display: block;
+          width: 100%;
+        }
+      }
+
+      .left-menu-bottom-section {
+        ul {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          li {
+            a {
+              color: $gray-5;
+              padding: 16px;
+              text-decoration: none;
+              display: block;
+
+              &:hover {
+                color: $primary-color;
+              }
+            }
+          }
+        }
+      }
+    }
+    .right-menu-container {
+      padding: 20px;
+
+      .container-col-title {
+        font-size: 0.85714em;
+        color: $gray-5;
+        margin-bottom: 8px;
+      }
+
+      .container-col-links {
+        ul {
+          margin: 0;
+          padding: 0;
+          list-style: none;
+
+          li {
+            a {
+              color: $white;
+              text-decoration: none;
+              padding: 8px 0;
+              display: block;
+
+              &:hover {
+                color: $primary-color;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1600px) {
+  .second-level-menu {
+    left: 0;
+  }
+}

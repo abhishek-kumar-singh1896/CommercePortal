@@ -134,6 +134,10 @@
     }
 
     .footer-bottom-section {
+        .other-division,
+        .country-select {
+          display: block;
+        }
       .footer-text-right {
         text-align: left;
       }
