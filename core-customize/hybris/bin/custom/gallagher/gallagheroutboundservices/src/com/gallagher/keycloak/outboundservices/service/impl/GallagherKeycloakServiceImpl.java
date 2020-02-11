@@ -3,11 +3,14 @@
  */
 package com.gallagher.keycloak.outboundservices.service.impl;
 
+import de.hybris.platform.acceleratorservices.urlencoder.UrlEncoderService;
+import de.hybris.platform.acceleratorservices.urlresolver.SiteBaseUrlResolutionService;
 import de.hybris.platform.commercefacades.user.data.CustomerData;
 import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.core.model.user.UserModel;
 import de.hybris.platform.servicelayer.config.ConfigurationService;
 import de.hybris.platform.servicelayer.user.UserService;
+import de.hybris.platform.site.BaseSiteService;
 
 import java.text.MessageFormat;
 import java.util.Arrays;
@@ -36,6 +39,9 @@ public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 {
 	private final ConfigurationService configurationService;
 	private final UserService userService;
+	private final BaseSiteService baseSiteService;
+	private final SiteBaseUrlResolutionService siteBaseUrlResolutionService;
+	private final UrlEncoderService urlEncoderService;
 
 	public ConfigurationService getConfigurationService()
 	{
@@ -47,11 +53,31 @@ public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 		return userService;
 	}
 
+	public BaseSiteService getBaseSiteService()
+	{
+		return baseSiteService;
+	}
+
+	public SiteBaseUrlResolutionService getSiteBaseUrlResolutionService()
+	{
+		return siteBaseUrlResolutionService;
+	}
+
+	public UrlEncoderService getUrlEncoderService()
+	{
+		return urlEncoderService;
+	}
+
 	@Autowired
-	public GallagherKeycloakServiceImpl(final ConfigurationService configurationService, final UserService userService)
+	public GallagherKeycloakServiceImpl(final ConfigurationService configurationService, final UserService userService,
+			final BaseSiteService baseSiteService, final SiteBaseUrlResolutionService siteBaseUrlResolutionService,
+			final UrlEncoderService urlEncoderService)
 	{
 		this.configurationService = configurationService;
 		this.userService = userService;
+		this.baseSiteService = baseSiteService;
+		this.siteBaseUrlResolutionService = siteBaseUrlResolutionService;
+		this.urlEncoderService = urlEncoderService;
 	}
 
 	/**
@@ -74,7 +100,8 @@ public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 
 		final UserModel user = getUserService().getUserForUID(customerUid);
 		final String keycloakGUID = ((CustomerModel) user).getKeycloakGUID();
-		final String redirectURI = "https://localhost:9002/security/nz/en";
+		final String redirectURI = getSiteBaseUrlResolutionService().getWebsiteUrlForSite(getBaseSiteService().getCurrentBaseSite(),
+				true, getUrlEncoderService().getCurrentUrlEncodingPattern());
 
 		final String url = MessageFormat.format(
 				getConfigurationService().getConfiguration().getString("keycloak.reset.password.url"), keycloakGUID, redirectURI);

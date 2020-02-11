@@ -705,7 +705,7 @@ public class AccountPageController extends AbstractSearchPageController
 		}
 		catch (final RestClientException | OAuth2Exception exception)
 		{
-			LOG.error("Exception occured while creationg user in Keycloak : " + exception);
+			LOG.error("Exception occured while sending Update Password Link from Keycloak : " + exception);
 			success = false;
 		}
 		model.addAttribute("success", success);

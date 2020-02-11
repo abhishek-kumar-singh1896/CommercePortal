@@ -28,8 +28,8 @@
 	
 	<context component="create-wizard" type="Customer">
         <wz:flow id="CustomerWizard" title="create.title(ctx.TYPE_CODE)">
-        	<wz:handler handlerId="verifyCustomerHandler1" handlerBean="verifyCustomerHandler">
-            </wz:handler>
+        	<wz:handler handlerId="verifyCustomerHandler1" handlerBean="verifyCustomerHandler" />
+        	<wz:handler handlerId="saveCustomerHandler" handlerBean="gallagherSaveCustomerHandler" />
             <wz:prepare id="custPrepare">
                 <wz:initialize property="newCust" type="Customer"/>
             </wz:prepare>
@@ -57,9 +57,9 @@
                     <wz:cancel/>
                     <wz:back/>
                     <wz:next/>
-                    <wz:done>
+                    <wz:custom label="Done" composedHandler="saveCustomerHandler">
                         <wz:save property="newCust"/>
-                    </wz:done>
+                    </wz:custom>
                 </wz:navigation>
             </wz:step>
             <wz:step id="step3" label="create.customer.locale.label" sublabel="create.customer.locale.sublabel">
@@ -73,9 +73,9 @@
                     <wz:cancel/>
                     <wz:back/>
                     <wz:next/>
-                    <wz:done>
+                    <wz:custom label="Done" composedHandler="saveCustomerHandler">
                         <wz:save property="newCust"/>
-                    </wz:done>
+                    </wz:custom>
                 </wz:navigation>
             </wz:step>
             <wz:step id="step4" label="create.customer.groups.label" sublabel="create.customer.groups.sublabel">
@@ -87,9 +87,9 @@
                 <wz:navigation id="step4.navigation" merge-mode="REPLACE">
                     <wz:cancel/>
                     <wz:back/>
-                    <wz:done>
+                    <wz:custom label="Done" composedHandler="saveCustomerHandler">
                         <wz:save property="newCust"/>
-                    </wz:done>
+                    </wz:custom>
                 </wz:navigation>
             </wz:step>
         </wz:flow>
@@ -127,8 +127,8 @@
     </context>
 	<context merge-by="type" parent="Customer" type="B2BCustomer" component="create-wizard">
 	    <wz:flow xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config" id="CustomerWizard" title="create.title(ctx.TYPE_CODE)">
-			<wz:handler handlerId="verifyCustomerHandler1" handlerBean="verifyCustomerHandler">
-			</wz:handler>
+			<wz:handler handlerId="verifyCustomerHandler1" handlerBean="verifyCustomerHandler" />
+        	<wz:handler handlerId="saveCustomerHandler" handlerBean="gallagherSaveCustomerHandler" />
 			<wz:prepare id="custPrepare">
 				<wz:initialize property="newCust" type="B2BCustomer"/>
 			</wz:prepare>
@@ -171,9 +171,9 @@
 					<wz:back/>
 					<wz:cancel/>
 					<wz:next visible="newCust.defaultB2BUnit != null"/>
-					<wz:done visible="newCust.defaultB2BUnit != null">
-						<wz:save property="newCust"/>
-					</wz:done>
+               <wz:custom label="Done" composedHandler="saveCustomerHandler"  visible="newCust.defaultB2BUnit != null">
+                    <wz:save property="newCust"/>
+               </wz:custom>
 				</wz:navigation>
 			</wz:step>
 	    </wz:flow>
