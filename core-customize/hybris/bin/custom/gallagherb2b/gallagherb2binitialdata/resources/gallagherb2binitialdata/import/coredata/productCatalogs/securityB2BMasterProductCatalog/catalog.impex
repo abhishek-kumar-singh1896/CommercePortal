@@ -1,0 +1,70 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+# 
+# Import the SecurityB2B Product and Classification Catalogs
+#
+
+$classificationCatalog=AMB2CClassification
+$productCatalog=securityB2BMasterProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$languages=en
+$lang=en
+
+# Product catalog
+INSERT_UPDATE Catalog;id[unique=true]
+;$productCatalog
+
+# Product versions for product catalogs
+INSERT_UPDATE CatalogVersion;catalog(id)[unique=true];version[unique=true];active;languages(isoCode);readPrincipals(uid)
+;$productCatalog;Staged;false;$languages;employeegroup
+;$productCatalog;Online;false;$languages;employeegroup
+
+
+# AMB2C Classification catalog
+INSERT_UPDATE ClassificationSystem;id[unique=true]
+;$classificationCatalog
+
+# Insert Classifications System Version
+INSERT_UPDATE ClassificationSystemVersion;catalog(id)[unique=true];version[unique=true];active;inclPacking[virtual=true,default=true];inclDuty[virtual=true,default=true];inclFreight[virtual=true,default=true];inclAssurance[virtual=true,default=true]
+;$classificationCatalog;1.0;true
+
+INSERT_UPDATE DroolsKIEModule;name[unique=true];mvnGroupId;mvnArtifactId;mvnVersion;ruleType(code);active;version;
+;promotions-module;hybris-rules;promotions;1.0.0;PROMOTION;true;-1;
+;promotions-preview-module;hybris-rules;promotions-preview;1.0.0;PROMOTION;true;-1;
+
+INSERT_UPDATE DroolsKIEBase;name[unique=true];kieModule(name)[unique=true];equalityBehavior(code);eventProcessingMode(code)
+;promotions-base;promotions-module;EQUALITY;STREAM
+;promotions-preview-base;promotions-preview-module;EQUALITY;STREAM
+
+INSERT_UPDATE DroolsKIESession;name[unique=true];kieBase(name)[unique=true];sessionType(code)
+;promotions-session;promotions-base;STATELESS
+;promotions-preview-session;promotions-preview-base;STATELESS
+
+INSERT_UPDATE DroolsRuleEngineContext;name[unique=true];kieSession(name);ruleFiringLimit
+;promotions-context;promotions-session;200;
+;promotions-preview-context;promotions-preview-session;200;
+
+UPDATE DroolsKIEBase;name[unique=true];defaultKIESession(name)
+;promotions-base;promotions-session
+;promotions-preview-base;promotions-preview-session
+
+UPDATE DroolsKIEModule;name[unique=true];defaultKIEBase(name)
+"#% afterEach: de.hybris.platform.core.Registry.getApplicationContext().getBean(""ruleEngineSystemSetup"").initializeModule(impex.getLastImportedItem());"
+;promotions-module;promotions-base
+;promotions-preview-module;promotions-preview-base
+
+INSERT_UPDATE DroolsRuleEngineContext;name[unique=true];kieSession(name)
+;promotions-context;promotions-session
+;promotions-preview-context;promotions-preview-session;
+
+INSERT_UPDATE CatalogVersionToRuleEngineContextMapping;context(name)[unique=true];catalogVersion(catalog(id),version)[unique=true]
+;promotions-preview-context;$productCatalog:Staged
+;promotions-preview;$productCatalog:Online

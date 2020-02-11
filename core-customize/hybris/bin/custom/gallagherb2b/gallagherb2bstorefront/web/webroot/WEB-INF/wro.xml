@@ -13,8 +13,8 @@
 	
 	<import>classpath:wro_addons.xml</import>
 
-	<group name="securityB2BNZ_responsive">
-		<css>/_ui/responsive/theme-securityB2BNZ/css/style.css</css>
+	<group name="securityB2B_responsive">
+		<css>/_ui/responsive/theme-securityB2B/css/style.css</css>
 	</group>
 	
 	<group name="all_responsive">
@@ -38,6 +38,7 @@
 		<js>/_ui/responsive/common/js/owl.carousel.custom.js</js>
 		<js minimize="false">/_ui/responsive/common/js/jquery.tmpl-1.0.0pre.min.js</js>
 		<js minimize="false">/_ui/responsive/common/js/jquery.currencies.min.js</js>
+		<js minimize="false">/_ui/responsive/common/js/selecty.min.js</js>
 		
 		<!-- Custom ACC JS -->
 		<js>/_ui/responsive/common/js/acc.address.js</js>

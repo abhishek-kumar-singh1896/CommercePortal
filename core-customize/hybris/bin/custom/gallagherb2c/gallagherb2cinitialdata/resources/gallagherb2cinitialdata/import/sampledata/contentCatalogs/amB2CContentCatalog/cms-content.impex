@@ -4,8 +4,8 @@
 $contentCatalog=amB2CContentCatalog
 $contentCatalogName=Animal Management B2C Content Catalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
-$productCatalog=amB2CProductCatalog
-$productCatalogName=Animal Management Product Catalog
+$productCatalog=amB2CMasterProductCatalog
+$productCatalogName=Animal Management US Product Catalog
 $productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 $picture=media(code, $contentCV);
 $image=image(code, $contentCV);

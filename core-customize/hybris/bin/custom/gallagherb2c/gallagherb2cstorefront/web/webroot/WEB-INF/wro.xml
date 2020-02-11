@@ -6,12 +6,8 @@
 	
 	<import>classpath:wro_addons.xml</import>
 
-	<group name="amB2CUS_responsive">
-		<css>/_ui/responsive/theme-amB2CUS/css/style.css</css>
-	</group>
-
-	<group name="amB2CCA_responsive">
-		<css>/_ui/responsive/theme-amB2CCA/css/style.css</css>
+	<group name="amB2C_responsive">
+		<css>/_ui/responsive/theme-amB2C/css/style.css</css>
 	</group>
 	
 	<group name="all_responsive">

@@ -1,0 +1,84 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Categories into Animal Management B2C Store
+
+# Macros / Replacement Parameter definitions
+$productCatalog=amB2CMasterProductCatalog
+$productCatalogName=Animal Management B2C US Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$supercategories=source(code, $catalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+
+# Insert Categories
+INSERT_UPDATE Category;code[unique=true];allowedPrincipals(uid)[default='customergroup'];$catalogVersion
+;Animal Management
+;Electric Fencing
+;C Fence Energizers
+;SC Fence Energizers
+;Solar Panels
+;Batteries
+;Grounding
+;Power Management Tools
+;Remotes and Fence Testers
+;Cut Out Switchjes
+;Safety and Protection
+;Monitoring and Alarms
+;Fence Connectors
+;Fencing
+;Fence Contruction
+;Fence Power
+;Fence Conductors
+;Fence Tools and Accesories
+;1110 Volt Energizers
+;Multi Powered Energizers
+;Solar Energizers
+;Battery  Energizers
+;Wire and Cable
+;Clamps and Joiners
+;Posts
+;Strainers
+;Insulators
+;Offsets
+;Gates
+;Tapes, Wires, Braids
+;Reels and Accessories
+;Posts - pigtails and Tread-ins
+;Electric Fence Kits
+;Netting
+
+# Insert Category Structure
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;Electric Fencing;Animal Management
+;C Fence Energizers;Electric Fencing
+;SC Fence Energizers;C Fence Energizers
+;Solar Panels;Electric Fencing
+;Batteries;Electric Fencing
+;Grounding;Electric Fencing
+;Power Management Tools;Electric Fencing
+;Remotes and Fence Testers;Power Management Tools
+;Cut Out Switchjes;Power Management Tools
+;Safety and Protection;Power Management Tools
+;Monitoring and Alarms;Power Management Tools
+;Fence Connectors;Power Management Tools
+;Fencing;Electric Fencing
+;Fence Contruction;Fencing
+;Fence Power;Fencing
+;Fence Conductors;Fencing
+;Fence Tools and Accesories;Fencing
+;1110 Volt Energizers;SC Fence Energizers
+;Multi Powered Energizers;SC Fence Energizers
+;Solar Energizers;SC Fence Energizers
+;Battery  Energizers;SC Fence Energizers
+;Wire and Cable;Fence Contruction
+;Clamps and Joiners;Fence Contruction
+;Posts;Fence Contruction
+;Strainers;Fence Contruction
+;Insulators;Fence Contruction
+;Offsets;Fence Contruction
+;Gates;Fence Contruction
+;Tapes, Wires, Braids;Fence Conductors
+;Reels and Accessories;Fence Conductors
+;Posts - pigtails and Tread-ins;Fence Conductors
+;Electric Fence Kits;Fence Conductors
+;Netting;Fence Conductors

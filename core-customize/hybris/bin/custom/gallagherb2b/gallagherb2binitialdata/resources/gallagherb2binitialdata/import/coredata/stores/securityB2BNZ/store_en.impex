@@ -19,4 +19,4 @@ $lang=en
 $storeUidNZ=securityB2BNZ
 
 UPDATE BaseStore;uid[unique=true];name[lang=$lang]
-;$storeUidNZ;"Security B2B Store";
+;$storeUidNZ;"Security B2B NZ Store";

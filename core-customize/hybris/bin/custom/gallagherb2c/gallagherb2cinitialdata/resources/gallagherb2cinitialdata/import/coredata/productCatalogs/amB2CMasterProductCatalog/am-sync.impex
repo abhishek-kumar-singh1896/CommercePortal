@@ -1,0 +1,136 @@
+$productCatalog=amB2CNZProductCatalog
+
+$sourceProductCV=sourceVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default='$productCatalog:Staged']
+$targetProductCV=targetVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default='$productCatalog:Online']
+
+INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetProductCV;
+;sync amB2CNZProductCatalog:Staged->Online;;;;
+
+INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
+;sync amB2CNZProductCatalog:Staged->Online						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
+
+#----------------------------------------------------------------------
+
+$productCatalog=amB2CAUProductCatalog
+
+$sourceProductCV=sourceVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default='$productCatalog:Staged']
+$targetProductCV=targetVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default='$productCatalog:Online']
+
+INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetProductCV;
+;sync amB2CAUProductCatalog:Staged->Online;;;;
+
+INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
+;sync amB2CAUProductCatalog:Staged->Online						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
+
+#----------------------------------------------------------------------
+
+$productCatalog=amB2CUSProductCatalog
+
+$sourceProductCV=sourceVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default='$productCatalog:Staged']
+$targetProductCV=targetVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default='$productCatalog:Online']
+
+INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetProductCV;
+;sync amB2CUSProductCatalog:Staged->Online;;;;
+
+INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
+;sync amB2CUSProductCatalog:Staged->Online						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
+
+#----------------------------------------------------------------------
+
+$productCatalog=amB2CCAProductCatalog
+
+$sourceProductCV=sourceVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default='$productCatalog:Staged']
+$targetProductCV=targetVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default='$productCatalog:Online']
+
+INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetProductCV;
+;sync amB2CCAProductCatalog:Staged->Online;;;;
+
+INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
+;sync amB2CCAProductCatalog:Staged->Online						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
+
+#----------------------------------------------------------------------
+
+$productCatalog=amB2CGlobalProductCatalog
+
+$sourceProductCV=sourceVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default='$productCatalog:Staged']
+$targetProductCV=targetVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default='$productCatalog:Online']
+
+INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetProductCV;
+;sync amB2CGlobalProductCatalog:Staged->Online;;;;
+
+INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
+;sync amB2CGlobalProductCatalog:Staged->Online						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
+
+#----------------------------------------------------------------------
+
+$productCatalogMaster=amB2CMasterProductCatalog
+$productCatalogNZ=amB2CNZProductCatalog
+$productCatalogAU=amB2CAUProductCatalog
+$productCatalogUS=amB2CUSProductCatalog
+$productCatalogCA=amB2CCAProductCatalog
+$productCatalogGlobal=amB2CGlobalProductCatalog
+
+$sourceProductCV=sourceVersion(catalog(id[default=$productCatalogMaster]),version[default='Staged'])[unique=true,default='$productCatalogMaster:Staged']
+$targetProductCVNZ=targetVersion(catalog(id[default=$productCatalogNZ]),version[default='Staged'])[unique=true,default='$productCatalogNZ:Staged']
+$targetProductCVAU=targetVersion(catalog(id[default=$productCatalogAU]),version[default='Staged'])[unique=true,default='$productCatalogAU:Staged']
+$targetProductCVUS=targetVersion(catalog(id[default=$productCatalogUS]),version[default='Staged'])[unique=true,default='$productCatalogUS:Staged']
+$targetProductCVCA=targetVersion(catalog(id[default=$productCatalogCA]),version[default='Staged'])[unique=true,default='$productCatalogCA:Staged']
+$targetProductCVGlobal=targetVersion(catalog(id[default=$productCatalogGlobal]),version[default='Staged'])[unique=true,default='$productCatalogGlobal:Staged']
+
+INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetProductCVNZ;
+;sync amB2CMasterProductCatalog:Staged->amB2CNZProductCatalog:Staged;;;;
+
+INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
+;sync amB2CMasterProductCatalog:Staged->amB2CNZProductCatalog:Staged						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
+
+
+INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetProductCVAU;
+;sync amB2CMasterProductCatalog:Staged->amB2CAUProductCatalog:Staged;;;;
+
+INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
+;sync amB2CMasterProductCatalog:Staged->amB2CAUProductCatalog:Staged						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
+
+INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetProductCVUS;
+;sync amB2CMasterProductCatalog:Staged->amB2CUSProductCatalog:Staged;;;;
+
+INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
+;sync amB2CMasterProductCatalog:Staged->amB2CUSProductCatalog:Staged						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
+
+INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetProductCVCA;
+;sync amB2CMasterProductCatalog:Staged->amB2CCAProductCatalog:Staged;;;;
+
+INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
+;sync amB2CMasterProductCatalog:Staged->amB2CCAProductCatalog:Staged						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
+
+INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetProductCVGlobal;
+;sync amB2CMasterProductCatalog:Staged->amB2CGlobalProductCatalog:Staged;;;;
+
+INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
+;sync amB2CMasterProductCatalog:Staged->amB2CGlobalProductCatalog:Staged						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
+
+
+# ImpEx for Importing cronjobs
+$productCatalog=amB2CMasterProductCatalog
+$stagedVersion=Staged
+$onlineVersion=Online
+$productCVStaged=catalogVersion(catalog(id[default=$productCatalog]),version[default=$stagedVersion])[unique=true,default=$productCatalog:$stagedVersion]
+$productCVOnline=catalogVersion(catalog(id[default=$productCatalog]),version[default=$onlineVersion])[unique=true,default=$productCatalog:$onlineVersion]
+$includedFormats=300Wx300H,30Wx30H,365Wx246H,515Wx515H,65Wx65H,96Wx96H,1200Wx1200H
+
+INSERT_UPDATE MediaConversionCronJob;$productCVStaged[unique=true];code[unique=true];job(code);nodeId[default=0];includedFormats(qualifier);sessionLanguage(isocode)[default=en]
+# code								;job			   ;nodeId ;includedFormats
+;;amB2CConversionMaster	;mediaConversionJob;       ;$includedFormats
+
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
+;amB2CConversionMaster			;0		;5		;0		;0		;0		;0		;true		;true	;-1

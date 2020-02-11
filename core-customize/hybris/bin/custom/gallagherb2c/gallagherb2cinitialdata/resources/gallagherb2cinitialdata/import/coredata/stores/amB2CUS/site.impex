@@ -4,7 +4,7 @@
 #
 # Import the CMS Site configuration for the Animal Management B2C store
 #
-$productCatalog=amB2CProductCatalog
+$productCatalog=amB2CUSProductCatalog
 $contentCatalog=amB2CContentCatalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
 $defaultLanguage=en

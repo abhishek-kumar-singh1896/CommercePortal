@@ -8,10 +8,10 @@
 # Information and shall use it only in accordance with the terms of the
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
-$facetSearchConfigName=securityB2BIndex
+$facetSearchConfigName=securityB2BNZIndex
 $contentCatalogName=securityB2BContentCatalog
-$indexedType=securityB2BProductType
-$productCatalog=securityB2BProductCatalog
+$indexedType=securityB2BNZProductType
+$productCatalog=securityB2BNZProductCatalog
 $productCatalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 
 #

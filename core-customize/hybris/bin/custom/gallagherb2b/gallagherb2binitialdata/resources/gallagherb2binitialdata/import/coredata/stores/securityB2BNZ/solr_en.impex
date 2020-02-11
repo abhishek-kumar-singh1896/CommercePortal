@@ -14,7 +14,7 @@
 #
 $lang=en
 
-$indexedType=securityB2BProductType
+$indexedType=securityB2BNZProductType
 
 UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true,default=$indexedType];name[unique=true];displayName[lang=$lang]
  ;;allPromotions;Promotion;

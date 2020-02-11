@@ -6,7 +6,7 @@
 # Language
 $lang=en
  
-$productCatalog=amB2CProductCatalog
+$productCatalog=amB2CUSProductCatalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 $storeImage=storeImage(qualifier, $catalogVersion)
  
