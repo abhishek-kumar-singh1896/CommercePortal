@@ -211,6 +211,10 @@
     {
       "name": "accstorefront",
       "properties":[
+	  {
+          "key":"xss.filter.header.X-Frame-Options",
+          "value":""
+        },
         {
           "key":"spring.session.enabled",
           "value":"true"
