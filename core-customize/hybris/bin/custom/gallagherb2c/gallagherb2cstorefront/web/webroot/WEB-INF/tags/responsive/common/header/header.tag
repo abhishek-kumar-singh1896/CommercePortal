@@ -349,7 +349,7 @@
 							</cms:pageSlot>
 						</button>
 
-						<div class="dropdown-menu dropdown-menu-right mini-cart mini-cart"
+						<div class="dropdown-menu dropdown-menu-right mini-cart"
 							aria-labelledby="btnGroupDrop1">
 							
 						</div>
