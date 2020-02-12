@@ -4,16 +4,10 @@
 
 <template:page pageTitle="${pageTitle}">
 
-<div class="row">
-		<cms:pageSlot position="Section1" var="feature" element="div"
-			class="product-list-section1-slot">
-			<cms:component component="${feature}" element="div"
-				class="col-xs-12 yComponentWrapper product-list-section1-component" />
-		</cms:pageSlot>
-	</div>
 	<div class="product-list">
-		<!-- 		<div class="row"> -->
-		<!-- 		<div class="col-xs-3"> -->
+		<cms:pageSlot position="Section1" var="feature" varStatus="idx">
+						<cms:component component="${feature}"/>
+					</cms:pageSlot>
 		<div class="product-list-container-out">
 			<div class="container">
 				<div class="row">

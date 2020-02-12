@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<!--
- Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
--->
-<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="items.xsd">
+<!-- Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved. -->
+<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="items.xsd">
+	<collectiontypes>
+		<collectiontype code="GallagherAccordionComponentList"
+			elementtype="GallagherAccordionComponent" autocreate="true"
+			type="list" />
+	</collectiontypes>
 
+	<itemtypes>
 
-    <itemtypes>
-
-        <!-- Add your item definitions here -->
-			<!-- Add your item definitions here -->
+		<!-- Add your item definitions here -->
+		<!-- Add your item definitions here -->
 		<itemtype code="Customer" autocreate="false" generate="false">
 			<description>Extending Customer type with an additional attribute.</description>
 			<attributes>
@@ -85,7 +88,80 @@
 					</attribute>
 				</attributes>
 			</itemtype>
+
+			<itemtype code="GallagherAccordionComponent"
+				autocreate="true" generate="true" extends="SimpleCMSComponent"
+				jaloclass="com.gallagher.core.jalo.GallagherAccordionComponent">
+				<deployment table="Accordion" typecode="12000"/>
+				<attributes>
+
+					<attribute qualifier="description"
+						type="java.lang.String">
+						<modifiers optional="true" />
+						<persistence type="property">
+                            <columntype>
+                                <value>varchar(2500)</value>
+                            </columntype>
+                        </persistence>
+						<description>description for the category</description>
+					</attribute>
+					<attribute qualifier="heading" type="java.lang.String">
+						<modifiers optional="true" />
+						<persistence type="property" />
+						<description>heading for the category</description>
+					</attribute>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="GallagherAccordionListComponent"
+				autocreate="true" generate="true" extends="SimpleCMSComponent"
+				jaloclass="com.gallagher.core.jalo.GallagherAccordionListComponent">
+				<deployment table="AccordionList" typecode="12001"/>
+				<attributes>
+					<attribute qualifier="accordionHeading"
+						type="java.lang.String">
+						<modifiers optional="true" />
+						<persistence type="property" />
+						<description>heading for the category</description>
+					</attribute>
+					<attribute qualifier="accordions"
+						type="GallagherAccordionComponentList">
+						<modifiers optional="true" />
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="buttonInfo"
+						type="GallagherButtonComponent">
+						<modifiers optional="true" />
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="GallagherButtonComponent" autocreate="true"
+				generate="true" extends="SimpleCMSComponent"
+				jaloclass="com.gallagher.core.jalo.GallagherButtonComponent">
+				<deployment table="GallagherButton" typecode="12002"/>
+				<attributes>
+					<attribute qualifier="buttonHeading"
+						type="java.lang.String">
+						<modifiers optional="true" />
+						<persistence type="property" />
+						<description>heading for the button</description>
+					</attribute>
+					<attribute qualifier="button" type="java.lang.String">
+						<modifiers optional="true" />
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+			
+			<itemtype code="GallagherCategoryBannerComponent" autocreate="true"
+				generate="true" extends="BannerComponent"
+				jaloclass="com.gallagher.core.jalo.GallagherCategoryBannerComponent">
+				<deployment table="CategoryBanner" typecode="12003"/>
+			</itemtype>
+			
 		</typegroup>
 
-    </itemtypes>
+	</itemtypes>
 </items>
