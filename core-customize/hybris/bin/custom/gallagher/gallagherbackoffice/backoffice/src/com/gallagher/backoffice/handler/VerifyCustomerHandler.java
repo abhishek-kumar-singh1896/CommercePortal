@@ -61,6 +61,8 @@ public class VerifyCustomerHandler implements FlowActionHandler
 	{
 		String email;
 		boolean isB2B = false;
+		boolean success = true;
+		notificationService.clearNotifications((String) null);
 		if (adapter.getWidgetInstanceManager().getModel().getValue("newCust", CustomerModel.class) instanceof B2BCustomerModel)
 		{
 			isB2B = true;
@@ -71,22 +73,25 @@ public class VerifyCustomerHandler implements FlowActionHandler
 			email = adapter.getWidgetInstanceManager().getModel().getValue("newCust.uid", String.class);
 		}
 
+		final ConfigurableFlowController controller = (ConfigurableFlowController) adapter.getWidgetInstanceManager()
+				.getWidgetslot().getAttribute("widgetController");
+
 		final EmailValidator eValidator = EmailValidator.getInstance();
 
 		if (!eValidator.isValid(email))
 		{
 			notificationService.notifyUser((String) null, "invalidEmailAddress", NotificationEvent.Level.FAILURE);
+			success = false;
 		}
 		else if (userService.isUserExisting(email))
 		{
 			notificationService.notifyUser((String) null, "duplicateHybrisCustomer", NotificationEvent.Level.FAILURE);
+			success = false;
 		}
 		else
 		{
 			try
 			{
-				final ConfigurableFlowController controller = (ConfigurableFlowController) adapter.getWidgetInstanceManager()
-						.getWidgetslot().getAttribute("widgetController");
 				final WidgetModel widget = adapter.getWidgetInstanceManager().getModel();
 
 				final List<GallagherInboundCustomerEntry> existingCustomers = getGallagherC4COutboundServiceFacade()
@@ -94,7 +99,8 @@ public class VerifyCustomerHandler implements FlowActionHandler
 
 				if ((CollectionUtils.isNotEmpty(existingCustomers) && existingCustomers.size() > 1))
 				{
-					notificationService.notifyUser((String) null, "duplicateCustomer", NotificationEvent.Level.FAILURE);
+					notificationService.notifyUser((String) null, "duplicateC4CCustomer", NotificationEvent.Level.FAILURE);
+					success = false;
 				}
 				else if (CollectionUtils.isNotEmpty(existingCustomers)
 						&& GallagheroutboundservicesConstants.C4C_CONTACT_ACTIVE_CODE.equals(existingCustomers.get(0).getStatusCode()))
@@ -105,20 +111,28 @@ public class VerifyCustomerHandler implements FlowActionHandler
 					widget.setValue("newCust.sapContactID", existingCustomer.getContactID());
 					widget.setValue("newCust.name", existingCustomer.getName());
 				}
-				if (isB2B)
+				else
 				{
-					widget.setValue("newCust.email", email);
+					if (isB2B)
+					{
+						widget.setValue("newCust.email", email);
+					}
+					widget.setValue("newCust.uid", email);
 				}
-				widget.setValue("newCust.uid", email);
-				controller.getRenderer().refreshView();
-				adapter.custom();
-				adapter.next();
 			}
 			catch (final RestClientException | OAuth2Exception exception)
 			{
 				LOGGER.error("Exception occured while connecting to C4C : " + exception);
 				notificationService.notifyUser((String) null, "c4cConnectionError", NotificationEvent.Level.FAILURE);
+				success = false;
 			}
+		}
+
+		controller.getRenderer().refreshView();
+		adapter.custom();
+		if (success)
+		{
+			adapter.next();
 		}
 	}
 
