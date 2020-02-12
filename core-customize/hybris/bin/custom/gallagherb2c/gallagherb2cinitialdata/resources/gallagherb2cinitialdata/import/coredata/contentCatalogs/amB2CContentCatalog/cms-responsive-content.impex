@@ -488,6 +488,7 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active
 ;;CenterRightContentSlot;Center Right Content Slot;true
 ;;EmptyCartMiddleContent;Empty Cart Middle Content;true
 ;;PlaceholderContentSlot;Placeholder for Addon tag files;true
+;;Section1Slot;Section1 Slot for ProductListPage;true
 
 
 # Bind Content Slots to Page Templates
@@ -682,6 +683,7 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 ;;ProductLeftRefinemnts-ProductListPage;ProductLeftRefinements;;ProductLeftRefinements;true
 ;;ProductListSlot-ProductListPage;ProductListSlot;;ProductListSlot;true
 ;;PlaceholderContentSlot-ProductListPage;PlaceholderContentSlot;;PlaceholderContentSlot;true
+;;Section1-ProductListPage;Section1;ProductListPageTemplate;Section1Slot;true
 
 
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CartPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite

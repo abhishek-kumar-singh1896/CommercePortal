@@ -19,7 +19,7 @@ $category=category(code, $productCV)
 $jarResourceCms=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/cockpits/cmscockpit
 $media=media(code, $contentCV);
 $productResource=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/productCatalogs/$productCatalog
-
+$picture=media(code, $contentCV);
 $keycloakBaseURL=$config-keycloak.base.url
 $keycloakAuthURL=$config-keycloak.auth.url/$config-keycloak.realm
 $keycloakPasswordURL=$config-keycloak.password.url
@@ -1495,3 +1495,25 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents
 ;;ggB2CNavBarSlot;HeaderNavComponent
 
 #####Header navigation bar refactor ends######
+
+###top two components for product listing page####
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];folder(qualifier)[default='images'];altText
+;;bannerImage.jpg;$siteResource/images/theme/promotion-img-1.png;;;""
+
+INSERT_UPDATE GallagherCategoryBannerComponent;$contentCV[unique=true];uid[unique=true];$picture
+;;CategoryBanner;bannerImage.jpg
+
+INSERT_UPDATE GallagherButtonComponent;$contentCV[unique=true];uid[unique=true];buttonHeading;button
+;;Rightbutton;Need some help figuring out the right energizer for your needs?;Use our energizer selector
+
+INSERT_UPDATE GallagherAccordionComponent;$contentCV[unique=true];uid[unique=true];heading;description
+;;Accordion1;Accordion question lorem ipsum?;Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. 
+;;Accordion2;Second accordion item;Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. 
+;;Accordion3;Third accordion item that has a longer copy text that can go on multiple lines;Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. 
+
+INSERT_UPDATE GallagherAccordionListComponent;$contentCV[unique=true];uid[unique=true];accordionHeading;accordions(uid, $contentCV);buttonInfo(uid, $contentCV)
+;;Accordions;What you need to consider;Accordion1,Accordion2,Accordion3;Rightbutton
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid, $contentCV)
+;;Section1Slot;CategoryBanner,Accordions
+###top two components for product listing page ends####
