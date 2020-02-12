@@ -11,3 +11,16 @@ $productCatalogName=Animal Management B2C Product Catalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 $clAttrModifiers=system='AMB2CClassification',version='1.0',translator=de.hybris.platform.catalog.jalo.classification.impex.ClassificationAttributeTranslator,lang=en
 
+# Insert Product Classifications
+
+# Classification: Energisers
+$feature1=@conductor-type[$clAttrModifiers];
+$feature2=@voltage-over-2km[$clAttrModifiers];
+$feature3=@voltage-over-5km[$clAttrModifiers];
+$feature4=@voltage-over-10km[$clAttrModifiers];
+$feature5=@resistance[$clAttrModifiers];
+
+INSERT_UPDATE Product;code[unique=true];$feature1;$feature2;$feature3;$feature4;$feature5;$catalogVersion;
+;heavy-duty-leadout-cable-12.5-gauge-65-foot;Cable;5.3;3.2;4.1;25.6
+;heavy-duty-leadout-cable-12.5-gauge-330-foot;Cable;5.2;3.3;4.3;23
+

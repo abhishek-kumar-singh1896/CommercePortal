@@ -18,38 +18,31 @@ $productCatalogVersion=catalogversion(catalog(id[default=$productCatalog]),versi
 
 # Define range set
 INSERT_UPDATE SolrValueRangeSet;name[unique=true];qualifier;type;solrValueRanges(&rangeValueRefID)
-;StoredEnergyRange;;double;rangeRefStoredEnergy1,rangeRefStoredEnergy2,rangeRefStoredEnergy3,rangeRefStoredEnergy4,rangeRefStoredEnergy5
+;StoredEnergyRange;;double;rangeRefStoredEnergy1,rangeRefStoredEnergy2,rangeRefStoredEnergy3
 
 # Define ranges
 INSERT_UPDATE SolrValueRange;&rangeValueRefID;solrValueRangeSet(name)[unique=true];name[unique=true];from;to
-;rangeRefStoredEnergy1;StoredEnergyRange;         < 0.02 Joules;  0;0.01999
-;rangeRefStoredEnergy2;StoredEnergyRange;   0.02 - 0.049 Joules;  0.02;0.04999
-;rangeRefStoredEnergy3;StoredEnergyRange;   0.05 - 0.099 Joules;  0.05;0.09999
-;rangeRefStoredEnergy4;StoredEnergyRange;      0.1 - 0.2 Joules;  0.1;0.19999
-;rangeRefStoredEnergy5;StoredEnergyRange;    > 0.2 Joules;  0.2;  999
+;rangeRefStoredEnergy1;StoredEnergyRange;         0 - 2 Joules;  0;1.999
+;rangeRefStoredEnergy2;StoredEnergyRange;   		  2 - 5 Joules;  2;4.999
+;rangeRefStoredEnergy3;StoredEnergyRange;   		  5+ Joules;  	  5;999
 
 
 INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);sortableType(code);currency[default=false];localized[default=false];multiValue[default=false];facet[default=false];facetType(code);facetSort(code);priority;visible;fieldValueProvider;customFacetSortProvider;rangeSets(name);$classAttributeAssignment
-;$solrIndexedType;Stored Energy          ;double;; ;    ; ;true;MultiSelectOr;Custom;1000;true;commerceClassificationPropertyValueProvider;numericFacetSortProviderDesc;StoredEnergyRange;Solar Energizers:::Stored Energy::::
-;$solrIndexedType;Warranty               ;string;; ;    ; ;true;Refine;Alpha;1000;true;commerceClassificationPropertyValueProvider;;;Solar Energizers:::Warranty::::
+;$solrIndexedType;Stored Joules          	  ;double;; ;    ; ;true;MultiSelectOr;Custom;1000;true;commerceClassificationPropertyValueProvider;numericFacetSortProviderDesc;StoredEnergyRange;energisers:::stored-joules::::
+;$solrIndexedType;Animal Type               ;string;; ;    ; ;true;MultiSelectOr;Alpha;1000;true;commerceClassificationPropertyValueProvider;;;energisers:::animal-type::::
+;$solrIndexedType;Conductor Type            ;string;; ;    ; ;true;MultiSelectOr;Alpha;1000;true;commerceClassificationPropertyValueProvider;;;wire-and-cable:::conductor-type::::
 
 # Import classification features
 INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);localized[default=true];multiValue[default=false];fieldValueProvider;$classAttributeAssignment
-;$solrIndexedType;feature-clean-wire-fence-distance;string;false;false;commerceClassificationPropertyValueProvider;Solar Energizers:::Clean Wire Fence distance::::
-;$solrIndexedType;feature-output-energy;string;false;false;commerceClassificationPropertyValueProvider;Solar Energizers:::Output Energy::::
-;$solrIndexedType;feature-battery-is-included;string;false;false;commerceClassificationPropertyValueProvider;Solar Energizers:::Battery is included::::
-;$solrIndexedType;feature-height;string;false;false;commerceClassificationPropertyValueProvider;Solar Energizers:::Height::::
-;$solrIndexedType;feature-width-or-length;string;false;false;commerceClassificationPropertyValueProvider;Solar Energizers:::Width or Length::::
-;$solrIndexedType;feature-product-weight;string;false;false;commerceClassificationPropertyValueProvider;Solar Energizers:::Product Weight::::
+;$solrIndexedType;feature-clean-wire-fence-distance;string;false;false;commerceClassificationPropertyValueProvider;energisers:::energiser-type::::
+;$solrIndexedType;feature-output-energy;string;false;false;commerceClassificationPropertyValueProvider;energisers:::animal-type::::
+;$solrIndexedType;feature-battery-is-included;string;false;false;commerceClassificationPropertyValueProvider;wire-and-cable:::conductor-type::::
 
 # Show the classification features in the product lister
 INSERT_UPDATE ClassAttributeAssignment;$classClass[unique=true];$classAttribute[unique=true];$classSystemVersion[unique=true];listable
-;Solar Energizers;Clean Wire Fence distance;;true
-;Solar Energizers;Output Energy;;true
-;Solar Energizers;Battery is included;;true
-;Solar Energizers;Height;;true
-;Solar Energizers;Width or Length;;true
-;Solar Energizers;Product Weight;;true
+;energisers;energiser-type;;true
+;energisers;animal-type;;true
+;wire-and-cable;conductor-type;;true
 
 # Redirect page URL
 INSERT_UPDATE SolrURIRedirect;url[unique=true]
@@ -67,15 +60,13 @@ INSERT_UPDATE SolrProductRedirect;redirectItem(code,$productCatalogVersion)[uniq
 
 # Classification features
 INSERT_UPDATE SolrSearchQueryProperty;indexedProperty(name, solrIndexedType(identifier))[unique=true];searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType];facet;ftsPhraseQuery[default=false];ftsPhraseQueryBoost;ftsQuery[default=false];ftsQueryBoost;ftsFuzzyQuery[default=false];ftsFuzzyQueryBoost;ftsWildcardQuery[default=false];ftsWildcardQueryType(code)[default=POSTFIX];ftsWildcardQueryBoost;ftsWildcardQueryMinTermLength;includeInResponse[default=true]
-;feature-clean-wire-fence-distance:$solrIndexedType	;	 ;	  ;    ;   ;    ;  ;    ;   ;  ;       ;  ;
-;feature-output-energy:$solrIndexedType	;	 ;	  ;    ;   ;    ;  ;    ;   ;  ;       ;  ;
-;feature-battery-is-included:$solrIndexedType	;	 ;	  ;    ;   ;    ;  ;    ;   ;  ;       ;  ;
-;feature-height:$solrIndexedType	;	 ;	  ;    ;   ;    ;  ;    ;   ;  ;       ;  ;
-;feature-width-or-length:$solrIndexedType	;	 ;	  ;    ;   ;    ;  ;    ;   ;  ;       ;  ;
-;feature-product-weight:$solrIndexedType	;	 ;	  ;    ;   ;    ;  ;    ;   ;  ;       ;  ;
+;feature-energiser-type:$solrIndexedType	;	 ;	  ;    ;   ;    ;  ;    ;   ;  ;       ;  ;
+;feature-animal-type:$solrIndexedType	   ;	 ;	  ;    ;   ;    ;  ;    ;   ;  ;       ;  ;
+;feature-conductor-type:$solrIndexedType	;	 ;	  ;    ;   ;    ;  ;    ;   ;  ;       ;  ;
 
 # Classification facets
 INSERT_UPDATE SolrSearchQueryProperty;indexedProperty(name, solrIndexedType(identifier))[unique=true];facet[default=true];facetType(code);priority;facetDisplayNameProvider;facetSortProvider;facetTopValuesProvider;includeInResponse[default=true];searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType]
-									 ;Stored Energy:$solrIndexedType			;	;MultiSelectOr	;1000;	;numericFacetSortProviderDesc	;;;
-									 ;Warranty:$solrIndexedType			   ;	;Refine	 		;1000;	;								;;;
+									 ;Stored Joules:$solrIndexedType					;	;MultiSelectOr	;1000;	;numericFacetSortProviderDesc	;;;
+									 ;Animal Type:$solrIndexedType			 	   ;	;MultiSelectOr	;1000;	;										;;;
+									 ;Conductor Type:$solrIndexedType			   ;	;MultiSelectOr	;1000;	;										;;;
  

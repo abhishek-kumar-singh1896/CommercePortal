@@ -13,6 +13,6 @@ $approved=approvalstatus(code)[default='approved']
 
 # Insert Products
 INSERT_UPDATE Product;code[unique=true];$supercategories;manufacturerName;manufacturerAID;unit(code);ean;variantType(code);$catalogVersion;$approved
-;solar-fence-energizer-s10;Solar Energizers
-;heavy-duty-leadout-cable-12.5-gauge;Wire and Cable
+;solar-fence-energizer-s10;energisers
+;heavy-duty-leadout-cable-12.5-gauge;wire-and-cable
 
