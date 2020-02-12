@@ -42,6 +42,6 @@
 						<div class="price"><product:productListerItemPrice product="${product}"/></div>
 					</ycommerce:testId>
 				</div>
-				<button type="button" class="btn-default btn-block" onclick="ACC.compare.updateCompare(${product.code}, 'remove')" ><spring:theme code="productcomparison.button.clear_item" text="Remove"/></button>
+				<button type="button" class="btn-default btn-block" onclick="ACC.compare.updateCompare('${product.code}', 'remove')" ><spring:theme code="productcomparison.button.clear_item" text="Remove"/></button>
 		</div>
 </div>
