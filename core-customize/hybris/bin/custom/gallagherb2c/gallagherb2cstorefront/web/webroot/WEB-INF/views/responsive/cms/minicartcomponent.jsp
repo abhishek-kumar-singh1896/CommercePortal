@@ -35,7 +35,7 @@
         </svg>
         <span class="info-number">
         	<span class="info-text">
-                   ${totalItems lt 100 ? fn:escapeXml(totalItems) : "99+"}
+                   ${totalItems lt 10 ? fn:escapeXml(totalItems) : "9+"}
             </span>
          </span>
     </a>

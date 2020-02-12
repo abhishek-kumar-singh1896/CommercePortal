@@ -29,5 +29,9 @@
 	
 	<alias name="gallagherB2BCustomerReversePopulator" alias="b2BCustomerReversePopulator"/>
 	<bean id="gallagherB2BCustomerReversePopulator" class="com.gallagher.facades.company.converters.populators.GallagherB2BCustomerReversePopulator" parent="defaultB2BCustomerReversePopulator" />
+	<alias name="gallagherCustomSearchFiltersPopulator" alias="customSearchFiltersPopulator"/>
+	<bean id="gallagherCustomSearchFiltersPopulator" class="com.gallagher.facades.product.converters.populator.variantoptions.GallagherCustomSearchFiltersPopulator">
+	
+	</bean>
 
 </beans>
