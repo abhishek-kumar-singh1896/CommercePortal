@@ -23,7 +23,7 @@ INSERT_UPDATE VariantValueCategory ; code[unique=true] ; name       ; $supercate
 
 # Insert Products
 INSERT_UPDATE Product;code[unique=true];$supercategories;manufacturerName;variantType(code);unit(code)[default=EA];$catalogVersion
-;heavy-duty-leadout-cable-12.5-gauge;Wire and Cable,B2C_Length;;GenericVariantProduct
+;heavy-duty-leadout-cable-12.5-gauge;wire-and-cable,B2C_Length;;GenericVariantProduct
 
 #Updating product information
 INSERT_UPDATE GenericVariantProduct;code[unique=true];$baseProduct;$supercategories;$catalogVersion;ean;$approved

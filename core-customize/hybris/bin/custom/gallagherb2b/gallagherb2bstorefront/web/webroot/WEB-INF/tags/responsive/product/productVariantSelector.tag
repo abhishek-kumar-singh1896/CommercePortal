@@ -35,14 +35,27 @@
                             <c:if test="${productMatrix[0].parentVariantCategory.hasImage}">
                                 <ul class="variant-list">
                                     <c:forEach items="${productMatrix}" var="variantCategory">
-                                        <li <c:if test="${variantCategory.variantOption.url eq product.url}">class="selected"</c:if>>
-                                            <c:url value="${variantCategory.variantOption.url}" var="productStyleUrl"/>
-                                            <a href="${productStyleUrl}" class="swatchVariant"
-                                               name="${variantCategory.variantOption.url}">
-                                                <product:productImage product="${product}"
+                                                                            <li
+                                        <c:if test="${variantCategory.variantOption.url eq product.url}">class="selected"</c:if>>
+                                        <c:url value="${variantCategory.variantOption.url}"
+                                            var="productStyleUrl" />
+<%--                                             <a href="${productStyleUrl}" --%>
+<!--                                         class="swatchVariant" -->
+<%--                                         name="${variantCategory.variantOption.url}"> --%>
+                                        <c:choose>    
+                                            <c:when test="${variantCategory.variantOption.code eq product.code}">
+                                                <input type="radio" name="productColor" checked="checked" onclick="window.location='${productStyleUrl}'"  value="${fn:escapeXml(productStyleUrl)}">
+                                                ${fn:escapeXml(variantCategory.variantValueCategory.name)}
+                                            </c:when>
+                                            <c:otherwise>
+                                                <input type="radio" name="productColor" onclick="window.location='${productStyleUrl}'"  value="${fn:escapeXml(productStyleUrl)}">
+                                                    ${fn:escapeXml(variantCategory.variantValueCategory.name)}
+                                            </c:otherwise>
+                                        </c:choose>
+                                            <%-- <product:productImage product="${product}"
                                                                       code="${variantCategory.variantOption.code}"
                                                                       format="styleSwatch"/>
-                                            </a>
+                                            </a> --%>
                                         </li>
                                         <c:if test="${(variantCategory.variantOption.code eq product.code)}">
                                             <c:set var="selectedIndex" value="${i}"/>

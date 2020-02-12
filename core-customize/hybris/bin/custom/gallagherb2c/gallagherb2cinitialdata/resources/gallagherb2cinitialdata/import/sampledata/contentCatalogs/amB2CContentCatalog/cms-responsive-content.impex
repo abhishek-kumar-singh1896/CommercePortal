@@ -38,9 +38,9 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;HomepageNavLink;Home Page Nav Link;/;HomepageNavLink;HomepageNavLink;;;;
 ;;StoreFinderLink;Store Finder Link;/store-finder;StoreFinderLink;StoreFinderLink;;;;
 ;;LoginLink;Login Link;/login;LoginLink;LoginLink;;;;
-;;AllBrandsCategoryLink;All Brands Link;/Animal-Management/c/Animal%20Management;AllBrandsCategoryLink;AllBrandsCategoryLink;;Animal Management;;
-;;ElectricFencingCategoryLink;Sony Link;/Animal-Management/Electric-Fencing/c/Electric%20Fencing;ElectricFencingCategoryLink;ElectricFencingCategoryLink;;Electric Fencing;;
-;;SpecialOffersLink;Special Offers Link;"/Open-Catalogue/c/1?q=%3AtopRated%3AallPromotions%3ABOGOFAMB2C%3AallPromotions%3A10DiscountCanonEOS450D%3AallPromotions%3AMultiBuyAMB2C%3AallPromotions%3APerfectPartnerAMB2C%3AallPromotions%3AProductBundleAMB2C";SpecialOffersLink;SpecialOffersLink;;Electric Fencing;;
+;;AllBrandsCategoryLink;All Brands Link;/Animal-Management/c/animal-management;AllBrandsCategoryLink;AllBrandsCategoryLink;;animal-management;;
+;;ElectricFencingCategoryLink;Sony Link;/Animal-Management/Electric-Fencing/c/electric-fencing;ElectricFencingCategoryLink;ElectricFencingCategoryLink;;electric-fencing;;
+;;SpecialOffersLink;Special Offers Link;"/Open-Catalogue/c/1?q=%3AtopRated%3AallPromotions%3ABOGOFAMB2C%3AallPromotions%3A10DiscountCanonEOS450D%3AallPromotions%3AMultiBuyAMB2C%3AallPromotions%3APerfectPartnerAMB2C%3AallPromotions%3AProductBundleAMB2C";SpecialOffersLink;SpecialOffersLink;;electric-fencing;;
 ;;AboutSAPCommerceLink;About SAP Commerce Cloud Link;"http://www.cx.sap.com/products/commerce";AboutSAPCommerceLink;AboutSAPCommerceLink;newWindow;;;
 ;;DocumentationLink;Documentation Link;"https://help.hybris.com";DocumentationLink;DocumentationLink;newWindow;;;
 ;;VisitSAPLink;Visit SAP Link;"http://www.cx.sap.com";VisitSAPLink;VisitSAPLink;newWindow;;;
