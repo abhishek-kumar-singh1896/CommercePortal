@@ -26,5 +26,10 @@
 			</list>
 		</property>
 	</bean>
+	
+	<alias name="gallagherCustomSearchFiltersPopulator" alias="customSearchFiltersPopulator"/>
+	<bean id="gallagherCustomSearchFiltersPopulator" class="com.gallagher.facades.product.converters.populator.variantoptions.GallagherCustomSearchFiltersPopulator">
+	
+	</bean>
 
 </beans>
