@@ -147,7 +147,7 @@ public class GallagherB2BInitialDataSystemSetup extends AbstractSystemSetup
 
 		getCoreDataImportService().execute(this, context, importData);
 		getEventService().publishEvent(new CoreDataImportedEvent(context, importData));
-
+		importImpexFile(context, "/gallagherb2binitialdata/import/coredata/common/security-sync.impex");
 		getSampleDataImportService().execute(this, context, importData);
 		getSampleDataImportService().importCommerceOrgData(context);
 		getEventService().publishEvent(new SampleDataImportedEvent(context, importData));
