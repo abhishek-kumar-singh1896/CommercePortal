@@ -4,10 +4,35 @@
 	xsi:noNamespaceSchemaLocation="items.xsd">
 	<collectiontypes>
 		<collectiontype code="GallagherAccordionComponentList"
-			elementtype="GallagherAccordionComponent" autocreate="true"
-			type="list" />
+			elementtype="GallagherAccordionComponent" autocreate="true" type="list" />
+		<collectiontype code="Animals"
+			elementtype="Animal" autocreate="true" generate="true" />
 	</collectiontypes>
 
+	<enumtypes>
+		<enumtype code="Sticker" autocreate="true" generate="true">
+			<description>Enum to show product status in PLP</description>
+			<value code="NEW" />
+		</enumtype>
+		<enumtype code="Animal" autocreate="true" generate="true">
+			<description>Different animals for which the products are available</description>
+			<value code="bird" />
+			<value code="bull" />
+			<value code="cat" />
+			<value code="cow" />
+			<value code="deer" />
+			<value code="dog" />
+			<value code="duck" />
+			<value code="goat" />
+			<value code="hen" />
+			<value code="horse" />
+			<value code="kangaroo" />
+			<value code="pig" />
+			<value code="rabbit" />
+			<value code="sheep" />
+		</enumtype>
+	</enumtypes>
+	
 	<itemtypes>
 
 		<!-- Add your item definitions here -->
@@ -21,6 +46,24 @@
 					<persistence type="property" />
 					<defaultvalue>java.lang.Boolean.FALSE</defaultvalue>
 					<description>Indicates if customer is duplicate or not</description>
+				</attribute>
+			</attributes>
+		</itemtype>
+		
+		<itemtype code="Product" autocreate="false" generate="false">
+			<description>Extending Product type with additional attributes of status and animals.</description>
+			<attributes>
+				<attribute autocreate="true" generate="true"
+					qualifier="promoSticker" type="Sticker">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<description>Indicates status of product</description>
+				</attribute>
+				<attribute autocreate="true" generate="true"
+					qualifier="animalCompatibility" type="Animals">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<description>Stores all animals for which the product is compatible</description>
 				</attribute>
 			</attributes>
 		</itemtype>

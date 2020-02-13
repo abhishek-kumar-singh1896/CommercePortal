@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
- Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
--->
+<!-- Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved. -->
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
@@ -9,13 +7,15 @@
 		http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
-		
-	<context:annotation-config/> 
-	
-	<alias name="gallagherVariantOptionDataMediaPopulator" alias="variantOptionDataMediaPopulator"/>
+
+	<context:annotation-config />
+
+	<alias name="gallagherVariantOptionDataMediaPopulator"
+		alias="variantOptionDataMediaPopulator" />
 	<bean id="gallagherVariantOptionDataMediaPopulator"
 		class="com.gallagher.facades.product.converters.populator.variantoptions.GallagherVariantOptionDataMediaPopulator">
-		<property name="acceleratorImageFormatMapping" ref="imageFormatMapping" />
+		<property name="acceleratorImageFormatMapping"
+			ref="imageFormatMapping" />
 		<property name="imageFormats">
 			<list>
 				<value>zoom</value>
@@ -26,12 +26,23 @@
 			</list>
 		</property>
 	</bean>
-	
-	<alias name="gallagherB2BCustomerReversePopulator" alias="b2BCustomerReversePopulator"/>
-	<bean id="gallagherB2BCustomerReversePopulator" class="com.gallagher.facades.company.converters.populators.GallagherB2BCustomerReversePopulator" parent="defaultB2BCustomerReversePopulator" />
-	<alias name="gallagherCustomSearchFiltersPopulator" alias="customSearchFiltersPopulator"/>
-	<bean id="gallagherCustomSearchFiltersPopulator" class="com.gallagher.facades.product.converters.populator.variantoptions.GallagherCustomSearchFiltersPopulator">
-	
+
+	<alias name="gallagherB2BCustomerReversePopulator"
+		alias="b2BCustomerReversePopulator" />
+	<bean id="gallagherB2BCustomerReversePopulator"
+		class="com.gallagher.facades.company.converters.populators.GallagherB2BCustomerReversePopulator"
+		parent="defaultB2BCustomerReversePopulator" />
+	<alias name="gallagherCustomSearchFiltersPopulator"
+		alias="customSearchFiltersPopulator" />
+	<bean id="gallagherCustomSearchFiltersPopulator"
+		class="com.gallagher.facades.product.converters.populator.variantoptions.GallagherCustomSearchFiltersPopulator">
+	</bean>
+
+	<alias name="gallagherSearchResultProductPopulator"
+		alias="commerceSearchResultProductPopulator" />
+	<bean id="gallagherSearchResultProductPopulator"
+		class="com.gallagher.facades.search.converters.poulator.GallagherSearchResultProductPopulator"
+		parent="defaultCommerceSearchResultProductPopulator">
 	</bean>
 
 </beans>

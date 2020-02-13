@@ -19,17 +19,19 @@
 
 
 <%--                    <li class="${fn:escapeXml(productTagClasses)}"> --%>
-<li class="product-tile"><ycommerce:testId
+<li class="product-tile">
+<ycommerce:testId
 		code="test_searchPage_wholeProduct">
 		<div class="row">
 			<div class="col-4 col-md-12 pr-xs-0">
 				<div class="product-status">
-					New
+					<img src="${commonResourcePath}/images/${fn:escapeXml(product.promoSticker)}.svg"/>
 					<%-- 	<spring:theme code="text.productStatus.new" /> --%>
 				</div>
 				<div class="product-img-box">
 					<a class="product__list--thumb" href="${fn:escapeXml(productUrl)}"
-						title="${fn:escapeXml(product.name)}"> <product:productPrimaryImage
+						title="${fn:escapeXml(product.name)}">
+						<product:productPrimaryImage
 							product="${product}" format="thumbnail" />
 					</a>
 				</div>
@@ -51,11 +53,11 @@
 		<div class="product-list-footer">
 			<div class="row">
 				<div class="col-5">
-					<span class="product-list-footer-left-icon"> <img
-						src="${commonResourcePath}/images/male-icon.png" alt="Male">
-					</span> <span class="product-list-footer-left-icon"> <img
-						src="${commonResourcePath}/images/female-icon.png" alt="Male">
-					</span>
+					<c:forEach items="${product.animalCompatibility}" var="animal">
+						<span class="product-list-footer-left-icon">
+							<img src="${commonResourcePath}/images/${fn:escapeXml(animal)}.svg"/>
+						</span>
+					</c:forEach>
 				</div>
 				<ycommerce:testId code="searchPage_price_label_${product.code}">
 					<div class="col-7 text-right">
@@ -69,19 +71,17 @@
 			<div class="product__listing--description">${ycommerce:sanitizeHTML(product.summary)}</div>
 		</c:if>
 
-
-
 		<c:set var="product" value="${product}" scope="request" />
 		<c:set var="addToCartText" value="${addToCartText}" scope="request" />
 		<c:set var="addToCartUrl" value="${addToCartUrl}" scope="request" />
 
 
-		<div class="addtocart">
-			<div id="actions-container-for-${fn:escapeXml(component.uid)}"
-				class="row">
-				<action:actions element="div" parentComponent="${component}" />
-			</div>
-		</div>
+<!-- 		<div class="addtocart"> -->
+<%-- 			<div id="actions-container-for-${fn:escapeXml(component.uid)}" --%>
+<!-- 				class="row"> -->
+<%-- 				<action:actions element="div" parentComponent="${component}" /> --%>
+<!-- 			</div> -->
+<!-- 		</div> -->
 
 	</ycommerce:testId></li>
 
