@@ -16,10 +16,14 @@
 $defaultPassword=12341234
 INSERT_UPDATE UserGroup;uid[unique=true];groups(uid);locname[lang=en];
 ;SuperAccountMangers;;
+;b2bconsultantgroup;b2bgroup;B2B Consultant Group;
+;b2btechniciangroup;b2bgroup;B2B Technician Group;
 
 INSERT_UPDATE Employee;uid[unique=true];name;groups(uid)[mode=append];password[default=$defaultPassword];
 ;acctmgra;Alistair Thompson;employeegroup,acctmgrgroup,SuperAccountMangers,admingroup,backofficeadministratorrole;
 
+INSERT_UPDATE Employee;uid[unique=true];name;groups(uid)[mode=append];password[default=$defaultPassword];
+;danielk;Daniel Kennedy;employeegroup,admingroup;DanielK2020
 
 ###############################
 # Rustic Hardware ORGANIZATION (Hierarchy)
