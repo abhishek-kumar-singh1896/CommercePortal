@@ -7,6 +7,9 @@ ACC.compare = {
 			$(this).attr("autocomplete", "off");
 		});
 		//console.log("bind compare on document ready complete");
+		$('.compareCheckbox').click(function(e) {
+			e.stopPropagation();
+		});
 		$('.compareCheckbox').change(function() {
 			  if ($(this).is(':checked')) {
 			    ACC.compare.updateCompare($(this).val(), 'add');

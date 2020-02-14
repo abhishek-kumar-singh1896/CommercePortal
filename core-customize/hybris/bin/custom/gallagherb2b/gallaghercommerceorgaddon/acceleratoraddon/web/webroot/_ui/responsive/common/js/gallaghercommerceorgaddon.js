@@ -264,8 +264,11 @@ ACC.commerceorg = {
                 data: {'email':$(this).val(), 'b2BCustomerForm':$('#b2BCustomerForm').val()},
                 success: function(data){
                 	ACC.common.hideLoader();
+                	$(".user-email .form-group .help-block").hide();
+                	$(".user-email").removeClass("has-error");
                 	$('.email-invalid-error').hide();
     				$('.email-duplicate-error').hide();
+            		$('.email-exception-error').hide();
                 	var emailError = data.emailError;
                 	
                 	if(emailError == 'duplicate') {
@@ -273,6 +276,9 @@ ACC.commerceorg = {
                 	}
                 	else if(emailError == 'invalid') {
                 		$('.email-invalid-error').show();
+                	}
+                	else if(emailError == 'exception') {
+                		$('.email-exception-error').show();
                 	}
                 	else {
                 		$('#user\\.firstName').val(data.FirstName);

@@ -34,6 +34,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -41,6 +42,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gallagher.c4c.outboundservices.facade.GallagherC4COutboundServiceFacade;
@@ -636,16 +638,24 @@ public class UserManagementPageController extends MyCompanyPageController
 		}
 		else
 		{
-			final List<GallagherInboundCustomerEntry> existingCustomers = getGallagherC4COutboundServiceFacade()
-					.getCustomerInfoFromC4C(email);
-			if (CollectionUtils.isNotEmpty(existingCustomers) && existingCustomers.size() > 1)
+			try
 			{
-				existingCustomer.setDuplicate(true);
+				final List<GallagherInboundCustomerEntry> existingCustomers = getGallagherC4COutboundServiceFacade()
+						.getCustomerInfoFromC4C(email);
+				if (CollectionUtils.isNotEmpty(existingCustomers) && existingCustomers.size() > 1)
+				{
+					existingCustomer.setDuplicate(true);
+				}
+				else if (CollectionUtils.isNotEmpty(existingCustomers)
+						&& GallagheroutboundservicesConstants.C4C_CONTACT_ACTIVE_CODE.equals(existingCustomers.get(0).getStatusCode()))
+				{
+					existingCustomer = existingCustomers.get(0);
+				}
 			}
-			else if (CollectionUtils.isNotEmpty(existingCustomers)
-					&& GallagheroutboundservicesConstants.C4C_CONTACT_ACTIVE_CODE.equals(existingCustomers.get(0).getStatusCode()))
+			catch (final RestClientException | OAuth2Exception exception)
 			{
-				existingCustomer = existingCustomers.get(0);
+				LOG.error("Exception occured while connecting to C4C : " + exception);
+				existingCustomer.setEmailError("exception");
 			}
 		}
 

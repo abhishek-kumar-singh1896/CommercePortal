@@ -104,7 +104,7 @@ public class GallagherB2CStoreSystemSetup extends AbstractSystemSetup
 
 		getCoreDataImportService().execute(this, context, importData);
 		getEventService().publishEvent(new CoreDataImportedEvent(context, importData));
-
+		importImpexFile(context, "/gallagherb2cinitialdata/import/coredata/common/am-sync.impex");
 		getSampleDataImportService().execute(this, context, importData);
 		getEventService().publishEvent(new SampleDataImportedEvent(context, importData));
 	}

@@ -9,9 +9,6 @@
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
 
-# Import config properties into impex macros for modulegen
-UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
-
 $contentCatalog=securityB2BContentCatalog
 $contentCatalogName=Security B2B Content Catalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
@@ -32,10 +29,6 @@ $addonExtensionName=b2badvanceacceleratoraddon
 $medias=medias(code, $contentCV);
 $mediaContainer=media(qualifier, $contentCV);
 $siteUidNZ=securityB2BNZ
-
-$keycloakBaseURL=$config-keycloak.base.url
-$keycloakAuthURL=$config-keycloak.auth.url/$config-keycloak.realm
-$keycloakPasswordURL=$config-keycloak.password.url
 
 ###### Navigation Start ######
 ## navigation is in tree structure ##
@@ -195,7 +188,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;ProductRegistrationLink;ProductRegistrationLink;/product-registration;ProductRegistrationLink;
 ;;PersonalDetailsLink;PersonalDetailsLink;/my-account/update-profile;PersonalDetailsLink;
 ;;UpdateEmailLink;UpdateEmailLink;/my-account/update-email;UpdateEmailLink;
-;;UpdatePasswordLink;UpdatePasswordLink;$keycloakBaseURL$keycloakAuthURL$keycloakPasswordURL;UpdatePasswordLink;
+;;UpdatePasswordLink;UpdatePasswordLink;/my-account/update-password;UpdatePasswordLink;
 ;;AddressBookLink;AddressBookLink;/my-account/address-book;AddressBookLink;
 ;;PaymentDetailsLink;PaymentDetailsLink;/my-account/payment-details;PaymentDetailsLink;
 ;;OrderHistoryLink;OrderHistoryLink;/my-account/orders;OrderHistoryLink;
@@ -1146,7 +1139,7 @@ INSERT_UPDATE CMSInverseRestriction;$contentCV[unique=true];name;originalRestric
 ;;Logged in User;anonymousUserRestriction;loggedInUser;QuickOrderLink
 
 INSERT_UPDATE CMSUserGroupRestriction;$contentCV[unique=true];uid[unique=true];name;userGroups(uid);includeSubgroups;components(&linkRef)
-;;MyAccountLinkCustomerGroupRestriction;My Account Link Customer Group Restriction;b2bcustomergroup;true;AddressBookLink,PaymentDetailsLink,MyQuotesLink,OrderHistoryLink,BillingHistoryLink,PaymentHistoryLink,MyReplenishmentOrdersLink
+;;MyAccountLinkCustomerGroupRestriction;My Account Link Customer Group Restriction;b2bcustomergroup,b2badmingroup,b2bconsultantgroup,b2btechniciangroup;true;AddressBookLink,PaymentDetailsLink,MyQuotesLink,OrderHistoryLink,BillingHistoryLink,PaymentHistoryLink,MyReplenishmentOrdersLink
 ;;MyAccountLinkApproverGroupRestriction;My Account Link Approver Group Restriction;b2bapprovergroup;true;ApprovalDashboardLink
 ###### Restriction End ######
 

@@ -14,6 +14,8 @@ import org.apache.commons.validator.routines.EmailValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
+import org.springframework.web.client.RestClientException;
 
 import com.gallagher.c4c.outboundservices.facade.GallagherC4COutboundServiceFacade;
 import com.gallagher.outboundservices.constants.GallagheroutboundservicesConstants;
@@ -59,6 +61,8 @@ public class VerifyCustomerHandler implements FlowActionHandler
 	{
 		String email;
 		boolean isB2B = false;
+		boolean success = true;
+		notificationService.clearNotifications((String) null);
 		if (adapter.getWidgetInstanceManager().getModel().getValue("newCust", CustomerModel.class) instanceof B2BCustomerModel)
 		{
 			isB2B = true;
@@ -69,45 +73,65 @@ public class VerifyCustomerHandler implements FlowActionHandler
 			email = adapter.getWidgetInstanceManager().getModel().getValue("newCust.uid", String.class);
 		}
 
+		final ConfigurableFlowController controller = (ConfigurableFlowController) adapter.getWidgetInstanceManager()
+				.getWidgetslot().getAttribute("widgetController");
+
 		final EmailValidator eValidator = EmailValidator.getInstance();
 
 		if (!eValidator.isValid(email))
 		{
 			notificationService.notifyUser((String) null, "invalidEmailAddress", NotificationEvent.Level.FAILURE);
+			success = false;
 		}
 		else if (userService.isUserExisting(email))
 		{
 			notificationService.notifyUser((String) null, "duplicateHybrisCustomer", NotificationEvent.Level.FAILURE);
+			success = false;
 		}
 		else
 		{
-			final ConfigurableFlowController controller = (ConfigurableFlowController) adapter.getWidgetInstanceManager()
-					.getWidgetslot().getAttribute("widgetController");
-			final WidgetModel widget = adapter.getWidgetInstanceManager().getModel();
+			try
+			{
+				final WidgetModel widget = adapter.getWidgetInstanceManager().getModel();
 
-			final List<GallagherInboundCustomerEntry> existingCustomers = getGallagherC4COutboundServiceFacade()
-					.getCustomerInfoFromC4C(email);
+				final List<GallagherInboundCustomerEntry> existingCustomers = getGallagherC4COutboundServiceFacade()
+						.getCustomerInfoFromC4C(email);
 
-			if ((CollectionUtils.isNotEmpty(existingCustomers) && existingCustomers.size() > 1))
-			{
-				notificationService.notifyUser((String) null, "duplicateCustomer", NotificationEvent.Level.FAILURE);
+				if ((CollectionUtils.isNotEmpty(existingCustomers) && existingCustomers.size() > 1))
+				{
+					notificationService.notifyUser((String) null, "duplicateC4CCustomer", NotificationEvent.Level.FAILURE);
+					success = false;
+				}
+				else if (CollectionUtils.isNotEmpty(existingCustomers)
+						&& GallagheroutboundservicesConstants.C4C_CONTACT_ACTIVE_CODE.equals(existingCustomers.get(0).getStatusCode()))
+				{
+					final GallagherInboundCustomerEntry existingCustomer = existingCustomers.get(0);
+					widget.setValue("newCust.email", existingCustomer.getEmail());
+					widget.setValue("newCust.uid", existingCustomer.getEmail());
+					widget.setValue("newCust.sapContactID", existingCustomer.getContactID());
+					widget.setValue("newCust.name", existingCustomer.getName());
+				}
+				else
+				{
+					if (isB2B)
+					{
+						widget.setValue("newCust.email", email);
+					}
+					widget.setValue("newCust.uid", email);
+				}
 			}
-			else if (CollectionUtils.isNotEmpty(existingCustomers)
-					&& GallagheroutboundservicesConstants.C4C_CONTACT_ACTIVE_CODE.equals(existingCustomers.get(0).getStatusCode()))
+			catch (final RestClientException | OAuth2Exception exception)
 			{
-				final GallagherInboundCustomerEntry existingCustomer = existingCustomers.get(0);
-				widget.setValue("newCust.email", existingCustomer.getEmail());
-				widget.setValue("newCust.uid", existingCustomer.getEmail());
-				widget.setValue("newCust.customerID", existingCustomer.getContactID());
-				widget.setValue("newCust.name", existingCustomer.getName());
+				LOGGER.error("Exception occured while connecting to C4C : " + exception);
+				notificationService.notifyUser((String) null, "c4cConnectionError", NotificationEvent.Level.FAILURE);
+				success = false;
 			}
-			if (isB2B)
-			{
-				widget.setValue("newCust.email", email);
-			}
-			widget.setValue("newCust.uid", email);
-			controller.getRenderer().refreshView();
-			adapter.custom();
+		}
+
+		controller.getRenderer().refreshView();
+		adapter.custom();
+		if (success)
+		{
 			adapter.next();
 		}
 	}

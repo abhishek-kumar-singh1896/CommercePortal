@@ -54,7 +54,7 @@
         <div class="account-section-content">
             <form:form action="${saveUrl}" method="post" modelAttribute="b2BCustomerForm">
                 <div class="row">
-                    <div class="col-xs-12 col-sm-6">
+                    <div class="col-xs-12 col-sm-6 user-email">
                     	<formElement:formInputBox idKey="user.email" labelKey="user.email" path="email"
                                                   inputCSS="text" mandatory="true"/>
 						<div class="help-block email-duplicate-error">
@@ -62,6 +62,9 @@
 						</div>
 						<div class="help-block email-invalid-error">
 							<span id="email.errors"><spring:message  code="profile.email.invalid" /></span>
+						</div>
+						<div class="help-block email-exception-error">
+							<span id="email.errors"><spring:message  code="text.connection.exception.error" /></span>
 						</div>
                         
                     </div>

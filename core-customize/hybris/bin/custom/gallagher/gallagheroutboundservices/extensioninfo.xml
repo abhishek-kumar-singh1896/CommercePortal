@@ -19,6 +19,8 @@
         <!-- <requires-extension name="cms"/> -->
                          
 		<requires-extension name="outboundservices"/>
+		<requires-extension name="acceleratorservices"/>
+		<requires-extension name="basecommerce"/>
 
       
         

@@ -17,70 +17,230 @@ $unit=unit(code,$classSystemVersion)
 
 # Insert Classifications
 INSERT_UPDATE ClassificationClass;$classCatalogVersion;code[unique=true];allowedPrincipals(uid)[default='customergroup']
-;;1110 Volt Energizers
-;;Multi Powered Energizers
-;;Solar Energizers
-;;Battery  Energizers
-;;Remotes and Fence Testers
-;;Cut Out Switchjes
-;;Safety and Protection
-;;Monitoring and Alarms
-;;Fence Connectors
-;;Wire and Cable
-;;Clamps and Joiners
-;;Posts
-;;Strainers
-;;Insulators
-;;Offsets
-;;Gates
-;;Tapes, Wires, Braids
-;;Reels and Accessories
-;;Posts - pigtails and Tread-ins
-;;Electric Fence Kits
-;;Netting
+# Classification Categories for 'power'
+;;energisers
+;;remotes-and-fence-testers
+;;power-system-accessories
+
+# Classification Categories for 'permanent-fencing'
+;;wire-and-cable
+;;wire-strainers
+;;insulators
+;;offsets
+;;electric-gates-and-accessories
+;;fence-tools-and-accessories
+;;clamps-and-joiners
+;;posts
+;;permanent-fencing-gates
+
+# Classification Categories for 'portable-fencing'
+;;tapes-wires-braids
+;;reels-and-accessories
+;;posts-pigtails-and-tread-ins
+;;all-in-one-portable-fences
+
+# Classification Categories for 'weighing-and-eid'
+;;weigh-scales-and-data-collectors
+;;loadbars-and-accessories
+;;platforms
+;;drafters
+;;eid-tag-readers
+;;platforms-and-crates
+;;handlers-and-drafters
+;;eid-tag-readeres-and-barcoding-equipement
+;;scale-heads-and-data-collectors
+
+# Classification Categories for 'wireless-water-monitoring'
+
+# Classification Categories for 'steel-gates-and-hardware'
+;;gates
+;;gate-hardware
+
+# Classification Categories for 'gallagher-westonfence'
+;;insulated-suspension-posts
+
+# Classification Categories for 'automatic-watering'
+;;applicable-to-all-products
 
 # Insert Classification Attributes
 INSERT_UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true]
-;;Warranty
-;;Stored Energy
-;;Clean Wire Fence distance
-;;Output Energy
-;;Battery is included
-;;Height
-;;Width or Length
-;;Product Weight
+;;energiser-type
+;;animal-type
+;;area-of-fence
+;;multi-wire-distance-typical
+;;stored-joules
+;;i-series-compatible
+;;outdoor-suitable
+;;product-type
+;;conductor-type
+;;voltage-over-2km
+;;voltage-over-5km
+;;voltage-over-10km
+;;resistance
+;;strainer-type
+;;post-type
+;;insulator-type
+;;mounting-type
+;;gate-type
+;;use
+;;mixed-metals
+;;voltage-over-500m
+;;voltage-over-1km
+;;fence-type
+;;product-features
+;;strength
+;;offset-mounting-type
+;;primary-usage
+;;wires
+;;post-height
+;;area-of-typical-fence
+;;area-of-clean-fence
+;;multi-wire-distance-clean
+;;capacity
 
 
 # Links ClassificationClasses to Categories
 INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
-;1110 Volt Energizers;1110 Volt Energizers
-;Multi Powered Energizers;Multi Powered Energizers
-;Solar Energizers;Solar Energizers
-;Battery  Energizers;Battery  Energizers
-;Remotes and Fence Testers;Remotes and Fence Testers
-;Cut Out Switchjes;Cut Out Switchjes
-;Safety and Protection;Safety and Protection
-;Monitoring and Alarms;Monitoring and Alarms
-;Fence Connectors;Fence Connectors
-;Wire and Cable;Wire and Cable
-;Clamps and Joiners;Clamps and Joiners
-;Posts;Posts
-;Strainers;Strainers
-;Insulators;Insulators
-;Offsets;Offsets
-;Gates;Gates
-;Tapes, Wires, Braids;Tapes, Wires, Braids
-;Reels and Accessories;Reels and Accessories
-;Posts - pigtails and Tread-ins;Posts - pigtails and Tread-ins
-;Electric Fence Kits;Electric Fence Kits
-;Netting;Netting
+;energisers;energisers
+;remotes-and-fence-testers;remotes-and-fence-testers
+;power-system-accessories;power-system-accessories
+
+;wire-and-cable;wire-and-cable
+;wire-strainers;wire-strainers
+;insulators;insulators
+;offsets;offsets
+;electric-gates-and-accessories;electric-gates-and-accessories
+;fence-tools-and-accessories;fence-tools-and-accessories
+;clamps-and-joiners;clamps-and-joiners
+;posts;posts
+;permanent-fencing-gates;permanent-fencing-gates
+
+;tapes-wires-braids;tapes-wires-braids
+;reels-and-accessories;reels-and-accessories
+;posts-pigtails-and-tread-ins;posts-pigtails-and-tread-ins
+;all-in-one-portable-fences;all-in-one-portable-fences
+
+;weigh-scales-and-data-collectors;weigh-scales-and-data-collectors
+;loadbars-and-accessories;loadbars-and-accessories
+;platforms;platforms
+;drafters;drafters
+;eid-tag-readers;eid-tag-readers
+;platforms-and-crates;platforms-and-crates
+;handlers-and-drafters;handlers-and-drafters
+;eid-tag-readeres-and-barcoding-equipement;eid-tag-readeres-and-barcoding-equipement
+;scale-heads-and-data-collectors;scale-heads-and-data-collectors
+
+;gates;gates
+;gate-hardware;gate-hardware
+
+;insulated-suspension-posts;insulated-suspension-posts
+
+;applicable-to-all-products;applicable-to-all-products
 
 INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attributeType(code[default=string]);multiValued[default=false];range[default=false];localized[default=true]
-;Solar Energizers;Warranty;0
-;Solar Energizers;Stored Energy;1;Joules;number
-;Solar Energizers;Clean Wire Fence distance;2
-;Solar Energizers;Output Energy;3
-;Solar Energizers;Battery is included;4
-;Solar Energizers;Height;5;inch
-;Solar Energizers;Width or Length;6;inch
-;Solar Energizers;Product Weight;7;lbs
+# For Classification Category 'energisers'
+;energisers;energiser-type;0;
+;energisers;animal-type;1;
+;energisers;area-of-fence;2;Acres;number
+;energisers;area-of-typical-fence;3;Acres;number
+;energisers;area-of-clean-fence;4;Acres;number
+;energisers;multi-wire-distance-typical;5;KM;number
+;energisers;multi-wire-distance-clean;6;KM;number
+;energisers;stored-joules;7;Joules;number
+;energisers;i-series-compatible;8;;boolean
+;energisers;outdoor-suitable;9;;boolean
+
+# For Classification Category 'remotes-and-fence-testers'
+;remotes-and-fence-testers;i-series-compatible;0;;boolean
+
+# For Classification Category 'power-system-accessories'
+;power-system-accessories;product-type;0;
+;power-system-accessories;i-series-compatible;1;
+
+# For Classification Category 'wire-and-cable'
+;wire-and-cable;conductor-type;0;
+;wire-and-cable;voltage-over-2km;1;KV;number
+;wire-and-cable;voltage-over-5km;2;KV;number
+;wire-and-cable;voltage-over-10km;3;KV;number
+;wire-and-cable;resistance;4;;number
+
+# For Classification Category 'wire-strainers'
+;wire-strainers;strainer-type;0;
+
+# For Classification Category 'insulators'
+;insulators;post-type;0;
+;insulators;insulator-type;1;
+
+# For Classification Category 'offsets'
+;offsets;mounting-type;0;
+;offsets;offset-mounting-type;1;
+
+# For Classification Category 'electric-gates-and-accessories'
+;electric-gates-and-accessories;gate-type;0;
+
+# For Classification Category 'fence-tools-and-accessories'
+;fence-tools-and-accessories;use;0;
+
+# For Classification Category 'clamps-and-joiners'
+
+# For Classification Category 'posts'
+
+# For Classification Category 'permanent-fencing-gates'
+;permanent-fencing-gates;gate-type;0;
+
+# For Classification Category 'tapes-wires-braids'
+;tapes-wires-braids;mixed-metals;0;;boolean
+;tapes-wires-braids;voltage-over-500m;1;KV;number
+;tapes-wires-braids;voltage-over-1km;2;KV;number
+;tapes-wires-braids;resistance;3;;number
+
+# For Classification Category 'reels-and-accessories'
+;reels-and-accessories;product-type;0;
+
+# For Classification Category 'posts-pigtails-and-tread-ins'
+;posts-pigtails-and-tread-ins;animal-type;0;
+;posts-pigtails-and-tread-ins;fence-type;1;
+
+# For Classification Category 'all-in-one-portable-fences'
+
+# For Classification Category 'weigh-scales-and-data-collectors'
+;weigh-scales-and-data-collectors;product-features;0;
+
+# For Classification Category 'loadbars-and-accessories'
+;loadbars-and-accessories;animal-type;0;
+
+# For Classification Category 'platforms'
+
+# For Classification Category 'drafters'
+
+# For Classification Category 'eid-tag-readers'
+;eid-tag-readers;product-type;0;
+
+# For Classification Category 'platforms-and-crates'
+;platforms-and-crates;animal-type;0;
+
+# For Classification Category 'handlers-and-drafters'
+;handlers-and-drafters;product-features;0;
+
+# For Classification Category 'eid-tag-readeres-and-barcoding-equipement'
+;eid-tag-readeres-and-barcoding-equipement;product-type;0;
+
+# For Classification Category 'scale-heads-and-data-collectors'
+;scale-heads-and-data-collectors;product-features;0;
+
+# For Classification Category 'gates'
+;gates;animal-type;0;
+;gates;strength;1;
+
+# For Classification Category 'gate-hardware'
+;gate-hardware;product-type;0;
+
+# For Classification Category 'insulated-suspension-posts'
+;insulated-suspension-posts;primary-usage;0;
+;insulated-suspension-posts;wires;1;;number
+;insulated-suspension-posts;post-height;2;MM;number
+
+# For Classification Category 'applicable-to-all-products'
+;applicable-to-all-products;product-features;0;
+;applicable-to-all-products;animal-type;1;
+;applicable-to-all-products;capacity;2;;number

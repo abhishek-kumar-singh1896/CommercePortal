@@ -16,39 +16,66 @@ $lang=en
 
 # Create Categories
 UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
-;Animal Management;;Animal Management
-;Electric Fencing;;Electric Fencing
-;C Fence Energizers;;Fence Energizers
-;SC Fence Energizers;;Fence Energizers
-;Solar Panels;;Solar Panels
-;Batteries;;Batteries
-;Grounding;;Grounding
-;Power Management Tools;;Power Management Tools
-;Remotes and Fence Testers;;Remotes and Fence Testers
-;Cut Out Switchjes;;Cut Out Switchjes
-;Safety and Protection;;Safety and Protection
-;Monitoring and Alarms;;Monitoring and Alarms
-;Fence Connectors;;Fence Connectors
-;Fencing;;Fencing
-;Fence Contruction;;Fence Contruction
-;Fence Power;;Fence Power
-;Fence Conductors;;Fence Conductors
-;Fence Tools and Accesories;;Fence Tools and Accesories
-;1110 Volt Energizers;;1110 Volt Energizers
-;Multi Powered Energizers;;Multi Powered Energizers
-;Solar Energizers;;Solar Energizers
-;Battery  Energizers;;Battery  Energizers
-;Wire and Cable;;Wire and Cable
-;Clamps and Joiners;;Clamps and Joiners
-;Posts;;Posts
-;Strainers;;Strainers
-;Insulators;;Insulators
-;Offsets;;Offsets
-;Gates;;Gates
-;Tapes, Wires, Braids;;Tapes, Wires, Braids
-;Reels and Accessories;;Reels and Accessories
-;Posts - pigtails and Tread-ins;;Posts - pigtails and Tread-ins
-;Electric Fence Kits;;Electric Fence Kits
-;Netting;;Netting
+;animal-management;;Animal Management
+
+# Main Categories
+;electric-fencing;;Electric Fencing
+;weighing-and-eid;;Weighing and EID
+;wireless-water-monitoring;;Wireless Water Monitoring
+;steel-gates-and-hardware;;Steel Gates and Hardware
+;gallagher-westonfence;;Gallagher Westonfence 
+;automatic-watering;;Automatic Watering 
+
+# Sub Categories for 'electric-fencing'
+;power;;Power
+;permanent-fencing;;Permanent Fencing
+;portable-fencing;;Portable Fencing
+
+# Sub Categories for 'power'
+;energisers;;Energisers
+;remotes-and-fence-testers;;Remotes and Fence Testers
+;power-system-accessories;;Power System Accessories
+
+# Sub Categories for 'permanent-fencing'
+;wire-and-cable;;Wire and Cable
+;wire-strainers;;Wire Strainers
+;insulators;;Insulators
+;offsets;;Offsets
+;electric-gates-and-accessories;;Electric Gates and Accessories
+;fence-tools-and-accessories;;Fence Tools and Accessories
+;clamps-and-joiners;;Clamps and Joiners
+;posts;;Posts
+;permanent-fencing-gates;;Gates
+
+# Sub Categories for 'portable-fencing'
+;tapes-wires-braids;;"Tapes, Wires, Braids"
+;reels-and-accessories;;Reels and Accessories
+;posts-pigtails-and-tread-ins;;Posts - Pigtails and Tread-ins
+;all-in-one-portable-fences;;All-in-One Portable Fences
+
+# Sub Categories for 'weighing-and-eid'
+;weigh-scales-and-data-collectors;;Weigh Scales and Data Collectors
+;loadbars-and-accessories;;Loadbars and Accessories
+;platforms;;Platforms
+;drafters;;Drafters
+;eid-tag-readers;;EID Tag Readers
+;platforms-and-crates;;Platforms and Crates
+;handlers-and-drafters;;Handlers and Drafters 
+;eid-tag-readeres-and-barcoding-equipement;;EID Tag Readeres and Barcoding Equipement 
+;scale-heads-and-data-collectors;;Scale Heads and Data Collectors 
+
+# Sub Categories for 'wireless-water-monitoring'
+
+# Sub Categories for 'steel-gates-and-hardware'
+;gates;;Gates
+;gate-hardware;;Gate Hardware
+
+# Sub Categories for 'gallagher-westonfence'
+;insulated-suspension-posts;;Insulated Suspension Posts
+
+# Sub Categories for 'automatic-watering'
+;applicable-to-all-products;;Applicable to All Products
+
+
 
 

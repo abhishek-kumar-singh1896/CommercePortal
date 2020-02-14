@@ -16,37 +16,85 @@ $lang=en
 
 # Create Categories
 UPDATE ClassificationClass;code[unique=true];name[lang=$lang];$classCatalogVersion
-;1110 Volt Energizers;1110 Volt Energizers
-;Multi Powered Energizers;Multi Powered Energizers
-;Solar Energizers;Solar Energizers
-;Battery  Energizers;Battery  Energizers
-;Remotes and Fence Testers;Remotes and Fence Testers
-;Cut Out Switchjes;Cut Out Switchjes
-;Safety and Protection;Safety and Protection
-;Monitoring and Alarms;Monitoring and Alarms
-;Fence Connectors;Fence Connectors
-;Wire and Cable;Wire and Cable
-;Clamps and Joiners;Clamps and Joiners
-;Posts;Posts
-;Strainers;Strainers
-;Insulators;Insulators
-;Offsets;Offsets
-;Gates;Gates
-;Tapes, Wires, Braids;Tapes, Wires, Braids
-;Reels and Accessories;Reels and Accessories
-;Posts - pigtails and Tread-ins;Posts - pigtails and Tread-ins
-;Electric Fence Kits;Electric Fence Kits
-;Netting;Netting
+# Classification Category for 'power'
+;energisers;Energisers
+;remotes-and-fence-testers;Remotes and Fence Testers
+;power-system-accessories;Power System Accessories
+
+# Classification Category for 'permanent-fencing'
+;wire-and-cable;Wire and Cable
+;wire-strainers;Wire Strainers
+;insulators;Insulators
+;offsets;Offsets
+;electric-gates-and-accessories;Electric Gates and Accessories
+;fence-tools-and-accessories;Fence Tools and Accessories
+;clamps-and-joiners;Clamps and Joiners
+;posts;Posts
+;permanent-fencing-gates;Gates
+
+# Classification Category for 'portable-fencing'
+;tapes-wires-braids;"Tapes, Wires, Braids"
+;reels-and-accessories;Reels and Accessories
+;posts-pigtails-and-tread-ins;Posts - Pigtails and Tread-ins
+;all-in-one-portable-fences;All-in-One Portable Fences
+
+# Classification Category for 'weighing-and-eid'
+;weigh-scales-and-data-collectors;Weigh Scales and Data Collectors
+;loadbars-and-accessories;Loadbars and Accessories
+;platforms;Platforms
+;drafters;Drafters
+;eid-tag-readers;EID Tag Readers
+;platforms-and-crates;Platforms and Crates
+;handlers-and-drafters;Handlers and Drafters 
+;eid-tag-readeres-and-barcoding-equipement;EID Tag Readeres and Barcoding Equipement 
+;scale-heads-and-data-collectors;Scale Heads and Data Collectors 
+
+# Classification Category for 'wireless-water-monitoring'
+
+# Classification Category for 'steel-gates-and-hardware'
+;gates;Gates
+;gate-hardware;Gate Hardware
+
+# Classification Category for 'gallagher-westonfence'
+;insulated-suspension-posts;Insulated Suspension Posts
+
+# Classification Category for 'automatic-watering'
+;applicable-to-all-products;Applicable to All Products
 
 
 
 # Create Categories
 UPDATE ClassificationAttribute;code[unique=true];$classSystemVersion;name[lang=$lang]
-;Warranty;;Warranty
-;Stored Energy;;Stored Energy
-;Clean Wire Fence distance;;Clean Wire Fence distance
-;Output Energy;;Output Energy
-;Battery is included;;Battery is included
-;Height;;Height
-;Width or Length;;Width or Length
-;Product Weight;;Product Weight
+;energiser-type;;Energiser Type
+;animal-type;;Animal Type
+;area-of-fence;;Area of Fence
+;multi-wire-distance-typical;;Multi Wire Distance (typical)
+;stored-joules;;Stored Joules
+;i-series-compatible;;i Series Compatible
+;outdoor-suitable;;Outdoor Suitable
+;product-type;;Product Type
+;conductor-type;;Conductor Type
+;voltage-over-2km;;Voltage (kV) over 2km
+;voltage-over-5km;;Voltage (kV) over 5km
+;voltage-over-10km;;Voltage (kV) over 10km
+;resistance;;Resistance (Ohms / km)
+;strainer-type;;Strainer Type
+;post-type;;Post Type
+;insulator-type;;Insulator Type
+;mounting-type;;Mounting Type
+;gate-type;;Gate Type
+;use;;Use
+;mixed-metals;;Mixed Metals
+;voltage-over-500m;;Voltage (kV) over 500m
+;voltage-over-1km;;Voltage (kV) over 1km
+;fence-type;;Fence Type
+;product-features;;Product Features
+;strength;;Strength
+;offset-mounting-type;;Offset Mounting Type
+;primary-usage;;Primary Usage
+;wires;;Wires
+;post-height;;Post Height
+;area-of-typical-fence;;Area of Typical Fence
+;area-of-clean-fence;;Area of Clean Fence
+;multi-wire-distance-clean;;Multi Wire Distance (clean)
+;capacity;;Capacity (L)

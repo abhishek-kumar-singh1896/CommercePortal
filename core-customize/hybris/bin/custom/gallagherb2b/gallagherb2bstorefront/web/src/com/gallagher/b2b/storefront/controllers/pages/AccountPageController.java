@@ -77,6 +77,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -86,11 +87,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.enterprisewide.b2badvance.facades.order.B2BAdvanceOrderDetailsFacade;
 import com.enterprisewide.b2badvance.order.SalesApplicationData;
 import com.gallagher.b2b.storefront.controllers.ControllerConstants;
+import com.gallagher.keycloak.outboundservices.service.GallagherKeycloakService;
 
 
 /**
@@ -205,6 +208,9 @@ public class AccountPageController extends AbstractSearchPageController
 	@Resource(name = "addressDataUtil")
 	private AddressDataUtil addressDataUtil;
 
+	@Resource(name = "gallagherKeycloakService")
+	private GallagherKeycloakService gallagherKeycloakService;
+
 	protected PasswordValidator getPasswordValidator()
 	{
 		return passwordValidator;
@@ -238,6 +244,11 @@ public class AccountPageController extends AbstractSearchPageController
 	protected AddressVerificationResultHandler getAddressVerificationResultHandler()
 	{
 		return addressVerificationResultHandler;
+	}
+
+	public GallagherKeycloakService getGallagherKeycloakService()
+	{
+		return gallagherKeycloakService;
 	}
 
 	@ModelAttribute("countries")
@@ -686,15 +697,25 @@ public class AccountPageController extends AbstractSearchPageController
 	@RequireHardLogIn
 	public String updatePassword(final Model model) throws CMSItemNotFoundException
 	{
-		final UpdatePasswordForm updatePasswordForm = new UpdatePasswordForm();
-
-		model.addAttribute("updatePasswordForm", updatePasswordForm);
+		final String customerUid = getCustomerFacade().getCurrentCustomerUid();
+		boolean success = false;
+		try
+		{
+			success = getGallagherKeycloakService().sendUpdatePasswordNotification(customerUid);
+		}
+		catch (final RestClientException | OAuth2Exception exception)
+		{
+			LOG.error("Exception occured while sending Update Password Link from Keycloak : " + exception);
+			success = false;
+		}
+		model.addAttribute("success", success);
 
 		storeCmsPageInModel(model, getContentPageForLabelOrId(UPDATE_PASSWORD_CMS_PAGE));
 		setUpMetaDataForContentPage(model, getContentPageForLabelOrId(UPDATE_PASSWORD_CMS_PAGE));
 
 		model.addAttribute(BREADCRUMBS_ATTR, accountBreadcrumbBuilder.getBreadcrumbs("text.account.profile.updatePasswordForm"));
 		model.addAttribute(ThirdPartyConstants.SeoRobots.META_ROBOTS, ThirdPartyConstants.SeoRobots.NOINDEX_NOFOLLOW);
+
 		return getViewForPage(model);
 	}
 

@@ -53,14 +53,17 @@ import javax.annotation.Resource;
 import javax.validation.Valid;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.validator.routines.EmailValidator;
 import org.apache.log4j.Logger;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gallagher.commerceorgaddon.breadcrumb.impl.MyCompanyBreadcrumbBuilder;
@@ -71,6 +74,7 @@ import com.gallagher.commerceorgaddon.forms.B2BCustomerForm;
 import com.gallagher.commerceorgaddon.forms.B2BPermissionForm;
 import com.gallagher.commerceorgaddon.forms.validation.B2BBudgetFormValidator;
 import com.gallagher.commerceorgaddon.forms.validation.B2BPermissionFormValidator;
+import com.gallagher.keycloak.outboundservices.service.GallagherKeycloakService;
 
 
 /**
@@ -160,6 +164,13 @@ public class MyCompanyPageController extends AbstractSearchPageController
 	@Resource(name = "baseStoreService")
 	protected BaseStoreService baseStoreService;
 
+	@Resource(name = "gallagherKeycloakService")
+	private GallagherKeycloakService gallagherKeycloakService;
+
+	public GallagherKeycloakService getGallagherKeycloakService()
+	{
+		return gallagherKeycloakService;
+	}
 
 	@Override
 	protected UserFacade getUserFacade()
@@ -406,6 +417,15 @@ public class MyCompanyPageController extends AbstractSearchPageController
 			return editUser(b2BCustomerForm.getUid(), model);
 		}
 
+		final EmailValidator eValidator = EmailValidator.getInstance();
+		if (null != b2BCustomerForm.getEmail() && !eValidator.isValid(b2BCustomerForm.getEmail()))
+		{
+			bindingResult.rejectValue("email", "profile.email.invalid");
+			GlobalMessages.addErrorMessage(model, "form.global.error");
+			model.addAttribute("b2BCustomerForm", b2BCustomerForm);
+			return editUser(b2BCustomerForm.getUid(), model);
+		}
+
 		final CustomerData b2bCustomerData = new CustomerData();
 		b2bCustomerData.setTitleCode(b2BCustomerForm.getTitleCode());
 		b2bCustomerData.setFirstName(b2BCustomerForm.getFirstName());
@@ -416,6 +436,20 @@ public class MyCompanyPageController extends AbstractSearchPageController
 		b2bCustomerData.setRoles(b2BCustomerForm.getRoles());
 		b2bCustomerData.setCustomerId(b2BCustomerForm.getCustomerId());
 		b2bCustomerData.setDuplicate(b2BCustomerForm.isDuplicate());
+
+		try
+		{
+			final String keycloakGUID = getGallagherKeycloakService().createKeycloakUser(b2bCustomerData);
+			b2bCustomerData.setKeycloakGUID(keycloakGUID);
+		}
+		catch (final RestClientException | OAuth2Exception exception)
+		{
+			LOG.error("Exception occured while creationg user in Keycloak : " + exception);
+			GlobalMessages.addErrorMessage(model, "text.connection.exception.error");
+			model.addAttribute("b2BCustomerForm", b2BCustomerForm);
+			return editUser(b2BCustomerForm.getUid(), model);
+		}
+
 		model.addAttribute(b2BCustomerForm);
 		model.addAttribute("titleData", getUserFacade().getTitles());
 		model.addAttribute("roles", populateRolesCheckBoxes(b2bUserGroupFacade.getUserGroups()));

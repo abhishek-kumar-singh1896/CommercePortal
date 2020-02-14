@@ -11949,6 +11949,7 @@ a.product__listing .product__listing--promo:focus {
   -moz-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+  cursor: pointer;
 }
 @media (min-width: 640px) {
   .product__listing.product__grid .product-item {

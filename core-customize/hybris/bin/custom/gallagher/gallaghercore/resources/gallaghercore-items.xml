@@ -47,6 +47,12 @@
 					<defaultvalue>java.lang.Boolean.FALSE</defaultvalue>
 					<description>Indicates if customer is duplicate or not</description>
 				</attribute>
+				<attribute autocreate="true" generate="true"
+					qualifier="keycloakGUID" type="java.lang.String">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<description>Used to store Keycloak GUID</description>
+				</attribute>
 			</attributes>
 		</itemtype>
 		

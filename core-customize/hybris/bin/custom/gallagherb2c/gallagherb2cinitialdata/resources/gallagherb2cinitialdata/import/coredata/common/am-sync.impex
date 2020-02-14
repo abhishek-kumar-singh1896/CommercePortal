@@ -133,4 +133,4 @@ INSERT_UPDATE MediaConversionCronJob;$productCVStaged[unique=true];code[unique=t
 
 INSERT_UPDATE Trigger;cronJob(code)[unique=true];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
 #cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
-;amB2CConversionMaster			;0		;5		;0		;0		;0		;0		;true		;true	;-1
+;amB2CConversionMaster			;0		;30		;0		;0		;0		;0		;true		;true	;-1
