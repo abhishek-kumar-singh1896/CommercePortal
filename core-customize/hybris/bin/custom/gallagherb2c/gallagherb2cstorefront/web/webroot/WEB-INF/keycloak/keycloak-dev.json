@@ -2,7 +2,7 @@
   "realm": "gallagher",
   "auth-server-url": "https://integration-auth.security.gallagher.io/auth",
   "ssl-required": "external",
-  "resource": "security-commerce",
+  "resource": "am-commerce",
   "public-client": true,
   "verify-token-audience": true,
   "use-resource-role-mappings": true,

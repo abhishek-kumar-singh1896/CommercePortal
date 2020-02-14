@@ -9,99 +9,104 @@
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
-<spring:theme code="text.addToCart" var="addToCartText"/>
-<spring:theme code="text.popupCartTitle" var="popupCartTitleText"/>
-<c:url value="/cart" var="cartUrl"/>
-<c:url value="/cart/checkout" var="checkoutUrl"/>
+<spring:theme code="text.addToCart" var="addToCartText" />
+<spring:theme code="text.popupCartTitle" var="popupCartTitleText" />
+<spring:theme code="cart.page.continue" var="viewCart" />
+<spring:theme code="popup.cart.total" var="total" />
+<c:url value="/cart" var="cartUrl" />
+<c:url value="/cart/checkout" var="checkoutUrl" />
 
 <c:choose>
 	<c:when test="${not empty cartData.quoteData}">
-		<c:set var="miniCartProceed" value="quote.view"/>
+		<c:set var="miniCartProceed" value="quote.view" />
 	</c:when>
 	<c:otherwise>
-		<c:set var="miniCartProceed" value="checkout.checkout"/>
+		<c:set var="miniCartProceed" value="checkout.checkout" />
 	</c:otherwise>
 </c:choose>
-			
 
-<div class="mini-cart js-mini-cart">
-	<ycommerce:testId code="mini-cart-popup">
-		<div class="mini-cart-body">
-			<c:choose>
-				<c:when test="${numberShowing > 0 }">
-						<div class="legend">
-							<spring:theme code="popup.cart.showing" arguments="${numberShowing},${numberItemsInCart}"/>
-							<c:if test="${numberItemsInCart > numberShowing}">
-								<a href="${fn:escapeXml(cartUrl)}"><spring:theme code="popup.cart.showall"/></a>
-							</c:if>
-						</div>
+<c:choose>
+	
+	<c:when test="${numberShowing > 0 }">
 
-						<ol class="mini-cart-list">
-							<c:forEach items="${entries}" var="entry" end="${numberShowing - 1}">
-								<c:url value="${entry.product.url}" var="entryProductUrl"/>
-								<li class="mini-cart-item">
-									<div class="thumb">
-										<a href="${entryProductUrl}">
-											<product:productPrimaryImage product="${entry.product}" format="cartIcon"/>
+		
+			<div class="your-cart-title">Your Cart</div>
+			<div class="mini-cart-item-out">
+				<ul>
+					<c:forEach items="${entries}" var="entry"
+						end="${numberShowing - 1}">
+						<li>
+							<div class="row">
+								<div class="col-3 pr-0">
+									<div class="mini-cart-product-img">
+										<a href="${entryProductUrl}"> <product:productPrimaryImage
+												product="${entry.product}" format="cartIcon" />
 										</a>
 									</div>
-									<div class="details">
-										<a class="name" href="${entryProductUrl}">${fn:escapeXml(entry.product.name)}</a>
-										<div class="qty"><spring:theme code="popup.cart.quantity"/>: ${fn:escapeXml(entry.quantity)}</div>
-										<c:forEach items="${entry.product.baseOptions}" var="baseOptions">
-											<c:forEach items="${baseOptions.selected.variantOptionQualifiers}" var="baseOptionQualifier">
-												<c:if test="${baseOptionQualifier.qualifier eq 'style' and not empty baseOptionQualifier.image.url}">
-													<div class="itemColor">
-														<span class="label"><spring:theme code="product.variants.colour"/></span>
-														<img src="${fn:escapeXml(baseOptionQualifier.image.url)}" alt="${fn:escapeXml(baseOptionQualifier.value)}" title="${fn:escapeXml(baseOptionQualifier.value)}"/>
-													</div>
-												</c:if>
-												<c:if test="${baseOptionQualifier.qualifier eq 'size'}">
-													<div class="itemSize">
-														<span class="label"><spring:theme code="product.variants.size"/></span>
-															${fn:escapeXml(baseOptionQualifier.value)}
-													</div>
-												</c:if>
-											</c:forEach>
-										</c:forEach>
-										<c:if test="${not empty entry.deliveryPointOfService.name}">
-											<div class="itemPickup"><span class="itemPickupLabel"><spring:theme code="popup.cart.pickup"/></span>&nbsp;${fn:escapeXml(entry.deliveryPointOfService.name)}</div>
-										</c:if>
+								</div>
+								<div class="col-9">
+									<div class="mini-cart-title">
+										<a href="${entryProductUrl}">${fn:escapeXml(entry.quantity)}
+											x ${fn:escapeXml(entry.product.name)} </a>
 									</div>
-									<div class="price"><format:price priceData="${entry.basePrice}"/></div>
-								</li>
-							</c:forEach>
-						</ol>
+									
+									<div class="row mt-2">
+										<div class="col-6">
+											<div class="mini-cart-id">${entry.product.code}</div>
+										</div>
+										<div class="col-6 text-right">
+											<div class="mini-cart-price">
+												<format:price priceData="${entry.basePrice}" />
+											</div>
+										</div>
+									</div>
 
-						<c:if test="${not empty lightboxBannerComponent && lightboxBannerComponent.visible}">
-							<cms:component component="${lightboxBannerComponent}" evaluateRestriction="true"  />
-						</c:if>
+								</div>
 
-						<div class="mini-cart-totals">
-							<div class="key"><spring:theme code="popup.cart.total"/></div>
-							<div class="value"><format:price priceData="${cartData.totalPrice}"/></div>
+							</div>
+						</li>
+					</c:forEach>
+				</ul>
+
+				<div class="mini-cart-total-out">
+					<div class="row align-items-center">
+						<div class="col-5 pr-0">
+
+							<c:if test="${numberItemsInCart > numberShowing}">
+								<a href="${fn:escapeXml(cartUrl)}" class="showing-link"> <spring:theme
+										code="popup.cart.showing"
+										arguments="${numberShowing},${numberItemsInCart}" />
+								</a>
+							</c:if>
+
 						</div>
-						<a href="${fn:escapeXml(cartUrl)}" class="btn btn-primary btn-block mini-cart-checkout-button">
-							<spring:theme code="${miniCartProceed }" />
-						</a>
-						<a href="" class="btn btn-default btn-block js-mini-cart-close-button">
-							<spring:theme code="cart.page.continue"/>
-						</a>
-				</c:when>
+						<div class="col-7">
+							<div class="mini-cart-total">
+								<span class="total-text">${total}</span> <span
+									class="total-value"> <format:price
+										priceData="${cartData.totalPrice}" />
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
 
-				<c:otherwise>
-					<c:if test="${not empty lightboxBannerComponent && lightboxBannerComponent.visible}">
-						<cms:component component="${lightboxBannerComponent}" evaluateRestriction="true"  />
-					</c:if>
+			</div>
 
-					<button class="btn btn-block" disabled="disabled">
-						<spring:theme code="${miniCartProceed }" />
-					</button>
-					<a href="" class="btn btn-default btn-block js-mini-cart-close-button">
-						<spring:theme text="Continue Shopping" code="cart.page.continue"/>
-					</a>
-				</c:otherwise>
-			</c:choose>
+			<button onclick="window.location.href = '${fn:escapeXml(cartUrl)}'"
+				type="button" class="btn btn-view-cart">${viewCart}</button>
+			</c:when>
+
+
+	<c:otherwise>
+
+		<div class="blank-cart-message-out">
+			<div class="row align-items-center">
+				<div class="col-12">
+					<div class="blank-cart-message">There is no product in cart.
+					</div>
+				</div>
+			</div>
 		</div>
-	</ycommerce:testId>
-</div>
+	</c:otherwise>
+</c:choose>

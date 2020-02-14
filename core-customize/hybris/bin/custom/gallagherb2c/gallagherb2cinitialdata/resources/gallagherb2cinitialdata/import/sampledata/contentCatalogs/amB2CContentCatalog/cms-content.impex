@@ -25,7 +25,7 @@ UPDATE CMSSite;uid[unique=true];defaultPreviewCategory(code, $productCV);default
 
 # Site Logo
 INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];altText;folder(qualifier)[default='images']
-;;/images/theme/logo-hybris.png;logo-hybris.png;$siteResource/images/theme/logo-hybris.png;image/png;hybris Accelerator;
+;;/images/theme/logo-hybris.png;logo-gallagher.svg;$siteResource/images/theme/logo-gallagher.svg;image/svg+xml;hybris Accelerator;
 ;;/images/theme/logo-hybris_zh.png;logo-hybris_zh.png;$siteResource/images/theme/logo-hybris_zh.png;image/png;hybris Accelerator;
 
 # Site Logo Component
@@ -85,6 +85,18 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;AccountManagePaymentDetailsLink;AccountManagePaymentDetailsLink;/my-account/payment-details;AccountManagePaymentDetailsLink;AccountManagePaymentDetailsLink;;;;
 ;;AccountOrderHistoryLink;AccountOrderHistoryLink;/my-account/orders;AccountOrderHistoryLink;AccountOrderHistoryLink;;;;
 ;;AccountViewOrderHistoryLink;AccountViewOrderHistoryLink;/my-account/orders;AccountViewOrderHistoryLink;AccountViewOrderHistoryLink;;;;
+;;ProductsFooterLink;Products Footer Link;'/';ProductsFooterLink;ProductsFooterLink;;;
+;;ElectricFencingFooterLink;Electric Fencing Footer Link;'/';ElectricFencingFooterLink;ElectricFencingFooterLink;;;
+;;WeighingEIDFooterLink;Weighing and EID Footer Link;'/';WeighingEIDFooterLink;WeighingEIDFooterLink;;;
+;;SteelGatesHardwareFooterLink;Steel Gates and Hardware Footer Link;'/';SteelGatesHardwareFooterLink;SteelGatesHardwareFooterLink;;;
+;;WirelessMonitoringFooterLink;Wireless Water monitoring Footer Link;'/';WirelessMonitoringFooterLink;WirelessMonitoringFooterLink;;;
+;;FarmInfoToolsFooterLink;Farm Information tools Footer Link;'/';FarmInfoToolsFooterLink;FarmInfoToolsFooterLink;;;
+;;StockProdsFooterLink;Stock Prods Footer Link;'/';StockProdsFooterLink;StockProdsFooterLink;;;
+;;AboutUsFooterLink;About Us Footer Link;'/';AboutUsFooterLink;AboutUsFooterLink;;;
+;;SupportFooterLink;Support Footer Link;'/';SupportFooterLink;SupportFooterLink;;;
+;;ContactFooterLink;Contact Us Footer Link;'/';ContactFooterLink;ContactFooterLink;;;
+;;NewsEventsFooterLink;News & Events Footer Link;'/';NewsEventsFooterLink;NewsEventsFooterLink;;;
+;;InnovationAwardsFooterLink;Innovation & Awards Footer Link;'/';InnovationAwardsFooterLink;InnovationAwardsFooterLink;;;
 
 INSERT_UPDATE BreadcrumbComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
 ;;breadcrumbComponent;Breadcrumb CMS Component;breadcrumbComponent
@@ -259,14 +271,28 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;pa
 ;FlashMemoryNavNode;;Flash Memory Category;AMB2CNavNode;FlashMemoryCategoryLink;FlashMemoryNavNode
 ;AccessoriesNavNode;;Accessories Links;CameraAccessoriesNavNode;CamerasFlashesCategoryLink,TripodsCategoryLink,CameraLensesCategoryLink;AccessoriesNavNode
 ;SuppliesNavNode;;Supplies Links;CameraAccessoriesNavNode;ColourFilmsCategoryLink,BlackAndWhiteFilmsCategoryLink,BlankVideotapesCategoryLink;SuppliesNavNode
-;SAPCommerceNavNode;;SAP Commerce Cloud Pages;AMB2CNavNode;AboutSapCommerceLink,FAQLink;SAPCommerceNavNode
-;SAPCustomerExperienceNavNode;;SAP Customer Experience Pages;AMB2CNavNode;VisitSAPLink,ContactUsLink;SAPCustomerExperienceNavNode
+#;SAPCommerceNavNode;;SAP Commerce Cloud Pages;AMB2CNavNode;AboutSapCommerceLink,FAQLink;SAPCommerceNavNode
+#;SAPCustomerExperienceNavNode;;SAP Customer Experience Pages;AMB2CNavNode;VisitSAPLink,ContactUsLink;SAPCustomerExperienceNavNode
 ;FollowUsNavNode;;Follow Us Pages;AMB2CNavNode;AgileCommerceBlogLink,LinkedInLink,FacebookLink,TwitterLink;FollowUsNavNode
 ;AccountLeftNavNode;;My Account;SiteRootNode;AccountProfileLink,AccountAddressBookLink,AccountPaymentDetailsLink,AccountOrderHistoryLink;AccountLeftNavNode
 ;AccountProfileNavNode;;Profile;AccountLeftNavNode;AccountPersonalDetailsLink,AccountUpdatePasswordLink;AccountProfileNavNode
 ;AccountAddressBookNavNode;;Address Book;AccountLeftNavNode;AccountManageAddressLink;AccountAddressBookNavNode
 ;AccountPaymentDetailsNavNode;;Address Book;AccountLeftNavNode;AccountManagePaymentDetailsLink;AccountPaymentDetailsNavNode
 ;AccountOrderHistoryNavNode;;Order History;AccountLeftNavNode;AccountViewOrderHistoryLink;AccountOrderHistoryNavNode
+;SAPCommerceNavNode;;SAP Commerce Cloud Pages;AMB2CNavNode; ProductsFooterLink,ElectricFencingFooterLink,WeighingEIDFooterLink,WirelessMonitoringFooterLink,SteelGatesHardwareFooterLink,FarmInfoToolsFooterLink,StockProdsFooterLink;SAPCommerceNavNode
+;SAPCustomerExperienceNavNode;;SAP Customer Experience Pages;AMB2CNavNode; AboutUsFooterLink,SupportFooterLink,ContactFooterLink,NewsEventsFooterLink,InnovationAwardsFooterLink;SAPCustomerExperienceNavNode
+;ProductsFooterNode;;Products Footer Node;SAPCommerceNavNode;;ProductsFooterNode
+;ElectricFencingFooterNode;;Electric Fencing Footer Node;SAPCommerceNavNode;;ElectricFencingFooterNode
+;WeighingEIDFooterNode;;Weighing EID Footer Node;SAPCommerceNavNode;;WeighingEIDFooterNode
+;WirelessWtaerMonitoringFooterNode;;Wireless Wtaer Monitoring Footer Node;SAPCommerceNavNode;;WirelessWtaerMonitoringFooterNode
+;SteelGatesHardwareFooterNode;;Steel Gates Hardware Footer Node;SAPCommerceNavNode;;SteelGatesHardwareFooterNode
+;FarmInformationToolsFooterNode;;Farm Information Tools Footer Node;SAPCommerceNavNode;;FarmInformationToolsFooterNode
+;StockProdsFooterNode;;Stock Prods Footer Node;SAPCommerceNavNode;;StockProdsFooterNode
+;AboutUsFooterNode;;About Us Footer Node;SAPCustomerExperienceNavNode;;AboutUsFooterNode
+;SupportFooterNode;;Support Footer Node;SAPCustomerExperienceNavNode;;SupportFooterNode
+;ContactFooterNode;;Contact Footer Node;SAPCustomerExperienceNavNode;;ContactFooterNode
+;NewsEventsFooterNode;;News Events Footer Node;SAPCustomerExperienceNavNode;;NewsEventsFooterNode
+;InnovationAwardsFooterNode;;Innovation Awards Footer Node;SAPCustomerExperienceNavNode;;InnovationAwardsFooterNode
 
 # Navigation Bar Component
 INSERT_UPDATE NavigationBarComponent;$contentCV[unique=true];uid[unique=true];navigationNode(&nodeRef);dropDownLayout(code)

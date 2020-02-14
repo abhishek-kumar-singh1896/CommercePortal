@@ -19,14 +19,14 @@ $category=category(code, $productCV)
 $jarResourceCms=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/cockpits/cmscockpit
 $media=media(code, $contentCV);
 $productResource=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/productCatalogs/$productCatalog
-
+$picture=media(code, $contentCV);
 $keycloakBaseURL=$config-keycloak.base.url
 $keycloakAuthURL=$config-keycloak.auth.url/$config-keycloak.realm
 $keycloakPasswordURL=$config-keycloak.password.url
 
 # Site Logo
 INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];altText;folder(qualifier)[default='images']
-;;/images/theme/logo-hybris.png;logo-hybris.png;$siteResource/images/theme/logo-hybris.png;image/png;hybris Accelerator;
+;;/images/theme/logo-hybris.png;logo-gallagher.svg;$siteResource/images/theme/logo-gallagher.svg;image/svg+xml;hybris Accelerator;
 ;;/images/theme/logo-hybris_zh.png;logo-hybris_zh.png;$siteResource/images/theme/logo-hybris_zh.png;image/png;hybris Accelerator;
 
 # Site Logo Component
@@ -51,6 +51,18 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;LinkedInLink;Linked In Link;"http://www.linkedin.com/groups/5063400";LinkedInLink;LinkedInLink;newWindow;;;
 ;;FAQLink;FAQ Link;/faq;FAQLink;FAQLin;;;;
 ;;TermsAndConditionsLink;Terms and Conditions Link;/termsAndConditions;TermsAndConditionsLink;TermsAndConditionsLink;;;;
+;;ProductsFooterLink;Products Footer Link;'/';ProductsFooterLink;ProductsFooterLink;;;
+;;ElectricFencingFooterLink;Electric Fencing Footer Link;'/';ElectricFencingFooterLink;ElectricFencingFooterLink;;;
+;;WeighingEIDFooterLink;Weighing and EID Footer Link;'/';WeighingEIDFooterLink;WeighingEIDFooterLink;;;
+;;SteelGatesHardwareFooterLink;Steel Gates and Hardware Footer Link;'/';SteelGatesHardwareFooterLink;SteelGatesHardwareFooterLink;;;
+;;WirelessMonitoringFooterLink;Wireless Water monitoring Footer Link;'/';WirelessMonitoringFooterLink;WirelessMonitoringFooterLink;;;
+;;FarmInfoToolsFooterLink;Farm Information tools Footer Link;'/';FarmInfoToolsFooterLink;FarmInfoToolsFooterLink;;;
+;;StockProdsFooterLink;Stock Prods Footer Link;'/';StockProdsFooterLink;StockProdsFooterLink;;;
+;;AboutUsFooterLink;About Us Footer Link;'/';AboutUsFooterLink;AboutUsFooterLink;;;
+;;SupportFooterLink;Support Footer Link;'/';SupportFooterLink;SupportFooterLink;;;
+;;ContactFooterLink;Contact Us Footer Link;'/';ContactFooterLink;ContactFooterLink;;;
+;;NewsEventsFooterLink;News & Events Footer Link;'/';NewsEventsFooterLink;NewsEventsFooterLink;;;
+;;InnovationAwardsFooterLink;Innovation & Awards Footer Link;'/';InnovationAwardsFooterLink;InnovationAwardsFooterLink;;;
 ;;UpdatePasswordLink;UpdatePasswordLink;$keycloakBaseURL$keycloakAuthURL$keycloakPasswordURL;UpdatePasswordLink;
 
 # Lightbox Banner for Mini Cart
@@ -178,10 +190,11 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;pa
 ;AMB2CNavNode;;Animal Management Site;SiteRootNode;HomepageNavLink;AMB2CNavNode
 ;BrandsNavNode;;Brand Links;AMB2CNavNode;AllBrandsCategoryLink;BrandsNavNode
 ;ElectricFencingNavNode;;Electric Fencin Links;BrandsNavNode;ElectricFencingCategoryLink;ElectricFencingNavNode
-;SAPCommerceNavNode;;SAP Commerce Cloud Pages;AMB2CNavNode;AboutSAPCommerceLink,FAQLink;SAPCommerceNavNode
-;SAPCustomerExperienceNavNode;;SAP Customer Experience Pages;AMB2CNavNode;VisitSAPLink,ContactUsLink;SAPCustomerExperienceNavNode
+#;SAPCommerceNavNode;;SAP Commerce Cloud Pages;AMB2CNavNode;AboutSAPCommerceLink,FAQLink;SAPCommerceNavNode
+#;SAPCustomerExperienceNavNode;;SAP Customer Experience Pages;AMB2CNavNode;VisitSAPLink,ContactUsLink;SAPCustomerExperienceNavNode
 ;FollowUsNavNode;;Follow Us Pages;AMB2CNavNode;AgileCommerceBlogLink,LinkedInLink,FacebookLink,TwitterLink;FollowUsNavNode
-
+;SAPCommerceNavNode;;SAP Commerce Cloud Pages;AMB2CNavNode;ProductsFooterLink,ElectricFencingFooterLink,WeighingEIDFooterLink,WirelessMonitoringFooterLink,SteelGatesHardwareFooterLink,FarmInfoToolsFooterLink,StockProdsFooterLink;SAPCommerceNavNode
+;SAPCustomerExperienceNavNode;;SAP Customer Experience Pages;AMB2CNavNode;AboutUsFooterLink,SupportFooterLink,ContactFooterLink,NewsEventsFooterLink,InnovationAwardsFooterLink;SAPCustomerExperienceNavNode
 
 # Preview Image for use in the CMS Cockpit for special ContentPages
 INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];mime;realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];folder(qualifier)[default='images']
@@ -708,7 +721,7 @@ INSERT_UPDATE ProductCarouselComponent;$contentCV[unique=true];uid[unique=true];
 ;;AMB2CHomepageProductCarouselComponent;AMB2CHomepageProductCarouselComponent
 
 INSERT_UPDATE ProductCarouselComponent;$contentCV[unique=true];uid[unique=true];name;products(code,$productCV);scroll(code);popup;&componentRef
-;;NewAMB2CHomepageProductCarouselComponent;What's New Animal Management B2C Homepage Product Carousel;heavy-duty-leadout-cable-12.5-gauge,solar-fence-energizer-s10;allVisible;false;NewAMB2CHomepageProductCarouselComponent
+;;NewAMB2CHomepageProductCarouselComponent;"What's New Animal Management B2C Homepage Product Carousel";heavy-duty-leadout-cable-12.5-gauge,solar-fence-energizer-s10;allVisible;false;NewAMB2CHomepageProductCarouselComponent
 
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(&componentRef)
 ;;Section3Slot-Homepage;AMB2CHomepageProductCarouselComponent,NewAMB2CHomepageProductCarouselComponent
@@ -765,7 +778,7 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;c
 # Site Logo (Gallagher logo)
 INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/svg+xml'];altText;folder(qualifier)[default='images']
 #;;/images/theme/logo_hybris_responsive.svg;logo_hybris_responsive.svg;$siteResource/images/theme/logo_hybris_responsive.svg;image/svg+xml;hybris Accelerator;
-;;/images/theme/logo_hybris_responsive.svg;gglogo.png;$siteResource/images/theme/gglogo.jpg;;hybris Accelerator;
+;;/images/theme/logo-gallagher.svg;logo-gallagher.svg;$siteResource/images/theme/logo-gallagher.svg;;Gallagher;
 
 ###  Responsive Error page #######
 
@@ -903,7 +916,8 @@ INSERT_UPDATE NavigationComponent;$contentCV[unique=true];uid[unique=true];name;
 
 # Content Slots
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid, $contentCV)
-;;MiniCartSlot;OrderComponent,MiniCart
+#;;MiniCartSlot;OrderComponent,MiniCart
+;;MiniCartSlot;MiniCart
 
 # create a user restriction
 INSERT_UPDATE CMSUserRestriction;$contentCV[unique=true];&userRestriction;name;uid[unique=true];users(uid)
@@ -1083,6 +1097,7 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);&nodeRef;children(uid,$contentCV)
 ;AMB2CCategoryNavNode;;Categories;AMB2CNavNode;AMB2CCategoryNavNode;BrandsNavNode,ElectricFencingNavNode
 
+
 ## level 3. children of Category Nav ##
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef);
 ;BrandsNavNode;;Brand Links;BrandsNavNode;ElectricFencingNavNode
@@ -1144,21 +1159,38 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 
 
 ###### Footer Component Refactor Start ######
-INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV)
-;;FooterSlot;FooterNavigationComponent
+#INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV)
+#;;FooterSlot;FooterNavigationComponent
 
-INSERT_UPDATE FooterNavigationComponent;$contentCV[unique=true];uid[unique=true];wrapAfter;&componentRef;showLanguageCurrency;navigationNode(&nodeRef)
-;;FooterNavigationComponent;4;FooterNavigationComponent;true;FooterNavNode;
+#INSERT_UPDATE FooterNavigationComponent;$contentCV[unique=true];uid[unique=true];wrapAfter;&componentRef;showLanguageCurrency;navigationNode(&nodeRef)
+#;;FooterNavigationComponent;4;FooterNavigationComponent;true;FooterNavNode;
 
 # the order of children is the same as the display order on the site
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);&nodeRef;children(uid,$contentCV)
-;FooterNavNode;;Footer Pages;AMB2CNavNode;FooterNavNode;SAPCommerceNavNode,SAPCustomerExperienceNavNode,FollowUsNavNode
+#;FooterNavNode;;Footer Pages;AMB2CNavNode;FooterNavNode;SAPCommerceNavNode,SAPCustomerExperienceNavNode,FollowUsNavNode
+;FooterNavNode;;Footer Pages;AMB2CNavNode;FooterNavNode;SAPCommerceNavNode,SAPCustomerExperienceNavNode
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
+;ProductsFooterNode;;Products Footer Node;SAPCommerceNavNode;;ProductsFooterNode
+;ElectricFencingFooterNode;;Electric Fencing Footer Node;SAPCommerceNavNode;;ElectricFencingFooterNode
+;WeighingEIDFooterNode;;Weighing EID Footer Node;SAPCommerceNavNode;;WeighingEIDFooterNode
+;WirelessWtaerMonitoringFooterNode;;Wireless Wtaer Monitoring Footer Node;SAPCommerceNavNode;;WirelessWtaerMonitoringFooterNode
+;SteelGatesHardwareFooterNode;;Steel Gates Hardware Footer Node;SAPCommerceNavNode;;SteelGatesHardwareFooterNode
+;FarmInformationToolsFooterNode;;Farm Information Tools Footer Node;SAPCommerceNavNode;;FarmInformationToolsFooterNode
+;StockProdsFooterNode;;Stock Prods Footer Node;SAPCommerceNavNode;;StockProdsFooterNode
+;AboutUsFooterNode;;About Us Footer Node;SAPCustomerExperienceNavNode;;AboutUsFooterNode
+;SupportFooterNode;;Support Footer Node;SAPCustomerExperienceNavNode;;SupportFooterNode
+;ContactFooterNode;;Contact Footer Node;SAPCustomerExperienceNavNode;;ContactFooterNode
+;NewsEventsFooterNode;;News Events Footer Node;SAPCustomerExperienceNavNode;;NewsEventsFooterNode
+;InnovationAwardsFooterNode;;Innovation Awards Footer Node;SAPCustomerExperienceNavNode;;InnovationAwardsFooterNode
 
 # children of FooterNavNode #
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef)
-;SAPCommerceNavNode;;SAP Commerce Cloud Pages;SAPCommerceNavNode;AboutSAPCommerceNavNode,FAQNavNode
-;SAPCustomerExperienceNavNode;;SAP Customer Experience Pages;SAPCustomerExperienceNavNode;AboutSAPCustomerExperienceNavNode,ContactUsNavNode
-;FollowUsNavNode;;Follow Us Pages;FollowUsNavNode;AgileCommerceBlogNavNode,LinkedInNavNode,FacebookNavNode,TwitterNavNode
+#;SAPCommerceNavNode;;SAP Commerce Cloud Pages;SAPCommerceNavNode;AboutSAPCommerceNavNode,FAQNavNode
+#;SAPCustomerExperienceNavNode;;SAP Customer Experience Pages;SAPCustomerExperienceNavNode;AboutSAPCustomerExperienceNavNode,ContactUsNavNode
+#;FollowUsNavNode;;Follow Us Pages;FollowUsNavNode;AgileCommerceBlogNavNode,LinkedInNavNode,FacebookNavNode,TwitterNavNode
+;SAPCommerceNavNode;;SAP Commerce Cloud Pages;SAPCommerceNavNode;ProductsFooterNode,ElectricFencingFooterNode,WeighingEIDFooterNode,WirelessWtaerMonitoringFooterNode,SteelGatesHardwareFooterNode,FarmInformationToolsFooterNode,StockProdsFooterNode
+;SAPCustomerExperienceNavNode;;SAP Customer Experience Pages;SAPCustomerExperienceNavNode;AboutUsFooterNode,SupportFooterNode,ContactFooterNode,NewsEventsFooterNode,InnovationAwardsFooterNode
 
 # children of above navigation nodes #
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef);
@@ -1181,6 +1213,19 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 ;LinkedInNavNodeEntry;;LinkedIn Navigation Node Entry;LinkedInNavNode;LinkedInLink;
 ;FacebookNavNodeEntry;;Facebook Navigation Node Entry;FacebookNavNode;FacebookLink;
 ;TwitterNavNodeEntry;;Twitter Navigation Node Entry;TwitterNavNode;TwitterLink;
+;ProductsFooterNodeEntry;;Products Footer Node Entry;ProductsFooterNode;ProductsFooterLink;
+;ElectricFencingFooterNodeEntry;;Electric Fencing Footer Node Entry;ElectricFencingFooterNode;ElectricFencingFooterLink
+;WeighingEIDFooterNodeEntry;;Weighing EID Footer Node Entry;WeighingEIDFooterNode;WeighingEIDFooterLink
+;WirelessWtaerMonitoringFooterNodeEntry;;Wireless Wtaer Monitoring Footer Node Entry;WirelessWtaerMonitoringFooterNode;WirelessMonitoringFooterLink;
+;SteelGatesHardwareFooterNodeEntry;;Steel Gates Hardware Footer Node Entry;SteelGatesHardwareFooterNode;SteelGatesHardwareFooterLink
+;FarmInformationToolsFooterNodeEntry;;Farm Information Tools Footer Node Entry;FarmInformationToolsFooterNode;FarmInfoToolsFooterLink
+;StockProdsFooterNodeEntry;;Stock Prods Footer Node Entry;StockProdsFooterNode;StockProdsFooterLink
+;AboutUsFooterNodeEntry;;About Us Footer Node Entry;AboutUsFooterNode;AboutUsFooterLink
+;SupportFooterNodeEntry;;Support Footer Node Entry;SupportFooterNode;SupportFooterLink
+;ContactFooterNodeEntry;;Contact Footer Node Entry;ContactFooterNode;ContactFooterLink
+;NewsEventsFooterNodeEntry;;News Events Footer Node Entry;NewsEventsFooterNode;NewsEventsFooterLink
+;InnovationAwardsFooterNodeEntry;;Innovation Awards Footer Node Entry;InnovationAwardsFooterNode;InnovationAwardsFooterLink
+
 ###### Footer Component Refactor End ######
 
 ###### Gallagher Navigation Footer Component Refactor Start ######
@@ -1218,7 +1263,70 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];footerLinkNagivationNode(&nodeRef);&componentRef
 ;;GallagherFooterNavigationComponent;FooterLinkNavNode;GallagherFooterNavigationComponent
 
-##Footer Link navigation component End 
+##Footer Link navigation component End
+
+##Gallagher Other division drop-down
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;linkName;&linkRef;&componentRef;target(code)[default='sameWindow'];$category;$product;
+;;gallagherDivision1LnkCom;Gallagher Division 1;'#';Division 1;gallagherDivision1LnkCom;gallagherDivision1LnkCom
+;;gallagherDivision2LnkCom;Gallagher Division 2;'#';Division 2;gallagherDivision2LnkCom;gallagherDivision2LnkCom
+;;gallagherDivision3LnkCom;Gallagher Division 3;'#';Division 3;gallagherDivision3LnkCom;gallagherDivision3LnkCom
+
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;gallagherDivision1NavEty;;Gallagher Division 1 navigation entry;gallagherDivision1NavNod;gallagherDivision1LnkCom
+;gallagherDivision2NavEty;;Gallagher Division 2 navigation entry;gallagherDivision2NavNod;gallagherDivision2LnkCom
+;gallagherDivision3NavEty;;Gallagher Division 3 navigation entry;gallagherDivision3NavNod;gallagherDivision3LnkCom
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef);
+;gallagherDivision1NavNod;;Gallagher Division 1 navigation node;gallagherDivision1NavNod
+;gallagherDivision2NavNod;;Gallagher Division 2 navigation node;gallagherDivision2NavNod
+;gallagherDivision3NavNod;;Gallagher Division 3 navigation node;gallagherDivision3NavNod
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&componentRef);&nodeRef;children(uid, $contentCV)
+;othersDivisionsNavNod;;Other division drop down;root;;othersDivisionsNavNod;gallagherDivision1NavNod,gallagherDivision2NavNod,gallagherDivision3NavNod
+
+INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];gallagherDivisionsLinkNagivationNode(&nodeRef);&componentRef
+;;GallagherFooterNavigationComponent;othersDivisionsNavNod;GallagherFooterNavigationComponent
+
+
+##Gallagher Other division drop-down End
+
+##Country dropdown for different websites
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;linkName;&linkRef;&componentRef;target(code)[default='sameWindow'];$category;$product;
+;;newZealandLnkCom;New Zealand Link;'#';New Zealand;newZealandLnkCom;newZealandLnkCom
+;;australiaLnkCom;Australia Link;'#';Australia;australiaLnkCom;australiaLnkCom
+;;canadaEnLnkCom;Canada English Link;'#';Canada (EN);canadaEnLnkCom;canadaEnLnkCom
+;;canadaFrLnkCom;Canada French Link;'#';Canada (FR);canadaFrLnkCom;canadaFrLnkCom
+;;globalLnkCom;Global Link;'#';Global;globalLnkCom;globalLnkCom
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;newZealandNavEty;;New Zealand navigation entry;newZealandNavNod;newZealandLnkCom
+;australiaNavEty;;Australia navigation entry;australiaNavNod;australiaLnkCom
+;canadaEnNavEty;;Canada English navigation entry;canadaEnNavNod;canadaEnLnkCom
+;canadaFrNavEty;;Canada French navigation entry;canadaFrNavNod;canadaFrLnkCom
+;globalNavEty;;Global navigation entry;globalNavNod;globalLnkCom
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef);
+;newZealandNavNod;;New Zealand navigation node;newZealandNavNod
+;australiaNavNod;;Australia navigation node;australiaNavNod
+;canadaEnNavNod;;Canada English navigation node;canadaEnNavNod
+;canadaFrNavNod;;Canada French navigation node;canadaFrNavNod
+;globalNavNod;;Global navigation node;globalNavNod
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&componentRef);&nodeRef;children(uid, $contentCV)
+;countryDropdownNavNod;;Country drop down;root;;countryDropdownNavNod;newZealandNavNod,australiaNavNod,canadaEnNavNod,canadaFrNavNod,globalNavNod
+
+INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];countryDropdownLinkNagivationNode(&nodeRef);&componentRef
+;;GallagherFooterNavigationComponent;countryDropdownNavNod;GallagherFooterNavigationComponent
+
+
+##Country dropdown for different websites End
+ 
 
 ## Footer Navigation node start
 
@@ -1228,9 +1336,11 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;pa
 
 # children of FooterNavNode #
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef)
-;SAPCommerceNavNode;;SAP Commerce Cloud Pages;SAPCommerceNavNode;AboutSAPCommerceNavNode,FAQNavNode
-;SAPCustomerExperienceNavNode;;SAP Customer Experience Pages;SAPCustomerExperienceNavNode;AboutSAPCustomerExperienceNavNode,ContactUsNavNode
+#;SAPCommerceNavNode;;SAP Commerce Cloud Pages;SAPCommerceNavNode;AboutSAPCommerceNavNode,FAQNavNode
+#;SAPCustomerExperienceNavNode;;SAP Customer Experience Pages;SAPCustomerExperienceNavNode;AboutSAPCustomerExperienceNavNode,ContactUsNavNode
 #;FollowUsNavNode;;Follow Us Pages;FollowUsNavNode;AgileCommerceBlogNavNode,LinkedInNavNode,FacebookNavNode,TwitterNavNode
+;SAPCommerceNavNode;;SAP Commerce Cloud Pages;SAPCommerceNavNode; ProductsFooterNode,ElectricFencingFooterNode,WeighingEIDFooterNode,WirelessWtaerMonitoringFooterNode,SteelGatesHardwareFooterNode,FarmInformationToolsFooterNode,StockProdsFooterNode
+;SAPCustomerExperienceNavNode;;SAP Customer Experience Pages; SAPCustomerExperienceNavNode; AboutUsFooterNode,SupportFooterNode,ContactFooterNode,NewsEventsFooterNode,InnovationAwardsFooterNode
 
 # children of above navigation nodes #
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef);
@@ -1249,6 +1359,18 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 ;FAQNavNodeEntry;;FAQ Navigation Node Entry;FAQNavNode;FAQLink;
 ;AboutSAPCustomerExperienceNavNodeEntry;;About Hybris Navigation Node Entry;AboutSAPCustomerExperienceNavNode;VisitSAPLink;
 ;ContactUsNavNodeEntry;;Contact Us Navigation Node Entry;ContactUsNavNode;ContactUsLink;
+;ProductsFooterNodeEntry;;Products Footer Node Entry;ProductsFooterNode;ProductsFooterLink;
+;ElectricFencingFooterNodeEntry;;Electric Fencing Footer Node Entry;ElectricFencingFooterNode;ElectricFencingFooterLink
+;WeighingEIDFooterNodeEntry;;Weighing EID Footer Node Entry;WeighingEIDFooterNode;WeighingEIDFooterLink
+;WirelessWtaerMonitoringFooterNodeEntry;;Wireless Wtaer Monitoring Footer Node Entry;WirelessWtaerMonitoringFooterNode;WirelessMonitoringFooterLink;
+;SteelGatesHardwareFooterNodeEntry;;Steel Gates Hardware Footer Node Entry;SteelGatesHardwareFooterNode;SteelGatesHardwareFooterLink
+;FarmInformationToolsFooterNodeEntry;;Farm Information Tools Footer Node Entry;FarmInformationToolsFooterNode;FarmInfoToolsFooterLink
+;StockProdsFooterNodeEntry;;Stock Prods Footer Node Entry;StockProdsFooterNode;StockProdsFooterLink
+;AboutUsFooterNodeEntry;;About Us Footer Node Entry;AboutUsFooterNode;AboutUsFooterLink
+;SupportFooterNodeEntry;;Support Footer Node Entry;SupportFooterNode;SupportFooterLink
+;ContactFooterNodeEntry;;Contact Footer Node Entry;ContactFooterNode;ContactFooterLink
+;NewsEventsFooterNodeEntry;;News Events Footer Node Entry;NewsEventsFooterNode;NewsEventsFooterLink
+;InnovationAwardsFooterNodeEntry;;Innovation Awards Footer Node Entry;InnovationAwardsFooterNode;InnovationAwardsFooterLink
 #;AgileCommerceBlogNavNodeEntry;;Agile Commerce Blog Navigation Node Entry;AgileCommerceBlogNavNode;AgileCommerceBlogLink;
 #;LinkedInNavNodeEntry;;LinkedIn Navigation Node Entry;LinkedInNavNode;LinkedInLink;
 #;FacebookNavNodeEntry;;Facebook Navigation Node Entry;FacebookNavNode;FacebookLink;
@@ -1271,7 +1393,18 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 #;;LinkedInLink;Linked In Link;"http://www.linkedin.com/groups/5063400";LinkedInLink;LinkedInLink;newWindow;;;
 ;;FAQLink;FAQ Link;/faq;FAQLink;FAQLin;;;;
 ;;TermsAndConditionsLink;Terms and Conditions Link;/termsAndConditions;TermsAndConditionsLink;TermsAndConditionsLink;;;;
-
+;;ProductsFooterLink;Products Footer Link;'/';ProductsFooterLink;ProductsFooterLink;;;
+;;ElectricFencingFooterLink;Electric Fencing Footer Link;'/';ElectricFencingFooterLink;ElectricFencingFooterLink;;;
+;;WeighingEIDFooterLink;Weighing and EID Footer Link;'/';WeighingEIDFooterLink;WeighingEIDFooterLink;;;
+;;SteelGatesHardwareFooterLink;Steel Gates and Hardware Footer Link;'/';SteelGatesHardwareFooterLink;SteelGatesHardwareFooterLink;;;
+;;WirelessMonitoringFooterLink;Wireless Water monitoring Footer Link;'/';WirelessMonitoringFooterLink;WirelessMonitoringFooterLink;;;
+;;FarmInfoToolsFooterLink;Farm Information tools Footer Link;'/';FarmInfoToolsFooterLink;FarmInfoToolsFooterLink;;;
+;;StockProdsFooterLink;Stock Prods Footer Link;'/';StockProdsFooterLink;StockProdsFooterLink;;;
+;;AboutUsFooterLink;About Us Footer Link;'/';AboutUsFooterLink;AboutUsFooterLink;;;
+;;SupportFooterLink;Support Footer Link;'/';SupportFooterLink;SupportFooterLink;;;
+;;ContactFooterLink;Contact Us Footer Link;'/';ContactFooterLink;ContactFooterLink;;;
+;;NewsEventsFooterLink;News & Events Footer Link;'/';NewsEventsFooterLink;NewsEventsFooterLink;;;
+;;InnovationAwardsFooterLink;Innovation & Awards Footer Link;'/';InnovationAwardsFooterLink;InnovationAwardsFooterLink;;;
 ## Footer Navigation node end
 
 ## Social link Navigation start
@@ -1318,3 +1451,75 @@ INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[uni
 INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];&componentRef;siteLogo(uid,$contentCV)
 ;;GallagherFooterNavigationComponent;GallagherFooterNavigationComponent;SiteLogoComponent
 ###### Gallagher Navigation Footer Component Refactor End ######
+
+#####Header navigation bar refactor starts#####
+#CMSLinkComponents
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkname;name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];
+;;SolutionsCategoryLink;Solutions;Solutions Category Link;"/";SolutionsCategoryLink;SolutionsCategoryLink;;;
+;;ProductsCategoryLink;Products;Products Category Link;"/";ProductsCategoryLink;ProductsCategoryLink;;;
+;;SupportCategoryLink;Support;Support Category Link;"/";SupportCategoryLink;SupportCategoryLink;;;
+;;ContactUsCategoryLink;Contact Us;Contact Category Link;"/";ContactUsCategoryLink;ContactUsCategoryLink;;;
+
+#CMS Navigation Node
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef;children(uid, $contentCV)
+;HeaderLinkNavNode;;Header Link Pages; root;; HeaderLinkNavNode; SolutionsNavNode,ProductsNavNode,SupportNavNode,ContactNavNode
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
+;SolutionsNavNode;;Solutions Navigation Node;HeaderLinkNavNode;;SolutionsNavNode;
+;ProductsNavNode;;Products Navigation Node;HeaderLinkNavNode;;ProductsNavNode;
+;SupportNavNode;;Support Navigation Node;HeaderLinkNavNode;;SupportNavNode;
+;ContactNavNode;;Contact Navigation Node;HeaderLinkNavNode;;ContactNavNode;
+
+#CMS Navigation Entry
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;SolutionsNavNodeEntry;;Solutions Navigation Node Entry;SolutionsNavNode;SolutionsCategoryLink;
+;ProductsNavNodeEntry;;Products Navigation Node Entry;ProductsNavNode;ProductsCategoryLink
+;SupportNavNodeEntry;;Support Navigation Node Entry;SupportNavNode;SupportCategoryLink
+;ContactNavNodeEntry;;Contact Navigation Node Entry;ContactNavNode;ContactUsCategoryLink
+
+INSERT_UPDATE NavigationComponent;$contentCV[unique=true];uid[unique=true];name;styleClass;&componentRef;navigationNode(&nodeRef)
+;;HeaderNavComponent;Header Navigation component;accNavComponent;HeaderNavComponent;HeaderLinkNavNode
+
+#
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='LandingPage2Template'];validComponentTypes(code);compTypeGroup(code)
+;ggB2CNavBar;;;navigation
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ProductListPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;ggB2CNavBar;;;navigation
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active
+;;ggB2CNavBarSlot;GG B2C Navigation Bar Slot ;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage2Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2CNavBar-LandingPage2;ggB2CNavBar;;ggB2CNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductListPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2CNavBar-ProductListPage;ggB2CNavBar;;ggB2CNavBarSlot;true
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV)
+;;ggB2CNavBarSlot;HeaderNavComponent
+
+#####Header navigation bar refactor ends######
+
+###top two components for product listing page####
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];folder(qualifier)[default='images'];altText
+;;bannerImage.jpg;$siteResource/images/theme/promotion-img-1.png;;;""
+
+INSERT_UPDATE GallagherCategoryBannerComponent;$contentCV[unique=true];uid[unique=true];$picture
+;;CategoryBanner;bannerImage.jpg
+
+INSERT_UPDATE GallagherButtonComponent;$contentCV[unique=true];uid[unique=true];buttonHeading;button
+;;Rightbutton;Need some help figuring out the right energizer for your needs?;Use our energizer selector
+
+INSERT_UPDATE GallagherAccordionComponent;$contentCV[unique=true];uid[unique=true];heading;description
+;;Accordion1;Accordion question lorem ipsum?;Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. 
+;;Accordion2;Second accordion item;Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. 
+;;Accordion3;Third accordion item that has a longer copy text that can go on multiple lines;Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. 
+
+INSERT_UPDATE GallagherAccordionListComponent;$contentCV[unique=true];uid[unique=true];accordionHeading;accordions(uid, $contentCV);buttonInfo(uid, $contentCV)
+;;Accordions;What you need to consider;Accordion1,Accordion2,Accordion3;Rightbutton
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid, $contentCV)
+;;Section1Slot;CategoryBanner,Accordions
+###top two components for product listing page ends####
+

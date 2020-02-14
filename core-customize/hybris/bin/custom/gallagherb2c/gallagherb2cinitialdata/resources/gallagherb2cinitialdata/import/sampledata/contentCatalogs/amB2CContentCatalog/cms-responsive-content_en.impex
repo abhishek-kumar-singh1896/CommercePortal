@@ -17,7 +17,7 @@ $lang=en
 
 # Site Logo Component
 UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
-;;SiteLogoComponent;/images/theme/logo-hybris.png;
+;;SiteLogoComponent;/images/theme/logo-gallagher.svg;
 
 # CMS Link Components
 UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
@@ -31,6 +31,18 @@ UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$
 ;;HomepageNavLink;"Home"
 ;;TwitterLink;"Twitter"
 ;;VisitSAPLink;"Visit SAP"
+;;ProductsFooterLink;"Products"
+;;ElectricFencingFooterLink;"Electric Fencing"
+;;WeighingEIDFooterLink;"Weighing and EID"
+;;SteelGatesHardwareFooterLink;"Steel Gates and Hardware"
+;;WirelessMonitoringFooterLink;"Wireless Water Monitoring"
+;;FarmInfoToolsFooterLink;"Farm Information Tools"
+;;StockProdsFooterLink;"Stock Prods"
+;;AboutUsFooterLink;"About Us"
+;;SupportFooterLink;"Support"
+;;ContactFooterLink;"Contact Us"
+;;NewsEventsFooterLink;"News & Events"
+;;InnovationAwardsFooterLink;"Innovation & Awards"
 
 # Lightbox Banner for Mini Cart (banner is not localizable so we must create a separate banner per language)
 INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];&imageRef;folder(qualifier)[default='images'];altText
@@ -298,7 +310,7 @@ UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[la
 
 # Site Logo Component
 UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
-;;SiteLogoComponent;/images/theme/logo_hybris_responsive.svg
+;;SiteLogoComponent;/images/theme/logo-gallagher.svg
 
 # DSLR Category Page
 # Section 1
@@ -457,10 +469,19 @@ UPDATE FooterNavigationComponent;$contentCV[unique=true];uid[unique=true];notice
 
 # Gallagher Footer Navigation Component
 INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];notice[lang=en]
-;;GallagherFooterNavigationComponent;"<br><p>© Gallagher Group Limited 2017. All right reserved.</p>"
+;;GallagherFooterNavigationComponent;"© Gallagher Group Limited 2017. All right reserved."
 
 INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];noticeHeader[lang=en]
-;;GallagherFooterNavigationComponent;"<p>Other Gallagher divisions</p>"
+;;GallagherFooterNavigationComponent;"Other Gallagher divisions"
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);&nodeRef;children(uid,$contentCV)
+;FooterNavNode;;Footer Pages;root;FooterNavNode;SAPCommerceNavNode,SAPCustomerExperienceNavNode
+
+INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];wrapAfter;&componentRef;showLanguageCurrency;navigationNode(&nodeRef)
+;;GallagherFooterNavigationComponent;7;GallagherFooterNavigationComponent;true;FooterNavNode;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV)
+;;FooterSlot;GallagherFooterNavigationComponent
 
 ##Footer Links 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
