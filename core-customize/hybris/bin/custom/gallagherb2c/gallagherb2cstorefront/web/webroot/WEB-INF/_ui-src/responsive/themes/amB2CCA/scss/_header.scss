@@ -33,6 +33,18 @@
         }
       }
 
+      .btn-group {
+        &.show {
+          .right-btn {
+            background: linear-gradient(
+              to bottom,
+              $button-highlight-color-logged-in-user 0%,
+              $button-highlight-color-logged-in-user 100%
+            );
+          }
+        }
+      }
+
       .info-number {
         background-color: $white;
         color: $gray-9;
@@ -213,7 +225,7 @@
     .dropdown-menu {
       top: -8px !important;
       left: -10px !important;
-      min-width: 330px;
+      min-width: 310px;
       border-radius: 8px;
       box-shadow: 0 4px 11px 0 rgba(0, 0, 0, 0.1);
       border: none;
@@ -391,13 +403,15 @@
       }
     }
 
-    &.show {
-      .right-btn {
-        background: linear-gradient(
-          to bottom,
-          $header-right-top-active-color 0%,
-          $header-right-bottom-active-color 100%
-        );
+    .btn-group {
+      &.show {
+        .right-btn {
+          background: linear-gradient(
+            to bottom,
+            $header-right-top-active-color 0%,
+            $header-right-bottom-active-color 100%
+          );
+        }
       }
     }
   }
