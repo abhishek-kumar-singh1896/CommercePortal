@@ -7,5 +7,10 @@
 	<bean class="de.hybris.platform.commercefacades.user.data.CustomerData">
 		<property name="duplicate" type="java.lang.Boolean"/>
 	</bean>
+	
+	<bean class="de.hybris.platform.commercefacades.product.data.ProductData">
+		<property name="promoSticker" type="String"/>
+		<property name="animalCompatibility" type="java.util.List&lt;String&gt;"/>
+	</bean>
 
 </beans>
