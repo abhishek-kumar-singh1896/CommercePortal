@@ -82,7 +82,7 @@
     <property name="wro.group.node" value="&lt;groups xmlns=&quot;http://www.isdc.ro/wro&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;http://www.isdc.ro/wro wro.xsd&quot;&gt;"/>
 	
 	<path id="gallagherb2cstorefront_sass_jruby">
-		<fileset file="${ext.gallagherb2cstorefront.path}/lib/jruby-complete-*.jar"/>
+		<fileset file="${ext.gallagherb2cstorefront.path}/build-tool/jruby-complete-*.jar"/>
 	</path>
     	
     <if>
@@ -1131,7 +1131,7 @@
 	<macrodef name="gallagherb2cstorefront_sass_unzip_sass_gems">
 			<sequential>
 				<unzip dest="${HYBRIS_TEMP_DIR}/sassgem" overwrite="true">
-					<fileset dir="${ext.gallagherb2cstorefront.mapperToPath}/lib/" includes="sass-java-gems-*.jar" />
+					<fileset dir="${ext.gallagherb2cstorefront.mapperToPath}/build-tool/" includes="sass-java-gems-*.jar" />
 				</unzip>
 				<dirset dir="${HYBRIS_TEMP_DIR}/sassgem/gems" includes="sass-*/lib/sass" id="path_to_sass" />
 				<property name="gallagherb2cstorefront_sass_gems_path" value="${HYBRIS_TEMP_DIR}/sassgem/gems/${toString:path_to_sass}" />
