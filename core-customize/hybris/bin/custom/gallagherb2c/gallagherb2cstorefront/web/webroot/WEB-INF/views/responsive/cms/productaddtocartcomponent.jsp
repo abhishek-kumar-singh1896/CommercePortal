@@ -49,12 +49,12 @@
 			${productStockLevelHtml}
 		</div>
 		 <div class="actions">
-        <c:if test="${multiDimensionalProduct}" >
-                <c:url value="${product.url}/orderForm" var="productOrderFormUrl"/>
-                <a href="${productOrderFormUrl}" class="btn btn-default btn-block btn-icon js-add-to-cart glyphicon-list-alt">
-                    <spring:theme code="order.form" />
-                </a>
-        </c:if>
+<%--         <c:if test="${multiDimensionalProduct}" > --%>
+<%--                 <c:url value="${product.url}/orderForm" var="productOrderFormUrl"/> --%>
+<%--                 <a href="${productOrderFormUrl}" class="btn btn-default btn-block btn-icon js-add-to-cart glyphicon-list-alt"> --%>
+<%--                     <spring:theme code="order.form" /> --%>
+<!--                 </a> -->
+<%--         </c:if> --%>
         <action:actions element="div"  parentComponent="${component}"/>
     </div>
 </div>
