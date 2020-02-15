@@ -437,7 +437,7 @@
             			
             <copy todir="${ext.gallagherb2cstorefront.path}/web/webroot/_ui/responsive/">
                 				
-                <fileset dir="${ext.gallagherb2cstorefront.path}/web/webroot/WEB-INF/_ui-src/responsive/" includes="themes/**/fonts/*"/>
+                <fileset dir="${ext.gallagherb2cstorefront.path}/web/webroot/WEB-INF/_ui-src/responsive/" includes="themes/**/fonts/**"/>
                 				
                 <regexpmapper from="themes/(.*)/fonts/(.*)" handledirsep="yes" to="theme-\1/fonts/\2"/>
                         

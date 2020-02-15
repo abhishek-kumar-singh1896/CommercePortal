@@ -17,6 +17,12 @@
 		 <a data-toggle="collapse" href="#${fn:replace(facetData.name,' ','_')}" role="button" aria-expanded="false" aria-controls="${facetData.name}">	
 			<spring:theme code="search.nav.facetTitle" arguments="${facetData.name}"/>
 			</a>
+			
+			<%-- <span class="down-arrow-icon">
+          		<svg>
+             		  <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-down" />
+               </svg>
+           </span> --%>
 		</h4>	
 		<div class="sidebar-section-container collapse ${collapseflag}" id="${fn:replace(facetData.name,' ','_')}">
 
@@ -32,29 +38,19 @@
 									<label>
 										<input class="facet__list__checkbox" type="checkbox" ${facetValue.selected ? 'checked="checked"' : ''} class="facet-checkbox" />
 										<span class="facet__list__label">
-<!-- 											<span class="facet__list__mark"></span> -->
-<!-- 											<span class="facet__list__text"> -->
 												${fn:escapeXml(facetValue.name)}
-												<ycommerce:testId code="facetNav_count">
-													<span class="facet__value__count"><spring:theme code="search.nav.facetValueCount" arguments="${facetValue.count}"/></span>
-												</ycommerce:testId>
-<!-- 											</span> -->
+												
 										</span>
 									</label>
 								</form>
 							</c:if>
 							<c:if test="${not facetData.multiSelect}">
 								<c:url value="${facetValue.query.url}" var="facetValueQueryUrl"/>
-<!-- 								<span class="facet__text"> -->
-								<!-- searchPageData.freeTextSearch is html output encoded in the backend -->
 									<a href="${fn:escapeXml(facetValueQueryUrl)}&amp;text=${searchPageData.freeTextSearch}">${fn:escapeXml(facetValue.name)}&nbsp;
 									<ycommerce:testId code="facetNav_count">
-<!-- 										<span class="facet__value__count"> -->
 										<spring:theme code="search.nav.facetValueCount" arguments="${facetValue.count}"/>
-<!-- 										</span> -->
 									</ycommerce:testId>
 									</a>
-<!-- 								</span> -->
 							</c:if>
 						</li>
 					</c:forEach>
@@ -71,32 +67,24 @@
 								<input type="hidden" name="text" value="${searchPageData.freeTextSearch}"/>
 								<label>
 									<input type="checkbox" ${facetValue.selected ? 'checked="checked"' : ''}  class="facet__list__checkbox js-facet-checkbox sr-only" />
-									<span class="facet__list__label">
-<!-- 										<span class="facet__list__mark"></span> -->
-<!-- 										<span class="facet__list__text"> -->
-											${fn:escapeXml(facetValue.name)}&nbsp;
-											<ycommerce:testId code="facetNav_count">
-<!-- 												<span class="facet__value__count"> -->
+											
+											${fn:escapeXml(facetValue.name)}
+											<%-- <ycommerce:testId code="facetNav_count">
+
 												<spring:theme code="search.nav.facetValueCount" arguments="${facetValue.count}"/>
-<!-- 												</span> -->
-											</ycommerce:testId>
-<!-- 										</span> -->
-									</span>
+
+											</ycommerce:testId> --%>
+
 								</label>
 							</form>
 							</ycommerce:testId>
 						</c:if>
 						<c:if test="${not facetData.multiSelect}">
 							<c:url value="${facetValue.query.url}" var="facetValueQueryUrl"/>
-<!-- 							<span class="facet__text"> -->
-								<a href="${fn:escapeXml(facetValueQueryUrl)}">${fn:escapeXml(facetValue.name)}
-								<ycommerce:testId code="facetNav_count">
-<!-- 									<span class="facet__value__count"> -->
-									<spring:theme code="search.nav.facetValueCount" arguments="${facetValue.count}"/>
-<!-- 									</span> -->
-								</ycommerce:testId>
-								</a>
-<!-- 							</span> -->
+								<%-- <a href="${fn:escapeXml(facetValueQueryUrl)}"> --%>
+								
+								${fn:escapeXml(facetValue.name)}  
+								
 						</c:if>
 					</li>
 				</c:forEach>
