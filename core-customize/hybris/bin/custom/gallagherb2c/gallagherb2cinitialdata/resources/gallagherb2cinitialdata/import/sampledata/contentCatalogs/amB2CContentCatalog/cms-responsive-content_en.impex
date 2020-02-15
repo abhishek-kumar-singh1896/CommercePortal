@@ -495,7 +495,16 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 #############Navigation Nodes start##############
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
-;;SolutionLink;"L1 Link"
+;;SolutionLink;"Solutions"
+;;SupportLink;"Support"
+;;ContactUsLink;"Contact Us"
+;;ProductLink;"Product"
+;;AllElectricFencingLink;"All Electric Fencing"
+;;AllWeighingEIDLink;"All Weighing and EID"
+;;AllWirelessWaterMonitoringLink;"All Wireless Water Monitoring"
+;;AllSteelGatesandHardwareLink;"All Steel Gates and Hardware"
+;;AllFarminformationtoolsLink;"All Farm information tools"
+;;AllStockprodsLink;"All Stock prods"
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
 ;;NewProductsLink;"New Products"
