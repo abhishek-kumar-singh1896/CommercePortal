@@ -7,6 +7,9 @@
 			elementtype="GallagherAccordionComponent" autocreate="true" type="list" />
 		<collectiontype code="Animals"
 			elementtype="Animal" autocreate="true" generate="true" />
+		<collectiontype code="gallagherNavigationBarComponentList"
+			elementtype="GallagherNavigationBarComponent" autocreate="true" generate="true"
+			type="list" />
 	</collectiontypes>
 
 	<enumtypes>
@@ -115,7 +118,7 @@
 			</itemtype>
 			
 			<itemtype code="GallagherIconLinkComponent" autocreate="true" generate="true" extends="CMSLinkComponent"
-				jaloclass="com.gallagher.core.jalo.LaminexQuickLinkComponent">
+				jaloclass="com.gallagher.core.jalo.GallagherIconLinkComponent">
 				<description>CMS component to display icon/image link with text.</description>
 				<attributes>
 					<attribute type="CMSImageComponent" qualifier="icon">
@@ -127,7 +130,7 @@
 			</itemtype>
 			
 			<itemtype code="GallagherIconComponent" extends="CMSImageComponent" generate="true" autocreate="true"
-				jaloclass="com.gallagher.core.jalo.LaminexIconComponent">
+				jaloclass="com.gallagher.core.jalo.GallagherIconComponent">
 				<description>CMS component to display font icon or image</description>
 				<attributes>
 					<attribute type="java.lang.String" qualifier="styleClass">
@@ -208,6 +211,44 @@
 				generate="true" extends="BannerComponent"
 				jaloclass="com.gallagher.core.jalo.GallagherCategoryBannerComponent">
 				<deployment table="CategoryBanner" typecode="12003"/>
+			</itemtype>
+			
+			<itemtype code="GallagherCategoryBannerComponent" autocreate="true"
+				generate="true" extends="BannerComponent"
+				jaloclass="com.gallagher.core.jalo.GallagherCategoryBannerComponent">
+				<deployment table="CategoryBanner" typecode="12003"/>
+			</itemtype>
+			
+			<itemtype code="GallagherNavigationBarComponent" autocreate="true"
+				generate="true" extends="NavigationBarComponent"
+				jaloclass="com.gallagher.core.jalo.NavigationBarComponent">
+				<deployment table="GNav" typecode="12004"/>
+				<attributes>
+					<attribute type="CMSNavigationNode" qualifier="l2navigationNode">
+						<persistence type="property" />
+						<modifiers />
+						<description>The cms navigation node of this navigation bar component.</description>
+					</attribute>
+					
+					<attribute type="CMSNavigationNode" qualifier="l3navigationNode">
+						<persistence type="property" />
+						<modifiers />
+						<description>The cms navigation node of this navigation bar component.</description>
+					</attribute>
+				</attributes>
+			</itemtype>
+			
+			<itemtype code="GallagherNavigationBarCollectionComponent"
+				autocreate="true" generate="true" extends="SimpleCMSComponent"
+				jaloclass="com.gallagher.core.jalo.GallagherNavigationBarCollectionComponent">
+				<deployment table="GNavColl" typecode="12005"/>
+				<attributes>
+					<attribute qualifier="components" type="gallagherNavigationBarComponentList">
+						<persistence type="property" />
+						<modifiers />
+						<description>A collection of gallagher navigation bar components</description>
+					</attribute>
+				</attributes>
 			</itemtype>
 			
 		</typegroup>

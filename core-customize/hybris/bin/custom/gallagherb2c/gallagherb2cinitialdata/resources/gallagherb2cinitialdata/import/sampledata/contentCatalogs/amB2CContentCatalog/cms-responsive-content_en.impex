@@ -491,3 +491,32 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 
 
 ###### Gallagher Navigation Footer Component Refactor End ######
+
+#############Navigation Nodes start##############
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;SolutionLink;"L1 Link"
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;NewProductsLink;"New Products"
+;;promotionsLink;"promotions"
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;PowerEnergisers;"Energisers"
+;;PowerRemotesandFenceTesters;"Remotes and Fence Testers"
+;;PowerPowersystemaccessories;"Power system accessories"
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;PermanentfencingWireandCable;"Wire and Cable"
+;;PermanentfencingWireStrainers;"Wire Strainers"
+;;PermanentfencingInsulators;"Insulators"
+;;PermanentfencingOffsets;"Offsets"
+;;PermanentfencingGates;"Gates"
+;;PermanentfencingFencetoolsandaccessories;"Fence tools and accessories"
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;PortablefencingTapesWiresBraids;"Tapes, Wires, Braids"
+;;PortablefencingReelsandAccessories;"Reels and Accessories"
+;;PortablefencingPostsPigtailsTread;"Posts - Pigtails and Tread-ins"
+
+#############Navigation Nodes start end##############
