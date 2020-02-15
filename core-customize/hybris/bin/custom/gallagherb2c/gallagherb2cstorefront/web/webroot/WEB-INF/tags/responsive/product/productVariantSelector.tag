@@ -30,18 +30,30 @@
                             </c:otherwise>
                         </c:choose>
                         <div class="variant-name">${fn:escapeXml(productMatrix[0].parentVariantCategory.name)}</div>
-                        <c:choose>
-                            <c:when test="${productMatrix[0].parentVariantCategory.hasImage}">
+<%--                         <c:choose> --%>
+<%--                             <c:if test="${productMatrix[0].parentVariantCategory.hasImage}"> --%>
                                 <ul class="variant-list">
                                     <c:forEach items="${productMatrix}" var="variantCategory">
                                         <li <c:if test="${variantCategory.variantOption.url eq product.url}">class="selected"</c:if>>
-                                            <c:url value="${variantCategory.variantOption.url}" var="productStyleUrl"/>
-                                            <a href="${fn:escapeXml(productStyleUrl)}" class="swatchVariant"
-                                               name="${fn:escapeXml(productStyleUrl)}">
-                                                <product:productImage product="${product}"
-                                                                      code="${variantCategory.variantOption.code}"
-                                                                      format="styleSwatch"/>
-                                            </a>
+                                           <c:url value="${variantCategory.variantOption.url}"
+                                            var="productStyleUrl" />
+                                           <c:choose>    
+	                                            <c:when test="${variantCategory.variantOption.code eq product.code}">
+	                                                <input type="radio" name="productColor" checked="checked" onclick="window.location='${productStyleUrl}'"  value="${fn:escapeXml(productStyleUrl)}">
+	                                                ${fn:escapeXml(variantCategory.variantValueCategory.name)}
+	                                            </c:when>
+	                                            <c:otherwise>
+	                                                <input type="radio" name="productColor" onclick="window.location='${productStyleUrl}'"  value="${fn:escapeXml(productStyleUrl)}">
+	                                                    ${fn:escapeXml(variantCategory.variantValueCategory.name)}
+	                                            </c:otherwise>
+	                                        </c:choose>
+<%--                                             <a href="${fn:escapeXml(productStyleUrl)}" class="swatchVariant" --%>
+<%--                                                name="${fn:escapeXml(productStyleUrl)}"> --%>
+                                               
+<%--                                                 <product:productImage product="${product}" --%>
+<%--                                                                       code="${variantCategory.variantOption.code}" --%>
+<%--                                                                       format="styleSwatch"/> --%>
+<!--                                             </a> -->
                                         </li>
                                         <c:if test="${(variantCategory.variantOption.code eq product.code)}">
                                             <c:set var="selectedIndex" value="${i}"/>
@@ -49,21 +61,21 @@
                                         <c:set var="i" value="${i + 1}"/>
                                     </c:forEach>
                                 </ul>
-                            </c:when>
-                            <c:otherwise>
-                                <select id="priority${loop.index}" class="selectPriority form-control">
-                                    <c:forEach items="${productMatrix}" var="variantCategory">
-                                        <c:url value="${variantCategory.variantOption.url}" var="productStyleUrl"/>
-                                        <option value="${fn:escapeXml(productStyleUrl)}" ${(variantCategory.variantOption.code eq product.code) ? 'selected="selected"' : ''}>
-                                                ${fn:escapeXml(variantCategory.variantValueCategory.name)}</option>
-                                        <c:if test="${(variantCategory.variantOption.code eq product.code)}">
-                                            <c:set var="selectedIndex" value="${i}"/>
-                                        </c:if>
-                                        <c:set var="i" value="${i + 1}"/>
-                                    </c:forEach>
-                                </select>
-                            </c:otherwise>
-                        </c:choose>
+<%--                             </c:if> --%>
+<%--                             <c:otherwise> --%>
+<%--                                 <select id="priority${loop.index}" class="selectPriority form-control"> --%>
+<%--                                     <c:forEach items="${productMatrix}" var="variantCategory"> --%>
+<%--                                         <c:url value="${variantCategory.variantOption.url}" var="productStyleUrl"/> --%>
+<%--                                         <option value="${fn:escapeXml(productStyleUrl)}" ${(variantCategory.variantOption.code eq product.code) ? 'selected="selected"' : ''}> --%>
+<%--                                                 ${fn:escapeXml(variantCategory.variantValueCategory.name)}</option> --%>
+<%--                                         <c:if test="${(variantCategory.variantOption.code eq product.code)}"> --%>
+<%--                                             <c:set var="selectedIndex" value="${i}"/> --%>
+<%--                                         </c:if> --%>
+<%--                                         <c:set var="i" value="${i + 1}"/> --%>
+<%--                                     </c:forEach> --%>
+<!--                                 </select> -->
+<%--                             </c:otherwise> --%>
+<%--                         </c:choose> --%>
                     </div>
                 </c:forEach>
             </div>

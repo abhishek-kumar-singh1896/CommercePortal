@@ -35,7 +35,7 @@
                             <c:if test="${productMatrix[0].parentVariantCategory.hasImage}">
                                 <ul class="variant-list">
                                     <c:forEach items="${productMatrix}" var="variantCategory">
-                                                                            <li
+                                      <li
                                         <c:if test="${variantCategory.variantOption.url eq product.url}">class="selected"</c:if>>
                                         <c:url value="${variantCategory.variantOption.url}"
                                             var="productStyleUrl" />
