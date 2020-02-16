@@ -92,7 +92,9 @@ h2 {
 .xs-header-right-section {
   display: none;
 }
-
+.accordion {
+  text-transform: inherit;
+}
 .accordion-card {
   background-color: $white;
 
