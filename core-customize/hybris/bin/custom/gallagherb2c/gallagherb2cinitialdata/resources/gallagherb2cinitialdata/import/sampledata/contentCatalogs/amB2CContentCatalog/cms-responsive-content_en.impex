@@ -564,7 +564,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
 ;;NewProductsLink;"New Products"
-;;promotionsLink;"promotions"
+;;promotionsLink;"Promotions"
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
 ;;PowerEnergisers;"Energisers"
