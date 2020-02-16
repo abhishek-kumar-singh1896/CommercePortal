@@ -672,6 +672,7 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 ;;ProductLeftRefinemnts-ProductGridPage;ProductLeftRefinements;;ProductLeftRefinements;true
 ;;ProductGridSlot-ProductGridPage;ProductGridSlot;;ProductGridSlot;true
 ;;PlaceholderContentSlot-ProductGridPage;PlaceholderContentSlot;;PlaceholderContentSlot;true
+;;Section1-ProductGridPage;Section1;;Section1Slot;true
 
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductListPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;SiteLogo-ProductListPage;SiteLogo;ProductListPageTemplate;SiteLogoSlot;true
