@@ -507,6 +507,62 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 ;;AllStockprodsLink;"All Stock prods"
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;PowerEnergisers;"Energisers"
+;;PowerRemotesandFenceTesters;"Remotes and Fence Testers"
+;;PowerPowersystemaccessories;"Power system accessories"
+
+;;PowerEnergisers1;"Energisers"
+;;PowerRemotesandFenceTesters1;"Remotes and Fence Testers"
+;;PowerPowersystemaccessories1;"Power system accessories"
+
+;;PowerEnergisers2;"Energisers"
+;;PowerRemotesandFenceTesters2;"Remotes and Fence Testers"
+;;PowerPowersystemaccessories2;"Power system accessories"
+
+;;PowerEnergisers3;"Energisers"
+;;PowerRemotesandFenceTesters3;"Remotes and Fence Testers"
+;;PowerPowersystemaccessories3;"Power system accessories"
+
+;;PowerEnergisers4;"Energisers"
+;;PowerRemotesandFenceTesters4;"Remotes and Fence Testers"
+;;PowerPowersystemaccessories4;"Power system accessories"
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;PermanentfencingWireandCable;"Wire and Cable"
+;;PermanentfencingWireStrainers;"Wire Strainers"
+;;PermanentfencingInsulators;"Insulators"
+;;PermanentfencingOffsets;"Offsets"
+;;PermanentfencingGates;"Gates"
+;;PermanentfencingFencetoolsandaccessories;"Fence tools and accessories"
+
+;;PermanentfencingWireandCable1;"Wire and Cable"
+;;PermanentfencingWireStrainers1;"Wire Strainers"
+;;PermanentfencingInsulators1;"Insulators"
+;;PermanentfencingOffsets1;"Offsets"
+;;PermanentfencingGates1;"Gates"
+;;PermanentfencingFencetoolsandaccessories1;"Fence tools and accessories"
+
+;;PermanentfencingWireandCable5;"Wire and Cable"
+;;PermanentfencingWireStrainers5;"Wire Strainers"
+;;PermanentfencingInsulators5;"Insulators"
+;;PermanentfencingOffsets5;"Offsets"
+;;PermanentfencingGates5;"Gates"
+;;PermanentfencingFencetoolsandaccessories5;"Fence tools and accessories"
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;PortablefencingTapesWiresBraids;"Tapes, Wires, Braids"
+;;PortablefencingReelsandAccessories;"Reels and Accessories"
+;;PortablefencingPostsPigtailsTread;"Posts - Pigtails and Tread-ins"
+
+;;PortablefencingTapesWiresBraids1;"Tapes, Wires, Braids"
+;;PortablefencingReelsandAccessories1;"Reels and Accessories"
+;;PortablefencingPostsPigtailsTread1;"Posts - Pigtails and Tread-ins"
+
+;;PortablefencingTapesWiresBraids4;"Tapes, Wires, Braids"
+;;PortablefencingReelsandAccessories4;"Reels and Accessories"
+;;PortablefencingPostsPigtailsTread4;"Posts - Pigtails and Tread-ins"
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
 ;;NewProductsLink;"New Products"
 ;;promotionsLink;"promotions"
 
@@ -522,10 +578,5 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 ;;PermanentfencingOffsets;"Offsets"
 ;;PermanentfencingGates;"Gates"
 ;;PermanentfencingFencetoolsandaccessories;"Fence tools and accessories"
-
-INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
-;;PortablefencingTapesWiresBraids;"Tapes, Wires, Braids"
-;;PortablefencingReelsandAccessories;"Reels and Accessories"
-;;PortablefencingPostsPigtailsTread;"Posts - Pigtails and Tread-ins"
 
 #############Navigation Nodes start end##############
