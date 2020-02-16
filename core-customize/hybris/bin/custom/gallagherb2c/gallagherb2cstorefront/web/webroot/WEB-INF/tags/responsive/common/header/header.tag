@@ -208,7 +208,11 @@
 					                	<c:choose>
 					                		<c:when test="${not empty topLevelChild.links && topLevelChild.links ne null && (empty topLevelChild.children || topLevelChild.children eq null)}">
                                                 <c:forEach items="${topLevelChild.links}" var="topLevelChild1">
-                                                <cms:component component="${topLevelChild1}" evaluateRestriction="true" styleClass="test" />
+                                                	<a class="nav-link gray-link" href="${topLevelChild1.url}" title="${topLevelChild1.linkName}">${topLevelChild1.linkName}</a>
+                                                <%-- <cms:component component="${topLevelChild1}" evaluateRestriction="true" styleClass="test" /> --%>
+								               <!--  <a class="nav-link gray-link"> -->
+								                <%-- <cms:component component="${topLevelChild1}" evaluateRestriction="true"/> --%>
+								             <!--    </a> -->
 								                </c:forEach>
 								             </c:when>
 								             <c:otherwise>

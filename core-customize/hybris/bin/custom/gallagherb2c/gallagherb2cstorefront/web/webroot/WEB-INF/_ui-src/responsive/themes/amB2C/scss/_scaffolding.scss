@@ -31,6 +31,18 @@ body {
   }
 }
 
+.gray-shade,
+.orange-shade {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(14, 15, 15, 0.48);
+}
+
+.orange-shade {
+  background: rgba(255, 132, 0, 0.85);
+}
+
 a {
   color: $terciary;
   text-decoration: none;
@@ -395,12 +407,12 @@ h2 {
           border-radius: 0;
           padding: 0;
           position: relative;
-
           display: block;
           padding: 16px 20px 16px 8px;
           color: $white;
           font-size: 1em;
           text-decoration: none;
+          text-transform: inherit;
           transition: all ease-in-out 0.2s;
           border-left: 4px transparent;
 
@@ -419,6 +431,7 @@ h2 {
 
           &:hover {
             color: $primary-color;
+            background: transparent;
 
             svg {
               fill: $primary-color;
@@ -437,6 +450,25 @@ h2 {
               }
             }
           }
+
+          &.gray-link {
+            color: $gray-5;
+            padding: 16px 8px;
+            text-decoration: none;
+            display: block;
+
+            &:hover {
+              color: $primary-color;
+            }
+
+            &.active {
+              color: inherit;
+              border-left: none;
+              font-family: inherit;
+              background-color: transparent;
+              color: $gray-5;
+            }
+          }
         }
 
         .nav-item {
@@ -446,25 +478,25 @@ h2 {
         }
       }
 
-      .left-menu-bottom-section {
-        ul {
-          list-style: none;
-          margin: 0;
-          padding: 0;
-          li {
-            a {
-              color: $gray-5;
-              padding: 16px;
-              text-decoration: none;
-              display: block;
+      // .left-menu-bottom-section {
+      //   ul {
+      //     list-style: none;
+      //     margin: 0;
+      //     padding: 0;
+      //     li {
+      //       a {
+      //         color: $gray-5;
+      //         padding: 16px;
+      //         text-decoration: none;
+      //         display: block;
 
-              &:hover {
-                color: $primary-color;
-              }
-            }
-          }
-        }
-      }
+      //         &:hover {
+      //           color: $primary-color;
+      //         }
+      //       }
+      //     }
+      //   }
+      // }
     }
     .right-menu-container {
       padding: 20px;
@@ -504,6 +536,9 @@ h2 {
     margin: 0;
     max-width: 260px;
     float: right;
+    width: 100%;
+    max-height: 100%;
+    background: $gray-9;
 
     &.modal-dialog-scrollable {
       .modal-content {
@@ -519,7 +554,7 @@ h2 {
       height: 100vh;
       max-height: 100vh;
 
-      .main-menu-listing {
+      .menu-listing {
         ul {
           list-style: none;
           margin: 0;
@@ -533,7 +568,7 @@ h2 {
               position: relative;
               padding: 16px 16px 16px 0;
               text-decoration: none;
-              .right-arrow-icon{
+              .right-arrow-icon {
                 position: absolute;
                 right: 0;
                 top: 0;
@@ -581,7 +616,7 @@ h2 {
               width: 22px;
               height: 22px;
               position: absolute;
-              left: -8px;
+              left: -6px;
               top: -2px;
             }
 
@@ -615,11 +650,49 @@ h2 {
 
       .modal-footer {
         border: none;
-        padding: 12px 0 0 0;
+        padding: 0;
         border-top: 1px solid $gray-7;
 
-        .btn {
-          border-radius: 0;
+        .left-btn {
+          margin-right: 2px;
+        }
+
+        .xs-main-menu-l1-footer {
+          width: 100%;
+          padding: 8px 16px;
+          margin: 16px 0 0 0;
+        }
+
+        .xs-main-menu-l2-footer {
+          width: 100%;
+          height: 140px;
+          padding: 0;
+          margin: 0;
+          text-align: center;
+          position: relative;
+
+          .menu-l2-footer-container {
+            position: absolute;
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+            width: 100%;
+            text-align: center;
+          }
+          .promotion-title {
+            color: $white;
+            font-size: 1.42857em;
+            line-height: 24px;
+            margin-bottom: 8px;
+          }
+
+          .promotion-link {
+            a {
+              color: $primary-color;
+              text-decoration: none;
+              font-size: 1em;
+            }
+          }
         }
       }
     }
