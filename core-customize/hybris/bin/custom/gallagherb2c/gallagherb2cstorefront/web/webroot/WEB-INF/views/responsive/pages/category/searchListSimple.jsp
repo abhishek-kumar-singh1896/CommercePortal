@@ -3,9 +3,8 @@
 <%@ taglib prefix="cms" uri="http://hybris.com/tld/cmstags"%>
 
 
-	
-<cms:pageSlot position="ProductListSlot" var="feature" element="div"
-	class="product-list-right-slot">
+<cms:pageSlot position="ProductGridSlot" var="feature" element="div"
+	class="product-grid-right-result-slot">
 	<cms:component component="${feature}" element="div"
-		class="product__list--wrapper yComponentWrapper product-list-right-component" />
+		class="product__list--wrapper yComponentWrapper product-grid-right-result-component" />
 </cms:pageSlot>

@@ -4,6 +4,8 @@
 <%@ taglib prefix="storepickup"
 	tagdir="/WEB-INF/tags/responsive/storepickup"%>
 
+
+
 <template:page pageTitle="${pageTitle}">
 
 	<div class="product-list">
@@ -23,12 +25,12 @@
 								class="yComponentWrapper product-grid-left-refinements-component" />
 						</cms:pageSlot>
 					</div>
-					<div class="col-lg-9 plr-xs-0">
-						<cms:pageSlot position="ProductGridSlot" var="feature"
+					<div class="col-lg-9 plr-xs-0" id="post-result">
+ 					<cms:pageSlot position="ProductGridSlot" var="feature"
 							element="div" class="product-grid-right-result-slot">
 							<cms:component component="${feature}" element="div"
 								class="product__list--wrapper yComponentWrapper product-grid-right-result-component" />
-						</cms:pageSlot>
+						</cms:pageSlot>  
 					</div>
 				</div>
 			</div>

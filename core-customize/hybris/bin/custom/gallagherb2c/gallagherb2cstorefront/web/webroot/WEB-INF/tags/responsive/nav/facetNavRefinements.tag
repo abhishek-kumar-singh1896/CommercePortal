@@ -4,12 +4,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="nav" tagdir="/WEB-INF/tags/responsive/nav" %>
-
-
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+							
+								
                             <div class="sidebar-filter-section d-flex flex-column justify-content-center">
+                               <c:if test="${fn:length(pageData.breadcrumbs) >0}">  
                                 <div>
-                                    <a href="javascript:void(0)">
+                                    <a href="javascript:void(0)"  id="clear-filter">
                                         <span class="cross-icon">
                                             <svg>
                                                 <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#cross" />
@@ -18,17 +19,15 @@
                                         Clear filters
                                     </a>
                                 </div>
-
+										</c:if>
                             </div>
-                
-                
 						<c:forEach items="${pageData.facets}" var="facet" varStatus="i">
 							<c:choose>
 								<c:when test="${facet.code eq 'availableInStores'}">
-									<%-- <nav:facetNavRefinementStoresFacet facetData="${facet}" userLocation="${userLocation}"/> --%>
+									<nav:facetNavRefinementStoresFacet facetData="${facet}" userLocation="${userLocation}"/>
 								</c:when>
-								<c:when test="${facet.code eq 'price'}">
-									<%-- <nav:facetNavRefinementStoresFacet facetData="${facet}" userLocation="${userLocation}"/> --%>
+							<%-- 	<c:when test="${facet.code eq 'price'}">
+									 <nav:facetNavRefinementStoresFacet facetData="${facet}" userLocation="${userLocation}"/>
 									<!-- this part is for price slider   -->
 									<div id="slider-range"></div>
 									<div class="countarea">
@@ -36,12 +35,11 @@
 											<strong>to</strong>
 										<input id="my_max" name="" type="text" readonly="readonly" />
 									</div> 
-								</c:when>
+								</c:when> --%>
 								<c:otherwise>
 								
 								        <c:set var="flag" value="" />
 						            <c:if test="${i.first}"> 
-						            this is 
 						           <c:set var="flag" value="show" />
 						            </c:if>
 									<nav:facetNavRefinementFacet facetData="${facet}" collapseflag="${flag}"/>
