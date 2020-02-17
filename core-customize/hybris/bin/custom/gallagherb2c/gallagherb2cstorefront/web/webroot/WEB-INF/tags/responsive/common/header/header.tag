@@ -18,7 +18,7 @@
 </cms:pageSlot>
 
 <sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')">
-	<header class="main-header-out shadow-sm fixed-top">
+	<header class="main-header-out shadow-sm">
 		<div class="container">
 			<div>
 				<div class="header-left-section">

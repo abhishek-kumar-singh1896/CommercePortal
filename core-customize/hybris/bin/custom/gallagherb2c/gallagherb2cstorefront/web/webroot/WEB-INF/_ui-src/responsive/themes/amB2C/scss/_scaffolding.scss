@@ -9,7 +9,7 @@ body {
   color: $gray-9;
   height: 100%;
   margin: 0;
-  padding: 80px 0 0 0;
+  padding: 0;
   font-size: 14px;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
   text-rendering: optimizeLegibility !important;
@@ -92,9 +92,11 @@ h2 {
 .xs-header-right-section {
   display: none;
 }
+
 .accordion {
   text-transform: inherit;
 }
+
 .accordion-card {
   background-color: $white;
 
@@ -138,8 +140,6 @@ h2 {
             height: 2px;
             background-color: $primary-color;
             display: inline-block;
-            // -webkit-transition: all 0.2s ease;
-            // transition: all 0.2s ease;
 
             &:first-of-type {
               -webkit-transform: rotate(45deg);
@@ -269,6 +269,48 @@ h2 {
 .main-nav-out {
   margin-top: 13px;
   margin-left: 30px;
+
+  &.with-logged-in-user {
+    .btn {
+      background: linear-gradient(to bottom, $button-highlight-top-color 0%, $button-highlight-bottom-color 100%);
+
+      .user-icon {
+        min-width: 10px;
+        display: block;
+        svg {
+          width: 24px;
+          height: 24px;
+          fill: $gray-9;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          margin: auto;
+        }
+      }
+
+      &:hover {
+        color: $white;
+
+        svg {
+          fill: $white;
+        }
+      }
+    }
+
+    .btn-group {
+      &.show {
+        .right-btn {
+          background: linear-gradient(
+            to bottom,
+            $button-highlight-color-logged-in-user 0%,
+            $button-highlight-color-logged-in-user 100%
+          );
+        }
+      }
+    }
+  }
 
   ul {
     margin: 0;
