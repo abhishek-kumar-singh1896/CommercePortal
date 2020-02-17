@@ -25,6 +25,7 @@
 		code="product_wholeProduct">
 		<div class="row">
 			<div class="col-4 col-md-12 pr-xs-0">
+			
 				<div class="product-status">
 				<c:if test = "${not empty product.promoSticker}">
 					<img
@@ -35,8 +36,9 @@
 				</div>
 				<div class="product-img-box">
 					<a class="product__list--thumb" href="${fn:escapeXml(productUrl)}"
-						title="${fn:escapeXml(product.name)}"> <product:productPrimaryImage
-							product="${product}" format="thumbnail" />
+						title="${fn:escapeXml(product.name)}">
+						<product:productPrimaryImage
+							product="${product}" format="product" />
 					</a>
 				</div>
 			</div>
