@@ -1701,23 +1701,23 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;SolutionLink;Solution Link;https://www.google.com/;;;;
 ;;SupportLink;Support Link;http://www.wiki.com/;;;;
 ;;ProductLink;Product Link;http://www.wiki.com/;;;;;;;
-;;ContactUsLink;Contact Us Link;https://www.bing.com/;;;;
+;;ContactLink;Contact Us Link;https://www.bing.com/;;;;
 
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);children(uid,$contentCV)[mode=replace];links(uid, $contentCV);&nodeRef;title[lang=en]
 ;SolutionsNavNode;;Solutions Navigation Node Menu;HeaderLinkNavigationNode;;;SolutionsNavNode;"Solutions"
 ;ProductsNavNode;;Products Navigation Node Menu;;Electricfencing_Nav,WeighingEID_Nav,WirelessWaterMonitoring_Nav,SteelGatesandHardware_Nav,FarmInformationTools_Nav,Stockprods_Nav,NewProducts_Nav,Promotions_Nav;;ProductsNavNode;"Products"
 ;SupportNavNode;;Support Navigation Node Menu;HeaderLinkNavigationNode;;;SupportNavNode;"Support"
-;ContactUsNavNode;;Contact Us Navigation Node Menu;HeaderLinkNavigationNode;;;ContactUsNavNode;"Contact Us"
+;ContactNavNode;;Contact Us Navigation Node Menu;HeaderLinkNavigationNode;;;ContactNavNode;"Contact Us"
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
 ;SolutionsNavNodeEntry;;Solutions Navigation Node Entry;SolutionsNavNode;SolutionLink;
 ;ProductsNavNodeEntry;;Products Navigation Node Entry;ProductsNavNode;ProductLink
 ;SupportNavNodeEntry;;Support Navigation Node Entry;SupportNavNode;SupportLink
-;ContactNavNodeEntry;;Contact Navigation Node Entry;ContactUsNavNode;ContactUsLink
+;ContactNavNodeEntry;;Contact Navigation Node Entry;ContactNavNode;ContactLink
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef;children(uid, $contentCV)[mode=replace]
-;HeaderLinkNavigationNode;;Header Link Navigation Node; root;; HeaderLinkNavigationNode; SolutionsNavNode,ProductsNavNode,SupportNavNode,ContactUsNavNode
+;HeaderLinkNavigationNode;;Header Link Navigation Node; root;; HeaderLinkNavigationNode; SolutionsNavNode,ProductsNavNode,SupportNavNode,ContactNavNode
 
 INSERT_UPDATE NavigationComponent;$contentCV[unique=true];uid[unique=true];name;styleClass;&componentRef;navigationNode(&nodeRef)
 ;;HeaderNavigationComponent;Header Navigation component;;HeaderNavigationComponent;HeaderLinkNavigationNode
