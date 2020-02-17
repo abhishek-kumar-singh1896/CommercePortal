@@ -58,7 +58,7 @@
 			</c:if>
 			<ul>
 				<c:forEach items="${facetData.values}" var="facetValue">
-					<li>
+					<li class="${facetData.multiSelect ?'multi-select':'single-select'}">
 						<c:if test="${facetData.multiSelect}">
 							<ycommerce:testId code="facetNav_selectForm">
 							<form action="#" method="get">
@@ -81,10 +81,9 @@
 						</c:if>
 						<c:if test="${not facetData.multiSelect}">
 							<c:url value="${facetValue.query.url}" var="facetValueQueryUrl"/>
-								<%-- <a href="${fn:escapeXml(facetValueQueryUrl)}"> --%>
-								
+								 <a href="${fn:escapeXml(facetValueQueryUrl)}"> 
 								${fn:escapeXml(facetValue.name)}  
-								
+								</a>
 						</c:if>
 					</li>
 				</c:forEach>

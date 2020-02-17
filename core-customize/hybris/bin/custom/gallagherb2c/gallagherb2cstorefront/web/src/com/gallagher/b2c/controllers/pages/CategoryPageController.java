@@ -112,7 +112,8 @@ public class CategoryPageController extends AbstractCategoryPageController
 		return performSearchAndGetResultsData(categoryCode, searchQuery, page, showMode, sortCode);
 	}
 
-	@RequestMapping(value = "/simple" + CATEGORY_CODE_PATH_VARIABLE_PATTERN, method = RequestMethod.GET)
+	//	@RequestMapping(value = "/simple" + CATEGORY_CODE_PATH_VARIABLE_PATTERN, method = RequestMethod.GET)
+	@RequestMapping(value = CATEGORY_CODE_PATH_VARIABLE_PATTERN + "/simpleGridPage", method = RequestMethod.GET)
 	public String home(@PathVariable("categoryCode")
 	final String categoryCode, // NOSONAR
 			@RequestParam(value = "q", required = false)

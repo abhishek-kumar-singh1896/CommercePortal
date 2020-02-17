@@ -83,12 +83,11 @@
 		<script src="${commonResourcePathHtml}/js/acc.closeaccount.js"></script>
 		<script src="${commonResourcePathHtml}/js/bootstrap.bundle.min.js"></script>
 		<script src="${commonResourcePathHtml}/js/acc.csv-import.js"></script>
-		<script src="${commonResourcePathHtml}js/select2.min.js"></script>
+		<script src="${commonResourcePathHtml}/js/select2.min.js"></script>
 		<script src="${commonResourcePathHtml}/js/_autoload.js"></script>
 		<script src="${commonResourcePathHtml}/js/custom/acc.header.js"></script>
 		<script src="${commonResourcePathHtml}/js/jquery-ui-1.12.1.min.js"></script>
 		<script src="${commonResourcePathHtml}/js/custom/acc.productListNav.js"></script>
-		<script src="${commonResourcePathHtml}/js/select2.min.js"></script>
 				
 		<%-- Cms Action JavaScript files --%>
 		<c:forEach items="${cmsActionsJsFiles}" var="actionJsFile">

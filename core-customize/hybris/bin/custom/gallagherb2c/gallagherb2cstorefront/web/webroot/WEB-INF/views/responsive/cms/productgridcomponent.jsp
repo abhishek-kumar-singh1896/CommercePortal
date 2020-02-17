@@ -8,7 +8,7 @@
 <nav:pagination top="true" supportShowPaged="${isShowPageAllowed}"
 	supportShowAll="${isShowAllAllowed}" searchPageData="${searchPageData}"
 	searchUrl="${searchPageData.currentQuery.url}"
-	numberPagesShown="${numberPagesShown}" />
+	numberPagesShown="${numberPagesShown}"  />
 
 <div class="product-listing-out">
 	<ul>
@@ -28,7 +28,7 @@
 	</div>
 </div>
 
-<nav:pagination top="false" supportShowPaged="${isShowPageAllowed}"
-	supportShowAll="${isShowAllAllowed}" searchPageData="${searchPageData}"
-	searchUrl="${searchPageData.currentQuery.url}"
-	numberPagesShown="${numberPagesShown}" />
+<%-- <nav:pagination top="false" supportShowPaged="${isShowPageAllowed}" --%>
+<%-- 	supportShowAll="${isShowAllAllowed}" searchPageData="${searchPageData}" --%>
+<%-- 	searchUrl="${searchPageData.currentQuery.url}" --%>
+<%-- 	numberPagesShown="${numberPagesShown}" /> --%>
