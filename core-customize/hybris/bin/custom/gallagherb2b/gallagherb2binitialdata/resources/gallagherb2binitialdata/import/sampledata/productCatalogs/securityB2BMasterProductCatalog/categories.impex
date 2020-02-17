@@ -21,18 +21,459 @@ $lang=en
 
 # Insert Categories
 INSERT_UPDATE Category;code[unique=true];allowedPrincipals(uid)[default='customergroup'];$catalogVersion
-;Security
-;Readers
-;T-Series
-;T-Series Readers
+# Root Category
+;security
+
+# Main Categories
+;perimeter-security
+;access-control
+
+# Perimeter Security Categories
+;starter-kit
+;fence-controllers
+;terminals
+;sensors
+;fence-hardware
+;data-or-power
+;cabinets-and-power-supplies
+;tools
+;test-equipment
+;gallagher-command-centre
+;gallagher-controllers
+;gallagher-marketing-material
+
+# Starter Kit Categories
+;starter-kit-perimeter
+
+# Fence Controllers Categories
+;f-series
+;accessories-controller
+
+# Terminals Categories
+;terminals-perimeter
+
+# Sensors Categories
+;z10-tension-sensor
+;z20-disturbance-sensor
+
+# Fence Hardware Categories
+;k20-tensioner-link-system
+;k20-wire-links
+;insulators
+;walltop-system
+;wire-links
+;gate-hardware
+;accessories-hardware
+;earthing
+;posts-1mm
+;posts-2mm
+;mounting
+;posts-assembled
+;posts-custom
+
+# Data / Power Categories
+;transceivers
+;cable-data
+;cable-power
+;cable-connectors
+;wire
+
+# Cabinets & Power Supplies Categories
+;cabinets-and-power-supplies-perimeter
+
+# Tools Categories
+;tools-perimeter
+
+# Test Equipment Categories
+;test-equipment-perimeter
+
+# Gallagher Command Centre Categories
+;gallagher-command-centre-software
+;command-centre-licenses
+
+# Gallagher Controllers Categories
+;controller-6000
+;gbus-io-expansion-options
+
+# Gallagher Marketing Material Categories
+;general-perimeter
+;datasheets-perimeter
+;sales-brochures-perimeter
+;third-party-datasheets-perimeter
+;sales-flyer-workplace-and-safety-management-perimeter
+;sales-flyer-vertical-market-perimeter
+;case-studies-perimeter
+;promotional-items-merchandise-perimeter
+
+# Access Control Categories
+;gallagher-command-centre
+;gallagher-starter-kits
+;controllers
+;t-series-readers-and-terminals
+;io-expansion-options
+;cabinets-power-supplies-and-related-hardware
+;gallagher-piv-solution
+;gallagher-class-5-intruder-alarm-system
+;miscellaneous-items
+;reader-accessories
+;credentials
+;card-encoding
+;third-party-products
+;gallagher-manuals
+;demonstration-software-and-hardware
+;gallagher-training-courses
+;gallagher-technical-support-services
+;gallagher-marketing-material
+;previous-generation-technologies
+
+# GALLAGHER COMMAND CENTRE Categories
+;command-centre-server-software
+;command-centre-licenses
+;third-party
+;software-features
+
+# SOFTWARE FEATURES Categories
+;visitor-and-card-management
+;compliance
+;gallagher-system-interfaces
+;other-licences
+;video-management-system-integrations
+;elevator-system-integrations
+;intercom-system-integrations
+;other-system-interfaces
+
+# GALLAGHER STARTER KITS Categories
+;gallagher-starter-kits-controller-6000
+
+# CONTROLLERS Categories
+;gallagher-controller-6000
+;controller-6000-2-door-kits-standard
+;controller-6000-2-door-kits-poe+
+
+# T SERIES READERS & TERMINALS Categories
+;t10
+;t11
+;t12
+;t15
+;t20
+;t20-alarms-only
+
+# I/O EXPANSION OPTIONS Categories
+;hbus-io-expansion-options
+
+# CABINETS, POWER SUPPLIES & RELATED HARDWARE Categories
+;cabinets-with-power-supply
+;cabinets
+;power-supplies
+;fusing
+;hardware-mounting-options
+
+# GALLAGHER PIV SOLUTION Categories
+;piv-software
+;piv-controller
+;piv-single-factor-readers
+;piv-dual-factor-readers
+;piv-triple-factor-readers
+;piv-enrolment-readers
+;pivclass-registration-engine
+
+# GALLAGHER CLASS 5 INTRUDER ALARM SYSTEM Categories
+;gallagher-class-5-intruder-alarm-system
+
+# MISCELLANEOUS ITEMS Categories
+;protocol-converters
+;transceivers
+;sensors
+;sensor-accessories
+;request-to-exit-devices
+;mobile-reader
+;cable
+
+# READER ACCESSORIES Categories
+;gallagher-t-series-reader-accessories
+
+# CREDENTIALS Categories
+;mobile-connect
+;mifare-desfire-ev2
+;dual-technology
+;card-accessories
+
+# CARD ENCODING Categories
+;card-encoding-access-control
+
+# THIRD PARTY PRODUCTS Categories
+;idemia-morpho-biometric-readers
+;nedap-automatic-vehicle-identification-readers-and-transponders
+;salto-offline-and-online-wireless-integration
+;aperio-wireless-integration
+;disturbance-sensor-integration
+;fibre-transceivers
+;stratus-technologies-continuous-availability-solutions
+
+# SALTO OFFLINE AND ONLINE WIRELESS INTEGRATION Categories
+;salto-management-tools
+;salto-2-wired-mifare-and-ble-readers-and-controllers
+;salto-xs4-mini-mifare-and-ble-escutcheons
+;salto-xs4-mini-australian-ansi-mifare-ble-escutcheon
+;salto-xs4-1-mifare-and-ble-escutcheons
+;salto-aelement-fusion-mifare-and-ble-escutcheons
+;salto-rf2-and-ble-wireless-networking
+;salto-mifare-locker-locks-original
+;salto-wired-mifare-readers-and-controllers-original
+;salto-mifare-energy-saving-devices
+;salto-glass-door-escutcheons
+;salto-geo-cylinders-original
+;salto-xs4-escutcheon-original
+;salto-aelement-escutcheons-original
+;salto-escutcheons-middle-east-only
+;salto-escutcheons-locks-and-latches-usa-only
+;salto-escutcheons-locks-and-strike-plates-uk-only
+;salto-demo-products
+
+# APERIO WIRELESS INTEGRATION Categories
+;aperio-installation-and-configuration-tools
+;aperio-c100-e-cylinder-australian-oval-format
+;aperio-e100-escutcheons-australian-format
+;aperio-c100-e-cylinders-din-format
+;aperio-e100-escutcheons-european-din-format
+;aperio-escutcheons-usa-format
+
+# GALLAGHER MANUALS Categories
+;gallagher-manuals-access-control
+
+# DEMONSTRATION SOFTWARE AND HARDWARE Categories
+;demonstration-software-and-hardware-access-control
+
+# GALLAGHER TRAINING COURSES Categories
+;technical-training
+
+# GALLAGHER TECHNICAL SUPPORT SERVICES Categories
+;gallagher-technical-support-services-access-control
+
+# GALLAGHER MARKETING MATERIAL Categories
+;general-access
+;datasheets-access
+;sales-brochures-access
+;third-party-datasheets-access
+;sales-flyer-workplace-and-safety-management-access
+;sales-flyer-vertical-market-access
+;case-studies-access
+;promotional-items-merchandise-access
+
+# PREVIOUS GENERATION TECHNOLOGIES Categories
+;keypads
+;reader-accessories
+;gbus-io-expansion-options
+;controller-6000-2-door-kits-gbus
+;cards-transponders-and-encoding
 
 INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
-;Readers;Security
-;T-Series;Readers
-;T-Series Readers;T-Series
+;access-control;security
+;perimeter-security;security
 
-UPDATE Category;$catalogVersion;code[unique=true];name[lang=$lang];description[lang=$lang]
-;;Security;Security;
-;;Readers;Readers;
-;;T-Series;T-Series;
-;;T-Series Readers;T-Series Readers;
+#perimeter-security
+
+;starter-kit;perimeter-security
+;fence-controllers;perimeter-security
+;terminals;perimeter-security
+;sensors;perimeter-security
+;fence-hardware;perimeter-security
+;data-or-power;perimeter-security
+;cabinets-and-power-supplies;perimeter-security
+;tools;perimeter-security
+;test-equipment;perimeter-security
+;gallagher-command-centre;perimeter-security
+;gallagher-controllers;perimeter-security
+;gallagher-marketing-material;perimeter-security
+
+;starter-kit-perimeter;starter-kit
+
+;f-series;fence-controllers
+;accessories-controller;fence-controllers
+
+;terminals-perimeter;terminals
+
+;z10-tension-sensor;sensors
+;z20-disturbance-sensor;sensors
+
+;k20-tensioner-link-system;fence-hardware
+;k20-wire-links;fence-hardware
+;insulators;fence-hardware
+;walltop-system;fence-hardware
+;wire-links;fence-hardware
+;gate-hardware;fence-hardware
+;accessories-hardware;fence-hardware
+;earthing;fence-hardware
+;posts-1mm;fence-hardware
+;posts-2mm;fence-hardware
+;mounting;fence-hardware
+;posts-assembled;fence-hardware
+;posts-custom;fence-hardware
+
+;transceivers;data-or-power
+;cable-data;data-or-power
+;cable-power;data-or-power
+;cable-connectors;data-or-power
+;wire;data-or-power
+
+;cabinets-and-power-supplies-perimeter;cabinets-and-power-supplies
+
+;tools-perimeter;tools
+
+;test-equipment-perimeter;test-equipment
+
+;gallagher-command-centre-software;gallagher-command-centre
+;command-centre-licenses;gallagher-command-centre
+
+;controller-6000;gallagher-controllers
+;gbus-io-expansion-options;gallagher-controllers
+
+;general-perimeter;gallagher-marketing-material
+;datasheets-perimeter;gallagher-marketing-material
+;sales-brochures-perimeter;gallagher-marketing-material
+;third-party-datasheets-perimeter;gallagher-marketing-material
+;sales-flyer-workplace-and-safety-management-perimeter;gallagher-marketing-material
+;sales-flyer-vertical-market-perimeter;gallagher-marketing-material
+;case-studies-perimeter;gallagher-marketing-material
+;promotional-items-merchandise-perimeter;gallagher-marketing-material
+
+#access-control
+
+;gallagher-command-centre;access-control
+;gallagher-starter-kits;access-control
+;controllers;access-control
+;t-series-readers-and-terminals;access-control
+;io-expansion-options;access-control
+;cabinets-power-supplies-and-related-hardware;access-control
+;gallagher-piv-solution;access-control
+;gallagher-class-5-intruder-alarm-system;access-control
+;miscellaneous-items;access-control
+;reader-accessories;access-control
+;credentials;access-control
+;card-encoding;access-control
+;third-party-products;access-control
+;gallagher-manuals;access-control
+;demonstration-software-and-hardware;access-control
+;gallagher-training-courses;access-control
+;gallagher-technical-support-services;access-control
+;gallagher-marketing-material;access-control
+;previous-generation-technologies;access-control
+
+;command-centre-server-software;gallagher-command-centre
+;command-centre-licenses;gallagher-command-centre
+;third-party;gallagher-command-centre
+;software-features;gallagher-command-centre
+
+;visitor-and-card-management;software-features
+;compliance;software-features
+;gallagher-system-interfaces;software-features
+;other-licences;software-features
+;video-management-system-integrations;software-features
+;elevator-system-integrations;software-features
+;intercom-system-integrations;software-features
+;other-system-interfaces;software-features
+
+;gallagher-starter-kits-controller-6000;gallagher-starter-kits
+
+;gallagher-controller-6000;controllers
+;controller-6000-2-door-kits-standard;controllers
+;controller-6000-2-door-kits-poe+;controllers
+
+;t10;t-series-readers-and-terminals
+;t11;t-series-readers-and-terminals
+;t12;t-series-readers-and-terminals
+;t15;t-series-readers-and-terminals
+;t20;t-series-readers-and-terminals
+;t20-alarms-only;t-series-readers-and-terminals
+
+;hbus-io-expansion-options;io-expansion-options
+
+;cabinets-with-power-supply;cabinets-power-supplies-and-related-hardware
+;cabinets;cabinets-power-supplies-and-related-hardware
+;power-supplies;cabinets-power-supplies-and-related-hardware
+;fusing;cabinets-power-supplies-and-related-hardware
+;hardware-mounting-options;cabinets-power-supplies-and-related-hardware
+
+;piv-software;gallagher-piv-solution
+;piv-controller;gallagher-piv-solution
+;piv-single-factor-readers;gallagher-piv-solution
+;piv-dual-factor-readers;gallagher-piv-solution
+;piv-triple-factor-readers;gallagher-piv-solution
+;piv-enrolment-readers;gallagher-piv-solution
+;pivclass-registration-engine;gallagher-piv-solution
+
+;gallagher-class-5-intruder-alarm-system;gallagher-class-5-intruder-alarm-system
+
+;protocol-converters;miscellaneous-items
+;transceivers;miscellaneous-items
+;sensors;miscellaneous-items
+;sensor-accessories;miscellaneous-items
+;request-to-exit-devices;miscellaneous-items
+;mobile-reader;miscellaneous-items
+;cable;miscellaneous-items
+
+;gallagher-t-series-reader-accessories;reader-accessories
+
+;mobile-connect;credentials
+;mifare-desfire-ev2;credentials
+;dual-technology;credentials
+;card-accessories;credentials
+
+;card-encoding-access-control;card-encoding
+
+;idemia-morpho-biometric-readers;third-party-products
+;nedap-automatic-vehicle-identification-readers-and-transponders;third-party-products
+;salto-offline-and-online-wireless-integration;third-party-products
+;aperio-wireless-integration;third-party-products
+;disturbance-sensor-integration;third-party-products
+;fibre-transceivers;third-party-products
+;stratus-technologies-continuous-availability-solutions;third-party-products
+
+;salto-management-tools;salto-offline-and-online-wireless-integration
+;salto-2-wired-mifare-and-ble-readers-and-controllers;salto-offline-and-online-wireless-integration
+;salto-xs4-mini-mifare-and-ble-escutcheons;salto-offline-and-online-wireless-integration
+;salto-xs4-mini-australian-ansi-mifare-ble-escutcheon;salto-offline-and-online-wireless-integration
+;salto-xs4-1-mifare-and-ble-escutcheons;salto-offline-and-online-wireless-integration
+;salto-aelement-fusion-mifare-and-ble-escutcheons;salto-offline-and-online-wireless-integration
+;salto-rf2-and-ble-wireless-networking;salto-offline-and-online-wireless-integration
+;salto-mifare-locker-locks-original;salto-offline-and-online-wireless-integration
+;salto-wired-mifare-readers-and-controllers-original;salto-offline-and-online-wireless-integration
+;salto-mifare-energy-saving-devices;salto-offline-and-online-wireless-integration
+;salto-glass-door-escutcheons;salto-offline-and-online-wireless-integration
+;salto-geo-cylinders-original;salto-offline-and-online-wireless-integration
+;salto-xs4-escutcheon-original;salto-offline-and-online-wireless-integration
+;salto-aelement-escutcheons-original;salto-offline-and-online-wireless-integration
+;salto-escutcheons-middle-east-only;salto-offline-and-online-wireless-integration
+;salto-escutcheons-locks-and-latches-usa-only;salto-offline-and-online-wireless-integration
+;salto-escutcheons-locks-and-strike-plates-uk-only;salto-offline-and-online-wireless-integration
+;salto-demo-products;salto-offline-and-online-wireless-integration
+
+;aperio-installation-and-configuration-tools;aperio-wireless-integration
+;aperio-c100-e-cylinder-australian-oval-format;aperio-wireless-integration
+;aperio-e100-escutcheons-australian-format;aperio-wireless-integration
+;aperio-c100-e-cylinders-din-format;aperio-wireless-integration
+;aperio-e100-escutcheons-european-din-format;aperio-wireless-integration
+;aperio-escutcheons-usa-format;aperio-wireless-integration
+
+;gallagher-manuals-access-control;gallagher-manuals
+
+;demonstration-software-and-hardware-access-control;demonstration-software-and-hardware
+
+;technical-training;gallagher-training-courses
+
+;gallagher-technical-support-services-access-control;gallagher-technical-support-services
+
+;general-access;gallagher-marketing-material
+;datasheets-access;gallagher-marketing-material
+;sales-brochures-access;gallagher-marketing-material
+;third-party-datasheets-access;gallagher-marketing-material
+;sales-flyer-workplace-and-safety-management-access;gallagher-marketing-material
+;sales-flyer-vertical-market-access;gallagher-marketing-material
+;case-studies-access;gallagher-marketing-material
+;promotional-items-merchandise-access;gallagher-marketing-material
+
+;keypads;previous-generation-technologies
+;reader-accessories;previous-generation-technologies
+;gbus-io-expansion-options;previous-generation-technologies
+;controller-6000-2-door-kits-gbus;previous-generation-technologies
+;cards-transponders-and-encoding;previous-generation-technologies

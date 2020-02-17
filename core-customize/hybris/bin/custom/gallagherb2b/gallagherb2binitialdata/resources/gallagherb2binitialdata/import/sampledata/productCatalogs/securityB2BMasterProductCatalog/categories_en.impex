@@ -18,8 +18,249 @@ $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[defa
 
 $lang=en
 
-INSERT_UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang];description[lang=$lang]
-;Security;;Security;
-;Readers;;Readers;
-;T-Series;;T-Series;
-;T-Series Readers;;T-Series Readers;
+UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
+# Root Category
+;security;;Security
+
+# Main Categories
+;perimeter-security;;Perimeter Security
+;access-control;;Access Control
+
+# Perimeter Security Categories
+;starter-kit;;Starter Kit
+;fence-controllers;;Fence Controllers
+;terminals;;Terminals
+;sensors;;Sensors
+;fence-hardware;;Fence Hardware
+;data-or-power;;Data / Power
+;cabinets-and-power-supplies;;Cabinets & Power Supplies
+;tools;;Tools
+;test-equipment;;Test Equipment
+;gallagher-command-centre;;Gallagher Command Centre
+;gallagher-controllers;;Gallagher Controllers
+;gallagher-marketing-material;;Gallagher Marketing Material
+
+# Starter Kit Categories
+;starter-kit-perimeter;;Starter Kit Perimeter
+
+# Fence Controllers Categories
+;f-series;;F Series
+;accessories-controller;;Accessories
+
+# Terminals Categories
+;terminals-perimeter;;Terminals Perimeter
+
+# Sensors Categories
+;z10-tension-sensor;;Z10 Tension Sensor
+;z20-disturbance-sensor;;Z20 Disturbance Sensor
+
+# Fence Hardware Categories
+;k20-tensioner-link-system;;K20 Tensioner Link System
+;k20-wire-links;;K20 Wire Links
+;insulators;;Insulators
+;walltop-system;;Walltop System
+;wire-links;;Wire Links
+;gate-hardware;;Gate Hardware
+;accessories-hardware;;Accessories
+;earthing;;Earthing
+;posts-1mm;;Posts – 1mm
+;posts-2mm;;Posts – 2mm
+;mounting;;Mounting
+;posts-assembled;;Posts – Assembled
+;posts-custom;;Posts – Custom
+
+# Data / Power Categories
+;transceivers;;Transceivers
+;cable-data;;Cable – Data
+;cable-power;;Cable – Power
+;cable-connectors;;Cable – Connectors
+;wire;;Wire
+
+# Cabinets & Power Supplies Categories
+;cabinets-and-power-supplies-perimeter;;Cabinets & Power Supplies
+
+# Tools Categories
+;tools-perimeter;;Tools
+
+# Test Equipment Categories
+;test-equipment-perimeter;;Test Equipment
+
+# Gallagher Command Centre Categories
+;gallagher-command-centre-software;;Gallagher Command Centre Software
+;command-centre-licenses;;Command Centre Licenses
+
+# Gallagher Controllers Categories
+;controller-6000;;Controller 6000
+;gbus-io-expansion-options;;GBus I/O Expansion Options
+
+# Gallagher Marketing Material Categories
+;general-perimeter;;General
+;datasheets-perimeter;;Datasheets
+;sales-brochures-perimeter;;Sales Brochures
+;third-party-datasheets-perimeter;;Third Party Datasheets
+;sales-flyer-workplace-and-safety-management-perimeter;;Sales Flyer - Workplace & Safety Management
+;sales-flyer-vertical-market-perimeter;;Sales Flyer - Vertical Market
+;case-studies-perimeter;;Case Studies
+;promotional-items-merchandise-perimeter;;Promotional Items/Merchandise
+
+# Access Control Categories
+;gallagher-command-centre;;GALLAGHER COMMAND CENTRE
+;gallagher-starter-kits;;GALLAGHER STARTER KITS
+;controllers;;CONTROLLERS
+;t-series-readers-and-terminals;;T SERIES READERS & TERMINALS
+;io-expansion-options;;I/O EXPANSION OPTIONS
+;cabinets-power-supplies-and-related-hardware;;CABINETS, POWER SUPPLIES & RELATED HARDWARE
+;gallagher-piv-solution;;GALLAGHER PIV SOLUTION
+;gallagher-class-5-intruder-alarm-system;;GALLAGHER CLASS 5 INTRUDER ALARM SYSTEM
+;miscellaneous-items;;MISCELLANEOUS ITEMS
+;reader-accessories;;READER ACCESSORIES
+;credentials;;CREDENTIALS
+;card-encoding;;CARD ENCODING
+;third-party-products;;THIRD PARTY PRODUCTS
+;gallagher-manuals;;GALLAGHER MANUALS
+;demonstration-software-and-hardware;;DEMONSTRATION SOFTWARE AND HARDWARE
+;gallagher-training-courses;;GALLAGHER TRAINING COURSES
+;gallagher-technical-support-services;;GALLAGHER TECHNICAL SUPPORT SERVICES
+;gallagher-marketing-material;;GALLAGHER MARKETING MATERIAL
+;previous-generation-technologies;;PREVIOUS GENERATION TECHNOLOGIES
+
+# GALLAGHER COMMAND CENTRE Categories
+;command-centre-server-software;;COMMAND CENTRE SERVER SOFTWARE
+;command-centre-licenses;;COMMAND CENTRE - LICENSES
+;third-party;;THIRD PARTY
+;software-features;;SOFTWARE FEATURES
+
+# SOFTWARE FEATURES Categories
+;visitor-and-card-management;;Visitor and Card Management
+;compliance;;Compliance
+;gallagher-system-interfaces;;Gallagher System Interfaces
+;other-licences;;Other Licences
+;video-management-system-integrations;;Video Management System Integrations
+;elevator-system-integrations;;Elevator System Integrations
+;intercom-system-integrations;;Intercom System Integrations
+;other-system-interfaces;;Other System Interfaces
+
+# GALLAGHER STARTER KITS Categories
+;gallagher-starter-kits-controller-6000;;GALLAGHER STARTER KITS - CONTROLLER 6000
+
+# CONTROLLERS Categories
+;gallagher-controller-6000;;GALLAGHER CONTROLLER 6000
+;controller-6000-2-door-kits-standard;;CONTROLLER 6000 2 DOOR KITS - STANDARD
+;controller-6000-2-door-kits-poe+;;CONTROLLER 6000 2 DOOR KITS - POE+
+
+# T SERIES READERS & TERMINALS Categories
+;t10;;T10
+;t11;;T11
+;t12;;T12
+;t15;;T15
+;t20;;T20
+;t20-alarms-only;;T20 (ALARMS ONLY)
+
+# I/O EXPANSION OPTIONS Categories
+;hbus-io-expansion-options;;HBUS I/O EXPANSION OPTIONS
+
+# CABINETS, POWER SUPPLIES & RELATED HARDWARE Categories
+;cabinets-with-power-supply;;CABINETS WITH POWER SUPPLY
+;cabinets;;CABINETS
+;power-supplies;;POWER SUPPLIES
+;fusing;;FUSING
+;hardware-mounting-options;;HARDWARE MOUNTING OPTIONS
+
+# GALLAGHER PIV SOLUTION Categories
+;piv-software;;PIV SOFTWARE
+;piv-controller;;PIV CONTROLLER
+;piv-single-factor-readers;;PIV SINGLE FACTOR READERS
+;piv-dual-factor-readers;;PIV DUAL FACTOR READERS
+;piv-triple-factor-readers;;PIV TRIPLE FACTOR READERS
+;piv-enrolment-readers;;PIV ENROLMENT READERS
+;pivclass-registration-engine;;PIV CLASS REGISTRATION ENGINE
+
+# GALLAGHER CLASS 5 INTRUDER ALARM SYSTEM Categories
+;gallagher-class-5-intruder-alarm-system;;GALLAGHER CLASS 5 INTRUDER ALARM SYSTEM
+
+# MISCELLANEOUS ITEMS Categories
+;protocol-converters;;PROTOCOL CONVERTERS
+;transceivers;;TRANSCEIVERS
+;sensors;;SENSORS
+;sensor-accessories;;SENSOR ACCESSORIES
+;request-to-exit-devices;;REQUEST TO EXIT DEVICES
+;mobile-reader;;MOBILE READER
+;cable;;CABLE
+
+# READER ACCESSORIES Categories
+;gallagher-t-series-reader-accessories;;GALLAGHER T SERIES READER ACCESSORIES
+
+# CREDENTIALS Categories
+;mobile-connect;;MOBILE CONNECT
+;mifare-desfire-ev2;;MIFARE DESFIRE EV2
+;dual-technology;;DUAL TECHNOLOGY
+;card-accessories;;CARD ACCESSORIES
+
+# CARD ENCODING Categories
+;card-encoding-access-control;;CARD ENCODING
+
+# THIRD PARTY PRODUCTS Categories
+;idemia-morpho-biometric-readers;;IDEMIA (MORPHO) BIOMETRIC READERS
+;nedap-automatic-vehicle-identification-readers-and-transponders;;NEDAP AUTOMATIC VEHICLE IDENTIFICATION - READERS AND TRANSPONDERS
+;salto-offline-and-online-wireless-integration;;SALTO OFFLINE AND ONLINE WIRELESS INTEGRATION
+;aperio-wireless-integration;;APERIO WIRELESS INTEGRATION
+;disturbance-sensor-integration;;DISTURBANCE SENSOR INTEGRATION
+;fibre-transceivers;;FIBRE TRANSCEIVERS
+;stratus-technologies-continuous-availability-solutions;;Stratus Technologies continuous availability solutions
+
+# SALTO OFFLINE AND ONLINE WIRELESS INTEGRATION Categories
+;salto-management-tools;;Salto Management Tools
+;salto-2-wired-mifare-and-ble-readers-and-controllers;;Salto 2.0 Wired Mifare and BLE Readers and Controllers
+;salto-xs4-mini-mifare-and-ble-escutcheons;;Salto XS4 Mini Mifare and BLE Escutcheons
+;salto-xs4-mini-australian-ansi-mifare-ble-escutcheon;;Salto XS4 Mini Australian ANSI Mifare/BLE Escutcheon
+;salto-xs4-1-mifare-and-ble-escutcheons;;Salto XS4 1 Mifare and BLE Escutcheons
+;salto-aelement-fusion-mifare-and-ble-escutcheons;;Salto AElement Fusion Mifare and BLE Escutcheons
+;salto-rf2-and-ble-wireless-networking;;Salto RF2 and BLE Wireless Networking
+;salto-mifare-locker-locks-original;;Salto Mifare Locker Locks (Original)
+;salto-wired-mifare-readers-and-controllers-original;;Salto Wired Mifare Readers and Controllers (Original)
+;salto-mifare-energy-saving-devices;;Salto Mifare Energy Saving Devices
+;salto-glass-door-escutcheons;;Salto Glass Door Escutcheons
+;salto-geo-cylinders-original;;Salto GEO Cylinders (Original)
+;salto-xs4-escutcheon-original;;Salto XS4 Escutcheon (Original)
+;salto-aelement-escutcheons-original;;Salto Aelement Escutcheons (Original)
+;salto-escutcheons-middle-east-only;;Salto Escutcheons - Middle East Only
+;salto-escutcheons-locks-and-latches-usa-only;;Salto Escutcheons, Locks & Latches - USA Only
+;salto-escutcheons-locks-and-strike-plates-uk-only;;Salto Escutcheons, Locks & Strike Plates - UK Only
+;salto-demo-products;;Salto Demo Products
+
+# APERIO WIRELESS INTEGRATION Categories
+;aperio-installation-and-configuration-tools;;Aperio Installation and Configuration Tools
+;aperio-c100-e-cylinder-australian-oval-format;;Aperio C100 E-Cylinder Australian Oval Format
+;aperio-e100-escutcheons-australian-format;;Aperio E100 Escutcheons Australian Format
+;aperio-c100-e-cylinders-din-format;;Aperio C100 E-Cylinders DIN Format
+;aperio-e100-escutcheons-european-din-format;;Aperio E100 Escutcheons European DIN Format
+;aperio-escutcheons-usa-format;;Aperio Escutcheons USA Format
+
+# GALLAGHER MANUALS Categories
+;gallagher-manuals-access-control;;GALLAGHER MANUALS
+
+# DEMONSTRATION SOFTWARE AND HARDWARE Categories
+;demonstration-software-and-hardware-access-control;;DEMONSTRATION SOFTWARE AND HARDWARE
+
+# GALLAGHER TRAINING COURSES Categories
+;technical-training;;TECHNICAL TRAINING
+
+# GALLAGHER TECHNICAL SUPPORT SERVICES Categories
+;gallagher-technical-support-services-access-control;;GALLAGHER TECHNICAL SUPPORT SERVICES
+
+# GALLAGHER MARKETING MATERIAL Categories
+;general-access;;GENERAL
+;datasheets-access;;DATASHEETS
+;sales-brochures-access;;SALES BROCHURES
+;third-party-datasheets-access;;THIRD PARTY DATASHEETS
+;sales-flyer-workplace-and-safety-management-access;;SALES FLYER - WORKPLACE & SAFETY MANAGEMENT
+;sales-flyer-vertical-market-access;;SALES FLYER - VERTICAL MARKET
+;case-studies-access;;CASE STUDIES
+;promotional-items-merchandise-access;;PROMOTIONAL ITEMS/MERCHANDISE
+
+# PREVIOUS GENERATION TECHNOLOGIES Categories
+;keypads;;KEYPADS
+;reader-accessories;;READER ACCESSORIES
+;gbus-io-expansion-options;;GBUS I/O EXPANSION OPTIONS
+;controller-6000-2-door-kits-gbus;;CONTROLLER 6000 2 DOOR KITS, GBUS
+;cards-transponders-and-encoding;;CARDS, TRANSPONDERS AND ENCODING
