@@ -71,7 +71,7 @@
             </ycommerce:testId>
 
 
-            <a href=""${fn:escapeXml(cartUrl)}"" class="btn btn-default btn-block js-mini-cart-close-button">
+            <a href="${fn:escapeXml(cartUrl)}" class="btn btn-default btn-block">
                 <spring:theme code="cart.page.continue"/>
             </a>
 		</div>
