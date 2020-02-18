@@ -1,6 +1,11 @@
 .product-list-sidebar-out {
   .sidebar-filter-section {
-    min-height: 59px;
+    margin-bottom: 16px;
+
+    .cross-icon-out {
+      width: 100%;
+      margin-top: 15px;
+    }
 
     a {
       display: inline-block;
@@ -343,12 +348,12 @@
           .product-status {
             position: absolute;
             top: -8px;
-            left: 9px;
+            right: 9px;
             text-align: center;
             z-index: 100;
 
             img {
-              width: 40px;
+              max-width: 40px;
               height: 40px;
             }
           }
@@ -516,7 +521,11 @@
   .product-list-sidebar-out {
     .sidebar-filter-section {
       min-height: inherit;
-      padding-bottom: 16px;
+
+      .cross-icon-out {
+        width: 100%;
+        margin-top: 15px;
+      }
 
       a {
         display: inline-block;
@@ -576,7 +585,6 @@
 
       .sidebar-section-container {
         .price-slider-out {
-
           .rangeslider__handle {
             width: 20px;
             height: 20px;
@@ -741,7 +749,7 @@
 
             .product-status {
               top: -8px;
-              left: 8px;
+              right: 0px;
             }
           }
         }
