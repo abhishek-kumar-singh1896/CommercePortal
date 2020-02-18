@@ -67,3 +67,9 @@ INSERT_UPDATE ConsumedDestination ; id[unique = true]                ; url      
                                   ; scpiOrderDestination             ; "$orderUrl;$orderVersion/SAPCpiOutboundOrders"                         ; scpiOrderEndpoint:unknown             ; scpiOauthCredential ; "csrfURL->$orderUrl;$orderVersion/"                         ;                                                        
                                   ; scpiOrderCancellationDestination ; "$cancelOrderUrl;$cancelOrderVersion/SAPCpiOutboundOrderCancellations" ; scpiOrderCancellationEndpoint:unknown ; scpiOauthCredential ; "csrfURL->$cancelOrderUrl;$cancelOrderVersion/"             ;                                                        
                                   ; scpiContactCollectionDestination ; "$contactCollectionUrl;$contactCollectionVersion/ContactCollection"    ; scpiContactCollectionEndpoint:unknown ; scpiOauthCredential ; "csrfURL->$contactCollectionUrl;$contactCollectionVersion/" ;                                                        
+                                  
+INSERT_UPDATE IflowConfiguration ; iflowKey[unique=true]              ; iflowUrl                                                           
+                                 ; ZGGL_REPLICATE_B2C_Customer_To_C4C ; /gw/odata/SAP/ZGGL-REPLICATE-CUSTOMER-FROM-SAP-COMMERCE-TO-SAP-C4C ; v=1 
+                                 
+INSERT_UPDATE SAPCPIConfiguration ; iflowConfiguration(iflowKey)       ; name[unique=true] ; userName    ; password        ; baseUrl                                             
+                                  ; ZGGL_REPLICATE_B2C_Customer_To_C4C ; CPI_DEV           ; S0018963764 ; Integration123! ; https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com 
