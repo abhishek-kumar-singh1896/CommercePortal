@@ -23,9 +23,6 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
 ;security;;Security
 
 # Main Categories
-;all-perimeter-security;;Perimeter Security
-;all-access-control;;Access Control
-
 ;perimeter-security;;Perimeter Security
 ;access-control;;Access Control
 

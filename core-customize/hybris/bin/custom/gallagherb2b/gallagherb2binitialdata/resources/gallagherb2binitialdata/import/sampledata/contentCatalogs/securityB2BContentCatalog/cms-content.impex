@@ -88,8 +88,8 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 
 ## links of the above navigation nodes ##
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow']
-;;PerimeterSecurityCategoryLink;Perimeter Security Category Link;/Security/Perimeter-Security/c/all-perimeter-security;;PerimeterSecurityCategoryLink
-;;AccessControlCategoryLink;Access Control Category Link;/Security/Access-Control/c/all-access-control;;AccessControlCategoryLink
+;;PerimeterSecurityCategoryLink;Perimeter Security Category Link;/Security/Perimeter-Security/c/perimeter-security;;PerimeterSecurityCategoryLink
+;;AccessControlCategoryLink;Access Control Category Link;/Security/Access-Control/c/access-control;;AccessControlCategoryLink
 ;;PowerDrillsCategoryLink;Power Drills Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Power-Drills/c/1360;PowerDrillsCategoryLink;PowerDrillsCategoryLink
 ;;ScrewdriversCategoryLink;Screwdrivers Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Screwdrivers/c/1593;ScrewdriversCategoryLink;ScrewdriversCategoryLink
 ;;AngleGrindersCategoryLink;Angle Grinders Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Angle-Grinders/c/1595;AngleGrindersCategoryLink;AngleGrindersCategoryLink
@@ -1307,8 +1307,8 @@ INSERT_UPDATE B2badvanceMegaMenuItemComponent;$contentCV[unique=true];&component
 INSERT_UPDATE B2badvanceMegaMenuComponent;$contentCV[unique=true];uid[unique=true];menuItems(uid,$contentCV);&componentRef;name
 
 INSERT_UPDATE B2badvanceMegaMenuItemComponent;$contentCV[unique=true];&componentRef;uid[unique=true];categoryCode;link(&componentRef);name;headline[lang=de];styleClass;dropDownLayout(code)[default=AUTO];wrapAfter;isBulkOrder[default=false];isAllProductsNode[default=false]
-													  ;;PerimeterSecurityItem;PerimeterSecurityItem;all-perimeter-security;PerimeterSecurityCategoryLink;Perimeter Security;Perimeter Security;;;10;;true
-													  ;;AccessControlItem;AccessControlItem;all-access-control;AccessControlCategoryLink;Access Control;Access Control;;;10;;true
+													  ;;PerimeterSecurityItem;PerimeterSecurityItem;perimeter-security;PerimeterSecurityCategoryLink;Perimeter Security;Perimeter Security;;;10;;true
+													  ;;AccessControlItem;AccessControlItem;access-control;AccessControlCategoryLink;Access Control;Access Control;;;10;;true
 
 UPDATE B2badvanceMegaMenuItemComponent;$contentCV[unique=true];uid[unique=true]
 															 ;;PerimeterSecurityItem
