@@ -3,7 +3,6 @@
  */
 package com.gallagher.b2c.renderer;
 
-import com.sap.security.core.server.csi.XSSEncoder;
 import de.hybris.platform.acceleratorcms.component.renderer.CMSComponentRenderer;
 import de.hybris.platform.acceleratorstorefrontcommons.tags.Functions;
 import de.hybris.platform.category.model.CategoryModel;
@@ -28,8 +27,6 @@ import org.owasp.html.HtmlPolicyBuilder;
 import org.owasp.html.PolicyFactory;
 import org.springframework.beans.factory.annotation.Required;
 
-import static de.hybris.platform.acceleratorstorefrontcommons.tags.HTMLSanitizer.sanitizeHTML;
-
 
 /**
  */
@@ -37,15 +34,11 @@ public class CMSLinkComponentRenderer implements CMSComponentRenderer<CMSLinkCom
 {
 	private static final Logger LOG = Logger.getLogger(CMSLinkComponentRenderer.class);
 
-	protected static final PolicyFactory policy = new HtmlPolicyBuilder().allowStandardUrlProtocols()
-			.allowElements("a", "span")
-			.allowAttributes( "href", "style", "class", "title", "target", "download", "rel", "rev",
-					"hreflang", "type", "text", "accesskey", "contenteditable", "contextmenu", "dir", "draggable",
-					"dropzone", "hidden", "id", "lang", "spellcheck", "tabindex", "translate")
-			.onElements("a")
-			.allowAttributes("class")
-			.onElements("span")
-			.toFactory();
+	protected static final PolicyFactory policy = new HtmlPolicyBuilder().allowStandardUrlProtocols().allowElements("a", "span")
+			.allowAttributes("href", "style", "class", "title", "target", "download", "rel", "rev", "hreflang", "type", "text",
+					"accesskey", "contenteditable", "contextmenu", "dir", "draggable", "dropzone", "hidden", "id", "lang",
+					"spellcheck", "tabindex", "translate")
+			.onElements("a").allowAttributes("class").onElements("span").toFactory();
 
 
 	private Converter<ProductModel, ProductData> productUrlConverter;
@@ -80,16 +73,16 @@ public class CMSLinkComponentRenderer implements CMSComponentRenderer<CMSLinkCom
 	}
 
 	@Override
-	public void renderComponent(final PageContext pageContext, final CMSLinkComponentModel component) throws ServletException,
-			IOException
+	public void renderComponent(final PageContext pageContext, final CMSLinkComponentModel component)
+			throws ServletException, IOException
 	{
 		try
 		{
 			final String url = getUrl(component);
 			final String encodedUrl = UrlSupport.resolveUrl(url, null, pageContext);
 			final String linkName = component.getLinkName();
-			
-			StringBuilder html = new StringBuilder();
+
+			final StringBuilder html = new StringBuilder();
 
 			if (StringUtils.isNotBlank(linkName) && StringUtils.isBlank(encodedUrl))
 			{
@@ -110,7 +103,7 @@ public class CMSLinkComponentRenderer implements CMSComponentRenderer<CMSLinkCom
 				// Write additional attributes onto the link
 				if (component.getStyleAttributes() != null)
 				{
-					html.append(component.getStyleAttributes());
+					html.append(" class='" + component.getStyleAttributes() + "'");
 				}
 
 				if (StringUtils.isNotBlank(linkName))
@@ -132,7 +125,7 @@ public class CMSLinkComponentRenderer implements CMSComponentRenderer<CMSLinkCom
 				html.append("</a>");
 			}
 
-			String sanitizedHTML = policy.sanitize(html.toString());
+			final String sanitizedHTML = policy.sanitize(html.toString());
 			final JspWriter out = pageContext.getOut();
 			out.write(sanitizedHTML);
 		}

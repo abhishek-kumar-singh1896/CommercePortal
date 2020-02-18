@@ -31,6 +31,10 @@ body {
   }
 }
 
+label {
+  text-transform: inherit;
+}
+
 .gray-shade,
 .orange-shade {
   position: absolute;
@@ -91,10 +95,6 @@ h2 {
 
 .xs-header-right-section {
   display: none;
-}
-
-.accordion {
-  text-transform: inherit;
 }
 
 .accordion-card {
@@ -385,6 +385,7 @@ h2 {
   width: 100%;
   background: $gray-9;
   letter-spacing: 0.1px;
+  z-index: 999;
 
   .contact-us-container {
     padding: 20px;
@@ -406,11 +407,24 @@ h2 {
   .menu-container-title {
     color: $white;
     margin-bottom: 24px;
+    display: inline-block;
+    position: relative;
+
     .arrow-right-icon {
+      position: absolute;
+      right: -20px;
+      top: -1px;
       svg {
         fill: $white;
         width: 20px;
         height: 20px;
+      }
+    }
+
+    &:hover {
+      color: $primary-color;
+      svg {
+        fill: $primary-color;
       }
     }
 
@@ -741,6 +755,10 @@ h2 {
       }
     }
   }
+}
+
+.accordion {
+  text-transform: inherit;
 }
 
 @media only screen and (max-width: 1600px) {

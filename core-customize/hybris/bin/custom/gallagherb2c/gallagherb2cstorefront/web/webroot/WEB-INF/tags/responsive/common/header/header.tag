@@ -211,12 +211,12 @@
 					                	<li class="nav-item">
 					                	<c:choose>
 					                		<c:when test="${not empty dropdownValue.item && dropdownValue.item ne null && (empty topLevelChild.children || topLevelChild.children eq null)}">
-                                                <%-- qq<cms:component component="${dropdownValue.item}" evaluateRestriction="true" /> --%>
-                                                	<a class="nav-link gray-link" href="${dropdownValue.item.url}" title="${dropdownValue.item.linkName}">${dropdownValue.item.linkName}</a>
+                                                <cms:component component="${dropdownValue.item}" evaluateRestriction="true"/>
+                                                	<%-- <a class="nav-link gray-link" href="${dropdownValue.item.url}" title="${dropdownValue.item.linkName}">${dropdownValue.item.linkName}</a> --%>
 								             </c:when>
 								             <c:otherwise>
 								             <c:if test="${l3link.index eq 0}">
-	                                            <a class="nav-link active" id="l3link${l3link.index}-tab" data-toggle="tab"
+	                                            <a class="nav-link left-tab active" id="l3link${l3link.index}-tab" data-toggle="tab"
 	                                                href="#l3link${l3link.index}" role="tab" aria-controls="l3link${l3link.index}"
 	                                                aria-selected="true">
 	                                                ${topLevelChild.title}
@@ -228,7 +228,7 @@
 	                                            </a>
                                             </c:if>
                                             <c:if test="${l3link.index ne 0}">
-	                                            <a class="nav-link" id="l3link${l3link.index}-tab" data-toggle="tab"
+	                                            <a class="nav-link left-tab" id="l3link${l3link.index}-tab" data-toggle="tab"
 	                                                href="#l3link${l3link.index}" role="tab" aria-controls="l3link${l3link.index}"
 	                                                aria-selected="true">
 	                                                ${topLevelChild.title}
@@ -553,8 +553,8 @@
 					                	<li class="nav-item">
 					                	<c:choose>
 					                		<c:when test="${not empty dropdownValue.item && dropdownValue.item ne null && (empty topLevelChild.children || topLevelChild.children eq null)}">
-                                                <%-- qq<cms:component component="${dropdownValue.item}" evaluateRestriction="true" /> --%>
-                                                	<a class="nav-link gray-link" href="${dropdownValue.item.url}" title="${dropdownValue.item.linkName}">${dropdownValue.item.linkName}</a>
+                                                <cms:component component="${dropdownValue.item}" evaluateRestriction="true" />
+                                                	<%-- <a class="nav-link gray-link" href="${dropdownValue.item.url}" title="${dropdownValue.item.linkName}">${dropdownValue.item.linkName}</a> --%>
 								             </c:when>
 								             <c:otherwise>
 								             <c:if test="${l3link.index eq 0}">

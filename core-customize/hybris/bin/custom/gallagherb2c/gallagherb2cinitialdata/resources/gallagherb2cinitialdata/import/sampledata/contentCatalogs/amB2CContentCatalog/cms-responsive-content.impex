@@ -1673,9 +1673,11 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;AllWirelessWaterMonitoringLink;All Wireless Water Monitoring;http://www.wiki.com/;;;
 ;;AllSteelGatesandHardwareLink;All Steel Gates and Hardware Link;http://www.wiki.com/;;;
 ;;AllFarminformationtoolsLink;All Farm information tools Link;http://www.wiki.com/;;;
-;;AllStockprodsLink;All Stock prods Link;https://www.google.com/;;;
-;;NewProductsLink;New Products Link;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
-;;promotionsLink;promotionsLink Link;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];styleAttributes
+;;NewProductsLink;New Products Link;/Animal-Management/Electric-Fencing/c/electric-fencing;;;"nav-link gray-link"
+;;PromotionsLink;PromotionsLink Link;/Animal-Management/Electric-Fencing/c/electric-fencing;;;"nav-link gray-link"
+;;StockprodsLink;Stock prods Link;/Animal-Management/Electric-Fencing/c/electric-fencing;;;"nav-link"
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];name;$contentCV[unique=true];children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
 ;Electricfencing_Nav;Electric fencing Nav;;ElectricfencingPower_Nav,ElectricfencingPermanentfencing_Nav,ElectricfencingPortablefencing_Nav;"Electric Fencing";Electricfencing_Nav
@@ -1683,7 +1685,7 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];name;$contentCV[unique=true];ch
 ;WirelessWaterMonitoring_Nav;Wireless Water Monitoring Nav;;ElectricfencingPower_Nav2;"Wireless Water Monitoring";WirelessWaterMonitoring_Nav
 ;SteelGatesandHardware_Nav;Steel Gatesand Hardware Nav;;ElectricfencingPower_Nav3;"Steel Gates and Hardware";SteelGatesandHardware_Nav
 ;FarmInformationTools_Nav;Farm Information Tools Nav;;ElectricfencingPower_Nav4;"Farm information tools";FarmInformationTools_Nav
-;Stockprods_Nav;Stockprods Nav;;ElectricfencingPower_Nav5;"Stock prods";Stockprods_Nav
+;Stockprods_Nav;Stockprods Nav;;;"Stock prods";Stockprods_Nav
 ;NewProducts_Nav;New Products Nav;;;"New Products";NewProducts_Nav
 ;Promotions_Nav;Promotions Nav;;;"Promotions";Promotions_Nav
 
@@ -1693,9 +1695,9 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];name;$contentCV[unique=true];n
 ;WirelessWaterMonitoring_NavEntry;Wireless Water Monitoring Nav Entry;;WirelessWaterMonitoring_Nav;AllWirelessWaterMonitoringLink
 ;SteelGatesandHardware_NavEntry;Steel Gatesand Hardware Nav Entry;;SteelGatesandHardware_Nav;AllSteelGatesandHardwareLink
 ;FarmInformationTools_NavEntry;Farm Information Tools Nav Entry;;FarmInformationTools_Nav;AllFarminformationtoolsLink
-;Stockprods_NavEntry;Stockprods Nav Entry;;Stockprods_Nav;AllStockprodsLink
+;Stockprods_NavEntry;Stockprods Nav Entry;;Stockprods_Nav;StockprodsLink
 ;NewProducts_NavEntry;New Products Nav Entry;;NewProducts_Nav;NewProductsLink
-;Promotions_NavEntry;Promotions Nav Entry;;Promotions_Nav;promotionsLink
+;Promotions_NavEntry;Promotions Nav Entry;;Promotions_Nav;PromotionsLink
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
 ;;SolutionLink;Solution Link;https://www.google.com/;;;;
