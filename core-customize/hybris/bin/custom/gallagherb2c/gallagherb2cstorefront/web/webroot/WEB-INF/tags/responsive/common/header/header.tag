@@ -211,8 +211,8 @@
 					                	<li class="nav-item">
 					                	<c:choose>
 					                		<c:when test="${not empty dropdownValue.item && dropdownValue.item ne null && (empty topLevelChild.children || topLevelChild.children eq null)}">
-                                                <%-- qq<cms:component component="${dropdownValue.item}" evaluateRestriction="true" /> --%>
-                                                	<a class="nav-link gray-link" href="${dropdownValue.item.url}" title="${dropdownValue.item.linkName}">${dropdownValue.item.linkName}</a>
+                                                <cms:component component="${dropdownValue.item}" evaluateRestriction="true"/>
+                                                	<%-- <a class="nav-link gray-link" href="${dropdownValue.item.url}" title="${dropdownValue.item.linkName}">${dropdownValue.item.linkName}</a> --%>
 								             </c:when>
 								             <c:otherwise>
 								             <c:if test="${l3link.index eq 0}">
@@ -553,8 +553,8 @@
 					                	<li class="nav-item">
 					                	<c:choose>
 					                		<c:when test="${not empty dropdownValue.item && dropdownValue.item ne null && (empty topLevelChild.children || topLevelChild.children eq null)}">
-                                                <%-- qq<cms:component component="${dropdownValue.item}" evaluateRestriction="true" /> --%>
-                                                	<a class="nav-link gray-link" href="${dropdownValue.item.url}" title="${dropdownValue.item.linkName}">${dropdownValue.item.linkName}</a>
+                                                <cms:component component="${dropdownValue.item}" evaluateRestriction="true" />
+                                                	<%-- <a class="nav-link gray-link" href="${dropdownValue.item.url}" title="${dropdownValue.item.linkName}">${dropdownValue.item.linkName}</a> --%>
 								             </c:when>
 								             <c:otherwise>
 								             <c:if test="${l3link.index eq 0}">
