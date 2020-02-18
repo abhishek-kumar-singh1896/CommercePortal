@@ -3,6 +3,9 @@
 <%@ taglib prefix="cms" uri="http://hybris.com/tld/cmstags"%>
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<c:set var="isUserAnonymous" value="${sessionScope.jalosession}" />
 
 <div class="product-details page-title">
 	<ycommerce:testId code="productDetails_productNamePrice_label_${product.code}">
@@ -21,9 +24,11 @@
 				<div class="col-lg-6">
 					<div class="product-details">
 						<%-- <product:productPromotionSection product="${product}"/> --%>
-						<ycommerce:testId code="productDetails_productNamePrice_label_${product.code}">
-							<product:productPricePanel product="${product}" />
-						</ycommerce:testId>
+						<c:if test = "${not fn:contains(isUserAnonymous, 'anonymous')}">
+							<ycommerce:testId code="productDetails_productNamePrice_label_${product.code}">
+								<product:productPricePanel product="${product}" />
+							</ycommerce:testId>
+						</c:if>
 					<!--	<div class="description">${ycommerce:sanitizeHTML(product.summary)}</div>   -->
 
 						<div class="short-description">${product.description}</div>
@@ -36,9 +41,11 @@
 					<cms:pageSlot position="VariantSelector" var="component" element="div" class="page-details-variants-select">
 						<cms:component component="${component}" element="div" class="yComponentWrapper page-details-variants-select-component"/>
 					</cms:pageSlot>
-					<cms:pageSlot position="AddToCart" var="component" element="div" class="page-details-variants-select">
-						<cms:component component="${component}" element="div" class="yComponentWrapper page-details-add-to-cart-component"/>
-					</cms:pageSlot>
+					<c:if test = "${not fn:contains(isUserAnonymous, 'anonymous')}">
+						<cms:pageSlot position="AddToCart" var="component" element="div" class="page-details-variants-select">
+							<cms:component component="${component}" element="div" class="yComponentWrapper page-details-add-to-cart-component"/>
+						</cms:pageSlot>
+					</c:if>
 					<cms:pageSlot position="ProductCompareSection" var="component" element="div">
                     <cms:component component="${component}" class="yComponentWrapper"/>
                     </cms:pageSlot>
