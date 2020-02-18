@@ -35,6 +35,7 @@
 </c:if>
 
 <c:if test="${searchPageData.pagination.totalNumberOfResults > 0}">
+		<c:if test = "${top}">
     <div class="sorting-section-out d-none d-lg-block ${(top)?"top":"bottom"}">
         <div class="row align-items-end">
         
@@ -79,15 +80,8 @@
         
         
             <c:if test="${not empty searchPageData.sorts}">
-<!--                 <div class="helper clearfix hidden-md hidden-lg"></div> -->
                 <div class="col-6 text-right">
-<!--                     <div class="row"> -->
-<!--                         <div class="col-xs-12 col-sm-4 col-md-4"> -->
                             <div class="sort-by-out">
- <%--                                <label class="control-label " for="sortForm${top ? '1' : '2'}">
-                                    <spring:theme code="${themeMsgKey}.sortTitle"/>
-                                </label> --%>
-
                                 <form id="sortForm${top ? '1' : '2'}" name="sortForm${top ? '1' : '2'}" method="get"
                                       action="#">
                                     <select id="sortOptions${top ? '1' : '2'}" name="sort" class="form-control">
@@ -129,26 +123,14 @@
                                     </c:if>
                                 </form>
                             </div>
-<!--                         </div> -->
-
                         <div class="col-xs-12 col-sm-6 col-md-5 pagination-wrap">
                             <pagination:pageSelectionPagination searchUrl="${searchUrl}" searchPageData="${searchPageData}"
                                                                 numberPagesShown="${numberPagesShown}"
                                                                 themeMsgKey="${themeMsgKey}"/>
                         </div>
-
-<%--                         <c:if test="${not hideRefBtn}"> --%>
-<!--                             <div class="col-xs-12 col-sm-2 col-md-4 hidden-md hidden-lg"> -->
-<%--                                 <ycommerce:testId code="searchResults_refine_button"> --%>
-<%--                                     <product:productRefineButton styleClass="btn btn-default js-show-facets"/> --%>
-<%--                                 </ycommerce:testId> --%>
-<!--                             </div> -->
-<%--                         </c:if> --%>
-<!--                     </div> -->
                 </div>
             </c:if>
         </div>
-     
-<!--      text was here -->
     </div>
+    </c:if>
 </c:if>

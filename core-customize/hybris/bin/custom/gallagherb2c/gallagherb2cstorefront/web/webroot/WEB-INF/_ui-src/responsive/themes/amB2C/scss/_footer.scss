@@ -50,17 +50,22 @@
       display: inline-block;
 
       .dropdown-menu {
-        color: $gray-9;
+        color: $white;
         font-size: 1em;
+        background-color: $black;
 
         a {
-          color: $gray-9;
+          color: $white;
           padding: 5px 15px;
           margin: 0;
 
           &:hover {
             background-color: transparent;
             color: $primary-color;
+          }
+
+          &:last-child {
+            margin-bottom: 10px;
           }
         }
       }
@@ -70,6 +75,20 @@
           &::after,
           &::before {
             display: none;
+          }
+
+          &[aria-expanded="true"] {
+            color: $primary-color;
+            .down-arrow-icon {
+              -webkit-transform: rotate(180deg);
+              transform: rotate(180deg);
+              -webkit-transition: all 0.2s ease;
+              transition: all 0.2s ease;
+
+              svg {
+                fill: $primary-color;
+              }
+            }
           }
         }
       }
@@ -134,10 +153,10 @@
     }
 
     .footer-bottom-section {
-        .other-division,
-        .country-select {
-          display: block;
-        }
+      .other-division,
+      .country-select {
+        display: block;
+      }
       .footer-text-right {
         text-align: left;
       }

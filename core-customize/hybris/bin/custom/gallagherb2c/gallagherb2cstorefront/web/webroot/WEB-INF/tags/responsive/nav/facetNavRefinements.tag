@@ -7,20 +7,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 							
 								
-                            <div class="sidebar-filter-section d-flex flex-column justify-content-center">
-                               <c:if test="${fn:length(pageData.breadcrumbs) >0}">  
-                                <div>
-                                    <a href="javascript:void(0)"  id="clear-filter">
-                                        <span class="cross-icon">
-                                            <svg>
-                                                <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#cross" />
-                                            </svg>
-                                        </span>
-                                        Clear filters
-                                    </a>
-                                </div>
-										</c:if>
-                            </div>
+               
 						<c:forEach items="${pageData.facets}" var="facet" varStatus="i">
 							<c:choose>
 								<c:when test="${facet.code eq 'availableInStores'}">

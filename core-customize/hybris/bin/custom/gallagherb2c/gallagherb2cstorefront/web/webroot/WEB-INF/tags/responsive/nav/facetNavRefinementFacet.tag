@@ -16,6 +16,11 @@
 		<h4 class="sidebar-section-header with-link">	
 		 <a data-toggle="collapse" href="#${fn:replace(facetData.name,' ','_')}" role="button" aria-expanded="false" aria-controls="${facetData.name}">	
 			<spring:theme code="search.nav.facetTitle" arguments="${facetData.name}"/>
+			<span class="down-arrow-icon">
+                                    <svg>
+                                        <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-down" />
+                                    </svg>
+                                </span>
 			</a>
 			
 			<%-- <span class="down-arrow-icon">
@@ -24,8 +29,8 @@
                </svg>
            </span> --%>
 		</h4>	
-		<div class="sidebar-section-container collapse ${collapseflag}" id="${fn:replace(facetData.name,' ','_')}">
-
+		<div class="js-facet-form sidebar-section-container collapse ${collapseflag}" id="${fn:replace(facetData.name,' ','_')}">
+			<div class="sidebar-section-container-inner">
 			<c:if test="${not empty facetData.topValues}">
 				<ul>
 					<c:forEach items="${facetData.topValues}" var="facetValue">
@@ -66,8 +71,8 @@
 								<input type="hidden" name="q" value="${facetValue.query.query.value}"/>
 								<input type="hidden" name="text" value="${searchPageData.freeTextSearch}"/>
 								<label>
-									<input type="checkbox" ${facetValue.selected ? 'checked="checked"' : ''}  class="facet__list__checkbox js-facet-checkbox sr-only" />
-											
+									<input type="checkbox" ${facetValue.selected ? 'checked="checked"' : ''} class="facet__list__checkbox js-facet-checkbox" />
+<!-- 											 class="facet__list__checkbox js-facet-checkbox sr-only"											 -->
 											${fn:escapeXml(facetValue.name)}
 											<%-- <ycommerce:testId code="facetNav_count">
 
@@ -97,6 +102,7 @@
 					<a href="#" class="js-less-facet-values-link"><spring:theme code="search.nav.facetShowLess_${facetData.code}" /></a>
 				</span>
 			</c:if>
+			</div>
 		</div>
 	</div>
 </ycommerce:testId>
