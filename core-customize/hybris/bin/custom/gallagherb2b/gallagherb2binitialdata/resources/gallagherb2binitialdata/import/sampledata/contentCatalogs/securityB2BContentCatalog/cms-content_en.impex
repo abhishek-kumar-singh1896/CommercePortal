@@ -76,7 +76,8 @@ UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=e
  ;;SandersCategoryLink;"Sanders"
  ;;ScrewdriversCategoryLink;"Screwdrivers"
  ;;StrippingToolsCategoryLink;"Stripping Tools"
- ;;AllProductsCategoryLink;"All Products"
+ ;;PerimeterSecurityCategoryLink;"Perimeter Security"
+ ;;AccessControlCategoryLink;"Access Control"
 
 # Lightbox Banner for Mini Cart (banner is not localizable so we must create a separate banner per language)
 INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];&imageRef;folder(qualifier)[default='images'];altText
@@ -142,8 +143,8 @@ UPDATE CMSNavigationNode;$contentCV[unique=true];uid[unique=true];title[lang=en]
  ;;SafetyNavNode;"Safety"
  ;;SandersNavNode;"Sanders"
  ;;ScrewdriversNavNode;"Screwdrivers"
-  ;;AllProductsNavNode;"All Products"
- ;;AllProductsLinksNavNode;"All Products"
+ ;;PerimeterSecurityNavNode;"Perimeter Security"
+ ;;AccessControlNavNode;"Access Control"
 
 # SecurityB2B FAQ Page
 

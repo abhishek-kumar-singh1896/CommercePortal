@@ -18,12 +18,5 @@ $categories=target(code, $catalogVersion)[unique=true]
 
 # Insert Categories
 INSERT_UPDATE Category;code[unique=true];allowedPrincipals(uid)[default='customergroup'];$catalogVersion
-;Security
-;Readers
-;T-Series
-;T-Series Readers
 
 INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
-;Readers;Security
-;T-Series;Readers
-;T-Series Readers;T-Series

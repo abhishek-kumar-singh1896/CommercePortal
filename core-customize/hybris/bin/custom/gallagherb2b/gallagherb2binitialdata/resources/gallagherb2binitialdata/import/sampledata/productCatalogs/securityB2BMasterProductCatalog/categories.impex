@@ -25,6 +25,9 @@ INSERT_UPDATE Category;code[unique=true];allowedPrincipals(uid)[default='custome
 ;security
 
 # Main Categories
+;all-perimeter-security
+;all-access-control
+
 ;perimeter-security
 ;access-control
 
@@ -268,8 +271,11 @@ INSERT_UPDATE Category;code[unique=true];allowedPrincipals(uid)[default='custome
 ;cards-transponders-and-encoding
 
 INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
-;access-control;security
-;perimeter-security;security
+;all-access-control;security
+;all-perimeter-security;security
+
+;access-control;all-access-control
+;perimeter-security;all-perimeter-security
 
 #perimeter-security
 
@@ -401,8 +407,6 @@ INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
 ;piv-triple-factor-readers;gallagher-piv-solution
 ;piv-enrolment-readers;gallagher-piv-solution
 ;pivclass-registration-engine;gallagher-piv-solution
-
-;gallagher-class-5-intruder-alarm-system;gallagher-class-5-intruder-alarm-system
 
 ;protocol-converters;miscellaneous-items
 ;transceivers;miscellaneous-items
