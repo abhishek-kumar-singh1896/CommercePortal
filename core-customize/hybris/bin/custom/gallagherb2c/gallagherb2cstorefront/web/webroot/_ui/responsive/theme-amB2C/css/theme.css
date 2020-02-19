@@ -706,21 +706,37 @@
       display: inline-block; }
       .footer-out .footer-bottom-section .other-division .dropdown-menu,
       .footer-out .footer-bottom-section .country-select .dropdown-menu {
-        color: #231e1f;
-        font-size: 1em; }
+        color: #ffffff;
+        font-size: 1em;
+        background-color: #000; }
         .footer-out .footer-bottom-section .other-division .dropdown-menu a,
         .footer-out .footer-bottom-section .country-select .dropdown-menu a {
-          color: #231e1f;
+          color: #ffffff;
           padding: 5px 15px;
           margin: 0; }
           .footer-out .footer-bottom-section .other-division .dropdown-menu a:hover,
           .footer-out .footer-bottom-section .country-select .dropdown-menu a:hover {
             background-color: transparent;
             color: #ff8400; }
+          .footer-out .footer-bottom-section .other-division .dropdown-menu a:last-child,
+          .footer-out .footer-bottom-section .country-select .dropdown-menu a:last-child {
+            margin-bottom: 10px; }
       .footer-out .footer-bottom-section .other-division.dropup .dropdown-toggle::after, .footer-out .footer-bottom-section .other-division.dropup .dropdown-toggle::before,
       .footer-out .footer-bottom-section .country-select.dropup .dropdown-toggle::after,
       .footer-out .footer-bottom-section .country-select.dropup .dropdown-toggle::before {
         display: none; }
+      .footer-out .footer-bottom-section .other-division.dropup .dropdown-toggle[aria-expanded="true"],
+      .footer-out .footer-bottom-section .country-select.dropup .dropdown-toggle[aria-expanded="true"] {
+        color: #ff8400; }
+        .footer-out .footer-bottom-section .other-division.dropup .dropdown-toggle[aria-expanded="true"] .down-arrow-icon,
+        .footer-out .footer-bottom-section .country-select.dropup .dropdown-toggle[aria-expanded="true"] .down-arrow-icon {
+          -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+          -webkit-transition: all 0.2s ease;
+          transition: all 0.2s ease; }
+          .footer-out .footer-bottom-section .other-division.dropup .dropdown-toggle[aria-expanded="true"] .down-arrow-icon svg,
+          .footer-out .footer-bottom-section .country-select.dropup .dropdown-toggle[aria-expanded="true"] .down-arrow-icon svg {
+            fill: #ff8400; }
     .footer-out .footer-bottom-section a {
       display: inline-block;
       color: #ffffff;
@@ -796,7 +812,7 @@ body {
   color: #231e1f;
   height: 100%;
   margin: 0;
-  padding: 80px 0 0 0;
+  padding: 0;
   font-size: 14px;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
   text-rendering: optimizeLegibility !important;
@@ -812,6 +828,19 @@ body {
   fill: #ff7902;
   width: 148px;
   height: 40px; }
+
+label {
+  text-transform: inherit; }
+
+.gray-shade,
+.orange-shade {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(14, 15, 15, 0.48); }
+
+.orange-shade {
+  background: rgba(255, 132, 0, 0.85); }
 
 a {
   color: #0a97cc;
@@ -955,6 +984,27 @@ h2.secondary-title {
 .main-nav-out {
   margin-top: 13px;
   margin-left: 30px; }
+  .main-nav-out.with-logged-in-user .btn {
+    background: linear-gradient(to bottom, #ff8e03 0%, #ff7902 100%); }
+    .main-nav-out.with-logged-in-user .btn .user-icon {
+      min-width: 10px;
+      display: block; }
+      .main-nav-out.with-logged-in-user .btn .user-icon svg {
+        width: 24px;
+        height: 24px;
+        fill: #231e1f;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto; }
+    .main-nav-out.with-logged-in-user .btn:hover {
+      color: #ffffff; }
+      .main-nav-out.with-logged-in-user .btn:hover svg {
+        fill: #ffffff; }
+  .main-nav-out.with-logged-in-user .btn-group.show .right-btn {
+    background: linear-gradient(to bottom, #bc6603 0%, #bc6603 100%); }
   .main-nav-out ul {
     margin: 0;
     padding: 0;
@@ -1000,7 +1050,8 @@ h2.secondary-title {
   max-width: 1410px;
   width: 100%;
   background: #231e1f;
-  letter-spacing: 0.1px; }
+  letter-spacing: 0.1px;
+  z-index: 999; }
   .second-level-menu .contact-us-container {
     padding: 20px; }
     .second-level-menu .contact-us-container .call-us-contact-number {
@@ -1014,11 +1065,21 @@ h2.secondary-title {
       color: #b0b0b0; }
   .second-level-menu .menu-container-title {
     color: #ffffff;
-    margin-bottom: 24px; }
-    .second-level-menu .menu-container-title .arrow-right-icon svg {
-      fill: #ffffff;
-      width: 20px;
-      height: 20px; }
+    margin-bottom: 24px;
+    display: inline-block;
+    position: relative; }
+    .second-level-menu .menu-container-title .arrow-right-icon {
+      position: absolute;
+      right: -20px;
+      top: -1px; }
+      .second-level-menu .menu-container-title .arrow-right-icon svg {
+        fill: #ffffff;
+        width: 20px;
+        height: 20px; }
+    .second-level-menu .menu-container-title:hover {
+      color: #ff8400; }
+      .second-level-menu .menu-container-title:hover svg {
+        fill: #ff8400; }
     .second-level-menu .menu-container-title a {
       color: #ffffff;
       text-decoration: none; }
@@ -1047,6 +1108,7 @@ h2.secondary-title {
         color: #ffffff;
         font-size: 1em;
         text-decoration: none;
+        text-transform: inherit;
         transition: all ease-in-out 0.2s;
         border-left: 4px transparent; }
         .second-level-menu .third-level-menu .left-menu-container .nav-tabs .nav-link .arrow-right-icon svg {
@@ -1059,7 +1121,8 @@ h2.secondary-title {
           bottom: 0;
           margin: auto; }
         .second-level-menu .third-level-menu .left-menu-container .nav-tabs .nav-link:hover {
-          color: #ff8400; }
+          color: #ff8400;
+          background: transparent; }
           .second-level-menu .third-level-menu .left-menu-container .nav-tabs .nav-link:hover svg {
             fill: #ff8400; }
         .second-level-menu .third-level-menu .left-menu-container .nav-tabs .nav-link.active {
@@ -1069,21 +1132,23 @@ h2.secondary-title {
           background-color: transparent; }
           .second-level-menu .third-level-menu .left-menu-container .nav-tabs .nav-link.active .arrow-right-icon svg {
             fill: #ff8400; }
+        .second-level-menu .third-level-menu .left-menu-container .nav-tabs .nav-link.gray-link {
+          color: #b0b0b0;
+          padding: 16px 8px;
+          text-decoration: none;
+          display: block; }
+          .second-level-menu .third-level-menu .left-menu-container .nav-tabs .nav-link.gray-link:hover {
+            color: #ff8400; }
+          .second-level-menu .third-level-menu .left-menu-container .nav-tabs .nav-link.gray-link.active {
+            color: inherit;
+            border-left: none;
+            font-family: inherit;
+            background-color: transparent;
+            color: #b0b0b0; }
       .second-level-menu .third-level-menu .left-menu-container .nav-tabs .nav-item {
         margin: 0;
         display: block;
         width: 100%; }
-    .second-level-menu .third-level-menu .left-menu-container .left-menu-bottom-section ul {
-      list-style: none;
-      margin: 0;
-      padding: 0; }
-      .second-level-menu .third-level-menu .left-menu-container .left-menu-bottom-section ul li a {
-        color: #b0b0b0;
-        padding: 16px;
-        text-decoration: none;
-        display: block; }
-        .second-level-menu .third-level-menu .left-menu-container .left-menu-bottom-section ul li a:hover {
-          color: #ff8400; }
   .second-level-menu .third-level-menu .right-menu-container {
     padding: 20px; }
     .second-level-menu .third-level-menu .right-menu-container .container-col-title {
@@ -1105,7 +1170,10 @@ h2.secondary-title {
 .responsive-mega-menu-modal .modal-dialog {
   margin: 0;
   max-width: 260px;
-  float: right; }
+  float: right;
+  width: 100%;
+  max-height: 100%;
+  background: #231e1f; }
   .responsive-mega-menu-modal .modal-dialog.modal-dialog-scrollable .modal-content {
     height: 100vh;
     max-height: 100vh; }
@@ -1116,31 +1184,31 @@ h2.secondary-title {
     color: #cccecf;
     height: 100vh;
     max-height: 100vh; }
-    .responsive-mega-menu-modal .modal-dialog .modal-content .main-menu-listing ul {
+    .responsive-mega-menu-modal .modal-dialog .modal-content .menu-listing ul {
       list-style: none;
       margin: 0;
       padding: 0; }
-      .responsive-mega-menu-modal .modal-dialog .modal-content .main-menu-listing ul li a {
+      .responsive-mega-menu-modal .modal-dialog .modal-content .menu-listing ul li a {
         display: block;
         color: #cccecf;
         display: block;
         position: relative;
         padding: 16px 16px 16px 0;
         text-decoration: none; }
-        .responsive-mega-menu-modal .modal-dialog .modal-content .main-menu-listing ul li a .right-arrow-icon {
+        .responsive-mega-menu-modal .modal-dialog .modal-content .menu-listing ul li a .right-arrow-icon {
           position: absolute;
           right: 0;
           top: 0;
           bottom: 0;
           margin: auto;
           height: 25px; }
-          .responsive-mega-menu-modal .modal-dialog .modal-content .main-menu-listing ul li a .right-arrow-icon svg {
+          .responsive-mega-menu-modal .modal-dialog .modal-content .menu-listing ul li a .right-arrow-icon svg {
             fill: #cccecf;
             width: 22px;
             height: 22px; }
-        .responsive-mega-menu-modal .modal-dialog .modal-content .main-menu-listing ul li a:hover, .responsive-mega-menu-modal .modal-dialog .modal-content .main-menu-listing ul li a:focus {
+        .responsive-mega-menu-modal .modal-dialog .modal-content .menu-listing ul li a:hover, .responsive-mega-menu-modal .modal-dialog .modal-content .menu-listing ul li a:focus {
           color: #ff8400; }
-          .responsive-mega-menu-modal .modal-dialog .modal-content .main-menu-listing ul li a:hover .right-arrow-icon svg, .responsive-mega-menu-modal .modal-dialog .modal-content .main-menu-listing ul li a:focus .right-arrow-icon svg {
+          .responsive-mega-menu-modal .modal-dialog .modal-content .menu-listing ul li a:hover .right-arrow-icon svg, .responsive-mega-menu-modal .modal-dialog .modal-content .menu-listing ul li a:focus .right-arrow-icon svg {
             fill: #ff8400; }
     .responsive-mega-menu-modal .modal-dialog .modal-content .modal-header {
       border-bottom: none;
@@ -1157,7 +1225,7 @@ h2.secondary-title {
           width: 22px;
           height: 22px;
           position: absolute;
-          left: -8px;
+          left: -6px;
           top: -2px; }
         .responsive-mega-menu-modal .modal-dialog .modal-content .modal-header .left-title-out a:hover, .responsive-mega-menu-modal .modal-dialog .modal-content .modal-header .left-title-out a:focus {
           color: #ff8400; }
@@ -1175,10 +1243,40 @@ h2.secondary-title {
           padding-left: 4px; }
     .responsive-mega-menu-modal .modal-dialog .modal-content .modal-footer {
       border: none;
-      padding: 12px 0 0 0;
+      padding: 0;
       border-top: 1px solid #575a5d; }
-      .responsive-mega-menu-modal .modal-dialog .modal-content .modal-footer .btn {
-        border-radius: 0; }
+      .responsive-mega-menu-modal .modal-dialog .modal-content .modal-footer .left-btn {
+        margin-right: 2px; }
+      .responsive-mega-menu-modal .modal-dialog .modal-content .modal-footer .xs-main-menu-l1-footer {
+        width: 100%;
+        padding: 8px 16px;
+        margin: 16px 0 0 0; }
+      .responsive-mega-menu-modal .modal-dialog .modal-content .modal-footer .xs-main-menu-l2-footer {
+        width: 100%;
+        height: 140px;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        position: relative; }
+        .responsive-mega-menu-modal .modal-dialog .modal-content .modal-footer .xs-main-menu-l2-footer .menu-l2-footer-container {
+          position: absolute;
+          top: 50%;
+          -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+          width: 100%;
+          text-align: center; }
+        .responsive-mega-menu-modal .modal-dialog .modal-content .modal-footer .xs-main-menu-l2-footer .promotion-title {
+          color: #ffffff;
+          font-size: 1.42857em;
+          line-height: 24px;
+          margin-bottom: 8px; }
+        .responsive-mega-menu-modal .modal-dialog .modal-content .modal-footer .xs-main-menu-l2-footer .promotion-link a {
+          color: #ff8400;
+          text-decoration: none;
+          font-size: 1em; }
+
+.accordion {
+  text-transform: inherit; }
 
 @media only screen and (max-width: 1600px) {
   .second-level-menu {
@@ -1189,7 +1287,10 @@ h2.secondary-title {
     max-width: 100%;
     float: none; } }
 .product-list-sidebar-out .sidebar-filter-section {
-  min-height: 59px; }
+  margin-bottom: 16px; }
+  .product-list-sidebar-out .sidebar-filter-section .cross-icon-out {
+    width: 100%;
+    margin-top: 15px; }
   .product-list-sidebar-out .sidebar-filter-section a {
     display: inline-block;
     text-decoration: none;
@@ -1405,11 +1506,11 @@ h2.secondary-title {
     .product-list .product-listing-out ul li.product-tile .product-status {
       position: absolute;
       top: -8px;
-      left: 9px;
+      right: 9px;
       text-align: center;
       z-index: 100; }
       .product-list .product-listing-out ul li.product-tile .product-status img {
-        width: 40px;
+        max-width: 40px;
         height: 40px; }
     .product-list .product-listing-out ul li.product-tile .product-img-box {
       height: 140px;
@@ -1507,8 +1608,10 @@ h2.secondary-title {
       .refine-filter-modal .modal-dialog .modal-content .modal-footer .btn {
         border-radius: 0; }
 .refine-filter-modal .product-list-sidebar-out .sidebar-filter-section {
-  min-height: inherit;
-  padding-bottom: 16px; }
+  min-height: inherit; }
+  .refine-filter-modal .product-list-sidebar-out .sidebar-filter-section .cross-icon-out {
+    width: 100%;
+    margin-top: 15px; }
   .refine-filter-modal .product-list-sidebar-out .sidebar-filter-section a {
     display: inline-block;
     text-decoration: none;
@@ -1618,7 +1721,7 @@ h2.secondary-title {
       border-bottom: 1px solid #e6e7e8; }
     .product-list .product-listing-out ul li.product-tile .product-status {
       top: -8px;
-      left: 8px; }
+      right: 0px; }
   .product-list .banner-text-container {
     text-align: center; }
     .product-list .banner-text-container h1 {
@@ -1627,6 +1730,17 @@ h2.secondary-title {
       font-family: "GalaxiePolaris-Bold", sans-serif; }
   .product-list .sub-header-out .left-section {
     margin-bottom: 20px; } }
+.alert {
+  margin-bottom: 0; }
+  .alert.alert-info {
+    border-radius: 0;
+    color: #000;
+    background-color: rgba(255, 132, 0, 0.7);
+    border-color: rgba(255, 132, 0, 0.7); }
+    .alert.alert-info button.close {
+      opacity: 1;
+      color: #231e1f; }
+
 @media only screen and (max-width: 767px) {
   .plr-xs-0 {
     padding-left: 0;
