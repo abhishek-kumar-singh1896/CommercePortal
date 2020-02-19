@@ -10,9 +10,23 @@
 
 <c:if test="${not empty pageData.breadcrumbs}">
 
-	<div class="facet js-facet">
+             <div class="sidebar-filter-section">
+                               <c:if test="${fn:length(pageData.breadcrumbs) >0}">  
+                                <div class="cross-icon-out">
+                                    <a href="javascript:void(0)"  id="clear-filter">
+                                        <span class="cross-icon">
+                                            <svg>
+                                                <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#cross" />
+                                            </svg>
+                                        </span>
+                                        Clear filters
+                                    </a>
+                                </div>
+										</c:if>
+                            </div>
+	<div class="sidebar-section">
 
-	<div class="facet__name js-facet-name">
+	<div class="sidebar-section-header with-link">
 		<span class="glyphicon facet__arrow"></span>
 		<spring:theme code="search.nav.applied.facets"/>
 	</div>
