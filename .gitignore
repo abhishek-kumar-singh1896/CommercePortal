@@ -45,6 +45,7 @@ core-customize/hybris/config/solr/
 
 # Ignoring files copied by addons
 core-customize/hybris/bin/custom/**/web/addonsrc/
+core-customize/hybris/bin/custom/**/web/addontestsrc/
 core-customize/hybris/bin/custom/**/web/webroot/_ui/addons/
 core-customize/hybris/bin/custom/**/web/webroot/cmscockpit/
 core-customize/hybris/bin/custom/**/web/webroot/cockpit/
@@ -57,6 +58,16 @@ core-customize/hybris/bin/custom/**/web/webroot/WEB-INF/tags/addons/
 core-customize/hybris/bin/custom/**/web/webroot/WEB-INF/tld/addons/
 core-customize/hybris/bin/custom/**/web/webroot/WEB-INF/_ui-src/addons/
 core-customize/hybris/bin/custom/**/resources/wro_addons.xml
+
+# Ignoring npm build packages and cache files
+core-customize/hybris/bin/custom/**/node_modules/
+core-customize/hybris/bin/custom/**/web/webroot/**/.sass-cache
+
+# Ignoring the _ui files generated from _ui-src
+core-customize/hybris/bin/custom/**/web/webroot/_ui/responsive/theme-*/css/theme.css
+core-customize/hybris/bin/custom/**/web/webroot/_ui/responsive/theme-*/fonts/*
+core-customize/hybris/bin/custom/**/web/webroot/_ui/responsive/theme-*/js/*
+core-customize/hybris/bin/custom/**/**/web/webroot/_ui/responsive/common/js/*
 
 core-customize/hybris/bin/custom/gallagherb2b/gallagherb2bstorefront/web/webroot/WEB-INF/lib/.lastupdate
 core-customize/hybris/bin/custom/gallagherb2c/gallagherb2cstorefront/web/webroot/WEB-INF/lib/.lastupdate
