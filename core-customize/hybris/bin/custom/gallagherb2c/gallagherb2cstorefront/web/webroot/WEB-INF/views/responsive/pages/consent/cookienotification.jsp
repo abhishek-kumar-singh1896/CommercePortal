@@ -8,6 +8,6 @@
         <button class="js-cookie-notification-accept close" aria-hidden="true" data-dismiss="alert" type="button">
             <spring:theme code="text.cookie.notification.accept" />
         </button>
-	    <spring:theme code="text.cookie.notification" />
+	    <spring:theme code="text.cookie.notification" />  
 	</div>
 </c:if>
