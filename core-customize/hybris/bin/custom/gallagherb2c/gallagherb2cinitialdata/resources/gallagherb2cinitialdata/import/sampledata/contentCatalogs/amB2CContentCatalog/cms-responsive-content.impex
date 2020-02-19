@@ -1700,17 +1700,34 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];name;$contentCV[unique=true];n
 ;Promotions_NavEntry;Promotions Nav Entry;;Promotions_Nav;PromotionsLink
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
-;;SolutionLink;Solution Link;https://www.google.com/;;;;
-;;SupportLink;Support Link;http://www.wiki.com/;;;;
-;;ProductLink;Product Link;http://www.wiki.com/;;;;;;;
-;;ContactLink;Contact Us Link;https://www.bing.com/;;;;
+;;CallUsLink;Call Us Link;https://www.google.com/;;;
+;;FindStoreLink;Find Store Link;https://www.google.com/;;;
+;;FindManagerLink;Find Manager Link;http://www.google.com/;;;
+;;SendMessageLink;Send Message Link;http://www.google.com/;;;
 
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];name;$contentCV[unique=true];children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
+;CallUs_Nav;Call Us Nav;;;"Our customer services team are hete to help.";CallUs_Nav
+;FindStore_Nav;Find Store Nav;;;"Our dealers are located nationwide.";FindStore_Nav
+;FindManager_Nav;Find Manager Monitoring Nav;;;"If you are looking for one-on-one system selection advice and training.";FindManager_Nav
+;SendMessage_Nav;Send Message Nav;;;"Have an enquiry or feedback? Contact us and we will get back to you";SendMessage_Nav
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];name;$contentCV[unique=true];navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
+;CallUs_NavEntry;Call Us Nav Entry;;CallUs_Nav;CallUsLink
+;FindStore_NavEntry;Find Store Nav Entry;;FindStore_Nav;FindStoreLink
+;FindManager_NavEntry;Find Manager Nav Entry;;FindManager_Nav;FindManagerLink
+;SendMessage_NavEntry;Send Message Nav Entry;;SendMessage_Nav;SendMessageLink
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;SolutionLink;Solution Link;https://www.google.com/;;;;
+;;SupportLink;Support Link;http://www.google.com/;;;;
+;;ProductLink;Product Link;http://www.google.com/;;;;;;;
+;;ContactLink;Contact Us Link;https://www.google.com/;;;;
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);children(uid,$contentCV)[mode=replace];links(uid, $contentCV);&nodeRef;title[lang=en]
 ;SolutionsNavNode;;Solutions Navigation Node Menu;HeaderLinkNavigationNode;;;SolutionsNavNode;"Solutions"
 ;ProductsNavNode;;Products Navigation Node Menu;;Electricfencing_Nav,WeighingEID_Nav,WirelessWaterMonitoring_Nav,SteelGatesandHardware_Nav,FarmInformationTools_Nav,Stockprods_Nav,NewProducts_Nav,Promotions_Nav;;ProductsNavNode;"Products"
 ;SupportNavNode;;Support Navigation Node Menu;HeaderLinkNavigationNode;;;SupportNavNode;"Support"
-;ContactNavNode;;Contact Us Navigation Node Menu;HeaderLinkNavigationNode;;;ContactNavNode;"Contact Us"
+;ContactNavNode;;Contact Us Navigation Node Menu;HeaderLinkNavigationNode;CallUs_Nav,FindStore_Nav,FindManager_Nav,SendMessage_Nav;ContactCheckLink;ContactNavNode;"Contact Us"
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
 ;SolutionsNavNodeEntry;;Solutions Navigation Node Entry;SolutionsNavNode;SolutionLink;
