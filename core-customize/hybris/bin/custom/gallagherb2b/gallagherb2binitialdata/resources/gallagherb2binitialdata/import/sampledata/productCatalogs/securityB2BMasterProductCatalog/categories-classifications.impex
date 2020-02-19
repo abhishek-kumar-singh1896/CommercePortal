@@ -52,8 +52,8 @@ INSERT_UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true];;;;;
 
 # Links ClassificationClasses to Categories
 INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories;;;;;;
-;T-Series Readers;Assigned Features;
-;T-Series Readers;Cable specifications (HBUS data only);
+;t-series-readers-and-terminals;Assigned Features;
+;t-series-readers-and-terminals;Cable specifications (HBUS data only);
 
 
 INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attributeType(code[default=string]);multiValued[default=false];range[default=false];localized[default=false]

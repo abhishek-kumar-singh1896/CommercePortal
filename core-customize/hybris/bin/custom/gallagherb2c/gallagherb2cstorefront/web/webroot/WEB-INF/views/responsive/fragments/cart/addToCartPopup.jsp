@@ -5,6 +5,7 @@
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags"%>
 <%@ taglib prefix="cart" tagdir="/WEB-INF/tags/responsive/cart" %>
 <c:set var="productName" value="${fn:escapeXml(product.name)}" />
+<c:url value="/cart" var="cartUrl" />
 
 {"quickOrderErrorData": [
 <c:forEach items="${quickOrderErrorData}" var="quickOrderEntry" varStatus="status">
@@ -70,7 +71,7 @@
             </ycommerce:testId>
 
 
-            <a href="" class="btn btn-default btn-block js-mini-cart-close-button">
+            <a href="${fn:escapeXml(cartUrl)}" class="btn btn-default btn-block">
                 <spring:theme code="cart.page.continue"/>
             </a>
 		</div>

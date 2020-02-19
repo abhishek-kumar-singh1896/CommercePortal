@@ -33,15 +33,15 @@ INSERT_UPDATE VariantValueCategory ; code[unique=true] ; name       ; $supercate
 
 # Insert Products
 INSERT_UPDATE Product;code[unique=true];$supercategories;manufacturerName;variantType(code);unit(code)[default=EA];$catalogVersion
-;t10-mifare-reader;T-Series Readers,B2B_Color;;GenericVariantProduct
-;t11-multi-tech-reader;T-Series Readers,B2B_Color;;GenericVariantProduct
-;t11-mifare-reader;T-Series Readers,B2B_Color;;GenericVariantProduct
-;t12-multi-tech-reader;T-Series Readers,B2B_Color;;GenericVariantProduct
-;t12-mifare-reader;T-Series Readers,B2B_Color;;GenericVariantProduct
-;t15-multi-tech-reader;T-Series Readers,B2B_Color;;GenericVariantProduct
-;t15-mifare-reader;T-Series Readers,B2B_Color;;GenericVariantProduct
-;t20-multi-tech-reader;T-Series Readers,B2B_Color;;GenericVariantProduct
-;t20-mifare-reader;T-Series Readers,B2B_Color;;GenericVariantProduct
+;t10-mifare-reader;t10,B2B_Color;;GenericVariantProduct
+;t11-multi-tech-reader;t11,B2B_Color;;GenericVariantProduct
+;t11-mifare-reader;t11,B2B_Color;;GenericVariantProduct
+;t12-multi-tech-reader;t12,B2B_Color;;GenericVariantProduct
+;t12-mifare-reader;t12,B2B_Color;;GenericVariantProduct
+;t15-multi-tech-reader;t15,B2B_Color;;GenericVariantProduct
+;t15-mifare-reader;t15,B2B_Color;;GenericVariantProduct
+;t20-multi-tech-reader;t20,B2B_Color;;GenericVariantProduct
+;t20-mifare-reader;t20,B2B_Color;;GenericVariantProduct
 
 
 #Update product description
