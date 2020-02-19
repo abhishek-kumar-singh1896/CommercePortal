@@ -685,7 +685,7 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents
 
 ###  Home page splash Slot 1  #######
 INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;&componentRef
-;;AMB2CHompageSplashBannerComponent;Animal Management B2C Homepage Splash Banner Component;/OpenCatalogue/Cameras/Digital-Cameras/Digital-SLR/c/578;AMB2CHompageSplashBannerComponent
+;;AMB2CHompageSplashBannerComponent;Animal Management B2C Homepage Splash Banner Component;/Animal-Management/Electric-Fencing/c/electric-fencing;AMB2CHompageSplashBannerComponent
 
 INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;&componentRef
 ;;AMB2CHompageDiscountBannerComponent;Animal Management B2C Homepage Discount Banner Component;/Open-Catalogue/Cameras/Camera-Accessories-%26-Supplies/c/585;AMB2CHompageDiscountBannerComponent
@@ -695,20 +695,20 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];active;cmsCom
 
 ###  Home page slot 2A  ####
 INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;&componentRef
-;;AMB2CHompageLightFamBannerComponent;Animal Management B2C Homepage Light Family Banner Component;/Open-Catalogue/Cameras/DigitalCameras/Digital-Compacts/c/576;AMB2CHompageLightFamBannerComponent
+;;AMB2CHompageLightFamBannerComponent;Animal Management B2C Homepage Light Family Banner Component;/Animal-Management/Electric-Fencing/c/electric-fencing;AMB2CHompageLightFamBannerComponent
 
 INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;&componentRef
-;;AMB2CHompageLightFamTextBannerComponent;Animal Management B2C Homepage Light Family Text Banner Component;/Open-Catalogue/Cameras/CameraAccessories-%26-Supplies/CameraLenses/c/588;AMB2CHompageLightFamTextBannerComponent
+;;AMB2CHompageLightFamTextBannerComponent;Animal Management B2C Homepage Light Family Text Banner Component;/Animal-Management/Electric-Fencing/c/electric-fencing;AMB2CHompageLightFamTextBannerComponent
 
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];active;cmsComponents(&componentRef)
 ;;Section2ASlot-Homepage;true;AMB2CHompageLightFamBannerComponent,AMB2CHompageLightFamTextBannerComponent
 
 #### Home section 2B #######
 INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;&componentRef
-;;AMB2CHompageCamcordersBannerComponent;Animal Management B2C Homepage Camcorders Banner Component;/Open-Catalogue/Components/PowerSupplies/c/816;AMB2CHompageCamcordersBannerComponent
+;;AMB2CHompageCamcordersBannerComponent;Animal Management B2C Homepage Camcorders Banner Component;/Animal-Management/Electric-Fencing/c/electric-fencing;AMB2CHompageCamcordersBannerComponent
 
 INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;&componentRef
-;;AMB2CHompageCamcordersChildBannerComponent;Animal Management B2C Homepage Light Family Banner Component Child;/Open-Catalogue/Cameras/Hand-held-Camcorders/c/584;AMB2CHompageCamcordersChildBannerComponent
+;;AMB2CHompageCamcordersChildBannerComponent;Animal Management B2C Homepage Light Family Banner Component Child;/Animal-Management/Electric-Fencing/c/electric-fencing;AMB2CHompageCamcordersChildBannerComponent
 
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];active;cmsComponents(&componentRef)
 ;;Section2BSlot-Homepage;true;AMB2CHompageCamcordersChildBannerComponent,AMB2CHompageCamcordersBannerComponent
@@ -728,10 +728,10 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents
 
 #### Section 4
 INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;&componentRef
-;;AMB2CHompageSmDiscountBannerComponent;Animal Management B2C Homepage Small Discount Banner Component;/Open-Catalogue/Cameras/Webcams/Web-Camera-%28100KpixelM-CMOS%2C-640X480%2C-USB-1-1%29-Black/p/280916;AMB2CHompageSmDiscountBannerComponent
-;;AMB2CHompageShopBannerComponent;Animal Management B2C Homepage Shop Banner Component;/Open-Catalogue/Cameras/Webcams/QuickCam-for-Notebooks-Pro/p/479742;AMB2CHompageShopBannerComponent
-;;AMB2CHompageShipmentBannerComponent;Animal Management B2C Homepage Shipment Banner Component;/Open-Catalogue/Cameras/DigitalCameras/Digital-Compacts/NV10/p/553637;AMB2CHompageShipmentBannerComponent
-;;AMB2CHompageServiceBannerComponent;Animal Management B2C Homepage Service Banner Component;/Open-Catalogue/Cameras/CameraAccessories-%26-Supplies/CameraFlashes/Light-HVL-20DW2/p/289540;AMB2CHompageServiceBannerComponent
+;;AMB2CHompageSmDiscountBannerComponent;Animal Management B2C Homepage Small Discount Banner Component;/Animal-Management/Electric-Fencing/c/electric-fencing;AMB2CHompageSmDiscountBannerComponent
+;;AMB2CHompageShopBannerComponent;Animal Management B2C Homepage Shop Banner Component;/Animal-Management/Electric-Fencing/c/electric-fencing;AMB2CHompageShopBannerComponent
+;;AMB2CHompageShipmentBannerComponent;Animal Management B2C Homepage Shipment Banner Component;/Animal-Management/Electric-Fencing/c/electric-fencing;AMB2CHompageShipmentBannerComponent
+;;AMB2CHompageServiceBannerComponent;Animal Management B2C Homepage Service Banner Component;/Animal-Management/Electric-Fencing/c/electric-fencing;AMB2CHompageServiceBannerComponent
 
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];active;cmsComponents(&componentRef)
 ;;Section4Slot-Homepage;true;AMB2CHompageSmDiscountBannerComponent,AMB2CHompageShopBannerComponent,AMB2CHompageShipmentBannerComponent,AMB2CHompageServiceBannerComponent
@@ -1700,17 +1700,34 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];name;$contentCV[unique=true];n
 ;Promotions_NavEntry;Promotions Nav Entry;;Promotions_Nav;PromotionsLink
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
-;;SolutionLink;Solution Link;https://www.google.com/;;;;
-;;SupportLink;Support Link;http://www.wiki.com/;;;;
-;;ProductLink;Product Link;http://www.wiki.com/;;;;;;;
-;;ContactLink;Contact Us Link;https://www.bing.com/;;;;
+;;CallUsLink;Call Us Link;https://www.google.com/;;;
+;;FindStoreLink;Find Store Link;https://www.google.com/;;;
+;;FindManagerLink;Find Manager Link;http://www.google.com/;;;
+;;SendMessageLink;Send Message Link;http://www.google.com/;;;
 
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];name;$contentCV[unique=true];children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
+;CallUs_Nav;Call Us Nav;;;"Our customer services team are hete to help.";CallUs_Nav
+;FindStore_Nav;Find Store Nav;;;"Our dealers are located nationwide.";FindStore_Nav
+;FindManager_Nav;Find Manager Monitoring Nav;;;"If you are looking for one-on-one system selection advice and training.";FindManager_Nav
+;SendMessage_Nav;Send Message Nav;;;"Have an enquiry or feedback? Contact us and we will get back to you";SendMessage_Nav
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];name;$contentCV[unique=true];navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
+;CallUs_NavEntry;Call Us Nav Entry;;CallUs_Nav;CallUsLink
+;FindStore_NavEntry;Find Store Nav Entry;;FindStore_Nav;FindStoreLink
+;FindManager_NavEntry;Find Manager Nav Entry;;FindManager_Nav;FindManagerLink
+;SendMessage_NavEntry;Send Message Nav Entry;;SendMessage_Nav;SendMessageLink
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;SolutionLink;Solution Link;https://www.google.com/;;;;
+;;SupportLink;Support Link;http://www.google.com/;;;;
+;;ProductLink;Product Link;http://www.google.com/;;;;;;;
+;;ContactLink;Contact Us Link;https://www.google.com/;;;;
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);children(uid,$contentCV)[mode=replace];links(uid, $contentCV);&nodeRef;title[lang=en]
 ;SolutionsNavNode;;Solutions Navigation Node Menu;HeaderLinkNavigationNode;;;SolutionsNavNode;"Solutions"
 ;ProductsNavNode;;Products Navigation Node Menu;;Electricfencing_Nav,WeighingEID_Nav,WirelessWaterMonitoring_Nav,SteelGatesandHardware_Nav,FarmInformationTools_Nav,Stockprods_Nav,NewProducts_Nav,Promotions_Nav;;ProductsNavNode;"Products"
 ;SupportNavNode;;Support Navigation Node Menu;HeaderLinkNavigationNode;;;SupportNavNode;"Support"
-;ContactNavNode;;Contact Us Navigation Node Menu;HeaderLinkNavigationNode;;;ContactNavNode;"Contact Us"
+;ContactNavNode;;Contact Us Navigation Node Menu;HeaderLinkNavigationNode;CallUs_Nav,FindStore_Nav,FindManager_Nav,SendMessage_Nav;ContactCheckLink;ContactNavNode;"Contact Us"
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
 ;SolutionsNavNodeEntry;;Solutions Navigation Node Entry;SolutionsNavNode;SolutionLink;
