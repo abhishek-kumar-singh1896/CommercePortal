@@ -4,6 +4,38 @@
   color: $white;
 
   &.with-logged-in-user {
+    .user-profile-dropdown-inner {
+      padding: 16px;
+      color: $gray-3;
+      font-size: 0.85714em;
+
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+          padding: 0;
+
+          a {
+            display: block;
+            color: $white;
+            padding: 8px 0;
+            text-decoration: none;
+
+            &:hover {
+              color: $primary-color;
+            }
+          }
+
+          .user-name {
+            font-family: $font-family-bold;
+            padding-bottom: 8px;
+          }
+        }
+      }
+    }
+
     .header-right-btn-group {
       .btn {
         background: linear-gradient(to bottom, $button-highlight-top-color 0%, $button-highlight-bottom-color 100%);
@@ -35,12 +67,19 @@
 
       .btn-group {
         &.show {
-          .right-btn {
+          .right-btn,
+          .user-profile-btn {
             background: linear-gradient(
               to bottom,
               $button-highlight-color-logged-in-user 0%,
               $button-highlight-color-logged-in-user 100%
             );
+
+            &:hover {
+              svg {
+                fill: $gray-9;
+              }
+            }
           }
         }
       }
@@ -177,6 +216,7 @@
         height: 56px;
         right: 0;
         top: 0;
+        z-index: 10;
 
         svg {
           width: 24px;
@@ -230,6 +270,20 @@
       box-shadow: 0 4px 11px 0 rgba(0, 0, 0, 0.1);
       border: none;
       padding: 0;
+
+      &.user-profile-dropdown {
+        top: 41px !important;
+
+        -webkit-transform: translateX(-50%) !important;
+        transform: translateX(-50%) !important;
+        left: 4% !important;
+        min-width: 170px;
+        max-width: 170px;
+        border-radius: 0;
+        box-shadow: none;
+        background-color: $gray-9;
+        color: $white;
+      }
 
       .your-cart-title {
         margin: 24px 16px 16px 16px;

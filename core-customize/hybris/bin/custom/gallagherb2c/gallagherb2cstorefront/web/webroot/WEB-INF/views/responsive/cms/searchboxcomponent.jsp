@@ -12,41 +12,27 @@
      <spring:param name="componentuid"  value="${component.uid}"/>
 </spring:url>
 
-<div class="ui-front">
+<!-- <div class="ui-front"> -->
 	<form name="search_form_${fn:escapeXml(component.uid)}" method="get"
-		action="${fn:escapeXml(searchUrl)}">
-		<!-- <div class="form-control global-search"> -->
-			<spring:theme code="search.placeholder" var="searchPlaceholderHtml" />
+		action="${searchUrl}">
+		<div class="input-group">
+			<spring:theme code="search.placeholder" var="searchPlaceholder" />
 
 			<ycommerce:testId code="header_search_input">
-				<c:set var="optionsJson">
-					{
-						"autocompleteUrl" : "${ycommerce:encodeJSON(autocompleteUrl)}",
-						"minCharactersBeforeRequest" : "${ycommerce:encodeJSON(component.minCharactersBeforeRequest)}",
-						"waitTimeBeforeRequest" : "${ycommerce:encodeJSON(component.waitTimeBeforeRequest)}",
-						"displayProductImages" : "${ycommerce:encodeJSON(component.displayProductImages)}"
-					}
-				</c:set>
 				<input type="text" id="js-site-search-input"
-					class="form-control global-search" name="text" value=""
-                    maxlength="100" placeholder="${searchPlaceholderHtml}"
-					data-options="${fn:escapeXml(optionsJson)}">
+					class="form-control js-site-search-input global-search" name="text" value=""
+                    maxlength="100" placeholder="${searchPlaceholder}"
+					data-options='{"autocompleteUrl" : "${autocompleteUrl}","minCharactersBeforeRequest" : "${component.minCharactersBeforeRequest}","waitTimeBeforeRequest" : "${component.waitTimeBeforeRequest}"}'>
 			</ycommerce:testId>
-			
-			<button type="submit" class="search-btn">
-                            <svg class="search-icon">
-                            
+
+			 <ycommerce:testId code="header_search_button">
+					<button class="js_search_button search-btn" type="submit" disabled="true">
+						<svg class="search-icon">
                                 <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#search" />
                             </svg>
-                        </button>
-
-			<%-- <span class="input-group-btn"> <ycommerce:testId code="header_search_button">
-					<button class="btn btn-link js_search_button" type="submit" disabled="true">
-						<span class="glyphicon glyphicon-search"></span>
 					</button>
 				</ycommerce:testId>
-			</span> --%>
-		<!-- </div> -->
+		</div>
 	</form>
 
-</div>
+<!-- </div> -->

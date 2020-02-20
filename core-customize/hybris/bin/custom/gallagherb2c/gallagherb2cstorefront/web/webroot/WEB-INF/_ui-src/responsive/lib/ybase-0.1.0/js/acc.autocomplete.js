@@ -38,7 +38,7 @@ ACC.autocomplete = {
 				
 				if (item.type == "autoSuggestion"){
 					var renderHtml = $("<a>").attr("href", item.url)
-							.append($("<div>").addClass("name").text(item.value));
+							.append($("<span>").addClass("name").text(item.value));
 					return $("<li>")
 							.data("item.autocomplete", item)
 							.append(renderHtml)
@@ -46,19 +46,21 @@ ACC.autocomplete = {
 				}
 				else if (item.type == "productResult"){
 					var renderHtml = $("<a>").attr("href", item.url)
-							.append(
+					.append($("<span>").addClass("name").html(ACC.sanitizer.sanitize(item.value)));
+							/*.append(
 									item.image  
 											? $("<div>").addClass("thumb")
 													.append($("<img>").attr("src", item.image))
 											: null
 							)
 							.append($("<div>").addClass("name").html(ACC.sanitizer.sanitize(item.value)))
-							.append($("<div>").addClass("price").text(item.price));
+							.append($("<div>").addClass("price").text(item.price));*/
 
 					return $("<li>")
 							.data("item.autocomplete", item)
 							.append(renderHtml)
-							.appendTo(ul);
+							.appendTo(ul)
+							$("<div>").appendTo(ul);
 				}
 			},
 			source: function (request, response)
@@ -92,7 +94,7 @@ ACC.autocomplete = {
 								desc: ACC.sanitizer.sanitize(obj.description),
 								manufacturer: ACC.sanitizer.sanitize(obj.manufacturer),
 								url:  ACC.config.encodedContextPath + obj.url,
-								price: obj.price.formattedValue,
+								//price: obj.price.formattedValue,
 								type: "productResult",
 								image: (obj.images!=null && self.options.displayProductImages) ? obj.images[0].url : null // prevent errors if obj.images = null
 							});
