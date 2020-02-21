@@ -524,7 +524,7 @@
 
 														<li class="logged_in js-logged_in"><ycommerce:testId
 																code="header_LoggedUser">
-										${user.firstName} &nbsp ${user.lastName}
+										      ${user.firstName} &nbsp ${user.lastName}
 									</ycommerce:testId></li>
 													</sec:authorize>
 												</div>
