@@ -13,7 +13,7 @@
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
-<cms:pageSlot position="TopHeaderSlot" var="component" element="div" limit="1">
+<cms:pageSlot position="TopHeaderSlot" var="component" element="div">
 	<cms:component component="${component}" />
 </cms:pageSlot>
 
