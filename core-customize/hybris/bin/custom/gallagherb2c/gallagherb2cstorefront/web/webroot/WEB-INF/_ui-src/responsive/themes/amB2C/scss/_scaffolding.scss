@@ -333,16 +333,17 @@ h2 {
 
         .arrow-down-icon {
           display: none;
+          position: absolute;
+          bottom: 3px;
+          left: 0;
+          right: 0;
+          margin: auto;
+          text-align: center;
 
           svg {
-            position: absolute;
             width: 24px;
             height: 24px;
             fill: $gray-5;
-            bottom: 3px;
-            left: 0;
-            right: 0;
-            margin: auto;
           }
         }
 
@@ -382,7 +383,7 @@ h2 {
 .second-level-menu {
   position: absolute;
   max-width: 1410px;
-  width: 100%;
+  width: calc(100% - 30px);
   background: $gray-9;
   letter-spacing: 0.1px;
   z-index: 999;
@@ -592,7 +593,7 @@ h2 {
 .responsive-mega-menu-modal {
   .modal-dialog {
     margin: 0;
-    max-width: 260px;
+    max-width: 300px;
     float: right;
     width: 100%;
     max-height: 100%;
@@ -719,6 +720,66 @@ h2 {
           width: 100%;
           padding: 8px 16px;
           margin: 16px 0 0 0;
+          .user-profile-btn-group {
+            width: 50%;
+
+            &.show {
+              .user-profile-btn {
+                background: linear-gradient(
+                  to bottom,
+                  $button-highlight-color-logged-in-user 0%,
+                  $button-highlight-color-logged-in-user 100%
+                );
+
+                &:hover {
+                  svg {
+                    fill: $gray-9;
+                  }
+                }
+              }
+            }
+          }
+
+          .user-profile-dropdown {
+            min-width: 170px;
+            max-width: 170px;
+            border-radius: 0;
+            box-shadow: none;
+            background-color: $black;
+            color: $white;
+          }
+
+          .user-profile-dropdown-inner {
+            padding: 8px 16px 0 16px;
+            color: $gray-3;
+            font-size: 0.85714em;
+
+            ul {
+              list-style: none;
+              margin: 0;
+              padding: 0;
+
+              li {
+                padding: 0;
+
+                a {
+                  display: block;
+                  color: $white;
+                  padding: 8px 0;
+                  text-decoration: none;
+
+                  &:hover {
+                    color: $primary-color;
+                  }
+                }
+
+                .user-name {
+                  font-family: $font-family-bold;
+                  padding-bottom: 8px;
+                }
+              }
+            }
+          }
         }
 
         .xs-main-menu-l2-footer {
@@ -761,9 +822,11 @@ h2 {
   text-transform: inherit;
 }
 
-@media only screen and (max-width: 1600px) {
+@media only screen and (max-width: 1599px) {
   .second-level-menu {
     left: 0;
+    width: 100%;
+    max-width: 100%;
   }
 }
 

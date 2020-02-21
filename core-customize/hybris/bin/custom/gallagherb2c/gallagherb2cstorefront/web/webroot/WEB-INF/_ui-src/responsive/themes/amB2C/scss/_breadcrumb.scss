@@ -1,0 +1,24 @@
+.breadcrumb {
+  padding: 0;
+  margin: 8px 0 16px 0;
+  background: none;
+  border: none;
+  color: $gray-7;
+  font-size: 0.85714em;
+
+  a {
+    color: $gray-7;
+  }
+}
+
+.breadcrumb-item {
+  &.active {
+    color: $primary-color;
+  }
+
+  & + .breadcrumb-item {
+    &::before {
+      color: $gray-7;
+    }
+  }
+}
