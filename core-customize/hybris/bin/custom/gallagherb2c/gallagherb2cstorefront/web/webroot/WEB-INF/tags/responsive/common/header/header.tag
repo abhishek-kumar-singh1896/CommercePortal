@@ -13,7 +13,7 @@
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
-<cms:pageSlot position="TopHeaderSlot" var="component" element="div" limit="1">
+<cms:pageSlot position="TopHeaderSlot" var="component" element="div">
 	<cms:component component="${component}" />
 </cms:pageSlot>
 
@@ -198,7 +198,7 @@
 			<c:if test="${not empty feature.navigationNode && feature.navigationNode ne null}">
 			<c:forEach items="${feature.navigationNode.children}" var="l1" varStatus="children">
 			<c:if test="${not empty l1.children && l1.children ne null && l1.uid ne 'ContactNavNode'}">
-			<div class="second-level-menu shadow-sm d-none" id="mainNavContainer${children.index+1}">
+			<div class="megamenu-out second-level-menu shadow-sm d-none" id="mainNavContainer${children.index+1}">
                 <div class="container">
                     <div class="third-level-menu">
                         <div class="row align-items-stretch">
@@ -579,7 +579,7 @@
 			<c:if test="${not empty feature.navigationNode && feature.navigationNode ne null}">
 			<c:forEach items="${feature.navigationNode.children}" var="l1" varStatus="children">
 			<c:if test="${not empty l1.children && l1.children ne null && l1.uid ne 'ContactNavNode'}">
-			<div class="second-level-menu shadow-sm d-none" id="mainNavContainer${children.index+1}">
+			<div class="megamenu-out second-level-menu shadow-sm d-none" id="mainNavContainer${children.index+1}">
                 <div class="container">
                     <div class="third-level-menu">
                         <div class="row align-items-stretch">
