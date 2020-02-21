@@ -6,11 +6,12 @@
 <spring:htmlEscape defaultHtmlEscape="true" />
 
 <nav:pagination top="true" supportShowPaged="${isShowPageAllowed}"
-	supportShowAll="${isShowAllAllowed}" searchPageData="${searchPageData}"
-	searchUrl="${searchPageData.currentQuery.url}"
-	numberPagesShown="${numberPagesShown}"  />
+		supportShowAll="${isShowAllAllowed}"
+		searchPageData="${searchPageData}"
+		searchUrl="${searchPageData.currentQuery.url}"
+		numberPagesShown="${numberPagesShown}" />
 
-<div class="product-listing-out">
+<div class="product-listing-out clearfix">
 	<ul>
 		<c:forEach items="${searchPageData.results}" var="product"
 			varStatus="status">
@@ -28,7 +29,8 @@
 	</div>
 </div>
 
-<%-- <nav:pagination top="false" supportShowPaged="${isShowPageAllowed}" --%>
-<%-- 	supportShowAll="${isShowAllAllowed}" searchPageData="${searchPageData}" --%>
-<%-- 	searchUrl="${searchPageData.currentQuery.url}" --%>
-<%-- 	numberPagesShown="${numberPagesShown}" /> --%>
+<nav:pagination top="false" supportShowPaged="${isShowPageAllowed}"
+		supportShowAll="${isShowAllAllowed}"
+		searchPageData="${searchPageData}"
+		searchUrl="${searchPageData.currentQuery.url}"
+		numberPagesShown="${numberPagesShown}" />

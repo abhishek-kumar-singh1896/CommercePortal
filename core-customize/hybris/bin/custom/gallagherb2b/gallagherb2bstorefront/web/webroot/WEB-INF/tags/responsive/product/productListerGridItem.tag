@@ -8,6 +8,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <spring:htmlEscape defaultHtmlEscape="true" />
+<c:set var="isUserAnonymous" value="${sessionScope.jalosession}" />
 
 <spring:theme code="text.addToCart" var="addToCartText"/>
 <c:url value="${product.url}" var="productUrl"/>
@@ -47,9 +48,11 @@
 				</div>
 			</c:if>
 			
-			<ycommerce:testId code="product_productPrice">
-				<div class="price"><product:productListerItemPrice product="${product}"/></div>
-			</ycommerce:testId>
+			<c:if test = "${not fn:contains(isUserAnonymous, 'anonymous')}">
+				<ycommerce:testId code="product_productPrice">
+					<div class="price"><product:productListerItemPrice product="${product}"/></div>
+				</ycommerce:testId>
+			</c:if>
 
 			<c:forEach var="variantOption" items="${product.variantOptions}">
 				<c:forEach items="${variantOption.variantOptionQualifiers}" var="variantOptionQualifier">

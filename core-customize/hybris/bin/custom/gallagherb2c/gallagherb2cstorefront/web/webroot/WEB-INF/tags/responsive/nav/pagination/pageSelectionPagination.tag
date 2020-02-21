@@ -13,20 +13,34 @@
 <c:set var="hasNextPage" value="${(searchPageData.pagination.currentPage + 1) < searchPageData.pagination.numberOfPages}"/>
 
 <c:if test="${(searchPageData.pagination.numberOfPages > 1)}">
-    <ul class="pagination">
+    <ul class="pagination justify-content-center">
         <c:if test="${hasPreviousPage}">
-            <li class="pagination-prev">
+            <li class="page-item">
                 <spring:url value="${searchUrl}" var="previousPageUrl" htmlEscape="true">
                     <spring:param name="page" value="${searchPageData.pagination.currentPage - 1}"/>
                 </spring:url>
                 <ycommerce:testId code="searchResults_previousPage_link">
-                    <a href="${previousPageUrl}" rel="prev" class="glyphicon glyphicon-chevron-left"></a>
+                    <a href="${previousPageUrl}" class="page-link" aria-label="Previous">
+	                    <span class="arrow-left-icon">
+	                           <svg>
+	                           	<use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-left" />
+	                            </svg>
+	                    </span>
+                    </a>
                 </ycommerce:testId>
             </li>
         </c:if>
 
         <c:if test="${!hasPreviousPage}">
-            <li class="pagination-prev disabled"><span class="glyphicon glyphicon-chevron-left"></span></li>
+            <li class="page-item disabled">
+            	<a class="page-link" href="#" aria-label="Previous">
+                  <span class="arrow-left-icon">
+                        <svg>
+                           <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-left" />
+                        </svg>
+                   </span>
+                </a>
+             </li>
         </c:if>
 
         <c:set var="limit" value="${numberPagesShown}"/>
@@ -70,6 +84,7 @@
             <c:set var="linkClass" value=""/>
             <c:choose>
                 <c:when test="${searchPageData.pagination.currentPage + 1 ne pageNumber}">
+                <%-- ${searchPageData.pagination } ${ pageNumber} --%>
                     <spring:url value="${searchUrl}" var="pageNumberUrl" htmlEscape="true">
                         <spring:param name="page" value="${pageNumber - 1}"/>
                     </spring:url>
@@ -100,28 +115,44 @@
                     </c:choose>
 
                     <ycommerce:testId code="pageNumber_link">
-                        <li><a class="${linkClass}" href="${pageNumberUrl}">${pageNumber}</a></li>
+                        <li class="page-item"><a class="page-link" href="${pageNumberUrl}">${pageNumber}</a></li>
                     </ycommerce:testId>
                 </c:when>
                 <c:otherwise>
-                    <li class="active"><span>${pageNumber} <span class="sr-only">(current)</span></span></li>
+                    <li class="page-item active">
+                    			<a class="page-link" href="#">${pageNumber}</a>
+                    </li>
                 </c:otherwise>
             </c:choose>
         </c:forEach>
 
         <c:if test="${hasNextPage}">
-            <li class="pagination-next">
+            <li class="page-item">
                 <spring:url value="${searchUrl}" var="nextPageUrl" htmlEscape="true">
                     <spring:param name="page" value="${searchPageData.pagination.currentPage + 1}"/>
                 </spring:url>
                 <ycommerce:testId code="searchResults_nextPage_link">
-                    <a href="${nextPageUrl}" rel="next" class="glyphicon glyphicon-chevron-right"></a>
+                    <a href="${nextPageUrl}" class="page-link" aria-label="Next">
+	                    <span class="arrow-right-icon">
+	                           <svg>
+	                           	<use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-right" />
+	                            </svg>
+	                    </span>
+                    </a>
                 </ycommerce:testId>
             </li>
         </c:if>
 
         <c:if test="${!hasNextPage}">
-            <li class="pagination-next disabled"><span class="glyphicon glyphicon-chevron-right"></span></li>
+            <li class="page-item disabled">
+            		<a class="page-link" href="#" aria-label="Next">
+                     	<span class="arrow-right-icon">
+                              <svg>
+                                    <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-right" />
+                              </svg>
+                        </span>
+                  </a>
+            </li>
         </c:if>
     </ul>
 </c:if>
