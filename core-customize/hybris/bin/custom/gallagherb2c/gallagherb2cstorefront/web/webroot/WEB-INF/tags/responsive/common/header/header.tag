@@ -17,6 +17,218 @@
 	<cms:component component="${component}" />
 </cms:pageSlot>
 
+<!-- Modal responsive mega menu -->
+<cms:pageSlot position="ggB2CNavBar" var="feature">
+<c:if test="${feature.visible && not empty feature.navigationNode && feature.navigationNode ne null}">
+<div class="modal responsive-mega-menu-modal fade hidden-lg hidden-md" id="responsiveMegaMenu" tabindex="-1" role="dialog"
+    aria-labelledby="responsiveMegaMenuTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content xs-main-menu-l1">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        Close
+                        <span class="cross-icon">
+                            &times;
+                        </span>
+                    </span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="xs-main-menu-l1-links menu-listing">
+                  <ul>
+                    <c:forEach items="${feature.navigationNode.children}" var="l1" varStatus="status">
+					<c:forEach items="${l1.entries}" var="dropdownValue">
+						
+							<c:choose>
+							<c:when test="${not empty l1.children && l1.children ne null}">
+							<li class="with-sublevel">
+                              <a href="javascript:void(0)">
+                                  ${dropdownValue.item.linkName}
+                                  <span class="right-arrow-icon">
+                                   <svg>
+                                       <use xlink:href="${commonResourcePath}/img/gallagher-icons.svg#arrow-right" />
+                                   </svg>
+                       			   </span>
+                              </a>
+                              </li>
+                              </c:when>
+				            <c:otherwise>
+				            <li>
+				            	<cms:component component="${dropdownValue.item}" evaluateRestriction="true" />
+				            	</li>
+				            </c:otherwise>
+				            </c:choose>
+                          
+                         </c:forEach>
+					</c:forEach>
+                  </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="xs-main-menu-l1-footer">
+                    <div class="btn-group btn-block mb-3" role="group" aria-label="Button group login register">
+                        <button type="button" class="btn btn-secondary left-btn">Register</button>
+                        <button type="button" class="btn btn-secondary">Login</button>
+                    </div>
+
+                    <div class="l1-footer-bottom-links menu-listing">
+                        <ul>
+                            <li><a href="javascript:void(0)">Find a dealer</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- for logged in user -->
+                <!-- <div class="xs-main-menu-l1-footer with-logged-in-user">
+                    <div class="btn-group btn-block mb-3" role="group" aria-label="Button group login register">
+                        <button type="button" class="btn btn-highlight left-btn">My App</button>
+                        <button type="button" class="btn btn-highlight">
+                            <span class="user-icon">
+                                <svg>
+                                    <use xlink:href="img/gallagher-icons.svg#user" />
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
+                </div> -->
+
+            </div>
+
+        </div>
+
+        <div class="modal-content xs-main-menu-l2 d-none">
+
+            <div class="modal-header">
+                <div class="left-title-out">
+                    <a href="javascript:void(0)">
+                        <span>
+                            <svg>
+                                <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-left" />
+                            </svg>
+                        </span>
+
+                        <span class="back-to-l1"></span>
+                    </a>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        Close
+                        <span class="cross-icon">
+                            &times;
+                        </span>
+                    </span>
+                </button>
+            </div>
+            <div class="modal-body">
+               <div class="xs-main-menu-l2-links menu-listing">
+                  <ul>
+                  	<c:forEach items="${feature.navigationNode.children}" var="l1" varStatus="status">
+	                  	<c:forEach items="${l1.children}" var="topLevelChild" varStatus="l3link">
+                          <c:forEach items="${topLevelChild.entries}" var="dropdownValue">
+			             	<c:choose>
+			             		<c:when test="${not empty dropdownValue.item && dropdownValue.item ne null && (empty topLevelChild.children || topLevelChild.children eq null)}">
+                               	<li>
+                            		<cms:component component="${dropdownValue.item}" evaluateRestriction="true"/>
+				            	</li>
+					            </c:when>
+					            <c:otherwise>
+					            <li class="with-sublevel">
+			                        <a href="javascript:void(0)">
+			                            ${topLevelChild.title}
+			                            <span class="right-arrow-icon">
+			                                <svg>
+			                                    <use xlink:href="${commonResourcePath}/img/gallagher-icons.svg#arrow-right" />
+			                                </svg>
+			                            </span>
+			                        </a>
+		                    	</li>
+                                </c:otherwise>
+                                </c:choose>
+		                	</c:forEach>
+		            	</c:forEach>
+                    </c:forEach>
+                  </ul>
+               </div>
+            </div>
+            <div class="modal-footer">
+                <div class="xs-main-menu-l2-footer"
+                    style="background: url('img/xs-promotion-back.png') left top no-repeat; background-size: cover;">
+                    <div class="gray-shade"></div>
+                    <div class="menu-l2-footer-container">
+                        <div class="menu-l2-footer-container-inner">
+                            <div class="promotion-title">Promotion headline</div>
+                            <div class="promotion-link">
+                                <a href="javascript:void(0)">
+                                    See all promotions
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="modal-content xs-main-menu-l3 d-none">
+            <div class="modal-header">
+                <div class="left-title-out">
+                    <a href="javascript:void(0)">
+                        <span>
+                            <svg>
+                                <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-left" />
+                            </svg>
+                        </span>
+
+                        <span class="back-to-l2"></span>
+                    </a>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        Close
+                        <span class="cross-icon">
+                            &times;
+                        </span>
+                    </span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="xs-main-menu-l3-links menu-listing">
+                    <ul>
+                    <c:forEach items="${feature.navigationNode.children}" var="l1" varStatus="status1">
+                    <c:forEach items="${l1.children}" var="l2">
+                        <li>
+                            <a href="javascript:void(0)">
+                                ${l2.title}
+                            </a>
+                        </li>
+                     </c:forEach>
+                     </c:forEach>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="xs-main-menu-l2-footer"
+                    style="background: url('img/xs-promotion-back.png') left top no-repeat; background-size: cover;">
+                    <div class="gray-shade"></div>
+                    <div class="menu-l2-footer-container">
+                        <div class="menu-l2-footer-container-inner">
+                            <div class="promotion-title">Promotion headline</div>
+                            <div class="promotion-link">
+                                <a href="javascript:void(0)">
+                                    See all promotions
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</c:if>
+</cms:pageSlot>
+
 <sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')">
 	<header class="main-header-out shadow-sm">
 		<div class="container">
@@ -187,18 +399,20 @@
 					</div>
 
 					<div class="xs-menu-out">
-						<a href="javascript:void(0)" class="hamburger-icon"> <span
-							class="line1"> </span> <span class="line2"> </span> <span
-							class="line3"> </span>
-						</a>
-					</div>
+                        <a href="javascript:void(0)" class="hamburger-icon" data-toggle="modal"
+                            data-target="#responsiveMegaMenu">
+                            <span class="line1"></span>
+                            <span class="line2"></span>
+                            <span class="line3"></span>
+                        </a>
+                    </div>
 				</div>
 			</div>
 			<cms:pageSlot position="ggB2CNavBar" var="feature">
 			<c:if test="${not empty feature.navigationNode && feature.navigationNode ne null}">
 			<c:forEach items="${feature.navigationNode.children}" var="l1" varStatus="children">
 			<c:if test="${not empty l1.children && l1.children ne null && l1.uid ne 'ContactNavNode'}">
-			<div class="megamenu-out second-level-menu shadow-sm d-none" id="mainNavContainer${children.index+1}">
+			<div class="megamenu-out second-level-menu shadow-sm d-none" id="mainNavLink${children.index+1}Container">
                 <div class="container">
                     <div class="third-level-menu">
                         <div class="row align-items-stretch">
@@ -343,7 +557,7 @@
             </div>
             </c:if>
             <c:if test="${l1.uid eq 'ContactNavNode'}">
-            <div class="megamenu-out second-level-menu shadow-sm d-none" id="mainNavContainer${children.index+1}">
+            <div class="megamenu-out second-level-menu shadow-sm d-none" id="mainNavLink${children.index+1}Container">
                 <div class="container">
                     <div class="contact-us-container">
                         <div class="row">
@@ -567,11 +781,13 @@
 					</div>
 
 					<div class="xs-menu-out">
-						<a href="javascript:void(0)" class="hamburger-icon"> <span
-							class="line1"> </span> <span class="line2"> </span> <span
-							class="line3"> </span>
-						</a>
-					</div>
+                        <a href="javascript:void(0)" class="hamburger-icon" data-toggle="modal"
+                            data-target="#responsiveMegaMenu">
+                            <span class="line1"></span>
+                            <span class="line2"></span>
+                            <span class="line3"></span>
+                        </a>
+                    </div>
 				</div>
 			</div>
 			
@@ -579,7 +795,7 @@
 			<c:if test="${not empty feature.navigationNode && feature.navigationNode ne null}">
 			<c:forEach items="${feature.navigationNode.children}" var="l1" varStatus="children">
 			<c:if test="${not empty l1.children && l1.children ne null && l1.uid ne 'ContactNavNode'}">
-			<div class="megamenu-out second-level-menu shadow-sm d-none" id="mainNavContainer${children.index+1}">
+			<div class="megamenu-out second-level-menu shadow-sm d-none" id="mainNavLink${children.index+1}Container">
                 <div class="container">
                     <div class="third-level-menu">
                         <div class="row align-items-stretch">
@@ -724,7 +940,7 @@
             </div>
             </c:if>
             <c:if test="${l1.uid eq 'ContactNavNode'}">
-            <div class="megamenu-out second-level-menu shadow-sm d-none" id="mainNavContainer${children.index+1}">
+            <div class="megamenu-out second-level-menu shadow-sm d-none" id="mainNavLink${children.index+1}Container">
                 <div class="container">
                     <div class="contact-us-container">
                         <div class="row">
