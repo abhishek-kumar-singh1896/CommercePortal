@@ -10,6 +10,8 @@ import de.hybris.platform.commerceservices.search.facetdata.ProductCategorySearc
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.StringUtils;
+
 
 /**
  * @author gauravkamboj
@@ -26,7 +28,11 @@ public class GallagherProductCategorySearchPagePopulator<QUERY, STATE, RESULT, I
 			final ProductCategorySearchPageData<STATE, ITEM, CATEGORY> target)
 	{
 		super.populate(source, target);
-		target.setDescription(getCommerceCategoryService().getCategoryForCode(source.getCategoryCode()).getDescription());
+		if (!StringUtils.isEmpty(source.getCategoryCode())
+				&& getCommerceCategoryService().getCategoryForCode(source.getCategoryCode()) != null)
+		{
+			target.setDescription(getCommerceCategoryService().getCategoryForCode(source.getCategoryCode()).getDescription());
+		}
 
 	}
 
