@@ -298,7 +298,7 @@
                                     </c:forEach>
                                     </div>
                                     <div class="contact-us-description">
-                                        Our dealers are located nationwide.
+                                        ${topLevelChild.title}
                                     </div>
                                 </div>
                             </div>
@@ -380,7 +380,7 @@
 				<div class="header-right-section text-right">
 
 					<div class="search-out">
-						<a href="javascript:void(0)" class="search-link"> <svg
+						<a href="javascript:void(0)" class="search-link" id="searchLink1"> <svg
 								class="search-icon">
 							<use
 									xlink:href="${commonResourcePath}/images/gallagher-icons.svg#search" />
@@ -701,7 +701,7 @@
             </c:forEach>
             </c:if>
 			</cms:pageSlot>
-			<div class="search-result-out d-none">
+			<%-- <div class="search-result-out d-none">
 				<div class="container">
 					<div class="search-text-box-out">
 						<cms:pageSlot position="SearchBox" var="component">
@@ -709,7 +709,19 @@
 						</cms:pageSlot>
 					</div>
 				</div>
-			</div>
+			</div> --%>
+			<div class="megamenu-out search-result-out search-link-container d-none" id="searchLink1Container">
+                <div class="container">
+                    <div class="search-text-box-out">
+                        <cms:pageSlot position="SearchBox" var="component">
+							<cms:component component="${component}" element="div" class="" />
+						</cms:pageSlot>
+                    </div>
+
+
+                </div>
+
+            </div>
 	</div>
 	</header>
 </sec:authorize>
@@ -763,7 +775,7 @@
 				<div class="header-right-section text-right">
 
 					<div class="search-out">
-						<a href="javascript:void(0)" class="search-link"> <svg
+						<a href="javascript:void(0)" class="search-link" id="searchLink1"> <svg
 								class="search-icon">
 							<use
 									xlink:href="${commonResourcePath}/images/gallagher-icons.svg#search" />
@@ -1085,7 +1097,7 @@
             </c:if>
 			</cms:pageSlot>
 
-			<div class="search-result-out d-none">
+			<%-- <div class="search-result-out d-none">
 				<div class="container">
 					<div class="search-text-box-out">
 						<cms:pageSlot position="SearchBox" var="component">
@@ -1093,7 +1105,19 @@
 						</cms:pageSlot>
 					</div>
 				</div>
-			</div>
+			</div> --%>
+			<div class="megamenu-out search-result-out search-link-container d-none" id="searchLink1Container">
+                <div class="container">
+                    <div class="search-text-box-out">
+                        <cms:pageSlot position="SearchBox" var="component">
+							<cms:component component="${component}" element="div" class="" />
+						</cms:pageSlot>
+                    </div>
+
+
+                </div>
+
+            </div>
 		</div>
 	</header>
 </sec:authorize>
