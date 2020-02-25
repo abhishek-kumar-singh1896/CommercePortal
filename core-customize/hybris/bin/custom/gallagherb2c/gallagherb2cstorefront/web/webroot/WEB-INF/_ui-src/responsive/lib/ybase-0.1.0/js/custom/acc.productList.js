@@ -1,0 +1,20 @@
+ACC.productList = {
+
+	_autoload : [ "productListClick" ],
+
+	productListClick : function() {
+		$(document).ready(function() {
+			$('.js-example-basic-single').select2({
+				minimumResultsForSearch : -1,
+				placeholder : "---Select---"
+			}).on('select2:opening', function() {
+				$('.select2-dropdown').slideDown(1000);
+				$(this).on("select2:open", function() {
+					$('.select2-dropdown').slideDown(1000);
+
+				});
+			});
+
+		});
+	}
+};
