@@ -88,6 +88,7 @@
 		<script src="${commonResourcePathHtml}/js/custom/acc.header.js"></script>
 		<script src="${commonResourcePathHtml}/js/jquery-ui-1.12.1.min.js"></script>
 		<script src="${commonResourcePathHtml}/js/custom/acc.productListNav.js"></script>
+		<script src="${commonResourcePathHtml}/js/custom/acc.productList.js"></script>
 				
 		<%-- Cms Action JavaScript files --%>
 		<c:forEach items="${cmsActionsJsFiles}" var="actionJsFile">

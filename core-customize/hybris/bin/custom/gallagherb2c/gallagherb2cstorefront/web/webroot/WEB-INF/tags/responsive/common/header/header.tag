@@ -145,25 +145,10 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <div class="xs-main-menu-l2-footer"
-                        style="background: url('${commonResourcePath}/images/xs-promotion-back.png') left top no-repeat; background-size: cover;">
-                        <div class="gray-shade"></div>
-                        <div class="menu-l2-footer-container">
-                            <div class="menu-l2-footer-container-inner">
-                                <div class="promotion-title">Promotion headline</div>
-                                <div class="promotion-link">
-                                    <a href="javascript:void(0)">
-                                        See all promotions
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                	<cms:component component="${feature.promotionBanner}" evaluateRestriction="true"/>
                 </div>
             </div>
             
-            <%-- </c:forEach>
-            <c:forEach items="${feature.navigationNode.children}" var="l1" varStatus="children"> --%>
             <c:forEach items="${l1.children}" var="topLevelChild" varStatus="l3link">
             <div class="modal-content xs-main-menu-l3 xs-mega-menu d-none" id="xsLevel2Link${children.index+1}-${l3link.index+1}Container">
                 <div class="modal-header">
@@ -236,20 +221,7 @@
                     </div>
                     </div>
 	                <div class="modal-footer">
-	                    <div class="xs-main-menu-l2-footer"
-	                        style="background: url('${commonResourcePath}/images/xs-promotion-back.png') left top no-repeat; background-size: cover;">
-	                        <div class="gray-shade"></div>
-	                        <div class="menu-l2-footer-container">
-	                            <div class="menu-l2-footer-container-inner">
-	                                <div class="promotion-title">Promotion headline</div>
-	                                <div class="promotion-link">
-	                                    <a href="javascript:void(0)">
-	                                        See all promotions
-	                                    </a>
-	                                </div>
-	                            </div>
-	                        </div>
-	                    </div>
+	                	<cms:component component="${feature.promotionBanner}" evaluateRestriction="true"/>
 	                </div>
 	                </div>
 	                </c:forEach>
@@ -320,20 +292,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <div class="xs-main-menu-l2-footer"
-                        style="background: url('${commonResourcePath}/images/xs-promotion-back.png') left top no-repeat; background-size: cover;">
-                        <div class="gray-shade"></div>
-                        <div class="menu-l2-footer-container">
-                            <div class="menu-l2-footer-container-inner">
-                                <div class="promotion-title">Promotion headline</div>
-                                <div class="promotion-link">
-                                    <a href="javascript:void(0)">
-                                        See all promotions
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                	<cms:component component="${feature.promotionBanner}" evaluateRestriction="true"/>
                 </div>
             </div>
             </c:if>
@@ -891,20 +850,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <div class="xs-main-menu-l2-footer"
-                        style="background: url('${commonResourcePath}/images/xs-promotion-back.png') left top no-repeat; background-size: cover;">
-                        <div class="gray-shade"></div>
-                        <div class="menu-l2-footer-container">
-                            <div class="menu-l2-footer-container-inner">
-                                <div class="promotion-title">Promotion headline</div>
-                                <div class="promotion-link">
-                                    <a href="javascript:void(0)">
-                                        See all promotions
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                	<cms:component component="${feature.promotionBanner}" evaluateRestriction="true"/>
                 </div>
             </div>
             
@@ -982,20 +928,7 @@
                     </div>
                     </div>
 	                <div class="modal-footer">
-	                    <div class="xs-main-menu-l2-footer"
-	                        style="background: url('${commonResourcePath}/images/xs-promotion-back.png') left top no-repeat; background-size: cover;">
-	                        <div class="gray-shade"></div>
-	                        <div class="menu-l2-footer-container">
-	                            <div class="menu-l2-footer-container-inner">
-	                                <div class="promotion-title">Promotion headline</div>
-	                                <div class="promotion-link">
-	                                    <a href="javascript:void(0)">
-	                                        See all promotions
-	                                    </a>
-	                                </div>
-	                            </div>
-	                        </div>
-	                    </div>
+	                	<cms:component component="${feature.promotionBanner}" evaluateRestriction="true"/>
 	                </div>
 	                </div>
 	                </c:forEach>
@@ -1066,20 +999,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <div class="xs-main-menu-l2-footer"
-                        style="background: url('${commonResourcePath}/images/xs-promotion-back.png') left top no-repeat; background-size: cover;">
-                        <div class="gray-shade"></div>
-                        <div class="menu-l2-footer-container">
-                            <div class="menu-l2-footer-container-inner">
-                                <div class="promotion-title">Promotion headline</div>
-                                <div class="promotion-link">
-                                    <a href="javascript:void(0)">
-                                        See all promotions
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                	<cms:component component="${feature.promotionBanner}" evaluateRestriction="true"/>
                 </div>
             </div>
             </c:if>

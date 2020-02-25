@@ -1488,9 +1488,6 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;ggB2CNavBar-ProductDetailsPage;ggB2CNavBar;;ggB2CNavBarSlot;true
 
-INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV)
-;;ggB2CNavBarSlot;HeaderNavComponent
-
 #####Header navigation bar refactor ends######
 
 ###top two components for product listing page####
@@ -1735,13 +1732,22 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 ;SupportNavNodeEntry;;Support Navigation Node Entry;SupportNavNode;SupportLink
 ;ContactNavNodeEntry;;Contact Navigation Node Entry;ContactNavNode;ContactLink
 
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;AllPromotionsLink;All Promotions Link;https://www.google.com/;;;;
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];folder(qualifier)[default='images'];altText
+;;allPromotionsImage.jpg;$siteResource/images/theme/xs-promotion-back.png;;;""
+
+INSERT_UPDATE GallagherBannerComponent;$contentCV[unique=true];uid[unique=true];$picture;heading;link(uid, $contentCV);styleClass
+;;GallagherBannerPromo;allPromotionsImage.jpg;"Promotion headline";AllPromotionsLink;"gray-shade"
+
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef;children(uid, $contentCV)[mode=replace]
 ;HeaderLinkNavigationNode;;Header Link Navigation Node; root;; HeaderLinkNavigationNode; SolutionsNavNode,ProductsNavNode,SupportNavNode,ContactNavNode
 
-INSERT_UPDATE NavigationComponent;$contentCV[unique=true];uid[unique=true];name;styleClass;&componentRef;navigationNode(&nodeRef)
-;;HeaderNavigationComponent;Header Navigation component;;HeaderNavigationComponent;HeaderLinkNavigationNode
+INSERT_UPDATE GallagherNavigationComponent;$contentCV[unique=true];uid[unique=true];name;styleClass;&componentRef;navigationNode(&nodeRef);promotionBanner(uid, $contentCV)
+;;GallagherHeaderNavigationComponent;Gallagher Header Navigation component;;GallagherHeaderNavigationComponent;HeaderLinkNavigationNode;GallagherBannerPromo
 
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV)
-;;ggB2CNavBarSlot;HeaderNavigationComponent
+;;ggB2CNavBarSlot;GallagherHeaderNavigationComponent
 
 #############Navigation Nodes start end##############

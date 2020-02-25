@@ -276,6 +276,38 @@
 				</attributes>
 			</itemtype>
 			
+			<itemtype code="GallagherBannerComponent" autocreate="true"
+				generate="true" extends="BannerComponent">
+				<attributes>
+					<attribute qualifier="heading"
+						type="java.lang.String">
+						<modifiers optional="true" />
+						<persistence type="property" />
+						<description>heading for the Promotion</description>
+					</attribute>
+					<attribute qualifier="link" type="CMSLinkComponent">
+						<modifiers optional="true" />
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="styleClass" type="java.lang.String">
+						<modifiers optional="true" />
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+			
+			<itemtype code="GallagherNavigationComponent" autocreate="true"
+				generate="true" extends="NavigationComponent">
+				<attributes>
+					<attribute qualifier="promotionBanner"
+						type="GallagherBannerComponent">
+						<modifiers optional="true" />
+						<persistence type="property" />
+						<description>heading for the Promotion</description>
+					</attribute>
+				</attributes>
+			</itemtype>
+			
 		</typegroup>
 
 		<typegroup name="jobs">

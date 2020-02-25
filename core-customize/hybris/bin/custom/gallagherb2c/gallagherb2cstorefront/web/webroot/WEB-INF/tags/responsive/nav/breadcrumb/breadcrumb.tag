@@ -17,7 +17,7 @@
 		<spring:url htmlEscape="false" value="${breadcrumb.url}" var="breadcrumbUrl" />
 		<c:choose>
 			<c:when test="${status.last}">
-				<li class="breadcrumb-item active">${fn:escapeXml(breadcrumb.name)}</li>
+				<li class="breadcrumb-item active" aria-current="page">${fn:escapeXml(breadcrumb.name)}</li>
 			</c:when>
 			<c:when test="${breadcrumb.url eq '#'}">
 				<li class="breadcrumb-item">
