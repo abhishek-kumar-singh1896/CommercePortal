@@ -38,14 +38,14 @@ $targetProductCVNZ=targetVersion(catalog(id[default=$productCatalogNZ]),version[
 $targetProductCVAU=targetVersion(catalog(id[default=$productCatalogAU]),version[default='Staged'])[unique=true,default='$productCatalogAU:Staged']
 $targetProductCVGlobal=targetVersion(catalog(id[default=$productCatalogGlobal]),version[default='Staged'])[unique=true,default='$productCatalogGlobal:Staged']
 
-INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetProductCVNZ;
-;sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged;;;;
+INSERT_UPDATE GallagherCatalogVersionSyncJob;code[unique=true];sessionUser(uid);baseStore(uid);$sourceProductCV;$targetProductCVNZ;
+;sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged;syncUser;securityB2BNZ;;;
 
-INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetProductCVAU;
-;sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged;;;;
+INSERT_UPDATE GallagherCatalogVersionSyncJob;code[unique=true];sessionUser(uid);baseStore(uid);$sourceProductCV;$targetProductCVAU;
+;sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged;syncUser;securityB2BAU;;;
 
-INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetProductCVGlobal;
-;sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged;;;;
+INSERT_UPDATE GallagherCatalogVersionSyncJob;code[unique=true];sessionUser(uid);baseStore(uid);$sourceProductCV;$targetProductCVGlobal;
+;sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged;syncUser;securityB2BGlobal;;;
 
 INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
 #cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
@@ -88,4 +88,20 @@ INSERT_UPDATE Trigger;cronJob(code)[unique=true];second;minute;hour;day;month;ye
 #cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
 ;SecurityMediaConversionMaster			;0		;30		;0		;0		;0		;0		;true		;true	;-1
 
+# Synchronization Job Restriction
+$productQueryPrefix={baseProductCode} IS NULL AND {approvalStatus} =({{SELECT {pk} from {ArticleApprovalStatus} where {code}='approved'}})
+$productQuery={baseProductCode} IS NULL AND {approvalStatus} =({{SELECT {pk} from {ArticleApprovalStatus} where {code}='approved'}}) AND ?session.currentJob.baseStore IN ({{SELECT {SOURCE} FROM {BaseStoreProductRelation} where {TARGET} = {item:PK}}})
 
+INSERT_UPDATE JobSearchRestriction;code[unique=true];job(code)[path-delimiter=!];type(code);query
+;B2BMaster->B2BNZ-SyncJob-Product-Restriction;sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged;Product;$productQueryPrefix
+;B2BMaster->B2BAU-SyncJob-Product-Restriction;sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged;Product;$productQueryPrefix
+;B2BMaster->B2BGlobal-SyncJob-Product-Restriction;sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged;Product;$productQueryPrefix
+
+;B2BMaster->B2BNZ-SyncJob-Product-Restriction;sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged;Product;$productQuery
+;B2BMaster->B2BAU-SyncJob-Product-Restriction;sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged;Product;$productQuery
+;B2BMaster->B2BGlobal-SyncJob-Product-Restriction;sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged;Product;$productQuery
+
+INSERT_UPDATE SyncAttributeDescriptorConfig;syncJob(code)[unique=true,path-delimiter=!];attributeDescriptor(enclosingType(code),qualifier)[unique=true];includedInSync;copyByValue
+;sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged;Product:baseStores;false;false
+;sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged;Product:baseStores;false;false
+;sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged;Product:baseStores;false;false
