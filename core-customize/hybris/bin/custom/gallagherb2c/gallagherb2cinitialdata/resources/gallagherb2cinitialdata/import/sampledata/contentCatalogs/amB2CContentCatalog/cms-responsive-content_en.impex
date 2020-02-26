@@ -567,4 +567,35 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
 ;;AllPromotionsLink;"See all promotions"
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+                             ;                        ;AllElectricFencingLink1;"All Electric Fencing"
+							 ;                         ;AllWeighingEIDLink1;"All Weighing and EID"
+							 ;                         ;AllElectricFencingLink3;"All Electric Fencing"
+							 
+
+
+							 
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;PowerEnergisers_link11;"Energisers"
+;;PowerEnergisers_link12;"Remotes and Fence Testers"
+;;PowerEnergisers_link13;"Power system accessories"			
+;;PowerEnergisers_link31;"Energisers"
+;;PowerEnergisers_link32;"Remotes and Fence Testers"
+;;PowerEnergisers_link33;"Power system accessories"
+
+
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;PermanentfencingWireandCable_link111;"Wire and Cable"
+;;PermanentfencingWireandCable_link112;"Wire Strainers"
+;;PermanentfencingWireandCable_link113;"Insulators"
+;;PermanentfencingWireandCable_link114;"Offsets"
+;;PermanentfencingWireandCable_link115;"Gates"
+;;PermanentfencingWireandCable_link116;"Fence tools and accessories"
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;PortablefencingTapesWiresBraids_nav_link111;"Tapes, Wires, Braids"
+;;PortablefencingTapesWiresBraids_nav_link112;"Reels and Accessories"
+;;PortablefencingTapesWiresBraids_nav_link113;"Posts - Pigtails and Tread-ins"
 #############Navigation Nodes start end##############
