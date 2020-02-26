@@ -1,0 +1,85 @@
+.rating-out {
+  margin-bottom: 10px;
+}
+
+.rating-out.less-margin {
+  margin-bottom: 5px;
+}
+
+.rating-out.no-margin {
+  margin-bottom: 0;
+}
+
+.rating-out .star-rating,
+.rating-out .reviews-text,
+.rating-out .rating-value,
+.rating-out .write-reviews-link {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
+  font-size: 12px;
+  position: relative;
+}
+
+.rating-out.with-rating-value .star-rating {
+  margin-right: 0;
+}
+
+.rating-out .reviews-text {
+  margin-right: 15px;
+  color: #9d9d9d;
+}
+
+.rating-out .reviews-text:after {
+  position: absolute;
+  border-right: 1px solid #999;
+  height: 12px;
+  right: -10px;
+  top: 3px;
+  content: "";
+}
+
+.star-rating {
+  height: 14px;
+  position: relative;
+  width: 70px;
+}
+
+.star-rating:before {
+  background-image: url("../img/gray-star.svg");
+  background-repeat: repeat-x;
+  background-size: 14px;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 14px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 70px;
+}
+
+.star-rating > span {
+  display: block;
+  text-indent: -10000px;
+  width: 70px;
+  height: 14px;
+  position: absolute;
+  overflow: hidden;
+}
+
+.star-rating > span:before {
+  background-image: url("../img/filled-star.svg");
+  background-repeat: repeat-x;
+  background-size: 14px;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 14px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  text-indent: 10000px;
+  top: 0;
+}

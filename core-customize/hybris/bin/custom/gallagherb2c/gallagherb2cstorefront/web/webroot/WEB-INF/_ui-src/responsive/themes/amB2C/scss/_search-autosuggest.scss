@@ -1,15 +1,15 @@
-.ui-widget {
+ui-widget {
   font-family: inherit;
   font-size: inherit;
-  
+
   &.ui-menu {
-  	max-width: 320px;
-  	width: 100%;
+    max-width: 320px;
+    width: 100%;
   }
 }
 
 .search-results-highlight {
-	font-family: $font-family-bold;
+  font-family: $font-family-bold;
 }
 
 .ui-widget-content {
@@ -30,14 +30,14 @@
     &:hover {
       color: $primary-color;
     }
-    
+
     &.ui-state-active {
-    	border: none;
-  background: transparent;
-  font-weight: normal;
-  color: $primary-color;
-  padding: 8px 0;
-  margin: 0;
+      border: none;
+      background: transparent;
+      font-weight: normal;
+      color: $primary-color;
+      padding: 8px 0;
+      margin: 0;
     }
   }
 }
