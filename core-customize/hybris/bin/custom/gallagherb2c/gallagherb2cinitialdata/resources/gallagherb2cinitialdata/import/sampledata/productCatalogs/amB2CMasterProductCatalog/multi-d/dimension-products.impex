@@ -21,11 +21,7 @@ INSERT_UPDATE VariantValueCategory ; code[unique=true] ; name       ; $supercate
                                    ; B2C_330Foot       ; 330 Foot   ; B2C_Length       ; 2
 
 
-# Insert Products
-INSERT_UPDATE Product;code[unique=true];$supercategories;manufacturerName;variantType(code);unit(code)[default=EA];$catalogVersion
-;heavy-duty-leadout-cable-12.5-gauge;wire-and-cable,B2C_Length;;GenericVariantProduct
-
 #Updating product information
-INSERT_UPDATE GenericVariantProduct;code[unique=true];$baseProduct;$supercategories;$catalogVersion;ean;$approved
-;heavy-duty-leadout-cable-12.5-gauge-65-foot;heavy-duty-leadout-cable-12.5-gauge;B2C_65Foot
-;heavy-duty-leadout-cable-12.5-gauge-330-foot;heavy-duty-leadout-cable-12.5-gauge;B2C_330Foot 
+INSERT_UPDATE Product;code[unique=true];baseProductCode;$supercategories;unit(code);variantForImage;baseStores(uid);$catalogVersion;ean;$approved
+;heavy-duty-leadout-cable-12.5-gauge-65-foot;heavy-duty-leadout-cable-12.5-gauge;B2C_65Foot;EA;TRUE;amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA 
+;heavy-duty-leadout-cable-12.5-gauge-330-foot;heavy-duty-leadout-cable-12.5-gauge;B2C_330Foot;EA;;amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA 

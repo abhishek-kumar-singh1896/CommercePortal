@@ -29,35 +29,11 @@ INSERT_UPDATE MediaFolder;qualifier[unique=true];path[unique=true]
 ;images;images
 
 INSERT_UPDATE Media;mediaFormat(qualifier);code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];$catalogVersion;folder(qualifier)[default=images]
-;B2BADVANCE-BF;/B2BADVANCE-BF/t10-mifare-reader.jpg;$siteResource/images/B2BADVANCE-BF/t10-mifare-reader.jpg
-;B2BADVANCE-BF;/B2BADVANCE-BF/t11-multi-tech-reader.jpg;$siteResource/images/B2BADVANCE-BF/t11-multi-tech-reader.jpg
-;B2BADVANCE-BF;/B2BADVANCE-BF/t11-mifare-reader.jpg;$siteResource/images/B2BADVANCE-BF/t11-mifare-reader.jpg
-;B2BADVANCE-BF;/B2BADVANCE-BF/t12-multi-tech-reader.jpg;$siteResource/images/B2BADVANCE-BF/t12-multi-tech-reader.jpg
-;B2BADVANCE-BF;/B2BADVANCE-BF/t12-mifare-reader.jpg;$siteResource/images/B2BADVANCE-BF/t12-mifare-reader.jpg
-;B2BADVANCE-BF;/B2BADVANCE-BF/t15-multi-tech-reader.jpg;$siteResource/images/B2BADVANCE-BF/t15-multi-tech-reader.jpg
-;B2BADVANCE-BF;/B2BADVANCE-BF/t15-mifare-reader.jpg;$siteResource/images/B2BADVANCE-BF/t15-mifare-reader.jpg
-;B2BADVANCE-BF;/B2BADVANCE-BF/t20-multi-tech-reader.jpg;$siteResource/images/B2BADVANCE-BF/t20-multi-tech-reader.jpg
-;B2BADVANCE-BF;/B2BADVANCE-BF/t20-mifare-reader.jpg;$siteResource/images/B2BADVANCE-BF/t20-mifare-reader.jpg
+
 
 INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$catalogVersion;$conversionGroup
-;t10-mifare-reader;/B2BADVANCE-BF/t10-mifare-reader.jpg
-;t11-multi-tech-reader;/B2BADVANCE-BF/t11-multi-tech-reader.jpg
-;t11-mifare-reader;/B2BADVANCE-BF/t11-mifare-reader.jpg
-;t12-multi-tech-reader;/B2BADVANCE-BF/t12-multi-tech-reader.jpg
-;t12-mifare-reader;/B2BADVANCE-BF/t12-mifare-reader.jpg
-;t15-multi-tech-reader;/B2BADVANCE-BF/t15-multi-tech-reader.jpg
-;t15-mifare-reader;/B2BADVANCE-BF/t15-mifare-reader.jpg
-;t20-multi-tech-reader;/B2BADVANCE-BF/t20-multi-tech-reader.jpg
-;t20-mifare-reader;/B2BADVANCE-BF/t20-mifare-reader.jpg
+
 
 
 INSERT_UPDATE Product;code[unique=true];$picture;$thumbnail;$detail;$others;$normal;$thumbnails;$galleryImages;$catalogVersion
-;t10-mifare-reader;/B2BADVANCE-BF/t10-mifare-reader.jpg;/B2BADVANCE-BF/t10-mifare-reader.jpg;/B2BADVANCE-BF/t10-mifare-reader.jpg;/B2BADVANCE-BF/t10-mifare-reader.jpg,/B2BADVANCE-BF/t10-mifare-reader.jpg,/B2BADVANCE-BF/t10-mifare-reader.jpg;/B2BADVANCE-BF/t10-mifare-reader.jpg;/B2BADVANCE-BF/t10-mifare-reader.jpg;t10-mifare-reader
-;t11-multi-tech-reader;/B2BADVANCE-BF/t11-multi-tech-reader.jpg;/B2BADVANCE-BF/t11-multi-tech-reader.jpg;/B2BADVANCE-BF/t11-multi-tech-reader.jpg;/B2BADVANCE-BF/t11-multi-tech-reader.jpg,/B2BADVANCE-BF/t11-multi-tech-reader.jpg,/B2BADVANCE-BF/t11-multi-tech-reader.jpg;/B2BADVANCE-BF/t11-multi-tech-reader.jpg;/B2BADVANCE-BF/t11-multi-tech-reader.jpg;t11-multi-tech-reader
-;t11-mifare-reader;/B2BADVANCE-BF/t11-mifare-reader.jpg;/B2BADVANCE-BF/t11-mifare-reader.jpg;/B2BADVANCE-BF/t11-mifare-reader.jpg;/B2BADVANCE-BF/t11-mifare-reader.jpg,/B2BADVANCE-BF/t11-mifare-reader.jpg,/B2BADVANCE-BF/t11-mifare-reader.jpg;/B2BADVANCE-BF/t11-mifare-reader.jpg;/B2BADVANCE-BF/t11-mifare-reader.jpg;t11-mifare-reader
-;t12-multi-tech-reader;/B2BADVANCE-BF/t12-multi-tech-reader.jpg;/B2BADVANCE-BF/t12-multi-tech-reader.jpg;/B2BADVANCE-BF/t12-multi-tech-reader.jpg;/B2BADVANCE-BF/t12-multi-tech-reader.jpg,/B2BADVANCE-BF/t12-multi-tech-reader.jpg,/B2BADVANCE-BF/t12-multi-tech-reader.jpg;/B2BADVANCE-BF/t12-multi-tech-reader.jpg;/B2BADVANCE-BF/t12-multi-tech-reader.jpg;t12-multi-tech-reader
-;t12-mifare-reader;/B2BADVANCE-BF/t12-mifare-reader.jpg;/B2BADVANCE-BF/t12-mifare-reader.jpg;/B2BADVANCE-BF/t12-mifare-reader.jpg;/B2BADVANCE-BF/t12-mifare-reader.jpg,/B2BADVANCE-BF/t12-mifare-reader.jpg,/B2BADVANCE-BF/t12-mifare-reader.jpg;/B2BADVANCE-BF/t12-mifare-reader.jpg;/B2BADVANCE-BF/t12-mifare-reader.jpg;t12-mifare-reader
-;t15-multi-tech-reader;/B2BADVANCE-BF/t15-multi-tech-reader.jpg;/B2BADVANCE-BF/t15-multi-tech-reader.jpg;/B2BADVANCE-BF/t15-multi-tech-reader.jpg;/B2BADVANCE-BF/t15-multi-tech-reader.jpg,/B2BADVANCE-BF/t15-multi-tech-reader.jpg,/B2BADVANCE-BF/t15-multi-tech-reader.jpg;/B2BADVANCE-BF/t15-multi-tech-reader.jpg;/B2BADVANCE-BF/t15-multi-tech-reader.jpg;t15-multi-tech-reader
-;t15-mifare-reader;/B2BADVANCE-BF/t15-mifare-reader.jpg;/B2BADVANCE-BF/t15-mifare-reader.jpg;/B2BADVANCE-BF/t15-mifare-reader.jpg;/B2BADVANCE-BF/t15-mifare-reader.jpg,/B2BADVANCE-BF/t15-mifare-reader.jpg,/B2BADVANCE-BF/t15-mifare-reader.jpg;/B2BADVANCE-BF/t15-mifare-reader.jpg;/B2BADVANCE-BF/t15-mifare-reader.jpg;t15-mifare-reader
-;t20-multi-tech-reader;/B2BADVANCE-BF/t20-multi-tech-reader.jpg;/B2BADVANCE-BF/t20-multi-tech-reader.jpg;/B2BADVANCE-BF/t20-multi-tech-reader.jpg;/B2BADVANCE-BF/t20-multi-tech-reader.jpg,/B2BADVANCE-BF/t20-multi-tech-reader.jpg,/B2BADVANCE-BF/t20-multi-tech-reader.jpg;/B2BADVANCE-BF/t20-multi-tech-reader.jpg;/B2BADVANCE-BF/t20-multi-tech-reader.jpg;t20-multi-tech-reader
-;t20-mifare-reader;/B2BADVANCE-BF/t20-mifare-reader.jpg;/B2BADVANCE-BF/t20-mifare-reader.jpg;/B2BADVANCE-BF/t20-mifare-reader.jpg;/B2BADVANCE-BF/t20-mifare-reader.jpg,/B2BADVANCE-BF/t20-mifare-reader.jpg,/B2BADVANCE-BF/t20-mifare-reader.jpg;/B2BADVANCE-BF/t20-mifare-reader.jpg;/B2BADVANCE-BF/t20-mifare-reader.jpg;t20-mifare-reader
+

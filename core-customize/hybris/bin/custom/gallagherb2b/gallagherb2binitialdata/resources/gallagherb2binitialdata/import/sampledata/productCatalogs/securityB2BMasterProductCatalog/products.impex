@@ -12,7 +12,7 @@
 
 # Macros / Replacement Parameter definitions
 $productCatalog=securityB2BMasterProductCatalog
-$productCatalogName=Security B2B NZ Product Catalog
+$productCatalogName=Security B2B Master Product Catalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 $supercategories=supercategories(code, $catalogVersion)
 $baseProduct=baseProduct(code,$catalogVersion)
@@ -23,27 +23,10 @@ $lang=en
 
 # Insert Products
 INSERT_UPDATE Product;code[unique=true];$supercategories;manufacturerName;manufacturerAID;partNumber;variantType(code);unit(code)[default=pieces];$approved;$catalogVersion
-;t10-mifare-reader;t10;;;;;EA;approved
-;t11-multi-tech-reader;t11;;;;;EA;approved
-;t11-mifare-reader;t11;;;;;EA;approved
-;t12-multi-tech-reader;t12;;;;;EA;approved
-;t12-mifare-reader;t12;;;;;EA;approved
-;t15-multi-tech-reader;t15;;;;;EA;approved
-;t15-mifare-reader;t15;;;;;EA;approved
-;t20-multi-tech-reader;t20;;;;;EA;approved
-;t20-mifare-reader;t20;;;;;EA;approved
 
 
 UPDATE Product;code[unique=true];name[lang=$lang];description[lang=$lang];summary[lang=$lang];$catalogVersion
-;t10-mifare-reader;T10 MIFARE Reader;"Gallagher's T-Series Reader range provides contactless proximity card readers for access control management.<br /><br />The T-Series range of smartcard and multi-technology readers are designed to withstand both the rigours of daily use and adverse environmental conditions.<br /><br /><ul><li>Potted and tested to high environmental tolerances.</li><li>Durable and robust design.</li><li>Extensive range of reader mounting and protection accessories.</li></ul>."
-;t11-multi-tech-reader;T11 Multi Tech Reader;"Gallagher's T-Series Reader range provides contactless proximity card readers for access control management.<br /><br />The T-Series range of smartcard and multi-technology readers are designed to withstand both the rigours of daily use and adverse environmental conditions.<br /><br /><ul><li>Potted and tested to high environmental tolerances.</li><li>Durable and robust design.</li><li>Extensive range of reader mounting and protection accessories.</li></ul>."
-;t11-mifare-reader;T11 MIFARE Reader;"Gallagher's T-Series Reader range provides contactless proximity card readers for access control management.<br /><br />The T-Series range of smartcard and multi-technology readers are designed to withstand both the rigours of daily use and adverse environmental conditions.<br /><br /><ul><li>Potted and tested to high environmental tolerances.</li><li>Durable and robust design.</li><li>Extensive range of reader mounting and protection accessories.</li></ul>."
-;t12-multi-tech-reader;T12 Multi Tech Reader;"Gallagher's T-Series Reader range provides contactless proximity card readers for access control management.<br /><br />The T-Series range of smartcard and multi-technology readers are designed to withstand both the rigours of daily use and adverse environmental conditions.<br /><br /><ul><li>Potted and tested to high environmental tolerances.</li><li>Durable and robust design.</li><li>Extensive range of reader mounting and protection accessories.</li></ul>."
-;t12-mifare-reader;T12 MIFARE Reader;"Gallagher's T-Series Reader range provides contactless proximity card readers for access control management.<br /><br />The T-Series range of smartcard and multi-technology readers are designed to withstand both the rigours of daily use and adverse environmental conditions.<br /><br /><ul><li>Potted and tested to high environmental tolerances.</li><li>Durable and robust design.</li><li>Extensive range of reader mounting and protection accessories.</li></ul>."
-;t15-multi-tech-reader;T15 Multi Tech Reader;"Gallagher's T-Series Reader range provides contactless proximity card readers for access control management.<br /><br />The T-Series range of smartcard and multi-technology readers are designed to withstand both the rigours of daily use and adverse environmental conditions.<br /><br /><ul><li>Potted and tested to high environmental tolerances.</li><li>Durable and robust design.</li><li>Extensive range of reader mounting and protection accessories.</li></ul>."
-;t15-mifare-reader;T15 MIFARE Reader;"Gallagher's T-Series Reader range provides contactless proximity card readers for access control management.<br /><br />The T-Series range of smartcard and multi-technology readers are designed to withstand both the rigours of daily use and adverse environmental conditions.<br /><br /><ul><li>Potted and tested to high environmental tolerances.</li><li>Durable and robust design.</li><li>Extensive range of reader mounting and protection accessories.</li></ul>."
-;t20-multi-tech-reader;T20 Multi Tech Reader;"Gallagher's T-Series Reader range provides contactless proximity card readers for access control management.<br /><br />The T-Series range of smartcard and multi-technology readers are designed to withstand both the rigours of daily use and adverse environmental conditions.<br /><br /><ul><li>Potted and tested to high environmental tolerances.</li><li>Durable and robust design.</li><li>Extensive range of reader mounting and protection accessories.</li></ul>."
-;t20-mifare-reader;T20 MIFARE Reader;"Gallagher's T-Series Reader range provides contactless proximity card readers for access control management.<br /><br />The T-Series range of smartcard and multi-technology readers are designed to withstand both the rigours of daily use and adverse environmental conditions.<br /><br /><ul><li>Potted and tested to high environmental tolerances.</li><li>Durable and robust design.</li><li>Extensive range of reader mounting and protection accessories.</li></ul>."
+
 
 INSERT_UPDATE Discount;code[unique=true];value;name;currency(isoCode)
 
