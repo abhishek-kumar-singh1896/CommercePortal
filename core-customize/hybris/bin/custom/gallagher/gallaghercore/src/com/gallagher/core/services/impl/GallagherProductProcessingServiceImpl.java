@@ -9,9 +9,12 @@ import de.hybris.platform.catalog.model.CatalogVersionModel;
 import de.hybris.platform.category.CategoryService;
 import de.hybris.platform.category.model.CategoryModel;
 import de.hybris.platform.core.model.c2l.LanguageModel;
+import de.hybris.platform.core.model.media.MediaContainerModel;
+import de.hybris.platform.core.model.media.MediaModel;
 import de.hybris.platform.core.model.product.ProductModel;
 import de.hybris.platform.product.ProductService;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
+import de.hybris.platform.servicelayer.media.MediaService;
 import de.hybris.platform.servicelayer.model.ModelService;
 import de.hybris.platform.servicelayer.type.TypeService;
 import de.hybris.platform.site.BaseSiteService;
@@ -55,6 +58,9 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 
 	@Resource(name = "modelService")
 	protected ModelService modelService;
+
+	@Resource(name = "mediaService")
+	protected MediaService mediaService;
 
 	@Resource(name = "productService")
 	protected ProductService productService;
@@ -214,6 +220,9 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 					existingVariantProduct.setVariantForImage(product.isVariantForImage());
 					existingVariantProduct
 							.setSupercategories(getVariantCategories(product.getSupercategories(), regionalCatalogVersion));
+
+					populateImages(product, existingVariantProduct, regionalCatalogVersion);
+
 					modelService.save(existingVariantProduct);
 
 				}
@@ -237,11 +246,93 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 					newVariantProduct.setCatalogVersion(regionalCatalogVersion);
 					newVariantProduct.setSupercategories(getVariantCategories(product.getSupercategories(), regionalCatalogVersion));
 					newVariantProduct.setBaseProduct(baseProduct);
+
+					populateImages(product, newVariantProduct, regionalCatalogVersion);
+
 					modelService.save(newVariantProduct);
 				}
 
 			}
 		}
+	}
+
+	/**
+	 * Populate the Images from Master Variant Product to Regional Variant Product
+	 *
+	 * @param product
+	 * @param existingVariantProduct
+	 * @param regionalCatalogVersion
+	 */
+	private void populateImages(final ProductModel product, final GenericVariantProductModel variantProduct,
+			final CatalogVersionModel regionalCatalogVersion)
+	{
+		final MediaModel picture = product.getPicture();
+		final MediaModel thumbnail = product.getThumbnail();
+		final Collection<MediaModel> detail = product.getDetail();
+		final Collection<MediaModel> others = product.getOthers();
+		final Collection<MediaModel> normal = product.getNormal();
+		final Collection<MediaModel> thumbnails = product.getThumbnails();
+		final Collection<MediaContainerModel> galleryImages = product.getGalleryImages();
+
+		if (null != picture)
+		{
+			variantProduct.setPicture(mediaService.getMedia(regionalCatalogVersion, picture.getCode()));
+		}
+		if (null != thumbnail)
+		{
+			variantProduct.setThumbnail(mediaService.getMedia(regionalCatalogVersion, thumbnail.getCode()));
+		}
+		if (!CollectionUtils.isEmpty(detail))
+		{
+			final Set<MediaModel> mediaSet = new HashSet<>();
+			for (final MediaModel media : detail)
+			{
+				mediaSet.add(mediaService.getMedia(regionalCatalogVersion, media.getCode()));
+			}
+			variantProduct.setDetail(mediaSet);
+		}
+		if (!CollectionUtils.isEmpty(others))
+		{
+			final Set<MediaModel> mediaSet = new HashSet<>();
+			for (final MediaModel media : others)
+			{
+				mediaSet.add(mediaService.getMedia(regionalCatalogVersion, media.getCode()));
+			}
+			variantProduct.setOthers(mediaSet);
+		}
+		if (!CollectionUtils.isEmpty(normal))
+		{
+			final Set<MediaModel> mediaSet = new HashSet<>();
+			for (final MediaModel media : normal)
+			{
+				mediaSet.add(mediaService.getMedia(regionalCatalogVersion, media.getCode()));
+			}
+			variantProduct.setNormal(mediaSet);
+		}
+		if (!CollectionUtils.isEmpty(thumbnails))
+		{
+			final Set<MediaModel> mediaSet = new HashSet<>();
+			for (final MediaModel media : thumbnails)
+			{
+				mediaSet.add(mediaService.getMedia(regionalCatalogVersion, media.getCode()));
+			}
+			variantProduct.setThumbnails(mediaSet);
+		}
+		if (!CollectionUtils.isEmpty(galleryImages))
+		{
+			final List<MediaContainerModel> mediaContainerList = new ArrayList<>();
+			for (final MediaContainerModel mediaContainer : galleryImages)
+			{
+				final MediaContainerModel existingMediaContainer = gallagherProductProcessingDao
+						.getMediaContainerForQualifier(mediaContainer.getQualifier(), regionalCatalogVersion);
+				if (null != existingMediaContainer)
+				{
+					mediaContainerList.add(existingMediaContainer);
+				}
+			}
+			variantProduct.setGalleryImages(mediaContainerList);
+		}
+
 	}
 
 	/**

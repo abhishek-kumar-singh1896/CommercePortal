@@ -4,6 +4,7 @@
 package com.gallagher.core.dao;
 
 import de.hybris.platform.catalog.model.CatalogVersionModel;
+import de.hybris.platform.core.model.media.MediaContainerModel;
 import de.hybris.platform.core.model.product.ProductModel;
 import de.hybris.platform.variants.model.GenericVariantProductModel;
 
@@ -12,7 +13,7 @@ import java.util.List;
 
 
 /**
- * {@link ProductModel CatalogVersionModel GenericVariantProductModel} dao
+ * {@link ProductModel CatalogVersionModel GenericVariantProductModel MediaContainerModel} dao
  *
  * @author shishirkant
  *
@@ -21,8 +22,8 @@ public interface GallagherProductProcessingDao
 {
 
 	/**
-	 * Returns for the list of Products for given catalogVersion, modified after the given date where baseProductCode is
-	 * not null.
+	 * Returns the list of Products for given catalogVersion, modified after the given date where baseProductCode is not
+	 * null.
 	 *
 	 * @param catalogVersion
 	 * @param lastStartTime
@@ -31,7 +32,7 @@ public interface GallagherProductProcessingDao
 	List<ProductModel> getProductsForConversion(final CatalogVersionModel catalogVersion, final Date lastStartTime);
 
 	/**
-	 * Returns for the list of approved Products for given catalogVersion, modified after the given date where
+	 * Returns the list of approved Products for given catalogVersion, modified after the given date where
 	 * baseProductCode is not null.
 	 *
 	 * @param catalogVersion
@@ -41,7 +42,7 @@ public interface GallagherProductProcessingDao
 	List<ProductModel> getVariantProductsForTransformation(final CatalogVersionModel catalogVersion, final Date lastStartTime);
 
 	/**
-	 * Returns for the list of available Catalog Versions for given code of Variant Product.
+	 * Returns the list of available Catalog Versions for given code of Variant Product.
 	 *
 	 * @param variantProductCode
 	 * @return availableCatalogVersions
@@ -49,7 +50,7 @@ public interface GallagherProductProcessingDao
 	List<CatalogVersionModel> getAvailableCatalogVersionForCode(final String variantProductCode);
 
 	/**
-	 * Returns for the list of approved Variant Products for given Base Product and CatalogVersion.
+	 * Returns the list of approved Variant Products for given Base Product and CatalogVersion.
 	 *
 	 * @param baseProduct
 	 * @param unapprovedForCatalogVersion
@@ -57,5 +58,14 @@ public interface GallagherProductProcessingDao
 	 */
 	List<GenericVariantProductModel> getApprovedVariantProductsForBaseProduct(final ProductModel baseProduct,
 			final CatalogVersionModel unapprovedForCatalogVersion);
+
+	/**
+	 * Returns MediaContainer for given Qualifier and CatalogVersion.
+	 *
+	 * @param qualifier
+	 * @param catalogVersion
+	 * @return mediaContainer
+	 */
+	MediaContainerModel getMediaContainerForQualifier(final String qualifier, final CatalogVersionModel catalogVersion);
 
 }

@@ -5,6 +5,7 @@ package com.gallagher.core.dao.impl;
 
 import de.hybris.platform.catalog.enums.ArticleApprovalStatus;
 import de.hybris.platform.catalog.model.CatalogVersionModel;
+import de.hybris.platform.core.model.media.MediaContainerModel;
 import de.hybris.platform.core.model.product.ProductModel;
 import de.hybris.platform.servicelayer.search.FlexibleSearchQuery;
 import de.hybris.platform.servicelayer.search.FlexibleSearchService;
@@ -17,6 +18,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+
+import org.apache.commons.collections4.CollectionUtils;
 
 import com.gallagher.core.dao.GallagherProductProcessingDao;
 
@@ -148,5 +151,36 @@ public class GallagherProductProcessingDaoImpl implements GallagherProductProces
 		final SearchResult<GenericVariantProductModel> searchResult = flexibleSearchService.search(fQuery);
 
 		return searchResult.getResult();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public MediaContainerModel getMediaContainerForQualifier(final String qualifier, final CatalogVersionModel catalogVersion)
+	{
+		final Map<String, Object> queryParameter = new HashMap<>();
+		final StringBuilder stringBuilder = new StringBuilder();
+
+		stringBuilder.append("Select {").append(MediaContainerModel.PK);
+		stringBuilder.append("} from {").append(MediaContainerModel._TYPECODE);
+		stringBuilder.append("} where {").append(MediaContainerModel.QUALIFIER);
+		stringBuilder.append("} = ?").append(MediaContainerModel.QUALIFIER);
+		stringBuilder.append(" AND {").append(MediaContainerModel.CATALOGVERSION);
+		stringBuilder.append("} = ?").append(MediaContainerModel.CATALOGVERSION);
+
+		queryParameter.put(MediaContainerModel.CATALOGVERSION, catalogVersion);
+		queryParameter.put(MediaContainerModel.QUALIFIER, qualifier);
+
+		final FlexibleSearchQuery fQuery = new FlexibleSearchQuery(stringBuilder.toString());
+		fQuery.addQueryParameters(queryParameter);
+		final SearchResult<MediaContainerModel> searchResult = flexibleSearchService.search(fQuery);
+
+		if (!CollectionUtils.isEmpty(searchResult.getResult()))
+		{
+			return searchResult.getResult().get(0);
+		}
+
+		return null;
 	}
 }
