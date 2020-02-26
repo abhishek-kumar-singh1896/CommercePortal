@@ -564,4 +564,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 ;;FindStoreLink;"Find your nearest store"
 ;;FindManagerLink;"Find your territory manager"
 ;;SendMessageLink;"Send us a message"
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
+;;AllPromotionsLink;"See all promotions"
 #############Navigation Nodes start end##############
