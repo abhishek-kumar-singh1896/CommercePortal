@@ -7,7 +7,7 @@
     .user-profile-dropdown-inner {
       padding: 16px;
       color: $gray-3;
-      font-size: 0.85714em;
+      letter-spacing: 0.25px;
 
       ul {
         list-style: none;
@@ -16,12 +16,14 @@
 
         li {
           padding: 0;
+          margin: 0;
 
           a {
             display: block;
             color: $white;
             padding: 8px 0;
             text-decoration: none;
+            font-size: $font-size-11px;
 
             &:hover {
               color: $primary-color;
@@ -31,6 +33,7 @@
           .user-name {
             font-family: $font-family-bold;
             padding-bottom: 8px;
+            font-size: $font-size-13px;
           }
         }
       }
@@ -277,8 +280,8 @@
         -webkit-transform: translateX(-50%) !important;
         transform: translateX(-50%) !important;
         left: 4% !important;
-        min-width: 170px;
-        max-width: 170px;
+        min-width: 175px;
+        max-width: 175px;
         border-radius: 0;
         box-shadow: none;
         background-color: $gray-9;

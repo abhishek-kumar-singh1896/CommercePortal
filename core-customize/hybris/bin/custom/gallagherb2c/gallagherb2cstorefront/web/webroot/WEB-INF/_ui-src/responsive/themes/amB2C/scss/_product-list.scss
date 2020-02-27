@@ -1,4 +1,7 @@
 .product-list-sidebar-out {
+  label {
+    color: $gray-9;
+  }
   .sidebar-filter-section {
     margin-bottom: 16px;
 
@@ -519,6 +522,9 @@
   }
 
   .product-list-sidebar-out {
+    label {
+      color: $white;
+    }
     .sidebar-filter-section {
       min-height: inherit;
 

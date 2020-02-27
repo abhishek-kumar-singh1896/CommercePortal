@@ -5,7 +5,7 @@ ACC.refinements = {
 		["bindMoreStoresToggles", $(".js-facet-form").length !== 0],
 		["init", $(".js-facet-form").length !== 0],
 		["bindSearch", $(".js-facet-form").length !== 0],
-		["bindClearFilter",$("#clear-filter").length !== 0]
+		["bindClearFilter",$(".clear-filter").length !== 0]
 		
 	],
 
@@ -28,12 +28,12 @@ ACC.refinements = {
 	},
 
 	bindClearFilter:function(){ 
-		var a = $('#clear-filter');
+		var a = $('.clear-filter');
 		var pageURL = location.protocol + '//' + location.host + location.pathname;
 		a.href = pageURL;
 		var queryString = $(location).attr('search');
 		queries = queryString.split("%3A%3A");
-		$('#clear-filter').attr("href",  pageURL + queries[0]);
+		$('.clear-filter').attr("href",  pageURL + queries[0]);
 	}, 
 	bindSearch:function() {
 
