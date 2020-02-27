@@ -25,6 +25,7 @@ import de.hybris.platform.variants.model.VariantValueCategoryModel;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -218,8 +219,20 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 					}
 
 					existingVariantProduct.setVariantForImage(product.isVariantForImage());
-					existingVariantProduct
-							.setSupercategories(getVariantCategories(product.getSupercategories(), regionalCatalogVersion));
+
+					final Collection<CategoryModel> variantCategories = getVariantCategories(product.getSupercategories(),
+							regionalCatalogVersion);
+					if (!CollectionUtils.isEmpty(variantCategories))
+					{
+						existingVariantProduct.setSupercategories(variantCategories);
+					}
+					else
+					{
+						LOGGER.error("Product with code " + variantProductCode + " and CatalogVersion "
+								+ regionalCatalogVersion.getCatalog().getId()
+								+ " is not saved due to variant categories are not proper.");
+						continue;
+					}
 
 					populateImages(product, existingVariantProduct, regionalCatalogVersion);
 
@@ -244,7 +257,21 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 
 					newVariantProduct.setVariantForImage(product.isVariantForImage());
 					newVariantProduct.setCatalogVersion(regionalCatalogVersion);
-					newVariantProduct.setSupercategories(getVariantCategories(product.getSupercategories(), regionalCatalogVersion));
+
+					final Collection<CategoryModel> variantCategories = getVariantCategories(product.getSupercategories(),
+							regionalCatalogVersion);
+					if (!CollectionUtils.isEmpty(variantCategories))
+					{
+						newVariantProduct.setSupercategories(variantCategories);
+					}
+					else
+					{
+						LOGGER.error("Product with code " + variantProductCode + " and CatalogVersion "
+								+ regionalCatalogVersion.getCatalog().getId()
+								+ " is not saved due to variant categories are not proper.");
+						continue;
+					}
+
 					newVariantProduct.setBaseProduct(baseProduct);
 
 					populateImages(product, newVariantProduct, regionalCatalogVersion);
@@ -276,18 +303,42 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 
 		if (null != picture)
 		{
-			variantProduct.setPicture(mediaService.getMedia(regionalCatalogVersion, picture.getCode()));
+			try
+			{
+				variantProduct.setPicture(mediaService.getMedia(regionalCatalogVersion, picture.getCode()));
+			}
+			catch (final UnknownIdentifierException exception)
+			{
+				LOGGER.info("Picture Media with code " + picture.getCode() + " and CatalogVersion "
+						+ regionalCatalogVersion.getCatalog().getId() + " not found, Ignoring...");
+			}
 		}
 		if (null != thumbnail)
 		{
-			variantProduct.setThumbnail(mediaService.getMedia(regionalCatalogVersion, thumbnail.getCode()));
+			try
+			{
+				variantProduct.setThumbnail(mediaService.getMedia(regionalCatalogVersion, thumbnail.getCode()));
+			}
+			catch (final UnknownIdentifierException exception)
+			{
+				LOGGER.info("Thumbnail Media with code " + thumbnail.getCode() + " and CatalogVersion "
+						+ regionalCatalogVersion.getCatalog().getId() + " not found, Ignoring...");
+			}
 		}
 		if (!CollectionUtils.isEmpty(detail))
 		{
 			final Set<MediaModel> mediaSet = new HashSet<>();
 			for (final MediaModel media : detail)
 			{
-				mediaSet.add(mediaService.getMedia(regionalCatalogVersion, media.getCode()));
+				try
+				{
+					mediaSet.add(mediaService.getMedia(regionalCatalogVersion, media.getCode()));
+				}
+				catch (final UnknownIdentifierException exception)
+				{
+					LOGGER.info("Media for Detail with code " + media.getCode() + " and CatalogVersion "
+							+ regionalCatalogVersion.getCatalog().getId() + " not found, Ignoring...");
+				}
 			}
 			variantProduct.setDetail(mediaSet);
 		}
@@ -296,7 +347,15 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 			final Set<MediaModel> mediaSet = new HashSet<>();
 			for (final MediaModel media : others)
 			{
-				mediaSet.add(mediaService.getMedia(regionalCatalogVersion, media.getCode()));
+				try
+				{
+					mediaSet.add(mediaService.getMedia(regionalCatalogVersion, media.getCode()));
+				}
+				catch (final UnknownIdentifierException exception)
+				{
+					LOGGER.info("Media for Others with code " + media.getCode() + " and CatalogVersion "
+							+ regionalCatalogVersion.getCatalog().getId() + " not found, Ignoring...");
+				}
 			}
 			variantProduct.setOthers(mediaSet);
 		}
@@ -305,7 +364,15 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 			final Set<MediaModel> mediaSet = new HashSet<>();
 			for (final MediaModel media : normal)
 			{
-				mediaSet.add(mediaService.getMedia(regionalCatalogVersion, media.getCode()));
+				try
+				{
+					mediaSet.add(mediaService.getMedia(regionalCatalogVersion, media.getCode()));
+				}
+				catch (final UnknownIdentifierException exception)
+				{
+					LOGGER.info("Media for Normal with code " + media.getCode() + " and CatalogVersion "
+							+ regionalCatalogVersion.getCatalog().getId() + " not found, Ignoring...");
+				}
 			}
 			variantProduct.setNormal(mediaSet);
 		}
@@ -314,7 +381,15 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 			final Set<MediaModel> mediaSet = new HashSet<>();
 			for (final MediaModel media : thumbnails)
 			{
-				mediaSet.add(mediaService.getMedia(regionalCatalogVersion, media.getCode()));
+				try
+				{
+					mediaSet.add(mediaService.getMedia(regionalCatalogVersion, media.getCode()));
+				}
+				catch (final UnknownIdentifierException exception)
+				{
+					LOGGER.info("Media for Thumbnails with code " + media.getCode() + " and CatalogVersion "
+							+ regionalCatalogVersion.getCatalog().getId() + " not found, Ignoring...");
+				}
 			}
 			variantProduct.setThumbnails(mediaSet);
 		}
@@ -328,6 +403,11 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 				if (null != existingMediaContainer)
 				{
 					mediaContainerList.add(existingMediaContainer);
+				}
+				else
+				{
+					LOGGER.info("Media Container with qualifier " + mediaContainer.getQualifier() + " and CatalogVersion "
+							+ regionalCatalogVersion.getCatalog().getId() + " not found, Ignoring...");
 				}
 			}
 			variantProduct.setGalleryImages(mediaContainerList);
@@ -351,7 +431,16 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 		{
 			if (category instanceof VariantValueCategoryModel)
 			{
-				variantCategories.add(categoryService.getCategoryForCode(regionalCatalogVersion, category.getCode()));
+				try
+				{
+					variantCategories.add(categoryService.getCategoryForCode(regionalCatalogVersion, category.getCode()));
+				}
+				catch (final UnknownIdentifierException exception)
+				{
+					LOGGER.error("Category with code " + category.getCode() + " and CatalogVersion "
+							+ regionalCatalogVersion.getCatalog().getId() + " not found.");
+					return Collections.emptyList();
+				}
 			}
 		}
 
