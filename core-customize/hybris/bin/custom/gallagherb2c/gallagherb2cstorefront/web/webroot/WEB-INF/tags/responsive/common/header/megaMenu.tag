@@ -100,39 +100,31 @@
 
                                     <div class="user-profile-dropdown-inner">
                                         <ul>
-                                            <li>
-                                                <div class="row">
-                                                    <div class="col-12 text-truncate user-name">
+                                        	<li>
+                                            <div class="row mb-1">
+                                                <div class="col-12 text-truncate user-name">
+                                                    <sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
+                                                        <c:set var="maxNumberChars" value="25" />
                                                         <c:if test="${fn:length(user.firstName) gt maxNumberChars}">
-                                                            <c:set target="${user}" property="firstName" value="${fn:substring(user.firstName, 0, maxNumberChars)}..." />
+                                                            <c:set target="${user}" property="firstName"
+                                                                value="${fn:substring(user.firstName, 0, maxNumberChars)}..." />
                                                         </c:if>
-                                                        <ycommerce:testId code="header_LoggedUser">
-			                                              	${user.firstName} &nbsp ${user.lastName}
-			                                    		</ycommerce:testId>
-                                                    </div>
+	                                                        <ycommerce:testId code="header_LoggedUser">
+				                                              Hi,&nbsp${user.firstName}&nbsp${user.lastName}.
+				                                    		</ycommerce:testId>
+                                                    </sec:authorize>
                                                 </div>
+                                            </div>
                                             </li>
-                                            <li>
-                                                <a href="javascript:void(0)">
-                                                    <spring:theme code="text.Register.Product" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void(0)">
-                                                    <spring:theme code="text.Registered.Products" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void(0)">
-                                                    <spring:theme code="text.Account.Management" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void(0)">
-                                                    <spring:theme
+                                            <li><a href="javascript:void(0)"> <spring:theme code="text.Register.Product" />
+                                            </a></li>
+                                            <li><a href="javascript:void(0)"> <spring:theme code="text.Registered.Products" />
+                                            </a></li>
+                                            <li><a href="javascript:void(0)"> <spring:theme code="text.Account.Management" /> </a></li>
+                                            <li><c:url value="/logout" var="logoutUrl" /> <a
+                                                href="logoutUrl"> <spring:theme
                                                         code="header.link.logout" />
-                                                </a>
-                                            </li>
+                                            </a></li>
                                         </ul>
                                     </div>
                                 </div>

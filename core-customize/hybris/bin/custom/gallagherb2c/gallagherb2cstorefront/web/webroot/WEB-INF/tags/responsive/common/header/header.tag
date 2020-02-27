@@ -310,36 +310,24 @@
                                 </button>
                                 <div class="dropdown-menu user-profile-dropdown"
                                     aria-labelledby="userProfileDropdown">
-
- 
-
                                     <div class="user-profile-dropdown-inner">
                                         <ul>
-
- 
-
-                                            <div class="row">
+                                        	<li>
+                                            <div class="row mb-1">
                                                 <div class="col-12 text-truncate user-name">
-
- 
-
                                                     <sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
                                                         <c:set var="maxNumberChars" value="25" />
-                                                        <c:if
-                                                            test="${fn:length(user.firstName) gt maxNumberChars}">
+                                                        <c:if test="${fn:length(user.firstName) gt maxNumberChars}">
                                                             <c:set target="${user}" property="firstName"
                                                                 value="${fn:substring(user.firstName, 0, maxNumberChars)}..." />
                                                         </c:if>
-
- 
-
-                                                        <li class="logged_in js-logged_in"><ycommerce:testId
-                                                                code="header_LoggedUser">
-                                              ${user.firstName} &nbsp ${user.lastName}
-                                    </ycommerce:testId></li>
+	                                                        <ycommerce:testId code="header_LoggedUser">
+				                                              Hi,&nbsp${user.firstName}&nbsp${user.lastName}.
+				                                    		</ycommerce:testId>
                                                     </sec:authorize>
                                                 </div>
                                             </div>
+                                            </li>
                                             <li><a href="javascript:void(0)"> <spring:theme code="text.Register.Product" />
                                             </a></li>
                                             <li><a href="javascript:void(0)"> <spring:theme code="text.Registered.Products" />
