@@ -24,22 +24,21 @@
 
 
 <div class="nav-cart">
-	<a href="${fn:escapeXml(cartUrl)}"
-		class="mini-cart-link js-mini-cart-link"
-		data-mini-cart-url="${fn:escapeXml(rolloverPopupUrl)}"
-		data-mini-cart-refresh-url="${fn:escapeXml(refreshMiniCartUrl)}"
-		data-mini-cart-name="<spring:theme code="text.cart"/>"
-		data-mini-cart-empty-name="<spring:theme code="popup.cart.empty"/>"
-		data-mini-cart-items-text="<spring:theme code="basket.items"/>">
-		<svg class="cart-icon">
-			<use
-				xlink:href="${commonResourcePath}/images/gallagher-icons.svg#cart" />
-        </svg> 
+    <a href="#"
+        class="mini-cart-link js-mini-cart-link"
+        data-mini-cart-url="${fn:escapeXml(rolloverPopupUrl)}"
+        data-mini-cart-refresh-url="${fn:escapeXml(refreshMiniCartUrl)}"
+        data-mini-cart-name="<spring:theme code="text.cart"/>"
+        data-mini-cart-empty-name="<spring:theme code="popup.cart.empty"/>"
+        data-mini-cart-items-text="<spring:theme code="basket.items"/>">
+        <svg class="cart-icon">
+            <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#cart" />
+        </svg>
         <c:if test="${totalItems gt 0}">
-			<span class="info-number"> <span class="info-text">
-					${totalItems lt 10 ? fn:escapeXml(totalItems) : "9+"} </span>
-			</span>
-		</c:if>
-	</a>
+            <span class="info-number"> <span class="info-text">
+                    ${totalItems lt 10 ? fn:escapeXml(totalItems) : "9+"} </span>
+            </span>
+        </c:if>
+    </a>
 </div>
 <div class="mini-cart-container js-mini-cart-container"></div>
