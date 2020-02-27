@@ -15,7 +15,7 @@
 <c:url value="/cart" var="cartUrl"/>
 
 <div class="nav-cart">
-	<a 	href="${cartUrl}"
+	<a 	href="#"
 		class="mini-cart-link js-mini-cart-link"
 		data-mini-cart-url="${rolloverPopupUrl}"
 		data-mini-cart-refresh-url="${refreshMiniCartUrl}"
