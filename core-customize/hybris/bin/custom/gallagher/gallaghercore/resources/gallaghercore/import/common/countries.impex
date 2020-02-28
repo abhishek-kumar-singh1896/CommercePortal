@@ -419,3 +419,13 @@ INSERT_UPDATE Region;country(isocode);isocode[unique=true];isocodeShort;name[lan
 ;JP;JP-06;06;"Yamagata"
 ;JP;JP-35;35;"Yamaguchi"
 ;JP;JP-19;19;"Yamanashi"
+
+
+# Importing Region Code
+INSERT_UPDATE RegionCode; code[unique = true]
+                 			; au
+                 			; ca
+                 			; nz
+                 			; us
+                 			; latam
+                 			; global

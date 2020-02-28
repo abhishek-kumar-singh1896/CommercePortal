@@ -6,16 +6,13 @@ package com.gallagher.core.urlencoder.attributes.impl;
 
 import de.hybris.platform.acceleratorservices.urlencoder.attributes.impl.AbstractUrlEncodingAttributeManager;
 import de.hybris.platform.commerceservices.model.process.StoreFrontCustomerProcessModel;
-import de.hybris.platform.core.model.c2l.CountryModel;
 import de.hybris.platform.orderprocessing.model.OrderProcessModel;
 import de.hybris.platform.ordersplitting.model.ConsignmentProcessModel;
 import de.hybris.platform.processengine.model.BusinessProcessModel;
 import de.hybris.platform.returns.model.ReturnProcessModel;
 
 import java.util.Collection;
-
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.collections.Transformer;
+import java.util.stream.Collectors;
 
 
 /**
@@ -27,15 +24,8 @@ public class GallagherCountryAttributeManager extends AbstractUrlEncodingAttribu
 	@Override
 	public Collection<String> getAllAvailableValues()
 	{
-		return CollectionUtils.collect(getCmsSiteService().getCurrentSite().getStores().get(0).getDeliveryCountries(),
-				new Transformer()
-				{
-					@Override
-					public Object transform(final Object object)
-					{
-						return ((CountryModel) object).getIsocode().toLowerCase();
-					}
-				});
+		return getCmsSiteService().getSites().stream().filter(site -> site.getRegionCode() != null)
+				.map(site -> site.getRegionCode().getCode()).collect(Collectors.toList());
 	}
 
 	@Override
@@ -47,15 +37,13 @@ public class GallagherCountryAttributeManager extends AbstractUrlEncodingAttribu
 	@Override
 	public String getDefaultValue()
 	{
-		return getCmsSiteService().getCurrentSite().getStores().get(0).getDeliveryCountries().iterator().next().getIsocode()
-				.toLowerCase();
+		return getCmsSiteService().getCurrentSite().getRegionCode().getCode();
 	}
 
 	@Override
 	public String getCurrentValue()
 	{
-		return getCmsSiteService().getCurrentSite().getStores().get(0).getDeliveryCountries().iterator().next().getIsocode()
-				.toLowerCase();
+		return getCmsSiteService().getCurrentSite().getRegionCode().getCode();
 	}
 
 	@Override

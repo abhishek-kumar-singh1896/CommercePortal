@@ -13,5 +13,5 @@ $approved=approvalstatus(code)[default='approved']
  
 # Insert Products
 INSERT_UPDATE Product ; code[unique=true]                   ; $supercategories ; manufacturerName ; manufacturerAID ; unit(code) ; baseStores(uid) ; ean ; variantType(code) ; $catalogVersion ; $approved 
-                      ; solar-fence-energizer-s10           ; energisers       ;                  ;                 ; EA      	; amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA 
+                      ; solar-fence-energizer-s10           ; energisers       ;                  ;                 ; EA      	; amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA,amB2CLatAm
                       
