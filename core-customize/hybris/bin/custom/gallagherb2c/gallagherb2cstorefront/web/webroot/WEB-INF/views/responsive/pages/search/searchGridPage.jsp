@@ -3,9 +3,12 @@
 <%@ taglib prefix="cms" uri="http://hybris.com/tld/cmstags"%>
 <%@ taglib prefix="storepickup"
 	tagdir="/WEB-INF/tags/responsive/storepickup"%>
-
+<%@ taglib prefix="nav" tagdir="/WEB-INF/tags/responsive/nav"%>
 
 <template:page pageTitle="${pageTitle}">
+
+<nav:refineFilterModalResponsive searchPageData="${searchPageData}"/>
+
 
 	<div class="product-list">
 
