@@ -6,6 +6,7 @@ package com.gallagher.core.services.impl;
 import de.hybris.platform.catalog.CatalogVersionService;
 import de.hybris.platform.catalog.enums.ArticleApprovalStatus;
 import de.hybris.platform.catalog.model.CatalogVersionModel;
+import de.hybris.platform.catalog.model.ProductFeatureModel;
 import de.hybris.platform.category.CategoryService;
 import de.hybris.platform.category.model.CategoryModel;
 import de.hybris.platform.core.model.c2l.LanguageModel;
@@ -234,6 +235,8 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 						continue;
 					}
 
+					populateVariantData(product, existingVariantProduct);
+
 					populateImages(product, existingVariantProduct, regionalCatalogVersion);
 
 					modelService.save(existingVariantProduct);
@@ -274,6 +277,8 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 
 					newVariantProduct.setBaseProduct(baseProduct);
 
+					populateVariantData(product, newVariantProduct);
+
 					populateImages(product, newVariantProduct, regionalCatalogVersion);
 
 					modelService.save(newVariantProduct);
@@ -284,10 +289,34 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 	}
 
 	/**
+	 * @param product
+	 * @param variantProduct
+	 */
+	private void populateVariantData(final ProductModel product, final GenericVariantProductModel variantProduct)
+	{
+		final List<ProductFeatureModel> productFeatures = product.getFeatures();
+		final List<ProductFeatureModel> newProductFeatures = new ArrayList<>();
+		final List<ProductFeatureModel> oldProductFeatures = variantProduct.getFeatures();
+
+		modelService.removeAll(oldProductFeatures);
+
+		for (final ProductFeatureModel productFeature : productFeatures)
+		{
+			final ProductFeatureModel newProductFeature = modelService.clone(productFeature);
+
+			newProductFeature.setProduct(variantProduct);
+
+			newProductFeatures.add(newProductFeature);
+		}
+
+		modelService.saveAll(newProductFeatures);
+	}
+
+	/**
 	 * Populate the Images from Master Variant Product to Regional Variant Product
 	 *
 	 * @param product
-	 * @param existingVariantProduct
+	 * @param variantProduct
 	 * @param regionalCatalogVersion
 	 */
 	private void populateImages(final ProductModel product, final GenericVariantProductModel variantProduct,
