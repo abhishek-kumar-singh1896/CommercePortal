@@ -1565,13 +1565,13 @@ INSERT_UPDATE CMSLinkComponent ; $contentCV[unique=true] ; uid[unique=true]     
 
 
 INSERT_UPDATE CMSNavigationNode ; uid[unique=true]                    ; $contentCV[unique=true] ; name                                   ; children(uid,$contentCV)[mode=replace] ; title[lang=en]      ; &nodeRef                            
-                                ; ElectricfencingPower_Nav1            ;                         ; Power Navigation Node Menu             ; PowerEnergisers_nav11                    ; "Power"             ; ElectricfencingPower_Nav1
+                                ; ElectricfencingPower_Nav1111            ;                         ; Power Navigation Node Menu             ; PowerEnergisers_nav11                    ; "Power"             ; ElectricfencingPower_Nav1111
                                 ;ElectricfencingPermanentfencing_Nav1 ;                         ; Permanent fencing Navigation Node Menu ; PermanentfencingWireandCable_nav11       ; "Permanent fencing" ; ElectricfencingPermanentfencing_Nav1 
 								;ElectricfencingPower_Nav11           ;                         ; Portable fencing Navigation Node Menu  ; PortablefencingTapesWiresBraids_nav11   ; "Portable fencing"   ; ElectricfencingPower_Nav11           
 								
 
 INSERT_UPDATE CMSNavigationEntry ; uid[unique=true]                         ; $contentCV[unique=true] ; name                                           ; navigationNode(&nodeRef)              ; item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV) 
-                                 ; ElectricfencingPower_NavEntry1            ;                         ; Power Navigation Node Entry                    ; ElectricfencingPower_Nav1            ;    PowerEnergisers111                                       								
+                                 ; ElectricfencingPower_NavEntry1111            ;                         ; Power Navigation Node Entry                    ; ElectricfencingPower_Nav1111            ;    PowerEnergisers111                                       								
 								 ; ElectricfencingPermanentfencing_NavEntry ;                         ; Power ElectricfencingPermanentfencing_NavEntry ; ElectricfencingPermanentfencing_Nav1   ;    PowerEnergisers112    
                                  ; ElectricfencingPower_NavEntry11           ;                         ; Power Navigation Node Entry                    ; ElectricfencingPower_Nav11           ;  PowerEnergisers113
                                  
@@ -1581,7 +1581,7 @@ INSERT_UPDATE CMSLinkComponent ; $contentCV[unique=true] ; uid[unique=true] ; na
 								 ;                         ; PowerEnergisers113 ; Electric fencing Energisers Link2 ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ; 
 								
 INSERT_UPDATE CMSNavigationNode ; uid[unique=true]            ; name                          ; $contentCV[unique=true] ; children(uid,$contentCV)[mode=replace]                                                          ; title[lang=en]              ; &nodeRef                    
-                                ; Electricfencing_Nav1         ; Electric fencing Nav1          ;                         ; ElectricfencingPower_Nav1,ElectricfencingPermanentfencing_Nav1                                 ; "Electric Fencing1"          ; Electricfencing_Nav1         
+                                ; Electricfencing_Nav1         ; Electric fencing Nav1          ;                         ; ElectricfencingPower_Nav1111,ElectricfencingPermanentfencing_Nav1                                 ; "Electric Fencing1"          ; Electricfencing_Nav1         
                                 ; WeighingEID_Nav1             ; Weighing EID Nav1              ;                         ; ElectricfencingPower_Nav11                                                                       ; "Weighing and EID1"          ; WeighingEID_Nav1             
                                 ; WirelessWaterMonitoring_Nav1 ; Wireless Water Monitoring Nav1 ;                         ;                                                                                                   ; "Wireless Water Monitoring1" ; WirelessWaterMonitoring_Nav1 
                                 ; SteelGatesandHardware_Nav1   ; Steel Gatesand Hardware Nav1   ;                         ;                                                                                                   ; "Steel Gates and Hardware1"  ; SteelGatesandHardware_Nav1   
@@ -1597,7 +1597,7 @@ INSERT_UPDATE CMSNavigationEntry ; uid[unique=true]                 ; name      
 								
 
 INSERT_UPDATE CMSNavigationNode ; uid[unique=true]             ; name                          ; $contentCV[unique=true] ; children(uid,$contentCV)[mode=replace]                                                          ; title[lang=en]              ; &nodeRef                    
-                                ; Electricfencing_Nav3         ; Electric fencing Nav          ;                         ; ElectricfencingPower_Nav3                                                                        ; "Electric Fencing"          ; Electricfencing_Nav3         
+                                ; Electricfencing_Nav3         ; Electric fencing Nav          ;                         ; ElectricfencingPower_Nav3333                                                                        ; "Electric Fencing"          ; Electricfencing_Nav3         
                                 ; WeighingEID_Nav3             ; Weighing EID Nav              ;                         ;                                                                                                    ; "Weighing and EID"          ; WeighingEID_Nav3            
                                 ; WirelessWaterMonitoring_Nav3 ; Wireless Water Monitoring Nav ;                         ;                                                                                                     ; "Wireless Water Monitoring" ; WirelessWaterMonitoring_Nav3 
                                 ; SteelGatesandHardware_Nav3   ; Steel Gatesand Hardware Nav   ;                         ;                                                                                                   ; "Steel Gates and Hardware"  ; SteelGatesandHardware_Nav3   
@@ -1608,7 +1608,7 @@ INSERT_UPDATE CMSNavigationNode ; uid[unique=true]             ; name           
                                 
 
 INSERT_UPDATE CMSNavigationNode ; uid[unique=true]                    ; $contentCV[unique=true] ; name                                   ; children(uid,$contentCV)[mode=replace] ; title[lang=en]      ; &nodeRef                            
-                                ; ElectricfencingPower_Nav3           ;                         ; Power Navigation Node Menu             ; PowerEnergisers_nav3                    ; "Power"             ; ElectricfencingPower_Nav3
+                                ; ElectricfencingPower_Nav3333           ;                         ; Power Navigation Node Menu             ; PowerEnergisers_nav3                    ; "Power"             ; ElectricfencingPower_Nav3333
 								
 								
 INSERT_UPDATE CMSNavigationNode ; uid[unique=true]                     ; $contentCV[unique=true] ; name                                                  ; title[lang=en]      ; &nodeRef                             

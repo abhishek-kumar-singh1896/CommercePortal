@@ -19,16 +19,15 @@
                             <%-- <c:forEach items="${feature.navigationNode.children}" var="l11" varStatus="status"> --%>
                             <c:forEach items="${l1.children}" var="topLevelChild" varStatus="l3link">
                             <c:forEach items="${topLevelChild.entries}" var="dropdownValue">
-             	<li class="nav-item">
-             	<c:choose>
-             		<c:when test="${not empty dropdownValue.item && dropdownValue.item ne null && (empty topLevelChild.children || topLevelChild.children eq null)}">
-                                        <cms:component component="${dropdownValue.item}" evaluateRestriction="true"/>
-                                        	<%-- <a class="nav-link gray-link" href="${dropdownValue.item.url}" title="${dropdownValue.item.linkName}">${dropdownValue.item.linkName}</a> --%>
-             </c:when>
-             <c:otherwise>
-             <c:if test="${l3link.index eq 0}">
-                                     <a class="nav-link left-tab active" id="l3link${l3link.index}-tab" data-toggle="tab"
-                                         href="#l3link${l3link.index}" role="tab" aria-controls="l3link${l3link.index}"
+			             	<li class="nav-item">
+			             	<c:choose>
+			             		<c:when test="${not empty dropdownValue.item && dropdownValue.item ne null && (empty topLevelChild.children || topLevelChild.children eq null)}">
+			                         <cms:component component="${dropdownValue.item}" evaluateRestriction="true"/>
+						             </c:when>
+						             <c:otherwise>
+						             <c:if test="${l3link.index eq 0}">
+                                     <a class="nav-link left-tab active" id="l3link${children.index+1}${l3link.index}-tab" data-toggle="tab"
+                                         href="#l3link${children.index+1}${l3link.index}" role="tab" aria-controls="l3link${children.index+1}${l3link.index}"
                                          aria-selected="true">
                                          ${topLevelChild.title}
                                          <span class="arrow-right-icon">
@@ -37,10 +36,10 @@
                                              </svg>
                                          </span>
                                      </a>
-                                    </c:if>
-                                    <c:if test="${l3link.index ne 0}">
-                                     <a class="nav-link left-tab" id="l3link${l3link.index}-tab" data-toggle="tab"
-                                         href="#l3link${l3link.index}" role="tab" aria-controls="l3link${l3link.index}"
+                                     </c:if>
+                                     <c:if test="${l3link.index ne 0}">
+                                     <a class="nav-link left-tab" id="l3link${children.index+1}${l3link.index}-tab" data-toggle="tab"
+                                         href="#l3link${children.index+1}${l3link.index}" role="tab" aria-controls="l3link${children.index+1}${l3link.index}"
                                          aria-selected="true">
                                          ${topLevelChild.title}
                                          <span class="arrow-right-icon">
@@ -65,8 +64,8 @@
                             	<%-- <c:forEach items="${feature.components}" var="l1" varStatus="status"> --%>
                             	<c:forEach items="${l1.children}" var="topLevelChild" varStatus="l3link">
                             	<c:if test="${l3link.index eq 0}">
-                                <div class="tab-pane active" id="l3link${l3link.index}" role="tabpanel"
-                                    aria-labelledby="l3link${l3link.index}-tab">
+                                <div class="tab-pane active" id="l3link${children.index+1}${l3link.index}" role="tabpanel"
+                                    aria-labelledby="l3link${children.index+1}${l3link.index}-tab">
 			<c:if test="${not empty topLevelChild.entries && topLevelChild.entries ne null && not empty topLevelChild.children && topLevelChild.children ne null}">
 			<%-- <c:forEach items="${topLevelChild.links}" var="topLink1"> --%>
                                     <div class="menu-container-title">
@@ -104,8 +103,8 @@
                                 </div>
                                 </c:if>
                                 <c:if test="${l3link.index ne 0}">
-                                <div class="tab-pane" id="l3link${l3link.index}" role="tabpanel"
-                                    aria-labelledby="l3link${l3link.index}-tab">
+                                <div class="tab-pane" id="l3link${children.index+1}${l3link.index}" role="tabpanel"
+                                    aria-labelledby="l3link${children.index+1}${l3link.index}-tab">
 			<c:if test="${not empty topLevelChild.entries && topLevelChild.entries ne null && not empty topLevelChild.children && topLevelChild.children ne null}">
 			<%-- <c:forEach items="${topLevelChild.links}" var="topLink1"> --%>
                                     <div class="menu-container-title">
