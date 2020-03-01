@@ -19,10 +19,13 @@
 			<div class="facet__values js-facet-values">
 				<ul class="facet__list">
 					<c:forEach items="${pageData.breadcrumbs}" var="breadcrumb">
-						<li><c:url value="${breadcrumb.removeQuery.url}"
-								var="removeQueryUrl" /> &nbsp; ${breadcrumb.facetName} : <b>
-								<a href="${fn:escapeXml(removeQueryUrl)}"><span
-									class="glyphicon glyphicon-remove"></span>${fn:escapeXml(breadcrumb.facetValueName)}</a>
+						<li>
+<%-- 					<c:url value="${breadcrumb.removeQuery.url}" --%>
+<%-- 							var="removeQueryUrl" /> &nbsp; --%>
+							${breadcrumb.facetName} : <b>${fn:escapeXml(breadcrumb.facetValueName)}</b>
+<%-- 							<a href="${fn:escapeXml(removeQueryUrl)}"><span --%>
+<!-- 								class="glyphicon glyphicon-remove"></span> -->
+<!-- 								</a> -->
 						</b></li>
 					</c:forEach>
 				</ul>
