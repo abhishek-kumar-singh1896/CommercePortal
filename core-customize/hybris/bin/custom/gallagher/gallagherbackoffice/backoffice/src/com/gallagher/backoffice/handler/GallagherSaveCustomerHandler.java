@@ -55,7 +55,7 @@ public class GallagherSaveCustomerHandler implements FlowActionHandler
 
 		try
 		{
-			final CustomerData customerData = craeteCustomerData(email, name);
+			final CustomerData customerData = createCustomerData(email, name);
 			final String keycloakGUID = gallagherKeycloakService.createKeycloakUser(customerData);
 			widget.setValue("newCust.keycloakGUID", keycloakGUID);
 
@@ -76,7 +76,7 @@ public class GallagherSaveCustomerHandler implements FlowActionHandler
 	 * @param name
 	 * @return customerData
 	 */
-	private CustomerData craeteCustomerData(final String email, final String name)
+	private CustomerData createCustomerData(final String email, final String name)
 	{
 		final CustomerData customerData = new CustomerData();
 		customerData.setEmail(email);
