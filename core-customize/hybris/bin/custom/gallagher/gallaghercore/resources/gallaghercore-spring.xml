@@ -103,5 +103,9 @@
 	<bean id="image30ValueProvider" parent="gallagherImageValueProvider">
 		<property name="mediaFormat" value="30Wx30H" />
 	</bean>
+	
+	<bean id="gallagherCustomerDao" class="com.gallagher.core.daos.impl.GallagherCustomerDaoImpl" />
+     
+   <bean id="gallagherCustomerService" class="com.gallagher.core.services.impl.GallagherCustomerServiceImpl" />
  
 </beans>

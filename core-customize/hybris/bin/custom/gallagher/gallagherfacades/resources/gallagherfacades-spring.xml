@@ -83,5 +83,14 @@
 			</list>
 		</property>
 	</bean>
+	
+	<alias
+		name="gallagherCustomerFacade"
+		alias="customerFacade" />
+	<bean
+		id="gallagherCustomerFacade"
+		class="com.gallagher.facades.customer.impl.GallagherCustomerFacadeImpl"
+		parent="defaultCustomerFacade">
+	</bean>
 
 </beans>
