@@ -57,5 +57,31 @@
 		class="com.gallagher.facades.search.converters.poulator.GallagherProductCategorySearchPagePopulator"
 		parent="defaultProductCategorySearchPagePopulator">
 	</bean>
+	
+	<alias name="gallagherProductGalleryImagesPopulator" alias="productGalleryImagesPopulator"/>
+    <bean id="gallagherProductGalleryImagesPopulator" parent="defaultProductGalleryImagesPopulator"
+          class="com.gallagher.facades.product.converters.populator.GallagherProductGalleryImagesPopulator">
+		<property name="imageFormats">
+			<list>
+				<value>superZoom</value>
+				<value>zoom</value>
+				<value>product</value>
+				<value>thumbnail</value>
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="gallagherProductPrimaryImagePopulator" alias="productPrimaryImagePopulator" />
+	<bean id="gallagherProductPrimaryImagePopulator" parent="defaultProductPrimaryImagePopulator"
+          class="com.gallagher.facades.product.converters.populator.GallagherProductPrimaryImagePopulator">
+		<property name="imageFormats">
+			<list>
+				<value>zoom</value>
+				<value>product</value>
+				<value>thumbnail</value>
+				<value>cartIcon</value>
+			</list>
+		</property>
+	</bean>
 
 </beans>

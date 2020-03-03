@@ -25,3 +25,7 @@ INSERT_UPDATE UserGroup;uid[unique=true];locname[lang=de];locname[lang=en];group
 
 INSERT_UPDATE Employee;groups(uid);uid[unique=true];name;password[default=$defaultPassword];
 ;customergroup,$customermanagergroup;sitecoremanager;"Site Core Manager";;
+
+# User for Synchronization
+INSERT_UPDATE Employee;uid[unique=true];name
+;syncUser;User for Synchronization

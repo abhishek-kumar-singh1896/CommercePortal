@@ -259,3 +259,11 @@ UPDATE Country;isocode[unique=true];name[lang=$lang]
  ;ZA;"South Africa"
  ;ZM;"Zambia"
  ;ZW;"Zimbabwe"
+
+UPDATE RegionCode; code[unique = true]; name[lang = $lang]
+                 ; au                 ; Australia
+                 ; ca                 ; Canada
+                 ; nz                 ; New Zealand
+                 ; us                 ; USA
+                 ; latam              ; Latin America
+                 ; global             ; All Other Countries

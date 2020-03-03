@@ -125,6 +125,19 @@
             </editorArea:tab>
         </editorArea:editorArea>
     </context>
+	<context merge-by="type" type="Product" component="editor-area">
+        <editorArea:editorArea name="">
+            <editorArea:tab name="hmc.gallagher" position="3">
+                <editorArea:section name="hmc.section.gallagher">
+                    <editorArea:attribute qualifier="promoSticker" />
+                    <editorArea:attribute qualifier="animalCompatibility" />
+                    <editorArea:attribute qualifier="baseProductCode" />
+                    <editorArea:attribute qualifier="baseStores" />
+                    <editorArea:attribute qualifier="variantForImage" />
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
 	<context merge-by="type" parent="Customer" type="B2BCustomer" component="create-wizard">
 	    <wz:flow xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config" id="CustomerWizard" title="create.title(ctx.TYPE_CODE)">
 			<wz:handler handlerId="verifyCustomerHandler1" handlerBean="verifyCustomerHandler" />

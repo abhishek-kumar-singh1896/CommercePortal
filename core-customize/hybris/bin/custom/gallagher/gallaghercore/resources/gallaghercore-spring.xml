@@ -66,6 +66,14 @@
 	<bean id="gallagherCoreDataImportService" class="com.gallagher.core.dataimport.impl.GallagherCoreDataImportServiceImpl" parent="defaultCoreDataImportService" />
 	
 	<bean id="gallagherAfterSaveListener" class="com.gallagher.core.events.GallagherAfterSaveListener" />
+	
+	<bean id="gallagherCreateBaseProductCronjob" class="com.gallagher.core.jobs.GallagherCreateBaseProductCronjob" parent="abstractJobPerformable" />
+	
+	<bean id="gallagherProductTransformationCronjob" class="com.gallagher.core.jobs.GallagherProductTransformationCronjob" parent="abstractJobPerformable" />
+	
+	<bean id="gallagherProductProcessingService" class="com.gallagher.core.services.impl.GallagherProductProcessingServiceImpl" />
+	
+	<bean id="gallagherProductProcessingDao" class="com.gallagher.core.dao.impl.GallagherProductProcessingDaoImpl" />
 
  
 	<alias name="GallagherDefaultFacetSearchStrategy" alias="defaultFacetSearchStrategy" />
@@ -77,6 +85,23 @@
 			<property name="facetSearchResultConverter" ref="facetSearchResultConverter" />
 			<property name="solrIndexService" ref="solrIndexService" />
 		</bean> 
- 
 
+	<bean id="gallagherImageValueProvider" class="com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherImageValueProvider" parent="abstractImageValueProvider" />
+
+	<bean id="image515ValueProvider" parent="gallagherImageValueProvider">
+		<property name="mediaFormat" value="515Wx515H" />
+	</bean>
+	<bean id="image300ValueProvider" parent="gallagherImageValueProvider">
+		<property name="mediaFormat" value="300Wx300H" />
+	</bean>
+	<bean id="image96ValueProvider" parent="gallagherImageValueProvider">
+		<property name="mediaFormat" value="96Wx96H" />
+	</bean>
+	<bean id="image65ValueProvider" parent="gallagherImageValueProvider">
+		<property name="mediaFormat" value="65Wx65H" />
+	</bean>
+	<bean id="image30ValueProvider" parent="gallagherImageValueProvider">
+		<property name="mediaFormat" value="30Wx30H" />
+	</bean>
+ 
 </beans>
