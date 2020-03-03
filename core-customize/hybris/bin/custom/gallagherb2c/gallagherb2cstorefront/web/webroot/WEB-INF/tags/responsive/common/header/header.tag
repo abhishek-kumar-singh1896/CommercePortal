@@ -377,14 +377,51 @@
 									<spring:theme code="header.link.app" />
 								</button>
 							</ycommerce:testId>
-							<button type="button" class="btn">
+					<!-- <button type="button" class="btn"> -->	
+					<div class="btn-group" role="group">	
+                             <button type="button" class="btn btn-highlight dropdown-toggle user-profile-btn"
+                                    id="userProfileDropdown" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
 								<span class="user-icon"> <svg>
                         	    	<use
 											xlink:href="${commonResourcePath}/images/gallagher-icons.svg#user" />
                                 </svg>
 								</span>
 							</button>
-							<div class="btn-group" role="group">
+							<div class="dropdown-menu user-profile-dropdown" aria-labelledby="userProfileDropdown">
+
+                                    <div class="user-profile-dropdown-inner">
+                                        <ul>
+                                        	<li>
+                                            <div class="row">
+                                                <div class="col-12 text-truncate user-name">
+                                                    <sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
+                                                        <c:set var="maxNumberChars" value="25" />
+                                                        <c:if test="${fn:length(user.firstName) gt maxNumberChars}">
+                                                            <c:set target="${user}" property="firstName"
+                                                                value="${fn:substring(user.firstName, 0, maxNumberChars)}..." />
+                                                        </c:if>
+	                                                        <ycommerce:testId code="header_LoggedUser">
+				                                              Hi,&nbsp${user.firstName}&nbsp${user.lastName}.
+				                                    		</ycommerce:testId>
+                                                    </sec:authorize>
+                                                </div>
+                                            </div>
+                                            </li>
+                                            <li><a href="javascript:void(0)"> <spring:theme code="text.Register.Product" />
+                                            </a></li>
+                                            <li><a href="javascript:void(0)"> <spring:theme code="text.Registered.Products" />
+                                            </a></li>
+                                            <li><a href="javascript:void(0)"> <spring:theme code="text.Account.Management" /> </a></li>
+                                            <li><c:url value="/logout" var="logoutUrl" /> <a
+                                                href="${logoutUrl}"> <spring:theme
+                                                        code="header.link.logout" />
+                                            </a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="btn-group" role="group">
 								<button id="btnGroupDrop1" type="button"
 									class="btn right-btn dropdown-toggle" data-toggle="dropdown"
 									aria-haspopup="true" aria-expanded="false">
