@@ -333,10 +333,12 @@
                                             <li><a href="javascript:void(0)"> <spring:theme code="text.Registered.Products" />
                                             </a></li>
                                             <li><a href="javascript:void(0)"> <spring:theme code="text.Account.Management" /> </a></li>
-                                            <li><c:url value="/logout" var="logoutUrl" /> <a
-                                                href="logoutUrl"> <spring:theme
-                                                        code="header.link.logout" />
-                                            </a></li>
+                                            <li>
+                                        <c:url value="/logout" var="logoutUrl"/>
+                                        <a href="${(logoutUrl)}">
+                                            <spring:theme code="header.link.logout" />
+                                        </a>
+                                    </li>
                                         </ul>
                                     </div>
                                 </div>
