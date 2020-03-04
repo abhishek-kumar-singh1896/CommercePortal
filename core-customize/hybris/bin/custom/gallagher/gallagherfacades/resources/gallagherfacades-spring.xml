@@ -83,5 +83,38 @@
 			</list>
 		</property>
 	</bean>
+	
+    <bean id="gallagherProductVideoDescPopulator" parent="baseProductPopulator"
+          class="com.gallagher.facades.product.converters.populator.GallagherProductVideoDescriptionPopulator">
+    </bean>
+    
+    <bean id="gallagherProductLogoPopulator" parent="baseProductPopulator"
+          class="com.gallagher.facades.product.converters.populator.GallagherProductLogoPopulator">
+    </bean>
+    
+    <bean id="gallagherProductDataSheetPopulator" parent="baseProductPopulator"
+          class="com.gallagher.facades.product.converters.populator.GallagherProductDataSheetPopulator">
+    </bean>
+    
+    <bean parent="configurablePopulatorModification">
+		<property name="target" ref="productConfiguredPopulator" />
+		<property name="keyType" value="de.hybris.platform.commercefacades.product.ProductOption" />
+		<property name="key" value="VIDEO_DESCRIPTION" />
+		<property name="add" ref="gallagherProductVideoDescPopulator" />
+	</bean>
+	
+	<bean parent="configurablePopulatorModification">
+		<property name="target" ref="productConfiguredPopulator" />
+		<property name="keyType" value="de.hybris.platform.commercefacades.product.ProductOption" />
+		<property name="key" value="LOGO" />
+		<property name="add" ref="gallagherProductLogoPopulator" />
+	</bean>
+	
+	<bean parent="configurablePopulatorModification">
+		<property name="target" ref="productConfiguredPopulator" />
+		<property name="keyType" value="de.hybris.platform.commercefacades.product.ProductOption" />
+		<property name="key" value="DATA_SHEET" />
+		<property name="add" ref="gallagherProductDataSheetPopulator" />
+	</bean>
 
 </beans>

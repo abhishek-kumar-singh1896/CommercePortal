@@ -2,6 +2,7 @@ html {
   height: 100%;
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -33,6 +34,25 @@ body {
 
 label {
   text-transform: inherit;
+
+  &.common-form-label {
+    color: $gray-7;
+    font-size: $font-size-12px;
+  }
+}
+
+.bold {
+  font-family: $font-family-bold;
+}
+
+.heavy-text {
+  font-family: $font-family-heavy;
+}
+
+.hint-text {
+  font-size: $font-size-11px;
+  color: $gray-7;
+  margin-top: 4px;
 }
 
 .gray-shade,
@@ -53,23 +73,25 @@ a {
 
   &:hover,
   &:active,
-  &:focus {
+  &:focus,
+  &:visited {
     text-decoration: underline;
   }
 
-  &:visited {
-    text-decoration: none;
-    color: $link-visited-color;
-  }
+  // &:visited {
+  //   text-decoration: none;
+  //   color: $link-visited-color;
+  // }
 }
 
 h1 {
   &.primary-title {
-    font-size: 1.42857em;
-    font-weight: bold;
+    font-size: $font-size-48px;
+    font-family: $font-family-bold;
     color: $gray-9;
     margin: 20px 0;
     padding: 0;
+    line-height: 48px;
   }
 }
 
@@ -79,6 +101,7 @@ h2 {
     color: $gray-9;
     margin: 20px 0;
     padding: 0;
+    font-family: $font-family-bold;
   }
 }
 
@@ -87,10 +110,6 @@ h2 {
   font-weight: bold;
   margin-bottom: 15px;
   text-transform: uppercase;
-}
-
-.error {
-  border: 1px solid $danger;
 }
 
 .xs-header-right-section {
@@ -206,59 +225,6 @@ h2 {
   }
 }
 
-.custom-control {
-  &.custom-radio {
-    min-height: 22px;
-    padding-left: 22px;
-
-    input {
-      &:focus {
-        outline: none;
-      }
-    }
-
-    .custom-control-input {
-      &:focus {
-        outline: none;
-      }
-    }
-
-    .custom-control-label {
-      &:before,
-      &:after {
-        width: 22px;
-        height: 22px;
-        top: 0;
-      }
-    }
-
-    &.with-label {
-      .custom-control-label {
-        padding-left: 6px;
-      }
-    }
-  }
-}
-
-.custom-control-input:checked ~ .custom-control-label::before {
-  border-color: $gray-4;
-  background-color: $white;
-}
-
-.custom-radio .custom-control-input:checked ~ .custom-control-label::after {
-  background-color: $gray-7;
-  background-image: none;
-  width: 12px;
-  height: 12px;
-  border-radius: 12px;
-  margin-left: 5px;
-  margin-top: 5px;
-}
-
-.custom-radio .custom-control-input:checked ~ .custom-control-label::before {
-  border-color: $gray-7;
-}
-
 .dropdown-menu {
   border-radius: 8px;
   box-shadow: 0 4px 11px 0 rgba(0, 0, 0, 0.1);
@@ -266,7 +232,16 @@ h2 {
   font-size: 1em;
 }
 
-
 .accordion {
   text-transform: inherit;
+}
+
+.modal-content {
+  box-shadow: 0 4px 11px 0 rgba(0, 0, 0, 0.1);
+  border: solid 1px rgba(240, 240, 240, 0.5);
+
+  .modal-header,
+  .modal-footer {
+    border-color: $gray-3;
+  }
 }

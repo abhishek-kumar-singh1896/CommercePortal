@@ -63,8 +63,18 @@
 			</button>
 		</c:when>
 		<c:otherwise>
-			<ycommerce:testId code="addToCartButton">
+			<%-- <ycommerce:testId code="addToCartButton">
 				<button id="addToCartButton" type="${buttonType}" class="btn btn-primary btn-block js-add-to-cart js-enable-btn btn-icon glyphicon-shopping-cart" disabled="disabled">
+					<spring:theme code="basket.add.to.basket"/>
+				</button>
+			</ycommerce:testId> --%>
+			<ycommerce:testId code="addToCartButton">
+				<button id="addToCartButton" type="${buttonType}" class="btn btn-highlight btn-block add-to-cart-btn js-add-to-cart js-enable-btn btn-icon" disabled="disabled">
+					<span class="add-to-cart-icon">
+                        <svg>
+                            <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#add-to-cart" />
+                        </svg>
+                    </span>
 					<spring:theme code="basket.add.to.basket"/>
 				</button>
 			</ycommerce:testId>

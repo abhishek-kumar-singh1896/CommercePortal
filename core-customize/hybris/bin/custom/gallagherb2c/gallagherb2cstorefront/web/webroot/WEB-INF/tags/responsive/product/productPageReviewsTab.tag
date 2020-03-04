@@ -14,12 +14,15 @@
 
 <div class="tab-review">
 	<div class="review-pagination-bar">
-		<button class="btn btn-default js-review-write-toggle "><spring:theme code="review.write.title"/></button>
+		<%-- <button class="btn btn-default js-review-write-toggle "><spring:theme code="review.write.title"/></button> --%>
+		<div class="write-review-out">
+                            <a href="javascript:void(0)" class="js-review-write-toggle write-review-link"><spring:theme code="review.write.title"/></a>
+                        </div>
 
-		<div class="right">
+		<%-- <div class="right">
 			<button class="btn btn-default all-reviews-btn"><spring:theme code="review.show.all" /></button>
 			<button class="btn btn-default less-reviews-btn"><spring:theme code="review.show.less" /></button>
-		</div>
+		</div> --%>
 	</div>
 
 	<div class="write-review js-review-write">
@@ -56,11 +59,11 @@
 
 	<ul id="reviews" class="review-list" data-reviews="${fn:escapeXml(getPageOfReviewsUrl)}"  data-allreviews="${fn:escapeXml(getAllReviewsUrl)}"></ul>
 
-	<div class="review-pagination-bar">
+	<%-- <div class="review-pagination-bar">
 
 		<div class="right">
 			<button class="btn btn-default all-reviews-btn"><spring:theme code="review.show.all" /></button>
 			<button class="btn btn-default less-reviews-btn"><spring:theme code="review.show.less" /></button>
 		</div>
-	</div>
+	</div> --%>
 </div>
