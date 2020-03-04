@@ -31,7 +31,23 @@
 			<value code="rabbit" />
 			<value code="sheep" />
 		</enumtype>
+
+		<enumtype code="RegionCode" dynamic="true" />
 	</enumtypes>
+
+	<relations>
+		<relation code="BaseStoreProductRelation" autocreate="true" generate="true" localized="false">
+			<deployment table="BaseStoreProductRelation" typecode="30000" />
+			<sourceElement qualifier="baseStores" type="BaseStore" cardinality="many" ordered="false">
+				<description>Base Stores</description>
+				<modifiers read="true" write="true" search="true" optional="true" />
+			</sourceElement>
+			<targetElement qualifier="products" type="Product" cardinality="many" collectiontype="list" ordered="true">
+				<description>Products</description>
+				<modifiers read="true" write="true" search="true" optional="true" />
+			</targetElement>
+		</relation>
+	</relations>
 
 	<itemtypes>
 
@@ -67,13 +83,21 @@
 					<persistence type="property" />
 					<description>Stores all animals for which the product is compatible</description>
 				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="baseProductCode" type="java.lang.String">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<description>Contains the identifier of Base Product.</description>
+				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="variantForImage" type="boolean">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<defaultvalue>false</defaultvalue>
+					<description>Flag to identify Product is eligible for Image.</description>
+				</attribute>
 			</attributes>
 		</itemtype>
-		
-		<itemtype code="BynderMedia" extends="Media"
-                autocreate="true" generate="true" jaloclass="com.gallagher.core.jalo.BynderMedia">
-                <description>Bynder Media Model is used to store data from Bynder</description>
-            </itemtype>
+
+
 
 		<!-- TypeGroups are for structure of this file only -->
 
@@ -237,9 +261,90 @@
 				</attributes>
 			</itemtype>
 
+			<itemtype code="GallagherBannerComponent" autocreate="true" generate="true" extends="BannerComponent">
+				<attributes>
+					<attribute qualifier="heading" type="java.lang.String">
+						<modifiers optional="true" />
+						<persistence type="property" />
+						<description>heading for the Promotion</description>
+					</attribute>
+					<attribute qualifier="link" type="CMSLinkComponent">
+						<modifiers optional="true" />
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="styleClass" type="java.lang.String">
+						<modifiers optional="true" />
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="GallagherNavigationComponent" autocreate="true" generate="true" extends="NavigationComponent">
+				<attributes>
+					<attribute qualifier="promotionBanner" type="GallagherBannerComponent">
+						<modifiers optional="true" />
+						<persistence type="property" />
+						<description>heading for the Promotion</description>
+					</attribute>
+				</attributes>
+			</itemtype>
+
 		</typegroup>
 
 		<typegroup name="jobs">
+			<itemtype code="GallagherCatalogVersionSyncJob" autocreate="true" generate="true" extends="CatalogVersionSyncJob"
+				jaloclass="com.gallagher.core.jalo.synchronization.GallagherCatalogVersionSyncJob">
+				<attributes>
+					<attribute qualifier="baseStore" type="BaseStore">
+						<persistence type="property" />
+						<modifiers read="true" write="true" optional="true" search="true" />
+					</attribute>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="GallagherProductProcessingCronJob" extends="CronJob"
+				jaloclass="com.gallagher.core.cronjob.jalo.GallagherProductProcessingCronJob" autocreate="true" generate="true">
+				<attributes>
+					<attribute qualifier="lastStartTime" type="java.util.Date">
+						<modifiers read="true" write="true" optional="true" />
+						<description>Stores the time when Job was run last time.</description>
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="catalogId" type="java.lang.String">
+						<modifiers read="true" write="true" optional="false" />
+						<description>Stores the catalogId.</description>
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+		</typegroup>
+
+		<typegroup name="CmsSite">
+			<itemtype code="CMSSite" autocreate="false" generate="false">
+				<description>Extends existing type with additional attributes.</description>
+				<attributes>
+					<attribute qualifier="regionCode" type="RegionCode">
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="Country" autocreate="false" generate="false">
+				<description>Extends existing type with additional attributes.</description>
+				<attributes>
+					<attribute qualifier="regionCode" type="RegionCode">
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+		</typegroup>
+		<typegroup name="bynder">
+
+			<itemtype code="BynderMedia" extends="Media" autocreate="true" generate="true"
+				jaloclass="com.gallagher.core.jalo.BynderMedia">
+				<description>Bynder Media Model is used to store data from Bynder</description>
+			</itemtype>
+
 			<itemtype code="GallagherBynderSyncCronJob" extends="CronJob"
 				jaloclass="com.gallagher.core.cronjob.jalo.GallagherBynderSyncCronJob" autocreate="true" generate="true">
 				<attributes>

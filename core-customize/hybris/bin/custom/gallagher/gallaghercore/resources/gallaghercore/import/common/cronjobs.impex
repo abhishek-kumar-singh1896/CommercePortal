@@ -30,6 +30,17 @@ INSERT_UPDATE CronJob;code[unique=true];job(code);sessionLanguage(isoCode)[defau
 ;ticketsRetentionCronJob;ticketsRetentionJob;
 ;ticketsStagnationJob;ticketsFSStagnationJob;
 
+INSERT_UPDATE ServicelayerJob;code[unique=true];springId
+;gallagherCreateBaseProductCronjob;gallagherCreateBaseProductCronjob
+;gallagherProductTransformationCronjob;gallagherProductTransformationCronjob
+
+INSERT_UPDATE GallagherProductProcessingCronJob;code[unique=true];job(code);catalogId;sessionLanguage(isocode)[default=en]
+;securityB2BCreateBaseProductCronjob;gallagherCreateBaseProductCronjob;securityB2BMasterProductCatalog;
+;amB2CCreateBaseProductCronjob;gallagherCreateBaseProductCronjob;amB2CMasterProductCatalog;
+
+;securityB2BProductTransformationCronjob;gallagherProductTransformationCronjob;securityB2BMasterProductCatalog;
+;amB2CProductTransformationCronjob;gallagherProductTransformationCronjob;amB2CMasterProductCatalog;
+
 # Run CronJobs at 3:05 AM every day
 INSERT_UPDATE Trigger;cronJob(code)[unique=true];second[default=0];minute[default=5];hour[default=3];day[default=-1];month[default=-1];year[default=-1];relative[default=false];active[default=false];maxAcceptableDelay[default=-1]
 ;customersWithOrdersRetentionCronJob;

@@ -22,7 +22,7 @@
 		searchUrl="${searchPageData.currentQuery.url}"
 		numberPagesShown="${numberPagesShown}" />
 
-	<div class="product-listing-out">
+	<div class="product-listing-out clearfix">
 		<ul>
 			<c:forEach items="${searchPageData.results}" var="product"
 				varStatus="status">

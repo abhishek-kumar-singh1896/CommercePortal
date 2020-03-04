@@ -9,15 +9,18 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="nav" tagdir="/WEB-INF/tags/responsive/nav"%>
+<%@ taglib prefix="header" tagdir="/WEB-INF/tags/responsive/common/header"%>
 
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
-<cms:pageSlot position="TopHeaderSlot" var="component" element="div" limit="1">
+<cms:pageSlot position="TopHeaderSlot" var="component" element="div">
 	<cms:component component="${component}" />
 </cms:pageSlot>
 
+<!-- Modal responsive mega menu -->
 <sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')">
+	<header:megaMenu />
 	<header class="main-header-out shadow-sm">
 		<div class="container">
 			<div>
@@ -66,7 +69,7 @@
 				<div class="header-right-section text-right">
 
 					<div class="search-out">
-						<a href="javascript:void(0)" class="search-link"> <svg
+						<a href="javascript:void(0)" class="search-link" id="searchLink1"> <svg
 								class="search-icon">
 							<use
 									xlink:href="${commonResourcePath}/images/gallagher-icons.svg#search" />
@@ -187,218 +190,34 @@
 					</div>
 
 					<div class="xs-menu-out">
-						<a href="javascript:void(0)" class="hamburger-icon"> <span
-							class="line1"> </span> <span class="line2"> </span> <span
-							class="line3"> </span>
-						</a>
-					</div>
+                        <a href="javascript:void(0)" class="hamburger-icon" data-toggle="modal"
+                            data-target="#responsiveMegaMenu">
+                            <span class="line1"></span>
+                            <span class="line2"></span>
+                            <span class="line3"></span>
+                        </a>
+                    </div>
 				</div>
 			</div>
-			<cms:pageSlot position="ggB2CNavBar" var="feature">
-			<c:if test="${not empty feature.navigationNode && feature.navigationNode ne null}">
-			<c:forEach items="${feature.navigationNode.children}" var="l1" varStatus="children">
-			<c:if test="${not empty l1.children && l1.children ne null && l1.uid ne 'ContactNavNode'}">
-			<div class="megamenu-out second-level-menu shadow-sm d-none" id="mainNavContainer${children.index+1}">
+			<header:navigationNodes/>
+			<div class="megamenu-out search-result-out search-link-container d-none" id="searchLink1Container">
                 <div class="container">
-                    <div class="third-level-menu">
-                        <div class="row align-items-stretch">
-                            <div class="col-lg-3 left-menu-container">
-                                <div class="left-menu-inner">
-                                    <ul class="nav nav-tabs" id="solutionTab" role="tablist">
-                                    <%-- <c:forEach items="${feature.navigationNode.children}" var="l11" varStatus="status"> --%>
-                                    <c:forEach items="${l1.children}" var="topLevelChild" varStatus="l3link">
-                                    <c:forEach items="${topLevelChild.entries}" var="dropdownValue">
-					                	<li class="nav-item">
-					                	<c:choose>
-					                		<c:when test="${not empty dropdownValue.item && dropdownValue.item ne null && (empty topLevelChild.children || topLevelChild.children eq null)}">
-                                                <cms:component component="${dropdownValue.item}" evaluateRestriction="true"/>
-                                                	<%-- <a class="nav-link gray-link" href="${dropdownValue.item.url}" title="${dropdownValue.item.linkName}">${dropdownValue.item.linkName}</a> --%>
-								             </c:when>
-								             <c:otherwise>
-								             <c:if test="${l3link.index eq 0}">
-	                                            <a class="nav-link left-tab active" id="l3link${l3link.index}-tab" data-toggle="tab"
-	                                                href="#l3link${l3link.index}" role="tab" aria-controls="l3link${l3link.index}"
-	                                                aria-selected="true">
-	                                                ${topLevelChild.title}
-	                                                <span class="arrow-right-icon">
-	                                                    <svg>
-	                                                        <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-right" />
-	                                                    </svg>
-	                                                </span>
-	                                            </a>
-                                            </c:if>
-                                            <c:if test="${l3link.index ne 0}">
-	                                            <a class="nav-link left-tab" id="l3link${l3link.index}-tab" data-toggle="tab"
-	                                                href="#l3link${l3link.index}" role="tab" aria-controls="l3link${l3link.index}"
-	                                                aria-selected="true">
-	                                                ${topLevelChild.title}
-	                                                <span class="arrow-right-icon">
-	                                                    <svg>
-	                                                        <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-right" />
-	                                                    </svg>
-	                                                </span>
-	                                            </a>
-                                            </c:if>
-                                            </c:otherwise>
-                                           </c:choose>
-                                        </li>
-					                </c:forEach>
-					            	<%-- </c:forEach> --%>
-					            	</c:forEach>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-lg-9">
-                                <div class="right-menu-container">
-                                    <div class="tab-content">
-                                    	<%-- <c:forEach items="${feature.components}" var="l1" varStatus="status"> --%>
-                                    	<c:forEach items="${l1.children}" var="topLevelChild" varStatus="l3link">
-                                    	<c:if test="${l3link.index eq 0}">
-                                        <div class="tab-pane active" id="l3link${l3link.index}" role="tabpanel"
-                                            aria-labelledby="l3link${l3link.index}-tab">
-											<c:if test="${not empty topLevelChild.entries && topLevelChild.entries ne null && not empty topLevelChild.children && topLevelChild.children ne null}">
-											<%-- <c:forEach items="${topLevelChild.links}" var="topLink1"> --%>
-                                            <div class="menu-container-title">
-                                            	<c:forEach items="${topLevelChild.entries}" var="dropdownValue">
-                                            	<cms:component component="${dropdownValue.item}" evaluateRestriction="true" />
-                                            	</c:forEach>
-                                                <span class="arrow-right-icon">
-                                                    <svg>
-                                                        <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-right" />
-                                                    </svg>
-                                                </span>
-                                            </div>
-                                            <%-- </c:forEach> --%>
-                                            </c:if>
-                                            <div class="row">
-                                            		<c:forEach items="${topLevelChild.children}" var="entry2">
-						                			<c:forEach items="${entry2.children}" var="entry">
-		                                                <div class="col-4">
-		                                                    <div class="container-col-title">
-		                                                        ${entry.title}
-		                                                    </div>
-		                                                    <div class="container-col-links">
-		                                                        <ul>
-		                                                        <c:forEach items="${entry.entries}" var="topLevelLink1">
-		                                                            <li>
-		                                                                <cms:component component="${topLevelLink1.item}" evaluateRestriction="true" />
-		                                                            </li>
-		                                                         </c:forEach>
-		                                                        </ul>
-		                                                    </div>
-		                                                </div>
-	                                                </c:forEach>
-	                                                </c:forEach>
-                                              </div>
-                                        </div>
-                                        </c:if>
-                                        <c:if test="${l3link.index ne 0}">
-                                        <div class="tab-pane" id="l3link${l3link.index}" role="tabpanel"
-                                            aria-labelledby="l3link${l3link.index}-tab">
-											<c:if test="${not empty topLevelChild.entries && topLevelChild.entries ne null && not empty topLevelChild.children && topLevelChild.children ne null}">
-											<%-- <c:forEach items="${topLevelChild.links}" var="topLink1"> --%>
-                                            <div class="menu-container-title">
-                                            	<c:forEach items="${topLevelChild.entries}" var="dropdownValue">
-                                            		<cms:component component="${dropdownValue.item}" evaluateRestriction="true" />
-                                            	</c:forEach>
-                                                <span class="arrow-right-icon">
-                                                    <svg>
-                                                        <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-right" />
-                                                    </svg>
-                                                </span>
-                                            </div>
-                                            <%-- </c:forEach> --%>
-                                            </c:if>
-                                            <div class="row">
-						                			<c:forEach items="${topLevelChild.children}" var="entry2">
-						                			<c:forEach items="${entry2.children}" var="entry">
-		                                                <div class="col-4">
-		                                                    <div class="container-col-title">
-		                                                        ${entry.title}
-		                                                    </div>
-		                                                    <div class="container-col-links">
-		                                                        <ul>
-		                                                        <c:forEach items="${entry.entries}" var="topLevelLink1">
-		                                                            <li>
-		                                                                <cms:component component="${topLevelLink1.item}" evaluateRestriction="true" />
-		                                                            </li>
-		                                                         </c:forEach>
-		                                                        </ul>
-		                                                    </div>
-		                                                </div>
-	                                                </c:forEach>
-	                                                </c:forEach>
-                                              </div>
-                                        </div>
-                                        </c:if>
-                                        </c:forEach>
-                                 </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            </c:if>
-            <c:if test="${l1.uid eq 'ContactNavNode'}">
-            <div class="megamenu-out second-level-menu shadow-sm d-none" id="mainNavContainer${children.index+1}">
-                <div class="container">
-                    <div class="contact-us-container">
-                        <div class="row">
-                            <c:forEach items="${l1.children}" var="topLevelChild" varStatus="l3link">
-                            <c:if test="${l3link.index eq 0}">
-                            <div class="col-md-3">
-                               	<c:forEach items="${topLevelChild.entries}" var="topLevelLink1">
-                               	${topLevelLink1.item.linkName}
-                                       <%-- <cms:component component="${topLevelLink1.item}" evaluateRestriction="true" /> --%>
-                                </c:forEach>
-                                <div class="contact-us-description">
-                                    ${topLevelChild.title}
-                                </div>
-                            </div>
-                            </c:if>
-                            <c:if test="${l3link.index ne 0}">
-                            <div class="col-md-3">
-                                <div class="menu-container-title less-margin">
-                                	<c:forEach items="${topLevelChild.entries}" var="topLevelLink1">
-                                        <cms:component component="${topLevelLink1.item}" evaluateRestriction="true" />
-                                        <span class="arrow-right-icon">
-                                        <svg>
-                                            <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-right" />
-                                        </svg>
-                                    </span>
-                                    </c:forEach>
-                                </div>
-                                <div class="contact-us-description">
-                                    ${topLevelChild.title}
-                                </div>
-                            </div>
-                            </c:if>
-                            </c:forEach>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </c:if>
-            </c:forEach>
-            </c:if>
-			</cms:pageSlot>
-			<div class="search-result-out d-none">
-				<div class="container">
-					<div class="search-text-box-out">
-						<cms:pageSlot position="SearchBox" var="component">
+                    <div class="search-text-box-out">
+                        <cms:pageSlot position="SearchBox" var="component">
 							<cms:component component="${component}" element="div" class="" />
 						</cms:pageSlot>
-					</div>
-				</div>
-			</div>
+                    </div>
+
+
+                </div>
+
+            </div>
 	</div>
 	</header>
 </sec:authorize>
 
 <sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
+	<header:megaMenu/>
 	<header class="main-header-out shadow-sm with-logged-in-user fixed-top">
 		<div class="container">
 			<div>
@@ -447,7 +266,7 @@
 				<div class="header-right-section text-right">
 
 					<div class="search-out">
-						<a href="javascript:void(0)" class="search-link"> <svg
+						<a href="javascript:void(0)" class="search-link" id="searchLink1"> <svg
 								class="search-icon">
 							<use
 									xlink:href="${commonResourcePath}/images/gallagher-icons.svg#search" />
@@ -471,13 +290,59 @@
 									<spring:theme code="header.link.app" />
 								</button>
 							</ycommerce:testId>
-							<button type="button" class="btn">
+							<%-- <button type="button" class="btn">
 								<span class="user-icon"> <svg>
                                         <use
 											xlink:href="${commonResourcePath}/images/gallagher-icons.svg#user" />
                                     </svg>
 								</span>
-							</button>
+							</button> --%>
+							<div class="btn-group" role="group">
+                                <button type="button"
+                                    class="btn dropdown-toggle user-profile-btn"
+                                    id="userProfileDropdown" aria-haspopup="true"
+                                    data-toggle="dropdown" aria-expanded="false">
+                                    <span class="user-icon"> <svg>
+                                        <use
+                                                xlink:href="${commonResourcePath}/images/gallagher-icons.svg#user" />
+                                    </svg>
+                                    </span>
+                                </button>
+                                <div class="dropdown-menu user-profile-dropdown"
+                                    aria-labelledby="userProfileDropdown">
+                                    <div class="user-profile-dropdown-inner">
+                                        <ul>
+                                        	<li>
+                                            <div class="row mb-1">
+                                                <div class="col-12 text-truncate user-name">
+                                                    <sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
+                                                        <c:set var="maxNumberChars" value="25" />
+                                                        <c:if test="${fn:length(user.firstName) gt maxNumberChars}">
+                                                            <c:set target="${user}" property="firstName"
+                                                                value="${fn:substring(user.firstName, 0, maxNumberChars)}..." />
+                                                        </c:if>
+	                                                        <ycommerce:testId code="header_LoggedUser">
+				                                              Hi,&nbsp${user.firstName}&nbsp${user.lastName}.
+				                                    		</ycommerce:testId>
+                                                    </sec:authorize>
+                                                </div>
+                                            </div>
+                                            </li>
+                                            <li><a href="javascript:void(0)"> <spring:theme code="text.Register.Product" />
+                                            </a></li>
+                                            <li><a href="javascript:void(0)"> <spring:theme code="text.Registered.Products" />
+                                            </a></li>
+                                            <li><a href="javascript:void(0)"> <spring:theme code="text.Account.Management" /> </a></li>
+                                            <li>
+                                        <c:url value="/logout" var="logoutUrl"/>
+                                        <a href="${(logoutUrl)}">
+                                            <spring:theme code="header.link.logout" />
+                                        </a>
+                                    </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
 							<div class="btn-group" role="group">
 								<button id="btnGroupDrop1" type="button"
 									class="btn right-btn dropdown-toggle" data-toggle="dropdown"
@@ -512,14 +377,51 @@
 									<spring:theme code="header.link.app" />
 								</button>
 							</ycommerce:testId>
-							<button type="button" class="btn">
+					<!-- <button type="button" class="btn"> -->	
+					<div class="btn-group" role="group">	
+                             <button type="button" class="btn btn-highlight dropdown-toggle user-profile-btn"
+                                    id="userProfileDropdown" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
 								<span class="user-icon"> <svg>
                         	    	<use
 											xlink:href="${commonResourcePath}/images/gallagher-icons.svg#user" />
                                 </svg>
 								</span>
 							</button>
-							<div class="btn-group" role="group">
+							<div class="dropdown-menu user-profile-dropdown" aria-labelledby="userProfileDropdown">
+
+                                    <div class="user-profile-dropdown-inner">
+                                        <ul>
+                                        	<li>
+                                            <div class="row">
+                                                <div class="col-12 text-truncate user-name">
+                                                    <sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
+                                                        <c:set var="maxNumberChars" value="25" />
+                                                        <c:if test="${fn:length(user.firstName) gt maxNumberChars}">
+                                                            <c:set target="${user}" property="firstName"
+                                                                value="${fn:substring(user.firstName, 0, maxNumberChars)}..." />
+                                                        </c:if>
+	                                                        <ycommerce:testId code="header_LoggedUser">
+				                                              Hi,&nbsp${user.firstName}&nbsp${user.lastName}.
+				                                    		</ycommerce:testId>
+                                                    </sec:authorize>
+                                                </div>
+                                            </div>
+                                            </li>
+                                            <li><a href="javascript:void(0)"> <spring:theme code="text.Register.Product" />
+                                            </a></li>
+                                            <li><a href="javascript:void(0)"> <spring:theme code="text.Registered.Products" />
+                                            </a></li>
+                                            <li><a href="javascript:void(0)"> <spring:theme code="text.Account.Management" /> </a></li>
+                                            <li><c:url value="/logout" var="logoutUrl" /> <a
+                                                href="${logoutUrl}"> <spring:theme
+                                                        code="header.link.logout" />
+                                            </a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="btn-group" role="group">
 								<button id="btnGroupDrop1" type="button"
 									class="btn right-btn dropdown-toggle" data-toggle="dropdown"
 									aria-haspopup="true" aria-expanded="false">
@@ -567,215 +469,29 @@
 					</div>
 
 					<div class="xs-menu-out">
-						<a href="javascript:void(0)" class="hamburger-icon"> <span
-							class="line1"> </span> <span class="line2"> </span> <span
-							class="line3"> </span>
-						</a>
-					</div>
+                        <a href="javascript:void(0)" class="hamburger-icon" data-toggle="modal"
+                            data-target="#responsiveMegaMenu">
+                            <span class="line1"></span>
+                            <span class="line2"></span>
+                            <span class="line3"></span>
+                        </a>
+                    </div>
 				</div>
 			</div>
+			<header:navigationNodes/>
 			
-			<cms:pageSlot position="ggB2CNavBar" var="feature">
-			<c:if test="${not empty feature.navigationNode && feature.navigationNode ne null}">
-			<c:forEach items="${feature.navigationNode.children}" var="l1" varStatus="children">
-			<c:if test="${not empty l1.children && l1.children ne null && l1.uid ne 'ContactNavNode'}">
-			<div class="megamenu-out second-level-menu shadow-sm d-none" id="mainNavContainer${children.index+1}">
+			<div class="megamenu-out search-result-out search-link-container d-none" id="searchLink1Container">
                 <div class="container">
-                    <div class="third-level-menu">
-                        <div class="row align-items-stretch">
-                            <div class="col-lg-3 left-menu-container">
-                                <div class="left-menu-inner">
-                                    <ul class="nav nav-tabs" id="solutionTab" role="tablist">
-                                    <%-- <c:forEach items="${feature.navigationNode.children}" var="l11" varStatus="status"> --%>
-                                    <c:forEach items="${l1.children}" var="topLevelChild" varStatus="l3link">
-                                    <c:forEach items="${topLevelChild.entries}" var="dropdownValue">
-					                	<li class="nav-item">
-					                	<c:choose>
-					                		<c:when test="${not empty dropdownValue.item && dropdownValue.item ne null && (empty topLevelChild.children || topLevelChild.children eq null)}">
-                                                <cms:component component="${dropdownValue.item}" evaluateRestriction="true"/>
-                                                	<%-- <a class="nav-link gray-link" href="${dropdownValue.item.url}" title="${dropdownValue.item.linkName}">${dropdownValue.item.linkName}</a> --%>
-								             </c:when>
-								             <c:otherwise>
-								             <c:if test="${l3link.index eq 0}">
-	                                            <a class="nav-link left-tab active" id="l3link${l3link.index}-tab" data-toggle="tab"
-	                                                href="#l3link${l3link.index}" role="tab" aria-controls="l3link${l3link.index}"
-	                                                aria-selected="true">
-	                                                ${topLevelChild.title}
-	                                                <span class="arrow-right-icon">
-	                                                    <svg>
-	                                                        <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-right" />
-	                                                    </svg>
-	                                                </span>
-	                                            </a>
-                                            </c:if>
-                                            <c:if test="${l3link.index ne 0}">
-	                                            <a class="nav-link left-tab" id="l3link${l3link.index}-tab" data-toggle="tab"
-	                                                href="#l3link${l3link.index}" role="tab" aria-controls="l3link${l3link.index}"
-	                                                aria-selected="true">
-	                                                ${topLevelChild.title}
-	                                                <span class="arrow-right-icon">
-	                                                    <svg>
-	                                                        <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-right" />
-	                                                    </svg>
-	                                                </span>
-	                                            </a>
-                                            </c:if>
-                                            </c:otherwise>
-                                           </c:choose>
-                                        </li>
-					                </c:forEach>
-					            	<%-- </c:forEach> --%>
-					            	</c:forEach>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-lg-9">
-                                <div class="right-menu-container">
-                                    <div class="tab-content">
-                                    	<%-- <c:forEach items="${feature.components}" var="l1" varStatus="status"> --%>
-                                    	<c:forEach items="${l1.children}" var="topLevelChild" varStatus="l3link">
-                                    	<c:if test="${l3link.index eq 0}">
-                                        <div class="tab-pane active" id="l3link${l3link.index}" role="tabpanel"
-                                            aria-labelledby="l3link${l3link.index}-tab">
-											<c:if test="${not empty topLevelChild.entries && topLevelChild.entries ne null && not empty topLevelChild.children && topLevelChild.children ne null}">
-											<%-- <c:forEach items="${topLevelChild.links}" var="topLink1"> --%>
-                                            <div class="menu-container-title">
-                                            	<c:forEach items="${topLevelChild.entries}" var="dropdownValue">
-                                            	<cms:component component="${dropdownValue.item}" evaluateRestriction="true" />
-                                            	</c:forEach>
-                                                <span class="arrow-right-icon">
-                                                    <svg>
-                                                        <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-right" />
-                                                    </svg>
-                                                </span>
-                                            </div>
-                                            <%-- </c:forEach> --%>
-                                            </c:if>
-                                            <div class="row">
-                                            		<c:forEach items="${topLevelChild.children}" var="entry2">
-						                			<c:forEach items="${entry2.children}" var="entry">
-		                                                <div class="col-4">
-		                                                    <div class="container-col-title">
-		                                                        ${entry.title}
-		                                                    </div>
-		                                                    <div class="container-col-links">
-		                                                        <ul>
-		                                                        <c:forEach items="${entry.entries}" var="topLevelLink1">
-		                                                            <li>
-		                                                                <cms:component component="${topLevelLink1.item}" evaluateRestriction="true" />
-		                                                            </li>
-		                                                         </c:forEach>
-		                                                        </ul>
-		                                                    </div>
-		                                                </div>
-	                                                </c:forEach>
-	                                                </c:forEach>
-                                              </div>
-                                        </div>
-                                        </c:if>
-                                        <c:if test="${l3link.index ne 0}">
-                                        <div class="tab-pane" id="l3link${l3link.index}" role="tabpanel"
-                                            aria-labelledby="l3link${l3link.index}-tab">
-											<c:if test="${not empty topLevelChild.entries && topLevelChild.entries ne null && not empty topLevelChild.children && topLevelChild.children ne null}">
-											<%-- <c:forEach items="${topLevelChild.links}" var="topLink1"> --%>
-                                            <div class="menu-container-title">
-                                            	<c:forEach items="${topLevelChild.entries}" var="dropdownValue">
-                                            		<cms:component component="${dropdownValue.item}" evaluateRestriction="true" />
-                                            	</c:forEach>
-                                                <span class="arrow-right-icon">
-                                                    <svg>
-                                                        <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-right" />
-                                                    </svg>
-                                                </span>
-                                            </div>
-                                            <%-- </c:forEach> --%>
-                                            </c:if>
-                                            <div class="row">
-						                			<c:forEach items="${topLevelChild.children}" var="entry2">
-						                			<c:forEach items="${entry2.children}" var="entry">
-		                                                <div class="col-4">
-		                                                    <div class="container-col-title">
-		                                                        ${entry.title}
-		                                                    </div>
-		                                                    <div class="container-col-links">
-		                                                        <ul>
-		                                                        <c:forEach items="${entry.entries}" var="topLevelLink1">
-		                                                            <li>
-		                                                                <cms:component component="${topLevelLink1.item}" evaluateRestriction="true" />
-		                                                            </li>
-		                                                         </c:forEach>
-		                                                        </ul>
-		                                                    </div>
-		                                                </div>
-	                                                </c:forEach>
-	                                                </c:forEach>
-                                              </div>
-                                        </div>
-                                        </c:if>
-                                        </c:forEach>
-                                 </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            </c:if>
-            <c:if test="${l1.uid eq 'ContactNavNode'}">
-            <div class="megamenu-out second-level-menu shadow-sm d-none" id="mainNavContainer${children.index+1}">
-                <div class="container">
-                    <div class="contact-us-container">
-                        <div class="row">
-                            <c:forEach items="${l1.children}" var="topLevelChild" varStatus="l3link">
-                            <c:if test="${l3link.index eq 0}">
-                            <div class="col-md-3">
-                               	<c:forEach items="${topLevelChild.entries}" var="topLevelLink1">
-                               	${topLevelLink1.item.linkName}
-                                       <%-- <cms:component component="${topLevelLink1.item}" evaluateRestriction="true" /> --%>
-                                </c:forEach>
-                                <div class="contact-us-description">
-                                    ${topLevelChild.title}
-                                </div>
-                            </div>
-                            </c:if>
-                            <c:if test="${l3link.index ne 0}">
-                            <div class="col-md-3">
-                                <div class="menu-container-title less-margin">
-                                	<c:forEach items="${topLevelChild.entries}" var="topLevelLink1">
-                                        <cms:component component="${topLevelLink1.item}" evaluateRestriction="true" />
-                                        <span class="arrow-right-icon">
-                                        <svg>
-                                            <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-right" />
-                                        </svg>
-                                    </span>
-                                    </c:forEach>
-                                </div>
-                                <div class="contact-us-description">
-                                    ${topLevelChild.title}
-                                </div>
-                            </div>
-                            </c:if>
-                            </c:forEach>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </c:if>
-            </c:forEach>
-            </c:if>
-			</cms:pageSlot>
-
-			<div class="search-result-out d-none">
-				<div class="container">
-					<div class="search-text-box-out">
-						<cms:pageSlot position="SearchBox" var="component">
+                    <div class="search-text-box-out">
+                        <cms:pageSlot position="SearchBox" var="component">
 							<cms:component component="${component}" element="div" class="" />
 						</cms:pageSlot>
-					</div>
-				</div>
-			</div>
+                    </div>
+
+
+                </div>
+
+            </div>
 		</div>
 	</header>
 </sec:authorize>

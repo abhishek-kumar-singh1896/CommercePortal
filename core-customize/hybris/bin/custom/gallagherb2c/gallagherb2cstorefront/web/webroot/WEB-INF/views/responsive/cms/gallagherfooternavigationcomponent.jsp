@@ -132,7 +132,7 @@
 										var="dropdownValue">
 
 										<c:if test="${i.index != 0}">
-											<a class="dropdown-item" href="javascript:void(0)">${dropdownValue.item.linkName}</a>
+											<a class="dropdown-item" href="${dropdownValue.item.url}">${dropdownValue.item.linkName}</a>
 
 										</c:if>
 									</c:forEach>
@@ -155,7 +155,7 @@
 									var="dropdownValue">
 
 									<c:if test="${i.index == 0}">
-										<a href="javascript:void(0)"
+										<a href="${dropdownValue.item.url}"
 											class="dropdown-toggle d-none d-sm-inline-block"
 											id="countrySelectMenuLink" data-toggle="dropdown"
 											aria-haspopup="true" aria-expanded="false"> <span
@@ -176,7 +176,7 @@
 										var="dropdownValue">
 
 										<c:if test="${i.index != 0}">
-											<a class="dropdown-item" href="javascript:void(0)">${dropdownValue.item.linkName}</a>
+											<a class="dropdown-item" href="${dropdownValue.item.url}">${dropdownValue.item.linkName}</a>
 
 										</c:if>
 									</c:forEach>

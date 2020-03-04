@@ -14,4 +14,8 @@
 		<property name="animalCompatibility" type="java.util.List&lt;String&gt;"/>
 	</bean>
 
+	<bean class="de.hybris.platform.commerceservices.search.facetdata.ProductCategorySearchPageData&lt;STATE, RESULT, CATEGORY>">
+		<property name="description" type="String"/>
+	</bean>
+	
 </beans>

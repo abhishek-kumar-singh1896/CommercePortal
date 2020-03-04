@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
+import org.apache.commons.collections4.CollectionUtils;
+
 
 /**
  *
@@ -26,10 +28,10 @@ public class GallagherVariantOptionDataMediaPopulator<SOURCE extends VariantProd
 	public void populate(final VariantProductModel variantProductModel, final VariantOptionData variantOptionData)
 			throws ConversionException
 	{
-		if (null != variantProductModel.getGalleryImages() && null != variantProductModel.getGalleryImages().get(0)
-				&& null != variantProductModel.getGalleryImages().get(0).getMedias())
+		if (!CollectionUtils.isEmpty(variantProductModel.getGalleryImages())
+				&& !CollectionUtils.isEmpty(variantProductModel.getGalleryImages().get(0).getMedias()))
 		{
-			final Collection<VariantOptionQualifierData> qualifierDataList = new ArrayList<VariantOptionQualifierData>();
+			final Collection<VariantOptionQualifierData> qualifierDataList = new ArrayList<>();
 
 
 			for (final Iterator<MediaModel> mediaModelIter = variantProductModel.getGalleryImages().get(0).getMedias()

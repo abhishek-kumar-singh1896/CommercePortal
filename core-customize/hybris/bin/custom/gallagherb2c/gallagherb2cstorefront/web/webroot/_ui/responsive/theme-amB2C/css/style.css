@@ -3430,21 +3430,21 @@ fieldset[disabled] .btn-primary.active {
   text-align: right;
 }
 .pagination {
-  border: 1px solid transparent;
+  /* border: 1px solid transparent;
   font-weight: 400;
-  margin: 0;
+  margin: 0; */
 }
 .pagination > li {
-  vertical-align: top;
-  display: inline-block;
+  /* vertical-align: top;
+  display: inline-block; */
 }
 .pagination > li > a,
 .pagination > li > span {
-  position: static;
+  /* position: static;
   border: none;
   margin: 0;
   float: none;
-  display: inline-block;
+  display: inline-block; */
 }
 .pagination > li.pagination-prev > a,
 .pagination > li.pagination-next > a,
@@ -3489,7 +3489,7 @@ fieldset[disabled] .btn-primary.active {
 .pagination > li.pagination-next > span {
   border-left: 1px solid transparent;
 }
-.pagination > .active > a,
+/* .pagination > .active > a,
 .pagination > .active > span,
 .pagination > .active > a:hover,
 .pagination > .active > span:hover,
@@ -3498,15 +3498,15 @@ fieldset[disabled] .btn-primary.active {
   background-color: transparent;
   border: none;
   font-weight: 700;
-}
+} 
 .pagination > li > a,
 .pagination > li > span {
   line-height: 30px;
   width: 30px;
   padding: 0;
   font-size: 24px;
-  text-align: center;
-}
+  text-align: center; 
+}*/
 .pagination > li.pagination-prev > a,
 .pagination > li.pagination-prev > span {
   margin-right: 10px;

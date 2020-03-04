@@ -73,3 +73,14 @@ INSERT_UPDATE IflowConfiguration ; iflowKey[unique=true]              ; iflowUrl
                                  
 INSERT_UPDATE SAPCPIConfiguration ; iflowConfiguration(iflowKey)       ; name[unique=true] ; userName    ; password        ; baseUrl                                             
                                   ; ZGGL_REPLICATE_B2C_Customer_To_C4C ; CPI_DEV           ; S0018963764 ; Integration123! ; https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com 
+								  
+
+#******************************#
+#*** Update Inbound Product ***#
+#******************************#                                  
+INSERT_UPDATE IntegrationObjectItem; integrationObject(code)[unique = true]; code[unique = true]  ; type(code)
+                                   ; InboundProduct                        ; BaseStore            ; BaseStore
+                                   
+INSERT_UPDATE IntegrationObjectItemAttribute; integrationObjectItem(integrationObject(code), code)[unique = true]; attributeName[unique = true]; attributeDescriptor(enclosingType(code), qualifier); returnIntegrationObjectItem(integrationObject(code), code); unique[default = false]; autoCreate[default = false] 
+; InboundProduct:Product                                             ; baseStores    		         ; Product:baseStores			                          ; InboundProduct:BaseStore                                    
+; InboundProduct:BaseStore                                           ; uid                           ; BaseStore:uid                                          ;     

@@ -23,16 +23,13 @@ INSERT_UPDATE MediaFolder;qualifier[unique=true];path[unique=true]
 
 INSERT_UPDATE Media;mediaFormat(qualifier);code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];$catalogVersion;folder(qualifier)[default=images]
 ;B2BADVANCE-BF;/B2BADVANCE-BF/solar-fence-energizer-s10.jpg;$siteResource/images/B2BADVANCE-BF/solar-fence-energizer-s10.jpg
-;B2BADVANCE-BF;/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge.jpg;$siteResource/images/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge.jpg
 
 
 INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$catalogVersion;$conversionGroup
 ;solar-fence-energizer-s10;/B2BADVANCE-BF/solar-fence-energizer-s10.jpg,/B2BADVANCE-BF/solar-fence-energizer-s10.jpg,/B2BADVANCE-BF/solar-fence-energizer-s10.jpg,/B2BADVANCE-BF/solar-fence-energizer-s10.jpg,/B2BADVANCE-BF/solar-fence-energizer-s10.jpg,/B2BADVANCE-BF/solar-fence-energizer-s10.jpg
-;heavy-duty-leadout-cable-12.5-gauge;/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge.jpg,/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge.jpg,/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge.jpg,/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge.jpg,/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge.jpg,/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge.jpg
 
 
 
 
 INSERT_UPDATE Product;code[unique=true];$picture;$thumbnail;$detail;$others;$normal;$thumbnails;$galleryImages;$catalogVersion
 ;solar-fence-energizer-s10;/B2BADVANCE-BF/solar-fence-energizer-s10.jpg;/B2BADVANCE-BF/solar-fence-energizer-s10.jpg;/B2BADVANCE-BF/solar-fence-energizer-s10.jpg;/B2BADVANCE-BF/solar-fence-energizer-s10.jpg,/B2BADVANCE-BF/solar-fence-energizer-s10.jpg,/B2BADVANCE-BF/solar-fence-energizer-s10.jpg;/B2BADVANCE-BF/solar-fence-energizer-s10.jpg;/B2BADVANCE-BF/solar-fence-energizer-s10.jpg;solar-fence-energizer-s10
-;heavy-duty-leadout-cable-12.5-gauge;/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge.jpg;/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge.jpg;/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge.jpg;/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge.jpg,/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge.jpg,/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge.jpg;/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge.jpg;/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge.jpg;heavy-duty-leadout-cable-12.5-gauge

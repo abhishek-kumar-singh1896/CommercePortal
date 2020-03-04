@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved. -->
-<beans xmlns="http://www.springframework.org/schema/beans"
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
@@ -10,11 +11,14 @@
 
 	<context:annotation-config />
 
-	<alias name="gallagherVariantOptionDataMediaPopulator"
+	<alias
+		name="gallagherVariantOptionDataMediaPopulator"
 		alias="variantOptionDataMediaPopulator" />
-	<bean id="gallagherVariantOptionDataMediaPopulator"
+	<bean
+		id="gallagherVariantOptionDataMediaPopulator"
 		class="com.gallagher.facades.product.converters.populator.variantoptions.GallagherVariantOptionDataMediaPopulator">
-		<property name="acceleratorImageFormatMapping"
+		<property
+			name="acceleratorImageFormatMapping"
 			ref="imageFormatMapping" />
 		<property name="imageFormats">
 			<list>
@@ -27,18 +31,59 @@
 		</property>
 	</bean>
 
-	<alias name="gallagherB2BCustomerReversePopulator"
+	<alias
+		name="gallagherB2BCustomerReversePopulator"
 		alias="b2BCustomerReversePopulator" />
-	<bean id="gallagherB2BCustomerReversePopulator"
+	<bean
+		id="gallagherB2BCustomerReversePopulator"
 		class="com.gallagher.facades.company.converters.populators.GallagherB2BCustomerReversePopulator"
 		parent="defaultB2BCustomerReversePopulator" />
-	
 
-	<alias name="gallagherSearchResultProductPopulator"
-		alias="commerceSearchResultProductPopulator" />
-	<bean id="gallagherSearchResultProductPopulator"
+
+	<alias
+		name="gallagherSearchResultProductPopulator"
+		alias="variantCommerceSearchResultProductPopulator" />
+	<bean
+		id="gallagherSearchResultProductPopulator"
 		class="com.gallagher.facades.search.converters.poulator.GallagherSearchResultProductPopulator"
 		parent="defaultCommerceSearchResultProductPopulator">
 	</bean>
+
+	<alias
+		name="gallagherProductCategorySearchPagePopulator"
+		alias="productCategorySearchPagePopulator" />
+	<bean
+		id="gallagherProductCategorySearchPagePopulator"
+		class="com.gallagher.facades.search.converters.poulator.GallagherProductCategorySearchPagePopulator"
+		parent="defaultProductCategorySearchPagePopulator">
+	</bean>
+	
+	<alias name="gallagherProductGalleryImagesPopulator" alias="productGalleryImagesPopulator"/>
+    <bean id="gallagherProductGalleryImagesPopulator" parent="defaultProductGalleryImagesPopulator"
+          class="com.gallagher.facades.product.converters.populator.GallagherProductGalleryImagesPopulator">
+		<property name="imageFormats">
+			<list>
+				<value>superZoom</value>
+				<value>zoom</value>
+				<value>product</value>
+				<value>thumbnail</value>
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="gallagherProductPrimaryImagePopulator" alias="productPrimaryImagePopulator" />
+	<bean id="gallagherProductPrimaryImagePopulator" parent="defaultProductPrimaryImagePopulator"
+          class="com.gallagher.facades.product.converters.populator.GallagherProductPrimaryImagePopulator">
+		<property name="imageFormats">
+			<list>
+				<value>zoom</value>
+				<value>product</value>
+				<value>thumbnail</value>
+				<value>cartIcon</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="gallagherRegionDetectionFacade" class="com.gallagher.facades.impl.GallagherRegionDetectionFacadeImpl" />
 
 </beans>

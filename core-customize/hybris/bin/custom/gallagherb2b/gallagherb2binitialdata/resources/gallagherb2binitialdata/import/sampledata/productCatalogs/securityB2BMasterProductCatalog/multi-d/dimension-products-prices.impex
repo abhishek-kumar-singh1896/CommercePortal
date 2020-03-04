@@ -21,15 +21,7 @@ $taxGroup=Europe1PriceFactory_PTG(code)[default=nz-gst]
 $approved=approvalstatus(code)[default='approved']
 
 INSERT_UPDATE Product;code[unique=true];$prices;$approved;$catalogVersion;$taxGroup
-;t10-mifare-reader;1 EA = 117 NZD N
-;t11-multi-tech-reader;1 EA = 16 NZD N
-;t11-mifare-reader;1 EA = 21 NZD N
-;t12-multi-tech-reader;1 EA = 80 NZD N
-;t12-mifare-reader;1 EA = 36 NZD N
-;t15-multi-tech-reader;1 EA = 75 NZD N
-;t15-mifare-reader;1 EA = 83 NZD N
-;t20-multi-tech-reader;1 EA = 73 NZD N
-;t20-mifare-reader;1 EA = 130 NZD N
+
 
 UPDATE Product;code[unique=true];$prices;$approved;$catalogVersion;$taxGroup
 ;t10-mifare-reader-black;1 EA = 117 NZD N
