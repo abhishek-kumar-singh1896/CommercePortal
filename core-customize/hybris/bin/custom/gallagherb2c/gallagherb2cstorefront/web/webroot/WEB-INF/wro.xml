@@ -82,6 +82,7 @@
 		<js>/_ui/responsive/common/js/acc.quickorder.js</js>
 		<js>/_ui/responsive/common/js/acc.csv-import.js</js>
 		<js>/_ui/responsive/common/js/_autoload.js</js>
+		<js>/_ui/responsive/common/js/custom/acc.asm.js</js>
 		
 		<js minimize="false">/_ui/responsive/common/js/bootstrap.bundle.min.js</js>
 		<js minimize="false">/_ui/responsive/common/js/select2.min.js</js>
