@@ -25,4 +25,19 @@ public final class GallagherCoreConstants extends GeneratedGallagherCoreConstant
 	public static final String QUOTE_EXPIRED_EMAIL_PROCESS = "quote-expired-email-process";
 	public static final String QUOTE_POST_CANCELLATION_PROCESS = "quote-post-cancellation-process";
 
+	public interface Bynder
+	{
+		public static final String IMAGE = "image";
+		public static final String IMAGE_VECTOR = "image_vector";
+		public static final String DOCUMENTS = "documents";
+		public static final String VIDEOS = "videos";
+		public static final String IMAGES = "images";
+		public static final String B2BADVANCE_BF = "B2BADVANCE-BF";
+		public static final String DATE_MODIFIED = "dateModified";
+		public static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'";
+
+
+
+	}
+
 }

@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!-- Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved. -->
-<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:noNamespaceSchemaLocation="items.xsd">
+<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="items.xsd">
 	<collectiontypes>
-		<collectiontype code="GallagherAccordionComponentList"
-			elementtype="GallagherAccordionComponent" autocreate="true" type="list" />
-		<collectiontype code="Animals"
-			elementtype="Animal" autocreate="true" generate="true" />
-		<collectiontype code="gallagherNavigationBarComponentList"
-			elementtype="GallagherNavigationBarComponent" autocreate="true" generate="true"
-			type="list" />
+		<collectiontype code="GallagherAccordionComponentList" elementtype="GallagherAccordionComponent"
+			autocreate="true" type="list" />
+		<collectiontype code="Animals" elementtype="Animal" autocreate="true" generate="true" />
+		<collectiontype code="gallagherNavigationBarComponentList" elementtype="GallagherNavigationBarComponent"
+			autocreate="true" generate="true" type="list" />
 	</collectiontypes>
 
 	<enumtypes>
@@ -35,7 +32,7 @@
 			<value code="sheep" />
 		</enumtype>
 	</enumtypes>
-	
+
 	<itemtypes>
 
 		<!-- Add your item definitions here -->
@@ -43,43 +40,44 @@
 		<itemtype code="Customer" autocreate="false" generate="false">
 			<description>Extending Customer type with an additional attribute.</description>
 			<attributes>
-				<attribute autocreate="true" generate="true"
-					qualifier="duplicate" type="java.lang.Boolean">
+				<attribute autocreate="true" generate="true" qualifier="duplicate" type="java.lang.Boolean">
 					<modifiers optional="true" />
 					<persistence type="property" />
 					<defaultvalue>java.lang.Boolean.FALSE</defaultvalue>
 					<description>Indicates if customer is duplicate or not</description>
 				</attribute>
-				<attribute autocreate="true" generate="true"
-					qualifier="keycloakGUID" type="java.lang.String">
+				<attribute autocreate="true" generate="true" qualifier="keycloakGUID" type="java.lang.String">
 					<modifiers optional="true" />
 					<persistence type="property" />
 					<description>Used to store Keycloak GUID</description>
 				</attribute>
 			</attributes>
 		</itemtype>
-		
+
 		<itemtype code="Product" autocreate="false" generate="false">
 			<description>Extending Product type with additional attributes of status and animals.</description>
 			<attributes>
-				<attribute autocreate="true" generate="true"
-					qualifier="promoSticker" type="Sticker">
+				<attribute autocreate="true" generate="true" qualifier="promoSticker" type="Sticker">
 					<modifiers optional="true" />
 					<persistence type="property" />
 					<description>Indicates status of product</description>
 				</attribute>
-				<attribute autocreate="true" generate="true"
-					qualifier="animalCompatibility" type="Animals">
+				<attribute autocreate="true" generate="true" qualifier="animalCompatibility" type="Animals">
 					<modifiers optional="true" />
 					<persistence type="property" />
 					<description>Stores all animals for which the product is compatible</description>
 				</attribute>
 			</attributes>
 		</itemtype>
+		
+		<itemtype code="BynderMedia" extends="Media"
+                autocreate="true" generate="true" jaloclass="com.gallagher.core.jalo.BynderMedia">
+                <description>Bynder Media Model is used to store data from Bynder</description>
+            </itemtype>
 
-        <!-- TypeGroups are for structure of this file only -->
+		<!-- TypeGroups are for structure of this file only -->
 
-      <typegroup name="cms">
+		<typegroup name="cms">
 
 			<itemtype code="GallagherFooterNavigationComponent" extends="FooterNavigationComponent" generate="true"
 				autocreate="true" jaloclass="com.gallagher.core.jalo.GallagherFooterNavigationComponent">
@@ -116,7 +114,7 @@
 					</attribute>
 				</attributes>
 			</itemtype>
-			
+
 			<itemtype code="GallagherIconLinkComponent" autocreate="true" generate="true" extends="CMSLinkComponent"
 				jaloclass="com.gallagher.core.jalo.GallagherIconLinkComponent">
 				<description>CMS component to display icon/image link with text.</description>
@@ -128,7 +126,7 @@
 					</attribute>
 				</attributes>
 			</itemtype>
-			
+
 			<itemtype code="GallagherIconComponent" extends="CMSImageComponent" generate="true" autocreate="true"
 				jaloclass="com.gallagher.core.jalo.GallagherIconComponent">
 				<description>CMS component to display font icon or image</description>
@@ -141,20 +139,18 @@
 				</attributes>
 			</itemtype>
 
-			<itemtype code="GallagherAccordionComponent"
-				autocreate="true" generate="true" extends="SimpleCMSComponent"
+			<itemtype code="GallagherAccordionComponent" autocreate="true" generate="true" extends="SimpleCMSComponent"
 				jaloclass="com.gallagher.core.jalo.GallagherAccordionComponent">
-				<deployment table="Accordion" typecode="12000"/>
+				<deployment table="Accordion" typecode="12000" />
 				<attributes>
 
-					<attribute qualifier="description"
-						type="java.lang.String">
+					<attribute qualifier="description" type="java.lang.String">
 						<modifiers optional="true" />
 						<persistence type="property">
-                            <columntype>
-                                <value>varchar(2500)</value>
-                            </columntype>
-                        </persistence>
+							<columntype>
+								<value>varchar(2500)</value>
+							</columntype>
+						</persistence>
 						<description>description for the category</description>
 					</attribute>
 					<attribute qualifier="heading" type="java.lang.String">
@@ -165,37 +161,31 @@
 				</attributes>
 			</itemtype>
 
-			<itemtype code="GallagherAccordionListComponent"
-				autocreate="true" generate="true" extends="SimpleCMSComponent"
+			<itemtype code="GallagherAccordionListComponent" autocreate="true" generate="true" extends="SimpleCMSComponent"
 				jaloclass="com.gallagher.core.jalo.GallagherAccordionListComponent">
-				<deployment table="AccordionList" typecode="12001"/>
+				<deployment table="AccordionList" typecode="12001" />
 				<attributes>
-					<attribute qualifier="accordionHeading"
-						type="java.lang.String">
+					<attribute qualifier="accordionHeading" type="java.lang.String">
 						<modifiers optional="true" />
 						<persistence type="property" />
 						<description>heading for the category</description>
 					</attribute>
-					<attribute qualifier="accordions"
-						type="GallagherAccordionComponentList">
+					<attribute qualifier="accordions" type="GallagherAccordionComponentList">
 						<modifiers optional="true" />
 						<persistence type="property" />
 					</attribute>
-					<attribute qualifier="buttonInfo"
-						type="GallagherButtonComponent">
+					<attribute qualifier="buttonInfo" type="GallagherButtonComponent">
 						<modifiers optional="true" />
 						<persistence type="property" />
 					</attribute>
 				</attributes>
 			</itemtype>
 
-			<itemtype code="GallagherButtonComponent" autocreate="true"
-				generate="true" extends="SimpleCMSComponent"
+			<itemtype code="GallagherButtonComponent" autocreate="true" generate="true" extends="SimpleCMSComponent"
 				jaloclass="com.gallagher.core.jalo.GallagherButtonComponent">
-				<deployment table="GallagherButton" typecode="12002"/>
+				<deployment table="GallagherButton" typecode="12002" />
 				<attributes>
-					<attribute qualifier="buttonHeading"
-						type="java.lang.String">
+					<attribute qualifier="buttonHeading" type="java.lang.String">
 						<modifiers optional="true" />
 						<persistence type="property" />
 						<description>heading for the button</description>
@@ -206,30 +196,27 @@
 					</attribute>
 				</attributes>
 			</itemtype>
-			
-			<itemtype code="GallagherCategoryBannerComponent" autocreate="true"
-				generate="true" extends="BannerComponent"
+
+			<itemtype code="GallagherCategoryBannerComponent" autocreate="true" generate="true" extends="BannerComponent"
 				jaloclass="com.gallagher.core.jalo.GallagherCategoryBannerComponent">
-				<deployment table="CategoryBanner" typecode="12003"/>
+				<deployment table="CategoryBanner" typecode="12003" />
 			</itemtype>
-			
-			<itemtype code="GallagherCategoryBannerComponent" autocreate="true"
-				generate="true" extends="BannerComponent"
+
+			<itemtype code="GallagherCategoryBannerComponent" autocreate="true" generate="true" extends="BannerComponent"
 				jaloclass="com.gallagher.core.jalo.GallagherCategoryBannerComponent">
-				<deployment table="CategoryBanner" typecode="12003"/>
+				<deployment table="CategoryBanner" typecode="12003" />
 			</itemtype>
-			
-			<itemtype code="GallagherNavigationBarComponent" autocreate="true"
-				generate="true" extends="NavigationBarComponent"
+
+			<itemtype code="GallagherNavigationBarComponent" autocreate="true" generate="true" extends="NavigationBarComponent"
 				jaloclass="com.gallagher.core.jalo.NavigationBarComponent">
-				<deployment table="GNav" typecode="12004"/>
+				<deployment table="GNav" typecode="12004" />
 				<attributes>
 					<attribute type="CMSNavigationNode" qualifier="l2navigationNode">
 						<persistence type="property" />
 						<modifiers />
 						<description>The cms navigation node of this navigation bar component.</description>
 					</attribute>
-					
+
 					<attribute type="CMSNavigationNode" qualifier="l3navigationNode">
 						<persistence type="property" />
 						<modifiers />
@@ -237,11 +224,10 @@
 					</attribute>
 				</attributes>
 			</itemtype>
-			
-			<itemtype code="GallagherNavigationBarCollectionComponent"
-				autocreate="true" generate="true" extends="SimpleCMSComponent"
-				jaloclass="com.gallagher.core.jalo.GallagherNavigationBarCollectionComponent">
-				<deployment table="GNavColl" typecode="12005"/>
+
+			<itemtype code="GallagherNavigationBarCollectionComponent" autocreate="true" generate="true"
+				extends="SimpleCMSComponent" jaloclass="com.gallagher.core.jalo.GallagherNavigationBarCollectionComponent">
+				<deployment table="GNavColl" typecode="12005" />
 				<attributes>
 					<attribute qualifier="components" type="gallagherNavigationBarComponentList">
 						<persistence type="property" />
@@ -250,8 +236,27 @@
 					</attribute>
 				</attributes>
 			</itemtype>
-			
+
 		</typegroup>
 
+		<typegroup name="jobs">
+			<itemtype code="GallagherBynderSyncCronJob" extends="CronJob"
+				jaloclass="com.gallagher.core.cronjob.jalo.GallagherBynderSyncCronJob" autocreate="true" generate="true">
+				<attributes>
+					<attribute qualifier="lastStartTime" type="java.util.Date">
+						<modifiers read="true" write="true" optional="true" />
+						<description>Stores the time when Job was run last time.</description>
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="catalogId" type="java.lang.String">
+						<modifiers read="true" write="true" optional="false" />
+						<description>Stores the catalogId.</description>
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+		</typegroup>
+
+	
 	</itemtypes>
 </items>

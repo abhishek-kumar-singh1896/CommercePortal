@@ -78,5 +78,8 @@
 			<property name="solrIndexService" ref="solrIndexService" />
 		</bean> 
  
-
+		<bean id="gallagherBynderSyncCronJob" class="com.gallagher.core.jobs.GallagherBynderSyncCronJob" parent="abstractJobPerformable" />
+		<alias name="gallagherMediaContainerDao" alias="mediaContainerDao" />
+		<bean id="gallagherMediaContainerDao" class="com.gallagher.core.jobs.dao.impl.GallagherMediaContainerDaoImpl" parent="defaultMediaContainerDao"/>
+		<bean id="gallagherBynderService" class="com.gallagher.core.services.impl.GallagherBynderServiceImpl"/>
 </beans>
