@@ -83,5 +83,7 @@
 			</list>
 		</property>
 	</bean>
+	
+	<bean id="gallagherRegionDetectionFacade" class="com.gallagher.facades.impl.GallagherRegionDetectionFacadeImpl" />
 
 </beans>
