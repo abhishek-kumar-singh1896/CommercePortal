@@ -9,6 +9,7 @@ import de.hybris.platform.servicelayer.config.ConfigurationService;
 import de.hybris.platform.servicelayer.cronjob.AbstractJobPerformable;
 import de.hybris.platform.servicelayer.cronjob.PerformResult;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -65,8 +66,8 @@ public class GallagherBynderSyncJob extends AbstractJobPerformable<GallagherBynd
 				final StringBuilder queryparamsBuilder = new StringBuilder(queryparams);
 				if (model.getLastStartTime() != null)
 				{
-					//	queryparamsBuilder.append("&").append(GallagherCoreConstants.Bynder.DATE_MODIFIED).append("=")
-					//			.append(new SimpleDateFormat(GallagherCoreConstants.Bynder.DATE_FORMAT).format(model.getLastStartTime()));
+					queryparamsBuilder.append("&").append(GallagherCoreConstants.Bynder.DATE_MODIFIED).append("=")
+							.append(new SimpleDateFormat(GallagherCoreConstants.Bynder.DATE_FORMAT).format(model.getLastStartTime()));
 				}
 
 				final String url = baseurl + "?" + queryparamsBuilder.toString();
