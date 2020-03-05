@@ -1888,3 +1888,81 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents
 ;;ggB2CNavBarSlot;GallagherHeaderNavigationComponent
 
 #############Navigation Nodes start end##############
+
+
+####Footernavigation node start###
+#CMSLinkComponents
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkname;name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];$category;$product;
+;;ProductsFooterLink;Products;Products Footer Link;'/';ProductsFooterLink;ProductsFooterLink;;;
+;;ElectricFencingFooterLink;Electric Fencing;Electric Fencing Footer Link;'/';ElectricFencingFooterLink;ElectricFencingFooterLink;;;
+;;WeighingEIDFooterLink;Weighing and EID;Weighing and EID Footer Link;'/';WeighingEIDFooterLink;WeighingEIDFooterLink;;;
+;;SteelGatesHardwareFooterLink;Steel Gates and Hardware;Steel Gates and Hardware Footer Link;'/';SteelGatesHardwareFooterLink;SteelGatesHardwareFooterLink;;;
+;;WirelessMonitoringFooterLink;Wireless Water Monitoring;Wireless Water monitoring Footer Link;'/';WirelessMonitoringFooterLink;WirelessMonitoringFooterLink;;;
+;;FarmInfoToolsFooterLink;Farm Information Tools;Farm Information tools Footer Link;'/';FarmInfoToolsFooterLink;FarmInfoToolsFooterLink;;;
+;;StockProdsFooterLink;Stock Prods;Stock Prods Footer Link;'/';StockProdsFooterLink;StockProdsFooterLink;;;
+;;AboutUsFooterLink;About Us;About Us Footer Link;'/';AboutUsFooterLink;AboutUsFooterLink;;;
+;;SupportFooterLink;Support;Support Footer Link;'/';SupportFooterLink;SupportFooterLink;;;
+;;ContactFooterLink;Contact Us;Contact Us Footer Link;'/';ContactFooterLink;ContactFooterLink;;;
+;;NewsEventsFooterLink;News & Events;News & Events Footer Link;'/';NewsEventsFooterLink;NewsEventsFooterLink;;;
+;;InnovationAwardsFooterLink;Innovation & Awards;Innovation & Awards Footer Link;'/';InnovationAwardsFooterLink;InnovationAwardsFooterLink;;;
+
+#creating navigation entries
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;ProductsFooterNodeEntry;;Products Footer Node Entry;ProductsFooterNode;ProductsFooterLink;
+;ElectricFencingFooterNodeEntry;;Electric Fencing Footer Node Entry;ElectricFencingFooterNode;ElectricFencingFooterLink
+;WeighingEIDFooterNodeEntry;;Weighing EID Footer Node Entry;WeighingEIDFooterNode;WeighingEIDFooterLink
+;WirelessWtaerMonitoringFooterNodeEntry;;Wireless Wtaer Monitoring Footer Node Entry;WirelessWtaerMonitoringFooterNode;WirelessMonitoringFooterLink;
+;SteelGatesHardwareFooterNodeEntry;;Steel Gates Hardware Footer Node Entry;SteelGatesHardwareFooterNode;SteelGatesHardwareFooterLink
+;FarmInformationToolsFooterNodeEntry;;Farm Information Tools Footer Node Entry;FarmInformationToolsFooterNode;FarmInfoToolsFooterLink
+;StockProdsFooterNodeEntry;;Stock Prods Footer Node Entry;StockProdsFooterNode;StockProdsFooterLink
+;AboutUsFooterNodeEntry;;About Us Footer Node Entry;AboutUsFooterNode;AboutUsFooterLink
+;SupportFooterNodeEntry;;Support Footer Node Entry;SupportFooterNode;SupportFooterLink
+;ContactFooterNodeEntry;;Contact Footer Node Entry;ContactFooterNode;ContactFooterLink
+;NewsEventsFooterNodeEntry;;News Events Footer Node Entry;NewsEventsFooterNode;NewsEventsFooterLink
+;InnovationAwardsFooterNodeEntry;;Innovation Awards Footer Node Entry;InnovationAwardsFooterNode;InnovationAwardsFooterLink
+
+#creating new nodes
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
+;ProductsFooterNode;;Products Footer Node;SAPCommerceNavNode;;ProductsFooterNode
+;ElectricFencingFooterNode;;Electric Fencing Footer Node;SAPCommerceNavNode;;ElectricFencingFooterNode
+;WeighingEIDFooterNode;;Weighing EID Footer Node;SAPCommerceNavNode;;WeighingEIDFooterNode
+;WirelessWtaerMonitoringFooterNode;;Wireless Wtaer Monitoring Footer Node;SAPCommerceNavNode;;WirelessWtaerMonitoringFooterNode
+;SteelGatesHardwareFooterNode;;Steel Gates Hardware Footer Node;SAPCommerceNavNode;;SteelGatesHardwareFooterNode
+;FarmInformationToolsFooterNode;;Farm Information Tools Footer Node;SAPCommerceNavNode;;FarmInformationToolsFooterNode
+;StockProdsFooterNode;;Stock Prods Footer Node;SAPCommerceNavNode;;StockProdsFooterNode
+;AboutUsFooterNode;;About Us Footer Node;SAPCustomerExperienceNavNode;;AboutUsFooterNode
+;SupportFooterNode;;Support Footer Node;SAPCustomerExperienceNavNode;;SupportFooterNode
+;ContactFooterNode;;Contact Footer Node;SAPCustomerExperienceNavNode;;ContactFooterNode
+;NewsEventsFooterNode;;News Events Footer Node;SAPCustomerExperienceNavNode;;NewsEventsFooterNode
+;InnovationAwardsFooterNode;;Innovation Awards Footer Node;SAPCustomerExperienceNavNode;;InnovationAwardsFooterNode
+ 
+
+#*******************************************************************************************************************************************************************
+
+
+#joining new nodes to parent
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef)
+
+;SAPCommerceNavNode;;SAP Commerce Cloud Pages;SAPCommerceNavNode; ProductsFooterNode,ElectricFencingFooterNode,WeighingEIDFooterNode,WirelessWtaerMonitoringFooterNode,SteelGatesHardwareFooterNode,FarmInformationToolsFooterNode,StockProdsFooterNode
+
+;SAPCustomerExperienceNavNode;;SAP Customer Experience Pages; SAPCustomerExperienceNavNode; AboutUsFooterNode,SupportFooterNode,ContactFooterNode,NewsEventsFooterNode,InnovationAwardsFooterNode
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
+;SAPCommerceNavNode;;SAP Commerce Cloud Pages;AMB2CNavNode; ProductsFooterLink,ElectricFencingFooterLink,WeighingEIDFooterLink,WirelessMonitoringFooterLink,SteelGatesHardwareFooterLink,FarmInfoToolsFooterLink,StockProdsFooterLink;SAPCommerceNavNode
+
+;SAPCustomerExperienceNavNode;;SAP Customer Experience Pages;AMB2CNavNode; AboutUsFooterLink,SupportFooterLink,ContactFooterLink,NewsEventsFooterLink,InnovationAwardsFooterLink;SAPCustomerExperienceNavNode
+
+# the order of children is the same as the display order on the site
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);&nodeRef;children(uid,$contentCV)
+;FooterNavNode;;Footer Pages;root;FooterNavNode;SAPCommerceNavNode,SAPCustomerExperienceNavNode
+
+INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];wrapAfter;&componentRef;showLanguageCurrency;navigationNode(&nodeRef)
+;;GallagherFooterNavigationComponent;7;GallagherFooterNavigationComponent;true;FooterNavNode;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV)
+;;FooterSlot;GallagherFooterNavigationComponent
+
+####Footernavigation node end###
