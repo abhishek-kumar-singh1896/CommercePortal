@@ -103,7 +103,7 @@
 		<property name="mediaFormat" value="30Wx30H" />
 	</bean>
 
-	<bean id="gallagherBynderSyncCronJob" class="com.gallagher.core.jobs.GallagherBynderSyncCronJob"
+	<bean id="gallagherBynderSyncCronJob" class="com.gallagher.core.jobs.GallagherBynderSyncJob"
 		parent="abstractJobPerformable" />
 	<alias name="gallagherMediaContainerDao" alias="mediaContainerDao" />
 	<bean id="gallagherMediaContainerDao" class="com.gallagher.core.jobs.dao.impl.GallagherMediaContainerDaoImpl"

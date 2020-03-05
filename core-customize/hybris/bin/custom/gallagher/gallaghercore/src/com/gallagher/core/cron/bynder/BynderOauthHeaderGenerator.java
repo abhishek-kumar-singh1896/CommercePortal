@@ -27,6 +27,14 @@ public class BynderOauthHeaderGenerator
 {
 
 
+	private static final String oauth_consumer_key = "oauth_consumer_key";
+	private static final String oauth_token = "oauth_token";
+	private static final String oauth_signature_method = "oauth_signature_method";
+	private static final String oauth_timestamp = "oauth_timestamp";
+	private static final String oauth_nonce = "oauth_nonce";
+	private static final String oauth_version = "oauth_version";
+	private static final String oauth_signature = "oauth_signature";
+	private static final String HMAC_SHA1 = "HmacSHA1";
 	private final String consumerKey;
 	private final String consumerSecret;
 	private final String signatureMethod;
@@ -45,14 +53,6 @@ public class BynderOauthHeaderGenerator
 		this.version = "1.0";
 	}
 
-	private static final String oauth_consumer_key = "oauth_consumer_key";
-	private static final String oauth_token = "oauth_token";
-	private static final String oauth_signature_method = "oauth_signature_method";
-	private static final String oauth_timestamp = "oauth_timestamp";
-	private static final String oauth_nonce = "oauth_nonce";
-	private static final String oauth_version = "oauth_version";
-	private static final String oauth_signature = "oauth_signature";
-	private static final String HMAC_SHA1 = "HmacSHA1";
 
 	/**
 	 * Generates oAuth 1.0a header which can be pass as Authorization header
@@ -127,6 +127,7 @@ public class BynderOauthHeaderGenerator
 		}
 		catch (NoSuchAlgorithmException | InvalidKeyException e)
 		{
+			//TODO LOgs
 			e.printStackTrace();
 			return null;
 		}

@@ -13,15 +13,12 @@ import com.gallagher.outboundservices.response.dto.GallagherBynderResponse;
 public interface GallagherBynderService
 {
 
-	public Boolean updateMedia(final GallagherBynderSyncCronJobModel model, final GallagherBynderResponse gallagherBynderResponse);
+	public boolean updateMedia(final GallagherBynderSyncCronJobModel model, final GallagherBynderResponse gallagherBynderResponse);
 
-	public Boolean deleteMedia(final GallagherBynderSyncCronJobModel model, final GallagherBynderResponse gallagherBynderResponse);
+	public boolean deleteMedia(final GallagherBynderSyncCronJobModel model, final GallagherBynderResponse gallagherBynderResponse);
 
-	public Boolean updateDocumentMedia(final GallagherBynderSyncCronJobModel model,
+	public boolean updateDocumentMedia(final GallagherBynderSyncCronJobModel model,
 			final GallagherBynderResponse gallagherBynderResponse);
 
-	public Boolean updateInsertIconMedia(final GallagherBynderSyncCronJobModel cronModel,
-			final GallagherBynderResponse gallagherBynderResponse);
-
-	Boolean deleteDocumentMedia(GallagherBynderSyncCronJobModel cronModel, GallagherBynderResponse gallagherBynderResponse);
+	public boolean deleteDocumentMedia(GallagherBynderSyncCronJobModel cronModel, GallagherBynderResponse gallagherBynderResponse);
 }

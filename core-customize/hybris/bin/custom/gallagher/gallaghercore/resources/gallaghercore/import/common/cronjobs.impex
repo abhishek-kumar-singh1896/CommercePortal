@@ -49,3 +49,10 @@ INSERT_UPDATE Trigger;cronJob(code)[unique=true];second[default=0];minute[defaul
 ;ticketsRetentionCronJob;
 # Run the CloseStagnantServiceTicketsJob at 12:05 AM every day
 ;ticketsStagnationJob;;;12;0;;;;true;
+
+INSERT_UPDATE ServicelayerJob;code[unique=true]	;springId
+;gallagherBynderSyncCronJob	;gallagherBynderSyncCronJob
+			
+INSERT_UPDATE GallagherBynderSyncCronJob;code[unique=true];job(code);catalogId;sessionLanguage(isocode)[default=en]
+;securityB2BBynderSyncCronJob;gallagherBynderSyncCronJob;securityB2BMasterProductCatalog;
+;amB2CBynderSyncCronJob;gallagherBynderSyncCronJob;amB2CMasterProductCatalog;

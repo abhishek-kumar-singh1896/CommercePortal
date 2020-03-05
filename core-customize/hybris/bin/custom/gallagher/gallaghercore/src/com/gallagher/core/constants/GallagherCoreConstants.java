@@ -35,7 +35,12 @@ public final class GallagherCoreConstants extends GeneratedGallagherCoreConstant
 		public static final String B2BADVANCE_BF = "B2BADVANCE-BF";
 		public static final String DATE_MODIFIED = "dateModified";
 		public static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'";
-
+		public static final String CONSUMER_KEY = "bynder.access.consumerKey";
+		public static final String CONSUMER_SECRET = "bynder.access.consumerSecret";
+		public static final String ACCESS_TOKEN = "bynder.access.token";
+		public static final String TOKEN_SECRET = "bynder.access.tokenSecret";
+		public static final String BASE_URL = "bynder.base.url";
+		public static final String BYNDER_QUERY = "bynder.query.";
 
 
 	}
