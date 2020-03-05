@@ -168,7 +168,7 @@
 									</c:if>
 								</c:forEach>
 							</c:forEach>
-							<div class="dropdown-menu"
+							<div class="dropdown-menu dropdown-menu-right"
 								aria-labelledby="countrySelectMenuLink">
 								<c:forEach items="${countryDropdownLinkNagivationNode.children}"
 									var="countryDropdown" varStatus="i">
