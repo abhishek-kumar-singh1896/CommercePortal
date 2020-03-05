@@ -190,8 +190,7 @@
 					</div>
 
 					<div class="xs-menu-out">
-                        <a href="javascript:void(0)" class="hamburger-icon" data-toggle="modal"
-                            data-target="#responsiveMegaMenu">
+                        <a href="javascript:void(0)" class="hamburger-icon">
                             <span class="line1"></span>
                             <span class="line2"></span>
                             <span class="line3"></span>
@@ -469,8 +468,7 @@
 					</div>
 
 					<div class="xs-menu-out">
-                        <a href="javascript:void(0)" class="hamburger-icon" data-toggle="modal"
-                            data-target="#responsiveMegaMenu">
+                        <a href="javascript:void(0)" class="hamburger-icon">
                             <span class="line1"></span>
                             <span class="line2"></span>
                             <span class="line3"></span>

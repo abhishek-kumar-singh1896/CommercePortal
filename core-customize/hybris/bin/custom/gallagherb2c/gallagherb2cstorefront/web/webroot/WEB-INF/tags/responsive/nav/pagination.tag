@@ -158,8 +158,7 @@
 			<div class="row align-items-end">
 				<c:if test="${top && showTotals}">
 					<div class="col-4 pr-0">
-						<button type="button" class="btn btn-icon" data-toggle="modal"
-							data-target="#refineFilter">
+						<button type="button" class="btn btn-icon" id="refineFilterLink" >
 							<span class="btn-icon-out"> <svg>
 	                        	<use
 										xlink:href="${commonResourcePath}/images/gallagher-icons.svg#refine" />

@@ -91,6 +91,14 @@ ACC.header = {
 		                e.preventDefault()
 		                $(this).tab('show')
 		            });
+		            
+		            $('.hamburger-icon').click(function(){
+		                $('#responsiveMegaMenu').show();
+		            });
+		 
+		            $('#responsiveMegaMenu .modal-header .close').click(function(){
+		                $('#responsiveMegaMenu').hide();
+		            });
 
 				
 				//navigation menu js end

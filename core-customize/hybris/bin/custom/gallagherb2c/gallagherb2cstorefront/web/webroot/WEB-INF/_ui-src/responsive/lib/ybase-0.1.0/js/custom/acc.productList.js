@@ -14,6 +14,14 @@ ACC.productList = {
 
 				});
 			});
+			
+			$('#refineFilterLink').click(function(){
+                $('#refineFilter').show();
+            });
+ 
+            $('#refineFilter .modal-header .close').click(function(){
+                $('#refineFilter').hide();
+            });
 
 		});
 	}

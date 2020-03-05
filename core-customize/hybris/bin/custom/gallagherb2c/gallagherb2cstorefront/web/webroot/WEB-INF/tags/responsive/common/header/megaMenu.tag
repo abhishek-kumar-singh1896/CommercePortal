@@ -9,7 +9,7 @@
 
 <cms:pageSlot position="ggB2CNavBar" var="feature">
 <c:if test="${feature.visible && not empty feature.navigationNode && feature.navigationNode ne null}">
-<div class="modal responsive-mega-menu-modal fade hidden-lg hidden-md" id="responsiveMegaMenu" tabindex="-1"
+<div class="modal-updated responsive-mega-menu-modal hidden-lg hidden-md" id="responsiveMegaMenu" tabindex="-1"
         role="dialog" aria-labelledby="responsiveMegaMenuTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content xs-main-menu-l1 xs-mega-menu">
