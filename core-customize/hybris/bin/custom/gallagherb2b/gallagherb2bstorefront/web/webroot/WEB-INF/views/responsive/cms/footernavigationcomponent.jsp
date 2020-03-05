@@ -4,6 +4,8 @@
 <%@ taglib prefix="footer" tagdir="/WEB-INF/tags/responsive/common/footer"  %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<c:set var="regions" value="${fn:split('nz,au,global',',')}" />
+
 <c:if test="${component.visible}">
 	<div class="container-fluid">
 	    <div class="footer__top">
@@ -28,7 +30,36 @@
 	                	</c:forEach>
 	               </div>
 	           </div>
-	           <div class="footer__right col-xs-12 col-md-3">
+
+				<div>
+				<select onChange="document.location=this.options[this.selectedIndex].value;" style="color: #000; padding: 2px 5px; border: 1px solid #fff; min-width: 180px;">
+					<c:forEach items="${regions}" var="region">
+					<c:choose>
+					<c:when test="${region == 'nz'}">
+					<c:set var="currentRegion" value="New Zealand" />
+					</c:when>
+					<c:when test="${region == 'au'}">
+					<c:set var="currentRegion" value="Australia" />
+					</c:when>
+					<c:otherwise>
+					<c:set var="currentRegion" value="Global" />
+					</c:otherwise>
+					</c:choose>
+						<c:choose>
+							<c:when test="${region == regionCode.code}">
+								<option value="/security/${region}/${language}"
+									selected="selected">${currentRegion}</option>
+							</c:when>
+							<c:otherwise>
+								<option value="/security/${region}/${language}">
+									${currentRegion}</option>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+				</select>		
+				</div>
+				
+				<div class="footer__right col-xs-12 col-md-3">
 	               <c:if test="${showLanguageCurrency}">
 	                   <div class="row">
 	                       <div class="col-xs-6 col-md-6 footer__dropdown">

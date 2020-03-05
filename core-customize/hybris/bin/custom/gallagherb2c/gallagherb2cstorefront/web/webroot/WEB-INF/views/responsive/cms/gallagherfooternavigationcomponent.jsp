@@ -131,7 +131,7 @@
 									<c:forEach items="${countryDropdown.entries}"
 										var="dropdownValue">
 
-										<c:if test="${i.index != 0}">
+										<c:if test="${dropdownValue.item.uid != (regionCode).concat('-').concat(language)}">
 											<a class="dropdown-item" href="${dropdownValue.item.url}">${dropdownValue.item.linkName}</a>
 
 										</c:if>
@@ -175,7 +175,7 @@
 									<c:forEach items="${countryDropdown.entries}"
 										var="dropdownValue">
 
-										<c:if test="${i.index != 0}">
+										<c:if test="${dropdownValue.item.uid != (regionCode).concat('-').concat(language)}">
 											<a class="dropdown-item" href="${dropdownValue.item.url}">${dropdownValue.item.linkName}</a>
 
 										</c:if>
