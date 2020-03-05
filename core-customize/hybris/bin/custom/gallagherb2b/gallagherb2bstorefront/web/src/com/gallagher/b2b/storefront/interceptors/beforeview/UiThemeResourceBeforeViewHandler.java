@@ -23,7 +23,6 @@ import de.hybris.platform.commerceservices.enums.SiteTheme;
 import de.hybris.platform.commerceservices.enums.UiExperienceLevel;
 import de.hybris.platform.commerceservices.i18n.CommerceCommonI18NService;
 import de.hybris.platform.core.model.c2l.LanguageModel;
-import com.gallagher.b2b.storefront.web.view.UiExperienceViewResolver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +35,9 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.gallagher.b2b.storefront.web.view.UiExperienceViewResolver;
+import com.gallagher.core.enums.RegionCode;
 
 
 /**
@@ -84,6 +86,7 @@ public class UiThemeResourceBeforeViewHandler implements BeforeViewHandler
 		final CMSSiteModel currentSite = cmsSiteService.getCurrentSite();
 
 		final String siteName = currentSite.getUid();
+		final RegionCode regionCode = currentSite.getRegionCode();
 		final String themeName = getThemeNameForSite(currentSite);
 		final String uiExperienceCode = uiExperienceService.getUiExperienceLevel().getCode();
 		final String uiExperienceCodeLower = uiExperienceViewResolver.getUiExperienceViewPrefix().isEmpty()
@@ -112,6 +115,7 @@ public class UiThemeResourceBeforeViewHandler implements BeforeViewHandler
 		modelAndView.addObject("language", currentLanguage != null ? currentLanguage.getIsocode() : "en");
 		modelAndView.addObject("themeName", themeName);
 		modelAndView.addObject("uiExperienceLevel", uiExperienceCode);
+		modelAndView.addObject("regionCode", regionCode);
 
 		final String detectedUiExperienceCode = uiExperienceService.getDetectedUiExperienceLevel().getCode();
 		modelAndView.addObject("detectedUiExperienceCode", detectedUiExperienceCode);
