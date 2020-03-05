@@ -1298,22 +1298,22 @@ INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[uni
 ##Country dropdown for different websites
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;linkName;&linkRef;&componentRef;target(code)[default='sameWindow'];$category;$product;
-;;newZealandLnkCom;New Zealand Link;$websiteBaseURL/am/nz/en;New Zealand;newZealandLnkCom;newZealandLnkCom
-;;australiaLnkCom;Australia Link;$websiteBaseURL/am/au/en;Australia;australiaLnkCom;australiaLnkCom
-;;usLnkCom;US Link;$websiteBaseURL/am/us/en;United States;usLnkCom;usLnkCom
-;;canadaEnLnkCom;Canada English Link;$websiteBaseURL/am/ca/en;Canada (EN);canadaEnLnkCom;canadaEnLnkCom
-;;canadaFrLnkCom;Canada French Link;$websiteBaseURL/am/ca/fr;Canada (FR);canadaFrLnkCom;canadaFrLnkCom
-;;latamLnkCom;LatAm Link;$websiteBaseURL/am/latam/en;Latin America;latamLnkCom;latamLnkCom
-;;globalLnkCom;Global Link;$websiteBaseURL/am/global/en;Global;globalLnkCom;globalLnkCom
+;;nz-en;New Zealand Link;$websiteBaseURL/am/nz/en;New Zealand;nz-en;nz-en
+;;au-en;Australia Link;$websiteBaseURL/am/au/en;Australia;au-en;au-en
+;;us-en;US Link;$websiteBaseURL/am/us/en;United States;us-en;us-en
+;;ca-en;Canada English Link;$websiteBaseURL/am/ca/en;Canada (EN);ca-en;ca-en
+;;ca-fr;Canada French Link;$websiteBaseURL/am/ca/fr;Canada (FR);ca-fr;ca-fr
+;;latam-en;LatAm Link;$websiteBaseURL/am/latam/en;Latin America;latam-en;latam-en
+;;global-en;Global Link;$websiteBaseURL/am/global/en;Global;global-en;global-en
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
-;newZealandNavEty;;New Zealand navigation entry;newZealandNavNod;newZealandLnkCom
-;australiaNavEty;;Australia navigation entry;australiaNavNod;australiaLnkCom
-;usNavEty;;US navigation entry;usNavNod;usLnkCom
-;canadaEnNavEty;;Canada English navigation entry;canadaEnNavNod;canadaEnLnkCom
-;canadaFrNavEty;;Canada French navigation entry;canadaFrNavNod;canadaFrLnkCom
-;latamNavEty;;LatAm navigation entry;latamNavNod;latamLnkCom
-;globalNavEty;;Global navigation entry;globalNavNod;globalLnkCom
+;newZealandNavEty;;New Zealand navigation entry;newZealandNavNod;nz-en
+;australiaNavEty;;Australia navigation entry;australiaNavNod;au-en
+;usNavEty;;US navigation entry;usNavNod;us-en
+;canadaEnNavEty;;Canada English navigation entry;canadaEnNavNod;ca-en
+;canadaFrNavEty;;Canada French navigation entry;canadaFrNavNod;ca-fr
+;latamNavEty;;LatAm navigation entry;latamNavNod;latam-en
+;globalNavEty;;Global navigation entry;globalNavNod;global-en
 
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef);
