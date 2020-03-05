@@ -42,7 +42,7 @@
 
 	<alias
 		name="gallagherSearchResultProductPopulator"
-		alias="variantCommerceSearchResultProductPopulator" />
+		alias="commerceSearchResultProductPopulator" />
 	<bean
 		id="gallagherSearchResultProductPopulator"
 		class="com.gallagher.facades.search.converters.poulator.GallagherSearchResultProductPopulator"
