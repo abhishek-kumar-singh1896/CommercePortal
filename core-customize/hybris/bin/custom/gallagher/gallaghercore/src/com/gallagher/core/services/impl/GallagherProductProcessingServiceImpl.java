@@ -298,18 +298,21 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 		final List<ProductFeatureModel> newProductFeatures = new ArrayList<>();
 		final List<ProductFeatureModel> oldProductFeatures = variantProduct.getFeatures();
 
-		modelService.removeAll(oldProductFeatures);
-
-		for (final ProductFeatureModel productFeature : productFeatures)
+		if (!CollectionUtils.isEmpty(oldProductFeatures))
 		{
-			final ProductFeatureModel newProductFeature = modelService.clone(productFeature);
+			modelService.removeAll(oldProductFeatures);
 
-			newProductFeature.setProduct(variantProduct);
+			for (final ProductFeatureModel productFeature : productFeatures)
+			{
+				final ProductFeatureModel newProductFeature = modelService.clone(productFeature);
 
-			newProductFeatures.add(newProductFeature);
+				newProductFeature.setProduct(variantProduct);
+
+				newProductFeatures.add(newProductFeature);
+			}
+
+			modelService.saveAll(newProductFeatures);
 		}
-
-		modelService.saveAll(newProductFeatures);
 	}
 
 	/**

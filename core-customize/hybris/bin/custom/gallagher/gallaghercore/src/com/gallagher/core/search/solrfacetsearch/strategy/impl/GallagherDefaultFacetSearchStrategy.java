@@ -55,6 +55,7 @@ public class GallagherDefaultFacetSearchStrategy extends DefaultFacetSearchStrat
 					indexedType, searchQuery);
 			facetSearchContext.getSearchHints().putAll(searchHints);
 			this.getFacetSearchContextFactory().initializeContext();
+			this.checkContext(facetSearchContext);
 			final SolrSearchProvider solrSearchProvider = this.getSolrSearchProviderFactory().getSearchProvider(facetSearchConfig,
 					indexedType);
 			final SolrIndexModel activeIndex = this.getSolrIndexService().getActiveIndex(facetSearchConfig.getName(),

@@ -90,10 +90,12 @@
     
     <bean id="gallagherProductLogoPopulator" parent="baseProductPopulator"
           class="com.gallagher.facades.product.converters.populator.GallagherProductLogoPopulator">
+          <property name="imageConverter" ref="imageConverter" />
     </bean>
     
     <bean id="gallagherProductDataSheetPopulator" parent="baseProductPopulator"
           class="com.gallagher.facades.product.converters.populator.GallagherProductDataSheetPopulator">
+          <property name="imageConverter" ref="imageConverter" />
     </bean>
     
     <bean parent="configurablePopulatorModification">
@@ -116,5 +118,7 @@
 		<property name="key" value="DATA_SHEET" />
 		<property name="add" ref="gallagherProductDataSheetPopulator" />
 	</bean>
+
+	<bean id="gallagherRegionDetectionFacade" class="com.gallagher.facades.impl.GallagherRegionDetectionFacadeImpl" />
 
 </beans>

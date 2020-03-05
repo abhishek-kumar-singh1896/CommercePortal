@@ -368,6 +368,15 @@
 					</attribute>
 				</attributes>
 			</itemtype>
+			
+			<itemtype code="Country" autocreate="false" generate="false">
+				<description>Extends existing type with additional attributes.</description>
+				<attributes>
+					<attribute qualifier="regionCode" type="RegionCode">
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
 		</typegroup>
 
 	</itemtypes>

@@ -108,7 +108,7 @@
 								<c:forEach items="${countryDropdown.entries}"
 									var="dropdownValue">
 
-									<c:if test="${i.index == 0}">
+									<c:if test="${dropdownValue.item.uid == (regionCode).concat('-').concat(language)}">
 										<a href="javascript:void(0)"
 											class="dropdown-toggle d-block d-sm-none"
 											id="countrySelectXsMenuLink" data-toggle="dropdown"
@@ -132,7 +132,7 @@
 										var="dropdownValue">
 
 										<c:if test="${i.index != 0}">
-											<a class="dropdown-item" href="javascript:void(0)">${dropdownValue.item.linkName}</a>
+											<a class="dropdown-item" href="${dropdownValue.item.url}">${dropdownValue.item.linkName}</a>
 
 										</c:if>
 									</c:forEach>
@@ -154,8 +154,8 @@
 								<c:forEach items="${countryDropdown.entries}"
 									var="dropdownValue">
 
-									<c:if test="${i.index == 0}">
-										<a href="javascript:void(0)"
+									<c:if test="${dropdownValue.item.uid == (regionCode).concat('-').concat(language)}">
+										<a href="${dropdownValue.item.url}"
 											class="dropdown-toggle d-none d-sm-inline-block"
 											id="countrySelectMenuLink" data-toggle="dropdown"
 											aria-haspopup="true" aria-expanded="false"> <span
@@ -176,7 +176,7 @@
 										var="dropdownValue">
 
 										<c:if test="${i.index != 0}">
-											<a class="dropdown-item" href="javascript:void(0)">${dropdownValue.item.linkName}</a>
+											<a class="dropdown-item" href="${dropdownValue.item.url}">${dropdownValue.item.linkName}</a>
 
 										</c:if>
 									</c:forEach>
