@@ -119,4 +119,10 @@
 
 	<bean id="gallagherRegionDetectionFacade" class="com.gallagher.facades.impl.GallagherRegionDetectionFacadeImpl" />
 
+	<alias name="gallagherCustomerFacade" alias="customerFacade" />
+   <bean id="gallagherCustomerFacade" class="com.gallagher.facades.customer.impl.GallagherCustomerFacadeImpl"
+        parent="defaultCustomerFacade" />
+        
+   <bean id="gallagherCustomerEmailContext" class="com.gallagher.facades.process.email.context.GallagherCustomerEmailContext" parent="customerEmailContext" />
+    
 </beans>

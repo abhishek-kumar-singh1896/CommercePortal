@@ -30,4 +30,13 @@ public interface GallagherKeycloakService
 	 * @return keycloakGUID
 	 */
 	String createKeycloakUser(final CustomerData customerData);
+
+	/**
+	 * Returns Keycloak GUID if user exists in Keycloak.
+	 *
+	 * @param email
+	 *
+	 * @return keycloakGUID
+	 */
+	String getKeycloakUserFromEmail(String email);
 }

@@ -108,4 +108,17 @@
      
    <bean id="gallagherCustomerService" class="com.gallagher.core.services.impl.GallagherCustomerServiceImpl" />
  
+ 	<bean id="gallagherB2BCustomerRegistrationEventListener"
+		class="com.gallagher.core.events.GallagherB2BCustomerRegistrationEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService" />
+		<property name="businessProcessService" ref="businessProcessService" />
+	</bean>
+	
+	<bean depends-on="processContextResolutionStrategyMap" parent="mapMergeDirective">
+		<property name="key">
+			<value type="java.lang.Class">de.hybris.platform.commerceservices.model.process.StoreFrontCustomerProcessModel</value>
+		</property>
+		<property name="value" ref="storeFrontProcessContextStrategy" />
+	</bean>
+	
 </beans>

@@ -436,15 +436,27 @@ public class MyCompanyPageController extends AbstractSearchPageController
 		b2bCustomerData.setRoles(b2BCustomerForm.getRoles());
 		b2bCustomerData.setCustomerId(b2BCustomerForm.getCustomerId());
 		b2bCustomerData.setDuplicate(b2BCustomerForm.isDuplicate());
+		b2bCustomerData.setObjectID(b2BCustomerForm.getObjectId());
+
 
 		try
 		{
-			final String keycloakGUID = getGallagherKeycloakService().createKeycloakUser(b2bCustomerData);
-			b2bCustomerData.setKeycloakGUID(keycloakGUID);
+			String keycloakGUID = getGallagherKeycloakService().getKeycloakUserFromEmail(b2bCustomerData.getEmail());
+			if (keycloakGUID != null)
+			{
+				b2bCustomerData.setKeycloakGUID(keycloakGUID);
+				b2bCustomerData.setIsUserExist(true);
+			}
+			else
+			{
+				keycloakGUID = getGallagherKeycloakService().createKeycloakUser(b2bCustomerData);
+				b2bCustomerData.setKeycloakGUID(keycloakGUID);
+				b2bCustomerData.setIsUserExist(false);
+			}
 		}
 		catch (final RestClientException | OAuth2Exception exception)
 		{
-			LOG.error("Exception occured while creationg user in Keycloak : " + exception);
+			LOG.error("Exception occured while creating user in Keycloak : " + exception);
 			GlobalMessages.addErrorMessage(model, "text.connection.exception.error");
 			model.addAttribute("b2BCustomerForm", b2BCustomerForm);
 			return editUser(b2BCustomerForm.getUid(), model);

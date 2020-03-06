@@ -28,6 +28,7 @@ import org.springframework.security.oauth2.client.token.grant.password.ResourceO
 
 import com.gallagher.keycloak.outboundservices.service.GallagherKeycloakService;
 import com.gallagher.outboundservices.request.dto.GallagherKeycloakUserRequest;
+import com.gallagher.outboundservices.response.dto.GallagherKeycloakResponse;
 
 
 /**
@@ -159,6 +160,59 @@ public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 
 		final ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
 
-		return StringUtils.substringAfterLast(response.getHeaders().getLocation().toString(), "/");
+		final String keycloakGUID = StringUtils.substringAfterLast(response.getHeaders().getLocation().toString(), "/");
+
+		sendResetPasswordNotification(keycloakGUID);
+
+		return keycloakGUID;
+	}
+
+	@Override
+	public String getKeycloakUserFromEmail(final String email)
+	{
+		String keyCloakGUID = null;
+		final OAuth2RestTemplate restTemplate = getRestTemplateForKeycloak();
+
+		final String userDetailUrl = getConfigurationService().getConfiguration().getString("keycloak.user.url") + "?email="
+				+ email;
+
+		final ResponseEntity<GallagherKeycloakResponse[]> userDetailresponse = restTemplate.getForEntity(userDetailUrl,
+				GallagherKeycloakResponse[].class);
+
+		if (userDetailresponse.getBody().length > 0)
+		{
+			keyCloakGUID = userDetailresponse.getBody()[0].getId();
+			return keyCloakGUID;
+		}
+
+		return null;
+	}
+
+	private void sendResetPasswordNotification(final String keycloakGUID)
+	{
+		final OAuth2RestTemplate restTemplate = getRestTemplateForKeycloak();
+
+		final HttpHeaders headers = new HttpHeaders();
+		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		headers.setContentType(MediaType.APPLICATION_JSON);
+
+		final String request = "[\"UPDATE_PASSWORD\"]";
+
+		final HttpEntity<String> entity = new HttpEntity<>(request, headers);
+
+		final String redirectURL = getSiteBaseUrlResolutionService().getWebsiteUrlForSite(getBaseSiteService().getCurrentBaseSite(),
+				true, null);
+
+		//final String redirectURL = "https://localhost:9002/security/nz/en";
+		//final String redirectURL = "https://securityB2BNZ.local:9002/security/nz/en";
+
+		final String url = MessageFormat.format(
+				getConfigurationService().getConfiguration().getString("keycloak.reset.password.url"), keycloakGUID, redirectURL);
+
+		System.out.println("Password reset email start sending.........");
+
+		final ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.PUT, entity, String.class);
+
+		System.out.println("Password reset email sended.........");
 	}
 }

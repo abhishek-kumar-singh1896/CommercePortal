@@ -1,6 +1,6 @@
 ## messageSource=classpath:/gallaghercore/messages/email-customerRegistration_$lang.properties
 #macro(genHtmlLinkStartTag $url)
-<a href="$url"><font color="#666666">
+<a href="$url"><font color="#333">
 #end
 #macro(genHtmlLinkEndTag)
 </font></a>
@@ -9,11 +9,10 @@
 <a href="$url"><font color="$textColor">$bodyContent</font></a>
 #end
 
-<!DOCTYPE html>
 <html>
 	<head>
 	</head>
-	<body bgcolor="#ffffff"
+	<body bgcolor="#ffffff">
 	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff"
 		<tr>
 			<td>&nbsp;</td>
@@ -24,20 +23,49 @@
 					<tr>
 						<td align="center" valign="top" bgcolor="#FFFFFF">
 							<table width="570" cellpadding="0" cellspacing="0" border="0" align="center">
-                                <tr>
-                                    <td>
+								<tr>
+									<td valign="middle">&nbsp;</td>
+								</tr>
+								<tr>
+									<td valign="middle">
 										${ctx.cmsSlotContents.SiteLogo}
+										<img src="${ctx.themeResourceUrl}/images/header_01.png" alt="" width="229" height="72" border="0" align="right" title="" />
 									</td>
-                                </tr>
+								</tr>
 								<tr>
 									<td height="30" align="right" valign="middle" bgcolor="#000000">
 										<font color="#FFFFFF" size="2" face="Arial, Helvetica, sans-serif"><a href="${ctx.secureBaseUrl}/my-account"><font color="#FFFFFF">${ctx.messages.myAccount}</font></a> | <a href="${ctx.baseUrl}/store-finder"><font color="#FFFFFF">${ctx.messages.storeFinder}</font></a> &nbsp;&nbsp;</font>
 									</td>
 								</tr>
 								<tr>
-									<td valign="middle">
-										<div style="display:block; margin-top:10px;margin-bottom:10px;">${ctx.cmsSlotContents.TopContent}</div>
+									<td align="center" valign="middle">
+										<a href="${ctx.baseUrl}" style="display:block; margin-top:10px;margin-bottom:10px;">${ctx.cmsSlotContents.TopContent}</a>
 									</td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+								</tr>
+								<tr>
+									<td align="left" valign="top">
+										#set ($secureLoginUrl = "${ctx.secureBaseUrl}/login")
+										#set ($mailToUrl = "mailto:${ctx.messages.contactUsEmail}")
+										#if(${ctx.ISUSEREXIST} == "true")
+										#set ( $registeredUser = ${ctx.messages.getMessage('isRegisteredUser')})
+										#set ( $loginInstruction = ${ctx.messages.getMessage('instructionLoginUrl', "#genHtmlLinkStartTag($secureLoginUrl)", "#genHtmlLinkEndTag()")})
+										#else
+										#set ( $registeredUser = ${ctx.messages.getMessage('notRegisteredUser')})
+										#set ( $loginInstruction = ${ctx.messages.getMessage('resetLoginUrl', "#genHtmlLink($mailToUrl '#666666' ${ctx.messages.contactUsEmail})")})
+										#end
+										
+										<p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.getMessage('salutation', ${ctx.title},${ctx.displayName})}</b>,</font></p>
+										<p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.thankYouForSubmission}$registeredUser</font></p>
+										<p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">$loginInstruction</font></p>
+										<p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.complimentaryClosing}</font></p>
+										<p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.signature}</font></p>
+									</td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
 								</tr>
 								<tr>
 									<td align="center" valign="middle">
@@ -49,11 +77,17 @@
 										<font color="#FFFFFF" size="2" face="Arial, Helvetica, sans-serif"><a href="${ctx.baseUrl}"><font color="#FFFFFF">${ctx.messages.help}</font></a> | <a href="${ctx.messages.contactUsPage}"><font color="#FFFFFF">${ctx.messages.contactUs}</font></a> | <a href="${ctx.baseUrl}"><font color="#FFFFFF">${ctx.messages.termsAndCondition}</font></a> &nbsp;&nbsp;</font>
 									</td>
 								</tr>
+								<tr>
+									<td>&nbsp;</td>
+								</tr>
 							</table>
 						</td>
 					</tr>
 				</table>
 			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
 		</tr>
 	</table>
 </body>

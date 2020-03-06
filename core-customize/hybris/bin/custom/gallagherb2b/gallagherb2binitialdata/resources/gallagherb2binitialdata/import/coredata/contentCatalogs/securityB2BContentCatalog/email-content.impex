@@ -20,6 +20,7 @@ $jarEmailResource=jar:com.gallagher.b2b.initialdata.constants.B2badvanceInitialD
 UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
 $jarResourceCms=$config-jarResourceCmsValue
 $emailPackageName=$config-emailContextPackageName
+$gallagherEmailPackageName=$config-gallagherEmailContextPackageName
 
 # Email page Template
 INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
@@ -302,7 +303,8 @@ INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)
 
 # Email velocity templates
 INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
-;securityB2B_Email_Customer_Registration_Body;$emailPackageName.CustomerEmailContext
+;securityB2B_Email_Customer_Registration_Body;$gallagherEmailPackageName.GallagherCustomerEmailContext
+;securityB2B_Email_Customer_Registration_Subject;$gallagherEmailPackageName.GallagherCustomerEmailContext
 ;securityB2B_Email_Forgotten_Password_Body;$emailPackageName.ForgottenPasswordEmailContext
 ;securityB2B_Email_Order_Confirmation_Body;$emailPackageName.OrderNotificationEmailContext
 ;securityB2B_Email_Delivery_Sent_Body;$emailPackageName.DeliverySentEmailContext
@@ -314,7 +316,6 @@ INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)
 ;securityB2B_Email_Order_Partially_Canceled_Body;$emailPackageName.OrderPartiallyCanceledEmailContext
 ;securityB2B_Email_Order_Partially_Refunded_Body;$emailPackageName.OrderPartiallyRefundedEmailContext
 ;securityB2B_Email_NotPickedUpConsignment_Canceled_Body;$emailPackageName.NotPickedUpConsignmentCanceledEmailContext
-;securityB2B_Email_Customer_Registration_Subject;$emailPackageName.CustomerEmailContext
 ;securityB2B_Email_Forgotten_Password_Subject;$emailPackageName.ForgottenPasswordEmailContext
 ;securityB2B_Email_Order_Confirmation_Subject;$emailPackageName.OrderNotificationEmailContext
 ;securityB2B_Email_Delivery_Sent_Subject;$emailPackageName.DeliverySentEmailContext
