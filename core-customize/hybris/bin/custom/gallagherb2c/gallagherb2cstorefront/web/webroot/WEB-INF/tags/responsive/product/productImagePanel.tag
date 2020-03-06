@@ -8,10 +8,7 @@
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
-<div class="image-gallery js-gallery">
-    <span class="image-gallery__zoom-icon glyphicon glyphicon-resize-full"></span>
-
-    <c:choose>
+   <c:choose>
         <c:when test="${galleryImages == null || galleryImages.size() == 0}">
             <div class="carousel image-gallery__image js-gallery-image">
                 <div class="item">
@@ -38,19 +35,29 @@
             </div>
         </c:when>
         <c:otherwise>
-
-            <div class="carousel image-gallery__image js-gallery-image">
-                <c:forEach items="${galleryImages}" var="container" varStatus="varStatus">
-                    <div class="item">
-                        <div>
-                            <img class="lazyOwl" data-src="${fn:escapeXml(container.productb2c.url)}"
-                                 data-zoom-image="${fn:escapeXml(container.superZoom.url)}"
-                                 alt="${fn:escapeXml(container.thumbnailb2c.altText)}" >
-                        </div>
-                    </div>
-                </c:forEach>
-            </div>
-            <product:productGalleryThumbnail galleryImages="${galleryImages}" />
+        <!-- Product detail slider and carousel -->
+				<div class="product-detail-right-section">
+				    <div id="productDetailMainSlider" class="flexslider slider-big-image">
+				        <ul class="slides">
+				        <c:forEach items="${galleryImages}" var="container" varStatus="varStatus">
+		                    <li>
+		                    <div class="product-status">
+	                            <img src="${fn:escapeXml(container.productb2c.url)}"
+	                                 data-zoom-image="${fn:escapeXml(container.superZoom.url)}"
+	                                 alt="${fn:escapeXml(container.thumbnailb2c.altText)}" ></div>
+		                    <li>
+		                </c:forEach>
+				        </ul>
+				    </div>
+				    <div id="productDetailMainCarousel" class="flexslider flex-carousel">
+				        <ul class="slides">
+				        	<c:forEach items="${galleryImages}" var="container" varStatus="varStatus">
+				        	<li>
+						        <a href="#" class="item"> <img class="carousel-thumb-image" src="${fn:escapeXml(container.thumbnailb2c.url)}" alt="${fn:escapeXml(container.thumbnailb2c.altText)}"></a>
+						    </li>
+						    </c:forEach>
+				        </ul>
+				    </div>
+				</div>
         </c:otherwise>
     </c:choose>
-</div>

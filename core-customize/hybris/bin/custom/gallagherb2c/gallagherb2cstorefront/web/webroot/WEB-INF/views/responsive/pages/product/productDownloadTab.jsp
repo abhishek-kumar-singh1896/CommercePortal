@@ -14,7 +14,7 @@
                     <div class="download-column-out">
                         <div class="download-column-title">
                             <a href="javascript:void(0)">
-                                ${media.description}
+                                ${media.altText}
                             </a>
                         </div>
                         <div class="download-column-bottom-section">
