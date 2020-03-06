@@ -42,7 +42,7 @@ public class GallagherProductDataSheetPopulator<SOURCE extends ProductModel, TAR
 					imageData.setAltText(productModel.getName());
 				}
 			}
-			productData.setLogo(imageList);
+			productData.setDataSheet(imageList);
 		}
 	}
 
@@ -63,6 +63,7 @@ public class GallagherProductDataSheetPopulator<SOURCE extends ProductModel, TAR
 		{
 			final ImageData imageData = getImageConverter().convert(logo);
 			imageData.setDescription(logo.getDescription());
+			imageData.setMime(logo.getMime());
 			imageData.setImageType(imageType);
 			list.add(imageData);
 		}
