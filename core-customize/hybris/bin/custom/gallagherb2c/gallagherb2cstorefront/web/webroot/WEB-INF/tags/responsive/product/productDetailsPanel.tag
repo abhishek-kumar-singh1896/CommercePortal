@@ -77,41 +77,27 @@
 </ycommerce:testId>
 <c:if test="${not empty product.logo}">
 <div class="quick-reference-feature">
-            <div class="container">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
                 <div class="row">
-                    <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-4 text-center">
-                                <div class="quick-reference-icon">
-                                    <img src="${commonResourcePath}/images/aps-icon.png" alt="APS Logo">
-                                </div>
-                                <div class="quick-reference-description">
-                                    Detail copy lorem ipsum dolor
-                                </div>
-                            </div>
-                            <div class="col-4 text-center">
-                                <div class="quick-reference-icon">
-                                    <img src="${commonResourcePath}/images/lcd-icon.png" alt="APS Logo">
-                                </div>
-                                <div class="quick-reference-description">
-                                    Detail copy lorem ipsum dolor
-                                </div>
-                            </div>
-                            <div class="col-4 text-center">
-                                <div class="quick-reference-icon">
-                                    <img src="${commonResourcePath}/images/eid-icon.png" alt="APS Logo">
-                                </div>
-                                <div class="quick-reference-description">
-                                    Integrated EID system
-                                </div>
-                            </div>
+                <c:forEach var="media" items="${product.logo}">
+                    <div class="col-4 text-center">
+                        <div class="quick-reference-icon">
+                            <img src="${media.url}" alt="${media.altText}">
+                        </div>
+                        <div class="quick-reference-description">
+                            ${media.description}
                         </div>
                     </div>
+                    </c:forEach>
                 </div>
             </div>
         </div>
-      </c:if>
-        </div>
+    </div>
+</div>
+</c:if>
+</div>
 <%-- <div class="product-details page-title">
 	<ycommerce:testId code="productDetails_productNamePrice_label_${product.code}">
 		<div class="name">${fn:escapeXml(product.name)}<span class="sku">ID</span><span class="code">${fn:escapeXml(product.code)}</span></div>
