@@ -121,6 +121,7 @@
                 <editorArea:section name="hmc.section.gallagher">
                     <editorArea:attribute qualifier="duplicate" label="hmc.duplicacy.label"/>
                     <editorArea:attribute qualifier="keycloakGUID" label="hmc.keycloakGUID.label"/>
+                    <editorArea:attribute qualifier="objectID" label="hmc.objectID.label"/>
                 </editorArea:section>
             </editorArea:tab>
         </editorArea:editorArea>

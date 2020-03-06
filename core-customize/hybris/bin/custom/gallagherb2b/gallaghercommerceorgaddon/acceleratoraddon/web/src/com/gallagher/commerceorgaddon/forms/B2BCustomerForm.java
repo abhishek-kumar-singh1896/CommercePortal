@@ -29,6 +29,7 @@ public class B2BCustomerForm extends UpdateProfileForm
 	private String email;
 	private String customerId;
 	private boolean duplicate;
+	private String objectId;
 
 	public String getUid()
 	{
@@ -113,13 +114,23 @@ public class B2BCustomerForm extends UpdateProfileForm
 		this.customerId = customerId;
 	}
 
+	public void setDuplicate(final boolean duplicate)
+	{
+		this.duplicate = duplicate;
+	}
+
 	public boolean isDuplicate()
 	{
 		return duplicate;
 	}
 
-	public void setDuplicate(final boolean duplicate)
+	public String getObjectId()
 	{
-		this.duplicate = duplicate;
+		return objectId;
+	}
+
+	public void setObjectId(final String objectId)
+	{
+		this.objectId = objectId;
 	}
 }

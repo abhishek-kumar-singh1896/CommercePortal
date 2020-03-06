@@ -285,6 +285,9 @@ ACC.commerceorg = {
                 		$('#user\\.lastName').val(data.LastName);
                 		$('#customerId').val(data.ContactID);
                 		$('#duplicate').val(data.duplicate);
+                		$('#objectID').val(data.ObjectID);
+                		$('#titleCode').val(data.TitleCode);
+                		
                 	}
                 }
             });

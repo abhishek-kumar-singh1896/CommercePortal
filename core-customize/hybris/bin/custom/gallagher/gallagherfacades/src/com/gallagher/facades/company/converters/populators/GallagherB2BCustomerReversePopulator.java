@@ -24,5 +24,6 @@ public class GallagherB2BCustomerReversePopulator extends B2BCustomerReversePopu
 		target.setSapContactID(source.getCustomerId());
 		target.setDuplicate(source.getDuplicate());
 		target.setKeycloakGUID(source.getKeycloakGUID());
+		target.setObjectID(source.getObjectID());
 	}
 }

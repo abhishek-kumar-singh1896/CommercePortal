@@ -28,6 +28,9 @@ public class GallagherInboundCustomerEntry
 	@JsonProperty("StatusCode")
 	private String statusCode;
 
+	@JsonProperty("ObjectID")
+	private String objectID;
+
 	@JsonProperty("Email")
 	private String email;
 
@@ -125,4 +128,13 @@ public class GallagherInboundCustomerEntry
 		this.emailError = emailError;
 	}
 
+	public String getObjectID()
+	{
+		return objectID;
+	}
+
+	public void setObjectID(final String objectID)
+	{
+		this.objectID = objectID;
+	}
 }

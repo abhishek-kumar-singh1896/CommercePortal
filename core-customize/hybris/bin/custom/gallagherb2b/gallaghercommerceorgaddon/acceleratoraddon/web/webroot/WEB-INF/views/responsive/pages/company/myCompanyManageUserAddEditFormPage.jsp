@@ -71,6 +71,7 @@
                     <form:input type="hidden" name="uid" path="uid" id="uid"/>
                     <form:input type="hidden" name="duplicate" path="duplicate" id="duplicate"/>
                     <form:input type="hidden" name="customerId" path="customerId" id="customerId"/>
+                    <form:input type="hidden" name="objectId" path="objectId" id="objectId"/>
                     <div class="col-xs-12 col-sm-6">
                     	<formElement:formSelectBoxDefaultEnabled idKey="user.title" labelKey="user.title" path="titleCode"
                                                    mandatory="true"

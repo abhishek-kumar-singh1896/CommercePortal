@@ -182,10 +182,9 @@ public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 		if (userDetailresponse.getBody().length > 0)
 		{
 			keyCloakGUID = userDetailresponse.getBody()[0].getId();
-			return keyCloakGUID;
 		}
 
-		return null;
+		return keyCloakGUID;
 	}
 
 	private void sendResetPasswordNotification(final String keycloakGUID)
