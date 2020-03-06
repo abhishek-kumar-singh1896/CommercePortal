@@ -1,92 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
- Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
--->
-<beans xmlns="http://www.springframework.org/schema/beans"
-	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xmlns:context="http://www.springframework.org/schema/context"
-	   xmlns:util="http://www.springframework.org/schema/util"
-	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+<!-- Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved. -->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-     <context:annotation-config/>
+	<context:annotation-config />
 
 	<!-- Spring Integration -->
-	<import resource="classpath:/gallaghercore/integration/hot-folder-common-spring.xml"/>
+	<import resource="classpath:/gallaghercore/integration/hot-folder-common-spring.xml" />
 
 	<!-- SystemSetup for the GallagherCore -->
-	<bean id="gallagherCoreSystemSetup" class="com.gallagher.core.setup.CoreSystemSetup"
-	       parent="abstractCoreSystemSetup"/>
+	<bean id="gallagherCoreSystemSetup" class="com.gallagher.core.setup.CoreSystemSetup" parent="abstractCoreSystemSetup" />
 
 	<bean id="amB2CCategorySource" parent="abstractCategorySource">
-		<property name="rootCategory" value="1"/>
+		<property name="rootCategory" value="1" />
 		<!-- '1' is the root icecat category -->
 	</bean>
 	<bean id="amB2CBrandCategorySource" parent="abstractCategorySource">
-		<property name="rootCategory" value="brands"/>
+		<property name="rootCategory" value="brands" />
 		<!-- 'brands' is the root of the brands hierarchy -->
 	</bean>
 
 	<bean id="amB2CCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider">
-		<property name="categorySource" ref="amB2CCategorySource"/>
+		<property name="categorySource" ref="amB2CCategorySource" />
 	</bean>
 	<bean id="amB2CBrandCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider">
-		<property name="categorySource" ref="amB2CBrandCategorySource"/>
+		<property name="categorySource" ref="amB2CBrandCategorySource" />
 	</bean>
 	<bean id="amB2CCategoryNameValueProvider" parent="abstractCategoryNameValueProvider">
-		<property name="categorySource" ref="amB2CCategorySource"/>
+		<property name="categorySource" ref="amB2CCategorySource" />
 	</bean>
 	<bean id="amB2CBrandCategoryNameValueProvider" parent="abstractCategoryNameValueProvider">
-		<property name="categorySource" ref="amB2CBrandCategorySource"/>
+		<property name="categorySource" ref="amB2CBrandCategorySource" />
 	</bean>
-	
+
 	<bean id="gallagherPointOfServiceFacetDisplayNameProvider"
 		class="com.enterprisewide.b2badvance.core.search.solrfacetsearch.provider.impl.PointOfServiceFacetDisplayNameProvider">
 		<property name="pointOfServiceService" ref="pointOfServiceService" />
 	</bean>
-	
+
 	<!--Url Encoder Service -->
-	<alias name="gallaherUrlEncoderService" alias="urlEncoderService"/>
+	<alias name="gallaherUrlEncoderService" alias="urlEncoderService" />
 	<bean id="gallaherUrlEncoderService" parent="defaultUrlEncoderService">
 		<property name="urlEncodingAttributeManagerMap">
 			<map merge="true">
-				<entry key="country" value-ref="countryAttributeManager"/>
+				<entry key="country" value-ref="countryAttributeManager" />
 			</map>
 		</property>
 	</bean>
-	
-	<alias name="gallaherCountryAttributeManager" alias="countryAttributeManager"/>
+
+	<alias name="gallaherCountryAttributeManager" alias="countryAttributeManager" />
 	<bean id="gallaherCountryAttributeManager"
-	      class="com.gallagher.core.urlencoder.attributes.impl.GallagherCountryAttributeManager"
-	      parent="urlEncodingAttributeManager"/>
-	
+		class="com.gallagher.core.urlencoder.attributes.impl.GallagherCountryAttributeManager" parent="urlEncodingAttributeManager" />
+
 	<alias name="gallagherCoreDataImportService" alias="coreDataImportService" />
-	<bean id="gallagherCoreDataImportService" class="com.gallagher.core.dataimport.impl.GallagherCoreDataImportServiceImpl" parent="defaultCoreDataImportService" />
-	
+	<bean id="gallagherCoreDataImportService" class="com.gallagher.core.dataimport.impl.GallagherCoreDataImportServiceImpl"
+		parent="defaultCoreDataImportService" />
+
 	<bean id="gallagherAfterSaveListener" class="com.gallagher.core.events.GallagherAfterSaveListener" />
-	
-	<bean id="gallagherCreateBaseProductCronjob" class="com.gallagher.core.jobs.GallagherCreateBaseProductCronjob" parent="abstractJobPerformable" />
-	
-	<bean id="gallagherProductTransformationCronjob" class="com.gallagher.core.jobs.GallagherProductTransformationCronjob" parent="abstractJobPerformable" />
-	
+
+	<bean id="gallagherCreateBaseProductCronjob" class="com.gallagher.core.jobs.GallagherCreateBaseProductCronjob"
+		parent="abstractJobPerformable" />
+
+	<bean id="gallagherProductTransformationCronjob" class="com.gallagher.core.jobs.GallagherProductTransformationCronjob"
+		parent="abstractJobPerformable" />
+
 	<bean id="gallagherProductProcessingService" class="com.gallagher.core.services.impl.GallagherProductProcessingServiceImpl" />
-	
+
 	<bean id="gallagherProductProcessingDao" class="com.gallagher.core.dao.impl.GallagherProductProcessingDaoImpl" />
 
- 
-	<alias name="GallagherDefaultFacetSearchStrategy" alias="defaultFacetSearchStrategy" />
-		<bean id="GallagherDefaultFacetSearchStrategy" class="com.gallagher.core.search.solrfacetsearch.strategy.impl.GallagherDefaultFacetSearchStrategy"
-			parent="abstractFacetSearchStrategy">
-			<property name="solrSearchProviderFactory" ref="solrSearchProviderFactory" />
-			<property name="facetSearchContextFactory" ref="facetSearchContextFactory" />
-			<property name="facetSearchQueryConverter" ref="facetSearchQueryConverter" />
-			<property name="facetSearchResultConverter" ref="facetSearchResultConverter" />
-			<property name="solrIndexService" ref="solrIndexService" />
-		</bean> 
 
-	<bean id="gallagherImageValueProvider" class="com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherImageValueProvider" parent="abstractImageValueProvider" />
+	<alias name="GallagherDefaultFacetSearchStrategy" alias="defaultFacetSearchStrategy" />
+	<bean id="GallagherDefaultFacetSearchStrategy"
+		class="com.gallagher.core.search.solrfacetsearch.strategy.impl.GallagherDefaultFacetSearchStrategy"
+		parent="abstractFacetSearchStrategy">
+		<property name="solrSearchProviderFactory" ref="solrSearchProviderFactory" />
+		<property name="facetSearchContextFactory" ref="facetSearchContextFactory" />
+		<property name="facetSearchQueryConverter" ref="facetSearchQueryConverter" />
+		<property name="facetSearchResultConverter" ref="facetSearchResultConverter" />
+		<property name="solrIndexService" ref="solrIndexService" />
+	</bean>
+
+	<bean id="gallagherImageValueProvider"
+		class="com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherImageValueProvider" parent="abstractImageValueProvider" />
 
 	<bean id="image515ValueProvider" parent="gallagherImageValueProvider">
 		<property name="mediaFormat" value="515Wx515H" />
@@ -103,22 +102,27 @@
 	<bean id="image30ValueProvider" parent="gallagherImageValueProvider">
 		<property name="mediaFormat" value="30Wx30H" />
 	</bean>
-	
+
+	<bean id="gallagherBynderSyncCronJob" class="com.gallagher.core.jobs.GallagherBynderSyncJob" parent="abstractJobPerformable" />
+	<alias name="gallagherMediaContainerDao" alias="mediaContainerDao" />
+	<bean id="gallagherMediaContainerDao" class="com.gallagher.core.jobs.dao.impl.GallagherMediaContainerDaoImpl"
+		parent="defaultMediaContainerDao" />
+	<bean id="gallagherBynderService" class="com.gallagher.core.services.impl.GallagherBynderServiceImpl" />
 	<bean id="gallagherCustomerDao" class="com.gallagher.core.daos.impl.GallagherCustomerDaoImpl" />
-     
-   <bean id="gallagherCustomerService" class="com.gallagher.core.services.impl.GallagherCustomerServiceImpl" />
- 
- 	<bean id="gallagherB2BCustomerRegistrationEventListener"
+
+	<bean id="gallagherCustomerService" class="com.gallagher.core.services.impl.GallagherCustomerServiceImpl" />
+
+	<bean id="gallagherB2BCustomerRegistrationEventListener"
 		class="com.gallagher.core.events.GallagherB2BCustomerRegistrationEventListener" parent="abstractAcceleratorSiteEventListener">
 		<property name="modelService" ref="modelService" />
 		<property name="businessProcessService" ref="businessProcessService" />
 	</bean>
-	
+
 	<bean depends-on="processContextResolutionStrategyMap" parent="mapMergeDirective">
 		<property name="key">
 			<value type="java.lang.Class">de.hybris.platform.commerceservices.model.process.StoreFrontCustomerProcessModel</value>
 		</property>
 		<property name="value" ref="storeFrontProcessContextStrategy" />
 	</bean>
-	
+
 </beans>

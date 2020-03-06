@@ -14,4 +14,14 @@ $approved=approvalstatus(code)[default='approved']
 # Insert Products
 INSERT_UPDATE Product ; code[unique=true]                   ; $supercategories ; manufacturerName ; manufacturerAID ; unit(code) ; baseStores(uid) ; ean ; variantType(code) ; $catalogVersion ; $approved 
                       ; solar-fence-energizer-s10           ; energisers       ;                  ;                 ; EA      	; amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA,amB2CLatAm
-                      
+                      ; G02411                              ; energisers       ;                  ;                  ; EA      ; amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA,amB2CLatAm
+                      ; G02602                              ; wire-and-cable   ;                  ;                  ; EA      ; amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA,amB2CLatAm
+						    ; G02603			                    ; wire-and-cable   ;                  ;                  ; EA      ; amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA,amB2CLatAm
+					  		 ; G02606			                    ; wire-and-cable   ;                  ;                  ; EA      ; amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA,amB2CLatAm
+					  		 ; G02601			                    ; wire-and-cable   ;                  ;                  ; EA      ; amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA,amB2CLatAm
+					  		 ; G71702			                    ; wire-and-cable   ;                  ;                  ; EA      ; amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA,amB2CLatAm
+					  		 ; G53001			                    ; wire-and-cable   ;                  ;                  ; EA      ; amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA,amB2CLatAm
+					  		 ; G52701			                    ; wire-and-cable   ;                  ;                  ; EA      ; amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA,amB2CLatAm
+					  		 ; G74434			                    ; wire-and-cable   ;                  ;                  ; EA      ; amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA,amB2CLatAm
+					  		 ; G53003			                    ; wire-and-cable   ;                  ;                  ; EA      ; amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA,amB2CLatAm
+					  		 ; G61501			                    ; wire-and-cable   ;                  ;                  ; EA  		; amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA,amB2CLatAm		            

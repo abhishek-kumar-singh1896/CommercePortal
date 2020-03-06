@@ -4,7 +4,7 @@
 --><extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
         	
     
-    <extension abstractclassprefix="Generated" classprefix="GallagherCore" managername="GallagherCoreManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="gallaghercore">
+    <extension abstractclassprefix="Generated" classprefix="GallagherCore" managername="GallagherCoreManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="gallaghercore" usemaven="true">
                 		
         
         <!-- you should add all required extensions to this list, except platform 

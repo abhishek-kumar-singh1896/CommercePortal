@@ -127,8 +127,6 @@
 			</attributes>
 		</itemtype>
 
-		<!-- TypeGroups are for structure of this file only -->
-
 		<typegroup name="cms">
 
 			<itemtype code="GallagherFooterNavigationComponent" extends="FooterNavigationComponent" generate="true"
@@ -361,6 +359,30 @@
 				<description>Extends existing type with additional attributes.</description>
 				<attributes>
 					<attribute qualifier="regionCode" type="RegionCode">
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+		</typegroup>
+		
+		<typegroup name="bynder">
+
+			<itemtype code="BynderMedia" extends="Media" autocreate="true" generate="true"
+				jaloclass="com.gallagher.core.jalo.BynderMedia">
+				<description>Bynder Media Model is used to store data from Bynder</description>
+			</itemtype>
+
+			<itemtype code="GallagherBynderSyncCronJob" extends="CronJob"
+				jaloclass="com.gallagher.core.cronjob.jalo.GallagherBynderSyncCronJob" autocreate="true" generate="true">
+				<attributes>
+					<attribute qualifier="lastStartTime" type="java.util.Date">
+						<modifiers read="true" write="true" optional="true" />
+						<description>Stores the time when Job was run last time.</description>
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="catalogId" type="java.lang.String">
+						<modifiers read="true" write="true" optional="false" />
+						<description>Stores the catalogId.</description>
 						<persistence type="property" />
 					</attribute>
 				</attributes>
