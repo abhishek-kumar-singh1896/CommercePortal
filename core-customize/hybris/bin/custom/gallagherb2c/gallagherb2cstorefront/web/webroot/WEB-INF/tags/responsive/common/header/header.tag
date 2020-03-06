@@ -87,7 +87,7 @@
 						<div class="btn-group" role="group"
 							aria-label="Button group with nested dropdown">
 							<ycommerce:testId code="header_Register_link">
-								<c:url value="/login" var="registerUrl" />
+								<c:url value="/register" var="registerUrl" />
 								<button type="button" class="btn left-btn"
 									onclick="window.location.href = '${fn:escapeXml(registerUrl)}'">
 									<spring:theme code="header.link.register" />
@@ -128,7 +128,7 @@
 						<div class="btn-group" role="group"
 							aria-label="Button group with nested dropdown">
 							<ycommerce:testId code="header_Register_link">
-								<c:url value="/login" var="registerUrl" />
+								<c:url value="/register" var="registerUrl" />
 								<button type="button" class="btn left-btn"
 									onclick="window.location.href = '${fn:escapeXml(registerUrl)}'">
 									<spring:theme code="header.link.register" />
