@@ -6,30 +6,45 @@
 <div class="product-classifications">
 	<c:if test="${not empty product.classifications}">
 		<c:forEach items="${product.classifications}" var="classification">
-			<div class="headline">${fn:escapeXml(classification.name)}</div>
-				<table class="table">
-					<tbody>
-						<c:forEach items="${classification.features}" var="feature">
-							<tr>
-								<td class="attrib">${fn:escapeXml(feature.name)}</td>
-								<td>
-									<c:forEach items="${feature.featureValues}" var="value" varStatus="status">
-										${fn:escapeXml(value.value)}
-										<c:choose>
-											<c:when test="${feature.range}">
-												${not status.last ? '-' : fn:escapeXml(feature.featureUnit.symbol)}
-											</c:when>
-											<c:otherwise>
-												${fn:escapeXml(feature.featureUnit.symbol)}
-												${not status.last ? '<br/>' : ''}
-											</c:otherwise>
-										</c:choose>
-									</c:forEach>
-								</td>
-							</tr>
+			<c:forEach items="${classification.features}" var="feature" varStatus="status">
+				<div class="row mb-3">
+				    <div class="col-md-6">
+				        <label for="warranty" class="overview-label">${fn:escapeXml(feature.name)}</label>
+				        <div class="overview-value" id="warranty"><!-- 1 year -->
+				        <c:forEach items="${feature.featureValues}" var="value" varStatus="status">
+							${fn:escapeXml(value.value)}
+							<c:choose>
+								<c:when test="${feature.range}">
+									${not status.last ? '-' : fn:escapeXml(feature.featureUnit.symbol)}
+								</c:when>
+								<c:otherwise>
+									${fn:escapeXml(feature.featureUnit.symbol)}
+									${not status.last ? '<br/>' : ''}
+								</c:otherwise>
+							</c:choose>
 						</c:forEach>
-					</tbody>
-				</table>
+				        </div>
+				    </div>
+				</div>
+			</c:forEach>
 		</c:forEach>
+		<c:if test="${not empty product.productReferences}">
+		<c:forEach items="${product.productReferences}" var="reference">
+		<c:if test="${reference.referenceType eq 'FOLLOWUP'}">
+		<c:url value="${reference.target.url}" var="productUrl" />
+		<div class="row mb-3">
+            <div class="col-md-6">
+                <label for="warranty" class="overview-label">Compatible with</label>
+                <div class="overview-value" id="warranty">
+                    <a href="${fn:escapeXml(productUrl)}">${reference.target.name}
+                        <!-- Animal Data Transfer App
+                        NAIT Exchange Software -->
+                    </a>
+                </div>
+            </div>
+        </div>
+        </c:if>
+        </c:forEach>
+        </c:if>
 	</c:if>
 </div>

@@ -7,6 +7,7 @@
 <%@ taglib prefix="format" tagdir="/WEB-INF/tags/shared/format"%>
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags"%>
 
+
 <spring:htmlEscape defaultHtmlEscape="true" />
 
 <spring:theme code="text.addToCart" var="addToCartText" />
@@ -15,6 +16,7 @@
 <spring:theme code="popup.cart.total" var="total" />
 <c:url value="/cart" var="cartUrl" />
 <c:url value="/cart/checkout" var="checkoutUrl" />
+
 
 <c:choose>
 	<c:when test="${not empty cartData.quoteData}">
@@ -35,6 +37,7 @@
 				<ul>
 					<c:forEach items="${entries}" var="entry"
 						end="${numberShowing - 1}">
+					<c:url value="${entry.product.url}" var="entryProductUrl"/>
 						<li>
 							<div class="row">
 								<div class="col-3 pr-0">

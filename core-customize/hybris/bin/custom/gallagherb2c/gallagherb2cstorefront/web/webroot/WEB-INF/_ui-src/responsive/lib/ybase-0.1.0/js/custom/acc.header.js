@@ -7,14 +7,14 @@ ACC.header = {
 	clickOnNav: function(){
 			$(document).ready(function () {
 				//navigation menu js start
-		            $('.global-search').keyup(function () {
+		            /*$('.global-search').keyup(function () {
 		                var globalSearchVal = $('.global-search').val();
 		                if (globalSearchVal !== '') {
 		                    $('.search-dropdown-out').removeClass('d-none').addClass('fadeInUp');
 		                } else {
 		                    $('.search-dropdown-out').addClass('d-none').removeClass('fadeInUp');
 		                }
-		            });
+		            });*/
 
 		            $(document).click(function (e) {
 		                // For desktop mega menu code
@@ -90,6 +90,14 @@ ACC.header = {
 		            $('#productsTab a.left-tab').on('click', function (e) {
 		                e.preventDefault()
 		                $(this).tab('show')
+		            });
+		            
+		            $('.hamburger-icon').click(function(){
+		                $('#responsiveMegaMenu').show();
+		            });
+		 
+		            $('#responsiveMegaMenu .modal-header .close').click(function(){
+		                $('#responsiveMegaMenu').hide();
 		            });
 
 				

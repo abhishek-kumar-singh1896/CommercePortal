@@ -7,7 +7,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 
-<div class="modal refine-filter-modal fade" id="refineFilter"
+<div class="modal-updated refine-filter-modal" id="refineFilter"
 	tabindex="-1" role="dialog" aria-labelledby="refineFilterTitle"
 	aria-hidden="true">
 	<div class="modal-dialog modal-dialog-scrollable" role="document">

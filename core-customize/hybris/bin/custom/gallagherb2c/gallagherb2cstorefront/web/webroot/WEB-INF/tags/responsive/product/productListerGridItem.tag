@@ -73,9 +73,9 @@
 			</div>
 		</div>
 
-		<c:if test="${not empty product.summary}">
+		<%-- <c:if test="${not empty product.summary}">
 			<div class="product__listing--description">${ycommerce:sanitizeHTML(product.summary)}</div>
-		</c:if>
+		</c:if> --%>
 
 		<%-- 		<c:if test="${not empty product.potentialPromotions}"> --%>
 		<!-- 						<div class="promo"> -->

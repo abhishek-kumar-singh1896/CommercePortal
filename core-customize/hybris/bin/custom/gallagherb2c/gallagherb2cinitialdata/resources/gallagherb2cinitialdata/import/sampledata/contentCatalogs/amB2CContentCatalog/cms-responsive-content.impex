@@ -23,6 +23,7 @@ $picture=media(code, $contentCV);
 $keycloakBaseURL=$config-keycloak.base.url
 $keycloakAuthURL=$config-keycloak.auth.url/$config-keycloak.realm
 $keycloakPasswordURL=$config-keycloak.password.url
+$websiteBaseURL=$config-website.base.url.https
 
 # Site Logo
 INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];altText;folder(qualifier)[default='images']
@@ -1297,29 +1298,35 @@ INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[uni
 ##Country dropdown for different websites
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;linkName;&linkRef;&componentRef;target(code)[default='sameWindow'];$category;$product;
-;;newZealandLnkCom;New Zealand Link;'#';New Zealand;newZealandLnkCom;newZealandLnkCom
-;;australiaLnkCom;Australia Link;'#';Australia;australiaLnkCom;australiaLnkCom
-;;canadaEnLnkCom;Canada English Link;'#';Canada (EN);canadaEnLnkCom;canadaEnLnkCom
-;;canadaFrLnkCom;Canada French Link;'#';Canada (FR);canadaFrLnkCom;canadaFrLnkCom
-;;globalLnkCom;Global Link;'#';Global;globalLnkCom;globalLnkCom
+;;nz-en;New Zealand Link;$websiteBaseURL/am/nz/en;New Zealand;nz-en;nz-en
+;;au-en;Australia Link;$websiteBaseURL/am/au/en;Australia;au-en;au-en
+;;us-en;US Link;$websiteBaseURL/am/us/en;United States;us-en;us-en
+;;ca-en;Canada English Link;$websiteBaseURL/am/ca/en;Canada (EN);ca-en;ca-en
+;;ca-fr;Canada French Link;$websiteBaseURL/am/ca/fr;Canada (FR);ca-fr;ca-fr
+;;latam-en;LatAm Link;$websiteBaseURL/am/latam/en;Latin America;latam-en;latam-en
+;;global-en;Global Link;$websiteBaseURL/am/global/en;Global;global-en;global-en
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
-;newZealandNavEty;;New Zealand navigation entry;newZealandNavNod;newZealandLnkCom
-;australiaNavEty;;Australia navigation entry;australiaNavNod;australiaLnkCom
-;canadaEnNavEty;;Canada English navigation entry;canadaEnNavNod;canadaEnLnkCom
-;canadaFrNavEty;;Canada French navigation entry;canadaFrNavNod;canadaFrLnkCom
-;globalNavEty;;Global navigation entry;globalNavNod;globalLnkCom
+;newZealandNavEty;;New Zealand navigation entry;newZealandNavNod;nz-en
+;australiaNavEty;;Australia navigation entry;australiaNavNod;au-en
+;usNavEty;;US navigation entry;usNavNod;us-en
+;canadaEnNavEty;;Canada English navigation entry;canadaEnNavNod;ca-en
+;canadaFrNavEty;;Canada French navigation entry;canadaFrNavNod;ca-fr
+;latamNavEty;;LatAm navigation entry;latamNavNod;latam-en
+;globalNavEty;;Global navigation entry;globalNavNod;global-en
 
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef);
 ;newZealandNavNod;;New Zealand navigation node;newZealandNavNod
 ;australiaNavNod;;Australia navigation node;australiaNavNod
+;usNavNod;;US navigation node;usNavNod
 ;canadaEnNavNod;;Canada English navigation node;canadaEnNavNod
 ;canadaFrNavNod;;Canada French navigation node;canadaFrNavNod
+;latamNavNod;;LatAm navigation node;latamNavNod
 ;globalNavNod;;Global navigation node;globalNavNod
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&componentRef);&nodeRef;children(uid, $contentCV)
-;countryDropdownNavNod;;Country drop down;root;;countryDropdownNavNod;newZealandNavNod,australiaNavNod,canadaEnNavNod,canadaFrNavNod,globalNavNod
+;countryDropdownNavNod;;Country drop down;root;;countryDropdownNavNod;newZealandNavNod,australiaNavNod,usNavNod,canadaEnNavNod,canadaFrNavNod,latamNavNod,globalNavNod
 
 INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];countryDropdownLinkNagivationNode(&nodeRef);&componentRef
 ;;GallagherFooterNavigationComponent;countryDropdownNavNod;GallagherFooterNavigationComponent
@@ -1565,13 +1572,13 @@ INSERT_UPDATE CMSLinkComponent ; $contentCV[unique=true] ; uid[unique=true]     
 
 
 INSERT_UPDATE CMSNavigationNode ; uid[unique=true]                    ; $contentCV[unique=true] ; name                                   ; children(uid,$contentCV)[mode=replace] ; title[lang=en]      ; &nodeRef                            
-                                ; ElectricfencingPower_Nav1            ;                         ; Power Navigation Node Menu             ; PowerEnergisers_nav11                    ; "Power"             ; ElectricfencingPower_Nav1
+                                ; ElectricfencingPower_Nav1111            ;                         ; Power Navigation Node Menu             ; PowerEnergisers_nav11                    ; "Power"             ; ElectricfencingPower_Nav1111
                                 ;ElectricfencingPermanentfencing_Nav1 ;                         ; Permanent fencing Navigation Node Menu ; PermanentfencingWireandCable_nav11       ; "Permanent fencing" ; ElectricfencingPermanentfencing_Nav1 
 								;ElectricfencingPower_Nav11           ;                         ; Portable fencing Navigation Node Menu  ; PortablefencingTapesWiresBraids_nav11   ; "Portable fencing"   ; ElectricfencingPower_Nav11           
 								
 
 INSERT_UPDATE CMSNavigationEntry ; uid[unique=true]                         ; $contentCV[unique=true] ; name                                           ; navigationNode(&nodeRef)              ; item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV) 
-                                 ; ElectricfencingPower_NavEntry1            ;                         ; Power Navigation Node Entry                    ; ElectricfencingPower_Nav1            ;    PowerEnergisers111                                       								
+                                 ; ElectricfencingPower_NavEntry1111            ;                         ; Power Navigation Node Entry                    ; ElectricfencingPower_Nav1111            ;    PowerEnergisers111                                       								
 								 ; ElectricfencingPermanentfencing_NavEntry ;                         ; Power ElectricfencingPermanentfencing_NavEntry ; ElectricfencingPermanentfencing_Nav1   ;    PowerEnergisers112    
                                  ; ElectricfencingPower_NavEntry11           ;                         ; Power Navigation Node Entry                    ; ElectricfencingPower_Nav11           ;  PowerEnergisers113
                                  
@@ -1581,7 +1588,7 @@ INSERT_UPDATE CMSLinkComponent ; $contentCV[unique=true] ; uid[unique=true] ; na
 								 ;                         ; PowerEnergisers113 ; Electric fencing Energisers Link2 ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ; 
 								
 INSERT_UPDATE CMSNavigationNode ; uid[unique=true]            ; name                          ; $contentCV[unique=true] ; children(uid,$contentCV)[mode=replace]                                                          ; title[lang=en]              ; &nodeRef                    
-                                ; Electricfencing_Nav1         ; Electric fencing Nav1          ;                         ; ElectricfencingPower_Nav1,ElectricfencingPermanentfencing_Nav1                                 ; "Electric Fencing1"          ; Electricfencing_Nav1         
+                                ; Electricfencing_Nav1         ; Electric fencing Nav1          ;                         ; ElectricfencingPower_Nav1111,ElectricfencingPermanentfencing_Nav1                                 ; "Electric Fencing1"          ; Electricfencing_Nav1         
                                 ; WeighingEID_Nav1             ; Weighing EID Nav1              ;                         ; ElectricfencingPower_Nav11                                                                       ; "Weighing and EID1"          ; WeighingEID_Nav1             
                                 ; WirelessWaterMonitoring_Nav1 ; Wireless Water Monitoring Nav1 ;                         ;                                                                                                   ; "Wireless Water Monitoring1" ; WirelessWaterMonitoring_Nav1 
                                 ; SteelGatesandHardware_Nav1   ; Steel Gatesand Hardware Nav1   ;                         ;                                                                                                   ; "Steel Gates and Hardware1"  ; SteelGatesandHardware_Nav1   
@@ -1597,7 +1604,7 @@ INSERT_UPDATE CMSNavigationEntry ; uid[unique=true]                 ; name      
 								
 
 INSERT_UPDATE CMSNavigationNode ; uid[unique=true]             ; name                          ; $contentCV[unique=true] ; children(uid,$contentCV)[mode=replace]                                                          ; title[lang=en]              ; &nodeRef                    
-                                ; Electricfencing_Nav3         ; Electric fencing Nav          ;                         ; ElectricfencingPower_Nav3                                                                        ; "Electric Fencing"          ; Electricfencing_Nav3         
+                                ; Electricfencing_Nav3         ; Electric fencing Nav          ;                         ; ElectricfencingPower_Nav3333                                                                        ; "Electric Fencing"          ; Electricfencing_Nav3         
                                 ; WeighingEID_Nav3             ; Weighing EID Nav              ;                         ;                                                                                                    ; "Weighing and EID"          ; WeighingEID_Nav3            
                                 ; WirelessWaterMonitoring_Nav3 ; Wireless Water Monitoring Nav ;                         ;                                                                                                     ; "Wireless Water Monitoring" ; WirelessWaterMonitoring_Nav3 
                                 ; SteelGatesandHardware_Nav3   ; Steel Gatesand Hardware Nav   ;                         ;                                                                                                   ; "Steel Gates and Hardware"  ; SteelGatesandHardware_Nav3   
@@ -1608,7 +1615,7 @@ INSERT_UPDATE CMSNavigationNode ; uid[unique=true]             ; name           
                                 
 
 INSERT_UPDATE CMSNavigationNode ; uid[unique=true]                    ; $contentCV[unique=true] ; name                                   ; children(uid,$contentCV)[mode=replace] ; title[lang=en]      ; &nodeRef                            
-                                ; ElectricfencingPower_Nav3           ;                         ; Power Navigation Node Menu             ; PowerEnergisers_nav3                    ; "Power"             ; ElectricfencingPower_Nav3
+                                ; ElectricfencingPower_Nav3333           ;                         ; Power Navigation Node Menu             ; PowerEnergisers_nav3                    ; "Power"             ; ElectricfencingPower_Nav3333
 								
 								
 INSERT_UPDATE CMSNavigationNode ; uid[unique=true]                     ; $contentCV[unique=true] ; name                                                  ; title[lang=en]      ; &nodeRef                             
@@ -1881,3 +1888,81 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents
 ;;ggB2CNavBarSlot;GallagherHeaderNavigationComponent
 
 #############Navigation Nodes start end##############
+
+
+####Footernavigation node start###
+#CMSLinkComponents
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkname;name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];$category;$product;
+;;ProductsFooterLink;Products;Products Footer Link;'/';ProductsFooterLink;ProductsFooterLink;;;
+;;ElectricFencingFooterLink;Electric Fencing;Electric Fencing Footer Link;'/';ElectricFencingFooterLink;ElectricFencingFooterLink;;;
+;;WeighingEIDFooterLink;Weighing and EID;Weighing and EID Footer Link;'/';WeighingEIDFooterLink;WeighingEIDFooterLink;;;
+;;SteelGatesHardwareFooterLink;Steel Gates and Hardware;Steel Gates and Hardware Footer Link;'/';SteelGatesHardwareFooterLink;SteelGatesHardwareFooterLink;;;
+;;WirelessMonitoringFooterLink;Wireless Water Monitoring;Wireless Water monitoring Footer Link;'/';WirelessMonitoringFooterLink;WirelessMonitoringFooterLink;;;
+;;FarmInfoToolsFooterLink;Farm Information Tools;Farm Information tools Footer Link;'/';FarmInfoToolsFooterLink;FarmInfoToolsFooterLink;;;
+;;StockProdsFooterLink;Stock Prods;Stock Prods Footer Link;'/';StockProdsFooterLink;StockProdsFooterLink;;;
+;;AboutUsFooterLink;About Us;About Us Footer Link;'/';AboutUsFooterLink;AboutUsFooterLink;;;
+;;SupportFooterLink;Support;Support Footer Link;'/';SupportFooterLink;SupportFooterLink;;;
+;;ContactFooterLink;Contact Us;Contact Us Footer Link;'/';ContactFooterLink;ContactFooterLink;;;
+;;NewsEventsFooterLink;News & Events;News & Events Footer Link;'/';NewsEventsFooterLink;NewsEventsFooterLink;;;
+;;InnovationAwardsFooterLink;Innovation & Awards;Innovation & Awards Footer Link;'/';InnovationAwardsFooterLink;InnovationAwardsFooterLink;;;
+
+#creating navigation entries
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;ProductsFooterNodeEntry;;Products Footer Node Entry;ProductsFooterNode;ProductsFooterLink;
+;ElectricFencingFooterNodeEntry;;Electric Fencing Footer Node Entry;ElectricFencingFooterNode;ElectricFencingFooterLink
+;WeighingEIDFooterNodeEntry;;Weighing EID Footer Node Entry;WeighingEIDFooterNode;WeighingEIDFooterLink
+;WirelessWtaerMonitoringFooterNodeEntry;;Wireless Wtaer Monitoring Footer Node Entry;WirelessWtaerMonitoringFooterNode;WirelessMonitoringFooterLink;
+;SteelGatesHardwareFooterNodeEntry;;Steel Gates Hardware Footer Node Entry;SteelGatesHardwareFooterNode;SteelGatesHardwareFooterLink
+;FarmInformationToolsFooterNodeEntry;;Farm Information Tools Footer Node Entry;FarmInformationToolsFooterNode;FarmInfoToolsFooterLink
+;StockProdsFooterNodeEntry;;Stock Prods Footer Node Entry;StockProdsFooterNode;StockProdsFooterLink
+;AboutUsFooterNodeEntry;;About Us Footer Node Entry;AboutUsFooterNode;AboutUsFooterLink
+;SupportFooterNodeEntry;;Support Footer Node Entry;SupportFooterNode;SupportFooterLink
+;ContactFooterNodeEntry;;Contact Footer Node Entry;ContactFooterNode;ContactFooterLink
+;NewsEventsFooterNodeEntry;;News Events Footer Node Entry;NewsEventsFooterNode;NewsEventsFooterLink
+;InnovationAwardsFooterNodeEntry;;Innovation Awards Footer Node Entry;InnovationAwardsFooterNode;InnovationAwardsFooterLink
+
+#creating new nodes
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
+;ProductsFooterNode;;Products Footer Node;SAPCommerceNavNode;;ProductsFooterNode
+;ElectricFencingFooterNode;;Electric Fencing Footer Node;SAPCommerceNavNode;;ElectricFencingFooterNode
+;WeighingEIDFooterNode;;Weighing EID Footer Node;SAPCommerceNavNode;;WeighingEIDFooterNode
+;WirelessWtaerMonitoringFooterNode;;Wireless Wtaer Monitoring Footer Node;SAPCommerceNavNode;;WirelessWtaerMonitoringFooterNode
+;SteelGatesHardwareFooterNode;;Steel Gates Hardware Footer Node;SAPCommerceNavNode;;SteelGatesHardwareFooterNode
+;FarmInformationToolsFooterNode;;Farm Information Tools Footer Node;SAPCommerceNavNode;;FarmInformationToolsFooterNode
+;StockProdsFooterNode;;Stock Prods Footer Node;SAPCommerceNavNode;;StockProdsFooterNode
+;AboutUsFooterNode;;About Us Footer Node;SAPCustomerExperienceNavNode;;AboutUsFooterNode
+;SupportFooterNode;;Support Footer Node;SAPCustomerExperienceNavNode;;SupportFooterNode
+;ContactFooterNode;;Contact Footer Node;SAPCustomerExperienceNavNode;;ContactFooterNode
+;NewsEventsFooterNode;;News Events Footer Node;SAPCustomerExperienceNavNode;;NewsEventsFooterNode
+;InnovationAwardsFooterNode;;Innovation Awards Footer Node;SAPCustomerExperienceNavNode;;InnovationAwardsFooterNode
+ 
+
+#*******************************************************************************************************************************************************************
+
+
+#joining new nodes to parent
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef)
+
+;SAPCommerceNavNode;;SAP Commerce Cloud Pages;SAPCommerceNavNode; ProductsFooterNode,ElectricFencingFooterNode,WeighingEIDFooterNode,WirelessWtaerMonitoringFooterNode,SteelGatesHardwareFooterNode,FarmInformationToolsFooterNode,StockProdsFooterNode
+
+;SAPCustomerExperienceNavNode;;SAP Customer Experience Pages; SAPCustomerExperienceNavNode; AboutUsFooterNode,SupportFooterNode,ContactFooterNode,NewsEventsFooterNode,InnovationAwardsFooterNode
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
+;SAPCommerceNavNode;;SAP Commerce Cloud Pages;AMB2CNavNode; ProductsFooterLink,ElectricFencingFooterLink,WeighingEIDFooterLink,WirelessMonitoringFooterLink,SteelGatesHardwareFooterLink,FarmInfoToolsFooterLink,StockProdsFooterLink;SAPCommerceNavNode
+
+;SAPCustomerExperienceNavNode;;SAP Customer Experience Pages;AMB2CNavNode; AboutUsFooterLink,SupportFooterLink,ContactFooterLink,NewsEventsFooterLink,InnovationAwardsFooterLink;SAPCustomerExperienceNavNode
+
+# the order of children is the same as the display order on the site
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);&nodeRef;children(uid,$contentCV)
+;FooterNavNode;;Footer Pages;root;FooterNavNode;SAPCommerceNavNode,SAPCustomerExperienceNavNode
+
+INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];wrapAfter;&componentRef;showLanguageCurrency;navigationNode(&nodeRef)
+;;GallagherFooterNavigationComponent;7;GallagherFooterNavigationComponent;true;FooterNavNode;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV)
+;;FooterSlot;GallagherFooterNavigationComponent
+
+####Footernavigation node end###

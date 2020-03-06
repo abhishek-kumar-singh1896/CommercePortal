@@ -82,6 +82,7 @@
 		<script src="${commonResourcePathHtml}/js/acc.cookienotification.js"></script>
 		<script src="${commonResourcePathHtml}/js/acc.closeaccount.js"></script>
 		<script src="${commonResourcePathHtml}/js/bootstrap.bundle.min.js"></script>
+		<%-- <script src="${commonResourcePathHtml}/js/jquery-3.4.1.min.js"></script> --%>
 		<script src="${commonResourcePathHtml}/js/acc.csv-import.js"></script>
 		<script src="${commonResourcePathHtml}/js/select2.min.js"></script>
 		<script src="${commonResourcePathHtml}/js/_autoload.js"></script>
@@ -89,7 +90,8 @@
 		<script src="${commonResourcePathHtml}/js/jquery-ui-1.12.1.min.js"></script>
 		<script src="${commonResourcePathHtml}/js/custom/acc.productListNav.js"></script>
 		<script src="${commonResourcePathHtml}/js/custom/acc.productList.js"></script>
-				
+		<script src="${commonResourcePathHtml}/js/custom/acc.productDetails.js"></script>		
+		<script src="${commonResourcePathHtml}/js/custom/acc.asm.js"></script>
 		<%-- Cms Action JavaScript files --%>
 		<c:forEach items="${cmsActionsJsFiles}" var="actionJsFile">
 		    <script src="${commonResourcePathHtml}/js/cms/${fn:escapeXml(actionJsFile)}"></script>

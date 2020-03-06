@@ -101,6 +101,25 @@
 					<defaultvalue>false</defaultvalue>
 					<description>Flag to identify Product is eligible for Image.</description>
 				</attribute>
+				<attribute autocreate="true" qualifier="videoDescription" type="localized:java.lang.String">
+                    <modifiers read="true" write="true" search="true" optional="true"/>
+                    <persistence type="property">
+                        <columntype database="oracle">
+                            <value>CLOB</value>
+                        </columntype>
+                        <columntype database="sap">
+                            <value>NCLOB</value>
+                        </columntype>
+                        <columntype>
+                            <value>HYBRIS.LONG_STRING</value>
+                        </columntype>
+                    </persistence>
+                    <custom-properties>
+                        <property name="hmcIndexField">
+                            <value>"thefield"</value>
+                        </property>
+                    </custom-properties>
+                </attribute>
 			</attributes>
 		</itemtype>
 
@@ -342,6 +361,15 @@
 		
 		<typegroup name="CmsSite">
 			<itemtype code="CMSSite" autocreate="false" generate="false">
+				<description>Extends existing type with additional attributes.</description>
+				<attributes>
+					<attribute qualifier="regionCode" type="RegionCode">
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+			
+			<itemtype code="Country" autocreate="false" generate="false">
 				<description>Extends existing type with additional attributes.</description>
 				<attributes>
 					<attribute qualifier="regionCode" type="RegionCode">

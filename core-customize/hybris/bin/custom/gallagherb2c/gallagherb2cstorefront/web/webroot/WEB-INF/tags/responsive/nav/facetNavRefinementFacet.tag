@@ -13,15 +13,29 @@
 <ycommerce:testId code="facetNav_title_${facetData.name}">
 	<div class="sidebar-section">
 		<c:set var="facetData.name" value="${facetData.name}"/> 
-		<h4 class="sidebar-section-header with-link">	
-		 <a data-toggle="collapse" href="#${fn:replace(facetData.name,' ','_')}" role="button" aria-expanded="false" aria-controls="${facetData.name}">	
-			<spring:theme code="search.nav.facetTitle" arguments="${facetData.name}"/>
-			<span class="down-arrow-icon">
-                                    <svg>
-                                        <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-down" />
-                                    </svg>
-                                </span>
-			</a>
+		<h4 class="sidebar-section-header with-link">
+		<c:choose>
+			<c:when test="${collapseflag eq 'show'}">
+				<a data-toggle="collapse" href="#${fn:replace(facetData.name,' ','_')}" role="button" aria-expanded="true" aria-controls="${facetData.name}">	
+					<spring:theme code="search.nav.facetTitle" arguments="${facetData.name}"/>
+					<span class="down-arrow-icon">
+			            <svg>
+			                <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-down" />
+			            </svg>
+		            </span>
+				</a>
+			</c:when>	
+			<c:otherwise>
+				<a data-toggle="collapse" href="#${fn:replace(facetData.name,' ','_')}" role="button" aria-expanded="false" aria-controls="${facetData.name}">	
+					<spring:theme code="search.nav.facetTitle" arguments="${facetData.name}"/>
+					<span class="down-arrow-icon">
+			            <svg>
+			                <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-down" />
+			            </svg>
+		            </span>
+				</a>
+			</c:otherwise>
+		</c:choose>
 			
 			<%-- <span class="down-arrow-icon">
           		<svg>

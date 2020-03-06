@@ -42,7 +42,7 @@
 
 	<alias
 		name="gallagherSearchResultProductPopulator"
-		alias="variantCommerceSearchResultProductPopulator" />
+		alias="commerceSearchResultProductPopulator" />
 	<bean
 		id="gallagherSearchResultProductPopulator"
 		class="com.gallagher.facades.search.converters.poulator.GallagherSearchResultProductPopulator"
@@ -84,13 +84,39 @@
 		</property>
 	</bean>
 	
-	<alias
-		name="gallagherCustomerFacade"
-		alias="customerFacade" />
-	<bean
-		id="gallagherCustomerFacade"
-		class="com.gallagher.facades.customer.impl.GallagherCustomerFacadeImpl"
-		parent="defaultCustomerFacade">
+    <bean id="gallagherProductVideoDescPopulator" parent="baseProductPopulator"
+          class="com.gallagher.facades.product.converters.populator.GallagherProductVideoDescriptionPopulator">
+    </bean>
+    
+    <bean id="gallagherProductLogoPopulator" parent="baseProductPopulator"
+          class="com.gallagher.facades.product.converters.populator.GallagherProductLogoPopulator">
+    </bean>
+    
+    <bean id="gallagherProductDataSheetPopulator" parent="baseProductPopulator"
+          class="com.gallagher.facades.product.converters.populator.GallagherProductDataSheetPopulator">
+    </bean>
+    
+    <bean parent="configurablePopulatorModification">
+		<property name="target" ref="productConfiguredPopulator" />
+		<property name="keyType" value="de.hybris.platform.commercefacades.product.ProductOption" />
+		<property name="key" value="VIDEO_DESCRIPTION" />
+		<property name="add" ref="gallagherProductVideoDescPopulator" />
 	</bean>
+	
+	<bean parent="configurablePopulatorModification">
+		<property name="target" ref="productConfiguredPopulator" />
+		<property name="keyType" value="de.hybris.platform.commercefacades.product.ProductOption" />
+		<property name="key" value="LOGO" />
+		<property name="add" ref="gallagherProductLogoPopulator" />
+	</bean>
+	
+	<bean parent="configurablePopulatorModification">
+		<property name="target" ref="productConfiguredPopulator" />
+		<property name="keyType" value="de.hybris.platform.commercefacades.product.ProductOption" />
+		<property name="key" value="DATA_SHEET" />
+		<property name="add" ref="gallagherProductDataSheetPopulator" />
+	</bean>
+
+	<bean id="gallagherRegionDetectionFacade" class="com.gallagher.facades.impl.GallagherRegionDetectionFacadeImpl" />
 
 </beans>

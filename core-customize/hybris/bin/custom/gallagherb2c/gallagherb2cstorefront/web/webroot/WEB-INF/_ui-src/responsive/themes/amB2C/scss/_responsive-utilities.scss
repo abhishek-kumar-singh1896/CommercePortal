@@ -7,4 +7,11 @@
   .pr-xs-0 {
     padding-right: 0;
   }
+
+  h1 {
+    &.primary-title {
+      font-size: $font-size-40px;
+      line-height: 40px;
+    }
+  }
 }

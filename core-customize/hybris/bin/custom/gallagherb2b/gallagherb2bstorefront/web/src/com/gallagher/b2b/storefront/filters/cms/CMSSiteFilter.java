@@ -13,9 +13,11 @@ package com.gallagher.b2b.storefront.filters.cms;
 import de.hybris.platform.acceleratorcms.context.ContextInformationLoader;
 import de.hybris.platform.acceleratorcms.data.CmsPageRequestContextData;
 import de.hybris.platform.acceleratorcms.services.CMSPageContextService;
+import de.hybris.platform.acceleratorfacades.urlencoder.UrlEncoderFacade;
 import de.hybris.platform.acceleratorservices.site.strategies.SiteChannelValidationStrategy;
 import de.hybris.platform.basecommerce.model.site.BaseSiteModel;
 import de.hybris.platform.catalog.CatalogService;
+import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
 import de.hybris.platform.cms2.misc.CMSFilter;
 import de.hybris.platform.cms2.misc.UrlUtils;
 import de.hybris.platform.cms2.model.pages.AbstractPageModel;
@@ -24,18 +26,25 @@ import de.hybris.platform.cms2.model.preview.PreviewDataModel;
 import de.hybris.platform.cms2.model.site.CMSSiteModel;
 import de.hybris.platform.cms2.servicelayer.services.CMSPreviewService;
 import de.hybris.platform.cms2.servicelayer.services.CMSSiteService;
+import de.hybris.platform.commercefacades.order.CartFacade;
 import de.hybris.platform.commerceservices.i18n.CommerceCommonI18NService;
 import de.hybris.platform.commerceservices.url.UrlResolver;
 import de.hybris.platform.core.model.c2l.LanguageModel;
+import de.hybris.platform.core.model.order.CartModel;
 import de.hybris.platform.jalo.JaloObjectNoLongerValidException;
 import de.hybris.platform.jalo.c2l.LocalizableItem;
+import de.hybris.platform.order.CartService;
+import de.hybris.platform.order.impl.DefaultCartService;
 import de.hybris.platform.servicelayer.model.AbstractItemModel;
+import de.hybris.platform.servicelayer.model.ModelService;
 import de.hybris.platform.servicelayer.session.SessionService;
 import de.hybris.platform.site.BaseSiteService;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Collection;
 
+import javax.annotation.Resource;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -45,6 +54,10 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.web.filter.OncePerRequestFilter;
+
+import com.gallagher.core.enums.RegionCode;
+import com.gallagher.core.util.GallagherSiteUtil;
+import com.gallagher.facades.GallagherRegionDetectionFacade;
 
 
 /**
@@ -66,6 +79,7 @@ public class CMSSiteFilter extends OncePerRequestFilter implements CMSFilter
 {
 	@SuppressWarnings("unused")
 	private static final Logger LOG = Logger.getLogger(CMSSiteFilter.class);
+	private static final String FARWORD_SLASH = "/";
 
 	protected static final int MISSING_CMS_SITE_ERROR_STATUS = HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
 	protected static final String MISSING_CMS_SITE_ERROR_MESSAGE = "Cannot find CMSSite associated with current URL";
@@ -81,14 +95,29 @@ public class CMSSiteFilter extends OncePerRequestFilter implements CMSFilter
 	private CMSPageContextService cmsPageContextService;
 	private SiteChannelValidationStrategy siteChannelValidationStrategy;
 
+	@Resource(name = "urlEncoderFacade")
+	private UrlEncoderFacade urlEncoderFacade;
+
+	@Resource(name = "cartFacade")
+	private CartFacade cartFacade;
+
+	@Resource(name = "cartService")
+	private CartService cartService;
+
+	@Resource(name = "modelService")
+	private ModelService modelService;
+
+	@Resource(name = "gallagherRegionDetectionFacade")
+	private GallagherRegionDetectionFacade gallagherRegionDetectionFacade;
+
 	@Override
 	protected void doFilterInternal(final HttpServletRequest httpRequest, final HttpServletResponse httpResponse,
 			final FilterChain filterChain) throws ServletException, IOException
 	{
 		final String requestURL = httpRequest.getRequestURL().toString();
 
-		final CmsPageRequestContextData cmsPageRequestContextData = getCmsPageContextService().initialiseCmsPageContextForRequest(
-				httpRequest);
+		final CmsPageRequestContextData cmsPageRequestContextData = getCmsPageContextService()
+				.initialiseCmsPageContextForRequest(httpRequest);
 
 		// check whether exits valid preview data
 		if (cmsPageRequestContextData.getPreviewData() == null)
@@ -109,12 +138,12 @@ public class CMSSiteFilter extends OncePerRequestFilter implements CMSFilter
 			{
 				final String contextPath = httpRequest.getContextPath();
 				final String encodedRedirectUrl = httpResponse.encodeRedirectURL(contextPath + redirectURL);
-				httpResponse.sendRedirect(encodedRedirectUrl);
+				httpResponse.sendRedirect(encodedRedirectUrl); //NOSONAR
 			}
 			else
 			{
 				final String encodedRedirectUrl = httpResponse.encodeRedirectURL(redirectURL);
-				httpResponse.sendRedirect(encodedRedirectUrl);
+				httpResponse.sendRedirect(encodedRedirectUrl); //NOSONAR
 			}
 
 			// next filter in chain won't be invoked!!!
@@ -162,15 +191,59 @@ public class CMSSiteFilter extends OncePerRequestFilter implements CMSFilter
 	{
 		final String queryString = httpRequest.getQueryString();
 		final String currentRequestURL = httpRequest.getRequestURL().toString();
+		final String requestURI = httpRequest.getRequestURI();
 
 		//set current site
 		CMSSiteModel cmsSiteModel = getCurrentCmsSite();
+
+		final String absoluteURL = StringUtils.removeEnd(currentRequestURL, FARWORD_SLASH)
+				+ (StringUtils.isBlank(queryString) ? "" : "?" + queryString);
+
+		try
+		{
+			LOG.debug("Looking up site for url <" + absoluteURL + ">");
+			final CMSSiteModel cmsSiteForCurrentRequest = cmsSiteService.getSiteForURL(new URL(absoluteURL));
+			if (cmsSiteForCurrentRequest != null && cmsSiteModel != null
+					&& !cmsSiteForCurrentRequest.getUid().equalsIgnoreCase(cmsSiteModel.getUid()))
+			{
+				GallagherSiteUtil.setSiteSwitched(httpRequest);
+				// Remove cart from session, Clone first as a workaround since removing from session will delete cart.
+				cloneCart();
+				sessionService.removeAttribute(DefaultCartService.SESSION_CART_PARAMETER_NAME);
+				// Set the New Site in the session.
+				baseSiteService.setCurrentBaseSite(cmsSiteForCurrentRequest, true);
+				// Update the URLEncoderData
+				urlEncoderFacade.updateSiteFromUrlEncodingData();
+			}
+		}
+		catch (final CMSItemNotFoundException e)
+		{
+			LOG.warn("CMSSite was not found. Message : " + e.getMessage());
+			LOG.debug(e);
+
+			final RegionCode regionCode = cmsSiteModel != null ? cmsSiteModel.getRegionCode()
+					: gallagherRegionDetectionFacade.getRegionCode(httpRequest);
+
+			final String redirectPath = FARWORD_SLASH
+					+ StringUtils.substringBefore(StringUtils.substringAfter(requestURI, FARWORD_SLASH), FARWORD_SLASH) + FARWORD_SLASH
+					+ regionCode.getCode() + FARWORD_SLASH
+					+ StringUtils.substringAfter(
+							StringUtils.substringAfter(StringUtils.substringAfter(requestURI, FARWORD_SLASH), FARWORD_SLASH),
+							FARWORD_SLASH)
+					+ (StringUtils.isEmpty(queryString) ? "" : "?" + queryString);
+			LOG.info("Redirecting to " + redirectPath);
+			httpResponse.sendRedirect(redirectPath);
+			return false;
+		}
+
 		if (cmsSiteModel == null || StringUtils.contains(queryString, CLEAR_CMSSITE_PARAM))
 		{
-			final String absoluteURL = StringUtils.removeEnd(currentRequestURL, "/")
-					+ (StringUtils.isBlank(queryString) ? "" : "?" + queryString);
-
 			cmsSiteModel = getContextInformationLoader().initializeSiteFromRequest(absoluteURL);
+
+			if (GallagherSiteUtil.isSiteSwitched(httpRequest))
+			{
+				sessionService.removeAttribute(DefaultCartService.SESSION_CART_PARAMETER_NAME);
+			}
 		}
 
 		if (cmsSiteModel == null)
@@ -255,8 +328,8 @@ public class CMSSiteFilter extends OncePerRequestFilter implements CMSFilter
 	protected LanguageModel filterPreviewLanguageForSite(final HttpServletRequest httpRequest,
 			final PreviewDataModel previewDataModel)
 	{
-		final BaseSiteModel previewSite = previewDataModel.getActiveSite() == null ? getCurrentCmsSite() : previewDataModel
-				.getActiveSite();
+		final BaseSiteModel previewSite = previewDataModel.getActiveSite() == null ? getCurrentCmsSite()
+				: previewDataModel.getActiveSite();
 		getBaseSiteService().setCurrentBaseSite(previewSite, false);
 		final Collection<LanguageModel> siteLanguages = getCommerceCommonI18NService().getAllLanguages();
 		if (siteLanguages.contains(previewDataModel.getLanguage()))
@@ -331,6 +404,17 @@ public class CMSSiteFilter extends OncePerRequestFilter implements CMSFilter
 				LOG.debug(e);
 			}
 			return null;
+		}
+	}
+
+	private void cloneCart()
+	{
+		if (cartFacade.hasEntries())
+		{
+			final CartModel clonedCart = cartService.clone(null, null, cartService.getSessionCart(), null);
+			clonedCart.setPaymentTransactions(null);
+			clonedCart.setCode(null);
+			modelService.save(clonedCart);
 		}
 	}
 
