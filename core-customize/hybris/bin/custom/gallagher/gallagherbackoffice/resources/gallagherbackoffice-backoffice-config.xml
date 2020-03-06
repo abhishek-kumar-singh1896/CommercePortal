@@ -119,9 +119,9 @@
         <editorArea:editorArea name="">
             <editorArea:tab name="hmc.gallagher" position="11">
                 <editorArea:section name="hmc.section.gallagher">
-                    <editorArea:attribute qualifier="duplicate" label="hmc.duplicacy.label"/>
-                    <editorArea:attribute qualifier="keycloakGUID" label="hmc.keycloakGUID.label"/>
-                    <editorArea:attribute qualifier="objectID" label="hmc.objectID.label"/>
+                    <editorArea:attribute qualifier="duplicate" />
+                    <editorArea:attribute qualifier="keycloakGUID" />
+                    <editorArea:attribute qualifier="objectID" />
                 </editorArea:section>
             </editorArea:tab>
         </editorArea:editorArea>

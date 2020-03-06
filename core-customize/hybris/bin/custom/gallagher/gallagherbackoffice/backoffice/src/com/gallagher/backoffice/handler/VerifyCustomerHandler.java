@@ -109,6 +109,7 @@ public class VerifyCustomerHandler implements FlowActionHandler
 					widget.setValue("newCust.email", existingCustomer.getEmail());
 					widget.setValue("newCust.uid", existingCustomer.getEmail());
 					widget.setValue("newCust.sapContactID", existingCustomer.getContactID());
+					widget.setValue("newCust.objectID", existingCustomer.getObjectID());
 					widget.setValue("newCust.name", existingCustomer.getName());
 				}
 				else
