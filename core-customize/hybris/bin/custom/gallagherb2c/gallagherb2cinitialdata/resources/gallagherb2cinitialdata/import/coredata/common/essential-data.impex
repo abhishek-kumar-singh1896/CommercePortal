@@ -270,9 +270,9 @@ INSERT_UPDATE ConversionMediaFormat ; qualifier[unique=true] ; conversion       
                                     ; 65Wx65H                ; -resize 65x65 -background white -gravity center -extent 65x65     ; $baseFormat            
                                     ; 96Wx96H                ; -resize 96x96 -background white -gravity center -extent 96x96     ; $baseFormat
                                     ; 167Wx120H              ; -resize 167x120 -background white -gravity center -extent 167x120 ; $baseFormat
-                                    ; 400Wx400H              ; -resize 400x400 -background white -gravity center -extent 400x400 ; $baseFormat            
+                                    ; 500Wx500H              ; -resize 500x500 -background white -gravity center -extent 500x500 ; $baseFormat            
 # Conversion Group                  
 INSERT_UPDATE ConversionGroup ; code[unique=true]               ; supportedFormats(qualifier)                                         
-                              ; AnimalManagementConversionGroup ; 300Wx300H,30Wx30H,365Wx246H,515Wx515H,65Wx65H,96Wx96H,1200Wx1200H,167Wx120H,400Wx400H 
+                              ; AnimalManagementConversionGroup ; 300Wx300H,30Wx30H,365Wx246H,515Wx515H,65Wx65H,96Wx96H,1200Wx1200H,167Wx120H,500Wx500H 
                               ; B2bAdvanceEmptyConversionGroup  ;                                                                     
                                     

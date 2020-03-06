@@ -10,6 +10,11 @@
         <value>DATA_SHEET</value>
 	</enum>
 	
+	<enum class="de.hybris.platform.commercefacades.product.data.ImageDataType">
+		<value>LOGO</value>
+		<value>DATASHEET</value>
+	</enum>
+	
 	<bean class="de.hybris.platform.commercefacades.user.data.CustomerData">
 		<property name="duplicate" type="java.lang.Boolean"/>
 		<property name="keycloakGUID" type="java.lang.String"/>

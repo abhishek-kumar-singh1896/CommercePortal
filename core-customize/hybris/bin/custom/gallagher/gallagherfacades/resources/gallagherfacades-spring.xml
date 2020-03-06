@@ -58,13 +58,13 @@
 		parent="defaultProductCategorySearchPagePopulator">
 	</bean>
 	
-	<!-- accelerator Image Format Mappings -->
+	<!-- gallagher Image Format Mappings -->
 	<alias name="gallagherImageFormatMapping" alias="imageFormatMapping"/>
 	<bean id="gallagherImageFormatMapping" parent="acceleratorImageFormatMapping">
 		<property name="mapping">
 			<map merge="true">
 				<entry key="thumbnailb2c" value="167Wx120H"/>
-				<entry key="productb2c" value="400Wx400H"/>
+				<entry key="productb2c" value="500Wx500H"/>
 			</map>
 		</property>
 	</bean>

@@ -22,7 +22,7 @@
 <ycommerce:testId code="productDetails_productNamePrice_label_${product.code}">
 <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 order-last order-md-first">
                     <div class="product-detail-left-section">
                         <div class="rating-out with-rating-value">
                             <span class="star-rating">
@@ -67,7 +67,7 @@
 						</cms:pageSlot>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 order-first order-md-last">
                     <div class="product-detail-right-section">
 						<product:productImagePanel galleryImages="${galleryImages}" />
                     </div>
