@@ -43,9 +43,9 @@
                 <c:forEach items="${galleryImages}" var="container" varStatus="varStatus">
                     <div class="item">
                         <div>
-                            <img class="lazyOwl" data-src="${fn:escapeXml(container.product.url)}"
+                            <img class="lazyOwl" data-src="${fn:escapeXml(container.productb2c.url)}"
                                  data-zoom-image="${fn:escapeXml(container.superZoom.url)}"
-                                 alt="${fn:escapeXml(container.thumbnail.altText)}" >
+                                 alt="${fn:escapeXml(container.thumbnailb2c.altText)}" >
                         </div>
                     </div>
                 </c:forEach>

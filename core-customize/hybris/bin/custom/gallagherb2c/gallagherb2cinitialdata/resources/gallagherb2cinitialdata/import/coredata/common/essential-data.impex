@@ -268,10 +268,11 @@ INSERT_UPDATE ConversionMediaFormat ; qualifier[unique=true] ; conversion       
                                     ; 365Wx246H              ; -resize 365x246 -background white -gravity center -extent 365x246 ; $baseFormat            
                                     ; 515Wx515H              ; -resize 515x515 -background white -gravity center -extent 515x515 ; $baseFormat            
                                     ; 65Wx65H                ; -resize 65x65 -background white -gravity center -extent 65x65     ; $baseFormat            
-                                    ; 96Wx96H                ; -resize 96x96 -background white -gravity center -extent 96x96     ; $baseFormat            
-                                    
+                                    ; 96Wx96H                ; -resize 96x96 -background white -gravity center -extent 96x96     ; $baseFormat
+                                    ; 167Wx120H              ; -resize 167x120 -background white -gravity center -extent 167x120 ; $baseFormat
+                                    ; 400Wx400H              ; -resize 400x400 -background white -gravity center -extent 400x400 ; $baseFormat            
 # Conversion Group                  
-INSERT_UPDATE ConversionGroup ; code[unique=true]              ; supportedFormats(qualifier)                                       
-                              ; B2bAdvanceConversionGroup      ; 300Wx300H,30Wx30H,365Wx246H,515Wx515H,65Wx65H,96Wx96H,1200Wx1200H 
-                              ; B2bAdvanceEmptyConversionGroup ;                                                                   
+INSERT_UPDATE ConversionGroup ; code[unique=true]               ; supportedFormats(qualifier)                                         
+                              ; AnimalManagementConversionGroup ; 300Wx300H,30Wx30H,365Wx246H,515Wx515H,65Wx65H,96Wx96H,1200Wx1200H,167Wx120H,400Wx400H 
+                              ; B2bAdvanceEmptyConversionGroup  ;                                                                     
                                     
