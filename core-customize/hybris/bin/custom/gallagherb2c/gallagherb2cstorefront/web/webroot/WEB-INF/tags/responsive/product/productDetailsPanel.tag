@@ -29,10 +29,11 @@
                                 <span style="width: ${fn:escapeXml(product.averageRating)*20}%;">
                                 </span>
                             </span>
-
-                            <span class="rating-value">
-                                (${fn:escapeXml(product.averageRating)})
-                            </span>
+							<c:if test="${not empty product.averageRating}">
+	                            <span class="rating-value">
+	                                (${fn:escapeXml(product.averageRating)})
+	                            </span>
+                            </c:if>
                         </div>
                         <h1 class="product-detail-title">${fn:escapeXml(product.name)}</h1>
                         <div class="product-code">${fn:escapeXml(product.code)}</div>
