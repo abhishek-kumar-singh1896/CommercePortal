@@ -103,11 +103,11 @@
           class="com.gallagher.facades.product.converters.populator.GallagherProductVideoDescriptionPopulator">
     </bean>
     
-    <bean id="gallagherProductLogoPopulator" parent="baseProductPopulator"
+    <bean id="gallagherProductLogoPopulator" parent="baseProductImagePopulator"
           class="com.gallagher.facades.product.converters.populator.GallagherProductLogoPopulator">
     </bean>
     
-    <bean id="gallagherProductDataSheetPopulator" parent="baseProductPopulator"
+    <bean id="gallagherProductDataSheetPopulator" parent="baseProductImagePopulator"
           class="com.gallagher.facades.product.converters.populator.GallagherProductDataSheetPopulator">
     </bean>
     

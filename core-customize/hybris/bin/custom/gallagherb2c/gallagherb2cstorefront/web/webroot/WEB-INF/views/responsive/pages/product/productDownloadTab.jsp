@@ -2,17 +2,19 @@
 <%@ taglib prefix="product" tagdir="/WEB-INF/tags/responsive/product"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <section id="${fn:replace(title,' ', '')}" class="common-sub-tab-section">
     <div class="container">
         <div class="how-to-download-section">
             <h4 class="small-section-sub-title">Related documents</h4>
 
             <ul class="row align-items-stretch">
+            	<c:forEach var="media" items="${product.data_sheet}">
                 <li class="col-md-3 col-6">
                     <div class="download-column-out">
                         <div class="download-column-title">
                             <a href="javascript:void(0)">
-                                Animal Management Weighing and EID Brochure
+                                ${media.description}
                             </a>
                         </div>
                         <div class="download-column-bottom-section">
@@ -22,68 +24,12 @@
                                 </svg>
                             </span>
                             <span>
-                                NZ AU, 0.7 MB
+                                ${media.altText}
                             </span>
                         </div>
                     </div>
                 </li>
-                <li class="col-md-3 col-6">
-                    <div class="download-column-out">
-                        <div class="download-column-title">
-                            <a href="javascript:void(0)">
-                                3E4402 TWR-5 Quick Start Guide
-                            </a>
-                        </div>
-                        <div class="download-column-bottom-section">
-                            <span class="document-icon">
-                                <svg>
-                                    <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#pdf-download" />
-                                </svg>
-                            </span>
-                            <span>
-                                NZ AU, 0.7 MB
-                            </span>
-                        </div>
-                    </div>
-                </li>
-                <li class="col-md-3 col-6">
-                    <div class="download-column-out">
-                        <div class="download-column-title">
-                            <a href="javascript:void(0)">
-                                TWR & TW DL brochure 2019
-                            </a>
-                        </div>
-                        <div class="download-column-bottom-section">
-                            <span class="document-icon">
-                                <svg>
-                                    <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#pdf-download" />
-                                </svg>
-                            </span>
-                            <span>
-                                NZ AU, 0.7 MB
-                            </span>
-                        </div>
-                    </div>
-                </li>
-                <li class="col-md-3 col-6">
-                    <div class="download-column-out">
-                        <div class="download-column-title">
-                            <a href="javascript:void(0)">
-                                Animal Management Weighing and EID Brochure
-                            </a>
-                        </div>
-                        <div class="download-column-bottom-section">
-                            <span class="document-icon">
-                                <svg>
-                                    <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#pdf-download" />
-                                </svg>
-                            </span>
-                            <span>
-                                NZ AU, 0.7 MB
-                            </span>
-                        </div>
-                    </div>
-                </li>
+                </c:forEach>
             </ul>
         </div>
     </div>
