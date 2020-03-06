@@ -128,7 +128,6 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 			{
 				for (final ProductModel product : products)
 				{
-					System.out.println("products found ");
 					final List<MediaContainerModel> existingContainers = new ArrayList<>(product.getGalleryImages());
 					existingContainers.add(mediaContainerModel);
 					product.setGalleryImages(existingContainers);
