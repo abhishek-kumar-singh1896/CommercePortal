@@ -5,12 +5,12 @@
 
 <div class="carousel gallery-carousel js-gallery-carousel hidden-xs hidden-sm">
     <c:forEach items="${galleryImages}" var="container" varStatus="varStatus">
-        <a href="#" class="item"> <img class="lazyOwl" data-src="${fn:escapeXml(container.thumbnail.url)}" alt="${fn:escapeXml(container.thumbnail.altText)}"></a>
+        <a href="#" class="item"> <img class="lazyOwl" data-src="${fn:escapeXml(container.thumbnailb2c.url)}" alt="${fn:escapeXml(container.thumbnailb2c.altText)}"></a>
     </c:forEach>
+    <%-- <a href="#" class="item"><img src="${commonResourcePath}/images/lcd-icon.png" alt="APS Logo"></a>
     <a href="#" class="item"><img src="${commonResourcePath}/images/lcd-icon.png" alt="APS Logo"></a>
     <a href="#" class="item"><img src="${commonResourcePath}/images/lcd-icon.png" alt="APS Logo"></a>
     <a href="#" class="item"><img src="${commonResourcePath}/images/lcd-icon.png" alt="APS Logo"></a>
     <a href="#" class="item"><img src="${commonResourcePath}/images/lcd-icon.png" alt="APS Logo"></a>
-    <a href="#" class="item"><img src="${commonResourcePath}/images/lcd-icon.png" alt="APS Logo"></a>
-    <a href="#" class="item"><img src="${commonResourcePath}/images/lcd-icon.png" alt="APS Logo"></a>
+    <a href="#" class="item"><img src="${commonResourcePath}/images/lcd-icon.png" alt="APS Logo"></a> --%>
 </div>

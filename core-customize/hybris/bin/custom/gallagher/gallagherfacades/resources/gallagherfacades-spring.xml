@@ -58,6 +58,17 @@
 		parent="defaultProductCategorySearchPagePopulator">
 	</bean>
 	
+	<!-- gallagher Image Format Mappings -->
+	<alias name="gallagherImageFormatMapping" alias="imageFormatMapping"/>
+	<bean id="gallagherImageFormatMapping" parent="acceleratorImageFormatMapping">
+		<property name="mapping">
+			<map merge="true">
+				<entry key="thumbnailb2c" value="167Wx120H"/>
+				<entry key="productb2c" value="500Wx500H"/>
+			</map>
+		</property>
+	</bean>
+
 	<alias name="gallagherProductGalleryImagesPopulator" alias="productGalleryImagesPopulator"/>
     <bean id="gallagherProductGalleryImagesPopulator" parent="defaultProductGalleryImagesPopulator"
           class="com.gallagher.facades.product.converters.populator.GallagherProductGalleryImagesPopulator">
@@ -67,6 +78,8 @@
 				<value>zoom</value>
 				<value>product</value>
 				<value>thumbnail</value>
+				<value>thumbnailb2c</value>
+				<value>productb2c</value>
 			</list>
 		</property>
 	</bean>
@@ -80,6 +93,8 @@
 				<value>product</value>
 				<value>thumbnail</value>
 				<value>cartIcon</value>
+				<value>thumbnailb2c</value>
+				<value>productb2c</value>
 			</list>
 		</property>
 	</bean>

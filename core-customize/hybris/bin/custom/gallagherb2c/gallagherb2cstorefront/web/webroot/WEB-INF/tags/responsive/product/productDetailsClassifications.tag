@@ -6,8 +6,9 @@
 <div class="product-classifications">
 	<c:if test="${not empty product.classifications}">
 		<c:forEach items="${product.classifications}" var="classification">
-			<c:forEach items="${classification.features}" var="feature" varStatus="status">
+			
 				<div class="row mb-3">
+				<c:forEach items="${classification.features}" var="feature" varStatus="status">
 				    <div class="col-md-6">
 				        <label for="warranty" class="overview-label">${fn:escapeXml(feature.name)}</label>
 				        <div class="overview-value" id="warranty"><!-- 1 year -->
@@ -25,8 +26,9 @@
 						</c:forEach>
 				        </div>
 				    </div>
+				    </c:forEach>
 				</div>
-			</c:forEach>
+			
 		</c:forEach>
 		<c:if test="${not empty product.productReferences}">
 		<c:forEach items="${product.productReferences}" var="reference">

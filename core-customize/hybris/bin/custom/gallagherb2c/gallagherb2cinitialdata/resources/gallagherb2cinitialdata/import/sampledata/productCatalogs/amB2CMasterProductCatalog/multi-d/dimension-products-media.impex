@@ -16,7 +16,7 @@ $data_sheet=data_sheet(code, $catalogVersion)
 $medias=medias(code, $catalogVersion)
 $galleryImages=galleryImages(qualifier, $catalogVersion)
 $siteResource=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/productCatalogs/$productCatalog
-$conversionGroup=conversionGroup(code[default=B2bAdvanceConversionGroup])
+$conversionGroup=conversionGroup(code[default=AnimalManagementConversionGroup])
 
 INSERT_UPDATE MediaFolder;qualifier[unique=true];path[unique=true]
 ;images;images
