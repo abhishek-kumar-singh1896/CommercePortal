@@ -3,8 +3,11 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-<section id="${fn:replace(title,' ', '')}" class="common-sub-tab-section">
+<c:set var="reviewTitle" value="${fn:replace(title,' ', '')}"/>
+<c:if test="${fn:contains(reviewTitle, '&')}">
+  <c:set var="reviewTitle" value="${fn:replace(reviewTitle,'&', '')}"/>
+</c:if>
+<section id="${reviewTitle}" class="common-sub-tab-section">
     <div class="container">
         <h4 class="small-section-title">
             Reviews

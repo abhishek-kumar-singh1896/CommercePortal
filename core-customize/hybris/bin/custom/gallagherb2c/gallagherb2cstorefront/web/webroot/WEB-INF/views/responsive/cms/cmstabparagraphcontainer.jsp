@@ -10,14 +10,18 @@
                  <nav id="productDetailTab" class="navbar" data-spy="affix">
                      <ul class="nav nav-pills nav-fill">
                      <c:forEach var="component" items="${components}" varStatus="children">
+                     	<c:set var="title" value="${fn:replace(component.title,' ', '')}"/>
+	                    <c:if test="${fn:contains(title, '&')}">
+						   <c:set var="title" value="${fn:replace(title,'&', '')}"/>
+						</c:if>
 						<li class="nav-item">
 							<c:if test="${children.index eq 0}">
-                             <a class="nav-link d-flex align-content-center flex-wrap active" href="#${fn:replace(component.title,' ', '')}">
+                             <a class="nav-link d-flex align-content-center flex-wrap active" href="#${title}">
                                  <span>${component.title}</span>
                              </a> 
                              </c:if>
                              <c:if test="${children.index ne 0}">
-                             <a class="nav-link d-flex align-content-center flex-wrap" href="#${fn:replace(component.title,' ', '')}">
+                             <a class="nav-link d-flex align-content-center flex-wrap" href="#${title}">
                                  <span>${component.title}</span>
                              </a> 
                              </c:if>
