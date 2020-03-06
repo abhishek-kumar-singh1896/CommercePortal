@@ -7,7 +7,6 @@ import de.hybris.platform.acceleratorstorefrontcommons.controllers.pages.Abstrac
 import de.hybris.platform.acceleratorstorefrontcommons.forms.RegisterForm;
 import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
 import de.hybris.platform.cms2.model.pages.AbstractPageModel;
-import com.gallagher.b2c.controllers.ControllerConstants;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +19,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.gallagher.b2c.controllers.ControllerConstants;
 
 
 /**
@@ -62,7 +63,7 @@ public class RegisterPageController extends AbstractRegisterPageController
 	@RequestMapping(method = RequestMethod.GET)
 	public String doRegister(final Model model) throws CMSItemNotFoundException
 	{
-		return getDefaultRegistrationPage(model);
+		return REDIRECT_PREFIX + getConfigurationService().getConfiguration().getString("keycloak.registrations.url");
 	}
 
 	@RequestMapping(value = "/newcustomer", method = RequestMethod.POST)

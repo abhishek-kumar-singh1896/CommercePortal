@@ -57,7 +57,7 @@
                     <div class="xs-main-menu-l1-footer">
                         <div class="btn-group btn-block mb-3" role="group" aria-label="Button group login register">
                         	<ycommerce:testId code="header_Register_link">
-								<c:url value="/login" var="registerUrl" />
+								<c:url value="/register" var="registerUrl" />
 								<button type="button" class="btn btn-secondary left-btn"
 									onclick="window.location.href = '${fn:escapeXml(registerUrl)}'">
 									<spring:theme code="header.link.register" />
