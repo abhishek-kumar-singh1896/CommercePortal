@@ -192,19 +192,24 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 		modelService.save(mediaModel);
 		mediaService.setStreamForMedia(mediaModel, getImage(gallagherBynderResponse.getId()));
 
-		//getting products and adding container to that product
-		final List<ProductModel> products = gallagherMediaContainerDao
-				.getProductModeList(gallagherBynderResponse.getProperty_skus(), catlogmodel.getPk());
 
-		for (final ProductModel product : products)
+		if (CollectionUtils.isNotEmpty(gallagherBynderResponse.getProperty_skus()))
 		{
-			final List<MediaModel> mediaModelList = new ArrayList<MediaModel>(product.getData_sheet());
-			mediaModelList.add(mediaModel);
-			product.setData_sheet(mediaModelList);
-			modelService.save(product);
-			LOGGER.info("Media " + gallagherBynderResponse.getId() + " Saved for " + product.getCode());
+			//getting products and adding container to that product
+			final List<ProductModel> products = gallagherMediaContainerDao
+					.getProductModeList(gallagherBynderResponse.getProperty_skus(), catlogmodel.getPk());
+			if (CollectionUtils.isNotEmpty(products))
+			{
+				for (final ProductModel product : products)
+				{
+					final List<MediaModel> mediaModelList = new ArrayList<MediaModel>(product.getData_sheet());
+					mediaModelList.add(mediaModel);
+					product.setData_sheet(mediaModelList);
+					modelService.save(product);
+					LOGGER.info("Media " + gallagherBynderResponse.getId() + " Saved for " + product.getCode());
+				}
+			}
 		}
-
 		return true;
 	}
 
