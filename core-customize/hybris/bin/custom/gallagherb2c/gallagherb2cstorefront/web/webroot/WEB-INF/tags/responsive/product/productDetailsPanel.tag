@@ -68,9 +68,7 @@
                     </div>
                 </div>
                 <div class="col-md-6 order-first order-md-last">
-                    <!-- <div class="product-detail-right-section"> -->
 						<product:productImagePanel galleryImages="${galleryImages}" />
-                    <!-- </div> -->
                 </div>
             </div>
 </div>

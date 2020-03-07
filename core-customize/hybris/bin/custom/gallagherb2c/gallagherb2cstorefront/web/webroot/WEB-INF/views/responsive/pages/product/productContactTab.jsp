@@ -21,102 +21,9 @@
                            <ul>
                            <c:forEach items="${product.productReferences}" var="reference">
 							<c:if test="${reference.referenceType eq 'FOLLOWUP'}">
-							<product:productListerGridItem product="${reference.target}" />
+								<product:productReferenceList product="${reference.target}" />
 							</c:if>
 							</c:forEach>
-                               <!-- <li class="product-tile"
-                                   onclick="window.location.href='product-details.html'">
-                                   <div class="row">
-                                       <div class="col-md-12 pr-xs-0">
-                                           <div class="product-status">
-                                               <img src="img/new.svg">
-                                           </div>
-                                           <div class="product-img-box">
-                                               <a href="javascript:void(0)">
-                                                   <img class="product-image"
-                                                       src="img/product-list-img.png">
-                                               </a>
-                                           </div>
-                                       </div>
-                                       <div class="col-md-12">
-                                           <div class="product-name-desc-out">
-                                               <div class="product-name">Product name 1234
-                                               </div>
-                                               <div class="product-id">123456</div>
-                                               <div class="product-description">
-                                                   <p>A description of what this product is used for et
-                                                       cetera. Lorem ipsum dolor sit amet och so vidare
-                                                       et all.</p>
-                                               </div>
-                                           </div>
-                                       </div>
-                                   </div>
-
-                                   <div class="product-list-footer">
-                                       <div class="row">
-                                           <div class="col-5">
-                                               <span class="product-list-footer-left-icon">
-                                                   <img src="img/bird.svg" alt="Male">
-                                               </span>
-                                               <span class="product-list-footer-left-icon">
-                                                   <img src="img/bull.svg" alt="Male">
-                                               </span>
-                                           </div>
-                                           <div class="col-7 text-right">
-                                               <div class="currency-text">RRP</div>
-                                               <div class="currency-value">$123.00</div>
-                                           </div>
-                                       </div>
-                                   </div>
-                               </li>
-                               <li class="product-tile"
-                                   onclick="window.location.href='product-details.html'">
-                                   <div class="row">
-                                       <div class="col-md-12 pr-xs-0">
-                                           <div class="product-status">
-                                               <img src="img/new.svg">
-                                           </div>
-                                           <div class="product-img-box">
-                                               <a href="javascript:void(0)">
-                                                   <img class="product-image"
-                                                       src="img/product-list-img.png">
-                                               </a>
-                                           </div>
-                                       </div>
-                                       <div class="col-md-12">
-                                           <div class="product-name-desc-out">
-                                               <div class="product-name">Product name
-                                                   Product
-                                                   nameProduct nameProduct
-                                                   name 1234
-                                               </div>
-                                               <div class="product-id">123456</div>
-                                               <div class="product-description">
-                                                   <p>A description of what this product is used for et
-                                                       cetera. Lorem ipsum dolor sit amet och so vidare
-                                                       et all.</p>
-                                               </div>
-                                           </div>
-                                       </div>
-                                   </div>
-
-                                   <div class="product-list-footer">
-                                       <div class="row">
-                                           <div class="col-5">
-                                               <span class="product-list-footer-left-icon">
-                                                   <img src="img/bird.svg" alt="Male">
-                                               </span>
-                                               <span class="product-list-footer-left-icon">
-                                                   <img src="img/bull.svg" alt="Male">
-                                               </span>
-                                           </div>
-                                           <div class="col-7 text-right">
-                                               <div class="currency-text">RRP</div>
-                                               <div class="currency-value">$123.00</div>
-                                           </div>
-                                       </div>
-                                   </div>
-                               </li> -->
                            </ul>
                        </div>
                        <div class="mt-3">
@@ -127,7 +34,7 @@
                </div>
            </div>
            <div class="col-lg-6">
-               <div class="common-product-with-title">
+           <div class="common-product-with-title">
                    <div class="section-title">
                        Products for cattle
                    </div>
@@ -138,104 +45,11 @@
                    <div class="product-list">
                        <div class="product-listing-out clearfix">
                            <ul>
-                           		<c:forEach items="${product.productReferences}" var="reference">
-							<c:if test="${reference.referenceType eq 'OTHERS'}">
-							<product:productListerGridItem product="${reference.target}" />
+                           	<c:forEach items="${product.productReferences}" var="reference1">
+							<c:if test="${reference1.referenceType eq 'OTHERS'}">
+							<product:productReferenceList product="${reference1.target}" />
 							</c:if>
 							</c:forEach>
-                               <!-- <li class="product-tile"
-                                   onclick="window.location.href='product-details.html'">
-                                   <div class="row">
-                                       <div class="col-md-12 pr-xs-0">
-                                           <div class="product-status">
-                                               <img src="img/new.svg">
-                                           </div>
-                                           <div class="product-img-box">
-                                               <a href="javascript:void(0)">
-                                                   <img class="product-image"
-                                                       src="img/product-list-img.png">
-                                               </a>
-                                           </div>
-                                       </div>
-                                       <div class="col-md-12">
-                                           <div class="product-name-desc-out">
-                                               <div class="product-name">Product name 1234
-                                               </div>
-                                               <div class="product-id">123456</div>
-                                               <div class="product-description">
-                                                   <p>A description of what this product is used for et
-                                                       cetera. Lorem ipsum dolor sit amet och so vidare
-                                                       et all.</p>
-                                               </div>
-                                           </div>
-                                       </div>
-                                   </div>
-
-                                   <div class="product-list-footer">
-                                       <div class="row">
-                                           <div class="col-5">
-                                               <span class="product-list-footer-left-icon">
-                                                   <img src="img/bird.svg" alt="Male">
-                                               </span>
-                                               <span class="product-list-footer-left-icon">
-                                                   <img src="img/bull.svg" alt="Male">
-                                               </span>
-                                           </div>
-                                           <div class="col-7 text-right">
-                                               <div class="currency-text">RRP</div>
-                                               <div class="currency-value">$123.00</div>
-                                           </div>
-                                       </div>
-                                   </div>
-                               </li> -->
-                               <!-- <li class="product-tile"
-                                   onclick="window.location.href='product-details.html'">
-                                   <div class="row">
-                                       <div class="col-md-12 pr-xs-0">
-                                           <div class="product-status">
-                                               <img src="img/new.svg">
-                                           </div>
-                                            <div class="product-img-box">
-                                                <a href="javascript:void(0)">
-                                                    <img class="product-image"
-                                                        src="img/product-list-img.png">
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="product-name-desc-out">
-                                                <div class="product-name">Product name
-                                                    Product
-                                                    nameProduct nameProduct
-                                                    name 1234
-                                                </div>
-                                                <div class="product-id">123456</div>
-                                                <div class="product-description">
-                                                    <p>A description of what this product is used for et
-                                                        cetera. Lorem ipsum dolor sit amet och so vidare
-                                                        et all.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="product-list-footer">
-                                        <div class="row">
-                                            <div class="col-5">
-                                                <span class="product-list-footer-left-icon">
-                                                    <img src="img/bird.svg" alt="Male">
-                                                </span>
-                                                <span class="product-list-footer-left-icon">
-                                                    <img src="img/bull.svg" alt="Male">
-                                                </span>
-                                            </div>
-                                            <div class="col-7 text-right">
-                                                <div class="currency-text">RRP</div>
-                                                <div class="currency-value">$123.00</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li> -->
                             </ul>
                         </div>
                         <div class="mt-3">
@@ -244,6 +58,8 @@
                     </div>
 
                 </div>
+				<%-- <product:productReferenceCattle product="${product}"/> --%>
+
             </div>
         </div>
     </div>

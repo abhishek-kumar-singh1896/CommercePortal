@@ -42,7 +42,11 @@
 				        <c:forEach items="${galleryImages}" var="container" varStatus="varStatus">
 				        	<c:if test="${not empty fn:escapeXml(container.productb2c.url)}">
 		                    <li>
-		                    <div class="product-status"></div>
+		                    <div class="product-status"> 
+		                    <c:if test = "${not empty product.promoSticker}">
+								<img src="${commonResourcePath}/images/${fn:toLowerCase(product.promoSticker)}.svg" />
+							</c:if>
+		                    </div>
 	                            <img src="${fn:escapeXml(container.productb2c.url)}"
 	                                 data-zoom-image="${fn:escapeXml(container.superZoom.url)}"
 	                                 alt="${fn:escapeXml(container.thumbnailb2c.altText)}" >
