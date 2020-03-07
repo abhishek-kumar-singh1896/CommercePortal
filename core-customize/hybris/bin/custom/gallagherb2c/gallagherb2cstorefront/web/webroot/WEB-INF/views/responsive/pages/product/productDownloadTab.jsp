@@ -19,11 +19,14 @@
                             </a>
                         </div>
                         <div class="download-column-bottom-section">
+                        	<!-- <a target="_blank" href="http://raymor.co.nz/wp-content/uploads/2016/10/567903_Raymor_WallBasins_Quartz-WEB.pdf"> -->
+                        	<a target="_blank" href="${media.url}">
                             <span class="document-icon">
                                 <svg>
                                     <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#pdf-download" />
                                 </svg>
                             </span>
+                            </a>
                             <span>
                                 ${media.altText}
                             </span>
