@@ -133,5 +133,19 @@
 	</bean>
 
 	<bean id="gallagherRegionDetectionFacade" class="com.gallagher.facades.impl.GallagherRegionDetectionFacadeImpl" />
+	
+	<alias name="gallagherProductReferencePopulator" alias="productReferencePopulator"/>
+    <bean id="gallagherProductReferencePopulator" parent="defaultProductReferencePopulator"
+          class="com.gallagher.facades.product.converters.populator.GallagherProductReferencePopulator">
+        <property name="productCon" ref="productConverter"></property>
+    </bean>
+    
+    <alias name="gallagherProductPopulator" alias="productPopulator"/>
+    <bean id="gallagherProductPopulator"
+          class="com.gallagher.facades.product.converters.populator.GallagherProductPopulator"
+          parent="defaultProductPopulator">
+        <property name="productPricePopulator" ref="productPricePopulator"/>
+        <property name="productGalleryImagesPopulator" ref="productGalleryImagesPopulator"/>
+    </bean>
 
 </beans>
