@@ -16,6 +16,7 @@ import java.text.MessageFormat;
 import java.util.Arrays;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -38,6 +39,8 @@ import com.gallagher.outboundservices.response.dto.GallagherKeycloakResponse;
  */
 public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 {
+	private static final Logger LOGGER = Logger.getLogger(GallagherKeycloakServiceImpl.class);
+
 	private final ConfigurationService configurationService;
 	private final UserService userService;
 	private final BaseSiteService baseSiteService;
@@ -199,11 +202,32 @@ public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 
 		final HttpEntity<String> entity = new HttpEntity<>(request, headers);
 
-		final String redirectURL = getSiteBaseUrlResolutionService().getWebsiteUrlForSite(getBaseSiteService().getCurrentBaseSite(),
-				true, getUrlEncoderService().getCurrentUrlEncodingPattern());
+		String redirectURL = null;
+		try
+		{
+			redirectURL = getSiteBaseUrlResolutionService().getWebsiteUrlForSite(getBaseSiteService().getCurrentBaseSite(),
+				true, null);
+		}
+		catch (final NullPointerException nullUrlEx)
+		{
+			LOGGER.error("Expection while creating redirect url ", nullUrlEx);
+		}
 
-		final String url = MessageFormat.format(
-				getConfigurationService().getConfiguration().getString("keycloak.reset.password.url"), keycloakGUID, redirectURL);
+		String url = null;
+
+		if (redirectURL == null)
+		{
+
+			url = getConfigurationService().getConfiguration().getString("keycloak.backoffice.reset.password.url");
+		}
+		else
+		{
+
+			url = MessageFormat.format(getConfigurationService().getConfiguration().getString("keycloak.reset.password.url"),
+					keycloakGUID, redirectURL);
+		}
+
+
 
 		System.out.println("Password reset email start sending.........");
 

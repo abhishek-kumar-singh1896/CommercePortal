@@ -67,7 +67,7 @@ public class RegisterPageController extends AbstractRegisterPageController
 	{
 
 		final String redirectURL = getSiteBaseUrlResolutionService().getWebsiteUrlForSite(getBaseSiteService().getCurrentBaseSite(),
-				true, getUrlEncoderService().getCurrentUrlEncodingPattern());
+				true, null);
 		return REDIRECT_PREFIX + MessageFormat
 				.format(getConfigurationService().getConfiguration().getString("keycloak.registrations.url"), redirectURL);
 	}
