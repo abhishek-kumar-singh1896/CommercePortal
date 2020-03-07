@@ -61,9 +61,12 @@ UPDATE CMSTabParagraphComponent;$contentCV[unique=true];uid[unique=true];title[l
 
 # CMS tabbed jsp include components
 INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
-;;ProductDetailsTabComponent;"Product Details"
-;;ProductReviewsTabComponent;"Reviews"
-;;ProductSpecsTabComponent;"Specs"
+;;ProductOverviewTabComponent;"Overview"
+;;ProductDownloadTabComponent;"How to Download"
+;;ProductReviewsTabComponent;"Reviews & Questions"
+;;ProductCompareTabComponent;"Compare"
+;;ProductUseWithTabComponent;"Use With"
+;;ProductConatctTabComponent;"Contact"
 
 # CMS ProductReferences Components
 UPDATE ProductReferencesComponent;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
