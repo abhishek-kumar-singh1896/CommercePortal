@@ -29,22 +29,39 @@
                                 <c:set var="productMatrix" value="${productMatrix[selectedIndex].elements }"/>
                             </c:otherwise>
                         </c:choose>
-                        <div class="variant-name">${fn:escapeXml(productMatrix[0].parentVariantCategory.name)}</div>
 <%--                         <c:choose> --%>
 <%--                             <c:if test="${productMatrix[0].parentVariantCategory.hasImage}"> --%>
-                                <ul class="variant-list">
+								<div class="product-variant-section">
+								<div class="variant-title">${fn:escapeXml(productMatrix[0].parentVariantCategory.name)}</div>
+                                <ul>
                                     <c:forEach items="${productMatrix}" var="variantCategory">
                                         <li <c:if test="${variantCategory.variantOption.url eq product.url}">class="selected"</c:if>>
                                            <c:url value="${variantCategory.variantOption.url}"
                                             var="productStyleUrl" />
                                            <c:choose>    
 	                                            <c:when test="${variantCategory.variantOption.code eq product.code}">
-	                                                <input type="radio" name="productColor" checked="checked" onclick="window.location='${productStyleUrl}'"  value="${fn:escapeXml(productStyleUrl)}">
-	                                                ${fn:escapeXml(variantCategory.variantValueCategory.name)}
+					                                    <a href="${fn:escapeXml(productStyleUrl)}" onclick="window.location='${productStyleUrl}'" checked="checked">
+					                                        <span class="variant-checkbox-icon">
+					                                            <svg class="d-none">
+					                                                <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#check" />
+					                                            </svg>
+					                                        </span>
+					                                        <span class="variant-text">${fn:escapeXml(variantCategory.variantValueCategory.name)}</span>
+					                                    </a>
+	                                                <%-- <input type="radio" name="productColor" checked="checked" onclick="window.location='${productStyleUrl}'"  value="${fn:escapeXml(productStyleUrl)}">
+	                                                22${fn:escapeXml(variantCategory.variantValueCategory.name)} --%>
 	                                            </c:when>
 	                                            <c:otherwise>
-	                                                <input type="radio" name="productColor" onclick="window.location='${productStyleUrl}'"  value="${fn:escapeXml(productStyleUrl)}">
-	                                                    ${fn:escapeXml(variantCategory.variantValueCategory.name)}
+	                                            	<a href="${fn:escapeXml(productStyleUrl)}" onclick="window.location='${productStyleUrl}'">
+					                                        <span class="variant-checkbox-icon">
+					                                            <svg class="d-none">
+					                                                <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#check" />
+					                                            </svg>
+					                                        </span>
+					                                        <span class="variant-text">${fn:escapeXml(variantCategory.variantValueCategory.name)}</span>
+					                                    </a>
+	                                                <%-- <input type="radio" name="productColor" onclick="window.location='${productStyleUrl}'"  value="${fn:escapeXml(productStyleUrl)}">
+	                                                   33 ${fn:escapeXml(variantCategory.variantValueCategory.name)} --%>
 	                                            </c:otherwise>
 	                                        </c:choose>
 <%--                                             <a href="${fn:escapeXml(productStyleUrl)}" class="swatchVariant" --%>
@@ -60,7 +77,7 @@
                                         </c:if>
                                         <c:set var="i" value="${i + 1}"/>
                                     </c:forEach>
-                                </ul>
+                                </ul></div>
 <%--                             </c:if> --%>
 <%--                             <c:otherwise> --%>
 <%--                                 <select id="priority${loop.index}" class="selectPriority form-control"> --%>
