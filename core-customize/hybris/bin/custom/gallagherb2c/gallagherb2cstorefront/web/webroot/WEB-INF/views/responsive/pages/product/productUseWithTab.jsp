@@ -16,13 +16,18 @@
                     <li>
                         <div class="common-product-small-tile">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-lg-4 col-md-5">
                                     <div class="tile-image">
                                         <!-- <img src="img/fence-product-img.png" alt="product img"> -->
-										<product:productPrimaryImage product="${reference.target}" format="product" />
+                                        <c:forEach items="${reference.target.images}" var="medias">
+                                        <c:if test="${medias.format eq 'thumbnail'}">
+                                        <img src="${medias.url}" alt="${medias.altText}">
+                                        </c:if>
+                                        </c:forEach>
+										<%-- <product:productPrimaryImage product="${reference.target}" format="product" /> --%>
                                     </div>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-lg-8 col-md-7">
                                     <div class="tile-title">${reference.target.name}</div>
 
                                     <div>
