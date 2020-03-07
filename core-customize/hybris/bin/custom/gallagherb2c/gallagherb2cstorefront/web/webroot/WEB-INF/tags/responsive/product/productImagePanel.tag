@@ -40,12 +40,14 @@
 				    <div id="productDetailMainSlider" class="flexslider slider-big-image">
 				        <ul class="slides">
 				        <c:forEach items="${galleryImages}" var="container" varStatus="varStatus">
+				        	<c:if test="${not empty fn:escapeXml(container.productb2c.url)}">
 		                    <li>
-		                    <div class="product-status">
+		                    <div class="product-status"></div>
 	                            <img src="${fn:escapeXml(container.productb2c.url)}"
 	                                 data-zoom-image="${fn:escapeXml(container.superZoom.url)}"
-	                                 alt="${fn:escapeXml(container.thumbnailb2c.altText)}" ></div>
-		                    <li>
+	                                 alt="${fn:escapeXml(container.thumbnailb2c.altText)}" >
+		                    </li>
+		                    </c:if>
 		                </c:forEach>
 				        </ul>
 				    </div>

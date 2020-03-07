@@ -15,6 +15,7 @@
 		<%-- Theme CSS files --%>
 		<link rel="stylesheet" type="text/css" media="all" href="${fn:escapeXml(themeResourcePath)}/css/style.css"/>
 		<link rel="stylesheet" type="text/css" media="all" href="${fn:escapeXml(themeResourcePath)}/bootstrap/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" media="all" href="${fn:escapeXml(themeResourcePath)}/css/flexslider.css"/>
 		<link rel="stylesheet" type="text/css" media="all" href="${fn:escapeXml(themeResourcePath)}/css/theme.css"/>
 				<link rel="stylesheet" type="text/css" media="all" href="${fn:escapeXml(themeResourcePath)}/css/select2.min.css"/>
 		<%--  AddOn Common CSS files --%>
