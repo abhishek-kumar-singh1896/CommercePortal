@@ -29,15 +29,6 @@
   .reviews-text {
     margin-right: 15px;
     color: $gray-6;
-
-    // &:after {
-    //   position: absolute;
-    //   border-right: 1px solid $gray-6;
-    //   height: 12px;
-    //   right: -10px;
-    //   top: 3px;
-    //   content: "";
-    // }
   }
 
   .rating-value {
@@ -87,5 +78,62 @@
     right: 0;
     text-indent: 10000px;
     top: 0;
+  }
+}
+
+.star-rating-input {
+  .rating {
+    float: left;
+  }
+
+  .rating label {
+    width: 16px;
+  }
+
+  .rating:not(:checked) > input {
+    position: absolute;
+    left: -9999px;
+    clip: rect(0, 0, 0, 0);
+  }
+
+  .rating:not(:checked) > label {
+    float: right;
+    width: 16px;
+    padding: 0 0.1em;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    line-height: 1.2;
+  }
+
+  .icon-star {
+    width: 16px;
+    height: 16px;
+    fill: $gray-5; // #ccc;
+    transition: all 0.3s;
+    pointer-events: none; 
+  }
+
+  .rating > input:checked ~ label .icon-star {
+    fill: $primary-color; // #fc0;
+  }
+
+  .rating:not(:checked) > label:hover .icon-star,
+  .rating:not(:checked) > label:hover ~ label .icon-star {
+    fill: $button-highlight-bottom-color; //#bbb;
+  }
+
+  .rating > input:checked + label:hover .icon-star,
+  .rating > input:checked + label:hover ~ label .icon-star,
+  .rating > input:checked ~ label:hover .icon-star,
+  .rating > input:checked ~ label:hover ~ label .icon-star,
+  .rating > label:hover ~ input:checked ~ label .icon-star {
+    fill: $button-highlight-top-color; // #fd0;
+  }
+
+  .rating > label:active {
+    position: relative;
+    top: 1px;
+    left: 1px;
   }
 }

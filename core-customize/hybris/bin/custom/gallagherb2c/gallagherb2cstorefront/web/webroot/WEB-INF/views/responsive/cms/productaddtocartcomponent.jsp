@@ -19,18 +19,22 @@
 
 <div class="addtocart-component d-flex">
 		<c:if test="${empty showAddToCart ? true : showAddToCart}">
-		<div class="qty-selector js-qty-selector">
-			<%-- <span class="input-group-btn">
-				<button class="btn btn-default js-qty-selector-minus" type="button" <c:if test="${qtyMinus <= 1}"><c:out value="disabled='disabled'"/></c:if> ><span class="glyphicon glyphicon-minus" aria-hidden="true" ></span></button>
-			</span> --%>
-				<input type="text" maxlength="3" class="form-control js-qty-selector-input add-to-cart-input" size="1" value="${fn:escapeXml(qtyMinus)}"
-					   data-max="${fn:escapeXml(maxQty)}" data-min="1" name="pdpAddtoCartInput"  id="pdpAddtoCartInput" />
-				<!-- <input type="number" class="form-control add-to-cart-input"
-                                        aria-label="Product Price" aria-describedby="Product Price" value="1"  min="1" max="999"> -->
-			<!-- <span class="input-group-btn">
-				<button class="btn btn-default js-qty-selector-plus" type="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
-			</span> -->
-		</div>
+			<c:set var="buttonType">button</c:set>
+			<c:if test="${product.purchasable and product.stock.stockLevelStatus.code ne 'outOfStock' }">
+				<c:set var="buttonType">submit</c:set>
+			</c:if>
+			<div class="qty-selector js-qty-selector">
+			<c:choose>
+				<c:when test="${fn:contains(buttonType, 'button')}">
+					<input type="text" maxlength="3" class="form-control js-qty-selector-input add-to-cart-input" size="1" value="${fn:escapeXml(qtyMinus)}"
+					   data-max="${fn:escapeXml(maxQty)}" data-min="1" name="pdpAddtoCartInput"  id="pdpAddtoCartInput" disabled="disabled"/>
+				</c:when>
+				<c:otherwise>
+					<input type="text" maxlength="3" class="form-control js-qty-selector-input add-to-cart-input" size="1" value="${fn:escapeXml(qtyMinus)}"
+					   data-max="${fn:escapeXml(maxQty)}" data-min="1" name="pdpAddtoCartInput"  id="pdpAddtoCartInput"/>
+				</c:otherwise>
+			</c:choose>
+			</div>
 		</c:if>
 		<%-- <c:if test="${product.stock.stockLevel gt 0}">
 			<c:set var="productStockLevelHtml">${fn:escapeXml(product.stock.stockLevel)}&nbsp;
@@ -41,15 +45,15 @@
 			<c:set var="productStockLevelHtml">
 				<spring:theme code="product.variants.only.left" arguments="${product.stock.stockLevel}"/>
 			</c:set>
-		</c:if> --%>
+		</c:if> 
 		<c:if test="${isForceInStock}">
 			<c:set var="productStockLevelHtml">
 				<spring:theme code="product.variants.available"/>
 			</c:set>
 		</c:if>
-		<%-- <div class="stock-wrapper clearfix">
+		 <div class="stock-wrapper clearfix">
 			${productStockLevelHtml}
-		</div> --%>
+		</div>  --%>
 		 <div class="actions">
 <%--         <c:if test="${multiDimensionalProduct}" > --%>
 <%--                 <c:url value="${product.url}/orderForm" var="productOrderFormUrl"/> --%>

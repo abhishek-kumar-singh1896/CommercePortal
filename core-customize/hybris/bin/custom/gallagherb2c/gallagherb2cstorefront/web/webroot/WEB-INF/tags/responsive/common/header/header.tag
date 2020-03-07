@@ -217,7 +217,7 @@
 
 <sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
 	<header:megaMenu/>
-	<header class="main-header-out shadow-sm with-logged-in-user fixed-top">
+	<header class="main-header-out shadow-sm with-logged-in-user">
 		<div class="container">
 			<div>
 				<div class="header-left-section">

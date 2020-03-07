@@ -58,7 +58,12 @@
 	</c:if>
 	<c:choose>
 		<c:when test="${fn:contains(buttonType, 'button')}">
-			<button type="${buttonType}" class="btn btn-primary btn-block js-add-to-cart btn-icon glyphicon-shopping-cart outOfStock" disabled="disabled">
+			<button type="${buttonType}" class="btn btn-highlight btn-block add-to-cart-btn btn-icon outOfStock" disabled="disabled">
+				<span class="add-to-cart-icon">
+                        <svg>
+                            <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#cart" />
+                        </svg>
+                    </span>
 				<spring:theme code="product.variants.out.of.stock"/>
 			</button>
 		</c:when>

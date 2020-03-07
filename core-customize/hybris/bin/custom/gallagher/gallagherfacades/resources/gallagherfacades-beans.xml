@@ -24,6 +24,7 @@
 	
 	<bean class="de.hybris.platform.commercefacades.product.data.ImageData">
 		<property name="description" type="java.lang.String"/>
+		<property name="mime" type="java.lang.String"/>
 	</bean>
 	
 	<bean class="de.hybris.platform.commercefacades.product.data.ProductData">

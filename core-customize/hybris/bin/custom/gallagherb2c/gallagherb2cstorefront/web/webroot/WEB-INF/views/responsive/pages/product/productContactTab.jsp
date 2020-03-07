@@ -138,7 +138,12 @@
                    <div class="product-list">
                        <div class="product-listing-out clearfix">
                            <ul>
-                               <li class="product-tile"
+                           		<c:forEach items="${product.productReferences}" var="reference">
+							<c:if test="${reference.referenceType eq 'OTHERS'}">
+							<product:productListerGridItem product="${reference.target}" />
+							</c:if>
+							</c:forEach>
+                               <!-- <li class="product-tile"
                                    onclick="window.location.href='product-details.html'">
                                    <div class="row">
                                        <div class="col-md-12 pr-xs-0">
@@ -182,14 +187,14 @@
                                            </div>
                                        </div>
                                    </div>
-                               </li>
-                               <li class="product-tile"
+                               </li> -->
+                               <!-- <li class="product-tile"
                                    onclick="window.location.href='product-details.html'">
                                    <div class="row">
                                        <div class="col-md-12 pr-xs-0">
-                                           <!-- <div class="product-status">
+                                           <div class="product-status">
                                                <img src="img/new.svg">
-                                           </div> -->
+                                           </div>
                                             <div class="product-img-box">
                                                 <a href="javascript:void(0)">
                                                     <img class="product-image"
@@ -230,7 +235,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </li>
+                                </li> -->
                             </ul>
                         </div>
                         <div class="mt-3">

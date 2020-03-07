@@ -16,7 +16,7 @@
 						</c:if>
 						<li class="nav-item">
 							<c:if test="${children.index eq 0}">
-                             <a class="nav-link d-flex align-content-center flex-wrap active" href="#${title}">
+                             <a class="nav-link d-flex align-content-center flex-wrap" href="#${title}">
                                  <span>${component.title}</span>
                              </a> 
                              </c:if>

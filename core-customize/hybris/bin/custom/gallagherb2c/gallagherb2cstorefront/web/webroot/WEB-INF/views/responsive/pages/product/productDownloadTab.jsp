@@ -4,17 +4,18 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <section id="${fn:replace(title,' ', '')}" class="common-sub-tab-section">
+	<c:if test="${not empty product.dataSheet}">
     <div class="container">
         <div class="how-to-download-section">
             <h4 class="small-section-sub-title">Related documents</h4>
 
             <ul class="row align-items-stretch">
-            	<c:forEach var="media" items="${product.data_sheet}">
+            	<c:forEach var="media" items="${product.dataSheet}">
                 <li class="col-md-3 col-6">
                     <div class="download-column-out">
                         <div class="download-column-title">
                             <a href="javascript:void(0)">
-                                ${media.altText}
+                                ${media.description}
                             </a>
                         </div>
                         <div class="download-column-bottom-section">
@@ -33,6 +34,7 @@
             </ul>
         </div>
     </div>
+    </c:if>
 
     <div class="register-account-out">
         <div class="container">
