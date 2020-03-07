@@ -200,10 +200,7 @@ public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 		final HttpEntity<String> entity = new HttpEntity<>(request, headers);
 
 		final String redirectURL = getSiteBaseUrlResolutionService().getWebsiteUrlForSite(getBaseSiteService().getCurrentBaseSite(),
-				true, null);
-
-		//final String redirectURL = "https://localhost:9002/security/nz/en";
-		//final String redirectURL = "https://securityB2BNZ.local:9002/security/nz/en";
+				true, getUrlEncoderService().getCurrentUrlEncodingPattern());
 
 		final String url = MessageFormat.format(
 				getConfigurationService().getConfiguration().getString("keycloak.reset.password.url"), keycloakGUID, redirectURL);
