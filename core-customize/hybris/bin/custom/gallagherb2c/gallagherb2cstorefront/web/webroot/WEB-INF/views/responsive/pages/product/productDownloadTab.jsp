@@ -3,6 +3,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="cms" uri="http://hybris.com/tld/cmstags"%>
 <section id="${fn:replace(title,' ', '')}" class="common-sub-tab-section">
 	<c:if test="${not empty product.dataSheet}">
     <div class="container">
@@ -39,16 +40,10 @@
     </div>
     </c:if>
 
-    <div class="register-account-out">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-12">
-                    <h2 class="register-account-title"><spring:theme code="text.Register.Account.Title"/></h2>
-                    <button type="button" class="btn btn-primary"><spring:theme code="text.Register.Account"/></button>
-                </div>
-            </div>
-        </div>
-    </div>
+	<cms:pageSlot position="RegisterProduct" var="comp" >
+		<cms:component component="${comp}"/>
+	</cms:pageSlot>
+                    
     <div class="container">
         <div class="two-column-section">
             <div class="row">

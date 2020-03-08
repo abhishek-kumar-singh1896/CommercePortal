@@ -1967,3 +1967,23 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents
 ;;FooterSlot;GallagherFooterNavigationComponent
 
 ####Footernavigation node end###
+
+
+####Product detail page impex####
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;RegisterProduct;;GallagherRegisterButtonComponent;narrow
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;RegisterProduct-ProductDetails;RegisterProduct;;RegisterProductSlot;true
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active
+;;RegisterProductSlot;Register Product Slot;true
+
+INSERT_UPDATE GallagherRegisterButtonComponent;$contentCV[unique=true];uid[unique=true];buttonHeading;button
+;;ProductRegisterBtn;Get two year warranty, register your product online;Register account
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid, $contentCV)
+;;RegisterProductSlot;ProductRegisterBtn
+
+#####Product details page impex end #####
+

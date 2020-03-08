@@ -246,6 +246,9 @@
 					</attribute>
 				</attributes>
 			</itemtype>
+			
+			<itemtype code="GallagherRegisterButtonComponent" autocreate="true" generate="true" extends="GallagherButtonComponent">
+			</itemtype>
 
 			<itemtype code="GallagherCategoryBannerComponent" autocreate="true" generate="true" extends="BannerComponent"
 				jaloclass="com.gallagher.core.jalo.GallagherCategoryBannerComponent">
