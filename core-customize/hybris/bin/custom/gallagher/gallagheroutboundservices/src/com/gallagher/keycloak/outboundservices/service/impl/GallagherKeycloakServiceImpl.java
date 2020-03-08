@@ -214,9 +214,6 @@ public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 				getConfigurationService().getConfiguration().getString("keycloak.reset.password.url"),
 					keycloakGUID, redirectURL);
 
-
-
-
 		final ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.PUT, entity, String.class);
 	}
 }
