@@ -57,6 +57,7 @@ public class GallagherSaveCustomerHandler implements FlowActionHandler
 		{
 			final CustomerData customerData = createCustomerData(email, name);
 
+
 			String keycloakGUID = gallagherKeycloakService.getKeycloakUserFromEmail(customerData.getEmail());
 
 			if (keycloakGUID != null)

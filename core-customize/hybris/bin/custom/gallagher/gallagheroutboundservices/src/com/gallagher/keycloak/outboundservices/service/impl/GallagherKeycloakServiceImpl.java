@@ -202,37 +202,21 @@ public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 
 		final HttpEntity<String> entity = new HttpEntity<>(request, headers);
 
-		String redirectURL = null;
-		try
+		if (getBaseSiteService().getCurrentBaseSite() == null)
 		{
-			redirectURL = getSiteBaseUrlResolutionService().getWebsiteUrlForSite(getBaseSiteService().getCurrentBaseSite(),
+				getBaseSiteService().setCurrentBaseSite("securityB2BGlobal", false);
+		}
+
+		final String redirectURL = getSiteBaseUrlResolutionService().getWebsiteUrlForSite(getBaseSiteService().getCurrentBaseSite(),
 				true, null);
-		}
-		catch (final NullPointerException nullUrlEx)
-		{
-			LOGGER.error("Expection while creating redirect url ", nullUrlEx);
-		}
 
-		String url = null;
-
-		if (redirectURL == null)
-		{
-
-			url = getConfigurationService().getConfiguration().getString("keycloak.backoffice.reset.password.url");
-		}
-		else
-		{
-
-			url = MessageFormat.format(getConfigurationService().getConfiguration().getString("keycloak.reset.password.url"),
+		final String url = MessageFormat.format(
+				getConfigurationService().getConfiguration().getString("keycloak.reset.password.url"),
 					keycloakGUID, redirectURL);
-		}
 
 
 
-		System.out.println("Password reset email start sending.........");
 
 		final ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.PUT, entity, String.class);
-
-		System.out.println("Password reset email sended.........");
 	}
 }
