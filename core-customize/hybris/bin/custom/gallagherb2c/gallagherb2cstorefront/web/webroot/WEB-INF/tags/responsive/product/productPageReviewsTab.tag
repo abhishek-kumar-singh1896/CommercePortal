@@ -16,7 +16,13 @@
 	<div class="review-pagination-bar">
 		<%-- <button class="btn btn-default js-review-write-toggle "><spring:theme code="review.write.title"/></button> --%>
 		<div class="write-review-out">
-                            <a href="javascript:void(0)" class="js-review-write-toggle write-review-link"><spring:theme code="review.write.title"/></a>
+                            <a href="javascript:void(0)" class="js-review-write-toggle write-a-review-link"><spring:theme code="review.write.title"/>
+                            <span class="down-arrow-icon">
+                                    <svg>
+                                        <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-down" />
+                                    </svg>
+                                </span>
+                            </a>
                         </div>
 
 		<%-- <div class="right">
@@ -25,7 +31,7 @@
 		</div> --%>
 	</div>
 
-	<div class="write-review js-review-write">
+	<div class="js-review-write write-a-review-container d-none">
 		<form:form method="post" action="${productReviewActionUrl}" modelAttribute="reviewForm">
 			<div class="form-group">
 				<formElement:formInputBox idKey="review.headline" labelKey="review.headline" path="headline" inputCSS="common-input" mandatory="true" labelCSS="common-form-label"/>

@@ -6,9 +6,9 @@ ACC.productDetails = {
 
 	clickOnTab: function(){
 			$(document).ready(function () {
-				$('.write-review-link').click(function(){
+				/*$('.write-review-link').click(function(){
 					$('.tab-review .write-review').toggle();
-				});
+				});*/
 				
 				//navigation menu js start
 				var subTabOut = $('.product-detail-tab').offset();
@@ -83,6 +83,12 @@ ACC.productDetails = {
 	                $(this).closest('ul').find('li').removeClass('active');
 	                $(this).parent().addClass('active');
 	                $(this).find('.variant-checkbox-icon svg').removeClass('d-none');
+	            });
+	            
+	            $('.write-a-review-link').click(function(){
+	                $(this).toggleClass('expanded');
+	                $('.write-a-review-container').toggleClass('d-none fadeInUp');
+
 	            });
 	            
 

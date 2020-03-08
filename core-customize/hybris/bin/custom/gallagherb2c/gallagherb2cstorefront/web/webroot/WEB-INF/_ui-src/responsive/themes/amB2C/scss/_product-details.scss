@@ -342,6 +342,26 @@ h4 {
     letter-spacing: 0.25px;
   }
 
+  .write-a-review-link {
+    text-decoration: none;
+    .down-arrow-icon {
+      display: inline-block;
+      transition: all 0.2s ease;
+      svg {
+        width: 20px;
+        height: 20px;
+        fill: $terciary;
+      }
+    }
+
+    &.expanded {
+      .down-arrow-icon {
+        -webkit-transform: rotate(-180deg);
+        transform: rotate(-180deg);
+      }
+    }
+  }
+
   .compare-section-out,
   .use-with-section-out {
     padding: 48px 0;
@@ -389,7 +409,7 @@ h4 {
             font-size: $font-size-16px;
             width: 100%;
             display: -webkit-box;
-            -webkit-line-clamp: 2;
+            -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
           }
@@ -405,7 +425,7 @@ h4 {
             color: $primary-color;
             font-size: $font-size-16px;
             padding-left: 4px;
-            display: inline-block;;
+            display: inline-block;
           }
         }
       }
