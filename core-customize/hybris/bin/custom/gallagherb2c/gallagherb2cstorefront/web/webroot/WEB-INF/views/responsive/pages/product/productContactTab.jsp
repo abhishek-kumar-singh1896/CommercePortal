@@ -27,7 +27,7 @@
                            </ul>
                        </div>
                        <div class="mt-3">
-                           <a href="javascript:void(0)">See all</a>
+                           <a href="/am/us/en/Animal-Management/Electric-Fencing/c/electric-fencing">See all</a>
                        </div>
                    </div>
 
@@ -53,7 +53,7 @@
                             </ul>
                         </div>
                         <div class="mt-3">
-                            <a href="javascript:void(0)">See all</a>
+                            <a href="/am/us/en/Animal-Management/Electric-Fencing/c/electric-fencing">See all</a>
                         </div>
                     </div>
 
