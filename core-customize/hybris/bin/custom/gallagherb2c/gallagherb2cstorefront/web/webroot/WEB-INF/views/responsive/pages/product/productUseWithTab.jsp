@@ -18,10 +18,12 @@
                             <div class="row">
                                 <div class="col-lg-4 col-md-5">
                                     <div class="tile-image">
-                                        <!-- <img src="img/fence-product-img.png" alt="product img"> -->
+                                    	<c:url value="${product.url}" var="productUrl" />
                                         <c:forEach items="${reference.target.images}" var="medias">
                                         <c:if test="${medias.format eq 'thumbnail'}">
+                                        <a href="${fn:escapeXml(productUrl)}" title="${fn:escapeXml(product.name)}">
                                         <img src="${medias.url}" alt="${medias.altText}">
+                                        </a>
                                         </c:if>
                                         </c:forEach>
 										<%-- <product:productPrimaryImage product="${reference.target}" format="product" /> --%>
@@ -32,9 +34,7 @@
 
                                     <div>
                                         <span class="currency-text">RRP</span>
-                                        <span class="currency-value">
-											<product:productListerItemPrice product="${reference.target}" />
-                                        <!-- $123.00 --></span>
+										<product:productListerItemPrice product="${reference.target}" />
                                     </div>
                                 </div>
                             </div>
