@@ -49,12 +49,12 @@
             </div>
         </div>
     </div>
-    <!-- <div class="container">
+    <div class="container">
         <div class="two-column-section">
             <div class="row">
                 <div class="col-md-6">
                     <div class="column-full-img">
-                        <img src="img/product-two-column-img.png" alt="Product Image">
+                        <img src="${commonResourcePath}/images/product-two-column-img.png" alt="Product Image">
                     </div>
                 </div>
 
@@ -78,5 +78,5 @@
 
             </div>
         </div>
-    </div> -->
+    </div>
 </section>
