@@ -26,13 +26,13 @@ import de.hybris.platform.commercefacades.product.data.FutureStockData;
 import de.hybris.platform.commercefacades.product.data.ImageData;
 import de.hybris.platform.commercefacades.product.data.ImageDataType;
 import de.hybris.platform.commercefacades.product.data.ProductData;
+import de.hybris.platform.commercefacades.product.data.ProductReferenceData;
 import de.hybris.platform.commercefacades.product.data.ReviewData;
 import de.hybris.platform.commerceservices.url.UrlResolver;
 import de.hybris.platform.core.model.product.ProductModel;
 import de.hybris.platform.product.ProductService;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 import de.hybris.platform.util.Config;
-import com.gallagher.b2c.controllers.ControllerConstants;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -411,9 +411,24 @@ public class ProductPageController extends AbstractPageController
 				ProductOption.LOGO, ProductOption.DATA_SHEET));
 
 		options.addAll(extraOptions);
-
+		final List<ProductData> followup = new ArrayList<ProductData>();
+		final List<ProductData> others = new ArrayList<ProductData>();
 		final ProductData productData = productFacade.getProductForCodeAndOptions(productCode, options);
+		final List<ProductReferenceData> references = productData.getProductReferences();
 
+		for (final ProductReferenceData product : references)
+		{
+			if (product.getReferenceType().getCode().equals("FOLLOWUP"))
+			{
+				followup.add(product.getTarget());
+			}
+			if (product.getReferenceType().getCode().equals("OTHERS"))
+			{
+				others.add(product.getTarget());
+			}
+		}
+		model.addAttribute("followup", followup);
+		model.addAttribute("others", others);
 		sortVariantOptionData(productData);
 		storeCmsPageInModel(model, getPageForProduct(productCode));
 		populateProductData(productData, model);

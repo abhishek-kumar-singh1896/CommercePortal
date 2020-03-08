@@ -19,11 +19,10 @@
                    <div class="product-list">
                        <div class="product-listing-out clearfix">
                            <ul>
-                           <c:forEach items="${product.productReferences}" var="reference">
-							<c:if test="${reference.referenceType eq 'FOLLOWUP'}">
-								<product:productReferenceList product="${reference.target}" />
-							</c:if>
+                           <c:forEach items="${followup}" var="reference">
+								<product:productReferenceList product="${reference}" />
 							</c:forEach>
+							
                            </ul>
                        </div>
                        <div class="mt-3">
@@ -45,10 +44,8 @@
                    <div class="product-list">
                        <div class="product-listing-out clearfix">
                            <ul>
-                           	<c:forEach items="${product.productReferences}" var="reference1">
-							<c:if test="${reference1.referenceType eq 'OTHERS'}">
-							<product:productReferenceList product="${reference1.target}" />
-							</c:if>
+                           	<c:forEach items="${others}" var="reference1">
+							<product:productReferenceList product="${reference1}" />
 							</c:forEach>
                             </ul>
                         </div>
