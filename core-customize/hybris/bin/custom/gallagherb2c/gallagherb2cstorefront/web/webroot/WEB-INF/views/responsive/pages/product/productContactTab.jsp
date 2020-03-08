@@ -71,7 +71,7 @@
                 <div class="col-md-6 col-padding-0">
                     <div class="gray-shade"></div>
                     <div class="find-dealer-img"
-                        style="background: url('img/find-dealer-img.png') center center no-repeat; background-size: cover;">
+                        style="background: url('${commonResourcePath}/images/find-dealer-img.png') center center no-repeat; background-size: cover;">
                         &nbsp;
                     </div>
                     <div class="find-dealer-out-middle">
@@ -87,7 +87,7 @@
                 <div class="col-md-6 col-padding-0">
                     <div class="primary-shade"></div>
                     <div class="find-dealer-img"
-                        style="background: url('img/getexpert-advice-img.png') center center no-repeat; background-size: cover;">
+                        style="background: url('${commonResourcePath}/images/getexpert-advice-img.png') center center no-repeat; background-size: cover;">
                         &nbsp;
                     </div>
                     <div class="find-dealer-out-middle">
