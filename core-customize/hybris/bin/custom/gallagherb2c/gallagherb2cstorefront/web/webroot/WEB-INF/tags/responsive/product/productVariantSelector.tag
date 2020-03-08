@@ -35,14 +35,14 @@
 								<div class="variant-title">${fn:escapeXml(productMatrix[0].parentVariantCategory.name)}</div>
                                 <ul>
                                     <c:forEach items="${productMatrix}" var="variantCategory">
-                                        <li <c:if test="${variantCategory.variantOption.url eq product.url}">class="selected"</c:if>>
+                                        <li <c:if test="${variantCategory.variantOption.url eq product.url}">class="active"</c:if>>
                                            <c:url value="${variantCategory.variantOption.url}"
                                             var="productStyleUrl" />
                                            <c:choose>    
 	                                            <c:when test="${variantCategory.variantOption.code eq product.code}">
-					                                    <a href="${fn:escapeXml(productStyleUrl)}" onclick="window.location='${productStyleUrl}'" checked="checked">
+					                                    <a href="${fn:escapeXml(productStyleUrl)}" onclick="window.location='${productStyleUrl}'">
 					                                        <span class="variant-checkbox-icon">
-					                                            <svg class="d-none">
+					                                            <svg>
 					                                                <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#check" />
 					                                            </svg>
 					                                        </span>
