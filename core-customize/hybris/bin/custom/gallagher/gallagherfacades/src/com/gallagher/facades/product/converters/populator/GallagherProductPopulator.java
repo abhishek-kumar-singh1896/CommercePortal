@@ -38,10 +38,9 @@ public class GallagherProductPopulator extends ProductPopulator
 		if (CollectionUtils.isNotEmpty(source.getAnimalCompatibility()))
 		{
 			final List<String> animals = new ArrayList<String>();
-			for (final Animal a : source.getAnimalCompatibility())
+			for (final Animal anim : source.getAnimalCompatibility())
 			{
-				System.out.println("animalCode>>" + a.getCode());
-				//				animals.add(enumerationService.getEnumerationValue(Animal.class, source.getAnimalCompatibility()));
+				animals.add(anim.getCode());
 			}
 			target.setAnimalCompatibility(animals);
 		}
