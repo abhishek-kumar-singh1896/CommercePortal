@@ -5,6 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="breadcrumb" tagdir="/WEB-INF/tags/responsive/nav/breadcrumb"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
  <div class="container">
      <div class="row">
          <div class="col-12">
@@ -31,7 +32,8 @@
                             </span>
 							<c:if test="${not empty product.averageRating}">
 	                            <span class="rating-value">
-	                                (${fn:escapeXml(product.averageRating)})
+	                            (<fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${fn:escapeXml(product.averageRating)}"/>)
+	                               <%--  (${fn:escapeXml(product.averageRating)}) --%>
 	                            </span>
                             </c:if>
                         </div>
