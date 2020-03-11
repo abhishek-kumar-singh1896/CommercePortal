@@ -23,6 +23,14 @@ ACC.productList = {
             $('#refineFilter .modal-header .close').click(function(){
                 $('#refineFilter').hide();
             });
+            
+            $('#refineFilterSaveBtn').click(function(){
+                $('#refineFilter').hide();
+            });
+            
+            $('.refine-btn').click(function(){
+                $('#refineFilter').show();
+            });
 
 		});
 	}

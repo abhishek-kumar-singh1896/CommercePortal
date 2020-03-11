@@ -103,7 +103,7 @@
 							<form id="sortForm${top ? '1' : '2'}"
 								name="sortForm${top ? '1' : '2'}" method="get" action="#">
 								<select id="sortOptions${top ? '1' : '2'}" name="sort"
-									class="form-control ">
+									class="form-control js-example-basic-single product-list-sort-by">
 									<option disabled><spring:theme
 											code="${themeMsgKey}.sortTitle" /></option>
 									<c:forEach items="${searchPageData.sorts}" var="sort">
@@ -158,7 +158,7 @@
 			<div class="row align-items-end">
 				<c:if test="${top && showTotals}">
 					<div class="col-4 pr-0">
-						<button type="button" class="btn btn-icon" id="refineFilterLink" >
+						<button type="button" class="btn btn-icon refine-btn" id="refineFilterLink" >
 							<span class="btn-icon-out"> <svg>
 	                        	<use
 										xlink:href="${commonResourcePath}/images/gallagher-icons.svg#refine" />
