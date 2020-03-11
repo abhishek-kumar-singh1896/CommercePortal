@@ -124,5 +124,10 @@
 		</property>
 		<property name="value" ref="storeFrontProcessContextStrategy" />
 	</bean>
+	
+	<bean id="glCustomerRegistrationEmailProcessDefinitionResource"
+		class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+		<property name="resource" value="classpath:/gallaghercore/processes/customerRegistrationEmailProcess.xml" />
+	</bean>
 
 </beans>

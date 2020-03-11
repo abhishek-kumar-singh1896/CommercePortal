@@ -71,6 +71,8 @@ core-customize/hybris/bin/custom/**/**/web/webroot/_ui/responsive/common/js/*
 
 core-customize/hybris/bin/custom/gallagherb2b/gallagherb2bstorefront/web/webroot/WEB-INF/lib/.lastupdate
 core-customize/hybris/bin/custom/gallagherb2c/gallagherb2cstorefront/web/webroot/WEB-INF/lib/.lastupdate
+core-customize/hybris/bin/custom/gallagher/gallaghercore/lib/.lastupdate
+core-customize/hybris/bin/custom/gallagher/gallaghercore/lib/*.jar
 core-customize/hybris/bin/custom/gallagherb2b/gallagherb2bstorefront/web/webroot/WEB-INF/lib/*.jar
 core-customize/hybris/bin/custom/gallagherb2c/gallagherb2cstorefront/web/webroot/WEB-INF/lib/*.jar
 
