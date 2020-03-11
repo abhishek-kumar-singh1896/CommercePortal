@@ -100,9 +100,9 @@
 				<c:if test="${not empty searchPageData.sorts}">
 					<div class="col-6 text-right">
 						<div class="sort-by-out">
-							<form id="sortForm${top ? '1' : '2'}"
-								name="sortForm${top ? '1' : '2'}" method="get" action="#">
-								<select id="sortOptions${top ? '1' : '2'}" name="sort"
+							<form id="sortForm1"
+								name="sortForm1" method="get" action="#">
+								<select id="sortOptions1" name="sort"
 									class="form-control js-example-basic-single product-list-sort-by">
 									<option disabled><spring:theme
 											code="${themeMsgKey}.sortTitle" /></option>
@@ -205,9 +205,9 @@
 				<c:if test="${not empty searchPageData.sorts}">
 					<div class="col-8 text-right">
 						<div class="sort-by-out">
-							<form id="sortForm${top ? '1' : '2'}"
-								name="sortForm${top ? '1' : '2'}" method="get" action="#">
-								<select id="sortOptions${top ? '1' : '2'}" name="sort"
+							<form id="sortForm2"
+								name="sortForm2" method="get" action="#">
+								<select id="sortOptions2" name="sort"
 									class="form-control js-example-basic-single product-list-sort-by">
 									<option disabled>
 									<spring:theme code="${themeMsgKey}.sortTitle" /></option>
