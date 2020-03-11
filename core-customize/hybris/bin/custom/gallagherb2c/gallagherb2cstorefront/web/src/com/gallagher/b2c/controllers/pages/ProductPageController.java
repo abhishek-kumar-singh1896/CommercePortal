@@ -412,23 +412,23 @@ public class ProductPageController extends AbstractPageController
 				ProductOption.LOGO, ProductOption.DATA_SHEET));
 
 		options.addAll(extraOptions);
-		final List<ProductData> followup = new ArrayList<ProductData>();
+		final List<ProductData> sparepart = new ArrayList<ProductData>();
 		final List<ProductData> others = new ArrayList<ProductData>();
 		final ProductData productData = productFacade.getProductForCodeAndOptions(productCode, options);
 		final List<ProductReferenceData> references = productData.getProductReferences();
 
 		for (final ProductReferenceData product : references)
 		{
-			if (product.getReferenceType().getCode().equals("FOLLOWUP"))
+			if (product.getReferenceType().getCode().equals("SPAREPART"))
 			{
-				followup.add(product.getTarget());
+				sparepart.add(product.getTarget());
 			}
 			if (product.getReferenceType().getCode().equals("OTHERS"))
 			{
 				others.add(product.getTarget());
 			}
 		}
-		model.addAttribute("followup", followup);
+		model.addAttribute("sparepart", sparepart);
 		model.addAttribute("others", others);
 		sortVariantOptionData(productData);
 		storeCmsPageInModel(model, getPageForProduct(productCode));
