@@ -4,11 +4,26 @@
 <%@ taglib prefix="storepickup"
 	tagdir="/WEB-INF/tags/responsive/storepickup"%>
 <%@ taglib prefix="nav" tagdir="/WEB-INF/tags/responsive/nav"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="breadcrumb"
+	tagdir="/WEB-INF/tags/responsive/nav/breadcrumb"%>
 
 <template:page pageTitle="${pageTitle}">
 
-<nav:refineFilterModalResponsive searchPageData="${searchPageData}"/>
+	<nav:refineFilterModalResponsive searchPageData="${searchPageData}" />
 
+	<div class="container">
+	<div class="banner-inner">
+		<div class="breadcrumb-out">
+			<c:if test="${fn:length(breadcrumbs) > 0}">
+				<nav aria-label="breadcrumb">
+					<breadcrumb:breadcrumb breadcrumbs="${breadcrumbs}" />
+				</nav>
+			</c:if>
+		</div>
+	</div>
+	</div>
 
 	<div class="product-list">
 
