@@ -22,7 +22,7 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<div class="product-list-sidebar-out">
+				<div class="product-list-sidebar-out js-product-facet">
 					<div class="sidebar-filter-section d-flex flex-column justify-content-center">
 						<c:if test="${fn:length(searchPageData.breadcrumbs) >0}">  
 							<div>
