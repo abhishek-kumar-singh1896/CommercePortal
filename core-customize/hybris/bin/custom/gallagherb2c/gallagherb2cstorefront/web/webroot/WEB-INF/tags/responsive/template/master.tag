@@ -55,7 +55,7 @@
 	<generatedVariables:generatedVariables/>
 </head>
 
-<body class="${pageBodyCssClasses} ${cmsPageRequestContextData.liveEdit ? ' yCmsLiveEdit' : ''} language-${fn:escapeXml(currentLanguage.isocode)}">
+<body class="${pageBodyCssClasses} ${cmsPageRequestContextData.liveEdit ? ' yCmsLiveEdit' : ''} language-${fn:escapeXml(currentLanguage.isocode)}" <c:if test="${cmsPage.uid eq 'productDetails'}">data-spy="scroll" data-target="#productDetailTab"</c:if>>
 
 	<%-- Inject the page body here --%>
 	<jsp:doBody/>
