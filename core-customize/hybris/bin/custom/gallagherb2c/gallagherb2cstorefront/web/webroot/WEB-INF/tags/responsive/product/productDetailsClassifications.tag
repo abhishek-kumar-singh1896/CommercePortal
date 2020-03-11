@@ -7,9 +7,9 @@
 	<c:if test="${not empty product.classifications}">
 		<c:forEach items="${product.classifications}" var="classification">
 			
-				<div class="row mb-3">
+				<div class="row">
 				<c:forEach items="${classification.features}" var="feature" varStatus="status">
-				    <div class="col-md-6">
+				    <div class="col-md-6 mb-3">
 				        <label for="warranty" class="overview-label">${fn:escapeXml(feature.name)}</label>
 				        <div class="overview-value" id="warranty"><!-- 1 year -->
 				        <c:forEach items="${feature.featureValues}" var="value" varStatus="status">
