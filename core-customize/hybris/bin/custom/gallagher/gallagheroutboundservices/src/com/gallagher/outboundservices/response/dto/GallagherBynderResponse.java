@@ -383,7 +383,6 @@ public class GallagherBynderResponse
 
 
 		// Getter Methods
-
 		public String getMini()
 		{
 			return mini;
