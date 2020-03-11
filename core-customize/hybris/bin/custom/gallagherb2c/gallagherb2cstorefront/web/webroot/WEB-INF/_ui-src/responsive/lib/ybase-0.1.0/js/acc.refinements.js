@@ -32,7 +32,7 @@ ACC.refinements = {
 		var pageURL = location.protocol + '//' + location.host + location.pathname;
 		a.href = pageURL;
 		var queryString = $(location).attr('search');
-		queries = queryString.split("%3A%3A");
+		queries = queryString.split("%3A");
 		$('.clear-filter').attr("href",  pageURL + queries[0]);
 	}, 
 	bindSearch:function() {
