@@ -19,7 +19,7 @@
                    <div class="product-list">
                        <div class="product-listing-out clearfix">
                            <ul>
-                           <c:forEach items="${followup}" var="reference">
+                           <c:forEach items="${sparepart}" var="reference">
 								<product:productReferenceList product="${reference}" />
 							</c:forEach>
 							

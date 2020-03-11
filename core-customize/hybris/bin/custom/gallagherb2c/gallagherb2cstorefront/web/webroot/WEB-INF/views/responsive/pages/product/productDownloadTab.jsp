@@ -15,7 +15,7 @@
                 <li class="col-md-3 col-6">
                     <div class="download-column-out">
                         <div class="download-column-title">
-                            <a href="javascript:void(0)">
+                            <a target="_blank" href="${media.url}">
                                 ${media.description}
                             </a>
                         </div>
