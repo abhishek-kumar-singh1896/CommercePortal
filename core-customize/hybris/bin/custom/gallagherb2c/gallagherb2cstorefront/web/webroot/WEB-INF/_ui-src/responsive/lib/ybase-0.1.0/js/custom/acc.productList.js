@@ -6,6 +6,7 @@ ACC.productList = {
 		$(document).ready(function() {
 			$('.js-example-basic-single').select2({
 				minimumResultsForSearch : -1,
+				width: '100%',
 				placeholder : "---Select---"
 			}).on('select2:opening', function() {
 				$('.select2-dropdown').slideDown(1000);
