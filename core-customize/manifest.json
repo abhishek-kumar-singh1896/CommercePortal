@@ -206,7 +206,13 @@
           "name":"odata2webservices",
           "contextPath":"/odata2webservices"
         }
-      ]
+      ],
+	  "properties":[
+		{
+			"key":"cronjob.timertask.loadonstartup",
+			"value":"true"
+		}
+	  ]
     },
     {
       "name": "accstorefront",
@@ -269,7 +275,12 @@
     },
     {
       "name": "backgroundProcessing",
-      "properties": [],
+      "properties": [
+		{
+			"key":"cronjob.timertask.loadonstartup",
+			"value":"true"
+		}
+	  ],
       "webapps": [
         {
           "name": "hac",
