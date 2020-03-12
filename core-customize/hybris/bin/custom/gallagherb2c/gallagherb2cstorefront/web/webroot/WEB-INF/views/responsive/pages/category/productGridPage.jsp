@@ -33,7 +33,7 @@
 						<cms:pageSlot position="ProductGridSlot" var="feature"
 							element="div" class="product-grid-right-result-slot">
 							<cms:component component="${feature}" element="div"
-								class="product__list--wrapper yComponentWrapper product-grid-right-result-component" />
+								class="product__list yComponentWrapper product-grid-right-result-component" />
 						</cms:pageSlot>
 					</div>
 				</div>
