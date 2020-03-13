@@ -91,6 +91,27 @@ ACC.productDetails = {
 
 	            });
 	            
+	         // The video slider
+	            $('#productDetailVideoCarousel').flexslider({
+	                animation: "slide",
+	                controlNav: false,
+	                animationLoop: false,
+	                slideshow: false,
+	                itemWidth: 171,
+	                itemMargin: 10,
+	                directionNav: false,
+	                asNavFor: '#productDetailVideoSlider'
+	            });
+
+	            $('#productDetailVideoSlider').flexslider({
+	                animation: "slide",
+	                controlNav: false,
+	                animationLoop: false,
+	                slideshow: false,
+	                touch: true,
+	                sync: "#productDetailVideoCarousel"
+	            });
+	            
 
         });
 			

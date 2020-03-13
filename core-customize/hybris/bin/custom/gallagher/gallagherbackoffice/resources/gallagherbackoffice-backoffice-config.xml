@@ -137,6 +137,14 @@
                     <editorArea:attribute qualifier="variantForImage" />
                 </editorArea:section>
             </editorArea:tab>
+            <editorArea:tab name="hmc.tab.product.properties" position="2">
+            	<editorArea:section name="hmc.product.descriptions">
+                    <editorArea:attribute editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)"
+                                          qualifier="videoDescription"/>
+                    <editorArea:attribute editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)"
+                                          qualifier="summary"/>
+                </editorArea:section>
+            </editorArea:tab>
         </editorArea:editorArea>
     </context>
 	<context merge-by="type" parent="Customer" type="B2BCustomer" component="create-wizard">

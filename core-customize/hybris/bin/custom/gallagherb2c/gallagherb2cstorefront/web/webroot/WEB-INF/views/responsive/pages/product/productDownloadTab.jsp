@@ -4,7 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="cms" uri="http://hybris.com/tld/cmstags"%>
-<section id="${fn:replace(title,' ', '')}" class="common-sub-tab-section">
+<section id="${fn:replace(title,' ', '')}" class="common-sub-tab-section ptb-xs-0">
 	<c:if test="${not empty product.dataSheet}">
     <div class="container">
         <div class="how-to-download-section">
