@@ -111,7 +111,10 @@
 							<ycommerce:testId code="savedCarts_noOfItems_label">
 								<span class="js-saved-cart-number-of-items">
 									<c:if test="${importCartIsProcessing eq false}">
-										${fn:length(savedCart.entries)}
+										<c:set var = "entrieslength" scope = "session" value = "${fn:length(savedCart.entries)}"/>
+										  <c:if test = "${entrieslength > 0}">
+											${savedCart.entries[0].quantity}
+										</c:if>
 									</c:if>
 								</span>
 							</ycommerce:testId>

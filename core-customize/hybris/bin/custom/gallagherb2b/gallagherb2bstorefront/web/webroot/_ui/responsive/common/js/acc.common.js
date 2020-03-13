@@ -31,7 +31,25 @@ ACC.common = {
 				}
 			}
 		});
-	}
+	},
+	
+	showLoader : function () {
+	       $('.loader').show();
+	    },
+	    
+	hideLoader : function () {
+	       $('.loader').hide();
+	    },
+	    encodeHtml: function (rawText)
+		{
+			return rawText.toString()
+					.replace(/&/g, '&amp;')
+					.replace(/</g, '&lt;')
+					.replace(/>/g, '&gt;')
+					.replace(/"/g, '&quot;')
+					.replace(/'/g, '&#39;')
+					.replace(/\//g, '&#47;');
+		}
 };
 
 

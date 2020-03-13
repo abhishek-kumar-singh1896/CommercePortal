@@ -16,7 +16,7 @@
 		<button class="btn btn-default js-review-write-toggle "><spring:theme code="review.write.title"/></button>
 
 		<div class="right">
-			<button class="btn btn-default all-reviews-btn"><spring:theme code="review.show.all" /></button>
+			<button class="btn btn-default all-reviews-btn" style="display: none;"><spring:theme code="review.show.all" /></button>
 			<button class="btn btn-default less-reviews-btn"><spring:theme code="review.show.less" /></button>
 		</div>
 	</div>
@@ -60,7 +60,7 @@
 	<div class="review-pagination-bar">
 
 		<div class="right">
-			<button class="btn btn-default all-reviews-btn"><spring:theme code="review.show.all" /></button>
+			<button class="btn btn-default all-reviews-btn" style="display: none;"><spring:theme code="review.show.all" /></button>
 			<button class="btn btn-default less-reviews-btn"><spring:theme code="review.show.less" /></button>
 		</div>
 	</div>
