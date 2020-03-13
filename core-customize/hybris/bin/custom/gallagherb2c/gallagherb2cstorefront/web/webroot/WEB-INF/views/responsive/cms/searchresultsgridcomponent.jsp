@@ -5,7 +5,7 @@
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
-<div class="product__list--wrapper">
+<div class="product__list">
 	<div class="results">
 		<h1>
 			<spring:theme code="search.page.searchText"
