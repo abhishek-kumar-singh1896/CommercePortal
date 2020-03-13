@@ -14,14 +14,15 @@
 				<c:forEach items="${product.productReferences}" var="reference">
 					<c:if test="${reference.referenceType eq 'ACCESSORIES'}">
                     <li>
-                        <div class="common-product-small-tile">
+                    	<c:url value="${reference.target.url}" var="productUrl" />
+                        <div class="common-product-small-tile" onclick="${fn:escapeXml(productUrl)}">
                             <div class="row">
                                 <div class="col-lg-4 col-md-5">
                                     <div class="tile-image">
-                                    	<c:url value="${product.url}" var="productUrl" />
+                                    	
                                         <c:forEach items="${reference.target.images}" var="medias">
                                         <c:if test="${medias.format eq 'thumbnail'}">
-                                        <a href="${fn:escapeXml(productUrl)}" title="${fn:escapeXml(product.name)}">
+                                        <a href="${fn:escapeXml(productUrl)}" title="${fn:escapeXml(reference.target.name)}">
                                         <img src="${medias.url}" alt="${medias.altText}">
                                         </a>
                                         </c:if>
@@ -30,8 +31,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-8 col-md-7">
-                                    <div class="tile-title">${reference.target.name}</div>
-
+                                    <div class="tile-title"><a href="${fn:escapeXml(productUrl)}">${reference.target.name}</a></div>
                                     <div>
                                         <span class="currency-text">RRP</span>
 										<product:productListerItemPrice product="${reference.target}" />
