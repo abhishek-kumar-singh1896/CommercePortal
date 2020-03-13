@@ -3,11 +3,11 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<section id="${fn:escapeXml(title)}" class="common-sub-tab-section">
+<section id="${fn:escapeXml(title)}" class="common-sub-tab-section py-0">
 <div class="common-sub-tab-section gray-back">
    <div class="container">
        <div class="row">
-           <div class="col-lg-6">
+           <div class="col-lg-6 col-padding-0">
                <div class="common-product-with-title">
                    <div class="section-title">
                        Products for compliance
@@ -32,7 +32,7 @@
 
                </div>
            </div>
-           <div class="col-lg-6">
+           <div class="col-lg-6 col-padding-0">
            <div class="common-product-with-title">
                    <div class="section-title">
                        Products for cattle

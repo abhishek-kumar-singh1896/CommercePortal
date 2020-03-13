@@ -255,11 +255,6 @@
 				<deployment table="CategoryBanner" typecode="12003" />
 			</itemtype>
 
-			<itemtype code="GallagherCategoryBannerComponent" autocreate="true" generate="true" extends="BannerComponent"
-				jaloclass="com.gallagher.core.jalo.GallagherCategoryBannerComponent">
-				<deployment table="CategoryBanner" typecode="12003" />
-			</itemtype>
-
 			<itemtype code="GallagherNavigationBarComponent" autocreate="true" generate="true" extends="NavigationBarComponent"
 				jaloclass="com.gallagher.core.jalo.NavigationBarComponent">
 				<deployment table="GNav" typecode="12004" />

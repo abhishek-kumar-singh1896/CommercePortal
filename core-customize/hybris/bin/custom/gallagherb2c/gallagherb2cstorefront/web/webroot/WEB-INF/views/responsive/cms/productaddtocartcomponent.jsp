@@ -26,11 +26,11 @@
 			<div class="qty-selector js-qty-selector">
 			<c:choose>
 				<c:when test="${fn:contains(buttonType, 'button')}">
-					<input type="text" maxlength="3" class="form-control js-qty-selector-input add-to-cart-input" size="1" value="${fn:escapeXml(qtyMinus)}"
+					<input type="number" maxlength="3" class="form-control js-qty-selector-input add-to-cart-input" size="1" value="${fn:escapeXml(qtyMinus)}"
 					   data-max="${fn:escapeXml(maxQty)}" data-min="1" name="pdpAddtoCartInput"  id="pdpAddtoCartInput" disabled="disabled"/>
 				</c:when>
 				<c:otherwise>
-					<input type="text" maxlength="3" class="form-control js-qty-selector-input add-to-cart-input" size="1" value="${fn:escapeXml(qtyMinus)}"
+					<input type="number" maxlength="3" class="form-control js-qty-selector-input add-to-cart-input" size="1" value="${fn:escapeXml(qtyMinus)}"
 					   data-max="${fn:escapeXml(maxQty)}" data-min="1" name="pdpAddtoCartInput"  id="pdpAddtoCartInput"/>
 				</c:otherwise>
 			</c:choose>
