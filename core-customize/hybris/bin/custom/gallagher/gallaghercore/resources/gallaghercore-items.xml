@@ -124,6 +124,12 @@
 						</property>
 					</custom-properties>
 				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="eligibleForLatAm" type="boolean">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<defaultvalue>false</defaultvalue>
+					<description>Flag to identify Product is eligible for LatAm Market.</description>
+				</attribute>
 			</attributes>
 		</itemtype>
 

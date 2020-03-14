@@ -101,46 +101,21 @@ $targetProductCVLatAm=targetVersion(catalog(id[default=$productCatalogLatAm]),ve
 INSERT_UPDATE GallagherCatalogVersionSyncJob;code[unique=true];sessionUser(uid);baseStore(uid);$sourceProductCV;$targetProductCVNZ;
 ;sync amB2CMasterProductCatalog:Staged->amB2CNZProductCatalog:Staged;syncUser;amB2CNZ;;;
 
-INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
-#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
-;sync amB2CMasterProductCatalog:Staged->amB2CNZProductCatalog:Staged						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
-
 
 INSERT_UPDATE GallagherCatalogVersionSyncJob;code[unique=true];sessionUser(uid);baseStore(uid);$sourceProductCV;$targetProductCVAU;
 ;sync amB2CMasterProductCatalog:Staged->amB2CAUProductCatalog:Staged;syncUser;amB2CAU;;;
 
-INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
-#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
-;sync amB2CMasterProductCatalog:Staged->amB2CAUProductCatalog:Staged						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
-
 INSERT_UPDATE GallagherCatalogVersionSyncJob;code[unique=true];sessionUser(uid);baseStore(uid);$sourceProductCV;$targetProductCVUS;
 ;sync amB2CMasterProductCatalog:Staged->amB2CUSProductCatalog:Staged;syncUser;amB2CUS;;;
-
-INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
-#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
-;sync amB2CMasterProductCatalog:Staged->amB2CUSProductCatalog:Staged						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
 
 INSERT_UPDATE GallagherCatalogVersionSyncJob;code[unique=true];sessionUser(uid);baseStore(uid);$sourceProductCV;$targetProductCVCA;
 ;sync amB2CMasterProductCatalog:Staged->amB2CCAProductCatalog:Staged;syncUser;amB2CCA;;;
 
-INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
-#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
-;sync amB2CMasterProductCatalog:Staged->amB2CCAProductCatalog:Staged						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
-
 INSERT_UPDATE GallagherCatalogVersionSyncJob;code[unique=true];sessionUser(uid);baseStore(uid);$sourceProductCV;$targetProductCVGlobal;
 ;sync amB2CMasterProductCatalog:Staged->amB2CGlobalProductCatalog:Staged;syncUser;amB2CGlobal;;;
 
-INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
-#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
-;sync amB2CMasterProductCatalog:Staged->amB2CGlobalProductCatalog:Staged						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
-
 INSERT_UPDATE GallagherCatalogVersionSyncJob;code[unique=true];sessionUser(uid);baseStore(uid);$sourceProductCV;$targetProductCVLatAm;
 ;sync amB2CMasterProductCatalog:Staged->amB2CLatAmProductCatalog:Staged;syncUser;amB2CLatAm;;;
-
-INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
-#cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
-;sync amB2CMasterProductCatalog:Staged->amB2CLatAmProductCatalog:Staged						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
-
 
 # ImpEx for Importing cronjobs
 $productCatalog=amB2CMasterProductCatalog
@@ -161,6 +136,7 @@ INSERT_UPDATE Trigger;cronJob(code)[unique=true];second;minute;hour;day;month;ye
 # Synchronization Job Restriction
 $productQueryPrefix={baseProductCode} IS NULL AND {approvalStatus} =({{SELECT {pk} from {ArticleApprovalStatus} where {code}='approved'}})
 $productQuery={baseProductCode} IS NULL AND {approvalStatus} =({{SELECT {pk} from {ArticleApprovalStatus} where {code}='approved'}}) AND ?session.currentJob.baseStore IN ({{SELECT {SOURCE} FROM {BaseStoreProductRelation} where {TARGET} = {item:PK}}})
+$productQueryLatAm={baseProductCode} IS NULL AND {approvalStatus} =({{SELECT {pk} from {ArticleApprovalStatus} where {code}='approved'}}) AND {eligibleForLatAm} = '1'
 
 INSERT_UPDATE JobSearchRestriction;code[unique=true];job(code)[path-delimiter=!];type(code);query
 ;B2CMaster->B2CNZ-SyncJob-Product-Restriction;sync amB2CMasterProductCatalog:Staged->amB2CNZProductCatalog:Staged;Product;$productQueryPrefix
@@ -175,7 +151,7 @@ INSERT_UPDATE JobSearchRestriction;code[unique=true];job(code)[path-delimiter=!]
 ;B2CMaster->B2CUS-SyncJob-Product-Restriction;sync amB2CMasterProductCatalog:Staged->amB2CUSProductCatalog:Staged;Product;$productQuery
 ;B2CMaster->B2CCA-SyncJob-Product-Restriction;sync amB2CMasterProductCatalog:Staged->amB2CCAProductCatalog:Staged;Product;$productQuery
 ;B2CMaster->B2CGlobal-SyncJob-Product-Restriction;sync amB2CMasterProductCatalog:Staged->amB2CGlobalProductCatalog:Staged;Product;$productQuery
-;B2CMaster->B2CLatAm-SyncJob-Product-Restriction;sync amB2CMasterProductCatalog:Staged->amB2CLatAmProductCatalog:Staged;Product;$productQuery
+;B2CMaster->B2CLatAm-SyncJob-Product-Restriction;sync amB2CMasterProductCatalog:Staged->amB2CLatAmProductCatalog:Staged;Product;$productQueryLatAm
 
 INSERT_UPDATE SyncAttributeDescriptorConfig;syncJob(code)[unique=true,path-delimiter=!];attributeDescriptor(enclosingType(code),qualifier)[unique=true];includedInSync;copyByValue
 ;sync amB2CMasterProductCatalog:Staged->amB2CNZProductCatalog:Staged;Product:baseStores;false;false

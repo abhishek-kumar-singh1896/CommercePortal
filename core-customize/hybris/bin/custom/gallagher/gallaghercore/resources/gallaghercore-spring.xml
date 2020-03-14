@@ -129,5 +129,13 @@
 		class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
 		<property name="resource" value="classpath:/gallaghercore/processes/customerRegistrationEmailProcess.xml" />
 	</bean>
+	
+   <!-- Replace default Hybris interceptor with Gallagher specific one -->
+   <bean id="gallagherCompositeEntryJobValidator" class="com.gallagher.core.cronjob.impl.GallagherCompositeEntryJobValidateInterceptor"/>
+   <bean id="compositeEntryJobValidatorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+       <property name="interceptor" ref="gallagherCompositeEntryJobValidator" />
+       <property name="replacedInterceptors" ref="compositeEntryJobValidator"/>
+       <property name="typeCode" value="CompositeEntry"/>
+   </bean>
 
 </beans>

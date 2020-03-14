@@ -135,6 +135,7 @@
                     <editorArea:attribute qualifier="baseProductCode" />
                     <editorArea:attribute qualifier="baseStores" />
                     <editorArea:attribute qualifier="variantForImage" />
+                    <editorArea:attribute qualifier="eligibleForLatAm" />
                 </editorArea:section>
             </editorArea:tab>
             <editorArea:tab name="hmc.tab.product.properties" position="2">
