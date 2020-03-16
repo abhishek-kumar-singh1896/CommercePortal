@@ -93,6 +93,7 @@
 		<script src="${commonResourcePathHtml}/js/custom/acc.productList.js"></script>
 		<script src="${commonResourcePathHtml}/js/custom/acc.productDetails.js"></script>		
 		<script src="${commonResourcePathHtml}/js/custom/acc.asm.js"></script>
+		<script src="${commonResourcePathHtml}/js/custom/acc.preferenceOverlay.js"></script>
 		<%-- Cms Action JavaScript files --%>
 		<c:forEach items="${cmsActionsJsFiles}" var="actionJsFile">
 		    <script src="${commonResourcePathHtml}/js/cms/${fn:escapeXml(actionJsFile)}"></script>
