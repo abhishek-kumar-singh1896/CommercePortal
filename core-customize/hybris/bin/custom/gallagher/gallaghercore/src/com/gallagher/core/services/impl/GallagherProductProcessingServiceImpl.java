@@ -101,7 +101,14 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 		for (final ProductModel product : products)
 		{
 			final String baseProductCode = product.getBaseProductCode();
-			final Collection<BaseStoreModel> baseStores = product.getBaseStores();
+
+			final List<BaseStoreModel> baseStores = new ArrayList<>();
+			baseStores.addAll(product.getBaseStores());
+
+			if (product.isEligibleForLatAm() && catalogId.contains("B2C"))
+			{
+				baseStores.add(baseStoreService.getBaseStoreForUid("amB2CLatAm"));
+			}
 
 			for (final BaseStoreModel baseStore : baseStores)
 			{

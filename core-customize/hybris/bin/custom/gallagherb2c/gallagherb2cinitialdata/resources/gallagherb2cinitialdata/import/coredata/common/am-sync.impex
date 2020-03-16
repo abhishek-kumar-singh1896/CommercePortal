@@ -136,7 +136,6 @@ INSERT_UPDATE Trigger;cronJob(code)[unique=true];second;minute;hour;day;month;ye
 # Synchronization Job Restriction
 $productQueryPrefix={baseProductCode} IS NULL AND {approvalStatus} =({{SELECT {pk} from {ArticleApprovalStatus} where {code}='approved'}})
 $productQuery={baseProductCode} IS NULL AND {approvalStatus} =({{SELECT {pk} from {ArticleApprovalStatus} where {code}='approved'}}) AND ?session.currentJob.baseStore IN ({{SELECT {SOURCE} FROM {BaseStoreProductRelation} where {TARGET} = {item:PK}}})
-$productQueryLatAm={baseProductCode} IS NULL AND {approvalStatus} =({{SELECT {pk} from {ArticleApprovalStatus} where {code}='approved'}}) AND {eligibleForLatAm} = '1'
 
 INSERT_UPDATE JobSearchRestriction;code[unique=true];job(code)[path-delimiter=!];type(code);query
 ;B2CMaster->B2CNZ-SyncJob-Product-Restriction;sync amB2CMasterProductCatalog:Staged->amB2CNZProductCatalog:Staged;Product;$productQueryPrefix
@@ -151,7 +150,7 @@ INSERT_UPDATE JobSearchRestriction;code[unique=true];job(code)[path-delimiter=!]
 ;B2CMaster->B2CUS-SyncJob-Product-Restriction;sync amB2CMasterProductCatalog:Staged->amB2CUSProductCatalog:Staged;Product;$productQuery
 ;B2CMaster->B2CCA-SyncJob-Product-Restriction;sync amB2CMasterProductCatalog:Staged->amB2CCAProductCatalog:Staged;Product;$productQuery
 ;B2CMaster->B2CGlobal-SyncJob-Product-Restriction;sync amB2CMasterProductCatalog:Staged->amB2CGlobalProductCatalog:Staged;Product;$productQuery
-;B2CMaster->B2CLatAm-SyncJob-Product-Restriction;sync amB2CMasterProductCatalog:Staged->amB2CLatAmProductCatalog:Staged;Product;$productQueryLatAm
+;B2CMaster->B2CLatAm-SyncJob-Product-Restriction;sync amB2CMasterProductCatalog:Staged->amB2CLatAmProductCatalog:Staged;Product;$productQuery
 
 INSERT_UPDATE SyncAttributeDescriptorConfig;syncJob(code)[unique=true,path-delimiter=!];attributeDescriptor(enclosingType(code),qualifier)[unique=true];includedInSync;copyByValue
 ;sync amB2CMasterProductCatalog:Staged->amB2CNZProductCatalog:Staged;Product:baseStores;false;false
