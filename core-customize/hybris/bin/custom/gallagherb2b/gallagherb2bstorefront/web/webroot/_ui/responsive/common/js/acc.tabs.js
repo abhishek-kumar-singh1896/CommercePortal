@@ -100,6 +100,8 @@ ACC.tabs = {
 		var isShowingAllReviews = $("#showingAllReviews").data("showingallreviews");
 		if(isShowingAllReviews){
 			ACC.tabs.hideReviewBtn(".all-reviews-btn");
+		}else{
+			ACC.tabs.showReviewBtn(".all-reviews-btn");
 		}
 	},
 	
