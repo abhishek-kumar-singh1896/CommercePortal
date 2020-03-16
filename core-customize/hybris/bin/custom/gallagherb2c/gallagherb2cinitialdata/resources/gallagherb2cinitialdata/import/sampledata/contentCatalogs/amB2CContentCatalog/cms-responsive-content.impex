@@ -1995,3 +1995,35 @@ INSERT_UPDATE Media;mediaFormat(qualifier);$contentCV[unique=true];code[unique=t
 ;;;eid.jpg;$siteResource/images/banners/homepage/responsive/eid-icon.png;;eid.jpg;;"eid"
 
 ###dummy icons for PDP####
+
+#### Register Product Page####
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='RegisterProductPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;Section1;;;wide
+;Section2;;;wide
+;Footer;;;footer
+;TopHeaderSlot;;;wide
+;BottomHeaderSlot;;;wide
+;PlaceholderContentSlot;;;
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='RegisterProductPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-RegisterProductPage;SiteLogo;;SiteLogoSlot;true
+;;HomepageLink-RegisterProductPage;HomepageNavLink;;HomepageNavLinkSlot;true
+;;NavigationBar-RegisterProductPage;NavigationBar;;NavigationBarSlot;true
+;;MiniCart-RegisterProductPage;MiniCart;;MiniCartSlot;true
+;;Footer-RegisterProductPage;Footer;;FooterSlot;true
+;;HeaderLinks-RegisterProductPage;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBox-RegisterProductPage;SearchBox;;SearchBoxSlot;true
+;;TopHeaderSlot-RegisterProductPage;TopHeaderSlot;;TopHeaderSlot;true
+;;BottomHeaderSlot-RegisterProductPage;BottomHeaderSlot;;BottomHeaderSlot;true
+;;PlaceholderContentSlot-RegisterProductPage;PlaceholderContentSlot;;PlaceholderContentSlot;true
+;;ggB2CNavBar-RegisterProductPage;ggB2CNavBar;;ggB2CNavBarSlot;true
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;registerProduct;Register Product Page;RegisterProductPageTemplate;/registerProduct
+
+#### Register Product Page####
