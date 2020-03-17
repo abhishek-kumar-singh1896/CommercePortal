@@ -29,7 +29,7 @@
 			<!-- </div> -->
 
             <div id="productSuccessAlert" class="alert alert-success show d-none" role="alert">
-                <strong>Your product is registered successfully.
+                Your product is registered successfully.
                     <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button> -->
@@ -154,43 +154,6 @@
                     data-target="#confirmRegisterModal">Register</button>
             </div>
            <%-- </form:form> --%>
-        </div>
-    </div>
-    
-    <!-- Modal Confirm Product Register -->
-   <div class="modal fade" id="confirmRegisterModal" tabindex="-1" role="dialog"
-        aria-labelledby="confirmRegisterModalTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="confirmRegisterModalTitle">You are about to Register</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="register-product-modal-container">
-                        <div class="hint-text mb-4">
-                            If these details do not match your product, please contact the Customer services Team
-                            Email: <a href="mailto:sales.nz@am.gallagher" target="_blank">sales.nz@am.gallagher</a> |
-                            Telephone number: 0800 731 500
-                        </div>
-
-                        <div class="row mb-2">
-                            <div class="col-md-3">
-                                <img src="img/fence-product-img.png" class="img-fluid" alt="product image">
-                            </div>
-                            <div class="col-md-9">
-                                <div class="product-name">Fence Energizer B180</div>
-                                <div class="product-id">G36010</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-highlight" id="registerSuccess">Register</button>
-                </div>
-            </div>
         </div>
     </div>
     </sec:authorize>
