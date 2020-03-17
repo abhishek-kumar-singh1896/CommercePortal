@@ -81,6 +81,7 @@ INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];name;
 ;;ProductCompareTabComponent;Product Compare Tab;productCompareTab.jsp;;ProductCompareTabComponent
 ;;ProductUseWithTabComponent;Product Use With Tab;productUseWithTab.jsp;;ProductUseWithTabComponent
 ;;ProductConatctTabComponent;Product Contact Tab;productContactTab.jsp;;ProductConatctTabComponent
+;;ProductReviewsTabComponent;Product Reviews Tab;productReviewsTab.jsp;;ProductReviewsTabComponent
 
 INSERT_UPDATE CMSTabParagraphComponent;$contentCV[unique=true];uid[unique=true];name;visible;&componentRef
 ;;deliveryTab;Delivery tab;true;deliveryTab
