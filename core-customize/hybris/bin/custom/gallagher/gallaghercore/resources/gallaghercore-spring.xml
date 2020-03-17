@@ -137,5 +137,13 @@
        <property name="replacedInterceptors" ref="compositeEntryJobValidator"/>
        <property name="typeCode" value="CompositeEntry"/>
    </bean>
+   
+   <bean id="gallagherSiteTransactionRestrictionEvaluator" class="com.gallagher.core.restrictions.GallagherSiteTransactionRestrictionEvaluator" />
+   <bean id="gallagherSiteTransactionRestrictionDynamicDescription" class="com.gallagher.core.restrictions.GallagherSiteTransactionRestrictionDynamicDescription" />
+   
+   <bean id="gallagherSiteTransactionRestrictionEvaluatorMapping" class="de.hybris.platform.cms2.servicelayer.services.evaluator.CMSRestrictionEvaluatorMapping">
+        <property name="restrictionTypeCode" value="GallagherSiteTransactionRestriction" />
+        <property name="restrictionEvaluator" ref="gallagherSiteTransactionRestrictionEvaluator" />
+   </bean>
 
 </beans>

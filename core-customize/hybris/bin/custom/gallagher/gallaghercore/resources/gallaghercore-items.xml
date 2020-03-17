@@ -319,6 +319,16 @@
 				</attributes>
 			</itemtype>
 
+			<itemtype code="GallagherSiteTransactionRestriction" generate="true" autocreate="true" extends="AbstractRestriction"
+				jaloclass="com.gallagher.core.jalo.GallagherSiteTransactionRestriction">
+				<attributes>
+					<attribute qualifier="description" type="java.lang.String" redeclare="true">
+						<persistence type="dynamic" attributeHandler="gallagherSiteTransactionRestrictionDynamicDescription" />
+						<modifiers write="false" />
+					</attribute>
+				</attributes>
+			</itemtype>
+
 		</typegroup>
 
 		<typegroup name="jobs">
