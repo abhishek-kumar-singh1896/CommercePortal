@@ -7,24 +7,26 @@
 <%@ taglib prefix="breadcrumb" tagdir="/WEB-INF/tags/responsive/nav/breadcrumb"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <%-- <%@ taglib prefix="formElement"
 	tagdir="/WEB-INF/tags/responsive/formElement"%> --%>
+	<sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
 <c:url value="/register/submit" var="actionURL" />
 <div class="register-product-out">
         <div class="container">
-
             <div class="row">
-                <div class="col-12">
-                    <div class="breadcrumb-out">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Product Registration</li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
-            </div>
+			<div class="col-12">
+				<div class="breadcrumb-out">
+					<c:if test="${fn:length(breadcrumbs) > 0}">
+						<nav aria-label="breadcrumb">
+							<breadcrumb:breadcrumb breadcrumbs="${breadcrumbs}" />
+						</nav>
+					</c:if>
+				</div>
+			</div>
+			</div>
+			<!-- </div> -->
 
             <div id="productSuccessAlert" class="alert alert-success show d-none" role="alert">
                 <strong>Your product is registered successfully.
@@ -34,7 +36,7 @@
             </div>
 
             <h1 class="primary-title">
-                Register Product
+                Product Registration
             </h1>
             <div class="register-product-desc">
                 <p>If you are from Europe please go to <a href="http://www.gallagher.eu"
@@ -42,22 +44,22 @@
                     extension</p>
             </div>
 
-            <h2 class="secondary-title mt-5">Product will be registered under (John Johnson)</h2>
-			<form:form method="post" action="${actionURL}" id="registerProductForm">
+            <h2 class="secondary-title mt-5">Product will be registered under (${user.firstName}&nbsp${user.lastName})</h2>
+			<%-- <form:form method="post" action="${actionURL}" id="registerProductForm"> --%>
             <div class="row">
                 <div class="col-md-6">
                     <div class="row">
                         <div class="col-12 mb-4">
-                            <label for="productSku" class="common-form-label">Product Type*</label>
-                            <input type="text" class="form-control common-input has-error" id="productSku">
-                            <div class="error-label">
+                            <label for="productSku" class="common-form-label">Product SKU*</label>
+                            <input type="text" class="form-control common-input" id="productSku">
+                            <%-- <div class="error-label">
                                 <span class="error-icon">
                                     <svg>
-                                        <use xlink:href="img/gallagher-icons.svg#cross" />
+                                        <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#cross" />
                                     </svg>
                                 </span>
                                 <span class="error-text">Please fill</span>
-                            </div>
+                            </div> --%>
                         </div>
 
                         <div class="col-12 mb-4">
@@ -67,15 +69,15 @@
 
                         <div class="col-12 mb-4">
                             <label for="datePurchased" class="common-form-label">Date purchased (dd/mm/yyyy)*</label>
-                            <input type="text" class="form-control common-input has-error" id="datePurchased">
-                            <div class="error-label">
+                            <input type="text" class="form-control common-input" id="datePurchased">
+                            <%-- <div class="error-label">
                                 <span class="error-icon">
                                     <svg>
-                                        <use xlink:href="img/gallagher-icons.svg#cross" />
+                                        <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#cross" />
                                     </svg>
                                 </span>
                                 <span class="error-text">Please fill</span>
-                            </div>
+                            </div> --%>
                         </div>
                     </div>
                 </div>
@@ -108,12 +110,13 @@
             <div class="row">
                 <div class="col-md-6 mb-4">
                     <label for="country" class="common-form-label">Country*</label>
-                    <select name="country" id="country" class="form-control js-example-basic-single has-error">
-                        <option value="0">Country 1</option>
-                        <option value="1">Country 2</option>
-                        <option value="0">Country 3</option>
-                        <option value="1">Country 4</option>
-                        <option value="1">Country 5</option>
+                    <select name="country" id="country" class="form-control js-example-basic-single">
+                        <option value="0">New Zealand</option>
+                        <option value="1">Australia</option>
+                        <option value="0">Canada (EN)</option>
+                        <option value="1">Canada (FR)</option>
+                        <option value="1">Latin America</option>
+                        <option value="0">Global</option>
                     </select>
                 </div>
                 <div class="col-md-6 mb-4">
@@ -150,6 +153,44 @@
                 <button type="submit" class="btn btn-primary registerProduct" data-toggle="modal"
                     data-target="#confirmRegisterModal">Register</button>
             </div>
-           </form:form>
+           <%-- </form:form> --%>
         </div>
     </div>
+    
+    <!-- Modal Confirm Product Register -->
+   <div class="modal fade" id="confirmRegisterModal" tabindex="-1" role="dialog"
+        aria-labelledby="confirmRegisterModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmRegisterModalTitle">You are about to Register</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="register-product-modal-container">
+                        <div class="hint-text mb-4">
+                            If these details do not match your product, please contact the Customer services Team
+                            Email: <a href="mailto:sales.nz@am.gallagher" target="_blank">sales.nz@am.gallagher</a> |
+                            Telephone number: 0800 731 500
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="col-md-3">
+                                <img src="img/fence-product-img.png" class="img-fluid" alt="product image">
+                            </div>
+                            <div class="col-md-9">
+                                <div class="product-name">Fence Energizer B180</div>
+                                <div class="product-id">G36010</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-highlight" id="registerSuccess">Register</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </sec:authorize>

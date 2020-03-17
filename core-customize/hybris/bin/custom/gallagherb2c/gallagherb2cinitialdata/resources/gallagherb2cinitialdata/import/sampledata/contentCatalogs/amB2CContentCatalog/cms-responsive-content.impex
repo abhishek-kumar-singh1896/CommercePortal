@@ -2024,6 +2024,6 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 ;;ggB2CNavBar-RegisterProductPage;ggB2CNavBar;;ggB2CNavBarSlot;true
 
 INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
-;;registerProduct;Register Product Page;RegisterProductPageTemplate;/registerProduct
+;;registerProduct;Product Registration;RegisterProductPageTemplate;/registerProduct
 
 #### Register Product Page####
