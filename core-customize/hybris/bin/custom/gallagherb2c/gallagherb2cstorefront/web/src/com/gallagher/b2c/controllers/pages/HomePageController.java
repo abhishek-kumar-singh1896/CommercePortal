@@ -3,14 +3,12 @@
  */
 package com.gallagher.b2c.controllers.pages;
 
-import de.hybris.platform.acceleratorservices.urlresolver.SiteBaseUrlResolutionService;
 import de.hybris.platform.acceleratorstorefrontcommons.constants.WebConstants;
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.pages.AbstractPageController;
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.util.GlobalMessages;
 import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
 import de.hybris.platform.cms2.model.pages.AbstractPageModel;
 import de.hybris.platform.cms2.model.pages.ContentPageModel;
-import de.hybris.platform.commercefacades.customer.CustomerFacade;
 import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.servicelayer.user.UserService;
 
@@ -37,18 +35,6 @@ public class HomePageController extends AbstractPageController
 
 	@Resource(name = "userService")
 	private UserService userService;
-
-	@Resource(name = "customerFacade")
-	private CustomerFacade customerFacade;
-
-	@Resource(name = "siteBaseUrlResolutionService")
-	private SiteBaseUrlResolutionService siteBaseUrlResolutionService;
-
-	@Override
-	public SiteBaseUrlResolutionService getSiteBaseUrlResolutionService()
-	{
-		return siteBaseUrlResolutionService;
-	}
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String home(@RequestParam(value = WebConstants.CLOSE_ACCOUNT, defaultValue = "false") final boolean closeAcc,
