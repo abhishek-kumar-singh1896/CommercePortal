@@ -71,6 +71,7 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 			final CustomerModel retrieveUser = retrieveUserBySubjectId.get(0);
 			retrieveUser.setName(token.getName());
 			retrieveUser.setUid(token.getEmail());
+			retrieveUser.setIsUserExist(true);
 			modelService.save(retrieveUser);
 			success = true;
 		}
@@ -86,6 +87,7 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 		newCustomer.setName(token.getName());
 		newCustomer.setUid(token.getEmail());
 		newCustomer.setKeycloakGUID(token.getSubjectId());
+		newCustomer.setIsUserExist(false);
 
 		//check if customer exist in the C4C
 		final List<GallagherInboundCustomerEntry> existingCustomers = gallagherC4COutboundServiceFacade

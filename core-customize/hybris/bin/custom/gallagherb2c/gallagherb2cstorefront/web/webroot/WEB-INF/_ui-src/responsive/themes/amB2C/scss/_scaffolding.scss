@@ -77,11 +77,6 @@ a {
   &:visited {
     text-decoration: underline;
   }
-
-  // &:visited {
-  //   text-decoration: none;
-  //   color: $link-visited-color;
-  // }
 }
 
 h1 {
@@ -110,6 +105,11 @@ h2 {
   font-weight: bold;
   margin-bottom: 15px;
   text-transform: uppercase;
+
+  &.text-normal {
+    text-transform: inherit;
+    font-weight: $font-family-bold;
+  }
 }
 
 .xs-header-right-section {
@@ -256,4 +256,16 @@ h2 {
   height: 100%;
   overflow: hidden;
   outline: 0;
+}
+
+.two-line-ellipses {
+  width: 100%;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+footer {
+  margin-top: 0;
 }
