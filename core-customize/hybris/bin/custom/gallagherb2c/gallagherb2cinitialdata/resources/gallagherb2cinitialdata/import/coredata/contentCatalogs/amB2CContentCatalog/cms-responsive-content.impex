@@ -860,6 +860,9 @@ INSERT_UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterT
 ;;productGrid;Product Grid;ProductGridPageTemplate;true;
 ;;category;Default Category Page;CategoryPageTemplate;false;
 
+INSERT_UPDATE GallagherSiteTransactionRestriction;$contentCV[unique=true];uid[unique=true];name;&uid
+;;GallagherSiteTransactionRestriction;Site Transaction Restriction;GallagherSiteTransactionRestriction
+
 ############################## above is the desktop data, below is the responsive data ###########################################
 
 # Create PageTemplates
