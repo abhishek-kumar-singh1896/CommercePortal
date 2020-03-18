@@ -238,7 +238,7 @@
             <div class="item__menu">
                 <c:if test="${entry.updateable}" >
                     <div class="btn-group js-cartItemDetailGroup">
-                        <button type="button" class="btn btn-default js-cartItemDetailBtn" aria-haspopup="true" aria-expanded="false" id="editEntry_${entryNumberHtml}">
+                        <button type="button" class="btn btn-link js-cartItemDetailBtn" aria-haspopup="true" aria-expanded="false" id="editEntry_${entryNumberHtml}">
                             <span class="glyphicon glyphicon-option-vertical"></span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-right">

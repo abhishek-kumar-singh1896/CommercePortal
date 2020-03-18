@@ -78,7 +78,8 @@
     }
   }
 
-  &.btn-secondary {
+  &.btn-secondary,
+  &.btn-default {
     background: linear-gradient(to bottom, $button-secondary-top-color 0%, $button-secondary-bottom-color 100%);
     border: solid 1px rgba(176, 176, 176, 0.5);
     color: $button-secondary-text-color;

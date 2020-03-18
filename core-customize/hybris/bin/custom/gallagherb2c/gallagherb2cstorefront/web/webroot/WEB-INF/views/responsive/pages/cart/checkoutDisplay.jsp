@@ -35,26 +35,25 @@
 
 <div class="cart__actions">
     <div class="row">
-        <div class="col-sm-4 col-md-3 pull-right">
+        <div class="col-4 pull-right">
             <ycommerce:testId code="checkoutButton">
-                <button class="btn btn-primary btn-block btn--continue-checkout js-continue-checkout-button" data-checkout-url="${fn:escapeXml(checkoutUrl)}">
+                <button class="btn btn-primary btn--continue-checkout js-continue-checkout-button" data-checkout-url="${fn:escapeXml(checkoutUrl)}">
                     <spring:theme code="checkout.checkout"/>
                 </button>
             </ycommerce:testId>
         </div>
-
-        <sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
-            <c:if test="${not empty siteQuoteEnabled and siteQuoteEnabled eq 'true'}">
-                <div class="col-sm-4 col-md-3 col-md-offset-3 pull-right">
-                    <button class="btn btn-default btn-block btn--continue-shopping js-continue-shopping-button"    data-continue-shopping-url="${fn:escapeXml(createQuoteUrl)}">
+ 		 <div class="col-4 pull-right">
+      	  <sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
+        	    <c:if test="${not empty siteQuoteEnabled and siteQuoteEnabled eq 'true'}">
+                    <button class="btn btn-primary btn--continue-shopping js-continue-shopping-button"    data-continue-shopping-url="${fn:escapeXml(createQuoteUrl)}">
                         <spring:theme code="quote.create"/>
                     </button>
-                </div>
             </c:if>
-        </sec:authorize>
+      	  </sec:authorize>
+        </div>
 
-        <div class="col-sm-4 col-md-3 pull-right">
-            <button class="btn btn-default btn-block btn--continue-shopping js-continue-shopping-button" data-continue-shopping-url="${fn:escapeXml(continueShoppingUrl)}">
+        <div class="col-4 text-right">
+            <button class="btn btn-default btn--continue-shopping js-continue-shopping-button" data-continue-shopping-url="${fn:escapeXml(continueShoppingUrl)}">
                 <spring:theme code="cart.page.continue"/>
             </button>
         </div>
