@@ -55,6 +55,7 @@ public class RegisterProductController extends AbstractPageController
 			final String productCode = registerProductForm.getProductSku();
 			final ProductData productData = productFacade.getProductForCodeAndOptions(productCode,
 					Arrays.asList(ProductOption.BASIC));
+			model.addAttribute("registerProductForm", registerProductForm);
 			model.addAttribute("product", productData);
 		}
 		//		registerProduct.postRegisterProduct(registerProductForm);
