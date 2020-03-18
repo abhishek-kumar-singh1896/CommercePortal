@@ -31,7 +31,7 @@
 		</div>
 	</div>
 
-	<div>
+	<div class="container">
 		<div>
             <cms:pageSlot position="TopContent" var="feature">
                 <cms:component component="${feature}" element="div" class="yComponentWrapper"/>

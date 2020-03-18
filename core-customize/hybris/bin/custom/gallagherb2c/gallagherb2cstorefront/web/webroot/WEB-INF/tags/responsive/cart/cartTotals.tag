@@ -68,14 +68,14 @@
 
 
     <c:if test="${not cartData.net}">
-        <div class="cart-totals-taxes text-right">
+        <div class="col-12 cart-totals-taxes text-right">
             <ycommerce:testId code="cart_taxes_label"><spring:theme code="basket.page.totals.grossTax" arguments="${cartData.totalTax.formattedValue}" argumentSeparator="!!!!"/></ycommerce:testId>
          </div>
     </c:if>
 
 
     <c:if test="${cartData.net && not showTax }">
-        <div class="cart-totals-taxes text-right">
+        <div class="col-12 cart-totals-taxes text-right">
             <ycommerce:testId code="cart_taxes_label"><spring:theme code="basket.page.totals.noNetTax"/></ycommerce:testId>
         </div>
     </c:if>

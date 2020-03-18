@@ -239,7 +239,9 @@
                 <c:if test="${entry.updateable}" >
                     <div class="btn-group js-cartItemDetailGroup">
                         <button type="button" class="btn btn-link js-cartItemDetailBtn" aria-haspopup="true" aria-expanded="false" id="editEntry_${entryNumberHtml}">
-                            <span class="glyphicon glyphicon-option-vertical"></span>
+                           <!--  <span class="glyphicon glyphicon-option-vertical"></span> -->
+                            <span class="glyphicon glyphicon-remove"></span>
+                           
                         </button>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <c:if test="${not empty cartData.quoteData}">
