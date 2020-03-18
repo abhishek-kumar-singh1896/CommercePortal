@@ -12,7 +12,8 @@
 <%-- <%@ taglib prefix="formElement"
 	tagdir="/WEB-INF/tags/responsive/formElement"%> --%>
 	<sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
-<c:url value="/register/submit" var="actionURL" />
+<c:url value="/register-product/submit" var="actionURL" />
+<product:registerProductTitle/>
 <div class="register-product-out">
         <div class="container">
             <div class="row">
@@ -45,13 +46,14 @@
             </div>
 
             <h2 class="secondary-title mt-5">Product will be registered under (${user.firstName}&nbsp${user.lastName})</h2>
-			<%-- <form:form method="post" action="${actionURL}" id="registerProductForm"> --%>
+            <%--  action="${actionURL}"  --%>
+			<form:form method="post" action="${actionURL}" id="registerProductForm" class="registerProduct_form">
             <div class="row">
                 <div class="col-md-6">
                     <div class="row">
                         <div class="col-12 mb-4">
                             <label for="productSku" class="common-form-label">Product SKU*</label>
-                            <input type="text" class="form-control common-input" id="productSku">
+                            <input type="text" class="form-control common-input" id="productSku" name=productSku>
                             <%-- <div class="error-label">
                                 <span class="error-icon">
                                     <svg>
@@ -64,7 +66,7 @@
 
                         <div class="col-12 mb-4">
                             <label for="serialNumber" class="common-form-label">Serial number*</label>
-                            <input type="number" pattern="\d*" maxlength="10" class="form-control common-input" id="serialNumber">
+                            <input type="text" maxlength="10" class="form-control common-input" id="serialNumber" name="serialNumber">
                         </div>
 
                         <div class="col-12 mb-4">
@@ -150,10 +152,9 @@
             </div>
 
             <div class="mt-3">
-                <button type="submit" class="btn btn-primary registerProduct" data-toggle="modal"
-                    data-target="#confirmRegisterModal">Register</button>
+                <button type="submit" class="btn btn-primary registerProduct">Register</button>
             </div>
-           <%-- </form:form> --%>
+           </form:form>
         </div>
     </div>
     </sec:authorize>

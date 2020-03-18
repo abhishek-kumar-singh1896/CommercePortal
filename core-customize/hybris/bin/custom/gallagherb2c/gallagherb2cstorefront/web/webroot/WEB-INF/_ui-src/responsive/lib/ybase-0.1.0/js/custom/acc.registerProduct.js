@@ -3,7 +3,10 @@ ACC.registerProduct = {
 	_autoload: [
 		"clickOnRegister",
 	    "bindSubmitRegisterProduct",
-	    "getJSONDataForRegisterProduct"
+	    "getJSONDataForRegisterProduct",
+	    "showRequest",
+	    "bindRegisterProductForm",
+	    "displayRegisterProductPopup"
 	],
 	clickOnRegister: function(){
 		$(document).ready(function () {
@@ -34,10 +37,8 @@ ACC.registerProduct = {
     });
 	},
 	bindSubmitRegisterProduct : function() {
-		$('.registerProduct').click(
+		$('.registerProduct1').click(
 				function() {
-					
-					/*ACC.common.showLoader();*/
 					$.ajax({
 						url : ACC.config.encodedContextPath + '/register/submit',
 						type : 'POST',
@@ -47,45 +48,57 @@ ACC.registerProduct = {
 						async : true,
 						success : function(response) {
 							
-							if(response.success == null){
+							if(response.success != null){
 								alert("1");
 								$("#confirmRegisterModal").modal('show');
-							    /*$('#customerSignup').modal('hide');
-							    ACC.common.hideLoader();
-								$("#customerSignupConfirm").modal('show');
-								$('.return-checkout').click(function() {
-								    location.reload();
-								});*/
+							    
 							}
-							/*else{
-									$('#globalMessages span').text(response['globalError']);
-									var errorFields = Object.keys(response);
-									delete response['globalError'];
-									for (var field in errorFields) {
-										if($('#'+errorFields[field]).siblings().hasClass("selecty")){
-											$('#'+errorFields[field]).siblings().find('.selecty-selected').addClass('error');
-										}
-										else{
-											$('#'+errorFields[field]).addClass("error");
-										}
-										$('#'+errorFields[field]).siblings('.errortxt').text(response[errorFields[field]]);
-									}
-									ACC.common.hideLoader();
-								//$('#customerSignup').modal();
-									
-							}*/
-							
 						},
 						error : function(jqXHR, textStatus, errorThrown) {
 							// log the error to the console
 							console.log("The following error occurred: "
 									+ textStatus, errorThrown);
-							/*ACC.common.handleAccessDeniedError(jqXHR.status);*/
+							ACC.common.handleAccessDeniedError(jqXHR.status);
 						}
 					});
 				});
 
 	},
+	bindRegisterProductForm: function () {
+        var registerProductForm = $('.registerProduct_form');
+        registerProductForm.ajaxForm({
+        	beforeSubmit:ACC.registerProduct.showRequest,
+        	success: ACC.registerProduct.displayRegisterProductPopup
+         });    
+        setTimeout(function(){
+        	$ajaxCallEvent  = true;
+         }, 2000);
+     },
+     showRequest: function(arr, $form, options) {  
+    	 if($ajaxCallEvent)
+    		{
+    		 $ajaxCallEvent = false;
+    		 return true;
+    		}   	
+    	 return false;
+ 
+    },
+    displayRegisterProductPopup: function (cartResult, statusText, xhr, formElement) {
+    	$ajaxCallEvent=true;
+    	if(cartResult!=null){
+    		var titleHeader = $('#registerProductTitle').html();
+        ACC.colorbox.open(titleHeader, {
+        	html:cartResult,
+        	width:"500px", 
+		    height:"600px", 
+		    onLoad:function() {
+		        $('html, body').css('overflow', 'hidden'); // page scrollbars off
+		    }, 
+		    onClosed:function() {
+		        $('html, body').css('overflow', ''); // page scrollbars on
+		    }
+        });}
+    },
 	getJSONDataForRegisterProduct : function() {
 		/*ACC.common.resetSignUpForm();*/
 		var productSku=$("#productSku").val();

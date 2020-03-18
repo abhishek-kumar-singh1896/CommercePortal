@@ -202,6 +202,11 @@ public interface ControllerConstants
 			{
 				String CustomerPreferencePopup = "fragments/preference/preferenceOverlay";
 			}
+
+			interface RegisterProduct
+			{
+				String RegisterProductPopup = "fragments/registerProduct/registerProductPopup";
+			}
 		}
 	}
 }
