@@ -126,7 +126,7 @@ public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 		final String grantType = getConfigurationService().getConfiguration().getString("keycloak.grant.type");
 		final String username = getConfigurationService().getConfiguration().getString("keycloak.username");
 		final String password = getConfigurationService().getConfiguration().getString("keycloak.password");
-		final String clientID = getConfigurationService().getConfiguration().getString("keycloak.client.id");
+		final String clientID = getConfigurationService().getConfiguration().getString("keycloak.security.client.id");
 
 		final ResourceOwnerPasswordResourceDetails resource = new ResourceOwnerPasswordResourceDetails();
 		resource.setAccessTokenUri(accessTokenURL);
