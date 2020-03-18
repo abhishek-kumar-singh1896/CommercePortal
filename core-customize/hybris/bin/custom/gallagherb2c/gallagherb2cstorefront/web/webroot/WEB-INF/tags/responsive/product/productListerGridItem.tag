@@ -21,7 +21,8 @@
 </c:forEach>
 
 <%-- <div class="${fn:escapeXml(productTagClasses)}"> --%>
-<li class="product-tile"><ycommerce:testId
+<li class="product-tile" onclick="window.location='${productUrl}'" title="${fn:escapeXml(product.name)}">
+	<ycommerce:testId
 		code="product_wholeProduct">
 		<div class="row">
 			<div class="col-4 col-md-12 pr-xs-0">
@@ -35,11 +36,10 @@
 					</c:if>
 				</div>
 				<div class="product-img-box">
-					<a class="product__list--thumb" href="${fn:escapeXml(productUrl)}"
-						title="${fn:escapeXml(product.name)}">
+<%-- 					<a class="product__list--thumb" href="${fn:escapeXml(productUrl)}" title="${fn:escapeXml(product.name)}"> --%>
 						<product:productPrimaryImage
 							product="${product}" format="product" />
-					</a>
+<!-- 					</a>	 -->
 				</div>
 			</div>
 			<!-- 		<div class="details"> -->
