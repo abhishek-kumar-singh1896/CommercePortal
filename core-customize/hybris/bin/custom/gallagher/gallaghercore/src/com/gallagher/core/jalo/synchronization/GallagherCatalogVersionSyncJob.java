@@ -32,8 +32,8 @@ public class GallagherCatalogVersionSyncJob extends GeneratedGallagherCatalogVer
 	protected SessionContext createSyncSessionContext(final SyncItemCronJob cronJob)
 	{
 		final SessionContext ctx = super.createSyncSessionContext(cronJob);
-		ctx.setAttribute(FlexibleSearch.DISABLE_RESTRICTIONS, Boolean.FALSE);
-		ctx.setAttribute(FlexibleSearch.DISABLE_RESTRICTION_GROUP_INHERITANCE, Boolean.FALSE);
+		ctx.setAttribute(FlexibleSearch.DISABLE_RESTRICTIONS, Boolean.FALSE); // ENABLE User restrictions
+		ctx.setAttribute(FlexibleSearch.DISABLE_RESTRICTION_GROUP_INHERITANCE, Boolean.FALSE); // ENABLE GROUP restrictions
 		return ctx;
 	}
 }

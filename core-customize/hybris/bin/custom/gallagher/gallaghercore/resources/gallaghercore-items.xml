@@ -154,6 +154,12 @@
 						</property>
 					</custom-properties>
 				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="eligibleForLatAm" type="boolean">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<defaultvalue>false</defaultvalue>
+					<description>Flag to identify Product is eligible for LatAm Market.</description>
+				</attribute>
 			</attributes>
 		</itemtype>
 
@@ -339,6 +345,16 @@
 						<modifiers optional="true" />
 						<persistence type="property" />
 						<description>heading for the Promotion</description>
+					</attribute>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="GallagherSiteTransactionRestriction" generate="true" autocreate="true" extends="AbstractRestriction"
+				jaloclass="com.gallagher.core.jalo.GallagherSiteTransactionRestriction">
+				<attributes>
+					<attribute qualifier="description" type="java.lang.String" redeclare="true">
+						<persistence type="dynamic" attributeHandler="gallagherSiteTransactionRestrictionDynamicDescription" />
+						<modifiers write="false" />
 					</attribute>
 				</attributes>
 			</itemtype>

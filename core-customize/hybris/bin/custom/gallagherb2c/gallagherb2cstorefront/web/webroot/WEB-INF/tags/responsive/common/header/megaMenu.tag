@@ -84,7 +84,7 @@
                 <div class="modal-footer">
                     <div class="xs-main-menu-l1-footer with-logged-in-user">
                         <div class="btn-group btn-block mb-3" role="group" aria-label="Button group login register">
-                            <button type="button" class="btn btn-highlight left-btn">My App</button>
+                            <button type="button" class="btn btn-highlight left-btn" onclick="window.location.href = '${fn:escapeXml(myApp)}'">My App</button>
 
                             <div class="btn-group user-profile-btn-group" role="group">
                                 <button type="button" class="btn btn-highlight dropdown-toggle user-profile-btn"

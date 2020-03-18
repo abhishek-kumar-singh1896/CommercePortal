@@ -1,0 +1,19 @@
+.register-product-out {
+  margin-bottom: 40px;
+}
+.register-product-desc {
+  p {
+    font-size: $font-size-14px;
+  }
+}
+
+.register-product-modal-container {
+  .product-name {
+    font-size: 1.142857em;
+  }
+
+  .product-id {
+    font-size: 0.85714em;
+    color: $gray-7;
+  }
+}

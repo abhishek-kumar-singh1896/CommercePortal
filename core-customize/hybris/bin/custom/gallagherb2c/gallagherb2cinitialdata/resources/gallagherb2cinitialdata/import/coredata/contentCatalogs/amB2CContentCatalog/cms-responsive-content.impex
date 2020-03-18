@@ -31,6 +31,7 @@ INSERT_UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];name;fronten
 ;;LandingPage6Template;Landing Page 6 Template;layout/landingLayout6Page;CategoryPage,ContentPage
 ;;ContentPage1Template;Content Page 1 Template;layout/contentLayout1Page;ContentPage
 ;;AccountPageTemplate;Account Page Template;account/accountLayoutPage;ContentPage
+;;RegisterProductPageTemplate;Register Product Page Template;product/registerProductPage;ContentPage
 
 # Templates without a frontendTemplateName
 ;;CartPageTemplate;Cart Page Template;;ContentPage;false;
@@ -66,6 +67,7 @@ UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[tr
 ;;OrderConfirmationPageTemplate;$jarResourceCms/structure-view/structure_orderConfirmationPageTemplate.vm
 ;;LoginPageTemplate         ;$jarResourceCms/structure-view/structure_loginPageTemplate.vm
 ;;CheckoutLoginPageTemplate ;$jarResourceCms/structure-view/structure_checkoutLoginPageTemplate.vm
+;;RegisterProductPageTemplate      ;$jarResourceCms/structure-view/structure_registerProductTemplate.vm
 
 # Create ContentSlotNames
 # Each PageTemplate has a number of ContentSlotNames, with a list of valid components for the slot.
@@ -859,6 +861,9 @@ INSERT_UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterT
 ;;productList;Product List;ProductListPageTemplate;false;
 ;;productGrid;Product Grid;ProductGridPageTemplate;true;
 ;;category;Default Category Page;CategoryPageTemplate;false;
+
+INSERT_UPDATE GallagherSiteTransactionRestriction;$contentCV[unique=true];uid[unique=true];name;&uid
+;;GallagherSiteTransactionRestriction;Site Transaction Restriction;GallagherSiteTransactionRestriction
 
 ############################## above is the desktop data, below is the responsive data ###########################################
 

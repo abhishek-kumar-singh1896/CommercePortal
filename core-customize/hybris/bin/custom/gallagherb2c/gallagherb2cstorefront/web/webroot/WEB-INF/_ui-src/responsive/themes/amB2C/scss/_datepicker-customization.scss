@@ -1,0 +1,90 @@
+.datepicker-dropdown {
+  &:before {
+    border-bottom: 7px solid rgba(0, 0, 0, 0.05);
+  }
+
+  &.datepicker-orient-top {
+    &:before {
+      border-top: 7px solid rgba(0, 0, 0, 0.05);
+    }
+  }
+}
+.datepicker {
+  table {
+    tr {
+      th {
+        font-family: $font-family-bold;
+      }
+    }
+  }
+}
+
+.datepicker table tr td, 
+.datepicker table tr th {
+    width: 34px;
+    height: 34px;
+}
+
+.datepicker table tr td.active.active,
+.datepicker table tr td.active.highlighted.active,
+.datepicker table tr td.active.highlighted:active,
+.datepicker table tr td.active:active {
+    background-color: $gray-9;
+    border-color: $gray-9;
+}
+
+.ui-widget {
+	font-family: inherit;
+	
+	&.ui-widget-content {
+		padding: 8px;
+		border: 1px solid $gray-3;
+	}
+}
+
+.ui-state-default, 
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default, 
+.ui-button, 
+html .ui-button.ui-state-disabled:hover, 
+html .ui-button.ui-state-disabled:active {
+	background: transparent;
+	border: none;
+}
+
+.ui-state-default, 
+.ui-widget-content .ui-state-default, 
+.ui-widget-header .ui-state-default {
+	background-color: none;
+	color: inherit;
+}
+
+table.ui-datepicker-calendar {
+	th {
+		background-color: transparent;
+		color: inherit;
+		font-family: $font-family-bold;
+	}
+}
+
+.ui-state-highlight, 
+.ui-widget-content .ui-state-highlight, 
+.ui-widget-header .ui-state-highlight {
+	background-color: $black;
+	border-color: $black;
+	color: $white;
+}
+
+.ui-datepicker .ui-datepicker-prev, 
+.ui-datepicker .ui-datepicker-next {
+	color: $black;
+}
+
+.ui-datepicker .ui-datepicker-title {
+	font-family: $font-family-bold;
+}
+
+.ui-datepicker td span,
+.ui-datepicker td a {
+	padding: 6px 4px;
+}

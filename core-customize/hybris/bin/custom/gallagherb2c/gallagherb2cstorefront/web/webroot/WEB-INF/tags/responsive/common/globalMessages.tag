@@ -12,7 +12,7 @@
 		<%-- Information (confirmation) messages --%>
 		<c:if test="${not empty accConfMsgs}">
 			<c:forEach items="${accConfMsgs}" var="msg">
-				<div class="alert alert-info alert-dismissable getAccAlert">
+				<div class="alert alert-success alert-dismissable getAccAlert">
 					<button class="close closeAccAlert" aria-hidden="true" data-dismiss="alert" type="button">&times;</button>
 					<spring:theme code="${msg.code}" arguments="${msg.attributes}" htmlEscape="false" var="informationMessages"/>
 					${ycommerce:sanitizeHTML(informationMessages)}

@@ -20,6 +20,7 @@ import de.hybris.platform.servicelayer.model.ModelService;
 import de.hybris.platform.servicelayer.type.TypeService;
 import de.hybris.platform.site.BaseSiteService;
 import de.hybris.platform.store.BaseStoreModel;
+import de.hybris.platform.store.services.BaseStoreService;
 import de.hybris.platform.variants.model.GenericVariantProductModel;
 import de.hybris.platform.variants.model.VariantTypeModel;
 import de.hybris.platform.variants.model.VariantValueCategoryModel;
@@ -79,6 +80,9 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 	@Resource(name = "gallagherProductProcessingDao")
 	protected GallagherProductProcessingDao gallagherProductProcessingDao;
 
+	@Resource(name = "baseStoreService")
+	protected BaseStoreService baseStoreService;
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(GallagherProductProcessingServiceImpl.class);
 	private static final String STAGED = "Staged";
 
@@ -97,7 +101,14 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 		for (final ProductModel product : products)
 		{
 			final String baseProductCode = product.getBaseProductCode();
-			final Collection<BaseStoreModel> baseStores = product.getBaseStores();
+
+			final List<BaseStoreModel> baseStores = new ArrayList<>();
+			baseStores.addAll(product.getBaseStores());
+
+			if (product.isEligibleForLatAm() && catalogId.contains("B2C"))
+			{
+				baseStores.add(baseStoreService.getBaseStoreForUid("amB2CLatAm"));
+			}
 
 			for (final BaseStoreModel baseStore : baseStores)
 			{
@@ -191,7 +202,14 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 		{
 			final String variantProductCode = product.getCode();
 			final String baseProductCode = product.getBaseProductCode();
-			final Collection<BaseStoreModel> baseStores = product.getBaseStores();
+
+			final List<BaseStoreModel> baseStores = new ArrayList<>();
+			baseStores.addAll(product.getBaseStores());
+
+			if (product.isEligibleForLatAm() && catalogId.contains("B2C"))
+			{
+				baseStores.add(baseStoreService.getBaseStoreForUid("amB2CLatAm"));
+			}
 
 			final Map<BaseStoreModel, CatalogVersionModel> storeCatalogMap = processVariantProductForCode(variantProductCode,
 					baseProductCode, baseStores, catalogId);
