@@ -3,15 +3,21 @@
  */
 package com.gallagher.b2c.controllers.pages;
 
+import de.hybris.platform.acceleratorstorefrontcommons.breadcrumb.Breadcrumb;
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.pages.AbstractPageController;
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.util.GlobalMessages;
 import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
+import de.hybris.platform.cms2.model.pages.AbstractPageModel;
+import de.hybris.platform.cms2.model.pages.ContentPageModel;
+import de.hybris.platform.commercefacades.order.CheckoutFacade;
 import de.hybris.platform.commercefacades.product.ProductFacade;
 import de.hybris.platform.commercefacades.product.ProductOption;
 import de.hybris.platform.commercefacades.product.data.ImageData;
 import de.hybris.platform.commercefacades.product.data.ProductData;
+import de.hybris.platform.commerceservices.enums.CountryType;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -31,6 +37,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.gallagher.b2c.controllers.ControllerConstants;
 import com.gallagher.b2c.form.RegisterProductForm;
 import com.gallagher.b2c.response.RPFormResponseData;
 import com.gallagher.b2c.response.RPFormResponseStatus;
@@ -61,7 +68,38 @@ public class RegisterProductController extends AbstractPageController
 	@Resource(name = "gallagheroutboundservicesService")
 	private GallagheroutboundservicesService gallagheroutboundservicesService;
 
+	@Resource(name = "acceleratorCheckoutFacade")
+	private CheckoutFacade checkoutFacade;
+
 	protected static final Logger LOG = Logger.getLogger(RegisterProductController.class);
+
+	@RequestMapping(method = RequestMethod.GET)
+	public String doRegisterProduct(final Model model) throws CMSItemNotFoundException
+	{
+		return getProductRegistrationPage(model);
+	}
+
+	protected String getProductRegistrationPage(final Model model) throws CMSItemNotFoundException
+	{
+		storeCmsPageInModel(model, getCmsPage());
+		setUpMetaDataForContentPage(model, (ContentPageModel) getCmsPage());
+		final Breadcrumb registerBreadcrumbEntry = new Breadcrumb("#",
+				getMessageSource().getMessage("header.register.product", null, getI18nService().getCurrentLocale()), null);
+		model.addAttribute("breadcrumbs", Collections.singletonList(registerBreadcrumbEntry));
+		model.addAttribute("Countries", checkoutFacade.getCountries(CountryType.SHIPPING));
+		model.addAttribute(new RegisterProductForm());
+		return getView();
+	}
+
+	protected AbstractPageModel getCmsPage() throws CMSItemNotFoundException
+	{
+		return getContentPageForLabelOrId("registerProduct");
+	}
+
+	protected String getView()
+	{
+		return ControllerConstants.Views.Pages.Product.RegisterProduct;
+	}
 
 	@ResponseBody
 	@RequestMapping(value = "/verify", method = RequestMethod.POST, produces = "application/json")
@@ -113,19 +151,21 @@ public class RegisterProductController extends AbstractPageController
 			throws CMSItemNotFoundException
 	{
 		final RegisterProductRequest register = new RegisterProductRequest();
-		register.setAddressLine1(registerProductForm.getAddressLine1());
-		register.setAddressLine2(registerProductForm.getAddressLine2());
-		register.setCountry(registerProductForm.getCountry());
-		register.setDatePurchased(registerProductForm.getDatePurchased());
-		register.setPhoneNumber(registerProductForm.getPhoneNumber());
-		register.setPostCode(registerProductForm.getProductSku());
-		register.setSerialNumber(registerProductForm.getSerialNumber());
-		register.setProductSku(registerProductForm.getProductSku());
-		register.setTownCity(registerProductForm.getTownCity());
+		/*
+		 * register.setAddressLine1(registerProductForm.getAddressLine1());
+		 * register.setAddressLine2(registerProductForm.getAddressLine2());
+		 * register.setCountry(registerProductForm.getCountry());
+		 * register.setDatePurchased(registerProductForm.getDatePurchased());
+		 * register.setPhoneNumber(registerProductForm.getPhoneNumber());
+		 * register.setPostCode(registerProductForm.getProductSku());
+		 * register.setSerialNumber(registerProductForm.getSerialNumber());
+		 * register.setProductSku(registerProductForm.getProductSku());
+		 * register.setTownCity(registerProductForm.getTownCity());
+		 */
 		gallagheroutboundservicesService.postRegisterProduct(register);
 		GlobalMessages.addFlashMessage(redirectAttributes, GlobalMessages.INFO_MESSAGES_HOLDER,
 				"registerProduct.confirmation.message.title");
-		return REDIRECT_PREFIX + "/register-product";
+		return ControllerConstants.Views.Pages.Product.RegisterProduct;
 	}
 
 

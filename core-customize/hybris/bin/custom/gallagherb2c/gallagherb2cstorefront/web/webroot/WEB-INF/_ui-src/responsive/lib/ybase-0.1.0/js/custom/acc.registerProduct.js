@@ -50,6 +50,7 @@ ACC.registerProduct = {
 							if(result.responseStatus == "FAILURE"){
 								showFieldErrors(result.errorsMap);
 							}else{
+								$('#registerProductForm').find('.form-control').removeClass('has-error').next().find('.error-text').addClass('d-none');
 								var titleHeader = $('#registerProductTitle').html();
 								var productCode=result.productCode;
 								var productName=result.productName;
