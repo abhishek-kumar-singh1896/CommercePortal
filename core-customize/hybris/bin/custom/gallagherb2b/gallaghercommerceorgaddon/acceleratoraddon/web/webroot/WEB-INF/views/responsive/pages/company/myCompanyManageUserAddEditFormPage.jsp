@@ -94,7 +94,7 @@
                  <div class="row">   
                     <div class="col-xs-12 col-sm-6">
                         <customFormElement:formCheckboxes idKey="text.company.user.unit.title"
-                                                   labelKey="text.company.user.unit.title" path="parentB2BUnit" 
+                                                   labelKey="text.company.user.unit.title" path="parentB2BUnits" 
                                                    items="${b2bUnits}" disabled="${not empty param.unit and not empty param.role}"
                                                   />
                     </div>

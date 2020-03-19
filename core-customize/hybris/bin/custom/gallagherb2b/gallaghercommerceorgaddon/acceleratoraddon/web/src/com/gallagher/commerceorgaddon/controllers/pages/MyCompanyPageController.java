@@ -385,7 +385,7 @@ public class MyCompanyPageController extends AbstractSearchPageController
 		{
 			final B2BCustomerForm b2bCustomerForm = new B2BCustomerForm();
 			//b2bCustomerForm.setParentB2BUnit(b2bUnitFacade.getParentUnit().getUid());
-			b2bCustomerForm.setParentB2BUnit(Collections.singletonList(b2bUnitFacade.getParentUnit().getUid()));
+			b2bCustomerForm.setParentB2BUnits(Collections.singletonList(b2bUnitFacade.getParentUnit().getUid()));
 
 			// Add the b2bcustomergroup role by default
 			b2bCustomerForm.setRoles(Collections.singletonList("b2bcustomergroup"));
@@ -434,7 +434,7 @@ public class MyCompanyPageController extends AbstractSearchPageController
 		b2bCustomerData.setEmail(b2BCustomerForm.getEmail());
 		b2bCustomerData.setDisplayUid(b2BCustomerForm.getEmail());
 		//b2bCustomerData.setUnit(b2bUnitFacade.getUnitForUid(b2BCustomerForm.getParentB2BUnit()));
-		b2bCustomerData.setUnits(getUnitsFromParentB2BUnit(b2BCustomerForm.getParentB2BUnit()));
+		b2bCustomerData.setUnits(getUnitsFromParentB2BUnit(b2BCustomerForm.getParentB2BUnits()));
 		b2bCustomerData.setRoles(b2BCustomerForm.getRoles());
 		b2bCustomerData.setCustomerId(b2BCustomerForm.getCustomerId());
 		b2bCustomerData.setDuplicate(b2BCustomerForm.isDuplicate());
