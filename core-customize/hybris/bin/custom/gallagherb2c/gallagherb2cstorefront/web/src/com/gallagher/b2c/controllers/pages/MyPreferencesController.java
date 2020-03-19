@@ -5,7 +5,6 @@ package com.gallagher.b2c.controllers.pages;
 
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.pages.AbstractPageController;
 import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
-import de.hybris.platform.commercefacades.customer.CustomerFacade;
 import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.servicelayer.model.ModelService;
 import de.hybris.platform.servicelayer.user.UserService;
@@ -35,17 +34,11 @@ public class MyPreferencesController extends AbstractPageController
 	@SuppressWarnings("unused")
 	private static final Logger LOGGER = Logger.getLogger(MyPreferencesController.class);
 
-	@Resource(name = "customerFacade")
-	private CustomerFacade customerFacade;
-
 	@Resource(name = "userService")
 	private UserService userService;
 
 	@Resource(name = "modelService")
 	private ModelService modelService;
-
-	private static final String COMPONENT_UID_PATH_VARIABLE_PATTERN = "{componentUid:.*}";
-
 
 	@RequestMapping(value = "/preferences", method = RequestMethod.GET)
 	public String setUpCustomerPreference(final Model model) throws CMSItemNotFoundException
@@ -54,11 +47,11 @@ public class MyPreferencesController extends AbstractPageController
 
 		final B2CCustomerPreferenceForm customerPreferences = new B2CCustomerPreferenceForm();
 
-		customerPreferences.setNewsLetters(currentCustomer.getNewsLetters());
-		customerPreferences.setEvents(currentCustomer.getEvents());
-		customerPreferences.setProductPromo(currentCustomer.getProductPromo());
-		customerPreferences.setProductRelease(currentCustomer.getProductRelease());
-		customerPreferences.setProductUpdate(currentCustomer.getProductUpdate());
+		customerPreferences.setNewsLetters(true);
+		customerPreferences.setEvents(true);
+		customerPreferences.setProductPromo(true);
+		customerPreferences.setProductRelease(true);
+		customerPreferences.setProductUpdate(true);
 
 		model.addAttribute("preferences", customerPreferences);
 
@@ -66,7 +59,7 @@ public class MyPreferencesController extends AbstractPageController
 
 	}
 
-	@RequestMapping(value = "/submit-preferences", method = RequestMethod.POST)
+	@RequestMapping(value = "/submitPreferences", method = RequestMethod.POST)
 	public String populateCustomerPreferences(@ModelAttribute("preferences")
 	final B2CCustomerPreferenceForm preferences)
 	{

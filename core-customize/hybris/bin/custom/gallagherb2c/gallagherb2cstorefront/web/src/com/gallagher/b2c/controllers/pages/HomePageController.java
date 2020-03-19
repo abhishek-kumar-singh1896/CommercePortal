@@ -59,8 +59,10 @@ public class HomePageController extends AbstractPageController
 		setUpMetaDataForContentPage(model, contentPage);
 		updatePageTitle(model, contentPage);
 
-		//if customer is not Anonymous and first time logged in
-		if (!userService.isAnonymousUser(userService.getCurrentUser()) && !currentUser.getIsUserExist())
+		//if customer is not Anonymous and any of preferences for current customer is null
+		if (!userService.isAnonymousUser(userService.getCurrentUser())
+				&& (currentUser.getNewsLetters() == null || currentUser.getEvents() == null || currentUser.getProductPromo() == null
+						|| currentUser.getProductRelease() == null || currentUser.getProductUpdate() == null))
 		{
 			model.addAttribute("showPreferences", true);
 		}

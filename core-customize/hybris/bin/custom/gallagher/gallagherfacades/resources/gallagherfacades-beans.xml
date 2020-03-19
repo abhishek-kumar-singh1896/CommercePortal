@@ -20,11 +20,12 @@
 		<property name="keycloakGUID" type="java.lang.String"/>
 		<property name="objectID" type="java.lang.String"/>
       <property name="isUserExist" type="boolean"/>
-      <property name="newsLetters" type="boolean"/>
-      <property name="events" type="boolean"/>
-      <property name="productRelease" type="boolean"/>
-      <property name="productUpdate" type="boolean"/>
-      <property name="productPromo" type="boolean"/>
+      <property name="newsLetters" type="java.lang.Boolean"/>
+      <property name="events" type="java.lang.Boolean"/>
+      <property name="productRelease" type="java.lang.Boolean"/>
+      <property name="productUpdate" type="java.lang.Boolean"/>
+      <property name="productPromo" type="java.lang.Boolean"/>
+      <property name="units" type="java.util.List&lt;de.hybris.platform.b2bcommercefacades.company.data.B2BUnitData>"/>
 	</bean>
 	
 	<bean class="de.hybris.platform.commercefacades.product.data.ImageData">
