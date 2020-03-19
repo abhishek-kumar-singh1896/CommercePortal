@@ -93,10 +93,10 @@
                  </div>
                  <div class="row">   
                     <div class="col-xs-12 col-sm-6">
-                        <formElement:formSelectBox idKey="text.company.user.unit.title" skipBlank="false"
-                                                   labelKey="text.company.user.unit.title" path="parentB2BUnit" selectCSSClass="form-control"
-                                                   mandatory="true" items="${b2bUnits}" disabled="${not empty param.unit and not empty param.role}"
-                                                   skipBlankMessageKey="form.select.empty"/>
+                        <customFormElement:formCheckboxes idKey="text.company.user.unit.title"
+                                                   labelKey="text.company.user.unit.title" path="parentB2BUnit" 
+                                                   items="${b2bUnits}" disabled="${not empty param.unit and not empty param.role}"
+                                                  />
                     </div>
                     <div class="col-xs-12">
                         <customFormElement:formCheckboxes idKey="text.company.user.roles" labelKey="text.company.user.roles"

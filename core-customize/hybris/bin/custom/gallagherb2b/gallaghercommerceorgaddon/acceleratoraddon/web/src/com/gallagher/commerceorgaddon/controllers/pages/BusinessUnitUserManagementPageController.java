@@ -59,7 +59,7 @@ public class BusinessUnitUserManagementPageController extends MyCompanyPageContr
 	{
 		final String url = createUser(model);
 		final B2BCustomerForm b2bCustomerForm = (B2BCustomerForm) model.asMap().get("b2BCustomerForm");
-		b2bCustomerForm.setParentB2BUnit(unit);
+		b2bCustomerForm.setParentB2Bunit(unit);
 		b2bCustomerForm.setRoles(Collections.singleton(role));
 
 		final List<Breadcrumb> breadcrumbs = myCompanyBreadcrumbBuilder.createManageUnitsDetailsBreadcrumbs(unit);
@@ -94,7 +94,7 @@ public class BusinessUnitUserManagementPageController extends MyCompanyPageContr
 		model.addAttribute("cancelUrl",
 				String.format(request.getContextPath() + "/my-company/organization-management/manage-units/details?unit=%s&role=%s",
 						urlEncode(unit), urlEncode(role)));
-		b2bCustomerForm.setParentB2BUnit(unit);
+		b2bCustomerForm.setParentB2Bunit(unit);
 		b2bCustomerForm.setRoles(Collections.singleton(role));
 		profileValidator.validate(b2bCustomerForm, bindingResult);
 		final String url = createUser(b2bCustomerForm, bindingResult, model, redirectModel);

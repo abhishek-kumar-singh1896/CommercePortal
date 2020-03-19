@@ -181,7 +181,7 @@ public class MyCompanyPageController extends AbstractSearchPageController
 	@ModelAttribute("b2bUnits")
 	public List<SelectOption> getB2BUnits()
 	{
-		return populateSelectBoxForString(b2bUnitFacade.getAllActiveUnitsOfOrganization());
+		return populateUnitsCheckBoxes(b2bUnitFacade.getAllActiveUnitsOfOrganization());
 	}
 
 	@ModelAttribute("b2bCostCenterCurrencies")
@@ -384,7 +384,8 @@ public class MyCompanyPageController extends AbstractSearchPageController
 		if (!model.containsAttribute("b2BCustomerForm"))
 		{
 			final B2BCustomerForm b2bCustomerForm = new B2BCustomerForm();
-			b2bCustomerForm.setParentB2BUnit(b2bUnitFacade.getParentUnit().getUid());
+			//b2bCustomerForm.setParentB2BUnit(b2bUnitFacade.getParentUnit().getUid());
+			b2bCustomerForm.setParentB2BUnit(Collections.singletonList(b2bUnitFacade.getParentUnit().getUid()));
 
 			// Add the b2bcustomergroup role by default
 			b2bCustomerForm.setRoles(Collections.singletonList("b2bcustomergroup"));
@@ -432,7 +433,8 @@ public class MyCompanyPageController extends AbstractSearchPageController
 		b2bCustomerData.setLastName(b2BCustomerForm.getLastName());
 		b2bCustomerData.setEmail(b2BCustomerForm.getEmail());
 		b2bCustomerData.setDisplayUid(b2BCustomerForm.getEmail());
-		b2bCustomerData.setUnit(b2bUnitFacade.getUnitForUid(b2BCustomerForm.getParentB2BUnit()));
+		//b2bCustomerData.setUnit(b2bUnitFacade.getUnitForUid(b2BCustomerForm.getParentB2BUnit()));
+		b2bCustomerData.setUnits(getUnitsFromParentB2BUnit(b2BCustomerForm.getParentB2BUnit()));
 		b2bCustomerData.setRoles(b2BCustomerForm.getRoles());
 		b2bCustomerData.setCustomerId(b2BCustomerForm.getCustomerId());
 		b2bCustomerData.setDuplicate(b2BCustomerForm.isDuplicate());
@@ -516,7 +518,9 @@ public class MyCompanyPageController extends AbstractSearchPageController
 			b2bCustomerForm.setFirstName(customerData.getFirstName());
 			b2bCustomerForm.setLastName(customerData.getLastName());
 			b2bCustomerForm.setEmail(customerData.getDisplayUid());
-			b2bCustomerForm.setParentB2BUnit(b2bUserFacade.getParentUnitForCustomer(customerData.getUid()).getUid());
+			//b2bCustomerForm.setParentB2BUnit(b2bUserFacade.getParentUnitForCustomer(customerData.getUid()).getUid());
+			b2bCustomerForm.setParentB2BUnit(
+					Collections.singletonList(b2bUserFacade.getParentUnitForCustomer(customerData.getUid()).getUid()));
 			b2bCustomerForm.setActive(customerData.isActive());
 			b2bCustomerForm.setApproverGroups(customerData.getApproverGroups());
 			b2bCustomerForm.setApprovers(customerData.getApprovers());
@@ -576,10 +580,12 @@ public class MyCompanyPageController extends AbstractSearchPageController
 			{
 				// A session user can't modify their own parent unit.
 				final B2BUnitData parentUnit = b2bUnitFacade.getParentUnit();
-				if (!parentUnit.getUid().equals(b2BCustomerForm.getParentB2BUnit()))
+				//if (!parentUnit.getUid().equals(b2BCustomerForm.getParentB2BUnit()))
+				if (!parentUnit.getUid().equals(b2BCustomerForm.getParentB2BUnit().get(0)))
 				{
 					GlobalMessages.addErrorMessage(model, "form.b2bcustomer.parentunit.error");
-					b2BCustomerForm.setParentB2BUnit(parentUnit.getUid());
+					//b2BCustomerForm.setParentB2BUnit(parentUnit.getUid());
+					b2BCustomerForm.setParentB2BUnit(Collections.singletonList(parentUnit.getUid()));
 					model.addAttribute(b2BCustomerForm);
 					return editUser(b2BCustomerForm.getUid(), model);
 				}
@@ -593,7 +599,8 @@ public class MyCompanyPageController extends AbstractSearchPageController
 		b2bCustomerData.setLastName(b2BCustomerForm.getLastName());
 		b2bCustomerData.setEmail(b2BCustomerForm.getEmail());
 		b2bCustomerData.setDisplayUid(b2BCustomerForm.getEmail());
-		b2bCustomerData.setUnit(b2bUnitFacade.getUnitForUid(b2BCustomerForm.getParentB2BUnit()));
+		//b2bCustomerData.setUnit(b2bUnitFacade.getUnitForUid(b2BCustomerForm.getParentB2BUnit()));
+		b2bCustomerData.setUnits(getUnitsFromParentB2BUnit(b2BCustomerForm.getParentB2BUnit()));
 		b2bCustomerData
 				.setRoles(b2BCustomerForm.getRoles() != null ? b2BCustomerForm.getRoles() : Collections.<String> emptyList());
 		model.addAttribute(b2BCustomerForm);
@@ -915,6 +922,29 @@ public class MyCompanyPageController extends AbstractSearchPageController
 	protected int getSearchPageSize()
 	{
 		return getSiteConfigService().getInt("commerceorgaddon.search.pageSize", 9);
+	}
+
+	protected List<B2BUnitData> getUnitsFromParentB2BUnit(final List<String> units)
+	{
+		final List<B2BUnitData> unitFromParentB2BUnit = new ArrayList<B2BUnitData>();
+
+		for (final String unit : units)
+		{
+			unitFromParentB2BUnit.add(b2bUnitFacade.getUnitForUid(unit));
+		}
+		return unitFromParentB2BUnit;
+	}
+
+	protected List<SelectOption> populateUnitsCheckBoxes(final List<String> roles)
+	{
+		final List<SelectOption> selectBoxList = new ArrayList<SelectOption>();
+		for (final String data : roles)
+		{
+			selectBoxList.add(new SelectOption(data,
+					getMessageSource().getMessage(String.format("b2bunit.%s.name", data), null, getI18nService().getCurrentLocale())));
+		}
+
+		return selectBoxList;
 	}
 
 }
