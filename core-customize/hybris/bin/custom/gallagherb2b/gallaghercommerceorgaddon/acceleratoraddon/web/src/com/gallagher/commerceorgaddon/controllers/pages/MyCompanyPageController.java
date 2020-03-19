@@ -519,7 +519,7 @@ public class MyCompanyPageController extends AbstractSearchPageController
 			b2bCustomerForm.setLastName(customerData.getLastName());
 			b2bCustomerForm.setEmail(customerData.getDisplayUid());
 			//b2bCustomerForm.setParentB2BUnit(b2bUserFacade.getParentUnitForCustomer(customerData.getUid()).getUid());
-			b2bCustomerForm.setParentB2BUnit(
+			b2bCustomerForm.setParentB2BUnits(
 					Collections.singletonList(b2bUserFacade.getParentUnitForCustomer(customerData.getUid()).getUid()));
 			b2bCustomerForm.setActive(customerData.isActive());
 			b2bCustomerForm.setApproverGroups(customerData.getApproverGroups());
