@@ -384,7 +384,6 @@ public class MyCompanyPageController extends AbstractSearchPageController
 		if (!model.containsAttribute("b2BCustomerForm"))
 		{
 			final B2BCustomerForm b2bCustomerForm = new B2BCustomerForm();
-			//b2bCustomerForm.setParentB2BUnit(b2bUnitFacade.getParentUnit().getUid());
 			b2bCustomerForm.setParentB2BUnits(Collections.singletonList(b2bUnitFacade.getParentUnit().getUid()));
 
 			// Add the b2bcustomergroup role by default
@@ -433,7 +432,6 @@ public class MyCompanyPageController extends AbstractSearchPageController
 		b2bCustomerData.setLastName(b2BCustomerForm.getLastName());
 		b2bCustomerData.setEmail(b2BCustomerForm.getEmail());
 		b2bCustomerData.setDisplayUid(b2BCustomerForm.getEmail());
-		//b2bCustomerData.setUnit(b2bUnitFacade.getUnitForUid(b2BCustomerForm.getParentB2BUnit()));
 		b2bCustomerData.setUnits(getUnitsFromParentB2BUnit(b2BCustomerForm.getParentB2BUnits()));
 		b2bCustomerData.setRoles(b2BCustomerForm.getRoles());
 		b2bCustomerData.setCustomerId(b2BCustomerForm.getCustomerId());
@@ -518,7 +516,6 @@ public class MyCompanyPageController extends AbstractSearchPageController
 			b2bCustomerForm.setFirstName(customerData.getFirstName());
 			b2bCustomerForm.setLastName(customerData.getLastName());
 			b2bCustomerForm.setEmail(customerData.getDisplayUid());
-			//b2bCustomerForm.setParentB2BUnit(b2bUserFacade.getParentUnitForCustomer(customerData.getUid()).getUid());
 			b2bCustomerForm.setParentB2BUnits(
 					Collections.singletonList(b2bUserFacade.getParentUnitForCustomer(customerData.getUid()).getUid()));
 			b2bCustomerForm.setActive(customerData.isActive());
@@ -580,11 +577,10 @@ public class MyCompanyPageController extends AbstractSearchPageController
 			{
 				// A session user can't modify their own parent unit.
 				final B2BUnitData parentUnit = b2bUnitFacade.getParentUnit();
-				//if (!parentUnit.getUid().equals(b2BCustomerForm.getParentB2BUnit()))
+
 				if (!parentUnit.getUid().equals(b2BCustomerForm.getParentB2BUnits().get(0)))
 				{
 					GlobalMessages.addErrorMessage(model, "form.b2bcustomer.parentunit.error");
-					//b2BCustomerForm.setParentB2BUnit(parentUnit.getUid());
 					b2BCustomerForm.setParentB2BUnits(Collections.singletonList(parentUnit.getUid()));
 					model.addAttribute(b2BCustomerForm);
 					return editUser(b2BCustomerForm.getUid(), model);
@@ -599,7 +595,6 @@ public class MyCompanyPageController extends AbstractSearchPageController
 		b2bCustomerData.setLastName(b2BCustomerForm.getLastName());
 		b2bCustomerData.setEmail(b2BCustomerForm.getEmail());
 		b2bCustomerData.setDisplayUid(b2BCustomerForm.getEmail());
-		//b2bCustomerData.setUnit(b2bUnitFacade.getUnitForUid(b2BCustomerForm.getParentB2BUnit()));
 		b2bCustomerData.setUnits(getUnitsFromParentB2BUnit(b2BCustomerForm.getParentB2BUnits()));
 		b2bCustomerData
 				.setRoles(b2BCustomerForm.getRoles() != null ? b2BCustomerForm.getRoles() : Collections.<String> emptyList());
