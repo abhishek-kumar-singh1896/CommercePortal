@@ -7,6 +7,7 @@
 <%@ taglib prefix="product" tagdir="/WEB-INF/tags/responsive/product"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="theme" tagdir="/WEB-INF/tags/shared/theme"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 
 <li>
@@ -30,12 +31,19 @@
 			<div class="product-id mb-1">${product.code}</div>
 			<div class="mb-1 product-id">
 				<span class=""><spring:theme
-						code="registeredProducts.dateRegistered" /> </span> <span>${product.registrationDate}</span>
+						code="registeredProducts.dateRegistered" /> </span> 
+				<span>
+					<fmt:formatDate value="${product.registrationDate}" type="date" pattern="dd/MM/yyyy"/>
+				</span>
 			</div>
 
 			<div class="product-id mb-1">
-				<span> <spring:theme code="registeredProducts.datePurchased" />
-				</span> <span>${product.purchaseDate}</span>
+				<span>
+					<spring:theme code="registeredProducts.datePurchased" />
+				</span>
+				<span>
+					<fmt:formatDate value="${product.purchaseDate}" type="date" pattern="dd/MM/yyyy"/>
+				</span>
 			</div>
 
 			<div class="product-id">
