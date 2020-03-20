@@ -170,12 +170,9 @@
 						<label for="country" class="common-form-label">Country*</label> <select
 							name="country" id="country"
 							class="form-control js-example-basic-single">
-							<option value="0">New Zealand</option>
-							<option value="1">Australia</option>
-							<option value="0">Canada (EN)</option>
-							<option value="1">Canada (FR)</option>
-							<option value="1">Latin America</option>
-							<option value="0">Global</option>
+							<c:forEach items="${Countries}" var="country" varStatus="status">
+							<option value="0">${country.name}</option>
+							</c:forEach>
 						</select> <div class="error-label">
 									<span class="error-text d-none"> <span
 										class="error-icon"> <svg>
