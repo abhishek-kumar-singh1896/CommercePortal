@@ -40,10 +40,9 @@
 			<h1 class="primary-title">Product Registration</h1>
 			<div class="register-product-desc">
 				<p>
-					If you are from Europe please go to <a
-						href="http://www.gallagher.eu" target="_blank">www.gallagher.eu</a>
-					to register your product and obtain your energizer warranty
-					extension
+					<cms:pageSlot position="Section1" var="feature">
+						<cms:component component="${feature}" element="div" class=""/>
+					</cms:pageSlot>
 				</p>
 			</div>
 
@@ -242,9 +241,9 @@
 	<div class="d-none">
 	    <div class="register-product-modal-container">
 	        <div class="hint-text mb-4">
-	            If these details do not match your product, please contact the Customer services Team
-	            Email: <a href="mailto:sales.nz@am.gallagher" target="_blank">sales.nz@am.gallagher</a> |
-	            Telephone number: 0800 731 500
+	            <cms:pageSlot position="Section2" var="feature" element="div" >
+					<cms:component component="${feature}"/>
+				</cms:pageSlot>
 	        </div>
 	
 	        <div class="row mb-2">
