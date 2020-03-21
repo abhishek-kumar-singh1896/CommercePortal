@@ -65,14 +65,15 @@ ACC.registerProduct = {
 								var postCode =result.registerProductForm.postCode;
 								var country =result.registerProductForm.country;
 								var phoneNumber =result.registerProductForm.phoneNumber;
-								$("#productSkuInput").text(productSku);
-								$("#serialNumberInput").text(serialNumber);
-								$("#datePurchasedInput").text(datePurchased);
-								$("#addressLine1Input").text(addressLine1);
-								$("#addressLine2Input").text(addressLine2);
-								$("#townCityInput").text(townCity);
-								$("#postCodeInput").text(postCode);
-								$("#countryInput").text(country);
+								document.getElementById("productSkuInput").value = productSku;
+								document.getElementById("serialNumberInput").value = serialNumber;
+								document.getElementById("datePurchasedInput").value = datePurchased;
+								document.getElementById("addressLine1Input").value = addressLine1;
+								document.getElementById("addressLine2Input").value = addressLine2;
+								document.getElementById("townCityInput").value = townCity;
+								document.getElementById("postCodeInput").value = postCode;
+								document.getElementById("countryInput").value = country;
+								document.getElementById("phoneNumberInput").value = phoneNumber;
 								$("#phoneNumberInput").text(phoneNumber);
 								$('.product-name').text(productName);
 								$('.product-id').text(productCode);
@@ -116,7 +117,6 @@ ACC.registerProduct = {
 	},
 	getJSONDataForRegisterProduct : function() {
 		var productSku=$("#productSku").val();
-//		alert("productSku>>"+productSku);
 		var serialNumber = $("#serialNumber").val();
 		var datePurchased = $("#datePurchased").val();
 		var addressLine1 = $("#addressLine1").val();
@@ -136,32 +136,6 @@ ACC.registerProduct = {
 				"country" : country,
 				"phoneNumber" : phoneNumber
 		}
-//		alert("productDetails>>"+JSON.stringify(productDetails));
 		return JSON.stringify(productDetails);
-	}/*,
-	bindSubmitRegisterProduct : function() {
-		alert("23");
-		$('.registerSuccess').click(
-				function(e) {
-					alert("23");
-					var formData = $("#registerProductForm");
-					e.preventDefault();
-					$.ajax({
-						url : ACC.config.encodedContextPath + '/register-product/submit',
-						type : 'POST',
-						dataType : 'json',
-						contentType : 'application/json',
-						data : formData.serialize(),
-						async : true,
-						success : function(result) {
-							alert("result.responseStatus>>"+result)
-						},
-						error : function(jqXHR, textStatus, errorThrown) {
-							// log the error to the console
-							console.log("The following error occurred: "
-									+ textStatus, errorThrown);
-						}
-					});
-				});
-	}*/
+	}
 };

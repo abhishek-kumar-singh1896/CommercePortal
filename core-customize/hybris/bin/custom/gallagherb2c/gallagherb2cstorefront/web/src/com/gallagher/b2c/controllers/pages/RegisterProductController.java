@@ -39,10 +39,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gallagher.b2c.controllers.ControllerConstants;
 import com.gallagher.b2c.form.RegisterProductForm;
+import com.gallagher.b2c.form.RegisterProductPopupForm;
 import com.gallagher.b2c.response.RPFormResponseData;
 import com.gallagher.b2c.response.RPFormResponseStatus;
 import com.gallagher.b2c.validators.RegisterProductValidator;
-import com.gallagher.facades.GallagherRegisterProductFacade;
 import com.gallagher.outboundservices.request.dto.RegisterProductRequest;
 import com.gallagher.outboundservices.service.GallagheroutboundservicesService;
 
@@ -56,8 +56,6 @@ import com.gallagher.outboundservices.service.GallagheroutboundservicesService;
 @RequestMapping(value = "/register-product")
 public class RegisterProductController extends AbstractPageController
 {
-	@Resource(name = "registerProduct")
-	private GallagherRegisterProductFacade registerProduct;
 
 	@Resource(name = "registerProductValidator")
 	private RegisterProductValidator registerProductValidator;
@@ -145,27 +143,44 @@ public class RegisterProductController extends AbstractPageController
 	}
 
 
-	@RequestMapping(value = "/submit", method = RequestMethod.POST, produces = "application/json")
+	@RequestMapping(value = "/submit", method = RequestMethod.POST)
 	public String submitRegisterProduct(@ModelAttribute
-	final RegisterProductForm registerProductForm, final Model model, final RedirectAttributes redirectAttributes)
+	final RegisterProductPopupForm registerProductForm1, final Model model, final RedirectAttributes redirectAttributes)
 			throws CMSItemNotFoundException
 	{
 		final RegisterProductRequest register = new RegisterProductRequest();
-		/*
-		 * register.setAddressLine1(registerProductForm.getAddressLine1());
-		 * register.setAddressLine2(registerProductForm.getAddressLine2());
-		 * register.setCountry(registerProductForm.getCountry());
-		 * register.setDatePurchased(registerProductForm.getDatePurchased());
-		 * register.setPhoneNumber(registerProductForm.getPhoneNumber());
-		 * register.setPostCode(registerProductForm.getProductSku());
-		 * register.setSerialNumber(registerProductForm.getSerialNumber());
-		 * register.setProductSku(registerProductForm.getProductSku());
-		 * register.setTownCity(registerProductForm.getTownCity());
-		 */
-		gallagheroutboundservicesService.postRegisterProduct(register);
-		GlobalMessages.addFlashMessage(redirectAttributes, GlobalMessages.INFO_MESSAGES_HOLDER,
+		register.setAddressLine1(registerProductForm1.getAddressLine11());
+		register.setAddressLine2(registerProductForm1.getAddressLine21());
+		register.setCountry(registerProductForm1.getCountry1());
+		register.setDatePurchased(registerProductForm1.getDatePurchased1());
+		register.setPhoneNumber(registerProductForm1.getPhoneNumber1());
+		register.setPostCode(registerProductForm1.getProductSku1());
+		register.setSerialNumber(registerProductForm1.getSerialNumber1());
+		register.setProductSku(registerProductForm1.getProductSku1());
+		register.setTownCity(registerProductForm1.getTownCity1());
+		final RegisterProductForm rg = new RegisterProductForm();
+		try
+		{
+			gallagheroutboundservicesService.postRegisterProduct(register);
+		}
+		catch (final Exception e)
+		{
+			rg.setAddressLine1(registerProductForm1.getAddressLine11());
+			rg.setAddressLine2(registerProductForm1.getAddressLine21());
+			rg.setCountry(registerProductForm1.getCountry1());
+			rg.setDatePurchased(registerProductForm1.getDatePurchased1());
+			rg.setPhoneNumber(registerProductForm1.getPhoneNumber1());
+			rg.setPostCode(registerProductForm1.getProductSku1());
+			rg.setSerialNumber(registerProductForm1.getSerialNumber1());
+			rg.setProductSku(registerProductForm1.getProductSku1());
+			rg.setTownCity(registerProductForm1.getTownCity1());
+			model.addAttribute(rg);
+		}
+		model.addAttribute(rg);
+		final String page = getProductRegistrationPage(model);
+		GlobalMessages.addFlashMessage(redirectAttributes, GlobalMessages.CONF_MESSAGES_HOLDER,
 				"registerProduct.confirmation.message.title");
-		return ControllerConstants.Views.Pages.Product.RegisterProduct;
+		return page;
 	}
 
 

@@ -58,8 +58,10 @@
 						<div class="row">
 							<div class="col-12 mb-4">
 								<label for="productSku" class="common-form-label">Product
-									SKU*</label> <input type="text" class="form-control common-input"
-									id="productSku" name=productSku>
+									SKU</label> 
+									<!-- <input type="text" class="form-control common-input" id="productSku" name="productSku"/> -->
+									<%-- <form:input type="text" class="form-control common-input" id="productSku" name="productSku"/> --%>
+									<form:input type="text" class="form-control common-input" id="productSku" path="productSku" />
 								<div class="error-label">
 									<span class="error-text d-none"> <span
 										class="error-icon"> <svg>
@@ -73,9 +75,10 @@
 
 							<div class="col-12 mb-4">
 								<label for="serialNumber" class="common-form-label">Serial
-									number*</label> <input type="text" maxlength="10"
-									class="form-control common-input" id="serialNumber"
-									name="serialNumber"> <div class="error-label">
+									number</label> 
+									<!-- <input type="text" maxlength="10" class="form-control common-input" id="serialNumber" name="serialNumber"> -->
+									<form:input type="text" maxlength="10" class="form-control common-input" id="serialNumber" path="serialNumber" />
+									<div class="error-label">
 									<span class="error-text d-none"> <span
 										class="error-icon"> <svg>
 	                                        <use
@@ -88,9 +91,10 @@
 
 							<div class="col-12 mb-4">
 								<label for="datePurchased" class="common-form-label">Date
-									purchased (dd/mm/yyyy)*</label> <input type="text"
-									class="form-control common-input" id="datePurchased"
-									name="datePurchased"> <div class="error-label">
+									purchased (dd/mm/yyyy)</label> 
+									<!-- <input type="text" class="form-control common-input" id="datePurchased" name="datePurchased">  -->
+									<form:input type="text" class="form-control common-input" id="datePurchased" path="datePurchased" />
+									<div class="error-label">
 									<span class="error-text d-none"> <span
 										class="error-icon"> <svg>
 	                                        <use
@@ -109,8 +113,10 @@
 				<div class="row">
 					<div class="col-md-6 mb-4">
 						<label for="addressLine1" class="common-form-label">Address
-							Line 1*</label> <input type="text" class="form-control common-input"
-							id="addressLine1" name="addressLine1"> <div class="error-label">
+							Line 1</label> 
+							<!-- <input type="text" class="form-control common-input" id="addressLine1" name="addressLine1"/>  -->
+							<form:input type="text" class="form-control common-input" id="addressLine1" path="addressLine1" />
+							<div class="error-label">
 									<span class="error-text d-none"> <span
 										class="error-icon"> <svg>
 	                                        <use
@@ -122,37 +128,9 @@
 					</div>
 					<div class="col-md-6 mb-4">
 						<label for="addressLine2" class="common-form-label">Address
-							Line 2</label> <input type="text" class="form-control common-input"
-							id="addressLine2"> <div class="error-label">
-									<span class="error-text d-none"> <span
-										class="error-icon"> <svg>
-	                                        <use
-													xlink:href="${commonResourcePath}/images/gallagher-icons.svg#cross" />
-	                                    </svg>
-									</span> <span class="error-inner-text"></span>
-									</span>
-								</div>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-md-6 mb-4">
-						<label for="townCity" class="common-form-label">Town/ City</label>
-						<input type="text" class="form-control common-input" id="townCity"
-							name="townCity"> <div class="error-label">
-									<span class="error-text d-none"> <span
-										class="error-icon"> <svg>
-	                                        <use
-													xlink:href="${commonResourcePath}/images/gallagher-icons.svg#cross" />
-	                                    </svg>
-									</span> <span class="error-inner-text"></span>
-									</span>
-								</div>
-					</div>
-					<div class="col-md-6 mb-4">
-						<label for="postCode" class="common-form-label">Post Code*</label>
-						<input type="text" class="form-control common-input" id="postCode"
-							name="postCode">
+							Line 2</label> 
+							<!-- <input type="text" class="form-control common-input" id="addressLine2">  -->
+							<form:input type="text" class="form-control common-input" id="addressLine2" path="addressLine2" />
 							<div class="error-label">
 									<span class="error-text d-none"> <span
 										class="error-icon"> <svg>
@@ -167,13 +145,43 @@
 
 				<div class="row">
 					<div class="col-md-6 mb-4">
-						<label for="country" class="common-form-label">Country*</label> <select
-							name="country" id="country"
-							class="form-control js-example-basic-single">
+						<label for="townCity" class="common-form-label">Town/ City</label>
+						<!-- <input type="text" class="form-control common-input" id="townCity" name="townCity">  -->
+						<form:input type="text" class="form-control common-input" id="townCity" path="townCity" />
+						<div class="error-label">
+									<span class="error-text d-none"> <span
+										class="error-icon"> <svg>
+	                                        <use
+													xlink:href="${commonResourcePath}/images/gallagher-icons.svg#cross" />
+	                                    </svg>
+									</span> <span class="error-inner-text"></span>
+									</span>
+								</div>
+					</div>
+					<div class="col-md-6 mb-4">
+						<label for="postCode" class="common-form-label">Post Code</label>
+						<form:input type="text" class="form-control common-input" id="postCode" path="postCode" />
+						
+							<div class="error-label">
+									<span class="error-text d-none"> <span
+										class="error-icon"> <svg>
+	                                        <use
+													xlink:href="${commonResourcePath}/images/gallagher-icons.svg#cross" />
+	                                    </svg>
+									</span> <span class="error-inner-text"></span>
+									</span>
+								</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-6 mb-4">
+						<label for="country" class="common-form-label">Country</label> 
+						<form:select path="country" id="country" class="form-control js-example-basic-single">
 							<c:forEach items="${Countries}" var="country" varStatus="status">
-							<option value="0">${country.name}</option>
+							<form:option value="0">${country.name}</form:option>
 							</c:forEach>
-						</select> <div class="error-label">
+						</form:select><div class="error-label">
 									<span class="error-text d-none"> <span
 										class="error-icon"> <svg>
 	                                        <use
@@ -185,8 +193,8 @@
 					</div>
 					<div class="col-md-6 mb-4">
 						<label for="phoneNumber" class="common-form-label">Phone
-							number</label> <input type="text" class="form-control common-input"
-							id="phoneNumber" name="phoneNumber"> 
+							number</label> 
+							<form:input type="text" class="form-control common-input" id="phoneNumber" path="phoneNumber"/> 
 							<div class="error-label">
 									<span class="error-text d-none"> <span
 										class="error-icon"> <svg>
@@ -248,15 +256,15 @@
 	            </div>
 	        </div>
 	        <form:form id="registerProductSubmitForm" class="registerProductSubmitForm" method="post" action="${actionURL1}" modelAttribute="registerProductSubmitForm">
-				<input type="hidden" class="form-control common-input" id="productSkuInput" name="productSku">
-				<input type="hidden" class="form-control common-input" id="serialNumberInput" name="serialNumberInput">
-				<input type="hidden" class="form-control common-input" id="datePurchasedInput" name="datePurchasedInput">
-				<input type="hidden" class="form-control common-input" id="addressLine1Input" name="addressLine1Input">
-				<input type="hidden" class="form-control common-input" id="addressLine2Input" name="addressLine2Input">
-				<input type="hidden" class="form-control common-input" id="townCityInput" name="townCityInput">
-				<input type="hidden" class="form-control common-input" id="postCodeInput" name="postCodeInput">
-				<input type="hidden" class="form-control common-input" id="countryInput" name="countryInput">
-				<input type="hidden" class="form-control common-input" id="phoneNumberInput" name="phoneNumberInput">
+				<input type="hidden" class="form-control common-input" id="productSkuInput" name="productSku1">
+				<input type="hidden" class="form-control common-input" id="serialNumberInput" name="serialNumber1">
+				<input type="hidden" class="form-control common-input" id="datePurchasedInput" name="datePurchased1">
+				<input type="hidden" class="form-control common-input" id="addressLine1Input" name="addressLine11">
+				<input type="hidden" class="form-control common-input" id="addressLine2Input" name="addressLine21">
+				<input type="hidden" class="form-control common-input" id="townCityInput" name="townCity1">
+				<input type="hidden" class="form-control common-input" id="postCodeInput" name="postCode1">
+				<input type="hidden" class="form-control common-input" id="countryInput" name="country1">
+				<input type="hidden" class="form-control common-input" id="phoneNumberInput" name="phoneNumber1">
 				
 	        <div class="row mt-3">
 				<div class="col-12 text-right"><button type="submit" class="btn btn-highlight registerSuccess" id="registerSuccess">Register</button></div>  
