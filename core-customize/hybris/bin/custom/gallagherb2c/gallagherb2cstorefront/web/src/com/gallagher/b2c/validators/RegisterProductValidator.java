@@ -3,14 +3,15 @@
  */
 package com.gallagher.b2c.validators;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import com.gallagher.b2c.form.RegisterProductForm;
-
-
 
 
 
@@ -22,6 +23,8 @@ import com.gallagher.b2c.form.RegisterProductForm;
 @Component("registerProductValidator")
 public class RegisterProductValidator implements Validator
 {
+
+	public static final String PHONE_REGEX = "^[0-9]*$";
 
 	@Override
 	public boolean supports(final Class<?> aClass)
@@ -42,11 +45,11 @@ public class RegisterProductValidator implements Validator
 		final String country = registerProductForm.getCountry();
 		final String phoneNumber = registerProductForm.getPhoneNumber();
 
-		if (StringUtils.isEmpty(productSKU))
+		if (StringUtils.isEmpty(productSKU) || StringUtils.length(productSKU) > 7)
 		{
 			errors.rejectValue("productSku", "registerProduct.productsku.invalid");
 		}
-		if (StringUtils.isEmpty(serialNum))
+		if (StringUtils.isEmpty(serialNum) || StringUtils.length(serialNum) > 10)
 		{
 			errors.rejectValue("serialNumber", "registerProduct.serialNumber.invalid");
 		}
@@ -70,6 +73,34 @@ public class RegisterProductValidator implements Validator
 		{
 			errors.rejectValue("country", "registerProduct.country.invalid");
 		}
+		/*
+		 * if (!validateRegex(phoneNumber, EMAIL_REGEX)) { errors.rejectValue("emailAddressSignup",
+		 * "registerProduct.country.invalid"); }
+		 */
 
+		validatePhone(phoneNumber, errors);
+
+
+
+	}
+
+	private void validatePhone(final String phoneNum, final Errors errors)
+	{
+		if (StringUtils.isEmpty(phoneNum))
+		{
+			if (!validateRegex(phoneNum, PHONE_REGEX))
+			{
+				errors.rejectValue("phoneNumber", "registerProduct.phoneNumber.invalid");
+			}
+		}
+
+
+	}
+
+	public boolean validateRegex(final String str, final String regex)
+	{
+		final Pattern pattern = Pattern.compile(regex);
+		final Matcher matcher = pattern.matcher(str);
+		return matcher.matches();
 	}
 }
