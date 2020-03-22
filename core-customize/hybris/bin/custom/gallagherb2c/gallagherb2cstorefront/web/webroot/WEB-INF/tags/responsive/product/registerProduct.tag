@@ -76,7 +76,7 @@
 								<label for="serialNumber" class="common-form-label">Serial
 									number</label> 
 									<!-- <input type="text" maxlength="10" class="form-control common-input" id="serialNumber" name="serialNumber"> -->
-									<form:input type="text" maxlength="10" class="form-control common-input" id="serialNumber" path="serialNumber" />
+									<form:input type="number" maxlength="10" class="form-control common-input" id="serialNumber" path="serialNumber" />
 									<div class="error-label">
 									<span class="error-text d-none"> <span
 										class="error-icon"> <svg>
@@ -177,9 +177,14 @@
 					<div class="col-md-6 mb-4">
 						<label for="country" class="common-form-label">Country</label> 
 						<form:select path="country" id="country" class="form-control js-example-basic-single">
-							<c:forEach items="${Countries}" var="country" varStatus="status">
-							<form:option value="0">${country.name}</form:option>
-							</c:forEach>
+						<form:option value="0">Country 1</form:option>
+                        <form:option value="1">Country 2</form:option>
+                        <form:option value="0">Country 3</form:option>
+                        <form:option value="1">Country 4</form:option>
+                        <form:option value="1">Country 5</form:option>
+							<%-- <c:forEach items="${Countries}" var="country" varStatus="status">
+							<form:option value="0">${country.name}</form:option> --%>
+							<%-- </c:forEach> --%>
 						</form:select><div class="error-label">
 									<span class="error-text d-none"> <span
 										class="error-icon"> <svg>

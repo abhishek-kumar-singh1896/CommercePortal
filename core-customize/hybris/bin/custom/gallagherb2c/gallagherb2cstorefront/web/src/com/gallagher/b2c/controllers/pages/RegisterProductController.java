@@ -14,7 +14,6 @@ import de.hybris.platform.commercefacades.product.ProductFacade;
 import de.hybris.platform.commercefacades.product.ProductOption;
 import de.hybris.platform.commercefacades.product.data.ImageData;
 import de.hybris.platform.commercefacades.product.data.ProductData;
-import de.hybris.platform.commerceservices.enums.CountryType;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -84,7 +83,7 @@ public class RegisterProductController extends AbstractPageController
 		final Breadcrumb registerBreadcrumbEntry = new Breadcrumb("#",
 				getMessageSource().getMessage("header.register.product", null, getI18nService().getCurrentLocale()), null);
 		model.addAttribute("breadcrumbs", Collections.singletonList(registerBreadcrumbEntry));
-		model.addAttribute("Countries", checkoutFacade.getCountries(CountryType.SHIPPING));
+		//		model.addAttribute("Countries", checkoutFacade.getCountries(CountryType.SHIPPING));
 		model.addAttribute(new RegisterProductForm());
 		return getView();
 	}
@@ -158,6 +157,7 @@ public class RegisterProductController extends AbstractPageController
 		register.setSerialNumber(registerProductForm1.getSerialNumber1());
 		register.setProductSku(registerProductForm1.getProductSku1());
 		register.setTownCity(registerProductForm1.getTownCity1());
+		final String page = getProductRegistrationPage(model);
 		final RegisterProductForm rg = new RegisterProductForm();
 		try
 		{
@@ -175,11 +175,11 @@ public class RegisterProductController extends AbstractPageController
 			rg.setProductSku(registerProductForm1.getProductSku1());
 			rg.setTownCity(registerProductForm1.getTownCity1());
 			model.addAttribute(rg);
+			GlobalMessages.addMessage(model, GlobalMessages.ERROR_MESSAGES_HOLDER, "registerProduct.error.message.title", null);
+			return page;
 		}
 		model.addAttribute(rg);
-		final String page = getProductRegistrationPage(model);
-		GlobalMessages.addFlashMessage(redirectAttributes, GlobalMessages.CONF_MESSAGES_HOLDER,
-				"registerProduct.confirmation.message.title");
+		GlobalMessages.addConfMessage(model, "registerProduct.confirmation.message.title");
 		return page;
 	}
 
