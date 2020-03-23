@@ -101,6 +101,8 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 		{
 			if (existingCustomers.size() > 1)
 			{
+				newCustomer.setSapContactID(existingCustomers.get(0).getContactID());
+				newCustomer.setObjectID(existingCustomers.get(0).getObjectID());
 				newCustomer.setDuplicate(true);
 			}
 			else

@@ -8,6 +8,7 @@ import de.hybris.platform.outboundservices.facade.impl.DefaultOutboundServiceFac
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.commons.validator.routines.EmailValidator;
@@ -76,6 +77,7 @@ public class GallagherC4COutboundServiceFacadeImpl extends DefaultOutboundServic
 					&& null != existingCustomerInfo.getCustomerInfo().getCustomerEntries())
 			{
 				existingCustomers = existingCustomerInfo.getCustomerInfo().getCustomerEntries();
+				Collections.sort(existingCustomers, Collections.reverseOrder());
 			}
 		}
 		return existingCustomers;
