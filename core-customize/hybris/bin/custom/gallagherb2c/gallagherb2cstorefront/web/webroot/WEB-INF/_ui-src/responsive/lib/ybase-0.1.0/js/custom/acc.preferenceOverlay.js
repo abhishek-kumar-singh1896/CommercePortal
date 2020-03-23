@@ -1,4 +1,4 @@
-ACC.header = {
+ACC.preference = {
 
 	_autoload : [ "clickOnNav" ],
 

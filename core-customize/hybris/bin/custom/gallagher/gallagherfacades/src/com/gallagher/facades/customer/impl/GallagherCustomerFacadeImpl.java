@@ -13,21 +13,22 @@ import com.gallagher.facades.customer.GallagherCustomerFacade;
 
 
 /**
- * Gallagher facade for passing Access token
+ * Implementation of {@link GallagherCustomerFacade}
  *
- * to service layer from UI
- *
- * @author abhishek
+ * @author Abhishek
  */
 public class GallagherCustomerFacadeImpl extends DefaultCustomerFacade implements GallagherCustomerFacade
 {
 	@Resource(name = "gallagherCustomerService")
 	private GallagherCustomerService gallagherCustomerService;
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public void updateCommerceCustomer(final GallagherAccessToken token)
+	public void updateCommerceCustomer(final GallagherAccessToken token, final boolean createIfNotExists)
 	{
-		gallagherCustomerService.updateCommerceCustomer(token);
+		gallagherCustomerService.updateCommerceCustomer(token, createIfNotExists);
 	}
 
 }
