@@ -409,7 +409,7 @@ public class ProductPageController extends AbstractPageController
 				ProductOption.CATEGORIES, ProductOption.REVIEW, ProductOption.PROMOTIONS, ProductOption.CLASSIFICATION,
 				ProductOption.VARIANT_FULL, ProductOption.STOCK, ProductOption.VOLUME_PRICES, ProductOption.PRICE_RANGE,
 				ProductOption.DELIVERY_MODE_AVAILABILITY, ProductOption.REFERENCES, ProductOption.VIDEO_DESCRIPTION,
-				ProductOption.LOGO, ProductOption.DATA_SHEET));
+				ProductOption.LOGO, ProductOption.DATA_SHEET, ProductOption.IMAGE_DESCRIPTION));
 
 		options.addAll(extraOptions);
 		final List<ProductData> sparepart = new ArrayList<ProductData>();

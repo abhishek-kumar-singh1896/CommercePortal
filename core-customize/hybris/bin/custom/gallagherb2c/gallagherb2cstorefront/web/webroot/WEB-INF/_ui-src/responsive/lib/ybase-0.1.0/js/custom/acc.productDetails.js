@@ -112,6 +112,16 @@ ACC.productDetails = {
 	                sync: "#productDetailVideoCarousel"
 	            });
 	            
+	            $('#awardSlider').flexslider({
+	                animation: "slide",
+	                controlNav: false,
+	                animationLoop: false,
+	                slideshow: false,
+	                touch: true,
+	                // itemWidth: 171,
+	                // itemMargin: 12,
+	                directionNav: true,
+	            });
 
         });
 			

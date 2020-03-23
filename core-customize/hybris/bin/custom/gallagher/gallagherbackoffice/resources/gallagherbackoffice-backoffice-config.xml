@@ -149,6 +149,8 @@
                                           qualifier="videoDescription"/>
                     <editorArea:attribute editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)"
                                           qualifier="summary"/>
+                    <editorArea:attribute editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)"
+                                          qualifier="imageDescription"/>
                 </editorArea:section>
             </editorArea:tab>
         </editorArea:editorArea>

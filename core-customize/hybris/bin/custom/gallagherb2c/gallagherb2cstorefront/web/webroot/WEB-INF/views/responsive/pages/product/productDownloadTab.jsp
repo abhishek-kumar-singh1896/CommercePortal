@@ -45,33 +45,36 @@
 	</cms:pageSlot>
                     
     <div class="container">
-        <div class="two-column-section">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="column-full-img">
-                        <img src="${commonResourcePath}/images/product-two-column-img.png" alt="Product Image">
-                    </div>
-                </div>
+      <div class="two-column-section">
+          <div class="row">
+              <div class="col-md-6">
+                  <div class="column-full-img clearfix">
+                      <!-- <img src="img/product-two-column-img.png" alt="Product Image"> -->
 
-                <div class="col-md-6">
-                    <h1 class="section-title">
-                        Award winning innovation
-                    </h1>
-                    <div class="section-decription">
-                        <p>The TW Weigh Scales has won the following awards:</p>
-                        <div class="content-list-out">
-                            <ul>
-                                <li>2018 Good Design Award Australia</li>
-                                <li>2017 Good Design Award Chicago</li>
-                                <li>2018 Red dot Award - Product Design</li>
-                                <li>2017 Best Design Awards NZ - 'Gold pin' best in Category, 'Purple
-                                    pin' best in Discipline </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                      <div class="flexslider slider-big-image award-slider" id="awardSlider">
+                          <ul class="slides">
+                              <li>
+                                  <img src="${commonResourcePath}/images/product-two-column-img.png" alt="Product Image">
+                              </li>
+                              <li>
+                                  <img src="${commonResourcePath}/images/product-two-column-img.png" alt="Product Image">
+                              </li>
+                              <li>
+                                  <img src="${commonResourcePath}/images/product-two-column-img.png" alt="Product Image">
+                              </li>
+                              <li>
+                                  <img src="${commonResourcePath}/images/product-two-column-img.png" alt="Product Image">
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
 
-            </div>
-        </div>
-    </div>
+              <div class="col-md-6">
+              		${product.imageDescription}
+              </div>
+
+          </div>
+      </div>
+  </div>
 </section>

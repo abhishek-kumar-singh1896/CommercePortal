@@ -99,6 +99,10 @@
 		</property>
 	</bean>
 	
+    <bean id="gallagherProductImageDescPopulator" parent="baseProductPopulator"
+          class="com.gallagher.facades.product.converters.populator.GallagherProductImageDescriptionPopulator">
+    </bean>
+    
     <bean id="gallagherProductVideoDescPopulator" parent="baseProductPopulator"
           class="com.gallagher.facades.product.converters.populator.GallagherProductVideoDescriptionPopulator">
     </bean>
@@ -110,6 +114,13 @@
     <bean id="gallagherProductDataSheetPopulator" parent="baseProductImagePopulator"
           class="com.gallagher.facades.product.converters.populator.GallagherProductDataSheetPopulator">
     </bean>
+    
+    <bean parent="configurablePopulatorModification">
+		<property name="target" ref="productConfiguredPopulator" />
+		<property name="keyType" value="de.hybris.platform.commercefacades.product.ProductOption" />
+		<property name="key" value="IMAGE_DESCRIPTION" />
+		<property name="add" ref="gallagherProductImageDescPopulator" />
+	</bean>
     
     <bean parent="configurablePopulatorModification">
 		<property name="target" ref="productConfiguredPopulator" />
