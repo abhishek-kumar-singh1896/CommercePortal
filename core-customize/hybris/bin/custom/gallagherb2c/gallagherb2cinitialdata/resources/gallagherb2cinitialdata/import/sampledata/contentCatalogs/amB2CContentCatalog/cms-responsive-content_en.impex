@@ -543,7 +543,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
 ;;SolutionLink;"Solutions"
 ;;SupportLink;"Support"
-;;ContactLink;"Contact Us"
+;;ContactLink;"Find Us"
 ;;ProductLink;"Product"
 ;;AllElectricFencingLink;"All Electric Fencing"
 ;;AllWeighingEIDLink;"All Weighing and EID"
