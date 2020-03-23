@@ -9,7 +9,6 @@ import de.hybris.platform.acceleratorstorefrontcommons.controllers.util.GlobalMe
 import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
 import de.hybris.platform.cms2.model.pages.AbstractPageModel;
 import de.hybris.platform.cms2.model.pages.ContentPageModel;
-import de.hybris.platform.commercefacades.order.CheckoutFacade;
 import de.hybris.platform.commercefacades.product.ProductFacade;
 import de.hybris.platform.commercefacades.product.ProductOption;
 import de.hybris.platform.commercefacades.product.data.ImageData;
@@ -65,9 +64,6 @@ public class RegisterProductController extends AbstractPageController
 	@Resource(name = "gallagheroutboundservicesService")
 	private GallagheroutboundservicesService gallagheroutboundservicesService;
 
-	@Resource(name = "acceleratorCheckoutFacade")
-	private CheckoutFacade checkoutFacade;
-
 	protected static final Logger LOG = Logger.getLogger(RegisterProductController.class);
 
 	@RequestMapping(method = RequestMethod.GET)
@@ -83,7 +79,7 @@ public class RegisterProductController extends AbstractPageController
 		final Breadcrumb registerBreadcrumbEntry = new Breadcrumb("#",
 				getMessageSource().getMessage("header.register.product", null, getI18nService().getCurrentLocale()), null);
 		model.addAttribute("breadcrumbs", Collections.singletonList(registerBreadcrumbEntry));
-		//		model.addAttribute("Countries", checkoutFacade.getCountries(CountryType.SHIPPING));
+		model.addAttribute("Countries", getI18nService().getAllCountries());
 		model.addAttribute(new RegisterProductForm());
 		return getView();
 	}
