@@ -24,7 +24,7 @@ import com.gallagher.b2c.form.RegisterProductForm;
 public class RegisterProductValidator implements Validator
 {
 
-	public static final String PHONE_REGEX = "^((\\+){1})[0-9]*$";
+	public static final String PHONE_REGEX = "^(\\+[0-9]*?|[0-9]*)$";
 
 	@Override
 	public boolean supports(final Class<?> aClass)
