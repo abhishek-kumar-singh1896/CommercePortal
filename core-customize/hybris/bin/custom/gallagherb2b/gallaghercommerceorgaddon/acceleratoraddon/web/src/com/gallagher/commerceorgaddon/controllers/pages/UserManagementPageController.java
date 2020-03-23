@@ -648,6 +648,8 @@ public class UserManagementPageController extends MyCompanyPageController
 						.getCustomerInfoFromC4C(email);
 				if (CollectionUtils.isNotEmpty(existingCustomers) && existingCustomers.size() > 1)
 				{
+					existingCustomer.setContactID(existingCustomers.get(0).getContactID());
+					existingCustomer.setObjectID(existingCustomers.get(0).getObjectID());
 					existingCustomer.setDuplicate(true);
 				}
 				else if (CollectionUtils.isNotEmpty(existingCustomers)

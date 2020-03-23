@@ -65,7 +65,7 @@ public class GallagherAuthenticationProvider extends AbstractAcceleratorAuthenti
 
 		//update user if exist in commerce
 		final GallagherAccessToken galToken = getTokenDetails(accessToken);
-		customerFacade.updateCommerceCustomer(galToken);
+		customerFacade.updateCommerceCustomer(galToken, false);
 		try
 		{
 			userDetails = retrieveUser(username);

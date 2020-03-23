@@ -9,13 +9,19 @@ import com.gallagher.core.dtos.GallagherAccessToken;
 
 
 /**
- * Gallagher facade for passing Access token
+ * Gallagher facade for custom operations
  *
- * to service layer from UI
- *
- * @author abhishek
+ * @author Abhishek Kumar
  */
 public interface GallagherCustomerFacade extends CustomerFacade
 {
-	void updateCommerceCustomer(final GallagherAccessToken token);
+	/**
+	 * Updates customer by fetching the details from Keycloak and C4C
+	 *
+	 * @param token
+	 *           to get the customer
+	 * @param createIfNotExists
+	 *           if user is not available then create a new User (B2C). For B2B only update will be performed
+	 */
+	void updateCommerceCustomer(final GallagherAccessToken token, final boolean createIfNotExists);
 }
