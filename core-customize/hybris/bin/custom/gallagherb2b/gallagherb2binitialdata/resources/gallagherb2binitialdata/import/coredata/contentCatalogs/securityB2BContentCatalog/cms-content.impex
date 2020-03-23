@@ -1054,3 +1054,6 @@ INSERT_UPDATE CMSInverseRestriction;$contentCV[unique=true];name;originalRestric
 
 INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;restrictions(uid,$contentCV)
 ;;AddMessageButtonComponent;Add Message Button Component;AddMessageButtonComponent;AssistedServiceSessionReversedRestriction
+
+INSERT_UPDATE GallagherSiteTransactionRestriction;$contentCV[unique=true];uid[unique=true];name;&uid
+;;GallagherSiteTransactionRestriction;Site Transaction Restriction;GallagherSiteTransactionRestriction

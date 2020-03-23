@@ -23,11 +23,10 @@ import com.gallagher.outboundservices.response.dto.GallagherInboundCustomerEntry
 
 
 /**
- * Gallagher customer service implementation for create
  *
- * and update customer in commerce and SCPI/C4C
+ * Implementation of {@link GallagherCustomerService}
  *
- * @author abhishek
+ * @author Abhishek
  */
 public class GallagherCustomerServiceImpl implements GallagherCustomerService
 {
@@ -45,16 +44,17 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 	@Resource(name = "customerAccountService")
 	private CustomerAccountService customerAccountService;
 
-	//update commerce user if exist
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public boolean updateCommerceCustomer(final GallagherAccessToken token)
+	public boolean updateCommerceCustomer(final GallagherAccessToken token, final boolean createIfNotExists)
 	{
 		boolean success = false;
 
-		final List<CustomerModel> retrieveUserBySubjectId = gallagherCustomerDao
-				.retrieveUserByKeycloakGUID(token.getSubjectId());
+		final List<CustomerModel> retrieveUserBySubjectId = gallagherCustomerDao.retrieveUserByKeycloakGUID(token.getSubjectId());
 
-		if (CollectionUtils.isEmpty(retrieveUserBySubjectId))
+		if (CollectionUtils.isEmpty(retrieveUserBySubjectId) && createIfNotExists)
 		{
 
 			try
@@ -71,6 +71,7 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 			final CustomerModel retrieveUser = retrieveUserBySubjectId.get(0);
 			retrieveUser.setName(token.getName());
 			retrieveUser.setUid(token.getEmail());
+			retrieveUser.setIsUserExist(true);
 			modelService.save(retrieveUser);
 			success = true;
 		}
@@ -86,6 +87,7 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 		newCustomer.setName(token.getName());
 		newCustomer.setUid(token.getEmail());
 		newCustomer.setKeycloakGUID(token.getSubjectId());
+		newCustomer.setIsUserExist(false);
 
 		//check if customer exist in the C4C
 		final List<GallagherInboundCustomerEntry> existingCustomers = gallagherC4COutboundServiceFacade
@@ -99,6 +101,8 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 		{
 			if (existingCustomers.size() > 1)
 			{
+				newCustomer.setSapContactID(existingCustomers.get(0).getContactID());
+				newCustomer.setObjectID(existingCustomers.get(0).getObjectID());
 				newCustomer.setDuplicate(true);
 			}
 			else

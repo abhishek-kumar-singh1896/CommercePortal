@@ -1,4 +1,18 @@
 .form-control {
+  height: 40px;
+  border-radius: 6px;
+  border-color: $gray-4;
+
+  &:hover {
+    border-color: $gray-6;
+  }
+
+  &:focus {
+    border-color: $terciary;
+    outline: none;
+    box-shadow: none;
+  }
+
   &.common-input {
     height: 40px;
     border-radius: 6px;
@@ -16,7 +30,7 @@
 
     &.has-error {
       border-color: $danger;
-  
+
       &:hover,
       &:focus {
         border-color: $danger;
@@ -46,6 +60,22 @@
   .select2-container--default .select2-selection--single {
     border-color: $danger;
   }
+
+  input.form-control,
+  textarea.form-control {
+    border-color: $danger;
+    background-color: transparent;
+
+    &:hover,
+    &:focus {
+      border-color: $danger;
+    }
+  }
+}
+
+textarea + .help-block {
+  text-align: left;
+  font-size: 1em;
 }
 
 .error-label {

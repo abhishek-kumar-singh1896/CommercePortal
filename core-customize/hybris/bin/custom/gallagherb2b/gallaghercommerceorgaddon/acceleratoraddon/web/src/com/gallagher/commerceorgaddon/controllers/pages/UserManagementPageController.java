@@ -50,6 +50,7 @@ import com.gallagher.commerceorgaddon.controllers.GallaghercommerceorgaddonContr
 import com.gallagher.commerceorgaddon.forms.B2BCustomerForm;
 import com.gallagher.commerceorgaddon.forms.B2BPermissionForm;
 import com.gallagher.commerceorgaddon.forms.CustomerResetPasswordForm;
+import com.gallagher.commerceorgaddon.forms.validation.GallagherB2BProfileValidator;
 import com.gallagher.outboundservices.constants.GallagheroutboundservicesConstants;
 import com.gallagher.outboundservices.response.dto.GallagherInboundCustomerEntry;
 
@@ -65,6 +66,9 @@ public class UserManagementPageController extends MyCompanyPageController
 
 	@Resource(name = "profileValidator")
 	private ProfileValidator profileValidator;
+
+	@Resource(name = "gallagherb2bProfileValidator")
+	private GallagherB2BProfileValidator gallagherb2bProfileValidator;
 
 	@Resource(name = "userService")
 	private DefaultUserService userService;
@@ -165,7 +169,7 @@ public class UserManagementPageController extends MyCompanyPageController
 	final B2BCustomerForm b2BCustomerForm, final BindingResult bindingResult, final Model model,
 			final RedirectAttributes redirectModel) throws CMSItemNotFoundException
 	{
-		profileValidator.validate(b2BCustomerForm, bindingResult);
+		gallagherb2bProfileValidator.validate(b2BCustomerForm, bindingResult);
 		model.addAttribute("action", "manageUsers");
 		return super.createUser(b2BCustomerForm, bindingResult, model, redirectModel);
 	}
@@ -646,6 +650,8 @@ public class UserManagementPageController extends MyCompanyPageController
 						.getCustomerInfoFromC4C(email);
 				if (CollectionUtils.isNotEmpty(existingCustomers) && existingCustomers.size() > 1)
 				{
+					existingCustomer.setContactID(existingCustomers.get(0).getContactID());
+					existingCustomer.setObjectID(existingCustomers.get(0).getObjectID());
 					existingCustomer.setDuplicate(true);
 				}
 				else if (CollectionUtils.isNotEmpty(existingCustomers)

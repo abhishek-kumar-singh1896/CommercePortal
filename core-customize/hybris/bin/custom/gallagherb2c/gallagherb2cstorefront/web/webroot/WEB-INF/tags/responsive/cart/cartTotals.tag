@@ -11,18 +11,18 @@
 <spring:htmlEscape defaultHtmlEscape="true" />
 
 <div class="js-cart-totals row">
-    <div class="col-xs-6 cart-totals-left"><spring:theme code="basket.page.totals.subtotal"/></div>
-    <div class="col-xs-6 cart-totals-right text-right"><ycommerce:testId code="Order_Totals_Subtotal"><format:price priceData="${cartData.subTotal}"/></ycommerce:testId></div>
+    <div class="col-6"><spring:theme code="basket.page.totals.subtotal"/></div>
+    <div class="col-6 cart-totals-right text-right"><ycommerce:testId code="Order_Totals_Subtotal"><format:price priceData="${cartData.subTotal}"/></ycommerce:testId></div>
 
 
     <c:if test="${not empty cartData.deliveryCost}">
-        <div class="col-xs-6 cart-totals-left"><spring:theme code="basket.page.totals.delivery"/></div>
+        <div class="col-6"><spring:theme code="basket.page.totals.delivery"/></div>
         <div class="col-xs-6 cart-totals-right text-right"><format:price priceData="${cartData.deliveryCost}" displayFreeForZero="TRUE"/></div>
      </c:if>
 
 
     <c:if test="${cartData.net && cartData.totalTax.value > 0 && showTax}">
-        <div class="col-xs-6 cart-totals-left"><spring:theme code="basket.page.totals.netTax"/></div>
+        <div class="col-6"><spring:theme code="basket.page.totals.netTax"/></div>
         <div class="col-xs-6 cart-totals-right text-right"><format:price priceData="${cartData.totalTax}"/></div>
     </c:if>
     
@@ -31,7 +31,7 @@
 	</c:if>
 	
 	<c:if test="${cartData.quoteDiscounts.value > 0}">
-		<div class="col-xs-6 cart-totals-left discount">
+		<div class="col-6 discount">
 			<spring:theme code="basket.page.quote.discounts" />
 		</div>
 		<div class="col-xs-6 cart-totals-right text-right discount">
@@ -42,7 +42,7 @@
 	</c:if>
 
 	<c:if test="${cartData.totalDiscounts.value > 0}">
-		<div class="col-xs-6 cart-totals-left discount">
+		<div class="col-6 discount">
 			<spring:theme code="basket.page.totals.discounts"/>
 		</div>
 		<div class="col-xs-6 cart-totals-right text-right discount">
@@ -52,8 +52,8 @@
 		</div>
 	</c:if>
 
-    <div class="col-xs-6 cart-totals-left grand-total"><spring:theme code="basket.page.totals.total"/></div>
-    <div class="col-xs-6 cart-totals-right text-right grand-total">
+    <div class="col-6 grand-total"><spring:theme code="basket.page.totals.total"/></div>
+    <div class="col-6 cart-totals-right text-right grand-total">
         <ycommerce:testId code="cart_totalPrice_label">
             <c:choose>
                 <c:when test="${showTax}">

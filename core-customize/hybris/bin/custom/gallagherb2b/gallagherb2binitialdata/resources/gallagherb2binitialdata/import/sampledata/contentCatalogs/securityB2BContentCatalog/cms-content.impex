@@ -216,10 +216,10 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 ;ImportSavedCartNavNodeEntry;;ImportSavedCartNavNodeEntry;ImportSavedCartNavNode;ImportSavedCartLink;
 
 ## links of the above navigattion entries ##
-INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;styleAttributes;&linkRef;target(code)[default='sameWindow']
-;;OrderFormsLink;Order Forms Link;/search/advanced;;OrderFormsLink;;
-;;QuickOrderLink;Quick Order Link;/quickOrder;;QuickOrderLink;;
-;;ImportSavedCartLink;Import Saved Cart Link;/import/csv/saved-cart;;ImportSavedCartLink;;
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;styleAttributes;&linkRef;target(code)[default='sameWindow'];restrictions(uid,$contentCV);onlyOneRestrictionMustApply
+;;OrderFormsLink;Order Forms Link;/search/advanced;;OrderFormsLink;;GallagherSiteTransactionRestriction;
+;;QuickOrderLink;Quick Order Link;/quickOrder;;QuickOrderLink;;GallagherSiteTransactionRestriction;false
+;;ImportSavedCartLink;Import Saved Cart Link;/import/csv/saved-cart;;ImportSavedCartLink;;GallagherSiteTransactionRestriction;
 ###### Navigation End ######
 
 
@@ -375,11 +375,11 @@ INSERT_UPDATE BreadcrumbComponent;$contentCV[unique=true];uid[unique=true];name;
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(&componentRef)
 ;;MiniCartSlot;OrderToolsComponent,MiniCart
 
-INSERT_UPDATE NavigationComponent;$contentCV[unique=true];uid[unique=true];name;styleClass;&componentRef;navigationNode(&nodeRef)
-;;OrderToolsComponent;Order Tools Component;nav-order-tools;OrderToolsComponent;OrderToolsNavNode
+INSERT_UPDATE NavigationComponent;$contentCV[unique=true];uid[unique=true];name;styleClass;&componentRef;navigationNode(&nodeRef);restrictions(uid,$contentCV)
+;;OrderToolsComponent;Order Tools Component;nav-order-tools;OrderToolsComponent;OrderToolsNavNode;GallagherSiteTransactionRestriction
 
-INSERT_UPDATE MiniCartComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;totalDisplay(code);shownProductCount;lightboxBannerComponent(&componentRef)
-;;MiniCart;Mini Cart;MiniCart;SUBTOTAL;3;LightboxHomeDeliveryBannerComponent
+INSERT_UPDATE MiniCartComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;totalDisplay(code);shownProductCount;lightboxBannerComponent(&componentRef);restrictions(uid,$contentCV)
+;;MiniCart;Mini Cart;MiniCart;SUBTOTAL;3;LightboxHomeDeliveryBannerComponent;GallagherSiteTransactionRestriction
 
 INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink
 ;;LightboxHomeDeliveryBannerComponent;Lightbox Home Delivery Banner Component;LightboxHomeDeliveryBannerComponent;
@@ -429,8 +429,8 @@ INSERT_UPDATE ProductVariantSelectorComponent;$contentCV[unique=true];uid[unique
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(&componentRef)
 ;;AddToCartSlot;AddToCart
 
-INSERT_UPDATE ProductAddToCartComponent;$contentCV[unique=true];uid[unique=true];name;actions(&actionRef);&componentRef
-;;AddToCart;Product Add To Cart;AddToCartAction,PickUpInStoreAction,ShareOnSocialNetworkAction;AddToCart
+INSERT_UPDATE ProductAddToCartComponent;$contentCV[unique=true];uid[unique=true];name;actions(&actionRef);&componentRef;restrictions(uid,$contentCV)
+;;AddToCart;Product Add To Cart;AddToCartAction,PickUpInStoreAction,ShareOnSocialNetworkAction;AddToCart;GallagherSiteTransactionRestriction
 
 INSERT_UPDATE AddToCartAction;$contentCV[unique=true];uid[unique=true];url;name;restrictions(uid,$contentCV);&actionRef
 ;;AddToCartAction;/cart/add;Product Add To Cart Action;ActionRestriction;AddToCartAction

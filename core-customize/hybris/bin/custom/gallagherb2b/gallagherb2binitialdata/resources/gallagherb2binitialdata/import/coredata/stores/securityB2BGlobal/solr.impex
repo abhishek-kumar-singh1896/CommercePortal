@@ -127,7 +127,7 @@ SELECT DISTINCT tbl.pk, tbl.code FROM (
 {{                                                                                                            
 SELECT DISTINCT {p:PK} AS pk, {p:code} AS code                                                                
 FROM {Product AS p LEFT JOIN CustomerReview AS cr ON {cr:product}={p:PK} }                                    
-WHERE {p:varianttype} IS NULL AND ({p:modifiedtime} >= ?lastIndexTime OR {cr:modifiedtime} >= ?lastIndexTime) 
+WHERE ({p:modifiedtime} >= ?lastIndexTime OR {cr:modifiedtime} >= ?lastIndexTime) 
 }}                                                                                                            
 UNION                                                                                                         
 {{                                                                                                            

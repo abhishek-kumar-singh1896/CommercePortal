@@ -1,0 +1,22 @@
+# CroJobs for AM B2C
+
+INSERT_UPDATE GallagherProductProcessingCronJob;code[unique=true];job(code);catalogId;sessionLanguage(isocode)[default=en]
+;amB2CCreateBaseProductCronjob;gallagherCreateBaseProductCronjob;amB2CMasterProductCatalog;
+;amB2CProductTransformationCronjob;gallagherProductTransformationCronjob;amB2CMasterProductCatalog;
+
+# Composite CronJob
+INSERT_UPDATE CompositeCronJob;code[unique=true];job(code);sessionLanguage(isocode);sessionUser(uid);active[default='true']
+;amB2CProductTransformationCompositeJob;compositeJobPerformable;en;syncUser
+
+INSERT_UPDATE CompositeEntry;code[unique=true];compositeCronjob(code);compositeCronJobPOS[unique=true];executableCronJob(code)[unique=true];triggerableJob(code)[path-delimiter=!]
+;amB2CProductTransformationJobEntry1;amB2CProductTransformationCompositeJob;1;;sync amB2CMasterProductCatalog:Staged->amB2CNZProductCatalog:Staged
+;amB2CProductTransformationJobEntry2;amB2CProductTransformationCompositeJob;2;;sync amB2CMasterProductCatalog:Staged->amB2CAUProductCatalog:Staged
+;amB2CProductTransformationJobEntry3;amB2CProductTransformationCompositeJob;3;;sync amB2CMasterProductCatalog:Staged->amB2CUSProductCatalog:Staged
+;amB2CProductTransformationJobEntry4;amB2CProductTransformationCompositeJob;4;;sync amB2CMasterProductCatalog:Staged->amB2CCAProductCatalog:Staged
+;amB2CProductTransformationJobEntry5;amB2CProductTransformationCompositeJob;5;;sync amB2CMasterProductCatalog:Staged->amB2CGlobalProductCatalog:Staged
+;amB2CProductTransformationJobEntry6;amB2CProductTransformationCompositeJob;6;;sync amB2CMasterProductCatalog:Staged->amB2CLatAmProductCatalog:Staged
+;amB2CProductTransformationJobEntry7;amB2CProductTransformationCompositeJob;7;amB2CProductTransformationCronjob
+
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+;amB2CCreateBaseProductCronjob;0;15;-1;-1;-1;-1;true;true;-1
+;amB2CProductTransformationCompositeJob;0;15;-1;-1;-1;-1;true;true;-1

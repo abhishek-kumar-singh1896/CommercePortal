@@ -117,11 +117,16 @@
 	</context>
 	<context merge-by="type" parent="User" type="Customer" component="editor-area">
         <editorArea:editorArea name="">
-            <editorArea:tab name="hmc.gallagher" position="11">
+            <editorArea:tab name="hmc.gallagher" position="3">
                 <editorArea:section name="hmc.section.gallagher">
                     <editorArea:attribute qualifier="duplicate" />
                     <editorArea:attribute qualifier="keycloakGUID" />
                     <editorArea:attribute qualifier="objectID" />
+                    <editorArea:attribute qualifier="newsLetters" />
+                    <editorArea:attribute qualifier="events" />
+                    <editorArea:attribute qualifier="productRelease" />
+                    <editorArea:attribute qualifier="productUpdate" />
+                    <editorArea:attribute qualifier="productPromo" />
                 </editorArea:section>
             </editorArea:tab>
         </editorArea:editorArea>
@@ -135,6 +140,7 @@
                     <editorArea:attribute qualifier="baseProductCode" />
                     <editorArea:attribute qualifier="baseStores" />
                     <editorArea:attribute qualifier="variantForImage" />
+                    <editorArea:attribute qualifier="eligibleForLatAm" />
                 </editorArea:section>
             </editorArea:tab>
             <editorArea:tab name="hmc.tab.product.properties" position="2">

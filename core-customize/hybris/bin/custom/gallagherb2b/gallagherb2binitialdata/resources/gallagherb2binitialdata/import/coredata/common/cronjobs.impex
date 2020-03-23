@@ -1,0 +1,19 @@
+# CroJobs for Security B2B
+
+INSERT_UPDATE GallagherProductProcessingCronJob;code[unique=true];job(code);catalogId;sessionLanguage(isocode)[default=en]
+;securityB2BCreateBaseProductCronjob;gallagherCreateBaseProductCronjob;securityB2BMasterProductCatalog;
+;securityB2BProductTransformationCronjob;gallagherProductTransformationCronjob;securityB2BMasterProductCatalog;
+
+# Composite CronJob
+INSERT_UPDATE CompositeCronJob;code[unique=true];job(code);sessionLanguage(isocode);sessionUser(uid);active[default='true']
+;securityB2BProductTransformationCompositeJob;compositeJobPerformable;en;syncUser
+
+INSERT_UPDATE CompositeEntry;code[unique=true];compositeCronjob(code);compositeCronJobPOS[unique=true];executableCronJob(code)[unique=true];triggerableJob(code)[path-delimiter=!]
+;securityB2BProductTransformationJobEntry1;securityB2BProductTransformationCompositeJob;1;;sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged
+;securityB2BProductTransformationJobEntry2;securityB2BProductTransformationCompositeJob;2;;sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged
+;securityB2BProductTransformationJobEntry3;securityB2BProductTransformationCompositeJob;3;;sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged
+;securityB2BProductTransformationJobEntry4;securityB2BProductTransformationCompositeJob;4;securityB2BProductTransformationCronjob
+
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+;securityB2BCreateBaseProductCronjob;0;15;-1;-1;-1;-1;true;true;-1
+;securityB2BProductTransformationCompositeJob;0;15;-1;-1;-1;-1;true;true;-1
