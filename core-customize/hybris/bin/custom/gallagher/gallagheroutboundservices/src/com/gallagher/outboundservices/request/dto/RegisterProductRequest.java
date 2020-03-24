@@ -1,16 +1,15 @@
-/**
- *
+/*
+ * Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
  */
-package com.gallagher.b2c.forms;
+package com.gallagher.outboundservices.request.dto;
 
 /**
- * @author shilpiverma
  *
  */
-public class RegisterProductForm
+public class RegisterProductRequest
 {
 	private String productSku;
-	private Integer serialNumber;
+	private String serialNumber;
 	private String datePurchased;
 	private String addressLine1;
 	private String addressLine2;
@@ -36,22 +35,6 @@ public class RegisterProductForm
 		this.productSku = productSku;
 	}
 
-	/**
-	 * @return the serialNumber
-	 */
-	public Integer getSerialNumber()
-	{
-		return serialNumber;
-	}
-
-	/**
-	 * @param serialNumber
-	 *           the serialNumber to set
-	 */
-	public void setSerialNumber(final Integer serialNumber)
-	{
-		this.serialNumber = serialNumber;
-	}
 
 	/**
 	 * @return the datePurchased
@@ -68,6 +51,23 @@ public class RegisterProductForm
 	public void setDatePurchased(final String datePurchased)
 	{
 		this.datePurchased = datePurchased;
+	}
+
+	/**
+	 * @return the serialNumber
+	 */
+	public String getSerialNumber()
+	{
+		return serialNumber;
+	}
+
+	/**
+	 * @param serialNumber
+	 *           the serialNumber to set
+	 */
+	public void setSerialNumber(final String serialNumber)
+	{
+		this.serialNumber = serialNumber;
 	}
 
 	/**

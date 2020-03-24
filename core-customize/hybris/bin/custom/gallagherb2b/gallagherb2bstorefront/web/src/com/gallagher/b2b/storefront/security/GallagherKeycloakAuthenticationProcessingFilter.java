@@ -3,6 +3,8 @@
  */
 package com.gallagher.b2b.storefront.security;
 
+import de.hybris.platform.servicelayer.user.UserService;
+
 import java.io.IOException;
 
 import javax.servlet.FilterChain;
@@ -21,7 +23,6 @@ import org.keycloak.adapters.spi.HttpFacade;
 import org.keycloak.adapters.springsecurity.KeycloakAuthenticationException;
 import org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticationEntryPoint;
 import org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticationFailureHandler;
-import org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticationSuccessHandler;
 import org.keycloak.adapters.springsecurity.authentication.RequestAuthenticatorFactory;
 import org.keycloak.adapters.springsecurity.authentication.SpringSecurityRequestAuthenticatorFactory;
 import org.keycloak.adapters.springsecurity.facade.SimpleHttpFacade;
@@ -55,13 +56,12 @@ import com.gallagher.b2b.storefront.security.impl.DefaultAutoLoginStrategy;
 /**
  * Provides a Keycloak authentication processing filter.
  *
- * @author <a href="mailto:srossillo@smartling.com">Scott Rossillo</a>
- * @version $Revision: 1 $
  */
 public class GallagherKeycloakAuthenticationProcessingFilter extends AbstractAuthenticationProcessingFilter
 		implements ApplicationContextAware
 {
 	public static final String AUTHORIZATION_HEADER = "Authorization";
+
 
 	/**
 	 * Request matcher that matches requests to the {@link KeycloakAuthenticationEntryPoint#DEFAULT_LOGIN_URI default
@@ -80,6 +80,7 @@ public class GallagherKeycloakAuthenticationProcessingFilter extends AbstractAut
 	private AdapterDeploymentContext adapterDeploymentContext;
 	private AdapterTokenStoreFactory adapterTokenStoreFactory = new SpringSecurityAdapterTokenStoreFactory();
 	private final AuthenticationManager authenticationManager;
+	private final UserService userService;
 	private RequestAuthenticatorFactory requestAuthenticatorFactory = new SpringSecurityRequestAuthenticatorFactory();
 
 	/**
@@ -90,9 +91,10 @@ public class GallagherKeycloakAuthenticationProcessingFilter extends AbstractAut
 	 *           the {@link AuthenticationManager} to authenticate requests (cannot be null)
 	 * @see GallagherKeycloakAuthenticationProcessingFilter#DEFAULT_REQUEST_MATCHER
 	 */
-	public GallagherKeycloakAuthenticationProcessingFilter(final AuthenticationManager authenticationManager)
+	public GallagherKeycloakAuthenticationProcessingFilter(final AuthenticationManager authenticationManager,
+			final UserService userService)
 	{
-		this(authenticationManager, DEFAULT_REQUEST_MATCHER);
+		this(authenticationManager, DEFAULT_REQUEST_MATCHER, userService);
 	}
 
 	/**
@@ -113,17 +115,18 @@ public class GallagherKeycloakAuthenticationProcessingFilter extends AbstractAut
 	 *
 	 */
 	public GallagherKeycloakAuthenticationProcessingFilter(final AuthenticationManager authenticationManager,
-			final RequestMatcher requiresAuthenticationRequestMatcher)
+			final RequestMatcher requiresAuthenticationRequestMatcher, final UserService userService)
 	{
 		super(requiresAuthenticationRequestMatcher);
 		Assert.notNull(authenticationManager, "authenticationManager cannot be null");
 		this.authenticationManager = authenticationManager;
+		this.userService = userService;
 		super.setAuthenticationManager(authenticationManager);
 		super.setAllowSessionCreation(false);
 		super.setContinueChainBeforeSuccessfulAuthentication(false);
 		setAuthenticationFailureHandler(new KeycloakAuthenticationFailureHandler());
 		setAuthenticationSuccessHandler(
-				new KeycloakAuthenticationSuccessHandler(new SavedRequestAwareAuthenticationSuccessHandler()));
+				new GallagherAuthenticationSuccessHandler(new SavedRequestAwareAuthenticationSuccessHandler(), userService));
 	}
 
 	@Override

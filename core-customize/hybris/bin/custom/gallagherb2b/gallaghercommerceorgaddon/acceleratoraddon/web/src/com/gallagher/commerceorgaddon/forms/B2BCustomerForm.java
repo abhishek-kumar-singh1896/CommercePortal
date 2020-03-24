@@ -9,6 +9,7 @@ import de.hybris.platform.commercefacades.user.data.CustomerData;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -23,6 +24,7 @@ public class B2BCustomerForm extends UpdateProfileForm
 	private boolean active;
 	private String uid;
 	private String parentB2BUnit;
+	private List<String> parentB2BUnits;
 	private Collection<String> roles = new ArrayList<String>();
 	private Collection<CustomerData> approvers;
 	private Collection<B2BUserGroupData> approverGroups;
@@ -50,6 +52,27 @@ public class B2BCustomerForm extends UpdateProfileForm
 	{
 		this.active = active;
 	}
+
+	public List<String> getParentB2BUnits()
+	{
+		return parentB2BUnits;
+	}
+
+	public void setParentB2BUnits(final List<String> parentB2BUnits)
+	{
+		this.parentB2BUnits = parentB2BUnits;
+	}
+
+	public String getParentB2BUnit()
+	{
+		return parentB2BUnit;
+	}
+
+	public void setParentB2BUnit(final String parentB2BUnit)
+	{
+		this.parentB2BUnit = parentB2BUnit;
+	}
+
 
 	public Collection<CustomerData> getApprovers()
 	{
@@ -79,16 +102,6 @@ public class B2BCustomerForm extends UpdateProfileForm
 	public void setRoles(final Collection<String> roles)
 	{
 		this.roles = roles;
-	}
-
-	public String getParentB2BUnit()
-	{
-		return parentB2BUnit;
-	}
-
-	public void setParentB2BUnit(final String parentB2BUnit)
-	{
-		this.parentB2BUnit = parentB2BUnit;
 	}
 
 	@NotNull(message = "{profile.email.invalid}")

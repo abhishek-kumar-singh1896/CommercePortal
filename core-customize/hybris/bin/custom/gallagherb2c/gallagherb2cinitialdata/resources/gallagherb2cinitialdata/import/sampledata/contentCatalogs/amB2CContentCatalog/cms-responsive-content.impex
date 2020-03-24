@@ -2011,6 +2011,10 @@ INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=
 ;BottomHeaderSlot;;;wide
 ;PlaceholderContentSlot;;;
 
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active
+;;Section1RegisterSlot;Register Product SubHeading Slot;true
+;;Section2RegisterPopupSlot;Register Product popup SubHeading Slot;true
+
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='RegisterProductPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;SiteLogo-RegisterProductPage;SiteLogo;;SiteLogoSlot;true
 ;;HomepageLink-RegisterProductPage;HomepageNavLink;;HomepageNavLinkSlot;true
@@ -2023,8 +2027,19 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 ;;BottomHeaderSlot-RegisterProductPage;BottomHeaderSlot;;BottomHeaderSlot;true
 ;;PlaceholderContentSlot-RegisterProductPage;PlaceholderContentSlot;;PlaceholderContentSlot;true
 ;;ggB2CNavBar-RegisterProductPage;ggB2CNavBar;;ggB2CNavBarSlot;true
+;;Section1-RegisterProductPage;Section1;;Section1RegisterSlot;true
+;;Section2-RegisterProductPage;Section2;;Section2RegisterPopupSlot;true
 
 INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
 ;;registerProduct;Product Registration;RegisterProductPageTemplate;/registerProduct
+
+# CMS Paragraph Component (Contact information)
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+;;registerProductSubHeading;Register product Paragraph Component;registerProductSubHeading
+;;registerProductPopupSubHeading;Register product popup Paragraph Component;registerProductPopupSubHeading
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid, $contentCV)
+;;Section1RegisterSlot;registerProductSubHeading
+;;Section2RegisterPopupSlot;registerProductPopupSubHeading
 
 #### Register Product Page####

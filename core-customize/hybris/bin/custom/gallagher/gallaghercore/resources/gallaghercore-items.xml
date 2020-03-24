@@ -81,31 +81,26 @@
 				<attribute autocreate="true" generate="true" qualifier="newsLetters" type="java.lang.Boolean">
                <modifiers optional="true" />
                <persistence type="property" />
-               <defaultvalue>java.lang.Boolean.TRUE</defaultvalue>
                <description>Indicates if customer subscribe newsletters</description>
              </attribute>
              <attribute autocreate="true" generate="true" qualifier="events" type="java.lang.Boolean">
 					<modifiers optional="true" />
 					<persistence type="property" />
-					<defaultvalue>java.lang.Boolean.TRUE</defaultvalue>
 					<description>Indicates if customer subscribe events</description>
 				</attribute>
 				<attribute autocreate="true" generate="true" qualifier="productRelease" type="java.lang.Boolean">
 					<modifiers optional="true" />
 					<persistence type="property" />
-					<defaultvalue>java.lang.Boolean.TRUE</defaultvalue>
 					<description>Indicates if customer subscribe productRelease</description>
 				</attribute>
 				<attribute autocreate="true" generate="true" qualifier="productUpdate" type="java.lang.Boolean">
 					<modifiers optional="true" />
 					<persistence type="property" />
-					<defaultvalue>java.lang.Boolean.TRUE</defaultvalue>
 					<description>Indicates if customer subscribe productUpdate</description>
 				</attribute>
 				<attribute autocreate="true" generate="true" qualifier="productPromo" type="java.lang.Boolean">
 					<modifiers optional="true" />
 					<persistence type="property" />
-					<defaultvalue>java.lang.Boolean.TRUE</defaultvalue>
 					<description>Indicates if customer subscribe productPromo</description>
 				</attribute>
 			</attributes>

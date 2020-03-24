@@ -327,7 +327,7 @@
                                                 </div>
                                             </div>
                                             </li>
-                                            <li><c:url value="/registerProduct" var="registerProductUrl" /><a href="${registerProductUrl}"><spring:theme code="text.Register.Product" />
+                                            <li><c:url value="/register-product" var="registerProductUrl" /><a href="${registerProductUrl}"><spring:theme code="text.Register.Product" />
                                             </a></li>
                                             <li><a href="javascript:void(0)"> <spring:theme code="text.Registered.Products" />
                                             </a></li>
@@ -407,7 +407,7 @@
                                                 </div>
                                             </div>
                                             </li>
-                                            <li><c:url value="/registerProduct" var="registerProductUrl" /><a href="${registerProductUrl}"> <spring:theme code="text.Register.Product" />
+                                            <li><c:url value="/register-product" var="registerProductUrl" /><a href="${registerProductUrl}"> <spring:theme code="text.Register.Product" />
                                             </a></li>
                                             <li><a href="javascript:void(0)"> <spring:theme code="text.Registered.Products" />
                                             </a></li>

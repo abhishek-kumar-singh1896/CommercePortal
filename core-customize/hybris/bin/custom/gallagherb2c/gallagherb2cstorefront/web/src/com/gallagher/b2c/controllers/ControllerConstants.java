@@ -147,6 +147,7 @@ public interface ControllerConstants
 			{
 				String WriteReview = "pages/product/writeReview"; // NOSONAR
 				String OrderForm = "pages/product/productOrderFormPage"; // NOSONAR
+				String RegisterProduct = "pages/product/registerProductPage"; // NOSONAR
 			}
 
 			interface QuickOrder // NOSONAR
@@ -202,6 +203,11 @@ public interface ControllerConstants
 			interface Preference
 			{
 				String CustomerPreferencePopup = "fragments/preference/preferenceOverlay";
+			}
+
+			interface RegisterProduct
+			{
+				String RegisterProductPopup = "fragments/registerProduct/registerProductPopup";
 			}
 		}
 	}

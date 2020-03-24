@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Representation of Contact entry
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class GallagherInboundCustomerEntry
+public class GallagherInboundCustomerEntry implements Comparable<GallagherInboundCustomerEntry>
 {
 	@JsonProperty("ContactID")
 	private String contactID;
@@ -136,5 +136,11 @@ public class GallagherInboundCustomerEntry
 	public void setObjectID(final String objectID)
 	{
 		this.objectID = objectID;
+	}
+
+	@Override
+	public int compareTo(final GallagherInboundCustomerEntry entry2)
+	{
+		return Long.valueOf(this.contactID).compareTo(Long.valueOf(entry2.getContactID()));
 	}
 }

@@ -23,11 +23,10 @@ import com.gallagher.outboundservices.response.dto.GallagherInboundCustomerEntry
 
 
 /**
- * Gallagher customer service implementation for create
  *
- * and update customer in commerce and SCPI/C4C
+ * Implementation of {@link GallagherCustomerService}
  *
- * @author abhishek
+ * @author Abhishek
  */
 public class GallagherCustomerServiceImpl implements GallagherCustomerService
 {
@@ -45,25 +44,28 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 	@Resource(name = "customerAccountService")
 	private CustomerAccountService customerAccountService;
 
-	//update commerce user if exist
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public boolean updateCommerceCustomer(final GallagherAccessToken token)
+	public boolean updateCommerceCustomer(final GallagherAccessToken token, final boolean createIfNotExists)
 	{
 		boolean success = false;
 
-		final List<CustomerModel> retrieveUserBySubjectId = gallagherCustomerDao
-				.retrieveUserByKeycloakGUID(token.getSubjectId());
+		final List<CustomerModel> retrieveUserBySubjectId = gallagherCustomerDao.retrieveUserByKeycloakGUID(token.getSubjectId());
 
 		if (CollectionUtils.isEmpty(retrieveUserBySubjectId))
 		{
-
-			try
+			if (createIfNotExists)
 			{
-				success = createCommerceCustomer(token);
-			}
-			catch (final DuplicateUidException dupUidEx)
-			{
-				LOGGER.error("Exception while creating new customer", dupUidEx);
+				try
+				{
+					success = createCommerceCustomer(token);
+				}
+				catch (final DuplicateUidException dupUidEx)
+				{
+					LOGGER.error("Exception while creating new customer", dupUidEx);
+				}
 			}
 		}
 		else
@@ -101,6 +103,8 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 		{
 			if (existingCustomers.size() > 1)
 			{
+				newCustomer.setSapContactID(existingCustomers.get(0).getContactID());
+				newCustomer.setObjectID(existingCustomers.get(0).getObjectID());
 				newCustomer.setDuplicate(true);
 			}
 			else
