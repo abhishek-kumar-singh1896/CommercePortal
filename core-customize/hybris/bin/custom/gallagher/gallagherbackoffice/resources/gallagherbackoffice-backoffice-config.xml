@@ -152,6 +152,19 @@
                                           qualifier="videoDescription"/>
                 </editorArea:section>
             </editorArea:tab>
+            <editorArea:tab name="hmc.tab.product.multimedia" position="18" merge-mode="REPLACE">
+                <editorArea:section name="hmc.section.product.pictures">
+                    <editorArea:attribute qualifier="picture"/>
+                    <editorArea:attribute qualifier="thumbnail"/>
+                </editorArea:section>
+                <editorArea:section name="hmc.section.product.additionalmedias">
+                    <editorArea:attribute qualifier="data_sheet"/>
+                    <editorArea:attribute qualifier="detail"/>
+                    <editorArea:attribute qualifier="logo"/>
+                    <editorArea:attribute qualifier="normal"/>
+                    <editorArea:attribute qualifier="thumbnails"/>
+                </editorArea:section>
+            </editorArea:tab>
             <editorArea:tab name="hmc.tab.product.properties" position="2">
             	<editorArea:section name="hmc.product.descriptions">
                     <editorArea:attribute editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)"
