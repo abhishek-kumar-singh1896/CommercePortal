@@ -16,6 +16,7 @@ import de.hybris.platform.acceleratorstorefrontcommons.breadcrumb.ResourceBreadc
 import de.hybris.platform.acceleratorstorefrontcommons.constants.WebConstants;
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.pages.AbstractCartPageController;
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.util.GlobalMessages;
+import de.hybris.platform.acceleratorstorefrontcommons.forms.GuestForm;
 import de.hybris.platform.acceleratorstorefrontcommons.forms.SaveCartForm;
 import de.hybris.platform.acceleratorstorefrontcommons.forms.UpdateQuantityForm;
 import de.hybris.platform.acceleratorstorefrontcommons.forms.VoucherForm;
@@ -40,7 +41,6 @@ import de.hybris.platform.core.enums.QuoteState;
 import de.hybris.platform.enumeration.EnumerationService;
 import de.hybris.platform.site.BaseSiteService;
 import de.hybris.platform.util.Config;
-import com.gallagher.b2c.controllers.ControllerConstants;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -69,6 +69,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.gallagher.b2c.controllers.ControllerConstants;
 
 
 /**
@@ -151,11 +153,9 @@ public class CartPageController extends AbstractCartPageController
 	{
 		final QuoteData quoteData = getCartFacade().getSessionCart().getQuoteData();
 
-		return quoteData != null
-				? (QuoteState.BUYER_OFFER.equals(quoteData.getState())
-						? Optional.of(String.format(REDIRECT_QUOTE_VIEW_URL, urlEncode(quoteData.getCode())))
-						: Optional.of(String.format(REDIRECT_QUOTE_EDIT_URL, urlEncode(quoteData.getCode()))))
-				: Optional.empty();
+		return quoteData != null ? (QuoteState.BUYER_OFFER.equals(quoteData.getState())
+				? Optional.of(String.format(REDIRECT_QUOTE_VIEW_URL, urlEncode(quoteData.getCode())))
+				: Optional.of(String.format(REDIRECT_QUOTE_EDIT_URL, urlEncode(quoteData.getCode())))) : Optional.empty();
 	}
 
 	/**
@@ -197,8 +197,9 @@ public class CartPageController extends AbstractCartPageController
 	}
 
 	@RequestMapping(value = "/getProductVariantMatrix", method = RequestMethod.GET)
-	public String getProductVariantMatrix(@RequestParam("productCode") final String productCode,
-			@RequestParam(value = "readOnly", required = false, defaultValue = "false") final String readOnly, final Model model)
+	public String getProductVariantMatrix(@RequestParam("productCode")
+	final String productCode, @RequestParam(value = "readOnly", required = false, defaultValue = "false")
+	final String readOnly, final Model model)
 	{
 
 		final ProductData productData = productFacade.getProductForCodeAndOptions(productCode,
@@ -217,8 +218,9 @@ public class CartPageController extends AbstractCartPageController
 	@RequestMapping(value = "/checkout/select-flow", method = RequestMethod.GET)
 	@RequireHardLogIn
 	public String initCheck(final Model model, final RedirectAttributes redirectModel,
-			@RequestParam(value = "flow", required = false) final String flow,
-			@RequestParam(value = "pci", required = false) final String pci) throws CommerceCartModificationException
+			@RequestParam(value = "flow", required = false)
+			final String flow, @RequestParam(value = "pci", required = false)
+			final String pci) throws CommerceCartModificationException
 	{
 		SessionOverrideCheckoutFlowFacade.resetSessionOverrides();
 
@@ -256,8 +258,8 @@ public class CartPageController extends AbstractCartPageController
 	}
 
 	@RequestMapping(value = "/entrygroups/{groupNumber}", method = RequestMethod.POST)
-	public String removeGroup(@PathVariable("groupNumber") final Integer groupNumber, final Model model,
-			final RedirectAttributes redirectModel)
+	public String removeGroup(@PathVariable("groupNumber")
+	final Integer groupNumber, final Model model, final RedirectAttributes redirectModel)
 	{
 		final CartModificationData cartModification;
 		try
@@ -271,15 +273,17 @@ public class CartPageController extends AbstractCartPageController
 		catch (final CommerceCartModificationException e)
 		{
 			LOG.error(e.getMessage(), e);
-			GlobalMessages.addFlashMessage(redirectModel, GlobalMessages.ERROR_MESSAGES_HOLDER,
-					"basket.error.entrygroup.remove", new Object[]{groupNumber});
+			GlobalMessages.addFlashMessage(redirectModel, GlobalMessages.ERROR_MESSAGES_HOLDER, "basket.error.entrygroup.remove",
+					new Object[]
+					{ groupNumber });
 		}
 		return REDIRECT_CART_URL;
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String updateCartQuantities(@RequestParam("entryNumber") final long entryNumber, final Model model,
-			@Valid final UpdateQuantityForm form, final BindingResult bindingResult, final HttpServletRequest request,
+	public String updateCartQuantities(@RequestParam("entryNumber")
+	final long entryNumber, final Model model, @Valid
+	final UpdateQuantityForm form, final BindingResult bindingResult, final HttpServletRequest request,
 			final RedirectAttributes redirectModel) throws CMSItemNotFoundException
 	{
 		if (bindingResult.hasErrors())
@@ -358,23 +362,27 @@ public class CartPageController extends AbstractCartPageController
 			// Less than successful
 			GlobalMessages.addFlashMessage(redirectModel, GlobalMessages.ERROR_MESSAGES_HOLDER,
 					"basket.page.message.update.reducedNumberOfItemsAdded.lowStock", new Object[]
-					{ XSSFilterUtil.filter(cartModification.getEntry().getProduct().getName()), Long.valueOf(cartModification.getQuantity()), form.getQuantity(), request.getRequestURL().append(cartModification.getEntry().getProduct().getUrl()) });
+					{ XSSFilterUtil.filter(cartModification.getEntry().getProduct().getName()),
+							Long.valueOf(cartModification.getQuantity()), form.getQuantity(),
+							request.getRequestURL().append(cartModification.getEntry().getProduct().getUrl()) });
 		}
 		else
 		{
 			// No more stock available
 			GlobalMessages.addFlashMessage(redirectModel, GlobalMessages.ERROR_MESSAGES_HOLDER,
 					"basket.page.message.update.reducedNumberOfItemsAdded.noStock", new Object[]
-					{ XSSFilterUtil.filter(cartModification.getEntry().getProduct().getName()), request.getRequestURL().append(cartModification.getEntry().getProduct().getUrl()) });
+					{ XSSFilterUtil.filter(cartModification.getEntry().getProduct().getName()),
+							request.getRequestURL().append(cartModification.getEntry().getProduct().getUrl()) });
 		}
 	}
 
 	@SuppressWarnings("boxing")
 	@ResponseBody
 	@RequestMapping(value = "/updateMultiD", method = RequestMethod.POST)
-	public CartData updateCartQuantitiesMultiD(@RequestParam("entryNumber") final Integer entryNumber,
-			@RequestParam("productCode") final String productCode, final Model model, @Valid final UpdateQuantityForm form,
-			final BindingResult bindingResult)
+	public CartData updateCartQuantitiesMultiD(@RequestParam("entryNumber")
+	final Integer entryNumber, @RequestParam("productCode")
+	final String productCode, final Model model, @Valid
+	final UpdateQuantityForm form, final BindingResult bindingResult)
 	{
 		if (bindingResult.hasErrors())
 		{
@@ -499,8 +507,8 @@ public class CartPageController extends AbstractCartPageController
 	}
 
 	@RequestMapping(value = "/voucher/apply", method = RequestMethod.POST)
-	public String applyVoucherAction(@Valid final VoucherForm form, final BindingResult bindingResult,
-			final RedirectAttributes redirectAttributes)
+	public String applyVoucherAction(@Valid
+	final VoucherForm form, final BindingResult bindingResult, final RedirectAttributes redirectAttributes)
 	{
 		try
 		{
@@ -535,7 +543,8 @@ public class CartPageController extends AbstractCartPageController
 	}
 
 	@RequestMapping(value = "/voucher/remove", method = RequestMethod.POST)
-	public String removeVoucher(@Valid final VoucherForm form, final RedirectAttributes redirectModel)
+	public String removeVoucher(@Valid
+	final VoucherForm form, final RedirectAttributes redirectModel)
 	{
 		try
 		{
@@ -555,6 +564,7 @@ public class CartPageController extends AbstractCartPageController
 		return REDIRECT_CART_URL;
 	}
 
+	@Override
 	public BaseSiteService getBaseSiteService()
 	{
 		return baseSiteService;
@@ -566,8 +576,9 @@ public class CartPageController extends AbstractCartPageController
 	}
 
 	@RequestMapping(value = "/entry/execute/" + ACTION_CODE_PATH_VARIABLE_PATTERN, method = RequestMethod.POST)
-	public String executeCartEntryAction(@PathVariable(value = "actionCode", required = true) final String actionCode,
-			final RedirectAttributes redirectModel, @RequestParam("entryNumbers") final Long[] entryNumbers)
+	public String executeCartEntryAction(@PathVariable(value = "actionCode", required = true)
+	final String actionCode, final RedirectAttributes redirectModel, @RequestParam("entryNumbers")
+	final Long[] entryNumbers)
 	{
 		CartEntryAction action = null;
 		try
@@ -614,6 +625,38 @@ public class CartPageController extends AbstractCartPageController
 	{
 		final QuoteData quoteData = getCartFacade().getSessionCart().getQuoteData();
 		return quoteData != null ? String.format(REDIRECT_QUOTE_EDIT_URL, urlEncode(quoteData.getCode())) : REDIRECT_CART_URL;
+	}
+
+
+	@RequestMapping(value = "/checkout/guest", method = RequestMethod.GET)
+	public String cartCheckoutAsGuest(final Model model, final RedirectAttributes redirectModel)
+			throws CommerceCartModificationException
+	{
+		SessionOverrideCheckoutFlowFacade.resetSessionOverrides();
+
+		if (!getCartFacade().hasEntries())
+		{
+			LOG.info("Missing or empty cart");
+
+			// No session cart or empty session cart. Bounce back to the cart page.
+			GlobalMessages.addFlashMessage(redirectModel, GlobalMessages.ERROR_MESSAGES_HOLDER, "basket.error.checkout.empty.cart",
+					null);
+			return REDIRECT_CART_URL;
+		}
+
+
+		if (validateCart(redirectModel))
+		{
+			GlobalMessages.addFlashMessage(redirectModel, GlobalMessages.ERROR_MESSAGES_HOLDER, CART_CHECKOUT_ERROR, null);
+			return REDIRECT_CART_URL;
+		}
+
+		// Redirect to the start of the checkout flow to begin the checkout process
+		// We just redirect to the generic '/checkout' page which will actually select the checkout flow
+		// to use. The customer is not necessarily logged in on this request, but will be forced to login
+		// when they arrive on the '/checkout' page.
+		model.addAttribute("guestForm", new GuestForm());
+		return ControllerConstants.Views.Pages.Checkout.CheckoutGuestLoginPage;
 	}
 
 }

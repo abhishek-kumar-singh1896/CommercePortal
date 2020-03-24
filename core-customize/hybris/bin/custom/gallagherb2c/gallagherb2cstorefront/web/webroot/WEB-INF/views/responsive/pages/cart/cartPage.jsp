@@ -14,7 +14,8 @@
 	<cart:cartValidation/>
 	<cart:cartPickupValidation/>
 
-	<div class="cart-top-bar">
+<div class="cart-top-bar">
+    <div class = "container">
         <div class="text-right">
             <spring:theme var="textHelpHtml" code="text.help" />
             <a href="" class="help js-cart-help" data-help="${fn:escapeXml(textHelpHtml)}">${textHelpHtml}
@@ -28,8 +29,10 @@
                     <div>${cartHelpContentVarSanitized}</div>
                 </div>
             </div>
-		</div>
-	</div>
+		 </div>
+	</div>	
+</div>
+	
 
 	<div class="container">
 		<div>

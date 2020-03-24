@@ -91,6 +91,7 @@ public interface ControllerConstants
 				String CheckoutRegisterPage = "pages/checkout/checkoutRegisterPage"; // NOSONAR
 				String CheckoutConfirmationPage = "pages/checkout/checkoutConfirmationPage"; // NOSONAR
 				String CheckoutLoginPage = "pages/checkout/checkoutLoginPage"; // NOSONAR
+				String CheckoutGuestLoginPage = "pages/checkout/checkoutGuestLogin"; // NOSONAR
 			}
 
 			interface MultiStepCheckout // NOSONAR

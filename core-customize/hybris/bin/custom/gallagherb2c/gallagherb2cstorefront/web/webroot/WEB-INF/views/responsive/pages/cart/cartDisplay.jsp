@@ -62,7 +62,7 @@
 						<sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')">
 							<ycommerce:testId code="checkoutButton">
 								<button
-									class="btn btn-primary btn--continue-checkout js-continue-checkoutasguest-button"
+									class="btn btn-primary btn--continue-checkout js-continue-checkoutasguest-button btn-xs-block"
 									data-checkout-url="${fn:escapeXml(checkoutUrl)}">
 									<spring:theme code="checkout.checkout.guest" />
 								</button>
@@ -70,7 +70,7 @@
 						</sec:authorize>
 						<ycommerce:testId code="checkoutButton">
 							<button
-								class="btn btn-primary btn--continue-checkout js-continue-checkout-button"
+								class="btn btn-primary btn--continue-checkout js-continue-checkout-button btn-xs-block"
 								data-checkout-url="${fn:escapeXml(checkoutUrl)}">
 								<spring:theme code="checkout.checkout" />
 							</button>
@@ -81,14 +81,14 @@
 						<c:if
 							test="${not empty siteQuoteEnabled and siteQuoteEnabled eq 'true'}">
 							<button
-								class="btn btn-default btn-create-quote js-create-quote-button"
+								class="btn btn-default btn-create-quote js-create-quote-button btn-xs-block"
 								data-create-quote-url="${fn:escapeXml(createQuoteUrl)}">
 								<spring:theme code="quote.create" />
 							</button>
 						</c:if>
 
 						<button
-							class="btn btn-default btn--continue-shopping js-continue-shopping-button"
+							class="btn btn-default btn--continue-shopping js-continue-shopping-button btn-xs-block"
 							data-continue-shopping-url="${fn:escapeXml(continueShoppingUrl)}">
 							<spring:theme code="cart.page.continue" />
 						</button>
