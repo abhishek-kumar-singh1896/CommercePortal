@@ -2028,3 +2028,10 @@ INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTe
 ;;registerProduct;Product Registration;RegisterProductPageTemplate;/registerProduct
 
 #### Register Product Page####
+
+#####images for award winning component#######
+INSERT_UPDATE Media;mediaFormat(qualifier);$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];mime[default='image/jpeg'];realfilename;folder(qualifier)[default='images'];altText
+;;;ImageDes1.jpg;$siteResource/images/banners/homepage/responsive/product-two-column-img.png;;ImageDes1.jpg;;"ImageDes1"
+;;;ImageDes2.jpg;$siteResource/images/banners/homepage/responsive/product-two-column-img.png;;ImageDes2.jpg;;"ImageDes2"
+;;;ImageDes3.jpg;$siteResource/images/banners/homepage/responsive/product-two-column-img.png;;ImageDes3.jpg;;"ImageDes3"
+#####images for award winning component#######
