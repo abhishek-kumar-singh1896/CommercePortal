@@ -323,27 +323,4 @@ public class CheckoutController extends AbstractCheckoutController
 	{
 		return autoLoginStrategy;
 	}
-
-	@RequestMapping(value = "/checkoutasguest", method = RequestMethod.GET)
-	public String checkoutasGuest(final RedirectAttributes redirectModel)
-	{
-		if (getCheckoutFlowFacade().hasValidCart())
-		{
-			if (validateCart(redirectModel))
-			{
-				return REDIRECT_PREFIX + "/cart";
-			}
-			else
-			{
-				checkoutFacade.prepareCartForCheckout();
-				//return getCheckoutRedirectUrl();
-				return REDIRECT_TO_MULTISTEP_CHECKOUT;
-			}
-		}
-
-		LOG.info("Missing, empty or unsupported cart");
-
-		// No session cart or empty session cart. Bounce back to the cart page.
-		return REDIRECT_PREFIX + "/cart";
-	}
 }
