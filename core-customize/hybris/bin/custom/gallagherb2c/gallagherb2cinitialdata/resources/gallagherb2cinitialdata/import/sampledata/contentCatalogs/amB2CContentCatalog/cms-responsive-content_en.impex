@@ -487,6 +487,7 @@ INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[uni
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV)
 ;;FooterSlot;GallagherFooterNavigationComponent
 
+
 ##Footer Links 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
 ;;PrivacyLink;"Privacy"
@@ -602,3 +603,16 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 ;;PortablefencingTapesWiresBraids_nav_link112;"Reels and Accessories"
 ;;PortablefencingTapesWiresBraids_nav_link113;"Posts - Pigtails and Tread-ins"
 #############Navigation Nodes start end##############
+
+#### components for gallagherpdpsearchdealercomponent start########
+
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=$lang]
+;;PDPSearchFindDealerComponent;"Find a dealer near you"
+;;PDPSearchAdviceComponent;"Get expert advice"
+;;PDPSearchContactComponent;"0800 731 500"
+
+UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
+;;mapBackgroundComponent;find-dealer-bg
+;;tmBackgroundComponent;tm-bg
+
+####### components for gallagherpdpsearchdealercomponent end########
