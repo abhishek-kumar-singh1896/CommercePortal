@@ -43,7 +43,7 @@
 	<cms:pageSlot position="RegisterProduct" var="comp" >
 		<cms:component component="${comp}"/>
 	</cms:pageSlot>
-    <c:if test="${not empty product.others}">                
+    <c:if test="${not empty product.others && not empty product.imageDescription}">                
     <div class="container">
       <div class="two-column-section">
           <div class="row">
@@ -51,18 +51,11 @@
                   <div class="column-full-img clearfix">
                       <div class="flexslider slider-big-image award-slider" id="awardSlider">
                           <ul class="slides">
-                              <li>
-                                  <img src="${commonResourcePath}/images/product-two-column-img.png" alt="Product Image">
-                              </li>
-                              <li>
-                                  <img src="${commonResourcePath}/images/product-two-column-img.png" alt="Product Image">
-                              </li>
-                              <li>
-                                  <img src="${commonResourcePath}/images/product-two-column-img.png" alt="Product Image">
-                              </li>
-                              <li>
-                                  <img src="${commonResourcePath}/images/product-two-column-img.png" alt="Product Image">
-                              </li>
+                          		<c:forEach var="media" items="${product.others}">
+                          			<li>
+	                                  	<img src="${media.url}" alt="${media.altText}">
+	                              	</li>
+				                 </c:forEach>
                           </ul>
                       </div>
                   </div>
