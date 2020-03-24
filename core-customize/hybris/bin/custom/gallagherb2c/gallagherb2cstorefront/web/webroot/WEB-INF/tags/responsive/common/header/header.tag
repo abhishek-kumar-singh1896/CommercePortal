@@ -103,13 +103,9 @@
 
 
 							<div class="btn-group" role="group">
-								<button id="btnGroupDrop1" type="button"
-									class="btn right-btn dropdown-toggle" data-toggle="dropdown"
-									aria-haspopup="true" aria-expanded="false">
 									<cms:pageSlot position="MiniCart" var="cart">
 										<cms:component component="${cart}" />
 									</cms:pageSlot>
-								</button>
 							
 							<div class="dropdown-menu dropdown-menu-right mini-cart"
 								aria-labelledby="btnGroupDrop1">
@@ -143,13 +139,9 @@
 							</ycommerce:testId>
 
 							<div class="btn-group" role="group">
-								<button id="btnGroupDrop1" type="button"
-									class="btn right-btn dropdown-toggle" data-toggle="dropdown"
-									aria-haspopup="true" aria-expanded="false">
 									<cms:pageSlot position="MiniCart" var="cart">
 										<cms:component component="${cart}" />
 									</cms:pageSlot>
-								</button>
 							
 
 							<div class="dropdown-menu dropdown-menu-right mini-cart"
@@ -162,13 +154,9 @@
 
 					<!-- For Mobile Cart Section-->
 					<div class="header-right-btn-group for-mobile-view">
-						<button id="btnGroupDrop1" type="button"
-							class="btn right-btn dropdown-toggle" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false">
 							<cms:pageSlot position="MiniCart" var="cart">
 								<cms:component component="${cart}" />
 							</cms:pageSlot>
-						</button>
 
 						<div class="dropdown-menu dropdown-menu-right mini-cart"
 							aria-labelledby="btnGroupDrop1">
@@ -341,13 +329,9 @@
                                 </div>
                             </div>
 							<div class="btn-group" role="group">
-								<button id="btnGroupDrop1" type="button"
-									class="btn right-btn dropdown-toggle" data-toggle="dropdown"
-									aria-haspopup="true" aria-expanded="false">
 									<cms:pageSlot position="MiniCart" var="cart">
 										<cms:component component="${cart}" />
 									</cms:pageSlot>
-								</button>
 							
 							<div class="dropdown-menu dropdown-menu-right mini-cart"
 								aria-labelledby="btnGroupDrop1">
@@ -419,13 +403,9 @@
                                 </div>
                                 </div>
                                 <div class="btn-group" role="group">
-								<button id="btnGroupDrop1" type="button"
-									class="btn right-btn dropdown-toggle" data-toggle="dropdown"
-									aria-haspopup="true" aria-expanded="false">
 									<cms:pageSlot position="MiniCart" var="cart">
 										<cms:component component="${cart}" />
 									</cms:pageSlot>
-								</button>
 							
 
 							<div class="dropdown-menu dropdown-menu-right mini-cart"
@@ -438,13 +418,9 @@
 
 					<!-- For Mobile Cart Section-->
 					<div class="header-right-btn-group for-mobile-view">
-						<button id="btnGroupDrop1" type="button"
-							class="btn right-btn dropdown-toggle" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false">
 							<cms:pageSlot position="MiniCart" var="cart">
 								<cms:component component="${cart}" />
 							</cms:pageSlot>
-						</button>
 
 						<div class="dropdown-menu dropdown-menu-right mini-cart"
 							aria-labelledby="btnGroupDrop1">
