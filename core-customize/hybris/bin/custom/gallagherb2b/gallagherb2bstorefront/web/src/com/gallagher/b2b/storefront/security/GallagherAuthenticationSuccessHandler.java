@@ -32,11 +32,11 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
  */
 public class GallagherAuthenticationSuccessHandler implements AuthenticationSuccessHandler
 {
-	private final AuthenticationSuccessHandler fallback;
-	private final UserService userService;
-
 	private static final Logger LOGGER = LoggerFactory.getLogger(GallagherAuthenticationSuccessHandler.class);
 	private static final String FARWORD_SLASH = "/";
+
+	private final AuthenticationSuccessHandler fallback;
+	private final UserService userService;
 
 	public GallagherAuthenticationSuccessHandler(final AuthenticationSuccessHandler fallback, final UserService userService)
 	{
