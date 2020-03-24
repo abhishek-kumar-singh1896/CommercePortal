@@ -163,6 +163,7 @@
                     <editorArea:attribute qualifier="logo"/>
                     <editorArea:attribute qualifier="normal"/>
                     <editorArea:attribute qualifier="thumbnails"/>
+                    <editorArea:attribute qualifier="galleryImages"/>
                 </editorArea:section>
             </editorArea:tab>
             <editorArea:tab name="hmc.tab.product.properties" position="2">
