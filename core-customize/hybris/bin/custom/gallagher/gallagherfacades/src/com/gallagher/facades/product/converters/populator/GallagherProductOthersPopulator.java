@@ -61,7 +61,7 @@ public class GallagherProductOthersPopulator<SOURCE extends ProductModel, TARGET
 	{
 		for (final MediaModel logo : logos)
 		{
-			final ImageData imageData = null;
+			final ImageData imageData = new ImageData();
 			imageData.setUrl(logo.getURL());
 			imageData.setAltText(logo.getAltText());
 			if (logo.getMediaFormat() != null)

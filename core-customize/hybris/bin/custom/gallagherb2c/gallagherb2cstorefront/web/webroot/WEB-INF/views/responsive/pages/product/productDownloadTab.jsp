@@ -43,14 +43,12 @@
 	<cms:pageSlot position="RegisterProduct" var="comp" >
 		<cms:component component="${comp}"/>
 	</cms:pageSlot>
-                    
+    <c:if test="${not empty product.others}">                
     <div class="container">
       <div class="two-column-section">
           <div class="row">
               <div class="col-md-6">
                   <div class="column-full-img clearfix">
-                      <!-- <img src="img/product-two-column-img.png" alt="Product Image"> -->
-
                       <div class="flexslider slider-big-image award-slider" id="awardSlider">
                           <ul class="slides">
                               <li>
@@ -77,4 +75,5 @@
           </div>
       </div>
   </div>
+  </c:if>
 </section>
