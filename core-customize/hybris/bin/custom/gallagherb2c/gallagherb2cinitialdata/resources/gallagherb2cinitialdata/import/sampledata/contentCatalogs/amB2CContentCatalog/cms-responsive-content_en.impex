@@ -616,3 +616,10 @@ UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[l
 ;;tmBackgroundComponent;tm-bg
 
 ####### components for gallagherpdpsearchdealercomponent end########
+
+######User dropdown in header######
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
+;;RegisterAProductLink;"Register a Product"
+;;MyRegisteredProductLink;"My Registered Products"
+;;AccountManagementLink;"Account Management"
+;;LogoutLink;"Log Out"

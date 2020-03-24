@@ -2124,3 +2124,54 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;c
 
 
 ###### GallagherPDPSearchDealerComponent ends #######
+
+######User dropdown in header######
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;RegisterAProductLink;Register a product Link;/register-product;;;;
+;;MyRegisteredProductLink;My registered Product Link;http://www.google.com/;;;;
+;;AccountManagementLink;Account Management Link;http://www.google.com/;;;;;;;
+;;LogoutLink;Logout Us Link;https://www.google.com/;;;;
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);children(uid,$contentCV)[mode=replace];links(uid, $contentCV);&nodeRef;title[lang=en]
+;RegisterAProductNavNode;; Register a Product Navigation Node Menu;UserDropDownNavigationNode;;;RegisterAProductNavNode;"Register a Product"     
+;MyRegisteredProductNavNode;;My Registered Product Navigation Node Menu;;;;MyRegisteredProductNavNode;"My Registered Product"
+;AccountNavNode;;Account Management Navigation Node Menu;UserDropDownNavigationNode;;;AccountNavNode;"Account Management"                                                                                                                                            ;                        ; AccountNavNode   ; "Account Management"
+;LogoutNavNode;;Logout Us Navigation Node Menu;UserDropDownNavigationNode;;;LogoutNavNode;"Logout Us"
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;RegisterAProductNavNodeEntry;;Register a Product Navigation Node Entry;RegisterAProductNavNode;RegisterAProductLink;
+;MyRegisteredProductNavNodeEntry;;My Registered Product Navigation Node Entry;MyRegisteredProductNavNode;AccountManagementLink
+;AccountNavNodeEntry;;Account Management Navigation Node Entry;AccountNavNode;MyRegisteredProductLink
+;LogoutNavNodeEntry;;Logout Navigation Node Entry;LogoutNavNode;LogoutLink
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef;children(uid, $contentCV)[mode=replace]
+;UserDropDownNavigationNode;;Header Link Navigation Node; root;; UserDropDownNavigationNode; RegisterAProductNavNode,MyRegisteredProductNavNode,AccountNavNode,LogoutNavNode
+
+INSERT_UPDATE NavigationComponent;$contentCV[unique=true];uid[unique=true];name;styleClass;&componentRef;navigationNode(&nodeRef)
+;;UserDropDownNavigationComponent;User drop down Navigation component;;UserDropDownNavigationComponent;UserDropDownNavigationNode
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV)
+;;UserDropDownSlot;UserDropDownNavigationComponent
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;UserDropDown;;NavigationComponent;narrow
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-ProductDetails;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage2Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-LandingPage2;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductListPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-ProductListPage;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsGridPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-SearchResultsGridPage;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductGridPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-ProductGridPage;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='RegisterProductPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-ProductDetailsPage;UserDropDown;;UserDropDownSlot;true
+
+######User dropdown in header######
