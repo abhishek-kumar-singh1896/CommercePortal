@@ -13,6 +13,7 @@ import de.hybris.platform.commercefacades.product.ProductFacade;
 import de.hybris.platform.commercefacades.product.ProductOption;
 import de.hybris.platform.commercefacades.product.data.ImageData;
 import de.hybris.platform.commercefacades.product.data.ProductData;
+import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -45,15 +46,16 @@ import com.gallagher.outboundservices.request.dto.RegisterProductRequest;
 import com.gallagher.outboundservices.service.GallagheroutboundservicesService;
 
 
-
 /**
  * @author shilpiverma
  *
  */
+
 @Controller
 @RequestMapping(value = "/register-product")
 public class RegisterProductController extends AbstractPageController
 {
+	private static final Logger LOG = Logger.getLogger(RegisterProductController.class);
 
 	@Resource(name = "registerProductValidator")
 	private RegisterProductValidator registerProductValidator;
@@ -63,8 +65,6 @@ public class RegisterProductController extends AbstractPageController
 
 	@Resource(name = "gallagheroutboundservicesService")
 	private GallagheroutboundservicesService gallagheroutboundservicesService;
-
-	protected static final Logger LOG = Logger.getLogger(RegisterProductController.class);
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String doRegisterProduct(final Model model) throws CMSItemNotFoundException
@@ -129,7 +129,7 @@ public class RegisterProductController extends AbstractPageController
 				jsonResponse.setResponseStatus(RPFormResponseStatus.SUCCESS);
 			}
 		}
-		catch (final Exception e)
+		catch (final UnknownIdentifierException e)
 		{
 			LOG.debug("Issue in register product", e);
 			jsonResponse.setResponseStatus(RPFormResponseStatus.FAILURE);
@@ -138,6 +138,13 @@ public class RegisterProductController extends AbstractPageController
 	}
 
 
+	/**
+	 * @param registerProductForm1
+	 * @param model
+	 * @param redirectAttributes
+	 * @return
+	 * @throws CMSItemNotFoundException
+	 */
 	@RequestMapping(value = "/submit", method = RequestMethod.POST)
 	public String submitRegisterProduct(@ModelAttribute
 	final RegisterProductPopupForm registerProductForm1, final Model model, final RedirectAttributes redirectAttributes)
@@ -159,7 +166,7 @@ public class RegisterProductController extends AbstractPageController
 		{
 			gallagheroutboundservicesService.postRegisterProduct(register);
 		}
-		catch (final Exception e)
+		catch (final UnknownIdentifierException e)
 		{
 			rg.setAddressLine1(registerProductForm1.getAddressLine11());
 			rg.setAddressLine2(registerProductForm1.getAddressLine21());
