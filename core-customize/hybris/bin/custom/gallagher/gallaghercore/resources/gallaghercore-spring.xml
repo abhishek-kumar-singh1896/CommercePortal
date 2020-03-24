@@ -145,5 +145,15 @@
         <property name="restrictionTypeCode" value="GallagherSiteTransactionRestriction" />
         <property name="restrictionEvaluator" ref="gallagherSiteTransactionRestrictionEvaluator" />
    </bean>
+   
+   <bean id="gallagherB2BUserGroupsStrategy" class="com.gallagher.core.usergroups.strategy.impl.GallagherB2BUserGroupsStrategyImpl">
+   	<property name="groups">
+			<list>
+				<value>b2badmingroup</value>
+				<value>b2bcustomergroup</value>
+				<value>b2btechniciangroup</value>
+			</list>
+		</property>
+   </bean>
 
 </beans>

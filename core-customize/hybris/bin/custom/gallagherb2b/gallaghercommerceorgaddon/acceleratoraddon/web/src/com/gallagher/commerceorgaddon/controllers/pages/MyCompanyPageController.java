@@ -33,6 +33,7 @@ import de.hybris.platform.commercefacades.storesession.StoreSessionFacade;
 import de.hybris.platform.commercefacades.storesession.data.CurrencyData;
 import de.hybris.platform.commercefacades.user.UserFacade;
 import de.hybris.platform.commercefacades.user.data.CustomerData;
+import de.hybris.platform.core.GenericSearchConstants.LOG;
 import de.hybris.platform.servicelayer.exceptions.ModelSavingException;
 import de.hybris.platform.servicelayer.i18n.FormatFactory;
 import de.hybris.platform.servicelayer.interceptor.InterceptorException;
@@ -74,6 +75,7 @@ import com.gallagher.commerceorgaddon.forms.B2BCustomerForm;
 import com.gallagher.commerceorgaddon.forms.B2BPermissionForm;
 import com.gallagher.commerceorgaddon.forms.validation.B2BBudgetFormValidator;
 import com.gallagher.commerceorgaddon.forms.validation.B2BPermissionFormValidator;
+import com.gallagher.facades.usergroups.GallagherB2BUserGroupFacade;
 import com.gallagher.keycloak.outboundservices.service.GallagherKeycloakService;
 
 
@@ -166,6 +168,9 @@ public class MyCompanyPageController extends AbstractSearchPageController
 
 	@Resource(name = "gallagherKeycloakService")
 	private GallagherKeycloakService gallagherKeycloakService;
+
+	@Resource(name = "gallagherB2BUserGroupFacade")
+	private GallagherB2BUserGroupFacade gallagherB2BUserGroupFacade;
 
 	public GallagherKeycloakService getGallagherKeycloakService()
 	{
@@ -392,7 +397,7 @@ public class MyCompanyPageController extends AbstractSearchPageController
 			model.addAttribute(b2bCustomerForm);
 		}
 		model.addAttribute("titleData", getUserFacade().getTitles());
-		model.addAttribute("roles", populateRolesCheckBoxes(b2bUserGroupFacade.getUserGroups()));
+		model.addAttribute("roles", populateRolesCheckBoxes(gallagherB2BUserGroupFacade.getUserGroups()));
 
 		final ContentPageModel organizationManagementPage = getContentPageForLabelOrId(ORGANIZATION_MANAGEMENT_CMS_PAGE);
 		storeCmsPageInModel(model, organizationManagementPage);
@@ -526,7 +531,7 @@ public class MyCompanyPageController extends AbstractSearchPageController
 		}
 
 		model.addAttribute("titleData", getUserFacade().getTitles());
-		model.addAttribute("roles", populateRolesCheckBoxes(b2bUserGroupFacade.getUserGroups()));
+		model.addAttribute("roles", populateRolesCheckBoxes(gallagherB2BUserGroupFacade.getUserGroups()));
 
 		final ContentPageModel organizationManagementPage = getContentPageForLabelOrId(ORGANIZATION_MANAGEMENT_CMS_PAGE);
 		storeCmsPageInModel(model, organizationManagementPage);

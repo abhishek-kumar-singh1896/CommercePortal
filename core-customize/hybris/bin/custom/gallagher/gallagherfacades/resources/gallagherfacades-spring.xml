@@ -153,5 +153,15 @@
         parent="defaultCustomerFacade" />
         
    <bean id="gallagherCustomerEmailContext" class="com.gallagher.facades.process.email.context.GallagherCustomerEmailContext" parent="customerEmailContext" />
+   
+   <bean id="gallagherB2BUserGroupFacade" class="com.gallagher.facades.usergroups.GallagherB2BUserGroupFacade" parent="defaultB2BUserGroupFacade" />
     
+    <bean parent="modifyPopulatorList">
+        <property name="list" ref="customerConverter"/>
+        <property name="add" ref="gallagherB2BCustomerPopulator"/>
+    </bean>
+    
+    <bean id="gallagherB2BCustomerPopulator" class="com.gallagher.facades.company.converters.populators.GallagherB2BCustomerPopulator"	parent="b2bCustomerPopulator" />
+	
+		
 </beans>
