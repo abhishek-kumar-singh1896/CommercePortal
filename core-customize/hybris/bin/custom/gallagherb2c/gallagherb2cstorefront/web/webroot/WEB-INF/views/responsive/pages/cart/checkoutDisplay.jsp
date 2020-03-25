@@ -70,7 +70,8 @@
 <c:if test="${showCheckoutStrategies && not empty cartData.entries}" >
     <div class="cart__actions">
         <div class="row">
-            <div class="col-xs-12 col-sm-5 col-md-3 col-lg-2 pull-right">
+            <div class="col-12 mb-4">
+            	<div class="float-right">
                 <input type="hidden" name="flow" id="flow"/>
                 <input type="hidden" name="pci" id="pci"/>
                 <select id="selectAltCheckoutFlow" class="doFlowSelectedChange form-control">
@@ -86,6 +87,7 @@
                     </c:if>
                     <option value="sop"><spring:theme code="checkout.checkout.multi.pci-sop" text="PCI-SOP" /></option>
                 </select>
+            	</div>
             </div>
         </div>
     </div>

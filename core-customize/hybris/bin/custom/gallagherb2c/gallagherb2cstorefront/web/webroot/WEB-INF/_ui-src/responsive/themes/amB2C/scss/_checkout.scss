@@ -1,0 +1,62 @@
+.checkout-headline,
+.checkout-summary-headline,
+.checkout-order-summary .subtotals .totals {
+  font-family: $font-family-bold;
+  color: $gray-9;
+}
+
+.checkout-headline,
+.checkout-steps {
+  padding-left: 0;
+}
+
+.checkout-summary-headline,
+.checkout-order-summary {
+  padding-right: 0;
+}
+
+.checkout-help {
+  border-color: $gray-3;
+  margin-bottom: 16px;
+}
+
+.checkout-steps .step-head {
+  color: inherit;
+}
+
+.checkout-shipping,
+.checkout-steps .step-head,
+.checkout-paymentmethod {
+  border-color: $gray-3;
+}
+
+.checkout-steps .step-head.active {
+  border-color: $gray-3;
+  background-color: $gray-3;
+  color: $gray-9;
+  text-decoration: none;
+}
+
+.checkout-steps .step-head .edit {
+  color: $primary-color;
+}
+
+@media only screen and (max-width: 767px) {
+  .checkout-steps {
+    padding-right: 0;
+  }
+
+  .checkout-summary-headline, .checkout-order-summary {
+      margin-left: 0;
+      margin-right: 0;
+  }
+
+  .checkout-order-summary {
+      border: 1px solid $gray-3;
+  }
+
+  .checkout-help {
+      margin-left: 0;
+      margin-right: 0;
+  }
+}
