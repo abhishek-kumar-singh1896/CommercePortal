@@ -112,6 +112,16 @@ ACC.productDetails = {
 	                sync: "#productDetailVideoCarousel"
 	            });
 	            
+	            $('#awardSlider').flexslider({
+	                animation: "slide",
+	                controlNav: false,
+	                animationLoop: false,
+	                slideshow: false,
+	                touch: true,
+	                // itemWidth: 171,
+	                // itemMargin: 12,
+	                directionNav: true,
+	            });
 
         });
 			
@@ -137,5 +147,49 @@ ACC.productDetails = {
 		                sync: "#productDetailMainCarousel"
 		            });
 		        });
+			 
+			 $('#productTileOut1').flexslider({
+	                animation: "slide",
+	                controlNav: false,
+	                animationLoop: false,
+	                slideshow: false,
+	                itemWidth: 340,
+	                itemMargin: 15,
+	                minItem: 2,
+	                touch: true,
+	                directionNav: true,
+	            });
+
+	            $('#productTileOut2').flexslider({
+	                animation: "slide",
+	                controlNav: false,
+	                animationLoop: false,
+	                slideshow: false,
+	                itemWidth: 340,
+	                itemMargin: 15,
+	                minItem: 2,
+	                touch: true,
+	                directionNav: true,
+	            });
+	            
+	            $('.see-review-link').click(function () {
+	                $(this).toggleClass('show-less');
+
+	                let toalReviewCount = $('.review-list-out ul li').length;
+
+	                if ($(this).hasClass('show-less')) {
+	                    $(this).text('Show less review');
+	                    $('.review-list-out ul li').removeClass('d-none');
+	                    if (toalReviewCount > 10) {
+	                        $('.review-list-out').addClass('scrollable');
+	                    }
+	                } else {
+	                    $(this).text('See all review');
+	                    $('.review-list-out').removeClass('scrollable');
+	                    $('.review-list-out ul li').addClass('d-none');
+	                    $('.review-list-out ul li').eq(1).removeClass('d-none');
+	                    $('.review-list-out ul li').eq(2).removeClass('d-none');
+	                }
+	            });
 	}
 };

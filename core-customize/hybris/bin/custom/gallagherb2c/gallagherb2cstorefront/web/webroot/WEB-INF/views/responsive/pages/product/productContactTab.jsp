@@ -3,7 +3,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<section id="${fn:escapeXml(title)}" class="common-sub-tab-section py-0">
+<%@ taglib prefix="cms" uri="http://hybris.com/tld/cmstags"%>
+
+
 <div class="common-sub-tab-section gray-back">
    <div class="container">
        <div class="row">
@@ -17,12 +19,11 @@
                    </div>
 
                    <div class="product-list">
-                       <div class="product-listing-out clearfix">
-                           <ul>
-                           <c:forEach items="${sparepart}" var="reference">
-								<product:productReferenceList product="${reference}" />
-							</c:forEach>
-							
+                       <div class="product-listing-out clearfix flexslider" id="productTileOut1">
+                           <ul class="slides">
+	                           <c:forEach items="${sparepart}" var="reference">
+											<product:productReferenceList product="${reference}" />
+										</c:forEach>							
                            </ul>
                        </div>
                        <div class="mt-3">
@@ -42,11 +43,11 @@
                    </div>
 
                    <div class="product-list">
-                       <div class="product-listing-out clearfix">
-                           <ul>
+                       <div class="product-listing-out clearfix flexslider" id="productTileOut2">
+                           <ul class="slides">
                            	<c:forEach items="${others}" var="reference1">
-							<product:productReferenceList product="${reference1}" />
-							</c:forEach>
+											<product:productReferenceList product="${reference1}" />
+										</c:forEach>
                             </ul>
                         </div>
                         <div class="mt-3">
@@ -62,42 +63,8 @@
     </div>
 </div>
 
-
-
-
-    <div class="find-dealer-out">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-padding-0">
-                    <div class="gray-shade"></div>
-                    <div class="find-dealer-img"
-                        style="background: url('${commonResourcePath}/images/find-dealer-img.png') center center no-repeat; background-size: cover;">
-                        &nbsp;
-                    </div>
-                    <div class="find-dealer-out-middle">
-                        <div class="find-dealer-title">Find a dealer near you</div>
-                        <div class="find-dealer-search-out">
-                            <input type="text" class="form-control input-dealer-search"
-                                placeholder="Enter post code">
-                            <button type="submit"
-                                class="btn btn-highlight btn-dealer-search">Search</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-padding-0">
-                    <div class="primary-shade"></div>
-                    <div class="find-dealer-img"
-                        style="background: url('${commonResourcePath}/images/getexpert-advice-img.png') center center no-repeat; background-size: cover;">
-                        &nbsp;
-                    </div>
-                    <div class="find-dealer-out-middle">
-                        <div class="expert-advice-title">Get expert advice</div>
-                        <div class="expert-advice-number">0800 731 500</div>
-                        <div class="expert-advice-common-text">Or Find Your Nearest Territory Manager
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<section id="${fn:escapeXml(title)}" class="common-sub-tab-section py-0">
+	<cms:pageSlot position="TMDealer" var="comp">
+		<cms:component component="${comp}"/>
+	</cms:pageSlot>
 </section>
