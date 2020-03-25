@@ -48,7 +48,7 @@
 
 			<div class="product-id">
 				<span><spring:theme code="registeredProducts.attachment" />
-				</span> <span> <a href="${fn:escapeXml(product.attachmentUrl)}">${product.attachment}</a>
+				</span> <span> <a href="${fn:escapeXml(product.attachmentUrl)}" target="_blank">${product.attachment}</a>
 				</span>
 			</div>
 		</div>

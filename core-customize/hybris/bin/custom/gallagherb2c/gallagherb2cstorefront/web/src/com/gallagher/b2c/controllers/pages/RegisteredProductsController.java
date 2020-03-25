@@ -40,7 +40,7 @@ public class RegisteredProductsController extends AbstractPageController
 		final ContentPageModel regProductsPage = getContentPageForLabelOrId(REG_PRODUCTS_PAGE);
 		storeCmsPageInModel(model, regProductsPage);
 		setUpMetaDataForContentPage(model, regProductsPage);
-		//model.addAttribute("registeredProducts", getGallagherRegisteredProductsFacade().getRegisteredProducts());
+		model.addAttribute("registeredProducts", getGallagherRegisteredProductsFacade().getRegisteredProducts());
 		model.addAttribute(WebConstants.BREADCRUMBS_KEY, getContentPageBreadcrumbBuilder().getBreadcrumbs(regProductsPage));
 		return getViewForPage(model);
 	}
