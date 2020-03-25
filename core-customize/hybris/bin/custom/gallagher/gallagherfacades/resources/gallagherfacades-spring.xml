@@ -173,15 +173,13 @@
 
 	<bean id="registeredProductData" class="com.gallagher.facades.product.data.RegisteredProductData" scope="prototype" />
 
-	<bean id="registeredProductsData" class="com.gallagher.facades.product.data.RegisteredProductsData" scope="prototype" />
-
 	<alias name="gallagherRegisteredProductsPopulator" alias="registeredProductsPopulator" />
 	<bean id="gallagherRegisteredProductsPopulator"
 		class="com.gallagher.facades.customer.converters.populator.GallagherRegisteredProductsPopulator" />
 
 	<alias name="gallagherRegisteredProductsConverter" alias="registeredProductsConverter" />
 	<bean id="gallagherRegisteredProductsConverter" parent="abstractPopulatingConverter">
-		<property name="targetClass" value="com.gallagher.facades.product.data.RegisteredProductsData" />
+		<property name="targetClass" value="com.gallagher.facades.product.data.RegisteredProductData" />
 		<property name="populators">
 			<list>
 				<ref bean="registeredProductsPopulator" />

@@ -58,9 +58,4 @@
 		<property name="attachmentUrl" type="java.lang.String" />
 	</bean>
 
-	<bean class="com.gallagher.facades.product.data.RegisteredProductsData">
-		<property name="resgisteredProducts"
-			type="java.util.List&lt;com.gallagher.facades.product.data.RegisteredProductData>" />
-	</bean>
-
 </beans>
