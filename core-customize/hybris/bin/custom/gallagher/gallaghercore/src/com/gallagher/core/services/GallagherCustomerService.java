@@ -3,8 +3,10 @@
  */
 package com.gallagher.core.services;
 
+import java.util.List;
+
 import com.gallagher.core.dtos.GallagherAccessToken;
-import com.gallagher.core.dtos.GallagherRegisteredProductsDto;
+import com.gallagher.core.dtos.GallagherRegisteredProductDto;
 
 
 /**
@@ -30,5 +32,5 @@ public interface GallagherCustomerService
 	/**
 	 * Gets list of registered products for logged in user from C4C
 	 */
-	GallagherRegisteredProductsDto getRegisteredProductsFromC4C();
+	List<GallagherRegisteredProductDto> getRegisteredProductsFromC4C();
 }

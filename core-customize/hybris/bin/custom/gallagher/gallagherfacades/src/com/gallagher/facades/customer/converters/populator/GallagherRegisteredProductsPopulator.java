@@ -7,22 +7,17 @@ import de.hybris.platform.converters.Populator;
 import de.hybris.platform.product.ProductService;
 import de.hybris.platform.servicelayer.dto.converter.ConversionException;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.annotation.Resource;
 
 import com.gallagher.core.dtos.GallagherRegisteredProductDto;
-import com.gallagher.core.dtos.GallagherRegisteredProductsDto;
 import com.gallagher.facades.product.converters.populator.GallagherProductPrimaryImagePopulator;
 import com.gallagher.facades.product.data.RegisteredProductData;
-import com.gallagher.facades.product.data.RegisteredProductsData;
 
 
 /**
  *
  */
-public class GallagherRegisteredProductsPopulator implements Populator<GallagherRegisteredProductsDto, RegisteredProductsData>
+public class GallagherRegisteredProductsPopulator implements Populator<GallagherRegisteredProductDto, RegisteredProductData>
 {
 
 	@Resource
@@ -37,23 +32,16 @@ public class GallagherRegisteredProductsPopulator implements Populator<Gallagher
 	 * @see de.hybris.platform.converters.Populator#populate(java.lang.Object, java.lang.Object)
 	 */
 	@Override
-	public void populate(final GallagherRegisteredProductsDto source, final RegisteredProductsData target)
+	public void populate(final GallagherRegisteredProductDto source, final RegisteredProductData target)
 			throws ConversionException
 	{
-		final List<RegisteredProductData> registeredProductsDataList = new ArrayList<RegisteredProductData>();
-		for (final GallagherRegisteredProductDto gallagherRegisteredProductDto : source.getRegisteredProducts())
-		{
-			final RegisteredProductData registeredProductData = new RegisteredProductData();
-			registeredProductData.setAttachment(gallagherRegisteredProductDto.getAttachment());
-			registeredProductData.setAttachmentUrl(gallagherRegisteredProductDto.getAttachmentUrl());
-			registeredProductData.setCode(gallagherRegisteredProductDto.getCode());
-			registeredProductData.setName(gallagherRegisteredProductDto.getName());
-			registeredProductData.setPurchaseDate(gallagherRegisteredProductDto.getPurchaseDate());
-			registeredProductData.setRegistrationDate(gallagherRegisteredProductDto.getRegistrationDate());
-			registeredProductData.setImage(null);
-			registeredProductsDataList.add(registeredProductData);
-		}
-		target.setResgisteredProducts(registeredProductsDataList);
+		target.setAttachment(source.getAttachment());
+		target.setAttachmentUrl(source.getAttachmentUrl());
+		target.setCode(source.getCode());
+		target.setName(source.getName());
+		target.setPurchaseDate(source.getPurchaseDate());
+		target.setRegistrationDate(source.getRegistrationDate());
+		target.setImage(null);
 
 	}
 

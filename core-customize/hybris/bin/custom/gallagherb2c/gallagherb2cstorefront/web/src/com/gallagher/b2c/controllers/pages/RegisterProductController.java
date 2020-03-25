@@ -4,6 +4,8 @@
 package com.gallagher.b2c.controllers.pages;
 
 import de.hybris.platform.acceleratorstorefrontcommons.breadcrumb.Breadcrumb;
+import de.hybris.platform.acceleratorstorefrontcommons.breadcrumb.impl.ContentPageBreadcrumbBuilder;
+import de.hybris.platform.acceleratorstorefrontcommons.constants.WebConstants;
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.pages.AbstractPageController;
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.util.GlobalMessages;
 import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
@@ -42,6 +44,7 @@ import com.gallagher.b2c.form.RegisterProductPopupForm;
 import com.gallagher.b2c.response.RPFormResponseData;
 import com.gallagher.b2c.response.RPFormResponseStatus;
 import com.gallagher.b2c.validators.RegisterProductValidator;
+import com.gallagher.facades.GallagherRegisteredProductsFacade;
 import com.gallagher.outboundservices.request.dto.RegisterProductRequest;
 import com.gallagher.outboundservices.service.GallagheroutboundservicesService;
 
@@ -57,6 +60,8 @@ public class RegisterProductController extends AbstractPageController
 {
 	private static final Logger LOG = Logger.getLogger(RegisterProductController.class);
 
+	private static final String REG_PRODUCTS_PAGE = "regProducts";
+
 	@Resource(name = "registerProductValidator")
 	private RegisterProductValidator registerProductValidator;
 
@@ -65,6 +70,23 @@ public class RegisterProductController extends AbstractPageController
 
 	@Resource(name = "gallagheroutboundservicesService")
 	private GallagheroutboundservicesService gallagheroutboundservicesService;
+
+	@Resource(name = "registeredProductsFacade")
+	private GallagherRegisteredProductsFacade gallagherRegisteredProductsFacade;
+
+	@Resource(name = "contentPageBreadcrumbBuilder")
+	private ContentPageBreadcrumbBuilder contentPageBreadcrumbBuilder;
+
+	@RequestMapping(value = "/registeredProducts", method = RequestMethod.GET)
+	public String registeredProductsByUser(final Model model) throws CMSItemNotFoundException
+	{
+		final ContentPageModel regProductsPage = getContentPageForLabelOrId(REG_PRODUCTS_PAGE);
+		storeCmsPageInModel(model, regProductsPage);
+		setUpMetaDataForContentPage(model, regProductsPage);
+		model.addAttribute("registeredProducts", gallagherRegisteredProductsFacade.getRegisteredProducts());
+		model.addAttribute(WebConstants.BREADCRUMBS_KEY, contentPageBreadcrumbBuilder.getBreadcrumbs(regProductsPage));
+		return getViewForPage(model);
+	}
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String doRegisterProduct(final Model model) throws CMSItemNotFoundException

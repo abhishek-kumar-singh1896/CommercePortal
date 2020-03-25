@@ -22,7 +22,6 @@ import com.gallagher.c4c.outboundservices.facade.GallagherC4COutboundServiceFaca
 import com.gallagher.core.daos.GallagherCustomerDao;
 import com.gallagher.core.dtos.GallagherAccessToken;
 import com.gallagher.core.dtos.GallagherRegisteredProductDto;
-import com.gallagher.core.dtos.GallagherRegisteredProductsDto;
 import com.gallagher.core.services.GallagherCustomerService;
 import com.gallagher.outboundservices.response.dto.GallagherInboundCustomerEntry;
 
@@ -143,11 +142,10 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 	 * {@inheritDoc}
 	 */
 	@Override
-	public GallagherRegisteredProductsDto getRegisteredProductsFromC4C()
+	public List<GallagherRegisteredProductDto> getRegisteredProductsFromC4C()
 	{
 		// call C4C method to get the list
 
-		final GallagherRegisteredProductsDto returnObj = new GallagherRegisteredProductsDto();
 		final List<GallagherRegisteredProductDto> registeredProductsList = new ArrayList<GallagherRegisteredProductDto>();
 		for (int i = 0; i <= 5; i++)
 		{
@@ -170,7 +168,6 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 			}
 			registeredProductsList.add(registeredProduct);
 		}
-		returnObj.setRegisteredProducts(registeredProductsList);
-		return returnObj;
+		return registeredProductsList;
 	}
 }
