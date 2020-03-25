@@ -149,6 +149,7 @@
                 <constructor-arg name="httpMethod" value="GET" />
             </bean>
         </constructor-arg>
+        <constructor-arg name="userService" ref="userService" />
     	<property name="defaultAutoLoginStrategy" ref="defaultAutoLoginStrategy" />
     </bean>
 

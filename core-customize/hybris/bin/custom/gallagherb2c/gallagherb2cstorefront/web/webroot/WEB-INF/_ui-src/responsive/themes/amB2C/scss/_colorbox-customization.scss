@@ -1,0 +1,31 @@
+#cboxTitle {
+	padding: 20px 20px 15px;
+}
+#cboxTitle .headline {
+	font-size: 1.25rem;
+}
+
+#cboxClose {
+	right: 5px;
+    top: -5px;
+}
+#cboxClose .glyphicon {
+	font-famly: inherit;	
+}
+
+#cboxClose .glyphicon-remove::before{
+	content: '';
+	display: none;
+}
+
+#cboxClose .glyphicon-remove::after{
+	content: '\00d7';
+	font-size: 24px;
+	font-family: $font-family-bold;
+}
+
+#cboxLoadedContent {
+	padding: 0 20px 20px 20px;
+	margin-top: 64px;
+
+}
