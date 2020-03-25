@@ -1,0 +1,35 @@
+.registered-products-out {
+  margin-bottom: 40px;
+
+  .product-img {
+    min-height: 90px;
+    margin-bottom: 16px;
+  }
+
+  .product-name {
+    font-size: $font-size-16px;
+    font-family: $font-family-bold;
+   }
+
+  .product-id {
+    font-size: 0.85714em;
+    color: $gray-7;
+  }
+
+  .registered-product-listing {
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      li {
+        border-bottom: 1px solid $gray-2;
+        padding: 16px 0;
+
+        &:last-child {
+          border: none;
+        }
+      }
+    }
+  }
+}

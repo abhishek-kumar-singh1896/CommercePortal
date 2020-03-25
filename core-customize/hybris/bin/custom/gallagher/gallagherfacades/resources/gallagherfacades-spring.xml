@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved. -->
-<beans
-	xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -11,15 +9,10 @@
 
 	<context:annotation-config />
 
-	<alias
-		name="gallagherVariantOptionDataMediaPopulator"
-		alias="variantOptionDataMediaPopulator" />
-	<bean
-		id="gallagherVariantOptionDataMediaPopulator"
+	<alias name="gallagherVariantOptionDataMediaPopulator" alias="variantOptionDataMediaPopulator" />
+	<bean id="gallagherVariantOptionDataMediaPopulator"
 		class="com.gallagher.facades.product.converters.populator.variantoptions.GallagherVariantOptionDataMediaPopulator">
-		<property
-			name="acceleratorImageFormatMapping"
-			ref="imageFormatMapping" />
+		<property name="acceleratorImageFormatMapping" ref="imageFormatMapping" />
 		<property name="imageFormats">
 			<list>
 				<value>zoom</value>
@@ -31,47 +24,38 @@
 		</property>
 	</bean>
 
-	<alias
-		name="gallagherB2BCustomerReversePopulator"
-		alias="b2BCustomerReversePopulator" />
-	<bean
-		id="gallagherB2BCustomerReversePopulator"
+	<alias name="gallagherB2BCustomerReversePopulator" alias="b2BCustomerReversePopulator" />
+	<bean id="gallagherB2BCustomerReversePopulator"
 		class="com.gallagher.facades.company.converters.populators.GallagherB2BCustomerReversePopulator"
 		parent="defaultB2BCustomerReversePopulator" />
 
 
-	<alias
-		name="gallagherSearchResultProductPopulator"
-		alias="commerceSearchResultProductPopulator" />
-	<bean
-		id="gallagherSearchResultProductPopulator"
+	<alias name="gallagherSearchResultProductPopulator" alias="commerceSearchResultProductPopulator" />
+	<bean id="gallagherSearchResultProductPopulator"
 		class="com.gallagher.facades.search.converters.poulator.GallagherSearchResultProductPopulator"
 		parent="defaultCommerceSearchResultProductPopulator">
 	</bean>
 
-	<alias
-		name="gallagherProductCategorySearchPagePopulator"
-		alias="productCategorySearchPagePopulator" />
-	<bean
-		id="gallagherProductCategorySearchPagePopulator"
+	<alias name="gallagherProductCategorySearchPagePopulator" alias="productCategorySearchPagePopulator" />
+	<bean id="gallagherProductCategorySearchPagePopulator"
 		class="com.gallagher.facades.search.converters.poulator.GallagherProductCategorySearchPagePopulator"
 		parent="defaultProductCategorySearchPagePopulator">
 	</bean>
-	
+
 	<!-- gallagher Image Format Mappings -->
-	<alias name="gallagherImageFormatMapping" alias="imageFormatMapping"/>
+	<alias name="gallagherImageFormatMapping" alias="imageFormatMapping" />
 	<bean id="gallagherImageFormatMapping" parent="acceleratorImageFormatMapping">
 		<property name="mapping">
 			<map merge="true">
-				<entry key="thumbnailb2c" value="167Wx120H"/>
-				<entry key="productb2c" value="500Wx500H"/>
+				<entry key="thumbnailb2c" value="167Wx120H" />
+				<entry key="productb2c" value="500Wx500H" />
 			</map>
 		</property>
 	</bean>
 
-	<alias name="gallagherProductGalleryImagesPopulator" alias="productGalleryImagesPopulator"/>
-    <bean id="gallagherProductGalleryImagesPopulator" parent="defaultProductGalleryImagesPopulator"
-          class="com.gallagher.facades.product.converters.populator.GallagherProductGalleryImagesPopulator">
+	<alias name="gallagherProductGalleryImagesPopulator" alias="productGalleryImagesPopulator" />
+	<bean id="gallagherProductGalleryImagesPopulator" parent="defaultProductGalleryImagesPopulator"
+		class="com.gallagher.facades.product.converters.populator.GallagherProductGalleryImagesPopulator">
 		<property name="imageFormats">
 			<list>
 				<value>superZoom</value>
@@ -83,10 +67,10 @@
 			</list>
 		</property>
 	</bean>
-	
+
 	<alias name="gallagherProductPrimaryImagePopulator" alias="productPrimaryImagePopulator" />
 	<bean id="gallagherProductPrimaryImagePopulator" parent="defaultProductPrimaryImagePopulator"
-          class="com.gallagher.facades.product.converters.populator.GallagherProductPrimaryImagePopulator">
+		class="com.gallagher.facades.product.converters.populator.GallagherProductPrimaryImagePopulator">
 		<property name="imageFormats">
 			<list>
 				<value>zoom</value>
@@ -98,7 +82,7 @@
 			</list>
 		</property>
 	</bean>
-	
+
 	<bean id="gallagherProductOthersPopulator" parent="baseProductPopulator"
           class="com.gallagher.facades.product.converters.populator.GallagherProductOthersPopulator">
     </bean>
@@ -150,14 +134,14 @@
 		<property name="key" value="VIDEO_DESCRIPTION" />
 		<property name="add" ref="gallagherProductVideoDescPopulator" />
 	</bean>
-	
+
 	<bean parent="configurablePopulatorModification">
 		<property name="target" ref="productConfiguredPopulator" />
 		<property name="keyType" value="de.hybris.platform.commercefacades.product.ProductOption" />
 		<property name="key" value="LOGO" />
 		<property name="add" ref="gallagherProductLogoPopulator" />
 	</bean>
-	
+
 	<bean parent="configurablePopulatorModification">
 		<property name="target" ref="productConfiguredPopulator" />
 		<property name="keyType" value="de.hybris.platform.commercefacades.product.ProductOption" />
@@ -166,25 +150,58 @@
 	</bean>
 
 	<bean id="gallagherRegionDetectionFacade" class="com.gallagher.facades.impl.GallagherRegionDetectionFacadeImpl" />
-	
-	<alias name="gallagherProductReferencePopulator" alias="productReferencePopulator"/>
-    <bean id="gallagherProductReferencePopulator" parent="defaultProductReferencePopulator"
-          class="com.gallagher.facades.product.converters.populator.GallagherProductReferencePopulator">
-        <property name="productCon" ref="productConverter"></property>
-    </bean>
-    
-    <alias name="gallagherProductPopulator" alias="productPopulator"/>
-    <bean id="gallagherProductPopulator"
-          class="com.gallagher.facades.product.converters.populator.GallagherProductPopulator"
-          parent="defaultProductPopulator">
-        <property name="productPricePopulator" ref="productPricePopulator"/>
-        <property name="productGalleryImagesPopulator" ref="productGalleryImagesPopulator"/>
-    </bean>
+
+	<alias name="gallagherProductReferencePopulator" alias="productReferencePopulator" />
+	<bean id="gallagherProductReferencePopulator" parent="defaultProductReferencePopulator"
+		class="com.gallagher.facades.product.converters.populator.GallagherProductReferencePopulator">
+		<property name="productCon" ref="productConverter"></property>
+	</bean>
+
+	<alias name="gallagherProductPopulator" alias="productPopulator" />
+	<bean id="gallagherProductPopulator" class="com.gallagher.facades.product.converters.populator.GallagherProductPopulator"
+		parent="defaultProductPopulator">
+		<property name="productPricePopulator" ref="productPricePopulator" />
+		<property name="productGalleryImagesPopulator" ref="productGalleryImagesPopulator" />
+	</bean>
 
 	<alias name="gallagherCustomerFacade" alias="customerFacade" />
-   <bean id="gallagherCustomerFacade" class="com.gallagher.facades.customer.impl.GallagherCustomerFacadeImpl"
-        parent="defaultCustomerFacade" />
-        
-   <bean id="gallagherCustomerEmailContext" class="com.gallagher.facades.process.email.context.GallagherCustomerEmailContext" parent="customerEmailContext" />
+	<bean id="gallagherCustomerFacade" class="com.gallagher.facades.customer.impl.GallagherCustomerFacadeImpl"
+		parent="defaultCustomerFacade" />
+
+	<bean id="gallagherCustomerEmailContext" class="com.gallagher.facades.process.email.context.GallagherCustomerEmailContext"
+		parent="customerEmailContext" />
+   
+   <bean id="gallagherB2BUserGroupFacade" class="com.gallagher.facades.usergroups.GallagherB2BUserGroupFacade" parent="defaultB2BUserGroupFacade" />
     
+    <bean parent="modifyPopulatorList">
+        <property name="list" ref="customerConverter"/>
+        <property name="add" ref="gallagherB2BCustomerPopulator"/>
+    </bean>
+    
+    <bean id="gallagherB2BCustomerPopulator" class="com.gallagher.facades.company.converters.populators.GallagherB2BCustomerPopulator"	parent="b2bCustomerPopulator" />
+	
+		
+
+	<bean id="registeredProductData" class="com.gallagher.facades.product.data.RegisteredProductData" scope="prototype" />
+
+	<alias name="gallagherRegisteredProductsPopulator" alias="registeredProductsPopulator" />
+	<bean id="gallagherRegisteredProductsPopulator"
+		class="com.gallagher.facades.customer.converters.populator.GallagherRegisteredProductsPopulator" />
+
+	<alias name="gallagherRegisteredProductsConverter" alias="registeredProductsConverter" />
+	<bean id="gallagherRegisteredProductsConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.gallagher.facades.product.data.RegisteredProductData" />
+		<property name="populators">
+			<list>
+				<ref bean="registeredProductsPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="gallagherRegisteredProductsFacade" alias="registeredProductsFacade" />
+	<bean id="gallagherRegisteredProductsFacade" class="com.gallagher.facades.impl.GallagherRegisteredProductsFacadeImpl">
+		<property name="registeredProductsConverter" ref="registeredProductsConverter" />
+		<property name="gallagherCustomerService" ref="gallagherCustomerService" />
+	</bean>
+
 </beans>
