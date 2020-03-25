@@ -33,7 +33,6 @@ import de.hybris.platform.commercefacades.storesession.StoreSessionFacade;
 import de.hybris.platform.commercefacades.storesession.data.CurrencyData;
 import de.hybris.platform.commercefacades.user.UserFacade;
 import de.hybris.platform.commercefacades.user.data.CustomerData;
-import de.hybris.platform.core.GenericSearchConstants.LOG;
 import de.hybris.platform.servicelayer.exceptions.ModelSavingException;
 import de.hybris.platform.servicelayer.i18n.FormatFactory;
 import de.hybris.platform.servicelayer.interceptor.InterceptorException;
@@ -108,12 +107,12 @@ public class MyCompanyPageController extends AbstractSearchPageController
 	protected static final String REDIRECT_TO_USERGROUP_DETAILS = REDIRECT_PREFIX + MANAGE_USERGROUP_DETAILS_URL;
 	protected static final String REDIRECT_TO_USER_GROUPS_PAGE = REDIRECT_PREFIX
 			+ "/my-company/organization-management/manage-usergroups";
-	private static final Logger LOG = Logger.getLogger(MyCompanyPageController.class);
 	protected static final String SINGLE_WHITEPSACE = " ";
 	protected static final String MANAGE_UNITS_BASE_URL = "/my-company/organization-management/manage-units";
 	protected static final String MANAGE_USERGROUPS_BASE_URL = "/my-company/organization-management/manage-usergroups";
 	protected static final String ADD_COSTCENTER_URL = "/my-company/organization-management/manage-costcenters/add";
 	protected static final String EDIT_COSTCENTER_URL = "/my-company/organization-management/manage-costcenters/update";
+	private static final Logger LOG = Logger.getLogger(MyCompanyPageController.class);
 
 	@Resource(name = "checkoutFacade")
 	protected CheckoutFacade checkoutFacade;
