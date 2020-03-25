@@ -13,7 +13,6 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -27,6 +26,7 @@ import com.gallagher.facades.GallagherRegisteredProductsFacade;
 @RequestMapping(value = "/products")
 public class RegisteredProductsController extends AbstractPageController
 {
+	private static final String REG_PRODUCTS_PAGE = "regProducts";
 
 	@Resource(name = "registeredProductsFacade")
 	private GallagherRegisteredProductsFacade gallagherRegisteredProductsFacade;
@@ -34,16 +34,13 @@ public class RegisteredProductsController extends AbstractPageController
 	@Resource(name = "contentPageBreadcrumbBuilder")
 	private ContentPageBreadcrumbBuilder contentPageBreadcrumbBuilder;
 
-	private static final String REG_PRODUCTS_PAGE = "regProducts";
-
-	@RequestMapping(value = "/{email}", method = RequestMethod.GET)
-	public String registeredProductsByUser(@PathVariable("email")
-	final String email, final Model model) throws CMSItemNotFoundException
+	@RequestMapping(value = "/registeredProducts", method = RequestMethod.GET)
+	public String registeredProductsByUser(final Model model) throws CMSItemNotFoundException
 	{
 		final ContentPageModel regProductsPage = getContentPageForLabelOrId(REG_PRODUCTS_PAGE);
 		storeCmsPageInModel(model, regProductsPage);
 		setUpMetaDataForContentPage(model, regProductsPage);
-		model.addAttribute("registeredProducts", getGallagherRegisteredProductsFacade().getRegisteredProducts(email));
+		//model.addAttribute("registeredProducts", getGallagherRegisteredProductsFacade().getRegisteredProducts());
 		model.addAttribute(WebConstants.BREADCRUMBS_KEY, getContentPageBreadcrumbBuilder().getBreadcrumbs(regProductsPage));
 		return getViewForPage(model);
 	}

@@ -159,6 +159,7 @@
 	<alias name="gallagherRegisteredProductsFacade" alias="registeredProductsFacade" />
 	<bean id="gallagherRegisteredProductsFacade" class="com.gallagher.facades.impl.GallagherRegisteredProductsFacadeImpl">
 		<property name="registeredProductsConverter" ref="registeredProductsConverter" />
+		<property name="gallagherCustomerService" ref="gallagherCustomerService" />
 	</bean>
 
 </beans>

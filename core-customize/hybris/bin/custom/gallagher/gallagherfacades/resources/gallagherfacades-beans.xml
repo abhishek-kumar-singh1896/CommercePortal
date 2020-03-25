@@ -55,7 +55,7 @@
 
 	<bean class="com.gallagher.facades.product.data.RegisteredProductsData">
 		<property name="resgisteredProducts"
-			type="java.util.ArrayList&lt;com.gallagher.facades.product.data.RegisteredProductData>" />
+			type="java.util.List&lt;com.gallagher.facades.product.data.RegisteredProductData>" />
 	</bean>
 
 </beans>

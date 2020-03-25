@@ -8,6 +8,9 @@ import de.hybris.platform.commerceservices.customer.DuplicateUidException;
 import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.servicelayer.model.ModelService;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -18,6 +21,8 @@ import org.apache.log4j.Logger;
 import com.gallagher.c4c.outboundservices.facade.GallagherC4COutboundServiceFacade;
 import com.gallagher.core.daos.GallagherCustomerDao;
 import com.gallagher.core.dtos.GallagherAccessToken;
+import com.gallagher.core.dtos.GallagherRegisteredProductDto;
+import com.gallagher.core.dtos.GallagherRegisteredProductsDto;
 import com.gallagher.core.services.GallagherCustomerService;
 import com.gallagher.outboundservices.response.dto.GallagherInboundCustomerEntry;
 
@@ -125,5 +130,45 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 		}
 
 		return true;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.gallagher.core.services.GallagherCustomerService#getRegisteredProductsFromC4C()
+	 */
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public GallagherRegisteredProductsDto getRegisteredProductsFromC4C()
+	{
+		// call C4C method to get the list
+
+		final GallagherRegisteredProductsDto returnObj = new GallagherRegisteredProductsDto();
+		final List<GallagherRegisteredProductDto> registeredProductsList = new ArrayList<GallagherRegisteredProductDto>();
+		for (int i = 0; i <= 5; i++)
+		{
+			final GallagherRegisteredProductDto registeredProduct = new GallagherRegisteredProductDto();
+			registeredProduct.setAttachment("this is attachment");
+			registeredProduct.setAttachmentUrl("https://images.google.com");
+			registeredProduct.setCode("solar-fence-energizer-s10");
+			registeredProduct.setName("Solar Fence Energiser");
+			registeredProduct.setImage(null);
+
+			final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+			try
+			{
+				registeredProduct.setPurchaseDate(simpleDateFormat.parse("12/01/2020"));
+				registeredProduct.setRegistrationDate(simpleDateFormat.parse("15/03/2020"));
+			}
+			catch (final ParseException e)
+			{
+				e.printStackTrace();
+			}
+			registeredProductsList.add(registeredProduct);
+		}
+		returnObj.setRegisteredProducts(registeredProductsList);
+		return returnObj;
 	}
 }
