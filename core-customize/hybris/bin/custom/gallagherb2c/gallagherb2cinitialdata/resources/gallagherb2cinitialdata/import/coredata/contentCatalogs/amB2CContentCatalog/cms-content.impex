@@ -43,7 +43,7 @@ INSERT_UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];name;fronten
 ;;ErrorPageTemplate;Error Page Template;error/errorNotFoundPage;ContentPage;false;
 
 #RegisteredPageTemplate
-;;RegisteredProductsPageTemplate;Registered Products Page Template;product/registeredProducts;ContentPage
+;;RegisteredProductsPageTemplate;Registered Products Page Template;register-product/products;ContentPage
 
 
 # Add Velocity templates that are in the CMS Cockpit. These give a better layout for editing pages

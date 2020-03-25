@@ -77,7 +77,7 @@ public class RegisterProductController extends AbstractPageController
 	@Resource(name = "contentPageBreadcrumbBuilder")
 	private ContentPageBreadcrumbBuilder contentPageBreadcrumbBuilder;
 
-	@RequestMapping(value = "/registeredProducts", method = RequestMethod.GET)
+	@RequestMapping(value = "/products", method = RequestMethod.GET)
 	public String registeredProductsByUser(final Model model) throws CMSItemNotFoundException
 	{
 		final ContentPageModel regProductsPage = getContentPageForLabelOrId(REG_PRODUCTS_PAGE);
