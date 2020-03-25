@@ -10,6 +10,7 @@
         <value>DATA_SHEET</value>
 		<value>IMAGE_DESCRIPTION</value>
 		<value>OTHERS</value>
+		<value>SIMULATOR</value>
 	</enum>
 	
 	<enum class="de.hybris.platform.commercefacades.product.data.ImageDataType">
@@ -36,9 +37,15 @@
 		<property name="mime" type="java.lang.String"/>
 	</bean>
 	
+	<bean class="de.hybris.platform.commercefacades.product.data.PDPSimulatorData">
+		<property name="simulatorDescription" type="java.lang.String"/>
+		<property name="simulatorURL" type="java.lang.String"/>
+	</bean>
+	
 	<bean class="de.hybris.platform.commercefacades.product.data.ProductData">
 		<property name="promoSticker" type="String"/>
 		<property name="videoDescription" type="String"/>
+		<property name="simulator" type="de.hybris.platform.commercefacades.product.data.PDPSimulatorData"/>
 		<property name="imageDescription" type="String"/>
 		<property name="logo" type="java.util.Collection&lt;de.hybris.platform.commercefacades.product.data.ImageData>"/>
 		<property name="dataSheet" type="java.util.Collection&lt;de.hybris.platform.commercefacades.product.data.ImageData>"/>

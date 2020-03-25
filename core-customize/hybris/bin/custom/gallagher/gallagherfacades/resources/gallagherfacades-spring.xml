@@ -119,6 +119,17 @@
           class="com.gallagher.facades.product.converters.populator.GallagherProductDataSheetPopulator">
     </bean>
     
+    <bean id="gallagherProductSimulatorPopulator" parent="baseProductPopulator"
+          class="com.gallagher.facades.product.converters.populator.GallagherProductSimulatorPopulator">
+    </bean>
+    
+    <bean parent="configurablePopulatorModification">
+		<property name="target" ref="productConfiguredPopulator" />
+		<property name="keyType" value="de.hybris.platform.commercefacades.product.ProductOption" />
+		<property name="key" value="SIMULATOR" />
+		<property name="add" ref="gallagherProductSimulatorPopulator" />
+	</bean>
+    
     <bean parent="configurablePopulatorModification">
 		<property name="target" ref="productConfiguredPopulator" />
 		<property name="keyType" value="de.hybris.platform.commercefacades.product.ProductOption" />
