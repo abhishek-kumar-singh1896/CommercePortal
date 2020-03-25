@@ -15,6 +15,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.annotation.Resource;
+
+import com.gallagher.core.usergroups.strategy.GallagherB2BUserGroupsStrategy;
+
 
 /**
  * Gallagher Populator to populate B2BCustomerModel with values from CustomerData
@@ -23,6 +27,9 @@ import java.util.Set;
  */
 public class GallagherB2BCustomerReversePopulator extends B2BCustomerReversePopulator
 {
+	@Resource(name = "gallagherB2BUserGroupsStrategy")
+	private GallagherB2BUserGroupsStrategy gallagherB2BUserGroupsStrategy;
+
 	@Override
 	public void populate(final CustomerData source, final B2BCustomerModel target) throws ConversionException
 	{
@@ -33,6 +40,9 @@ public class GallagherB2BCustomerReversePopulator extends B2BCustomerReversePopu
 		target.setKeycloakGUID(source.getKeycloakGUID());
 		target.setObjectID(source.getObjectID());
 		target.setIsUserExist(source.isIsUserExist());
+
+		getB2BCommerceB2BUserGroupService().updateUserGroups(gallagherB2BUserGroupsStrategy.getUserGroups(), source.getRoles(),
+				target);
 	}
 
 	@Override
@@ -40,7 +50,7 @@ public class GallagherB2BCustomerReversePopulator extends B2BCustomerReversePopu
 	{
 		final B2BUnitModel oldDefaultUnit = getB2BUnitService().getParent(target);
 
-		B2BUnitModel defaultUnit = defaultUnit = getB2BUnitService().getUnitForUid(source.getUnits().get(0).getUid());
+		final B2BUnitModel defaultUnit = getB2BUnitService().getUnitForUid(source.getUnits().get(0).getUid());
 		target.setDefaultB2BUnit(defaultUnit);
 
 		final Set<PrincipalGroupModel> groups = new HashSet<PrincipalGroupModel>(target.getGroups());

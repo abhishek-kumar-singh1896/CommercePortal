@@ -59,16 +59,18 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 
 		final List<CustomerModel> retrieveUserBySubjectId = gallagherCustomerDao.retrieveUserByKeycloakGUID(token.getSubjectId());
 
-		if (CollectionUtils.isEmpty(retrieveUserBySubjectId) && createIfNotExists)
+		if (CollectionUtils.isEmpty(retrieveUserBySubjectId))
 		{
-
-			try
+			if (createIfNotExists)
 			{
-				success = createCommerceCustomer(token);
-			}
-			catch (final DuplicateUidException dupUidEx)
-			{
-				LOGGER.error("Exception while creating new customer", dupUidEx);
+				try
+				{
+					success = createCommerceCustomer(token);
+				}
+				catch (final DuplicateUidException dupUidEx)
+				{
+					LOGGER.error("Exception while creating new customer", dupUidEx);
+				}
 			}
 		}
 		else

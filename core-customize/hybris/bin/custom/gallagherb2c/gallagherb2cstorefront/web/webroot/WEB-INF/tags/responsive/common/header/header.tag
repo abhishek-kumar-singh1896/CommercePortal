@@ -103,13 +103,9 @@
 
 
 							<div class="btn-group" role="group">
-								<button id="btnGroupDrop1" type="button"
-									class="btn right-btn dropdown-toggle" data-toggle="dropdown"
-									aria-haspopup="true" aria-expanded="false">
 									<cms:pageSlot position="MiniCart" var="cart">
 										<cms:component component="${cart}" />
 									</cms:pageSlot>
-								</button>
 							
 							<div class="dropdown-menu dropdown-menu-right mini-cart"
 								aria-labelledby="btnGroupDrop1">
@@ -143,13 +139,9 @@
 							</ycommerce:testId>
 
 							<div class="btn-group" role="group">
-								<button id="btnGroupDrop1" type="button"
-									class="btn right-btn dropdown-toggle" data-toggle="dropdown"
-									aria-haspopup="true" aria-expanded="false">
 									<cms:pageSlot position="MiniCart" var="cart">
 										<cms:component component="${cart}" />
 									</cms:pageSlot>
-								</button>
 							
 
 							<div class="dropdown-menu dropdown-menu-right mini-cart"
@@ -162,13 +154,9 @@
 
 					<!-- For Mobile Cart Section-->
 					<div class="header-right-btn-group for-mobile-view">
-						<button id="btnGroupDrop1" type="button"
-							class="btn right-btn dropdown-toggle" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false">
 							<cms:pageSlot position="MiniCart" var="cart">
 								<cms:component component="${cart}" />
 							</cms:pageSlot>
-						</button>
 
 						<div class="dropdown-menu dropdown-menu-right mini-cart"
 							aria-labelledby="btnGroupDrop1">
@@ -327,29 +315,23 @@
                                                 </div>
                                             </div>
                                             </li>
-                                            <li><c:url value="/registerProduct" var="registerProductUrl" /><a href="${registerProductUrl}"><spring:theme code="text.Register.Product" />
-                                            </a></li>
-                                            <li><a href="javascript:void(0)"> <spring:theme code="text.Registered.Products" />
-                                            </a></li>
-                                            <li><a href="javascript:void(0)"> <spring:theme code="text.Account.Management" /> </a></li>
-                                            <li>
-                                        <c:url value="/logout" var="logoutUrl"/>
-                                        <a href="${(logoutUrl)}">
-                                            <spring:theme code="header.link.logout" />
-                                        </a>
-                                    </li>
+                                            <cms:pageSlot position="UserDropDown" var="feature">
+												<c:forEach items="${feature.navigationNode.children}"
+													var="childLevel1">
+													<c:forEach items="${childLevel1.entries}" var="entry">
+													<li>	<cms:component component="${entry.item}" 
+															evaluateRestriction="true" /></li>
+													</c:forEach>
+												</c:forEach>
+											</cms:pageSlot>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
 							<div class="btn-group" role="group">
-								<button id="btnGroupDrop1" type="button"
-									class="btn right-btn dropdown-toggle" data-toggle="dropdown"
-									aria-haspopup="true" aria-expanded="false">
 									<cms:pageSlot position="MiniCart" var="cart">
 										<cms:component component="${cart}" />
 									</cms:pageSlot>
-								</button>
 							
 							<div class="dropdown-menu dropdown-menu-right mini-cart"
 								aria-labelledby="btnGroupDrop1">
@@ -407,27 +389,23 @@
                                                 </div>
                                             </div>
                                             </li>
-                                            <li><c:url value="/registerProduct" var="registerProductUrl" /><a href="${registerProductUrl}"> <spring:theme code="text.Register.Product" />
-                                            </a></li>
-                                            <li><a href="javascript:void(0)"> <spring:theme code="text.Registered.Products" />
-                                            </a></li>
-                                            <li><a href="javascript:void(0)"> <spring:theme code="text.Account.Management" /> </a></li>
-                                            <li><c:url value="/logout" var="logoutUrl" /> <a
-                                                href="${logoutUrl}"> <spring:theme
-                                                        code="header.link.logout" />
-                                            </a></li>
+                                            <cms:pageSlot position="UserDropDown" var="feature">
+												<c:forEach items="${feature.navigationNode.children}"
+													var="childLevel1">
+													<c:forEach items="${childLevel1.entries}" var="entry">
+													<li>	<cms:component component="${entry.item}" 
+															evaluateRestriction="true" /></li>
+													</c:forEach>
+												</c:forEach>
+											</cms:pageSlot>
                                         </ul>
                                     </div>
                                 </div>
                                 </div>
                                 <div class="btn-group" role="group">
-								<button id="btnGroupDrop1" type="button"
-									class="btn right-btn dropdown-toggle" data-toggle="dropdown"
-									aria-haspopup="true" aria-expanded="false">
 									<cms:pageSlot position="MiniCart" var="cart">
 										<cms:component component="${cart}" />
 									</cms:pageSlot>
-								</button>
 							
 
 							<div class="dropdown-menu dropdown-menu-right mini-cart"
@@ -440,13 +418,9 @@
 
 					<!-- For Mobile Cart Section-->
 					<div class="header-right-btn-group for-mobile-view">
-						<button id="btnGroupDrop1" type="button"
-							class="btn right-btn dropdown-toggle" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false">
 							<cms:pageSlot position="MiniCart" var="cart">
 								<cms:component component="${cart}" />
 							</cms:pageSlot>
-						</button>
 
 						<div class="dropdown-menu dropdown-menu-right mini-cart"
 							aria-labelledby="btnGroupDrop1">

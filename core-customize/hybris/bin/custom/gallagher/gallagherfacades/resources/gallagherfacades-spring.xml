@@ -83,6 +83,14 @@
 		</property>
 	</bean>
 
+	<bean id="gallagherProductOthersPopulator" parent="baseProductPopulator"
+          class="com.gallagher.facades.product.converters.populator.GallagherProductOthersPopulator">
+    </bean>
+	
+    <bean id="gallagherProductImageDescPopulator" parent="baseProductPopulator"
+          class="com.gallagher.facades.product.converters.populator.GallagherProductImageDescriptionPopulator">
+    </bean>
+    
 	<bean id="gallagherProductVideoDescPopulator" parent="baseProductPopulator"
 		class="com.gallagher.facades.product.converters.populator.GallagherProductVideoDescriptionPopulator">
 	</bean>
@@ -96,6 +104,20 @@
 	</bean>
 
 	<bean parent="configurablePopulatorModification">
+		<property name="target" ref="productConfiguredPopulator" />
+		<property name="keyType" value="de.hybris.platform.commercefacades.product.ProductOption" />
+		<property name="key" value="OTHERS" />
+		<property name="add" ref="gallagherProductOthersPopulator" />
+	</bean>
+    
+    <bean parent="configurablePopulatorModification">
+		<property name="target" ref="productConfiguredPopulator" />
+		<property name="keyType" value="de.hybris.platform.commercefacades.product.ProductOption" />
+		<property name="key" value="IMAGE_DESCRIPTION" />
+		<property name="add" ref="gallagherProductImageDescPopulator" />
+	</bean>
+    
+    <bean parent="configurablePopulatorModification">
 		<property name="target" ref="productConfiguredPopulator" />
 		<property name="keyType" value="de.hybris.platform.commercefacades.product.ProductOption" />
 		<property name="key" value="VIDEO_DESCRIPTION" />
@@ -137,6 +159,17 @@
 
 	<bean id="gallagherCustomerEmailContext" class="com.gallagher.facades.process.email.context.GallagherCustomerEmailContext"
 		parent="customerEmailContext" />
+   
+   <bean id="gallagherB2BUserGroupFacade" class="com.gallagher.facades.usergroups.GallagherB2BUserGroupFacade" parent="defaultB2BUserGroupFacade" />
+    
+    <bean parent="modifyPopulatorList">
+        <property name="list" ref="customerConverter"/>
+        <property name="add" ref="gallagherB2BCustomerPopulator"/>
+    </bean>
+    
+    <bean id="gallagherB2BCustomerPopulator" class="com.gallagher.facades.company.converters.populators.GallagherB2BCustomerPopulator"	parent="b2bCustomerPopulator" />
+	
+		
 
 	<bean id="registeredProductData" class="com.gallagher.facades.product.data.RegisteredProductData" scope="prototype" />
 

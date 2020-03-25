@@ -6,11 +6,14 @@
 		<value>VIDEO_DESCRIPTION</value>
 		<value>LOGO</value>
 		<value>DATA_SHEET</value>
+		<value>IMAGE_DESCRIPTION</value>
+		<value>OTHERS</value>
 	</enum>
 
 	<enum class="de.hybris.platform.commercefacades.product.data.ImageDataType">
 		<value>LOGO</value>
 		<value>DATASHEET</value>
+		<value>OTHERS</value>
 	</enum>
 
 	<bean class="de.hybris.platform.commercefacades.user.data.CustomerData">
@@ -34,8 +37,10 @@
 	<bean class="de.hybris.platform.commercefacades.product.data.ProductData">
 		<property name="promoSticker" type="String" />
 		<property name="videoDescription" type="String" />
+		<property name="imageDescription" type="String"/>
 		<property name="logo" type="java.util.Collection&lt;de.hybris.platform.commercefacades.product.data.ImageData>" />
 		<property name="dataSheet" type="java.util.Collection&lt;de.hybris.platform.commercefacades.product.data.ImageData>" />
+		<property name="others" type="java.util.Collection&lt;de.hybris.platform.commercefacades.product.data.ImageData>"/>
 		<property name="animalCompatibility" type="java.util.List&lt;String&gt;" />
 	</bean>
 

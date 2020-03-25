@@ -2,7 +2,7 @@ ACC.registerProduct = {
 
 	_autoload: [
 		"clickOnRegister",
-	    "bindSubmitRegisterProduct",
+	    "bindVerifyRegisterProduct",
 	    "getJSONDataForRegisterProduct"
 	],
 	clickOnRegister: function(){
@@ -21,8 +21,10 @@ ACC.registerProduct = {
                 autoclose: true
             });
 
-            $('#registerSuccess').click(function () {
+            /*$('#registerSuccess').click(function () {
                 $('#confirmRegisterModal').modal('hide')
+            	alert("222");
+            	ACC.colorbox.close();
                 $("#productSuccessAlert").removeClass('d-none').addClass('fade');
                 $(window).scrollTop($('.register-product-out').offset().top);
 
@@ -30,64 +32,90 @@ ACC.registerProduct = {
                     $("#productSuccessAlert").addClass('d-none').removeClass('fade');
                 }, 7000);
 
-            });
+            });*/
     });
 	},
-	bindSubmitRegisterProduct : function() {
+	bindVerifyRegisterProduct : function() {
 		$('.registerProduct').click(
-				function() {
-					
-					/*ACC.common.showLoader();*/
+				function(e) {
+					e.preventDefault();
 					$.ajax({
-						url : ACC.config.encodedContextPath + '/register/submit',
+						url : ACC.config.encodedContextPath + '/register-product/verify',
 						type : 'POST',
 						dataType : 'json',
 						contentType : 'application/json',
 						data : ACC.registerProduct.getJSONDataForRegisterProduct(),
 						async : true,
-						success : function(response) {
-							
-							if(response.success == null){
-								alert("1");
-								$("#confirmRegisterModal").modal('show');
-							    /*$('#customerSignup').modal('hide');
-							    ACC.common.hideLoader();
-								$("#customerSignupConfirm").modal('show');
-								$('.return-checkout').click(function() {
-								    location.reload();
-								});*/
+						success : function(result) {
+							if(result.responseStatus == "FAILURE"){
+								showFieldErrors(result.errorsMap);
+							}else{
+								$('#registerProductForm').find('.form-control').removeClass('has-error').next().find('.error-text').addClass('d-none');
+								var titleHeader = $('#registerProductTitle').html();
+								var productCode=result.productCode;
+								var productName=result.productName;
+								var productImage=result.productImage;
+								var productaltText=result.productaltText;
+								var productSku =result.registerProductForm.productSku;
+								var serialNumber =result.registerProductForm.serialNumber;
+								var datePurchased =result.registerProductForm.datePurchased;
+								var addressLine1 =result.registerProductForm.addressLine1;
+								var addressLine2 =result.registerProductForm.addressLine2;
+								var townCity =result.registerProductForm.townCity;
+								var postCode =result.registerProductForm.postCode;
+								var country =result.registerProductForm.country;
+								var phoneNumber =result.registerProductForm.phoneNumber;
+								document.getElementById("productSkuInput").value = productSku;
+								document.getElementById("serialNumberInput").value = serialNumber;
+								document.getElementById("datePurchasedInput").value = datePurchased;
+								document.getElementById("addressLine1Input").value = addressLine1;
+								document.getElementById("addressLine2Input").value = addressLine2;
+								document.getElementById("townCityInput").value = townCity;
+								document.getElementById("postCodeInput").value = postCode;
+								document.getElementById("countryInput").value = country;
+								document.getElementById("phoneNumberInput").value = phoneNumber;
+								$("#phoneNumberInput").text(phoneNumber);
+								$('.product-name').text(productName);
+								$('.product-id').text(productCode);
+								$('.product-image').prepend('<img src="'+ productImage+'" alt="'+productaltText+'"/>');
+								
+								var registerPopup = $(".register-product-modal-container").html();
+						        ACC.colorbox.open(titleHeader, {
+						        	html:registerPopup,
+						        	width:"500px", 
+								    height:"600px", 
+								    innerHeight:"600px",
+								    onLoad:function() {
+								        $('html, body').css('overflow', 'hidden'); // page scrollbars off
+								    }, 
+								    onClosed:function() {
+								        $('html, body').css('overflow', ''); // page scrollbars on
+								        $('.product-name').text("");
+										$('.product-id').text("");
+										$('.product-image').prepend("");
+								    }
+						        });
 							}
-							/*else{
-									$('#globalMessages span').text(response['globalError']);
-									var errorFields = Object.keys(response);
-									delete response['globalError'];
-									for (var field in errorFields) {
-										if($('#'+errorFields[field]).siblings().hasClass("selecty")){
-											$('#'+errorFields[field]).siblings().find('.selecty-selected').addClass('error');
-										}
-										else{
-											$('#'+errorFields[field]).addClass("error");
-										}
-										$('#'+errorFields[field]).siblings('.errortxt').text(response[errorFields[field]]);
-									}
-									ACC.common.hideLoader();
-								//$('#customerSignup').modal();
-									
-							}*/
-							
 						},
 						error : function(jqXHR, textStatus, errorThrown) {
 							// log the error to the console
 							console.log("The following error occurred: "
 									+ textStatus, errorThrown);
-							/*ACC.common.handleAccessDeniedError(jqXHR.status);*/
 						}
 					});
 				});
+		
+		function showFieldErrors(errorsMap) {
+			$('#registerProductForm').find('.form-control').removeClass('has-error').next().find('.error-text').addClass('d-none');
+			for (var fieldName in errorsMap) {
+				$('#' + fieldName).focus();
+				$('#' + fieldName).addClass('has-error').next().find('.error-text').removeClass('d-none');
+				$('#' + fieldName).next().find('.error-inner-text').text(errorsMap[fieldName]);
+			}
+		}
 
 	},
 	getJSONDataForRegisterProduct : function() {
-		/*ACC.common.resetSignUpForm();*/
 		var productSku=$("#productSku").val();
 		var serialNumber = $("#serialNumber").val();
 		var datePurchased = $("#datePurchased").val();
@@ -97,7 +125,6 @@ ACC.registerProduct = {
 		var postCode = $("#postCode").val();
 		var country = $("#country").val();
 		var phoneNumber = $("#phoneNumber").val();
-		
 		var productDetails = {
 				"productSku" : productSku,
 				"serialNumber" : serialNumber,
@@ -109,7 +136,6 @@ ACC.registerProduct = {
 				"country" : country,
 				"phoneNumber" : phoneNumber
 		}
-		
 		return JSON.stringify(productDetails);
 	}
 };

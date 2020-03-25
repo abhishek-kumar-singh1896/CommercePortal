@@ -5,10 +5,4 @@
 
 <template:page pageTitle="${pageTitle}">
 	<product:registerProduct/>
-	<cms:pageSlot position="Section1" var="feature">
-		<cms:component component="${feature}" element="div" class=""/>
-	</cms:pageSlot>
-	<cms:pageSlot position="Section2" var="feature" element="div" >
-		<cms:component component="${feature}"/>
-	</cms:pageSlot>
 </template:page>
