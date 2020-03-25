@@ -9,7 +9,7 @@
 <div class="common-sub-tab-section gray-back">
    <div class="container">
        <div class="row">
-           <div class="col-lg-6 col-padding-0">
+           <div class="col-lg-6">
                <div class="common-product-with-title">
                    <div class="section-title">
                        Products for compliance
@@ -33,7 +33,7 @@
 
                </div>
            </div>
-           <div class="col-lg-6 col-padding-0">
+           <div class="col-lg-6">
            <div class="common-product-with-title">
                    <div class="section-title">
                        Products for cattle
