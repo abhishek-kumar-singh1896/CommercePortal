@@ -3,14 +3,9 @@
  */
 package com.gallagher.outboundservices.service;
 
-import com.gallagher.outboundservices.request.dto.RegisterProductRequest;
-
-
 public interface GallagheroutboundservicesService
 {
 	String getHybrisLogoUrl(String logoCode);
 
 	void createLogo(String logoCode);
-
-	void postRegisterProduct(RegisterProductRequest productRequest);
 }
