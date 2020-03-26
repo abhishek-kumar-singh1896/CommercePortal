@@ -2115,7 +2115,7 @@ INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];nam
 ;;mapBackgroundComponent;PDP Map Background Banner Component;;
 ;;tmBackgroundComponent;PDP Territory Manager Banner Component;;
 
-INSERT_UPDATE GallagherPDPSearchDealerComponent;$contentCV[unique=true];uid[unique=true];expertAdviceText(uid);contactNoText(uid);findDealerText(uid);mapBackground(uid);background(uid);searchDealer(&nodeRef);territoryManager(&nodeRef);&componentRef
+INSERT_UPDATE GallagherPDPSearchDealerComponent;$contentCV[unique=true];uid[unique=true];expertAdviceText(uid, $contentCV);contactNoText(uid, $contentCV);findDealerText(uid, $contentCV);mapBackground(uid, $contentCV);background(uid, $contentCV);searchDealer(&nodeRef);territoryManager(&nodeRef);&componentRef
 ;;GallagherSearchDealerComponent;PDPSearchAdviceComponent;PDPSearchContactComponent;PDPSearchFindDealerComponent;mapBackgroundComponent;tmBackgroundComponent;PDPSearchNavNode;PDPTMNavNode;GallagherSearchDealerComponent
 
 
