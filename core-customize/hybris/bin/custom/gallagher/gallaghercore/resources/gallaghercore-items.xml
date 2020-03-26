@@ -35,6 +35,10 @@
 		<enumtype code="RegionCode" dynamic="true" />
 	</enumtypes>
 
+	<maptypes>
+		<maptype code="VideoDataMap" argumenttype="java.lang.String" returntype="java.lang.String" generate="true" autocreate="true" />
+	</maptypes>
+	
 	<relations>
 		<relation code="BaseStoreProductRelation" autocreate="true" generate="true" localized="false">
 			<deployment table="BaseStoreProductRelation" typecode="30000" />
@@ -154,6 +158,10 @@
 					<persistence type="property" />
 					<defaultvalue>false</defaultvalue>
 					<description>Flag to identify Product is eligible for LatAm Market.</description>
+				</attribute>
+				<attribute qualifier="videos" type="VideoDataMap">
+					<persistence type="property"></persistence>
+					<modifiers read="true" write="true" optional="true" />
 				</attribute>
 				<attribute autocreate="true" qualifier="imageDescription" type="localized:java.lang.String">
 					<modifiers read="true" write="true" search="true" optional="true" />
