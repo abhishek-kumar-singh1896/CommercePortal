@@ -16,6 +16,7 @@ import de.hybris.platform.commercefacades.product.ProductOption;
 import de.hybris.platform.commercefacades.product.data.ImageData;
 import de.hybris.platform.commercefacades.product.data.ProductData;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
+import de.hybris.platform.servicelayer.user.UserService;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -43,10 +44,11 @@ import com.gallagher.b2c.form.RegisterProductForm;
 import com.gallagher.b2c.form.RegisterProductPopupForm;
 import com.gallagher.b2c.response.RPFormResponseData;
 import com.gallagher.b2c.response.RPFormResponseStatus;
+import com.gallagher.b2c.util.GallagherProductRegistrationUtil;
 import com.gallagher.b2c.validators.RegisterProductValidator;
+import com.gallagher.c4c.outboundservices.facade.GallagherC4COutboundServiceFacade;
 import com.gallagher.facades.GallagherRegisteredProductsFacade;
 import com.gallagher.outboundservices.request.dto.RegisterProductRequest;
-import com.gallagher.outboundservices.service.GallagheroutboundservicesService;
 
 
 /**
@@ -62,14 +64,17 @@ public class RegisterProductController extends AbstractPageController
 
 	private static final String REG_PRODUCTS_PAGE = "regProducts";
 
+	@Resource(name = "userService")
+	private UserService userService;
+
 	@Resource(name = "registerProductValidator")
 	private RegisterProductValidator registerProductValidator;
 
 	@Resource(name = "productVariantFacade")
 	private ProductFacade productFacade;
 
-	@Resource(name = "gallagheroutboundservicesService")
-	private GallagheroutboundservicesService gallagheroutboundservicesService;
+	@Resource(name = "gallagherC4COutboundServiceFacade")
+	private GallagherC4COutboundServiceFacade gallagherC4COutboundServiceFacade;
 
 	@Resource(name = "registeredProductsFacade")
 	private GallagherRegisteredProductsFacade gallagherRegisteredProductsFacade;
@@ -173,20 +178,12 @@ public class RegisterProductController extends AbstractPageController
 			throws CMSItemNotFoundException
 	{
 		final RegisterProductRequest register = new RegisterProductRequest();
-		register.setAddressLine1(registerProductForm1.getAddressLine11());
-		register.setAddressLine2(registerProductForm1.getAddressLine21());
-		register.setCountry(registerProductForm1.getCountry1());
-		register.setDatePurchased(registerProductForm1.getDatePurchased1());
-		register.setPhoneNumber(registerProductForm1.getPhoneNumber1());
-		register.setPostCode(registerProductForm1.getProductSku1());
-		register.setSerialNumber(registerProductForm1.getSerialNumber1());
-		register.setProductSku(registerProductForm1.getProductSku1());
-		register.setTownCity(registerProductForm1.getTownCity1());
+		GallagherProductRegistrationUtil.convert(registerProductForm1, register, userService.getCurrentUser());
 		final String page = getProductRegistrationPage(model);
 		final RegisterProductForm rg = new RegisterProductForm();
 		try
 		{
-			gallagheroutboundservicesService.postRegisterProduct(register);
+			//gallagherC4COutboundServiceFacade.registerProduct(register);
 		}
 		catch (final UnknownIdentifierException e)
 		{
