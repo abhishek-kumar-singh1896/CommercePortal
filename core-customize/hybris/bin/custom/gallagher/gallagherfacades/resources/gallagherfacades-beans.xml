@@ -45,8 +45,9 @@
 		<property name="videoDescription" type="String"/>
 		<property name="simulator" type="de.hybris.platform.commercefacades.product.data.PDPSimulatorData"/>
 		<property name="imageDescription" type="String"/>
-		<property name="logo" type="java.util.Collection&lt;de.hybris.platform.commercefacades.product.data.ImageData>" />
-		<property name="dataSheet" type="java.util.Collection&lt;de.hybris.platform.commercefacades.product.data.ImageData>" />
+		<property name="videos" type="java.util.Map&lt;String, String>"/>
+		<property name="logo" type="java.util.Collection&lt;de.hybris.platform.commercefacades.product.data.ImageData>"/>
+		<property name="dataSheet" type="java.util.Collection&lt;de.hybris.platform.commercefacades.product.data.ImageData>"/>
 		<property name="others" type="java.util.Collection&lt;de.hybris.platform.commercefacades.product.data.ImageData>"/>
 		<property name="animalCompatibility" type="java.util.List&lt;String&gt;" />
 	</bean>
