@@ -43,7 +43,6 @@
                                             <ul class="slides">
                                             	<c:forEach var="entry" items="${product.videos}">
                                             	<li>
-		                                            <div data-bynder-widget="video-item" data-media-id="${entry.key}" data-width="" data-autoplay="false"></div>					                         	
                                             		<img src="${entry.value}" class="carousel-thumb-image" />
                                             	</li>
                                             	</c:forEach>
