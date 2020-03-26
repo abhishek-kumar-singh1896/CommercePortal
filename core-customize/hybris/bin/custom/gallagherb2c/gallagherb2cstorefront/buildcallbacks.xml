@@ -443,6 +443,23 @@
                         
 			
             </copy>
+        	
+        	<copy todir="${ext.gallagherb2cstorefront.path}/web/webroot/_ui/responsive/">
+        	        	                				
+                <fileset dir="${ext.gallagherb2cstorefront.path}/web/webroot/WEB-INF/_ui-src/responsive/" includes="themes/**/images/**"/>
+                				
+                <regexpmapper from="themes/(.*)/images/(.*)" handledirsep="yes" to="theme-\1/images/\2"/>
+                        
+			
+            </copy>
+	    	<copy todir="${ext.gallagherb2cstorefront.path}/web/webroot/_ui/responsive/">
+	    	        	                				
+	            <fileset dir="${ext.gallagherb2cstorefront.path}/web/webroot/WEB-INF/_ui-src/responsive/" includes="themes/**/css/**"/>
+	            				
+	            <regexpmapper from="themes/(.*)/css/(.*)" handledirsep="yes" to="theme-\1/css/\2"/>
+	                    
+			
+	        </copy>
             		
         </sequential>
         	

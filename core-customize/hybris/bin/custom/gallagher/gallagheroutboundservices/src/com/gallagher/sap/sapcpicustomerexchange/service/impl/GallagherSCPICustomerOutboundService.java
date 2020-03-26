@@ -1,6 +1,3 @@
-/*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
- */
 package com.gallagher.sap.sapcpicustomerexchange.service.impl;
 
 import static com.google.common.base.Preconditions.checkArgument;
@@ -23,7 +20,9 @@ import com.gallagher.sap.sapcpiadapter.service.GallagherSCPIOutboundService;
 
 
 /**
- * SapCpiCustomerOutboundService
+ * Service to provide SCPI operations for customer
+ *
+ * @author Vikram Bishnoi
  */
 public class GallagherSCPICustomerOutboundService extends SapCpiCustomerOutboundService
 {
