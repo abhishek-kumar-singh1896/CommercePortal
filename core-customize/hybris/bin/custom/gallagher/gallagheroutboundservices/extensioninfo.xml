@@ -18,7 +18,7 @@
         
         <!-- <requires-extension name="cms"/> -->
                          
-		<requires-extension name="outboundservices"/>
+		<requires-extension name="sapcpicustomerexchange"/>
 		<requires-extension name="acceleratorservices"/>
 		<requires-extension name="basecommerce"/>
 
