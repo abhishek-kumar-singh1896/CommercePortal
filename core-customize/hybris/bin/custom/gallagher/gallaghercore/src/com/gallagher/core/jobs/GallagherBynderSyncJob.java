@@ -102,6 +102,7 @@ public class GallagherBynderSyncJob extends AbstractJobPerformable<GallagherBynd
 	{
 		for (final GallagherBynderResponse gallagherBynderResponse : response)
 		{
+
 			if (gallagherBynderResponse.getArchive() == 0)
 			{
 				if (gallagherBynderResponse.getProperty_assettype().get(0).equals(GallagherCoreConstants.Bynder.IMAGE)
@@ -109,10 +110,13 @@ public class GallagherBynderSyncJob extends AbstractJobPerformable<GallagherBynd
 				{
 					gallagherBynderService.updateMedia(model, gallagherBynderResponse);
 				}
-				if (gallagherBynderResponse.getProperty_assettype().get(0).equals(GallagherCoreConstants.Bynder.DOCUMENTS)
-						|| gallagherBynderResponse.getProperty_assettype().get(0).equals(GallagherCoreConstants.Bynder.VIDEOS))
+				if (gallagherBynderResponse.getProperty_assettype().get(0).equals(GallagherCoreConstants.Bynder.DOCUMENTS))
 				{
 					gallagherBynderService.updateDocumentMedia(model, gallagherBynderResponse);
+				}
+				if (gallagherBynderResponse.getProperty_assettype().get(0).equals(GallagherCoreConstants.Bynder.VIDEOS))
+				{
+					gallagherBynderService.updateVideoMedia(model, gallagherBynderResponse);
 				}
 			}
 			else
@@ -122,10 +126,13 @@ public class GallagherBynderSyncJob extends AbstractJobPerformable<GallagherBynd
 				{
 					gallagherBynderService.deleteMedia(model, gallagherBynderResponse);
 				}
-				if (gallagherBynderResponse.getProperty_assettype().get(0).equals(GallagherCoreConstants.Bynder.DOCUMENTS)
-						|| gallagherBynderResponse.getProperty_assettype().get(0).equals(GallagherCoreConstants.Bynder.VIDEOS))
+				if (gallagherBynderResponse.getProperty_assettype().get(0).equals(GallagherCoreConstants.Bynder.DOCUMENTS))
 				{
 					gallagherBynderService.deleteDocumentMedia(model, gallagherBynderResponse);
+				}
+				if (gallagherBynderResponse.getProperty_assettype().get(0).equals(GallagherCoreConstants.Bynder.VIDEOS))
+				{
+					gallagherBynderService.deleteVideoMedia(model, gallagherBynderResponse);
 				}
 			}
 		}

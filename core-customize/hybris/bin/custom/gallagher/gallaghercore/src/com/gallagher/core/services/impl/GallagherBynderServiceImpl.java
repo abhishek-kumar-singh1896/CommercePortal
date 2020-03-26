@@ -30,6 +30,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.log4j.Logger;
@@ -226,6 +227,62 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 		final MediaModel media = mediaService.getMedia(catalog, gallagherBynderResponse.getId());
 		modelService.remove(media);
 		LOGGER.info("Deleted Media " + gallagherBynderResponse.getId());
+		return true;
+	}
+
+	@Override
+	public boolean updateVideoMedia(final GallagherBynderSyncCronJobModel cronModel,
+			final GallagherBynderResponse gallagherBynderResponse)
+	{
+		final CatalogVersionModel catlogmodel = catalogVersionService.getCatalogVersion(cronModel.getCatalogId(), "Staged");
+		LOGGER.info("Updating Media for " + gallagherBynderResponse.getId());
+
+		if (CollectionUtils.isNotEmpty(gallagherBynderResponse.getProperty_skus()))
+		{
+			//getting products and adding container to that product
+			final List<ProductModel> products = gallagherMediaContainerDao
+					.getProductModeList(gallagherBynderResponse.getProperty_skus(), catlogmodel.getPk());
+			if (CollectionUtils.isNotEmpty(products))
+			{
+				for (final ProductModel product : products)
+				{
+					final Map<String, String> videomap = new HashMap<String, String>();
+					videomap.putAll(product.getVideos());
+					videomap.put(gallagherBynderResponse.getId(), gallagherBynderResponse.getThumbnails().getThul());
+					product.setVideos(videomap);
+					modelService.save(product);
+					LOGGER.info("Video Media " + gallagherBynderResponse.getId() + " Saved for " + product.getCode());
+				}
+			}
+		}
+		return true;
+	}
+
+	@Override
+	public boolean deleteVideoMedia(final GallagherBynderSyncCronJobModel cronModel,
+			final GallagherBynderResponse gallagherBynderResponse)
+	{
+		final CatalogVersionModel catlogmodel = catalogVersionService.getCatalogVersion(cronModel.getCatalogId(), "Staged");
+		LOGGER.info("Deleting Video Media for " + gallagherBynderResponse.getId());
+
+		if (CollectionUtils.isNotEmpty(gallagherBynderResponse.getProperty_skus()))
+		{
+			//getting products and adding container to that product
+			final List<ProductModel> products = gallagherMediaContainerDao
+					.getProductModeList(gallagherBynderResponse.getProperty_skus(), catlogmodel.getPk());
+			if (CollectionUtils.isNotEmpty(products))
+			{
+				for (final ProductModel product : products)
+				{
+					final Map<String, String> videomap = new HashMap<String, String>();
+					videomap.putAll(product.getVideos());
+					videomap.remove(gallagherBynderResponse.getId());
+					product.setVideos(videomap);
+					modelService.save(product);
+					LOGGER.info("Video Media " + gallagherBynderResponse.getId() + " DELETED for " + product.getCode());
+				}
+			}
+		}
 		return true;
 	}
 

@@ -150,6 +150,7 @@
                 <editorArea:section name="hmc.section.gallagher.Component.Video">
                     <editorArea:attribute editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)"
                                           qualifier="videoDescription"/>
+                    <editorArea:attribute qualifier="videos"/>
                 </editorArea:section>
             </editorArea:tab>
             <editorArea:tab name="hmc.tab.product.multimedia" position="18" merge-mode="REPLACE">
