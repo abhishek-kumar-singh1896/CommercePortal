@@ -52,9 +52,22 @@
                       <div class="flexslider slider-big-image award-slider" id="awardSlider">
                           <ul class="slides">
                           		<c:forEach var="media" items="${product.others}">
-                          			<li>
-	                                  	<img src="${media.url}" alt="${media.altText}">
-	                              	</li>
+                          			
+	                              	<c:choose>
+	                              	<c:when test="${fn:contains(media.mime, 'video')}">
+		                              	<li>
+	                                        <iframe id="awardPlayer_1"
+	                                            src="${media.url}"
+	                                            width="100%" height="390" frameborder="0" webkitAllowFullScreen
+	                                            mozallowfullscreen allowFullScreen></iframe>
+	                                    </li>
+	                              	</c:when>
+	                              	<c:otherwise>
+		                              	<li>
+		                                  	<img src="${media.url}" alt="${media.altText}">
+		                              	</li>
+	                              	</c:otherwise>
+	                              	</c:choose>
 				                 </c:forEach>
                           </ul>
                       </div>

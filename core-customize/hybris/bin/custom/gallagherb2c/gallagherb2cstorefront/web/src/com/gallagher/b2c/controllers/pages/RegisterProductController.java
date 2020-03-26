@@ -154,7 +154,7 @@ public class RegisterProductController extends AbstractPageController
 		catch (final UnknownIdentifierException e)
 		{
 			LOG.debug("Issue in register product", e);
-			jsonResponse.setResponseStatus(RPFormResponseStatus.FAILURE);
+			jsonResponse.setResponseStatus(RPFormResponseStatus.PRODUCTNOTFOUND);
 		}
 		return jsonResponse;
 	}
