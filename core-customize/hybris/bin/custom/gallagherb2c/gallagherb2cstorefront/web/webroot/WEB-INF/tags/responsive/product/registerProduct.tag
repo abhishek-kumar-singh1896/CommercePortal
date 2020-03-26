@@ -76,7 +76,7 @@
 								<label for="serialNumber" class="common-form-label">Serial
 									number</label> 
 									<!-- <input type="text" maxlength="10" class="form-control common-input" id="serialNumber" name="serialNumber"> -->
-									<form:input type="number" maxlength="10" class="form-control common-input" id="serialNumber" path="serialNumber" />
+									<form:input type="text" maxlength="10" class="form-control common-input" id="serialNumber" path="serialNumber" oninput="this.value=this.value.replace(/[^0-9]/g,'');"/>
 									<div class="error-label">
 									<span class="error-text d-none"> <span
 										class="error-icon"> <svg>
@@ -158,6 +158,24 @@
 								</div>
 					</div>
 					<div class="col-md-6 mb-4">
+						<label for="region" class="common-form-label">Region</label>
+						<!-- <input type="text" class="form-control common-input" id="townCity" name="townCity">  -->
+						<form:input type="text" class="form-control common-input" id="region" path="region" />
+						<div class="error-label">
+									<span class="error-text d-none"> <span
+										class="error-icon"> <svg>
+	                                        <use
+													xlink:href="${commonResourcePath}/images/gallagher-icons.svg#cross" />
+	                                    </svg>
+									</span> <span class="error-inner-text"></span>
+									</span>
+								</div>
+					</div>
+					
+				</div>
+
+				<div class="row">
+				<div class="col-md-6 mb-4">
 						<label for="postCode" class="common-form-label">Post Code</label>
 						<form:input type="text" class="form-control common-input" id="postCode" path="postCode" />
 						
@@ -171,9 +189,6 @@
 									</span>
 								</div>
 					</div>
-				</div>
-
-				<div class="row">
 					<div class="col-md-6 mb-4">
 						<label for="country" class="common-form-label">Country</label> 
 						 <form:select path="country" id="country" class="form-control js-example-basic-single">
@@ -190,10 +205,14 @@
 									</span>
 								</div>
 					</div>
-					<div class="col-md-6 mb-4">
+					
+				</div>
+
+				<div class="row">
+				<div class="col-md-6 mb-4">
 						<label for="phoneNumber" class="common-form-label">Phone
 							number</label> 
-							<form:input type="text" class="form-control common-input" id="phoneNumber" path="phoneNumber"/> 
+							<form:input type="text" class="form-control common-input" id="phoneNumber" oninput="this.value=this.value.replace(/[^0-9+]/g,'');" path="phoneNumber" maxlength="11"/> 
 							<div class="error-label">
 									<span class="error-text d-none"> <span
 										class="error-icon"> <svg>
@@ -204,9 +223,6 @@
 									</span>
 								</div>
 					</div>
-				</div>
-
-				<div class="row">
 					<div class="col-md-6 mb-4">
 						<label for="attachReceipt" class="common-form-label">Attach
 							a Receipt</label>
@@ -230,6 +246,7 @@
                     </div> -->
 
 					</div>
+					
 				</div>
 
 				<div class="mt-3">
@@ -261,6 +278,7 @@
 				<input type="hidden" class="form-control common-input" id="addressLine1Input" name="addressLine11">
 				<input type="hidden" class="form-control common-input" id="addressLine2Input" name="addressLine21">
 				<input type="hidden" class="form-control common-input" id="townCityInput" name="townCity1">
+				<input type="hidden" class="form-control common-input" id="regionInput"  name="region1">				
 				<input type="hidden" class="form-control common-input" id="postCodeInput" name="postCode1">
 				<input type="hidden" class="form-control common-input" id="countryInput" name="country1">
 				<input type="hidden" class="form-control common-input" id="phoneNumberInput" name="phoneNumber1">

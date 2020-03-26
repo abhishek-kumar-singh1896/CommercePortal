@@ -18,6 +18,17 @@ public class RegisterProductPopupForm
 	private String postCode1;
 	private String country1;
 	private String phoneNumber1;
+	private String region1;
+
+	public String getRegion1()
+	{
+		return region1;
+	}
+
+	public void setRegion1(final String region1)
+	{
+		this.region1 = region1;
+	}
 
 	/**
 	 * @return the productSku1
@@ -174,3 +185,4 @@ public class RegisterProductPopupForm
 
 
 }
+

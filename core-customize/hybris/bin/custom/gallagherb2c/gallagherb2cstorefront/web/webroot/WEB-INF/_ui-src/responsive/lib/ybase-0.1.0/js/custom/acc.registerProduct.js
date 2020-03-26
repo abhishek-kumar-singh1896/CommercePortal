@@ -65,6 +65,7 @@ ACC.registerProduct = {
 								var postCode =result.registerProductForm.postCode;
 								var country =result.registerProductForm.country;
 								var phoneNumber =result.registerProductForm.phoneNumber;
+								var region = result.registerProductoForm.region;
 								document.getElementById("productSkuInput").value = productSku;
 								document.getElementById("serialNumberInput").value = serialNumber;
 								document.getElementById("datePurchasedInput").value = datePurchased;
@@ -74,6 +75,7 @@ ACC.registerProduct = {
 								document.getElementById("postCodeInput").value = postCode;
 								document.getElementById("countryInput").value = country;
 								document.getElementById("phoneNumberInput").value = phoneNumber;
+								document.getElementById("regionInput").value = region;
 								$("#phoneNumberInput").text(phoneNumber);
 								$('.product-name').text(productName);
 								$('.product-id').text(productCode);
@@ -125,6 +127,7 @@ ACC.registerProduct = {
 		var postCode = $("#postCode").val();
 		var country = $("#country").val();
 		var phoneNumber = $("#phoneNumber").val();
+		var region = $("#region").val();
 		var productDetails = {
 				"productSku" : productSku,
 				"serialNumber" : serialNumber,
@@ -134,7 +137,8 @@ ACC.registerProduct = {
 				"townCity" : townCity,
 				"postCode" : postCode,
 				"country" : country,
-				"phoneNumber" : phoneNumber
+				"phoneNumber" : phoneNumber,
+				"region" : region
 		}
 		return JSON.stringify(productDetails);
 	}
