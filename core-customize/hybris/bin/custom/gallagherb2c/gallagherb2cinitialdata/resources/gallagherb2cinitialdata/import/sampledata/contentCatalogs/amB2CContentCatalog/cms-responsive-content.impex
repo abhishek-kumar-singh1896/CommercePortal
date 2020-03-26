@@ -2135,7 +2135,7 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;c
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
 ;;RegisterAProductLink;Register a product Link;/register-product;;;;
 ;;MyRegisteredProductLink;My registered Product Link;/register-product/products;;;;
-;;AccountManagementLink;Account Management Link;http://www.google.com/;;;;;;;
+;;AccountManagementLink;Account Management Link;/my-account/update-profile;;;;;;;
 ;;LogoutLink;Logout Us Link;/logout;;;;
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);children(uid,$contentCV)[mode=replace];links(uid, $contentCV);&nodeRef;title[lang=en]
