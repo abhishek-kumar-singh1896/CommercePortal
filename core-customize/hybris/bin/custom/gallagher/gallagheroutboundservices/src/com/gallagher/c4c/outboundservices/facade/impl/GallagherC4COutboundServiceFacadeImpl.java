@@ -22,10 +22,8 @@ import org.springframework.web.client.RestOperations;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.gallagher.c4c.outboundservices.facade.GallagherC4COutboundServiceFacade;
-import com.gallagher.outboundservices.request.dto.RegisterProductRequest;
 import com.gallagher.outboundservices.response.dto.GallagherInboundCustomerEntry;
 import com.gallagher.outboundservices.response.dto.GallagherInboundCustomerInfo;
-import com.gallagher.outboundservices.response.dto.GallagherRegisteredProduct;
 
 
 /**
@@ -38,8 +36,6 @@ public class GallagherC4COutboundServiceFacadeImpl extends DefaultOutboundServic
 {
 	private static final Logger LOGGER = LoggerFactory.getLogger(GallagherC4COutboundServiceFacadeImpl.class);
 	private static final String OUTBOUND_CONTACT_COLLECTION_DESTINATION = "scpiContactCollectionDestination";
-	private static final String REGISTER_PRODUCT_DESTINATION = "scpiRegisterProductEndpoint";
-	private static final String REGISTERED_PRODUCT_COLLECTION_DESTINATION = "scpiRegisteredProductCollectionEndpoint";
 
 	/**
 	 * {@inheritDoc}
@@ -85,51 +81,6 @@ public class GallagherC4COutboundServiceFacadeImpl extends DefaultOutboundServic
 			}
 		}
 		return existingCustomers;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void registerProduct(final RegisterProductRequest request)
-	{
-		final ConsumedDestinationModel destinationModel = getConsumedDestinationModelById(REGISTER_PRODUCT_DESTINATION);
-		final RestOperations restOperations = getIntegrationRestTemplateFactory().create(destinationModel);
-
-		final String baseURL = destinationModel.getUrl();
-
-		final HttpHeaders headers = new HttpHeaders();
-		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-
-		final HttpEntity entity = new HttpEntity(request, headers);
-
-		restOperations.exchange(baseURL, HttpMethod.POST, entity, String.class);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public List<GallagherRegisteredProduct> getRegisteredProductFromC4C(final String email)
-	{
-		final ConsumedDestinationModel destinationModel = getConsumedDestinationModelById(
-				REGISTERED_PRODUCT_COLLECTION_DESTINATION);
-		final RestOperations restOperations = getIntegrationRestTemplateFactory().create(destinationModel);
-
-		final String baseURL = destinationModel.getUrl();
-
-		final UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(baseURL).queryParam("$filter",
-				"Email eq '" + email + "'");
-
-		final HttpHeaders headers = new HttpHeaders();
-		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-
-		final HttpEntity entity = new HttpEntity(headers);
-
-		final HttpEntity<GallagherRegisteredProduct[]> response = restOperations.exchange(builder.build().encode().toUri(),
-				HttpMethod.GET, entity, GallagherRegisteredProduct[].class);
-
-		return Arrays.asList(response.getBody());
 	}
 
 }

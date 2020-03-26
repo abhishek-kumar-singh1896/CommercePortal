@@ -7,7 +7,6 @@ import de.hybris.platform.commerceservices.customer.CustomerAccountService;
 import de.hybris.platform.commerceservices.customer.DuplicateUidException;
 import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.servicelayer.model.ModelService;
-import de.hybris.platform.servicelayer.user.UserService;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,7 +24,6 @@ import com.gallagher.core.dtos.GallagherAccessToken;
 import com.gallagher.core.dtos.GallagherRegisteredProductDto;
 import com.gallagher.core.services.GallagherCustomerService;
 import com.gallagher.outboundservices.response.dto.GallagherInboundCustomerEntry;
-import com.gallagher.outboundservices.response.dto.GallagherRegisteredProduct;
 
 
 /**
@@ -43,9 +41,6 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 
 	@Resource(name = "modelService")
 	private ModelService modelService;
-
-	@Resource(name = "userService")
-	private UserService userService;
 
 	@Resource(name = "gallagherC4COutboundServiceFacade")
 	private GallagherC4COutboundServiceFacade gallagherC4COutboundServiceFacade;
@@ -149,9 +144,7 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 	@Override
 	public List<GallagherRegisteredProductDto> getRegisteredProductsFromC4C()
 	{
-
-		//final List<GallagherRegisteredProduct> registeredProducts = gallagherC4COutboundServiceFacade
-			//	.getRegisteredProductFromC4C(userService.getCurrentUser().getUid());
+		// call C4C method to get the list
 
 		final List<GallagherRegisteredProductDto> registeredProductsList = new ArrayList<GallagherRegisteredProductDto>();
 		for (int i = 0; i <= 5; i++)
