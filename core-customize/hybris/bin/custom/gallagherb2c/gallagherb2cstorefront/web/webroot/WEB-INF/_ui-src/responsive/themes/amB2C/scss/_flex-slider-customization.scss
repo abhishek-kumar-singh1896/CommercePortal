@@ -32,14 +32,14 @@
       }
 
       &.flex-prev {
-        background: rgba(35, 30, 31, 0.6) url("../images/arrow-left-slider.svg") center center no-repeat;
+        background: rgba(35, 30, 31, 0.6) url("../images/svg/arrow-left-slider.svg") center center no-repeat;
         width: 24px;
         height: 24px;
         padding: 20px;
       }
 
       &.flex-next {
-        background: rgba(35, 30, 31, 0.6) url("../images/arrow-right-slider.svg") center center no-repeat;
+        background: rgba(35, 30, 31, 0.6) url("../images/svg/arrow-right-slider.svg") center center no-repeat;
         width: 24px;
         height: 24px;
         padding: 20px;
@@ -71,7 +71,7 @@
           position: absolute;
           content: "";
           z-index: 10;
-          background: #fff url("../images/play-circle.svg");
+          background: #fff url("../images/svg/play-circle.svg");
           width: 40px;
           height: 40px;
           background-size: 100%;
