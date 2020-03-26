@@ -70,6 +70,7 @@ public class GallagherProductOthersPopulator<SOURCE extends ProductModel, TARGET
 			}
 			imageData.setDescription(logo.getDescription());
 			imageData.setImageType(imageType);
+			imageData.setMime(logo.getMime());
 			list.add(imageData);
 		}
 	}
