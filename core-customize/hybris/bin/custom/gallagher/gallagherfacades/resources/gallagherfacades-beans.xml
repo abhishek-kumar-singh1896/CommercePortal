@@ -40,6 +40,7 @@
 		<property name="promoSticker" type="String"/>
 		<property name="videoDescription" type="String"/>
 		<property name="imageDescription" type="String"/>
+		<property name="videos" type="java.util.Map&lt;String, String>"/>
 		<property name="logo" type="java.util.Collection&lt;de.hybris.platform.commercefacades.product.data.ImageData>"/>
 		<property name="dataSheet" type="java.util.Collection&lt;de.hybris.platform.commercefacades.product.data.ImageData>"/>
 		<property name="others" type="java.util.Collection&lt;de.hybris.platform.commercefacades.product.data.ImageData>"/>

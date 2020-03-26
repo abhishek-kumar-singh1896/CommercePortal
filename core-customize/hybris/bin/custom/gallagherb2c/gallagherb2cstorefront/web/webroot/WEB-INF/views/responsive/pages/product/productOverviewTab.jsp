@@ -31,35 +31,22 @@
                                         <div id="productDetailVideoSlider"
                                             class="flexslider slider-big-image with-video">
                                             <ul class="slides">
-                                                <li>
-                                                    <iframe id="player_1"
-                                                        src="https://player.vimeo.com/video/39683393?api=1&player_id=player_1"
-                                                        width="600" height="300" frameborder="0" webkitAllowFullScreen
-                                                        mozallowfullscreen allowFullScreen></iframe>
-                                                </li>
-                                                <li>
-                                                    <iframe id="player_2"
-                                                        src="https://player.vimeo.com/video/39683393?api=1&player_id=player_2"
-                                                        width="600" height="300" frameborder="0" webkitAllowFullScreen
-                                                        mozallowfullscreen allowFullScreen></iframe>
-                                                </li>
-                                                <li>
-                                                    <iframe id="player_3"
-                                                        src="https://player.vimeo.com/video/39683393?api=1&player_id=player_3"
-                                                        width="600" height="300" frameborder="0" webkitAllowFullScreen
-                                                        mozallowfullscreen allowFullScreen></iframe>
-                                                </li>
-                                            </ul>
+                                            <c:forEach var="entry" items="${product.videos}">
+                                            	<li>
+		                                            <div data-bynder-widget="video-item" data-media-id="${entry.key}" data-width="" data-autoplay="false"></div>
+		                                        </li>
+                                            </c:forEach>
+				                         </ul>
                                         </div>
                                         <div id="productDetailVideoCarousel"
                                             class="flexslider flex-carousel video-carousel">
                                             <ul class="slides">
-                                            	<c:forEach items="${galleryImages}" var="container" varStatus="varStatus">
-									        	<li>
-											        <img src="${fn:escapeXml(container.thumbnailb2c.url)}"
-                                                        class="carousel-thumb-image" />
-											    </li>
-											    </c:forEach>
+                                            	<c:forEach var="entry" items="${product.videos}">
+                                            	<li>
+		                                            <div data-bynder-widget="video-item" data-media-id="${entry.key}" data-width="" data-autoplay="false"></div>					                         	
+                                            		<img src="${entry.value}" class="carousel-thumb-image" />
+                                            	</li>
+                                            	</c:forEach>
                                             </ul>
                                         </div>
                                     </div>
