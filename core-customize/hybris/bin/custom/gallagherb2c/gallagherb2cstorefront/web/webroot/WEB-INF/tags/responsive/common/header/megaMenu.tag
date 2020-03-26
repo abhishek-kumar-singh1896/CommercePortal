@@ -84,7 +84,31 @@
                 <div class="modal-footer">
                     <div class="xs-main-menu-l1-footer with-logged-in-user">
                         <div class="btn-group btn-block mb-3" role="group" aria-label="Button group login register">
-                            <button type="button" class="btn btn-highlight left-btn" onclick="window.location.href = '${fn:escapeXml(myApp)}'">My App</button>
+                        	<div class="btn-group my-app-btn-group" role="group">
+                                <button type="button" class="btn btn-highlight dropdown-toggle my-app-btn left-btn"
+                                    id="myAppDropdown" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                   <spring:theme code="header.link.app" />
+                                </button>
+                                
+                                <div class="dropdown-menu my-app-dropdown" aria-labelledby="myAppDropdown">
+
+                                   <div class="my-app-dropdown-inner">
+                                   		<ul>
+		                                    <cms:pageSlot position="MyAppDropdown" var="feature">
+		                                    	<c:forEach items="${feature.navigationNode.children}"
+															var="childLevel1">
+																<c:forEach items="${childLevel1.entries}" var="entry">
+																	<li>
+																		<a href="${entry.item.url }" target="_blank"> ${entry.item.linkName }</a>
+																	</li>
+																</c:forEach>
+															</c:forEach>
+														</cms:pageSlot>
+													</ul>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="btn-group user-profile-btn-group" role="group">
                                 <button type="button" class="btn btn-highlight dropdown-toggle user-profile-btn"
