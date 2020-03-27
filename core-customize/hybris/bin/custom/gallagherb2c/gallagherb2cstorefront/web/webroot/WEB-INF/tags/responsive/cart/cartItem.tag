@@ -229,7 +229,7 @@
 
             <%-- total --%>
             <ycommerce:testId code="cart_totalProductPrice_label">
-                <div class="item__total js-item-total hidden-xs hidden-sm">
+                <div class="item__total js-item-total hidden-xs hidden-sm d-none d-lg-table-cell">
                     <format:price priceData="${entry.totalPrice}" displayFreeForZero="true"/>
                 </div>
             </ycommerce:testId>
@@ -238,8 +238,9 @@
             <div class="item__menu">
                 <c:if test="${entry.updateable}" >
                     <div class="btn-group js-cartItemDetailGroup">
-                        <button type="button" class="btn btn-link js-cartItemDetailBtn" aria-haspopup="true" aria-expanded="false" id="editEntry_${entryNumberHtml}">
-                            <span class="glyphicon glyphicon-option-vertical"></span>
+                    	<button class="btn js-submit-remove-product-multi-d" data-index="${entryNumberHtml}" id="removeEntry_${entryNumberHtml}">
+<%--                         <button type="button" class="btn btn-link js-cartItemDetailBtn" aria-haspopup="true" aria-expanded="false" id="editEntry_${entryNumberHtml}"> --%>
+		                       <span class="glyphicon glyphicon-remove"></span>     
                         </button>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <c:if test="${not empty cartData.quoteData}">

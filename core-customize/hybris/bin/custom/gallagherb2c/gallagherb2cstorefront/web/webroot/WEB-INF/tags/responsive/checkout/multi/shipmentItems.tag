@@ -19,7 +19,7 @@
             <ul>
                 <c:forEach items="${cartData.entries}" var="entry">
                     <c:if test="${entry.deliveryPointOfService == null}">
-                        <li class="row">
+                        <li>
                             <span class="name col-xs-8">${fn:escapeXml(entry.product.name)}</span>
                             <span class="qty col-xs-4"><spring:theme code="basket.page.qty"/>:&nbsp;${fn:escapeXml(entry.quantity)}</span>
                         </li>

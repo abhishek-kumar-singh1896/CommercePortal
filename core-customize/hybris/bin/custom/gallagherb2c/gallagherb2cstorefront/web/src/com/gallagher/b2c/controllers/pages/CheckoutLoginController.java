@@ -23,6 +23,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -72,7 +73,7 @@ public class CheckoutLoginController extends AbstractLoginPageController
 	}
 
 	@RequestMapping(value = "/guest", method = RequestMethod.POST)
-	public String doAnonymousCheckout(final GuestForm form, final BindingResult bindingResult, final Model model,
+	public String doAnonymousCheckout(@ModelAttribute("guestForm") final GuestForm form, final BindingResult bindingResult, final Model model,
 			final HttpServletRequest request, final HttpServletResponse response) throws CMSItemNotFoundException
 	{
 		getGuestValidator().validate(form, bindingResult);
