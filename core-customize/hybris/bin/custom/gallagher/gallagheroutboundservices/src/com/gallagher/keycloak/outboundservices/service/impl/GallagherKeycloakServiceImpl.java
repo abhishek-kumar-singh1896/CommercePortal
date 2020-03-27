@@ -216,4 +216,48 @@ public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 
 		final ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.PUT, entity, String.class);
 	}
+
+	@Override
+	public void updateKeyCloakUserProfile(final CustomerData customerData)
+	{
+		final OAuth2RestTemplate restTemplate = getRestTemplateForKeycloak();
+
+		final HttpHeaders headers = new HttpHeaders();
+		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		headers.setContentType(MediaType.APPLICATION_JSON);
+
+		final GallagherKeycloakUserRequest request = new GallagherKeycloakUserRequest();
+		request.setUsername(customerData.getUid());
+		request.setFirstName(customerData.getFirstName());
+		request.setLastName(customerData.getLastName());
+
+		final HttpEntity<GallagherKeycloakUserRequest> entity = new HttpEntity<>(request, headers);
+
+		final String userDetailUrl = getConfigurationService().getConfiguration().getString("keycloak.user.url") + "/"
+				+ customerData.getKeycloakGUID();
+
+		final ResponseEntity<String> response = restTemplate.exchange(userDetailUrl, HttpMethod.PUT, entity, String.class);
+
+	}
+
+	@Override
+	public void updateKeycloakUserEmail(final CustomerData customerData)
+	{
+
+		final OAuth2RestTemplate restTemplate = getRestTemplateForKeycloak();
+
+		final HttpHeaders headers = new HttpHeaders();
+		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		headers.setContentType(MediaType.APPLICATION_JSON);
+
+		final GallagherKeycloakUserRequest request = new GallagherKeycloakUserRequest();
+		request.setLastName(customerData.getEmail());
+
+		final HttpEntity<GallagherKeycloakUserRequest> entity = new HttpEntity<>(request, headers);
+
+		final String userDetailUrl = getConfigurationService().getConfiguration().getString("keycloak.user.url") + "/"
+				+ customerData.getKeycloakGUID();
+
+		final ResponseEntity<String> response = restTemplate.exchange(userDetailUrl, HttpMethod.PUT, entity, String.class);
+	}
 }
