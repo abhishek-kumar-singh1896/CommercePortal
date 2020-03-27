@@ -182,6 +182,7 @@ public class RegisterProductController extends AbstractPageController
 		register.setSerialNumber(registerProductForm1.getSerialNumber1());
 		register.setProductSku(registerProductForm1.getProductSku1());
 		register.setTownCity(registerProductForm1.getTownCity1());
+		register.setRegion(registerProductForm1.getRegion1());
 		final String page = getProductRegistrationPage(model);
 		final RegisterProductForm rg = new RegisterProductForm();
 		try
@@ -199,6 +200,7 @@ public class RegisterProductController extends AbstractPageController
 			rg.setSerialNumber(registerProductForm1.getSerialNumber1());
 			rg.setProductSku(registerProductForm1.getProductSku1());
 			rg.setTownCity(registerProductForm1.getTownCity1());
+			rg.setRegion(registerProductForm1.getRegion1());
 			model.addAttribute(rg);
 			GlobalMessages.addMessage(model, GlobalMessages.ERROR_MESSAGES_HOLDER, "registerProduct.error.message.title", null);
 			return page;

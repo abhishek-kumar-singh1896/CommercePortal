@@ -17,6 +17,17 @@ public class RegisterProductRequest
 	private String postCode;
 	private String country;
 	private String phoneNumber;
+	private String region;
+
+	public String getRegion()
+	{
+		return region;
+	}
+
+	public void setRegion(final String region)
+	{
+		this.region = region;
+	}
 
 	/**
 	 * @return the productSku
