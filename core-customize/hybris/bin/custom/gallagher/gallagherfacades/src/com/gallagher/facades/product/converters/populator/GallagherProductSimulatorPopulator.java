@@ -24,8 +24,11 @@ public class GallagherProductSimulatorPopulator<SOURCE extends ProductModel, TAR
 		//		productData.setSimulator(safeToString(getProductAttribute(productModel, ProductModel.SIMULATOR)));
 		final PDPSimulatorModel pdpSimulator = productModel.getSimulator();
 		final PDPSimulatorData simulatorData = new PDPSimulatorData();
-		simulatorData.setSimulatorDescription(pdpSimulator.getSimulatorDescription());
-		simulatorData.setSimulatorURL(pdpSimulator.getSimulatorUrl());
+		if (pdpSimulator != null)
+		{
+			simulatorData.setSimulatorDescription(pdpSimulator.getSimulatorDescription());
+			simulatorData.setSimulatorURL(pdpSimulator.getSimulatorUrl());
+		}
 		productData.setSimulator(simulatorData);
 	}
 }
