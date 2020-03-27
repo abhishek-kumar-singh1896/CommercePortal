@@ -159,7 +159,7 @@
                 </sec:authorize>
             </div>
 			<c:forEach items="${feature.navigationNode.children}" var="l1" varStatus="children">
-			<c:if test="${not empty l1.children && l1.children ne null && l1.uid ne 'ContactNavNode'}">
+			<c:if test="${not empty l1.children && l1.children ne null && l1.uid ne 'ContactNavNode' && l1.uid ne 'SupportNavNode'}">
             <div class="modal-content xs-main-menu-l2 xs-mega-menu d-none" id="xsLevel1Link${children.index+1}Container">
                 <div class="modal-header">
                     <div class="left-title-out">
@@ -294,7 +294,7 @@
 	                </c:forEach>
 	                </c:if>
 	                
-	       <c:if test="${not empty l1.children && l1.children ne null && l1.uid eq 'ContactNavNode'}">
+	       <c:if test="${not empty l1.children && l1.children ne null && l1.uid eq 'ContactNavNode' || l1.uid eq 'SupportNavNode'}">
 
            <div class="modal-content xs-main-menu-l2 xs-mega-menu d-none" id="xsLevel1Link${children.index+1}Container">
 
