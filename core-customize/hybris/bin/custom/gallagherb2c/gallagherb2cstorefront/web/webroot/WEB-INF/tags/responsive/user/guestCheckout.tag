@@ -35,7 +35,7 @@
 			<ycommerce:testId code="guest_Checkout_button">
 				<div class="form-group">
 					<button type="submit"
-						class="btn btn-default btn-block guestCheckoutBtn">
+						class="btn btn-default btn-block btn-highlight guestCheckoutBtn " disabled="disabled">
 						<spring:theme code="${actionNameKey}" />
 					</button>
 					<!-- 		 disabled="disabled" -->

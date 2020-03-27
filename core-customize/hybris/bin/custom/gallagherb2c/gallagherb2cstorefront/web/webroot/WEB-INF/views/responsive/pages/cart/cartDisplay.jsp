@@ -81,7 +81,7 @@
 								<button
 									class="btn btn-primary btn--continue-checkout js-continue-checkoutasguest-button btn-xs-block"
 									data-checkout-url="${fn:escapeXml(checkoutUrl)}">
-									<spring:theme code="checkout.checkout.guest" />
+									<spring:theme code="cart.page.checkoutasGuest" />
 								</button>
 							</ycommerce:testId>
 						</sec:authorize>

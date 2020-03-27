@@ -5,7 +5,7 @@
 <%@ taglib prefix="cms" uri="http://hybris.com/tld/cmstags"%>
 
 <template:page pageTitle="${pageTitle}">
-	<cms:pageSlot position="Section1" var="feature" element="div" >
+	<cms:pageSlot position="Section3" var="feature" element="div" >
                     <cms:component component="${feature}"/>
                 </cms:pageSlot>
 	<sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')">
