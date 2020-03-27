@@ -939,8 +939,7 @@ public class MyCompanyPageController extends AbstractSearchPageController
 		final List<SelectOption> selectBoxList = new ArrayList<SelectOption>();
 		for (final String data : roles)
 		{
-			selectBoxList.add(new SelectOption(data,
-					getMessageSource().getMessage(String.format("b2bunit.%s.name", data), null, getI18nService().getCurrentLocale())));
+			selectBoxList.add(new SelectOption(data, data));
 		}
 
 		return selectBoxList;
