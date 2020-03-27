@@ -8,7 +8,7 @@
 <cms:pageSlot position="ggB2CNavBar" var="feature">
 <c:if test="${not empty feature.navigationNode && feature.navigationNode ne null}">
 <c:forEach items="${feature.navigationNode.children}" var="l1" varStatus="children">
-<c:if test="${not empty l1.children && l1.children ne null && l1.uid ne 'ContactNavNode'}">
+<c:if test="${not empty l1.children && l1.children ne null && l1.uid ne 'ContactNavNode' && l1.uid ne 'SupportNavNode'}">
 <div class="megamenu-out second-level-menu shadow-sm d-none" id="mainNavLink${children.index+1}Container">
         <div class="container">
             <div class="third-level-menu">
@@ -152,7 +152,7 @@
         </div>
     </div>
     </c:if>
-    <c:if test="${l1.uid eq 'ContactNavNode'}">
+    <c:if test="${l1.uid eq 'ContactNavNode' || l1.uid eq 'SupportNavNode'}">
     <div class="megamenu-out second-level-menu shadow-sm d-none" id="mainNavLink${children.index+1}Container">
         <div class="container">
             <div class="contact-us-container">
