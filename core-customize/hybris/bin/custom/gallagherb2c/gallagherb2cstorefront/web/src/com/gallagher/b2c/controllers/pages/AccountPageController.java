@@ -48,11 +48,12 @@ import de.hybris.platform.commerceservices.enums.CountryType;
 import de.hybris.platform.commerceservices.search.pagedata.PageableData;
 import de.hybris.platform.commerceservices.search.pagedata.SearchPageData;
 import de.hybris.platform.commerceservices.util.ResponsiveUtils;
+import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.servicelayer.exceptions.AmbiguousIdentifierException;
 import de.hybris.platform.servicelayer.exceptions.ModelNotFoundException;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
+import de.hybris.platform.servicelayer.user.UserService;
 import de.hybris.platform.util.Config;
-import com.gallagher.b2c.controllers.ControllerConstants;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -81,7 +82,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.gallagher.b2c.controllers.ControllerConstants;
+import com.gallagher.keycloak.outboundservices.service.GallagherKeycloakService;
 
 
 
@@ -194,6 +199,12 @@ public class AccountPageController extends AbstractSearchPageController
 	@Resource(name = "addressDataUtil")
 	private AddressDataUtil addressDataUtil;
 
+	@Resource(name = "gallagherKeycloakService")
+	private GallagherKeycloakService gallagherKeycloakService;
+
+	@Resource(name = "userService")
+	private UserService userService;
+
 	protected PasswordValidator getPasswordValidator()
 	{
 		return passwordValidator;
@@ -227,6 +238,16 @@ public class AccountPageController extends AbstractSearchPageController
 	protected AddressVerificationResultHandler getAddressVerificationResultHandler()
 	{
 		return addressVerificationResultHandler;
+	}
+
+	protected GallagherKeycloakService getKeycloakService()
+	{
+		return gallagherKeycloakService;
+	}
+
+	protected UserService getUserService()
+	{
+		return userService;
 	}
 
 	@ModelAttribute("countries")
@@ -419,7 +440,8 @@ public class AccountPageController extends AbstractSearchPageController
 
 	@RequestMapping(value = "/update-email", method = RequestMethod.POST)
 	@RequireHardLogIn
-	public String updateEmail(final UpdateEmailForm updateEmailForm, final BindingResult bindingResult, final Model model,
+	public String updateEmail(@ModelAttribute("updateEmailForm")
+	final UpdateEmailForm updateEmailForm, final BindingResult bindingResult, final Model model,
 			final RedirectAttributes redirectAttributes) throws CMSItemNotFoundException
 	{
 		getEmailValidator().validate(updateEmailForm, bindingResult);
@@ -438,12 +460,21 @@ public class AccountPageController extends AbstractSearchPageController
 		{
 			try
 			{
+				final CustomerModel currentCustomerData = (CustomerModel) userService.getCurrentUser();
+
+				final CustomerData customerData = new CustomerData();
+				customerData.setEmail(updateEmailForm.getEmail());
+				customerData.setKeycloakGUID(currentCustomerData.getKeycloakGUID());
+
 				customerFacade.changeUid(updateEmailForm.getEmail(), updateEmailForm.getPassword());
 				GlobalMessages.addFlashMessage(redirectAttributes, GlobalMessages.CONF_MESSAGES_HOLDER,
 						"text.account.profile.confirmationUpdated", null);
 
+				getKeycloakService().updateKeycloakUserEmail(customerData);
+
 				// Replace the spring security authentication with the new UID
 				final String newUid = customerFacade.getCurrentCustomer().getUid().toLowerCase();
+
 				final Authentication oldAuthentication = SecurityContextHolder.getContext().getAuthentication();
 				final UsernamePasswordAuthenticationToken newAuthentication = new UsernamePasswordAuthenticationToken(newUid, null,
 						oldAuthentication.getAuthorities());
@@ -459,6 +490,10 @@ public class AccountPageController extends AbstractSearchPageController
 			{
 				bindingResult.rejectValue("password", PROFILE_CURRENT_PASSWORD_INVALID);
 				returnAction = setErrorMessagesAndCMSPage(model, UPDATE_EMAIL_CMS_PAGE);
+			}
+			catch (final HttpClientErrorException error)
+			{
+				LOG.error("Some went wrong while updating the email." + error);
 			}
 		}
 
@@ -502,19 +537,22 @@ public class AccountPageController extends AbstractSearchPageController
 
 	@RequestMapping(value = "/update-profile", method = RequestMethod.POST)
 	@RequireHardLogIn
-	public String updateProfile(final UpdateProfileForm updateProfileForm, final BindingResult bindingResult, final Model model,
+	public String updateProfile(@ModelAttribute("updateProfileForm")
+	final UpdateProfileForm updateProfileForm, final BindingResult bindingResult, final Model model,
 			final RedirectAttributes redirectAttributes) throws CMSItemNotFoundException
 	{
 		getProfileValidator().validate(updateProfileForm, bindingResult);
 
 		String returnAction = REDIRECT_TO_UPDATE_PROFILE;
-		final CustomerData currentCustomerData = customerFacade.getCurrentCustomer();
+		final CustomerModel currentCustomerData = (CustomerModel) userService.getCurrentUser();
+
 		final CustomerData customerData = new CustomerData();
 		customerData.setTitleCode(updateProfileForm.getTitleCode());
 		customerData.setFirstName(updateProfileForm.getFirstName());
 		customerData.setLastName(updateProfileForm.getLastName());
 		customerData.setUid(currentCustomerData.getUid());
-		customerData.setDisplayUid(currentCustomerData.getDisplayUid());
+		customerData.setDisplayUid(currentCustomerData.getUid());
+		customerData.setKeycloakGUID(currentCustomerData.getKeycloakGUID());
 
 		model.addAttribute(TITLE_DATA_ATTR, userFacade.getTitles());
 
@@ -530,6 +568,9 @@ public class AccountPageController extends AbstractSearchPageController
 		{
 			try
 			{
+				//update keycloak server
+				getKeycloakService().updateKeyCloakUserProfile(customerData);
+
 				customerFacade.updateProfile(customerData);
 				GlobalMessages.addFlashMessage(redirectAttributes, GlobalMessages.CONF_MESSAGES_HOLDER,
 						"text.account.profile.confirmationUpdated", null);
@@ -539,6 +580,10 @@ public class AccountPageController extends AbstractSearchPageController
 			{
 				bindingResult.rejectValue("email", "registration.error.account.exists.title");
 				returnAction = setErrorMessagesAndCMSPage(model, UPDATE_PROFILE_CMS_PAGE);
+			}
+			catch (final HttpClientErrorException error)
+			{
+				LOG.error("Some went wrong while updating the email." + error);
 			}
 		}
 

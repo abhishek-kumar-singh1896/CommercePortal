@@ -1853,6 +1853,25 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];name;$contentCV[unique=true];n
 ;FindManager_NavEntry;Find Manager Nav Entry;;FindManager_Nav;FindManagerLink
 ;SendMessage_NavEntry;Send Message Nav Entry;;SendMessage_Nav;SendMessageLink
 
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];name;$contentCV[unique=true];children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
+;CallUsSupport_Nav;Call Us support Nav;;;"Our customer services team are hete to help.";CallUsSupport_Nav
+;SupportMaterial_Nav;Support Material Nav;;;"Search through our user manuals, guides and how-tos, brochures and videos.";SupportMaterial_Nav
+;TechnicalSupport_Nav;Technical Support Nav;;;"We provide technical help and support for Gallagher Weighing and EID hardware and software products";TechnicalSupport_Nav
+;SoftwareDownloads_Nav;Software Downloads Nav;;;"Download the latest software for your Weighing and EID products";SoftwareDownloads_Nav
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];name;$contentCV[unique=true];navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
+;CallUsSupport_NavEntry;Call Us support Nav Entry;;CallUsSupport_Nav;CallUsSupportLink
+;SupportMaterial_NavEntry;Support Material Nav Entry;;SupportMaterial_Nav;SupportMaterialLink
+;TechnicalSupport_NavEntry;Technical Support Nav Entry;;TechnicalSupport_Nav;TechnicalSupportLink
+;SoftwareDownloads_NavEntry;Software Downloads Nav Entry;;SoftwareDownloads_Nav;SoftwareDownloadsLink
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;CallUsSupportLink;Call Us Link;https://www.google.com/;;;
+;;SupportMaterialLink;Support Material Link;https://www.google.com/;;;
+;;TechnicalSupportLink;Technical Support Link;http://www.google.com/;;;
+;;SoftwareDownloadsLink;Software Downloads Link;http://www.google.com/;;;
+
+
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
 ;;SolutionLink;Solution Link;https://www.google.com/;;;;
 ;;SupportLink;Support Link;http://www.google.com/;;;;
@@ -1862,7 +1881,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);children(uid,$contentCV)[mode=replace];links(uid, $contentCV);&nodeRef;title[lang=en]
 ;SolutionsNavNode ;; Solutions Navigation Node Menu;HeaderLinkNavigationNode;Electricfencing_Nav1,WeighingEID_Nav1,WirelessWaterMonitoring_Nav1,SteelGatesandHardware_Nav1,FarmInformationTools_Nav1,Stockprods_Nav1,NewProducts_Nav1,Promotions_Nav1;;SolutionsNavNode;"Solutions"     
 ;ProductsNavNode;;Products Navigation Node Menu;;Electricfencing_Nav,WeighingEID_Nav,WirelessWaterMonitoring_Nav,SteelGatesandHardware_Nav,FarmInformationTools_Nav,Stockprods_Nav,NewProducts_Nav,Promotions_Nav;;ProductsNavNode;"Products"
-;SupportNavNode;;Support Navigation Node Menu;HeaderLinkNavigationNode;Electricfencing_Nav3,WeighingEID_Nav3,WirelessWaterMonitoring_Nav3,SteelGatesandHardware_Nav3,FarmInformationTools_Nav3,Stockprods_Nav3,NewProducts_Nav3,Promotions_Nav3;;SupportNavNode;"Support"                                                                                                                                            ;                        ; SupportNavNode   ; "Support"
+;SupportNavNode;;Support Navigation Node Menu;HeaderLinkNavigationNode;CallUsSupport_Nav,SupportMaterial_Nav,TechnicalSupport_Nav,SoftwareDownloads_Nav;;SupportNavNode;"Support"
 ;ContactNavNode;;Contact Us Navigation Node Menu;HeaderLinkNavigationNode;CallUs_Nav,FindStore_Nav,FindManager_Nav,SendMessage_Nav;;ContactNavNode;"Contact Us"
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
@@ -2139,7 +2158,7 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;c
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
 ;;RegisterAProductLink;Register a product Link;/register-product;;;;
 ;;MyRegisteredProductLink;My registered Product Link;/register-product/products;;;;
-;;AccountManagementLink;Account Management Link;http://www.google.com/;;;;;;;
+;;AccountManagementLink;Account Management Link;/my-account/update-profile;;;;;;;
 ;;LogoutLink;Logout Us Link;/logout;;;;
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);children(uid,$contentCV)[mode=replace];links(uid, $contentCV);&nodeRef;title[lang=en]

@@ -16,14 +16,15 @@
 	<div class="review-pagination-bar">
 		<%-- <button class="btn btn-default js-review-write-toggle "><spring:theme code="review.write.title"/></button> --%>
 		<div class="write-review-out">
-                            <a href="javascript:void(0)" class="js-review-write-toggle write-a-review-link"><spring:theme code="review.write.title"/>
-                            <span class="down-arrow-icon">
-                                    <svg>
-                                        <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-down" />
-                                    </svg>
-                                </span>
-                            </a>
-                        </div>
+           <a href="javascript:void(0)" class="js-review-write-toggle write-a-review-link">
+           		<spring:theme code="product.produt.details.reviews.write"/>
+           <span class="down-arrow-icon">
+                   <svg>
+                       <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-down" />
+                   </svg>
+               </span>
+           </a>
+       </div>
 
 		<%-- <div class="right">
 			<button class="btn btn-default all-reviews-btn"><spring:theme code="review.show.all" /></button>
