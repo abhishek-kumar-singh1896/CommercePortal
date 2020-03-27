@@ -23,6 +23,8 @@ import de.hybris.platform.acceleratorstorefrontcommons.forms.VoucherForm;
 import de.hybris.platform.acceleratorstorefrontcommons.forms.validation.SaveCartFormValidator;
 import de.hybris.platform.acceleratorstorefrontcommons.util.XSSFilterUtil;
 import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
+import de.hybris.platform.cms2.model.pages.AbstractPageModel;
+import de.hybris.platform.cms2.model.pages.ContentPageModel;
 import de.hybris.platform.commercefacades.order.SaveCartFacade;
 import de.hybris.platform.commercefacades.order.data.CartData;
 import de.hybris.platform.commercefacades.order.data.CartModificationData;
@@ -630,9 +632,12 @@ public class CartPageController extends AbstractCartPageController
 
 	@RequestMapping(value = "/checkout/guest", method = RequestMethod.GET)
 	public String cartCheckoutAsGuest(final Model model, final RedirectAttributes redirectModel)
-			throws CommerceCartModificationException
+			throws CommerceCartModificationException, CMSItemNotFoundException
 	{
 		SessionOverrideCheckoutFlowFacade.resetSessionOverrides();
+
+		storeCmsPageInModel(model, getCmsPage());
+		setUpMetaDataForContentPage(model, (ContentPageModel) getCmsPage());
 
 		if (!getCartFacade().hasEntries())
 		{
@@ -659,4 +664,8 @@ public class CartPageController extends AbstractCartPageController
 		return ControllerConstants.Views.Pages.Checkout.CheckoutGuestLoginPage;
 	}
 
+	protected AbstractPageModel getCmsPage() throws CMSItemNotFoundException
+	{
+		return getContentPageForLabelOrId("checkoutGuestLogin");
+	}
 }

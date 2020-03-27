@@ -59,25 +59,6 @@
 			<div class="cart__actions">
 				<div class="row">
 					<div class="col-sm-6 ">
-						<sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')">
-							<ycommerce:testId code="checkoutButton">
-								<button
-									class="btn btn-primary btn--continue-checkout js-continue-checkoutasguest-button btn-xs-block"
-									data-checkout-url="${fn:escapeXml(checkoutUrl)}">
-									<spring:theme code="checkout.checkout.guest" />
-								</button>
-							</ycommerce:testId>
-						</sec:authorize>
-						<ycommerce:testId code="checkoutButton">
-							<button
-								class="btn btn-primary btn--continue-checkout js-continue-checkout-button btn-xs-block"
-								data-checkout-url="${fn:escapeXml(checkoutUrl)}">
-								<spring:theme code="checkout.checkout" />
-							</button>
-						</ycommerce:testId>
-					</div>
-
-					<div class="col-sm-6  text-right">
 						<c:if
 							test="${not empty siteQuoteEnabled and siteQuoteEnabled eq 'true'}">
 							<button
@@ -92,6 +73,25 @@
 							data-continue-shopping-url="${fn:escapeXml(continueShoppingUrl)}">
 							<spring:theme code="cart.page.continue" />
 						</button>
+						
+					</div>
+					<div class="col-sm-6  text-right">
+					 <sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')">
+							<ycommerce:testId code="checkoutButton">
+								<button
+									class="btn btn-primary btn--continue-checkout js-continue-checkoutasguest-button btn-xs-block"
+									data-checkout-url="${fn:escapeXml(checkoutUrl)}">
+									<spring:theme code="checkout.checkout.guest" />
+								</button>
+							</ycommerce:testId>
+						</sec:authorize>
+						<ycommerce:testId code="checkoutButton">
+							<button
+								class="btn btn-primary btn--continue-checkout js-continue-checkout-button btn-xs-block"
+								data-checkout-url="${fn:escapeXml(checkoutUrl)}">
+								<spring:theme code="cart.page.checkout" />
+							</button>
+						</ycommerce:testId>	
 					</div>
 				</div>
 			</div>
