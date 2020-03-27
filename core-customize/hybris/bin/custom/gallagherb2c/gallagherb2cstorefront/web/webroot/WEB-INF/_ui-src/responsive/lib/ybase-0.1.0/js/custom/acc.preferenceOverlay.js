@@ -18,7 +18,11 @@ ACC.preference = {
 					overlayClose : false,
 					onLoad : function() {
 						$('#cboxClose').remove();
-					}
+						$('html, body').css('overflow', 'hidden');
+					},
+					onClosed:function() {
+				        $('html, body').css('overflow', '');
+				    }
 				});
 			}
 		});

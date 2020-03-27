@@ -103,13 +103,9 @@
 
 
 							<div class="btn-group" role="group">
-								<button id="btnGroupDrop1" type="button"
-									class="btn right-btn dropdown-toggle" data-toggle="dropdown"
-									aria-haspopup="true" aria-expanded="false">
 									<cms:pageSlot position="MiniCart" var="cart">
 										<cms:component component="${cart}" />
 									</cms:pageSlot>
-								</button>
 							
 							<div class="dropdown-menu dropdown-menu-right mini-cart"
 								aria-labelledby="btnGroupDrop1">
@@ -143,13 +139,9 @@
 							</ycommerce:testId>
 
 							<div class="btn-group" role="group">
-								<button id="btnGroupDrop1" type="button"
-									class="btn right-btn dropdown-toggle" data-toggle="dropdown"
-									aria-haspopup="true" aria-expanded="false">
 									<cms:pageSlot position="MiniCart" var="cart">
 										<cms:component component="${cart}" />
 									</cms:pageSlot>
-								</button>
 							
 
 							<div class="dropdown-menu dropdown-menu-right mini-cart"
@@ -162,13 +154,9 @@
 
 					<!-- For Mobile Cart Section-->
 					<div class="header-right-btn-group for-mobile-view">
-						<button id="btnGroupDrop1" type="button"
-							class="btn right-btn dropdown-toggle" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false">
 							<cms:pageSlot position="MiniCart" var="cart">
 								<cms:component component="${cart}" />
 							</cms:pageSlot>
-						</button>
 
 						<div class="dropdown-menu dropdown-menu-right mini-cart"
 							aria-labelledby="btnGroupDrop1">
@@ -283,11 +271,32 @@
 						<div class="btn-group" role="group"
 							aria-label="Button group with nested dropdown">
 							<ycommerce:testId code="header_MyApp_link">
-								<c:url value="/" var="myApp" />
-								<button type="button" class="btn left-btn"
-									onclick="window.location.href = '${fn:escapeXml(myApp)}'">
-									<spring:theme code="header.link.app" />
-								</button>
+								<div class="btn-group" role="group">
+	                        <button type="button" class="btn dropdown-toggle left-btn my-app-btn"
+	                            id="myAppDropdown" data-toggle="dropdown" aria-haspopup="true"
+	                            aria-expanded="false">
+	                           <spring:theme code="header.link.app" />
+	                        </button>
+	                        
+	                        <div class="dropdown-menu my-app-dropdown" aria-labelledby="myAppDropdown">
+	
+	                        	<div class="my-app-dropdown-inner">
+	                        		<ul>
+	                        			<cms:pageSlot position="MyAppDropdown" var="feature">
+	                       					<c:forEach items="${feature.navigationNode.children}"
+														var="childLevel1">
+								
+														<c:forEach items="${childLevel1.entries}" var="entry">
+															<li>	
+																<a href="${entry.item.url }" target="_blank"> ${entry.item.linkName }</a>
+															</li>
+														</c:forEach>
+													</c:forEach>
+												</cms:pageSlot>
+											</ul>
+	                            </div>
+	                        </div>
+	                    </div>
 							</ycommerce:testId>
 							<%-- <button type="button" class="btn">
 								<span class="user-icon"> <svg>
@@ -327,29 +336,23 @@
                                                 </div>
                                             </div>
                                             </li>
-                                            <li><c:url value="/register-product" var="registerProductUrl" /><a href="${registerProductUrl}"><spring:theme code="text.Register.Product" />
-                                            </a></li>
-                                            <li><a href="javascript:void(0)"> <spring:theme code="text.Registered.Products" />
-                                            </a></li>
-                                            <li><a href="javascript:void(0)"> <spring:theme code="text.Account.Management" /> </a></li>
-                                            <li>
-                                        <c:url value="/logout" var="logoutUrl"/>
-                                        <a href="${(logoutUrl)}">
-                                            <spring:theme code="header.link.logout" />
-                                        </a>
-                                    </li>
+                                            <cms:pageSlot position="UserDropDown" var="feature">
+												<c:forEach items="${feature.navigationNode.children}"
+													var="childLevel1">
+													<c:forEach items="${childLevel1.entries}" var="entry">
+													<li>	<cms:component component="${entry.item}" 
+															evaluateRestriction="true" /></li>
+													</c:forEach>
+												</c:forEach>
+											</cms:pageSlot>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
 							<div class="btn-group" role="group">
-								<button id="btnGroupDrop1" type="button"
-									class="btn right-btn dropdown-toggle" data-toggle="dropdown"
-									aria-haspopup="true" aria-expanded="false">
 									<cms:pageSlot position="MiniCart" var="cart">
 										<cms:component component="${cart}" />
 									</cms:pageSlot>
-								</button>
 							
 							<div class="dropdown-menu dropdown-menu-right mini-cart"
 								aria-labelledby="btnGroupDrop1">
@@ -367,15 +370,31 @@
 					<div class="header-right-btn-group for-ipad-view">
 						<div class="btn-group" role="group"
 							aria-label="Button group with nested dropdown">
+								<button type="button" class="btn dropdown-toggle left-btn my-app-btn"
+	                     	id="myAppDropdown" data-toggle="dropdown" aria-haspopup="true"
+	                        aria-expanded="false">
+	                           <spring:theme code="header.link.app" />
+                        </button>
+                        
+                        <div class="dropdown-menu my-app-dropdown" aria-labelledby="myAppDropdown">
 
-							<c:url value="/" var="myAppUrl" />
-							<ycommerce:testId code="header_MyApp_link">
-								<c:url value="/" var="myApp" />
-								<button type="button" class="btn left-btn"
-									onclick="window.location.href = '${fn:escapeXml(myApp)}'">
-									<spring:theme code="header.link.app" />
-								</button>
-							</ycommerce:testId>
+                        	<div class="my-app-dropdown-inner">
+                        		<ul>
+                        			<cms:pageSlot position="MyAppDropdown" var="feature">
+                       					<c:forEach items="${feature.navigationNode.children}"
+													var="childLevel1">
+							
+													<c:forEach items="${childLevel1.entries}" var="entry">
+														<li>	
+															<a href="${entry.item.url }" target="_blank"> ${entry.item.linkName }</a>
+														</li>
+													</c:forEach>
+												</c:forEach>
+											</cms:pageSlot>
+										</ul>
+                            </div>
+                        </div>
+
 					<!-- <button type="button" class="btn"> -->	
 					<div class="btn-group" role="group">	
                              <button type="button" class="btn btn-highlight dropdown-toggle user-profile-btn"
@@ -407,27 +426,23 @@
                                                 </div>
                                             </div>
                                             </li>
-                                            <li><c:url value="/register-product" var="registerProductUrl" /><a href="${registerProductUrl}"> <spring:theme code="text.Register.Product" />
-                                            </a></li>
-                                            <li><a href="javascript:void(0)"> <spring:theme code="text.Registered.Products" />
-                                            </a></li>
-                                            <li><a href="javascript:void(0)"> <spring:theme code="text.Account.Management" /> </a></li>
-                                            <li><c:url value="/logout" var="logoutUrl" /> <a
-                                                href="${logoutUrl}"> <spring:theme
-                                                        code="header.link.logout" />
-                                            </a></li>
+                                            <cms:pageSlot position="UserDropDown" var="feature">
+												<c:forEach items="${feature.navigationNode.children}"
+													var="childLevel1">
+													<c:forEach items="${childLevel1.entries}" var="entry">
+													<li>	<cms:component component="${entry.item}" 
+															evaluateRestriction="true" /></li>
+													</c:forEach>
+												</c:forEach>
+											</cms:pageSlot>
                                         </ul>
                                     </div>
                                 </div>
                                 </div>
                                 <div class="btn-group" role="group">
-								<button id="btnGroupDrop1" type="button"
-									class="btn right-btn dropdown-toggle" data-toggle="dropdown"
-									aria-haspopup="true" aria-expanded="false">
 									<cms:pageSlot position="MiniCart" var="cart">
 										<cms:component component="${cart}" />
 									</cms:pageSlot>
-								</button>
 							
 
 							<div class="dropdown-menu dropdown-menu-right mini-cart"
@@ -440,13 +455,9 @@
 
 					<!-- For Mobile Cart Section-->
 					<div class="header-right-btn-group for-mobile-view">
-						<button id="btnGroupDrop1" type="button"
-							class="btn right-btn dropdown-toggle" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false">
 							<cms:pageSlot position="MiniCart" var="cart">
 								<cms:component component="${cart}" />
 							</cms:pageSlot>
-						</button>
 
 						<div class="dropdown-menu dropdown-menu-right mini-cart"
 							aria-labelledby="btnGroupDrop1">

@@ -39,4 +39,8 @@ public interface GallagherKeycloakService
 	 * @return keycloakGUID
 	 */
 	String getKeycloakUserFromEmail(String email);
+
+	void updateKeyCloakUserProfile(CustomerData customerData);
+
+	void updateKeycloakUserEmail(CustomerData customerData);
 }

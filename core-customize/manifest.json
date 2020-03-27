@@ -105,7 +105,8 @@
     "sapcoretest",
     "scpiconnector",
     "scpiconnectorbackoffice",
-    "sapc4ccustomerb2c"
+	"sapcpiorderexchange",
+	"sapcpiorderexchangeb2b"
   ],
   "useConfig": {
     "properties": [

@@ -2033,6 +2033,159 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
 ;;registerProduct;Product Registration;RegisterProductPageTemplate;/registerProduct
 
+#### Register Product Page####
+
+#####images for award winning component#######
+INSERT_UPDATE Media;mediaFormat(qualifier);$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];mime[default='image/jpeg'];realfilename;folder(qualifier)[default='images'];altText
+;;;ImageDes1.jpg;$siteResource/images/banners/homepage/responsive/product-two-column-img.png;;ImageDes1.jpg;;"ImageDes1"
+;;;ImageDes2.jpg;$siteResource/images/banners/homepage/responsive/product-two-column-img.png;;ImageDes2.jpg;;"ImageDes2"
+;;;ImageDes3.jpg;$siteResource/images/banners/homepage/responsive/product-two-column-img.png;;ImageDes3.jpg;;"ImageDes3"
+#####images for award winning component#######
+
+
+###### GallagherPDPSearchDealerComponent starts ########
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];altText;folder(qualifier)[default='images']
+;;find-dealer-bg;find-dealer-bg.jpg;$siteResource/images/theme/find-dealer-bg.jpg;image/jpeg;Gallagher
+;;tm-bg;tm-bg.jpeg;$siteResource/images/theme/tm-bg.jpeg;image/jpeg;Gallagher
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;linkName;&linkRef;&componentRef
+;;NZSearchComponent;NZ Search Component;https://am.gallagher.com/nz/find-a-stockist ;Search;NZSearchComponent;NZSearchComponent
+;;AUSearchComponent;AU Search Component;https://am.gallagher.com/au/find-a-stockist ;Search;AUSearchComponent;AUSearchComponent
+;;USSearchComponent;US Search Component;https://am.gallagher.com/us/find-a-dealer ;Search;USSearchComponent;USSearchComponent
+;;CAENSearchComponent;CA EN Search Component;https://am.gallagher.com/en-ca/find-a-dealer ;Search;CAENSearchComponent;CAENSearchComponent
+;;CAFRSearchComponent;CA FR Search Component;https://am.gallagher.com/fr-ca/trouver-un-fournisseur ;Search;CAFRSearchComponent;CAFRSearchComponent
+;;GlobalSearchComponent;Global Search Component;https://am.gallagher.com/global/find-a-distributor ;Search;GlobalSearchComponent;GlobalSearchComponent
+
+;;NZTMLinkComp;NZ Territory Manager Link Component;https://am.gallagher.com/nz/about-us/our-people/territory-managers ;Or Find Your Nearest Territory Manager;NZTMLinkComp;NZTMLinkComp
+;;AUTMLinkComp;AU Territory Manager Link Component;https://am.gallagher.com/au/about-us/our-people/territory-managers ;Or Find Your Nearest Territory Manager;AUTMLinkComp;AUTMLinkComp
+;;USTMLinkComp;US Territory Manager Link Component;https://www.google.com ;Or Find Your Nearest Territory Manager;USTMLinkComp;USTMLinkComp
+;;CATMLinkComp;CA Territory Manager Link Component;https://www.google.com ;Or Find Your Nearest Territory Manager;CAFRTMLinkComp;CAFRTMLinkComp
+
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;NZSearchNavEntry;;NZ Search Nav Entry;NZSearchNavNode;NZSearchComponent
+;AUSearchNavEntry;;AU Search Nav Entry;AUSearchNavNode;AUSearchComponent
+;USSearchNavEntry;;US Search Nav Entry;USSearchNavNode;USSearchComponent
+;CAENSearchNavEntry;;CA EN Search Nav Entry;CAENSearchNavNode;CAENSearchComponent
+;CAFRSearchNavEntry;;CA FR Search Nav Entry;CAFRSearchNavNode;CAFRSearchComponent
+;GlobalSearchNavEntry;;Global Search Nav Entry;GlobalSearchNavNode;GlobalSearchComponent
+
+;NZTMNavEntry;;NZ Territory Manager Nav Entry;NZTMNavNode;NZTMLinkComp
+;AUTMNavEntry;;AU Territory Manager Nav Entry;AUTMNavNode;AUTMLinkComp
+;USTMNavEntry;;US Territory Manager Nav Entry;USTMNavNode;USTMLinkComp
+;CATMNavEntry;;CA Territory Manager Nav Entry;CATMNavNode;CATMLinkComp
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef);
+;NZSearchNavNode;;NZ Search Navigation Node;NZSearchNavNode
+;AUSearchNavNode;;AU Search Navigation Node;AUSearchNavNode
+;USSearchNavNode;;US Search Navigation Node;USSearchNavNode
+;CAENSearchNavNode;;CA EN Search Navigation Node;CAENSearchNavNode
+;CAFRSearchNavNode;;CA FR Search Navigation Node;CAFRSearchNavNode
+;GlobalSearchNavNode;;Global Search Navigation Node;GlobalSearchNavNode
+
+;NZTMNavNode;;NZ Territory Manager Navigation Node;NZTMNavNode
+;AUTMNavNode;;AU Territory Manager Navigation Node;AUTMNavNode
+;USTMNavNode;;US Territory Manager Navigation Node;USTMNavNode
+;CATMNavNode;;CA Territory Manager Navigation Node;CATMNavNode
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&componentRef);&nodeRef;children(uid, $contentCV)
+;PDPSearchNavNode;;PDP Country Search Navigation Node;root;;PDPSearchNavNode;NZSearchNavNode,AUSearchNavNode,USSearchNavNode,CAENSearchNavNode,CAFRSearchNavNode,GlobalSearchNavNode
+;PDPTMNavNode;;PDP Country Territory Manager Navigation Node;root;;PDPTMNavNode;NZTMNavNode,AUTMNavNode,USTMNavNode,CATMNavNode
+
+
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+;;PDPSearchFindDealerComponent;PDP Search Find Dealer Paragraph Component;PDPSearchFindDealerComponent
+;;PDPSearchAdviceComponent;PDP Search Advice Paragraph Component;PDPSearchAdviceComponent
+;;PDPSearchContactComponent; PDP Search Contact Paragraph Component;PDPSearchContactComponent
+
+
+#INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$contentCV[unique=true]
+#;find-dealer-bg-en;find-dealer-bg
+#;tm-bg-en;tm-bg
+
+
+#INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;&componentRef;$mediaContainer
+#;;mapBackgroundComponent;PDP Map Background Banner Component;;mapBackgroundComponent;find-dealer-bg-en
+#;;tmBackgroundComponent;PDP Territory Manager Banner Component;tmBackgroundComponent;tm-bg-en
+
+INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink
+;;mapBackgroundComponent;PDP Map Background Banner Component;;
+;;tmBackgroundComponent;PDP Territory Manager Banner Component;;
+
+INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
+;;mapBackgroundComponent;find-dealer-bg
+;;tmBackgroundComponent;tm-bg
+
+INSERT_UPDATE GallagherPDPSearchDealerComponent;$contentCV[unique=true];uid[unique=true];expertAdviceText(uid, $contentCV);contactNoText(uid, $contentCV);findDealerText(uid, $contentCV);mapBackground(uid, $contentCV);background(uid, $contentCV);searchDealer(&nodeRef);territoryManager(&nodeRef);&componentRef
+;;GallagherSearchDealerComponent;PDPSearchAdviceComponent;PDPSearchContactComponent;PDPSearchFindDealerComponent;mapBackgroundComponent;tmBackgroundComponent;PDPSearchNavNode;PDPTMNavNode;GallagherSearchDealerComponent
+
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;TMDealer;;;wide
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;DealerSlot-PDP;TMDealer;;TMDealerSlot;true
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;TMDealerSlot;PDP Dealer search slot;true;GallagherSearchDealerComponent;;;
+
+
+###### GallagherPDPSearchDealerComponent ends #######
+
+######User dropdown in header######
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;RegisterAProductLink;Register a product Link;/register-product;;;;
+;;MyRegisteredProductLink;My registered Product Link;/register-product/products;;;;
+;;AccountManagementLink;Account Management Link;/my-account/update-profile;;;;;;;
+;;LogoutLink;Logout Us Link;/logout;;;;
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);children(uid,$contentCV)[mode=replace];links(uid, $contentCV);&nodeRef;title[lang=en]
+;RegisterAProductNavNode;; Register a Product Navigation Node Menu;UserDropDownNavigationNode;;;RegisterAProductNavNode;"Register a Product"     
+;MyRegisteredProductNavNode;;My Registered Product Navigation Node Menu;;;;MyRegisteredProductNavNode;"My Registered Product"
+;AccountNavNode;;Account Management Navigation Node Menu;UserDropDownNavigationNode;;;AccountNavNode;"Account Management"                                                                                                                                            ;                        ; AccountNavNode   ; "Account Management"
+;LogoutNavNode;;Logout Us Navigation Node Menu;UserDropDownNavigationNode;;;LogoutNavNode;"Logout Us"
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;RegisterAProductNavNodeEntry;;Register a Product Navigation Node Entry;RegisterAProductNavNode;RegisterAProductLink;
+;MyRegisteredProductNavNodeEntry;;My Registered Product Navigation Node Entry;MyRegisteredProductNavNode;AccountManagementLink
+;AccountNavNodeEntry;;Account Management Navigation Node Entry;AccountNavNode;MyRegisteredProductLink
+;LogoutNavNodeEntry;;Logout Navigation Node Entry;LogoutNavNode;LogoutLink
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef;children(uid, $contentCV)[mode=replace]
+;UserDropDownNavigationNode;;Header Link Navigation Node; root;; UserDropDownNavigationNode; RegisterAProductNavNode,MyRegisteredProductNavNode,AccountNavNode,LogoutNavNode
+
+INSERT_UPDATE NavigationComponent;$contentCV[unique=true];uid[unique=true];name;styleClass;&componentRef;navigationNode(&nodeRef)
+;;UserDropDownNavigationComponent;User drop down Navigation component;;UserDropDownNavigationComponent;UserDropDownNavigationNode
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV)
+;;UserDropDownSlot;UserDropDownNavigationComponent
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;UserDropDown;;NavigationComponent;narrow
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-ProductDetails;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage2Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-LandingPage2;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductListPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-ProductListPage;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsGridPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-SearchResultsGridPage;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductGridPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-ProductGridPage;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='RegisterProductPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-ProductDetailsPage;UserDropDown;;UserDropDownSlot;true
+
+######User dropdown in header######
+
 # CMS Paragraph Component (Contact information)
 INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
 ;;registerProductSubHeading;Register product Paragraph Component;registerProductSubHeading
@@ -2043,3 +2196,49 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents
 ;;Section2RegisterPopupSlot;registerProductPopupSubHeading
 
 #### Register Product Page####
+
+
+###### Header MyApp dropdown ######
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;linkName;&linkRef;&componentRef
+;;LivestockLinkComponent;Livestock Link Component;https://am.gallagher.com ;Livestock;LivestockLinkComponent;LivestockLinkComponent
+;;FenceLinkComponent;Fence Link Component;https://am.gallagher.com/nz/product/24078/dashboard-fence ;Fence;FenceLinkComponent;FenceLinkComponent
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;LivestockNavEntry;;Livestock Nav Entry;LivestockNavNode;LivestockLinkComponent
+;FenceNavEntry;;Fence Nav Entry;FenceNavNode;FenceLinkComponent
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef);
+;LivestockNavNode;;Livestock Navigation Node;LivestockNavNode
+;FenceNavNode;;Fence Nav Node;FenceNavNode
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&componentRef);&nodeRef;children(uid, $contentCV)
+;MyAppNavNode;;Header MyApp Navigation Node;root;;MyAppNavNode;LivestockNavNode,FenceNavNode
+
+INSERT_UPDATE NavigationComponent;$contentCV[unique=true];uid[unique=true];name;styleClass;&componentRef;navigationNode(&nodeRef)
+;;MyAppDropdownNavigationComponent;MyApp Drop Down Navigation Component;;MyAppDropdownNavigationComponent;MyAppNavNode
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV)
+;;MyAppDropdownSlot;MyAppDropdownNavigationComponent
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;MyAppDropdown;;NavigationComponent;narrow
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;MyAppDropdown-ProductDetails;MyAppDropdown;;MyAppDropdownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage2Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;MyAppDropdown-LandingPage2;MyAppDropdown;;MyAppDropdownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductListPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;MyAppDropdown-ProductListPage;MyAppDropdown;;MyAppDropdownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsGridPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;MyAppDropdown-SearchResultsGridPage;MyAppDropdown;;MyAppDropdownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductGridPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;MyAppDropdown-ProductGridPage;MyAppDropdown;;MyAppDropdownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='RegisterProductPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;MyAppDropdown-ProductDetailsPage;MyAppDropdown;;MyAppDropdownSlot;true
+
+####### Header MyApp dropdown ends ######

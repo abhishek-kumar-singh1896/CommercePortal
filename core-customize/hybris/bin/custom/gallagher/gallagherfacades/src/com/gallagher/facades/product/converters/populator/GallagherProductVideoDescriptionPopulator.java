@@ -19,5 +19,6 @@ public class GallagherProductVideoDescriptionPopulator<SOURCE extends ProductMod
 	public void populate(final SOURCE productModel, final TARGET productData) throws ConversionException
 	{
 		productData.setVideoDescription(safeToString(getProductAttribute(productModel, ProductModel.VIDEODESCRIPTION)));
+		productData.setVideos(productModel.getVideos());
 	}
 }

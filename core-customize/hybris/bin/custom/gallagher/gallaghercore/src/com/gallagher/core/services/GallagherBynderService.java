@@ -21,4 +21,10 @@ public interface GallagherBynderService
 			final GallagherBynderResponse gallagherBynderResponse);
 
 	public boolean deleteDocumentMedia(GallagherBynderSyncCronJobModel cronModel, GallagherBynderResponse gallagherBynderResponse);
+
+	public boolean updateVideoMedia(final GallagherBynderSyncCronJobModel model,
+			final GallagherBynderResponse gallagherBynderResponse);
+
+	public boolean deleteVideoMedia(final GallagherBynderSyncCronJobModel model,
+			final GallagherBynderResponse gallagherBynderResponse);
 }

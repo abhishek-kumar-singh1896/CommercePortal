@@ -48,3 +48,27 @@
         </div>
     </div>
 </section>
+<div class="common-sub-tab-section pt-0">
+    <section id="scale-indicator">
+
+        <div class="scale-indicator-out">
+            <div class="container">
+                <div class="scale-indicator">
+                ${product.simulator.simulatorDescription}
+                    <!-- 1:1 aspect ratio -->
+                    <div class="embed-responsive embed-responsive-1by1">
+                        <iframe class="embed-responsive-item"
+                            src="${product.simulator.simulatorURL}"
+                            allow="autoplay; encrypted-media" allowfullscreen="allowfullscreen"
+                            border="0" height="585" width="765"></iframe>
+                        <!-- <iframe class="embed-responsive-item"
+                                            src="https://am.gallagher.com/simulator-tw3-web/story_html5.html"
+                                            allow="autoplay; encrypted-media" allowfullscreen="allowfullscreen"
+                                            border="0" height="585" width="765"></iframe> -->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

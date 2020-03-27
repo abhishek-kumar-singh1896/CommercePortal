@@ -49,6 +49,9 @@ ACC.registerProduct = {
 						success : function(result) {
 							if(result.responseStatus == "FAILURE"){
 								showFieldErrors(result.errorsMap);
+							}else if(result.responseStatus == "PRODUCTNOTFOUND"){
+								$("#productSuccessAlert").removeClass('d-none');
+								$(window).scrollTop($('.register-product-out').offset().top);
 							}else{
 								$('#registerProductForm').find('.form-control').removeClass('has-error').next().find('.error-text').addClass('d-none');
 								var titleHeader = $('#registerProductTitle').html();
