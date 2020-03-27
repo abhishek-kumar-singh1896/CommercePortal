@@ -45,7 +45,6 @@ public class RegisterProductValidator implements Validator
 		final String country = registerProductForm.getCountry();
 		final String phoneNumber = registerProductForm.getPhoneNumber();
 		final String region = registerProductForm.getRegion();
-
 		if (StringUtils.isEmpty(productSKU) || StringUtils.length(productSKU) > 7)
 		{
 			errors.rejectValue("productSku", "registerProduct.productsku.invalid");

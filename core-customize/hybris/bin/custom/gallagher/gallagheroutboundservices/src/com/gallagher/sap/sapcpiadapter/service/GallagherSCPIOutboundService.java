@@ -1,6 +1,3 @@
-/*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
- */
 package com.gallagher.sap.sapcpiadapter.service;
 
 import de.hybris.platform.core.model.user.CustomerModel;
@@ -14,11 +11,19 @@ import rx.Observable;
 
 
 /**
- * SapCpiOutboundService
+ *
+ * Service to provide SCPI operations for customer
+ *
+ * @author Vikram Bishnoi
  */
 public interface GallagherSCPIOutboundService extends SapCpiOutboundService
 {
-
+	/**
+	 * Sends customer to SCPI
+	 *
+	 * @param customer
+	 *           to be sent
+	 * @return response map
+	 */
 	Observable<ResponseEntity<Map>> sendCustomer(final CustomerModel customer);
-
 }

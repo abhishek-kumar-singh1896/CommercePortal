@@ -1,6 +1,3 @@
-/*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
- */
 package com.gallagher.sap.sapcpiadapter.service.impl;
 
 import de.hybris.platform.core.model.user.CustomerModel;
@@ -15,6 +12,11 @@ import com.gallagher.sap.sapcpiadapter.service.GallagherSCPIOutboundService;
 import rx.Observable;
 
 
+/**
+ * Implementation of {@link GallagherSCPIOutboundService}
+ *
+ * @author Vikram Bishnoi
+ */
 public class GallagherSCPIOutboundServiceImpl extends SapCpiOutboundServiceImpl implements GallagherSCPIOutboundService
 {
 
@@ -22,6 +24,9 @@ public class GallagherSCPIOutboundServiceImpl extends SapCpiOutboundServiceImpl 
 	private static final String OUTBOUND_CUSTOMER_OBJECT = "OutboundC4cCustomer";
 	private static final String OUTBOUND_CUSTOMER_DESTINATION = "scpiCustomerDestination";
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Observable<ResponseEntity<Map>> sendCustomer(final CustomerModel sapCpiOutboundCustomerModel)
 	{

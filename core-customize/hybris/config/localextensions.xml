@@ -112,7 +112,6 @@
 	<extension name="sapcoretest" />
 	<extension name="scpiconnector" />
 	<extension name="scpiconnectorbackoffice" />
-	<extension name="sapc4ccustomerb2c" />
 	<extension name="webservicescommons" />
 	<!-- <extension name="b2bsappricing" />
 	<extension name="sappricing" />

@@ -5,7 +5,8 @@
   margin-bottom: 0;
 
   &.with-logged-in-user {
-    .user-profile-dropdown-inner {
+    .user-profile-dropdown-inner,
+    .my-app-dropdown-inner {
       padding: 16px;
       color: $gray-3;
       letter-spacing: 0.25px;
@@ -71,6 +72,7 @@
 
       .btn-group {
         &.show {
+          .left-btn,
           .right-btn,
           .user-profile-btn {
             background: linear-gradient(
@@ -80,6 +82,7 @@
             );
 
             &:hover {
+              color: $gray-9;
               svg {
                 fill: $gray-9;
               }
@@ -277,10 +280,20 @@
 
       &.user-profile-dropdown {
         top: 41px !important;
-
         -webkit-transform: translateX(-50%) !important;
         transform: translateX(-50%) !important;
         left: 4% !important;
+        min-width: 175px;
+        max-width: 175px;
+        border-radius: 0;
+        box-shadow: none;
+        background-color: $gray-9;
+        color: $white;
+      }
+
+      &.my-app-dropdown {
+        top: 0 !important;
+        left: -1px !important;
         min-width: 175px;
         max-width: 175px;
         border-radius: 0;
