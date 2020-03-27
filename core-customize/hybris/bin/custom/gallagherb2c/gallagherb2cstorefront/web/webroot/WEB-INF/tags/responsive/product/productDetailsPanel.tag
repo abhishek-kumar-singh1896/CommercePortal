@@ -43,12 +43,12 @@
                             <p>${ycommerce:sanitizeHTML(product.description)}</p>
                         </div>
 
-                        <div class="d-flex">
+                        <div class="d-flex flex-wrap">
                             <div class="price-section">
                                 <div class="price-text">
                                     RRP
                                 </div>
-                                <div class="price-value">
+                                <div class="price-value mb-sm-3 mb-md-3 mb-lg-0">
                                 	<ycommerce:testId code="productDetails_productNamePrice_label_${product.code}">
 										<product:productPricePanel product="${product}" />
 									</ycommerce:testId>
