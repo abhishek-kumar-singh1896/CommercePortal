@@ -10,12 +10,19 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
-<sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
+	<sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
 	<c:url value="/register-product/verify" var="actionURL" />
 	<c:url value="/register-product/submit" var="actionURL1" />
 	<product:registerProductTitle />
 	<div class="register-product-out">
+	<div id="productSuccessAlert" class="global-alerts d-none">
+		
+		<div class="alert alert-danger alert-dismissable getAccAlert">
+					<button class="close closeAccAlert" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+					Entered product not found.</div>
+			</div>
 		<div class="container">
+		
 			<div class="row">
 				<div class="col-12">
 					<div class="breadcrumb-out">
@@ -26,15 +33,6 @@
 						</c:if>
 					</div>
 				</div>
-			</div>
-			<!-- </div> -->
-
-			<div id="productSuccessAlert" class="alert alert-success show d-none"
-				role="alert">
-				Your product is registered successfully.
-				<!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button> -->
 			</div>
 
 			<h1 class="primary-title">Product Registration</h1>
@@ -247,9 +245,9 @@
 	        </div>
 	
 	        <div class="row mb-2">
-	            <div class="col-md-3 product-image">
+	            <div class="col-3 product-image">
 	            </div>
-	            <div class="col-md-9">
+	            <div class="col-9">
 	                <div class="product-name"></div>
 	                <div class="product-id"></div>
 	            </div>

@@ -95,6 +95,7 @@
 		<script src="${commonResourcePathHtml}/js/custom/acc.preferenceOverlay.js"></script>
 		<script src="${commonResourcePathHtml}/js/custom/acc.registerProduct.js"></script>
 		<script src="${commonResourcePathHtml}/js/custom/acc.header.js"></script>
+		<script id="bynder-widgets-js" data-account-url="media.gallagher.com" data-language="en" src="https://d8ejoa1fys2rk.cloudfront.net/bynder-embed/latest/bynder-embed.js"></script>
 		<%-- Cms Action JavaScript files --%>
 		<c:forEach items="${cmsActionsJsFiles}" var="actionJsFile">
 		    <script src="${commonResourcePathHtml}/js/cms/${fn:escapeXml(actionJsFile)}"></script>

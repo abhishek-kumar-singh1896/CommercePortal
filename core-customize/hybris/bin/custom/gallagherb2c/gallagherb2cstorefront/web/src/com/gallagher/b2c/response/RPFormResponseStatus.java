@@ -24,7 +24,9 @@ public enum RPFormResponseStatus
 	 */
 	FAILURE("failure"),
 
-	SUCCESS("success");
+	SUCCESS("success"),
+
+	PRODUCTNOTFOUND("productnotfound");
 
 	/**
 	 * Code for the enum value

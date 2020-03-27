@@ -29,3 +29,15 @@
 	margin-top: 64px;
 
 }
+
+body.page-registerProduct {
+	#colorbox,
+	#cboxWrapper {
+		height: 325px!important;
+	}
+	
+	#cboxContent,
+	#cboxLoadedContent {
+		height: 320px!important;
+	}
+}

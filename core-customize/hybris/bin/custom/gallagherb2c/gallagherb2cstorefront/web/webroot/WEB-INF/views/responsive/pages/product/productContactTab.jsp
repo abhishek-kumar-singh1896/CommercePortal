@@ -26,9 +26,6 @@
 										</c:forEach>							
                            </ul>
                        </div>
-                       <div class="mt-3">
-                           <a href="/am/us/en/Animal-Management/Electric-Fencing/c/electric-fencing">See all</a>
-                       </div>
                    </div>
 
                </div>
@@ -49,9 +46,6 @@
 											<product:productReferenceList product="${reference1}" />
 										</c:forEach>
                             </ul>
-                        </div>
-                        <div class="mt-3">
-                            <a href="/am/us/en/Animal-Management/Electric-Fencing/c/electric-fencing">See all</a>
                         </div>
                     </div>
 
