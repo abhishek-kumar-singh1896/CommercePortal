@@ -1,8 +1,14 @@
 package com.gallagher.backoffice.handler;
 
+import de.hybris.platform.b2b.model.B2BCustomerModel;
+import de.hybris.platform.b2b.model.B2BUnitModel;
 import de.hybris.platform.commercefacades.user.data.CustomerData;
 import de.hybris.platform.commerceservices.strategies.CustomerNameStrategy;
+import de.hybris.platform.core.model.user.CustomerModel;
+import de.hybris.platform.servicelayer.event.EventService;
 import de.hybris.platform.servicelayer.user.impl.DefaultUserService;
+import de.hybris.platform.site.BaseSiteService;
+import de.hybris.platform.store.services.BaseStoreService;
 
 import java.util.Map;
 
@@ -13,6 +19,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
 import org.springframework.web.client.RestClientException;
 
+import com.gallagher.core.services.GallagherCurrencyService;
+import com.gallagher.core.services.GallagherLanguageService;
 import com.gallagher.keycloak.outboundservices.service.GallagherKeycloakService;
 import com.hybris.cockpitng.config.jaxb.wizard.CustomType;
 import com.hybris.cockpitng.core.model.WidgetModel;
@@ -21,6 +29,7 @@ import com.hybris.cockpitng.util.notifications.event.NotificationEvent;
 import com.hybris.cockpitng.widgets.configurableflow.ConfigurableFlowController;
 import com.hybris.cockpitng.widgets.configurableflow.FlowActionHandler;
 import com.hybris.cockpitng.widgets.configurableflow.FlowActionHandlerAdapter;
+import com.sap.hybris.sapcustomerb2b.outbound.B2BRegistrationEvent;
 
 
 /**
@@ -42,6 +51,20 @@ public class GallagherSaveCustomerHandler implements FlowActionHandler
 
 	@Resource(name = "customerNameStrategy")
 	private CustomerNameStrategy customerNameStrategy;
+
+	@Resource(name = "gallagherCurrencyService")
+	private GallagherCurrencyService gallagherCurrencyService;
+
+	@Resource(name = "gallagherLanguageService")
+	private GallagherLanguageService gallagherLanguaeService;
+
+	@Resource(name = "baseSiteService")
+	private BaseSiteService baseSiteService;
+
+	@Resource(name = "baseStoreService")
+	private BaseStoreService baseStoreService;
+
+	private EventService b2bEventService;
 
 	@Override
 	public void perform(final CustomType customType, final FlowActionHandlerAdapter adapter, final Map<String, String> parameters)
@@ -75,6 +98,7 @@ public class GallagherSaveCustomerHandler implements FlowActionHandler
 			controller.getRenderer().refreshView();
 			adapter.custom();
 			adapter.done();
+			pushToC4C(adapter);
 		}
 		catch (final RestClientException | OAuth2Exception exception)
 		{
@@ -108,4 +132,38 @@ public class GallagherSaveCustomerHandler implements FlowActionHandler
 		return notificationService;
 	}
 
+	private void pushToC4C(final FlowActionHandlerAdapter adapter)
+	{
+		if (adapter.getWidgetInstanceManager().getModel().getValue("newCust", CustomerModel.class) instanceof B2BCustomerModel)
+		{
+			final B2BRegistrationEvent b2bRegistrationEvent = new B2BRegistrationEvent();
+			final B2BCustomerModel b2bCustomer = (B2BCustomerModel) adapter.getWidgetInstanceManager().getModel().getValue("newCust",
+					CustomerModel.class);
+			final B2BUnitModel defaultB2BUnit = adapter.getWidgetInstanceManager().getModel().getValue("newCust.defaultB2BUnit",
+					B2BUnitModel.class);
+			final String isoCode = defaultB2BUnit.getAddresses().iterator().next().getCountry().getIsocode();
+			String securityB2BisoCode = new String("securityB2B");
+			securityB2BisoCode = securityB2BisoCode.concat(isoCode);
+			b2bRegistrationEvent.setCustomer(b2bCustomer);
+			b2bRegistrationEvent.setBaseStore(baseStoreService.getBaseStoreForUid(securityB2BisoCode));
+			b2bRegistrationEvent.setSite(baseSiteService.getBaseSiteForUID(securityB2BisoCode));
+			if (b2bCustomer.getSessionCurrency() != null)
+			{
+				b2bRegistrationEvent.setCurrency(b2bCustomer.getSessionCurrency());
+			}
+			else
+			{
+				b2bRegistrationEvent.setCurrency(gallagherCurrencyService.getCurrencyByIsoCode(isoCode));
+			}
+			if (b2bCustomer.getSessionLanguage() != null)
+			{
+				b2bRegistrationEvent.setLanguage(b2bCustomer.getSessionLanguage());
+			}
+			else
+			{
+				b2bRegistrationEvent.setLanguage(gallagherLanguaeService.getLanguageByisoCode("en"));
+			}
+			b2bEventService.publishEvent(b2bRegistrationEvent);
+		}
+	}
 }

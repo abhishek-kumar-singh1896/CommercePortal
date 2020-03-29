@@ -17,13 +17,13 @@
 
     <c:if test="${not empty cartData.deliveryCost}">
         <div class="col-6"><spring:theme code="basket.page.totals.delivery"/></div>
-        <div class="col-xs-6 cart-totals-right text-right"><format:price priceData="${cartData.deliveryCost}" displayFreeForZero="TRUE"/></div>
+        <div class="col-6 cart-totals-right text-right"><format:price priceData="${cartData.deliveryCost}" displayFreeForZero="TRUE"/></div>
      </c:if>
 
 
     <c:if test="${cartData.net && cartData.totalTax.value > 0 && showTax}">
         <div class="col-6"><spring:theme code="basket.page.totals.netTax"/></div>
-        <div class="col-xs-6 cart-totals-right text-right"><format:price priceData="${cartData.totalTax}"/></div>
+        <div class="col-6 cart-totals-right text-right"><format:price priceData="${cartData.totalTax}"/></div>
     </c:if>
     
 	<c:if test="${not empty cartData.quoteData}">
@@ -34,7 +34,7 @@
 		<div class="col-6 discount">
 			<spring:theme code="basket.page.quote.discounts" />
 		</div>
-		<div class="col-xs-6 cart-totals-right text-right discount">
+		<div class="col-6 cart-totals-right text-right discount">
 			<ycommerce:testId code="Quote_Totals_Savings">
 				<format:price priceData="${cartData.quoteDiscounts}" displayNegationForDiscount="true" />
 			</ycommerce:testId>
@@ -45,7 +45,7 @@
 		<div class="col-6 discount">
 			<spring:theme code="basket.page.totals.discounts"/>
 		</div>
-		<div class="col-xs-6 cart-totals-right text-right discount">
+		<div class="col-6 cart-totals-right text-right discount">
 			<ycommerce:testId code="Order_Totals_Savings">
 				<format:price priceData="${cartData.totalDiscounts}" displayNegationForDiscount="true" />
 			</ycommerce:testId>
@@ -68,14 +68,14 @@
 
 
     <c:if test="${not cartData.net}">
-        <div class="cart-totals-taxes text-right">
+        <div class="col-12 cart-totals-taxes text-right">
             <ycommerce:testId code="cart_taxes_label"><spring:theme code="basket.page.totals.grossTax" arguments="${cartData.totalTax.formattedValue}" argumentSeparator="!!!!"/></ycommerce:testId>
          </div>
     </c:if>
 
 
     <c:if test="${cartData.net && not showTax }">
-        <div class="cart-totals-taxes text-right">
+        <div class="col-12 cart-totals-taxes text-right">
             <ycommerce:testId code="cart_taxes_label"><spring:theme code="basket.page.totals.noNetTax"/></ycommerce:testId>
         </div>
     </c:if>

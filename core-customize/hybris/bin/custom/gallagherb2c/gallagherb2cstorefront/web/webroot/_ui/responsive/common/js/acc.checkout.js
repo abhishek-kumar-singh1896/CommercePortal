@@ -130,6 +130,45 @@ ACC.checkout = {
 			return false;
 		});
 
+		$('.js-continue-checkoutasguest-button').click(function ()
+				{
+					//alert('checkoutasguest');
+					var checkoutUrl = $(this).data("checkoutUrl")+"/guest";
+					//alert('checkoutUrl'+checkoutUrl);
+					cartEntriesError = ACC.pickupinstore.validatePickupinStoreCartEntires();
+					if (!cartEntriesError)
+					{
+						var expressCheckoutObject = $('.express-checkout-checkbox');
+						if(expressCheckoutObject.is(":checked"))
+						{
+							window.location = expressCheckoutObject.data("expressCheckoutUrl");
+						}
+						else
+						{
+							var flow = $('#selectAltCheckoutFlow').val();
+							if ( flow == undefined || flow == '' || flow == 'select-checkout')
+							{
+								// No alternate flow specified, fallback to default behaviour
+								window.location = checkoutUrl;
+							}
+							else
+							{
+								// Fix multistep-pci flow
+								if ('multistep-pci' == flow)
+								{
+								flow = 'multistep';
+								}
+								var pci = $('#selectPciOption').val();
+
+								// Build up the redirect URL
+								var redirectUrl = checkoutUrl + '/select-flow?flow=' + flow + '&pci=' + pci;
+								window.location = redirectUrl;
+							}
+						}
+					}
+					return false;
+				});
+
 	}
 
 };

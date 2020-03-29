@@ -3,6 +3,8 @@
  */
 package com.gallagher.b2c.controllers.pages;
 
+import static de.hybris.platform.commercefacades.constants.CommerceFacadesConstants.CONSENT_GIVEN;
+
 import de.hybris.platform.acceleratorfacades.flow.impl.SessionOverrideCheckoutFlowFacade;
 import de.hybris.platform.acceleratorservices.controllers.page.PageType;
 import de.hybris.platform.acceleratorstorefrontcommons.annotations.RequireHardLogIn;
@@ -31,7 +33,6 @@ import de.hybris.platform.commerceservices.customer.DuplicateUidException;
 import de.hybris.platform.commerceservices.util.ResponsiveUtils;
 import de.hybris.platform.servicelayer.exceptions.ModelNotFoundException;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
-import com.gallagher.b2c.controllers.ControllerConstants;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -60,8 +61,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import static de.hybris.platform.commercefacades.constants.CommerceFacadesConstants.CONSENT_GIVEN;
+import com.gallagher.b2c.controllers.ControllerConstants;
 
 
 
@@ -75,8 +75,8 @@ public class CheckoutController extends AbstractCheckoutController
 	private static final Logger LOG = Logger.getLogger(CheckoutController.class);
 	/**
 	 * We use this suffix pattern because of an issue with Spring 3.1 where a Uri value is incorrectly extracted if it
-	 * contains on or more '.' characters. Please see https://jira.springsource.org/browse/SPR-6164 for a discussion on the
-	 * issue and future resolution.
+	 * contains on or more '.' characters. Please see https://jira.springsource.org/browse/SPR-6164 for a discussion on
+	 * the issue and future resolution.
 	 */
 	private static final String ORDER_CODE_PATH_VARIABLE_PATTERN = "{orderCode:.*}";
 
@@ -136,8 +136,9 @@ public class CheckoutController extends AbstractCheckoutController
 
 	@RequestMapping(value = "/orderConfirmation/" + ORDER_CODE_PATH_VARIABLE_PATTERN, method = RequestMethod.GET)
 	@RequireHardLogIn
-	public String orderConfirmation(@PathVariable("orderCode") final String orderCode, final HttpServletRequest request,
-			final Model model, final RedirectAttributes redirectModel) throws CMSItemNotFoundException
+	public String orderConfirmation(@PathVariable("orderCode")
+	final String orderCode, final HttpServletRequest request, final Model model, final RedirectAttributes redirectModel)
+			throws CMSItemNotFoundException
 	{
 		SessionOverrideCheckoutFlowFacade.resetSessionOverrides();
 		return processOrderCode(orderCode, model, request, redirectModel);
@@ -280,7 +281,8 @@ public class CheckoutController extends AbstractCheckoutController
 		final String continueUrl = (String) getSessionService().getAttribute(WebConstants.CONTINUE_URL);
 		model.addAttribute(CONTINUE_URL_KEY, (continueUrl != null && !continueUrl.isEmpty()) ? continueUrl : ROOT);
 
-		final ContentPageModel checkoutOrderConfirmationPage = getContentPageForLabelOrId(CHECKOUT_ORDER_CONFIRMATION_CMS_PAGE_LABEL);
+		final ContentPageModel checkoutOrderConfirmationPage = getContentPageForLabelOrId(
+				CHECKOUT_ORDER_CONFIRMATION_CMS_PAGE_LABEL);
 		storeCmsPageInModel(model, checkoutOrderConfirmationPage);
 		setUpMetaDataForContentPage(model, checkoutOrderConfirmationPage);
 		model.addAttribute(ThirdPartyConstants.SeoRobots.META_ROBOTS, ThirdPartyConstants.SeoRobots.NOINDEX_NOFOLLOW);
@@ -321,5 +323,4 @@ public class CheckoutController extends AbstractCheckoutController
 	{
 		return autoLoginStrategy;
 	}
-
 }
