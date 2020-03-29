@@ -82,6 +82,7 @@ ACC.registerProduct = {
 								$("#phoneNumberInput").text(phoneNumber);
 								$('.product-name').text(productName);
 								$('.product-id').text(productCode);
+								$('.product-serial').text(serialNumber);
 								$('.product-image').prepend('<img src="'+ productImage+'" alt="'+productaltText+'"/>');
 								
 								var registerPopup = $(".register-product-modal-container").html();

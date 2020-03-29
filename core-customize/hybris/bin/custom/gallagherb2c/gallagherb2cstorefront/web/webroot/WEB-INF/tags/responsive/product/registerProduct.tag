@@ -265,6 +265,7 @@
 	            <div class="col-9">
 	                <div class="product-name"></div>
 	                <div class="product-id"></div>
+	                <div class="product-serial"></div>
 	            </div>
 	        </div>
 	        <form:form id="registerProductSubmitForm" class="registerProductSubmitForm" method="post" action="${actionURL1}" modelAttribute="registerProductSubmitForm">
