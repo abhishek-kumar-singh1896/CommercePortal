@@ -156,4 +156,12 @@
 		</property>
    </bean>
 
+	<bean id="gallagherCurrencyDao" class="com.gallagher.core.daos.impl.GallagherCurrencyDaoImpl" />
+	
+	<bean id="gallagherLanguageDao" class="com.gallagher.core.daos.impl.GallagherLanguageDaoImpl" />
+	
+	<bean id="gallagherCurrencyService" class="com.gallagher.core.services.impl.GallagherCurrencyServiceImpl" />
+	
+	<bean id="gallagherLanguageService" class="com.gallagher.core.services.impl.GallagherLanguageServiceImpl" />
+
 </beans>
