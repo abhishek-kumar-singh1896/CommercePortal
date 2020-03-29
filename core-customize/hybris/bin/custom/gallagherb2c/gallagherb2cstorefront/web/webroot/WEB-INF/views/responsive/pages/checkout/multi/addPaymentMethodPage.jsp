@@ -14,7 +14,7 @@
 <spring:htmlEscape defaultHtmlEscape="true" />
 
 <template:page pageTitle="${pageTitle}" hideHeaderLinks="true">
-
+<div class="container">
     <div class="row">
         <div class="col-sm-6">
             <div class="checkout-headline">
@@ -188,4 +188,5 @@
 		</div>
 	</div>
 
+</div>
 </template:page>

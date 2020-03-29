@@ -48,6 +48,7 @@
         </div>
     </div>
 </section>
+<c:if test="${not empty product.simulator.simulatorDescription && not empty product.simulator.simulatorURL}">
 <div class="common-sub-tab-section pt-0">
     <section id="scale-indicator">
 
@@ -72,3 +73,4 @@
         </div>
     </section>
 </div>
+</c:if>
