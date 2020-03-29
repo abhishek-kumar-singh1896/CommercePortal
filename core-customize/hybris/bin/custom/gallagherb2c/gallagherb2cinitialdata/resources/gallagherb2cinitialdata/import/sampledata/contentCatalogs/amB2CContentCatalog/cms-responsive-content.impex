@@ -2069,12 +2069,12 @@ INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@medi
 ;;tm-bg;tm-bg.jpeg;$siteResource/images/theme/tm-bg.jpeg;image/jpeg;Gallagher
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;linkName;&linkRef;&componentRef
-;;NZSearchComponent;NZ Search Component;https://am.gallagher.com/nz/find-a-stockist ;Search;NZSearchComponent;NZSearchComponent
-;;AUSearchComponent;AU Search Component;https://am.gallagher.com/au/find-a-stockist ;Search;AUSearchComponent;AUSearchComponent
-;;USSearchComponent;US Search Component;https://am.gallagher.com/us/find-a-dealer ;Search;USSearchComponent;USSearchComponent
+;;NZENSearchComponent;NZ Search Component;https://am.gallagher.com/nz/find-a-stockist ;Search;NZENSearchComponent;NZENSearchComponent
+;;AUENSearchComponent;AU Search Component;https://am.gallagher.com/au/find-a-stockist ;Search;AUENSearchComponent;AUENSearchComponent
+;;USENSearchComponent;US Search Component;https://am.gallagher.com/us/find-a-dealer ;Search;USENSearchComponent;USENSearchComponent
 ;;CAENSearchComponent;CA EN Search Component;https://am.gallagher.com/en-ca/find-a-dealer ;Search;CAENSearchComponent;CAENSearchComponent
 ;;CAFRSearchComponent;CA FR Search Component;https://am.gallagher.com/fr-ca/trouver-un-fournisseur ;Search;CAFRSearchComponent;CAFRSearchComponent
-;;GlobalSearchComponent;Global Search Component;https://am.gallagher.com/global/find-a-distributor ;Search;GlobalSearchComponent;GlobalSearchComponent
+;;GLOBALENSearchComponent;Global Search Component;https://am.gallagher.com/global/find-a-distributor ;Search;GLOBALENSearchComponent;GLOBALENSearchComponent
 
 ;;NZTMLinkComp;NZ Territory Manager Link Component;https://am.gallagher.com/nz/about-us/our-people/territory-managers ;Or Find Your Nearest Territory Manager;NZTMLinkComp;NZTMLinkComp
 ;;AUTMLinkComp;AU Territory Manager Link Component;https://am.gallagher.com/au/about-us/our-people/territory-managers ;Or Find Your Nearest Territory Manager;AUTMLinkComp;AUTMLinkComp
@@ -2083,12 +2083,12 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
-;NZSearchNavEntry;;NZ Search Nav Entry;NZSearchNavNode;NZSearchComponent
-;AUSearchNavEntry;;AU Search Nav Entry;AUSearchNavNode;AUSearchComponent
-;USSearchNavEntry;;US Search Nav Entry;USSearchNavNode;USSearchComponent
+;NZSearchNavEntry;;NZ Search Nav Entry;NZSearchNavNode;NZENSearchComponent
+;AUSearchNavEntry;;AU Search Nav Entry;AUSearchNavNode;AUENSearchComponent
+;USSearchNavEntry;;US Search Nav Entry;USSearchNavNode;USENSearchComponent
 ;CAENSearchNavEntry;;CA EN Search Nav Entry;CAENSearchNavNode;CAENSearchComponent
 ;CAFRSearchNavEntry;;CA FR Search Nav Entry;CAFRSearchNavNode;CAFRSearchComponent
-;GlobalSearchNavEntry;;Global Search Nav Entry;GlobalSearchNavNode;GlobalSearchComponent
+;GlobalSearchNavEntry;;Global Search Nav Entry;GlobalSearchNavNode;GLOBALENSearchComponent
 
 ;NZTMNavEntry;;NZ Territory Manager Nav Entry;NZTMNavNode;NZTMLinkComp
 ;AUTMNavEntry;;AU Territory Manager Nav Entry;AUTMNavNode;AUTMLinkComp
