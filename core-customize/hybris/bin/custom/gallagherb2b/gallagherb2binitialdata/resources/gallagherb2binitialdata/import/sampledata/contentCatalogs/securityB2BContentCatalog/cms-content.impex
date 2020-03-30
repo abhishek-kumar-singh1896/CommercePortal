@@ -1635,5 +1635,8 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 # CMS Link Components
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];$category;$product;
 ;;AccountSupportTicketHistoryLink;AccountSupportTicketHistoryLink;/my-account/support-tickets;AccountSupportTicketHistoryLink;AccountSupportTicketHistoryLink;;;;
+
+INSERT_UPDATE CMSUserGroupRestriction;$contentCV[unique=true];uid[unique=true];name;userGroups(uid);includeSubgroups;components(uid,$contentCV)
+;;SupportTicketUserGroupRestriction;Account Support Ticket User Group Restriction;b2bcustomergroup,b2badmingroup;true;AccountSupportTicketHistoryLink
 ### customerticketingaddon END
 
