@@ -50,6 +50,10 @@
 		<property name="dataSheet" type="java.util.Collection&lt;de.hybris.platform.commercefacades.product.data.ImageData>"/>
 		<property name="others" type="java.util.Collection&lt;de.hybris.platform.commercefacades.product.data.ImageData>"/>
 		<property name="animalCompatibility" type="java.util.List&lt;String&gt;" />
+		<property name="sparePartsReferenceHeading" type="String" />
+		<property name="sparePartsReferenceSubHeading" type="String" />
+		<property name="othersReferenceHeading" type="String" />
+		<property name="othersReferenceSubHeading" type="String" />
 	</bean>
 
 	<bean class="de.hybris.platform.commerceservices.search.facetdata.ProductCategorySearchPageData&lt;STATE, RESULT, CATEGORY>">

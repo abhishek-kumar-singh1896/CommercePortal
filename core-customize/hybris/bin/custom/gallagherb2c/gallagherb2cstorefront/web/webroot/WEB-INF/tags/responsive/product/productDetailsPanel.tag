@@ -46,7 +46,9 @@
                         <div class="d-flex flex-wrap">
                             <div class="price-section">
                                 <div class="price-text">
+                                <c:if test="${not empty product.price}">
                                     RRP
+                                </c:if>
                                 </div>
                                 <div class="price-value mb-sm-3 mb-md-3 mb-lg-0">
                                 	<ycommerce:testId code="productDetails_productNamePrice_label_${product.code}">

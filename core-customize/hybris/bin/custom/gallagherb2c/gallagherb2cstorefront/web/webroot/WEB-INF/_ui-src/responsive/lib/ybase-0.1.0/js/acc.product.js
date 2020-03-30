@@ -87,7 +87,13 @@ ACC.product = {
 
         ACC.colorbox.open(titleHeader, {
             html: cartResult.addToCartLayer,
-            width: "460px"
+            width: "460px",
+            onLoad:function() {
+		        $('html, body').css('overflow', 'hidden'); // page scrollbars off
+		    }, 
+		    onClosed:function() {
+		        $('html, body').css('overflow', ''); // page scrollbars on
+		    }
         });
 
         var productCode = $('[name=productCodePost]', formElement).val();

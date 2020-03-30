@@ -49,10 +49,13 @@ ACC.registerProduct = {
 						success : function(result) {
 							if(result.responseStatus == "FAILURE"){
 								showFieldErrors(result.errorsMap);
+								$("#productSuccessAlert").addClass('d-none');
 							}else if(result.responseStatus == "PRODUCTNOTFOUND"){
 								$("#productSuccessAlert").removeClass('d-none');
+								$(".global-alerts").addClass('d-none');
 								$(window).scrollTop($('.register-product-out').offset().top);
 							}else{
+								$("#productSuccessAlert").addClass('d-none');
 								$('#registerProductForm').find('.form-control').removeClass('has-error').next().find('.error-text').addClass('d-none');
 								var titleHeader = $('#registerProductTitle').html();
 								var productCode=result.productCode;
@@ -79,10 +82,13 @@ ACC.registerProduct = {
 								document.getElementById("countryInput").value = country;
 								document.getElementById("phoneNumberInput").value = phoneNumber;
 								document.getElementById("regionInput").value = region;
+								var image='<img src="'+ productImage+'" alt="'+productaltText+'"/>';
 								$("#phoneNumberInput").text(phoneNumber);
-								$('.product-name').text(productName);
-								$('.product-id').text(productCode);
-								$('.product-image').prepend('<img src="'+ productImage+'" alt="'+productaltText+'"/>');
+								$('#product-name').text(productName);
+								$('#product-id').text(productCode);
+								$('#product-serial').text(serialNumber);
+								$('.product-image').find('img').remove();
+								$('.product-image').prepend(image);
 								
 								var registerPopup = $(".register-product-modal-container").html();
 						        ACC.colorbox.open(titleHeader, {

@@ -6,6 +6,7 @@ package com.gallagher.facades;
 import java.util.List;
 
 import com.gallagher.facades.product.data.RegisteredProductData;
+import com.gallagher.outboundservices.request.dto.RegisterProductRequest;
 
 
 /**
@@ -22,4 +23,11 @@ public interface GallagherRegisteredProductsFacade
 	 *
 	 */
 	List<RegisteredProductData> getRegisteredProducts();
+
+	/**
+	 * Send Registered Product Information to c4c
+	 *
+	 * @param request
+	 */
+	void registerProduct(RegisterProductRequest request);
 }
