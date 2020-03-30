@@ -10,7 +10,8 @@
 <c:url value="/cart/checkout" var="checkoutUrl" scope="session"/>
 <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-7 col-lg-6 pull-right cart-actions--print">
-        <div class="express-checkout">
+    <div></div>
+<%--         <div class="express-checkout">
             <div class="headline"><spring:theme code="text.expresscheckout.header"/></div>
             <strong><spring:theme code="text.expresscheckout.title"/></strong>
             <ul>
@@ -29,11 +30,11 @@
                      </div>
                 </c:if>
            </sec:authorize>
-        </div>
+        </div> --%>
     </div>
 </div>
 
-<div class="cart__actions">
+<div class="cart__actions mt-4 mb-4">
     <div class="row">
         <div class="col-sm-6  pull-right">
             
@@ -72,7 +73,7 @@
 
 
 <c:if test="${showCheckoutStrategies && not empty cartData.entries}" >
-    <div class="cart__actions">
+ <%--    <div class="cart__actions">
         <div class="row">
             <div class="col-12 mb-4">
             	<div class="float-right">
@@ -91,8 +92,8 @@
                     </c:if>
                     <option value="sop"><spring:theme code="checkout.checkout.multi.pci-sop" text="PCI-SOP" /></option>
                 </select>
-            	</div>
+            	</div> 
             </div>
         </div>
-    </div>
+    </div>--%>
 </c:if>

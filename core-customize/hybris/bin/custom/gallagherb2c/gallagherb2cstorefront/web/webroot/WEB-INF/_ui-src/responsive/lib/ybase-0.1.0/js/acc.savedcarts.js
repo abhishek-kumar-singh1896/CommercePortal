@@ -165,6 +165,12 @@ ACC.savedcarts = {
                 href: "#saveCart",
                 inline: true,
                 width: "620px",
+                onLoad:function() {
+			        $('html, body').css('overflow', 'hidden'); // page scrollbars off
+			    }, 
+			    onClosed:function() {
+			        $('html, body').css('overflow', ''); // page scrollbars on
+			    },
                 onOpen: function () {
                     if ($('#saveCartName').val()) {
                         ACC.savedcarts.disableSaveCartButton(false);

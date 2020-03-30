@@ -15,6 +15,12 @@ ACC.payment = {
 					width:"320px",
 					title: titleHtml,
 					close:'<span class="glyphicon glyphicon-remove"></span>',
+					onLoad:function() {
+				        $('html, body').css('overflow', 'hidden'); // page scrollbars off
+				    }, 
+				    onClosed:function() {
+				        $('html, body').css('overflow', ''); // page scrollbars on
+				    },
 					onComplete: function(){
 					}
 				});

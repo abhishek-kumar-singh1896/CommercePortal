@@ -63,7 +63,8 @@
 
             <%-- product image --%>
             <div class="item__image">
-                <a href="${fn:escapeXml(productUrl)}"><product:productPrimaryImage product="${entry.product}" format="thumbnail"/></a>
+                <a href="${fn:escapeXml(productUrl)}">
+                <product:productPrimaryImage product="${entry.product}" format="product"/></a>
             </div>
 
             <%-- product name, code, promotions --%>
