@@ -47,7 +47,7 @@
             <wz:step id="step2" label="create.customer.essential.label" sublabel="create.customer.essential.sublabel" merge-mode="REPLACE">
                 <wz:content id="step2.content">
                     <wz:property-list root="newCust">
-                        <wz:property qualifier="uid" type="java.lang.String" label="create.customer.verification.email" read-only="true"/>
+<!--                         <wz:property qualifier="uid" type="java.lang.String" label="create.customer.verification.email" read-only="true"/> -->
                         <wz:property qualifier="customerID" type="java.lang.String" label="create.customer.verification.customerID"/>
                         <wz:property qualifier="name" type="java.lang.String" label="create.customer.verification.name"/>
                         <wz:property qualifier="description" type="java.lang.String" label="create.customer.verification.description"/>
@@ -142,6 +142,15 @@
                     <editorArea:attribute qualifier="variantForImage" />
                     <editorArea:attribute qualifier="eligibleForLatAm" />
                 </editorArea:section>
+                <editorArea:section name="hmc.section.gallagher.ProductReferences.SpareParts">
+                	<editorArea:attribute qualifier="sparePartsReferenceHeading" />
+                	<editorArea:attribute qualifier="sparePartsReferenceSubHeading" />
+                </editorArea:section>
+                <editorArea:section name="hmc.section.gallagher.ProductReferences.Others">
+                	<editorArea:attribute qualifier="othersReferenceHeading" />
+                	<editorArea:attribute qualifier="othersReferenceSubHeading" />
+                </editorArea:section>
+                
                 <editorArea:section name="hmc.section.gallagher.Component.Image">
                     <editorArea:attribute editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)"
                                           qualifier="imageDescription"/>
@@ -199,7 +208,7 @@
 	        <wz:step id="step2" label="create.customer.essential.label" sublabel="create.customer.essential.sublabel">
 	            <wz:content id="step2.content">
 	                <wz:property-list root="newCust" merge-mode="REPLACE">
-	                    <wz:property qualifier="uid" type="java.lang.String" label="create.customer.verification.email" readonly="true"/>
+<!-- 	                    <wz:property qualifier="uid" type="java.lang.String" label="create.customer.verification.email" readonly="true"/> -->
 	                    <wz:property qualifier="customerID" type="java.lang.String" label="create.customer.verification.customerID"/>
 	                    <wz:property qualifier="name" type="java.lang.String" label="create.customer.verification.name"/>
 	                    <wz:property qualifier="description" type="java.lang.String" label="create.customer.verification.description"/>
