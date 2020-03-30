@@ -2011,15 +2011,6 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents
 
 #####Product details page impex end #####
 
-###dummy icons for PDP####
-
-INSERT_UPDATE Media;mediaFormat(qualifier);$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];mime[default='image/jpeg'];realfilename;folder(qualifier)[default='images'];altText
-;;;aps.jpg;$siteResource/images/banners/homepage/responsive/aps-icon.png;;aps.jpg;;"aps"
-;;;lcd.jpg;$siteResource/images/banners/homepage/responsive/lcd-icon.png;;lcd.jpg;;"lcd"
-;;;eid.jpg;$siteResource/images/banners/homepage/responsive/eid-icon.png;;eid.jpg;;"eid"
-
-###dummy icons for PDP####
-
 #### Register Product Page####
 INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='RegisterProductPageTemplate'];validComponentTypes(code);compTypeGroup(code)
 ;SiteLogo;;;logo
