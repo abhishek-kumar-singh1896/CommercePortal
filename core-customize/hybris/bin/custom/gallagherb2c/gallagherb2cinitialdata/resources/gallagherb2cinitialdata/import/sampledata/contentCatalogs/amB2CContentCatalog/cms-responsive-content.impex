@@ -513,7 +513,7 @@ INSERT_UPDATE ViewStoreAction;$contentCV[unique=true];uid[unique=true];url;name;
 ;;ViewStoreAction;;View Store Action;ViewStoreAction
 
 # Content Slots
-INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];active;cmsComponents(&componentRef)[mode=append]
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];active;cmsComponents(&componentRef)
 ;;TopHeaderSlot;true;CookieNotificationComponent,AnonymousConsentManagementComponent
 
 
