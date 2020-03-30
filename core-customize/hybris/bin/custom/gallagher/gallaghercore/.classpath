@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry exported="true" kind="src" path="/acceleratorcms"/>
-	<classpathentry exported="true" kind="src" path="/solrserver"/>
 	<classpathentry kind="src" output="eclipsebin/classes" path="src"/>
 	<classpathentry kind="src" output="eclipsebin/classes" path="testsrc"/>
 	<classpathentry kind="src" output="eclipsebin/classes" path="gensrc"/>
-	<classpathentry kind="src" path="/platform"/>
-	<classpathentry kind="src" path="/gallagheroutboundservices"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
 			<attribute name="module" value="true"/>
@@ -28,5 +24,10 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="resources"/>
+	<classpathentry kind="src" path="/gallagheroutboundservices"/>
+	<classpathentry kind="src" path="/platform"/>
+	<classpathentry kind="src" path="/solrserver"/>
+	<classpathentry kind="src" path="/acceleratorcms"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/sapcustomerb2b"/>
 	<classpathentry kind="output" path="eclipsebin/notused"/>
 </classpath>
