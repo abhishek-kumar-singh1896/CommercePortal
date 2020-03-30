@@ -262,7 +262,7 @@
 	        <div class="row mb-2">
 	            <div class="col-3 product-image">
 	            </div>
-	            <div class="col-9">
+	            <div class="col-9 register-product-right-section">
 	                <div id="product-name" class="product-name"></div>
 	                <div id="product-id" class="product-name"></div>
 	                <div id="product-serial" class="product-id"></div>

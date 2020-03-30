@@ -82,11 +82,13 @@ ACC.registerProduct = {
 								document.getElementById("countryInput").value = country;
 								document.getElementById("phoneNumberInput").value = phoneNumber;
 								document.getElementById("regionInput").value = region;
+								var image='<img src="'+ productImage+'" alt="'+productaltText+'"/>';
 								$("#phoneNumberInput").text(phoneNumber);
 								$('#product-name').text(productName);
 								$('#product-id').text(productCode);
 								$('#product-serial').text(serialNumber);
-								$('.product-image').prepend('<img src="'+ productImage+'" alt="'+productaltText+'"/>');
+								$('.product-image').find('img').remove();
+								$('.product-image').prepend(image);
 								
 								var registerPopup = $(".register-product-modal-container").html();
 						        ACC.colorbox.open(titleHeader, {
