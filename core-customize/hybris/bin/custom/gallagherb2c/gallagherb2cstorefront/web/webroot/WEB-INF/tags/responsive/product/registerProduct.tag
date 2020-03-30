@@ -15,7 +15,7 @@
 	<c:url value="/register-product/submit" var="actionURL1" />
 	<product:registerProductTitle />
 	<div class="register-product-out">
-	<div id="productSuccessAlert" class="global-alerts d-none">
+	<div id="productSuccessAlert" class="d-none">
 		
 		<div class="alert alert-danger alert-dismissable getAccAlert">
 					<button class="close closeAccAlert" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -45,7 +45,7 @@
 			</div>
 
 			<h2 class="secondary-title mt-5">Product will be registered
-				under (${user.firstName}&nbsp${user.lastName})</h2>
+				under ${user.firstName}&nbsp${user.lastName}</h2>
 			<%--  action="${actionURL}"  --%>
 			<form:form method="post" action="${actionURL}"
 				id="registerProductForm" class="registerProduct_form"
@@ -262,9 +262,10 @@
 	        <div class="row mb-2">
 	            <div class="col-3 product-image">
 	            </div>
-	            <div class="col-9">
-	                <div class="product-name"></div>
-	                <div class="product-id"></div>
+	            <div class="col-9 register-product-right-section">
+	                <div id="product-name" class="product-name"></div>
+	                <div id="product-id" class="product-name"></div>
+	                <div id="product-serial" class="product-id"></div>
 	            </div>
 	        </div>
 	        <form:form id="registerProductSubmitForm" class="registerProductSubmitForm" method="post" action="${actionURL1}" modelAttribute="registerProductSubmitForm">
