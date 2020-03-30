@@ -4,13 +4,17 @@
 package com.gallagher.facades.impl;
 
 import de.hybris.platform.servicelayer.dto.converter.Converter;
+import de.hybris.platform.servicelayer.user.UserService;
 
 import java.util.List;
 
-import com.gallagher.core.dtos.GallagherRegisteredProductDto;
-import com.gallagher.core.services.GallagherCustomerService;
+import javax.annotation.Resource;
+
+import com.gallagher.c4c.outboundservices.facade.GallagherC4COutboundServiceFacade;
 import com.gallagher.facades.GallagherRegisteredProductsFacade;
 import com.gallagher.facades.product.data.RegisteredProductData;
+import com.gallagher.outboundservices.request.dto.RegisterProductRequest;
+import com.gallagher.outboundservices.response.dto.GallagherRegisteredProduct;
 
 
 /**
@@ -18,8 +22,13 @@ import com.gallagher.facades.product.data.RegisteredProductData;
  */
 public class GallagherRegisteredProductsFacadeImpl implements GallagherRegisteredProductsFacade
 {
-	private Converter<GallagherRegisteredProductDto, RegisteredProductData> registeredProductsConverter;
-	private GallagherCustomerService gallagherCustomerService;
+	private Converter<GallagherRegisteredProduct, RegisteredProductData> registeredProductsConverter;
+
+	@Resource(name = "gallagherC4COutboundServiceFacade")
+	private GallagherC4COutboundServiceFacade gallagherC4COutboundServiceFacade;
+
+	@Resource(name = "userService")
+	private UserService userService;
 
 
 	/**
@@ -28,28 +37,25 @@ public class GallagherRegisteredProductsFacadeImpl implements GallagherRegistere
 	@Override
 	public List<RegisteredProductData> getRegisteredProducts()
 	{
-		return getRegisteredProductsConverter().convertAll(getGallagherCustomerService().getRegisteredProductsFromC4C());
+		return getRegisteredProductsConverter()
+				.convertAll(gallagherC4COutboundServiceFacade.getRegisteredProductFromC4C(userService.getCurrentUser().getUid()));
 	}
 
-	protected Converter<GallagherRegisteredProductDto, RegisteredProductData> getRegisteredProductsConverter()
+	protected Converter<GallagherRegisteredProduct, RegisteredProductData> getRegisteredProductsConverter()
 	{
 		return registeredProductsConverter;
 	}
 
 	public void setRegisteredProductsConverter(
-			final Converter<GallagherRegisteredProductDto, RegisteredProductData> registeredProductsConverter)
+			final Converter<GallagherRegisteredProduct, RegisteredProductData> registeredProductsConverter)
 	{
 		this.registeredProductsConverter = registeredProductsConverter;
 	}
 
-	protected GallagherCustomerService getGallagherCustomerService()
+	@Override
+	public void registerProduct(final RegisterProductRequest request)
 	{
-		return gallagherCustomerService;
-	}
-
-	public void setGallagherCustomerService(final GallagherCustomerService gallagherCustomerService)
-	{
-		this.gallagherCustomerService = gallagherCustomerService;
+		gallagherC4COutboundServiceFacade.registerProduct(request);
 	}
 
 }

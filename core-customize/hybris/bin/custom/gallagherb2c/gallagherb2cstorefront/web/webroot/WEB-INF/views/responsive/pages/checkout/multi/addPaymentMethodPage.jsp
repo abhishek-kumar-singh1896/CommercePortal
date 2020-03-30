@@ -46,7 +46,7 @@
 
                                             <div class="form-group">
                                                 <c:if test="${not empty paymentInfos}">
-                                                    <button type="button" class="btn btn-default btn-block js-saved-payments"><spring:theme code="checkout.multi.paymentMethod.addPaymentDetails.useSavedCard"/></button>
+                                                    <button type="button" class="btn btn-default btn-block js-saved-payments"><spring:theme code="checkout.multi.paymentMethod.addPaymentDetails.useSavedCard"/>hiiii</button>
                                                 </c:if>
                                             </div>
 
@@ -66,10 +66,10 @@
                                             <fieldset id="startDate">
                                                 <label for="" class="control-label"><spring:theme code="payment.startDate"/></label>
                                                 <div class="row">
-                                                    <div class="col-xs-6">
+                                                    <div class="col-6">
                                                         <formElement:formSelectBox idKey="StartMonth" selectCSSClass="form-control" labelKey="payment.month" path="card_startMonth" mandatory="true" skipBlank="false" skipBlankMessageKey="payment.month" items="${months}" tabindex="4"/>
                                                     </div>
-                                                    <div class="col-xs-6">
+                                                    <div class="col-6">
                                                         <formElement:formSelectBox idKey="StartYear" selectCSSClass="form-control" labelKey="payment.year" path="card_startYear" mandatory="true" skipBlank="false" skipBlankMessageKey="payment.year" items="${startYears}" tabindex="7"/>
                                                     </div>
                                                 </div>

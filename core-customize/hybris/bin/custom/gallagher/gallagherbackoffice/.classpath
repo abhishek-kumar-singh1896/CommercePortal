@@ -10,5 +10,6 @@
 	<classpathentry kind="src" output="eclipsebin/classes" path="gensrc"/>
 	<classpathentry kind="src" path="/platform"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/gallagheroutboundservices"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/sapcustomerb2b"/>
 	<classpathentry kind="output" path="eclipsebin/notused"/>
 </classpath>

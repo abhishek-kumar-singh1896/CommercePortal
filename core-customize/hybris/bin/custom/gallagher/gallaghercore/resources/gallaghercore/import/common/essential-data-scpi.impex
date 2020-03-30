@@ -42,6 +42,18 @@ $contactCollectionUrl = https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com/gw/o
 $contactCollectionVersion = v=1      
                                      
 #****************************#       
+#*** Register Product URL ***#       
+#****************************#       
+$registerProductUrl = https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com/gw/odata/SAP/GGL_C4C_ODATAAPI
+$registerProductVersion = v=1        
+                                     
+#*****************************************#
+#*** Registered Product Collection URL ***#
+#*****************************************#
+$registeredProductCollectionUrl = https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com/gw/odata/SAP/GGL_C4C_ODATAAPI
+$registeredProductCollectionVersion = v=1
+                                     
+#****************************#       
 #***  Destination Target  ***#       
 #****************************#       
 INSERT_UPDATE DestinationTarget ; id[unique = true]     
@@ -50,72 +62,76 @@ INSERT_UPDATE DestinationTarget ; id[unique = true]
 #******************#            
 #***  Endpoints ***#            
 #******************#            
-INSERT_UPDATE Endpoint ; id[unique = true]             ; version[unique = true] ; specUrl                                            ; name                          
-                       ; scpiCustomerEndpoint          ; unknown                ; "$customerUrl;$customerVersion/"                   ; scpiCustomerEndpoint          
-                       ; scpiB2BCustomerEndpoint       ; unknown                ; "$b2bCustomerUrl;$b2bCustomerVersion/"             ; scpiB2BCustomerEndpoint       
-                       ; scpiOrderEndpoint             ; unknown                ; "$orderUrl;$orderVersion/"                         ; scpiOrderEndpoint             
-                       ; scpiOrderCancellationEndpoint ; unknown                ; "$cancelOrderUrl;$cancelOrderVersion/"             ; scpiOrderCancellationEndpoint 
-                       ; scpiContactCollectionEndpoint ; unknown                ; "$contactCollectionUrl;$contactCollectionVersion/" ; scpiContactCollectionEndpoint 
+INSERT_UPDATE Endpoint ; id[unique = true]                       ; version[unique = true] ; specUrl                                                    ; name                                    
+                       ; scpiCustomerEndpoint                    ; unknown                ; "$customerUrl;$customerVersion/"                           ; scpiCustomerEndpoint                    
+                       ; scpiB2BCustomerEndpoint                 ; unknown                ; "$b2bCustomerUrl;$b2bCustomerVersion/"                     ; scpiB2BCustomerEndpoint                 
+                       ; scpiOrderEndpoint                       ; unknown                ; "$orderUrl;$orderVersion/"                                 ; scpiOrderEndpoint                       
+                       ; scpiOrderCancellationEndpoint           ; unknown                ; "$cancelOrderUrl;$cancelOrderVersion/"                     ; scpiOrderCancellationEndpoint           
+                       ; scpiContactCollectionEndpoint           ; unknown                ; "$contactCollectionUrl;$contactCollectionVersion/"         ; scpiContactCollectionEndpoint           
+                       ; scpiRegisterProductEndpoint             ; unknown                ; "$registerProductUrl;$registerProductVersion/"             ; scpiRegisterProductEndpoint             
+                       ; scpiRegisteredProductCollectionEndpoint ; unknown                ; "$registerProductUrl;$registeredProductCollectionVersion/" ; scpiRegisteredProductCollectionEndpoint 
                        
                        
 #*******************************#
 #***  Consumed Destinations  ***#
 #*******************************#
-INSERT_UPDATE ConsumedDestination ; id[unique = true]                ; url                                                                    ; endpoint(id, version)                 ; credential(id)      ; additionalProperties(key, value)[map-delimiter = |]         ; destinationTarget(id)[default = scpiDestinationTarget] 
-                                  ; scpiCustomerDestination          ; "$customerUrl;$customerVersion/Customers"                              ; scpiCustomerEndpoint:unknown          ; scpiOauthCredential ; "csrfURL->$customerUrl;$customerVersion/"                   ;                                                        
-                                  ; scpiB2BCustomerDestination       ; "$customerUrl;$customerVersion/Customers"                              ; scpiB2BCustomerEndpoint:unknown       ; scpiOauthCredential ; "csrfURL->$customerUrl;$b2bCustomerVersion/"             ;                                                        
-                                  ; scpiOrderDestination             ; "$orderUrl;$orderVersion/SAPCpiOutboundOrders"                         ; scpiOrderEndpoint:unknown             ; scpiOauthCredential ; "csrfURL->$orderUrl;$orderVersion/"                         ;                                                        
-                                  ; scpiOrderCancellationDestination ; "$cancelOrderUrl;$cancelOrderVersion/SAPCpiOutboundOrderCancellations" ; scpiOrderCancellationEndpoint:unknown ; scpiOauthCredential ; "csrfURL->$cancelOrderUrl;$cancelOrderVersion/"             ;                                                        
-                                  ; scpiContactCollectionDestination ; "$contactCollectionUrl;$contactCollectionVersion/ContactCollection"    ; scpiContactCollectionEndpoint:unknown ; scpiOauthCredential ; "csrfURL->$contactCollectionUrl;$contactCollectionVersion/" ;                                                        
+INSERT_UPDATE ConsumedDestination ; id[unique = true]                          ; url                                                                                     ; endpoint(id, version)                           ; credential(id)      ; additionalProperties(key, value)[map-delimiter = |]                             ; destinationTarget(id)[default = scpiDestinationTarget] 
+                                  ; scpiCustomerDestination                    ; "$customerUrl;$customerVersion/Customers"                                               ; scpiCustomerEndpoint:unknown                    ; scpiOauthCredential ; "csrfURL->$customerUrl;$customerVersion/"                                       ;                                                        
+                                  ; scpiB2BCustomerDestination                 ; "$customerUrl;$customerVersion/Customers"                                               ; scpiB2BCustomerEndpoint:unknown                 ; scpiOauthCredential ; "csrfURL->$customerUrl;$b2bCustomerVersion/"                                    ;                                                        
+                                  ; scpiOrderDestination                       ; "$orderUrl;$orderVersion/SAPCpiOutboundOrders"                                          ; scpiOrderEndpoint:unknown                       ; scpiOauthCredential ; "csrfURL->$orderUrl;$orderVersion/"                                             ;                                                        
+                                  ; scpiOrderCancellationDestination           ; "$cancelOrderUrl;$cancelOrderVersion/SAPCpiOutboundOrderCancellations"                  ; scpiOrderCancellationEndpoint:unknown           ; scpiOauthCredential ; "csrfURL->$cancelOrderUrl;$cancelOrderVersion/"                                 ;                                                        
+                                  ; scpiContactCollectionDestination           ; "$contactCollectionUrl;$contactCollectionVersion/ContactCollection"                     ; scpiContactCollectionEndpoint:unknown           ; scpiOauthCredential ; "csrfURL->$contactCollectionUrl;$contactCollectionVersion/"                     ;                                                        
+                                  ; scpiRegisterProductDestination             ; "$registerProductUrl;$registerProductVersion/ContactCollection"                         ; scpiRegisterProductEndpoint:unknown             ; scpiOauthCredential ; "csrfURL->$registerProductUrl;$registerProductVersion/"                         ;                                                        
+                                  ; scpiRegisteredProductCollectionDestination ; "$registeredProductCollectionUrl;$registeredProductCollectionVersion/ContactCollection" ; scpiRegisteredProductCollectionEndpoint:unknown ; scpiOauthCredential ; "csrfURL->$registeredProductCollectionUrl;$registeredProductCollectionVersion/" ;                                                        
                                   
 INSERT_UPDATE IflowConfiguration ; iflowKey[unique=true]              ; iflowUrl                                                           
                                  ; ZGGL_REPLICATE_B2C_Customer_To_C4C ; /gw/odata/SAP/ZGGL-REPLICATE-CUSTOMER-FROM-SAP-COMMERCE-TO-SAP-C4C ; v=1 
                                  
 INSERT_UPDATE SAPCPIConfiguration ; iflowConfiguration(iflowKey)       ; name[unique=true] ; userName    ; password        ; baseUrl                                             
                                   ; ZGGL_REPLICATE_B2C_Customer_To_C4C ; CPI_DEV           ; S0018963764 ; Integration123! ; https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com 
-								  
-
-#******************************#
-#*** Update Inbound Product ***#
-#******************************#                                  
-INSERT_UPDATE IntegrationObjectItem; integrationObject(code)[unique = true]; code[unique = true]  ; type(code)
-                                   ; InboundProduct                        ; BaseStore            ; BaseStore
-                                   
-INSERT_UPDATE IntegrationObjectItemAttribute; integrationObjectItem(integrationObject(code), code)[unique = true]; attributeName[unique = true]; attributeDescriptor(enclosingType(code), qualifier); returnIntegrationObjectItem(integrationObject(code), code); unique[default = false]; autoCreate[default = false] 
-; InboundProduct:Product                                             ; baseStores    		         ; Product:baseStores			                          ; InboundProduct:BaseStore                                    
-; InboundProduct:BaseStore                                           ; uid                           ; BaseStore:uid                                          ;     
-
-
+                                  
+                                  
+#******************************#  
+#*** Update Inbound Product ***#  
+#******************************#  
+INSERT_UPDATE IntegrationObjectItem ; integrationObject(code)[unique = true] ; code[unique = true] ; type(code) 
+                                    ; InboundProduct                         ; BaseStore           ; BaseStore  
+                                    
+INSERT_UPDATE IntegrationObjectItemAttribute ; integrationObjectItem(integrationObject(code), code)[unique = true] ; attributeName[unique = true] ; attributeDescriptor(enclosingType(code), qualifier) ; returnIntegrationObjectItem(integrationObject(code), code) ; unique[default = false] ; autoCreate[default = false] 
+                                             ; InboundProduct:Product                                              ; baseStores                   ; Product:baseStores                                  ; InboundProduct:BaseStore                                   
+                                             ; InboundProduct:BaseStore                                            ; uid                          ; BaseStore:uid                                       ;                                                            
+                                             
+                                             
 ########################### B2C Customer #############################
-INSERT_UPDATE IntegrationObject; code[unique = true]; integrationType(code)
-                               ; OutboundC4cCustomer;
-
-INSERT_UPDATE IntegrationObjectItem; integrationObject(code)[unique=true]; code[unique = true]; type(code); root[default = false]
-                                   ; OutboundC4cCustomer	; Customer	; Customer  ; true
-                                   ; OutboundC4cCustomer	; Country 	; Country   ;
-                                   ; OutboundC4cCustomer	; Address 	; Address   ;
-
-INSERT_UPDATE IntegrationObjectItemAttribute; integrationObjectItem(integrationObject(code), code)[unique = true]; attributeName[unique = true]; attributeDescriptor(enclosingType(code), qualifier); returnIntegrationObjectItem(integrationObject(code), code); unique[default = false]; autoCreate[default = false]
-                                            ; OutboundC4cCustomer:Customer	; uid                   	; Customer:uid                   	;                            	; true	;
-                                            ; OutboundC4cCustomer:Customer	; name                  	; Customer:name                  	;                            	; 	;
-                                            ; OutboundC4cCustomer:Customer	; defaultShipmentAddress	; Customer:defaultShipmentAddress	; OutboundC4cCustomer:Address	; 	;
-                                            ; OutboundC4cCustomer:Customer	; customerID            	; Customer:customerID            	;                            	; 	;
-                                            ; OutboundC4cCustomer:Customer	; defaultPaymentAddress 	; Customer:defaultPaymentAddress 	; OutboundC4cCustomer:Address	; 	;
-                                            ; OutboundC4cCustomer:Customer	; addresses             	; Customer:addresses             	; OutboundC4cCustomer:Address	; 	;
-                                            ; OutboundC4cCustomer:Customer	; creationtime             	; Customer:creationtime             ;                               ; 	;
-                                            ; OutboundC4cCustomer:Address 	; phone1                	; Address:phone1                 	;                            	; true	;
-                                            ; OutboundC4cCustomer:Address 	; streetname            	; Address:streetname             	;                            	; true	;
-                                            ; OutboundC4cCustomer:Address 	; country               	; Address:country                	; OutboundC4cCustomer:Country	; true	;
-                                            ; OutboundC4cCustomer:Address 	; phone2                	; Address:phone2                 	;                            	; true	;
-                                            ; OutboundC4cCustomer:Address 	; town                  	; Address:town                   	;                            	; true	;
-                                            ; OutboundC4cCustomer:Address 	; postalcode            	; Address:postalcode             	;                            	; true	;
-                                            ; OutboundC4cCustomer:Address 	; fax                   	; Address:fax                    	;                            	; true	;
-                                            ; OutboundC4cCustomer:Address 	; cellphone             	; Address:cellphone              	;                            	; 	;
-                                            ; OutboundC4cCustomer:Address 	; streetnumber          	; Address:streetnumber           	;                            	; true	;
-                                            ; OutboundC4cCustomer:Address 	; pobox                 	; Address:pobox                  	;                            	; true	;
-                                            ; OutboundC4cCustomer:Address 	; email                 	; Address:email                  	;                            	; true	;
-                                            ; OutboundC4cCustomer:Address 	; district              	; Address:district               	;                            	; true	;
-                                            ; OutboundC4cCustomer:Country 	; isocode               	; Country:isocode                	;                            	; true	;
-                                            ; OutboundC4cCustomer:Address 	; owner              	    ; Address:owner               	    ; OutboundC4cCustomer:Customer  ;	;
-                                            ; OutboundC4cCustomer:Country 	; owner              	    ; Country:owner               	    ; OutboundC4cCustomer:Customer  ;	;
-##########################################################################                                        
+INSERT_UPDATE IntegrationObject ; code[unique = true] ; integrationType(code) 
+                                ; OutboundC4cCustomer ;                       
+                                
+INSERT_UPDATE IntegrationObjectItem ; integrationObject(code)[unique=true] ; code[unique = true] ; type(code) ; root[default = false] 
+                                    ; OutboundC4cCustomer                  ; Customer            ; Customer   ; true                  
+                                    ; OutboundC4cCustomer                  ; Country             ; Country    ;                       
+                                    ; OutboundC4cCustomer                  ; Address             ; Address    ;                       
+                                    
+INSERT_UPDATE IntegrationObjectItemAttribute ; integrationObjectItem(integrationObject(code), code)[unique = true] ; attributeName[unique = true] ; attributeDescriptor(enclosingType(code), qualifier) ; returnIntegrationObjectItem(integrationObject(code), code) ; unique[default = false] ; autoCreate[default = false] 
+                                             ; OutboundC4cCustomer:Customer                                        ; uid                          ; Customer:uid                                        ;                                                            ; true                    ;                             
+                                             ; OutboundC4cCustomer:Customer                                        ; name                         ; Customer:name                                       ;                                                            ;                         ;                             
+                                             ; OutboundC4cCustomer:Customer                                        ; defaultShipmentAddress       ; Customer:defaultShipmentAddress                     ; OutboundC4cCustomer:Address                                ;                         ;                             
+                                             ; OutboundC4cCustomer:Customer                                        ; customerID                   ; Customer:customerID                                 ;                                                            ;                         ;                             
+                                             ; OutboundC4cCustomer:Customer                                        ; defaultPaymentAddress        ; Customer:defaultPaymentAddress                      ; OutboundC4cCustomer:Address                                ;                         ;                             
+                                             ; OutboundC4cCustomer:Customer                                        ; addresses                    ; Customer:addresses                                  ; OutboundC4cCustomer:Address                                ;                         ;                             
+                                             ; OutboundC4cCustomer:Customer                                        ; creationtime                 ; Customer:creationtime                               ;                                                            ;                         ;                             
+                                             ; OutboundC4cCustomer:Address                                         ; phone1                       ; Address:phone1                                      ;                                                            ; true                    ;                             
+                                             ; OutboundC4cCustomer:Address                                         ; streetname                   ; Address:streetname                                  ;                                                            ; true                    ;                             
+                                             ; OutboundC4cCustomer:Address                                         ; country                      ; Address:country                                     ; OutboundC4cCustomer:Country                                ; true                    ;                             
+                                             ; OutboundC4cCustomer:Address                                         ; phone2                       ; Address:phone2                                      ;                                                            ; true                    ;                             
+                                             ; OutboundC4cCustomer:Address                                         ; town                         ; Address:town                                        ;                                                            ; true                    ;                             
+                                             ; OutboundC4cCustomer:Address                                         ; postalcode                   ; Address:postalcode                                  ;                                                            ; true                    ;                             
+                                             ; OutboundC4cCustomer:Address                                         ; fax                          ; Address:fax                                         ;                                                            ; true                    ;                             
+                                             ; OutboundC4cCustomer:Address                                         ; cellphone                    ; Address:cellphone                                   ;                                                            ;                         ;                             
+                                             ; OutboundC4cCustomer:Address                                         ; streetnumber                 ; Address:streetnumber                                ;                                                            ; true                    ;                             
+                                             ; OutboundC4cCustomer:Address                                         ; pobox                        ; Address:pobox                                       ;                                                            ; true                    ;                             
+                                             ; OutboundC4cCustomer:Address                                         ; email                        ; Address:email                                       ;                                                            ; true                    ;                             
+                                             ; OutboundC4cCustomer:Address                                         ; district                     ; Address:district                                    ;                                                            ; true                    ;                             
+                                             ; OutboundC4cCustomer:Country                                         ; isocode                      ; Country:isocode                                     ;                                                            ; true                    ;                             
+                                             ; OutboundC4cCustomer:Address                                         ; owner                        ; Address:owner                                       ; OutboundC4cCustomer:Customer                               ;                         ;                             
+                                             ; OutboundC4cCustomer:Country                                         ; owner                        ; Country:owner                                       ; OutboundC4cCustomer:Customer                               ;                         ;                             
+##########################################################################
