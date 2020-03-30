@@ -11,6 +11,7 @@
 <%@ taglib prefix="format" tagdir="/WEB-INF/tags/shared/format" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="order" tagdir="/WEB-INF/tags/responsive/order" %>
+<%@ taglib prefix="theme" tagdir="/WEB-INF/tags/shared/theme" %>
 
 
 <%--
@@ -62,11 +63,26 @@
             </div>
 
             <%-- product image --%>
-            <div class="item__image">
+           <%--  <div class="item__image">
                 <a href="${fn:escapeXml(productUrl)}">
-                <product:productPrimaryImage product="${entry.product}" format="product"/></a>
-            </div>
-
+                <product:productPrimaryImage product="${entry.product}" format="thumbnail"/></a>
+            </div> --%>
+            <div class="item__image">
+            <c:choose>
+            <c:when test="${not empty entry.product.images}">
+            <c:forEach items="${entry.product.images}" var="medias">
+                                        <c:if test="${medias.format eq 'thumbnail'}">
+                                        <a href="${fn:escapeXml(productUrl)}" title="${fn:escapeXml(entry.product.name)}">
+                                        <img src="${medias.url}" alt="${medias.altText}">
+                                        </a>
+                                        </c:if>
+                                        </c:forEach>
+             </c:when>
+             <c:otherwise>
+					<theme:image code="img.missingProductImage.responsive.${format}" alt="${productNameHtml}" title="${productNameHtml}"/>
+	`			</c:otherwise>
+				</c:choose>                           
+				</div>
             <%-- product name, code, promotions --%>
             <div class="item__info">
                 <ycommerce:testId code="cart_product_name">
