@@ -2134,7 +2134,7 @@ INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];nam
 ;;mapBackgroundComponent;PDP Map Background Banner Component;;
 ;;tmBackgroundComponent;PDP Territory Manager Banner Component;;
 
-INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
+INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=en]
 ;;mapBackgroundComponent;find-dealer-bg
 ;;tmBackgroundComponent;tm-bg
 
