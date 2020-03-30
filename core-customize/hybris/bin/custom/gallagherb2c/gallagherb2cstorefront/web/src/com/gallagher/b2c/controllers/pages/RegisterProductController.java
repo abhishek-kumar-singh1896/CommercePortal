@@ -15,6 +15,7 @@ import de.hybris.platform.commercefacades.product.ProductFacade;
 import de.hybris.platform.commercefacades.product.ProductOption;
 import de.hybris.platform.commercefacades.product.data.ImageData;
 import de.hybris.platform.commercefacades.product.data.ProductData;
+import de.hybris.platform.product.impl.DefaultProductService;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 import de.hybris.platform.servicelayer.user.UserService;
 
@@ -80,6 +81,9 @@ public class RegisterProductController extends AbstractPageController
 	@Resource(name = "contentPageBreadcrumbBuilder")
 	private ContentPageBreadcrumbBuilder contentPageBreadcrumbBuilder;
 
+	@Resource(name = "productService")
+	private DefaultProductService defaultProductService;
+
 	@RequestMapping(value = "/products", method = RequestMethod.GET)
 	public String registeredProductsByUser(final Model model) throws CMSItemNotFoundException
 	{
@@ -88,6 +92,12 @@ public class RegisterProductController extends AbstractPageController
 		setUpMetaDataForContentPage(model, regProductsPage);
 		model.addAttribute("registeredProducts", gallagherRegisteredProductsFacade.getRegisteredProducts());
 		model.addAttribute(WebConstants.BREADCRUMBS_KEY, contentPageBreadcrumbBuilder.getBreadcrumbs(regProductsPage));
+		//below attribute is for mocking purpose only. will be removed after GET call from C4C is used.
+		if (defaultProductService.getProductForCode("solar-fence-energizer-s10") != null)
+		{
+		model.addAttribute("imageUrl",
+				defaultProductService.getProductForCode("solar-fence-energizer-s10").getGalleryImages().get(0).getMaster().getURL());
+		}
 		return getViewForPage(model);
 	}
 
