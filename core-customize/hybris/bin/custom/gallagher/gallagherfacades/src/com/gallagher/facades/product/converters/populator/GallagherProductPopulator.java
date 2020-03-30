@@ -44,6 +44,10 @@ public class GallagherProductPopulator extends ProductPopulator
 			}
 			target.setAnimalCompatibility(animals);
 		}
+		target.setSparePartsReferenceHeading(source.getSparePartsReferenceHeading());
+		target.setSparePartsReferenceSubHeading(source.getSparePartsReferenceSubHeading());
+		target.setOthersReferenceHeading(source.getOthersReferenceHeading());
+		target.setOthersReferenceSubHeading(source.getOthersReferenceSubHeading());
 		super.populate(source, target);
 	}
 

@@ -12,10 +12,10 @@
            <div class="col-lg-6">
                <div class="common-product-with-title">
                    <div class="section-title">
-                       Products for compliance
+                       ${product.sparePartsReferenceHeading}
                    </div>
                    <div class="section-description">
-                       If you have a small farm or garden, these work for you
+                      ${product.sparePartsReferenceSubHeading}
                    </div>
 
                    <div class="product-list">
@@ -31,29 +31,27 @@
                </div>
            </div>
            <div class="col-lg-6">
-           <div class="common-product-with-title">
+               <div class="common-product-with-title">
                    <div class="section-title">
-                       Products for cattle
+                       ${product.othersReferenceHeading}
                    </div>
                    <div class="section-description">
-                       Lorem ipsum dolor sit amet et cetera
+                       ${product.othersReferenceSubHeading}
                    </div>
 
                    <div class="product-list">
                        <div class="product-listing-out clearfix flexslider" id="productTileOut2">
                            <ul class="slides">
-                           	<c:forEach items="${others}" var="reference1">
+	                           <c:forEach items="${others}" var="reference1">
 											<product:productReferenceList product="${reference1}" />
-										</c:forEach>
-                            </ul>
-                        </div>
-                    </div>
+										</c:forEach>							
+                           </ul>
+                       </div>
+                   </div>
 
-                </div>
-				<%-- <product:productReferenceCattle product="${product}"/> --%>
-
-            </div>
-        </div>
+               </div>
+           </div>       
+       </div>
     </div>
 </div>
 
