@@ -4,13 +4,9 @@
 package com.gallagher.facades.customer.converters.populator;
 
 import de.hybris.platform.converters.Populator;
-import de.hybris.platform.product.ProductService;
 import de.hybris.platform.servicelayer.dto.converter.ConversionException;
 
-import javax.annotation.Resource;
-
 import com.gallagher.core.dtos.GallagherRegisteredProductDto;
-import com.gallagher.facades.product.converters.populator.GallagherProductPrimaryImagePopulator;
 import com.gallagher.facades.product.data.RegisteredProductData;
 
 
@@ -19,12 +15,6 @@ import com.gallagher.facades.product.data.RegisteredProductData;
  */
 public class GallagherRegisteredProductsPopulator implements Populator<GallagherRegisteredProductDto, RegisteredProductData>
 {
-
-	@Resource
-	ProductService productService;
-
-	@Resource(name = "productPrimaryImagePopulator")
-	GallagherProductPrimaryImagePopulator gallagherProductPrimaryImagePopulator;
 
 	/*
 	 * (non-Javadoc)
