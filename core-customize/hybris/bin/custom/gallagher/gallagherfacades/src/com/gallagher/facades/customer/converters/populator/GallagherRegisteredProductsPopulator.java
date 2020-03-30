@@ -9,15 +9,15 @@ import de.hybris.platform.servicelayer.dto.converter.ConversionException;
 
 import javax.annotation.Resource;
 
-import com.gallagher.core.dtos.GallagherRegisteredProductDto;
 import com.gallagher.facades.product.converters.populator.GallagherProductPrimaryImagePopulator;
 import com.gallagher.facades.product.data.RegisteredProductData;
+import com.gallagher.outboundservices.response.dto.GallagherRegisteredProduct;
 
 
 /**
  *
  */
-public class GallagherRegisteredProductsPopulator implements Populator<GallagherRegisteredProductDto, RegisteredProductData>
+public class GallagherRegisteredProductsPopulator implements Populator<GallagherRegisteredProduct, RegisteredProductData>
 {
 
 	@Resource
@@ -32,8 +32,7 @@ public class GallagherRegisteredProductsPopulator implements Populator<Gallagher
 	 * @see de.hybris.platform.converters.Populator#populate(java.lang.Object, java.lang.Object)
 	 */
 	@Override
-	public void populate(final GallagherRegisteredProductDto source, final RegisteredProductData target)
-			throws ConversionException
+	public void populate(final GallagherRegisteredProduct source, final RegisteredProductData target) throws ConversionException
 	{
 		target.setAttachment(source.getAttachment());
 		target.setAttachmentUrl(source.getAttachmentUrl());
