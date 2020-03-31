@@ -17,7 +17,8 @@ ACC.registerProduct = {
 
             // Date Picker
             $('#datePurchased').datepicker({
-                format: 'mm/dd/yyyy',
+            	maxDate : new Date(),
+                dateFormat: 'dd/mm/yy',
                 autoclose: true
             });
 
