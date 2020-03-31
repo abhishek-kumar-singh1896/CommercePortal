@@ -9,48 +9,53 @@
 <div class="common-sub-tab-section gray-back">
    <div class="container">
        <div class="row">
-           <div class="col-lg-6">
-               <div class="common-product-with-title">
-                   <div class="section-title">
-                       ${product.sparePartsReferenceHeading}
-                   </div>
-                   <div class="section-description">
-                      ${product.sparePartsReferenceSubHeading}
-                   </div>
-
-                   <div class="product-list">
-                       <div class="product-listing-out clearfix flexslider" id="productTileOut1">
-                           <ul class="slides">
-	                           <c:forEach items="${sparepart}" var="reference">
-											<product:productReferenceList product="${reference}" />
-										</c:forEach>							
-                           </ul>
-                       </div>
-                   </div>
-
-               </div>
-           </div>
-           <div class="col-lg-6">
-               <div class="common-product-with-title">
-                   <div class="section-title">
-                       ${product.othersReferenceHeading}
-                   </div>
-                   <div class="section-description">
-                       ${product.othersReferenceSubHeading}
-                   </div>
-
-                   <div class="product-list">
-                       <div class="product-listing-out clearfix flexslider" id="productTileOut2">
-                           <ul class="slides">
-	                           <c:forEach items="${others}" var="reference1">
-											<product:productReferenceList product="${reference1}" />
-										</c:forEach>							
-                           </ul>
-                       </div>
-                   </div>
-
-               </div>
-           </div>       
+	       <c:if test="${fn:length(sparepart) gt 0}"> 
+	           <div class="col-lg-6">
+	               <div class="common-product-with-title">
+	                   <div class="section-title">
+	                       ${product.sparePartsReferenceHeading}
+	                   </div>
+	                   <div class="section-description">
+	                      ${product.sparePartsReferenceSubHeading}
+	                   </div>
+	
+	                   <div class="product-list">
+	                       <div class="product-listing-out clearfix flexslider" id="productTileOut1">
+	                           <ul class="slides">
+		                           <c:forEach items="${sparepart}" var="reference">
+												<product:productReferenceList product="${reference}" />
+											</c:forEach>							
+	                           </ul>
+	                       </div>
+	                   </div>
+	
+	               </div>
+	           </div>
+           </c:if>
+           
+           <c:if test="${fn:length(others) gt 0}">
+	           <div class="col-lg-6">
+	               <div class="common-product-with-title">
+	                   <div class="section-title">
+	                       ${product.othersReferenceHeading}
+	                   </div>
+	                   <div class="section-description">
+	                       ${product.othersReferenceSubHeading}
+	                   </div>
+	
+	                   <div class="product-list">
+	                       <div class="product-listing-out clearfix flexslider" id="productTileOut2">
+	                           <ul class="slides">
+		                           <c:forEach items="${others}" var="reference1">
+												<product:productReferenceList product="${reference1}" />
+											</c:forEach>							
+	                           </ul>
+	                       </div>
+	                   </div>
+	
+	               </div>
+	           </div>
+           </c:if>       
        </div>
     </div>
 </div>
