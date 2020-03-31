@@ -4,11 +4,11 @@
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="format" tagdir="/WEB-INF/tags/shared/format" %>
+<c:if test="${not empty product.productReferences}">
 <section id="${fn:replace(title,' ', '')}" class="common-sub-tab-section">
     <div class="use-with-section-out">
         <div class="container">
             <h4 class="small-section-title">${fn:escapeXml(title)}</h4>
-            <c:if test="${not empty product.productReferences}">
             <div class="use-with-listing">
                 <ul class="clearfix">
 				<c:forEach items="${product.productReferences}" var="reference">
@@ -44,10 +44,10 @@
                   </c:forEach>
                 </ul>
             </div>
-		</c:if>
         </div>
     </div>
 </section>
+</c:if>
 <c:if test="${not empty product.simulator.simulatorDescription && not empty product.simulator.simulatorURL}">
 <div class="common-sub-tab-section pt-0">
     <section id="scale-indicator">
