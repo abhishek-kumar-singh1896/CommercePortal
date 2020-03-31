@@ -13,10 +13,10 @@
 	           <div class="col-lg-6">
 	               <div class="common-product-with-title">
 	                   <div class="section-title">
-	                       ${product.sparePartsReferenceHeading}
+	                       ${sparePartsReferenceHeading}
 	                   </div>
 	                   <div class="section-description">
-	                      ${product.sparePartsReferenceSubHeading}
+	                      ${sparePartsReferenceSubHeading}
 	                   </div>
 	
 	                   <div class="product-list">
@@ -37,10 +37,10 @@
 	           <div class="col-lg-6">
 	               <div class="common-product-with-title">
 	                   <div class="section-title">
-	                       ${product.othersReferenceHeading}
+	                       ${othersReferenceHeading}
 	                   </div>
 	                   <div class="section-description">
-	                       ${product.othersReferenceSubHeading}
+	                       ${othersReferenceSubHeading}
 	                   </div>
 	
 	                   <div class="product-list">
