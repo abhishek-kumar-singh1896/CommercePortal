@@ -184,7 +184,8 @@ ACC.productDetails = {
 	                        $('.review-list-out').addClass('scrollable');
 	                    }
 	                } else {
-	                    $(this).text('See all review');
+							  $(this).text('See all review');
+							  $('html, body').animate({scrollTop:$('#ReviewsQuestions').position().top}, 500);
 	                    $('.review-list-out').removeClass('scrollable');
 	                    $('.review-list-out ul li').addClass('d-none');
 	                    $('.review-list-out ul li').eq(1).removeClass('d-none');
