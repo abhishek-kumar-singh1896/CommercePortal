@@ -1150,7 +1150,7 @@ INSERT_UPDATE CMSUserGroupRestriction;$contentCV[unique=true];uid[unique=true];n
 ###### Media Start ######
 ## site logo ##
 INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/svg+xml'];altText;folder(qualifier)[default='images']
-;;/images/theme/logo_gallagher_b2b_responsive.svg;logo_gallagher_b2b_responsive.svg;$siteResource/images/theme/logo_gallagher_b2b_responsive.svg;image/svg+xml;GALLAGHER SECURITY;
+;;/images/theme/logo-gallagher.svg;logo-gallagher.svg;$siteResource/images/theme/logo-gallagher.svg;image/svg+xml;GALLAGHER SECURITY;
 
 INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];mime;realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];folder(qualifier)[default='images']
 ;;addEditAddressPagePreview;text/png;AddEditAddressPage.png;$jarResourceCms/preview-images/securityB2B/AddEditAddressPage.png
