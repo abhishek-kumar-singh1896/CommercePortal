@@ -23,7 +23,7 @@
 	                       <div class="product-listing-out clearfix flexslider" id="productTileOut1">
 	                           <ul class="slides">
 		                           <c:forEach items="${sparepart}" var="reference">
-												<product:productReferenceList product="${reference}" />
+												<product:productReferenceList referenceProduct="${reference}" />
 											</c:forEach>							
 	                           </ul>
 	                       </div>
@@ -32,7 +32,6 @@
 	               </div>
 	           </div>
            </c:if>
-           
            <c:if test="${fn:length(others) gt 0}">
 	           <div class="col-lg-6">
 	               <div class="common-product-with-title">
@@ -47,7 +46,7 @@
 	                       <div class="product-listing-out clearfix flexslider" id="productTileOut2">
 	                           <ul class="slides">
 		                           <c:forEach items="${others}" var="reference1">
-												<product:productReferenceList product="${reference1}" />
+												<product:productReferenceList referenceProduct="${reference1}" />
 											</c:forEach>							
 	                           </ul>
 	                       </div>
