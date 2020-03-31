@@ -19,6 +19,7 @@
 				</c:if>
         </h4>
 
+		<c:if test="${not empty product.reviews}">
         <div class="review-list-out">
 	        <ul class="row">
 	            <c:forEach items="${product.reviews}" var="l1" varStatus="status">
@@ -44,6 +45,7 @@
             	<spring:theme code="product.produt.details.reviews.seeAll" />
             </a>
         </div>
+        </c:if>
         <product:productPageReviewsTab product="${product}" />
     </div>
 </section>
