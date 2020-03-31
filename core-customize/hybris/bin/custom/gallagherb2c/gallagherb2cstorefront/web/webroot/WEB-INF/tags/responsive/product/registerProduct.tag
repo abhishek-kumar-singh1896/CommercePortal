@@ -90,7 +90,7 @@
 								<label for="datePurchased" class="common-form-label">Date
 									purchased (dd/mm/yyyy)</label> 
 									<!-- <input type="text" class="form-control common-input" id="datePurchased" name="datePurchased">  -->
-									<form:input type="text" class="form-control common-input" id="datePurchased" path="datePurchased" />
+									<form:input type="text" class="form-control common-input" id="datePurchased" path="datePurchased" oninput="this.value=this.value.replace(/[^0-9/]/g,'');" />
 									<div class="error-label">
 									<span class="error-text d-none"> <span
 										class="error-icon"> <svg>
@@ -190,7 +190,8 @@
 						<label for="country" class="common-form-label">Country</label> 
 						 <form:select path="country" id="country" class="form-control js-example-basic-single">
 							<c:forEach items="${Countries}" var="country" varStatus="status">
-							<form:option value="0">${country.name}</form:option>
+		                <form:option value="0">Select a Country</form:option>
+							<form:option value="1">${country.name}</form:option>
 							</c:forEach>
 						</form:select><div class="error-label">
 									<span class="error-text d-none"> <span
@@ -206,19 +207,16 @@
 
 				<div class="row">
 				<div class="col-md-6 mb-4">
-						<label for="phoneNumber" class="common-form-label">Phone
-							number</label> 
-							<form:input type="text" class="form-control common-input" id="phoneNumber" oninput="this.value=this.value.replace(/[^0-9+]/g,'');" path="phoneNumber" maxlength="11"/> 
-							<div class="error-label">
-									<span class="error-text d-none"> <span
-										class="error-icon"> <svg>
-	                                        <use
-													xlink:href="${commonResourcePath}/images/gallagher-icons.svg#cross" />
-	                                    </svg>
-									</span> <span class="error-inner-text"></span>
-									</span>
-								</div>
-					</div>
+
+                    <label for="phoneNumber" class="common-form-label">Phone number</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="phonePlus">+</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="" maxlength="10" oninput="this.value=this.value.replace(/[^0-9+]/g,'');" id="phoneNumber" aria-label="phoneNumber" aria-describedby="phonePlus">
+                      </div>
+                </div>
+
 					<div class="col-md-6 mb-4">
 						<label for="attachReceipt" class="common-form-label">Attach
 							a Receipt</label>
