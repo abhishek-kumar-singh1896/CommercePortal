@@ -214,6 +214,11 @@
 			<description>Extending Product type with additional attributes of status and animals.</description>
 			<deployment table="PDPSimulator" typecode="32467" />
 			<attributes>
+				<attribute autocreate="true" generate="true" qualifier="simulatorCode" type="java.lang.String">
+					<modifiers optional="true" unique="true"/>
+					<persistence type="property" />
+					<description>Used to store simulator code.</description>
+				</attribute>
 				<attribute autocreate="true" qualifier="simulatorDescription" type="localized:java.lang.String">
 					<modifiers read="true" write="true" search="true" optional="true" />
 					<persistence type="property">
