@@ -425,11 +425,11 @@ public class ProductPageController extends AbstractPageController
 			{
 				sparepart.add(product.getTarget());
 			}
-			if (product.getReferenceType().getCode().equals("OTHERS"))
+			else if (product.getReferenceType().getCode().equals("OTHERS"))
 			{
 				others.add(product.getTarget());
 			}
-			if (product.getReferenceType().getCode().equals("ACCESSORIES"))
+			else if (product.getReferenceType().getCode().equals("ACCESSORIES"))
 			{
 				accessories.add(product.getTarget());
 			}
