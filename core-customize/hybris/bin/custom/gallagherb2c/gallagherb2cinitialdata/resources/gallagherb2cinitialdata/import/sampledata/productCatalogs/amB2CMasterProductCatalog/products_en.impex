@@ -37,3 +37,9 @@ INSERT_UPDATE PDPSimulator;simulatorCode[unique=true];simulatorDescription[lang=
 
 INSERT_UPDATE Product;code[unique=true];$catalogVersion;name[lang=$lang];simulator(simulatorCode)
 ;solar-fence-energizer-s10;;Solar Fence Energizer S10;simulator1
+
+UPDATE Product ; code[unique=true]          ;$catalogVersion;sparePartsReferenceHeading[lang=$lang]  ;sparePartsReferenceSubHeading[lang=$lang]								;othersReferenceHeading[lang=$lang] ;othersReferenceSubHeading[lang=$lang]
+               ; solar-fence-energizer-s10  ;			    	;"Products for compliance"			 		  ;"If you have a small farm or garden, these will work for you"	;"Products for Sheep"			 		;"If you have sheeps, these are must for you"
+			   	; G02411					 		  ;			    	;"Products for compliance"			 		  ;"If you have a small farm or garden, these will work for you"	;"Products for Sheep"					;"If you have sheeps, these are must for you"
+			   	; G02602							  ;			    	;"Products for compliance"			 		  ;"If you have a small farm or garden, these will work for you"	;"Products for Sheep"					;"If you have sheeps, these are must for you"
+			   	; G02603							  ;			    	;"Products for compliance"			 		  ;"If you have a small farm or garden, these will work for you"	;"Products for Sheep"					;"If you have sheeps, these are must for you"
