@@ -440,6 +440,10 @@ public class ProductPageController extends AbstractPageController
 		}
 		model.addAttribute("sparepart", sparepart);
 		model.addAttribute("others", others);
+		model.addAttribute("sparePartsReferenceHeading", productData.getSparePartsReferenceHeading());
+		model.addAttribute("sparePartsReferenceSubHeading", productData.getSparePartsReferenceSubHeading());
+		model.addAttribute("othersReferenceHeading", productData.getOthersReferenceHeading());
+		model.addAttribute("othersReferenceSubHeading", productData.getOthersReferenceSubHeading());
 		sortVariantOptionData(productData);
 		storeCmsPageInModel(model, getPageForProduct(productCode));
 		populateProductData(productData, model);

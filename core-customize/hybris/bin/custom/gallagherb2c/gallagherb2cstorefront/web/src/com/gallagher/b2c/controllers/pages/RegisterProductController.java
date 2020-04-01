@@ -15,6 +15,7 @@ import de.hybris.platform.commercefacades.product.ProductFacade;
 import de.hybris.platform.commercefacades.product.ProductOption;
 import de.hybris.platform.commercefacades.product.data.ImageData;
 import de.hybris.platform.commercefacades.product.data.ProductData;
+import de.hybris.platform.core.model.c2l.CountryModel;
 import de.hybris.platform.product.ProductService;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 import de.hybris.platform.servicelayer.user.UserService;
@@ -26,6 +27,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
 
@@ -95,7 +97,7 @@ public class RegisterProductController extends AbstractPageController
 		//below attribute is for mocking purpose only. will be removed after GET call from C4C is used.
 		if (productService.getProductForCode("solar-fence-energizer-s10") != null)
 		{
-		model.addAttribute("imageUrl",
+			model.addAttribute("imageUrl",
 					productService.getProductForCode("solar-fence-energizer-s10").getGalleryImages().get(0).getMaster().getURL());
 		}
 		return getViewForPage(model);
@@ -114,7 +116,13 @@ public class RegisterProductController extends AbstractPageController
 		final Breadcrumb registerBreadcrumbEntry = new Breadcrumb("#",
 				getMessageSource().getMessage("header.register.product", null, getI18nService().getCurrentLocale()), null);
 		model.addAttribute("breadcrumbs", Collections.singletonList(registerBreadcrumbEntry));
-		model.addAttribute("Countries", getI18nService().getAllCountries());
+
+		final List<CountryModel> countries = getI18nService().getAllCountries().stream()
+				.sorted((e1, e2) -> e1.getName().compareTo(e2.getName())).collect(Collectors.toList());
+
+		model.addAttribute("Countries", countries);
+
+
 		model.addAttribute(new RegisterProductForm());
 		return getView();
 	}
