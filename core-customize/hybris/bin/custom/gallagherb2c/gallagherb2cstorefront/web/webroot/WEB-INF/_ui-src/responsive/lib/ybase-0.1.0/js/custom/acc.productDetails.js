@@ -122,6 +122,18 @@ ACC.productDetails = {
 	                // itemMargin: 12,
 	                directionNav: true,
 	            });
+	            
+	            $('#compareSlider').flexslider({
+	                animation: "slide",
+	                controlNav: false,
+	                animationLoop: false,
+	                slideshow: false,
+	                itemWidth: 150,
+	                itemMargin: 0,
+	                minItem: 2,
+	                touch: true,
+	                directionNav: true,
+	            });
 
         });
 			
