@@ -22,6 +22,8 @@ import de.hybris.platform.commercefacades.order.data.ConfigurationInfoData;
 import de.hybris.platform.commercefacades.product.ProductFacade;
 import de.hybris.platform.commercefacades.product.ProductOption;
 import de.hybris.platform.commercefacades.product.data.BaseOptionData;
+import de.hybris.platform.commercefacades.product.data.ClassificationData;
+import de.hybris.platform.commercefacades.product.data.FeatureData;
 import de.hybris.platform.commercefacades.product.data.FutureStockData;
 import de.hybris.platform.commercefacades.product.data.ImageData;
 import de.hybris.platform.commercefacades.product.data.ImageDataType;
@@ -40,8 +42,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -415,6 +419,7 @@ public class ProductPageController extends AbstractPageController
 		options.addAll(extraOptions);
 		final List<ProductData> sparepart = new ArrayList<ProductData>();
 		final List<ProductData> others = new ArrayList<ProductData>();
+		final List<ProductData> similar = new ArrayList<ProductData>();
 		final ProductData productData = productFacade.getProductForCodeAndOptions(productCode, options);
 		final List<ProductReferenceData> references = productData.getProductReferences();
 
@@ -427,6 +432,10 @@ public class ProductPageController extends AbstractPageController
 			if (product.getReferenceType().getCode().equals("OTHERS"))
 			{
 				others.add(product.getTarget());
+			}
+			if (product.getReferenceType().getCode().equals("SIMILAR"))
+			{
+				similar.add(product.getTarget());
 			}
 		}
 		model.addAttribute("sparepart", sparepart);
@@ -441,6 +450,65 @@ public class ProductPageController extends AbstractPageController
 			model.addAttribute(WebConstants.MULTI_DIMENSIONAL_PRODUCT,
 					Boolean.valueOf(CollectionUtils.isNotEmpty(productData.getVariantMatrix())));
 		}
+		final Map<String, Set<String>> compareProducts = findCommonClassificationAttributes(productData, similar);
+
+	}
+
+	private Map<String, Set<String>> findCommonClassificationAttributes(final ProductData firstProduct1,
+			final List<ProductData> productComparisonList)
+	{
+		final Map<String, Set<String>> result = new HashMap<String, Set<String>>();
+		if (!productComparisonList.isEmpty())
+		{
+			final ProductData firstProduct = firstProduct1;
+			if (firstProduct.getClassifications() != null)
+			{
+				for (final ClassificationData classData : firstProduct.getClassifications())
+				{
+					final String classCode = classData.getCode();
+					final Set<String> classFeatureCodes = new HashSet<String>();
+					boolean addToCommonList = true;
+					//search through products
+					for (int i = 0; i < productComparisonList.size(); i++)
+					{
+						boolean found = false;
+						final ProductData product = productComparisonList.get(i);
+						if (product.getClassifications() != null)
+						{
+							//search through class attr
+							for (final ClassificationData classInnerData : product.getClassifications())
+							{
+								if (classInnerData.getCode().equals(classCode))
+								{
+									//found
+									found = true;
+									for (final FeatureData fd : classInnerData.getFeatures())
+									{
+										if (fd.isComparable())
+										{
+											classFeatureCodes.add(fd.getName());
+										}
+									}
+									break;
+								}
+							}
+						}
+						if (!found)
+						{
+							//not found classification attr for some product -> dont add to list
+							addToCommonList = false;
+							break;
+						}
+					}
+					//check addToCommonList
+					if (addToCommonList)
+					{
+						result.put(classCode, classFeatureCodes);
+					}
+				}
+			}
+		}
+		return result;
 	}
 
 	protected void populateProductData(final ProductData productData, final Model model)
