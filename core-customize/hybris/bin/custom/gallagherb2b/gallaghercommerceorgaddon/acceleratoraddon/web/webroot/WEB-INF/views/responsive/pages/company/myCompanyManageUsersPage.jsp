@@ -43,11 +43,7 @@
                                             var="viewUserUrl" htmlEscape="false">
                                     <spring:param name="user" value="${user.uid}"/>
                                 </spring:url>
-                                <spring:url value="/my-company/organization-management/manage-units/details/"
-                                            var="viewUnitUrl" htmlEscape="false">
-                                    <spring:param name="unit" value="${user.unit.uid}"/>
-                                </spring:url>
-
+                                
                                 <tr class="responsive-table-item">
                                     <td class="hidden-sm hidden-md hidden-lg"><spring:theme code="text.company.column.name.name"/></td>
                                     <td class="responsive-table-cell">
@@ -65,9 +61,15 @@
                                     </td>
                                     <td class="hidden-sm hidden-md hidden-lg"><spring:theme code="text.company.column.parentUnit.name"/></td>
                                     <td class="responsive-table-cell">
+                                    <c:forEach items="${user.units}" var="unit">
+                                     	<spring:url value="/my-company/organization-management/manage-units/details/"
+                                            var="viewUnitUrl" htmlEscape="false">
+                                    			<spring:param name="unit" value="${unit.uid}"/>
+                                			</spring:url>
                                         <ycommerce:testId code="my-company_user_unit_label">
-                                            <a href="${fn:escapeXml(viewUnitUrl)}" class="responsive-table-link">${fn:escapeXml(user.unit.name)}</a>
-                                        </ycommerce:testId>
+                                            <a href="${fn:escapeXml(viewUnitUrl)}" class="responsive-table-link">${fn:escapeXml(unit.name)}</a>
+                                        </ycommerce:testId><br/>
+                                        </c:forEach>
                                     </td>
                                     <td class="hidden-sm hidden-md hidden-lg"><spring:theme code="text.company.manageUser.user.costCenter"/></td>
                                     <td class="responsive-table-cell">

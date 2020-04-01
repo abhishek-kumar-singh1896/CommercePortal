@@ -295,11 +295,21 @@ INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemp
 
 # CMS components velocity templates
 INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
-;securityB2B-CMSImageComponent-template;java.util.Map
-;securityB2B-BannerComponent-template;java.util.Map
-;securityB2B-SimpleBannerComponent-template;java.util.Map
-;securityB2B-CMSLinkComponent-template;java.util.Map
-;securityB2B-CMSParagraphComponent-template;java.util.Map
+;securityB2BNZ-CMSImageComponent-template;java.util.Map
+;securityB2BNZ-BannerComponent-template;java.util.Map
+;securityB2BNZ-SimpleBannerComponent-template;java.util.Map
+;securityB2BNZ-CMSLinkComponent-template;java.util.Map
+;securityB2BNZ-CMSParagraphComponent-template;java.util.Map
+;securityB2BAU-CMSImageComponent-template;java.util.Map
+;securityB2BAU-BannerComponent-template;java.util.Map
+;securityB2BAU-SimpleBannerComponent-template;java.util.Map
+;securityB2BAU-CMSLinkComponent-template;java.util.Map
+;securityB2BAU-CMSParagraphComponent-template;java.util.Map;
+;securityB2BGlobal-CMSImageComponent-template;java.util.Map
+;securityB2BGlobal-BannerComponent-template;java.util.Map
+;securityB2BGlobal-SimpleBannerComponent-template;java.util.Map
+;securityB2BGlobal-CMSLinkComponent-template;java.util.Map
+;securityB2BGlobal-CMSParagraphComponent-template;java.util.Map
 
 # Email velocity templates
 INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']

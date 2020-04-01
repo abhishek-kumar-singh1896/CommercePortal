@@ -5,7 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="cms" uri="http://hybris.com/tld/cmstags"%>
 
-<c:if test="${fn:length(sparepart) gt 0 or fn:length(sparepart) gt 0}"> 
+<c:if test="${fn:length(sparepart) gt 0 or fn:length(others) gt 0}"> 
 <div class="common-sub-tab-section gray-back">
    <div class="container">
        <div class="row">
@@ -13,17 +13,17 @@
 	           <div class="col-lg-6">
 	               <div class="common-product-with-title">
 	                   <div class="section-title">
-	                       ${product.sparePartsReferenceHeading}
+	                       ${sparePartsReferenceHeading}
 	                   </div>
 	                   <div class="section-description">
-	                      ${product.sparePartsReferenceSubHeading}
+	                      ${sparePartsReferenceSubHeading}
 	                   </div>
 	
 	                   <div class="product-list">
 	                       <div class="product-listing-out clearfix flexslider" id="productTileOut1">
 	                           <ul class="slides">
 		                           <c:forEach items="${sparepart}" var="reference">
-												<product:productReferenceList product="${reference}" />
+												<product:productReferenceList referenceProduct="${reference}" />
 											</c:forEach>							
 	                           </ul>
 	                       </div>
@@ -32,22 +32,21 @@
 	               </div>
 	           </div>
            </c:if>
-           
            <c:if test="${fn:length(others) gt 0}">
 	           <div class="col-lg-6">
 	               <div class="common-product-with-title">
 	                   <div class="section-title">
-	                       ${product.othersReferenceHeading}
+	                       ${othersReferenceHeading}
 	                   </div>
 	                   <div class="section-description">
-	                       ${product.othersReferenceSubHeading}
+	                       ${othersReferenceSubHeading}
 	                   </div>
 	
 	                   <div class="product-list">
 	                       <div class="product-listing-out clearfix flexslider" id="productTileOut2">
 	                           <ul class="slides">
 		                           <c:forEach items="${others}" var="reference1">
-												<product:productReferenceList product="${reference1}" />
+												<product:productReferenceList referenceProduct="${reference1}" />
 											</c:forEach>							
 	                           </ul>
 	                       </div>
