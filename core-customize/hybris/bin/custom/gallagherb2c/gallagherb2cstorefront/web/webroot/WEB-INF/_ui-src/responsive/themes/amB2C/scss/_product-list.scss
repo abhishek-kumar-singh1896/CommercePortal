@@ -428,10 +428,12 @@
               font-size: 1.142857em;
               color: $primary-color;
               font-family: $font-family-bold;
-
-              .currency-sign {
-                font-size: 0.5625em;
+              sup {
+                &.currency-sign {
+                  font-size: 0.5625em;
+                }
               }
+              
             }
 
             .product-list-footer-left-icon {
