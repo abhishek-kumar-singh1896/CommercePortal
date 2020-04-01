@@ -4,8 +4,6 @@
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:if test="${not empty product.summary || not empty product.videoDescription || not empty product.classifications || not empty product.videos}">
-
-<c:if test="${not empty product.summary || not empty product.videoDescription}">
 	<section id="${fn:escapeXml(title)}" class="common-sub-tab-section ptb-xs-16">
 		<div class="container">
     	<c:if test="${not empty product.summary || not empty product.classifications}">
