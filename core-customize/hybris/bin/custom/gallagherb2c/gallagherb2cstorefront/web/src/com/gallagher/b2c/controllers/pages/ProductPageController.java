@@ -415,6 +415,7 @@ public class ProductPageController extends AbstractPageController
 		options.addAll(extraOptions);
 		final List<ProductData> sparepart = new ArrayList<ProductData>();
 		final List<ProductData> others = new ArrayList<ProductData>();
+		final List<ProductData> accessories = new ArrayList<ProductData>();
 		final ProductData productData = productFacade.getProductForCodeAndOptions(productCode, options);
 		final List<ProductReferenceData> references = productData.getProductReferences();
 
@@ -428,9 +429,14 @@ public class ProductPageController extends AbstractPageController
 			{
 				others.add(product.getTarget());
 			}
+			if (product.getReferenceType().getCode().equals("ACCESSORIES"))
+			{
+				accessories.add(product.getTarget());
+			}
 		}
 		model.addAttribute("sparepart", sparepart);
 		model.addAttribute("others", others);
+		model.addAttribute("accessories", accessories);
 		model.addAttribute("sparePartsReferenceHeading", productData.getSparePartsReferenceHeading());
 		model.addAttribute("sparePartsReferenceSubHeading", productData.getSparePartsReferenceSubHeading());
 		model.addAttribute("othersReferenceHeading", productData.getOthersReferenceHeading());

@@ -3,12 +3,12 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:if test="${not empty product.summary || not empty product.videoDescription || not empty product.classifications || not empty product.videos}">
 
 <c:if test="${not empty product.summary || not empty product.videoDescription}">
 	<section id="${fn:escapeXml(title)}" class="common-sub-tab-section ptb-xs-16">
 		<div class="container">
-	    
-			<c:if test="${not empty product.summary}">
+    	<c:if test="${not empty product.summary || not empty product.classifications}">
 				<div class="over-view-out">
 	            <h1 class="overview-title">${fn:escapeXml(title)}</h1>
 	            <div class="row">
@@ -23,8 +23,7 @@
 					</div>
 				</div>
 			</c:if>
-			
-			<c:if test="${not empty product.videoDescription}">
+        <c:if test="${not empty product.videoDescription || not empty product.videos}">
 				<div class="two-column-section">
 					<div class="row">
 					
@@ -34,27 +33,27 @@
 						
 						<div class="col-md-6">
 							<div class="carousel-with-video">
-								<div id="productDetailVideoSlider"
-									class="flexslider slider-big-image with-video">
-									<ul class="slides">
-										<c:forEach var="entry" items="${product.videos}">
-											<li>
-												<div data-bynder-widget="video-item" data-media-id="${entry.key}" data-width="" data-autoplay="false"></div>
-											</li>
-										</c:forEach>
-									</ul>
-								</div>
-								<div id="productDetailVideoCarousel"
-									class="flexslider flex-carousel video-carousel">
-									<ul class="slides">
-										<c:forEach var="entry" items="${product.videos}">
-											<li>
-												<img src="${entry.value}" class="carousel-thumb-image" />
-											</li>
-										</c:forEach>
-									</ul>
-								</div>
-							</div>
+                        <div id="productDetailVideoSlider"
+                            class="flexslider slider-big-image with-video">
+                            <ul class="slides">
+                            <c:forEach var="entry" items="${product.videos}">
+                            	<li>
+	                              <div data-bynder-widget="video-item" data-media-id="${entry.key}" data-width="" data-autoplay="false"></div>
+	                          	</li>
+                            </c:forEach>
+             				</ul>
+                        </div>
+                        <div id="productDetailVideoCarousel"
+                            class="flexslider flex-carousel video-carousel">
+                            <ul class="slides">
+                            	<c:forEach var="entry" items="${product.videos}">
+                            	<li>
+                            		<img src="${entry.value}" class="carousel-thumb-image" />
+                            	</li>
+                            	</c:forEach>
+                            </ul>
+                        </div>
+                    </div>
 						</div>
 					</div>
 				</div>
