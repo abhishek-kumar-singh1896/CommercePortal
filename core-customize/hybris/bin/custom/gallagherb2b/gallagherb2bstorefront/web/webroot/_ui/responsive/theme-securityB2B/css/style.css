@@ -11622,7 +11622,7 @@ fieldset[disabled] .btn-primary.active {
   content: "\e113";
 }
 .accordion .panel .panel-heading .accordion-toggle.collapsed:before {
-  content: "\e114";
+  content: "\e080";
 }
 .accordion .panel .panel-heading .accordion-lnk {
   position: absolute;
