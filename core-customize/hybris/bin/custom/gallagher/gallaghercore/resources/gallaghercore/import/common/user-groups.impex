@@ -28,4 +28,4 @@ INSERT_UPDATE Employee;groups(uid);uid[unique=true];name;password[default=$defau
 
 # User for Synchronization
 INSERT_UPDATE Employee;uid[unique=true];name;groups(uid)[mode=append]
-;syncUser;User for Synchronization;employeegroup,backofficeproductadministratorgroup
+;syncUser;User for Synchronization;employeegroup,admingroup;true
