@@ -465,6 +465,7 @@ public class ProductPageController extends AbstractPageController
 					Boolean.valueOf(CollectionUtils.isNotEmpty(productData.getVariantMatrix())));
 		}
 		final Map<String, Set<String>> compareProducts = findCommonClassificationAttributes(productData, similar);
+		model.addAttribute("compareProducts", compareProducts);
 
 	}
 
