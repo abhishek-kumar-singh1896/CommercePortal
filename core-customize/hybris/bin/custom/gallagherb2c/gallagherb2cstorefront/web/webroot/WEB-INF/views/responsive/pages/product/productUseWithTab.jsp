@@ -11,7 +11,8 @@
             <h4 class="small-section-title">${fn:escapeXml(title)}</h4>
             <div class="use-with-listing">
                 <ul class="clearfix">
-				<c:forEach items="${accessories}" var="reference">
+				<c:forEach items="${product.productReferences}" var="reference">
+					<c:if test="${reference.referenceType eq 'ACCESSORIES'}">
                     <li>
                     	<c:url value="${reference.target.url}" var="productUrl" />
                         <div class="common-product-small-tile" onclick="${fn:escapeXml(productUrl)}">
@@ -39,6 +40,7 @@
                             </div>
                         </div>
                     </li>
+                    </c:if>
                   </c:forEach>
                 </ul>
             </div>
