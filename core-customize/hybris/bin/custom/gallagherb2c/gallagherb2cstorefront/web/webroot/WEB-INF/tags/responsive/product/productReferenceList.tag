@@ -63,7 +63,7 @@
 				<div class="col-6">
 					<c:forEach items="${referenceProduct.animalCompatibility}" var="animal">
 						<span class="product-list-footer-left-icon"> <img
-							src="${commonResourcePath}/images/${fn:escapeXml(animal)}.svg" />
+							src="${commonResourcePath}/images/animals/${fn:escapeXml(animal)}.svg" />
 						</span>
 					</c:forEach>
 				</div>

@@ -5,7 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="cms" uri="http://hybris.com/tld/cmstags"%>
 
-<c:if test="${fn:length(sparepart) gt 0 or fn:length(sparepart) gt 0}"> 
+<c:if test="${fn:length(sparepart) gt 0 or fn:length(others) gt 0}"> 
 <div class="common-sub-tab-section gray-back">
    <div class="container">
        <div class="row">

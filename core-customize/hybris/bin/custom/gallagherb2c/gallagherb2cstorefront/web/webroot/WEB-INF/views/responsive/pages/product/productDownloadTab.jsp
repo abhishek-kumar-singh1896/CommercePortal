@@ -43,7 +43,7 @@
 	<cms:pageSlot position="RegisterProduct" var="comp" >
 		<cms:component component="${comp}"/>
 	</cms:pageSlot>
-    <c:if test="${not empty product.others && not empty product.imageDescription}">                
+    <c:if test="${not empty product.others || not empty product.imageDescription}">                
     <div class="container">
       <div class="two-column-section">
           <div class="row">
