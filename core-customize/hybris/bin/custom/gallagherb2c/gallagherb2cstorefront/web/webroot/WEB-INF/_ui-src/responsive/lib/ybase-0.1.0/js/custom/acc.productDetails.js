@@ -184,12 +184,29 @@ ACC.productDetails = {
 	                        $('.review-list-out').addClass('scrollable');
 	                    }
 	                } else {
-	                    $(this).text('See all review');
+							  $(this).text('See all review');
+							  $('html, body').animate({ scrollTop: $('#ReviewsQuestions').position().top }, 500);
 	                    $('.review-list-out').removeClass('scrollable');
 	                    $('.review-list-out ul li').addClass('d-none');
 	                    $('.review-list-out ul li').eq(1).removeClass('d-none');
 	                    $('.review-list-out ul li').eq(2).removeClass('d-none');
 	                }
+	            });
+	            
+	            useWithWidth();
+	            function useWithWidth() {
+	                var ulElement = $('.use-with-section-out .use-with-listing ul');
+	                var ulLiLength = $('.use-with-section-out .use-with-listing ul li').length;
+	                var ulLiWidth = $('.use-with-section-out .use-with-listing ul li').width();
+
+	                if (window.innerWidth < 768) {
+	                    ulElement.width(ulLiWidth * ulLiLength + 16);
+	                } else {
+	                    ulElement.width('auto');
+	                }
+	            }
+	            $(window).bind('resize', function () {
+	                useWithWidth();
 	            });
 	}
 };

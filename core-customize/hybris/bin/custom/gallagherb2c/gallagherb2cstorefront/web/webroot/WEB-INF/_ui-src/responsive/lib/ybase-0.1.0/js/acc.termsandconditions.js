@@ -11,6 +11,12 @@ ACC.termsandconditions = {
 				href: $(this).attr("href"),
 				close:'<span class="glyphicon glyphicon-remove"></span>',
 				title:'<div class="headline"><span class="headline-text">Terms and Conditions</span></div>',
+			    onLoad:function() {
+			        $('html, body').css('overflow', 'hidden'); // page scrollbars off
+			    }, 
+			    onClosed:function() {
+			        $('html, body').css('overflow', ''); // page scrollbars on
+			    },
 				onComplete: function() {
 					ACC.common.refreshScreenReaderBuffer();
 				},

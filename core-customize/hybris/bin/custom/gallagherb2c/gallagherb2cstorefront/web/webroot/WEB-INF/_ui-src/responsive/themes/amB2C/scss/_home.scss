@@ -91,10 +91,16 @@
     .expert-advice-common-text {
       font-size: 16px;
       line-height: 20px;
-a {
-    color: #ffffff;
-    text-decoration: none;
-}
+
+      a {
+        color: $white;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
     }
   }
 }

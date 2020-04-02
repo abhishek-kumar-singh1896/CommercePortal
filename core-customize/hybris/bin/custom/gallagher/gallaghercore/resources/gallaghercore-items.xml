@@ -187,6 +187,26 @@
 					<persistence type="property" />
 					<description>Contains description and url for simulator</description>
 				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="sparePartsReferenceHeading" type="localized:java.lang.String">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<description>Indicates heading for spare parts category product reference</description>
+				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="sparePartsReferenceSubHeading" type="localized:java.lang.String">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<description>Indicates sub-heading for spare parts category product reference</description>
+				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="othersReferenceHeading" type="localized:java.lang.String">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<description>Indicates heading for 'others' category product reference</description>
+				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="othersReferenceSubHeading" type="localized:java.lang.String">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<description>Indicates sub-heading for 'others' category product reference</description>
+				</attribute>
 			</attributes>
 		</itemtype>
 		
@@ -194,6 +214,11 @@
 			<description>Extending Product type with additional attributes of status and animals.</description>
 			<deployment table="PDPSimulator" typecode="32467" />
 			<attributes>
+				<attribute autocreate="true" generate="true" qualifier="simulatorCode" type="java.lang.String">
+					<modifiers optional="true" unique="true"/>
+					<persistence type="property" />
+					<description>Used to store simulator code.</description>
+				</attribute>
 				<attribute autocreate="true" qualifier="simulatorDescription" type="localized:java.lang.String">
 					<modifiers read="true" write="true" search="true" optional="true" />
 					<persistence type="property">

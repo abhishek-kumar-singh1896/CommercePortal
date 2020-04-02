@@ -16,7 +16,7 @@
 			<div class="currency-value">	<format:price priceData="${product.priceRange.minPrice}"/> - <format:price priceData="${product.priceRange.maxPrice}"/> </div>
 			</c:when>
 			<c:otherwise>
-			<div class="currency-value">	<format:price priceData="${product.price}"/> </div>
+			<div class="currency-value">	<format:fromPrice priceData="${product.price}"/> </div>
 			</c:otherwise>
 		</c:choose>
 

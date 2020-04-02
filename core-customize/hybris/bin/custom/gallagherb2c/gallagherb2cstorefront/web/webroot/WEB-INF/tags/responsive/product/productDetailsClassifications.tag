@@ -39,8 +39,6 @@
                 <label for="warranty" class="overview-label">Compatible with</label>
                 <div class="overview-value" id="warranty">
                     <a href="${fn:escapeXml(productUrl)}">${reference.target.name}
-                        <!-- Animal Data Transfer App
-                        NAIT Exchange Software -->
                     </a>
                 </div>
             </div>
