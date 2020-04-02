@@ -60,8 +60,7 @@
 									SKU</label>
 								<!-- <input type="text" class="form-control common-input" id="productSku" name="productSku"/> -->
 								<%-- <form:input type="text" class="form-control common-input" id="productSku" name="productSku"/> --%>
-								<form:input type="text" class="form-control common-input"
-									id="productSku" path="productSku" />
+								<form:input type="text" class="form-control common-input" id="productSku" path="productSku" placeholder="e.g. G12345"/>
 								<div class="error-label">
 									<span class="error-text d-none"> <span
 										class="error-icon"> <svg>
