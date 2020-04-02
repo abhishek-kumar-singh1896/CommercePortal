@@ -2686,3 +2686,6 @@ position: absolute;
 .email-exception-error {
 	display:none;
 }
+.email-conflict-error {
+	display:none;
+}

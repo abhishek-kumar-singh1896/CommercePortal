@@ -66,6 +66,9 @@
 						<div class="help-block email-exception-error">
 							<span id="email.errors"><spring:message  code="text.connection.exception.error" /></span>
 						</div>
+						<div class="help-block email-conflict-error">
+							<span id="email.errors"><spring:theme htmlEscape="false"  code="profile.email.conflict" /></span>
+						</div>
                         
                     </div>
                     <form:input type="hidden" name="uid" path="uid" id="uid"/>

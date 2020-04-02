@@ -269,10 +269,14 @@ ACC.commerceorg = {
                 	$('.email-invalid-error').hide();
     				$('.email-duplicate-error').hide();
             		$('.email-exception-error').hide();
+            		$('.email-conflict-error').hide();
                 	var emailError = data.emailError;
                 	
                 	if(emailError == 'duplicate') {
                 		$('.email-duplicate-error').show();
+                	}
+                	else if(emailError == 'conflict') {
+                		$('.email-conflict-error').show();
                 	}
                 	else if(emailError == 'invalid') {
                 		$('.email-invalid-error').show();
