@@ -196,6 +196,32 @@
 						<value><xsl:value-of select="$varBankNetDate"/></value>
 					</InfoItem>
 				</xsl:if>
+				
+				<xsl:if test="$varCardType = 'PC'">
+					<InfoItem>	
+						<key>TR_CARD_CURRENCY</key>
+						<value>
+							<xsl:value-of select="$varCurrency"/>
+						</value>
+					</InfoItem>
+					<InfoItem>
+						<key>TR_CARD_PINNUM</key>
+						<value>
+							<xsl:value-of select="SubscriptionAuthorizationRequest/paymentInfo/creditCard/cardCVV"/>
+						</value>
+					</InfoItem>
+					<InfoItem>
+						<key>TR_CARD_EXPDATE</key>
+						<value>
+							<xsl:call-template name="ExpiryDate">
+								<xsl:with-param name="xipayMID" select="$varMID"/>
+								<xsl:with-param name="expMonth" select="SubscriptionAuthorizationRequest/paymentInfo/creditCard/cardExpirationMonth"/>
+								<xsl:with-param name="expYear" select="SubscriptionAuthorizationRequest/paymentInfo/creditCard/cardExpirationYear"/>
+							</xsl:call-template>
+						</value>
+					</InfoItem>	
+				</xsl:if>
+				
 
 				<!-- ########################################################################################
 				# This template adds/sets any processor-specific info-item data

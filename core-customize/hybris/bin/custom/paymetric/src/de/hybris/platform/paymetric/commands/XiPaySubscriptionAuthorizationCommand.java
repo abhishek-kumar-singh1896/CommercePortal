@@ -357,7 +357,7 @@ public class XiPaySubscriptionAuthorizationCommand extends AbstractCommand<Subsc
 					root.addContent(customFields);
 				}
 			}
-
+			
 			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			// Add Payment Information
 			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -494,21 +494,25 @@ public class XiPaySubscriptionAuthorizationCommand extends AbstractCommand<Subsc
 		}
 		if (session != null)
 		{
-			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			// All these values are set in DefaultPaymetricService.java
-			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			cardInfo.addContent(element("TR_ECOMM_VBVCAVV", session.getAttribute("card_cavv")));
-			cardInfo.addContent(element("TR_ECOMM_VBVXID", session.getAttribute("card_dstranid")));
-			cardInfo.addContent(element("TR_ECOMM_PARESSTATUS", session.getAttribute("card_parEsStatus")));
-			cardInfo.addContent(element("TR_ECOMM_IND", session.getAttribute("card_eciFlag")));
-
-			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			// Remove them from the current session
-			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			session.removeAttribute("card_cavv");
-			session.removeAttribute("card_dstranid");
-			session.removeAttribute("card_parEsStatus");
-			session.removeAttribute("card_eciFlag");
+         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+         // All these values are set in DefaultPaymetricService.java
+         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+         cardInfo.addContent(element("TR_ECOMM_VBVCAVV", session.getAttribute("card_cavv")));
+         cardInfo.addContent(element("TR_ECOMM_VBVXID", session.getAttribute("card_xid")));
+         cardInfo.addContent(element("TR_ECOMM_XID", session.getAttribute("card_dstranid")));
+         cardInfo.addContent(element("TR_ECOMM_PARESSTATUS", session.getAttribute("card_parEsStatus")));
+         cardInfo.addContent(element("TR_ECOMM_IND", session.getAttribute("card_eciFlag")));
+         cardInfo.addContent(element("TR_ECOMM_3DSVERSION", session.getAttribute("card_ThreeDSVersion")));
+         
+         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+         // Remove them from the current session
+         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+         session.removeAttribute("card_cavv");
+         session.removeAttribute("card_dstranid");
+         session.removeAttribute("card_parEsStatus");
+         session.removeAttribute("card_eciFlag");
+         session.removeAttribute("card_ThreeDSVersion");
+         session.removeAttribute("card_xid");
 		}
 
 		if (paymentInfo.getIssueNumber() != null)

@@ -27,6 +27,7 @@ import java.math.BigDecimal;
 import java.util.Currency;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.annotation.Resource;
@@ -85,6 +86,18 @@ public class PaymetricPaymentService extends DefaultPaymentServiceImpl
 		final String strWhere = PaymetricConstants.getWhere("authorizeInternal");
 		final PaymentTransactionType paymentTransactionType = PaymentTransactionType.AUTHORIZATION;
 		final String newEntryCode = this.getNewPaymentTransactionEntryCode(transaction, paymentTransactionType);
+
+		//Adding custom fields from Hybris example
+		/* 
+		final Map<String, String> customFieldsMap = new HashMap<String, String>();
+		customFieldsMap.put("ponumber", "PO-1112");
+		customFieldsMap.put("salesDocNumber", "SALESDOC1");
+
+		final String customfields = CXmlHelper.toXml(customFieldsMap, LOG);
+		
+		// send this customfields string instead of cv2 in "this.getCardPaymentService().authorize()" method below.
+		*/
+
 		AuthorizationResult result = null;
 
 		try

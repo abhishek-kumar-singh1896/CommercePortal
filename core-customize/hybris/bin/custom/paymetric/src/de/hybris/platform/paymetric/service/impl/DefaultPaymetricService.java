@@ -367,6 +367,11 @@ public class DefaultPaymetricService extends DefaultAcceleratorPaymentService im
 					session.setAttribute("card_cavv", parameters.get("card_cavv"));
 				}
 
+				if (parameters.containsKey("card_xid"))
+				{
+					session.setAttribute("card_xid", parameters.get("card_xid"));
+				}
+
 				if (parameters.containsKey("card_dstranid"))
 				{
 					session.setAttribute("card_dstranid", parameters.get("card_dstranid"));
@@ -381,6 +386,12 @@ public class DefaultPaymetricService extends DefaultAcceleratorPaymentService im
 				{
 					session.setAttribute("card_eciFlag", parameters.get("card_eciFlag"));
 				}
+
+				if (parameters.containsKey("card_ThreeDSVersion"))
+				{
+					session.setAttribute("card_ThreeDSVersion", parameters.get("card_ThreeDSVersion"));
+				}
+
 			}
 
 			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

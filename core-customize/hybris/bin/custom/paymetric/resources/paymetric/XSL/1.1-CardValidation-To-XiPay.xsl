@@ -222,6 +222,31 @@
 						<xsl:value-of select="map/entry[string[1]='ybaseStore']/string[2]"/>
 					</value>
 				</InfoItem>
+				
+				<xsl:if test="$varCardType = 'PC'">
+					<InfoItem>
+						<key>TR_CARD_CURRENCY</key>
+						<value>
+							<xsl:value-of select="$varCurrency"/>
+						</value>
+					</InfoItem>
+					<InfoItem>
+						<key>TR_CARD_PINNUM</key>
+						<value>
+							<xsl:value-of select="map/entry[string[1]='card_cvNumber']/string[2]"/>
+						</value>
+					</InfoItem>
+					<InfoItem>
+						<key>TR_CARD_EXPDATE</key>
+						<value>
+							<xsl:call-template name="ExpiryDate">
+								<xsl:with-param name="xipayMID" select="$varMID"/>
+								<xsl:with-param name="expMonth" select="map/entry[string[1]='card_expirationMonth']/string[2]"/>
+								<xsl:with-param name="expYear" select="map/entry[string[1]='card_expirationYear']/string[2]"/>
+							</xsl:call-template>
+						</value>
+					</InfoItem>	
+				</xsl:if>
 
 				<xsl:if test="map/entry[string[1]='includeSopData']/string[2] = 'true'">
 					<xsl:for-each select="map/entry">

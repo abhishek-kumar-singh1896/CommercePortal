@@ -170,7 +170,7 @@ public class XiPayCardValidationCommand extends AbstractCommand<Map<String, Stri
 			// Bypass XiPay if the card type is PayPal or AliPay
 			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-			if ("PP".equalsIgnoreCase(xiTran[0].getCardType()) || "AL".equalsIgnoreCase(xiTran[0].getCardType()))
+			if ("PP".equalsIgnoreCase(xiTran[0].getCardType()) || "AL".equalsIgnoreCase(xiTran[0].getCardType()) || "PC".equalsIgnoreCase(xiTran[0].getCardType()))
 			{
 				xiTranRS = xiTran;
 				xiTranRS[0].setStatusCode(100);

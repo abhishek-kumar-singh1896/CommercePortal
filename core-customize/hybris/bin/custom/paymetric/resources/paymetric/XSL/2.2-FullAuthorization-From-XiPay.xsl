@@ -80,7 +80,10 @@
 
 		<AuthorizationResult>
 			<accountBalance>
-				<xsl:value-of select="'0'"/>
+				<xsl:choose>
+					<xsl:when test="$varCardType = 'PC'"><xsl:value-of select="ITransactionHeader/infoItems/InfoItem[key='TR_CARD_BALANCEAMT']/value"/></xsl:when>
+					<xsl:otherwise><xsl:value-of select="0"/></xsl:otherwise>
+				</xsl:choose>
 			</accountBalance>
 			<authorizationCode>
 				<xsl:value-of select="$varAuthCode"/>
