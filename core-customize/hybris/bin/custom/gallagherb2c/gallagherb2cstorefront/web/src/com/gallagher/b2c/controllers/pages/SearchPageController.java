@@ -35,6 +35,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -50,6 +51,7 @@ public class SearchPageController extends AbstractSearchPageController
 {
 	private static final String SEARCH_META_DESCRIPTION_ON = "search.meta.description.on";
 	private static final String SEARCH_META_DESCRIPTION_RESULTS = "search.meta.description.results";
+	private static final String SEARCH_BREADCRUMB = "text.search.breadcrumb";
 
 	@SuppressWarnings("unused")
 	private static final Logger LOG = Logger.getLogger(SearchPageController.class);
@@ -77,12 +79,18 @@ public class SearchPageController extends AbstractSearchPageController
 			final HttpServletRequest request, final Model model) throws CMSItemNotFoundException
 	{
 		final ContentPageModel noResultPage = getContentPageForLabelOrId(NO_RESULTS_CMS_PAGE_ID);
+		final String sitecoreSupportPageURL = getConfigurationService().getConfiguration().getString("sitecore.support.base.url")
+				+ "/" + searchText;
+		final String sitecoreSolutionPageURL = getConfigurationService().getConfiguration().getString("sitecore.solution.base.url")
+				+ "/" + searchText;
+
 		if (StringUtils.isNotBlank(searchText))
 		{
 			final PageableData pageableData = createPageableData(0, getSearchPageSize(), null, ShowMode.Page);
 
 			final SearchStateData searchState = new SearchStateData();
 			final SearchQueryData searchQueryData = new SearchQueryData();
+			final MessageSource messageSource = getMessageSource();
 			searchQueryData.setValue(searchText);
 			searchState.setQuery(searchQueryData);
 
@@ -119,11 +127,16 @@ public class SearchPageController extends AbstractSearchPageController
 				storeCmsPageInModel(model, getContentPageForLabelOrId(SEARCH_CMS_PAGE_ID));
 				updatePageTitle(searchText, model);
 			}
+			model.addAttribute("sitecoreSupportPageData", sitecoreSupportPageURL);
+			model.addAttribute("sitecoreSolutionPageData", sitecoreSolutionPageURL);
 			model.addAttribute("userLocation", customerLocationService.getUserLocation());
 			getRequestContextData(request).setSearch(searchPageData);
 			if (searchPageData != null)
 			{
-				model.addAttribute(WebConstants.BREADCRUMBS_KEY, searchBreadcrumbBuilder.getBreadcrumbs(null, searchText,
+				final String name = messageSource.getMessage(SEARCH_BREADCRUMB, null, getI18nService().getCurrentLocale());
+
+				model.addAttribute(WebConstants.BREADCRUMBS_KEY, searchBreadcrumbBuilder.getBreadcrumbs(null,
+						name + " / " + searchText,
 						CollectionUtils.isEmpty(searchPageData.getBreadcrumbs())));
 			}
 		}
