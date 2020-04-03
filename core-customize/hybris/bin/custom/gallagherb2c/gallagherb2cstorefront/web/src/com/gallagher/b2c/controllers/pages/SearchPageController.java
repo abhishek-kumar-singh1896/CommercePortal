@@ -26,6 +26,7 @@ import de.hybris.platform.commerceservices.search.facetdata.ProductSearchPageDat
 import de.hybris.platform.commerceservices.search.pagedata.PageableData;
 import de.hybris.platform.servicelayer.dto.converter.ConversionException;
 
+import java.text.MessageFormat;
 import java.util.Collections;
 import java.util.List;
 
@@ -33,6 +34,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.configuration.Configuration;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.context.MessageSource;
@@ -74,15 +76,20 @@ public class SearchPageController extends AbstractSearchPageController
 	@Resource(name = "cmsComponentService")
 	private CMSComponentService cmsComponentService;
 
+	private Configuration getConfiguration()
+	{
+		return getConfigurationService().getConfiguration();
+	}
+
 	@RequestMapping(method = RequestMethod.GET, params = "!q")
 	public String textSearch(@RequestParam(value = "text", defaultValue = "") final String searchText,
 			final HttpServletRequest request, final Model model) throws CMSItemNotFoundException
 	{
 		final ContentPageModel noResultPage = getContentPageForLabelOrId(NO_RESULTS_CMS_PAGE_ID);
-		final String sitecoreSupportPageURL = getConfigurationService().getConfiguration().getString("sitecore.support.base.url")
-				+ "/" + searchText;
-		final String sitecoreSolutionPageURL = getConfigurationService().getConfiguration().getString("sitecore.solution.base.url")
-				+ "/" + searchText;
+		final String sitecoreSupportPageURL = MessageFormat.format(getConfiguration().getString("sitecore.support.url"),
+				searchText);
+		final String sitecoreSolutionPageURL = MessageFormat.format(getConfiguration().getString("sitecore.solution.url"),
+				searchText);
 
 		if (StringUtils.isNotBlank(searchText))
 		{

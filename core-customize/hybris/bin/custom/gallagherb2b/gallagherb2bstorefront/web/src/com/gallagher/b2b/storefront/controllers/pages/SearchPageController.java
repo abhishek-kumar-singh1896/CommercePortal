@@ -34,6 +34,7 @@ import de.hybris.platform.commerceservices.search.pagedata.PageableData;
 import de.hybris.platform.servicelayer.dto.converter.ConversionException;
 
 import java.io.UnsupportedEncodingException;
+import java.text.MessageFormat;
 import java.util.Collections;
 import java.util.List;
 
@@ -41,6 +42,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.configuration.Configuration;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,10 +89,21 @@ public class SearchPageController extends AbstractSearchPageController
 	@Autowired
 	private B2badvanceProductComparisonFacade productComparisonFacade;
 
+	private Configuration getConfiguration()
+	{
+		return getConfigurationService().getConfiguration();
+	}
+
 	@RequestMapping(method = RequestMethod.GET, params = "!q")
 	public String textSearch(@RequestParam(value = "text", defaultValue = "")
 	final String searchText, final HttpServletRequest request, final Model model) throws CMSItemNotFoundException
 	{
+		final String sitecoreSolutionPageURL = MessageFormat.format(getConfiguration().getString("sitecore.solution.url"),
+				searchText);
+
+		final String mindtouchSRC = getConfiguration().getString("mindtouch.technical.src");
+		final String mindtouchID = getConfiguration().getString("mindtouch.technical.id");
+
 		if (StringUtils.isNotBlank(searchText))
 		{
 			final PageableData pageableData = createPageableData(0, getSearchPageSize(), null, ShowMode.Page);
@@ -133,6 +146,9 @@ public class SearchPageController extends AbstractSearchPageController
 				storeCmsPageInModel(model, getContentPageForLabelOrId(SEARCH_CMS_PAGE_ID));
 				updatePageTitle(encodedSearchText, model);
 			}
+			model.addAttribute("sitecoreSolutionPageData", sitecoreSolutionPageURL);
+			model.addAttribute("mindtouchSRCdata", mindtouchSRC);
+			model.addAttribute("mindtouchIDdata", mindtouchID);
 			model.addAttribute("userLocation", customerLocationService.getUserLocation());
 			getRequestContextData(request).setSearch(searchPageData);
 			if (searchPageData != null)
