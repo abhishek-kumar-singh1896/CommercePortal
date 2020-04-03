@@ -163,5 +163,10 @@
 	<bean id="gallagherCurrencyService" class="com.gallagher.core.services.impl.GallagherCurrencyServiceImpl" />
 	
 	<bean id="gallagherLanguageService" class="com.gallagher.core.services.impl.GallagherLanguageServiceImpl" />
+	
+		<alias name="gallagherMediaConversionService" alias="mediaConversionService" />
+	<bean id="gallagherMediaConversionService" class="com.gallagher.core.services.impl.GallagherMediaConversionServiceImpl"
+		parent="defaultMediaConversionService" />
+		
 
 </beans>
