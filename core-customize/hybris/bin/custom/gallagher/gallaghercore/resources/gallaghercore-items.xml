@@ -51,6 +51,32 @@
 				<modifiers read="true" write="true" search="true" optional="true" />
 			</targetElement>
 		</relation>
+		
+		<relation code="BaseStoreMediaRelation" autocreate="true" generate="true" localized="false">
+			<deployment table="BaseStoreMediaRelation" typecode="30001" />
+			<sourceElement qualifier="baseStores" type="BaseStore" cardinality="many" ordered="false">
+				<description>Base Stores</description>
+				<modifiers read="true" write="true" search="true" optional="true" />
+			</sourceElement>
+			<targetElement qualifier="medias" type="Media" cardinality="many" collectiontype="list" ordered="true">
+				<description>Medias</description>
+				<modifiers read="true" write="true" search="true" optional="true" />
+			</targetElement>
+		</relation>
+	
+		<relation code="BaseStoreMediaContainerRelation" autocreate="true" generate="true" localized="false">
+			<deployment table="StoreMediaContainerRel" typecode="30002" />
+			<sourceElement qualifier="baseStores" type="BaseStore" cardinality="many" ordered="false">
+				<description>Base Stores</description>
+				<modifiers read="true" write="true" search="true" optional="true" />
+			</sourceElement>
+			<targetElement qualifier="mediaContainers" type="MediaContainer" cardinality="many" collectiontype="list"
+				ordered="true">
+				<description>MediaContainers</description>
+				<modifiers read="true" write="true" search="true" optional="true" />
+			</targetElement>
+		</relation>
+        
 	</relations>
 
 	<itemtypes>
