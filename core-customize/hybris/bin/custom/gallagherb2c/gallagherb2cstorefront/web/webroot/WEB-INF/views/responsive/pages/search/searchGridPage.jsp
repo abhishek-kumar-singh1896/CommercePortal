@@ -20,6 +20,7 @@
 			<cms:component component="${feature}" element="div"
 				class="yComponentWrapper map product-grid-section1-component" />
 		</cms:pageSlot>
+	
 
 		<!-- nav in search result page -->
 		<div class="search-result-tab-out">
@@ -51,7 +52,7 @@
 
 
 						<div class="search-result-count">
-						<spring:theme code="search.page.searchText"
+							<spring:theme code="search.page.searchText"
 									arguments="${searchPageData.pagination.totalNumberOfResults}, ${searchPageData.freeTextSearch}" htmlEscape="false" />
 						</div>
 
@@ -78,7 +79,9 @@
 						</div>
 					</div>
 				</div>
-
-				<storepickup:pickupStorePopup />
 			</div>
+		</div>
+	</div>
+
+	<storepickup:pickupStorePopup />
 </template:page>
