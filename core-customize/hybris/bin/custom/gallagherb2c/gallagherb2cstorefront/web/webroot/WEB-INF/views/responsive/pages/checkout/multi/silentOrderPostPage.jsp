@@ -22,6 +22,24 @@
         </div>
 		<multiCheckout:checkoutSteps checkoutSteps="${checkoutSteps}" progressBarId="${progressBarId}">
 			<jsp:body>
+
+			    <!-- BEGIN: Payment Images -->
+                <br/> <div>
+                <!-- BEGIN: Credit Cards Image -->
+                <input type="image" id="creditCardImage" style="padding-left: 5px; padding-bottom: 20px; height: 45px; width: 150px; display: none; outline: none;"
+                src="/paymetric/XiIntercept3/credit_card_logos_32.gif"/> <!-- END: Credit Cards Image -->
+                </div>
+                <br/>
+                <!-- END: Payment Images -->
+                <!-- BEGIN: XiIntercept Credit Card Integration -->
+                <link rel="stylesheet" href="/paymetric/XiIntercept3/XIeCommerce3.css" type="text/css" /> <script type="text/javascript" src="/paymetric/XiIntercept3/XIeCommerce3.js"></script> <div id="light" class="white_content">
+                <iframe id="xiFrame" style = "width:360px; height:150px;" src="/paymetric/XiIntercept3/XIeCommerce3RQ.jsp"
+                onload="return InitForTokenization (true, 'card_accountNumber', 'cmdSubmit', 'xiFrame', 'light', 'fade');">
+                        </iframe>
+                    </div>
+                 <div id="fade" class="black_overlay"></div>
+                 <!-- END: XiIntercept Credit Card Integration -->
+
                 <c:if test="${not empty paymentFormUrl}">
                     <div class="checkout-paymentmethod">
                         <div class="checkout-indent">
@@ -140,7 +158,7 @@
                          </div>
                     </div>
 
-                    <button type="button" class="btn btn-primary btn-block submit_silentOrderPostForm checkout-next"><spring:theme code="checkout.multi.paymentMethod.continue"/></button>
+                    <button id="cmdSubmit" onclick="swapToken();" type="button" class="btn btn-primary btn-block submit_silentOrderPostForm checkout-next"><spring:theme code="checkout.multi.paymentMethod.continue"/></button>
                 </c:if>
 
 				<c:if test="${not empty paymentInfos}">
