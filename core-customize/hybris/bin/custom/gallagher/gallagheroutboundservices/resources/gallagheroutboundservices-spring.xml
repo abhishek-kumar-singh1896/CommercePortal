@@ -39,4 +39,7 @@
           class="com.gallagher.sap.sapcpicustomerexchange.service.impl.GallagherSCPICustomerOutboundService"
           parent="sapCpiCustomerOutboundService" />
 
+	<bean id="gallagherSovosService"
+		class="com.gallagher.sovos.outboundservices.service.impl.GallagherSovosServiceImpl" />
+
 </beans>

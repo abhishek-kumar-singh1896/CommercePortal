@@ -167,6 +167,16 @@
 	<alias name="gallagherMediaConversionService" alias="mediaConversionService" />
 	<bean id="gallagherMediaConversionService" class="com.gallagher.core.services.impl.GallagherMediaConversionServiceImpl"
 		parent="defaultMediaConversionService" />
+
+    <!-- External Taxes -->
+
+    <alias name="gallagherDecideExternalTaxesStrategy" alias="decideExternalTaxesStrategy"/>
+    <bean id="gallagherDecideExternalTaxesStrategy"
+          class="com.gallagher.core.externaltax.GallagherDecideExternalTaxesStrategy"/>
+
+    <alias name="gallagherCalculateExternalTaxesStrategy" alias="calculateExternalTaxesStrategy"/>
+    <bean id="gallagherCalculateExternalTaxesStrategy"
+          class="com.gallagher.core.externaltax.GallagherCalculateExternalTaxesStrategy"/>
 		
 
 </beans>
