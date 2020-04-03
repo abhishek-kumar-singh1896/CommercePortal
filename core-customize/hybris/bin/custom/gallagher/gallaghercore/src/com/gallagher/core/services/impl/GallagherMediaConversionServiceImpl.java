@@ -28,11 +28,8 @@ public class GallagherMediaConversionServiceImpl extends DefaultMediaConversionS
 	{
 
 
-		LOGGER.info("container getbasestoreesss" + container.getBaseStores());
 		final MediaModel mediaModel = super.getOrConvert(container, format);
 		mediaModel.setBaseStores(container.getBaseStores());
-		LOGGER.info("MediaModel getbasestoreesss" + mediaModel.getBaseStores());
-		LOGGER.info("converted media model returned" + mediaModel.getCode());
 		modelService.save(mediaModel);
 		return mediaModel;
 
