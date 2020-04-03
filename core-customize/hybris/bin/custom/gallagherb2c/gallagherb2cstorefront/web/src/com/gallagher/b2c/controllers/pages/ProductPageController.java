@@ -24,6 +24,7 @@ import de.hybris.platform.commercefacades.product.ProductOption;
 import de.hybris.platform.commercefacades.product.data.BaseOptionData;
 import de.hybris.platform.commercefacades.product.data.ClassificationData;
 import de.hybris.platform.commercefacades.product.data.FeatureData;
+import de.hybris.platform.commercefacades.product.data.FeatureValueData;
 import de.hybris.platform.commercefacades.product.data.FutureStockData;
 import de.hybris.platform.commercefacades.product.data.ImageData;
 import de.hybris.platform.commercefacades.product.data.ImageDataType;
@@ -423,7 +424,7 @@ public class ProductPageController extends AbstractPageController
 		options.addAll(extraOptions);
 		final List<ProductData> sparepart = new ArrayList<ProductData>();
 		final List<ProductData> others = new ArrayList<ProductData>();
-		final List<ProductData> similar = new ArrayList<ProductData>();
+		final List<ProductData> upselling = new ArrayList<ProductData>();
 		final List<ProductData> accessories = new ArrayList<ProductData>();
 		final ProductData productData = productFacade.getProductForCodeAndOptions(productCode, options);
 		final List<ProductReferenceData> references = productData.getProductReferences();
@@ -438,9 +439,9 @@ public class ProductPageController extends AbstractPageController
 			{
 				others.add(product.getTarget());
 			}
-			else if (product.getReferenceType().getCode().equals("SIMILAR"))
+			else if (product.getReferenceType().getCode().equals("UPSELLING"))
 			{
-				similar.add(product.getTarget());
+				upselling.add(product.getTarget());
 			}
 			else if (product.getReferenceType().getCode().equals("ACCESSORIES"))
 			{
@@ -464,15 +465,46 @@ public class ProductPageController extends AbstractPageController
 			model.addAttribute(WebConstants.MULTI_DIMENSIONAL_PRODUCT,
 					Boolean.valueOf(CollectionUtils.isNotEmpty(productData.getVariantMatrix())));
 		}
-		final Map<String, Set<String>> compareProducts = findCommonClassificationAttributes(productData, similar);
-		model.addAttribute("compareProducts", compareProducts);
+		final List<String> compareProducts = findCommonClassificationAttributes(productData, upselling, model);
+		if (null != compareProducts)
+		{
+			final ProductComparisonData firstComparisonData = new ProductComparisonData();
+			final Map<String, String> firstProductAttrValueMap = new HashMap<String, String>();
+			firstComparisonData.setProductData(productData);
+			for (final String attribute : compareProducts)
+			{
+				for (final ClassificationData classData : productData.getClassifications())
+				{
+					for (final FeatureData fd : classData.getFeatures())
+					{
+						if (attribute.equals(fd.getName()))
+						{
+							String mapValue = null;
+							for (final FeatureValueData data : fd.getFeatureValues())
+							{
+								mapValue = data.getValue();
+							}
+							firstProductAttrValueMap.put(fd.getName(), mapValue);
+						}
+
+					}
+				}
+			}
+			firstComparisonData.setProductData(productData);
+			firstComparisonData.setProductAttrValueMap(firstProductAttrValueMap);
+			model.addAttribute("firstProduct", firstComparisonData);
+			model.addAttribute("compareProducts", compareProducts);
+		}
+
 
 	}
 
-	private Map<String, Set<String>> findCommonClassificationAttributes(final ProductData firstProduct1,
-			final List<ProductData> productComparisonList)
+	private List<String> findCommonClassificationAttributes(final ProductData firstProduct1,
+			final List<ProductData> productComparisonList, final Model model)
 	{
-		final Map<String, Set<String>> result = new HashMap<String, Set<String>>();
+		final Set<ProductComparisonData> productComparisonDataList = new HashSet<ProductComparisonData>();
+		final Set<String> result = new HashSet<String>();
+		final Set<String> classFeatureCodes = new HashSet<String>();
 		if (!productComparisonList.isEmpty())
 		{
 			final ProductData firstProduct = firstProduct1;
@@ -481,11 +513,13 @@ public class ProductPageController extends AbstractPageController
 				for (final ClassificationData classData : firstProduct.getClassifications())
 				{
 					final String classCode = classData.getCode();
-					final Set<String> classFeatureCodes = new HashSet<String>();
-					boolean addToCommonList = true;
+
+					final boolean addToCommonList = true;
 					//search through products
 					for (int i = 0; i < productComparisonList.size(); i++)
 					{
+						final ProductComparisonData comparisonData = new ProductComparisonData();
+						final Map<String, String> productAttrValueMap = new HashMap<String, String>();
 						boolean found = false;
 						final ProductData product = productComparisonList.get(i);
 						if (product.getClassifications() != null)
@@ -501,29 +535,55 @@ public class ProductPageController extends AbstractPageController
 									{
 										if (fd.isComparable())
 										{
+
 											classFeatureCodes.add(fd.getName());
+											String mapValue = null;
+											for (final FeatureValueData data : fd.getFeatureValues())
+											{
+												mapValue = data.getValue();
+											}
+
+											productAttrValueMap.put(fd.getName(), mapValue);
 										}
 									}
-									break;
+
 								}
 							}
 						}
-						if (!found)
-						{
-							//not found classification attr for some product -> dont add to list
-							addToCommonList = false;
-							break;
-						}
-					}
-					//check addToCommonList
-					if (addToCommonList)
-					{
-						result.put(classCode, classFeatureCodes);
+						comparisonData.setProductData(product);
+						comparisonData.setProductAttrValueMap(productAttrValueMap);
+						productComparisonDataList.add(comparisonData);
 					}
 				}
 			}
 		}
-		return result;
+		final List<String> featurelist = new ArrayList<String>(classFeatureCodes);
+		Collections.sort(featurelist);
+		final Set<ProductComparisonData> productComparisonDataListFinal = new HashSet<ProductComparisonData>();
+		for (final ProductComparisonData comparisonData : productComparisonDataList)
+		{
+			final ProductComparisonData comparisonDataFinal = new ProductComparisonData();
+			final Map<String, String> productAttrValueMapFinal = new HashMap<String, String>();
+			if (comparisonData.getProductAttrValueMap().size() > 0)
+			{
+				for (final String attribute : featurelist)
+				{
+					if (comparisonData.getProductAttrValueMap().containsKey(attribute))
+					{
+						productAttrValueMapFinal.put(attribute, comparisonData.getProductAttrValueMap().get(attribute));
+					}
+					else
+					{
+						productAttrValueMapFinal.put(attribute, "-");
+					}
+				}
+				comparisonDataFinal.setProductData(comparisonData.getProductData());
+				comparisonDataFinal.setProductAttrValueMap(productAttrValueMapFinal);
+				productComparisonDataListFinal.add(comparisonDataFinal);
+			}
+		}
+		model.addAttribute("comparisonProductList", productComparisonDataListFinal);
+		return featurelist;
 	}
 
 	protected void populateProductData(final ProductData productData, final Model model)
