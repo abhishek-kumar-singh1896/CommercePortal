@@ -204,3 +204,10 @@ INSERT_UPDATE SyncAttributeDescriptorConfig;syncJob(code)[unique=true,path-delim
 ;sync amB2CMasterProductCatalog:Staged->amB2CCAProductCatalog:Staged;Product:baseStores;false;false
 ;sync amB2CMasterProductCatalog:Staged->amB2CGlobalProductCatalog:Staged;Product:baseStores;false;false
 ;sync amB2CMasterProductCatalog:Staged->amB2CLatAmProductCatalog:Staged;Product:baseStores;false;false
+
+;sync amB2CMasterProductCatalog:Staged->amB2CNZProductCatalog:Staged;Product:europe1Prices;false;false
+;sync amB2CMasterProductCatalog:Staged->amB2CAUProductCatalog:Staged;Product:europe1Prices;false;false
+;sync amB2CMasterProductCatalog:Staged->amB2CUSProductCatalog:Staged;Product:europe1Prices;false;false
+;sync amB2CMasterProductCatalog:Staged->amB2CCAProductCatalog:Staged;Product:europe1Prices;false;false
+;sync amB2CMasterProductCatalog:Staged->amB2CGlobalProductCatalog:Staged;Product:europe1Prices;false;false
+;sync amB2CMasterProductCatalog:Staged->amB2CLatAmProductCatalog:Staged;Product:europe1Prices;false;false
