@@ -154,8 +154,8 @@
 	<alias name="gallagherProductReferencePopulator" alias="productReferencePopulator" />
 	<bean id="gallagherProductReferencePopulator" parent="defaultProductReferencePopulator"
 		class="com.gallagher.facades.product.converters.populator.GallagherProductReferencePopulator">
-		<property name="productCon" ref="productConverter"></property>
-		<property name="populators" ref="productClassificationPopulator"></property>
+		<property name="productConverter" ref="productConverter"></property>
+		<property name="classificationPopulator" ref="productClassificationPopulator"></property>
 	</bean>
 
 	<alias name="gallagherProductPopulator" alias="productPopulator" />
