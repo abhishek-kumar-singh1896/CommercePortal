@@ -22,6 +22,7 @@
 	-webkit-transition: all ease-in-out 0.2s;
 	transition: all ease-in-out 0.2s;
 	border-top: 2px transparent #ff8400;
+	text-transform: none;
 }
 
 .search-result-tab-out .search-result-inner-container .nav-tabs>li>a:hover
@@ -63,6 +64,11 @@
 	.search-result-tab-out .search-result-inner-container .nav-tabs .nav-link.active
 		{
 		font-family: "GalaxiePolaris-Bold", sans-serif;
+	}
+	.search-result-tab-out .search-result-inner-container .nav-tabs>li>a:hover,
+		.search-result-tab-out .search-result-inner-container .nav-tabs>li>a:focus
+		{
+		background: #ffffff;
 	}
 	.search-result-tab-out .search-result-count {
 		margin-top: 18px;

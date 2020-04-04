@@ -53,7 +53,6 @@ public class SearchPageController extends AbstractSearchPageController
 {
 	private static final String SEARCH_META_DESCRIPTION_ON = "search.meta.description.on";
 	private static final String SEARCH_META_DESCRIPTION_RESULTS = "search.meta.description.results";
-	private static final String SEARCH_BREADCRUMB = "text.search.breadcrumb";
 
 	@SuppressWarnings("unused")
 	private static final Logger LOG = Logger.getLogger(SearchPageController.class);
@@ -140,10 +139,7 @@ public class SearchPageController extends AbstractSearchPageController
 			getRequestContextData(request).setSearch(searchPageData);
 			if (searchPageData != null)
 			{
-				final String name = messageSource.getMessage(SEARCH_BREADCRUMB, null, getI18nService().getCurrentLocale());
-
-				model.addAttribute(WebConstants.BREADCRUMBS_KEY, searchBreadcrumbBuilder.getBreadcrumbs(null,
-						name + " / " + searchText,
+				model.addAttribute(WebConstants.BREADCRUMBS_KEY, searchBreadcrumbBuilder.getBreadcrumbs(null, searchText,
 						CollectionUtils.isEmpty(searchPageData.getBreadcrumbs())));
 			}
 		}
