@@ -7,6 +7,7 @@ import de.hybris.platform.catalog.model.ProductReferenceModel;
 import de.hybris.platform.commercefacades.product.converters.populator.ProductReferencePopulator;
 import de.hybris.platform.commercefacades.product.data.ProductData;
 import de.hybris.platform.commercefacades.product.data.ProductReferenceData;
+import de.hybris.platform.converters.Populator;
 import de.hybris.platform.core.model.product.ProductModel;
 import de.hybris.platform.servicelayer.dto.converter.Converter;
 
@@ -21,6 +22,24 @@ public class GallagherProductReferencePopulator extends ProductReferencePopulato
 {
 
 	private Converter<ProductModel, ProductData> productCon;
+	private Populator<ProductModel, ProductData> populators;
+
+	/**
+	 * @return the populators
+	 */
+	public Populator<ProductModel, ProductData> getPopulators()
+	{
+		return populators;
+	}
+
+	/**
+	 * @param populators
+	 *           the populators to set
+	 */
+	public void setPopulators(final Populator<ProductModel, ProductData> populators)
+	{
+		this.populators = populators;
+	}
 
 	/**
 	 * @return the productCon
@@ -50,6 +69,9 @@ public class GallagherProductReferencePopulator extends ProductReferencePopulato
 		target.setQuantity(source.getQuantity());
 		target.setReferenceType(source.getReferenceType());
 		final ProductModel product = source.getTarget();
-		target.setTarget(product == null ? null : productCon.convert(product));
+		final ProductData productData = product == null ? null : productCon.convert(product);
+		getPopulators().populate(product, productData);
+		target.setTarget(productData);
+
 	}
 }
