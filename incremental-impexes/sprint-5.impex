@@ -1,0 +1,153 @@
+REMOVE ZoneDeliveryMode; code[unique=true];net; active[default=true]
+; premium-net; true
+; standard-net       ; true
+; premium-gross      ; false
+; free-standard-shipping     ; true; false  ;
+
+
+# Pickup Delivery Mode
+REMOVE PickUpDeliveryMode    ; code[unique=true]  ; supportedMode(code)
+; pickup       ; BUY_AND_COLLECT
+
+##############################
+# Insert DeliveryMode taxes
+##############################
+REMOVE ProductTaxCode; productCode[unique=true]; taxCode ; taxArea[unique=true]
+; premium-gross   ; FR000000; GB
+; premium-net     ; FR000000; GB
+; standard-gross  ; FR000000; GB
+; standard-net    ; FR000000; GB
+; pickup  ; FR000000; GB
+; premium-gross   ; FR000000; US
+; standard-gross  ; FR000000; US
+; standard-net    ; FR000000; US
+; pickup  ; FR000000; US
+; premium-net     ; FR000000; US
+; premium-gross   ; FR000000; JP
+; standard-gross  ; FR000000; JP
+; pickup  ; FR000000; JP
+; standard-net    ; FR000000; JP
+; premium-net     ; FR000000; JP
+; premium-gross   ; FR000000; FR
+; standard-gross  ; FR000000; FR
+; standard-net    ; FR000000; FR
+; pickup  ; FR000000; FR
+; premium-net     ; FR000000; FR
+; premium-gross   ; FR000000; PL
+; standard-gross  ; FR000000; PL
+; standard-net    ; FR000000; PL
+; pickup  ; FR000000; PL
+; premium-net     ; FR000000; PL
+; premium-gross   ; FR000000; DE
+; standard-gross  ; FR000000; DE
+; standard-net    ; FR000000; DE
+; pickup  ; FR000000; DE
+; premium-net     ; FR000000; DE
+; premium-gross   ; FR000000; CA
+; standard-gross  ; FR000000; CA
+; standard-net    ; FR000000; CA
+; pickup  ; FR000000; CA
+; premium-net     ; FR000000; CA
+; premium-gross   ; FR000000; CN
+; standard-gross  ; FR000000; CN
+; standard-net    ; FR000000; CN
+; pickup  ; FR000000; CN
+; premium-net     ; FR000000; CN
+
+
+INSERT_UPDATE ZoneDeliveryMode ; code[unique=true] ; net   ; active[default=true]
+; standard-gross    ; false
+; am-standard-gross ; false
+
+
+##############################
+# Insert DeliveryMode taxes
+##############################
+INSERT_UPDATE ProductTaxCode ; productCode[unique=true] ; taxCode  ; taxArea[unique=true]
+; standard-gross   ; FR000000 ; US
+; am-standard-gross; FR000000 ; US
+; standard-gross   ; FR000000 ; CA
+; am-standard-gross; FR000000 ; CA
+
+$lang=en
+UPDATE ZoneDeliveryMode ; code[unique=true] ; name[lang=$lang]    ; description[lang=$lang]
+; standard-gross    ; "Standard Delivery" ; "3-5 business days"
+; am-standard-gross ; "Standard Delivery" ; "3-5 business days"
+
+REMOVE BaseStore2DeliveryModeRel;source(uid)[unique=true];target(code)[unique=true]
+;securityB2BAU;premium-gross
+;securityB2BAU;free-standard-shipping
+;securityB2BNZ;premium-gross
+;securityB2BNZ;free-standard-shipping
+;securityB2BGlobal;premium-gross
+;securityB2BGlobal;free-standard-shipping
+
+
+# Currencies
+$usCurrency=USD
+$caCurrency=CAD
+# Delivery Zones
+INSERT_UPDATE Zone ; code[unique=true] ; countries(isocode)
+; usa       ; US
+; ca; CA
+
+# Zone Delivery Modes
+INSERT_UPDATE ZoneDeliveryMode ; code[unique=true] ; net   ; active[default=true]
+; am-standard-gross ; false
+
+# USA
+INSERT_UPDATE ZoneDeliveryModeValue ; deliveryMode(code)[unique=true] ; zone(code)[default='usa'][unique=true] ; currency(isocode)[unique=true] ; value ; minimum[unique=true]
+; am-standard-gross       ;; $usCurrency    ; 15 ; 0
+; am-standard-gross       ;; $usCurrency    ; 20 ; 150.00
+; am-standard-gross       ;; $usCurrency    ; 30 ; 300.00
+; am-standard-gross       ;; $usCurrency    ; 0  ; 1000
+
+
+# Canada
+INSERT_UPDATE ZoneDeliveryModeValue ; deliveryMode(code)[unique=true] ; zone(code)[default='ca'][unique=true] ; currency(isocode)[unique=true] ; value ; minimum[unique=true]
+; am-standard-gross       ;; $caCurrency    ; 22 ; 0
+; am-standard-gross       ;; $caCurrency    ; 30 ; 150.00
+; am-standard-gross       ;; $caCurrency    ; 50 ; 300.00
+; am-standard-gross       ;; $caCurrency    ; 0  ; 1000
+
+
+##############################
+# Insert DeliveryMode taxes
+##############################
+INSERT_UPDATE ProductTaxCode ; productCode[unique=true] ; taxCode  ; taxArea[unique=true]
+; am-standard-gross; FR000000 ; US
+; am-standard-gross; FR000000 ; CA
+
+INSERT_UPDATE BaseStore2DeliveryModeRel;source(uid)[unique=true];target(code)[unique=true]
+;amB2CAU;am-standard-gross
+;amB2CNZ;am-standard-gross
+;amB2CCA;am-standard-gross
+;amB2CUS;am-standard-gross
+;amB2CGlobal;am-standard-gross
+;amB2CLatAm;am-standard-gross
+
+REMOVE BaseStore2DeliveryModeRel;source(uid)[unique=true];target(code)[unique=true]
+;amB2CAU;premium-gross
+;amB2CAU;standard-gross
+;amB2CAU;pickup
+;amB2CAU;free-standard-shipping
+;amB2CNZ;premium-gross
+;amB2CNZ;standard-gross
+;amB2CNZ;pickup
+;amB2CNZ;free-standard-shipping
+;amB2CUS;premium-gross
+;amB2CUS;standard-gross
+;amB2CUS;pickup
+;amB2CUS;free-standard-shipping
+;amB2CCA;premium-gross
+;amB2CCA;standard-gross
+;amB2CCA;pickup
+;amB2CCA;free-standard-shipping
+;amB2CGlobal;premium-gross
+;amB2CGlobal;standard-gross
+;amB2CGlobal;pickup
+;amB2CGlobal;free-standard-shipping
+;amB2CLatAm;premium-gross
+;amB2CLatAm;standard-gross
+;amB2CLatAm;pickup
+;amB2CLatAm;free-standard-shipping

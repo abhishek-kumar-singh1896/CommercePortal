@@ -64,6 +64,7 @@ public class GallagherSaveCustomerHandler implements FlowActionHandler
 	@Resource(name = "baseStoreService")
 	private BaseStoreService baseStoreService;
 
+	@Resource(name = "eventService")
 	private EventService b2bEventService;
 
 	@Override

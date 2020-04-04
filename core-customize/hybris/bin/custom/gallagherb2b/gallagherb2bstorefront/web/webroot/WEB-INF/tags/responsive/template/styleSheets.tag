@@ -43,6 +43,8 @@
  
   <%-- stylesheet for bulk order --%>
  <link rel="stylesheet" type="text/css" media="all" href="${commonResourcePath}/customResponsiveCss/mobbulkorderform.css"/>
- 
+  
+ <!-- styleshet for search result grid -->
+ <link rel="stylesheet" type="text/css" media="all" href="${commonResourcePath}/customResponsiveCss/searchresultgrid.css"/>
  
 <cms:previewCSS cmsPageRequestContextData="${cmsPageRequestContextData}" />

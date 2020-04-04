@@ -3,11 +3,11 @@
 
 
 <%-- Lockerz Share BEGIN --%>
-<div class="a2a_kit a2a_default_style LoveShare span-10 last clearfix">
+<%-- <div class="a2a_kit a2a_default_style LoveShare span-10 last clearfix">
 	<a class="a2a_dd share" href="https://www.addtoany.com/share_save" title="<spring:theme code="product.share.viewMoreServices"/>" >
 		<spring:theme code="product.share.share" text="Share" />
 	</a>
-</div>
+</div> --%>
 <script type="text/javascript" src="https://static.addtoany.com/menu/page.js"></script>
 <%-- Lockerz Share END --%>
 
