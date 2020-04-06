@@ -514,6 +514,7 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active
 ;;PlaceholderContentSlot;Placeholder for Addon tag files;true
 ;;Section1Slot;Section1 Slot for ProductListPage;true
 ;;SearchGridBannerSlot;Banner for search grid page;true
+;;SearchResultsEmptyBannerSlot;Banner for search result empty page;true
 
 
 # Bind Content Slots to Page Templates
@@ -578,6 +579,7 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 ;;BottomHeaderSlot-SearchResultsEmpty;BottomHeaderSlot;;BottomHeaderSlot;true
 ;;PlaceholderContentSlot-SearchResultsEmpty;PlaceholderContentSlot;;PlaceholderContentSlot;true
 ;;ggB2CNavBar-SearchResultsEmpty;ggB2CNavBar;;ggB2CNavBarSlot;true
+;;banner-SearchResultsEmpty;SearchResultsEmptyBanner;;SearchResultsEmptyBannerSlot;true
 
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CategoryPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;SiteLogo-CategoryPage;SiteLogo;;SiteLogoSlot;true

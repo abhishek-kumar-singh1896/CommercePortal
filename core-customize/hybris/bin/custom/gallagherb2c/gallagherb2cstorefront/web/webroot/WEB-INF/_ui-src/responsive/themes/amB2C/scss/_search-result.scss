@@ -16,6 +16,7 @@
                 margin-right: 3px;
                 transition: all ease-in-out 0.2s;
                 border-top: 4px transparent $primary-color;
+                text-transform: none;
 
                 &:hover {
                     background: rgba(0,0,0,0.1);
@@ -53,6 +54,7 @@
                 .nav-link {
                     background-color: $white;
 
+						 &:hover,
                     &.active {
                         font-family: $font-family-bold;
                     }
