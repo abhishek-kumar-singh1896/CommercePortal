@@ -59,18 +59,11 @@
 			</div>
 
 			<div class="tab-pane" id="technicalSupport">
-				<%-- <script async="async" src="${mindtouchSRCdata}"></script>
-				<script type="mindtouch/embed" id="${mindtouchIDdata}"
-					data-search-query="${searchPageData.freeTextSearch}"></script> --%>
-					<div>
-					<script async="async" src="https://gallagher-prod.mindtouch.us/@embed/2d12a1669bb18ccedb9a505ac16c9abd5e8099da8becae13188925d63e16d324.js"></script>
-					<script type="mindtouch/embed" id="mindtouch-embed-2d12a1669bb18ccedb9a505ac16c9abd5e8099da8becae13188925d63e16d324" data-search-query="wire"></script>
-				</div>
+					<script async="async" src="${mindtouchSRC}"></script>
+					<script type="mindtouch/embed" id="${mindtouchID}" data-search-query="${searchPageData.freeTextSearch}"></script>
 			</div>
 		</div>
-
 	</div>
-
 
 	<storepickup:pickupStorePopup />
 
