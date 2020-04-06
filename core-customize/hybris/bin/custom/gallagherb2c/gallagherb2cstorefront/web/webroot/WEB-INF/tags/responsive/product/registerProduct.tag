@@ -12,7 +12,7 @@
 	uri="http://www.springframework.org/security/tags"%>
 <sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
 	<c:url value="/register-product/verify" var="verifyURL" />
-	<c:url value="/register-product" var="submitURL" />
+	<c:url value="/register-product/submit" var="submitURL" />
 	<product:registerProductTitle />
 	<div class="register-product-out">
 		<div id="product-not-found-alert" class="d-none">

@@ -210,7 +210,7 @@ public class RegisterProductController extends AbstractPageController
 	 * @return
 	 * @throws CMSItemNotFoundException
 	 */
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST, value = "/submit")
 	public String submitRegisterProduct(@ModelAttribute
 	final RegisterProductForm registerProductForm1, final Model model, final RedirectAttributes redirectAttributes)
 			throws CMSItemNotFoundException
