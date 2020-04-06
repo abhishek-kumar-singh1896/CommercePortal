@@ -11,11 +11,11 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
-	<c:url value="/register-product/verify" var="actionURL" />
-	<c:url value="/register-product/submit" var="actionURL1" />
+	<c:url value="/register-product/verify" var="verifyURL" />
+	<c:url value="/register-product" var="submitURL" />
 	<product:registerProductTitle />
 	<div class="register-product-out">
-		<div id="productSuccessAlert" class="d-none">
+		<div id="product-not-found-alert" class="d-none">
 
 			<div class="alert alert-danger alert-dismissable getAccAlert">
 				<button class="close closeAccAlert" aria-hidden="true"
@@ -48,8 +48,7 @@
 
 			<h2 class="secondary-title mt-5">Product will be registered
 				under ${user.firstName}&nbsp${user.lastName}</h2>
-			<%--  action="${actionURL}"  --%>
-			<form:form method="post" action="${actionURL1}"
+			<form:form method="post" action="${submitURL}"
 				id="registerProductForm" class="registerProduct_form" enctype="multipart/form-data"
 				modelAttribute="registerProductForm">
 				<div class="row">
@@ -265,8 +264,8 @@
 				</div>
 
 				<div class="mt-3">
-					<input type="button" class="btn btn-primary registerProduct" value="Register"/>
-                    <button type="submit" class="btn btn-primary d-none registerProduct1">Register</button>
+					<input type="button" class="btn btn-primary verify-registration" value="Register"/>
+               <button type="submit" class="btn btn-primary d-none register-product">Register</button>
 				</div>
 			</form:form>
 		</div>
@@ -289,8 +288,8 @@
 			</div>
 				<div class="row mt-3">
 					<div class="col-12 text-right">
-						<input type="button" value="Register" class="btn btn-highlight registerSuccess"
-							id="registerSuccess" />
+						<input type="button" value="Register" class="btn btn-highlight verification-success"
+							id="verification-success" />
 					</div>
 				</div>
 		</div>

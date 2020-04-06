@@ -22,23 +22,10 @@ ACC.registerProduct = {
                 dateFormat: 'dd/mm/yy',
                 autoclose: true
             });
-
-            /*$('#registerSuccess').click(function () {
-                $('#confirmRegisterModal').modal('hide')
-            	alert("222");
-            	ACC.colorbox.close();
-                $("#productSuccessAlert").removeClass('d-none').addClass('fade');
-                $(window).scrollTop($('.register-product-out').offset().top);
-
-                setTimeout(function(){
-                    $("#productSuccessAlert").addClass('d-none').removeClass('fade');
-                }, 7000);
-
-            });*/
     });
 	},
 	bindVerifyRegisterProduct : function() {
-		$('.registerProduct').click(
+		$('.verify-registration').click(
 				function(e) {
 					e.preventDefault();
 					$.ajax({
@@ -51,29 +38,22 @@ ACC.registerProduct = {
 						success : function(result) {
 							if(result.responseStatus == "FAILURE"){
 								showFieldErrors(result.errorsMap);
-								$("#productSuccessAlert").addClass('d-none');
+								$("#product-not-found-alert").addClass('d-none');
 							}else if(result.responseStatus == "PRODUCTNOTFOUND"){
-								$("#productSuccessAlert").removeClass('d-none');
+								$("#product-not-found-alert").removeClass('d-none');
 								$(".global-alerts").addClass('d-none');
 								$(window).scrollTop($('.register-product-out').offset().top);
 							}else{
-								$("#productSuccessAlert").addClass('d-none');
+								$("#product-not-found-alert").addClass('d-none');
 								$('#registerProductForm').find('.form-control').removeClass('has-error').next().find('.error-text').addClass('d-none');
 								var titleHeader = $('#registerProductTitle').html();
 								var productCode=result.productCode;
 								var productName=result.productName;
 								var productImage=result.productImage;
-								var productaltText=result.productaltText;
-								var productSku =result.registerProductForm.productSku;
-								var serialNumber =result.registerProductForm.serialNumber;
-								var datePurchased =result.registerProductForm.datePurchased;
-								var addressLine1 =result.registerProductForm.addressLine1;
-								var addressLine2 =result.registerProductForm.addressLine2;
-								var townCity =result.registerProductForm.townCity;
-								var postCode =result.registerProductForm.postCode;
-								var country =result.registerProductForm.country;
 								var phoneNumber =result.registerProductForm.phoneNumber;
-								var region = result.registerProductForm.region;
+								var productaltText=result.productaltText;
+								var serialNumber =result.registerProductForm.serialNumber;
+								var productSku =result.registerProductForm.productSku;
 								var image='<img src="'+ productImage+'" alt="'+productaltText+'"/>';
 								$("#phoneNumberInput").text(phoneNumber);
 								$('#product-name').text(productName);
@@ -145,9 +125,9 @@ ACC.registerProduct = {
 		return JSON.stringify(productDetails);
 	},
 	handlePopup: function(){
-        $('body').on('click', '.registerSuccess', function(e) {
+        $('body').on('click', '.verification-success', function(e) {
              $('#cboxClose').click();
-             $('.registerProduct1').click();
+             $('.register-product').click();
         });
                
     }
