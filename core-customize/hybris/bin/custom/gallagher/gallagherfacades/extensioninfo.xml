@@ -15,6 +15,7 @@
                 		
         
         <requires-extension name="gallaghercore"/>
+        <requires-extension name="ordermanagementfacades"/>        
                 		
         
         <coremodule generated="true" manager="de.hybris.platform.jalo.extension.GenericManager" packageroot="com.gallagher.facades"/>

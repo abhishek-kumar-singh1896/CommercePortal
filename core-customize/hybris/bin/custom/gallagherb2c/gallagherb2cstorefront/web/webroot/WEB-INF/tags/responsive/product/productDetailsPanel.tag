@@ -37,7 +37,7 @@
 	                            </span>
                             </c:if>
                         </div>
-                        <h1 class="product-detail-title">${fn:escapeXml(product.marketingDescription)}</h1>
+                        <h1 class="product-detail-title">${fn:escapeXml(product.name)}</h1>
                         <div class="product-code">${fn:escapeXml(product.code)}</div>
                         <div class="product-detail-desc-out">
                             <p>${ycommerce:sanitizeHTML(product.description)}</p>
