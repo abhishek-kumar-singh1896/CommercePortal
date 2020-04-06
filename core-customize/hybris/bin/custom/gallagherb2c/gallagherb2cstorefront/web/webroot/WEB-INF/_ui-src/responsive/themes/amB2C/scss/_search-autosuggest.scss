@@ -9,7 +9,7 @@ ui-widget {
 }
 
 .search-results-highlight {
-  font-family: $font-family-bold;
+  font-weight: bold;
 }
 
 .ui-widget-content {
@@ -34,7 +34,7 @@ ui-widget {
     &.ui-state-active {
       border: none;
       background: transparent;
-      font-weight: normal;
+      font-weight: 500;
       color: $primary-color;
       padding: 8px 0;
       margin: 0;

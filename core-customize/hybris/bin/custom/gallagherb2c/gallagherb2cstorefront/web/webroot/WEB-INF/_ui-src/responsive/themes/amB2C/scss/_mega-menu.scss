@@ -233,7 +233,7 @@
           &.active {
             color: $primary-color;
             border-left: 4px solid $primary-color;
-            font-family: $font-family-bold;
+            font-weight: bold;
             background-color: transparent;
 
             .arrow-right-icon {
@@ -560,7 +560,7 @@
                 }
 
                 .user-name {
-                  font-family: $font-family-bold;
+                  font-weight: bold;
                   padding-bottom: 8px;
                   font-size: $font-size-13px;
                 }

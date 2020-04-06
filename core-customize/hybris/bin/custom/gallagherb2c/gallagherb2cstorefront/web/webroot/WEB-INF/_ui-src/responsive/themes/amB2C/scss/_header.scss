@@ -33,7 +33,7 @@
           }
 
           .user-name {
-            font-family: $font-family-bold;
+            font-weight: bold;
             padding-bottom: 8px;
             font-size: $font-size-13px;
           }
@@ -349,7 +349,7 @@
             .mini-cart-price {
               font-size: 1.14285em;
               line-height: 20px;
-              font-family: $font-family-bold;
+              font-weight: bold;
               color: $primary-color;
             }
           }
@@ -374,7 +374,7 @@
           text-align: right;
           font-size: 1.14285em;
           line-height: 20px;
-          font-family: $font-family-bold;
+          font-weight: 500;
 
           .total-text {
             color: $gray-9;
@@ -407,14 +407,14 @@
         vertical-align: middle;
         padding-top: 0;
         text-align: center;
-        font-family: $font-family-bold;
+        font-weight: bold;
       }
     }
 
     .btn {
       background: linear-gradient(to bottom, $header-right-top-color 0%, $header-right-bottom-color 100%);
       padding: 12px;
-      font-weight: normal;
+      font-weight: 500;
       font-size: 1em;
 
       &.left-btn {
@@ -461,7 +461,7 @@
         text-align: center;
         width: 100%;
         font-size: 1em;
-        font-family: $font-family-bold;
+        font-weight: 500;
         background: linear-gradient(to bottom, $gradiant-primary-top-color 0%, $gradiant-primary-bottom-color 100%);
 
         &:hover,
