@@ -49,8 +49,8 @@
 			<h2 class="secondary-title mt-5">Product will be registered
 				under ${user.firstName}&nbsp${user.lastName}</h2>
 			<%--  action="${actionURL}"  --%>
-			<form:form method="post" action="${actionURL}"
-				id="registerProductForm" class="registerProduct_form"
+			<form:form method="post" action="${actionURL1}"
+				id="registerProductForm" class="registerProduct_form" enctype="multipart/form-data"
 				modelAttribute="registerProductForm">
 				<div class="row">
 					<div class="col-md-6">
@@ -265,8 +265,8 @@
 				</div>
 
 				<div class="mt-3">
-					<button type="submit" class="btn btn-primary registerProduct">Register</button>
-                    <button type="submit" class="btn btn-primary d-none registerProduct1" formaction="${actionURL1}">Register</button>
+					<input type="button" class="btn btn-primary registerProduct" value="Register"/>
+                    <button type="submit" class="btn btn-primary d-none registerProduct1">Register</button>
 				</div>
 			</form:form>
 		</div>
@@ -287,39 +287,12 @@
 					<div id="product-serial" class="product-id"></div>
 				</div>
 			</div>
-			<form:form id="registerProductSubmitForm"
-				class="registerProductSubmitForm" method="post"
-				action="${actionURL1}" modelAttribute="registerProductSubmitForm">
-				<input type="hidden" class="form-control common-input"
-					id="productSkuInput" name="productSku1">
-				<input type="hidden" class="form-control common-input"
-					id="serialNumberInput" name="serialNumber1">
-				<input type="hidden" class="form-control common-input"
-					id="datePurchasedInput" name="datePurchased1">
-				<input type="hidden" class="form-control common-input"
-					id="addressLine1Input" name="addressLine11">
-				<input type="hidden" class="form-control common-input"
-					id="addressLine2Input" name="addressLine21">
-				<input type="hidden" class="form-control common-input"
-					id="townCityInput" name="townCity1">
-				<input type="hidden" class="form-control common-input"
-					id="regionInput" name="region1">
-				<input type="hidden" class="form-control common-input"
-					id="postCodeInput" name="postCode1">
-				<input type="hidden" class="form-control common-input"
-					id="countryInput" name="country1">
-				<input type="hidden" class="form-control common-input"
-					id="phoneNumberInput" name="phoneNumber1">
-				<input type="hidden" class="form-control common-input"
-					id="attachedFileInput" name="attachedFile1">
-
 				<div class="row mt-3">
 					<div class="col-12 text-right">
-						<button type="submit" class="btn btn-highlight registerSuccess"
-							id="registerSuccess">Register</button>
+						<input type="button" value="Register" class="btn btn-highlight registerSuccess"
+							id="registerSuccess" />
 					</div>
 				</div>
-			</form:form>
 		</div>
 	</div>
 </sec:authorize>

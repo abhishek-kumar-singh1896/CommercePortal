@@ -74,16 +74,6 @@ ACC.registerProduct = {
 								var country =result.registerProductForm.country;
 								var phoneNumber =result.registerProductForm.phoneNumber;
 								var region = result.registerProductForm.region;
-								document.getElementById("productSkuInput").value = productSku;
-								document.getElementById("serialNumberInput").value = serialNumber;
-								document.getElementById("datePurchasedInput").value = datePurchased;
-								document.getElementById("addressLine1Input").value = addressLine1;
-								document.getElementById("addressLine2Input").value = addressLine2;
-								document.getElementById("townCityInput").value = townCity;
-								document.getElementById("postCodeInput").value = postCode;
-								document.getElementById("countryInput").value = country;
-								document.getElementById("phoneNumberInput").value = phoneNumber;
-								document.getElementById("regionInput").value = region;
 								var image='<img src="'+ productImage+'" alt="'+productaltText+'"/>';
 								$("#phoneNumberInput").text(phoneNumber);
 								$('#product-name').text(productName);
