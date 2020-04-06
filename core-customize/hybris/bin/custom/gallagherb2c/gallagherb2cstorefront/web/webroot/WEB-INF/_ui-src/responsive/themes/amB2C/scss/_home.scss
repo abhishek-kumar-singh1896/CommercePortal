@@ -142,7 +142,7 @@
       line-height: 1.43;
       letter-spacing: 0.2px;
       margin: 8px 0 16px 0;
-      font-family: $font-family-description;
+      font-weight: normal;
     }
   }
 
@@ -182,7 +182,7 @@
 
     .section-small-title-description {
       margin: 8px 0;
-      font-family: $font-family-description;
+      font-weight: normal;
       font-size: 0.9285714em;
       letter-spacing: 0.1px;
       line-height: 20px;
@@ -310,7 +310,7 @@
             font-size: 2.285714em;
             line-height: 36px;
             display: block;
-            font-family: $font-family-heavy;
+            font-weight: 900;
           }
 
           .small-text {

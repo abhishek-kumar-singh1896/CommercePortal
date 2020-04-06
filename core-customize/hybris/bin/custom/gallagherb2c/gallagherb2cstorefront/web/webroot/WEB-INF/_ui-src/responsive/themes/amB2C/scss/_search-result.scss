@@ -54,9 +54,13 @@
                 .nav-link {
                     background-color: $white;
 
-						 &:hover,
+                    &:hover,
+                    &:focus {
+                        background: $white;
+                    }
+
                     &.active {
-                        font-family: $font-family-bold;
+                        font-weight: bold;
                     }
                 }
             }
