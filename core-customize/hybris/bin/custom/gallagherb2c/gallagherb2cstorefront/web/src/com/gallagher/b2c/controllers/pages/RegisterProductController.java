@@ -46,7 +46,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gallagher.b2c.controllers.ControllerConstants;
 import com.gallagher.b2c.form.RegisterProductForm;
-import com.gallagher.b2c.form.RegisterProductPopupForm;
 import com.gallagher.b2c.response.RPFormResponseData;
 import com.gallagher.b2c.response.RPFormResponseStatus;
 import com.gallagher.b2c.util.GallagherProductRegistrationUtil;
@@ -213,7 +212,7 @@ public class RegisterProductController extends AbstractPageController
 	 */
 	@RequestMapping(value = "/submit", method = RequestMethod.POST)
 	public String submitRegisterProduct(@ModelAttribute
-	final RegisterProductPopupForm registerProductForm1, final Model model, final RedirectAttributes redirectAttributes)
+	final RegisterProductForm registerProductForm1, final Model model, final RedirectAttributes redirectAttributes)
 			throws CMSItemNotFoundException
 	{
 		final RegisterProductRequest request = new RegisterProductRequest();
@@ -226,16 +225,16 @@ public class RegisterProductController extends AbstractPageController
 		}
 		catch (final UnknownIdentifierException e)
 		{
-			rg.setAddressLine1(registerProductForm1.getAddressLine11());
-			rg.setAddressLine2(registerProductForm1.getAddressLine21());
-			rg.setCountry(registerProductForm1.getCountry1());
-			rg.setDatePurchased(registerProductForm1.getDatePurchased1());
-			rg.setPhoneNumber(registerProductForm1.getPhoneNumber1());
-			rg.setPostCode(registerProductForm1.getProductSku1());
-			rg.setSerialNumber(registerProductForm1.getSerialNumber1());
-			rg.setProductSku(registerProductForm1.getProductSku1());
-			rg.setTownCity(registerProductForm1.getTownCity1());
-			rg.setRegion(registerProductForm1.getRegion1());
+			rg.setAddressLine1(registerProductForm1.getAddressLine1());
+			rg.setAddressLine2(registerProductForm1.getAddressLine2());
+			rg.setCountry(registerProductForm1.getCountry());
+			rg.setDatePurchased(registerProductForm1.getDatePurchased());
+			rg.setPhoneNumber(registerProductForm1.getPhoneNumber());
+			rg.setPostCode(registerProductForm1.getProductSku());
+			rg.setSerialNumber(registerProductForm1.getSerialNumber());
+			rg.setProductSku(registerProductForm1.getProductSku());
+			rg.setTownCity(registerProductForm1.getTownCity());
+			rg.setRegion(registerProductForm1.getRegion());
 			model.addAttribute(rg);
 			GlobalMessages.addMessage(model, GlobalMessages.ERROR_MESSAGES_HOLDER, "registerProduct.error.message.title", null);
 			return page;

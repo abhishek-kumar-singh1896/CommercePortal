@@ -7,7 +7,7 @@ import de.hybris.platform.core.model.user.UserModel;
 
 import java.util.Collections;
 
-import com.gallagher.b2c.form.RegisterProductPopupForm;
+import com.gallagher.b2c.form.RegisterProductForm;
 import com.gallagher.outboundservices.request.dto.RegisterProductRequest;
 import com.gallagher.outboundservices.request.dto.RegisteredProductPartyInformation;
 
@@ -23,11 +23,11 @@ public class GallagherProductRegistrationUtil
 	 * @param registerProductForm1
 	 * @param register
 	 */
-	public static void convert(final RegisterProductPopupForm registerProductForm, final RegisterProductRequest request,
+	public static void convert(final RegisterProductForm registerProductForm, final RegisterProductRequest request,
 			final UserModel user)
 	{
-		request.setSerialID(registerProductForm.getSerialNumber1());
-		request.setProductID(registerProductForm.getProductSku1());
+		request.setSerialID(registerProductForm.getSerialNumber());
+		request.setProductID(registerProductForm.getProductSku());
 
 		final RegisteredProductPartyInformation customerInfo = new RegisteredProductPartyInformation();
 		customerInfo.setPartyID(user.getUid());

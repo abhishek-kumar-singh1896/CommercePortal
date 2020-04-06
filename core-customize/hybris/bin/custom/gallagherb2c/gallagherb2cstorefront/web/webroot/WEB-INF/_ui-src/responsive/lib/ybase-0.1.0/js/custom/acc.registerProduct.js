@@ -3,7 +3,8 @@ ACC.registerProduct = {
 	_autoload: [
 		"clickOnRegister",
 	    "bindVerifyRegisterProduct",
-	    "getJSONDataForRegisterProduct"
+	    "getJSONDataForRegisterProduct",
+	    "handlePopup"
 	],
 	clickOnRegister: function(){
 		$(document).ready(function () {
@@ -150,6 +151,14 @@ ACC.registerProduct = {
 				"phoneNumber" : phoneNumber,
 				"region" : region
 		}
+		
 		return JSON.stringify(productDetails);
-	}
+	},
+	handlePopup: function(){
+        $('body').on('click', '.registerSuccess', function(e) {
+             $('#cboxClose').click();
+             $('.registerProduct1').click();
+        });
+               
+    }
 };

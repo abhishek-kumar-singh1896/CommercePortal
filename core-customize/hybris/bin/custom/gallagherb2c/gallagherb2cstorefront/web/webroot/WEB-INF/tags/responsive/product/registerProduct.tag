@@ -237,12 +237,14 @@
 					</div>
 
 					<div class="col-md-6 mb-4">
-						<label for="attachReceipt" class="common-form-label">Attach
+						<label for="attachedFile" class="common-form-label">Attach
 							a Receipt</label>
 						<div class="input-group">
 							<div class="custom-file">
-								<input type="file" class="custom-file-input" id="attachReceipt">
-								<label class="custom-file-label" for="attachReceipt"
+								<form:input type="file" class="form-control custom-file-input"
+							id="attachedFile" path="attachedFile" name="attachedFile"/>
+								<!-- <input type="file" class="custom-file-input" id="attachReceipt"> -->
+								<label class="custom-file-label" for="attachedFile"
 									aria-describedby="Attach a Receipt">Choose file</label>
 							</div>
 						</div>
@@ -264,6 +266,7 @@
 
 				<div class="mt-3">
 					<button type="submit" class="btn btn-primary registerProduct">Register</button>
+                    <button type="submit" class="btn btn-primary d-none registerProduct1" formaction="${actionURL1}">Register</button>
 				</div>
 			</form:form>
 		</div>
@@ -307,6 +310,8 @@
 					id="countryInput" name="country1">
 				<input type="hidden" class="form-control common-input"
 					id="phoneNumberInput" name="phoneNumber1">
+				<input type="hidden" class="form-control common-input"
+					id="attachedFileInput" name="attachedFile1">
 
 				<div class="row mt-3">
 					<div class="col-12 text-right">
