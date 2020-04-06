@@ -54,6 +54,7 @@
 		<property name="sparePartsReferenceSubHeading" type="String" />
 		<property name="othersReferenceHeading" type="String" />
 		<property name="othersReferenceSubHeading" type="String" />
+		<property name="marketingDescription" type="String"/>
 	</bean>
 
 	<bean class="de.hybris.platform.commerceservices.search.facetdata.ProductCategorySearchPageData&lt;STATE, RESULT, CATEGORY>">
