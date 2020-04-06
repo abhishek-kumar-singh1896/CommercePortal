@@ -2430,3 +2430,4 @@ INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];positi
 
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid, $contentCV)
 ;;SearchGridBannerSlot;CategoryBanner
+;;SearchResultsEmptyBannerSlot;CategoryBanner
