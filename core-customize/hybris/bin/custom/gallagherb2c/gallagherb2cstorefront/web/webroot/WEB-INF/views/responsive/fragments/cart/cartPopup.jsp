@@ -6,7 +6,7 @@
 <%@ taglib prefix="product" tagdir="/WEB-INF/tags/responsive/product"%>
 <%@ taglib prefix="format" tagdir="/WEB-INF/tags/shared/format"%>
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags"%>
-
+<%@ taglib prefix="theme" tagdir="/WEB-INF/tags/shared/theme"%>
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
@@ -28,77 +28,98 @@
 </c:choose>
 
 <c:choose>
-	
+
 	<c:when test="${numberShowing > 0 }">
 
-		
-			<div class="your-cart-title">Your Cart</div>
-			<div class="mini-cart-item-out">
-				<ul>
-					<c:forEach items="${entries}" var="entry"
-						end="${numberShowing - 1}">
-					<c:url value="${entry.product.url}" var="entryProductUrl"/>
-						<li>
-							<div class="row">
-								<div class="col-3 pr-0">
-									<div class="mini-cart-product-img">
-										<a href="${entryProductUrl}"> <product:productPrimaryImage
-												product="${entry.product}" format="cartIcon" />
-										</a>
-									</div>
-								</div>
-								<div class="col-9">
-									<div class="mini-cart-title">
-										<a href="${entryProductUrl}">${fn:escapeXml(entry.quantity)}
-											x ${fn:escapeXml(entry.product.name)} </a>
-									</div>
-									
-									<div class="row mt-2">
-										<div class="col-6">
-											<div class="mini-cart-id">${entry.product.code}</div>
-										</div>
-										<div class="col-6 text-right">
-											<div class="mini-cart-price">
-												<format:price priceData="${entry.basePrice}" />
-											</div>
-										</div>
-									</div>
 
+		<div class="your-cart-title">Your Cart</div>
+		<div class="mini-cart-item-out">
+			<ul>
+				<c:forEach items="${entries}" var="entry" end="${numberShowing - 1}">
+					<c:url value="${entry.product.url}" var="entryProductUrl" />
+					<li>
+						<div class="row">
+							<div class="col-3 pr-0">
+								<div class="mini-cart-product-img">
+									<a href="${entryProductUrl}">
+									 <c:set var="tempicon" value="0" />
+									  <c:choose>
+											<c:when test="${not empty entry.product.images}">
+												<c:forEach items="${entry.product.images}" var="medias">
+													<c:if test="${tempicon == 0 }">
+														<c:if test="${medias.format eq 'thumbnail'}">
+															<c:set var="tempicon" value="1" />
+															<a href="${fn:escapeXml(productUrl)}" 	title="${fn:escapeXml(entry.product.name)}">
+																 <img src="${medias.url}" alt="${medias.altText}">
+															</a>
+														</c:if>
+													</c:if>
+												</c:forEach>
+											</c:when>
+											<c:otherwise>
+												<c:if test="${tempicon == 0 }">
+												 		<c:set value="${fn:escapeXml(product.name)}" var="productNameHtml"/>
+														<c:set value="cartIcon" var="format"/>
+								         			<theme:image code="img.missingProductImage.responsive.${format}" alt="${productNameHtml}" title="${productNameHtml}"/>
+												</c:if>
+	`		                    	</c:otherwise>
+										</c:choose> 
+<%-- 										<product:productPrimaryImage	product="${entry.product}" format="cartIcon" /> --%>
+									</a>
+								</div>
+							</div>
+							<div class="col-9">
+								<div class="mini-cart-title">
+									<a href="${entryProductUrl}">${fn:escapeXml(entry.quantity)}
+										x ${fn:escapeXml(entry.product.name)} </a>
+								</div>
+
+								<div class="row mt-2">
+									<div class="col-6">
+										<div class="mini-cart-id">${entry.product.code}</div>
+									</div>
+									<div class="col-6 text-right">
+										<div class="mini-cart-price">
+											<format:price priceData="${entry.basePrice}" />
+										</div>
+									</div>
 								</div>
 
 							</div>
-						</li>
-					</c:forEach>
-				</ul>
-
-				<div class="mini-cart-total-out">
-					<div class="row align-items-center">
-						<div class="col-5 pr-0">
-
-							<c:if test="${numberItemsInCart > numberShowing}">
-								<a href="${fn:escapeXml(cartUrl)}" class="showing-link"> <spring:theme
-										code="popup.cart.showing"
-										arguments="${numberShowing},${numberItemsInCart}" />
-								</a>
-							</c:if>
 
 						</div>
-						<div class="col-7">
-							<div class="mini-cart-total">
-								<span class="total-text">${total}</span> <span
-									class="total-value"> <format:price
-										priceData="${cartData.totalPrice}" />
-								</span>
-							</div>
+					</li>
+				</c:forEach>
+			</ul>
+
+			<div class="mini-cart-total-out">
+				<div class="row align-items-center">
+					<div class="col-5 pr-0">
+
+						<c:if test="${numberItemsInCart > numberShowing}">
+							<a href="${fn:escapeXml(cartUrl)}" class="showing-link"> <spring:theme
+									code="popup.cart.showing"
+									arguments="${numberShowing},${numberItemsInCart}" />
+							</a>
+						</c:if>
+
+					</div>
+					<div class="col-7">
+						<div class="mini-cart-total">
+							<span class="total-text">${total}</span> <span
+								class="total-value"> <format:price
+									priceData="${cartData.totalPrice}" />
+							</span>
 						</div>
 					</div>
 				</div>
-
 			</div>
 
-			<button onclick="window.location.href = '${fn:escapeXml(cartUrl)}'"
-				type="button" class="btn btn-view-cart">${viewCart}</button>
-			</c:when>
+		</div>
+
+		<button onclick="window.location.href = '${fn:escapeXml(cartUrl)}'"
+			type="button" class="btn btn-view-cart">${viewCart}</button>
+	</c:when>
 
 
 	<c:otherwise>

@@ -41,13 +41,13 @@
 <div class="visible-xs clearfix">
     <form:form action="${placeOrderUrl}" id="placeOrderForm1" modelAttribute="placeOrderForm" class="place-order-form col-xs-12">
         <div class="checkbox">
-            <label> <form:checkbox id="Terms1" path="termsCheck" />
+            <label> <form:checkbox id="Terms1" path="termsCheck"  class="Terms-1-Condition-1"/>
                 <spring:theme var="termsAndConditionsHtml" code="checkout.summary.placeOrder.readTermsAndConditions" arguments="${fn:escapeXml(getTermsAndConditionsUrl)}" htmlEscape="false"/>
             	${ycommerce:sanitizeHTML(termsAndConditionsHtml)}
             </label>
         </div>
 
-        <button id="placeOrder" type="submit" class="btn btn-primary btn-place-order btn-block">
+        <button id="placeOrder" type="submit" class="btn btn-primary btn-place-order btn-block btn-place-order1" disabled>
             <spring:theme code="checkout.summary.placeOrder" />
         </button>
     </form:form>
