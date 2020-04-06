@@ -233,6 +233,11 @@
 					<persistence type="property" />
 					<description>Indicates sub-heading for 'others' category product reference</description>
 				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="marketingDescription" type="java.lang.String">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<description>Attribute for marketing description of the product</description>
+				</attribute>
 			</attributes>
 		</itemtype>
 		
