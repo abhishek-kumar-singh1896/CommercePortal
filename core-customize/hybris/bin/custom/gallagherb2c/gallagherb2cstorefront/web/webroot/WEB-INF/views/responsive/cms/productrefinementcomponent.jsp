@@ -4,5 +4,5 @@
 <div id="product-facet" class="product-list-sidebar-out js-product-facet">
    
     <nav:facetNavAppliedFilters pageData="${searchPageData}"/>
-     <nav:facetNavRefinements pageData="${searchPageData}"/>
+    <nav:facetNavRefinements pageData="${searchPageData}"/>
 </div>
