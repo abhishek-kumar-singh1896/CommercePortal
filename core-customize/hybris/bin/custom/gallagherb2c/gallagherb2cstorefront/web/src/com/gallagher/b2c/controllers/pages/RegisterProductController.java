@@ -33,6 +33,7 @@ import javax.annotation.Resource;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.log4j.Logger;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -221,7 +222,7 @@ public class RegisterProductController extends AbstractPageController
 		final RegisterProductForm rg = new RegisterProductForm();
 		try
 		{
-			//gallagherRegisteredProductsFacade.registerProduct(request);
+			final HttpStatus status = gallagherRegisteredProductsFacade.registerProduct(request);
 		}
 		catch (final UnknownIdentifierException e)
 		{
