@@ -104,7 +104,7 @@
 	<!-- 								</label> -->
 									<div class="custom-control custom-checkbox mb-2">
 		                        <input type="checkbox" ${facetValue.selected ? 'checked="checked"' : ''} class="custom-control-input js-facet-checkbox"
-		                            id="${(facetData.code).concat(status.index)}">
+		                            id="${(facetData.code).concat(status.index).concat('Mobile')}">
 		                        <label class="custom-control-label" for="${(facetData.code).concat(status.index).concat('Mobile')}">
 		                        	${fn:escapeXml(facetValue.name)}
 		                        </label>

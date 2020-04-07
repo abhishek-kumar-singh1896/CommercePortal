@@ -534,6 +534,7 @@
     }
     .sidebar-filter-section {
       min-height: inherit;
+      align-content: flex-start;
 
       .cross-icon-out {
         width: 100%;
