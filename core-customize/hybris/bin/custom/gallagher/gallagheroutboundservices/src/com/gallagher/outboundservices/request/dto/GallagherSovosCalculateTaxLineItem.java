@@ -3,65 +3,100 @@
  */
 package com.gallagher.outboundservices.request.dto;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+
 /**
-*
-*/
+ * Representation of Sovos Calculate Tax Request's Line Item
+ */
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, setterVisibility = JsonAutoDetect.Visibility.NONE)
 public class GallagherSovosCalculateTaxLineItem
 {
+	@JsonProperty("lnItmNum")
 	private int lnItmNum;
 
+	@JsonProperty("lnItmId")
 	private String lnItmId;
 
+	@JsonProperty("grossAmt")
 	private double grossAmt;
 
+	@JsonProperty("qnty")
 	private int qnty;
 
+	@JsonProperty("trnTp")
 	private int trnTp;
 
+	@JsonProperty("dropShipInd")
 	private int dropShipInd;
 
+	@JsonProperty("origTrnDt")
 	private String origTrnDt;
 
+	@JsonProperty("goodSrvCd")
 	private String goodSrvCd;
 
+	@JsonProperty("orgCd")
 	private String orgCd;
 
+	@JsonProperty("debCredIndr")
 	private int debCredIndr;
 
+	@JsonProperty("qntyUMCd")
 	private String qntyUMCd;
 
+	@JsonProperty("sTStNameNum")
 	private String sTStNameNum;
 
+	@JsonProperty("sTCity")
 	private String sTCity;
 
+	@JsonProperty("sTStateProv")
 	private String sTStateProv;
 
+	@JsonProperty("sTPstlCd")
 	private String sTPstlCd;
 
+	@JsonProperty("sTCountry")
 	private String sTCountry;
 
+	@JsonProperty("sFCity")
 	private String sFCity;
 
+	@JsonProperty("sFStateProv")
 	private String sFStateProv;
 
+	@JsonProperty("sFPstlCd")
 	private String sFPstlCd;
 
+	@JsonProperty("sFCountry")
 	private String sFCountry;
 
+	@JsonProperty("lOACity")
 	private String lOACity;
 
+	@JsonProperty("lOAStateProv")
 	private String lOAStateProv;
 
+	@JsonProperty("lOAPstlCd")
 	private String lOAPstlCd;
 
+	@JsonProperty("lOACountry")
 	private String lOACountry;
 
+	@JsonProperty("lORCity")
 	private String lORCity;
 
+	@JsonProperty("lORStateProv")
 	private String lORStateProv;
 
+	@JsonProperty("lORPstlCd")
 	private String lORPstlCd;
 
+	@JsonProperty("lORCountry")
 	private String lORCountry;
 
 	public void setLnItmNum(final int lnItmNum)

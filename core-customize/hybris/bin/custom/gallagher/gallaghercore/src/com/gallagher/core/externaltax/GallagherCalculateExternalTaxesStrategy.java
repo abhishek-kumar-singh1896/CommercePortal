@@ -28,6 +28,7 @@ import com.gallagher.sovos.outboundservices.service.GallagherSovosService;
 /**
  * Base {@link CalculateExternalTaxesStrategy} implementation of external tax call to return ExternalTaxDocument
  *
+ * @author shishirkant
  */
 public class GallagherCalculateExternalTaxesStrategy implements CalculateExternalTaxesStrategy
 {
@@ -59,7 +60,7 @@ public class GallagherCalculateExternalTaxesStrategy implements CalculateExterna
 			for (final GallagherSovosCalculatedTax calculatedTax : lienItem.getJurRslts())
 			{
 
-				taxAmount = taxAmount + Double.valueOf(calculatedTax.getTxAmt());
+				taxAmount = taxAmount + Double.valueOf(calculatedTax.getTxAmt()) + Double.valueOf(lienItem.getGrossAmt());
 			}
 
 			final TaxValue taxValue = new TaxValue(lienItem.getLnId(), taxAmount, true, taxAmount,
@@ -70,7 +71,6 @@ public class GallagherCalculateExternalTaxesStrategy implements CalculateExterna
 		final TaxValue taxValue = new TaxValue("taxCode1", 3.0D, true, 3.0D,
 				abstractOrder.getCurrency() == null ? "USD" : abstractOrder.getCurrency().getIsocode());
 		externalDocument.setShippingCostTaxes(taxValue);
-		abstractOrder.setNet(true); // Need to check
 
 		return externalDocument;
 	}

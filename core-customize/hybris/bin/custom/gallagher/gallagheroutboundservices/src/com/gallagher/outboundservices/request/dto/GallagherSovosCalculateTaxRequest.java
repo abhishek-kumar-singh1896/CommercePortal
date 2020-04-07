@@ -5,31 +5,45 @@ package com.gallagher.outboundservices.request.dto;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 
 /**
-*
-*/
+ * Representation of Sovos Calculate Tax Request
+ */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class GallagherSovosCalculateTaxRequest
 {
+	@JsonProperty("usrname")
 	private String usrname;
 
+	@JsonProperty("pswrd")
 	private String pswrd;
 
+	@JsonProperty("trnId")
 	private String trnId;
 
+	@JsonProperty("trnSrc")
 	private String trnSrc;
 
+	@JsonProperty("rsltLvl")
 	private String rsltLvl;
 
+	@JsonProperty("currn")
 	private String currn;
 
+	@JsonProperty("docDt")
 	private String docDt;
 
+	@JsonProperty("txCalcTp")
 	private int txCalcTp;
 
+	@JsonProperty("trnDocNum")
 	private String trnDocNum;
 
+	@JsonProperty("lines")
 	private List<GallagherSovosCalculateTaxLineItem> lines;
 
 	public void setUsrname(final String usrname)

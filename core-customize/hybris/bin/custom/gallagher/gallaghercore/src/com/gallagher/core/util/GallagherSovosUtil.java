@@ -14,12 +14,14 @@ import com.gallagher.outboundservices.request.dto.GallagherSovosCalculateTaxRequ
 
 
 /**
- *
+ * @author shishirkant
  */
 public class GallagherSovosUtil
 {
 
 	/**
+	 * Convert AbstractOrderModel into GallagherSovosCalculateTaxRequest.
+	 *
 	 * @param abstractOrder
 	 * @param request
 	 */

@@ -18,12 +18,14 @@ import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.log4j.Logger;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.gallagher.outboundservices.request.dto.GallagherSovosCalculateTaxRequest;
 import com.gallagher.outboundservices.response.dto.GallagherSovosCalculatedTaxResponse;
@@ -31,13 +33,20 @@ import com.gallagher.sovos.outboundservices.service.GallagherSovosService;
 
 
 /**
+ * Implementation of GallagherSovosService
  *
+ * @author shishirkant
  */
 public class GallagherSovosServiceImpl implements GallagherSovosService
 {
+	private static final Logger LOGGER = Logger.getLogger(GallagherSovosServiceImpl.class);
+
 	@Resource(name = "configurationService")
 	private ConfigurationService configurationService;
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public GallagherSovosCalculatedTaxResponse calculateExternalTax(final GallagherSovosCalculateTaxRequest request)
 	{
@@ -77,16 +86,15 @@ public class GallagherSovosServiceImpl implements GallagherSovosService
 		}
 		catch (final NoSuchAlgorithmException | InvalidKeyException exception)
 		{
-			// XXX Auto-generated catch block
-			exception.printStackTrace();
+			LOGGER.error("Exception occured while creating Sovos HMAC Signature.", exception);
 		}
 
 		final HttpEntity<GallagherSovosCalculateTaxRequest> entity = new HttpEntity<>(request, headers);
 
-		final String url = baseURL + restURL;
+		final UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(baseURL + restURL);
 
-		final ResponseEntity<GallagherSovosCalculatedTaxResponse> result = restTemplate.exchange(url, HttpMethod.POST, entity,
-				GallagherSovosCalculatedTaxResponse.class);
+		final ResponseEntity<GallagherSovosCalculatedTaxResponse> result = restTemplate.exchange(builder.build().encode().toUri(),
+				HttpMethod.POST, entity, GallagherSovosCalculatedTaxResponse.class);
 
 		return result.getBody();
 

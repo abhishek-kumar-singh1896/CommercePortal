@@ -5,26 +5,38 @@ package com.gallagher.outboundservices.response.dto;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 /**
- *
+ * Representation of Sovos Calculated Tax Response's Line Item
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class GallagherSovosCalculatedTaxLineItem
 {
+	@JsonProperty("lnNm")
 	private String lnNm;
 
+	@JsonProperty("lnId")
 	private String lnId;
 
+	@JsonProperty("txwLnId")
 	private String txwLnId;
 
+	@JsonProperty("txAmt")
 	private String txAmt;
 
+	@JsonProperty("grossAmt")
 	private String grossAmt;
 
+	@JsonProperty("txRate")
 	private String txRate;
 
+	@JsonProperty("jurRslts")
 	private List<GallagherSovosCalculatedTax> jurRslts;
 
+	@JsonProperty("mergedResult")
 	private String mergedResult;
 
 	public void setLnNm(final String lnNm)

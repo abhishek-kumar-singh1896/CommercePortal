@@ -8,12 +8,16 @@ import com.gallagher.outboundservices.response.dto.GallagherSovosCalculatedTaxRe
 
 
 /**
+ * Gallagher Service to integrate with Sovos REST APIs for Tax Calculation.
  *
+ * @author shishirkant
  */
 public interface GallagherSovosService
 {
 
 	/**
+	 * Return calculated tax for an Abstract Order as Json Response.
+	 *
 	 * @param GallagherSovosCalculateTaxRequest
 	 *
 	 * @return GallagherSovosCalculatedTaxResponse

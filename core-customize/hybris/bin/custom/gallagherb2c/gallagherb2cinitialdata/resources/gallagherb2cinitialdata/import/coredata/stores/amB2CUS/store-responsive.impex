@@ -8,7 +8,7 @@
 $productCatalog=amB2CUSProductCatalog
 $classificationCatalog=AMB2CClassification
 $currencies=USD
-$net=false
+$net=true
 $storeUid=amB2CUS
 $defaultCurrency=USD
 $languages=en

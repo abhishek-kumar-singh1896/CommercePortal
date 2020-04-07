@@ -10,12 +10,17 @@ import de.hybris.platform.core.model.order.AbstractOrderModel;
 
 /**
  * Base {@link DecideExternalTaxesStrategy} implementation, gives decision to call external taxes functionality.
+ *
+ * @author shishirkant
  */
 public class GallagherDecideExternalTaxesStrategy implements DecideExternalTaxesStrategy
 {
 
 	/**
-	 * Return true to be overridden in specific application
+	 * Initially just to test if the delivery mode and address are set, than calculate the external taxes. (If External
+	 * Tax is enabled in Base Store.)
+	 *
+	 * Products in cart, delivery mode and delivery address to determine whether or not to calculate
 	 */
 	@Override
 	public boolean shouldCalculateExternalTaxes(final AbstractOrderModel abstractOrder)
@@ -25,6 +30,13 @@ public class GallagherDecideExternalTaxesStrategy implements DecideExternalTaxes
 			throw new IllegalStateException("Order is null. Cannot apply external tax to it.");
 		}
 
-		return true;
+		if (null != abstractOrder.getStore() && null != abstractOrder.getStore().getExternalTaxEnabled()
+				&& Boolean.TRUE.equals(abstractOrder.getStore().getExternalTaxEnabled()))
+		{
+			return Boolean.TRUE.equals(abstractOrder.getNet()) && abstractOrder.getDeliveryMode() != null
+					&& abstractOrder.getDeliveryAddress() != null;
+		}
+
+		return false;
 	}
 }
