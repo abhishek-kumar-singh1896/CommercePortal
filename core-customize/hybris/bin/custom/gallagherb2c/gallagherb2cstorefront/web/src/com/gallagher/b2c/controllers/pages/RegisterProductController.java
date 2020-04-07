@@ -46,7 +46,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gallagher.b2c.controllers.ControllerConstants;
 import com.gallagher.b2c.form.RegisterProductForm;
-import com.gallagher.b2c.form.RegisterProductPopupForm;
 import com.gallagher.b2c.response.RPFormResponseData;
 import com.gallagher.b2c.response.RPFormResponseStatus;
 import com.gallagher.b2c.util.GallagherProductRegistrationUtil;
@@ -86,6 +85,8 @@ public class RegisterProductController extends AbstractPageController
 	@Resource(name = "productService")
 	private ProductService productService;
 
+	String imageUrl;
+
 	@RequestMapping(value = "/products", method = RequestMethod.GET)
 	public String registeredProductsByUser(final Model model) throws CMSItemNotFoundException
 	{
@@ -95,11 +96,27 @@ public class RegisterProductController extends AbstractPageController
 		model.addAttribute("registeredProducts", gallagherRegisteredProductsFacade.getRegisteredProducts());
 		model.addAttribute(WebConstants.BREADCRUMBS_KEY, contentPageBreadcrumbBuilder.getBreadcrumbs(regProductsPage));
 		//below attribute is for mocking purpose only. will be removed after GET call from C4C is used.
-		if (productService.getProductForCode("solar-fence-energizer-s10") != null)
+		//		if (productService.getProductForCode("solar-fence-energizer-s10") != null)
+		//		{
+		//			model.addAttribute("imageUrl",
+		//					productService.getProductForCode("solar-fence-energizer-s10").getGalleryImages().get(0).getMaster().getURL());
+		//		}
+		final ProductData productData = productFacade.getProductForCodeAndOptions("solar-fence-energizer-s10",
+				Arrays.asList(ProductOption.BASIC));
+		final Collection<ImageData> images = productData.getImages();
+		if (CollectionUtils.isNotEmpty(images))
 		{
-			model.addAttribute("imageUrl",
-					productService.getProductForCode("solar-fence-energizer-s10").getGalleryImages().get(0).getMaster().getURL());
+			for (final ImageData data : productData.getImages())
+			{
+				if (data.getFormat().equals("thumbnail"))
+				{
+					imageUrl = data.getUrl();
+					model.addAttribute("imageUrl", imageUrl);
+					break;
+				}
+			}
 		}
+
 		return getViewForPage(model);
 	}
 
@@ -193,9 +210,9 @@ public class RegisterProductController extends AbstractPageController
 	 * @return
 	 * @throws CMSItemNotFoundException
 	 */
-	@RequestMapping(value = "/submit", method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST, value = "/submit")
 	public String submitRegisterProduct(@ModelAttribute
-	final RegisterProductPopupForm registerProductForm1, final Model model, final RedirectAttributes redirectAttributes)
+	final RegisterProductForm registerProductForm1, final Model model, final RedirectAttributes redirectAttributes)
 			throws CMSItemNotFoundException
 	{
 		final RegisterProductRequest request = new RegisterProductRequest();
@@ -208,16 +225,16 @@ public class RegisterProductController extends AbstractPageController
 		}
 		catch (final UnknownIdentifierException e)
 		{
-			rg.setAddressLine1(registerProductForm1.getAddressLine11());
-			rg.setAddressLine2(registerProductForm1.getAddressLine21());
-			rg.setCountry(registerProductForm1.getCountry1());
-			rg.setDatePurchased(registerProductForm1.getDatePurchased1());
-			rg.setPhoneNumber(registerProductForm1.getPhoneNumber1());
-			rg.setPostCode(registerProductForm1.getProductSku1());
-			rg.setSerialNumber(registerProductForm1.getSerialNumber1());
-			rg.setProductSku(registerProductForm1.getProductSku1());
-			rg.setTownCity(registerProductForm1.getTownCity1());
-			rg.setRegion(registerProductForm1.getRegion1());
+			rg.setAddressLine1(registerProductForm1.getAddressLine1());
+			rg.setAddressLine2(registerProductForm1.getAddressLine2());
+			rg.setCountry(registerProductForm1.getCountry());
+			rg.setDatePurchased(registerProductForm1.getDatePurchased());
+			rg.setPhoneNumber(registerProductForm1.getPhoneNumber());
+			rg.setPostCode(registerProductForm1.getProductSku());
+			rg.setSerialNumber(registerProductForm1.getSerialNumber());
+			rg.setProductSku(registerProductForm1.getProductSku());
+			rg.setTownCity(registerProductForm1.getTownCity());
+			rg.setRegion(registerProductForm1.getRegion());
 			model.addAttribute(rg);
 			GlobalMessages.addMessage(model, GlobalMessages.ERROR_MESSAGES_HOLDER, "registerProduct.error.message.title", null);
 			return page;

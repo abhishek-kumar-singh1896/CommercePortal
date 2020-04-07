@@ -1863,17 +1863,55 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];name;$contentCV[unique=true];ch
 ;TechnicalSupport_Nav;Technical Support Nav;;;"We provide technical help and support for Gallagher Weighing and EID hardware and software products";TechnicalSupport_Nav
 ;SoftwareDownloads_Nav;Software Downloads Nav;;;"Download the latest software for your Weighing and EID products";SoftwareDownloads_Nav
 
+
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];name;$contentCV[unique=true];navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
 ;CallUsSupport_NavEntry;Call Us support Nav Entry;;CallUsSupport_Nav;CallUsSupportLink
-;SupportMaterial_NavEntry;Support Material Nav Entry;;SupportMaterial_Nav;SupportMaterialLink
-;TechnicalSupport_NavEntry;Technical Support Nav Entry;;TechnicalSupport_Nav;TechnicalSupportLink
-;SoftwareDownloads_NavEntry;Software Downloads Nav Entry;;SoftwareDownloads_Nav;SoftwareDownloadsLink
+;NZSupportMaterial_NavEntry;NZ Support Material Nav Entry;;SupportMaterial_Nav;NZENSupportMaterialLink
+;NZTechnicalSupport_NavEntry;NZ Technical Support Nav Entry;;TechnicalSupport_Nav;NZENTechnicalSupportLink
+;NZSoftwareDownloads_NavEntry;NZ Software Downloads Nav Entry;;SoftwareDownloads_Nav;NZENSoftwareDownloadsLink
+;CAENSupportMaterial_NavEntry;CA EN Support Material Nav Entry;;SupportMaterial_Nav;CAENSupportMaterialLink
+;CAENTechnicalSupport_NavEntry;CA EN Technical Support Nav Entry;;TechnicalSupport_Nav;CAENTechnicalSupportLink
+;CAENSoftwareDownloads_NavEntry;CA EN Software Downloads Nav Entry;;SoftwareDownloads_Nav;CAENSoftwareDownloadsLink
+;CAFRSupportMaterial_NavEntry;CA FR Support Material Nav Entry;;SupportMaterial_Nav;CAFRSupportMaterialLink
+;CAFRTechnicalSupport_NavEntry;CA FR Technical Support Nav Entry;;TechnicalSupport_Nav;CAFRTechnicalSupportLink
+;CAFRSoftwareDownloads_NavEntry;CA FR Software Downloads Nav Entry;;SoftwareDownloads_Nav;CAFRSoftwareDownloadsLink
+;AUSupportMaterial_NavEntry;AU Support Material Nav Entry;;SupportMaterial_Nav;AUENSupportMaterialLink
+;AUTechnicalSupport_NavEntry;AU Technical Support Nav Entry;;TechnicalSupport_Nav;AUENTechnicalSupportLink
+;AUSoftwareDownloads_NavEntry;AU Software Downloads Nav Entry;;SoftwareDownloads_Nav;AUENSoftwareDownloadsLink
+;USSupportMaterial_NavEntry;US Support Material Nav Entry;;SupportMaterial_Nav;USENSupportMaterialLink
+;USTechnicalSupport_NavEntry;US Technical Support Nav Entry;;TechnicalSupport_Nav;USENTechnicalSupportLink
+;USSoftwareDownloads_NavEntry;US Software Downloads Nav Entry;;SoftwareDownloads_Nav;USENSoftwareDownloadsLink
+;LATAMSupportMaterial_NavEntry;LATAM Support Material Nav Entry;;SupportMaterial_Nav;LATAMENSupportMaterialLink
+;LATAMTechnicalSupport_NavEntry;LATAM Technical Support Nav Entry;;TechnicalSupport_Nav;LATAMENTechnicalSupportLink
+;LATAMSoftwareDownloads_NavEntry;LATAM Software Downloads Nav Entry;;SoftwareDownloads_Nav;LATAMENSoftwareDownloadsLink
+;GlobalSupportMaterial_NavEntry;Global Support Material Nav Entry;;SupportMaterial_Nav;GLOBALENSupportMaterialLink
+;GlobalTechnicalSupport_NavEntry;Global Technical Support Nav Entry;;TechnicalSupport_Nav;GLOBALENTechnicalSupportLink
+;GlobalSoftwareDownloads_NavEntry;Global Software Downloads Nav Entry;;SoftwareDownloads_Nav;GLOBALENSoftwareDownloadsLink
 
-INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
-;;CallUsSupportLink;Call Us Link;https://www.google.com/;;;
-;;SupportMaterialLink;Support Material Link;https://www.google.com/;;;
-;;TechnicalSupportLink;Technical Support Link;http://www.google.com/;;;
-;;SoftwareDownloadsLink;Software Downloads Link;http://www.google.com/;;;
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];linkName[lang=en];
+;;CallUsSupportLink;Call Us Link;https://www.google.com/;;;"<div class=""call-us-title"">Call us</div><div class=""call-us-contact-number"">0800 731 500</div>"
+;;NZENSupportMaterialLink;NZ Support Material Link;https://am.gallagher.com/nz/support/browse-resources;;;"Support Material"
+;;NZENTechnicalSupportLink;NZ Technical Support Link;https://am.gallagher.com/nz/contact-us/product-software-support;;;"Technical Support"
+;;NZENSoftwareDownloadsLink;NZ Software Downloads Link;https://am.gallagher.com/nz/support/software-downloads;;;"Software Downloads"
+;;CAENSupportMaterialLink;CA EN Support Material Link;https://am.gallagher.com/en-ca/support/browse-resources;;;"Support Material"
+;;CAENTechnicalSupportLink;CA EN Technical Support Link;https://am.gallagher.com/en-ca/contact-us/service-repair;;;"Technical Support"
+;;CAENSoftwareDownloadsLink;CA EN Software Downloads Link;https://am.gallagher.com/en-ca/support/software-downloads;;;"Software Downloads"
+;;CAFRSupportMaterialLink;CA FR Support Material Link;http://www.google.com/;;;"Support Material"
+;;CAFRTechnicalSupportLink;CA FR Technical Support Link;http://www.google.com/;;;"Technical Support"
+;;CAFRSoftwareDownloadsLink;CA FR Software Downloads Link;http://www.google.com/;;;"Software Downloads"
+;;AUENSupportMaterialLink;AU Support Material Link;https://am.gallagher.com/au/support/browse-resources;;;"Support Material"
+;;AUENTechnicalSupportLink;AU Technical Support Link;https://am.gallagher.com/au/about-us/our-people/customer-support-team;;;"Technical Support"
+;;AUENSoftwareDownloadsLink;AU Software Downloads Link;https://am.gallagher.com/au/support/software-downloads;;;"Software Downloads"
+;;USENSupportMaterialLink;US Support Material Link; https://am.gallagher.com/us/support/browse-resources;;;"Support Material"
+;;USENTechnicalSupportLink;US Technical Support Link;https://am.gallagher.com/us/contact-us/service-repair;;;"Technical Support"
+;;USENSoftwareDownloadsLink;US Software Downloads Link;https://am.gallagher.com/us/support/software-downloads;;;"Software Downloads"
+;;LATAMENSupportMaterialLink;LATAM Support Material Link;https://am.gallagher.com/es/soporte/buscar-recursos-de-productos?pcategory=all&resource=all&rsubcategory=all&page=0;;;"Support Material"
+;;LATAMENTechnicalSupportLink;LATAM Technical Support Link;http://www.google.com/;;;"Technical Support"
+;;LATAMENSoftwareDownloadsLink;LATAM Software Downloads Link;https://am.gallagher.com/es/soporte/descarga-de-software;;;"Software Downloads"
+;;GLOBALENSupportMaterialLink;Global Support Material Link;https://am.gallagher.com/global/support/browse-resources;;;"Support Material"
+;;GLOBALENTechnicalSupportLink;Global Technical Support Link;http://www.google.com/;;;"Technical Support"
+;;GLOBALENSoftwareDownloadsLink;Global Software Downloads Link;https://am.gallagher.com/global/support/software-downloads;;;"Software Downloads"
+
 
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;

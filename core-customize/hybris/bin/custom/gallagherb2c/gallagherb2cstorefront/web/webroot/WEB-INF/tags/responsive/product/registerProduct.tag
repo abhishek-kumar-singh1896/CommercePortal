@@ -11,11 +11,11 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
-	<c:url value="/register-product/verify" var="actionURL" />
-	<c:url value="/register-product/submit" var="actionURL1" />
+	<c:url value="/register-product/verify" var="verifyURL" />
+	<c:url value="/register-product/submit" var="submitURL" />
 	<product:registerProductTitle />
 	<div class="register-product-out">
-		<div id="productSuccessAlert" class="d-none">
+		<div id="product-not-found-alert" class="d-none">
 
 			<div class="alert alert-danger alert-dismissable getAccAlert">
 				<button class="close closeAccAlert" aria-hidden="true"
@@ -48,9 +48,8 @@
 
 			<h2 class="secondary-title mt-5">Product will be registered
 				under ${user.firstName}&nbsp${user.lastName}</h2>
-			<%--  action="${actionURL}"  --%>
-			<form:form method="post" action="${actionURL}"
-				id="registerProductForm" class="registerProduct_form"
+			<form:form method="post" action="${submitURL}"
+				id="registerProductForm" class="registerProduct_form" enctype="multipart/form-data"
 				modelAttribute="registerProductForm">
 				<div class="row">
 					<div class="col-md-6">
@@ -60,8 +59,7 @@
 									SKU</label>
 								<!-- <input type="text" class="form-control common-input" id="productSku" name="productSku"/> -->
 								<%-- <form:input type="text" class="form-control common-input" id="productSku" name="productSku"/> --%>
-								<form:input type="text" class="form-control common-input"
-									id="productSku" path="productSku" />
+								<form:input type="text" class="form-control common-input" id="productSku" path="productSku" placeholder="e.g. G12345"/>
 								<div class="error-label">
 									<span class="error-text d-none"> <span
 										class="error-icon"> <svg>
@@ -238,12 +236,14 @@
 					</div>
 
 					<div class="col-md-6 mb-4">
-						<label for="attachReceipt" class="common-form-label">Attach
+						<label for="attachedFile" class="common-form-label">Attach
 							a Receipt</label>
 						<div class="input-group">
 							<div class="custom-file">
-								<input type="file" class="custom-file-input" id="attachReceipt">
-								<label class="custom-file-label" for="attachReceipt"
+								<form:input type="file" class="form-control custom-file-input"
+							id="attachedFile" path="attachedFile" name="attachedFile"/>
+								<!-- <input type="file" class="custom-file-input" id="attachReceipt"> -->
+								<label class="custom-file-label" for="attachedFile"
 									aria-describedby="Attach a Receipt">Choose file</label>
 							</div>
 						</div>
@@ -264,7 +264,8 @@
 				</div>
 
 				<div class="mt-3">
-					<button type="submit" class="btn btn-primary registerProduct">Register</button>
+					<input type="button" class="btn btn-primary verify-registration" value="Register"/>
+               <button type="submit" class="btn btn-primary d-none register-product">Register</button>
 				</div>
 			</form:form>
 		</div>
@@ -285,37 +286,12 @@
 					<div id="product-serial" class="product-id"></div>
 				</div>
 			</div>
-			<form:form id="registerProductSubmitForm"
-				class="registerProductSubmitForm" method="post"
-				action="${actionURL1}" modelAttribute="registerProductSubmitForm">
-				<input type="hidden" class="form-control common-input"
-					id="productSkuInput" name="productSku1">
-				<input type="hidden" class="form-control common-input"
-					id="serialNumberInput" name="serialNumber1">
-				<input type="hidden" class="form-control common-input"
-					id="datePurchasedInput" name="datePurchased1">
-				<input type="hidden" class="form-control common-input"
-					id="addressLine1Input" name="addressLine11">
-				<input type="hidden" class="form-control common-input"
-					id="addressLine2Input" name="addressLine21">
-				<input type="hidden" class="form-control common-input"
-					id="townCityInput" name="townCity1">
-				<input type="hidden" class="form-control common-input"
-					id="regionInput" name="region1">
-				<input type="hidden" class="form-control common-input"
-					id="postCodeInput" name="postCode1">
-				<input type="hidden" class="form-control common-input"
-					id="countryInput" name="country1">
-				<input type="hidden" class="form-control common-input"
-					id="phoneNumberInput" name="phoneNumber1">
-
 				<div class="row mt-3">
 					<div class="col-12 text-right">
-						<button type="submit" class="btn btn-highlight registerSuccess"
-							id="registerSuccess">Register</button>
+						<input type="button" value="Register" class="btn btn-highlight verification-success"
+							id="verification-success" />
 					</div>
 				</div>
-			</form:form>
 		</div>
 	</div>
 </sec:authorize>
