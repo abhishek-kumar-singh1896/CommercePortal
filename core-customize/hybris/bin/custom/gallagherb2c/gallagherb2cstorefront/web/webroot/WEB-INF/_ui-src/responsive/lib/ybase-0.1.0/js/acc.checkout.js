@@ -3,7 +3,8 @@ ACC.checkout = {
 	_autoload: [
 		"bindCheckO",
 		"bindForms",
-		"bindSavedPayments"
+		"bindSavedPayments",
+		"bindTermAndCondition"
 	],
 
 
@@ -35,6 +36,12 @@ ACC.checkout = {
 				//width:"320px",
 				title: title,
 				close:'<span class="glyphicon glyphicon-remove"></span>',
+				onLoad:function() {
+			        $('html, body').css('overflow', 'hidden'); // page scrollbars off
+			    }, 
+			    onClosed:function() {
+			        $('html, body').css('overflow', ''); // page scrollbars on
+			    },
 				onComplete: function(){
 				}
 			});
@@ -168,6 +175,27 @@ ACC.checkout = {
 					}
 					return false;
 				});
+
+	},
+	bindTermAndCondition : function() {
+
+		$(document).on("input", ".Terms-1-Condition-1", function() {
+			if ($('#Terms1').is(':checked')) {
+				$(".btn-place-order1").removeAttr("disabled");
+			} else {
+				$(".btn-place-order1").attr("disabled", true);
+			}
+
+		});
+		
+		$(document).on("input", ".Terms-1-Condition-1", function() {
+			if ($('#Terms2').is(':checked')) {
+				$(".btn-place-order2").removeAttr("disabled");
+			} else {
+				$(".btn-place-order2").attr("disabled", true);
+			}
+
+		});
 
 	}
 

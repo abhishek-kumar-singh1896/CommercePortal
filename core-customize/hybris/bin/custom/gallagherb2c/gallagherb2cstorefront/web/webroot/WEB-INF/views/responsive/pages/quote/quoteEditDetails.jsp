@@ -34,7 +34,7 @@
                     <button type="button"
                         class="btn btn-default btn-block btn--continue-shopping js-continue-shopping-button"
                         data-continue-shopping-url="${fn:escapeXml(continueShoppingUrl)}">
-                        <spring:theme code="cart.page.continue" />
+                        <spring:theme code="cart.page.continue.shopping" />
                     </button>
                 </div>
             </c:if>

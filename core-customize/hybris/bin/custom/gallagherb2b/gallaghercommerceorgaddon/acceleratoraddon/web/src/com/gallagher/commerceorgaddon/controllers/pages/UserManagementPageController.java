@@ -640,7 +640,15 @@ public class UserManagementPageController extends MyCompanyPageController
 		}
 		else if (userService.isUserExisting(email))
 		{
-			existingCustomer.setEmailError("duplicate");
+			if (!(userService.getUserForUID(email) instanceof B2BCustomerModel))
+			{
+				existingCustomer.setEmailError("conflict");
+			}
+			else
+			{
+				existingCustomer.setEmailError("duplicate");
+
+			}
 		}
 		else
 		{
