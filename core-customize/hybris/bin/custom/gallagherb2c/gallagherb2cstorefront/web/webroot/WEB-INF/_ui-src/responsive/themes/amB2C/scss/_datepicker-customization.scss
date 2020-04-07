@@ -13,7 +13,7 @@
   table {
     tr {
       th {
-        font-family: $font-family-bold;
+        font-weight: bold;
       }
     }
   }
@@ -63,7 +63,7 @@ table.ui-datepicker-calendar {
 	th {
 		background-color: transparent;
 		color: inherit;
-		font-family: $font-family-bold;
+		font-weight: bold;
 	}
 }
 
@@ -81,7 +81,7 @@ table.ui-datepicker-calendar {
 }
 
 .ui-datepicker .ui-datepicker-title {
-	font-family: $font-family-bold;
+	font-weight: bold;
 }
 
 .ui-datepicker td span,
