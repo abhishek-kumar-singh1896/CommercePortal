@@ -6,6 +6,7 @@ import de.hybris.platform.commercefacades.user.data.CustomerData;
 import de.hybris.platform.commerceservices.strategies.CustomerNameStrategy;
 import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.servicelayer.event.EventService;
+import de.hybris.platform.servicelayer.model.ModelService;
 import de.hybris.platform.servicelayer.user.impl.DefaultUserService;
 import de.hybris.platform.site.BaseSiteService;
 import de.hybris.platform.store.services.BaseStoreService;
@@ -67,6 +68,9 @@ public class GallagherSaveCustomerHandler implements FlowActionHandler
 	@Resource(name = "eventService")
 	private EventService b2bEventService;
 
+	@Resource(name = "modelService")
+	private ModelService modelService;
+
 	@Override
 	public void perform(final CustomType customType, final FlowActionHandlerAdapter adapter, final Map<String, String> parameters)
 	{
@@ -80,17 +84,17 @@ public class GallagherSaveCustomerHandler implements FlowActionHandler
 		try
 		{
 			final CustomerData customerData = createCustomerData(email, name);
+			boolean isUserExist = false;
 
 			String keycloakGUID = gallagherKeycloakService.getKeycloakUserFromEmail(customerData.getEmail());
 
 			if (keycloakGUID != null)
 			{
-				customerData.setIsUserExist(true);
+				isUserExist = true;
 			}
 			else
 			{
 				keycloakGUID = gallagherKeycloakService.createKeycloakUser(customerData);
-				customerData.setIsUserExist(false);
 			}
 
 			widget.setValue("newCust.keycloakGUID", keycloakGUID);
@@ -99,7 +103,7 @@ public class GallagherSaveCustomerHandler implements FlowActionHandler
 			controller.getRenderer().refreshView();
 			adapter.custom();
 			adapter.done();
-			pushToC4C(adapter);
+			pushToC4C(adapter, isUserExist);
 		}
 		catch (final RestClientException | OAuth2Exception exception)
 		{
@@ -133,13 +137,15 @@ public class GallagherSaveCustomerHandler implements FlowActionHandler
 		return notificationService;
 	}
 
-	private void pushToC4C(final FlowActionHandlerAdapter adapter)
+	private void pushToC4C(final FlowActionHandlerAdapter adapter, final boolean isUserExist)
 	{
 		if (adapter.getWidgetInstanceManager().getModel().getValue("newCust", CustomerModel.class) instanceof B2BCustomerModel)
 		{
 			final B2BRegistrationEvent b2bRegistrationEvent = new B2BRegistrationEvent();
 			final B2BCustomerModel b2bCustomer = (B2BCustomerModel) adapter.getWidgetInstanceManager().getModel().getValue("newCust",
 					CustomerModel.class);
+			b2bCustomer.setIsUserExist(isUserExist);
+			modelService.save(b2bCustomer);
 			final B2BUnitModel defaultB2BUnit = adapter.getWidgetInstanceManager().getModel().getValue("newCust.defaultB2BUnit",
 					B2BUnitModel.class);
 			final String isoCode = defaultB2BUnit.getAddresses().iterator().next().getCountry().getIsocode();
