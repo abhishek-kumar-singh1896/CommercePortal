@@ -59,11 +59,7 @@ if (warehouse != null)
 line.clear()                                                                                                  ;                   
 }"                                                                                                            
                                                                                                               ; default           ; Default Warehouse                     ;                                                
-                                                                                                              ; am_warehouse_s    ; Animal Management B2C Warehouse South ; default                                        ;                                        
-                                                                                                              ; am_warehouse_e    ; Animal Management B2C Warehouse East  ; default                                        ;                                        
-                                                                                                              ; am_warehouse_w    ; Animal Management B2C Warehouse West  ; default                                        ;                                        
-                                                                                                              ; am_warehouse_n    ; Animal Management B2C Warehouse North ; default                                        ;                                        
-                                                                                                              
+                                                                                                             
 # Disable preview for email pages                                                                             
 UPDATE CMSPageType ; code[unique=true] ; previewDisabled 
                    ; EmailPage         ; true            

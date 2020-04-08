@@ -9,13 +9,18 @@ $productCatalogName=Animal Management B2C Product Catalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 $vendor=default
 
-INSERT_UPDATE Warehouse;code[unique=true];name[lang=en]
-;am_warehouse_s;Animal Management B2C Warehouse South;
+INSERT_UPDATE Warehouse ; code[unique=true] ; default ; vendor(code) ; name[lang=en]                    
+                        ; CAN1              ; true    ; ERP          ; "Gallagher Power Fencing System" 
+                        ; USKC              ; true    ; ERP          ; "Gallagher North America, Inc"  
 
 INSERT_UPDATE StockLevel;productCode[unique=true];warehouse(code)[unique=true,default=default];available;inStockStatus(code);maxPreOrder[default=1];maxStockLevelHistoryCount[default=-1];overSelling[default=0];preOrder[default=0];reserved[default=0]
-;heavy-duty-leadout-cable-12.5-gauge-65-foot;am_warehouse_s;414;notSpecified
-;heavy-duty-leadout-cable-12.5-gauge-330-foot;am_warehouse_s;414;notSpecified
+;heavy-duty-leadout-cable-12.5-gauge-65-foot;CAN1;414;notSpecified
+;heavy-duty-leadout-cable-12.5-gauge-330-foot;CAN1;414;notSpecified
+;heavy-duty-leadout-cable-12.5-gauge-65-foot;USKC;414;notSpecified
+;heavy-duty-leadout-cable-12.5-gauge-330-foot;USKC;414;notSpecified
 
 INSERT_UPDATE Product;code[unique=true];stockLevels(productCode,warehouse(code));vendors(code)[default=$vendor];$catalogVersion
-;heavy-duty-leadout-cable-12.5-gauge-65-foot;heavy-duty-leadout-cable-12.5-gauge-65-foot:am_warehouse_s
-;heavy-duty-leadout-cable-12.5-gauge-330-foot;heavy-duty-leadout-cable-12.5-gauge-330-foot:am_warehouse_s
+;heavy-duty-leadout-cable-12.5-gauge-65-foot;heavy-duty-leadout-cable-12.5-gauge-65-foot:CAN1
+;heavy-duty-leadout-cable-12.5-gauge-330-foot;heavy-duty-leadout-cable-12.5-gauge-330-foot:CAN1
+;heavy-duty-leadout-cable-12.5-gauge-65-foot;heavy-duty-leadout-cable-12.5-gauge-65-foot:USKC
+;heavy-duty-leadout-cable-12.5-gauge-330-foot;heavy-duty-leadout-cable-12.5-gauge-330-foot:USKC

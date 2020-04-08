@@ -8,9 +8,7 @@ $storeUidUS=amB2CUS
 $storeUidCA=amB2CCA
 $productCatalog=amB2CUSProductCatalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
-$storeImage=storeImage(qualifier, $catalogVersion)
- 
- 
+$storeImage=storeImage(qualifier, $catalogVersion) 
 $standardHours=amB2C-US-standard-hours
 $weekendHours=amB2C-US-weekend-hours
  
@@ -69,34 +67,27 @@ INSERT_UPDATE SpecialOpeningDay ; openingSchedule(code)[unique=true] ; date[uniq
                                 ; $weekendHours                      ; 23.12.2014                              ; true   
                                 
                                 
-INSERT_UPDATE PointOfService ; name[unique=true] ; type(code) ; address(&addrID) ; latitude ; longitude ; geocodeTimestamp[dateformat=dd-MM-yyyy] ; $storeImage ; openingSchedule(code) ; basestore(uid)[default=$storeUidUS] ; features(code) 
-                             ; NewYork           ; STORE      ; addr1            ; 35,7091  ; 139,6732  ; 29-04-2025                              ;             ; $standardHours        
-                             ; Chicago           ; STORE      ; addr2            ; 35,6673  ; 139,75429 ; 29-04-2025                              ;             ; $standardHours        
-                             ; Toronto           ; STORE      ; addr3            ; 35,6923  ; 139,8201  ; 29-04-2025                              ;             ; $standardHours        ; $storeUidCA                         
-                             ; Vancouver         ; STORE      ; addr4            ; 35,8269  ; 139,8701  ; 29-04-2025                              ;             ; $weekendHours         ; $storeUidCA                         
-                             
-INSERT_UPDATE Address ; &addrID ; streetname        ; streetnumber ; postalcode[unique=true] ; town[unique=true] ; country(isocode) ; region(isocode) ; phone1        ; owner(PointOfService.name)[unique=true] 
-                      ; addr1   ; Waseda Dori       ; 13           ;                         ; Tokio             ; US               ;                 ; +81 1988 3600 ; NewYork                                 
-                      ; addr2   ; Hibiya Dori       ; 20           ;                         ; Tokio             ; US               ;                 ; +81 4649 8891 ; Chicago                                 
-                      ; addr3   ; Shin-Ohashi Dori  ; 10           ;                         ; Tokio             ; CA               ;                 ; +81 6176 3426 ; Toronto                                 
-                      ; addr4   ; Tokyo-Gaikan Expy ;              ;                         ; Tokio             ; CA               ;                 ; +81 4376 5760 ; Vancouver                               
-                      
-                      
 INSERT_UPDATE StoreLocatorFeature ; code[unique=true]      
                                   ; wheelchair             
                                   ; creche                 
                                   ; sundayWorkshops        
                                   ; buyOnlinePickupInStore 
+
+     
+INSERT_UPDATE PointOfService ; name[unique=true] ; type(code) ; address(&addrID) ; latitude ; longitude ; geocodeTimestamp[dateformat=dd-MM-yyyy] ; $storeImage ; openingSchedule(code) ; basestore(uid)[default=$storeUidUS] ; features(code) 
+                             ; USKC           ; WAREHOUSE      ; addr1            ; 35,6673  ; 139,75429 ; 29-04-2025                              ;             ; $standardHours        
+                             ; CAN1           ; WAREHOUSE      ; addr2            ; 35,6923  ; 139,8201  ; 29-04-2025                              ;             ; $standardHours        ; $storeUidCA                         
+                             
+INSERT_UPDATE Address ; &addrID ; streetname        ; streetnumber ; postalcode[unique=true] ; town[unique=true] ; country(isocode) ; region(isocode) ; phone1        ; owner(PointOfService.name)[unique=true] 
+                      ; addr1   ; Waseda Dori       ; 13           ;                         ; Tokio             ; US               ;                 ; +81 1988 3600 ; USKC                                 
+                      ; addr2   ; Hibiya Dori       ; 20           ;                         ; Tokio             ; US               ;                 ; +81 4649 8891 ; CAN1                                 
+                                                     
                                   
 UPDATE PointOfService ; name[unique=true] ; features(code)                           ;  
-                      ; NewYork           ; wheelchair,creche,buyOnlinePickupInStore ;  
-                      ; Chicago           ; wheelchair,creche,buyOnlinePickupInStore ;  
-                      ; Toronto           ; wheelchair,creche,buyOnlinePickupInStore ;  
-                      ; Vancouver         ; wheelchair,buyOnlinePickupInStore        ;  
+                      ; CAN1              ; wheelchair,creche,buyOnlinePickupInStore ;  
+                      ; USKC              ; wheelchair,creche,buyOnlinePickupInStore ;  
                       
 INSERT_UPDATE PoS2WarehouseRel ; source(name)[unique=true] ; target(code)[unique=true] 
-                               ; NewYork                   ; am_warehouse_s                   
-                               ; Chicago                   ; am_warehouse_e                   
-                               ; Toronto                   ; am_warehouse_w                   
-                               ; Vancouver                 ; am_warehouse_n                 
+                               ; CAN1                      ; CAN1                      
+                               ; USKC                      ; USKC                      
                                

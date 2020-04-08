@@ -295,3 +295,156 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
 ;;AccountManagementLink;Account Management Link;/my-account/update-profile;;;;;;;
 #####################################################################
+
+##################### SAPP-459 #############
+
+$storeUidNZ=securityB2BNZ
+$storeUidUS=amB2CUS
+$storeUidCA=amB2CCA
+$standardHours=amB2C-US-standard-hours
+$weekendHours=amB2C-US-weekend-hours
+$aucklandHours=auckland-standard-hours
+$storeUidAU=securityB2BAU
+
+REMOVE UserTaxGroup ; code[unique=true]
+                           ; jp-taxes
+
+REMOVE ProductTaxGroup ; code[unique=true]
+                              ; jp-vat-full
+                              ; eu-vat-full
+                              ; eu-vat-half
+
+REMOVE Tax ; code[unique=true]
+                  ; jp-vat-full
+                  ; uk-vat-full
+                  ; uk-vat-half
+
+$vendor=default
+
+REMOVE Warehouse;code[unique=true]
+;security_warehouse_s
+;security_warehouse_e
+;security_warehouse_w
+;security_warehouse_n
+
+INSERT_UPDATE StockLevel;productCode[unique=true];warehouse(code)[unique=true,default=default];available;inStockStatus(code);maxPreOrder[default=1];maxStockLevelHistoryCount[default=-1];overSelling[default=0];preOrder[default=0];reserved[default=0]
+;t10-mifare-reader-black;ELEC;414;notSpecified
+;t11-multi-tech-reader-black;ELEC;228;notSpecified
+;t11-mifare-reader-black;ELEC;335;notSpecified
+;t12-multi-tech-reader-black;ELEC;161;notSpecified
+;t12-mifare-reader-black;ELEC;215;notSpecified
+;t15-multi-tech-reader-black;ELEC;122;notSpecified
+;t15-mifare-reader-black;ELEC;496;notSpecified
+;t20-multi-tech-reader-black;ELEC;241;notSpecified
+;t20-mifare-reader-black;ELEC;386;notSpecified
+;t10-mifare-reader-white;ELEC;414;notSpecified
+;t11-multi-tech-reader-white;ELEC;228;notSpecified
+;t11-mifare-reader-white;ELEC;335;notSpecified
+;t12-multi-tech-reader-white;ELEC;161;notSpecified
+;t12-mifare-reader-white;ELEC;215;notSpecified
+;t15-multi-tech-reader-white;ELEC;122;notSpecified
+;t15-mifare-reader-white;ELEC;496;notSpecified
+;t20-multi-tech-reader-white;ELEC;241;notSpecified
+;t20-mifare-reader-white;ELEC;386;notSpecified
+
+INSERT_UPDATE BaseStore2WarehouseRel;source(uid)[unique=true];target(code)[unique=true]
+;$storeUidNZ;ELEC
+
+INSERT_UPDATE PointOfService;name[unique=true];displayName;warehouses(code);address(&addrID);latitude;longitude;geocodeTimestamp[dateformat=dd.MM.yyyy];type(code)[default=WAREHOUSE]
+;ELEC;GGL Local Manufacturing;ELEC;ELEC;29,4235547;-98,4853322;11.12.2012
+;AUME;Gallagher Australia Pty Ltd;AUME;AUME;29,4235547;-98,4853322;11.12.2012
+
+REMOVE Address;&addrID;streetnumber[unique=true];streetname;town;country(isocode);postalcode[unique=true];phone1;owner(PointOfService.name)[unique=true]
+;security_warehouse_s;849 East Commerce Street;;San Antonio;NZ;78205;;security_warehouse_s
+;security_warehouse_e;100 7th Avenue;Brooklyn;New York;NZ;11215;;security_warehouse_e
+;security_warehouse_w;1111 Newport Center Drive;;Newport Beach;NZ;92660;;security_warehouse_w
+;security_warehouse_n;179 Bellevue Square;;Bellevue;NZ;98004;;security_warehouse_n
+
+INSERT_UPDATE Address;&addrID;streetnumber[unique=true];streetname;town;country(isocode);postalcode[unique=true];phone1;owner(PointOfService.name)[unique=true]
+;ELEC;849 East Commerce Street;;San Antonio;NZ;78205;;ELEC
+;AUME;850 East Commerce Street;;San Antonio;NZ;78205;;AUME
+
+
+REMOVE PointOfService;name[unique=true]
+;security_warehouse_s
+;security_warehouse_e
+;security_warehouse_w
+;security_warehouse_n
+
+INSERT_UPDATE BaseStore;uid[unique=true];defaultDeliveryOrigin(name)
+;$storeUidNZ;ELEC
+
+REMOVE Warehouse ; code[unique=true]
+; am_warehouse_s
+; am_warehouse_e
+; am_warehouse_w
+; am_warehouse_n
+
+INSERT_UPDATE StockLevel;productCode[unique=true];warehouse(code)[unique=true,default=default];available;inStockStatus(code);maxPreOrder[default=1];maxStockLevelHistoryCount[default=-1];overSelling[default=0];preOrder[default=0];reserved[default=0]
+;solar-fence-energizer-s10;CAN1;414;notSpecified
+;solar-fence-energizer-s10;USKC;414;notSpecified
+
+INSERT_UPDATE StockLevel;productCode[unique=true];warehouse(code)[unique=true,default=default];available;inStockStatus(code);maxPreOrder[default=1];maxStockLevelHistoryCount[default=-1];overSelling[default=0];preOrder[default=0];reserved[default=0]
+;solar-fence-energizer-s10;CAN1;414;notSpecified
+;solar-fence-energizer-s10;USKC;414;notSpecified
+
+REMOVE PointOfService ; name[unique=true] 
+                             ; NewYork    
+                             ; Chicago    
+                             ; Toronto    
+                             ; Vancouver  
+
+INSERT_UPDATE PointOfService ; name[unique=true] ; type(code) ; address(&addrID) ; latitude ; longitude ; geocodeTimestamp[dateformat=dd-MM-yyyy]  ; openingSchedule(code) ; basestore(uid)[default=$storeUidUS] ; features(code) 
+                             ; USKC           ; WAREHOUSE      ; addr1            ; 35,6673  ; 139,75429 ; 29-04-2025                               ; $standardHours        
+                             ; CAN1           ; WAREHOUSE      ; addr2            ; 35,6923  ; 139,8201  ; 29-04-2025                               ; $standardHours        ; $storeUidCA                         
+                             
+INSERT_UPDATE Address ; &addrID ; streetname        ; streetnumber ; postalcode[unique=true] ; town[unique=true] ; country(isocode) ; region(isocode) ; phone1        ; owner(PointOfService.name)[unique=true] 
+                      ; addr1   ; Waseda Dori       ; 13           ;                         ; Tokio             ; US               ;                 ; +81 1988 3600 ; USKC                                 
+                      ; addr2   ; Hibiya Dori       ; 20           ;                         ; Tokio             ; US               ;                 ; +81 4649 8891 ; CAN1                                                 
+
+INSERT_UPDATE PoS2WarehouseRel ; source(name)[unique=true] ; target(code)[unique=true] 
+                               ; CAN1                      ; CAN1                      
+                               ; USKC                      ; USKC                      
+$storeUidUS=amB2CUS
+$storeUidCA=amB2CCA
+
+REMOVE PointOfService;name[unique=true];
+;am_warehouse_s
+;am_warehouse_e
+;am_warehouse_w
+;am_warehouse_n
+
+INSERT_UPDATE BaseStore2WarehouseRel ; source(uid)[unique=true] ; target(code)[unique=true] 
+                                     ; $storeUidUS              ; USKC                  
+                                     ; $storeUidCA              ; CAN1
+                                     ;$storeUidNZ                ;ELEC 
+									;$storeUidAU				;ELEC
+									;$storeUidAU				;AUME
+
+INSERT_UPDATE BaseStore2WarehouseRel;source(uid)[unique=true];target(code)[unique=true]
+									 
+                                     
+INSERT_UPDATE PointOfService ; name[unique=true] ; displayName           ; warehouses(code) ; address(&addrID) ; latitude   ; longitude   ; geocodeTimestamp[dateformat=dd.MM.yyyy] ; type(code)[default=WAREHOUSE] 
+                             ; CAN1              ; AM CA Warehouse Store ; CAN1             ; CAN1             ; 33,5933317 ; 130,3515247 ; 11.12.2025                              
+                             ; USKC              ; AM US Warehouse Store ; USKC             ; USKC             ; 35,7116188 ; 139,7082147 ; 11.12.2025                              
+                             
+INSERT_UPDATE Address ; &addrID ; streetnumber[unique=true] ; streetname  ; town    ; country(isocode) ; postalcode[unique=true] ; phone1          ; owner(PointOfService.name)[unique=true] 
+                      ; CAN1    ; 2-3-26 Momochihama        ; Sawara Ward ; Fukuoka ; JP               ; 814-0001                ; +81 92-823-0236 ; CAN1                                    
+                      ; USKC    ; 1-5-16 Takadanobaba       ;             ; Tokio   ; JP               ; 169-0075                ; +813 3201 8968  ; USKC                                    
+                      
+INSERT_UPDATE BaseStore ; uid[unique=true] ; defaultDeliveryOrigin(name) 
+                        ; $storeUidUS      ; USKC                        
+                        ; $storeUidCA      ; CAN1
+                        
+REMOVE PointOfService;name[unique=true]
+;Hybris SecurityB2B Tulsa1
+;Hybris SecurityB2B Tulsa2
+;Hybris SecurityB2B Tulsa3
+;Hybris SecurityB2B Tulsa4
+;Hybris SecurityB2B Tulsa5
+
+INSERT_UPDATE PointOfService ; name[unique=true] ;  basestore(uid) 
+                             ; ELEC           ; $storeUidNZ
+							 ; AUME           ; $storeUidAU
+						 
+#####################################################################							 
