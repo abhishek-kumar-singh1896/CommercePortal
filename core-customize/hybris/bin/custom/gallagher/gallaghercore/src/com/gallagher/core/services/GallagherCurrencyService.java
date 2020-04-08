@@ -16,5 +16,5 @@ public interface GallagherCurrencyService
 	/**
 	 * returns CurrencyModel from ISO Code
 	 */
-	CurrencyModel getCurrencyByIsoCode(String isoCode);
+	CurrencyModel getCurrencyByCountryIsoCode(String isoCode);
 }

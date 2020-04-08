@@ -9,8 +9,10 @@ import de.hybris.platform.servicelayer.event.EventService;
 import de.hybris.platform.servicelayer.model.ModelService;
 import de.hybris.platform.servicelayer.user.impl.DefaultUserService;
 import de.hybris.platform.site.BaseSiteService;
+import de.hybris.platform.store.BaseStoreModel;
 import de.hybris.platform.store.services.BaseStoreService;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -144,23 +146,53 @@ public class GallagherSaveCustomerHandler implements FlowActionHandler
 			final B2BRegistrationEvent b2bRegistrationEvent = new B2BRegistrationEvent();
 			final B2BCustomerModel b2bCustomer = (B2BCustomerModel) adapter.getWidgetInstanceManager().getModel().getValue("newCust",
 					CustomerModel.class);
-			b2bCustomer.setIsUserExist(isUserExist);
-			modelService.save(b2bCustomer);
 			final B2BUnitModel defaultB2BUnit = adapter.getWidgetInstanceManager().getModel().getValue("newCust.defaultB2BUnit",
 					B2BUnitModel.class);
-			final String isoCode = defaultB2BUnit.getAddresses().iterator().next().getCountry().getIsocode();
-			String securityB2BisoCode = new String("securityB2B");
-			securityB2BisoCode = securityB2BisoCode.concat(isoCode);
+			String isoCode;
 			b2bRegistrationEvent.setCustomer(b2bCustomer);
-			b2bRegistrationEvent.setBaseStore(baseStoreService.getBaseStoreForUid(securityB2BisoCode));
-			b2bRegistrationEvent.setSite(baseSiteService.getBaseSiteForUID(securityB2BisoCode));
+			if (defaultB2BUnit.getAddresses().isEmpty())
+			{
+				isoCode = "Global";
+				b2bRegistrationEvent.setBaseStore(baseStoreService.getBaseStoreForUid("securityB2BGlobal"));
+				b2bRegistrationEvent.setSite(baseSiteService.getBaseSiteForUID("securityB2BGlobal"));
+			}
+			else
+			{
+				final List<BaseStoreModel> baseStores = baseStoreService.getAllBaseStores();
+				isoCode = defaultB2BUnit.getAddresses().iterator().next().getCountry().getIsocode();
+				boolean flag = false;
+				for (final BaseStoreModel baseStore : baseStores)
+				{
+					if (baseStore.getUid().startsWith("security") && baseStore.getUid().contains(isoCode))
+					{
+						String securityB2BisoCode = new String("securityB2B");
+						securityB2BisoCode = securityB2BisoCode.concat(isoCode);
+						b2bRegistrationEvent.setBaseStore(baseStoreService.getBaseStoreForUid(securityB2BisoCode));
+						b2bRegistrationEvent.setSite(baseSiteService.getBaseSiteForUID(securityB2BisoCode));
+						flag = true;
+						break;
+					}
+				}
+				if (!flag)
+				{
+					b2bRegistrationEvent.setBaseStore(baseStoreService.getBaseStoreForUid("securityB2BGlobal"));
+					b2bRegistrationEvent.setSite(baseSiteService.getBaseSiteForUID("securityB2BGlobal"));
+				}
+			}
 			if (b2bCustomer.getSessionCurrency() != null)
 			{
 				b2bRegistrationEvent.setCurrency(b2bCustomer.getSessionCurrency());
 			}
 			else
 			{
-				b2bRegistrationEvent.setCurrency(gallagherCurrencyService.getCurrencyByIsoCode(isoCode));
+				if (gallagherCurrencyService.getCurrencyByCountryIsoCode(isoCode) != null)
+				{
+					b2bRegistrationEvent.setCurrency(gallagherCurrencyService.getCurrencyByCountryIsoCode(isoCode));
+				}
+				else
+				{
+					b2bRegistrationEvent.setCurrency(gallagherCurrencyService.getCurrencyByCountryIsoCode("US"));
+				}
 			}
 			if (b2bCustomer.getSessionLanguage() != null)
 			{
@@ -170,6 +202,10 @@ public class GallagherSaveCustomerHandler implements FlowActionHandler
 			{
 				b2bRegistrationEvent.setLanguage(gallagherLanguaeService.getLanguageByisoCode("en"));
 			}
+
+			b2bCustomer.setIsUserExist(isUserExist);
+			modelService.save(b2bCustomer);
+
 			b2bEventService.publishEvent(b2bRegistrationEvent);
 		}
 	}
