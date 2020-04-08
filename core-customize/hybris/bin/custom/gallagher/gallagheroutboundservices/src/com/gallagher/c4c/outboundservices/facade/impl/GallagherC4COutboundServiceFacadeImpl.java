@@ -13,20 +13,26 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.apache.commons.validator.routines.EmailValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestOperations;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.gallagher.c4c.outboundservices.facade.GallagherC4COutboundServiceFacade;
+import com.gallagher.outboundservices.decorator.GallagherCsrfOutboundRequestDecorator;
 import com.gallagher.outboundservices.request.dto.RegisterProductRequest;
 import com.gallagher.outboundservices.response.dto.GallagherInboundCustomerEntry;
 import com.gallagher.outboundservices.response.dto.GallagherInboundCustomerInfo;
+import com.gallagher.outboundservices.response.dto.GallagherRegisterProductResponse;
 import com.gallagher.outboundservices.response.dto.GallagherRegisteredProduct;
 
 
@@ -42,6 +48,9 @@ public class GallagherC4COutboundServiceFacadeImpl extends DefaultOutboundServic
 	private static final String OUTBOUND_CONTACT_COLLECTION_DESTINATION = "scpiContactCollectionDestination";
 	private static final String REGISTER_PRODUCT_DESTINATION = "scpiRegisterProductDestination";
 	private static final String REGISTERED_PRODUCT_COLLECTION_DESTINATION = "scpiRegisteredProductCollectionDestination";
+
+	@Resource(name = "gallagherCsrfOutboundRequestDecorator")
+	private GallagherCsrfOutboundRequestDecorator gallagherCsrfOutboundRequestDecorator;
 
 	/**
 	 * {@inheritDoc}
@@ -93,19 +102,25 @@ public class GallagherC4COutboundServiceFacadeImpl extends DefaultOutboundServic
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void registerProduct(final RegisterProductRequest request)
+	public HttpStatus registerProduct(final RegisterProductRequest request)
 	{
 		final ConsumedDestinationModel destinationModel = getConsumedDestinationModelById(REGISTER_PRODUCT_DESTINATION);
 		final RestOperations restOperations = getIntegrationRestTemplateFactory().create(destinationModel);
 
 		final String baseURL = destinationModel.getUrl();
 
-		final HttpHeaders headers = new HttpHeaders();
+		HttpHeaders headers = new HttpHeaders();
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		headers.setContentType(MediaType.APPLICATION_JSON);
 
-		final HttpEntity entity = new HttpEntity(request, headers);
+		headers = gallagherCsrfOutboundRequestDecorator.decorate(headers, destinationModel);
 
-		restOperations.exchange(baseURL, HttpMethod.POST, entity, String.class);
+		final HttpEntity<RegisterProductRequest> entity = new HttpEntity<>(request, headers);
+
+		final ResponseEntity<GallagherRegisterProductResponse> response = restOperations.exchange(baseURL, HttpMethod.POST, entity,
+				GallagherRegisterProductResponse.class);
+
+		return response.getStatusCode();
 	}
 
 	/**

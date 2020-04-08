@@ -39,4 +39,10 @@
           class="com.gallagher.sap.sapcpicustomerexchange.service.impl.GallagherSCPICustomerOutboundService"
           parent="sapCpiCustomerOutboundService" />
 
+	<bean id="gallagherCsrfOutboundRequestDecorator"
+		  class="com.gallagher.outboundservices.decorator.impl.GallagherCsrfOutboundRequestDecoratorImpl">
+		<property name="integrationRestTemplateFactory" ref="integrationRestTemplateFactory" />
+		<property name="cache" ref="csrfParametersCache" />
+	</bean>
+
 </beans>

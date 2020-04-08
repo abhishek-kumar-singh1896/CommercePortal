@@ -8,8 +8,8 @@
 	tagdir="/WEB-INF/tags/responsive/nav/breadcrumb"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="sec"
-	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec"	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
 	<c:url value="/register-product/verify" var="verifyURL" />
 	<c:url value="/register-product/submit" var="submitURL" />
@@ -247,8 +247,9 @@
 									aria-describedby="Attach a Receipt">Choose file</label>
 							</div>
 						</div>
-						<div class="hint-text">Max file size: 5mb, File type: jpg,
-							png, pdf</div>
+						<div class="hint-text">
+							<spring:theme code="text.product.registration.filesize" arguments="${fileMaxSize}"/>
+						</div>
 
 						<!-- <div class="error-label">
                         <span class="error-icon">

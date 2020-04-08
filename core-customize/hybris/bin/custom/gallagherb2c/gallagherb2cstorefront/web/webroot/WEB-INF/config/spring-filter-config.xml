@@ -180,7 +180,7 @@
 	<alias name="defaultFileUploadUrlFilterMappings" alias="fileUploadUrlFilterMappings" />
 	<util:map id="defaultFileUploadUrlFilterMappings" key-type="java.lang.String" value-type="org.springframework.web.multipart.support.MultipartFilter">
 		<entry key="/import/csv/*" value-ref="importCSVMultipartFilter"/>
-		<entry key="/register-product/submit" value-ref="importCSVMultipartFilter"/>
+		<entry key="/register-product/submit" value-ref="importReceiptMultipartFilter"/>
 	</util:map>
 
 	<bean id="fileUploadFilter" class="com.gallagher.b2c.filters.FileUploadFilter" >
@@ -230,5 +230,13 @@
 
 	<bean id="importCSVMultipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="#{configurationService.configuration.getProperty('import.csv.max.upload.size.bytes')}" />
+	</bean>
+	
+	<bean id="importReceiptMultipartFilter" class="org.springframework.web.multipart.support.MultipartFilter">
+		<property name="multipartResolverBeanName" value="importReceiptMultipartResolver"/>
+	</bean>
+
+	<bean id="importReceiptMultipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="#{configurationService.configuration.getProperty('import.product.receipt.max.upload.size.bytes')}" />
 	</bean>
 </beans>
