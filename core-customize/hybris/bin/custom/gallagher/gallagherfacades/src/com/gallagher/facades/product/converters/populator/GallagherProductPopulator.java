@@ -14,6 +14,7 @@ import java.util.List;
 import org.apache.commons.collections4.CollectionUtils;
 
 import com.gallagher.core.enums.Animal;
+import com.microsoft.sqlserver.jdbc.StringUtils;
 
 
 /**
@@ -50,7 +51,10 @@ public class GallagherProductPopulator extends ProductPopulator
 		target.setOthersReferenceSubHeading(source.getOthersReferenceSubHeading());
 		//		target.setMarketingDescription(source.getMarketingDescription());
 		super.populate(source, target);
+		if (!StringUtils.isEmpty(source.getMarketingDescription()))
+		{
 		target.setName(source.getMarketingDescription());
+		}
 	}
 
 	/**

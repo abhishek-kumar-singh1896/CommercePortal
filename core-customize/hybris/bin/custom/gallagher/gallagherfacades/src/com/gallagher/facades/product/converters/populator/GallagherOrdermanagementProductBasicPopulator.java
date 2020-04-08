@@ -7,6 +7,9 @@ import de.hybris.platform.commercefacades.product.data.ProductData;
 import de.hybris.platform.core.model.product.ProductModel;
 import de.hybris.platform.ordermanagementfacades.product.converters.populator.OrdermanagementProductBasicPopulator;
 
+import com.microsoft.sqlserver.jdbc.StringUtils;
+
+
 /**
  *
  */
@@ -16,9 +19,10 @@ public class GallagherOrdermanagementProductBasicPopulator extends Ordermanageme
 	public void populate(final ProductModel productModel, final ProductData productData)
 	{
 		super.populate(productModel, productData);
-		if (productModel != null && productData != null)
+		final String marketingDescription = (String) getProductAttribute(productModel, ProductModel.MARKETINGDESCRIPTION);
+		if (productModel != null && productData != null && !StringUtils.isEmpty(marketingDescription))
 		{
-			productData.setName((String) getProductAttribute(productModel, ProductModel.MARKETINGDESCRIPTION));
+			productData.setName(marketingDescription);
 		}
 	}
 }
