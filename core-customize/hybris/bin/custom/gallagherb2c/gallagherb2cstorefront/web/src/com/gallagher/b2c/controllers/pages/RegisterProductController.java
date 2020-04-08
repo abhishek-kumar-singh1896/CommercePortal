@@ -3,6 +3,7 @@
  */
 package com.gallagher.b2c.controllers.pages;
 
+import de.hybris.platform.acceleratorstorefrontcommons.annotations.RequireHardLogIn;
 import de.hybris.platform.acceleratorstorefrontcommons.breadcrumb.Breadcrumb;
 import de.hybris.platform.acceleratorstorefrontcommons.breadcrumb.impl.ContentPageBreadcrumbBuilder;
 import de.hybris.platform.acceleratorstorefrontcommons.constants.WebConstants;
@@ -68,6 +69,8 @@ public class RegisterProductController extends AbstractPageController
 
 	private static final String REG_PRODUCTS_PAGE = "regProducts";
 
+	private static final String IMPORT_FILE_MAX_SIZE_BYTES_KEY = "import.product.receipt.max.file.size.bytes";
+
 	@Resource(name = "userService")
 	private UserService userService;
 
@@ -89,6 +92,7 @@ public class RegisterProductController extends AbstractPageController
 	String imageUrl;
 
 	@RequestMapping(value = "/products", method = RequestMethod.GET)
+	@RequireHardLogIn
 	public String registeredProductsByUser(final Model model) throws CMSItemNotFoundException
 	{
 		final ContentPageModel regProductsPage = getContentPageForLabelOrId(REG_PRODUCTS_PAGE);
@@ -122,6 +126,7 @@ public class RegisterProductController extends AbstractPageController
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
+	@RequireHardLogIn
 	public String doRegisterProduct(final Model model) throws CMSItemNotFoundException
 	{
 		return getProductRegistrationPage(model);
@@ -139,7 +144,8 @@ public class RegisterProductController extends AbstractPageController
 				.sorted((e1, e2) -> e1.getName().compareTo(e2.getName())).collect(Collectors.toList());
 
 		model.addAttribute("Countries", countries);
-
+		final long fileSie = getSiteConfigService().getLong(IMPORT_FILE_MAX_SIZE_BYTES_KEY, 0);
+		model.addAttribute("fileMaxSize", fileSie == 0 ? 0 : (fileSie / 1024) / 1024);
 
 		model.addAttribute(new RegisterProductForm());
 		return getView();
@@ -212,6 +218,7 @@ public class RegisterProductController extends AbstractPageController
 	 * @throws CMSItemNotFoundException
 	 */
 	@RequestMapping(method = RequestMethod.POST, value = "/submit")
+	@RequireHardLogIn
 	public String submitRegisterProduct(@ModelAttribute
 	final RegisterProductForm registerProductForm1, final Model model, final RedirectAttributes redirectAttributes)
 			throws CMSItemNotFoundException
