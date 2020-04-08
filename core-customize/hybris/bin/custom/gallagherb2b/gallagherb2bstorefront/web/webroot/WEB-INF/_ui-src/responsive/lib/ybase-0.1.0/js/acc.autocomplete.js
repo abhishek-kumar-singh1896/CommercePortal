@@ -49,7 +49,7 @@ ACC.autocomplete = {
 							.append(
 									item.image  
 											? $("<div>").addClass("thumb")
-													.append($("<img>").attr("src", item.image))
+													.append($("<img style='width:30px; height:30px;'>").attr("src", item.image))
 											: null
 							)
 							.append($("<div>").addClass("name").html(ACC.sanitizer.sanitize(item.value)));
@@ -101,7 +101,7 @@ ACC.autocomplete = {
 								price: obj.price ? obj.price.formattedValue : null,
 								discount:obj.totalDiscounts?obj.totalDiscounts[0].value:null,
 								type: "productResult",
-								image: (obj.images!=null && self.options.displayProductImages) ? obj.images[0].url : null // prevent errors if obj.images = null
+								image: (obj.images!=null && self.options.displayProductImages) ? obj.images[1].url : null // prevent errors if obj.images = null
 							});
 						});
 					}
