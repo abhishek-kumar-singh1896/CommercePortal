@@ -20,7 +20,7 @@
 			<div class="alert alert-danger alert-dismissable getAccAlert">
 				<button class="close closeAccAlert" aria-hidden="true"
 					data-dismiss="alert" type="button">×</button>
-				Entered product not found.
+				<spring:theme code="registerProduct.product.not.found.message.title"/>
 			</div>
 		</div>
 		<div class="container">
@@ -37,7 +37,7 @@
 				</div>
 			</div>
 
-			<h1 class="primary-title">Product Registration</h1>
+			<h1 class="primary-title"><spring:theme code="header.register.product"/></h1>
 			<div class="register-product-desc">
 				<p>
 					<cms:pageSlot position="Section1" var="feature">
@@ -46,8 +46,7 @@
 				</p>
 			</div>
 
-			<h2 class="secondary-title mt-5">Product will be registered
-				under ${user.firstName}&nbsp${user.lastName}</h2>
+			<h2 class="secondary-title mt-5"><spring:theme code="registerProduct.under.title"/>${user.firstName}&nbsp${user.lastName}</h2>
 			<form:form method="post" action="${submitURL}"
 				id="registerProductForm" class="registerProduct_form" enctype="multipart/form-data"
 				modelAttribute="registerProductForm">
@@ -55,8 +54,7 @@
 					<div class="col-md-6">
 						<div class="row">
 							<div class="col-12 mb-4">
-								<label for="productSku" class="common-form-label">Product
-									SKU</label>
+								<label for="productSku" class="common-form-label"><spring:theme code="registerProduct.productSKU.title"/></label>
 								<!-- <input type="text" class="form-control common-input" id="productSku" name="productSku"/> -->
 								<%-- <form:input type="text" class="form-control common-input" id="productSku" name="productSku"/> --%>
 								<form:input type="text" class="form-control common-input" id="productSku" path="productSku" placeholder="e.g. G12345"/>
@@ -72,8 +70,7 @@
 							</div>
 
 							<div class="col-12 mb-4">
-								<label for="serialNumber" class="common-form-label">Serial
-									number</label>
+								<label for="serialNumber" class="common-form-label"><spring:theme code="registerProduct.serialNumber.title"/></label>
 								<!-- <input type="text" maxlength="10" class="form-control common-input" id="serialNumber" name="serialNumber"> -->
 								<form:input type="text" maxlength="10"
 									class="form-control common-input" id="serialNumber"
@@ -91,8 +88,7 @@
 							</div>
 
 							<div class="col-12 mb-4">
-								<label for="datePurchased" class="common-form-label">Date
-									purchased (dd/mm/yyyy)</label>
+								<label for="datePurchased" class="common-form-label"><spring:theme code="registerProduct.date.title"/></label>
 								<!-- <input type="text" class="form-control common-input" id="datePurchased" name="datePurchased">  -->
 								<form:input type="text" class="form-control common-input"
 									id="datePurchased" path="datePurchased"
@@ -111,12 +107,11 @@
 					</div>
 				</div>
 
-				<h2 class="secondary-title">Your Details</h2>
+				<h2 class="secondary-title"><spring:theme code="registerProduct.details.title"/></h2>
 
 				<div class="row">
 					<div class="col-md-6 mb-4">
-						<label for="addressLine1" class="common-form-label">Address
-							Line 1</label>
+						<label for="addressLine1" class="common-form-label"><spring:theme code="registerProduct.addressLine1.title"/></label>
 						<!-- <input type="text" class="form-control common-input" id="addressLine1" name="addressLine1"/>  -->
 						<form:input type="text" class="form-control common-input"
 							id="addressLine1" path="addressLine1" />
@@ -131,8 +126,7 @@
 						</div>
 					</div>
 					<div class="col-md-6 mb-4">
-						<label for="addressLine2" class="common-form-label">Address
-							Line 2</label>
+						<label for="addressLine2" class="common-form-label"><spring:theme code="registerProduct.addressLine2.title"/></label>
 						<!-- <input type="text" class="form-control common-input" id="addressLine2">  -->
 						<form:input type="text" class="form-control common-input"
 							id="addressLine2" path="addressLine2" />
@@ -150,7 +144,7 @@
 
 				<div class="row">
 					<div class="col-md-6 mb-4">
-						<label for="townCity" class="common-form-label">Town/ City</label>
+						<label for="townCity" class="common-form-label"><spring:theme code="registerProduct.town.title"/></label>
 						<!-- <input type="text" class="form-control common-input" id="townCity" name="townCity">  -->
 						<form:input type="text" class="form-control common-input"
 							id="townCity" path="townCity" />
@@ -165,7 +159,7 @@
 						</div>
 					</div>
 					<div class="col-md-6 mb-4">
-						<label for="region" class="common-form-label">Region</label>
+						<label for="region" class="common-form-label"><spring:theme code="registerProduct.region.title"/></label>
 						<!-- <input type="text" class="form-control common-input" id="townCity" name="townCity">  -->
 						<form:input type="text" class="form-control common-input"
 							id="region" path="region" />
@@ -183,7 +177,7 @@
 
 				<div class="row">
 					<div class="col-md-6 mb-4">
-						<label for="postCode" class="common-form-label">Post Code</label>
+						<label for="postCode" class="common-form-label"><spring:theme code="registerProduct.postCode.title"/></label>
 						<form:input type="text" class="form-control common-input"
 							id="postCode" path="postCode" />
 
@@ -198,10 +192,10 @@
 						</div>
 					</div>
 					<div class="col-md-6 mb-4">
-						<label for="country" class="common-form-label">Country</label>
+						<label for="country" class="common-form-label"><spring:theme code="registerProduct.country.title"/></label>
 						<form:select path="country" id="country"
 							class="form-control js-example-basic-single">
-							<form:option value="0">Select a Country</form:option>
+							<form:option value="0"><spring:theme code="registerProduct.selectCountry.title"/></form:option>
 							<c:forEach items="${Countries}" var="country" varStatus="status">
 								<form:option value="1">${country.name}</form:option>
 							</c:forEach>
@@ -221,8 +215,7 @@
 				<div class="row">
 					<div class="col-md-6 mb-4">
 
-						<label for="phoneNumber" class="common-form-label">Phone
-							number</label>
+						<label for="phoneNumber" class="common-form-label"><spring:theme code="registerProduct.phone.title"/></label>
 						<div class="input-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text" id="phonePlus">+</span>
@@ -236,15 +229,14 @@
 					</div>
 
 					<div class="col-md-6 mb-4">
-						<label for="attachedFile" class="common-form-label">Attach
-							a Receipt</label>
+						<label for="attachedFile" class="common-form-label"><spring:theme code="registerProduct.attachReciept.title"/></label>
 						<div class="input-group">
 							<div class="custom-file">
 								<form:input type="file" class="form-control custom-file-input"
 							id="attachedFile" path="attachedFile" name="attachedFile"/>
 								<!-- <input type="file" class="custom-file-input" id="attachReceipt"> -->
 								<label class="custom-file-label" for="attachedFile"
-									aria-describedby="Attach a Receipt">Choose file</label>
+									aria-describedby="Attach a Receipt"><spring:theme code="registerProduct.chooseFile.title"/></label>
 							</div>
 						</div>
 						<div class="hint-text">
@@ -266,7 +258,7 @@
 
 				<div class="mt-3">
 					<input type="button" class="btn btn-primary verify-registration" value="Register"/>
-               <button type="submit" class="btn btn-primary d-none register-product">Register</button>
+               <button type="submit" class="btn btn-primary d-none register-product"><spring:theme code="registerProduct.register.title"/></button>
 				</div>
 			</form:form>
 		</div>
