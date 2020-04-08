@@ -17,6 +17,8 @@ import de.hybris.platform.servicelayer.internal.model.impl.LocaleProvider;
 import de.hybris.platform.servicelayer.media.MediaService;
 import de.hybris.platform.servicelayer.model.ModelService;
 import de.hybris.platform.servicelayer.search.FlexibleSearchService;
+import de.hybris.platform.store.BaseStoreModel;
+import de.hybris.platform.store.services.BaseStoreService;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
@@ -30,6 +32,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.log4j.Logger;
@@ -78,6 +81,13 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 	@Autowired
 	private GallagherMediaContainerDao gallagherMediaContainerDao;
 
+	@Autowired
+	private BaseStoreService baseStoreService;
+
+	@Autowired
+	private GallagherMediaConversionServiceImpl gallagherMediaConversionService;
+
+
 	@Override
 	public boolean updateMedia(final GallagherBynderSyncCronJobModel cronModel,
 			final GallagherBynderResponse gallagherBynderResponse)
@@ -96,6 +106,8 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 		LOGGER.info("Creating container for " + gallagherBynderResponse.getId());
 		//create a new container and adding images
 
+		gallagherBynderResponse.getProperty_skus().add("G98131");
+
 		//setting MediaContainerModel values
 		final LocaleProvider localeProvider = new StubLocaleProvider(Locale.ENGLISH);
 		final MediaContainerModel mediaContainerModel = modelService.create(MediaContainerModel.class);
@@ -103,6 +115,10 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 		mediaContainerModel.setQualifier(gallagherBynderResponse.getId());
 		mediaContainerModel.setName(gallagherBynderResponse.getName(), Locale.ENGLISH);
 
+		//ADDING BASE STORE
+		final List<BaseStoreModel> basestorelist = getBaseStoreModelList(gallagherBynderResponse.getProperty_region(),
+				cronModel.getCatalogId());
+		mediaContainerModel.setBaseStores(basestorelist);
 
 		final BynderMediaModel mediaModel = modelService.create(BynderMediaModel.class);
 		final MediaFolderModel folder = mediaService.getFolder(GallagherCoreConstants.Bynder.IMAGES);
@@ -117,7 +133,10 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 		mediaModel.setDescription(gallagherBynderResponse.getDescription());
 		mediaModel.setAltText(gallagherBynderResponse.getFileSize() / 1000000 + " mb");
 
+		//adding base Stores
+		mediaModel.setBaseStores(basestorelist);
 
+		//modelService.save(arg0);
 		modelService.save(mediaModel);
 		mediaService.setStreamForMedia(mediaModel, getImage(gallagherBynderResponse.getId()));
 		LOGGER.info("Media Saved for " + gallagherBynderResponse.getId());
@@ -229,6 +248,62 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 		return true;
 	}
 
+	@Override
+	public boolean updateVideoMedia(final GallagherBynderSyncCronJobModel cronModel,
+			final GallagherBynderResponse gallagherBynderResponse)
+	{
+		final CatalogVersionModel catlogmodel = catalogVersionService.getCatalogVersion(cronModel.getCatalogId(), "Staged");
+		LOGGER.info("Updating Media for " + gallagherBynderResponse.getId());
+
+		if (CollectionUtils.isNotEmpty(gallagherBynderResponse.getProperty_skus()))
+		{
+			//getting products and adding container to that product
+			final List<ProductModel> products = gallagherMediaContainerDao
+					.getProductModeList(gallagherBynderResponse.getProperty_skus(), catlogmodel.getPk());
+			if (CollectionUtils.isNotEmpty(products))
+			{
+				for (final ProductModel product : products)
+				{
+					final Map<String, String> videomap = new HashMap<String, String>();
+					videomap.putAll(product.getVideos());
+					videomap.put(gallagherBynderResponse.getId(), gallagherBynderResponse.getThumbnails().getThul());
+					product.setVideos(videomap);
+					modelService.save(product);
+					LOGGER.info("Video Media " + gallagherBynderResponse.getId() + " Saved for " + product.getCode());
+				}
+			}
+		}
+		return true;
+	}
+
+	@Override
+	public boolean deleteVideoMedia(final GallagherBynderSyncCronJobModel cronModel,
+			final GallagherBynderResponse gallagherBynderResponse)
+	{
+		final CatalogVersionModel catlogmodel = catalogVersionService.getCatalogVersion(cronModel.getCatalogId(), "Staged");
+		LOGGER.info("Deleting Video Media for " + gallagherBynderResponse.getId());
+
+		if (CollectionUtils.isNotEmpty(gallagherBynderResponse.getProperty_skus()))
+		{
+			//getting products and adding container to that product
+			final List<ProductModel> products = gallagherMediaContainerDao
+					.getProductModeList(gallagherBynderResponse.getProperty_skus(), catlogmodel.getPk());
+			if (CollectionUtils.isNotEmpty(products))
+			{
+				for (final ProductModel product : products)
+				{
+					final Map<String, String> videomap = new HashMap<String, String>();
+					videomap.putAll(product.getVideos());
+					videomap.remove(gallagherBynderResponse.getId());
+					product.setVideos(videomap);
+					modelService.save(product);
+					LOGGER.info("Video Media " + gallagherBynderResponse.getId() + " DELETED for " + product.getCode());
+				}
+			}
+		}
+		return true;
+	}
+
 	private InputStream getImage(final String id)
 	{
 
@@ -296,5 +371,20 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 		final BynderOauthHeaderGenerator generator = new BynderOauthHeaderGenerator(consumerKey, consumerSecret, token,
 				tokenSecret);
 		return generator;
+	}
+
+	private List<BaseStoreModel> getBaseStoreModelList(final ArrayList<String> regionCodeList, final String catalogId)
+	{
+		final List<BaseStoreModel> baseStoreList = new ArrayList<>();
+		for (final String regioncode : regionCodeList)
+		{
+			if (!configurationService.getConfiguration().getString("bynder.commercebasestore." + catalogId + "." + regioncode)
+					.isEmpty())
+			{
+				baseStoreList.add(baseStoreService.getBaseStoreForUid(
+						configurationService.getConfiguration().getString("bynder.commercebasestore." + catalogId + "." + regioncode)));
+			}
+		}
+		return baseStoreList;
 	}
 }

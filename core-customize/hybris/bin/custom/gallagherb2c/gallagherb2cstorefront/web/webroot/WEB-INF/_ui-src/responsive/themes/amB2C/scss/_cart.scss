@@ -1,0 +1,112 @@
+.cart-header {
+    padding-top: 10px;
+    
+  .cart__id--label {
+    &::before {
+      top: 2px;
+      color: $gray-5;
+      font-family: $font-family-sans-serif;
+    }
+  }
+
+  .cart-headline {
+    color: inherit;
+    font-weight: bold;
+  }
+}
+
+.cart-top-bar {
+  a {
+    &.help {
+      .glyphicon {
+        color: $primary-color;
+      }
+    }
+  }
+}
+
+.cart__actions {
+    padding: 15px 30px;
+    border-top: 1px solid $gray-3;
+    border-bottom: 1px solid $gray-3;
+}
+
+.item__list .item__list--header li {
+    background-color: $gray-9;
+    padding: 10px;
+}
+
+.cart-totals .cart-totals-right {
+    padding-right: 0;
+    font-weight: bold;
+}
+
+.cart-totals .cart-totals-taxes {
+    padding: 0;
+}
+
+.cart-totals .grand-total {
+  font-weight: bold;
+}
+
+.js-cartItemDetailGroup.open > .dropdown-menu {
+    display: block;
+}
+
+.form-control {
+	&.cart-voucher__input {
+		width: 50%;
+	}
+}
+
+.item__list .item__remove .btn .glyphicon, .item__list .item__menu .btn .glyphicon {
+    top: 0px;
+}
+
+.cart-header .cart-headline {
+	color: $gray-9;
+}
+
+label {
+	&.control-label {
+		color: $gray-7;
+	}
+}
+
+.item__list .item__remove .btn, 
+.item__list .item__menu .btn {
+  color: $primary-color;
+}
+
+@media only screen and (max-width: 767px) {
+  .btn-xs-block {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cart__actions {
+    padding: 15px 8px 0 8px;
+  }
+
+  .cart-totals .grand-total {
+    font-size: 20px;
+  }
+
+  .cart-totals .cart-totals-taxes {
+    margin-bottom: 16px;
+  }
+
+  .cart-totals {
+    border-top: 1px solid $gray-3;
+    border-bottom: 1px solid $gray-3;
+    margin-bottom: 16px;
+    padding-top: 10px;
+  }
+
+  .doFlowSelectedChange {
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+}

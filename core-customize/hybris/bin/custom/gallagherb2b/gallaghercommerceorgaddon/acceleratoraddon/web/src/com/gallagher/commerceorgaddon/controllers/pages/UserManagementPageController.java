@@ -25,13 +25,13 @@ import de.hybris.platform.servicelayer.user.impl.DefaultUserService;
 
 import java.text.ParseException;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.validator.routines.EmailValidator;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
@@ -630,15 +630,25 @@ public class UserManagementPageController extends MyCompanyPageController
 	{
 		GallagherInboundCustomerEntry existingCustomer = new GallagherInboundCustomerEntry();
 
-		final EmailValidator eValidator = EmailValidator.getInstance();
+		//		final EmailValidator eValidator = EmailValidator.getInstance();
+		final String emailLowerCase = email.toLowerCase();
 
-		if (!eValidator.isValid(email))
+		//		if (!eValidator.isValid(email))
+		if (!(Pattern.matches("^[a-z0-9._%+{}|'=!$^&*?/-]+@[a-z.-]+\\.[a-z]+$", emailLowerCase)))
 		{
 			existingCustomer.setEmailError("invalid");
 		}
 		else if (userService.isUserExisting(email))
 		{
-			existingCustomer.setEmailError("duplicate");
+			if (!(userService.getUserForUID(email) instanceof B2BCustomerModel))
+			{
+				existingCustomer.setEmailError("conflict");
+			}
+			else
+			{
+				existingCustomer.setEmailError("duplicate");
+
+			}
 		}
 		else
 		{

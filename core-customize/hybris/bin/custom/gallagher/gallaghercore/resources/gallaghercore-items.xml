@@ -35,6 +35,10 @@
 		<enumtype code="RegionCode" dynamic="true" />
 	</enumtypes>
 
+	<maptypes>
+		<maptype code="VideoDataMap" argumenttype="java.lang.String" returntype="java.lang.String" generate="true" autocreate="true" />
+	</maptypes>
+	
 	<relations>
 		<relation code="BaseStoreProductRelation" autocreate="true" generate="true" localized="false">
 			<deployment table="BaseStoreProductRelation" typecode="30000" />
@@ -47,6 +51,32 @@
 				<modifiers read="true" write="true" search="true" optional="true" />
 			</targetElement>
 		</relation>
+		
+		<relation code="BaseStoreMediaRelation" autocreate="true" generate="true" localized="false">
+			<deployment table="BaseStoreMediaRelation" typecode="30001" />
+			<sourceElement qualifier="baseStores" type="BaseStore" cardinality="many" ordered="false">
+				<description>Base Stores</description>
+				<modifiers read="true" write="true" search="true" optional="true" />
+			</sourceElement>
+			<targetElement qualifier="medias" type="Media" cardinality="many" collectiontype="list" ordered="true">
+				<description>Medias</description>
+				<modifiers read="true" write="true" search="true" optional="true" />
+			</targetElement>
+		</relation>
+	
+		<relation code="BaseStoreMediaContainerRelation" autocreate="true" generate="true" localized="false">
+			<deployment table="StoreMediaContainerRel" typecode="30002" />
+			<sourceElement qualifier="baseStores" type="BaseStore" cardinality="many" ordered="false">
+				<description>Base Stores</description>
+				<modifiers read="true" write="true" search="true" optional="true" />
+			</sourceElement>
+			<targetElement qualifier="mediaContainers" type="MediaContainer" cardinality="many" collectiontype="list"
+				ordered="true">
+				<description>MediaContainers</description>
+				<modifiers read="true" write="true" search="true" optional="true" />
+			</targetElement>
+		</relation>
+        
 	</relations>
 
 	<itemtypes>
@@ -154,6 +184,95 @@
 					<persistence type="property" />
 					<defaultvalue>false</defaultvalue>
 					<description>Flag to identify Product is eligible for LatAm Market.</description>
+				</attribute>
+				<attribute qualifier="videos" type="VideoDataMap">
+					<persistence type="property"></persistence>
+					<modifiers read="true" write="true" optional="true" />
+				</attribute>
+				<attribute autocreate="true" qualifier="imageDescription" type="localized:java.lang.String">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property">
+						<columntype database="oracle">
+							<value>CLOB</value>
+						</columntype>
+						<columntype database="sap">
+							<value>NCLOB</value>
+						</columntype>
+						<columntype>
+							<value>HYBRIS.LONG_STRING</value>
+						</columntype>
+					</persistence>
+					<custom-properties>
+						<property name="hmcIndexField">
+							<value>"thefield"</value>
+						</property>
+					</custom-properties>
+				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="simulator" type="PDPSimulator">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<description>Contains description and url for simulator</description>
+				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="sparePartsReferenceHeading" type="localized:java.lang.String">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<description>Indicates heading for spare parts category product reference</description>
+				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="sparePartsReferenceSubHeading" type="localized:java.lang.String">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<description>Indicates sub-heading for spare parts category product reference</description>
+				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="othersReferenceHeading" type="localized:java.lang.String">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<description>Indicates heading for 'others' category product reference</description>
+				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="othersReferenceSubHeading" type="localized:java.lang.String">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<description>Indicates sub-heading for 'others' category product reference</description>
+				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="marketingDescription" type="localized:java.lang.String">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<description>Attribute for marketing description of the product</description>
+				</attribute>
+			</attributes>
+		</itemtype>
+		
+		<itemtype code="PDPSimulator" generate="true" autocreate="true">
+			<description>Extending Product type with additional attributes of status and animals.</description>
+			<deployment table="PDPSimulator" typecode="32467" />
+			<attributes>
+				<attribute autocreate="true" generate="true" qualifier="simulatorCode" type="java.lang.String">
+					<modifiers optional="true" unique="true"/>
+					<persistence type="property" />
+					<description>Used to store simulator code.</description>
+				</attribute>
+				<attribute autocreate="true" qualifier="simulatorDescription" type="localized:java.lang.String">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property">
+						<columntype database="oracle">
+							<value>CLOB</value>
+						</columntype>
+						<columntype database="sap">
+							<value>NCLOB</value>
+						</columntype>
+						<columntype>
+							<value>HYBRIS.LONG_STRING</value>
+						</columntype>
+					</persistence>
+					<custom-properties>
+						<property name="hmcIndexField">
+							<value>"thefield"</value>
+						</property>
+					</custom-properties>
+				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="simulatorUrl" type="java.lang.String">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<description>Used to store Url.</description>
 				</attribute>
 			</attributes>
 		</itemtype>
@@ -353,6 +472,43 @@
 					</attribute>
 				</attributes>
 			</itemtype>
+			
+			<itemtype code="GallagherPDPSearchDealerComponent" extends="SimpleCMSComponent" generate="true"
+				autocreate="true" jaloclass="com.gallagher.core.jalo.GallagherPDPSearchDealerComponent">
+				<description>CMS component to display the search dealer and nearest territory manager in PDP</description>
+				<deployment table="GallagherPDPSearchDealer" typecode="12067" />
+				<attributes>
+					<attribute type="CMSParagraphComponent" qualifier="expertAdviceText">
+						<persistence type="property" />
+						<description>Used to display expert advice text</description>
+					</attribute>
+					<attribute type="CMSParagraphComponent" qualifier="contactNoText">
+						<persistence type="property"/>
+						<description>Used to display contact number for contacting territory manager</description>
+					</attribute>
+					<attribute type="CMSParagraphComponent" qualifier="findDealerText">
+						<persistence type="property" />
+						<description>Used to display find dealer text</description>
+					</attribute>
+					<attribute type="SimpleBannerComponent" qualifier="mapBackground">
+						<persistence type="property" />
+						<description>Used for map background.</description>
+					</attribute>
+					<attribute type="SimpleBannerComponent" qualifier="background">
+						<persistence type="property" />
+						<description>Used for the background</description>
+					</attribute>
+					<attribute type="CMSNavigationNode" qualifier="searchDealer">
+						<persistence type="property" />
+						<description>Used to get search dealer link</description>
+					</attribute>
+					<attribute type="CMSNavigationNode" qualifier="territoryManager">
+						<persistence type="property" />
+						<description>Used to get territory manager link.</description>
+					</attribute>
+				</attributes>
+			</itemtype>
+			
 
 		</typegroup>
 

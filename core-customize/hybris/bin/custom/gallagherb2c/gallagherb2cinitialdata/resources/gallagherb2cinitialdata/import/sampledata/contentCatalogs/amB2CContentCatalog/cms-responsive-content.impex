@@ -513,7 +513,7 @@ INSERT_UPDATE ViewStoreAction;$contentCV[unique=true];uid[unique=true];url;name;
 ;;ViewStoreAction;;View Store Action;ViewStoreAction
 
 # Content Slots
-INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];active;cmsComponents(&componentRef)[mode=append]
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];active;cmsComponents(&componentRef)
 ;;TopHeaderSlot;true;CookieNotificationComponent,AnonymousConsentManagementComponent
 
 
@@ -1497,6 +1497,10 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;ggB2CNavBar-ProductDetailsPage;ggB2CNavBar;;ggB2CNavBarSlot;true
 
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='MultiStepCheckoutSummaryPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2CNavBar-MultiStepCheckoutSummaryPage;ggB2CNavBar;;ggB2CNavBarSlot;true
+
 #####Header navigation bar refactor ends######
 
 ###top two components for product listing page####
@@ -1853,6 +1857,63 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];name;$contentCV[unique=true];n
 ;FindManager_NavEntry;Find Manager Nav Entry;;FindManager_Nav;FindManagerLink
 ;SendMessage_NavEntry;Send Message Nav Entry;;SendMessage_Nav;SendMessageLink
 
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];name;$contentCV[unique=true];children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
+;CallUsSupport_Nav;Call Us support Nav;;;"Our customer services team are hete to help.";CallUsSupport_Nav
+;SupportMaterial_Nav;Support Material Nav;;;"Search through our user manuals, guides and how-tos, brochures and videos.";SupportMaterial_Nav
+;TechnicalSupport_Nav;Technical Support Nav;;;"We provide technical help and support for Gallagher Weighing and EID hardware and software products";TechnicalSupport_Nav
+;SoftwareDownloads_Nav;Software Downloads Nav;;;"Download the latest software for your Weighing and EID products";SoftwareDownloads_Nav
+
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];name;$contentCV[unique=true];navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
+;CallUsSupport_NavEntry;Call Us support Nav Entry;;CallUsSupport_Nav;CallUsSupportLink
+;NZSupportMaterial_NavEntry;NZ Support Material Nav Entry;;SupportMaterial_Nav;NZENSupportMaterialLink
+;NZTechnicalSupport_NavEntry;NZ Technical Support Nav Entry;;TechnicalSupport_Nav;NZENTechnicalSupportLink
+;NZSoftwareDownloads_NavEntry;NZ Software Downloads Nav Entry;;SoftwareDownloads_Nav;NZENSoftwareDownloadsLink
+;CAENSupportMaterial_NavEntry;CA EN Support Material Nav Entry;;SupportMaterial_Nav;CAENSupportMaterialLink
+;CAENTechnicalSupport_NavEntry;CA EN Technical Support Nav Entry;;TechnicalSupport_Nav;CAENTechnicalSupportLink
+;CAENSoftwareDownloads_NavEntry;CA EN Software Downloads Nav Entry;;SoftwareDownloads_Nav;CAENSoftwareDownloadsLink
+;CAFRSupportMaterial_NavEntry;CA FR Support Material Nav Entry;;SupportMaterial_Nav;CAFRSupportMaterialLink
+;CAFRTechnicalSupport_NavEntry;CA FR Technical Support Nav Entry;;TechnicalSupport_Nav;CAFRTechnicalSupportLink
+;CAFRSoftwareDownloads_NavEntry;CA FR Software Downloads Nav Entry;;SoftwareDownloads_Nav;CAFRSoftwareDownloadsLink
+;AUSupportMaterial_NavEntry;AU Support Material Nav Entry;;SupportMaterial_Nav;AUENSupportMaterialLink
+;AUTechnicalSupport_NavEntry;AU Technical Support Nav Entry;;TechnicalSupport_Nav;AUENTechnicalSupportLink
+;AUSoftwareDownloads_NavEntry;AU Software Downloads Nav Entry;;SoftwareDownloads_Nav;AUENSoftwareDownloadsLink
+;USSupportMaterial_NavEntry;US Support Material Nav Entry;;SupportMaterial_Nav;USENSupportMaterialLink
+;USTechnicalSupport_NavEntry;US Technical Support Nav Entry;;TechnicalSupport_Nav;USENTechnicalSupportLink
+;USSoftwareDownloads_NavEntry;US Software Downloads Nav Entry;;SoftwareDownloads_Nav;USENSoftwareDownloadsLink
+;LATAMSupportMaterial_NavEntry;LATAM Support Material Nav Entry;;SupportMaterial_Nav;LATAMENSupportMaterialLink
+;LATAMTechnicalSupport_NavEntry;LATAM Technical Support Nav Entry;;TechnicalSupport_Nav;LATAMENTechnicalSupportLink
+;LATAMSoftwareDownloads_NavEntry;LATAM Software Downloads Nav Entry;;SoftwareDownloads_Nav;LATAMENSoftwareDownloadsLink
+;GlobalSupportMaterial_NavEntry;Global Support Material Nav Entry;;SupportMaterial_Nav;GLOBALENSupportMaterialLink
+;GlobalTechnicalSupport_NavEntry;Global Technical Support Nav Entry;;TechnicalSupport_Nav;GLOBALENTechnicalSupportLink
+;GlobalSoftwareDownloads_NavEntry;Global Software Downloads Nav Entry;;SoftwareDownloads_Nav;GLOBALENSoftwareDownloadsLink
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];linkName[lang=en];
+;;CallUsSupportLink;Call Us Link;https://www.google.com/;;;"<div class=""call-us-title"">Call us</div><div class=""call-us-contact-number"">0800 731 500</div>"
+;;NZENSupportMaterialLink;NZ Support Material Link;https://am.gallagher.com/nz/support/browse-resources;;;"Support Material"
+;;NZENTechnicalSupportLink;NZ Technical Support Link;https://am.gallagher.com/nz/contact-us/product-software-support;;;"Technical Support"
+;;NZENSoftwareDownloadsLink;NZ Software Downloads Link;https://am.gallagher.com/nz/support/software-downloads;;;"Software Downloads"
+;;CAENSupportMaterialLink;CA EN Support Material Link;https://am.gallagher.com/en-ca/support/browse-resources;;;"Support Material"
+;;CAENTechnicalSupportLink;CA EN Technical Support Link;https://am.gallagher.com/en-ca/contact-us/service-repair;;;"Technical Support"
+;;CAENSoftwareDownloadsLink;CA EN Software Downloads Link;https://am.gallagher.com/en-ca/support/software-downloads;;;"Software Downloads"
+;;CAFRSupportMaterialLink;CA FR Support Material Link;http://www.google.com/;;;"Support Material"
+;;CAFRTechnicalSupportLink;CA FR Technical Support Link;http://www.google.com/;;;"Technical Support"
+;;CAFRSoftwareDownloadsLink;CA FR Software Downloads Link;http://www.google.com/;;;"Software Downloads"
+;;AUENSupportMaterialLink;AU Support Material Link;https://am.gallagher.com/au/support/browse-resources;;;"Support Material"
+;;AUENTechnicalSupportLink;AU Technical Support Link;https://am.gallagher.com/au/about-us/our-people/customer-support-team;;;"Technical Support"
+;;AUENSoftwareDownloadsLink;AU Software Downloads Link;https://am.gallagher.com/au/support/software-downloads;;;"Software Downloads"
+;;USENSupportMaterialLink;US Support Material Link; https://am.gallagher.com/us/support/browse-resources;;;"Support Material"
+;;USENTechnicalSupportLink;US Technical Support Link;https://am.gallagher.com/us/contact-us/service-repair;;;"Technical Support"
+;;USENSoftwareDownloadsLink;US Software Downloads Link;https://am.gallagher.com/us/support/software-downloads;;;"Software Downloads"
+;;LATAMENSupportMaterialLink;LATAM Support Material Link;https://am.gallagher.com/es/soporte/buscar-recursos-de-productos?pcategory=all&resource=all&rsubcategory=all&page=0;;;"Support Material"
+;;LATAMENTechnicalSupportLink;LATAM Technical Support Link;http://www.google.com/;;;"Technical Support"
+;;LATAMENSoftwareDownloadsLink;LATAM Software Downloads Link;https://am.gallagher.com/es/soporte/descarga-de-software;;;"Software Downloads"
+;;GLOBALENSupportMaterialLink;Global Support Material Link;https://am.gallagher.com/global/support/browse-resources;;;"Support Material"
+;;GLOBALENTechnicalSupportLink;Global Technical Support Link;http://www.google.com/;;;"Technical Support"
+;;GLOBALENSoftwareDownloadsLink;Global Software Downloads Link;https://am.gallagher.com/global/support/software-downloads;;;"Software Downloads"
+
+
+
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
 ;;SolutionLink;Solution Link;https://www.google.com/;;;;
 ;;SupportLink;Support Link;http://www.google.com/;;;;
@@ -1862,7 +1923,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);children(uid,$contentCV)[mode=replace];links(uid, $contentCV);&nodeRef;title[lang=en]
 ;SolutionsNavNode ;; Solutions Navigation Node Menu;HeaderLinkNavigationNode;Electricfencing_Nav1,WeighingEID_Nav1,WirelessWaterMonitoring_Nav1,SteelGatesandHardware_Nav1,FarmInformationTools_Nav1,Stockprods_Nav1,NewProducts_Nav1,Promotions_Nav1;;SolutionsNavNode;"Solutions"     
 ;ProductsNavNode;;Products Navigation Node Menu;;Electricfencing_Nav,WeighingEID_Nav,WirelessWaterMonitoring_Nav,SteelGatesandHardware_Nav,FarmInformationTools_Nav,Stockprods_Nav,NewProducts_Nav,Promotions_Nav;;ProductsNavNode;"Products"
-;SupportNavNode;;Support Navigation Node Menu;HeaderLinkNavigationNode;Electricfencing_Nav3,WeighingEID_Nav3,WirelessWaterMonitoring_Nav3,SteelGatesandHardware_Nav3,FarmInformationTools_Nav3,Stockprods_Nav3,NewProducts_Nav3,Promotions_Nav3;;SupportNavNode;"Support"                                                                                                                                            ;                        ; SupportNavNode   ; "Support"
+;SupportNavNode;;Support Navigation Node Menu;HeaderLinkNavigationNode;CallUsSupport_Nav,SupportMaterial_Nav,TechnicalSupport_Nav,SoftwareDownloads_Nav;;SupportNavNode;"Support"
 ;ContactNavNode;;Contact Us Navigation Node Menu;HeaderLinkNavigationNode;CallUs_Nav,FindStore_Nav,FindManager_Nav,SendMessage_Nav;;ContactNavNode;"Contact Us"
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
@@ -1988,15 +2049,6 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents
 
 #####Product details page impex end #####
 
-###dummy icons for PDP####
-
-INSERT_UPDATE Media;mediaFormat(qualifier);$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];mime[default='image/jpeg'];realfilename;folder(qualifier)[default='images'];altText
-;;;aps.jpg;$siteResource/images/banners/homepage/responsive/aps-icon.png;;aps.jpg;;"aps"
-;;;lcd.jpg;$siteResource/images/banners/homepage/responsive/lcd-icon.png;;lcd.jpg;;"lcd"
-;;;eid.jpg;$siteResource/images/banners/homepage/responsive/eid-icon.png;;eid.jpg;;"eid"
-
-###dummy icons for PDP####
-
 #### Register Product Page####
 INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='RegisterProductPageTemplate'];validComponentTypes(code);compTypeGroup(code)
 ;SiteLogo;;;logo
@@ -2033,6 +2085,231 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
 ;;registerProduct;Product Registration;RegisterProductPageTemplate;/registerProduct
 
+#### Register Product Page####
+
+#####images for award winning component#######
+INSERT_UPDATE Media;mediaFormat(qualifier);$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];mime[default='image/jpeg'];realfilename;folder(qualifier)[default='images'];altText
+;;;ImageDes1.jpg;$siteResource/images/banners/homepage/responsive/product-two-column-img.png;;ImageDes1.jpg;;"ImageDes1"
+;;;ImageDes2.jpg;$siteResource/images/banners/homepage/responsive/product-two-column-img.png;;ImageDes2.jpg;;"ImageDes2"
+;;;ImageDes3.jpg;$siteResource/images/banners/homepage/responsive/product-two-column-img.png;;ImageDes3.jpg;;"ImageDes3"
+#####images for award winning component#######
+
+
+###### GallagherPDPSearchDealerComponent starts ########
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];altText;folder(qualifier)[default='images']
+;;find-dealer-bg;find-dealer-bg.jpg;$siteResource/images/theme/find-dealer-bg.jpg;image/jpeg;Gallagher
+;;tm-bg;tm-bg.jpeg;$siteResource/images/theme/tm-bg.jpeg;image/jpeg;Gallagher
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;linkName;&linkRef;&componentRef
+;;NZENSearchComponent;NZ Search Component;https://am.gallagher.com/nz/find-a-stockist ;Search;NZENSearchComponent;NZENSearchComponent
+;;AUENSearchComponent;AU Search Component;https://am.gallagher.com/au/find-a-stockist ;Search;AUENSearchComponent;AUENSearchComponent
+;;USENSearchComponent;US Search Component;https://am.gallagher.com/us/find-a-dealer ;Search;USENSearchComponent;USENSearchComponent
+;;CAENSearchComponent;CA EN Search Component;https://am.gallagher.com/en-ca/find-a-dealer ;Search;CAENSearchComponent;CAENSearchComponent
+;;CAFRSearchComponent;CA FR Search Component;https://am.gallagher.com/fr-ca/trouver-un-fournisseur ;Search;CAFRSearchComponent;CAFRSearchComponent
+;;GLOBALENSearchComponent;Global Search Component;https://am.gallagher.com/global/find-a-distributor ;Search;GLOBALENSearchComponent;GLOBALENSearchComponent
+
+;;NZTMLinkComp;NZ Territory Manager Link Component;https://am.gallagher.com/nz/about-us/our-people/territory-managers ;Or Find Your Nearest Territory Manager;NZTMLinkComp;NZTMLinkComp
+;;AUTMLinkComp;AU Territory Manager Link Component;https://am.gallagher.com/au/about-us/our-people/territory-managers ;Or Find Your Nearest Territory Manager;AUTMLinkComp;AUTMLinkComp
+;;USTMLinkComp;US Territory Manager Link Component;https://www.google.com ;Or Find Your Nearest Territory Manager;USTMLinkComp;USTMLinkComp
+;;CATMLinkComp;CA Territory Manager Link Component;https://www.google.com ;Or Find Your Nearest Territory Manager;CAFRTMLinkComp;CAFRTMLinkComp
+
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;NZSearchNavEntry;;NZ Search Nav Entry;NZSearchNavNode;NZENSearchComponent
+;AUSearchNavEntry;;AU Search Nav Entry;AUSearchNavNode;AUENSearchComponent
+;USSearchNavEntry;;US Search Nav Entry;USSearchNavNode;USENSearchComponent
+;CAENSearchNavEntry;;CA EN Search Nav Entry;CAENSearchNavNode;CAENSearchComponent
+;CAFRSearchNavEntry;;CA FR Search Nav Entry;CAFRSearchNavNode;CAFRSearchComponent
+;GlobalSearchNavEntry;;Global Search Nav Entry;GlobalSearchNavNode;GLOBALENSearchComponent
+
+;NZTMNavEntry;;NZ Territory Manager Nav Entry;NZTMNavNode;NZTMLinkComp
+;AUTMNavEntry;;AU Territory Manager Nav Entry;AUTMNavNode;AUTMLinkComp
+;USTMNavEntry;;US Territory Manager Nav Entry;USTMNavNode;USTMLinkComp
+;CATMNavEntry;;CA Territory Manager Nav Entry;CATMNavNode;CATMLinkComp
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef);
+;NZSearchNavNode;;NZ Search Navigation Node;NZSearchNavNode
+;AUSearchNavNode;;AU Search Navigation Node;AUSearchNavNode
+;USSearchNavNode;;US Search Navigation Node;USSearchNavNode
+;CAENSearchNavNode;;CA EN Search Navigation Node;CAENSearchNavNode
+;CAFRSearchNavNode;;CA FR Search Navigation Node;CAFRSearchNavNode
+;GlobalSearchNavNode;;Global Search Navigation Node;GlobalSearchNavNode
+
+;NZTMNavNode;;NZ Territory Manager Navigation Node;NZTMNavNode
+;AUTMNavNode;;AU Territory Manager Navigation Node;AUTMNavNode
+;USTMNavNode;;US Territory Manager Navigation Node;USTMNavNode
+;CATMNavNode;;CA Territory Manager Navigation Node;CATMNavNode
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&componentRef);&nodeRef;children(uid, $contentCV)
+;PDPSearchNavNode;;PDP Country Search Navigation Node;root;;PDPSearchNavNode;NZSearchNavNode,AUSearchNavNode,USSearchNavNode,CAENSearchNavNode,CAFRSearchNavNode,GlobalSearchNavNode
+;PDPTMNavNode;;PDP Country Territory Manager Navigation Node;root;;PDPTMNavNode;NZTMNavNode,AUTMNavNode,USTMNavNode,CATMNavNode
+
+
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+;;PDPSearchFindDealerComponent;PDP Search Find Dealer Paragraph Component;PDPSearchFindDealerComponent
+;;PDPSearchAdviceComponent;PDP Search Advice Paragraph Component;PDPSearchAdviceComponent
+;;PDPSearchContactComponent; PDP Search Contact Paragraph Component;PDPSearchContactComponent
+
+
+#INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$contentCV[unique=true]
+#;find-dealer-bg-en;find-dealer-bg
+#;tm-bg-en;tm-bg
+
+
+#INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;&componentRef;$mediaContainer
+#;;mapBackgroundComponent;PDP Map Background Banner Component;;mapBackgroundComponent;find-dealer-bg-en
+#;;tmBackgroundComponent;PDP Territory Manager Banner Component;tmBackgroundComponent;tm-bg-en
+
+INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink
+;;mapBackgroundComponent;PDP Map Background Banner Component;;
+;;tmBackgroundComponent;PDP Territory Manager Banner Component;;
+
+INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=en]
+;;mapBackgroundComponent;find-dealer-bg
+;;tmBackgroundComponent;tm-bg
+
+INSERT_UPDATE GallagherPDPSearchDealerComponent;$contentCV[unique=true];uid[unique=true];expertAdviceText(uid, $contentCV);contactNoText(uid, $contentCV);findDealerText(uid, $contentCV);mapBackground(uid, $contentCV);background(uid, $contentCV);searchDealer(&nodeRef);territoryManager(&nodeRef);&componentRef
+;;GallagherSearchDealerComponent;PDPSearchAdviceComponent;PDPSearchContactComponent;PDPSearchFindDealerComponent;mapBackgroundComponent;tmBackgroundComponent;PDPSearchNavNode;PDPTMNavNode;GallagherSearchDealerComponent
+
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;TMDealer;;;wide
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;DealerSlot-PDP;TMDealer;;TMDealerSlot;true
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;TMDealerSlot;PDP Dealer search slot;true;GallagherSearchDealerComponent;;;
+
+
+###### GallagherPDPSearchDealerComponent ends #######
+
+######User dropdown in header######
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;RegisterAProductLink;Register a product Link;/register-product;;;;
+;;MyRegisteredProductLink;My registered Product Link;/register-product/products;;;;
+;;AccountManagementLink;Account Management Link;/my-account/update-profile;;;;
+;;EditProfileLink;Edit Profile Link;https://www.google.com/;;;;
+;;UpdatePasswordLink;Update Password Link;https://www.google.com/;;;;
+;;OrderHistoryLink;Order History Link;https://www.google.com/;;;;
+;;PreferencesLink;Preferences Link;https://www.google.com/;;;;
+;;LogoutLink;Logout Us Link;/logout;;;;
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);children(uid,$contentCV)[mode=replace];links(uid, $contentCV);&nodeRef;title[lang=en]
+;RegisterAProductNavNode;; Register a Product Navigation Node Menu;UserDropDownNavigationNode;;;RegisterAProductNavNode;"Register a Product"     
+;MyRegisteredProductNavNode;;My Registered Product Navigation Node Menu;;;;MyRegisteredProductNavNode;"My Registered Product"
+;AccountNavNode;;Account Management Navigation Node Menu;UserDropDownNavigationNode;;;AccountNavNode;"Account Management"                                                                                                                                            ;                        ; AccountNavNode   ; "Account Management"
+;EditProfileNavNode;;Edit Profile Navigation Node Menu;UserDropDownNavigationNode;;;EditProfileNavNode;"Edit profile"
+;UpdatePasswordNavNode;;Update Password Navigation Node Menu;UserDropDownNavigationNode;;;UpdatePasswordNavNode;"Update password"
+;OrderHistoryNavNode;;Order History Navigation Node;UserDropDownNavigationNode;;;OrderHistoryNavNode;"Order History"
+;PreferencesNavNode;;Prefernce Navigation Node;UserDropDownNavigationNode;;;PreferencesNavNode;"Preferences"
+;LogoutNavNode;;Logout Us Navigation Node Menu;UserDropDownNavigationNode;;;LogoutNavNode;"Logout Us"
+
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;RegisterAProductNavNodeEntry;;Register a Product Navigation Node Entry;RegisterAProductNavNode;RegisterAProductLink;
+;MyRegisteredProductNavNodeEntry;;My Registered Product Navigation Node Entry;MyRegisteredProductNavNode;AccountManagementLink
+;AccountNavNodeEntry;;Account Management Navigation Node Entry;AccountNavNode;MyRegisteredProductLink
+;EditProfileNavNodeEntry;;Edit Profile Navigation Node Entry;EditProfileNavNode;EditProfileLink
+;UpdatePasswordNavNodeEntry;;Update Password Navigation Node Entry;UpdatePasswordNavNode;UpdatePasswordLink
+;OrderHistoryNavNodeEntry;;Order History Navigation Node Entry;OrderHistoryNavNode;OrderHistoryLink
+;PreferencesNavNodeEntry;;Preferences Navigation Node Entry;PreferencesNavNode;PreferencesLink
+;LogoutNavNodeEntry;;Logout Navigation Node Entry;LogoutNavNode;LogoutLink
+
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef;children(uid, $contentCV)[mode=replace]
+;UserDropDownNavigationNode;;Header Link Navigation Node; root;; UserDropDownNavigationNode; RegisterAProductNavNode,MyRegisteredProductNavNode,AccountNavNode,EditProfileNavNode,UpdatePasswordNavNode,OrderHistoryNavNode,PreferencesNavNode,LogoutNavNode
+
+INSERT_UPDATE NavigationComponent;$contentCV[unique=true];uid[unique=true];name;styleClass;&componentRef;navigationNode(&nodeRef)
+;;UserDropDownNavigationComponent;User drop down Navigation component;;UserDropDownNavigationComponent;UserDropDownNavigationNode
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV)
+;;UserDropDownSlot;UserDropDownNavigationComponent
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;UserDropDown;;NavigationComponent;narrow
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-ProductDetails;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage2Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-LandingPage2;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductListPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-ProductListPage;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsGridPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-SearchResultsGridPage;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductGridPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-ProductGridPage;UserDropDown;;UserDropDownSlot;true
+
+
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='RegisterProductPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-RegisterProductPage;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CartPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-CartPage;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='RegisteredProductsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-RegisteredProductPage;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CheckoutLoginPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-CheckoutLoginPage;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LoginPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-LoginPage;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='MultiStepCheckoutSummaryPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-MultiStepCheckoutSummaryPage;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='OrderConfirmationPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-OrderConfirmationPage;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='StoreFinderPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-StoreFinderPage;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ErrorPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-ErrorPage;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='AccountPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-AccountPage;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsEmptyPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-SearchResultsEmptyPage;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsListPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-SearchResultsListPage;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CategoryPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-CategoryPage;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage1Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-LandingPage1;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage3Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-LandingPage3;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage4Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-LandingPage4;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage5Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-LandingPage5;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage6Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-LandingPage6;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ContentPage1Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-ContentPage1;UserDropDown;;UserDropDownSlot;true
+
+
+######User dropdown in header ends######
+
 # CMS Paragraph Component (Contact information)
 INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
 ;;registerProductSubHeading;Register product Paragraph Component;registerProductSubHeading
@@ -2043,3 +2320,132 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents
 ;;Section2RegisterPopupSlot;registerProductPopupSubHeading
 
 #### Register Product Page####
+
+
+###### Header MyApp dropdown ######
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;linkName;&linkRef;&componentRef
+;;LivestockLinkComponent;Livestock Link Component;https://am.gallagher.com ;Livestock;LivestockLinkComponent;LivestockLinkComponent
+;;FenceLinkComponent;Fence Link Component;https://am.gallagher.com/nz/product/24078/dashboard-fence ;Fence;FenceLinkComponent;FenceLinkComponent
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;LivestockNavEntry;;Livestock Nav Entry;LivestockNavNode;LivestockLinkComponent
+;FenceNavEntry;;Fence Nav Entry;FenceNavNode;FenceLinkComponent
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef);
+;LivestockNavNode;;Livestock Navigation Node;LivestockNavNode
+;FenceNavNode;;Fence Nav Node;FenceNavNode
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&componentRef);&nodeRef;children(uid, $contentCV)
+;MyAppNavNode;;Header MyApp Navigation Node;root;;MyAppNavNode;LivestockNavNode,FenceNavNode
+
+INSERT_UPDATE NavigationComponent;$contentCV[unique=true];uid[unique=true];name;styleClass;&componentRef;navigationNode(&nodeRef)
+;;MyAppDropdownNavigationComponent;MyApp Drop Down Navigation Component;;MyAppDropdownNavigationComponent;MyAppNavNode
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV)
+;;MyAppDropdownSlot;MyAppDropdownNavigationComponent
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;MyAppDropdown;;NavigationComponent;narrow
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;MyAppDropdown-ProductDetails;MyAppDropdown;;MyAppDropdownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage2Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;MyAppDropdown-LandingPage2;MyAppDropdown;;MyAppDropdownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductListPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;MyAppDropdown-ProductListPage;MyAppDropdown;;MyAppDropdownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsGridPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;MyAppDropdown-SearchResultsGridPage;MyAppDropdown;;MyAppDropdownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductGridPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;MyAppDropdown-ProductGridPage;MyAppDropdown;;MyAppDropdownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='RegisterProductPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;MyAppDropdown-ProductDetailsPage;MyAppDropdown;;MyAppDropdownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CheckoutLoginPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;MyAppDropdown-CheckoutLoginPage;MyAppDropdown;;MyAppDropdownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='MultiStepCheckoutSummaryPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;MyAppDropdown-MultiStepCheckoutSummaryPage;MyAppDropdown;;MyAppDropdownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CartPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;MyAppDropdown-CartPage;MyAppDropdown;;MyAppDropdownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='RegisteredProductsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;MyAppDropdown-RegisteredProductsPage;MyAppDropdown;;MyAppDropdownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='AccountPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;MyAppDropdown-AccountPage;MyAppDropdown;;MyAppDropdownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LoginPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;MyAppDropdown-LoginPage;MyAppDropdown;;MyAppDropdownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='OrderConfirmationPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;MyAppDropdown-OrderConfirmationPage;MyAppDropdown;;MyAppDropdownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='StoreFinderPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;MyAppDropdown-StoreFinderPage;MyAppDropdown;;MyAppDropdownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ErrorPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;MyAppDropdown-ErrorPage;MyAppDropdown;;MyAppDropdownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsEmptyPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;MyAppDropdown-SearchResultsEmptyPage;MyAppDropdown;;MyAppDropdownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsListPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;MyAppDropdown-SearchResultsListPage;MyAppDropdown;;MyAppDropdownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CategoryPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;MyAppDropdown-CategoryPage;MyAppDropdown;;MyAppDropdownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage1Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;MyAppDropdown-LandingPage1;MyAppDropdown;;MyAppDropdownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage3Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;MyAppDropdown-LandingPage3;MyAppDropdown;;MyAppDropdownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage4Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;MyAppDropdown-LandingPage4;MyAppDropdown;;MyAppDropdownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage5Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;MyAppDropdown-LandingPage5;MyAppDropdown;;MyAppDropdownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage6Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;MyAppDropdown-LandingPage6;MyAppDropdown;;MyAppDropdownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ContentPage1Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;MyAppDropdown-ContentPage1;MyAppDropdown;;MyAppDropdownSlot;true
+
+####### Header MyApp dropdown ends ######
+
+
+#############Guest Checkout Page################
+
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+;;guestLoginProductSubHeading;Info Paragraph Component;guestLoginProductSubHeading
+
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;checkoutGuestLogin;Checkout Guest Login;RegisterProductPageTemplate;/cart/checkout/guest
+
+ 
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='RegisterProductPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;Section3;;;wide
+
+ 
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;Section3GuestLoginSlot;Guest Login Product SubHeading Slot;true;guestLoginProductSubHeading;;;
+
+ 
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='quickOrderPage'];contentSlot(uid,$contentCV)[unique=true];;;
+;;Section3-GuestLoginPage;Section3;;Section3GuestLoginSlot;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid, $contentCV)
+;;SearchGridBannerSlot;CategoryBanner
+;;SearchResultsEmptyBannerSlot;CategoryBanner

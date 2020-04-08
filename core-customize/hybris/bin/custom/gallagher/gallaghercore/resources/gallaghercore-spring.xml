@@ -145,5 +145,28 @@
         <property name="restrictionTypeCode" value="GallagherSiteTransactionRestriction" />
         <property name="restrictionEvaluator" ref="gallagherSiteTransactionRestrictionEvaluator" />
    </bean>
+   
+   <bean id="gallagherB2BUserGroupsStrategy" class="com.gallagher.core.usergroups.strategy.impl.GallagherB2BUserGroupsStrategyImpl">
+   	<property name="groups">
+			<list>
+				<value>b2badmingroup</value>
+				<value>b2bcustomergroup</value>
+				<value>b2btechniciangroup</value>
+			</list>
+		</property>
+   </bean>
+
+	<bean id="gallagherCurrencyDao" class="com.gallagher.core.daos.impl.GallagherCurrencyDaoImpl" />
+	
+	<bean id="gallagherLanguageDao" class="com.gallagher.core.daos.impl.GallagherLanguageDaoImpl" />
+	
+	<bean id="gallagherCurrencyService" class="com.gallagher.core.services.impl.GallagherCurrencyServiceImpl" />
+	
+	<bean id="gallagherLanguageService" class="com.gallagher.core.services.impl.GallagherLanguageServiceImpl" />
+
+	<alias name="gallagherMediaConversionService" alias="mediaConversionService" />
+	<bean id="gallagherMediaConversionService" class="com.gallagher.core.services.impl.GallagherMediaConversionServiceImpl"
+		parent="defaultMediaConversionService" />
+		
 
 </beans>

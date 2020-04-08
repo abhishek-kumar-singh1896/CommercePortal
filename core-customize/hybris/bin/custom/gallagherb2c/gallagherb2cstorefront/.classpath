@@ -2,12 +2,6 @@
 <classpath>
 	<classpathentry kind="src" output="eclipsebin/web/classes" path="web/src"/>
 	<classpathentry kind="src" output="eclipsebin/web/classes" path="web/testsrc"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/gallagherfacades"/>
-	<classpathentry kind="src" path="/acceleratorstorefrontcommons"/>
-	<classpathentry kind="src" path="/platform"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/b2badvancefacades"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/assistedservicestorefront"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/smarteditaddon"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="web/webroot/WEB-INF/lib/owasp-java-html-sanitizer-20180219.1.jar"/>
 	<classpathentry kind="lib" path="web/webroot/WEB-INF/lib/rhino-1.7.7.jar"/>
@@ -23,5 +17,12 @@
 	<classpathentry kind="lib" path="web/webroot/WEB-INF/lib/keycloak-core-8.0.1.jar"/>
 	<classpathentry kind="lib" path="web/webroot/WEB-INF/lib/keycloak-servlet-adapter-spi-8.0.1.jar"/>
 	<classpathentry kind="lib" path="web/webroot/WEB-INF/lib/keycloak-spring-security-adapter-8.0.1.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/smarteditaddon"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/assistedservicestorefront"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/b2badvancefacades"/>
+	<classpathentry kind="src" path="/platform"/>
+	<classpathentry kind="src" path="/acceleratorstorefrontcommons"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/gallagherfacades"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/gallagheroutboundservices"/>
 	<classpathentry kind="output" path="eclipsebin/notused"/>
 </classpath>

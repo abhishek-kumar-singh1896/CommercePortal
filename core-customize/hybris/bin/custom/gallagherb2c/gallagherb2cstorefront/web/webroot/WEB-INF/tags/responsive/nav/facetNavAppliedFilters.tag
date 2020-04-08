@@ -26,23 +26,27 @@
 			</div>
 		</c:if>
 	</div>
-	<div class="sidebar-section">
-
-		<div class="sidebar-section-header with-link">
-			<span class="glyphicon facet__arrow"></span>
-			<spring:theme code="search.nav.applied.facets" />
-		</div>
-		<div class="facet__values js-facet-values">
-			<ul class="facet__list">
-				<c:forEach items="${pageData.breadcrumbs}" var="breadcrumb">
-					<li><c:url value="${breadcrumb.removeQuery.url}"
-							var="removeQueryUrl" /> &nbsp; ${breadcrumb.facetName} : <b>
-							<a href="${fn:escapeXml(removeQueryUrl)}"><span
-								class="glyphicon glyphicon-remove"></span>${fn:escapeXml(breadcrumb.facetValueName)}</a>
-					</b></li>
-				</c:forEach>
-			</ul>
-		</div>
-	</div>
+	
+<!-- 	<div class="sidebar-section"> -->
+<!-- 		<div class="sidebar-section-header with-link"> -->
+<!-- 			<span class="glyphicon facet__arrow"></span> -->
+<%-- 			<spring:theme code="search.nav.applied.facets" /> --%>
+<!-- 		</div> -->
+<!-- 		<div class="facet__values js-facet-values"> -->
+<!-- 			<ul class="facet__list"> -->
+<%-- 				<c:forEach items="${pageData.breadcrumbs}" var="breadcrumb"> --%>
+<!-- 					<li> -->
+<%-- 					<c:url value="${breadcrumb.removeQuery.url}" --%>
+<%-- 							var="removeQueryUrl" />  --%>
+<%-- 						&nbsp; ${breadcrumb.facetName} : --%>
+<%-- 							<a href="${fn:escapeXml(removeQueryUrl)}"> --%>
+<!-- 							<span class="glyphicon glyphicon-remove"></span> -->
+<%-- 						<b> ${fn:escapeXml(breadcrumb.facetValueName)}</b> --%>
+<!-- 							</a> -->
+<!-- 					</li> -->
+<%-- 				</c:forEach> --%>
+<!-- 			</ul> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
 
 </c:if>

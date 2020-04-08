@@ -4,14 +4,14 @@
 <%@ taglib prefix="product" tagdir="/WEB-INF/tags/responsive/product"%>
 
 <spring:htmlEscape defaultHtmlEscape="true" />
-
+                        
 <div class="product__list">
-	<div class="results">
+	<%-- <div class="results">
 		<h1>
 			<spring:theme code="search.page.searchText"
 				arguments="${searchPageData.freeTextSearch}" htmlEscape="false" />
 		</h1>
-	</div>
+	</div> --%>
 
 	<nav:searchSpellingSuggestion
 		spellingSuggestion="${searchPageData.spellingSuggestion}" />

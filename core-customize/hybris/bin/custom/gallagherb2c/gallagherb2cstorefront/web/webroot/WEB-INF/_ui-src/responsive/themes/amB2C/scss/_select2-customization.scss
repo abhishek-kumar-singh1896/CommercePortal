@@ -16,7 +16,7 @@
   .select2-results__option[aria-selected="true"] {
     background-color: $white;
     color: $gray-9;
-    font-family: $font-family-bold;
+    font-weight: bold;
   }
 
   .select2-results__option {
@@ -29,6 +29,10 @@
     padding: 8px 12px;
     height: 41px;
 
+    &:hover {
+      border-color: $gray-6;
+    }
+
     .select2-selection__rendered {
       padding-left: 4px;
       line-height: 22px;
@@ -39,7 +43,7 @@
       width: 30px;
       b {
         border: none;
-        background: url("../images/arrow-down.svg") center center no-repeat;
+        background: url("../../common/images/arrow-down.svg") center center no-repeat;
         width: 18px;
         height: 18px;
         margin-top: -9px;

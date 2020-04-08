@@ -14,8 +14,9 @@
 <spring:htmlEscape defaultHtmlEscape="true" />
 
 <template:page pageTitle="${pageTitle}" hideHeaderLinks="true">
+<div class="container">
 <div class="row">
-    <div class="col-sm-6">
+    <div class="col-md-6">
         <div class="checkout-headline">
             <span class="glyphicon glyphicon-lock"></span>
             <spring:theme code="checkout.multi.secure.checkout"/>
@@ -176,15 +177,19 @@
 								<div class="saved-payment-entry">
 									<form action="${fn:escapeXml(choosePaymentMethodUrl)}" method="GET">
 										<input type="hidden" name="selectedPaymentMethodId" value="${fn:escapeXml(paymentInfo.id)}"/>
-											<ul>
-												<strong>${fn:escapeXml(paymentInfo.billingAddress.firstName)}&nbsp; ${fn:escapeXml(paymentInfo.billingAddress.lastName)}</strong><br/>
+											<div class="mb-3">
+											
+											<div>
+												<strong>${fn:escapeXml(paymentInfo.billingAddress.firstName)}&nbsp; ${fn:escapeXml(paymentInfo.billingAddress.lastName)}</strong>
+												<br/>
+												</div>
 												${fn:escapeXml(paymentInfo.cardTypeData.name)}<br/>
 												${fn:escapeXml(paymentInfo.cardNumber)}<br/>
 												<spring:theme code="checkout.multi.paymentMethod.paymentDetails.expires" arguments="${paymentInfo.expiryMonth},${paymentInfo.expiryYear}"/><br/>
 												${fn:escapeXml(paymentInfo.billingAddress.line1)}<br/>
 												${fn:escapeXml(paymentInfo.billingAddress.town)}&nbsp; ${fn:escapeXml(paymentInfo.billingAddress.region.isocodeShort)}<br/>
 												${fn:escapeXml(paymentInfo.billingAddress.postalCode)}&nbsp; ${fn:escapeXml(paymentInfo.billingAddress.country.isocode)}<br/>
-											</ul>
+											</div>
 											<button type="submit" class="btn btn-primary btn-block" tabindex="${fn:escapeXml((status.count * 2) - 1)}"><spring:theme code="checkout.multi.paymentMethod.addPaymentDetails.useThesePaymentDetails"/></button>
 									</form>
 								</div>
@@ -197,15 +202,15 @@
 		</multiCheckout:checkoutSteps>
 	</div>
 
-	<div class="col-sm-6 hidden-xs">
+	<div class="col-md-6 hidden-xs">
 		<multiCheckout:checkoutOrderDetails cartData="${cartData}" showDeliveryAddress="true" showPaymentInfo="false" showTaxEstimate="false" showTax="true" />
     </div>
 
-    <div class="col-sm-12 col-lg-12">
+    <div class="col-12">
         <cms:pageSlot position="SideContent" var="feature" element="div" class="checkout-help">
             <cms:component component="${feature}"/>
         </cms:pageSlot>
     </div>
 </div>
-
+</div>
 </template:page>

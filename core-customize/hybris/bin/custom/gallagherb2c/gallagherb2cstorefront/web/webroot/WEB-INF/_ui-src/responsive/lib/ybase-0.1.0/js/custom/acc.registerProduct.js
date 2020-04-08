@@ -3,7 +3,8 @@ ACC.registerProduct = {
 	_autoload: [
 		"clickOnRegister",
 	    "bindVerifyRegisterProduct",
-	    "getJSONDataForRegisterProduct"
+	    "getJSONDataForRegisterProduct",
+	    "handlePopup"
 	],
 	clickOnRegister: function(){
 		$(document).ready(function () {
@@ -17,26 +18,14 @@ ACC.registerProduct = {
 
             // Date Picker
             $('#datePurchased').datepicker({
-                format: 'mm/dd/yyyy',
+            	maxDate : new Date(),
+                dateFormat: 'dd/mm/yy',
                 autoclose: true
             });
-
-            /*$('#registerSuccess').click(function () {
-                $('#confirmRegisterModal').modal('hide')
-            	alert("222");
-            	ACC.colorbox.close();
-                $("#productSuccessAlert").removeClass('d-none').addClass('fade');
-                $(window).scrollTop($('.register-product-out').offset().top);
-
-                setTimeout(function(){
-                    $("#productSuccessAlert").addClass('d-none').removeClass('fade');
-                }, 7000);
-
-            });*/
     });
 	},
 	bindVerifyRegisterProduct : function() {
-		$('.registerProduct').click(
+		$('.verify-registration').click(
 				function(e) {
 					e.preventDefault();
 					$.ajax({
@@ -49,35 +38,29 @@ ACC.registerProduct = {
 						success : function(result) {
 							if(result.responseStatus == "FAILURE"){
 								showFieldErrors(result.errorsMap);
+								$("#product-not-found-alert").addClass('d-none');
+							}else if(result.responseStatus == "PRODUCTNOTFOUND"){
+								$("#product-not-found-alert").removeClass('d-none');
+								$(".global-alerts").addClass('d-none');
+								$(window).scrollTop($('.register-product-out').offset().top);
 							}else{
+								$("#product-not-found-alert").addClass('d-none');
 								$('#registerProductForm').find('.form-control').removeClass('has-error').next().find('.error-text').addClass('d-none');
 								var titleHeader = $('#registerProductTitle').html();
 								var productCode=result.productCode;
 								var productName=result.productName;
 								var productImage=result.productImage;
-								var productaltText=result.productaltText;
-								var productSku =result.registerProductForm.productSku;
-								var serialNumber =result.registerProductForm.serialNumber;
-								var datePurchased =result.registerProductForm.datePurchased;
-								var addressLine1 =result.registerProductForm.addressLine1;
-								var addressLine2 =result.registerProductForm.addressLine2;
-								var townCity =result.registerProductForm.townCity;
-								var postCode =result.registerProductForm.postCode;
-								var country =result.registerProductForm.country;
 								var phoneNumber =result.registerProductForm.phoneNumber;
-								document.getElementById("productSkuInput").value = productSku;
-								document.getElementById("serialNumberInput").value = serialNumber;
-								document.getElementById("datePurchasedInput").value = datePurchased;
-								document.getElementById("addressLine1Input").value = addressLine1;
-								document.getElementById("addressLine2Input").value = addressLine2;
-								document.getElementById("townCityInput").value = townCity;
-								document.getElementById("postCodeInput").value = postCode;
-								document.getElementById("countryInput").value = country;
-								document.getElementById("phoneNumberInput").value = phoneNumber;
+								var productaltText=result.productaltText;
+								var serialNumber =result.registerProductForm.serialNumber;
+								var productSku =result.registerProductForm.productSku;
+								var image='<img src="'+ productImage+'" alt="'+productaltText+'"/>';
 								$("#phoneNumberInput").text(phoneNumber);
-								$('.product-name').text(productName);
-								$('.product-id').text(productCode);
-								$('.product-image').prepend('<img src="'+ productImage+'" alt="'+productaltText+'"/>');
+								$('#product-name').text(productName);
+								$('#product-id').text(productCode);
+								$('#product-serial').text(serialNumber);
+								$('.product-image').find('img').remove();
+								$('.product-image').prepend(image);
 								
 								var registerPopup = $(".register-product-modal-container").html();
 						        ACC.colorbox.open(titleHeader, {
@@ -125,6 +108,7 @@ ACC.registerProduct = {
 		var postCode = $("#postCode").val();
 		var country = $("#country").val();
 		var phoneNumber = $("#phoneNumber").val();
+		var region = $("#region").val();
 		var productDetails = {
 				"productSku" : productSku,
 				"serialNumber" : serialNumber,
@@ -134,8 +118,17 @@ ACC.registerProduct = {
 				"townCity" : townCity,
 				"postCode" : postCode,
 				"country" : country,
-				"phoneNumber" : phoneNumber
+				"phoneNumber" : phoneNumber,
+				"region" : region
 		}
+		
 		return JSON.stringify(productDetails);
-	}
+	},
+	handlePopup: function(){
+        $('body').on('click', '.verification-success', function(e) {
+             $('#cboxClose').click();
+             $('.register-product').click();
+        });
+               
+    }
 };

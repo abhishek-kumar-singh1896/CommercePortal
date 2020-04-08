@@ -21,7 +21,8 @@
 </c:forEach>
 
 <%-- <div class="${fn:escapeXml(productTagClasses)}"> --%>
-<li class="product-tile"><ycommerce:testId
+<li class="product-tile" onclick="window.location='${productUrl}'" title="${fn:escapeXml(product.name)}">
+	<ycommerce:testId
 		code="product_wholeProduct">
 		<div class="row">
 			<div class="col-4 col-md-12 pr-xs-0">
@@ -35,11 +36,10 @@
 					</c:if>
 				</div>
 				<div class="product-img-box">
-					<a class="product__list--thumb" href="${fn:escapeXml(productUrl)}"
-						title="${fn:escapeXml(product.name)}">
+<%-- 					<a class="product__list--thumb" href="${fn:escapeXml(productUrl)}" title="${fn:escapeXml(product.name)}"> --%>
 						<product:productPrimaryImage
 							product="${product}" format="product" />
-					</a>
+<!-- 					</a>	 -->
 				</div>
 			</div>
 			<!-- 		<div class="details"> -->
@@ -58,15 +58,15 @@
 		</div>
 		<div class="product-list-footer">
 			<div class="row">
-				<div class="col-6">
+				<div class="col-5">
 					<c:forEach items="${product.animalCompatibility}" var="animal">
 						<span class="product-list-footer-left-icon"> <img
-							src="${commonResourcePath}/images/${fn:escapeXml(animal)}.svg" />
+							src="${commonResourcePath}/images/animals/${fn:escapeXml(animal)}.svg" />
 						</span>
 					</c:forEach>
 				</div>
 				<ycommerce:testId code="searchPage_price_label_${product.code}">
-					<div class="col-6 text-right">
+					<div class="col-7 text-right">
 						<product:productListerItemPrice product="${product}" />
 					</div>
 				</ycommerce:testId>

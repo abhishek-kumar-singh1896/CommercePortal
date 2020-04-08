@@ -12,9 +12,9 @@
 <spring:htmlEscape defaultHtmlEscape="true" />
 
 <template:page pageTitle="${pageTitle}" hideHeaderLinks="true">
-
+<div class="container">
 <div class="row">
-    <div class="col-sm-6">
+    <div class="col-md-6">
 	    <div class="checkout-headline">
             <span class="glyphicon glyphicon-lock"></span>
             <spring:theme code="checkout.multi.secure.checkout" />
@@ -83,15 +83,33 @@
         </multi-checkout:checkoutSteps>
     </div>
 
-    <div class="col-sm-6 hidden-xs">
+    <div class="col-md-6 hidden-xs">
 		<multi-checkout:checkoutOrderDetails cartData="${cartData}" showDeliveryAddress="false" showPaymentInfo="false" showTaxEstimate="false" showTax="true" />
     </div>
 
-    <div class="col-sm-12 col-lg-12">
+    <div class="col-12">
         <cms:pageSlot position="SideContent" var="feature" element="div" class="checkout-help">
             <cms:component component="${feature}"/>
         </cms:pageSlot>
     </div>
 </div>
-
+</div>
 </template:page>
+
+<<script type="text/javascript">
+
+$(document).ready(function(){
+    $('#address.phone').keypress("valid",function(e){
+    	alert('address chaeck');
+    var key = window.event ? event.keyCode : event.which;
+    if (event.keyCode === 8 || event.keyCode === 46) {
+        return true;
+    } else if ( key < 48 || key > 57 ) {
+        return false;
+    } else {
+        return true;
+    }
+    });
+});
+
+</script>

@@ -18,7 +18,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Required;
 
-import com.gallagher.outboundservices.request.dto.RegisterProductRequest;
 import com.gallagher.outboundservices.service.GallagheroutboundservicesService;
 
 
@@ -94,12 +93,5 @@ public class DefaultGallagheroutboundservicesService implements Gallagheroutboun
 	public void setFlexibleSearchService(final FlexibleSearchService flexibleSearchService)
 	{
 		this.flexibleSearchService = flexibleSearchService;
-	}
-
-	@Override
-	public void postRegisterProduct(final RegisterProductRequest productRequest)
-	{
-		// post data from C4c
-
 	}
 }

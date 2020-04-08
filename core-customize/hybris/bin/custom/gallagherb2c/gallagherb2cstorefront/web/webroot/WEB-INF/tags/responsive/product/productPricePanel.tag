@@ -23,9 +23,9 @@
 				</span>
 			</c:when>
 			<c:otherwise>
-				<p class="price">
+				<!-- <p class="price"> -->
 					<format:fromPrice priceData="${product.price}"/>
-				</p>
+				<!-- </p> -->
 			</c:otherwise>
 		</c:choose>
 	</c:when>

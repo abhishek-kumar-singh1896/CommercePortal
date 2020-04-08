@@ -26,9 +26,11 @@ $lang=en
 INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];folder(qualifier)[default='images']
 ;;/images/theme/banner-free-delivery.jpg;banner-free-delivery.jpg;$siteResource/images/theme/banner-free-delivery.jpg;;
 ;;/images/theme/banner-sale-now-on.jpg;banner-sale-now-on.jpg;$siteResource/images/theme/banner-sale-now-on.jpg;;
+;;/images/theme/logo-gallagher.png;logo-gallagher.png;$siteResource/images/theme/logo-gallagher.png;;
 
 # CMS Image Components
 UPDATE CMSImageComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
 ;;EmailBannerFreeDeliveryImage;/images/theme/banner-free-delivery.jpg;
 ;;EmailBannerSaleNowOnImage;/images/theme/banner-sale-now-on.jpg;
+;;EmailBannerSiteLogo;/images/theme/logo-gallagher.png;
 

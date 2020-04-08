@@ -3,172 +3,82 @@
  */
 package com.gallagher.outboundservices.request.dto;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+
 /**
- *
+ * Representation of Register Product Request
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class RegisterProductRequest
 {
-	private String productSku;
-	private String serialNumber;
-	private String datePurchased;
-	private String addressLine1;
-	private String addressLine2;
-	private String townCity;
-	private String postCode;
-	private String country;
-	private String phoneNumber;
+	@JsonProperty("Status")
+	private String status;
 
-	/**
-	 * @return the productSku
-	 */
-	public String getProductSku()
+	@JsonProperty("ProductID")
+	private String productID;
+
+	@JsonProperty("SerialID")
+	private String serialID;
+
+	@JsonProperty("RegisteredProductPartyInformation")
+	private List<RegisteredProductPartyInformation> registeredProductPartyInformation;
+
+	@JsonProperty("RegisteredProductAttachmentFolder")
+	private List<RegisteredProductAttachmentFolder> registeredProductAttachmentFolder;
+
+	public String getStatus()
 	{
-		return productSku;
+		return status;
 	}
 
-	/**
-	 * @param productSku
-	 *           the productSku to set
-	 */
-	public void setProductSku(final String productSku)
+	public void setStatus(final String status)
 	{
-		this.productSku = productSku;
+		this.status = status;
 	}
 
-
-	/**
-	 * @return the datePurchased
-	 */
-	public String getDatePurchased()
+	public String getProductID()
 	{
-		return datePurchased;
+		return productID;
 	}
 
-	/**
-	 * @param datePurchased
-	 *           the datePurchased to set
-	 */
-	public void setDatePurchased(final String datePurchased)
+	public void setProductID(final String productID)
 	{
-		this.datePurchased = datePurchased;
+		this.productID = productID;
 	}
 
-	/**
-	 * @return the serialNumber
-	 */
-	public String getSerialNumber()
+	public String getSerialID()
 	{
-		return serialNumber;
+		return serialID;
 	}
 
-	/**
-	 * @param serialNumber
-	 *           the serialNumber to set
-	 */
-	public void setSerialNumber(final String serialNumber)
+	public void setSerialID(final String serialID)
 	{
-		this.serialNumber = serialNumber;
+		this.serialID = serialID;
 	}
 
-	/**
-	 * @return the addressLine1
-	 */
-	public String getAddressLine1()
+	public List<RegisteredProductPartyInformation> getRegisteredProductPartyInformation()
 	{
-		return addressLine1;
+		return registeredProductPartyInformation;
 	}
 
-	/**
-	 * @param addressLine1
-	 *           the addressLine1 to set
-	 */
-	public void setAddressLine1(final String addressLine1)
+	public void setRegisteredProductPartyInformation(
+			final List<RegisteredProductPartyInformation> registeredProductPartyInformation)
 	{
-		this.addressLine1 = addressLine1;
+		this.registeredProductPartyInformation = registeredProductPartyInformation;
 	}
 
-	/**
-	 * @return the addressLine2
-	 */
-	public String getAddressLine2()
+	public List<RegisteredProductAttachmentFolder> getRegisteredProductAttachmentFolder()
 	{
-		return addressLine2;
+		return registeredProductAttachmentFolder;
 	}
 
-	/**
-	 * @param addressLine2
-	 *           the addressLine2 to set
-	 */
-	public void setAddressLine2(final String addressLine2)
+	public void setRegisteredProductAttachmentFolder(
+			final List<RegisteredProductAttachmentFolder> registeredProductAttachmentFolder)
 	{
-		this.addressLine2 = addressLine2;
-	}
-
-	/**
-	 * @return the townCity
-	 */
-	public String getTownCity()
-	{
-		return townCity;
-	}
-
-	/**
-	 * @param townCity
-	 *           the townCity to set
-	 */
-	public void setTownCity(final String townCity)
-	{
-		this.townCity = townCity;
-	}
-
-	/**
-	 * @return the postCode
-	 */
-	public String getPostCode()
-	{
-		return postCode;
-	}
-
-	/**
-	 * @param postCode
-	 *           the postCode to set
-	 */
-	public void setPostCode(final String postCode)
-	{
-		this.postCode = postCode;
-	}
-
-	/**
-	 * @return the country
-	 */
-	public String getCountry()
-	{
-		return country;
-	}
-
-	/**
-	 * @param country
-	 *           the country to set
-	 */
-	public void setCountry(final String country)
-	{
-		this.country = country;
-	}
-
-	/**
-	 * @return the phoneNumber
-	 */
-	public String getPhoneNumber()
-	{
-		return phoneNumber;
-	}
-
-	/**
-	 * @param phoneNumber
-	 *           the phoneNumber to set
-	 */
-	public void setPhoneNumber(final String phoneNumber)
-	{
-		this.phoneNumber = phoneNumber;
+		this.registeredProductAttachmentFolder = registeredProductAttachmentFolder;
 	}
 }

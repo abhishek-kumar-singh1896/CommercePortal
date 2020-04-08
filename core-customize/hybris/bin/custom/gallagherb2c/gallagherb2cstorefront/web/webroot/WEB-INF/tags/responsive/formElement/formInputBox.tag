@@ -10,6 +10,7 @@
 <%@ attribute name="autocomplete" required="false" type="java.lang.String"%>
 <%@ attribute name="disabled" required="false" type="java.lang.Boolean"%>
 <%@ attribute name="maxlength" required="false" type="java.lang.Integer"%>
+<%@ attribute name="oninputdata" required="false" type="java.lang.String"%>
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -33,7 +34,7 @@
 
 		<form:input cssClass="${fn:escapeXml(inputCSS)} form-control" id="${idKey}" path="${path}"
 					tabindex="${tabindex}" autocomplete="${autocomplete}" placeholder="${placeHolderMessage}"
-					disabled="${disabled}" maxlength="${maxlength}"/>
+					disabled="${disabled}" maxlength="${maxlength}" oninput="${oninputdata}"/>
 						
 	</ycommerce:testId>
 </template:errorSpanField>

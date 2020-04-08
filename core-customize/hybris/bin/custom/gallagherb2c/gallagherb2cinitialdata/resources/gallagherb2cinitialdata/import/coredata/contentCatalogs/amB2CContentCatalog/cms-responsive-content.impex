@@ -42,6 +42,10 @@ INSERT_UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];name;fronten
 ;;StoreFinderPageTemplate;Store Finder Page Template;storeFinder/storeFinderSearchPage;ContentPage;false;
 ;;ErrorPageTemplate;Error Page Template;error/errorNotFoundPage;ContentPage;false;
 
+#Custom templats
+;;RegisteredProductsPageTemplate;Registered Products Page Template;product/registeredProducts;ContentPage
+
+
 # Add Velocity templates that are in the CMS Cockpit. These give a better layout for editing pages
 # The FileLoaderValueTranslator loads a File into a String property. The templates could also be inserted in-line in this file.
 UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
@@ -68,6 +72,9 @@ UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[tr
 ;;LoginPageTemplate         ;$jarResourceCms/structure-view/structure_loginPageTemplate.vm
 ;;CheckoutLoginPageTemplate ;$jarResourceCms/structure-view/structure_checkoutLoginPageTemplate.vm
 ;;RegisterProductPageTemplate      ;$jarResourceCms/structure-view/structure_registerProductTemplate.vm
+
+#custom page templates
+;;RegisteredProductsPageTemplate;$jarResourceCms/structure-view/structure_registeredProductsPageTemplate.vm
 
 # Create ContentSlotNames
 # Each PageTemplate has a number of ContentSlotNames, with a list of valid components for the slot.
@@ -440,7 +447,7 @@ INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=
 ;TopHeaderSlot;;;wide
 ;BottomHeaderSlot;;;wide
 ;PlaceholderContentSlot;;;
-
+;ggB2CNavBar;;;navigation
 
 
 # Store Finder/Locator Page Template
@@ -458,6 +465,18 @@ INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=
 ;BottomHeaderSlot;;;wide
 ;PlaceholderContentSlot;;;
 
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='RegisteredProductsPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+#;RegisteredProductsListSlot;;;wide
+;Footer;;;footer
+;TopHeaderSlot;;;wide
+;BottomHeaderSlot;;;wide
+;PlaceholderContentSlot;;;
+;ggB2CNavBar;;;navigation
 
 # Create Content Slots
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active
@@ -494,6 +513,8 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active
 ;;EmptyCartMiddleContent;Empty Cart Middle Content;true
 ;;PlaceholderContentSlot;Placeholder for Addon tag files;true
 ;;Section1Slot;Section1 Slot for ProductListPage;true
+;;SearchGridBannerSlot;Banner for search grid page;true
+;;SearchResultsEmptyBannerSlot;Banner for search result empty page;true
 
 
 # Bind Content Slots to Page Templates
@@ -544,6 +565,7 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 ;;SearchResultsGridSlot-SearchResultsGrid;SearchResultsGridSlot;;SearchResultsGridSlot;true
 ;;PlaceholderContentSlot-SearchResultsGrid;PlaceholderContentSlot;;PlaceholderContentSlot;true
 ;;ggB2CNavBar-SearchResultsGridPage;ggB2CNavBar;;ggB2CNavBarSlot;true
+;;banner-SearchGridPage;SearchGridBanner;;SearchGridBannerSlot;true
 
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsEmptyPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;SiteLogo-SearchResultsEmpty;SiteLogo;;SiteLogoSlot;true
@@ -557,6 +579,7 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 ;;BottomHeaderSlot-SearchResultsEmpty;BottomHeaderSlot;;BottomHeaderSlot;true
 ;;PlaceholderContentSlot-SearchResultsEmpty;PlaceholderContentSlot;;PlaceholderContentSlot;true
 ;;ggB2CNavBar-SearchResultsEmpty;ggB2CNavBar;;ggB2CNavBarSlot;true
+;;banner-SearchResultsEmpty;SearchResultsEmptyBanner;;SearchResultsEmptyBannerSlot;true
 
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CategoryPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;SiteLogo-CategoryPage;SiteLogo;;SiteLogoSlot;true
@@ -780,7 +803,7 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 ;;TopHeaderSlot-AccountPage;TopHeaderSlot;;TopHeaderSlot;true
 ;;BottomHeaderSlot-AccountPage;BottomHeaderSlot;;BottomHeaderSlot;true
 ;;PlaceholderContentSlot-AccountPage;PlaceholderContentSlot;;PlaceholderContentSlot;true
-
+;;ggB2CNavBar-AccountPage;ggB2CNavBar;;ggB2CNavBarSlot;true
 
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='StoreFinderPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;SiteLogo-StoreFinderPage;SiteLogo;;SiteLogoSlot;true
@@ -807,6 +830,18 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 ;;TopHeaderSlot-ErrorPage;TopHeaderSlot;;TopHeaderSlot;true
 ;;BottomHeaderSlot-ErrorPage;BottomHeaderSlot;;BottomHeaderSlot;true
 ;;PlaceholderContentSlot-ErrorPage;PlaceholderContentSlot;;PlaceholderContentSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='RegisteredProductsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-RegisteredProducts;SiteLogo;;SiteLogoSlot;true
+;;HomepageLink-RegisteredProducts;HomepageNavLink;;HomepageNavLinkSlot;true
+;;MiniCart-RegisteredProducts;MiniCart;;MiniCartSlot;true
+;;NavigationBar-RegisteredProducts;NavigationBar;;NavigationBarSlot;true
+;;Footer-RegisteredProducts;Footer;;FooterSlot;true
+;;HeaderLinks-RegisteredProducts;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBox-RegisteredProducts;SearchBox;;SearchBoxSlot;true
+;;TopHeaderSlot-RegisteredProducts;TopHeaderSlot;;TopHeaderSlot;true
+;;BottomHeaderSlot-RegisteredProducts;BottomHeaderSlot;;BottomHeaderSlot;true
+;;ggB2CNavBar-RegisteredProducts;ggB2CNavBar;;ggB2CNavBarSlot;true
 
 
 # Create Content Pages
@@ -886,6 +921,9 @@ INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTe
 ;;savedCartDetailsPage;Saved Cart Details Page;AccountPageTemplate;savedCartDetailsPage
 ;;saved-carts;Saved Carts Page;AccountPageTemplate;saved-carts
 ;;quickOrderPage;Quick Order Page;QuickOrderPageTemplate;quickOrderPage
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;regProducts;Your Registered Products;RegisteredProductsPageTemplate;regProducts
 
 # Quick Order Page Template
 INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='QuickOrderPageTemplate'];validComponentTypes(code);compTypeGroup(code)

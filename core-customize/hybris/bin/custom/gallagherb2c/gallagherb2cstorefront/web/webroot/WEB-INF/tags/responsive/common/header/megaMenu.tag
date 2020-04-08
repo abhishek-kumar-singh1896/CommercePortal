@@ -84,7 +84,31 @@
                 <div class="modal-footer">
                     <div class="xs-main-menu-l1-footer with-logged-in-user">
                         <div class="btn-group btn-block mb-3" role="group" aria-label="Button group login register">
-                            <button type="button" class="btn btn-highlight left-btn" onclick="window.location.href = '${fn:escapeXml(myApp)}'">My App</button>
+                        	<div class="btn-group my-app-btn-group" role="group">
+                                <button type="button" class="btn btn-highlight dropdown-toggle my-app-btn left-btn"
+                                    id="myAppDropdown" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                   <spring:theme code="header.link.app" />
+                                </button>
+                                
+                                <div class="dropdown-menu my-app-dropdown" aria-labelledby="myAppDropdown">
+
+                                   <div class="my-app-dropdown-inner">
+                                   		<ul>
+		                                    <cms:pageSlot position="MyAppDropdown" var="feature">
+		                                    	<c:forEach items="${feature.navigationNode.children}"
+															var="childLevel1">
+																<c:forEach items="${childLevel1.entries}" var="entry">
+																	<li>
+																		<a href="${entry.item.url }" target="_blank"> ${entry.item.linkName }</a>
+																	</li>
+																</c:forEach>
+															</c:forEach>
+														</cms:pageSlot>
+													</ul>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="btn-group user-profile-btn-group" role="group">
                                 <button type="button" class="btn btn-highlight dropdown-toggle user-profile-btn"
@@ -135,7 +159,7 @@
                 </sec:authorize>
             </div>
 			<c:forEach items="${feature.navigationNode.children}" var="l1" varStatus="children">
-			<c:if test="${not empty l1.children && l1.children ne null && l1.uid ne 'ContactNavNode'}">
+			<c:if test="${not empty l1.children && l1.children ne null && l1.uid ne 'ContactNavNode' && l1.uid ne 'SupportNavNode'}">
             <div class="modal-content xs-main-menu-l2 xs-mega-menu d-none" id="xsLevel1Link${children.index+1}Container">
                 <div class="modal-header">
                     <div class="left-title-out">
@@ -270,7 +294,7 @@
 	                </c:forEach>
 	                </c:if>
 	                
-	       <c:if test="${not empty l1.children && l1.children ne null && l1.uid eq 'ContactNavNode'}">
+	       <c:if test="${not empty l1.children && l1.children ne null && l1.uid eq 'ContactNavNode' || l1.uid eq 'SupportNavNode'}">
 
            <div class="modal-content xs-main-menu-l2 xs-mega-menu d-none" id="xsLevel1Link${children.index+1}Container">
 

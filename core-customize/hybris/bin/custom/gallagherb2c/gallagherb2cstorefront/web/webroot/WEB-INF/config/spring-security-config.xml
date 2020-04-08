@@ -24,7 +24,7 @@
 	<security:http pattern="/checkout/**" entry-point-ref="keycloakAuthenticationEntryPoint">
         <security:anonymous username="anonymous" granted-authority="ROLE_ANONYMOUS" />
 <!-- 		<security:access-denied-handler error-page="/login"/> -->
-		<security:session-management session-authentication-strategy-ref="fixation" invalid-session-url="/login" />
+		<security:session-management session-authentication-strategy-ref="fixation" />
 		<security:intercept-url pattern="/**" requires-channel="https" />
 		<security:csrf token-repository-ref="csrfTokenRepository" request-matcher-ref="csrfProtectionMatcher"/>
 		<security:custom-filter before="CSRF_FILTER" ref="logoutFilter" />
@@ -73,7 +73,7 @@
 	<security:http request-matcher-ref="excludeUrlRequestMatcher" entry-point-ref="keycloakAuthenticationEntryPoint">
 		<security:anonymous username="anonymous" granted-authority="ROLE_ANONYMOUS" />
 <!-- 		<security:access-denied-handler error-page="/login"/> -->
-		<security:session-management session-authentication-strategy-ref="fixation" invalid-session-url="/login" />
+		<security:session-management session-authentication-strategy-ref="fixation" />
 		<security:csrf token-repository-ref="csrfTokenRepository" request-matcher-ref="csrfProtectionMatcher" />
 		<security:custom-filter before="CSRF_FILTER" ref="logoutFilter" />
 		<security:custom-filter ref="keycloakPreAuthActionsFilter" before="LOGOUT_FILTER" />
@@ -88,6 +88,11 @@
 		<security:intercept-url pattern="/my-account/order/*/getReadOnlyProductVariantMatrix" access="hasAnyRole('ROLE_ANONYMOUS','ROLE_CUSTOMERGROUP')" requires-channel="https" />
 		<security:intercept-url pattern="/my-account/**" access="hasRole('ROLE_CUSTOMERGROUP')" requires-channel="https" />
 		<security:intercept-url pattern="/quote/**" access="hasRole('ROLE_CUSTOMERGROUP')" requires-channel="https" />
+		
+		<security:intercept-url pattern="/checkout*" requires-channel="https" />
+					<security:intercept-url pattern="/checkout/multi*" requires-channel="https" />
+					<security:intercept-url pattern="/checkout/multi/**" requires-channel="https" />
+					
 
 		<security:intercept-url pattern="/**" requires-channel="https" /> <!-- Everything should be secure -->
 

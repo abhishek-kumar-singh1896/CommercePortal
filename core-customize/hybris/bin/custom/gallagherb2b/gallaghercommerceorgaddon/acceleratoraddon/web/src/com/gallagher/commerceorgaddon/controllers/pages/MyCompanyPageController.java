@@ -74,6 +74,7 @@ import com.gallagher.commerceorgaddon.forms.B2BCustomerForm;
 import com.gallagher.commerceorgaddon.forms.B2BPermissionForm;
 import com.gallagher.commerceorgaddon.forms.validation.B2BBudgetFormValidator;
 import com.gallagher.commerceorgaddon.forms.validation.B2BPermissionFormValidator;
+import com.gallagher.facades.usergroups.GallagherB2BUserGroupFacade;
 import com.gallagher.keycloak.outboundservices.service.GallagherKeycloakService;
 
 
@@ -106,12 +107,12 @@ public class MyCompanyPageController extends AbstractSearchPageController
 	protected static final String REDIRECT_TO_USERGROUP_DETAILS = REDIRECT_PREFIX + MANAGE_USERGROUP_DETAILS_URL;
 	protected static final String REDIRECT_TO_USER_GROUPS_PAGE = REDIRECT_PREFIX
 			+ "/my-company/organization-management/manage-usergroups";
-	private static final Logger LOG = Logger.getLogger(MyCompanyPageController.class);
 	protected static final String SINGLE_WHITEPSACE = " ";
 	protected static final String MANAGE_UNITS_BASE_URL = "/my-company/organization-management/manage-units";
 	protected static final String MANAGE_USERGROUPS_BASE_URL = "/my-company/organization-management/manage-usergroups";
 	protected static final String ADD_COSTCENTER_URL = "/my-company/organization-management/manage-costcenters/add";
 	protected static final String EDIT_COSTCENTER_URL = "/my-company/organization-management/manage-costcenters/update";
+	private static final Logger LOG = Logger.getLogger(MyCompanyPageController.class);
 
 	@Resource(name = "checkoutFacade")
 	protected CheckoutFacade checkoutFacade;
@@ -166,6 +167,9 @@ public class MyCompanyPageController extends AbstractSearchPageController
 
 	@Resource(name = "gallagherKeycloakService")
 	private GallagherKeycloakService gallagherKeycloakService;
+
+	@Resource(name = "gallagherB2BUserGroupFacade")
+	private GallagherB2BUserGroupFacade gallagherB2BUserGroupFacade;
 
 	public GallagherKeycloakService getGallagherKeycloakService()
 	{
@@ -392,7 +396,7 @@ public class MyCompanyPageController extends AbstractSearchPageController
 			model.addAttribute(b2bCustomerForm);
 		}
 		model.addAttribute("titleData", getUserFacade().getTitles());
-		model.addAttribute("roles", populateRolesCheckBoxes(b2bUserGroupFacade.getUserGroups()));
+		model.addAttribute("roles", populateRolesCheckBoxes(gallagherB2BUserGroupFacade.getUserGroups()));
 
 		final ContentPageModel organizationManagementPage = getContentPageForLabelOrId(ORGANIZATION_MANAGEMENT_CMS_PAGE);
 		storeCmsPageInModel(model, organizationManagementPage);
@@ -526,7 +530,7 @@ public class MyCompanyPageController extends AbstractSearchPageController
 		}
 
 		model.addAttribute("titleData", getUserFacade().getTitles());
-		model.addAttribute("roles", populateRolesCheckBoxes(b2bUserGroupFacade.getUserGroups()));
+		model.addAttribute("roles", populateRolesCheckBoxes(gallagherB2BUserGroupFacade.getUserGroups()));
 
 		final ContentPageModel organizationManagementPage = getContentPageForLabelOrId(ORGANIZATION_MANAGEMENT_CMS_PAGE);
 		storeCmsPageInModel(model, organizationManagementPage);
@@ -935,8 +939,7 @@ public class MyCompanyPageController extends AbstractSearchPageController
 		final List<SelectOption> selectBoxList = new ArrayList<SelectOption>();
 		for (final String data : roles)
 		{
-			selectBoxList.add(new SelectOption(data,
-					getMessageSource().getMessage(String.format("b2bunit.%s.name", data), null, getI18nService().getCurrentLocale())));
+			selectBoxList.add(new SelectOption(data, data));
 		}
 
 		return selectBoxList;

@@ -120,7 +120,8 @@
   letter-spacing: 0.1px;
   z-index: 999;
 
-  .contact-us-container {
+  .contact-us-container,
+  .support-container {
     padding: 20px;
 
     .call-us-contact-number {
@@ -232,7 +233,7 @@
           &.active {
             color: $primary-color;
             border-left: 4px solid $primary-color;
-            font-family: $font-family-bold;
+            font-weight: bold;
             background-color: transparent;
 
             .arrow-right-icon {
@@ -296,7 +297,8 @@
   }
 }
 
-.contact-us-container-xs {
+.contact-us-container-xs,
+.support-container-xs {
   .call-us-contact-number {
     font-size: 1.428571em;
     color: $primary-color;
@@ -499,7 +501,8 @@
           width: 100%;
           padding: 8px 16px;
           margin: 16px 0 0 0;
-          .user-profile-btn-group {
+          .user-profile-btn-group,
+          .my-app-btn-group {
             width: 50%;
 
             &.show {
@@ -519,7 +522,8 @@
             }
           }
 
-          .user-profile-dropdown {
+          .user-profile-dropdown,
+          .my-app-dropdown {
             min-width: 175px;
             max-width: 175px;
             border-radius: 0;
@@ -528,7 +532,8 @@
             color: $white;
           }
 
-          .user-profile-dropdown-inner {
+          .user-profile-dropdown-inner,
+          .my-app-dropdown-inner {
             padding: 8px 16px 0 16px;
             color: $gray-3;
             letter-spacing: 0.25px;
@@ -555,7 +560,7 @@
                 }
 
                 .user-name {
-                  font-family: $font-family-bold;
+                  font-weight: bold;
                   padding-bottom: 8px;
                   font-size: $font-size-13px;
                 }

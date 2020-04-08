@@ -1,0 +1,77 @@
+.search-result-tab-out .search-result-inner-container {
+	padding-top: 24px;
+	padding: 24px 30px 0 30px;
+	border-bottom: 1px solid #ccc;
+}
+
+.search-result-tab-out .search-result-inner-container .nav-tabs {
+	border-bottom: none;
+}
+
+.search-result-tab-out .search-result-inner-container .nav-tabs>li>a {
+	color: inherit;
+	min-width: 200px;
+	font-size: 1.14286em;
+	padding: 16px;
+	border-radius: 0;
+	border: 1px solid #ccc;
+	border-bottom: none;
+	text-align: center;
+	/* background: rgba(0, 0, 0, 0.05); */
+	margin-right: 3px;
+	-webkit-transition: all ease-in-out 0.2s;
+	transition: all ease-in-out 0.2s;
+	border-top: 2px transparent #ff8400;
+	text-transform: none;
+}
+
+.search-result-tab-out .search-result-inner-container .nav-tabs>li>a:hover
+	{
+	background: rgba(0, 0, 0, 0.05);
+}
+
+.search-result-tab-out .search-result-inner-container .nav-tabs>li.active>a
+	{
+	background: #ffffff;
+	border-top: 2px solid #ff8400;
+	font-weight: bold;
+}
+
+.search-result-tab-out .search-result-count {
+	margin-top: 24px;
+	font-size: 1.42857em;
+}
+
+@media only screen and (max-width: 767px) {
+	.search-result-tab-out .search-result-inner-container {
+		padding: 18px 18px 0 18px;
+	}
+	.search-result-tab-out .search-result-inner-container .nav-tabs .nav-item,
+		.search-result-tab-out .search-result-inner-container .nav-tabs .nav-link
+		{
+		width: 100%;
+		margin-bottom: 1px;
+	}
+	.search-result-tab-out .search-result-inner-container .nav-tabs .nav-item:last-child,
+		.search-result-tab-out .search-result-inner-container .nav-tabs .nav-link:last-child
+		{
+		margin-bottom: 0;
+	}
+	.search-result-tab-out .search-result-inner-container .nav-tabs .nav-link
+		{
+		background-color: #ffffff;
+	}
+	.search-result-tab-out .search-result-inner-container .nav-tabs .nav-link.active
+		{
+		font-family: "GalaxiePolaris-Bold", sans-serif;
+	}
+	.search-result-tab-out .search-result-inner-container .nav-tabs>li>a:hover,
+		.search-result-tab-out .search-result-inner-container .nav-tabs>li>a:focus
+		{
+		background: #ffffff;
+	}
+	.search-result-tab-out .search-result-count {
+		margin-top: 18px;
+		font-size: 1.14286em;
+	}
+}

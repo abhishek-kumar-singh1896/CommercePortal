@@ -11,6 +11,7 @@
 <%@ taglib prefix="format" tagdir="/WEB-INF/tags/shared/format" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="order" tagdir="/WEB-INF/tags/responsive/order" %>
+<%@ taglib prefix="theme" tagdir="/WEB-INF/tags/shared/theme" %>
 
 
 <%--
@@ -23,6 +24,7 @@
 <c:set var="entryNumberHtml" value="${fn:escapeXml(entry.entryNumber)}"/>
 <c:set var="productCodeHtml" value="${fn:escapeXml(entry.product.code)}"/>
 <c:set var="quantityHtml" value="${fn:escapeXml(entry.quantity)}"/>
+<c:set var="tempicon" value="0" />
 
 <c:if test="${empty index}">
     <c:set property="index" value="${entryNumber}"/>
@@ -62,10 +64,29 @@
             </div>
 
             <%-- product image --%>
+           <%--  <div class="item__image">
+                <a href="${fn:escapeXml(productUrl)}">
+                <product:productPrimaryImage product="${entry.product}" format="thumbnail"/></a>
+            </div> --%>
             <div class="item__image">
-                <a href="${fn:escapeXml(productUrl)}"><product:productPrimaryImage product="${entry.product}" format="thumbnail"/></a>
-            </div>
-
+            <c:choose>
+            <c:when test="${not empty entry.product.images}">
+            <c:forEach items="${entry.product.images}" var="medias">
+             <c:if test="${tempicon == 0 }">
+                                        <c:if test="${medias.format eq 'thumbnail'}">
+                                        <c:set var="tempicon" value="1" />
+                                        <a href="${fn:escapeXml(productUrl)}" title="${fn:escapeXml(entry.product.name)}">
+                                        <img src="${medias.url}" alt="${medias.altText}">
+                                        </a>
+                                        </c:if>
+             </c:if>                           
+                                        </c:forEach>
+             </c:when>
+             <c:otherwise>
+					<theme:image code="img.missingProductImage.responsive.${format}" alt="${productNameHtml}" title="${productNameHtml}"/>
+	`			</c:otherwise>
+				</c:choose>                           
+				</div>
             <%-- product name, code, promotions --%>
             <div class="item__info">
                 <ycommerce:testId code="cart_product_name">
@@ -170,8 +191,16 @@
 
             <%-- price --%>
             <div class="item__price">
-                <span class="visible-xs visible-sm"><spring:theme code="basket.page.itemPrice"/>: </span>
-                <format:price priceData="${entry.basePrice}" displayFreeForZero="true"/>
+                <span class="visible-xs visible-sm">
+<%--                 <spring:theme code="basket.page.itemPrice"/>: --%>
+                 </span>
+                  <c:if test="${empty entry.product.price}">
+                                    RRP
+                                </c:if>
+                                   	<ycommerce:testId code="productDetails_productNamePrice_label_${entry.product.code}">
+										<product:productPricePanel product="${entry.product}" />
+									</ycommerce:testId>
+<%--                 <format:price priceData="${entry.basePrice}" displayFreeForZero="true"/> --%>
             </div>
 
             <%-- quantity --%>
@@ -229,7 +258,7 @@
 
             <%-- total --%>
             <ycommerce:testId code="cart_totalProductPrice_label">
-                <div class="item__total js-item-total hidden-xs hidden-sm">
+                <div class="item__total js-item-total hidden-xs hidden-sm d-none d-lg-table-cell">
                     <format:price priceData="${entry.totalPrice}" displayFreeForZero="true"/>
                 </div>
             </ycommerce:testId>
@@ -238,8 +267,9 @@
             <div class="item__menu">
                 <c:if test="${entry.updateable}" >
                     <div class="btn-group js-cartItemDetailGroup">
-                        <button type="button" class="btn btn-link js-cartItemDetailBtn" aria-haspopup="true" aria-expanded="false" id="editEntry_${entryNumberHtml}">
-                            <span class="glyphicon glyphicon-option-vertical"></span>
+                    	<button class="btn js-submit-remove-product-multi-d" data-index="${entryNumberHtml}" id="removeEntry_${entryNumberHtml}">
+<%--                         <button type="button" class="btn btn-link js-cartItemDetailBtn" aria-haspopup="true" aria-expanded="false" id="editEntry_${entryNumberHtml}"> --%>
+		                       <span class="glyphicon glyphicon-remove"></span>     
                         </button>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <c:if test="${not empty cartData.quoteData}">

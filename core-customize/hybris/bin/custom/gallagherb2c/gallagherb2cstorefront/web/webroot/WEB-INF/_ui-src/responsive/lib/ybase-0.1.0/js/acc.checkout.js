@@ -3,7 +3,8 @@ ACC.checkout = {
 	_autoload: [
 		"bindCheckO",
 		"bindForms",
-		"bindSavedPayments"
+		"bindSavedPayments",
+		"bindTermAndCondition"
 	],
 
 
@@ -35,6 +36,12 @@ ACC.checkout = {
 				//width:"320px",
 				title: title,
 				close:'<span class="glyphicon glyphicon-remove"></span>',
+				onLoad:function() {
+			        $('html, body').css('overflow', 'hidden'); // page scrollbars off
+			    }, 
+			    onClosed:function() {
+			        $('html, body').css('overflow', ''); // page scrollbars on
+			    },
 				onComplete: function(){
 				}
 			});
@@ -128,6 +135,66 @@ ACC.checkout = {
 				}
 			}
 			return false;
+		});
+
+		$('.js-continue-checkoutasguest-button').click(function ()
+				{
+					//alert('checkoutasguest');
+					var checkoutUrl = $(this).data("checkoutUrl")+"/guest";
+					//alert('checkoutUrl'+checkoutUrl);
+					cartEntriesError = ACC.pickupinstore.validatePickupinStoreCartEntires();
+					if (!cartEntriesError)
+					{
+						var expressCheckoutObject = $('.express-checkout-checkbox');
+						if(expressCheckoutObject.is(":checked"))
+						{
+							window.location = expressCheckoutObject.data("expressCheckoutUrl");
+						}
+						else
+						{
+							var flow = $('#selectAltCheckoutFlow').val();
+							if ( flow == undefined || flow == '' || flow == 'select-checkout')
+							{
+								// No alternate flow specified, fallback to default behaviour
+								window.location = checkoutUrl;
+							}
+							else
+							{
+								// Fix multistep-pci flow
+								if ('multistep-pci' == flow)
+								{
+								flow = 'multistep';
+								}
+								var pci = $('#selectPciOption').val();
+
+								// Build up the redirect URL
+								var redirectUrl = checkoutUrl + '/select-flow?flow=' + flow + '&pci=' + pci;
+								window.location = redirectUrl;
+							}
+						}
+					}
+					return false;
+				});
+
+	},
+	bindTermAndCondition : function() {
+
+		$(document).on("input", ".Terms-1-Condition-1", function() {
+			if ($('#Terms1').is(':checked')) {
+				$(".btn-place-order1").removeAttr("disabled");
+			} else {
+				$(".btn-place-order1").attr("disabled", true);
+			}
+
+		});
+		
+		$(document).on("input", ".Terms-1-Condition-1", function() {
+			if ($('#Terms2').is(':checked')) {
+				$(".btn-place-order2").removeAttr("disabled");
+			} else {
+				$(".btn-place-order2").attr("disabled", true);
+			}
+
 		});
 
 	}

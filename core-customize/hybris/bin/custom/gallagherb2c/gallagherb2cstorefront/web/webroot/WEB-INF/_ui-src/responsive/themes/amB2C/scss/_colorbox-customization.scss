@@ -21,11 +21,23 @@
 #cboxClose .glyphicon-remove::after{
 	content: '\00d7';
 	font-size: 24px;
-	font-family: $font-family-bold;
+	font-weight: bold;
 }
 
 #cboxLoadedContent {
 	padding: 0 20px 20px 20px;
 	margin-top: 64px;
 
+}
+
+body.page-registerProduct {
+	#colorbox,
+	#cboxWrapper {
+		height: 325px!important;
+	}
+	
+	#cboxContent,
+	#cboxLoadedContent {
+		height: 320px!important;
+	}
 }

@@ -26,6 +26,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.token.grant.password.ResourceOwnerPasswordResourceDetails;
+import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
+import org.springframework.web.client.RestClientException;
 
 import com.gallagher.keycloak.outboundservices.service.GallagherKeycloakService;
 import com.gallagher.outboundservices.request.dto.GallagherKeycloakUserRequest;
@@ -174,19 +176,26 @@ public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 	public String getKeycloakUserFromEmail(final String email)
 	{
 		String keyCloakGUID = null;
-		final OAuth2RestTemplate restTemplate = getRestTemplateForKeycloak();
-
-		final String userDetailUrl = getConfigurationService().getConfiguration().getString("keycloak.user.url") + "?email="
-				+ email;
-
-		final ResponseEntity<GallagherKeycloakResponse[]> userDetailresponse = restTemplate.getForEntity(userDetailUrl,
-				GallagherKeycloakResponse[].class);
-
-		if (userDetailresponse.getBody().length > 0)
+		try
 		{
-			keyCloakGUID = userDetailresponse.getBody()[0].getId();
-		}
+			final OAuth2RestTemplate restTemplate = getRestTemplateForKeycloak();
 
+			final String userDetailUrl = getConfigurationService().getConfiguration().getString("keycloak.user.url") + "?email="
+					+ email;
+
+			final ResponseEntity<GallagherKeycloakResponse[]> userDetailresponse = restTemplate.getForEntity(userDetailUrl,
+					GallagherKeycloakResponse[].class);
+
+			if (userDetailresponse.getBody().length > 0)
+			{
+				keyCloakGUID = userDetailresponse.getBody()[0].getId();
+			}
+		}
+		catch (final RestClientException | OAuth2Exception exception)
+		{
+			LOGGER.error("Exception occured while getting user from Keycloak : " + exception);
+			keyCloakGUID = null;
+		}
 		return keyCloakGUID;
 	}
 
@@ -204,16 +213,59 @@ public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 
 		if (getBaseSiteService().getCurrentBaseSite() == null)
 		{
-				getBaseSiteService().setCurrentBaseSite("securityB2BGlobal", false);
+			getBaseSiteService().setCurrentBaseSite("securityB2BGlobal", false);
 		}
 
 		final String redirectURL = getSiteBaseUrlResolutionService().getWebsiteUrlForSite(getBaseSiteService().getCurrentBaseSite(),
 				true, null);
 
 		final String url = MessageFormat.format(
-				getConfigurationService().getConfiguration().getString("keycloak.reset.password.url"),
-					keycloakGUID, redirectURL);
+				getConfigurationService().getConfiguration().getString("keycloak.reset.password.url"), keycloakGUID, redirectURL);
 
 		final ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.PUT, entity, String.class);
+	}
+
+	@Override
+	public void updateKeyCloakUserProfile(final CustomerData customerData)
+	{
+		final OAuth2RestTemplate restTemplate = getRestTemplateForKeycloak();
+
+		final HttpHeaders headers = new HttpHeaders();
+		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		headers.setContentType(MediaType.APPLICATION_JSON);
+
+		final GallagherKeycloakUserRequest request = new GallagherKeycloakUserRequest();
+		request.setUsername(customerData.getUid());
+		request.setFirstName(customerData.getFirstName());
+		request.setLastName(customerData.getLastName());
+
+		final HttpEntity<GallagherKeycloakUserRequest> entity = new HttpEntity<>(request, headers);
+
+		final String userDetailUrl = getConfigurationService().getConfiguration().getString("keycloak.user.url") + "/"
+				+ customerData.getKeycloakGUID();
+
+		final ResponseEntity<String> response = restTemplate.exchange(userDetailUrl, HttpMethod.PUT, entity, String.class);
+
+	}
+
+	@Override
+	public void updateKeycloakUserEmail(final CustomerData customerData)
+	{
+
+		final OAuth2RestTemplate restTemplate = getRestTemplateForKeycloak();
+
+		final HttpHeaders headers = new HttpHeaders();
+		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		headers.setContentType(MediaType.APPLICATION_JSON);
+
+		final GallagherKeycloakUserRequest request = new GallagherKeycloakUserRequest();
+		request.setLastName(customerData.getEmail());
+
+		final HttpEntity<GallagherKeycloakUserRequest> entity = new HttpEntity<>(request, headers);
+
+		final String userDetailUrl = getConfigurationService().getConfiguration().getString("keycloak.user.url") + "/"
+				+ customerData.getKeycloakGUID();
+
+		final ResponseEntity<String> response = restTemplate.exchange(userDetailUrl, HttpMethod.PUT, entity, String.class);
 	}
 }

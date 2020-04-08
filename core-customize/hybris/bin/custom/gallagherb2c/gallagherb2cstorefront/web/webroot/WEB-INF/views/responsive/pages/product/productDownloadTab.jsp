@@ -43,35 +43,43 @@
 	<cms:pageSlot position="RegisterProduct" var="comp" >
 		<cms:component component="${comp}"/>
 	</cms:pageSlot>
-                    
+    <c:if test="${not empty product.others || not empty product.imageDescription}">                
     <div class="container">
-        <div class="two-column-section">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="column-full-img">
-                        <img src="${commonResourcePath}/images/product-two-column-img.png" alt="Product Image">
-                    </div>
-                </div>
+      <div class="two-column-section">
+          <div class="row">
+              <div class="col-md-6">
+                  <div class="column-full-img clearfix">
+                      <div class="flexslider slider-big-image award-slider" id="awardSlider">
+                          <ul class="slides">
+                          		<c:forEach var="media" items="${product.others}">
+                          			
+	                              	<c:choose>
+	                              	<c:when test="${fn:contains(media.mime, 'video')}">
+		                              	<li>
+	                                        <iframe id="awardPlayer_1"
+	                                            src="${media.url}"
+	                                            width="100%" height="390" frameborder="0" webkitAllowFullScreen
+	                                            mozallowfullscreen allowFullScreen></iframe>
+	                                    </li>
+	                              	</c:when>
+	                              	<c:otherwise>
+		                              	<li>
+		                                  	<img src="${media.url}" alt="${media.altText}">
+		                              	</li>
+	                              	</c:otherwise>
+	                              	</c:choose>
+				                 </c:forEach>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
 
-                <div class="col-md-6">
-                    <h1 class="section-title">
-                        Award winning innovation
-                    </h1>
-                    <div class="section-decription">
-                        <p>The TW Weigh Scales has won the following awards:</p>
-                        <div class="content-list-out">
-                            <ul>
-                                <li>2018 Good Design Award Australia</li>
-                                <li>2017 Good Design Award Chicago</li>
-                                <li>2018 Red dot Award - Product Design</li>
-                                <li>2017 Best Design Awards NZ - 'Gold pin' best in Category, 'Purple
-                                    pin' best in Discipline </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+              <div class="col-md-6">
+              		${product.imageDescription}
+              </div>
 
-            </div>
-        </div>
-    </div>
+          </div>
+      </div>
+  </div>
+  </c:if>
 </section>

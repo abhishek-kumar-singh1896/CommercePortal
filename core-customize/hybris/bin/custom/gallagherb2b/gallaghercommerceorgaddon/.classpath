@@ -15,5 +15,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/acceleratorstorefrontcommons"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/b2bapprovalprocessfacades"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/gallagheroutboundservices"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/gallagherfacades"/>
 	<classpathentry kind="output" path="eclipsebin/notused"/>
 </classpath>

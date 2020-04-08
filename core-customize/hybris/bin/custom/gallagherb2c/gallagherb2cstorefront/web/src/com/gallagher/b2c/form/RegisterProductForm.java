@@ -3,6 +3,9 @@
  */
 package com.gallagher.b2c.form;
 
+import org.springframework.web.multipart.MultipartFile;
+
+
 /**
  * @author shilpiverma
  *
@@ -18,6 +21,35 @@ public class RegisterProductForm
 	private String postCode;
 	private String country;
 	private String phoneNumber;
+	private String region;
+	private MultipartFile attachedFile;
+
+	public String getRegion()
+	{
+		return region;
+	}
+
+	/**
+	 * @return the attachedFile
+	 */
+	public MultipartFile getAttachedFile()
+	{
+		return attachedFile;
+	}
+
+	/**
+	 * @param attachedFile
+	 *           the attachedFile to set
+	 */
+	public void setAttachedFile(final MultipartFile attachedFile)
+	{
+		this.attachedFile = attachedFile;
+	}
+
+	public void setRegion(final String region)
+	{
+		this.region = region;
+	}
 
 	/**
 	 * @return the productSku

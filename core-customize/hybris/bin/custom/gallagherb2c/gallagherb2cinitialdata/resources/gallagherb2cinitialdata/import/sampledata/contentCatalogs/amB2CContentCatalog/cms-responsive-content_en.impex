@@ -487,6 +487,7 @@ INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[uni
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV)
 ;;FooterSlot;GallagherFooterNavigationComponent
 
+
 ##Footer Links 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
 ;;PrivacyLink;"Privacy"
@@ -568,6 +569,12 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 ;;FindManagerLink;"Find your territory manager"
 ;;SendMessageLink;"Send us a message"
 
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;CallUsSupportLink;"<div class=""call-us-title"">Call us</div><div class=""call-us-contact-number"">0800 731 500</div>"
+;;SupportMaterialLink;"Support Material"
+;;TechnicalSupportLink;"Technical Support"
+;;SoftwareDownloadsLink;"Software Downloads"
+
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
 ;;AllPromotionsLink;"See all promotions"
 
@@ -603,6 +610,38 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 ;;PortablefencingTapesWiresBraids_nav_link113;"Posts - Pigtails and Tread-ins"
 #############Navigation Nodes start end##############
 
+#### components for gallagherpdpsearchdealercomponent start########
+
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=$lang]
+;;PDPSearchFindDealerComponent;"Find a dealer near you"
+;;PDPSearchAdviceComponent;"Get expert advice"
+;;PDPSearchContactComponent;"0800 731 500"
+
+UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
+;;mapBackgroundComponent;find-dealer-bg
+;;tmBackgroundComponent;tm-bg
+
+####### components for gallagherpdpsearchdealercomponent end########
+
+######User dropdown in header######
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
+;;RegisterAProductLink;"Register a Product"
+;;MyRegisteredProductLink;"My Registered Products"
+;;AccountManagementLink;"Account Management"
+;;LogoutLink;"Log Out"
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;EditProfileLink;Edit Profile
+;;PreferencesLink;Preferences
+;;UpdatePasswordLink;Update Password
+;;OrderHistoryLink;Order History
+
 INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=$lang]
 ;;registerProductSubHeading;"If you are from Europe please go to <a href='http://www.gallagher.eu' target='_blank'>www.gallagher.eu</a> to register your product and obtain your energizer warranty extension"
 ;;registerProductPopupSubHeading;"If these details do not match your product, please contact the Customer services Team Email: <a href='mailto:sales.nz@am.gallagher' target='_blank'>sales.nz@am.gallagher</a> | Telephone number: 0800 731 500"
+
+
+#Guest CheckOut page######
+
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=en];
+;;guestLoginProductSubHeading;abcd;
