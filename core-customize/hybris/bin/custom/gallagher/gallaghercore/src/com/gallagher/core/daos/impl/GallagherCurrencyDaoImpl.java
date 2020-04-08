@@ -29,7 +29,7 @@ public class GallagherCurrencyDaoImpl implements GallagherCurrencyDao
 	 * {@inheritDoc}
 	 */
 	@Override
-	public CurrencyModel getCurrencyByIsoCode(final String isoCode)
+	public CurrencyModel getCurrencyByCountryIsoCode(final String isoCode)
 	{
 		final StringBuilder queryBuilder = new StringBuilder();
 		queryBuilder.append("SELECT {").append(CurrencyModel.PK);
@@ -45,7 +45,7 @@ public class GallagherCurrencyDaoImpl implements GallagherCurrencyDao
 
 		final SearchResult<CurrencyModel> searchResult = flexibleSearchService.search(fQuery);
 
-		return searchResult.getResult().get(0);
+		return searchResult.getResult().size() > 0 ? searchResult.getResult().get(0) : null;
 	}
 
 }
