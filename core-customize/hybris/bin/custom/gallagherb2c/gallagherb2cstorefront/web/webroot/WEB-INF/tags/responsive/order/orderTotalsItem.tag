@@ -10,10 +10,10 @@
 
 <div class="orderTotal">
     <div class="row">
-        <div class="col-xs-6">
+        <div class="col-7">
             <spring:theme code="text.account.order.subtotal"/>
         </div>
-        <div class="col-xs-6">
+        <div class="col-5">
             <div class="text-right">
                 <ycommerce:testId code="orderTotal_subTotal_label">
                     <format:price priceData="${order.subTotal}"/>
@@ -44,10 +44,10 @@
                 </ycommerce:testId>
             </div>
         </c:if>
-        <div class="col-xs-6">
+        <div class="col-5">
             <spring:theme code="text.account.order.shipping"/>
         </div>
-        <div class="col-xs-6">
+        <div class="col-7">
             <div class="text-right">
                 <ycommerce:testId code="orderTotal_devlieryCost_label">
                     <format:price priceData="${order.deliveryCost}" displayFreeForZero="true"/>
@@ -66,7 +66,7 @@
             </div>
         </c:if>
 
-        <div class="col-xs-6">
+        <div class="col-7">
             <div class="totals">
                 <spring:theme code="text.account.order.orderTotals"/>
             </div>
@@ -81,7 +81,7 @@
                 </div>
             </c:when>
             <c:otherwise>
-                <div class="col-xs-6 text-right">
+                <div class="col-5 text-right">
                     <div class="totals">
                         <ycommerce:testId code="orderTotal_totalPrice_label">
                             <format:price priceData="${order.totalPrice}"/>

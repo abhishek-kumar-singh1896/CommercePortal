@@ -1,0 +1,148 @@
+.profile-container {
+  max-width: 767px;
+  width: 100%;
+  margin: 0;
+}
+
+label {
+  &.control-label {
+    color: $gray-7;
+  }
+}
+
+.account-section .account-section-content .consent-management-list__item {
+  border-radius: 6px;
+  border: 1px solid $gray-4;
+}
+
+.account-section .account-section-content .consent-management-list__label {
+  color: inherit;
+  font-weight: bold;
+}
+
+.order-detail-overview {
+  padding: 20px 30px;
+  background-color: $white;
+  border-top: 1px solid $gray-2;
+
+  .item-label {
+    font-weight: 500;
+    text-transform: inherit;
+  }
+
+  .item-value {
+    font-weight: bold;
+  }
+}
+
+.well {
+  &.well-quinary {
+    background-color: $white;
+    border: 1px solid $gray-2;
+    margin-bottom: 30px;
+
+    .well-headline {
+      background: $gray-2;
+      color: inherit;
+      border-bottom: none;
+    }
+  }
+}
+
+.account-section .account-section-content .account-section-header {
+  color: inherit;
+  border-bottom: none;
+}
+
+.account-section .account-section-content form {
+  padding: 0;
+}
+
+.back-link {
+  a {
+    color: $gray-9;
+  }
+
+  .label {
+    color: inherit;
+  }
+}
+
+.account-orderdetail {
+  .account-orderdetail__footer {
+    padding-top: 0;
+  }
+}
+
+table {
+  &.orderhistory-list-table {
+    th {
+      background-color: $gray-9;
+      font-weight: 500;
+      font-size: inherit;
+    }
+  }
+}
+
+.responsive-table-item {
+  a {
+    &.responsive-table-link {
+      color: $terciary;
+      text-decoration: none;
+
+      &:hover,
+      &:active,
+      &:focus,
+      &:visited {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .profile-container {
+    padding: 0;
+  }
+  .account-section .account-section-content .consent-management-list__item {
+    border: 1px solid $gray-4;
+    margin: 0;
+  }
+
+  .item__list .item__quantity__total {
+    clear: inherit;
+    float: none;
+    width: auto;
+    padding-right: 20px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .profile-container {
+    padding: 0;
+  }
+  .account-section .account-section-content .consent-management-list__item {
+    border: 1px solid $gray-4;
+    margin: 0;
+  }
+
+  .orderhistory-list-table {
+    .responsive-table-item {
+      display: block;
+      td {
+        width: 40%;
+        display: inline-block;
+        padding: 3px 10px;
+
+        &:last-child {
+          text-align: left;
+          font-weight: bold;
+        }
+
+        &.responsive-table-cell {
+          width: 55%;
+        }
+      }
+    }
+  }
+}
