@@ -3,6 +3,7 @@
  */
 package com.gallagher.b2c.controllers.pages;
 
+import de.hybris.platform.acceleratorstorefrontcommons.annotations.RequireHardLogIn;
 import de.hybris.platform.acceleratorstorefrontcommons.breadcrumb.Breadcrumb;
 import de.hybris.platform.acceleratorstorefrontcommons.breadcrumb.impl.ContentPageBreadcrumbBuilder;
 import de.hybris.platform.acceleratorstorefrontcommons.constants.WebConstants;
@@ -33,6 +34,7 @@ import javax.annotation.Resource;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.log4j.Logger;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -52,6 +54,7 @@ import com.gallagher.b2c.util.GallagherProductRegistrationUtil;
 import com.gallagher.b2c.validators.RegisterProductValidator;
 import com.gallagher.facades.GallagherRegisteredProductsFacade;
 import com.gallagher.outboundservices.request.dto.RegisterProductRequest;
+import com.hybris.charon.exp.InternalServerException;
 
 
 /**
@@ -66,6 +69,8 @@ public class RegisterProductController extends AbstractPageController
 	private static final Logger LOG = Logger.getLogger(RegisterProductController.class);
 
 	private static final String REG_PRODUCTS_PAGE = "regProducts";
+
+	private static final String IMPORT_FILE_MAX_SIZE_BYTES_KEY = "import.product.receipt.max.file.size.bytes";
 
 	@Resource(name = "userService")
 	private UserService userService;
@@ -88,6 +93,7 @@ public class RegisterProductController extends AbstractPageController
 	String imageUrl;
 
 	@RequestMapping(value = "/products", method = RequestMethod.GET)
+	@RequireHardLogIn
 	public String registeredProductsByUser(final Model model) throws CMSItemNotFoundException
 	{
 		final ContentPageModel regProductsPage = getContentPageForLabelOrId(REG_PRODUCTS_PAGE);
@@ -95,12 +101,9 @@ public class RegisterProductController extends AbstractPageController
 		setUpMetaDataForContentPage(model, regProductsPage);
 		model.addAttribute("registeredProducts", gallagherRegisteredProductsFacade.getRegisteredProducts());
 		model.addAttribute(WebConstants.BREADCRUMBS_KEY, contentPageBreadcrumbBuilder.getBreadcrumbs(regProductsPage));
+
 		//below attribute is for mocking purpose only. will be removed after GET call from C4C is used.
-		//		if (productService.getProductForCode("solar-fence-energizer-s10") != null)
-		//		{
-		//			model.addAttribute("imageUrl",
-		//					productService.getProductForCode("solar-fence-energizer-s10").getGalleryImages().get(0).getMaster().getURL());
-		//		}
+
 		final ProductData productData = productFacade.getProductForCodeAndOptions("solar-fence-energizer-s10",
 				Arrays.asList(ProductOption.BASIC));
 		final Collection<ImageData> images = productData.getImages();
@@ -121,6 +124,7 @@ public class RegisterProductController extends AbstractPageController
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
+	@RequireHardLogIn
 	public String doRegisterProduct(final Model model) throws CMSItemNotFoundException
 	{
 		return getProductRegistrationPage(model);
@@ -138,7 +142,8 @@ public class RegisterProductController extends AbstractPageController
 				.sorted((e1, e2) -> e1.getName().compareTo(e2.getName())).collect(Collectors.toList());
 
 		model.addAttribute("Countries", countries);
-
+		final long fileSie = getSiteConfigService().getLong(IMPORT_FILE_MAX_SIZE_BYTES_KEY, 0);
+		model.addAttribute("fileMaxSize", fileSie == 0 ? 0 : (fileSie / 1024) / 1024);
 
 		model.addAttribute(new RegisterProductForm());
 		return getView();
@@ -211,6 +216,7 @@ public class RegisterProductController extends AbstractPageController
 	 * @throws CMSItemNotFoundException
 	 */
 	@RequestMapping(method = RequestMethod.POST, value = "/submit")
+	@RequireHardLogIn
 	public String submitRegisterProduct(@ModelAttribute
 	final RegisterProductForm registerProductForm1, final Model model, final RedirectAttributes redirectAttributes)
 			throws CMSItemNotFoundException
@@ -221,29 +227,45 @@ public class RegisterProductController extends AbstractPageController
 		final RegisterProductForm rg = new RegisterProductForm();
 		try
 		{
-			//gallagherRegisteredProductsFacade.registerProduct(request);
+			final HttpStatus status = gallagherRegisteredProductsFacade.registerProduct(request);
+
+			if (HttpStatus.CREATED.equals(status))
+			{
+				GlobalMessages.addConfMessage(model, "registerProduct.confirmation.message.title");
+			}
+			else
+			{
+				populateForm(registerProductForm1, rg);
+				GlobalMessages.addMessage(model, GlobalMessages.ERROR_MESSAGES_HOLDER, "registerProduct.error.message.title", null);
+			}
 		}
-		catch (final UnknownIdentifierException e)
+		catch (final UnknownIdentifierException | InternalServerException exception)
 		{
-			rg.setAddressLine1(registerProductForm1.getAddressLine1());
-			rg.setAddressLine2(registerProductForm1.getAddressLine2());
-			rg.setCountry(registerProductForm1.getCountry());
-			rg.setDatePurchased(registerProductForm1.getDatePurchased());
-			rg.setPhoneNumber(registerProductForm1.getPhoneNumber());
-			rg.setPostCode(registerProductForm1.getProductSku());
-			rg.setSerialNumber(registerProductForm1.getSerialNumber());
-			rg.setProductSku(registerProductForm1.getProductSku());
-			rg.setTownCity(registerProductForm1.getTownCity());
-			rg.setRegion(registerProductForm1.getRegion());
-			model.addAttribute(rg);
+			populateForm(registerProductForm1, rg);
 			GlobalMessages.addMessage(model, GlobalMessages.ERROR_MESSAGES_HOLDER, "registerProduct.error.message.title", null);
-			return page;
 		}
 		model.addAttribute(rg);
-		GlobalMessages.addConfMessage(model, "registerProduct.confirmation.message.title");
 		return page;
 	}
 
+
+	/**
+	 * @param registerProductForm1
+	 * @param rg
+	 */
+	private void populateForm(final RegisterProductForm registerProductForm1, final RegisterProductForm rg)
+	{
+		rg.setAddressLine1(registerProductForm1.getAddressLine1());
+		rg.setAddressLine2(registerProductForm1.getAddressLine2());
+		rg.setCountry(registerProductForm1.getCountry());
+		rg.setDatePurchased(registerProductForm1.getDatePurchased());
+		rg.setPhoneNumber(registerProductForm1.getPhoneNumber());
+		rg.setPostCode(registerProductForm1.getProductSku());
+		rg.setSerialNumber(registerProductForm1.getSerialNumber());
+		rg.setProductSku(registerProductForm1.getProductSku());
+		rg.setTownCity(registerProductForm1.getTownCity());
+		rg.setRegion(registerProductForm1.getRegion());
+	}
 
 	protected void populateFieldErrors(final RPFormResponseData jsonResponse, final List<FieldError> fieldErrors)
 	{

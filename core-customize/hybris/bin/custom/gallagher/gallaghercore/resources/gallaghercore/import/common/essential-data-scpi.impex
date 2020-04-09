@@ -44,7 +44,7 @@ $contactCollectionVersion = v=1
 #****************************#       
 #*** Register Product URL ***#       
 #****************************#       
-$registerProductUrl = https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com/gw/odata/SAP/GGL_C4C_ODATAAPI
+$registerProductUrl = https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com/gw/odata/SAP/GGL_C4C_POSTCUSTOMERPRODUCT
 $registerProductVersion = v=1        
                                      
 #*****************************************#
@@ -81,7 +81,7 @@ INSERT_UPDATE ConsumedDestination ; id[unique = true]                          ;
                                   ; scpiOrderDestination                       ; "$orderUrl;$orderVersion/SAPCpiOutboundOrders"                                          ; scpiOrderEndpoint:unknown                       ; scpiOauthCredential ; "csrfURL->$orderUrl;$orderVersion/"                                             ;                                                        
                                   ; scpiOrderCancellationDestination           ; "$cancelOrderUrl;$cancelOrderVersion/SAPCpiOutboundOrderCancellations"                  ; scpiOrderCancellationEndpoint:unknown           ; scpiOauthCredential ; "csrfURL->$cancelOrderUrl;$cancelOrderVersion/"                                 ;                                                        
                                   ; scpiContactCollectionDestination           ; "$contactCollectionUrl;$contactCollectionVersion/ContactCollection"                     ; scpiContactCollectionEndpoint:unknown           ; scpiOauthCredential ; "csrfURL->$contactCollectionUrl;$contactCollectionVersion/"                     ;                                                        
-                                  ; scpiRegisterProductDestination             ; "$registerProductUrl;$registerProductVersion/ContactCollection"                         ; scpiRegisterProductEndpoint:unknown             ; scpiOauthCredential ; "csrfURL->$registerProductUrl;$registerProductVersion/"                         ;                                                        
+                                  ; scpiRegisterProductDestination             ; "$registerProductUrl;$registerProductVersion/RegisteredProductCollection"               ; scpiRegisterProductEndpoint:unknown             ; scpiOauthCredential ; "csrfURL->$registerProductUrl;$registerProductVersion/"                         ;                                                        
                                   ; scpiRegisteredProductCollectionDestination ; "$registeredProductCollectionUrl;$registeredProductCollectionVersion/ContactCollection" ; scpiRegisteredProductCollectionEndpoint:unknown ; scpiOauthCredential ; "csrfURL->$registeredProductCollectionUrl;$registeredProductCollectionVersion/" ;                                                        
                                   
 INSERT_UPDATE IflowConfiguration ; iflowKey[unique=true]              ; iflowUrl                                                           
