@@ -197,7 +197,7 @@
 							class="form-control js-example-basic-single">
 							<form:option value="0"><spring:theme code="registerProduct.selectCountry.title"/></form:option>
 							<c:forEach items="${Countries}" var="country" varStatus="status">
-								<form:option value="1">${country.name}</form:option>
+								<form:option value="${country.isocode}">${country.name}</form:option>
 							</c:forEach>
 						</form:select>
 						<div class="error-label">

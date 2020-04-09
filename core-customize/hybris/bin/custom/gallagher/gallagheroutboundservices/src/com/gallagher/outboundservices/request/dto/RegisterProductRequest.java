@@ -24,6 +24,32 @@ public class RegisterProductRequest
 	@JsonProperty("SerialID")
 	private String serialID;
 
+	@JsonProperty("ReferenceDate")
+	private String referenceDate;
+
+	@JsonProperty("AddressLine1")
+	private String addressLine1;
+
+	@JsonProperty("AddressLine2")
+	private String addressLine2;
+
+	@JsonProperty("District")
+	private String district;
+
+	@JsonProperty("City")
+	private String city;
+
+	@JsonProperty("PostalCode")
+	private String postalCode;
+
+	@JsonProperty("Country")
+	private String country;
+
+	/*
+	 * @JsonProperty("PhoneNumber") private String phoneNumber;
+	 */
+
+
 	@JsonProperty("RegisteredProductPartyInformation")
 	private List<RegisteredProductPartyInformation> registeredProductPartyInformation;
 
@@ -59,6 +85,82 @@ public class RegisterProductRequest
 	{
 		this.serialID = serialID;
 	}
+
+	public String getReferenceDate()
+	{
+		return referenceDate;
+	}
+
+	public void setReferenceDate(final String referenceDate)
+	{
+		this.referenceDate = referenceDate;
+	}
+
+	public String getAddressLine1()
+	{
+		return addressLine1;
+	}
+
+	public void setAddressLine1(final String addressLine1)
+	{
+		this.addressLine1 = addressLine1;
+	}
+
+	public String getAddressLine2()
+	{
+		return addressLine2;
+	}
+
+	public void setAddressLine2(final String addressLine2)
+	{
+		this.addressLine2 = addressLine2;
+	}
+
+	public String getDistrict()
+	{
+		return district;
+	}
+
+	public void setDistrict(final String district)
+	{
+		this.district = district;
+	}
+
+	public String getCity()
+	{
+		return city;
+	}
+
+	public void setCity(final String city)
+	{
+		this.city = city;
+	}
+
+	public String getPostalCode()
+	{
+		return postalCode;
+	}
+
+	public void setPostalCode(final String postalCode)
+	{
+		this.postalCode = postalCode;
+	}
+
+	public String getCountry()
+	{
+		return country;
+	}
+
+	public void setCountry(final String country)
+	{
+		this.country = country;
+	}
+
+	/*
+	 * public String getPhoneNumber() { return phoneNumber; }
+	 *
+	 * public void setPhoneNumber(final String phoneNumber) { this.phoneNumber = phoneNumber; }
+	 */
 
 	public List<RegisteredProductPartyInformation> getRegisteredProductPartyInformation()
 	{

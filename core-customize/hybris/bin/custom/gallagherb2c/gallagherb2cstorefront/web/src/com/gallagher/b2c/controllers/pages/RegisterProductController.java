@@ -54,6 +54,7 @@ import com.gallagher.b2c.util.GallagherProductRegistrationUtil;
 import com.gallagher.b2c.validators.RegisterProductValidator;
 import com.gallagher.facades.GallagherRegisteredProductsFacade;
 import com.gallagher.outboundservices.request.dto.RegisterProductRequest;
+import com.hybris.charon.exp.InternalServerException;
 
 
 /**
@@ -100,12 +101,9 @@ public class RegisterProductController extends AbstractPageController
 		setUpMetaDataForContentPage(model, regProductsPage);
 		model.addAttribute("registeredProducts", gallagherRegisteredProductsFacade.getRegisteredProducts());
 		model.addAttribute(WebConstants.BREADCRUMBS_KEY, contentPageBreadcrumbBuilder.getBreadcrumbs(regProductsPage));
+
 		//below attribute is for mocking purpose only. will be removed after GET call from C4C is used.
-		//		if (productService.getProductForCode("solar-fence-energizer-s10") != null)
-		//		{
-		//			model.addAttribute("imageUrl",
-		//					productService.getProductForCode("solar-fence-energizer-s10").getGalleryImages().get(0).getMaster().getURL());
-		//		}
+
 		final ProductData productData = productFacade.getProductForCodeAndOptions("solar-fence-energizer-s10",
 				Arrays.asList(ProductOption.BASIC));
 		final Collection<ImageData> images = productData.getImages();
@@ -230,28 +228,44 @@ public class RegisterProductController extends AbstractPageController
 		try
 		{
 			final HttpStatus status = gallagherRegisteredProductsFacade.registerProduct(request);
+
+			if (HttpStatus.CREATED.equals(status))
+			{
+				GlobalMessages.addConfMessage(model, "registerProduct.confirmation.message.title");
+			}
+			else
+			{
+				populateForm(registerProductForm1, rg);
+				GlobalMessages.addMessage(model, GlobalMessages.ERROR_MESSAGES_HOLDER, "registerProduct.error.message.title", null);
+			}
 		}
-		catch (final UnknownIdentifierException e)
+		catch (final UnknownIdentifierException | InternalServerException exception)
 		{
-			rg.setAddressLine1(registerProductForm1.getAddressLine1());
-			rg.setAddressLine2(registerProductForm1.getAddressLine2());
-			rg.setCountry(registerProductForm1.getCountry());
-			rg.setDatePurchased(registerProductForm1.getDatePurchased());
-			rg.setPhoneNumber(registerProductForm1.getPhoneNumber());
-			rg.setPostCode(registerProductForm1.getProductSku());
-			rg.setSerialNumber(registerProductForm1.getSerialNumber());
-			rg.setProductSku(registerProductForm1.getProductSku());
-			rg.setTownCity(registerProductForm1.getTownCity());
-			rg.setRegion(registerProductForm1.getRegion());
-			model.addAttribute(rg);
+			populateForm(registerProductForm1, rg);
 			GlobalMessages.addMessage(model, GlobalMessages.ERROR_MESSAGES_HOLDER, "registerProduct.error.message.title", null);
-			return page;
 		}
 		model.addAttribute(rg);
-		GlobalMessages.addConfMessage(model, "registerProduct.confirmation.message.title");
 		return page;
 	}
 
+
+	/**
+	 * @param registerProductForm1
+	 * @param rg
+	 */
+	private void populateForm(final RegisterProductForm registerProductForm1, final RegisterProductForm rg)
+	{
+		rg.setAddressLine1(registerProductForm1.getAddressLine1());
+		rg.setAddressLine2(registerProductForm1.getAddressLine2());
+		rg.setCountry(registerProductForm1.getCountry());
+		rg.setDatePurchased(registerProductForm1.getDatePurchased());
+		rg.setPhoneNumber(registerProductForm1.getPhoneNumber());
+		rg.setPostCode(registerProductForm1.getProductSku());
+		rg.setSerialNumber(registerProductForm1.getSerialNumber());
+		rg.setProductSku(registerProductForm1.getProductSku());
+		rg.setTownCity(registerProductForm1.getTownCity());
+		rg.setRegion(registerProductForm1.getRegion());
+	}
 
 	protected void populateFieldErrors(final RPFormResponseData jsonResponse, final List<FieldError> fieldErrors)
 	{
