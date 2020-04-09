@@ -58,13 +58,13 @@
             </c:choose>
 
             <ycommerce:testId code="checkoutLinkInPopup">
-                <a href="${fn:escapeXml(cartUrl)}" class="btn btn-primary btn-block add-to-cart-button">
+                <a href="${fn:escapeXml(continueUrl)}" class="btn btn-primary btn-block add-to-cart-button js-continue-shopping-button">
 	                <c:choose>
 		                <c:when test="${isQuote}">
 		                	<spring:theme code="quote.view" />
 	                    </c:when>
 	                    <c:otherwise>
-	                        <spring:theme code="checkout.checkout" />
+	                        <spring:theme code="checkout.checkout.contineshopping" />
 	                    </c:otherwise>
                 	</c:choose>
                 </a>
