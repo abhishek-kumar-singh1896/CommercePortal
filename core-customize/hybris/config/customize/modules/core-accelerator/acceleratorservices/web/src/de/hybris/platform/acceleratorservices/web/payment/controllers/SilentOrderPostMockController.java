@@ -140,6 +140,8 @@ public class SilentOrderPostMockController
 			final String endPortion = form.getCard_accountNumber().trim().substring(form.getCard_accountNumber().length() - 4);
 			final String maskedCardNumber = "************" + endPortion;
 
+			/*** CUSTOMIZED CODE ***/
+			//params.put("card_accountNumber", maskedCardNumber);
 			params.put("card_accountNumber", form.getCard_accountNumber());
 		}
 

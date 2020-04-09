@@ -182,6 +182,7 @@ public class SopPaymentDetailsForm
 		this.billTo_street2 = billTo_street2;
 	}
 
+	/** CUSTOMIZED code **/
 	@NotNull(message = "{payment.cardNumber.invalid}")
 	//@Size(min = 16, max = 16, message = "{payment.cardNumber.invalid}")
 	//@Pattern(regexp = "(^$|^?\\d*$)", message = "{payment.cardNumber.invalid}")
