@@ -135,3 +135,14 @@ INSERT_UPDATE IntegrationObjectItemAttribute ; integrationObjectItem(integration
                                              ; OutboundC4cCustomer:Address                                         ; owner                        ; Address:owner                                       ; OutboundC4cCustomer:Customer                               ;                         ;                             
                                              ; OutboundC4cCustomer:Country                                         ; owner                        ; Country:owner                                       ; OutboundC4cCustomer:Customer                               ;                         ;                             
 ##########################################################################
+INSERT_UPDATE SapSystemType ; code[unique=true] 
+                            ; SAPDEV            
+INSERT_UPDATE SAPLogicalSystem ; sapLogicalSystemName[unique=true] ; sapSystemType(code) ; senderName ; senderPort ; defaultLogicalSystem ; sapHTTPDestination 
+                               ; DEVCLNT212                        ; SAPDEV              ; CPIDEV     ; SAPSXP     ; true                 
+                               
+INSERT_UPDATE SAPGlobalConfiguration ; replicateregistereduser ; core_name[unique=true] ; sapLogicalSystemGlobalConfig  (sapLogicalSystemName) 
+                                     ; true                    ; GLOBAL                 ; DEVCLNT212                                           
+                                     
+INSERT_UPDATE SAPConfiguration ; core_name[unique=true] ; baseStores(uid) ; sapcommon_referenceCustomer ; sapcommon_transactionType ; sapcommon_salesOrganization ; sapcommon_distributionChannel ; sapcommon_division ; replicateregisteredb2buser ; saporderexchange_itemPriceConditionType ; saporderexchange_paymentCostConditionType ; saporderexchange_deliveryCostConditionType 
+                               ; amB2CUS                ; amB2CUS          ; 83070                       ; ZECM                      ; GUS                         ; US                            ; AG                 ; false                      ; PR00                                    ;                                           ; 14                                         
+                               ; amB2CCA                ; amB2CCA          ; 83136                       ; ZECM                      ; GCA                         ; CA                            ; AG                 ; false                      ; PR00                                    ;                                           ; 12                                         
