@@ -7,37 +7,42 @@
 <%@ taglib prefix="breadcrumb"
 	tagdir="/WEB-INF/tags/responsive/nav/breadcrumb"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec"	uri="http://www.springframework.org/security/tags"%>
 
-<template:page pageTitle="${pageTitle}">
+<sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
 
-	<div class="registered-products-out">
-
-		<div class="container">
-
-			<div class="row">
-				<div class="col-12">
-					<div class="breadcrumb-out">
-						<nav aria-label="breadcrumb">
-							<breadcrumb:breadcrumb breadcrumbs="${breadcrumbs}" />
-						</nav>
+	<template:page pageTitle="${pageTitle}">
+	
+		<div class="registered-products-out">
+	
+			<div class="container">
+	
+				<div class="row">
+					<div class="col-12">
+						<div class="breadcrumb-out">
+							<nav aria-label="breadcrumb">
+								<breadcrumb:breadcrumb breadcrumbs="${breadcrumbs}" />
+							</nav>
+						</div>
 					</div>
 				</div>
+	
+				<h1 class="primary-title">
+					<spring:theme code="registeredProducts.header" />
+				</h1>
+	
+				<div class="registered-product-listing">
+					<ul>
+						<c:forEach items="${registeredProducts}" var="product"
+							varStatus="status">
+							<product:registeredProducts product="${product}" />
+						</c:forEach>
+					</ul>
+				</div>
+	
 			</div>
-
-			<h1 class="primary-title">
-				<spring:theme code="registeredProducts.header" />
-			</h1>
-
-			<div class="registered-product-listing">
-				<ul>
-					<c:forEach items="${registeredProducts}" var="product"
-						varStatus="status">
-						<product:registeredProducts product="${product}" />
-					</c:forEach>
-				</ul>
-			</div>
-
 		</div>
-	</div>
+	
+	</template:page>
 
-</template:page>
+</sec:authorize>
