@@ -1846,7 +1846,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;SendMessageLink;Send Message Link;http://www.google.com/;;;
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];name;$contentCV[unique=true];children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
-;CallUs_Nav;Call Us Nav;;;"Our customer services team are hete to help.";CallUs_Nav
+;CallUs_Nav;Call Us Nav;;;"Our customer services team are here to help.";CallUs_Nav
 ;FindStore_Nav;Find Store Nav;;;"Our dealers are located nationwide.";FindStore_Nav
 ;FindManager_Nav;Find Manager Monitoring Nav;;;"If you are looking for one-on-one system selection advice and training.";FindManager_Nav
 ;SendMessage_Nav;Send Message Nav;;;"Have an enquiry or feedback? Contact us and we will get back to you";SendMessage_Nav
@@ -1858,7 +1858,7 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];name;$contentCV[unique=true];n
 ;SendMessage_NavEntry;Send Message Nav Entry;;SendMessage_Nav;SendMessageLink
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];name;$contentCV[unique=true];children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
-;CallUsSupport_Nav;Call Us support Nav;;;"Our customer services team are hete to help.";CallUsSupport_Nav
+;CallUsSupport_Nav;Call Us support Nav;;;"Our customer services team are here to help.";CallUsSupport_Nav
 ;SupportMaterial_Nav;Support Material Nav;;;"Search through our user manuals, guides and how-tos, brochures and videos.";SupportMaterial_Nav
 ;TechnicalSupport_Nav;Technical Support Nav;;;"We provide technical help and support for Gallagher Weighing and EID hardware and software products";TechnicalSupport_Nav
 ;SoftwareDownloads_Nav;Software Downloads Nav;;;"Download the latest software for your Weighing and EID products";SoftwareDownloads_Nav
@@ -2194,9 +2194,13 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;AccountManagementLink;Account Management Link;/my-account/update-profile;;;;
 ;;EditProfileLink;Edit Profile Link;https://www.google.com/;;;;
 ;;UpdatePasswordLink;Update Password Link;https://www.google.com/;;;;
-;;OrderHistoryLink;Order History Link;https://www.google.com/;;;;
+;;OrderHistoryLink;Order History Link;/my-account/orders;;;;
 ;;PreferencesLink;Preferences Link;https://www.google.com/;;;;
 ;;LogoutLink;Logout Us Link;/logout;;;;
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV)	   ;onlyOneRestrictionMustApply
+							  			;						  		;OrderHistoryLink;GallagherSiteTransactionRestriction;false
+
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);children(uid,$contentCV)[mode=replace];links(uid, $contentCV);&nodeRef;title[lang=en]
 ;RegisterAProductNavNode;; Register a Product Navigation Node Menu;UserDropDownNavigationNode;;;RegisterAProductNavNode;"Register a Product"     
