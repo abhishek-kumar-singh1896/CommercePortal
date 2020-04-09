@@ -226,6 +226,24 @@
 														<cms:component component="${topLevelLink1.item}"
 															evaluateRestriction="true" />
 													</c:if>
+													<c:if
+														test="${topLevelLink1.item.uid == (regionCodeUpper).concat(languageUpper).concat('FindStoreLink')}">
+
+														<cms:component component="${topLevelLink1.item}"
+															evaluateRestriction="true" />
+													</c:if>
+													<c:if
+														test="${topLevelLink1.item.uid == (regionCodeUpper).concat(languageUpper).concat('FindManagerLink')}">
+
+														<cms:component component="${topLevelLink1.item}"
+															evaluateRestriction="true" />
+													</c:if>
+													<c:if
+														test="${topLevelLink1.item.uid == (regionCodeUpper).concat(languageUpper).concat('SendMessageLink')}">
+
+														<cms:component component="${topLevelLink1.item}"
+															evaluateRestriction="true" />
+													</c:if>
 
 													<%--  <cms:component component="${topLevelLink1.item}" evaluateRestriction="true" /> --%>
 													<span class="arrow-right-icon"> <svg>
@@ -236,7 +254,7 @@
 												</c:forEach>
 											</div>
 											<div class="contact-us-description">
-											 
+
 												${topLevelChild.title}</div>
 										</div>
 									</c:if>

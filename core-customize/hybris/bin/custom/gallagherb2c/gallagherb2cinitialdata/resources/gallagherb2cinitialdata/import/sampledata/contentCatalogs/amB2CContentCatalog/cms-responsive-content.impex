@@ -2191,12 +2191,14 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;c
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
 ;;RegisterAProductLink;Register a product Link;/register-product;;;;
 ;;MyRegisteredProductLink;My registered Product Link;/register-product/products;;;;
-;;AccountManagementLink;Account Management Link;/my-account/update-profile;;;;
-;;EditProfileLink;Edit Profile Link;https://www.google.com/;;;;
-;;UpdatePasswordLink;Update Password Link;https://www.google.com/;;;;
+;;EditProfileLink;Edit Profile Link;/my-account/update-profile;;;;
 ;;OrderHistoryLink;Order History Link;/my-account/orders;;;;
 ;;PreferencesLink;Preferences Link;https://www.google.com/;;;;
 ;;LogoutLink;Logout Us Link;/logout;;;;
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];$category;$product;
+;;UpdatePasswordLink;UpdatePasswordLink;$keycloakBaseURL$keycloakAuthURL$keycloakPasswordURL;UpdatePasswordLink;
+
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV)	   ;onlyOneRestrictionMustApply
 							  			;						  		;OrderHistoryLink;GallagherSiteTransactionRestriction;false
@@ -2205,7 +2207,6 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrict
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);children(uid,$contentCV)[mode=replace];links(uid, $contentCV);&nodeRef;title[lang=en]
 ;RegisterAProductNavNode;; Register a Product Navigation Node Menu;UserDropDownNavigationNode;;;RegisterAProductNavNode;"Register a Product"     
 ;MyRegisteredProductNavNode;;My Registered Product Navigation Node Menu;;;;MyRegisteredProductNavNode;"My Registered Product"
-;AccountNavNode;;Account Management Navigation Node Menu;UserDropDownNavigationNode;;;AccountNavNode;"Account Management"                                                                                                                                            ;                        ; AccountNavNode   ; "Account Management"
 ;EditProfileNavNode;;Edit Profile Navigation Node Menu;UserDropDownNavigationNode;;;EditProfileNavNode;"Edit profile"
 ;UpdatePasswordNavNode;;Update Password Navigation Node Menu;UserDropDownNavigationNode;;;UpdatePasswordNavNode;"Update password"
 ;OrderHistoryNavNode;;Order History Navigation Node;UserDropDownNavigationNode;;;OrderHistoryNavNode;"Order History"
@@ -2215,8 +2216,7 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;pa
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
 ;RegisterAProductNavNodeEntry;;Register a Product Navigation Node Entry;RegisterAProductNavNode;RegisterAProductLink;
-;MyRegisteredProductNavNodeEntry;;My Registered Product Navigation Node Entry;MyRegisteredProductNavNode;AccountManagementLink
-;AccountNavNodeEntry;;Account Management Navigation Node Entry;AccountNavNode;MyRegisteredProductLink
+;MyRegisteredProductNavNodeEntry;;My Registered Product Navigation Node Entry;MyRegisteredProductNavNode;MyRegisteredProductLink
 ;EditProfileNavNodeEntry;;Edit Profile Navigation Node Entry;EditProfileNavNode;EditProfileLink
 ;UpdatePasswordNavNodeEntry;;Update Password Navigation Node Entry;UpdatePasswordNavNode;UpdatePasswordLink
 ;OrderHistoryNavNodeEntry;;Order History Navigation Node Entry;OrderHistoryNavNode;OrderHistoryLink
