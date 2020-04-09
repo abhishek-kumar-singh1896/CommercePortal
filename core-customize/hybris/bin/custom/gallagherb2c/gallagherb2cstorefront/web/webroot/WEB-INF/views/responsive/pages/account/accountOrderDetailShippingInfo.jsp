@@ -6,7 +6,7 @@
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
-<div class="account-orderdetail well well-tertiary">
+<div class="account-orderdetail well well-quinary well-xs">
     <div class="well-headline">
         <spring:theme code="text.account.order.orderDetails.billingInformtion" />
     </div>
