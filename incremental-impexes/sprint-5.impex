@@ -447,4 +447,17 @@ INSERT_UPDATE PointOfService ; name[unique=true] ;  basestore(uid)
                              ; ELEC           ; $storeUidNZ
 							 ; AUME           ; $storeUidAU
 						 
-#####################################################################							 
+#####################################################################
+
+######## spelling mistake in header menu ##########
+$contentCatalog=amB2CContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];name;$contentCV[unique=true];children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
+;CallUs_Nav;Call Us Nav;;;"Our customer services team are here to help.";CallUs_Nav
+;CallUsSupport_Nav;Call Us support Nav;;;"Our customer services team are here to help.";CallUsSupport_Nav
+
+######################################################################
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV)	   ;onlyOneRestrictionMustApply;url
+							  ;						  ;OrderHistoryLink;GallagherSiteTransactionRestriction;false					   ;/my-account/orders
+							 
