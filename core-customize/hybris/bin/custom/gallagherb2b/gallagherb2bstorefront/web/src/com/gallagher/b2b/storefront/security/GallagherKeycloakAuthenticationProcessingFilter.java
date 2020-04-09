@@ -3,6 +3,7 @@
  */
 package com.gallagher.b2b.storefront.security;
 
+import de.hybris.platform.cms2.servicelayer.services.admin.CMSAdminSiteService;
 import de.hybris.platform.servicelayer.user.UserService;
 
 import java.io.IOException;
@@ -81,6 +82,7 @@ public class GallagherKeycloakAuthenticationProcessingFilter extends AbstractAut
 	private AdapterTokenStoreFactory adapterTokenStoreFactory = new SpringSecurityAdapterTokenStoreFactory();
 	private final AuthenticationManager authenticationManager;
 	private final UserService userService;
+	private final CMSAdminSiteService cmsAdminSiteService;
 	private RequestAuthenticatorFactory requestAuthenticatorFactory = new SpringSecurityRequestAuthenticatorFactory();
 
 	/**
@@ -92,9 +94,9 @@ public class GallagherKeycloakAuthenticationProcessingFilter extends AbstractAut
 	 * @see GallagherKeycloakAuthenticationProcessingFilter#DEFAULT_REQUEST_MATCHER
 	 */
 	public GallagherKeycloakAuthenticationProcessingFilter(final AuthenticationManager authenticationManager,
-			final UserService userService)
+			final UserService userService, final CMSAdminSiteService cmsAdminSiteService)
 	{
-		this(authenticationManager, DEFAULT_REQUEST_MATCHER, userService);
+		this(authenticationManager, DEFAULT_REQUEST_MATCHER, userService, cmsAdminSiteService);
 	}
 
 	/**
@@ -115,18 +117,20 @@ public class GallagherKeycloakAuthenticationProcessingFilter extends AbstractAut
 	 *
 	 */
 	public GallagherKeycloakAuthenticationProcessingFilter(final AuthenticationManager authenticationManager,
-			final RequestMatcher requiresAuthenticationRequestMatcher, final UserService userService)
+			final RequestMatcher requiresAuthenticationRequestMatcher, final UserService userService,
+			final CMSAdminSiteService cmsAdminSiteService)
 	{
 		super(requiresAuthenticationRequestMatcher);
 		Assert.notNull(authenticationManager, "authenticationManager cannot be null");
 		this.authenticationManager = authenticationManager;
 		this.userService = userService;
+		this.cmsAdminSiteService = cmsAdminSiteService;
 		super.setAuthenticationManager(authenticationManager);
 		super.setAllowSessionCreation(false);
 		super.setContinueChainBeforeSuccessfulAuthentication(false);
 		setAuthenticationFailureHandler(new KeycloakAuthenticationFailureHandler());
-		setAuthenticationSuccessHandler(
-				new GallagherAuthenticationSuccessHandler(new SavedRequestAwareAuthenticationSuccessHandler(), userService));
+		setAuthenticationSuccessHandler(new GallagherAuthenticationSuccessHandler(
+				new SavedRequestAwareAuthenticationSuccessHandler(), userService, cmsAdminSiteService));
 	}
 
 	@Override

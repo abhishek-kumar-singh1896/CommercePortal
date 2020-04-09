@@ -4,8 +4,11 @@
 package com.gallagher.b2b.storefront.security;
 
 import de.hybris.platform.b2b.model.B2BCustomerModel;
+import de.hybris.platform.cms2.model.site.CMSSiteModel;
+import de.hybris.platform.cms2.servicelayer.services.admin.CMSAdminSiteService;
 import de.hybris.platform.core.model.user.AddressModel;
 import de.hybris.platform.core.model.user.UserModel;
+import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 import de.hybris.platform.servicelayer.user.UserService;
 
 import java.io.IOException;
@@ -16,7 +19,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.keycloak.adapters.springsecurity.authentication.KeycloakCookieBasedRedirect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,11 +39,14 @@ public class GallagherAuthenticationSuccessHandler implements AuthenticationSucc
 
 	private final AuthenticationSuccessHandler fallback;
 	private final UserService userService;
+	private final CMSAdminSiteService cmsAdminSiteService;
 
-	public GallagherAuthenticationSuccessHandler(final AuthenticationSuccessHandler fallback, final UserService userService)
+	public GallagherAuthenticationSuccessHandler(final AuthenticationSuccessHandler fallback, final UserService userService,
+			final CMSAdminSiteService cmsAdminSiteService)
 	{
 		this.fallback = fallback;
 		this.userService = userService;
+		this.cmsAdminSiteService = cmsAdminSiteService;
 	}
 
 	@Override
@@ -60,15 +65,16 @@ public class GallagherAuthenticationSuccessHandler implements AuthenticationSucc
 					if (null != address.getCountry())
 					{
 						final String regionCode = address.getCountry().getRegionCode().getCode();
-						final String requestURI = request.getRequestURI();
-
-						final String redirectPath = FARWORD_SLASH
-								+ StringUtils.substringBefore(StringUtils.substringAfter(requestURI, FARWORD_SLASH), FARWORD_SLASH)
-								+ FARWORD_SLASH + regionCode + FARWORD_SLASH
-								+ StringUtils.substringBefore(
-										StringUtils.substringAfter(StringUtils.substringAfter(
-												StringUtils.substringAfter(requestURI, FARWORD_SLASH), FARWORD_SLASH), FARWORD_SLASH),
-										FARWORD_SLASH);
+						String redirectPath;
+						try
+						{
+							final CMSSiteModel site = cmsAdminSiteService.getSiteForId("securityB2B" + regionCode.toUpperCase());
+							redirectPath = site.getRedirectURL();
+						}
+						catch (final UnknownIdentifierException exception)
+						{
+							redirectPath = "/security/global/en";
+						}
 
 						response.sendRedirect(redirectPath);
 						return;
