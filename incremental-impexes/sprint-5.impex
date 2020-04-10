@@ -447,4 +447,25 @@ INSERT_UPDATE PointOfService ; name[unique=true] ;  basestore(uid)
                              ; ELEC           ; $storeUidNZ
 							 ; AUME           ; $storeUidAU
 						 
-#####################################################################							 
+#####################################################################			
+
+#####consent management page #####
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='AccountPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;consent;;;wide
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid, $contentCV)
+;;consentSlot;consentManagementSubHeading
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='AccountPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2CNavBar-AccountPage;ggB2CNavBar;;ggB2CNavBarSlot;true
+;;ConsentSection-AccountPage;consent;;consentSlot;true
+
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+;;consentManagementSubHeading;consent Management SubHeading Paragraph Component;consentManagementSubHeading
+
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=$lang]
+;;consentManagementSubHeading;"To personalize your experience, we'd like your consent to receive your profile data:"
+
+
+#####consent management page #####	 
