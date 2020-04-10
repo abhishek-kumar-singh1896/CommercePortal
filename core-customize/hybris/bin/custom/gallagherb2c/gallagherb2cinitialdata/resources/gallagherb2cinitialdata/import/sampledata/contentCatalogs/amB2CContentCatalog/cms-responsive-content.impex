@@ -2193,17 +2193,22 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;c
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
 ;;RegisterAProductLink;Register a product Link;/register-product;;;;
 ;;MyRegisteredProductLink;My registered Product Link;/register-product/products;;;;
-;;AccountManagementLink;Account Management Link;/my-account/update-profile;;;;
-;;EditProfileLink;Edit Profile Link;https://www.google.com/;;;;
-;;UpdatePasswordLink;Update Password Link;https://www.google.com/;;;;
-;;OrderHistoryLink;Order History Link;https://www.google.com/;;;;
-;;PreferencesLink;Preferences Link;https://www.google.com/;;;;
+;;EditProfileLink;Edit Profile Link;/my-account/update-profile;;;;
+;;OrderHistoryLink;Order History Link;/my-account/update-profile;;;;
+;;PreferencesLink;Preferences Link;/my-account/consents;;;;
 ;;LogoutLink;Logout Us Link;/logout;;;;
+
+
+
+
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];$category;$product;
+;;UpdatePasswordLink;UpdatePasswordLink;$keycloakBaseURL$keycloakAuthURL$keycloakPasswordURL;UpdatePasswordLink;
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);children(uid,$contentCV)[mode=replace];links(uid, $contentCV);&nodeRef;title[lang=en]
 ;RegisterAProductNavNode;; Register a Product Navigation Node Menu;UserDropDownNavigationNode;;;RegisterAProductNavNode;"Register a Product"     
 ;MyRegisteredProductNavNode;;My Registered Product Navigation Node Menu;;;;MyRegisteredProductNavNode;"My Registered Product"
-;AccountNavNode;;Account Management Navigation Node Menu;UserDropDownNavigationNode;;;AccountNavNode;"Account Management"                                                                                                                                            ;                        ; AccountNavNode   ; "Account Management"
+
 ;EditProfileNavNode;;Edit Profile Navigation Node Menu;UserDropDownNavigationNode;;;EditProfileNavNode;"Edit profile"
 ;UpdatePasswordNavNode;;Update Password Navigation Node Menu;UserDropDownNavigationNode;;;UpdatePasswordNavNode;"Update password"
 ;OrderHistoryNavNode;;Order History Navigation Node;UserDropDownNavigationNode;;;OrderHistoryNavNode;"Order History"
@@ -2213,8 +2218,8 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;pa
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
 ;RegisterAProductNavNodeEntry;;Register a Product Navigation Node Entry;RegisterAProductNavNode;RegisterAProductLink;
-;MyRegisteredProductNavNodeEntry;;My Registered Product Navigation Node Entry;MyRegisteredProductNavNode;AccountManagementLink
-;AccountNavNodeEntry;;Account Management Navigation Node Entry;AccountNavNode;MyRegisteredProductLink
+;MyRegisteredProductNavNodeEntry;;My Registered Product Navigation Node Entry;MyRegisteredProductNavNode;MyRegisteredProductLink
+
 ;EditProfileNavNodeEntry;;Edit Profile Navigation Node Entry;EditProfileNavNode;EditProfileLink
 ;UpdatePasswordNavNodeEntry;;Update Password Navigation Node Entry;UpdatePasswordNavNode;UpdatePasswordLink
 ;OrderHistoryNavNodeEntry;;Order History Navigation Node Entry;OrderHistoryNavNode;OrderHistoryLink
@@ -2222,9 +2227,15 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 ;LogoutNavNodeEntry;;Logout Navigation Node Entry;LogoutNavNode;LogoutLink
 
 
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;EditProfileLink;Edit Profile
+;;PreferencesLink;Preferences
+;;UpdatePasswordLink;Update Password
+;;OrderHistoryLink;Order History
+
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef;children(uid, $contentCV)[mode=replace]
-;UserDropDownNavigationNode;;Header Link Navigation Node; root;; UserDropDownNavigationNode; RegisterAProductNavNode,MyRegisteredProductNavNode,AccountNavNode,EditProfileNavNode,UpdatePasswordNavNode,OrderHistoryNavNode,PreferencesNavNode,LogoutNavNode
+;UserDropDownNavigationNode;;Header Link Navigation Node; root;; UserDropDownNavigationNode; RegisterAProductNavNode,MyRegisteredProductNavNode,EditProfileNavNode,UpdatePasswordNavNode,OrderHistoryNavNode,PreferencesNavNode,LogoutNavNode
 
 INSERT_UPDATE NavigationComponent;$contentCV[unique=true];uid[unique=true];name;styleClass;&componentRef;navigationNode(&nodeRef)
 ;;UserDropDownNavigationComponent;User drop down Navigation component;;UserDropDownNavigationComponent;UserDropDownNavigationNode
@@ -2251,9 +2262,10 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 ;;UserDropDown-ProductGridPage;UserDropDown;;UserDropDownSlot;true
 
 
-
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='RegisterProductPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;UserDropDown-RegisterProductPage;UserDropDown;;UserDropDownSlot;true
+
+
 
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CartPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;UserDropDown-CartPage;UserDropDown;;UserDropDownSlot;true
@@ -2308,6 +2320,7 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ContentPage1Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;UserDropDown-ContentPage1;UserDropDown;;UserDropDownSlot;true
+
 
 
 ######User dropdown in header ends######
