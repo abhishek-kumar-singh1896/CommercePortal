@@ -15,53 +15,35 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, setterVisibility = JsonAutoDetect.Visibility.NONE)
 public class GallagherSovosCalculateTaxLineItem
 {
-	@JsonProperty("lnItmNum")
-	private int lnItmNum;
-
-	@JsonProperty("lnItmId")
-	private String lnItmId;
-
-	@JsonProperty("grossAmt")
-	private double grossAmt;
-
-	@JsonProperty("qnty")
-	private int qnty;
-
-	@JsonProperty("trnTp")
-	private int trnTp;
-
-	@JsonProperty("dropShipInd")
-	private int dropShipInd;
-
-	@JsonProperty("origTrnDt")
-	private String origTrnDt;
+	@JsonProperty("debCredIndr")
+	private int debCredIndr;
 
 	@JsonProperty("goodSrvCd")
 	private String goodSrvCd;
 
+	@JsonProperty("goodSrvDesc")
+	private String goodSrvDesc;
+
+	@JsonProperty("grossAmt")
+	private double grossAmt;
+
+	@JsonProperty("lnItmId")
+	private int lnItmId;
+
+	@JsonProperty("qnty")
+	private double qnty;
+
+	@JsonProperty("trnTp")
+	private int trnTp;
+
 	@JsonProperty("orgCd")
 	private String orgCd;
 
-	@JsonProperty("debCredIndr")
-	private int debCredIndr;
+	@JsonProperty("dropShipInd")
+	private int dropShipInd;
 
-	@JsonProperty("qntyUMCd")
-	private String qntyUMCd;
-
-	@JsonProperty("sTStNameNum")
-	private String sTStNameNum;
-
-	@JsonProperty("sTCity")
-	private String sTCity;
-
-	@JsonProperty("sTStateProv")
-	private String sTStateProv;
-
-	@JsonProperty("sTPstlCd")
-	private String sTPstlCd;
-
-	@JsonProperty("sTCountry")
-	private String sTCountry;
+	@JsonProperty("sFCountry")
+	private String sFCountry;
 
 	@JsonProperty("sFCity")
 	private String sFCity;
@@ -72,121 +54,24 @@ public class GallagherSovosCalculateTaxLineItem
 	@JsonProperty("sFPstlCd")
 	private String sFPstlCd;
 
-	@JsonProperty("sFCountry")
-	private String sFCountry;
+	@JsonProperty("sTCity")
+	private String sTCity;
 
-	@JsonProperty("lOACity")
-	private String lOACity;
+	@JsonProperty("sTStateProv")
+	private String sTStateProv;
 
-	@JsonProperty("lOAStateProv")
-	private String lOAStateProv;
+	@JsonProperty("sTCountry")
+	private String sTCountry;
 
-	@JsonProperty("lOAPstlCd")
-	private String lOAPstlCd;
+	@JsonProperty("sTPstlCd")
+	private String sTPstlCd;
 
-	@JsonProperty("lOACountry")
-	private String lOACountry;
+	@JsonProperty("sTStNameNum")
+	private String sTStNameNum;
 
-	@JsonProperty("lORCity")
-	private String lORCity;
-
-	@JsonProperty("lORStateProv")
-	private String lORStateProv;
-
-	@JsonProperty("lORPstlCd")
-	private String lORPstlCd;
-
-	@JsonProperty("lORCountry")
-	private String lORCountry;
-
-	public void setLnItmNum(final int lnItmNum)
+	public int getDebCredIndr()
 	{
-		this.lnItmNum = lnItmNum;
-	}
-
-	public int getLnItmNum()
-	{
-		return this.lnItmNum;
-	}
-
-	public void setLnItmId(final String lnItmId)
-	{
-		this.lnItmId = lnItmId;
-	}
-
-	public String getLnItmId()
-	{
-		return this.lnItmId;
-	}
-
-	public void setGrossAmt(final double grossAmt)
-	{
-		this.grossAmt = grossAmt;
-	}
-
-	public double getGrossAmt()
-	{
-		return this.grossAmt;
-	}
-
-	public void setQnty(final int qnty)
-	{
-		this.qnty = qnty;
-	}
-
-	public int getQnty()
-	{
-		return this.qnty;
-	}
-
-	public void setTrnTp(final int trnTp)
-	{
-		this.trnTp = trnTp;
-	}
-
-	public int getTrnTp()
-	{
-		return this.trnTp;
-	}
-
-	public void setDropShipInd(final int dropShipInd)
-	{
-		this.dropShipInd = dropShipInd;
-	}
-
-	public int getDropShipInd()
-	{
-		return this.dropShipInd;
-	}
-
-	public void setOrigTrnDt(final String origTrnDt)
-	{
-		this.origTrnDt = origTrnDt;
-	}
-
-	public String getOrigTrnDt()
-	{
-		return this.origTrnDt;
-	}
-
-	public void setGoodSrvCd(final String goodSrvCd)
-	{
-		this.goodSrvCd = goodSrvCd;
-	}
-
-	public String getGoodSrvCd()
-	{
-		return this.goodSrvCd;
-	}
-
-	public void setOrgCd(final String orgCd)
-	{
-		this.orgCd = orgCd;
-	}
-
-	public String getOrgCd()
-	{
-		return this.orgCd;
+		return debCredIndr;
 	}
 
 	public void setDebCredIndr(final int debCredIndr)
@@ -194,188 +79,173 @@ public class GallagherSovosCalculateTaxLineItem
 		this.debCredIndr = debCredIndr;
 	}
 
-	public int getDebCredIndr()
+	public String getGoodSrvCd()
 	{
-		return this.debCredIndr;
+		return goodSrvCd;
 	}
 
-	public void setQntyUMCd(final String qntyUMCd)
+	public void setGoodSrvCd(final String goodSrvCd)
 	{
-		this.qntyUMCd = qntyUMCd;
+		this.goodSrvCd = goodSrvCd;
 	}
 
-	public String getQntyUMCd()
+	public String getGoodSrvDesc()
 	{
-		return this.qntyUMCd;
+		return goodSrvDesc;
 	}
 
-	public void setSTStNameNum(final String sTStNameNum)
+	public void setGoodSrvDesc(final String goodSrvDesc)
 	{
-		this.sTStNameNum = sTStNameNum;
+		this.goodSrvDesc = goodSrvDesc;
 	}
 
-	public String getSTStNameNum()
+	public double getGrossAmt()
 	{
-		return this.sTStNameNum;
+		return grossAmt;
 	}
 
-	public void setSTCity(final String sTCity)
+	public void setGrossAmt(final double grossAmt)
 	{
-		this.sTCity = sTCity;
+		this.grossAmt = grossAmt;
 	}
 
-	public String getSTCity()
+	public int getLnItmId()
 	{
-		return this.sTCity;
+		return lnItmId;
 	}
 
-	public void setSTStateProv(final String sTStateProv)
+	public void setLnItmId(final int lnItmId)
 	{
-		this.sTStateProv = sTStateProv;
+		this.lnItmId = lnItmId;
 	}
 
-	public String getSTStateProv()
+	public double getQnty()
 	{
-		return this.sTStateProv;
+		return qnty;
 	}
 
-	public void setSTPstlCd(final String sTPstlCd)
+	public void setQnty(final double qnty)
 	{
-		this.sTPstlCd = sTPstlCd;
+		this.qnty = qnty;
 	}
 
-	public String getSTPstlCd()
+	public int getTrnTp()
 	{
-		return this.sTPstlCd;
+		return trnTp;
 	}
 
-	public void setSTCountry(final String sTCountry)
+	public void setTrnTp(final int trnTp)
 	{
-		this.sTCountry = sTCountry;
+		this.trnTp = trnTp;
 	}
 
-	public String getSTCountry()
+	public String getOrgCd()
 	{
-		return this.sTCountry;
+		return orgCd;
 	}
 
-	public void setSFCity(final String sFCity)
+	public void setOrgCd(final String orgCd)
 	{
-		this.sFCity = sFCity;
+		this.orgCd = orgCd;
 	}
 
-	public String getSFCity()
+	public int getDropShipInd()
 	{
-		return this.sFCity;
+		return dropShipInd;
 	}
 
-	public void setSFStateProv(final String sFStateProv)
+	public void setDropShipInd(final int dropShipInd)
 	{
-		this.sFStateProv = sFStateProv;
+		this.dropShipInd = dropShipInd;
 	}
 
-	public String getSFStateProv()
+	public String getsFCountry()
 	{
-		return this.sFStateProv;
+		return sFCountry;
 	}
 
-	public void setSFPstlCd(final String sFPstlCd)
-	{
-		this.sFPstlCd = sFPstlCd;
-	}
-
-	public String getSFPstlCd()
-	{
-		return this.sFPstlCd;
-	}
-
-	public void setSFCountry(final String sFCountry)
+	public void setsFCountry(final String sFCountry)
 	{
 		this.sFCountry = sFCountry;
 	}
 
-	public String getSFCountry()
+	public String getsFCity()
 	{
-		return this.sFCountry;
+		return sFCity;
 	}
 
-	public void setLOACity(final String lOACity)
+	public void setsFCity(final String sFCity)
 	{
-		this.lOACity = lOACity;
+		this.sFCity = sFCity;
 	}
 
-	public String getLOACity()
+	public String getsFStateProv()
 	{
-		return this.lOACity;
+		return sFStateProv;
 	}
 
-	public void setLOAStateProv(final String lOAStateProv)
+	public void setsFStateProv(final String sFStateProv)
 	{
-		this.lOAStateProv = lOAStateProv;
+		this.sFStateProv = sFStateProv;
 	}
 
-	public String getLOAStateProv()
+	public String getsFPstlCd()
 	{
-		return this.lOAStateProv;
+		return sFPstlCd;
 	}
 
-	public void setLOAPstlCd(final String lOAPstlCd)
+	public void setsFPstlCd(final String sFPstlCd)
 	{
-		this.lOAPstlCd = lOAPstlCd;
+		this.sFPstlCd = sFPstlCd;
 	}
 
-	public String getLOAPstlCd()
+	public String getsTCity()
 	{
-		return this.lOAPstlCd;
+		return sTCity;
 	}
 
-	public void setLOACountry(final String lOACountry)
+	public void setsTCity(final String sTCity)
 	{
-		this.lOACountry = lOACountry;
+		this.sTCity = sTCity;
 	}
 
-	public String getLOACountry()
+	public String getsTStateProv()
 	{
-		return this.lOACountry;
+		return sTStateProv;
 	}
 
-	public void setLORCity(final String lORCity)
+	public void setsTStateProv(final String sTStateProv)
 	{
-		this.lORCity = lORCity;
+		this.sTStateProv = sTStateProv;
 	}
 
-	public String getLORCity()
+	public String getsTCountry()
 	{
-		return this.lORCity;
+		return sTCountry;
 	}
 
-	public void setLORStateProv(final String lORStateProv)
+	public void setsTCountry(final String sTCountry)
 	{
-		this.lORStateProv = lORStateProv;
+		this.sTCountry = sTCountry;
 	}
 
-	public String getLORStateProv()
+	public String getsTPstlCd()
 	{
-		return this.lORStateProv;
+		return sTPstlCd;
 	}
 
-	public void setLORPstlCd(final String lORPstlCd)
+	public void setsTPstlCd(final String sTPstlCd)
 	{
-		this.lORPstlCd = lORPstlCd;
+		this.sTPstlCd = sTPstlCd;
 	}
 
-	public String getLORPstlCd()
+	public String getsTStNameNum()
 	{
-		return this.lORPstlCd;
+		return sTStNameNum;
 	}
 
-	public void setLORCountry(final String lORCountry)
+	public void setsTStNameNum(final String sTStNameNum)
 	{
-		this.lORCountry = lORCountry;
-	}
-
-	public String getLORCountry()
-	{
-		return this.lORCountry;
+		this.sTStNameNum = sTStNameNum;
 	}
 }

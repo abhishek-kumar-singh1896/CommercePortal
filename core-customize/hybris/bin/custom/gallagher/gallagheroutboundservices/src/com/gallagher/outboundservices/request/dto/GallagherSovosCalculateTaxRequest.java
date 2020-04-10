@@ -5,6 +5,7 @@ package com.gallagher.outboundservices.request.dto;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -14,6 +15,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Representation of Sovos Calculate Tax Request
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, setterVisibility = JsonAutoDetect.Visibility.NONE)
 public class GallagherSovosCalculateTaxRequest
 {
 	@JsonProperty("usrname")
@@ -22,14 +24,11 @@ public class GallagherSovosCalculateTaxRequest
 	@JsonProperty("pswrd")
 	private String pswrd;
 
+	@JsonProperty("rsltLvl")
+	private int rsltLvl;
+
 	@JsonProperty("trnId")
 	private String trnId;
-
-	@JsonProperty("trnSrc")
-	private String trnSrc;
-
-	@JsonProperty("rsltLvl")
-	private String rsltLvl;
 
 	@JsonProperty("currn")
 	private String currn;
@@ -43,17 +42,28 @@ public class GallagherSovosCalculateTaxRequest
 	@JsonProperty("trnDocNum")
 	private String trnDocNum;
 
+	@JsonProperty("trnSrc")
+	private String trnSrc;
+
+	@JsonProperty("dlvrAmt")
+	private double dlvrAmt;
+
 	@JsonProperty("lines")
 	private List<GallagherSovosCalculateTaxLineItem> lines;
+
+	public String getUsrname()
+	{
+		return usrname;
+	}
 
 	public void setUsrname(final String usrname)
 	{
 		this.usrname = usrname;
 	}
 
-	public String getUsrname()
+	public String getPswrd()
 	{
-		return this.usrname;
+		return pswrd;
 	}
 
 	public void setPswrd(final String pswrd)
@@ -61,9 +71,19 @@ public class GallagherSovosCalculateTaxRequest
 		this.pswrd = pswrd;
 	}
 
-	public String getPswrd()
+	public int getRsltLvl()
 	{
-		return this.pswrd;
+		return rsltLvl;
+	}
+
+	public void setRsltLvl(final int rsltLvl)
+	{
+		this.rsltLvl = rsltLvl;
+	}
+
+	public String getTrnId()
+	{
+		return trnId;
 	}
 
 	public void setTrnId(final String trnId)
@@ -71,29 +91,9 @@ public class GallagherSovosCalculateTaxRequest
 		this.trnId = trnId;
 	}
 
-	public String getTrnId()
+	public String getCurrn()
 	{
-		return this.trnId;
-	}
-
-	public void setTrnSrc(final String trnSrc)
-	{
-		this.trnSrc = trnSrc;
-	}
-
-	public String getTrnSrc()
-	{
-		return this.trnSrc;
-	}
-
-	public void setRsltLvl(final String rsltLvl)
-	{
-		this.rsltLvl = rsltLvl;
-	}
-
-	public String getRsltLvl()
-	{
-		return this.rsltLvl;
+		return currn;
 	}
 
 	public void setCurrn(final String currn)
@@ -101,9 +101,9 @@ public class GallagherSovosCalculateTaxRequest
 		this.currn = currn;
 	}
 
-	public String getCurrn()
+	public String getDocDt()
 	{
-		return this.currn;
+		return docDt;
 	}
 
 	public void setDocDt(final String docDt)
@@ -111,9 +111,9 @@ public class GallagherSovosCalculateTaxRequest
 		this.docDt = docDt;
 	}
 
-	public String getDocDt()
+	public int getTxCalcTp()
 	{
-		return this.docDt;
+		return txCalcTp;
 	}
 
 	public void setTxCalcTp(final int txCalcTp)
@@ -121,9 +121,9 @@ public class GallagherSovosCalculateTaxRequest
 		this.txCalcTp = txCalcTp;
 	}
 
-	public int getTxCalcTp()
+	public String getTrnDocNum()
 	{
-		return this.txCalcTp;
+		return trnDocNum;
 	}
 
 	public void setTrnDocNum(final String trnDocNum)
@@ -131,9 +131,29 @@ public class GallagherSovosCalculateTaxRequest
 		this.trnDocNum = trnDocNum;
 	}
 
-	public String getTrnDocNum()
+	public String getTrnSrc()
 	{
-		return this.trnDocNum;
+		return trnSrc;
+	}
+
+	public void setTrnSrc(final String trnSrc)
+	{
+		this.trnSrc = trnSrc;
+	}
+
+	public double getDlvrAmt()
+	{
+		return dlvrAmt;
+	}
+
+	public void setDlvrAmt(final double dlvrAmt)
+	{
+		this.dlvrAmt = dlvrAmt;
+	}
+
+	public List<GallagherSovosCalculateTaxLineItem> getLines()
+	{
+		return lines;
 	}
 
 	public void setLines(final List<GallagherSovosCalculateTaxLineItem> lines)
@@ -141,8 +161,4 @@ public class GallagherSovosCalculateTaxRequest
 		this.lines = lines;
 	}
 
-	public List<GallagherSovosCalculateTaxLineItem> getLines()
-	{
-		return this.lines;
-	}
 }

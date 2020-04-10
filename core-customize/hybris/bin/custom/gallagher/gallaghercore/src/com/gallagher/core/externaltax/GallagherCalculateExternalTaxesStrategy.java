@@ -15,6 +15,9 @@ import de.hybris.platform.core.model.order.AbstractOrderModel;
 import de.hybris.platform.externaltax.ExternalTaxDocument;
 import de.hybris.platform.util.TaxValue;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import com.gallagher.core.util.GallagherSovosUtil;
@@ -54,18 +57,27 @@ public class GallagherCalculateExternalTaxesStrategy implements CalculateExterna
 
 		final GallagherSovosCalculatedTaxResponse response = gallagherSovosService.calculateExternalTax(request);
 
+		abstractOrder.setTotalTax(Double.valueOf(response.getTxAmt())); // Need to check
+		//abstractOrder.setNewAttribute(response.getTxwTrnDocId()); Need to check
+
 		for (final GallagherSovosCalculatedTaxLineItem lienItem : response.getLnRslts())
 		{
-			Double taxAmount = 0.0;
+			final List<TaxValue> taxValues = new ArrayList<>();
+
 			for (final GallagherSovosCalculatedTax calculatedTax : lienItem.getJurRslts())
 			{
+				final StringBuilder taxValueString = new StringBuilder();
+				taxValueString.append(calculatedTax.getTxJurUIDJurTp()).append(" : ").append(calculatedTax.getTxRate()).append(" = ")
+						.append(calculatedTax.getTxAmt()); // Need to check
 
-				taxAmount = taxAmount + Double.valueOf(calculatedTax.getTxAmt()) + Double.valueOf(lienItem.getGrossAmt());
+				final Double taxAmount = Double.valueOf(calculatedTax.getTxAmt()) + 12.00;
+				final TaxValue taxValue = new TaxValue(taxValueString.toString(), taxAmount, true, taxAmount,
+						abstractOrder.getCurrency() == null ? "USD" : abstractOrder.getCurrency().getIsocode()); // Need to check
+
+				taxValues.add(taxValue);
 			}
 
-			final TaxValue taxValue = new TaxValue(lienItem.getLnId(), taxAmount, true, taxAmount,
-					abstractOrder.getCurrency() == null ? "USD" : abstractOrder.getCurrency().getIsocode());
-			externalDocument.setTaxesForOrderEntry(Integer.valueOf(lienItem.getLnNm()) - 1, taxValue);
+			externalDocument.setTaxesForOrderEntry(Integer.valueOf(lienItem.getLnId()), taxValues);
 		}
 
 		final TaxValue taxValue = new TaxValue("taxCode1", 3.0D, true, 3.0D,

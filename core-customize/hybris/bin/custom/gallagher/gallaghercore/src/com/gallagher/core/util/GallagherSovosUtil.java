@@ -5,8 +5,11 @@ package com.gallagher.core.util;
 
 import de.hybris.platform.core.model.order.AbstractOrderEntryModel;
 import de.hybris.platform.core.model.order.AbstractOrderModel;
+import de.hybris.platform.core.model.user.AddressModel;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.gallagher.outboundservices.request.dto.GallagherSovosCalculateTaxLineItem;
@@ -27,13 +30,16 @@ public class GallagherSovosUtil
 	 */
 	public static void convert(final AbstractOrderModel abstractOrder, final GallagherSovosCalculateTaxRequest request)
 	{
-		request.setTrnId("");
-		request.setTrnSrc("01");
-		request.setRsltLvl("3");
+		final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+		request.setRsltLvl(3);
+		request.setTrnId(abstractOrder.getCode());
 		request.setCurrn(abstractOrder.getCurrency() == null ? "USD" : abstractOrder.getCurrency().getIsocode());
-		request.setDocDt("2020-03-21");
+		request.setDocDt(dateFormat.format(new Date()));
 		request.setTxCalcTp(1);
-		request.setTrnDocNum("4910374");
+		request.setTrnDocNum(abstractOrder.getCode());
+		request.setTrnSrc(abstractOrder.getCode());
+		request.setDlvrAmt(abstractOrder.getDeliveryCost());
 
 		final List<GallagherSovosCalculateTaxLineItem> lineItems = new ArrayList<>();
 
@@ -41,34 +47,28 @@ public class GallagherSovosUtil
 		{
 			final GallagherSovosCalculateTaxLineItem lineItem = new GallagherSovosCalculateTaxLineItem();
 
-			lineItem.setLnItmNum(orderEntry.getEntryNumber());
-			lineItem.setLnItmId("1");
-			lineItem.setGrossAmt(orderEntry.getTotalPrice());
-			lineItem.setQnty(orderEntry.getQuantity().intValue());
-			lineItem.setTrnTp(1);
-			lineItem.setDropShipInd(0);
-			lineItem.setOrigTrnDt("2019-08-14");
-			lineItem.setGoodSrvCd("2038356");
-			lineItem.setOrgCd("QASGUS");
 			lineItem.setDebCredIndr(1);
-			lineItem.setQntyUMCd("LE");
-			lineItem.setSTStNameNum("3817 Millenia Blvd");
-			lineItem.setSTCity("ORLANDO");
-			lineItem.setSTStateProv("FL");
-			lineItem.setSTPstlCd("32839");
-			lineItem.setSTCountry("US");
-			lineItem.setSFCity("Portland");
-			lineItem.setSFStateProv("OR");
-			lineItem.setSFPstlCd("97203");
-			lineItem.setSFCountry("US");
-			lineItem.setLOACity("Portland");
-			lineItem.setLOAStateProv("OR");
-			lineItem.setLOAPstlCd("97229");
-			lineItem.setLOACountry("US");
-			lineItem.setLORCity("Portland");
-			lineItem.setLORStateProv("OR");
-			lineItem.setLORPstlCd("97229");
-			lineItem.setLORCountry("US");
+			lineItem.setGoodSrvCd(orderEntry.getProduct().getCode());
+			lineItem.setGoodSrvDesc(orderEntry.getProduct().getName());
+			lineItem.setGrossAmt(orderEntry.getTotalPrice()); // Need to check
+			lineItem.setLnItmId(orderEntry.getEntryNumber());
+			lineItem.setQnty(orderEntry.getQuantity());
+			lineItem.setTrnTp(1);
+			lineItem.setOrgCd("QASGUS"); // Need to check
+			lineItem.setDropShipInd(1);
+
+			lineItem.setsFCountry("US"); // Need to check
+			lineItem.setsFCity("Portland"); // Need to check
+			lineItem.setsFStateProv("OR"); // Need to check
+			lineItem.setsFPstlCd("97203"); // Need to check
+
+			final AddressModel deliveryAddress = abstractOrder.getDeliveryAddress();
+
+			lineItem.setsTCountry(deliveryAddress.getCountry().getIsocode());
+			lineItem.setsTCity(deliveryAddress.getTown());
+			lineItem.setsTStateProv(deliveryAddress.getDistrict()); // Need to check
+			lineItem.setsTPstlCd(deliveryAddress.getPostalcode());
+			lineItem.setsTStNameNum(deliveryAddress.getStreetnumber().concat(" ").concat(deliveryAddress.getStreetname()));
 
 			lineItems.add(lineItem);
 		}
