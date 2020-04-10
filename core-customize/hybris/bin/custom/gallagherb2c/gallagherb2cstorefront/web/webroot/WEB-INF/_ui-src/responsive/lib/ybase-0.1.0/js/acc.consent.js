@@ -1,4 +1,4 @@
-ACC.consent = {
+/*ACC.consent = {
     _autoload: [
         ["bindSendConsent", $("#consent-management-form").length != 0],
         ["bindToggleConsentTemplateDescription", $("#consent-management-form").length != 0],
@@ -186,3 +186,4 @@ ACC.consent = {
 
 
 
+*/

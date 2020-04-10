@@ -1502,6 +1502,7 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='AccountPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;ggB2CNavBar-AccountPage;ggB2CNavBar;;ggB2CNavBarSlot;true
+;;ConsentSection-AccountPage;consent;;consentSlot;true
 
 #####Header navigation bar refactor ends######
 
@@ -2194,18 +2195,15 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;RegisterAProductLink;Register a product Link;/register-product;;;;
 ;;MyRegisteredProductLink;My registered Product Link;/register-product/products;;;;
 ;;EditProfileLink;Edit Profile Link;/my-account/update-profile;;;;
-;;OrderHistoryLink;Order History Link;/my-account/orders;;;;
-;;PreferencesLink;Preferences Link;https://www.google.com/;;;;
+;;OrderHistoryLink;Order History Link;/my-account/update-profile;;;;
+;;PreferencesLink;Preferences Link;/my-account/consents;;;;
 ;;LogoutLink;Logout Us Link;/logout;;;;
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];$category;$product;
 ;;UpdatePasswordLink;UpdatePasswordLink;$keycloakBaseURL$keycloakAuthURL$keycloakPasswordURL;UpdatePasswordLink;
 
-
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV)	   ;onlyOneRestrictionMustApply
 							  			;						  		;OrderHistoryLink;GallagherSiteTransactionRestriction;false
-
-
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);children(uid,$contentCV)[mode=replace];links(uid, $contentCV);&nodeRef;title[lang=en]
 ;RegisterAProductNavNode;; Register a Product Navigation Node Menu;UserDropDownNavigationNode;;;RegisterAProductNavNode;"Register a Product"     
 ;MyRegisteredProductNavNode;;My Registered Product Navigation Node Menu;;;;MyRegisteredProductNavNode;"My Registered Product"
@@ -2226,9 +2224,15 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 ;LogoutNavNodeEntry;;Logout Navigation Node Entry;LogoutNavNode;LogoutLink
 
 
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;EditProfileLink;Edit Profile
+;;PreferencesLink;Preferences
+;;UpdatePasswordLink;Update Password
+;;OrderHistoryLink;Order History
+
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef;children(uid, $contentCV)[mode=replace]
-;UserDropDownNavigationNode;;Header Link Navigation Node; root;; UserDropDownNavigationNode; RegisterAProductNavNode,MyRegisteredProductNavNode,AccountNavNode,EditProfileNavNode,UpdatePasswordNavNode,OrderHistoryNavNode,PreferencesNavNode,LogoutNavNode
+;UserDropDownNavigationNode;;Header Link Navigation Node; root;; UserDropDownNavigationNode; RegisterAProductNavNode,MyRegisteredProductNavNode,EditProfileNavNode,UpdatePasswordNavNode,OrderHistoryNavNode,PreferencesNavNode,LogoutNavNode
 
 INSERT_UPDATE NavigationComponent;$contentCV[unique=true];uid[unique=true];name;styleClass;&componentRef;navigationNode(&nodeRef)
 ;;UserDropDownNavigationComponent;User drop down Navigation component;;UserDropDownNavigationComponent;UserDropDownNavigationNode
@@ -2255,9 +2259,10 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 ;;UserDropDown-ProductGridPage;UserDropDown;;UserDropDownSlot;true
 
 
-
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='RegisterProductPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;UserDropDown-RegisterProductPage;UserDropDown;;UserDropDownSlot;true
+
+
 
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CartPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;UserDropDown-CartPage;UserDropDown;;UserDropDownSlot;true
@@ -2314,16 +2319,19 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 ;;UserDropDown-ContentPage1;UserDropDown;;UserDropDownSlot;true
 
 
+
 ######User dropdown in header ends######
 
 # CMS Paragraph Component (Contact information)
 INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
 ;;registerProductSubHeading;Register product Paragraph Component;registerProductSubHeading
 ;;registerProductPopupSubHeading;Register product popup Paragraph Component;registerProductPopupSubHeading
+;;consentManagementSubHeading;consent Management SubHeading Paragraph Component;consentManagementSubHeading
 
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid, $contentCV)
 ;;Section1RegisterSlot;registerProductSubHeading
 ;;Section2RegisterPopupSlot;registerProductPopupSubHeading
+;;consentSlot;consentManagementSubHeading
 
 #### Register Product Page####
 

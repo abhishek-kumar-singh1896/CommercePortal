@@ -20,6 +20,25 @@ label {
   font-weight: bold;
 }
 
+.account-section .account-section-content .consent-management-list__content {
+  height: inherit;
+  overflow: auto;
+}
+
+.account-section .account-section-content .consent-management-list__title:before {
+	
+	display:none;
+	
+}
+
+.account-section .account-section-content .consent-management-list__title {
+    padding: 25px 15px 18px 25px;
+}
+
+.account-section .account-section-content .consent-management-list__content-inner {
+    padding: 0 40px 10px 25px;
+}
+
 .order-detail-overview {
   padding: 20px 30px;
   background-color: $white;
@@ -49,10 +68,7 @@ label {
   }
 }
 
-.account-section .account-section-content .account-section-header {
-  color: inherit;
-  border-bottom: none;
-}
+
 
 .account-section .account-section-content form {
   padding: 0;

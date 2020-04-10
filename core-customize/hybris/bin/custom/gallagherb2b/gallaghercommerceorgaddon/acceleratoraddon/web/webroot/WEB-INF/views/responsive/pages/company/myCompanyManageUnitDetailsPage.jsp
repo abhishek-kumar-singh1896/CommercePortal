@@ -158,18 +158,18 @@
                                     <li>${fn:escapeXml(address.postalCode)}</li>
                                     <li>${fn:escapeXml(address.country.name)}</li>
                                 </ul>
-                                <div class="account-cards-actions pull-left">
-                                    <a href="${fn:escapeXml(editUnitAddressUrl)}" class="edit-item" title="<spring:theme code='text.company.manage.units.edit'/>">
-                                        <span class="glyphicon glyphicon-pencil"></span>
-                                    </a>
-                                    <span class="js-action-confirmation-modal">
-                                        <a href="${fn:escapeXml(removeUnitAddressUrl)}" class="remove-item" title="<spring:theme code='text.company.manage.units.remove'/>"
-                                           data-action-confirmation-modal-title="<spring:theme code='text.company.manage.units.delete.address'/>"
-                                           data-action-confirmation-modal-id="delete-address">
-                                            <span class="glyphicon glyphicon-remove"></span>
-                                        </a>
-                                    </span>
-                                </div>
+<!--                                 <div class="account-cards-actions pull-left"> -->
+<%--                                     <a href="${fn:escapeXml(editUnitAddressUrl)}" class="edit-item" title="<spring:theme code='text.company.manage.units.edit'/>"> --%>
+<!--                                         <span class="glyphicon glyphicon-pencil"></span> -->
+<!--                                     </a> -->
+<!--                                     <span class="js-action-confirmation-modal"> -->
+<%--                                         <a href="${fn:escapeXml(removeUnitAddressUrl)}" class="remove-item" title="<spring:theme code='text.company.manage.units.remove'/>" --%>
+<%--                                            data-action-confirmation-modal-title="<spring:theme code='text.company.manage.units.delete.address'/>" --%>
+<!--                                            data-action-confirmation-modal-id="delete-address"> -->
+<!--                                             <span class="glyphicon glyphicon-remove"></span> -->
+<!--                                         </a> -->
+<!--                                     </span> -->
+<!--                                 </div> -->
                             </div>
                         </c:forEach>
                     </div>

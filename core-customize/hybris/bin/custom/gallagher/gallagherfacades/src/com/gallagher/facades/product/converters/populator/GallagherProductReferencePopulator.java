@@ -44,7 +44,7 @@ public class GallagherProductReferencePopulator extends ProductReferencePopulato
 		super.populate(source, target);
 		if (ProductReferenceTypeEnum.UPSELLING.equals(source.getReferenceType()))
 		{
-			getClassificationPopulator().populate(source.getSource(), target.getTarget());
+			getClassificationPopulator().populate(source.getTarget(), target.getTarget());
 		}
 	}
 }

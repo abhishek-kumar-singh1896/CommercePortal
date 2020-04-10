@@ -47,6 +47,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -469,7 +470,7 @@ public class ProductPageController extends AbstractPageController
 		if (null != compareProducts)
 		{
 			final ProductComparisonData firstComparisonData = new ProductComparisonData();
-			final Map<String, String> firstProductAttrValueMap = new HashMap<String, String>();
+			final Map<String, String> firstProductAttrValueMap = new TreeMap<>();
 			firstComparisonData.setProductData(productData);
 			for (final String attribute : compareProducts)
 			{
@@ -486,6 +487,10 @@ public class ProductPageController extends AbstractPageController
 							}
 							firstProductAttrValueMap.put(fd.getName(), mapValue);
 						}
+						else
+						{
+							firstProductAttrValueMap.put(attribute, "-");
+						}
 
 					}
 				}
@@ -495,8 +500,6 @@ public class ProductPageController extends AbstractPageController
 			model.addAttribute("firstProduct", firstComparisonData);
 			model.addAttribute("compareProducts", compareProducts);
 		}
-
-
 	}
 
 	private List<String> findCommonClassificationAttributes(final ProductData firstProduct1,
@@ -519,7 +522,7 @@ public class ProductPageController extends AbstractPageController
 					for (int i = 0; i < productComparisonList.size(); i++)
 					{
 						final ProductComparisonData comparisonData = new ProductComparisonData();
-						final Map<String, String> productAttrValueMap = new HashMap<String, String>();
+						final Map<String, String> productAttrValueMap = new TreeMap<>();
 						boolean found = false;
 						final ProductData product = productComparisonList.get(i);
 						if (product.getClassifications() != null)
@@ -563,7 +566,7 @@ public class ProductPageController extends AbstractPageController
 		for (final ProductComparisonData comparisonData : productComparisonDataList)
 		{
 			final ProductComparisonData comparisonDataFinal = new ProductComparisonData();
-			final Map<String, String> productAttrValueMapFinal = new HashMap<String, String>();
+			final TreeMap<String, String> productAttrValueMapFinal = new TreeMap<>();
 			if (comparisonData.getProductAttrValueMap().size() > 0)
 			{
 				for (final String attribute : featurelist)
