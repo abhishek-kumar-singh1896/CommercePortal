@@ -62,25 +62,13 @@ UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$
 ;;OrderTemplatesLink;"My Templates"
 ;;InvoicesLink;"My Invoices"
 
-# CMS Link Components
+# CMS Mega menu Link Components
 UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
- ;;AngleGrindersCategoryLink;"Angle Grinders"
- ;;HandSawsCategoryLink;"Hand Saws"
- ;;HandToolsCategoryLink;"Hand Tools"
- ;;JigsawsCategoryLink;"Jigsaws"
- ;;MeasuringLayoutToolsCategoryLink;"Measuring & Layout Tools"
- ;;NutDriversCategoryLink;"Nut Drivers"
- ;;PowerDrillsCategoryLink;"Power Drills"
- ;;PunchesCategoryLink;"Punches"
- ;;RotaryHammersCategoryLink;"Rotary Hammers"
- ;;SandersCategoryLink;"Sanders"
- ;;ScrewdriversCategoryLink;"Screwdrivers"
- ;;StrippingToolsCategoryLink;"Stripping Tools"
- ;;PerimeterSecurityCategoryLink;"Perimeter Security"
- ;;AccessControlCategoryLink;"Access Control"
- ;;HighSecurityCategoryLink;"High Security"
- ;;IntegrationsCategoryLink;"Integrations"
- ;;SoftwareCategoryLink;"Software"
+;;PerimeterSecurityCategoryLink;"Perimeter Security"
+;;AccessControlCategoryLink;"Access Control"
+;;HighSecurityCategoryLink;"High Security"
+;;IntegrationsCategoryLink;"Integrations"
+;;SoftwareCategoryLink;"Software"
 
 # Lightbox Banner for Mini Cart (banner is not localizable so we must create a separate banner per language)
 INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];&imageRef;folder(qualifier)[default='images'];altText

@@ -8,53 +8,79 @@
 # Information and shall use it only in accordance with the terms of the
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
-# ImpEx for Importing Categories into SecurityB2B Store 
-
+# ImpEx for Importing Categories into SecurityB2B Store
 
 # Macros / Replacement Parameter definitions
 $productCatalog=securityB2BMasterProductCatalog
 $productCatalogName=Security B2B NZ Product Catalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$supercategories=source(code, $catalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
 
 $lang=en
 
-UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
+# Insert Categories
+INSERT_UPDATE Category;code[unique=true];allowedPrincipals(uid)[default='customergroup'];$catalogVersion
 # Root Category
-;security;;Security
+;security
 
 # Main Categories
-;perimeter-security;;Perimeter Security
-;access-control;;Access Control
-;high-security;;High Security
-;integrations;;Integrations
-;software;;Software
+;perimeter-security
+;access-control
+;high-security
+;integrations
+;software
 
-# Perimeter Security Categories
-;starter-kit;;Starter Kit
-;fence-controllers;;Fence Controllers
-;terminals;;Terminals
-;sensors;;Sensors
-;fence-hardware;;Fence Hardware
-;data-or-power;;Data / Power
-;cabinets-and-power-supplies;;Cabinets & Power Supplies
-;tools;;Tools
-;test-equipment;;Test Equipment
-;gallagher-command-centre;;Gallagher Command Centre
-;gallagher-controllers;;Gallagher Controllers
-;gallagher-marketing-material;;Gallagher Marketing Material
+#Perimeter Security Categories
+;fence-controllers
+;sensors
 
-# Starter Kit Categories
-;starter-kit-perimeter;;Starter Kit Perimeter
+#Access Control Categories
+;controllers
+;readers-and-terminals
 
-# Fence Controllers Categories
-;f-series;;F Series
-;accessories-controller;;Accessories
+#High Security Categories
 
-# Terminals Categories
-;terminals-perimeter;;Terminals Perimeter
+#Integrations Categories
+;facilities-management
+;interface-tools
+;personnel-management
 
-# Sensors Categories
-;z10-tension-sensor;;Z10 Tension Sensor
+#Software Categories
+;business-efficiency-features
+;health-and-safety-features
+;interface-tools
+;management-platforms
+;workforce-management-features
+
+
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;access-control;security
+;perimeter-security;security
+;high-security;security
+;integrations;security
+;software;security
+
+#perimeter-security: 1 level category
+;fence-controllers;perimeter-security
+;sensors;perimeter-security
+
+#access-control: 1 level category
+;controllers;access-control
+;readers-and-terminals;access-control
+
+#integrations
+;facilities-management;integrations
+;interface-tools;integrations
+;personnel-management;integrations
+
+#Software
+;business-efficiency-features;software
+;health-and-safety-features;software
+;interface-tools;software
+;management-platforms;software
+;workforce-management-features;software
+Tension Sensor
 ;z20-disturbance-sensor;;Z20 Disturbance Sensor
 
 # Fence Hardware Categories
