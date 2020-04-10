@@ -3,6 +3,7 @@
  */
 package com.gallagher.facades.product.converters.populator;
 
+import de.hybris.platform.catalog.enums.ProductReferenceTypeEnum;
 import de.hybris.platform.catalog.model.ProductReferenceModel;
 import de.hybris.platform.commercefacades.product.converters.populator.ProductReferencePopulator;
 import de.hybris.platform.commercefacades.product.data.ProductData;
@@ -41,9 +42,9 @@ public class GallagherProductReferencePopulator extends ProductReferencePopulato
 		Assert.notNull(target, "Parameter target cannot be null.");
 
 		super.populate(source, target);
-		if (source.getReferenceType().getCode().equals("UPSELLING"))
+		if (ProductReferenceTypeEnum.UPSELLING.equals(source.getReferenceType()))
 		{
-			getClassificationPopulator().populate(source.getSource(), target.getTarget());
+			getClassificationPopulator().populate(source.getTarget(), target.getTarget());
 		}
 	}
 }
