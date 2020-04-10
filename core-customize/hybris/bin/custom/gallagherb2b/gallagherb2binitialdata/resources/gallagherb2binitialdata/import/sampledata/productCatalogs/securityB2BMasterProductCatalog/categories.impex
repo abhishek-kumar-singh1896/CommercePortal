@@ -27,6 +27,9 @@ INSERT_UPDATE Category;code[unique=true];allowedPrincipals(uid)[default='custome
 # Main Categories
 ;perimeter-security
 ;access-control
+;high-security
+;integrations
+;software
 
 # Perimeter Security Categories
 ;starter-kit
@@ -125,6 +128,7 @@ INSERT_UPDATE Category;code[unique=true];allowedPrincipals(uid)[default='custome
 ;gallagher-technical-support-services
 ;gallagher-marketing-material
 ;previous-generation-technologies
+;readers-and-terminals
 
 # GALLAGHER COMMAND CENTRE Categories
 ;command-centre-server-software
@@ -267,9 +271,31 @@ INSERT_UPDATE Category;code[unique=true];allowedPrincipals(uid)[default='custome
 ;controller-6000-2-door-kits-gbus
 ;cards-transponders-and-encoding
 
+#High Security Categories
+
+#Integrations Categories
+;facilities-management
+;interface-tools
+;personnel-management
+
+# Perimeter Security Categories
+;fence-controllers
+;sensors
+
+#Software Categories
+;business-efficiency-features
+;health-and-safety-features
+;interface-tools
+;management-platforms
+;workforce-management-features
+
+
 INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
 ;access-control;security
 ;perimeter-security;security
+;high-security;security
+;integrations;security
+;software;security
 
 #perimeter-security
 
@@ -475,3 +501,16 @@ INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
 ;gbus-io-expansion-options;previous-generation-technologies
 ;controller-6000-2-door-kits-gbus;previous-generation-technologies
 ;cards-transponders-and-encoding;previous-generation-technologies
+
+#integrations
+;facilities-management;integrations
+;interface-tools;integrations
+;personnel-management;integrations
+
+
+#Software
+;business-efficiency-features;software
+;health-and-safety-features;software
+;interface-tools;software
+;management-platforms;software
+;workforce-management-features;software
