@@ -9,7 +9,7 @@
 $solrIndexedType=amB2CUSProductType
 
 # Language
-$lang=en
+$lang=en_US
 
 # Solr Indexed Property
 UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];displayName[lang=$lang]

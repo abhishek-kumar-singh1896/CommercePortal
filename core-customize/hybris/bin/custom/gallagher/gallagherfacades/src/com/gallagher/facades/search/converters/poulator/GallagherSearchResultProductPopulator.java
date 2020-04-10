@@ -25,10 +25,10 @@ public class GallagherSearchResultProductPopulator extends SearchResultProductPo
 	public void populate(final SearchResultValueData source, final ProductData target)
 	{
 		super.populate(source, target);
-		final String marketingDescription = this.<String> getValue(source, "marketingDescription");
-		if (!StringUtils.isEmpty(marketingDescription))
+		//final String marketingDescription = this.<String> getValue(source, "marketingDescription");
+		if (CollectionUtils.isNotEmpty(this.<List<String>> getValue(source, "marketingDescription")))
 		{
-			target.setName(marketingDescription);
+			target.setName(this.<List<String>> getValue(source, "marketingDescription").get(0));
 		}
 		if (!StringUtils.isEmpty(this.<String> getValue(source, "promoSticker")))
 		{
