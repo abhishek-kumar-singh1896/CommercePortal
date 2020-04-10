@@ -1502,6 +1502,7 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='AccountPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;ggB2CNavBar-AccountPage;ggB2CNavBar;;ggB2CNavBarSlot;true
+;;ConsentSection-AccountPage;consent;;consentSlot;true
 
 #####Header navigation bar refactor ends######
 
@@ -2329,10 +2330,12 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
 ;;registerProductSubHeading;Register product Paragraph Component;registerProductSubHeading
 ;;registerProductPopupSubHeading;Register product popup Paragraph Component;registerProductPopupSubHeading
+;;consentManagementSubHeading;consent Management SubHeading Paragraph Component;consentManagementSubHeading
 
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid, $contentCV)
 ;;Section1RegisterSlot;registerProductSubHeading
 ;;Section2RegisterPopupSlot;registerProductPopupSubHeading
+;;consentSlot;consentManagementSubHeading
 
 #### Register Product Page####
 

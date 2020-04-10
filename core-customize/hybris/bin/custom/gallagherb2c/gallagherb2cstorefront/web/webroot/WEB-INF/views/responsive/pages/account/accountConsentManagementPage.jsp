@@ -3,6 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="cms" uri="http://hybris.com/tld/cmstags"%>
+<%@ taglib prefix="breadcrumb"
+	tagdir="/WEB-INF/tags/responsive/nav/breadcrumb"%>
 
 <spring:htmlEscape defaultHtmlEscape="true"/>
 <c:url value="/my-account/consents" var="submitConsents" />
@@ -13,26 +16,28 @@
             <div class="yCmsContentSlot account-section-content">
                 <div class="container">
                     <div class="row">
-                        <div class="col-12">
-                            <div class="breadcrumb-out">
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Consent Management</li>
-                                    </ol>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
+				         <div class="col-12">
+				             <div class="breadcrumb-out">
+				                 <c:if test="${fn:length(breadcrumbs) > 0}">
+									<nav aria-label="breadcrumb">
+										<breadcrumb:breadcrumb breadcrumbs="${breadcrumbs}" />
+									</nav>
+								</c:if>
+				             </div>
+				         </div>
+				     </div>
                     <div class="profile-container">
-                        <h1 class="primary-title">Consent Management</h1>
+                        <h1 class="primary-title"><spring:theme code="text.consent.management.heading" /></h1>
 
                         <div class="account-section-content">
                             <div class="account-section-form consent-section-form">
                                 <div id="consent-management-form" data-consent-management-url="">
                                     <div class="consent-management-intro">
-                                        <p> To personalize your experience, we'd like your consent to receive your
-                                            profile data:</p>
+                                        <p>
+                                        	<cms:pageSlot position="consent" var="feature">
+												<cms:component component="${feature}" element="div" class="" />
+											</cms:pageSlot>
+                                        </p>
                                     </div>
                                     
                                     <form:form modelAttribute="consentsPreferences" method="post" action="${submitConsents}" id="customerPreferences">
