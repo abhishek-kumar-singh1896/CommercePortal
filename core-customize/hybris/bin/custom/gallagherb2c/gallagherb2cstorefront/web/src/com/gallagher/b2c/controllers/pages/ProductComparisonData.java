@@ -5,8 +5,7 @@ package com.gallagher.b2c.controllers.pages;
 
 import de.hybris.platform.commercefacades.product.data.ProductData;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.TreeMap;
 
 
 /**
@@ -17,7 +16,16 @@ public class ProductComparisonData
 {
 	private ProductData productData;
 
-	private Map<String, String> productAttrValueMap = new HashMap<String, String>();
+	private TreeMap<String, String> productAttrValueMap = new TreeMap<>();
+
+	/**
+	 * @param productAttrValueMap
+	 *           the productAttrValueMap to set
+	 */
+	public void setProductAttrValueMap(final TreeMap<String, String> productAttrValueMap)
+	{
+		this.productAttrValueMap = productAttrValueMap;
+	}
 
 	/**
 	 * @return the productData
@@ -25,15 +33,6 @@ public class ProductComparisonData
 	public ProductData getProductData()
 	{
 		return productData;
-	}
-
-	/**
-	 * @param productAttrValueMap
-	 *           the productAttrValueMap to set
-	 */
-	public void setProductAttrValueMap(final Map<String, String> productAttrValueMap)
-	{
-		this.productAttrValueMap = productAttrValueMap;
 	}
 
 	/**
@@ -48,10 +47,8 @@ public class ProductComparisonData
 	/**
 	 * @return the productAttrValueMap
 	 */
-	public Map<String, String> getProductAttrValueMap()
+	public TreeMap<String, String> getProductAttrValueMap()
 	{
 		return productAttrValueMap;
 	}
-
-
 }

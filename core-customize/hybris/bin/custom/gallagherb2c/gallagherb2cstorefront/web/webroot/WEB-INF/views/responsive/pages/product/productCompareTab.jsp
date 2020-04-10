@@ -41,13 +41,16 @@
 										</div>
 								    </c:if>
                                     <c:set var="count" value="1"/>
+                                    <%-- <c:url value="${firstProduct.productData.url}" var="productUrl" /> --%>
                                     <div class="compare-list-top-section">
                                         <div class="compare-list-top-img">
 	                                       	<c:forEach items="${firstProduct.productData.images}" var="medias">
 		                                        <c:if test="${medias.format eq 'thumbnail'}">
 		                                        <c:if test="${count lt 2}">
+		                                        <%-- <a href="${fn:escapeXml(productUrl)}" title="${fn:escapeXml(firstProduct.productData.name)}"> --%>
 		                                        	<img src="${medias.url}" alt="${medias.altText}">
 		                                        	<c:set var="count" value="${count+1}"/>
+		                                        <!-- </a> -->
 	                                        	</c:if>
 		                                        </c:if>
 	                                        </c:forEach>
@@ -79,6 +82,8 @@
 											<img src="${commonResourcePath}/images/${fn:toLowerCase(product.promoSticker)}.svg" />
 										</div>
 								    </c:if>
+								    <c:set var="count" value="1"/>
+								    <%-- <c:url value="${compareProduct.productData.url}" var="productUrl" /> --%>
                                     <div class="compare-list-top-section">
                                         <div class="compare-list-top-img">
                                         <c:choose>
@@ -86,8 +91,10 @@
                                         	<c:forEach items="${compareProduct.productData.images}" var="medias">
 		                                        <c:if test="${medias.format eq 'thumbnail'}">
 		                                        <c:if test="${count lt 2}">
+		                                        <%-- <a href="${fn:escapeXml(productUrl)}" title="${fn:escapeXml(compareProduct.productData.name)}"> --%>
 		                                        	<img src="${medias.url}" alt="${medias.altText}">
 		                                        	<c:set var="count" value="${count+1}"/>
+		                                        <!-- </a> -->
 	                                        	</c:if>
 		                                        </c:if>
 	                                        </c:forEach>
