@@ -36,11 +36,11 @@
 							<!-- <a class="nav-link" id="solutions-tab" data-toggle="tab" href="#solutions" role="tab"
                                 aria-controls="solutions" aria-selected="false">Solutions</a> -->
 							<a class="nav-link" id="solutions-tab"
-								target="_blank" href="${sitecoreSolutionPageData}"> <spring:theme
+								href="${sitecoreSolutionPageData}"> <spring:theme
 									code="text.searchTab.solutions" />
 						</a></li>
 						<li class="nav-item"><a class="nav-link" id="support-tab"
-							target="_blank" href="${sitecoreSupportPageData}"> <spring:theme
+							href="${sitecoreSupportPageData}"> <spring:theme
 									code="text.searchTab.support" />
 						</a></li>
 					</ul>

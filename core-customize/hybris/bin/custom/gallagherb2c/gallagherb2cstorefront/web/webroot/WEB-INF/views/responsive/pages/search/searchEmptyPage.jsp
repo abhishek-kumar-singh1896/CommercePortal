@@ -30,11 +30,11 @@
 									code="text.searchTab.products" />
 						</a></li>
 						<li class="nav-item"><a class="nav-link" id="solutions-tab"
-							target="_blank" href="${sitecoreSolutionPageData}"> <spring:theme
+							href="${sitecoreSolutionPageData}"> <spring:theme
 									code="text.searchTab.solutions" />
 						</a></li>
 						<li class="nav-item"><a class="nav-link" id="support-tab"
-							target="_blank" href="${sitecoreSupportPageData}"> <spring:theme
+							href="${sitecoreSupportPageData}"> <spring:theme
 									code="text.searchTab.support" />
 						</a></li>
 					</ul>
