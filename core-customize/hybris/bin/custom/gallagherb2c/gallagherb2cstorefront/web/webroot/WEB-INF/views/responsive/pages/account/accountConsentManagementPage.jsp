@@ -161,7 +161,7 @@
 											</div>
                                         </li>
                                     </ul>
-                                    <button type="submit" class="btn btn-primary consentsPreferences-submit">Submit</button>
+                                    <button type="submit" class="btn btn-primary consentsPreferences-submit mt-4"><spring:theme code="text.consent.update.button" /></button>
 									</form:form>
                                 </div>
                             </div>

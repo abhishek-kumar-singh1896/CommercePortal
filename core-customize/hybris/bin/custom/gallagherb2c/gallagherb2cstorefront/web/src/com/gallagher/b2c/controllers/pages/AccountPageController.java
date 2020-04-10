@@ -970,7 +970,6 @@ public class AccountPageController extends AbstractSearchPageController
 	@RequireHardLogIn
 	public String consentManagement(final Model model) throws CMSItemNotFoundException
 	{
-		//		model.addAttribute("consentTemplateDataList", getConsentFacade().getConsentTemplatesWithConsents());
 		final CustomerModel currentCustomer = (CustomerModel) userService.getCurrentUser();
 		final B2CCustomerPreferenceForm customerPreferences = new B2CCustomerPreferenceForm();
 		customerPreferences.setNewsLetters(currentCustomer.getNewsLetters());
@@ -994,7 +993,6 @@ public class AccountPageController extends AbstractSearchPageController
 			throws CMSItemNotFoundException
 	{
 		final CustomerModel currentCustomer = (CustomerModel) userService.getCurrentUser();
-
 		currentCustomer.setNewsLetters(preferences.isNewsLetters());
 		currentCustomer.setEvents(preferences.isEvents());
 		currentCustomer.setProductPromo(preferences.isProductPromo());
@@ -1002,18 +1000,9 @@ public class AccountPageController extends AbstractSearchPageController
 		currentCustomer.setProductUpdate(preferences.isProductUpdate());
 		currentCustomer.setIsUserExist(true);
 		modelService.save(currentCustomer);
-		//		model.addAttribute("consentsPreferences", preferences);
-		/*
-		 * final ContentPageModel consentManagementPage = getContentPageForLabelOrId(CONSENT_MANAGEMENT_CMS_PAGE);
-		 * storeCmsPageInModel(model, consentManagementPage); setUpMetaDataForContentPage(model, consentManagementPage);
-		 * model.addAttribute(BREADCRUMBS_ATTR, accountBreadcrumbBuilder.getBreadcrumbs(TEXT_ACCOUNT_CONSENT_MANAGEMENT));
-		 * model.addAttribute(ThirdPartyConstants.SeoRobots.META_ROBOTS, ThirdPartyConstants.SeoRobots.NOINDEX_NOFOLLOW);
-		 * GlobalMessages.addConfMessage(model, "consentManagement.confirmation.message.title");
-		 */
 		GlobalMessages.addFlashMessage(redirectAttributes, GlobalMessages.CONF_MESSAGES_HOLDER,
 				"consentManagement.confirmation.message.title", null);
 		return REDIRECT_TO_CONSENT_MANAGEMENT;
-		//		return getViewForPage(model);
 	}
 
 	@RequestMapping(value = "/consents/give/{consentTemplateId}/{version}", method = RequestMethod.POST)
