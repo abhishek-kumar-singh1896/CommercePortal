@@ -470,13 +470,18 @@ public class ProductPageController extends AbstractPageController
 		if (null != compareProducts)
 		{
 			final ProductComparisonData firstComparisonData = new ProductComparisonData();
-			final TreeMap<String, String> firstProductAttrValueMap = new TreeMap<>();
+			final Map<String, String> firstProductAttrValueMap = new TreeMap<>();
 			firstComparisonData.setProductData(productData);
 			for (final String attribute : compareProducts)
 			{
-				for (final ClassificationData classData : productData.getClassifications())
+				firstProductAttrValueMap.put(attribute, "-");
+			}
+
+			for (final ClassificationData classData : productData.getClassifications())
+			{
+				for (final FeatureData fd : classData.getFeatures())
 				{
-					for (final FeatureData fd : classData.getFeatures())
+					for (final String attribute : compareProducts)
 					{
 						if (attribute.equals(fd.getName()))
 						{
@@ -485,15 +490,22 @@ public class ProductPageController extends AbstractPageController
 							{
 								mapValue = data.getValue();
 							}
-							firstProductAttrValueMap.put(fd.getName(), mapValue);
+							if (firstProductAttrValueMap.containsKey(attribute))
+							{
+								firstProductAttrValueMap.replace(attribute, mapValue);
+							}
+							break;
 						}
-						else
-						{
-							firstProductAttrValueMap.put(attribute, "-");
-						}
-
 					}
 				}
+			}
+			for (final Map.Entry<String, String> entry : firstProductAttrValueMap.entrySet())
+			{
+				if (null == entry.getValue() || entry.getValue().isEmpty())
+				{
+					entry.setValue("-");
+				}
+
 			}
 			firstComparisonData.setProductData(productData);
 			firstComparisonData.setProductAttrValueMap(firstProductAttrValueMap);
@@ -522,7 +534,7 @@ public class ProductPageController extends AbstractPageController
 					for (int i = 0; i < productComparisonList.size(); i++)
 					{
 						final ProductComparisonData comparisonData = new ProductComparisonData();
-						final TreeMap<String, String> productAttrValueMap = new TreeMap<>();
+						final Map<String, String> productAttrValueMap = new TreeMap<>();
 						boolean found = false;
 						final ProductData product = productComparisonList.get(i);
 						if (product.getClassifications() != null)
@@ -566,7 +578,7 @@ public class ProductPageController extends AbstractPageController
 		for (final ProductComparisonData comparisonData : productComparisonDataList)
 		{
 			final ProductComparisonData comparisonDataFinal = new ProductComparisonData();
-			final TreeMap<String, String> productAttrValueMapFinal = new TreeMap<>();
+			final Map<String, String> productAttrValueMapFinal = new TreeMap<>();
 			if (comparisonData.getProductAttrValueMap().size() > 0)
 			{
 				for (final String attribute : featurelist)
