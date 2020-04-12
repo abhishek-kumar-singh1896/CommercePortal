@@ -66,6 +66,8 @@ import com.hybris.charon.exp.InternalServerException;
 @RequestMapping(value = "/register-product")
 public class RegisterProductController extends AbstractPageController
 {
+	private static final String REDIRECT_TO_REGISTER_PRODUCT = REDIRECT_PREFIX + "/register-product";
+
 	private static final Logger LOG = Logger.getLogger(RegisterProductController.class);
 
 	private static final String REG_PRODUCTS_PAGE = "regProducts";
@@ -223,7 +225,6 @@ public class RegisterProductController extends AbstractPageController
 	{
 		final RegisterProductRequest request = new RegisterProductRequest();
 		GallagherProductRegistrationUtil.convert(registerProductForm1, request, userService.getCurrentUser());
-		final String page = getProductRegistrationPage(model);
 		final RegisterProductForm rg = new RegisterProductForm();
 		try
 		{
@@ -245,7 +246,9 @@ public class RegisterProductController extends AbstractPageController
 			GlobalMessages.addMessage(model, GlobalMessages.ERROR_MESSAGES_HOLDER, "registerProduct.error.message.title", null);
 		}
 		model.addAttribute(rg);
-		return page;
+		GlobalMessages.addFlashMessage(redirectAttributes, GlobalMessages.CONF_MESSAGES_HOLDER,
+				"registerProduct.confirmation.message.title", null);
+		return REDIRECT_TO_REGISTER_PRODUCT;
 	}
 
 
