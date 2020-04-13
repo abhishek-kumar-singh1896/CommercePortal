@@ -15,6 +15,7 @@ import de.hybris.platform.acceleratorstorefrontcommons.forms.validation.ReviewVa
 import de.hybris.platform.acceleratorstorefrontcommons.util.MetaSanitizerUtil;
 import de.hybris.platform.acceleratorstorefrontcommons.util.XSSFilterUtil;
 import de.hybris.platform.acceleratorstorefrontcommons.variants.VariantSortStrategy;
+import de.hybris.platform.catalog.enums.ProductReferenceTypeEnum;
 import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
 import de.hybris.platform.cms2.model.pages.AbstractPageModel;
 import de.hybris.platform.cms2.servicelayer.services.CMSPageService;
@@ -432,19 +433,19 @@ public class ProductPageController extends AbstractPageController
 
 		for (final ProductReferenceData product : references)
 		{
-			if (product.getReferenceType().getCode().equals("SPAREPART"))
+			if (ProductReferenceTypeEnum.SPAREPART.equals(product.getReferenceType()))
 			{
 				sparepart.add(product.getTarget());
 			}
-			else if (product.getReferenceType().getCode().equals("OTHERS"))
+			else if (ProductReferenceTypeEnum.OTHERS.equals(product.getReferenceType()))
 			{
 				others.add(product.getTarget());
 			}
-			else if (product.getReferenceType().getCode().equals("UPSELLING"))
+			else if (ProductReferenceTypeEnum.UPSELLING.equals(product.getReferenceType()))
 			{
 				upselling.add(product.getTarget());
 			}
-			else if (product.getReferenceType().getCode().equals("ACCESSORIES"))
+			else if (ProductReferenceTypeEnum.ACCESSORIES.equals(product.getReferenceType()))
 			{
 				accessories.add(product.getTarget());
 			}
@@ -471,41 +472,32 @@ public class ProductPageController extends AbstractPageController
 		{
 			final ProductComparisonData firstComparisonData = new ProductComparisonData();
 			final Map<String, String> firstProductAttrValueMap = new TreeMap<>();
+			final Map<String, String> firstProductAttrValueMapFinal = new TreeMap<>();
 			firstComparisonData.setProductData(productData);
-			for (final String attribute : compareProducts)
-			{
-				firstProductAttrValueMap.put(attribute, "-");
-			}
+
 
 			for (final ClassificationData classData : productData.getClassifications())
 			{
 				for (final FeatureData fd : classData.getFeatures())
 				{
-					for (final String attribute : compareProducts)
+					String mapValue = null;
+					for (final FeatureValueData data : fd.getFeatureValues())
 					{
-						if (attribute.equals(fd.getName()))
-						{
-							String mapValue = null;
-							for (final FeatureValueData data : fd.getFeatureValues())
-							{
-								mapValue = data.getValue();
-							}
-							if (firstProductAttrValueMap.containsKey(attribute))
-							{
-								firstProductAttrValueMap.replace(attribute, mapValue);
-							}
-							break;
-						}
+						mapValue = data.getValue();
 					}
+					firstProductAttrValueMap.put(fd.getName(), mapValue);
 				}
 			}
-			for (final Map.Entry<String, String> entry : firstProductAttrValueMap.entrySet())
+			for (final String attribute : compareProducts)
 			{
-				if (null == entry.getValue() || entry.getValue().isEmpty())
+				if (firstProductAttrValueMap.containsKey(attribute))
 				{
-					entry.setValue("-");
+					firstProductAttrValueMap.put(attribute, firstProductAttrValueMap.get(attribute));
 				}
-
+				else
+				{
+					firstProductAttrValueMap.put(attribute, "-");
+				}
 			}
 			firstComparisonData.setProductData(productData);
 			firstComparisonData.setProductAttrValueMap(firstProductAttrValueMap);
