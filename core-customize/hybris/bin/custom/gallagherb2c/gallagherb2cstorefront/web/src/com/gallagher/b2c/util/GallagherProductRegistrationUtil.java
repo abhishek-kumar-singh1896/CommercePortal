@@ -75,7 +75,7 @@ public class GallagherProductRegistrationUtil
 
 		final MultipartFile file = registerProductForm.getAttachedFile();
 
-		if (null != file)
+		if (null != file && !file.isEmpty())
 		{
 			final RegisteredProductAttachmentFolder attachmentFolder = new RegisteredProductAttachmentFolder();
 
