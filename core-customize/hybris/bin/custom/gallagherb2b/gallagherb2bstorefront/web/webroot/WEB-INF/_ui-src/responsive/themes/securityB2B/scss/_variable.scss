@@ -1,0 +1,97 @@
+$font-family-sans-serif: 'GalaxiePolaris', sans-serif !default;
+// $font-family-description: 'GalaxiePolaris-Book', sans-serif !default;
+// bold: 'GalaxiePolaris-Bold', sans-serif !default;
+// $font-family-heavy: 'GalaxiePolaris-Heavy', sans-serif !default;
+$font-family-base: $font-family-sans-serif !default;
+
+$primary-color:                     #ff8400;
+$secondary-color:                   #231e1f;
+$terciary:                          #0a97cc;
+
+$link-visited-color:                #52468c;
+
+$white:                             #ffffff;
+$gray-2:                            #f0f0f0;
+$gray-3:                            #e6e7e8;
+$gray-4:                            #cccecf;
+$gray-5:                            #b0b0b0;
+$gray-6:                            #929292;
+$gray-7:                            #575a5d;
+$gray-9:                            #231e1f;
+$black:                             #000 !default;
+
+$danger:                            #bf1b1b;
+$success:                           #0edd4d;
+
+$btn-primary-color:                 $primary-color;
+$btn-secondary-color:               $gray-6;
+
+$table-link-color:                  $terciary;
+
+$body-background:                   $white;
+
+$header-right-top-color:            #e6e7e8;
+$header-right-bottom-color:         #cecfd0;
+
+$header-right-top-active-color:     #cecfd0;
+$header-right-bottom-active-color:  #b0b0b0;
+
+$gradiant-primary-top-color:        #ff8e03;
+$gradiant-primary-bottom-color:     #ff7902;
+
+$search-result-background-color:    $white;
+
+$logo-color:                        #ff7902;
+
+$gray-background-shade:             #d8d8d8;
+
+$solution-gray-color:               #f4f4f4;
+
+// Buttons color
+$button-primary-top-color:          #575a5d;
+$button-primary-bottom-color:       #231e1f;
+
+$button-secondary-top-color:        #e6e7e8;
+$button-secondary-bottom-color:     #cecfd0;
+$button-secondary-text-color:       #0e0f0f;
+
+$button-icon-text-color:            #0e0f0f;
+$button-icon-bg-color:              #e6e7e8;
+
+$button-highlight-top-color:        #ff8e03;
+$button-highlight-bottom-color:     #ff7902;
+$button-highlight-border-color:     #f6521a;
+$button-highlight-text-color:       #0e0f0f;
+
+$button-disabled-top-color:        #f0f0f0;
+$button-disabled-bottom-color:     #f0f0f0;
+$button-disabled-border-color:     #cccecf;
+$button-disabled-text-color:       #b0b0b0;
+
+$button-highlight-color-logged-in-user:        #bc6603;
+
+//product list page
+$need-help-color:                   #464646;
+
+$new-status:                        #00aeef;
+$item-hover-color:                  #fff;
+
+$input-active-color:                $new-status;
+
+$product-result-found:              #9c9d9d;
+$product-detail-tab-background:     #0e0f0f;
+
+
+$font-size-10px:                    0.714285em;
+$font-size-11px:                    0.785714em;
+$font-size-12px:                    0.85714em;
+$font-size-13px:                    0.92857em;
+$font-size-14px:                    1em;
+$font-size-16px:                    1.142857em;
+$font-size-18px:                    1.285714em;
+$font-size-20px:                    1.428571em;
+$font-size-24px:                    1.714285em;
+$font-size-28px:                    2em;
+$font-size-32px:                    2.285714em;
+$font-size-40px:                    2.85714em;
+$font-size-48px:                    3.428571em;

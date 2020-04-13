@@ -80,7 +80,10 @@
     <property name="wro.addons.dest.path.b2b" value="${ext.gallagherb2bstorefront.path}/resources/wro_addons.xml"/>
     	
     <property name="wro.group.node" value="&lt;groups xmlns=&quot;http://www.isdc.ro/wro&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;http://www.isdc.ro/wro wro.xsd&quot;&gt;"/>
-    	
+    
+	<path id="gallagherb2bstorefront_sass_jruby">
+			<fileset file="${ext.gallagherb2bstorefront.path}/build-tool/jruby-complete-*.jar"/>
+	</path>
     <if>
         		
         <os family="windows"/>
@@ -433,12 +436,29 @@
             			
             <copy todir="${ext.gallagherb2bstorefront.path}/web/webroot/_ui/responsive/">
                 				
-                <fileset dir="${ext.gallagherb2bstorefront.path}/web/webroot/WEB-INF/_ui-src/responsive/" includes="themes/**/fonts/*"/>
+                <fileset dir="${ext.gallagherb2bstorefront.path}/web/webroot/WEB-INF/_ui-src/responsive/" includes="themes/**/fonts/**"/>
                 				
                 <regexpmapper from="themes/(.*)/fonts/(.*)" handledirsep="yes" to="theme-\1/fonts/\2"/>
                         
 			
             </copy>
+        	
+        	<copy todir="${ext.gallagherb2bstorefront.path}/web/webroot/_ui/responsive/">
+        	        	        	                				
+        	                <fileset dir="${ext.gallagherb2bstorefront.path}/web/webroot/WEB-INF/_ui-src/responsive/" includes="themes/**/images/**"/>
+        	                				
+        	                <regexpmapper from="themes/(.*)/images/(.*)" handledirsep="yes" to="theme-\1/images/\2"/>
+        	                        
+        				
+            </copy>
+	    	<copy todir="${ext.gallagherb2bstorefront.path}/web/webroot/_ui/responsive/">
+	    	        	                				
+	            <fileset dir="${ext.gallagherb2bstorefront.path}/web/webroot/WEB-INF/_ui-src/responsive/" includes="themes/**/css/**"/>
+	            				
+	            <regexpmapper from="themes/(.*)/css/(.*)" handledirsep="yes" to="theme-\1/css/\2"/>
+	                    
+			
+	        </copy>
             		
         </sequential>
         	
@@ -1036,7 +1056,7 @@
         		
         <sequential>
             			
-            <gallagherb2bstorefront_lesscss/>
+        	<gallagherb2bstorefront_compile_all_sass_files/>
             			
             <gallagherb2bstorefront_movelibs/>
             		
@@ -1080,5 +1100,56 @@
         <gallagherb2bstorefront_compileuisrc_executor/>
         	
     </target>
+	
+	<!-- Main macro responsible for unzipping sass gem, collecting all scss files and compiling them -->
+	<macrodef name="gallagherb2bstorefront_compile_all_sass_files">
+			<sequential>
+				<replaceBackslashesInExtensionPath extensionname="gallagherb2bstorefront" property="gallagherb2bstorefrontPath" />
+				<gallagherb2bstorefront_sass_unzip_sass_gems/>
+				<echo message="Compiling scss files..." />
+				<property name="sourceDirectory" value="${ext.gallagherb2bstorefront.mapperToPath}/web/webroot/WEB-INF/_ui-src/responsive/themes/*/scss/theme.scss" />
+				<script language="ruby" classpathref="gallagherb2bstorefront_sass_jruby">
+					<![CDATA[
+						require $project.getProperty('gallagherb2bstorefront_sass_gems_path')
+						require 'sass/exec'		
+						require 'fileutils'
+						sourceDirectory = $project.getProperty('sourceDirectory');
+						sourceMap = $project.getProperty('gallagherb2bstorefront.sass.source.map.enabled') == 'true' ? 'file' : 'none'
+						files = Dir.glob(sourceDirectory);
+						files.each do
+							| file |
+							puts "[Compiling scss file] : " + file
+							targetDir = File.dirname(file)
+							targetDir.gsub!(/webroot\/WEB\-INF\/\_ui\-src\/responsive\/themes\/(.*)\/scss/, "webroot/_ui/responsive/theme-\\1/css")		
+							FileUtils.mkdir_p targetDir unless File.exists?(targetDir)
+							destinationFile = File.join(targetDir, File.basename(file, ".*") + '.css')
+							puts "[SASS compiled] : " + destinationFile
+							opts = Sass::Exec::SassScss.new([file, destinationFile, "--sourcemap="+sourceMap,  "--cache-location", $project.getProperty('platformhome')+"/.sass-cache"], "sass")
+							opts.parse
+						end
+					]]>
+				</script>
+				<echo message="Compiled all scss files" />
+				<if>
+					<available file="${platformhome}/.sass-cache" type="dir" />
+					<then>
+						<delete includeemptydirs="true">
+							<fileset dir="${platformhome}/.sass-cache" includes="**/*"/>
+						</delete>
+						<delete dir="${platformhome}/.sass-cache"/>
+					</then>
+				</if>
+			</sequential>
+	</macrodef>
+	
+	<macrodef name="gallagherb2bstorefront_sass_unzip_sass_gems">
+			<sequential>
+				<unzip dest="${HYBRIS_TEMP_DIR}/sassgem" overwrite="true">
+					<fileset dir="${ext.gallagherb2bstorefront.mapperToPath}/build-tool/" includes="sass-java-gems-*.jar" />
+				</unzip>
+				<dirset dir="${HYBRIS_TEMP_DIR}/sassgem/gems" includes="sass-*/lib/sass" id="path_to_sass" />
+				<property name="gallagherb2bstorefront_sass_gems_path" value="${HYBRIS_TEMP_DIR}/sassgem/gems/${toString:path_to_sass}" />
+			</sequential>
+	</macrodef>
     
 </project>

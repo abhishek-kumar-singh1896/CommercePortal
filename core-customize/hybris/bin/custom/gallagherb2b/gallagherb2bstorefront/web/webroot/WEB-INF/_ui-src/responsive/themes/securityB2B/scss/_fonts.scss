@@ -1,0 +1,63 @@
+// @font-face {
+//   font-family: "GalaxiePolaris-Light";
+//   src: url("../fonts/GalaxiePolaris/GalaxiePolaris-Light.woff2") format("woff2"),
+//     url("../fonts/GalaxiePolaris/GalaxiePolaris-Light.woff") format("GalaxiePolaris-Light.woff");
+// }
+
+// @font-face {
+//   font-family: "GalaxiePolaris-Medium";
+//   src: url("../fonts/GalaxiePolaris/GalaxiePolaris-Medium.woff2") format("woff2"),
+//     url("../fonts/GalaxiePolaris/GalaxiePolaris-Medium.woff") format("GalaxiePolaris-Medium.woff");
+// }
+
+// @font-face {
+//   font-family: "GalaxiePolaris-Bold";
+//   src: url("../fonts/GalaxiePolaris/GalaxiePolaris-Bold.woff2") format("woff2"),
+//     url("../fonts/GalaxiePolaris/GalaxiePolaris-Bold.woff") format("GalaxiePolaris-Bold.woff");
+// }
+
+// @font-face {
+//   font-family: "GalaxiePolaris-Heavy";
+//   src: url("../fonts/GalaxiePolaris/GalaxiePolaris-Heavy.woff2") format("woff2"),
+//     url("../fonts/GalaxiePolaris/GalaxiePolaris-Heavy.woff") format("GalaxiePolaris-Heavy.woff");
+// }
+
+// @font-face {
+//   font-family: "GalaxiePolaris-Book";
+//   src: url("../fonts/GalaxiePolaris/GalaxiePolaris-Book.woff2") format("woff2"),
+//     url("../fonts/GalaxiePolaris/GalaxiePolaris-Book.woff") format("GalaxiePolaris-Book.woff");
+// }
+
+@font-face {
+  font-family: "GalaxiePolaris";
+  font-weight: 900;
+  src: url("../fonts/GalaxiePolaris/GalaxiePolaris-Heavy.woff2") format("woff2"),
+    url("../fonts/GalaxiePolaris/GalaxiePolaris-Heavy.woff") format("GalaxiePolaris-Heavy.woff");
+}
+
+@font-face {
+  font-family: "GalaxiePolaris";
+  font-weight: bold;
+  src: url("../fonts/GalaxiePolaris/GalaxiePolaris-Bold.woff2") format("woff2"),
+    url("../fonts/GalaxiePolaris/GalaxiePolaris-Bold.woff") format("GalaxiePolaris-Bold.woff");
+  
+}
+@font-face {
+  font-family: "GalaxiePolaris";
+  font-weight: 300;
+  src: url("../fonts/GalaxiePolaris/GalaxiePolaris-Light.woff2") format("woff2"),
+    url("../fonts/GalaxiePolaris/GalaxiePolaris-Light.woff") format("GalaxiePolaris-Light.woff");
+}
+
+@font-face {
+  font-family: "GalaxiePolaris";
+  font-weight: 500;
+  src: url("../fonts/GalaxiePolaris/GalaxiePolaris-Medium.woff2") format("woff2"),
+    url("../fonts/GalaxiePolaris/GalaxiePolaris-Medium.woff") format("GalaxiePolaris-Medium.woff");
+}
+@font-face {
+  font-family: "GalaxiePolaris";
+  font-weight: normal;
+  src: url("../fonts/GalaxiePolaris/GalaxiePolaris-Book.woff2") format("woff2"),
+    url("../fonts/GalaxiePolaris/GalaxiePolaris-Book.woff") format("GalaxiePolaris-Book.woff");
+}

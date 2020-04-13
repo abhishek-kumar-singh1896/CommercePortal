@@ -15,6 +15,7 @@
 
 	<group name="securityB2B_responsive">
 		<css>/_ui/responsive/theme-securityB2B/css/style.css</css>
+		<css>/_ui/responsive/theme-securityB2B/css/theme.css</css>
 	</group>
 	
 	<group name="all_responsive">
