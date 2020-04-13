@@ -129,5 +129,6 @@
 	<extension name="gallagherb2bstorefront" />
 	<extension name="gallagherb2cinitialdata" />
 	<extension name="gallagherb2cstorefront" />
+	<extension name="gallagherstorefront" />
   </extensions>
 </hybrisconfig>
