@@ -478,7 +478,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;RegisterAProductLink;Register a product Link;/register-product;;;;
 ;;MyRegisteredProductLink;My registered Product Link;/register-product/products;;;;
 ;;EditProfileLink;Edit Profile Link;/my-account/update-profile;;;;
-;;OrderHistoryLink;Order History Link;/my-account/update-profile;;;;
+;;OrderHistoryLink;OrderHistoryLink;/my-account/orders;OrderHistoryLink;
 ;;PreferencesLink;Preferences Link;/my-account/consents;;;;
 ;;LogoutLink;Logout Us Link;/logout;;;;
 
@@ -866,10 +866,34 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents
 
 
 
+##################### category filter checkboxes for amb2cnz ##############
+$solrIndexedType=amB2CNZProductType
+INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] ; facet[default=true] ; facetType(code) ; includeInResponse[default=true] ; facetDisplayNameProvider         ; facetSortProvider        ; facetTopValuesProvider 
+                                      ; categoryPath:$solrIndexedType                                   ;                                                                                                   ;                     ; MultiSelectOr   ;                                 ;                                  ;                          
+                                      ; category:$solrIndexedType                                       ;                                                                                                   ;                     ; MultiSelectOr   ;                                 ; categoryFacetDisplayNameProvider ; defaultTopValuesProvider 
+                                      
+###################################################
 
 
+##################Outdoor Suitable facetType changed to MultiSelectOr###############
+$classSystemVersion=systemVersion(catalog(id[default='AMB2CClassification']),version[default='1.0'])
+$classCatalogVersion=catalogVersion(catalog(id[default='AMB2CClassification']),version[default='1.0'])
+$classAttribute=classificationAttribute(code,$classSystemVersion)
+$classClass=classificationClass(code,$classCatalogVersion)
+$classAttributeAssignment=classAttributeAssignment($classClass,$classAttribute,$classSystemVersion)
+$contentCatalogName=amB2CContentCatalog
+$solrIndexedType=amB2CUSProductType
+$contentCatalogVersion=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalogName]),CatalogVersion.version[default=Staged])[default=$contentCatalogName:Staged]
 
 
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=false] ; facetType(code) ; facetSort(code) ; priority ; visible ; fieldValueProvider                          ; customFacetSortProvider      ; rangeSets(name)   ; $classAttributeAssignment          
+                                  ; $solrIndexedType                         ; Outdoor Suitable  ; boolean    ;                    ;                         ;                          ;                           ;                      ; MultiSelectOr   ; Alpha           ; 1000     ; true    ; commerceClassificationPropertyValueProvider ;                              ;                   ; energisers:::outdoor-suitable::::  
+
+INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetDisplayNameProvider ; facetSortProvider            ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType]
+                                      ; Outdoor Suitable :$solrIndexedType                              ;                     ; MultiSelectOr   ; 1000     ;                          ;                              ;                        ;                                 ;                                                                                                  
+
+
+##################################################
 
 
 
