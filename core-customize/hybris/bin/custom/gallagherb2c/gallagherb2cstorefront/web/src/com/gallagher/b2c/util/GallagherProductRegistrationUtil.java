@@ -11,6 +11,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.gallagher.b2c.form.RegisterProductForm;
@@ -24,6 +26,7 @@ import com.gallagher.outboundservices.request.dto.RegisteredProductPartyInformat
  */
 public class GallagherProductRegistrationUtil
 {
+	private static final Logger LOGGER = LoggerFactory.getLogger(GallagherProductRegistrationUtil.class);
 
 	/**
 	 * @param user
@@ -45,7 +48,7 @@ public class GallagherProductRegistrationUtil
 		}
 		catch (final ParseException exception)
 		{
-			exception.printStackTrace();
+			LOGGER.error("Parse Exception occured while parsing Date Purchased.", exception);
 		}
 
 		request.setAddressLine1(registerProductForm.getAddressLine1());
@@ -70,32 +73,35 @@ public class GallagherProductRegistrationUtil
 			request.setRegisteredProductPartyInformation(Collections.singletonList(customerInfo));
 		}
 
-		final RegisteredProductAttachmentFolder attachmentFolder = new RegisteredProductAttachmentFolder();
-
 		final MultipartFile file = registerProductForm.getAttachedFile();
 
-		attachmentFolder.setName(file.getOriginalFilename());
-		attachmentFolder.setMimeType(file.getContentType());
-
-		try
+		if (null != file)
 		{
-			final byte[] fileData = file.getBytes();
-			final StringBuilder binaryContent = new StringBuilder();
-			for (final byte b : fileData)
+			final RegisteredProductAttachmentFolder attachmentFolder = new RegisteredProductAttachmentFolder();
+
+			attachmentFolder.setName(file.getOriginalFilename());
+			attachmentFolder.setMimeType(file.getContentType());
+
+			try
 			{
-				binaryContent.append(getBits(b));
+				final byte[] fileData = file.getBytes();
+				final StringBuilder binaryContent = new StringBuilder();
+				for (final byte b : fileData)
+				{
+					binaryContent.append(getBits(b));
+				}
+
+				attachmentFolder.setBinary(binaryContent.toString());
+			}
+			catch (final IOException exception)
+			{
+				LOGGER.error("IO Exception occured while converting File into Binary.", exception);
 			}
 
-			attachmentFolder.setBinary(binaryContent.toString());
-		}
-		catch (final IOException exception)
-		{
-			exception.printStackTrace();
-		}
+			attachmentFolder.setTypeCode("10001");
 
-		attachmentFolder.setTypeCode("10001");
-
-		request.setRegisteredProductAttachmentFolder(Collections.singletonList(attachmentFolder));
+			request.setRegisteredProductAttachmentFolder(Collections.singletonList(attachmentFolder));
+		}
 
 	}
 
