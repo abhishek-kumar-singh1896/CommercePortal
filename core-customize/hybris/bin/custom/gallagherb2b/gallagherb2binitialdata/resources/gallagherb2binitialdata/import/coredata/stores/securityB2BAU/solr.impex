@@ -18,7 +18,7 @@ $facetSearchConfigDescription=Security B2B AU Solr Index
 $searchIndexNamePrefix=securityB2BAU
 $solrIndexedType=securityB2BAUProductType
 $indexBaseSite=securityB2BAU
-$indexLanguages=en
+$indexLanguages=en_AU
 $indexCurrencies=AUD
  
  
