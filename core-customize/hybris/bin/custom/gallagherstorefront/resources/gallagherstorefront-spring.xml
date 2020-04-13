@@ -49,16 +49,4 @@
 		<property name="mediaService" ref="mediaService" />
 		<property name="flexibleSearchService" ref="flexibleSearchService" />
 	</bean>
-
-<bean id="gallagherRedirectionFilterChain" class="de.hybris.platform.servicelayer.web.PlatformFilterChain">
-		<constructor-arg>
-			<list>
-				<ref bean="log4jFilter"/>
-				<ref bean="sessionFilter"/>
-           	<ref bean="gallagherRedirectionFilter"/>				
-			</list>
-		</constructor-arg>
-	</bean>
-	<bean id="gallagherRedirectionFilter" class="com.gallagherstorefront.filter.GallagherRedirectionFilter">
-	</bean>
 </beans>

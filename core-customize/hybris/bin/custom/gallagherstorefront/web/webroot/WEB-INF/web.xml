@@ -133,14 +133,4 @@
 		<session-timeout>120</session-timeout>
 		<tracking-mode>COOKIE</tracking-mode>
 	</session-config>
-    
-    <filter>
-		<filter-name>gallagherRedirectionFilter</filter-name>
-		<filter-class>com.gallagherstorefront.filter.GallagherRedirectionFilter</filter-class>
-	</filter>
-    
-    	<filter-mapping>
-		<filter-name>gallagherRedirectionFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
 </web-app> 

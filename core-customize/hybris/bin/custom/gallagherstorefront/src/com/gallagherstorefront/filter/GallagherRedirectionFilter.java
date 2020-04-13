@@ -3,13 +3,14 @@
  */
 package com.gallagherstorefront.filter;
 
+import de.hybris.platform.acceleratorservices.urlresolver.SiteBaseUrlResolutionService;
+import de.hybris.platform.basecommerce.model.site.BaseSiteModel;
 import de.hybris.platform.core.model.c2l.CountryModel;
 import de.hybris.platform.servicelayer.i18n.CommonI18NService;
+import de.hybris.platform.site.BaseSiteService;
 
 import java.io.IOException;
-import java.util.Enumeration;
 
-import javax.annotation.Resource;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -17,27 +18,32 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.filter.GenericFilterBean;
 
 import com.gallagher.core.enums.RegionCode;
 
 
-
 /**
+ * Filter to redirect website to default B2C or B2B website. Gallagher has two websites securityB2B and amB2C which are
+ * available for multiple countries. For each country there is a separate CMS Site means there are multiple website
+ * URLs. This filter facilitates User to use a generic URL like am.gallagher.com instead of am.gallagher.com/us/en.
  *
+ * @author Vikram Bishnoi
  */
 public class GallagherRedirectionFilter extends GenericFilterBean
 {
 
-	private static final Logger LOG = Logger.getLogger(GallagherRedirectionFilter.class.getName());
-	private static final String FARWORD_SLASH = "/";
+	private static final Logger LOG = LoggerFactory.getLogger(GallagherRedirectionFilter.class.getName());
 
+	private BaseSiteService baseSiteService;
 
-	@Resource(name = "commonI18NService")
 	private CommonI18NService commonI18NService;
+
+	private SiteBaseUrlResolutionService siteBaseUrlResolutionService;
 
 	@Override
 	public void doFilter(final ServletRequest request, final ServletResponse response, final FilterChain filterChain)
@@ -45,83 +51,121 @@ public class GallagherRedirectionFilter extends GenericFilterBean
 	{
 
 		LOG.info("Pre Request actions...");
-		try
+		final HttpServletRequest req = (HttpServletRequest) request;
+		final HttpServletResponse res = (HttpServletResponse) response;
+		//		String userAddress = req.getHeader("X-FORWARDED-FOR");
+		//		if (userAddress == null)
+		//		{
+		//			userAddress = request.getRemoteAddr();
+		//		}
+		//		else
+		//		{
+		//			if (userAddress.contains(","))
+		//			{
+		//				userAddress = userAddress.split(",")[0];
+		//			}
+		//		}
+		//		LOG.debug("Client IP is {}", userAddress);
+		//		final String countryCode = getCountryFromIPAddress(userAddress);
+
+		final String requestURI = req.getRequestURI();
+		String base = null;
+		if (requestURI.contains("security"))
 		{
-			final HttpServletRequest req = (HttpServletRequest) request;
-			final HttpServletResponse res = (HttpServletResponse) response;
-
-			System.out.println(req.getRemoteAddr());
-			LOG.info("req.getRemoteAddr()" + req.getRemoteAddr());
-			System.out.println(req.getHeader("X-Forwarded-For"));
-			System.out.println(req.getHeader("X-Forwarded-Proto"));
-
-			final String userAddress = request.getRemoteAddr();
-			LOG.debug("Remote Address = {}" + userAddress);
-
-			final Enumeration<String> headerNames = req.getHeaderNames();
-
-			if (headerNames != null)
-			{
-				while (headerNames.hasMoreElements())
-				{
-					System.out.println("Header: " + req.getHeader(headerNames.nextElement()));
-				}
-			}
-
+			base = "securityB2B";
 		}
-		catch (final Exception e)
+		else
 		{
-			e.getMessage();
+			base = "amB2C";
 		}
 
-		/* filterChain.doFilter(request, response); */
-		LOG.info("Post request actions...");
-
-
-		final RestTemplate restTemplate2 = new RestTemplate();
-		final String url = "https://ipinfo.io/" + "72.229.28.185" + "/country";
-		final String result = restTemplate2.getForObject(url, String.class);
-		System.out.println("result===" + result);
-
-		try
+		final String countryCode = req.getLocale().getCountry();
+		final StringBuilder countrySite = new StringBuilder(base).append(countryCode);
+		BaseSiteModel site = getBaseSiteService().getBaseSiteForUID(countrySite.toString());
+		if (site == null)
 		{
-
-			LOG.info("Redirecting code.......................");
-			final CountryModel country = commonI18NService.getCountry(result.trim());
+			final CountryModel country = commonI18NService.getCountry(countryCode.trim());
 			final RegionCode regionCode = country.getRegionCode();
-			final HttpServletRequest req = (HttpServletRequest) request;
-			final String queryString = req.getQueryString();
-
-			final String requestURI = req.getRequestURI();
-			final String redirectPath = FARWORD_SLASH
-					+ StringUtils.substringBefore(StringUtils.substringAfter(requestURI, FARWORD_SLASH), FARWORD_SLASH) + FARWORD_SLASH
-					+ regionCode.getCode() + FARWORD_SLASH
-					+ StringUtils.substringAfter(
-							StringUtils.substringAfter(StringUtils.substringAfter(requestURI, FARWORD_SLASH), FARWORD_SLASH),
-							FARWORD_SLASH)
-					+ (StringUtils.isEmpty(queryString) ? "" : "?" + queryString);
-			LOG.info("Redirecting to " + redirectPath);
+			if (regionCode != null)
+			{
+				//TODO get site by regionCode
+			}
 		}
-		catch (final Exception e)
+		if (site == null)
 		{
-			LOG.info("Redirecting to eception" + e);
-			e.printStackTrace();
-			e.getMessage();
+			final StringBuilder globalSite = new StringBuilder(base).append("Global");
+			site = getBaseSiteService().getBaseSiteForUID(globalSite.toString());
 		}
-		try
-		{
-			final HttpServletRequest req = (HttpServletRequest) request;
-			final HttpServletResponse res = (HttpServletResponse) response;
+		final String redirectURL = getSiteBaseUrlResolutionService().getWebsiteUrlForSite(site, true, null);
+		LOG.info("Redirecting the request to {} for country {}", redirectURL, countryCode);
+		res.sendRedirect(redirectURL);
+	}
 
-			LOG.info(req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort() + "/am/" + result.trim().toLowerCase()
-					+ "/en");
+	/**
+	 * Returns website URL for redirection
+	 *
+	 * @param base
+	 *           securityB2B or amB2C
+	 * @param regionCode
+	 *           for the country
+	 * @return redirectURL i.e. website URL
+	 */
+	private String getWebsiteURL(final String base, final RegionCode regionCode)
+	{
+		final StringBuilder siteName = new StringBuilder(base).append(regionCode);
 
-			res.sendRedirect(req.getScheme() + "://" + "amB2CUS.local" + ":" + req.getServerPort() + "/am/"
-					+ result.trim().toLowerCase() + "/en");
-		}
-		catch (final Exception e)
-		{
-			e.getMessage();
-		}
+		final String redirectURL = getSiteBaseUrlResolutionService()
+				.getWebsiteUrlForSite(getBaseSiteService().getBaseSiteForUID(siteName.toString()), true, null);
+
+		return redirectURL;
+	}
+
+	/**
+	 * Returns country from IP address
+	 *
+	 * @param userAddress/IPAddress
+	 *           of the client request
+	 * @return country ISO code
+	 */
+	private String getCountryFromIPAddress(final String userAddress)
+	{
+		final RestTemplate restTemplate = new RestTemplate();
+		//final String url = "https://ipinfo.io/" + "72.229.28.185" + "/country";
+		final String url = "https://ipinfo.io/" + userAddress + "/country";
+		final String result = restTemplate.getForObject(url, String.class);
+		return result;
+	}
+
+	protected BaseSiteService getBaseSiteService()
+	{
+		return baseSiteService;
+	}
+
+	@Required
+	public void setBaseSiteService(final BaseSiteService baseSiteService)
+	{
+		this.baseSiteService = baseSiteService;
+	}
+
+	protected CommonI18NService getCommonI18NService()
+	{
+		return commonI18NService;
+	}
+
+	@Required
+	public void setCommonI18NService(final CommonI18NService commonI18NService)
+	{
+		this.commonI18NService = commonI18NService;
+	}
+
+	protected SiteBaseUrlResolutionService getSiteBaseUrlResolutionService()
+	{
+		return siteBaseUrlResolutionService;
+	}
+
+	@Required
+	public void setSiteBaseUrlResolutionService(final SiteBaseUrlResolutionService siteBaseUrlResolutionService)
+	{
+		this.siteBaseUrlResolutionService = siteBaseUrlResolutionService;
 	}
 }

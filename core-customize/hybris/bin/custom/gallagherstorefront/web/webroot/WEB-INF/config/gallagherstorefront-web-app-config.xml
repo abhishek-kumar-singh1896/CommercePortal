@@ -24,11 +24,18 @@
 	<bean id="gallagherstorefrontPlatformFilterChain" class="de.hybris.platform.servicelayer.web.PlatformFilterChain">
 		<constructor-arg>
 			<list>
+				<ref bean="gallagherRedirectionFilter" />
 				<ref bean="log4jFilter"/>
 				<ref bean="sessionFilter"/>
-                <ref bean="gallagherstorefrontMediaFilter"/>
+            <ref bean="gallagherstorefrontMediaFilter"/>
 			</list>
 		</constructor-arg>
+	</bean>
+	
+	<bean id="gallagherRedirectionFilter" class="com.gallagherstorefront.filter.GallagherRedirectionFilter">
+		<property name="baseSiteService" ref="baseSiteService" />
+		<property name="commonI18NService" ref="commonI18NService" />
+		<property name="siteBaseUrlResolutionService" ref="siteBaseUrlResolutionService" />
 	</bean>
 
     <!-- This filter is responsible for all media and secure-media handling -->
