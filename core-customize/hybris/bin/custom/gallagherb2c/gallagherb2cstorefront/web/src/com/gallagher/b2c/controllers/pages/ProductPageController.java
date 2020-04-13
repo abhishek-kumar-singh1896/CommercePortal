@@ -15,6 +15,7 @@ import de.hybris.platform.acceleratorstorefrontcommons.forms.validation.ReviewVa
 import de.hybris.platform.acceleratorstorefrontcommons.util.MetaSanitizerUtil;
 import de.hybris.platform.acceleratorstorefrontcommons.util.XSSFilterUtil;
 import de.hybris.platform.acceleratorstorefrontcommons.variants.VariantSortStrategy;
+import de.hybris.platform.catalog.enums.ProductReferenceTypeEnum;
 import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
 import de.hybris.platform.cms2.model.pages.AbstractPageModel;
 import de.hybris.platform.cms2.servicelayer.services.CMSPageService;
@@ -47,6 +48,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -431,19 +433,19 @@ public class ProductPageController extends AbstractPageController
 
 		for (final ProductReferenceData product : references)
 		{
-			if (product.getReferenceType().getCode().equals("SPAREPART"))
+			if (ProductReferenceTypeEnum.SPAREPART.equals(product.getReferenceType()))
 			{
 				sparepart.add(product.getTarget());
 			}
-			else if (product.getReferenceType().getCode().equals("OTHERS"))
+			else if (ProductReferenceTypeEnum.OTHERS.equals(product.getReferenceType()))
 			{
 				others.add(product.getTarget());
 			}
-			else if (product.getReferenceType().getCode().equals("UPSELLING"))
+			else if (ProductReferenceTypeEnum.UPSELLING.equals(product.getReferenceType()))
 			{
 				upselling.add(product.getTarget());
 			}
-			else if (product.getReferenceType().getCode().equals("ACCESSORIES"))
+			else if (ProductReferenceTypeEnum.ACCESSORIES.equals(product.getReferenceType()))
 			{
 				accessories.add(product.getTarget());
 			}
@@ -469,25 +471,32 @@ public class ProductPageController extends AbstractPageController
 		if (null != compareProducts)
 		{
 			final ProductComparisonData firstComparisonData = new ProductComparisonData();
-			final Map<String, String> firstProductAttrValueMap = new HashMap<String, String>();
+			final Map<String, String> firstProductAttrValueMap = new TreeMap<>();
+			final Map<String, String> firstProductAttrValueMapFinal = new TreeMap<>();
 			firstComparisonData.setProductData(productData);
+
+
+			for (final ClassificationData classData : productData.getClassifications())
+			{
+				for (final FeatureData fd : classData.getFeatures())
+				{
+					String mapValue = null;
+					for (final FeatureValueData data : fd.getFeatureValues())
+					{
+						mapValue = data.getValue();
+					}
+					firstProductAttrValueMap.put(fd.getName(), mapValue);
+				}
+			}
 			for (final String attribute : compareProducts)
 			{
-				for (final ClassificationData classData : productData.getClassifications())
+				if (firstProductAttrValueMap.containsKey(attribute))
 				{
-					for (final FeatureData fd : classData.getFeatures())
-					{
-						if (attribute.equals(fd.getName()))
-						{
-							String mapValue = null;
-							for (final FeatureValueData data : fd.getFeatureValues())
-							{
-								mapValue = data.getValue();
-							}
-							firstProductAttrValueMap.put(fd.getName(), mapValue);
-						}
-
-					}
+					firstProductAttrValueMap.put(attribute, firstProductAttrValueMap.get(attribute));
+				}
+				else
+				{
+					firstProductAttrValueMap.put(attribute, "-");
 				}
 			}
 			firstComparisonData.setProductData(productData);
@@ -495,8 +504,6 @@ public class ProductPageController extends AbstractPageController
 			model.addAttribute("firstProduct", firstComparisonData);
 			model.addAttribute("compareProducts", compareProducts);
 		}
-
-
 	}
 
 	private List<String> findCommonClassificationAttributes(final ProductData firstProduct1,
@@ -519,7 +526,7 @@ public class ProductPageController extends AbstractPageController
 					for (int i = 0; i < productComparisonList.size(); i++)
 					{
 						final ProductComparisonData comparisonData = new ProductComparisonData();
-						final Map<String, String> productAttrValueMap = new HashMap<String, String>();
+						final Map<String, String> productAttrValueMap = new TreeMap<>();
 						boolean found = false;
 						final ProductData product = productComparisonList.get(i);
 						if (product.getClassifications() != null)
@@ -563,7 +570,7 @@ public class ProductPageController extends AbstractPageController
 		for (final ProductComparisonData comparisonData : productComparisonDataList)
 		{
 			final ProductComparisonData comparisonDataFinal = new ProductComparisonData();
-			final Map<String, String> productAttrValueMapFinal = new HashMap<String, String>();
+			final Map<String, String> productAttrValueMapFinal = new TreeMap<>();
 			if (comparisonData.getProductAttrValueMap().size() > 0)
 			{
 				for (final String attribute : featurelist)

@@ -57,47 +57,9 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;pa
 
 # the order of children is the same as the display order on the site
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);&nodeRef;children(uid,$contentCV)
-;B2badvanceCategoryNavNode;;Categories;B2badvanceNavNode;B2badvanceCategoryNavNode;PowerDrillsNavNode,AngleGrindersNavNode,ScrewdriversNavNode,SandersNavNode,MeasuringLayoutToolsNavNode,HandToolsNavNode,SafetyNavNode
+;B2badvanceCategoryNavNode;;Categories;B2badvanceNavNode;B2badvanceCategoryNavNode
 
 
-## level 3. children of Category Nav ##
-INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef);
-;PerimeterSecurityNavNode;;Perimeter Security;PerimeterSecurityNavNode
-;AccessControlNavNode;;Access Control;AccessControlNavNode
-;PowerDrillsNavNode;;Power Drills Category;PowerDrillsNavNode
-;AngleGrindersNavNode;;Angle Grinders Category;AngleGrindersNavNode
-;ScrewdriversNavNode;;Screwdrivers Category;ScrewdriversNavNode
-;SandersNavNode;;Sanders Category;SandersNavNode
-;MeasuringLayoutToolsNavNode;;Measuring & Layout Tools Category;MeasuringLayoutToolsNavNode
-;HandToolsNavNode;;Hand Tools Category;HandToolsNavNode;HandToolsLinksNavNode
-;SafetyNavNode;;Safety Category;SafetyNavNode;FootwearLinksNavNode
-;BulkOrderNavNode;;Bulk Order Category;BulkOrderNavNode;
-
-## entries of the above navigation nodes ##
-INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
-;PerimeterSecurityNavNodeEntry;;Perimeter Security Navigation Node Entry;PerimeterSecurityNavNode;PerimeterSecurityCategoryLink;
-;AccessControlNavNodeEntry;;Access Control Navigation Node Entry;AccessControlNavNode;AccessControlCategoryLink;
-;PowerDrillsNavNodeEntry;;Power Drills Navigation Node Entry;PowerDrillsNavNode;PowerDrillsCategoryLink;
-;AngleGrindersNavNodeEntry;;Angle Grinders Navigation Node Entry;AngleGrindersNavNode;AngleGrindersCategoryLink;
-;ScrewdriversNavNodeEntry;;Screwdrivers Navigation Node Entry;ScrewdriversNavNode;ScrewdriversCategoryLink;
-;SandersNavNodeEntry;;Sanders Navigation Node Entry;SandersNavNode;SandersCategoryLink;
-;MeasuringLayoutToolsNavNodeEntry;;Measuring Layout Tools Navigation Node Entry;MeasuringLayoutToolsNavNode;MeasuringLayoutToolsCategoryLink;
-;HandToolsNavNodeEntry;;Hand Tools Navigation Node Entry;HandToolsNavNode;HandToolsCategoryLink;
-;SafetyNavNodeEntry;;Safety Navigation Node Entry;SafetyNavNode;SafetyCategoryLink;
-;BulkOrderNavNodeEntry;;Safety Navigation Node Entry;BulkOrderNavNode;BulkOrderCategoryLink;
-
-## links of the above navigation nodes ##
-INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow']
-;;PerimeterSecurityCategoryLink;Perimeter Security Category Link;/Security/Perimeter-Security/c/perimeter-security;;PerimeterSecurityCategoryLink
-;;AccessControlCategoryLink;Access Control Category Link;/Security/Access-Control/c/access-control;;AccessControlCategoryLink
-;;PowerDrillsCategoryLink;Power Drills Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Power-Drills/c/1360;PowerDrillsCategoryLink;PowerDrillsCategoryLink
-;;ScrewdriversCategoryLink;Screwdrivers Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Screwdrivers/c/1593;ScrewdriversCategoryLink;ScrewdriversCategoryLink
-;;AngleGrindersCategoryLink;Angle Grinders Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Angle-Grinders/c/1595;AngleGrindersCategoryLink;AngleGrindersCategoryLink
-;;SandersCategoryLink;Sanders Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Sanders/c/1596;SandersCategoryLink;SandersCategoryLink
-;;MeasuringLayoutToolsCategoryLink;Measuring & Layout Tools Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Measuring-%26-Layout-Tools/c/1358;MeasuringLayoutToolsCategoryLink;MeasuringLayoutToolsCategoryLink
-;;HandToolsCategoryLink;Hand Tools Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/c/1355;HandToolsCategoryLink;HandToolsCategoryLink
-;;SafetyCategoryLink;Safety Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Safety/c/1805;SafetyCategoryLink;SafetyCategoryLink
-;;BulkOrderCategoryLink;Bulk Order Category Link;#;;BulkOrderCategoryLink
 
 ## level 4. children of NavNode (the order of children is the same as the display order on the site) ## 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef);
@@ -105,7 +67,6 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&n
 ;HandToolsLinksNavNode;;Hand Tools Category Links;HandToolsLinksNavNode;HandSawsCategoryNavNode,JigsawsCategoryNavNode,NutDriversCategoryNavNode,RotaryHammersCategoryNavNode,StrippingToolsCategoryNavNode,PunchesCategoryNavNode
 ## children of FootwearLinksNavNode ##
 ;FootwearLinksNavNode;;Footwear Category Links;FootwearLinksNavNode;FootwearMensCategoryNavNode,FootwearWomensCategoryNavNode
-;AllProductsLinksNavNode;;All Product Links;AllProductsLinksNavNode;PowerDrillsNavNode,AngleGrindersNavNode,ScrewdriversNavNode,SandersNavNode,MeasuringLayoutToolsNavNode,HandToolsNavNode
 
 ## level 5. children of above (level 4) nodes ##
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef
@@ -223,6 +184,57 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ###### Navigation End ######
 
 
+##########  mega menu code   ############
+
+## level 1. mega menu category Nav ##
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef);
+;PerimeterSecurityNavNode;;Perimeter Security;PerimeterSecurityNavNode
+;AccessControlNavNode;;Access Control;AccessControlNavNode
+;HighSecurityNavNode;;High Security;HighSecurityNavNode
+;IntegrationsNavNode;;Integrations;IntegrationsNavNode
+;SoftwareNavNode;;Software;SoftwareNavNode
+
+## entries of the above navigation nodes ##
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;PerimeterSecurityNavNodeEntry;;Perimeter Security Navigation Node Entry;PerimeterSecurityNavNode;PerimeterSecurityCategoryLink;
+;AccessControlNavNodeEntry;;Access Control Navigation Node Entry;AccessControlNavNode;AccessControlCategoryLink;
+;HighSecurityNavNodeEntry;;High Security Nav Node Entry;HighSecurityNavNode;HighSecurityCategoryLink
+;IntegrationsNavNodeEntry;;Integrations Nav Node Entry;IntegrationsNavNode;IntegrationsCategoryLink
+;SoftwareNavNodeEntry;;Software Nav Node Entry;SoftwareNavNode;SoftwareCategoryLink
+
+## links of the above navigation nodes ##
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow']
+;;PerimeterSecurityCategoryLink;Perimeter Security Category Link;/Security/Perimeter-Security/c/perimeter-security;;PerimeterSecurityCategoryLink
+;;AccessControlCategoryLink;Access Control Category Link;/Security/Access-Control/c/access-control;;AccessControlCategoryLink
+;;HighSecurityCategoryLink;High Security Category Link;/Security/High-Security/c/high-security;;HighSecurityCategoryLink
+;;IntegrationsCategoryLink;Integrations Category Link;/Security/Integrations/c/integrations;;IntegrationsCategoryLink
+;;SoftwareCategoryLink;Software Category Link;/Security/Software/c/software;;SoftwareCategoryLink
+
+INSERT_UPDATE B2badvanceMegaMenuItemComponent;$contentCV[unique=true];&componentRef;uid[unique=true];categoryCode;link(&componentRef);name;headline[lang=de];styleClass;dropDownLayout(code)[default=AUTO];wrapAfter;isBulkOrder[default=false];isAllProductsNode[default=false]
+;;PerimeterSecurityItem;PerimeterSecurityItem;perimeter-security;PerimeterSecurityCategoryLink;Perimeter Security;Perimeter Security;;;10;;true
+;;AccessControlItem;AccessControlItem;access-control;AccessControlCategoryLink;Access Control;Access Control;;;10;;true
+;;HighSecurityItem;HighSecurityItem;high-security;HighSecurityCategoryLink;High Security;High Security;;;10;;true
+;;IntegrationsItem;IntegrationsItem;integrations;IntegrationsCategoryLink;Integrations;Integrations;;;10;;true
+;;SoftwareItem;SoftwareItem;software;SoftwareCategoryLink;Software;Software;;;10;;true
+
+UPDATE B2badvanceMegaMenuItemComponent;$contentCV[unique=true];uid[unique=true]
+															 ;;PerimeterSecurityItem
+															 ;;AccessControlItem
+															 ;;HighSecurityItem
+															 ;;IntegrationsItem
+														    ;;SoftwareItem
+
+UPDATE B2badvanceMegaMenuItemComponent;$contentCV[unique=true];uid[unique=true];headline[lang=de];content[lang=de]
+															 ;;PerimeterSecurityItem;PerimeterSecurity;
+															 ;;AccessControlItem;AccessControl;
+															 ;;HighSecurityItem;HighSecurity;
+															 ;;IntegrationsItem;Integrations;
+														    ;;SoftwareItem;Software;
+
+INSERT_UPDATE B2badvanceMegaMenuComponent;$contentCV[unique=true];uid[unique=true];menuItems(uid,$contentCV);&componentRef;name
+;;B2badvanceMegaMenu;PerimeterSecurityItem,AccessControlItem,HighSecurityItem,IntegrationsItem,SoftwareItem;B2badvanceMegaMenu;Mega Menu
+
+##############Mega menu end###################
 
 
 
@@ -237,8 +249,6 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 
 ##--- level 3. children of powertoolsNavNode ---##
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&componentRef);&nodeRef
-#;B2badvanceCategoryNavNode;;Categories;B2bdvanceNavNode;;B2badvanceCategoryNavNode
-;B2badvanceCategoryNavNode;;Categories;B2badvanceNavNode;;B2badvanceCategoryNavNode
 ;FooterNavNode;;Footer Pages;B2badvanceNavNode;;FooterNavNode
 
 
@@ -1300,26 +1310,6 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;c
                          ;;BodyContent-paymentHistory;Body Content Slot for My Account Payment History;true;AccountPaymentHistoryComponent;;;
 
 
-##########  mega menu code   ############
-
-INSERT_UPDATE B2badvanceMegaMenuItemComponent;$contentCV[unique=true];&componentRef;uid[unique=true];categoryCode;link(&linkRef);name
-
-INSERT_UPDATE B2badvanceMegaMenuComponent;$contentCV[unique=true];uid[unique=true];menuItems(uid,$contentCV);&componentRef;name
-
-INSERT_UPDATE B2badvanceMegaMenuItemComponent;$contentCV[unique=true];&componentRef;uid[unique=true];categoryCode;link(&componentRef);name;headline[lang=de];styleClass;dropDownLayout(code)[default=AUTO];wrapAfter;isBulkOrder[default=false];isAllProductsNode[default=false]
-													  ;;PerimeterSecurityItem;PerimeterSecurityItem;perimeter-security;PerimeterSecurityCategoryLink;Perimeter Security;Perimeter Security;;;10;;true
-													  ;;AccessControlItem;AccessControlItem;access-control;AccessControlCategoryLink;Access Control;Access Control;;;10;;true
-
-UPDATE B2badvanceMegaMenuItemComponent;$contentCV[unique=true];uid[unique=true]
-															 ;;PerimeterSecurityItem
-															 ;;AccessControlItem
-
-UPDATE B2badvanceMegaMenuItemComponent;$contentCV[unique=true];uid[unique=true];headline[lang=de];content[lang=de]
-															 ;;PerimeterSecurityItem;PerimeterSecurity;
-															 ;;AccessControlItem;AccessControl;
-
-INSERT_UPDATE B2badvanceMegaMenuComponent;$contentCV[unique=true];uid[unique=true];menuItems(uid,$contentCV);&componentRef;name
-																;;B2badvanceMegaMenu;PerimeterSecurityItem,AccessControlItem;B2badvanceMegaMenu;Mega Menu
 
 ######  Power Drills Landing Page ######
 

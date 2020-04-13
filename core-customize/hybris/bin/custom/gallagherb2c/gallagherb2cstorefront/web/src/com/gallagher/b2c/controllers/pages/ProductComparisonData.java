@@ -5,53 +5,38 @@ package com.gallagher.b2c.controllers.pages;
 
 import de.hybris.platform.commercefacades.product.data.ProductData;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 
 /**
- * @author shilpiverma
+ * Data class to hold product comparison values
  *
+ * @author Shilpi Verma
  */
 public class ProductComparisonData
 {
 	private ProductData productData;
 
-	private Map<String, String> productAttrValueMap = new HashMap<String, String>();
+	private Map<String, String> productAttrValueMap = new TreeMap<>();
 
-	/**
-	 * @return the productData
-	 */
-	public ProductData getProductData()
-	{
-		return productData;
-	}
-
-	/**
-	 * @param productAttrValueMap
-	 *           the productAttrValueMap to set
-	 */
 	public void setProductAttrValueMap(final Map<String, String> productAttrValueMap)
 	{
 		this.productAttrValueMap = productAttrValueMap;
 	}
 
-	/**
-	 * @param productData
-	 *           the productData to set
-	 */
+	public ProductData getProductData()
+	{
+		return productData;
+	}
+
 	public void setProductData(final ProductData productData)
 	{
 		this.productData = productData;
 	}
 
-	/**
-	 * @return the productAttrValueMap
-	 */
 	public Map<String, String> getProductAttrValueMap()
 	{
 		return productAttrValueMap;
 	}
-
-
 }

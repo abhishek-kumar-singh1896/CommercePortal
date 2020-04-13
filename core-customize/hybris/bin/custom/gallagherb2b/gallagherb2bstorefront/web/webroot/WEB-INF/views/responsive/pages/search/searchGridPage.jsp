@@ -27,7 +27,7 @@
 							</a>
 						</li>
 						<li role="presentation" class="nav-item"><a class="nav-link"
-							target="_blank" href="${sitecoreSolutionPageData}">
+							href="${sitecoreSolutionPageData}">
 								<spring:theme code="text.searchTab.solution" />
 							</a>
 						</li>
