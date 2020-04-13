@@ -14,7 +14,7 @@
 		<coremodule generated="true" manager="com.gallagherstorefront.jalo.GallagherstorefrontManager"
 			packageroot="com.gallagherstorefront" />
 		
-		<webmodule jspcompile="false" webroot="" />
+		<webmodule jspcompile="false" webroot="/gallagherstorefront" />
 	
 	</extension>
 </extensioninfo>
