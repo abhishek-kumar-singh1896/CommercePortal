@@ -5,6 +5,7 @@ package com.gallagher.sap.sapcpicustomerexchangeb2b.outbound.services.impl;
 
 import de.hybris.platform.b2b.model.B2BCustomerModel;
 import de.hybris.platform.sap.sapcpiadapter.model.SAPCpiOutboundB2BContactModel;
+import de.hybris.platform.sap.sapcpiadapter.model.SAPCpiOutboundB2BCustomerModel;
 import de.hybris.platform.sap.sapcpicustomerexchangeb2b.outbound.services.impl.SapCpiB2BCustomerDefaultConversionService;
 
 
@@ -27,5 +28,14 @@ public class GallagherSCPIB2BCustomerConversionServiceImpl extends SapCpiB2BCust
 		sapCpiOutboundB2BContact.setKeycloakGUID(b2bCustomer.getKeycloakGUID());
 		sapCpiOutboundB2BContact.setContactId(b2bCustomer.getSapContactID());
 		sapCpiOutboundB2BContact.setObjectID(b2bCustomer.getObjectID());
+	}
+
+	/**
+	 * Overriding default functionality to avoid populating logical system information
+	 */
+	@Override
+	protected void mapOutboundDestination(final SAPCpiOutboundB2BCustomerModel sapCpiOutboundB2BCustomer)
+	{
+		//Nothing to do as no outbound details required for current SCPI integration
 	}
 }

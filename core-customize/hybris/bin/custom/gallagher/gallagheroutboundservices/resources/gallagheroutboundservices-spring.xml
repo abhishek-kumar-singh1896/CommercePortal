@@ -44,6 +44,12 @@
 	<bean id="gallagherSCPIB2BCustomerConversionService"
 		class="com.gallagher.sap.sapcpicustomerexchangeb2b.outbound.services.impl.GallagherSCPIB2BCustomerConversionServiceImpl"
 		parent="sapCpiB2BCustomerDefaultConversionService" />
+		
+	
+	 <!-- action to trigger the sap consumer -->
+    <alias alias="customerPublishAction" name="gallagherCustomerPublishAction" />
+    <bean id="gallagherCustomerPublishAction" class="com.gallagher.sapcustomerb2c.outbound.GallagherCustomerPublishAction" parent="defaultCustomerPublishAction" />
+    
 
 	<bean id="gallagherCsrfOutboundRequestDecorator"
 		  class="com.gallagher.outboundservices.decorator.impl.GallagherCsrfOutboundRequestDecoratorImpl">
