@@ -65,7 +65,7 @@ public class GallagherAuthenticationProvider extends AbstractAcceleratorAuthenti
 
 		//update user if exist in commerce
 		final GallagherAccessToken galToken = getTokenDetails(accessToken);
-		customerFacade.updateCommerceCustomer(galToken, false);
+
 		try
 		{
 			userDetails = retrieveUser(username);
@@ -75,6 +75,8 @@ public class GallagherAuthenticationProvider extends AbstractAcceleratorAuthenti
 			throw new BadCredentialsException(messages.getMessage("CoreAuthenticationProvider.badCredentials", "Bad credentials"),
 					arg5);
 		}
+		//if customer is B2BCustomer then update
+		customerFacade.updateCommerceCustomer(galToken, false);
 		final User user = UserManager.getInstance().getUserByLogin(userDetails.getUsername());
 		JaloSession.getCurrentSession().setUser(user);
 		final List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
