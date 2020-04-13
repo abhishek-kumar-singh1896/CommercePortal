@@ -8684,7 +8684,7 @@ ul.nav__links::after {
   -webkit-box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
   z-index: 100;
-  width: auto!important;
+/*   width: auto!important; */
   padding-left: 0;
   padding-top: 0;
   list-style: none;

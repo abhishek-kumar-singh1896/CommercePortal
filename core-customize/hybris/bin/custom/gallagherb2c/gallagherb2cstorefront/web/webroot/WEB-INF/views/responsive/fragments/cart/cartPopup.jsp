@@ -8,6 +8,7 @@
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags"%>
 <%@ taglib prefix="theme" tagdir="/WEB-INF/tags/shared/theme"%>
 
+<%@ taglib prefix="product" tagdir="/WEB-INF/tags/responsive/product" %>
 <spring:htmlEscape defaultHtmlEscape="true" />
 
 <spring:theme code="text.addToCart" var="addToCartText" />
@@ -42,28 +43,7 @@
 							<div class="col-3 pr-0">
 								<div class="mini-cart-product-img">
 									<a href="${entryProductUrl}">
-									 <c:set var="tempicon" value="0" />
-									  <c:choose>
-											<c:when test="${not empty entry.product.images}">
-												<c:forEach items="${entry.product.images}" var="medias">
-													<c:if test="${tempicon == 0 }">
-														<c:if test="${medias.format eq 'thumbnail'}">
-															<c:set var="tempicon" value="1" />
-															<a href="${fn:escapeXml(productUrl)}" 	title="${fn:escapeXml(entry.product.name)}">
-																 <img src="${medias.url}" alt="${medias.altText}">
-															</a>
-														</c:if>
-													</c:if>
-												</c:forEach>
-											</c:when>
-											<c:otherwise>
-												<c:if test="${tempicon == 0 }">
-												 		<c:set value="${fn:escapeXml(product.name)}" var="productNameHtml"/>
-														<c:set value="cartIcon" var="format"/>
-								         			<theme:image code="img.missingProductImage.responsive.${format}" alt="${productNameHtml}" title="${productNameHtml}"/>
-												</c:if>
-	`		                    	</c:otherwise>
-										</c:choose> 
+									<product:productIconImage product="${entry.product}" format="thumbnail"/>
 <%-- 										<product:productPrimaryImage	product="${entry.product}" format="cartIcon" /> --%>
 									</a>
 								</div>

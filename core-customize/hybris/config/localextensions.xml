@@ -119,6 +119,7 @@
 	<extension name="gallagherb2bstorefront" />
 	<extension name="gallagherb2cinitialdata" />
 	<extension name="gallagherb2cstorefront" />
+	<extension name="gallagherstorefront" />
 	<extension name="sapcpiorderexchange" />
 	<extension name="sapcpiorderexchangeb2b" />
 	<extension name="ysaporderfulfillment" />

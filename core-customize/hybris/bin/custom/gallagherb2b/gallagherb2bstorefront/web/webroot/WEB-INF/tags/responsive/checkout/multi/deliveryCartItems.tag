@@ -69,7 +69,8 @@
 		<li class="checkout-order-summary-list-items">
 			<div class="thumb">
 				<a href="${productUrl}">
-					<product:productPrimaryImage product="${entry.product}" format="thumbnail"/>
+<%-- 					<product:productPrimaryImage product="${entry.product}" format="thumbnail"/> --%>
+						<product:productIconImage product="${entry.product}" format="thumbnail"/>
 				</a>
 			</div>
 			<div class="price"><format:price priceData="${entry.totalPrice}" displayFreeForZero="true"/></div>

@@ -61,19 +61,19 @@
 										<formElement:formInputBox idKey="card_accountNumber" labelKey="payment.cardNumber" path="card_accountNumber" inputCSS="form-control" mandatory="true" tabindex="3" autocomplete="off" />
 									</div>
 	
+							<div class="form-group">
 									<fieldset id="startDate">
 										<label for="" class="control-label"><spring:theme code="payment.startDate"/></label>
-										<div class="row">
 											<div class="col-xs-6">
 												<formElement:formSelectBox idKey="StartMonth" selectCSSClass="form-control" labelKey="payment.month" path="card_startMonth" mandatory="true" skipBlank="false" skipBlankMessageKey="payment.month" items="${months}" tabindex="4"/>
 											</div>
 											<div class="col-xs-6">
 												<formElement:formSelectBox idKey="StartYear" selectCSSClass="form-control" labelKey="payment.year" path="card_startYear" mandatory="true" skipBlank="false" skipBlankMessageKey="payment.year" items="${startYears}" tabindex="7"/>
 											</div>
-										</div>
 									</fieldset>
+							</div>		
 
-
+								<div class="form-group">
 									<fieldset id="cardDate">
 										<label for="" class="control-label"><spring:theme code="payment.expiryDate"/></label>
 										<div class="row">
@@ -85,13 +85,13 @@
 											</div>
 										</div>
 									</fieldset>
+								</div>	
 
-									<div class="row">
+							<div class="form-group">
 										<div class="col-xs-6">
 											<formElement:formInputBox idKey="card_cvNumber" labelKey="payment.cvn" path="card_cvNumber" inputCSS="form-control" mandatory="true" tabindex="8" />
 										</div>
-									</div>
-									
+							</div>		
 									<div class="row">
 										<div class="col-xs-6">
 											<div id="issueNum">

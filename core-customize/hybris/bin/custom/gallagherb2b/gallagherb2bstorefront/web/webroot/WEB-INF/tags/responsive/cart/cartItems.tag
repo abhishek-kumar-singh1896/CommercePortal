@@ -61,7 +61,8 @@
 			
             <%-- product image --%>
             <div class="item__image">
-                <a href="${productUrl}"><product:productPrimaryImage product="${entry.product}" format="thumbnail"/></a>
+<%--                 <a href="${productUrl}"><product:productPrimaryImage product="${entry.product}" format="thumbnail"/></a> --%>
+     				 <a href="${productUrl}"><product:productIconImage product="${entry.product}" format="thumbnail"/></a>
             </div>
 
             <%-- product name, code, promotions --%>
