@@ -10,6 +10,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.http.HttpStatus;
+
 import com.gallagher.c4c.outboundservices.facade.GallagherC4COutboundServiceFacade;
 import com.gallagher.facades.GallagherRegisteredProductsFacade;
 import com.gallagher.facades.product.data.RegisteredProductData;
@@ -53,9 +55,9 @@ public class GallagherRegisteredProductsFacadeImpl implements GallagherRegistere
 	}
 
 	@Override
-	public void registerProduct(final RegisterProductRequest request)
+	public HttpStatus registerProduct(final RegisterProductRequest request)
 	{
-		gallagherC4COutboundServiceFacade.registerProduct(request);
+		return gallagherC4COutboundServiceFacade.registerProduct(request);
 	}
 
 }

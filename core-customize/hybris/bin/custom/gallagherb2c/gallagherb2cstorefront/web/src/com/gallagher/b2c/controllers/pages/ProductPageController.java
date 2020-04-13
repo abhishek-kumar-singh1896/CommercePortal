@@ -16,6 +16,7 @@ import de.hybris.platform.acceleratorstorefrontcommons.forms.validation.ReviewVa
 import de.hybris.platform.acceleratorstorefrontcommons.util.MetaSanitizerUtil;
 import de.hybris.platform.acceleratorstorefrontcommons.util.XSSFilterUtil;
 import de.hybris.platform.acceleratorstorefrontcommons.variants.VariantSortStrategy;
+import de.hybris.platform.catalog.enums.ProductReferenceTypeEnum;
 import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
 import de.hybris.platform.cms2.model.pages.AbstractPageModel;
 import de.hybris.platform.cms2.servicelayer.services.CMSPageService;
@@ -23,6 +24,9 @@ import de.hybris.platform.commercefacades.order.data.ConfigurationInfoData;
 import de.hybris.platform.commercefacades.product.ProductFacade;
 import de.hybris.platform.commercefacades.product.ProductOption;
 import de.hybris.platform.commercefacades.product.data.BaseOptionData;
+import de.hybris.platform.commercefacades.product.data.ClassificationData;
+import de.hybris.platform.commercefacades.product.data.FeatureData;
+import de.hybris.platform.commercefacades.product.data.FeatureValueData;
 import de.hybris.platform.commercefacades.product.data.FutureStockData;
 import de.hybris.platform.commercefacades.product.data.ImageData;
 import de.hybris.platform.commercefacades.product.data.ImageDataType;
@@ -42,8 +46,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -438,21 +445,26 @@ public class ProductPageController extends AbstractPageController
 		options.addAll(extraOptions);
 		final List<ProductData> sparepart = new ArrayList<ProductData>();
 		final List<ProductData> others = new ArrayList<ProductData>();
+		final List<ProductData> upselling = new ArrayList<ProductData>();
 		final List<ProductData> accessories = new ArrayList<ProductData>();
 		final ProductData productData = productFacade.getProductForCodeAndOptions(productCode, options);
 		final List<ProductReferenceData> references = productData.getProductReferences();
 
 		for (final ProductReferenceData product : references)
 		{
-			if (product.getReferenceType().getCode().equals("SPAREPART"))
+			if (ProductReferenceTypeEnum.SPAREPART.equals(product.getReferenceType()))
 			{
 				sparepart.add(product.getTarget());
 			}
-			else if (product.getReferenceType().getCode().equals("OTHERS"))
+			else if (ProductReferenceTypeEnum.OTHERS.equals(product.getReferenceType()))
 			{
 				others.add(product.getTarget());
 			}
-			else if (product.getReferenceType().getCode().equals("ACCESSORIES"))
+			else if (ProductReferenceTypeEnum.UPSELLING.equals(product.getReferenceType()))
+			{
+				upselling.add(product.getTarget());
+			}
+			else if (ProductReferenceTypeEnum.ACCESSORIES.equals(product.getReferenceType()))
 			{
 				accessories.add(product.getTarget());
 			}
@@ -474,6 +486,130 @@ public class ProductPageController extends AbstractPageController
 			model.addAttribute(WebConstants.MULTI_DIMENSIONAL_PRODUCT,
 					Boolean.valueOf(CollectionUtils.isNotEmpty(productData.getVariantMatrix())));
 		}
+		final List<String> compareProducts = findCommonClassificationAttributes(productData, upselling, model);
+		if (null != compareProducts)
+		{
+			final ProductComparisonData firstComparisonData = new ProductComparisonData();
+			final Map<String, String> firstProductAttrValueMap = new TreeMap<>();
+			final Map<String, String> firstProductAttrValueMapFinal = new TreeMap<>();
+			firstComparisonData.setProductData(productData);
+
+
+			for (final ClassificationData classData : productData.getClassifications())
+			{
+				for (final FeatureData fd : classData.getFeatures())
+				{
+					String mapValue = null;
+					for (final FeatureValueData data : fd.getFeatureValues())
+					{
+						mapValue = data.getValue();
+					}
+					firstProductAttrValueMap.put(fd.getName(), mapValue);
+				}
+			}
+			for (final String attribute : compareProducts)
+			{
+				if (firstProductAttrValueMap.containsKey(attribute))
+				{
+					firstProductAttrValueMap.put(attribute, firstProductAttrValueMap.get(attribute));
+				}
+				else
+				{
+					firstProductAttrValueMap.put(attribute, "-");
+				}
+			}
+			firstComparisonData.setProductData(productData);
+			firstComparisonData.setProductAttrValueMap(firstProductAttrValueMap);
+			model.addAttribute("firstProduct", firstComparisonData);
+			model.addAttribute("compareProducts", compareProducts);
+		}
+	}
+
+	private List<String> findCommonClassificationAttributes(final ProductData firstProduct1,
+			final List<ProductData> productComparisonList, final Model model)
+	{
+		final Set<ProductComparisonData> productComparisonDataList = new HashSet<ProductComparisonData>();
+		final Set<String> result = new HashSet<String>();
+		final Set<String> classFeatureCodes = new HashSet<String>();
+		if (!productComparisonList.isEmpty())
+		{
+			final ProductData firstProduct = firstProduct1;
+			if (firstProduct.getClassifications() != null)
+			{
+				for (final ClassificationData classData : firstProduct.getClassifications())
+				{
+					final String classCode = classData.getCode();
+
+					final boolean addToCommonList = true;
+					//search through products
+					for (int i = 0; i < productComparisonList.size(); i++)
+					{
+						final ProductComparisonData comparisonData = new ProductComparisonData();
+						final Map<String, String> productAttrValueMap = new TreeMap<>();
+						boolean found = false;
+						final ProductData product = productComparisonList.get(i);
+						if (product.getClassifications() != null)
+						{
+							//search through class attr
+							for (final ClassificationData classInnerData : product.getClassifications())
+							{
+								if (classInnerData.getCode().equals(classCode))
+								{
+									//found
+									found = true;
+									for (final FeatureData fd : classInnerData.getFeatures())
+									{
+										if (fd.isComparable())
+										{
+
+											classFeatureCodes.add(fd.getName());
+											String mapValue = null;
+											for (final FeatureValueData data : fd.getFeatureValues())
+											{
+												mapValue = data.getValue();
+											}
+
+											productAttrValueMap.put(fd.getName(), mapValue);
+										}
+									}
+
+								}
+							}
+						}
+						comparisonData.setProductData(product);
+						comparisonData.setProductAttrValueMap(productAttrValueMap);
+						productComparisonDataList.add(comparisonData);
+					}
+				}
+			}
+		}
+		final List<String> featurelist = new ArrayList<String>(classFeatureCodes);
+		Collections.sort(featurelist);
+		final Set<ProductComparisonData> productComparisonDataListFinal = new HashSet<ProductComparisonData>();
+		for (final ProductComparisonData comparisonData : productComparisonDataList)
+		{
+			final ProductComparisonData comparisonDataFinal = new ProductComparisonData();
+			final Map<String, String> productAttrValueMapFinal = new TreeMap<>();
+			if (comparisonData.getProductAttrValueMap().size() > 0)
+			{
+				for (final String attribute : featurelist)
+				{
+					if (comparisonData.getProductAttrValueMap().containsKey(attribute))
+					{
+						productAttrValueMapFinal.put(attribute, comparisonData.getProductAttrValueMap().get(attribute));
+					}
+					else
+					{
+						productAttrValueMapFinal.put(attribute, "-");
+					}
+				}
+				comparisonDataFinal.setProductData(comparisonData.getProductData());
+				comparisonDataFinal.setProductAttrValueMap(productAttrValueMapFinal);
+				productComparisonDataListFinal.add(comparisonDataFinal);
+			}
+		}
+		model.addAttribute("comparisonProductList", productComparisonDataListFinal);
+		return featurelist;
 	}
 
 	protected void populateProductData(final ProductData productData, final Model model)

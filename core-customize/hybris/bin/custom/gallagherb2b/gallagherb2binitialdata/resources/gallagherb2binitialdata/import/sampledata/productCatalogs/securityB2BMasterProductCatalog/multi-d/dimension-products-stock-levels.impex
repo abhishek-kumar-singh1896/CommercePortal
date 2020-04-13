@@ -17,47 +17,47 @@ $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[defa
 $vendor=default
 
 INSERT_UPDATE Warehouse;code[unique=true];name[lang=en]
-;security_warehouse_s;Security B2B Warehouse South;
+;ELEC;"GGL Local Manufacturing";
+;AUME;"Gallagher Australia Pty Ltd"
 
 INSERT_UPDATE StockLevel;productCode[unique=true];warehouse(code)[unique=true,default=default];available;inStockStatus(code);maxPreOrder[default=1];maxStockLevelHistoryCount[default=-1];overSelling[default=0];preOrder[default=0];reserved[default=0]
-;t10-mifare-reader-black;security_warehouse_s;414;notSpecified
-;t11-multi-tech-reader-black;security_warehouse_s;228;notSpecified
-;t11-mifare-reader-black;security_warehouse_s;335;notSpecified
-;t12-multi-tech-reader-black;security_warehouse_s;161;notSpecified
-;t12-mifare-reader-black;security_warehouse_s;215;notSpecified
-;t15-multi-tech-reader-black;security_warehouse_s;122;notSpecified
-;t15-mifare-reader-black;security_warehouse_s;496;notSpecified
-;t20-multi-tech-reader-black;security_warehouse_s;241;notSpecified
-;t20-mifare-reader-black;security_warehouse_s;386;notSpecified
+;t10-mifare-reader-black;ELEC;414;notSpecified
+;t11-multi-tech-reader-black;ELEC;228;notSpecified
+;t11-mifare-reader-black;ELEC;335;notSpecified
+;t12-multi-tech-reader-black;ELEC;161;notSpecified
+;t12-mifare-reader-black;ELEC;215;notSpecified
+;t15-multi-tech-reader-black;ELEC;122;notSpecified
+;t15-mifare-reader-black;ELEC;496;notSpecified
+;t20-multi-tech-reader-black;ELEC;241;notSpecified
+;t20-mifare-reader-black;ELEC;386;notSpecified
 
-;t10-mifare-reader-white;security_warehouse_s;414;notSpecified
-;t11-multi-tech-reader-white;security_warehouse_s;228;notSpecified
-;t11-mifare-reader-white;security_warehouse_s;335;notSpecified
-;t12-multi-tech-reader-white;security_warehouse_s;161;notSpecified
-;t12-mifare-reader-white;security_warehouse_s;215;notSpecified
-;t15-multi-tech-reader-white;security_warehouse_s;122;notSpecified
-;t15-mifare-reader-white;security_warehouse_s;496;notSpecified
-;t20-multi-tech-reader-white;security_warehouse_s;241;notSpecified
-;t20-mifare-reader-white;security_warehouse_s;386;notSpecified
+;t10-mifare-reader-white;ELEC;414;notSpecified
+;t11-multi-tech-reader-white;ELEC;228;notSpecified
+;t11-mifare-reader-white;ELEC;335;notSpecified
+;t12-multi-tech-reader-white;ELEC;161;notSpecified
+;t12-mifare-reader-white;ELEC;215;notSpecified
+;t15-multi-tech-reader-white;ELEC;122;notSpecified
+;t15-mifare-reader-white;ELEC;496;notSpecified
+;t20-multi-tech-reader-white;ELEC;241;notSpecified
+;t20-mifare-reader-white;ELEC;386;notSpecified
 
 
 INSERT_UPDATE Product;code[unique=true];stockLevels(productCode,warehouse(code));vendors(code)[default=$vendor];$catalogVersion
-;t10-mifare-reader-black;t10-mifare-reader-black:security_warehouse_s
-;t11-multi-tech-reader-black;t11-multi-tech-reader-black:security_warehouse_s
-;t11-mifare-reader-black;t11-mifare-reader-black:security_warehouse_s
-;t12-multi-tech-reader-black;t12-multi-tech-reader-black:security_warehouse_s
-;t12-mifare-reader-black;t12-mifare-reader-black:security_warehouse_s
-;t15-multi-tech-reader-black;t15-multi-tech-reader-black:security_warehouse_s
-;t15-mifare-reader-black;t15-mifare-reader-black:security_warehouse_s
-;t20-multi-tech-reader-black;t20-multi-tech-reader-black:security_warehouse_s
-;t20-mifare-reader-black;t20-mifare-reader-black:security_warehouse_s
-
-;t10-mifare-reader-white;t10-mifare-reader-white:security_warehouse_s
-;t11-multi-tech-reader-white;t11-multi-tech-reader-white:security_warehouse_s
-;t11-mifare-reader-white;t11-mifare-reader-white:security_warehouse_s
-;t12-multi-tech-reader-white;t12-multi-tech-reader-white:security_warehouse_s
-;t12-mifare-reader-white;t12-mifare-reader-white:security_warehouse_s
-;t15-multi-tech-reader-white;t15-multi-tech-reader-white:security_warehouse_s
-;t15-mifare-reader-white;t15-mifare-reader-white:security_warehouse_s
-;t20-multi-tech-reader-white;t20-multi-tech-reader-white:security_warehouse_s
-;t20-mifare-reader-white;t20-mifare-reader-white:security_warehouse_s
+;t10-mifare-reader-black;t10-mifare-reader-black:ELEC
+;t11-multi-tech-reader-black;t11-multi-tech-reader-black:ELEC
+;t11-mifare-reader-black;t11-mifare-reader-black:ELEC
+;t12-multi-tech-reader-black;t12-multi-tech-reader-black:ELEC
+;t12-mifare-reader-black;t12-mifare-reader-black:ELEC
+;t15-multi-tech-reader-black;t15-multi-tech-reader-black:ELEC
+;t15-mifare-reader-black;t15-mifare-reader-black:ELEC
+;t20-multi-tech-reader-black;t20-multi-tech-reader-black:ELEC
+;t20-mifare-reader-black;t20-mifare-reader-black:ELEC
+;t10-mifare-reader-white;t10-mifare-reader-white:ELEC
+;t11-multi-tech-reader-white;t11-multi-tech-reader-white:ELEC
+;t11-mifare-reader-white;t11-mifare-reader-white:ELEC
+;t12-multi-tech-reader-white;t12-multi-tech-reader-white:ELEC
+;t12-mifare-reader-white;t12-mifare-reader-white:ELEC
+;t15-multi-tech-reader-white;t15-multi-tech-reader-white:ELEC
+;t15-mifare-reader-white;t15-mifare-reader-white:ELEC
+;t20-multi-tech-reader-white;t20-multi-tech-reader-white:ELEC
+;t20-mifare-reader-white;t20-mifare-reader-white:ELEC

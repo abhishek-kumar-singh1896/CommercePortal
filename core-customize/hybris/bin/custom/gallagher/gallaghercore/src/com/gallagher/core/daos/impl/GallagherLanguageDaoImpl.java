@@ -42,7 +42,7 @@ public class GallagherLanguageDaoImpl implements GallagherLanguageDao
 
 		final SearchResult<LanguageModel> searchResult = flexibleSearchService.search(fQuery);
 
-		return searchResult.getResult().get(0);
+		return searchResult.getResult().size() > 0 ? searchResult.getResult().get(0) : null;
 	}
 
 }

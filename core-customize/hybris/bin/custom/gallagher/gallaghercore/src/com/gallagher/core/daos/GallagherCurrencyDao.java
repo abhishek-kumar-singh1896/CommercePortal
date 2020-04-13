@@ -18,5 +18,5 @@ public interface GallagherCurrencyDao
 	 * get CurrencyModel by ISO Code
 	 *
 	 */
-	CurrencyModel getCurrencyByIsoCode(String isoCode);
+	CurrencyModel getCurrencyByCountryIsoCode(String isoCode);
 }

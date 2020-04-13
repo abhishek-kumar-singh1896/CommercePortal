@@ -135,6 +135,7 @@
         <editorArea:editorArea name="">
             <editorArea:tab name="hmc.gallagher" position="3">
                 <editorArea:section name="hmc.section.gallagher">
+                	  <editorArea:attribute qualifier="marketingDescription"/>
                     <editorArea:attribute qualifier="promoSticker" />
                     <editorArea:attribute qualifier="animalCompatibility" />
                     <editorArea:attribute qualifier="baseProductCode" />

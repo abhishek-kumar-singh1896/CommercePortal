@@ -24,9 +24,9 @@ public class GallagherCurrencyServiceImpl implements GallagherCurrencyService
 	 * {@inheritDoc}
 	 */
 	@Override
-	public CurrencyModel getCurrencyByIsoCode(final String isoCode)
+	public CurrencyModel getCurrencyByCountryIsoCode(final String isoCode)
 	{
-		return gallagherCurrencyDao.getCurrencyByIsoCode(isoCode);
+		return gallagherCurrencyDao.getCurrencyByCountryIsoCode(isoCode);
 	}
 
 }

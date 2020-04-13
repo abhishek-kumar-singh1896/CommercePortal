@@ -5,6 +5,8 @@ package com.gallagher.c4c.outboundservices.facade;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+
 import com.gallagher.outboundservices.request.dto.RegisterProductRequest;
 import com.gallagher.outboundservices.response.dto.GallagherInboundCustomerEntry;
 import com.gallagher.outboundservices.response.dto.GallagherRegisteredProduct;
@@ -30,8 +32,9 @@ public interface GallagherC4COutboundServiceFacade
 	 * Send Registered Product Information to C4C via SCPI
 	 *
 	 * @param request
+	 * @return status
 	 */
-	void registerProduct(final RegisterProductRequest request);
+	HttpStatus registerProduct(final RegisterProductRequest request);
 
 	/**
 	 * Returns Registered Product information for an email from C4C via SCPI

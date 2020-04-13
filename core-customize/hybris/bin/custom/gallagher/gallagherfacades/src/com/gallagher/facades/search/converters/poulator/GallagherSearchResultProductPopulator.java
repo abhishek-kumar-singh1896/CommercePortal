@@ -25,6 +25,11 @@ public class GallagherSearchResultProductPopulator extends SearchResultProductPo
 	public void populate(final SearchResultValueData source, final ProductData target)
 	{
 		super.populate(source, target);
+		final String marketingDescription = this.<String> getValue(source, "marketingDescription");
+		if (!StringUtils.isEmpty(marketingDescription))
+		{
+			target.setName(marketingDescription);
+		}
 		if (!StringUtils.isEmpty(this.<String> getValue(source, "promoSticker")))
 		{
 			target.setPromoSticker((this.<String> getValue(source, "promoSticker")).toLowerCase());
@@ -36,6 +41,7 @@ public class GallagherSearchResultProductPopulator extends SearchResultProductPo
 			animalList.replaceAll(String::toLowerCase);
 			target.setAnimalCompatibility(animalList);
 		}
+
 
 	}
 

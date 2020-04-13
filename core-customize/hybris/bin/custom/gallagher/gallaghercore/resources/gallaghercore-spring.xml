@@ -72,18 +72,6 @@
 
 	<bean id="gallagherProductProcessingDao" class="com.gallagher.core.dao.impl.GallagherProductProcessingDaoImpl" />
 
-
-	<alias name="GallagherDefaultFacetSearchStrategy" alias="defaultFacetSearchStrategy" />
-	<bean id="GallagherDefaultFacetSearchStrategy"
-		class="com.gallagher.core.search.solrfacetsearch.strategy.impl.GallagherDefaultFacetSearchStrategy"
-		parent="abstractFacetSearchStrategy">
-		<property name="solrSearchProviderFactory" ref="solrSearchProviderFactory" />
-		<property name="facetSearchContextFactory" ref="facetSearchContextFactory" />
-		<property name="facetSearchQueryConverter" ref="facetSearchQueryConverter" />
-		<property name="facetSearchResultConverter" ref="facetSearchResultConverter" />
-		<property name="solrIndexService" ref="solrIndexService" />
-	</bean>
-
 	<bean id="gallagherImageValueProvider"
 		class="com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherImageValueProvider" parent="abstractImageValueProvider" />
 

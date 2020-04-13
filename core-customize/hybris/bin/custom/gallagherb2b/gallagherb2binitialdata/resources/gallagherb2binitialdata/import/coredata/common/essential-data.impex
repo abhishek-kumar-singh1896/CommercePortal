@@ -60,10 +60,6 @@ if (warehouse != null)
 line.clear()                                                                                                  ;                      
 }"                                                                                                            
                                                                                                               ; default              ; Default Warehouse            ;                                                
-                                                                                                              ; security_warehouse_s ; Security B2B Warehouse South ; default                                        
-                                                                                                              ; security_warehouse_e ; Security B2B Warehouse East  ; default                                        
-                                                                                                              ; security_warehouse_w ; Security B2B Warehouse West  ; default                                        
-                                                                                                              ; security_warehouse_n ; Security B2B Warehouse North ; default                                        
                                                                                                               
 # Disable preview for email pages                                                                             
 UPDATE CMSPageType ; code[unique=true] ; previewDisabled 
@@ -398,3 +394,7 @@ INSERT_UPDATE ReferenceDivisionMapping;salesOrganization[unique=true];division[u
 ;PEU;PM;"Project Management";PM;"Project Management";PM;"Project Management"
 ;PEU;SE;"Perimeter Security";SE;"Perimeter Security";SE;"Perimeter Security"
 ;PEU;TS;"Technical Services";TS;"Technical Services";TS;"Technical Services"
+
+INSERT_UPDATE Warehouse ; code[unique=true] ; default ; vendor(code) ; name[lang=en]                    
+                        ; AUME              ; true    ; ERP          ; "Gallagher Australia Pty Ltd"    
+                        ; ELEC              ; true    ; ERP          ; "GGL Local Manufacturing" 

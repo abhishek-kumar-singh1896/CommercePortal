@@ -3,13 +3,15 @@
  */
 package com.gallagher.facades.product.converters.populator;
 
+import de.hybris.platform.catalog.enums.ProductReferenceTypeEnum;
 import de.hybris.platform.catalog.model.ProductReferenceModel;
 import de.hybris.platform.commercefacades.product.converters.populator.ProductReferencePopulator;
 import de.hybris.platform.commercefacades.product.data.ProductData;
 import de.hybris.platform.commercefacades.product.data.ProductReferenceData;
+import de.hybris.platform.converters.Populator;
 import de.hybris.platform.core.model.product.ProductModel;
-import de.hybris.platform.servicelayer.dto.converter.Converter;
 
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.util.Assert;
 
 
@@ -20,23 +22,17 @@ import org.springframework.util.Assert;
 public class GallagherProductReferencePopulator extends ProductReferencePopulator
 {
 
-	private Converter<ProductModel, ProductData> productCon;
+	private Populator<ProductModel, ProductData> classificationPopulator;
 
-	/**
-	 * @return the productCon
-	 */
-	public Converter<ProductModel, ProductData> getProductCon()
+	public Populator<ProductModel, ProductData> getClassificationPopulator()
 	{
-		return productCon;
+		return classificationPopulator;
 	}
 
-	/**
-	 * @param productCon
-	 *           the productCon to set
-	 */
-	public void setProductCon(final Converter<ProductModel, ProductData> productCon)
+	@Required
+	public void setClassificationPopulator(final Populator<ProductModel, ProductData> classificationPopulator)
 	{
-		this.productCon = productCon;
+		this.classificationPopulator = classificationPopulator;
 	}
 
 	@Override
@@ -45,11 +41,10 @@ public class GallagherProductReferencePopulator extends ProductReferencePopulato
 		Assert.notNull(source, "Parameter source cannot be null.");
 		Assert.notNull(target, "Parameter target cannot be null.");
 
-		target.setDescription(source.getDescription());
-		target.setPreselected(source.getPreselected());
-		target.setQuantity(source.getQuantity());
-		target.setReferenceType(source.getReferenceType());
-		final ProductModel product = source.getTarget();
-		target.setTarget(product == null ? null : productCon.convert(product));
+		super.populate(source, target);
+		if (ProductReferenceTypeEnum.UPSELLING.equals(source.getReferenceType()))
+		{
+			getClassificationPopulator().populate(source.getTarget(), target.getTarget());
+		}
 	}
 }

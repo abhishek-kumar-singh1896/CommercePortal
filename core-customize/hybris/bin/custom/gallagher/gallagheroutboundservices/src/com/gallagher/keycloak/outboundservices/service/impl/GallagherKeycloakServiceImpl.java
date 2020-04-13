@@ -193,7 +193,7 @@ public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 		}
 		catch (final RestClientException | OAuth2Exception exception)
 		{
-			LOGGER.error("Exception occured while creationg user in Keycloak : " + exception);
+			LOGGER.error("Exception occured while getting user from Keycloak : " + exception);
 			keyCloakGUID = null;
 		}
 		return keyCloakGUID;

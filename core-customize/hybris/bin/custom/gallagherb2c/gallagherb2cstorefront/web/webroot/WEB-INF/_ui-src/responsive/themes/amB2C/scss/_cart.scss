@@ -11,7 +11,7 @@
 
   .cart-headline {
     color: inherit;
-    font-family: $font-family-bold;
+    font-weight: bold;
   }
 }
 
@@ -38,7 +38,7 @@
 
 .cart-totals .cart-totals-right {
     padding-right: 0;
-    font-family: $font-family-bold;
+    font-weight: bold;
 }
 
 .cart-totals .cart-totals-taxes {
@@ -46,7 +46,7 @@
 }
 
 .cart-totals .grand-total {
-  font-family: $font-family-bold;
+  font-weight: bold;
 }
 
 .js-cartItemDetailGroup.open > .dropdown-menu {

@@ -7,6 +7,8 @@
 <%@ taglib prefix="breadcrumb"
 	tagdir="/WEB-INF/tags/responsive/nav/breadcrumb"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec"	uri="http://www.springframework.org/security/tags"%>
+
 
 <template:page pageTitle="${pageTitle}">
 

@@ -69,3 +69,27 @@
     }
   }
 }
+
+
+// overriding pagination for old style
+@media only screen and (max-width: 1023px) {
+  .pagination > li > a,
+  .pagination > li > span {
+    line-height: inherit;
+    width: inherit;
+    padding: 0.5rem 0.75rem;
+    font-size: inherit;
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .pagination > li > a,
+  .pagination > li > span {
+    line-height: inherit;
+    width: inherit;
+    padding: 0.5rem 0.75rem;
+    font-size: inherit;
+    text-align: center;
+  }
+}

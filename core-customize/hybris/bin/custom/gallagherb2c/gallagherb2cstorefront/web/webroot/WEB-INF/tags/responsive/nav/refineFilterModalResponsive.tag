@@ -27,17 +27,18 @@
 						class="sidebar-filter-section d-flex flex-column justify-content-center">
 						<c:if test="${fn:length(searchPageData.breadcrumbs) >0}">
 							<div>
-								<a href="javascript:void(0)" class="clear-filter"> <span
-									class="cross-icon"> <svg>
-		                                	<use
-												xlink:href="${commonResourcePath}/images/gallagher-icons.svg#cross" />
-		                                </svg>
-								</span> <spring:theme code="productList.refinements.clearFilters" />
+								<a href="javascript:void(0)" class="clear-filter">
+									<span class="cross-icon">
+										<svg>
+	                             	<use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#cross" />
+	                            </svg>
+									</span> 
+									<spring:theme code="productList.refinements.clearFilters" />
 								</a>
 							</div>
 						</c:if>
 					</div>
-					<nav:facetNavAppliedFiltersResponsive pageData="${searchPageData}" />
+<%-- 					<nav:facetNavAppliedFiltersResponsive pageData="${searchPageData}" /> --%>
 					<nav:facetNavRefinementsResponsive pageData="${searchPageData}" />
 				</div>
 			</div>

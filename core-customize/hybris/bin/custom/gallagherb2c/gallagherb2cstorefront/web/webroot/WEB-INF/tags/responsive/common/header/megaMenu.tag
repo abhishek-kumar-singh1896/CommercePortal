@@ -100,7 +100,7 @@
 															var="childLevel1">
 																<c:forEach items="${childLevel1.entries}" var="entry">
 																	<li>
-																		<a href="${entry.item.url }" target="_blank"> ${entry.item.linkName }</a>
+																		<a href="${entry.item.url}" <c:if test ="${not empty entry.item.target && entry.item.target.code ne 'sameWindow'}">target="_blank"</c:if>> ${entry.item.linkName }</a>
 																	</li>
 																</c:forEach>
 															</c:forEach>

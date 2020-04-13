@@ -150,6 +150,7 @@
             </bean>
         </constructor-arg>
         <constructor-arg name="userService" ref="userService" />
+        <constructor-arg name="cmsAdminSiteService" ref="cmsAdminSiteService" />
     	<property name="defaultAutoLoginStrategy" ref="defaultAutoLoginStrategy" />
     </bean>
 

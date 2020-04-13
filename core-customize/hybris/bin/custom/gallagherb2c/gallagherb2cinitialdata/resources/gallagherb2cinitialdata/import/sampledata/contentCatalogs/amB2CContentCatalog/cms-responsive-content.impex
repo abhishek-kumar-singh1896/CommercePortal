@@ -1497,9 +1497,12 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;ggB2CNavBar-ProductDetailsPage;ggB2CNavBar;;ggB2CNavBarSlot;true
 
-
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='MultiStepCheckoutSummaryPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;ggB2CNavBar-MultiStepCheckoutSummaryPage;ggB2CNavBar;;ggB2CNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='AccountPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2CNavBar-AccountPage;ggB2CNavBar;;ggB2CNavBarSlot;true
+;;ConsentSection-AccountPage;consent;;consentSlot;true
 
 #####Header navigation bar refactor ends######
 
@@ -1846,7 +1849,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;SendMessageLink;Send Message Link;http://www.google.com/;;;
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];name;$contentCV[unique=true];children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
-;CallUs_Nav;Call Us Nav;;;"Our customer services team are hete to help.";CallUs_Nav
+;CallUs_Nav;Call Us Nav;;;"Our customer services team are here to help.";CallUs_Nav
 ;FindStore_Nav;Find Store Nav;;;"Our dealers are located nationwide.";FindStore_Nav
 ;FindManager_Nav;Find Manager Monitoring Nav;;;"If you are looking for one-on-one system selection advice and training.";FindManager_Nav
 ;SendMessage_Nav;Send Message Nav;;;"Have an enquiry or feedback? Contact us and we will get back to you";SendMessage_Nav
@@ -1858,22 +1861,60 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];name;$contentCV[unique=true];n
 ;SendMessage_NavEntry;Send Message Nav Entry;;SendMessage_Nav;SendMessageLink
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];name;$contentCV[unique=true];children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
-;CallUsSupport_Nav;Call Us support Nav;;;"Our customer services team are hete to help.";CallUsSupport_Nav
+;CallUsSupport_Nav;Call Us support Nav;;;"Our customer services team are here to help.";CallUsSupport_Nav
 ;SupportMaterial_Nav;Support Material Nav;;;"Search through our user manuals, guides and how-tos, brochures and videos.";SupportMaterial_Nav
 ;TechnicalSupport_Nav;Technical Support Nav;;;"We provide technical help and support for Gallagher Weighing and EID hardware and software products";TechnicalSupport_Nav
 ;SoftwareDownloads_Nav;Software Downloads Nav;;;"Download the latest software for your Weighing and EID products";SoftwareDownloads_Nav
 
+
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];name;$contentCV[unique=true];navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
 ;CallUsSupport_NavEntry;Call Us support Nav Entry;;CallUsSupport_Nav;CallUsSupportLink
-;SupportMaterial_NavEntry;Support Material Nav Entry;;SupportMaterial_Nav;SupportMaterialLink
-;TechnicalSupport_NavEntry;Technical Support Nav Entry;;TechnicalSupport_Nav;TechnicalSupportLink
-;SoftwareDownloads_NavEntry;Software Downloads Nav Entry;;SoftwareDownloads_Nav;SoftwareDownloadsLink
+;NZSupportMaterial_NavEntry;NZ Support Material Nav Entry;;SupportMaterial_Nav;NZENSupportMaterialLink
+;NZTechnicalSupport_NavEntry;NZ Technical Support Nav Entry;;TechnicalSupport_Nav;NZENTechnicalSupportLink
+;NZSoftwareDownloads_NavEntry;NZ Software Downloads Nav Entry;;SoftwareDownloads_Nav;NZENSoftwareDownloadsLink
+;CAENSupportMaterial_NavEntry;CA EN Support Material Nav Entry;;SupportMaterial_Nav;CAENSupportMaterialLink
+;CAENTechnicalSupport_NavEntry;CA EN Technical Support Nav Entry;;TechnicalSupport_Nav;CAENTechnicalSupportLink
+;CAENSoftwareDownloads_NavEntry;CA EN Software Downloads Nav Entry;;SoftwareDownloads_Nav;CAENSoftwareDownloadsLink
+;CAFRSupportMaterial_NavEntry;CA FR Support Material Nav Entry;;SupportMaterial_Nav;CAFRSupportMaterialLink
+;CAFRTechnicalSupport_NavEntry;CA FR Technical Support Nav Entry;;TechnicalSupport_Nav;CAFRTechnicalSupportLink
+;CAFRSoftwareDownloads_NavEntry;CA FR Software Downloads Nav Entry;;SoftwareDownloads_Nav;CAFRSoftwareDownloadsLink
+;AUSupportMaterial_NavEntry;AU Support Material Nav Entry;;SupportMaterial_Nav;AUENSupportMaterialLink
+;AUTechnicalSupport_NavEntry;AU Technical Support Nav Entry;;TechnicalSupport_Nav;AUENTechnicalSupportLink
+;AUSoftwareDownloads_NavEntry;AU Software Downloads Nav Entry;;SoftwareDownloads_Nav;AUENSoftwareDownloadsLink
+;USSupportMaterial_NavEntry;US Support Material Nav Entry;;SupportMaterial_Nav;USENSupportMaterialLink
+;USTechnicalSupport_NavEntry;US Technical Support Nav Entry;;TechnicalSupport_Nav;USENTechnicalSupportLink
+;USSoftwareDownloads_NavEntry;US Software Downloads Nav Entry;;SoftwareDownloads_Nav;USENSoftwareDownloadsLink
+;LATAMSupportMaterial_NavEntry;LATAM Support Material Nav Entry;;SupportMaterial_Nav;LATAMENSupportMaterialLink
+;LATAMTechnicalSupport_NavEntry;LATAM Technical Support Nav Entry;;TechnicalSupport_Nav;LATAMENTechnicalSupportLink
+;LATAMSoftwareDownloads_NavEntry;LATAM Software Downloads Nav Entry;;SoftwareDownloads_Nav;LATAMENSoftwareDownloadsLink
+;GlobalSupportMaterial_NavEntry;Global Support Material Nav Entry;;SupportMaterial_Nav;GLOBALENSupportMaterialLink
+;GlobalTechnicalSupport_NavEntry;Global Technical Support Nav Entry;;TechnicalSupport_Nav;GLOBALENTechnicalSupportLink
+;GlobalSoftwareDownloads_NavEntry;Global Software Downloads Nav Entry;;SoftwareDownloads_Nav;GLOBALENSoftwareDownloadsLink
 
-INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
-;;CallUsSupportLink;Call Us Link;https://www.google.com/;;;
-;;SupportMaterialLink;Support Material Link;https://www.google.com/;;;
-;;TechnicalSupportLink;Technical Support Link;http://www.google.com/;;;
-;;SoftwareDownloadsLink;Software Downloads Link;http://www.google.com/;;;
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];linkName[lang=en];
+;;CallUsSupportLink;Call Us Link;https://www.google.com/;;;"<div class=""call-us-title"">Call us</div><div class=""call-us-contact-number"">0800 731 500</div>"
+;;NZENSupportMaterialLink;NZ Support Material Link;https://am.gallagher.com/nz/support/browse-resources;;;"Support Material"
+;;NZENTechnicalSupportLink;NZ Technical Support Link;https://am.gallagher.com/nz/contact-us/product-software-support;;;"Technical Support"
+;;NZENSoftwareDownloadsLink;NZ Software Downloads Link;https://am.gallagher.com/nz/support/software-downloads;;;"Software Downloads"
+;;CAENSupportMaterialLink;CA EN Support Material Link;https://am.gallagher.com/en-ca/support/browse-resources;;;"Support Material"
+;;CAENTechnicalSupportLink;CA EN Technical Support Link;https://am.gallagher.com/en-ca/contact-us/service-repair;;;"Technical Support"
+;;CAENSoftwareDownloadsLink;CA EN Software Downloads Link;https://am.gallagher.com/en-ca/support/software-downloads;;;"Software Downloads"
+;;CAFRSupportMaterialLink;CA FR Support Material Link;http://www.google.com/;;;"Support Material"
+;;CAFRTechnicalSupportLink;CA FR Technical Support Link;http://www.google.com/;;;"Technical Support"
+;;CAFRSoftwareDownloadsLink;CA FR Software Downloads Link;http://www.google.com/;;;"Software Downloads"
+;;AUENSupportMaterialLink;AU Support Material Link;https://am.gallagher.com/au/support/browse-resources;;;"Support Material"
+;;AUENTechnicalSupportLink;AU Technical Support Link;https://am.gallagher.com/au/about-us/our-people/customer-support-team;;;"Technical Support"
+;;AUENSoftwareDownloadsLink;AU Software Downloads Link;https://am.gallagher.com/au/support/software-downloads;;;"Software Downloads"
+;;USENSupportMaterialLink;US Support Material Link; https://am.gallagher.com/us/support/browse-resources;;;"Support Material"
+;;USENTechnicalSupportLink;US Technical Support Link;https://am.gallagher.com/us/contact-us/service-repair;;;"Technical Support"
+;;USENSoftwareDownloadsLink;US Software Downloads Link;https://am.gallagher.com/us/support/software-downloads;;;"Software Downloads"
+;;LATAMENSupportMaterialLink;LATAM Support Material Link;https://am.gallagher.com/es/soporte/buscar-recursos-de-productos?pcategory=all&resource=all&rsubcategory=all&page=0;;;"Support Material"
+;;LATAMENTechnicalSupportLink;LATAM Technical Support Link;http://www.google.com/;;;"Technical Support"
+;;LATAMENSoftwareDownloadsLink;LATAM Software Downloads Link;https://am.gallagher.com/es/soporte/descarga-de-software;;;"Software Downloads"
+;;GLOBALENSupportMaterialLink;Global Support Material Link;https://am.gallagher.com/global/support/browse-resources;;;"Support Material"
+;;GLOBALENTechnicalSupportLink;Global Technical Support Link;http://www.google.com/;;;"Technical Support"
+;;GLOBALENSoftwareDownloadsLink;Global Software Downloads Link;https://am.gallagher.com/global/support/software-downloads;;;"Software Downloads"
+
 
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
@@ -2153,23 +2194,45 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;c
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
 ;;RegisterAProductLink;Register a product Link;/register-product;;;;
 ;;MyRegisteredProductLink;My registered Product Link;/register-product/products;;;;
-;;AccountManagementLink;Account Management Link;/my-account/update-profile;;;;;;;
+;;EditProfileLink;Edit Profile Link;/my-account/update-profile;;;;
+;;OrderHistoryLink;Order History Link;/my-account/update-profile;;;;
+;;PreferencesLink;Preferences Link;/my-account/consents;;;;
 ;;LogoutLink;Logout Us Link;/logout;;;;
 
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];$category;$product;
+;;UpdatePasswordLink;UpdatePasswordLink;$keycloakBaseURL$keycloakAuthURL$keycloakPasswordURL;UpdatePasswordLink;
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV)	   ;onlyOneRestrictionMustApply
+							  			;						  		;OrderHistoryLink;GallagherSiteTransactionRestriction;false
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);children(uid,$contentCV)[mode=replace];links(uid, $contentCV);&nodeRef;title[lang=en]
 ;RegisterAProductNavNode;; Register a Product Navigation Node Menu;UserDropDownNavigationNode;;;RegisterAProductNavNode;"Register a Product"     
 ;MyRegisteredProductNavNode;;My Registered Product Navigation Node Menu;;;;MyRegisteredProductNavNode;"My Registered Product"
-;AccountNavNode;;Account Management Navigation Node Menu;UserDropDownNavigationNode;;;AccountNavNode;"Account Management"                                                                                                                                            ;                        ; AccountNavNode   ; "Account Management"
+;EditProfileNavNode;;Edit Profile Navigation Node Menu;UserDropDownNavigationNode;;;EditProfileNavNode;"Edit profile"
+;UpdatePasswordNavNode;;Update Password Navigation Node Menu;UserDropDownNavigationNode;;;UpdatePasswordNavNode;"Update password"
+;OrderHistoryNavNode;;Order History Navigation Node;UserDropDownNavigationNode;;;OrderHistoryNavNode;"Order History"
+;PreferencesNavNode;;Prefernce Navigation Node;UserDropDownNavigationNode;;;PreferencesNavNode;"Preferences"
 ;LogoutNavNode;;Logout Us Navigation Node Menu;UserDropDownNavigationNode;;;LogoutNavNode;"Logout Us"
+
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
 ;RegisterAProductNavNodeEntry;;Register a Product Navigation Node Entry;RegisterAProductNavNode;RegisterAProductLink;
-;MyRegisteredProductNavNodeEntry;;My Registered Product Navigation Node Entry;MyRegisteredProductNavNode;AccountManagementLink
-;AccountNavNodeEntry;;Account Management Navigation Node Entry;AccountNavNode;MyRegisteredProductLink
+;MyRegisteredProductNavNodeEntry;;My Registered Product Navigation Node Entry;MyRegisteredProductNavNode;MyRegisteredProductLink
+;EditProfileNavNodeEntry;;Edit Profile Navigation Node Entry;EditProfileNavNode;EditProfileLink
+;UpdatePasswordNavNodeEntry;;Update Password Navigation Node Entry;UpdatePasswordNavNode;UpdatePasswordLink
+;OrderHistoryNavNodeEntry;;Order History Navigation Node Entry;OrderHistoryNavNode;OrderHistoryLink
+;PreferencesNavNodeEntry;;Preferences Navigation Node Entry;PreferencesNavNode;PreferencesLink
 ;LogoutNavNodeEntry;;Logout Navigation Node Entry;LogoutNavNode;LogoutLink
 
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;EditProfileLink;Edit Profile
+;;PreferencesLink;Preferences
+;;UpdatePasswordLink;Update Password
+;;OrderHistoryLink;Order History
+
+
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef;children(uid, $contentCV)[mode=replace]
-;UserDropDownNavigationNode;;Header Link Navigation Node; root;; UserDropDownNavigationNode; RegisterAProductNavNode,MyRegisteredProductNavNode,AccountNavNode,LogoutNavNode
+;UserDropDownNavigationNode;;Header Link Navigation Node; root;; UserDropDownNavigationNode; RegisterAProductNavNode,MyRegisteredProductNavNode,EditProfileNavNode,UpdatePasswordNavNode,OrderHistoryNavNode,PreferencesNavNode,LogoutNavNode
 
 INSERT_UPDATE NavigationComponent;$contentCV[unique=true];uid[unique=true];name;styleClass;&componentRef;navigationNode(&nodeRef)
 ;;UserDropDownNavigationComponent;User drop down Navigation component;;UserDropDownNavigationComponent;UserDropDownNavigationNode
@@ -2195,8 +2258,11 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductGridPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;UserDropDown-ProductGridPage;UserDropDown;;UserDropDownSlot;true
 
+
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='RegisterProductPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;UserDropDown-RegisterProductPage;UserDropDown;;UserDropDownSlot;true
+
+
 
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CartPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;UserDropDown-CartPage;UserDropDown;;UserDropDownSlot;true
@@ -2252,16 +2318,20 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ContentPage1Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;UserDropDown-ContentPage1;UserDropDown;;UserDropDownSlot;true
 
+
+
 ######User dropdown in header ends######
 
 # CMS Paragraph Component (Contact information)
 INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
 ;;registerProductSubHeading;Register product Paragraph Component;registerProductSubHeading
 ;;registerProductPopupSubHeading;Register product popup Paragraph Component;registerProductPopupSubHeading
+;;consentManagementSubHeading;consent Management SubHeading Paragraph Component;consentManagementSubHeading
 
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid, $contentCV)
 ;;Section1RegisterSlot;registerProductSubHeading
 ;;Section2RegisterPopupSlot;registerProductPopupSubHeading
+;;consentSlot;consentManagementSubHeading
 
 #### Register Product Page####
 
@@ -2392,3 +2462,4 @@ INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];positi
 
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid, $contentCV)
 ;;SearchGridBannerSlot;CategoryBanner
+;;SearchResultsEmptyBannerSlot;CategoryBanner

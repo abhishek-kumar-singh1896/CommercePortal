@@ -27,7 +27,7 @@
 							</a>
 						</li>
 						<li role="presentation" class="nav-item"><a class="nav-link"
-							target="_blank" href="${sitecoreSolutionPageData}">
+							href="${sitecoreSolutionPageData}">
 								<spring:theme code="text.searchTab.solution" />
 							</a>
 						</li>
@@ -58,15 +58,12 @@
 				</div>
 			</div>
 
-			<div class="tab-pane" id="technicalSupport" role="tabpanel">
-				<script async="async" src="${mindtouchSRCdata}"></script>
-				<script type="mindtouch/embed" id="${mindtouchIDdata}"
-					data-search-query="${searchPageData.freeTextSearch}"></script>
+			<div class="tab-pane" id="technicalSupport">
+					<script async="async" src="${mindtouchSRC}"></script>
+					<script type="mindtouch/embed" id="${mindtouchID}" data-search-query="${searchPageData.freeTextSearch}"></script>
 			</div>
 		</div>
-
 	</div>
-
 
 	<storepickup:pickupStorePopup />
 

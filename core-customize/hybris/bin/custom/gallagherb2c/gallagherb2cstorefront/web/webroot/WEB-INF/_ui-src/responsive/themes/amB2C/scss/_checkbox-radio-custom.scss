@@ -1,4 +1,74 @@
 input[type="radio"],
 input[type=":checkbox"] {
-    margin: 0;
+  margin: 0;
+}
+
+.custom-control {
+  &.custom-radio,
+  &.custom-checkbox {
+    min-height: 22px;
+    padding-left: 22px;
+
+    input {
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .custom-control-input {
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .custom-control-label {
+      font-size: 1em;
+      &:before,
+      &:after {
+        width: 22px;
+        height: 22px;
+        top: 0;
+      }
+    }
+
+    &.with-label {
+      .custom-control-label {
+        padding-left: 6px;
+      }
+    }
+  }
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+  border-color: $gray-6;
+  background-color: $white;
+}
+
+.custom-radio .custom-control-input:checked ~ .custom-control-label::after {
+  background-color: $gray-7;
+  background-image: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 12px;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.custom-radio .custom-control-input:checked ~ .custom-control-label::before {
+  border-color: $gray-7;
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::after {
+  background-image: url("../images/svg/check.svg");
+  width: 19px;
+  height: 19px;
+  background-size: 100%;
+  top: 1px;
+  left: -23px;
+}
+
+.custom-checkbox label {
+  padding-left: 5px;
+  padding-top: 2px;
+  font-size: 1em;
 }

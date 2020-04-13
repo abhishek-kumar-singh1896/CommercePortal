@@ -15,8 +15,10 @@ $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCata
 INSERT_UPDATE CMSImageComponent;$contentCV[unique=true];uid[unique=true];name
 ;;EmailBannerSaleNowOnImage;Email Banner Sale Now On Image
 ;;EmailBannerFreeDeliveryImage;Email Banner Free Delivery Image
+;;EmailBannerSiteLogo;Email Banner for site logo
 
 # Content Slots
 UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV)
 ;;EmailTopSlot;EmailBannerSaleNowOnImage
 ;;EmailBottomSlot;EmailBannerFreeDeliveryImage
+;;EmailSiteLogoSlot;EmailBannerSiteLogo
