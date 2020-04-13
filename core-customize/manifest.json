@@ -270,6 +270,10 @@
         {
           "name": "acceleratorservices",
           "contextPath": "/acceleratorservices"
+        },
+		{
+          "name": "gallagherstorefront",
+          "contextPath": ""
         }
       ]
     },
