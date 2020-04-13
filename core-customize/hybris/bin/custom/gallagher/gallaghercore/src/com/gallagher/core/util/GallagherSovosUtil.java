@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.gallagher.core.model.GallagherSovosConfigurartionModel;
 import com.gallagher.outboundservices.request.dto.GallagherSovosCalculateTaxLineItem;
 import com.gallagher.outboundservices.request.dto.GallagherSovosCalculateTaxRequest;
 
@@ -31,12 +32,13 @@ public class GallagherSovosUtil
 	public static void convert(final AbstractOrderModel abstractOrder, final GallagherSovosCalculateTaxRequest request)
 	{
 		final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		final GallagherSovosConfigurartionModel sovosConfiguration = abstractOrder.getStore().getSovosConfiguration();
 
-		request.setRsltLvl(3);
+		request.setRsltLvl(sovosConfiguration.getResultLevel());
 		request.setTrnId(abstractOrder.getCode());
 		request.setCurrn(abstractOrder.getCurrency() == null ? "USD" : abstractOrder.getCurrency().getIsocode());
 		request.setDocDt(dateFormat.format(new Date()));
-		request.setTxCalcTp(1);
+		request.setTxCalcTp(sovosConfiguration.getTaxCalculationType());
 		request.setTrnDocNum(abstractOrder.getCode());
 		request.setTrnSrc(abstractOrder.getCode());
 		request.setDlvrAmt(abstractOrder.getDeliveryCost());
@@ -47,15 +49,15 @@ public class GallagherSovosUtil
 		{
 			final GallagherSovosCalculateTaxLineItem lineItem = new GallagherSovosCalculateTaxLineItem();
 
-			lineItem.setDebCredIndr(1);
+			lineItem.setDebCredIndr(sovosConfiguration.getDebitCreditInd());
 			lineItem.setGoodSrvCd(orderEntry.getProduct().getCode());
 			lineItem.setGoodSrvDesc(orderEntry.getProduct().getName());
 			lineItem.setGrossAmt(orderEntry.getTotalPrice()); // Need to check
 			lineItem.setLnItmId(orderEntry.getEntryNumber());
 			lineItem.setQnty(orderEntry.getQuantity());
-			lineItem.setTrnTp(1);
-			lineItem.setOrgCd("QASGUS"); // Need to check
-			lineItem.setDropShipInd(1);
+			lineItem.setTrnTp(sovosConfiguration.getTransactionType());
+			lineItem.setOrgCd(sovosConfiguration.getOrganizationCode()); // Need to check
+			lineItem.setDropShipInd(sovosConfiguration.getDropShipInd());
 
 			lineItem.setsFCountry("US"); // Need to check
 			lineItem.setsFCity("Portland"); // Need to check

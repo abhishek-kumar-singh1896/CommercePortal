@@ -20,6 +20,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.collections4.CollectionUtils;
+
 import com.gallagher.core.util.GallagherSovosUtil;
 import com.gallagher.outboundservices.request.dto.GallagherSovosCalculateTaxRequest;
 import com.gallagher.outboundservices.response.dto.GallagherSovosCalculatedTax;
@@ -60,24 +62,30 @@ public class GallagherCalculateExternalTaxesStrategy implements CalculateExterna
 		abstractOrder.setTotalTax(Double.valueOf(response.getTxAmt())); // Need to check
 		//abstractOrder.setNewAttribute(response.getTxwTrnDocId()); Need to check
 
-		for (final GallagherSovosCalculatedTaxLineItem lienItem : response.getLnRslts())
+		if (CollectionUtils.isNotEmpty(response.getLnRslts()))
 		{
-			final List<TaxValue> taxValues = new ArrayList<>();
-
-			for (final GallagherSovosCalculatedTax calculatedTax : lienItem.getJurRslts())
+			for (final GallagherSovosCalculatedTaxLineItem lienItem : response.getLnRslts())
 			{
-				final StringBuilder taxValueString = new StringBuilder();
-				taxValueString.append(calculatedTax.getTxJurUIDJurTp()).append(" : ").append(calculatedTax.getTxRate()).append(" = ")
-						.append(calculatedTax.getTxAmt()); // Need to check
+				final List<TaxValue> taxValues = new ArrayList<>();
 
-				final Double taxAmount = Double.valueOf(calculatedTax.getTxAmt()) + 12.00;
-				final TaxValue taxValue = new TaxValue(taxValueString.toString(), taxAmount, true, taxAmount,
-						abstractOrder.getCurrency() == null ? "USD" : abstractOrder.getCurrency().getIsocode()); // Need to check
+				if (CollectionUtils.isNotEmpty(lienItem.getJurRslts()))
+				{
+					for (final GallagherSovosCalculatedTax calculatedTax : lienItem.getJurRslts())
+					{
+						final StringBuilder taxValueString = new StringBuilder();
+						taxValueString.append(calculatedTax.getTxJurUIDJurTp()).append(" : ").append(calculatedTax.getTxRate())
+								.append(" = ").append(calculatedTax.getTxAmt()); // Need to check
 
-				taxValues.add(taxValue);
+						final Double taxAmount = Double.valueOf(calculatedTax.getTxAmt()) + 12.00;
+						final TaxValue taxValue = new TaxValue(taxValueString.toString(), taxAmount, true, taxAmount,
+								abstractOrder.getCurrency() == null ? "USD" : abstractOrder.getCurrency().getIsocode()); // Need to check
+
+						taxValues.add(taxValue);
+					}
+				}
+
+				externalDocument.setTaxesForOrderEntry(Integer.valueOf(lienItem.getLnId()), taxValues);
 			}
-
-			externalDocument.setTaxesForOrderEntry(Integer.valueOf(lienItem.getLnId()), taxValues);
 		}
 
 		final TaxValue taxValue = new TaxValue("taxCode1", 3.0D, true, 3.0D,
