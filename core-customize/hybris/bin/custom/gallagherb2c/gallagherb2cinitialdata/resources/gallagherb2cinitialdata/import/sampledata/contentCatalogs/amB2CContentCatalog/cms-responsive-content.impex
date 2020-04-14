@@ -1513,9 +1513,6 @@ INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=
 INSERT_UPDATE GallagherCategoryBannerComponent;$contentCV[unique=true];uid[unique=true];$picture
 ;;CategoryBanner;bannerImage.jpg
 
-INSERT_UPDATE GallagherButtonComponent;$contentCV[unique=true];uid[unique=true];buttonHeading;button
-;;Rightbutton;Need some help figuring out the right energizer for your needs?;Use our energizer selector
-
 INSERT_UPDATE GallagherAccordionComponent;$contentCV[unique=true];uid[unique=true];heading;description
 ;;Accordion1;Accordion question lorem ipsum?;Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. 
 ;;Accordion2;Second accordion item;Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. 
@@ -2044,8 +2041,15 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active
 ;;RegisterProductSlot;Register Product Slot;true
 
-INSERT_UPDATE GallagherRegisterButtonComponent;$contentCV[unique=true];uid[unique=true];buttonHeading;button
-;;ProductRegisterBtn;Get two year warranty, register your product online;Register account
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;RegisterAProductPDPLink;Register a product Link;/register-product;;;;
+;;GallagherButtonPLPLink;Register a product Link;https://www.google.co.in/;;;;
+
+INSERT_UPDATE GallagherRegisterButtonComponent;$contentCV[unique=true];uid[unique=true];buttonHeading;button(uid,$contentCV)
+;;ProductRegisterBtn;Get two year warranty, register your product online;RegisterAProductPDPLink
+
+INSERT_UPDATE GallagherButtonComponent;$contentCV[unique=true];uid[unique=true];buttonHeading;button(uid,$contentCV)
+;;Rightbutton;Need some help figuring out the right energizer for your needs?;GallagherButtonPLPLink
 
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid, $contentCV)
 ;;RegisterProductSlot;ProductRegisterBtn
