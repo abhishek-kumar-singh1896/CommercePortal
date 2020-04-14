@@ -84,6 +84,8 @@
 		<script type="text/javascript" src="${commonResourcePath}/js/acc.consent.js"></script>
 		<script type="text/javascript" src="${commonResourcePath}/js/acc.cookienotification.js"></script>
 		<script type="text/javascript" src="${commonResourcePath}/js/acc.closeaccount.js"></script>
+		<script type="text/javascript" src="${commonResourcePath}/js/custom/acc.header.js"></script>
+		
 <%-- bootstrap --%>
 		<script type="text/javascript" src="${commonResourcePath}/bootstrap/dist/js/bootstrap.min.js"></script>
 		

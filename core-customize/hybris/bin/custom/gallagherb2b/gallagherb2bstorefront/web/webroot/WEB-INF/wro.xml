@@ -90,6 +90,7 @@
 		
 		<!-- Cms Action JavaScript files -->
         <js>/_ui/responsive/common/js/cms/*.js</js>
+        <js>/_ui/responsive/common/js/custom/acc.header.js</js>
     </group>
    
 </groups>       
