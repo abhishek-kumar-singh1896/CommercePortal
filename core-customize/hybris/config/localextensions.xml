@@ -123,5 +123,7 @@
 	<extension name="sapcpiorderexchange" />
 	<extension name="sapcpiorderexchangeb2b" />
 	<extension name="ysaporderfulfillment" />
+	  <extension name="paymetric" />
+
   </extensions>
 </hybrisconfig>

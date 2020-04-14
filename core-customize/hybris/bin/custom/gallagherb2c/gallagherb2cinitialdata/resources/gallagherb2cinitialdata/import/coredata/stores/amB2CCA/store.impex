@@ -19,7 +19,7 @@ $billingCountries=CA
 $orderProcessCode=order-process
 $pickupInStoreMode=BUY_AND_COLLECT
 $customerAllowedToIgnoreSuggestions=true
-$paymentProvider=Mockup
+$paymentProvider=paymetric
 $expressCheckoutEnabled=true
 $returnProcessCode=return-process
 
