@@ -248,6 +248,10 @@ INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@medi
 # CMS Image Components
 INSERT_UPDATE CMSImageComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
 ;;EmailBannerSiteLogo;/images/theme/logo-gallagher_email.png;
+
+
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=$lang];fromName[lang=$lang]
+;;CustomerRegistrationEmail;"customerservices@hybris.com";"Gallagher online services"
 ################################################################################
 
 ############################B2C#############################################
