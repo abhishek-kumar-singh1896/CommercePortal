@@ -109,6 +109,9 @@
 	"sapcpiorderexchangeb2b"
   ],
   "useConfig": {
+    "solr": {
+        "location": "solr"
+      },
     "properties": [
       {
         "location": "hybris/config/local-dev.properties",
