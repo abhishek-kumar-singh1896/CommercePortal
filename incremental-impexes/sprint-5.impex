@@ -251,7 +251,7 @@ INSERT_UPDATE CMSImageComponent;$contentCV[unique=true];uid[unique=true];$pictur
 
 
 INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=$lang];fromName[lang=$lang]
-;;CustomerRegistrationEmail;"customerservices@hybris.com";"Gallagher online services"
+;;CustomerRegistrationEmail;"marketing@security.gallagher.com";"Gallagher online services"
 ################################################################################
 
 ############################B2C#############################################
