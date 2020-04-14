@@ -15,75 +15,155 @@
 	<cms:component component="${component}" />
 </cms:pageSlot>
 
-<header class="js-mainHeader">
-	<nav class="navigation navigation--top hidden-xs hidden-sm">
-		<div class="row">
-			<div class="col-sm-12 col-md-4">
-				<div class="nav__left js-site-logo">
-					<cms:pageSlot position="SiteLogo" var="logo" limit="1">
-						<cms:component component="${logo}" element="div" class="yComponentWrapper"/>
-					</cms:pageSlot>
+<header class="main-header-out shadow-sm js-mainHeader">
+<%-- 	<nav class="navigation navigation--top hidden-xs hidden-sm"> --%>
+<!-- 		<div class="row"> -->
+<!-- 			<div class="col-sm-12 col-md-4"> -->
+<!-- 				<div class="nav__left js-site-logo"> -->
+<%-- 					<cms:pageSlot position="SiteLogo" var="logo" limit="1"> --%>
+<%-- 						<cms:component component="${logo}" element="div" class="yComponentWrapper"/> --%>
+<%-- 					</cms:pageSlot> --%>
+<!-- 				</div> -->
+<!-- 			</div> -->
+			
+		<div class="container">
+			<div class="header-out-row">
+			
+				<div class="header-left-section mr-auto">
+					<div class="logo-out gallagher-logo">
+						<cms:pageSlot position="SiteLogo" var="logo" limit="1">
+							<cms:component component="${logo}" element="div" />
+						</cms:pageSlot>
+					</div>
 				</div>
-			</div>
-			<div class="col-sm-12 col-md-8">
-				<div class="nav__right">
-					<ul class="nav__links nav__links--account">
-						<c:if test="${empty hideHeaderLinks}">
-							<c:if test="${uiExperienceOverride}">
-								<li class="backToMobileLink">
-									<c:url value="/_s/ui-experience?level=" var="backToMobileStoreUrl" />
-									<a href="${fn:escapeXml(backToMobileStoreUrl)}">
-										<spring:theme code="text.backToMobileStore" />
-									</a>
-								</li>
-							</c:if>
 
-							<sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
-								<c:set var="maxNumberChars" value="25" />
-								<c:if test="${fn:length(user.firstName) gt maxNumberChars}">
-									<c:set target="${user}" property="firstName"
-										value="${fn:substring(user.firstName, 0, maxNumberChars)}..." />
-								</c:if>
-
-								<li class="logged_in js-logged_in">
-									<ycommerce:testId code="header_LoggedUser">
-										<spring:theme code="header.welcome" arguments="${user.firstName},${user.lastName}" />
-									</ycommerce:testId>
-								</li>
-							</sec:authorize>
-
-							 <cms:pageSlot position="HeaderLinks" var="link">
-								 <cms:component component="${link}" element="li" />
-							 </cms:pageSlot>
-
-							<sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')" >
-								<li class="liOffcanvas">
-									<ycommerce:testId code="header_Login_link">
-										<c:url value="/login" var="loginUrl" />
-										<a href="${fn:escapeXml(loginUrl)}">
-											<spring:theme code="header.link.login" />
-										</a>
-									</ycommerce:testId>
-								</li>
-							</sec:authorize>
-
-							<sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')" >
-								<li class="liOffcanvas">
-									<ycommerce:testId code="header_signOut">
-										<c:url value="/logout" var="logoutUrl"/>
-										<a href="${fn:escapeXml(logoutUrl)}">
-											<spring:theme code="header.link.logout" />
-										</a>
-									</ycommerce:testId>
-								</li>
-							</sec:authorize>
-
+				<cms:pageSlot position="ggB2BNavBar" var="feature">
+					<c:if test="${feature.visible}">
+						<c:if test="${not empty feature.navigationNode && feature.navigationNode ne null}">
+							<div class="header-middle-section">
+								<div class="main-nav-out">
+									<ul>
+										<c:forEach items="${feature.navigationNode.children}" var="l1" varStatus="status">
+											<c:forEach items="${l1.entries}" var="dropdownValue">
+												<li class="first-level with-dropdown">
+													<c:choose>
+														<c:when test="${not empty l1.children && l1.children ne null}">
+					                                <a href="javascript:void(0)" id="mainNavLink${status.index+1}">
+					                                    ${dropdownValue.item.linkName}
+					                                </a>
+					                           </c:when>
+										            <c:otherwise>
+										            	<cms:component component="${dropdownValue.item}" evaluateRestriction="true" />
+										            </c:otherwise>
+													</c:choose>
+												</li>
+											</c:forEach>
+										</c:forEach>
+									</ul>
+								</div>
+							</div>
 						</c:if>
-					</ul>
-				</div>
+					</c:if>
+				</cms:pageSlot>
+
+			<div class="header-right-section">
+			<div class="main-nav-out">
+				<ul>
+					<li>
+						<div class="search-out">
+							<a href="javascript:void(0)" class="search-link" id="searchLink1">
+								&nbsp;
+								<svg class="search-icon">
+									<use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#search" />
+								</svg> 
+<!--                         <span class="search-text"> -->
+<%-- 	                        <spring:theme code="search.placeholder" /> --%>
+<!-- 								</span> -->
+							</a>
+						</div>
+					</li>
+					<li>
+						<div class="cart-out">
+							<a href="javascript:void(0)" class="cart-link">
+								&nbsp;
+								<svg class="cart-icon">
+									<use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#cart" />
+								</svg>
+							</a>
+						</div>
+					</li>
+					<li>
+						<cms:pageSlot position="ggB2BLogin" var="feature">
+							<cms:component component="${feature}" element="div" />
+						</cms:pageSlot>
+					</li>
+				</ul>
 			</div>
 		</div>
-	</nav>
+			</div>
+		</div>
+		
+		
+		
+<!-- 			<div class="col-sm-12 col-md-8"> -->
+<!-- 				<div class="nav__right"> -->
+<!-- 					<ul class="nav__links nav__links--account"> -->
+<%-- 						<c:if test="${empty hideHeaderLinks}"> --%>
+<%-- 							<c:if test="${uiExperienceOverride}"> --%>
+<!-- 								<li class="backToMobileLink"> -->
+<%-- 									<c:url value="/_s/ui-experience?level=" var="backToMobileStoreUrl" /> --%>
+<%-- 									<a href="${fn:escapeXml(backToMobileStoreUrl)}"> --%>
+<%-- 										<spring:theme code="text.backToMobileStore" /> --%>
+<!-- 									</a> -->
+<!-- 								</li> -->
+<%-- 							</c:if> --%>
+
+<%-- 							<sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')"> --%>
+<%-- 								<c:set var="maxNumberChars" value="25" /> --%>
+<%-- 								<c:if test="${fn:length(user.firstName) gt maxNumberChars}"> --%>
+<%-- 									<c:set target="${user}" property="firstName" --%>
+<%-- 										value="${fn:substring(user.firstName, 0, maxNumberChars)}..." /> --%>
+<%-- 								</c:if> --%>
+
+<!-- 								<li class="logged_in js-logged_in"> -->
+<%-- 									<ycommerce:testId code="header_LoggedUser"> --%>
+<%-- 										<spring:theme code="header.welcome" arguments="${user.firstName},${user.lastName}" /> --%>
+<%-- 									</ycommerce:testId> --%>
+<!-- 								</li> -->
+<%-- 							</sec:authorize> --%>
+
+<%-- 							 <cms:pageSlot position="HeaderLinks" var="link"> --%>
+<%-- 								 <cms:component component="${link}" element="li" /> --%>
+<%-- 							 </cms:pageSlot> --%>
+
+<%-- 							<sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')" > --%>
+<!-- 								<li class="liOffcanvas"> -->
+<%-- 									<ycommerce:testId code="header_Login_link"> --%>
+<%-- 										<c:url value="/login" var="loginUrl" /> --%>
+<%-- 										<a href="${fn:escapeXml(loginUrl)}"> --%>
+<%-- 											<spring:theme code="header.link.login" /> --%>
+<!-- 										</a> -->
+<%-- 									</ycommerce:testId> --%>
+<!-- 								</li> -->
+<%-- 							</sec:authorize> --%>
+
+<%-- 							<sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')" > --%>
+<!-- 								<li class="liOffcanvas"> -->
+<%-- 									<ycommerce:testId code="header_signOut"> --%>
+<%-- 										<c:url value="/logout" var="logoutUrl"/> --%>
+<%-- 										<a href="${fn:escapeXml(logoutUrl)}"> --%>
+<%-- 											<spring:theme code="header.link.logout" /> --%>
+<!-- 										</a> -->
+<%-- 									</ycommerce:testId> --%>
+<!-- 								</li> -->
+<%-- 							</sec:authorize> --%>
+
+<%-- 						</c:if> --%>
+<!-- 					</ul> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<%-- 	</nav> --%>
 	<%-- a hook for the my account links in desktop/wide desktop--%>
 	<div class="hidden-xs hidden-sm js-secondaryNavAccount collapse" id="accNavComponentDesktopOne">
 		<ul class="nav__links">
