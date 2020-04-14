@@ -243,11 +243,11 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents
 ;;EmailSiteLogoSlot;EmailBannerSiteLogo
 
 INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];folder(qualifier)[default='images']
-;;/images/theme/logo-gallagher.png;logo-gallagher.png;$siteResource/images/theme/logo-gallagher.png;;
+;;/images/theme/logo-gallagher_email.png;logo-gallagher_email.png;$siteResource/images/theme/logo-gallagher_email.png;;
 
 # CMS Image Components
 INSERT_UPDATE CMSImageComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
-;;EmailBannerSiteLogo;/images/theme/logo-gallagher.png;
+;;EmailBannerSiteLogo;/images/theme/logo-gallagher_email.png;
 ################################################################################
 
 ############################B2C#############################################
