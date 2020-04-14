@@ -486,42 +486,46 @@ public class ProductPageController extends AbstractPageController
 			model.addAttribute(WebConstants.MULTI_DIMENSIONAL_PRODUCT,
 					Boolean.valueOf(CollectionUtils.isNotEmpty(productData.getVariantMatrix())));
 		}
-		final List<String> compareProducts = findCommonClassificationAttributes(productData, upselling, model);
-		if (null != compareProducts)
+
+		if (CollectionUtils.isNotEmpty(upselling))
 		{
-			final ProductComparisonData firstComparisonData = new ProductComparisonData();
-			final Map<String, String> firstProductAttrValueMap = new TreeMap<>();
-			final Map<String, String> firstProductAttrValueMapFinal = new TreeMap<>();
-			firstComparisonData.setProductData(productData);
-
-
-			for (final ClassificationData classData : productData.getClassifications())
+			final List<String> compareProducts = findCommonClassificationAttributes(productData, upselling, model);
+			if (CollectionUtils.isNotEmpty(compareProducts))
 			{
-				for (final FeatureData fd : classData.getFeatures())
+				final ProductComparisonData firstComparisonData = new ProductComparisonData();
+				final Map<String, String> firstProductAttrValueMap = new TreeMap<>();
+				final Map<String, String> firstProductAttrValueMapFinal = new TreeMap<>();
+				firstComparisonData.setProductData(productData);
+
+
+				for (final ClassificationData classData : productData.getClassifications())
 				{
-					String mapValue = null;
-					for (final FeatureValueData data : fd.getFeatureValues())
+					for (final FeatureData fd : classData.getFeatures())
 					{
-						mapValue = data.getValue();
+						String mapValue = null;
+						for (final FeatureValueData data : fd.getFeatureValues())
+						{
+							mapValue = data.getValue();
+						}
+						firstProductAttrValueMap.put(fd.getName(), mapValue);
 					}
-					firstProductAttrValueMap.put(fd.getName(), mapValue);
 				}
-			}
-			for (final String attribute : compareProducts)
-			{
-				if (firstProductAttrValueMap.containsKey(attribute))
+				for (final String attribute : compareProducts)
 				{
-					firstProductAttrValueMap.put(attribute, firstProductAttrValueMap.get(attribute));
+					if (firstProductAttrValueMap.containsKey(attribute))
+					{
+						firstProductAttrValueMap.put(attribute, firstProductAttrValueMap.get(attribute));
+					}
+					else
+					{
+						firstProductAttrValueMap.put(attribute, "-");
+					}
 				}
-				else
-				{
-					firstProductAttrValueMap.put(attribute, "-");
-				}
+				firstComparisonData.setProductData(productData);
+				firstComparisonData.setProductAttrValueMap(firstProductAttrValueMap);
+				model.addAttribute("firstProduct", firstComparisonData);
+				model.addAttribute("compareProducts", compareProducts);
 			}
-			firstComparisonData.setProductData(productData);
-			firstComparisonData.setProductAttrValueMap(firstProductAttrValueMap);
-			model.addAttribute("firstProduct", firstComparisonData);
-			model.addAttribute("compareProducts", compareProducts);
 		}
 	}
 
