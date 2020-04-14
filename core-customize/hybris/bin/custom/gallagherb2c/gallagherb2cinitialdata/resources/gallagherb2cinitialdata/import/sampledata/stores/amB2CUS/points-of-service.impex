@@ -8,7 +8,7 @@ $storeUidUS=amB2CUS
 $storeUidCA=amB2CCA
 $productCatalog=amB2CUSProductCatalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
-$storeImage=storeImage(qualifier, $catalogVersion) 
+$storeImage=storeImage(qualifier, $catalogVersion)
 $standardHours=amB2C-US-standard-hours
 $weekendHours=amB2C-US-weekend-hours
  
@@ -72,17 +72,17 @@ INSERT_UPDATE StoreLocatorFeature ; code[unique=true]
                                   ; creche                 
                                   ; sundayWorkshops        
                                   ; buyOnlinePickupInStore 
-
-     
-INSERT_UPDATE PointOfService ; name[unique=true] ; type(code) ; address(&addrID) ; latitude ; longitude ; geocodeTimestamp[dateformat=dd-MM-yyyy] ; $storeImage ; openingSchedule(code) ; basestore(uid)[default=$storeUidUS] ; features(code) 
-                             ; USKC           ; WAREHOUSE      ; addr1            ; 35,6673  ; 139,75429 ; 29-04-2025                              ;             ; $standardHours        
-                             ; CAN1           ; WAREHOUSE      ; addr2            ; 35,6923  ; 139,8201  ; 29-04-2025                              ;             ; $standardHours        ; $storeUidCA                         
-                             
-INSERT_UPDATE Address ; &addrID ; streetname        ; streetnumber ; postalcode[unique=true] ; town[unique=true] ; country(isocode) ; region(isocode) ; phone1        ; owner(PointOfService.name)[unique=true] 
-                      ; addr1   ; Waseda Dori       ; 13           ;                         ; Tokio             ; US               ;                 ; +81 1988 3600 ; USKC                                 
-                      ; addr2   ; Hibiya Dori       ; 20           ;                         ; Tokio             ; US               ;                 ; +81 4649 8891 ; CAN1                                 
-                                                     
                                   
+                                  
+INSERT_UPDATE PointOfService ; name[unique=true] ; type(code) ; address(&addrID) ; latitude ; longitude ; geocodeTimestamp[dateformat=dd-MM-yyyy] ; $storeImage ; openingSchedule(code) ; basestore(uid)[default=$storeUidUS] ; features(code) 
+                             ; USKC              ; WAREHOUSE  ; addr1            ; 35,6673  ; 139,75429 ; 29-04-2025                              ;             ; $standardHours        
+                             ; CAN1              ; WAREHOUSE  ; addr2            ; 35,6923  ; 139,8201  ; 29-04-2025                              ;             ; $standardHours        ; $storeUidCA                         
+                             
+INSERT_UPDATE Address ; &addrID ; streetname       ; streetnumber ; postalcode[unique=true] ; town[unique=true]   ; country(isocode) ; region(isocode) ; phone1        ; owner(PointOfService.name)[unique=true] 
+                      ; addr1   ; 41st Street      ; 5005 NW      ; 64150                   ; Riverside, Missouri ; US               ;                 ; +81 1988 3600 ; USKC                                    
+                      ; addr2   ; 20th Avenue East ; 2090         ; N4K 5R1                 ; Owen Sound, Ontario ; CA               ;                 ; +81 4649 8891 ; CAN1                                    
+                      
+                      
 UPDATE PointOfService ; name[unique=true] ; features(code)                           ;  
                       ; CAN1              ; wheelchair,creche,buyOnlinePickupInStore ;  
                       ; USKC              ; wheelchair,creche,buyOnlinePickupInStore ;  
