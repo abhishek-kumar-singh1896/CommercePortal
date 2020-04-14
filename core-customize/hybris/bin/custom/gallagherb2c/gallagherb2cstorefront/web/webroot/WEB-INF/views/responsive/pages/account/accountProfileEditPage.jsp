@@ -67,11 +67,11 @@
 										<div class="accountActions">
 											<ycommerce:testId
 												code="personalDetails_cancelPersonalDetails_button">
-												<button type="button"
-													class="btn btn-default btn-block backToHome">
+												<c:url value="/" var="homePageUrl" />
+												 <a href="${fn:escapeXml(homePageUrl)}" class="btn btn-default btn-block backToHome">
 													<spring:theme code="text.account.profile.cancel"
-														text="Cancel" />
-												</button>
+															text="Cancel" />
+												 </a>
 											</ycommerce:testId>
 										</div>
 									</div>
