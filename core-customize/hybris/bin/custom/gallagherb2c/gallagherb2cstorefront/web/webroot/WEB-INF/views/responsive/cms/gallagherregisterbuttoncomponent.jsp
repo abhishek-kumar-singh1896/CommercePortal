@@ -7,7 +7,10 @@
             <div class="row align-items-center">
                 <div class="col-12">
                     <h2 class="register-account-title">${component.buttonHeading}</h2>
-                    <button type="button" class="btn btn-primary">${component.button}</button>
+                    <c:url var="register" value="${component.button.url}"></c:url>
+                    <button type="button" class="btn btn-primary" onclick="window.location.href='${register}'">
+                    	${component.button.linkName}
+                    </button>
                 </div>
             </div>
         </div>

@@ -5,6 +5,7 @@ package com.gallagher.b2c.controllers.pages;
 
 import de.hybris.platform.acceleratorfacades.futurestock.FutureStockFacade;
 import de.hybris.platform.acceleratorservices.controllers.page.PageType;
+import de.hybris.platform.acceleratorstorefrontcommons.breadcrumb.Breadcrumb;
 import de.hybris.platform.acceleratorstorefrontcommons.breadcrumb.impl.ProductBreadcrumbBuilder;
 import de.hybris.platform.acceleratorstorefrontcommons.constants.WebConstants;
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.pages.AbstractPageController;
@@ -36,6 +37,7 @@ import de.hybris.platform.commerceservices.url.UrlResolver;
 import de.hybris.platform.core.model.product.ProductModel;
 import de.hybris.platform.product.ProductService;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
+import de.hybris.platform.servicelayer.session.SessionService;
 import de.hybris.platform.util.Config;
 
 import java.io.UnsupportedEncodingException;
@@ -94,6 +96,7 @@ public class ProductPageController extends AbstractPageController
 	private static final String FUTURE_STOCK_ENABLED = "storefront.products.futurestock.enabled";
 	private static final String STOCK_SERVICE_UNAVAILABLE = "basket.page.viewFuture.unavailable";
 	private static final String NOT_MULTISKU_ITEM_ERROR = "basket.page.viewFuture.not.multisku";
+	private static final String CONTINUE_URL = "continueUrl";
 
 	@Resource(name = "productDataUrlResolver")
 	private UrlResolver<ProductData> productDataUrlResolver;
@@ -119,6 +122,9 @@ public class ProductPageController extends AbstractPageController
 	@Resource(name = "futureStockFacade")
 	private FutureStockFacade futureStockFacade;
 
+	@Resource(name = "sessionService")
+	private SessionService sessionService;
+
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN, method = RequestMethod.GET)
 	public String productDetail(@PathVariable("productCode")
 	final String encodedProductCode, final Model model, final HttpServletRequest request, final HttpServletResponse response)
@@ -138,9 +144,9 @@ public class ProductPageController extends AbstractPageController
 
 		updatePageTitle(productCode, model);
 
+		getContinueUrl(model, productCode);
 
 		populateProductDetailForDisplay(productCode, model, request, extraOptions);
-
 		model.addAttribute(new ReviewForm());
 		model.addAttribute("pageType", PageType.PRODUCT.name());
 		model.addAttribute("futureStockEnabled", Boolean.valueOf(Config.getBoolean(FUTURE_STOCK_ENABLED, false)));
@@ -149,6 +155,19 @@ public class ProductPageController extends AbstractPageController
 		final String metaDescription = MetaSanitizerUtil.sanitizeDescription(productData.getDescription());
 		setUpMetaData(model, metaKeywords, metaDescription);
 		return getViewForPage(model);
+	}
+
+	/**
+	 * @param model
+	 * @param productCode
+	 */
+	private void getContinueUrl(final Model model, final String productCode)
+	{
+		final List<Breadcrumb> breadcrumbslist = productBreadcrumbBuilder.getBreadcrumbs(productCode);
+		final Breadcrumb secondLastBreadcrumb = breadcrumbslist.get(breadcrumbslist.size() - 2);
+		model.addAttribute(CONTINUE_URL,
+				(secondLastBreadcrumb.getUrl() != null && !secondLastBreadcrumb.getUrl().isEmpty()) ? secondLastBreadcrumb.getUrl()
+						: ROOT);
 	}
 
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN + "/orderForm", method = RequestMethod.GET)
@@ -467,42 +486,46 @@ public class ProductPageController extends AbstractPageController
 			model.addAttribute(WebConstants.MULTI_DIMENSIONAL_PRODUCT,
 					Boolean.valueOf(CollectionUtils.isNotEmpty(productData.getVariantMatrix())));
 		}
-		final List<String> compareProducts = findCommonClassificationAttributes(productData, upselling, model);
-		if (null != compareProducts)
+
+		if (CollectionUtils.isNotEmpty(upselling))
 		{
-			final ProductComparisonData firstComparisonData = new ProductComparisonData();
-			final Map<String, String> firstProductAttrValueMap = new TreeMap<>();
-			final Map<String, String> firstProductAttrValueMapFinal = new TreeMap<>();
-			firstComparisonData.setProductData(productData);
-
-
-			for (final ClassificationData classData : productData.getClassifications())
+			final List<String> compareProducts = findCommonClassificationAttributes(productData, upselling, model);
+			if (CollectionUtils.isNotEmpty(compareProducts))
 			{
-				for (final FeatureData fd : classData.getFeatures())
+				final ProductComparisonData firstComparisonData = new ProductComparisonData();
+				final Map<String, String> firstProductAttrValueMap = new TreeMap<>();
+				final Map<String, String> firstProductAttrValueMapFinal = new TreeMap<>();
+				firstComparisonData.setProductData(productData);
+
+
+				for (final ClassificationData classData : productData.getClassifications())
 				{
-					String mapValue = null;
-					for (final FeatureValueData data : fd.getFeatureValues())
+					for (final FeatureData fd : classData.getFeatures())
 					{
-						mapValue = data.getValue();
+						String mapValue = null;
+						for (final FeatureValueData data : fd.getFeatureValues())
+						{
+							mapValue = data.getValue();
+						}
+						firstProductAttrValueMap.put(fd.getName(), mapValue);
 					}
-					firstProductAttrValueMap.put(fd.getName(), mapValue);
 				}
-			}
-			for (final String attribute : compareProducts)
-			{
-				if (firstProductAttrValueMap.containsKey(attribute))
+				for (final String attribute : compareProducts)
 				{
-					firstProductAttrValueMap.put(attribute, firstProductAttrValueMap.get(attribute));
+					if (firstProductAttrValueMap.containsKey(attribute))
+					{
+						firstProductAttrValueMap.put(attribute, firstProductAttrValueMap.get(attribute));
+					}
+					else
+					{
+						firstProductAttrValueMap.put(attribute, "-");
+					}
 				}
-				else
-				{
-					firstProductAttrValueMap.put(attribute, "-");
-				}
+				firstComparisonData.setProductData(productData);
+				firstComparisonData.setProductAttrValueMap(firstProductAttrValueMap);
+				model.addAttribute("firstProduct", firstComparisonData);
+				model.addAttribute("compareProducts", compareProducts);
 			}
-			firstComparisonData.setProductData(productData);
-			firstComparisonData.setProductAttrValueMap(firstProductAttrValueMap);
-			model.addAttribute("firstProduct", firstComparisonData);
-			model.addAttribute("compareProducts", compareProducts);
 		}
 	}
 
@@ -686,7 +709,4 @@ public class ProductPageController extends AbstractPageController
 		final ProductModel productModel = productService.getProductForCode(productCode);
 		return cmsPageService.getPageForProduct(productModel, getCmsPreviewService().getPagePreviewCriteria());
 	}
-
-
-
 }

@@ -277,6 +277,44 @@
 			</attributes>
 		</itemtype>
 
+		<itemtype code="GallagherSovosConfigurartion" autocreate="true" generate="true">
+			<deployment table="SovosConfigurartion" typecode="30003" />
+			<attributes>
+				<attribute qualifier="code" type="java.lang.String">
+					<modifiers optional="false" unique="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="name" type="java.lang.String">
+					<modifiers optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="resultLevel" type="java.lang.Integer">
+					<modifiers optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="taxCalculationType" type="java.lang.Integer">
+					<modifiers optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="debitCreditInd" type="java.lang.Integer">
+					<modifiers optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="transactionType" type="java.lang.Integer">
+					<modifiers optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="organizationCode" type="java.lang.String">
+					<modifiers optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="dropShipInd" type="java.lang.Integer">
+					<modifiers optional="true" />
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+		</itemtype>
+
 		<typegroup name="cms">
 
 			<itemtype code="GallagherFooterNavigationComponent" extends="FooterNavigationComponent" generate="true"
@@ -390,7 +428,7 @@
 						<persistence type="property" />
 						<description>heading for the button</description>
 					</attribute>
-					<attribute qualifier="button" type="java.lang.String">
+					<attribute qualifier="button" type="CMSLinkComponent">
 						<modifiers optional="true" />
 						<persistence type="property" />
 					</attribute>
@@ -554,6 +592,17 @@
 				<description>Extends existing type with additional attributes.</description>
 				<attributes>
 					<attribute qualifier="regionCode" type="RegionCode">
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+		</typegroup>
+
+		<typegroup name="BaseStore">
+			<itemtype code="BaseStore" autocreate="false" generate="false">
+				<description>Extends existing type with additional attributes.</description>
+				<attributes>
+					<attribute qualifier="sovosConfiguration" type="GallagherSovosConfigurartion">
 						<persistence type="property" />
 					</attribute>
 				</attributes>

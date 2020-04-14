@@ -24,6 +24,9 @@
 	<bean id="gallagherC4COutboundServiceFacade"
 		class="com.gallagher.c4c.outboundservices.facade.impl.GallagherC4COutboundServiceFacadeImpl"
 		parent="defaultOutboundServiceFacade" />
+		
+	<bean id="gallagherSovosService"
+        class="com.gallagher.sovos.outboundservices.service.impl.GallagherSovosServiceImpl" />
 
 	<bean id="gallagherKeycloakService"
 		class="com.gallagher.keycloak.outboundservices.service.impl.GallagherKeycloakServiceImpl" />
@@ -44,6 +47,12 @@
 	<bean id="gallagherSCPIB2BCustomerConversionService"
 		class="com.gallagher.sap.sapcpicustomerexchangeb2b.outbound.services.impl.GallagherSCPIB2BCustomerConversionServiceImpl"
 		parent="sapCpiB2BCustomerDefaultConversionService" />
+		
+	
+	 <!-- action to trigger the sap consumer -->
+    <alias alias="customerPublishAction" name="gallagherCustomerPublishAction" />
+    <bean id="gallagherCustomerPublishAction" class="com.gallagher.sapcustomerb2c.outbound.GallagherCustomerPublishAction" parent="defaultCustomerPublishAction" />
+    
 
 	<bean id="gallagherCsrfOutboundRequestDecorator"
 		  class="com.gallagher.outboundservices.decorator.impl.GallagherCsrfOutboundRequestDecoratorImpl">

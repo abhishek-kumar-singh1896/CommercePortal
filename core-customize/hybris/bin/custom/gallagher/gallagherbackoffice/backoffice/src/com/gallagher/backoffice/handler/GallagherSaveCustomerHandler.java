@@ -2,11 +2,14 @@ package com.gallagher.backoffice.handler;
 
 import de.hybris.platform.b2b.model.B2BCustomerModel;
 import de.hybris.platform.b2b.model.B2BUnitModel;
+import de.hybris.platform.commercefacades.storesession.StoreSessionFacade;
 import de.hybris.platform.commercefacades.user.data.CustomerData;
 import de.hybris.platform.commerceservices.strategies.CustomerNameStrategy;
 import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.servicelayer.event.EventService;
 import de.hybris.platform.servicelayer.model.ModelService;
+import de.hybris.platform.servicelayer.session.SessionExecutionBody;
+import de.hybris.platform.servicelayer.session.SessionService;
 import de.hybris.platform.servicelayer.user.impl.DefaultUserService;
 import de.hybris.platform.site.BaseSiteService;
 import de.hybris.platform.store.BaseStoreModel;
@@ -72,6 +75,12 @@ public class GallagherSaveCustomerHandler implements FlowActionHandler
 
 	@Resource(name = "modelService")
 	private ModelService modelService;
+
+	@Resource(name = "sessionService")
+	private SessionService sessionService;
+
+	@Resource(name = "storeSessionFacade")
+	private StoreSessionFacade storeSessionFacade;
 
 	@Override
 	public void perform(final CustomType customType, final FlowActionHandlerAdapter adapter, final Map<String, String> parameters)
@@ -206,7 +215,17 @@ public class GallagherSaveCustomerHandler implements FlowActionHandler
 			b2bCustomer.setIsUserExist(isUserExist);
 			modelService.save(b2bCustomer);
 
-			b2bEventService.publishEvent(b2bRegistrationEvent);
+			sessionService.executeInLocalView(new SessionExecutionBody()
+			{
+				@Override
+				public void executeWithoutResult()
+				{
+					baseSiteService.setCurrentBaseSite(b2bRegistrationEvent.getSite(), false);
+					storeSessionFacade.setCurrentLanguage(b2bRegistrationEvent.getLanguage().getIsocode());
+					storeSessionFacade.setCurrentCurrency(b2bRegistrationEvent.getCurrency().getIsocode());
+					b2bEventService.publishEvent(b2bRegistrationEvent);
+				}
+			});
 		}
 	}
 }
