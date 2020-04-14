@@ -895,7 +895,54 @@ INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(id
 
 ##################################################
 
+###############Register account button issue impex(GallagherButtonComponent)#########################
 
+$contentCatalog=amB2CContentCatalog
+$contentCatalogName=Animal Management B2C Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=amB2CMasterProductCatalog
+$productCatalogName=Animal Management B2C US Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$siteResource=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$medias=medias(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$jarResourceCms=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/cockpits/cmscockpit
+$media=media(code, $contentCV);
+$productResource=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/productCatalogs/$productCatalog
+$picture=media(code, $contentCV);
+$keycloakBaseURL=$config-keycloak.base.url
+$keycloakAuthURL=$config-keycloak.auth.url/$config-keycloak.realm
+$keycloakPasswordURL=$config-keycloak.password.url
+$websiteBaseURL=$config-website.base.url.https
+$lang=en
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;RegisterAProductPDPLink;Register a product Link;/register-product;;;;
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
+;;RegisterAProductPDPLink;"Register account"
+
+INSERT_UPDATE GallagherRegisterButtonComponent;$contentCV[unique=true];uid[unique=true];buttonHeading;button(uid,$contentCV)
+;;ProductRegisterBtn;Get two year warranty, register your product online;RegisterAProductPDPLink
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid, $contentCV)
+;;RegisterProductSlot;ProductRegisterBtn
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;GallagherButtonPLPLink;Register a product Link;https://www.google.co.in/;;;;
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
+;;GallagherButtonPLPLink;"Use our energizer selector"
+
+INSERT_UPDATE GallagherButtonComponent;$contentCV[unique=true];uid[unique=true];buttonHeading;button(uid,$contentCV)
+;;Rightbutton;Need some help figuring out the right energizer for your needs?;GallagherButtonPLPLink
+
+INSERT_UPDATE GallagherAccordionListComponent;$contentCV[unique=true];uid[unique=true];accordionHeading;accordions(uid, $contentCV);buttonInfo(uid, $contentCV)
+;;Accordions;What you need to consider;Accordion1,Accordion2,Accordion3;Rightbutton
+
+#######################################################################################################
 
 
 				  
