@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
 
+import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
@@ -84,14 +85,8 @@ public class GallagherProductRegistrationUtil
 
 			try
 			{
-				final byte[] fileData = file.getBytes();
-				final StringBuilder binaryContent = new StringBuilder();
-				for (final byte b : fileData)
-				{
-					binaryContent.append(getBits(b));
-				}
-
-				attachmentFolder.setBinary(binaryContent.toString());
+				final byte[] fileData = Base64.encodeBase64(file.getBytes());
+				attachmentFolder.setBinary(new String(fileData));
 			}
 			catch (final IOException exception)
 			{
@@ -103,20 +98,6 @@ public class GallagherProductRegistrationUtil
 			request.setRegisteredProductAttachmentFolder(Collections.singletonList(attachmentFolder));
 		}
 
-	}
-
-	/**
-	 * @param b
-	 * @return result
-	 */
-	private static String getBits(final byte b)
-	{
-		final StringBuilder result = new StringBuilder();
-		for (int i = 0; i < 8; i++)
-		{
-			result.append((b & (1 << i)) == 0 ? "0" : "1");
-		}
-		return result.toString();
 	}
 
 }
