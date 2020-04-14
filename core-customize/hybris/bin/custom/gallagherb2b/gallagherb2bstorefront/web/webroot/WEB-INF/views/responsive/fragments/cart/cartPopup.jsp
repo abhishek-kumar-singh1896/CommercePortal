@@ -33,7 +33,8 @@
 								<li class="mini-cart-item">
 									<div class="thumb">
 										<a href="${entryProductUrl}">
-											<product:productPrimaryImage product="${entry.product}" format="cartIcon"/>
+<%-- 											<product:productPrimaryImage product="${entry.product}" format="cartIcon"/> --%>
+											<product:productIconImage product="${entry.product}" format="cartIcon"/>
 										</a>
 									</div>
 									<div class="details">

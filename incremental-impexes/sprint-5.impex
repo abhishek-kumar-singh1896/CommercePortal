@@ -243,11 +243,15 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents
 ;;EmailSiteLogoSlot;EmailBannerSiteLogo
 
 INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];folder(qualifier)[default='images']
-;;/images/theme/logo-gallagher.png;logo-gallagher.png;$siteResource/images/theme/logo-gallagher.png;;
+;;/images/theme/logo-gallagher_email.png;logo-gallagher_email.png;$siteResource/images/theme/logo-gallagher_email.png;;
 
 # CMS Image Components
 INSERT_UPDATE CMSImageComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
-;;EmailBannerSiteLogo;/images/theme/logo-gallagher.png;
+;;EmailBannerSiteLogo;/images/theme/logo-gallagher_email.png;
+
+
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=$lang];fromName[lang=$lang]
+;;CustomerRegistrationEmail;"marketing@security.gallagher.com";"Gallagher online services"
 ################################################################################
 
 ############################B2C#############################################
@@ -478,7 +482,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;RegisterAProductLink;Register a product Link;/register-product;;;;
 ;;MyRegisteredProductLink;My registered Product Link;/register-product/products;;;;
 ;;EditProfileLink;Edit Profile Link;/my-account/update-profile;;;;
-;;OrderHistoryLink;Order History Link;/my-account/update-profile;;;;
+;;OrderHistoryLink;OrderHistoryLink;/my-account/orders;OrderHistoryLink;
 ;;PreferencesLink;Preferences Link;/my-account/consents;;;;
 ;;LogoutLink;Logout Us Link;/logout;;;;
 
@@ -866,12 +870,83 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents
 
 
 
+##################### category filter checkboxes for amb2cnz ##############
+$solrIndexedType=amB2CNZProductType
+INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] ; facet[default=true] ; facetType(code) ; includeInResponse[default=true] ; facetDisplayNameProvider         ; facetSortProvider        ; facetTopValuesProvider 
+                                      ; categoryPath:$solrIndexedType                                   ;                                                                                                   ;                     ; MultiSelectOr   ;                                 ;                                  ;                          
+                                      ; category:$solrIndexedType                                       ;                                                                                                   ;                     ; MultiSelectOr   ;                                 ; categoryFacetDisplayNameProvider ; defaultTopValuesProvider 
+                                      
+###################################################
 
 
+##################Outdoor Suitable facetType changed to MultiSelectOr###############
+$classSystemVersion=systemVersion(catalog(id[default='AMB2CClassification']),version[default='1.0'])
+$classCatalogVersion=catalogVersion(catalog(id[default='AMB2CClassification']),version[default='1.0'])
+$classAttribute=classificationAttribute(code,$classSystemVersion)
+$classClass=classificationClass(code,$classCatalogVersion)
+$classAttributeAssignment=classAttributeAssignment($classClass,$classAttribute,$classSystemVersion)
+$contentCatalogName=amB2CContentCatalog
+$solrIndexedType=amB2CUSProductType
+$contentCatalogVersion=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalogName]),CatalogVersion.version[default=Staged])[default=$contentCatalogName:Staged]
 
 
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=false] ; facetType(code) ; facetSort(code) ; priority ; visible ; fieldValueProvider                          ; customFacetSortProvider      ; rangeSets(name)   ; $classAttributeAssignment          
+                                  ; $solrIndexedType                         ; Outdoor Suitable  ; boolean    ;                    ;                         ;                          ;                           ;                      ; MultiSelectOr   ; Alpha           ; 1000     ; true    ; commerceClassificationPropertyValueProvider ;                              ;                   ; energisers:::outdoor-suitable::::  
+
+INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetDisplayNameProvider ; facetSortProvider            ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType]
+                                      ; Outdoor Suitable :$solrIndexedType                              ;                     ; MultiSelectOr   ; 1000     ;                          ;                              ;                        ;                                 ;                                                                                                  
 
 
+##################################################
+
+###############Register account button issue impex(GallagherButtonComponent)#########################
+
+$contentCatalog=amB2CContentCatalog
+$contentCatalogName=Animal Management B2C Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=amB2CMasterProductCatalog
+$productCatalogName=Animal Management B2C US Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$siteResource=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$medias=medias(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$jarResourceCms=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/cockpits/cmscockpit
+$media=media(code, $contentCV);
+$productResource=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/productCatalogs/$productCatalog
+$picture=media(code, $contentCV);
+$keycloakBaseURL=$config-keycloak.base.url
+$keycloakAuthURL=$config-keycloak.auth.url/$config-keycloak.realm
+$keycloakPasswordURL=$config-keycloak.password.url
+$websiteBaseURL=$config-website.base.url.https
+$lang=en
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;RegisterAProductPDPLink;Register a product Link;/register-product;;;;
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
+;;RegisterAProductPDPLink;"Register account"
+
+INSERT_UPDATE GallagherRegisterButtonComponent;$contentCV[unique=true];uid[unique=true];buttonHeading;button(uid,$contentCV)
+;;ProductRegisterBtn;Get two year warranty, register your product online;RegisterAProductPDPLink
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid, $contentCV)
+;;RegisterProductSlot;ProductRegisterBtn
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;GallagherButtonPLPLink;Register a product Link;https://www.google.co.in/;;;;
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
+;;GallagherButtonPLPLink;"Use our energizer selector"
+
+INSERT_UPDATE GallagherButtonComponent;$contentCV[unique=true];uid[unique=true];buttonHeading;button(uid,$contentCV)
+;;Rightbutton;Need some help figuring out the right energizer for your needs?;GallagherButtonPLPLink
+
+INSERT_UPDATE GallagherAccordionListComponent;$contentCV[unique=true];uid[unique=true];accordionHeading;accordions(uid, $contentCV);buttonInfo(uid, $contentCV)
+;;Accordions;What you need to consider;Accordion1,Accordion2,Accordion3;Rightbutton
+
+#######################################################################################################
 
 
 				  
