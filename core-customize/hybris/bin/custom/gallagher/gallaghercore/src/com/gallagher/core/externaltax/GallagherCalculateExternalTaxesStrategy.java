@@ -78,7 +78,7 @@ public class GallagherCalculateExternalTaxesStrategy implements CalculateExterna
 
 						final Double taxAmount = Double.valueOf(calculatedTax.getTxAmt()) + 12.00;
 						final TaxValue taxValue = new TaxValue(taxValueString.toString(), taxAmount, true, taxAmount,
-								abstractOrder.getCurrency() == null ? "USD" : abstractOrder.getCurrency().getIsocode()); // Need to check
+								abstractOrder.getCurrency() == null ? "USD" : abstractOrder.getCurrency().getIsocode());
 
 						taxValues.add(taxValue);
 					}
