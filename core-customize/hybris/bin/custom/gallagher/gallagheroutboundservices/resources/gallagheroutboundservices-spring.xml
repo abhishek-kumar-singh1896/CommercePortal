@@ -24,6 +24,9 @@
 	<bean id="gallagherC4COutboundServiceFacade"
 		class="com.gallagher.c4c.outboundservices.facade.impl.GallagherC4COutboundServiceFacadeImpl"
 		parent="defaultOutboundServiceFacade" />
+		
+	<bean id="gallagherSovosService"
+        class="com.gallagher.sovos.outboundservices.service.impl.GallagherSovosServiceImpl" />
 
 	<bean id="gallagherKeycloakService"
 		class="com.gallagher.keycloak.outboundservices.service.impl.GallagherKeycloakServiceImpl" />
