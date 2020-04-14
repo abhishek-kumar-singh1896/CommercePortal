@@ -6,11 +6,16 @@ package com.gallagher.core.util;
 import de.hybris.platform.core.model.order.AbstractOrderEntryModel;
 import de.hybris.platform.core.model.order.AbstractOrderModel;
 import de.hybris.platform.core.model.user.AddressModel;
+import de.hybris.platform.ordersplitting.model.WarehouseModel;
+import de.hybris.platform.storelocator.model.PointOfServiceModel;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+
+import org.apache.commons.collections4.CollectionUtils;
 
 import com.gallagher.core.model.GallagherSovosConfigurartionModel;
 import com.gallagher.outboundservices.request.dto.GallagherSovosCalculateTaxLineItem;
@@ -33,9 +38,10 @@ public class GallagherSovosUtil
 	{
 		final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		final GallagherSovosConfigurartionModel sovosConfiguration = abstractOrder.getStore().getSovosConfiguration();
+		final long timeStamp = System.currentTimeMillis();
 
 		request.setRsltLvl(sovosConfiguration.getResultLevel());
-		request.setTrnId(abstractOrder.getCode());
+		request.setTrnId(abstractOrder.getCode() + "_" + timeStamp);
 		request.setCurrn(abstractOrder.getCurrency() == null ? "USD" : abstractOrder.getCurrency().getIsocode());
 		request.setDocDt(dateFormat.format(new Date()));
 		request.setTxCalcTp(sovosConfiguration.getTaxCalculationType());
@@ -56,19 +62,35 @@ public class GallagherSovosUtil
 			lineItem.setLnItmId(orderEntry.getEntryNumber());
 			lineItem.setQnty(orderEntry.getQuantity());
 			lineItem.setTrnTp(sovosConfiguration.getTransactionType());
-			lineItem.setOrgCd(sovosConfiguration.getOrganizationCode()); // Need to check
+			lineItem.setOrgCd(sovosConfiguration.getOrganizationCode());
 			lineItem.setDropShipInd(sovosConfiguration.getDropShipInd());
 
-			lineItem.setsFCountry("US"); // Need to check
-			lineItem.setsFCity("Portland"); // Need to check
-			lineItem.setsFStateProv("OR"); // Need to check
-			lineItem.setsFPstlCd("97203"); // Need to check
+			final List<WarehouseModel> warehouses = abstractOrder.getStore().getWarehouses();
+			if (CollectionUtils.isNotEmpty(warehouses))
+			{
+				final Collection<PointOfServiceModel> pointOfServices = warehouses.get(0).getPointsOfService();
+
+				if (CollectionUtils.isNotEmpty(pointOfServices))
+				{
+					final AddressModel address = pointOfServices.iterator().next().getAddress();
+
+					if (null != address)
+					{
+						lineItem.setsFCountry(address.getCountry().getIsocode());
+						lineItem.setsFCity(address.getTown());
+						lineItem.setsFStateProv(null != address.getRegion() ? address.getRegion().getIsocode() : ""); // Need to check
+						lineItem.setsFPstlCd(address.getPostalcode());
+					}
+
+				}
+
+			}
 
 			final AddressModel deliveryAddress = abstractOrder.getDeliveryAddress();
 
 			lineItem.setsTCountry(deliveryAddress.getCountry().getIsocode());
 			lineItem.setsTCity(deliveryAddress.getTown());
-			lineItem.setsTStateProv(deliveryAddress.getDistrict()); // Need to check
+			lineItem.setsTStateProv(null != deliveryAddress.getRegion() ? deliveryAddress.getRegion().getIsocode() : ""); // Need to check
 			lineItem.setsTPstlCd(deliveryAddress.getPostalcode());
 			lineItem.setsTStNameNum(deliveryAddress.getStreetnumber().concat(" ").concat(deliveryAddress.getStreetname()));
 
