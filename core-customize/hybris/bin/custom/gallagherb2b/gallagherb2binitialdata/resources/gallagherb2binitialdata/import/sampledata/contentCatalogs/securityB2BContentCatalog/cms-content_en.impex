@@ -423,4 +423,29 @@ UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkname[lang=$
 ;;B2BCaseStudiesNavLink;"CASE STUDIES"
 ;;B2BMeetTeamNavLink;"MEET THE TEAM"
 ;;B2BLoginNavLinkComponent;"LOGIN"
+
+
+
+
+
+
+
+
+
+
+
+########Footer Lang##########
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;B2BCareersLink;"CAREERS"
+;;B2BPrivacyStatementLink;"PRIVACY STATEMENT"
+;;B2BSiteMapLink;"SITEMAP"
+
+#######################3
+
+
+##########Notice Header Starts
+INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];noticeHeader[lang=en]
+;;B2BGallagherFooterNavigationComponent;"© GALLAGHER GROUP LIMITED 2008-2020 ALL RIGHTS RESERVED"
+
+##########Notice Header End
  
