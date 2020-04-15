@@ -18,7 +18,7 @@
 	</c:when>
 	<c:otherwise>
 		<%-- jquery --%>
-		<script type="text/javascript" src="${commonResourcePath}/bootstrap/dist/js/bootstrap.min.js"></script>
+	
 		<script type="text/javascript" src="${commonResourcePath}/js/jquery-3.2.1.min.js"></script>
 		
 		<%-- plugins --%>
@@ -40,7 +40,7 @@
 		<script type="text/javascript" src="${commonResourcePath}/js/jquery.waitforimages.min.js"></script>
 		<script type="text/javascript" src="${commonResourcePath}/js/jquery.slideviewer.custom.1.2.js"></script>
 		<script type="text/javascript" src="${commonResourcePath}/js/selecty.min.js"></script>
-		
+		<script type="text/javascript" src="${commonResourcePath}/bootstrap/dist/js/bootstrap.min.js"></script>
 		<%-- Custom ACC JS --%>
 		
 		<script type="text/javascript" src="${commonResourcePath}/js/acc.address.js"></script>
