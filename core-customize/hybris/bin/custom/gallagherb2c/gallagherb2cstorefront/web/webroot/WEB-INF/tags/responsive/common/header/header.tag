@@ -31,7 +31,6 @@
 						</cms:pageSlot>
 					</div>
 				</div>
-
 				<cms:pageSlot position="ggB2CNavBar" var="feature">
 					<c:if test="${feature.visible}">
 						<c:if test="${not empty feature.navigationNode && feature.navigationNode ne null}">
