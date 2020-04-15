@@ -46,16 +46,9 @@
 										<c:forEach items="${feature.navigationNode.children}" var="l1" varStatus="status">
 											<c:forEach items="${l1.entries}" var="dropdownValue">
 												<li class="first-level with-dropdown">
-													<c:choose>
-														<c:when test="${not empty l1.children && l1.children ne null}">
-					                                <a href="javascript:void(0)" id="mainNavLink${status.index+1}">
-					                                    ${dropdownValue.item.linkName}
+													<a href="javascript:void(0)" id="mainNavLink${status.index+1}">
+						                                    ${dropdownValue.item.linkName}
 					                                </a>
-					                           </c:when>
-										            <c:otherwise>
-										            	<cms:component component="${dropdownValue.item}" evaluateRestriction="true" />
-										            </c:otherwise>
-													</c:choose>
 												</li>
 											</c:forEach>
 										</c:forEach>
@@ -98,6 +91,12 @@
 					</div>
 				</div>
 				
+			</div>
+			
+			<div class="megamenu-out second-level-menu shadow-sm d-none" id="mainNavLink3Container">
+				<!-- <div class="container"> -->
+						<nav:topNavigation />
+				<!-- </div> -->
 			</div>
 			
 			<div class="megamenu-out search-result-out search-link-container d-none" id="searchLink1Container">
@@ -266,7 +265,7 @@
 		</div>
 	</nav>
 	<a id="skiptonavigation"></a>
-	<nav:topNavigation />
+	<%-- <nav:topNavigation /> --%>
 </header>
 
 <cms:pageSlot position="BottomHeaderSlot" var="component" element="div"	class="container-fluid">
