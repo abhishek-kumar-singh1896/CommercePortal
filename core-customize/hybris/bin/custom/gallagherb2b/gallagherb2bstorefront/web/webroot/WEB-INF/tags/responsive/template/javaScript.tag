@@ -18,6 +18,7 @@
 	</c:when>
 	<c:otherwise>
 		<%-- jquery --%>
+		<script type="text/javascript" src="${commonResourcePath}/bootstrap/dist/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="${commonResourcePath}/js/jquery-3.2.1.min.js"></script>
 		
 		<%-- plugins --%>
@@ -87,8 +88,6 @@
 		<script type="text/javascript" src="${commonResourcePath}/js/custom/acc.header.js"></script>
 		
 <%-- bootstrap --%>
-		<script type="text/javascript" src="${commonResourcePath}/bootstrap/dist/js/bootstrap.min.js"></script>
-		
 		<script type="text/javascript" src="${commonResourcePath}/js/acc.csv-import.js"></script>
 
 		<script type="text/javascript" src="${commonResourcePath}/js/_autoload.js"></script>
