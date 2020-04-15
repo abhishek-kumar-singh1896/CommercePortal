@@ -1630,3 +1630,201 @@ INSERT_UPDATE CMSUserGroupRestriction;$contentCV[unique=true];uid[unique=true];n
 ;;SupportTicketUserGroupRestriction;Account Support Ticket User Group Restriction;b2bcustomergroup,b2badmingroup;true;AccountSupportTicketHistoryLink
 ### customerticketingaddon END
 
+
+
+
+########Footer Navigation Node Starts ################
+
+
+#########################Navigation Node Starts###############3333
+
+ 
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef;children(uid, $contentCV)[mode=replace]
+;B2BFooterNavigationNode;;Footer Navigation Node; root;;B2BFooterNavigationNode;B2BCompanyNavigationNode,B2BSolutionsNavigationNode,B2BSupportNavigationNode
+
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);children(uid,$contentCV)[mode=replace];links(uid, $contentCV);&nodeRef;title[lang=en]
+;B2BCompanyNavigationNode;;B2B Company Navigation Node;B2BFooterNavigationNode;B2BAboutUsLinkNode,B2BContactUsLinkNode,B2BNewsAndEventsLinkNode,B2BTeamLinkNode,B2BPartenerLinkNode;;B2BCompanyNavigationNode;"Company"
+;B2BSolutionsNavigationNode;;B2B Solutions Navigation Node;B2BFooterNavigationNode;B2BProductsLinkNode,B2BCaseStudiesLinkNode,B2BIndustriesLinkNode;;B2BSolutionsNavigationNode;"Solutions"
+;B2BSupportNavigationNode;;B2B Support Navigation Node;B2BFooterNavigationNode;B2BSupportSiteLoginLinkNode,B2BChannelPartnerLinkNode,B2BSecurityAdvisoryLinkNode;;B2BSupportNavigationNode;"Support"
+
+
+
+
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkname;name;url;&linkRef;&componentRef;
+;;B2BAboutUsLink;About Us;B2B About Us Link ;https://www.google.com ;B2BAboutUsLink ; B2BAboutUsLink
+;;B2BContactUsLink;Contact Us;B2B Contact Us Link;https://www.google.com ; B2BContactUsLink ;B2BContactUsLink
+;;B2BNewsAndEventsLink;News & Events;B2B News And Events Link;https://www.google.com ;B2BNewsAndEventsLink;B2BNewsAndEventsLink
+;;B2BTeamLink;Meet the team;B2B Team Link;https://www.google.com;B2BTeamLink;B2BTeamLink
+;;B2BPartenerLink;Our Partners;B2B Partner Link;https://www.google.com ; B2BPartenerLink ;B2BPartenerLink
+;;B2BProductsLink;Products;B2B Products Link;https://www.google.com ; B2BProductsLink ; B2BProductsLink
+;;B2BCaseStudiesLink;Case studies;B2B Case Studies Link;https://www.google.com ; B2BCaseStudiesLink;B2BCaseStudiesLink
+;;B2BIndustriesLink;Industries;B2B Industries Link;https://www.google.com ; B2BIndustriesLink ; B2BIndustriesLink
+;;B2BSupportSiteLoginLink;Support site login;B2B Support Site Login Link;https://www.google.com ; B2BSupportSiteLoginLink ; B2BSupportSiteLoginLink
+;;B2BChannelPartnerLink;Become a channel partner;B2B Channel Partner Link;https://www.google.com ; B2BChannelPartnerLink ; B2BChannelPartnerLink
+;;B2BSecurityAdvisoryLink;Security Advisories;B2B Security Advisory Link;https://www.google.com ; B2BSecurityAdvisoryLink ;B2BSecurityAdvisoryLink
+
+
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;B2BCompanyNavigationNodeEntry1;;B2B Company Navigation Node Entry1;B2BAboutUsLinkNode;B2BAboutUsLink
+;B2BCompanyNavigationNodeEntry2;;B2B Company Navigation Node Entry2;B2BContactUsLinkNode;B2BContactUsLink
+;B2BCompanyNavigationNodeEntry3;;B2B Company Navigation Node Entry3;B2BNewsAndEventsLinkNode;B2BNewsAndEventsLink
+;B2BCompanyNavigationNodeEntry4;;B2B Company Navigation Node Entry4;B2BTeamLinkNode;B2BTeamLink
+;B2BCompanyNavigationNodeEntry5;;B2B Company Navigation Node Entry5;B2BPartenerLinkNode;B2BPartenerLink
+;B2BSolutionsNavigationNodeEntry1;;B2B Solutions Navigation Node Entry1;B2BProductsLinkNode;B2BProductsLink
+;B2BSolutionsNavigationNodeEntry2;;B2B Solutions Navigation Node Entry2;B2BCaseStudiesLinkNode;B2BCaseStudiesLink
+;B2BSolutionsNavigationNodeEntry3;;B2B Solutions Navigation Node Entry3;B2BIndustriesLinkNode;B2BIndustriesLink
+;B2BSupportNavigationNodeEntry1;;B2B Support Navigation Node Entry1;B2BSupportSiteLoginLinkNode;B2BSupportSiteLoginLink
+;B2BSupportNavigationNodeEntry2;;B2B Support Navigation Node Entry2;B2BChannelPartnerLinkNode;B2BChannelPartnerLink
+;B2BSupportNavigationNodeEntry3;;B2B Support Navigation Node Entry3;B2BSecurityAdvisoryLinkNode;B2BSecurityAdvisoryLink
+
+
+
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
+;B2BAboutUsLinkNode;;B2B About Us Link Node;B2BCompanyNavigationNode;;B2BAboutUsLinkNode
+;B2BContactUsLinkNode;;B2B Contact Us Link Node;B2BCompanyNavigationNode;;B2BContactUsLinkNode
+;B2BNewsAndEventsLinkNode;;B2B News Link Node;B2BCompanyNavigationNode;;B2BNewsAndEventsLinkNode
+;B2BTeamLinkNode;;B2B Team Node;B2BCompanyNavigationNode;;B2BTeamLinkNode
+;B2BPartenerLinkNode;;B2B Partner Node;B2BCompanyNavigationNode;;B2BPartenerLinkNode
+;B2BProductsLinkNode;;B2B Products Node;B2BSolutionsNavigationNode;;B2BProductsLinkNode
+;B2BCaseStudiesLinkNode;;B2B Case Studies Node;B2BSolutionsNavigationNode;;B2BCaseStudiesLinkNode
+;B2BIndustriesLinkNode;;B2B Industry Node;B2BSolutionsNavigationNode;;B2BIndustriesLinkNode
+;B2BSupportSiteLoginLinkNode;;B2B Supports Site Node;B2BSupportNavigationNode;;B2BSupportSiteLoginLinkNode
+;B2BChannelPartnerLinkNode;;B2B Channel Node;B2BSupportNavigationNode;;B2BChannelPartnerLinkNode
+;B2BSecurityAdvisoryLinkNode;;B2B Security Node;B2BSupportNavigationNode;;B2BSecurityAdvisoryLinkNode
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];wrapAfter;navigationNode(&nodeRef);&componentRef
+;;B2BGallagherFooterNavigationComponent;5;B2BFooterNavigationNode;B2BGallagherFooterNavigationComponent
+
+
+########################Navigation node END
+
+
+
+#########################Division Impex Start
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;linkName;&linkRef;&componentRef
+;;B2BgallagherDivision1LnkCom;B2B Gallagher Division 1;'#';OTHER GALLAGHER DIVISIONS;B2BgallagherDivision1LnkCom;B2BgallagherDivision1LnkCom
+;;B2BgallagherDivision2LnkCom;B2B Gallagher Division 2;'#';CONTRACT MANUFACTURING;B2BgallagherDivision2LnkCom;B2BgallagherDivision2LnkCom
+;;B2BgallagherDivision3LnkCom;B2B Gallagher Division 3;'#';FUEL SYSTEMS;B2BgallagherDivision3LnkCom;B2BgallagherDivision3LnkCom
+;;B2BgallagherDivision4LnkCom;B2B Gallagher Division 4;'#';CORPORATE;B2BgallagherDivision4LnkCom;B2BgallagherDivision4LnkCom
+
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;B2BgallagherDivision1NavEty;;B2B Gallagher Division 1 navigation entry;B2BgallagherDivision1NavNod;B2BgallagherDivision1LnkCom
+;B2BgallagherDivision2NavEty;;B2BGallagher Division 2 navigation entry;B2BgallagherDivision2NavNod;B2BgallagherDivision2LnkCom
+;B2BgallagherDivision3NavEty;;B2B Gallagher Division 3 navigation entry;B2BgallagherDivision3NavNod;B2BgallagherDivision3LnkCom
+;B2BgallagherDivision4NavEty;;B2B Gallagher Division 4 navigation entry;B2BgallagherDivision4NavNod;B2BgallagherDivision4LnkCom
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef);
+;B2BgallagherDivision1NavNod;;B2B Gallagher Division 1 navigation node;B2BgallagherDivision1NavNod
+;B2BgallagherDivision2NavNod;;B2B Gallagher Division 2 navigation node;B2BgallagherDivision2NavNod
+;B2BgallagherDivision3NavNod;;B2B Gallagher Division 3 navigation node;B2BgallagherDivision3NavNod
+;B2BgallagherDivision4NavNod;;B2B Gallagher Division 4 navigation node;B2BgallagherDivision4NavNod
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&componentRef);&nodeRef;children(uid, $contentCV)
+;B2BothersDivisionsNavNod;;B2B Other division drop down;root;;B2BothersDivisionsNavNod;B2BgallagherDivision1NavNod,B2BgallagherDivision2NavNod,B2BgallagherDivision3NavNod,B2BgallagherDivision4NavNod
+
+INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];gallagherDivisionsLinkNagivationNode(&nodeRef);&componentRef
+;;B2BGallagherFooterNavigationComponent;B2BothersDivisionsNavNod;B2BGallagherFooterNavigationComponent
+
+
+
+##################Division impex end
+
+
+
+
+##Footer Link navigation component start 
+
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;children(uid,$contentCV)[mode=append]
+;root;;root;;
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&componentRef);&nodeRef;children(uid, $contentCV)
+;B2BFooterLinkNavNode;;B2B Footer Link Pages;root;;B2BFooterLinkNavNode;B2BCareersNavNode,B2BPrivacyStatementNavNode,B2BSiteMapNavNode
+
+##---- children of Footer Link navigation component ----##
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
+;B2BCareersNavNode;;B2B Careers Page;B2BFooterLinkNavNode;;B2BCareersNavNode
+;B2BPrivacyStatementNavNode;;B2B Privacy Statement Page;B2BFooterLinkNavNode;;B2BPrivacyStatementNavNode
+;B2BSiteMapNavNode;;B2B Site Map Page;B2BFooterLinkNavNode;;B2BSiteMapNavNode
+
+## Links of the above navigation node entries ##
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef
+;;B2BCareersLink;B2B Careers Link;"#";B2BCareersLink;B2BCareersLink
+;;B2BPrivacyStatementLink;B2B Privacy Statement Link;"#";B2BPrivacyStatementLink;B2BPrivacyStatementLink
+;;B2BSiteMapLink;B2B Site Map Link;"#";B2BSiteMapLink;B2BSiteMapLink
+
+
+## entries of the above navigation nodes ##
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;B2BCareersNavNodeEntry;;B2B Careers Navigation Node Entry;B2BCareersNavNode;B2BCareersLink
+;B2BPrivacyStatementNavNodeEntry;;B2B Privacy Statement Nav Node Entry;B2BPrivacyStatementNavNode;B2BPrivacyStatementLink
+;B2BSiteMapNavNodeEntry;;Site Map Navigation Node Entry;B2BSiteMapNavNode;B2BSiteMapLink
+
+
+INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];footerLinkNagivationNode(&nodeRef);&componentRef
+;;B2BGallagherFooterNavigationComponent;B2BFooterLinkNavNode;B2BGallagherFooterNavigationComponent
+
+
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;B2BCareersLink;"CAREERS"
+;;B2BPrivacyStatementLink;"PRIVACY STATEMENT"
+;;B2BSiteMapLink;"SITEMAP"
+
+
+
+
+INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];noticeHeader[lang=en]
+;;B2BGallagherFooterNavigationComponent;"© Gallagher Group Limited 2017. All right reserved."
+
+
+##Footer Link navigation component End
+
+
+
+
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(&componentRef)
+;;FooterSlot;B2BGallagherFooterNavigationComponent
+
+
+
+
+
+
+
+
+
+
+
+
