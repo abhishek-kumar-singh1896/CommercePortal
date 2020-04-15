@@ -2015,16 +2015,6 @@ INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[uni
 
 
 
-INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
-;;B2BCareersLink;"CAREERS"
-;;B2BPrivacyStatementLink;"PRIVACY STATEMENT"
-;;B2BSiteMapLink;"SITEMAP"
-
-
-
-
-INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];noticeHeader[lang=en]
-;;B2BGallagherFooterNavigationComponent;"© Gallagher Group Limited 2017. All right reserved."
 
 
 ##Footer Link navigation component End
