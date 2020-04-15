@@ -16,6 +16,7 @@ import de.hybris.platform.externaltax.ExternalTaxDocument;
 import de.hybris.platform.util.TaxValue;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -59,8 +60,16 @@ public class GallagherCalculateExternalTaxesStrategy implements CalculateExterna
 
 		final GallagherSovosCalculatedTaxResponse response = gallagherSovosService.calculateExternalTax(request);
 
-		abstractOrder.setTotalTax(Double.valueOf(response.getTxAmt())); // Need to check
-		//abstractOrder.setNewAttribute(response.getTxwTrnDocId()); Need to check
+		final StringBuilder orderTaxValueString = new StringBuilder();
+		orderTaxValueString.append(abstractOrder.getDeliveryAddress().getCountry().getIsocode()).append(" : ").append("0.00%")
+				.append(" = ").append(response.getTxAmt());
+
+		final TaxValue orderTaxValue = new TaxValue(orderTaxValueString.toString(), Double.valueOf(response.getTxAmt()), true,
+				Double.valueOf(response.getTxAmt()),
+				abstractOrder.getCurrency() == null ? "USD" : abstractOrder.getCurrency().getIsocode());
+
+		abstractOrder.setTotalTaxValues(Collections.singletonList(orderTaxValue));
+		abstractOrder.setTaxTransactionDocId(response.getTxwTrnDocId());
 
 		if (CollectionUtils.isNotEmpty(response.getLnRslts()))
 		{
@@ -74,7 +83,7 @@ public class GallagherCalculateExternalTaxesStrategy implements CalculateExterna
 					{
 						final StringBuilder taxValueString = new StringBuilder();
 						taxValueString.append(calculatedTax.getTxJurUIDJurTp()).append(" : ").append(calculatedTax.getTxRate())
-								.append(" = ").append(calculatedTax.getTxAmt()); // Need to check
+								.append(" = ").append(calculatedTax.getTxAmt());
 
 						final Double taxAmount = Double.valueOf(calculatedTax.getTxAmt()) + 12.00;
 						final TaxValue taxValue = new TaxValue(taxValueString.toString(), taxAmount, true, taxAmount,
