@@ -12,26 +12,27 @@
      <spring:param name="componentuid"  value="${component.uid}"/>
 </spring:url>
 
-<div class="ui-front">
+<!-- <div class="ui-front"> -->
 	<form name="search_form_${fn:escapeXml(component.uid)}" method="get"
 		action="${searchUrl}">
-		<div class="input-group">
+<!-- 		<div class="input-group"> -->
 			<spring:theme code="search.placeholder" var="searchPlaceholder" />
 
 			<ycommerce:testId code="header_search_input">
 				<input type="text" id="js-site-search-input"
-					class="form-control js-site-search-input" name="text" value=""
+					class="form-control global-search js-site-search-input" name="text" value=""
                     maxlength="100" placeholder="${searchPlaceholder}"
 					data-options='{"autocompleteUrl" : "${autocompleteUrl}","minCharactersBeforeRequest" : "${component.minCharactersBeforeRequest}","waitTimeBeforeRequest" : "${component.waitTimeBeforeRequest}","displayProductImages" : ${component.displayProductImages}}'>
 			</ycommerce:testId>
 
-			<span class="input-group-btn"> <ycommerce:testId code="header_search_button">
-					<button class="btn btn-link js_search_button" type="submit" disabled="true">
-						<span class="glyphicon glyphicon-search"></span>
-					</button>
-				</ycommerce:testId>
-			</span>
-		</div>
+			<ycommerce:testId code="header_search_button">
+				<button class="search-btn js_search_button" type="submit" disabled="true">
+					<svg class="search-icon">
+                   <use xlink:href="${siteRootUrl}/theme-securityB2B/images/svg/gallagher-icons.svg#search" />
+               </svg>
+				</button>
+			</ycommerce:testId>
+<!-- 		</div> -->
 	</form>
 
-</div>
+<!-- </div> -->

@@ -66,41 +66,50 @@
 					</c:if>
 				</cms:pageSlot>
 
-			<div class="header-right-section">
-			<div class="main-nav-out">
-				<ul>
-					<li>
-						<div class="search-out">
-							<a href="javascript:void(0)" class="search-link" id="searchLink1">
-								&nbsp;
-								<svg class="search-icon">
-									<use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#search" />
-								</svg> 
-<!--                         <span class="search-text"> -->
-<%-- 	                        <spring:theme code="search.placeholder" /> --%>
-<!-- 								</span> -->
-							</a>
-						</div>
-					</li>
-					<li>
-						<div class="cart-out">
-							<a href="javascript:void(0)" class="cart-link">
-								&nbsp;
-								<svg class="cart-icon">
-									<use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#cart" />
-								</svg>
-							</a>
-						</div>
-					</li>
-					<li>
-						<cms:pageSlot position="ggB2BLogin" var="feature">
-							<cms:component component="${feature}" element="div" />
+				<div class="header-right-section">
+					<div class="main-nav-out">
+						<ul>
+							<li>
+								<div class="search-out">
+									<a href="javascript:void(0)" class="search-link" id="searchLink1">
+										&nbsp;
+										<svg class="search-icon">
+											<use xlink:href="${siteRootUrl}/theme-securityB2B/images/svg/gallagher-icons.svg#search" />
+										</svg> 
+									</a> 
+								</div>
+							</li>
+							<li>
+								<div class="cart-out">
+									<a href="javascript:void(0)" class="cart-link">
+										&nbsp;
+										<svg class="cart-icon">
+											<use xlink:href="${siteRootUrl}/theme-securityB2B/images/svg/gallagher-icons.svg#cart" />
+										</svg>
+									</a>
+								</div>
+							</li>
+							<li>
+								<cms:pageSlot position="ggB2BLogin" var="component">
+									<cms:component component="${component}" />
+								</cms:pageSlot>
+							</li>
+						</ul>
+					</div>
+				</div>
+				
+			</div>
+			
+			<div class="megamenu-out search-result-out search-link-container d-none" id="searchLink1Container">
+         	<div class="container">
+					<div class="search-text-box-out">
+						<cms:pageSlot position="SearchBox" var="component">
+							<cms:component component="${component}" />
 						</cms:pageSlot>
-					</li>
-				</ul>
+					</div>
+				</div>
 			</div>
-		</div>
-			</div>
+			
 		</div>
 		
 		
@@ -223,13 +232,13 @@
 								<span class="glyphicon glyphicon-align-justify"></span>
 							</button>
 						</div>
-						<div class="col-sm-10">
-							<div class="site-search">
-								<cms:pageSlot position="SearchBox" var="component">
-									<cms:component component="${component}" element="div"/>
-								</cms:pageSlot>
-							</div>
-						</div>
+<!-- 						<div class="col-sm-10"> -->
+<!-- 							<div class="site-search"> -->
+<%-- 								<cms:pageSlot position="SearchBox" var="component"> --%>
+<%-- 									<cms:component component="${component}" element="div"/> --%>
+<%-- 								</cms:pageSlot> --%>
+<!-- 							</div> -->
+<!-- 						</div> -->
 					</div>
 				</div>
 				<div class="nav__right col-xs-6 col-xs-6 hidden-xs">
