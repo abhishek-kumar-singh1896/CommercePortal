@@ -47,8 +47,8 @@
 											<c:forEach items="${l1.entries}" var="dropdownValue">
 												<li class="first-level with-dropdown">
 													<a href="javascript:void(0)" id="mainNavLink${status.index+1}">
-						                                    ${dropdownValue.item.linkName}
-					                                </a>
+													    ${dropdownValue.item.linkName}
+													</a>
 												</li>
 											</c:forEach>
 										</c:forEach>
@@ -83,20 +83,16 @@
 								</div>
 							</li>
 							<li>
-								<cms:pageSlot position="ggB2BLogin" var="component">
-									<cms:component component="${component}" />
-								</cms:pageSlot>
+								<sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')" >
+									<cms:pageSlot position="ggB2BLogin" var="component">
+										<cms:component component="${component}" />
+									</cms:pageSlot>
+								</sec:authorize>
 							</li>
 						</ul>
 					</div>
 				</div>
 				
-			</div>
-			
-			<div class="megamenu-out second-level-menu shadow-sm d-none" id="mainNavLink3Container">
-				<!-- <div class="container"> -->
-						<nav:topNavigation />
-				<!-- </div> -->
 			</div>
 			
 			<div class="megamenu-out search-result-out search-link-container d-none" id="searchLink1Container">
@@ -111,12 +107,12 @@
 			
 		</div>
 		
-		
-		
-<!-- 			<div class="col-sm-12 col-md-8"> -->
-<!-- 				<div class="nav__right"> -->
-<!-- 					<ul class="nav__links nav__links--account"> -->
-<%-- 						<c:if test="${empty hideHeaderLinks}"> --%>
+<!-- 		ootb code from here -->
+		<nav class="navigation navigation--top hidden-xs hidden-sm">	
+			<div class="col-sm-12 col-md-8">
+				<div class="nav__right">
+					<ul class="nav__links nav__links--account">
+						<c:if test="${empty hideHeaderLinks}">
 <%-- 							<c:if test="${uiExperienceOverride}"> --%>
 <!-- 								<li class="backToMobileLink"> -->
 <%-- 									<c:url value="/_s/ui-experience?level=" var="backToMobileStoreUrl" /> --%>
@@ -126,23 +122,23 @@
 <!-- 								</li> -->
 <%-- 							</c:if> --%>
 
-<%-- 							<sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')"> --%>
-<%-- 								<c:set var="maxNumberChars" value="25" /> --%>
-<%-- 								<c:if test="${fn:length(user.firstName) gt maxNumberChars}"> --%>
-<%-- 									<c:set target="${user}" property="firstName" --%>
-<%-- 										value="${fn:substring(user.firstName, 0, maxNumberChars)}..." /> --%>
-<%-- 								</c:if> --%>
+ 							<sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
+ 								<c:set var="maxNumberChars" value="25" /> 
+ 								<c:if test="${fn:length(user.firstName) gt maxNumberChars}"> 
+ 									<c:set target="${user}" property="firstName"
+ 										value="${fn:substring(user.firstName, 0, maxNumberChars)}..." /> 
+ 								</c:if> 
 
-<!-- 								<li class="logged_in js-logged_in"> -->
-<%-- 									<ycommerce:testId code="header_LoggedUser"> --%>
-<%-- 										<spring:theme code="header.welcome" arguments="${user.firstName},${user.lastName}" /> --%>
-<%-- 									</ycommerce:testId> --%>
-<!-- 								</li> -->
-<%-- 							</sec:authorize> --%>
+								<li class="logged_in js-logged_in">
+									<ycommerce:testId code="header_LoggedUser">
+										<spring:theme code="header.welcome" arguments="${user.firstName},${user.lastName}" />
+									</ycommerce:testId>
+								</li>
+							</sec:authorize>
 
-<%-- 							 <cms:pageSlot position="HeaderLinks" var="link"> --%>
-<%-- 								 <cms:component component="${link}" element="li" /> --%>
-<%-- 							 </cms:pageSlot> --%>
+							 <cms:pageSlot position="HeaderLinks" var="link">
+								 <cms:component component="${link}" element="li" />
+							 </cms:pageSlot>
 
 <%-- 							<sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')" > --%>
 <!-- 								<li class="liOffcanvas"> -->
@@ -155,23 +151,23 @@
 <!-- 								</li> -->
 <%-- 							</sec:authorize> --%>
 
-<%-- 							<sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')" > --%>
-<!-- 								<li class="liOffcanvas"> -->
-<%-- 									<ycommerce:testId code="header_signOut"> --%>
-<%-- 										<c:url value="/logout" var="logoutUrl"/> --%>
-<%-- 										<a href="${fn:escapeXml(logoutUrl)}"> --%>
-<%-- 											<spring:theme code="header.link.logout" /> --%>
-<!-- 										</a> -->
-<%-- 									</ycommerce:testId> --%>
-<!-- 								</li> -->
-<%-- 							</sec:authorize> --%>
+							<sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')" >
+								<li class="liOffcanvas">
+									<ycommerce:testId code="header_signOut">
+										<c:url value="/logout" var="logoutUrl"/>
+										<a href="${fn:escapeXml(logoutUrl)}">
+											<spring:theme code="header.link.logout" />
+										</a>
+									</ycommerce:testId>
+								</li>
+							</sec:authorize>
 
-<%-- 						</c:if> --%>
-<!-- 					</ul> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
+						</c:if>
+					</ul>
+				</div>
+			</div>
 <!-- 		</div> -->
-<%-- 	</nav> --%>
+	</nav>
 	<%-- a hook for the my account links in desktop/wide desktop--%>
 	<div class="hidden-xs hidden-sm js-secondaryNavAccount collapse" id="accNavComponentDesktopOne">
 		<ul class="nav__links">
@@ -265,7 +261,7 @@
 		</div>
 	</nav>
 	<a id="skiptonavigation"></a>
-	<%-- <nav:topNavigation /> --%>
+	<nav:topNavigation />
 </header>
 
 <cms:pageSlot position="BottomHeaderSlot" var="component" element="div"	class="container-fluid">

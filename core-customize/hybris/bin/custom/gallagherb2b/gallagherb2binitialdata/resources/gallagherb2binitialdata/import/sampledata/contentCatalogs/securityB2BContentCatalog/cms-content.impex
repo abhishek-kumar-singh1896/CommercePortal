@@ -1631,6 +1631,226 @@ INSERT_UPDATE CMSUserGroupRestriction;$contentCV[unique=true];uid[unique=true];n
 ### customerticketingaddon END
 
 
+							############### header nodes start here ################
+
+#CMSLinkComponents
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkname;name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];
+;;B2BSolutionsNavLink;SOLUTIONS;B2B Solutions Navigation Link;"#";B2BSolutionsNavLink;B2BSolutionsNavLink;;;
+;;B2BIndustriesNavLink;INDUSTRIES;B2B Industries Navigation Link;"#";B2BIndustriesNavLink;B2BIndustriesNavLink;;;
+;;B2BProductsNavLink;PRODUCTS;B2B Products Navigation Link;"#";B2BProductsNavLink;B2BProductsNavLink;;;
+;;B2BCaseStudiesNavLink;CASE STUDIES;B2B Case Studies Navigation Link;"#";B2BCaseStudiesNavLink;B2BCaseStudiesNavLink;;;
+;;B2BMeetTeamNavLink;MEET THE TEAM ;B2B Meet The Team Navigation Link;"#";B2BMeetTeamNavLink;B2BMeetTeamNavLink;;;
+
+
+#CMS Navigation Node
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef;children(uid, $contentCV)
+;B2BHeaderLinkNavNode;;B2B Header Link Navigation Node; root;; B2BHeaderLinkNavNode; B2BSolutionsNavNode,B2BIndustriesNavNode,B2BProductsNavNode,B2BCaseStudiesNavNode,B2BMeeTeamNavNode
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
+;B2BSolutionsNavNode;;B2B Solutions Navigation Node;B2BHeaderLinkNavNode;;B2BSolutionsNavNode;
+;B2BIndustriesNavNode;;B2B Inddustries Navigation Node;B2BHeaderLinkNavNode;;B2BIndustriesNavNode;
+;B2BProductsNavNode;;B2B Products Navigation Node;B2BHeaderLinkNavNode;;B2BProductsNavNode;
+;B2BCaseStudiesNavNode;;B2B Case Studies Navigation Node;B2BHeaderLinkNavNode;;B2BCaseStudiesNavNode;
+;B2BMeeTeamNavNode;;B2B Meet The Team Navigation Node;B2BHeaderLinkNavNode;;B2BMeeTeamNavNode;
+
+#CMS Navigation Entry
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;B2BSolutionsNavNodeEntry;;B2B Solutions Navigation Node Entry;B2BSolutionsNavNode;B2BSolutionsNavLink;
+;B2BIndustriesNavNodeEntry;;B2B Industries Navigation Node Entry;B2BIndustriesNavNode;B2BIndustriesNavLink;
+;B2BProductsNavNodeEntry;;B2B Products Navigation Node Entry;B2BProductsNavNode;B2BProductsNavLink
+;B2BCaseStudiesNavNodeEntry;;B2B Support Navigation Node Entry;B2BCaseStudiesNavNode;B2BCaseStudiesNavLink
+;B2BMeeTeamNavNodeEntry;;B2B Meet The Team Navigation Node Entry;B2BMeeTeamNavNode;B2BMeetTeamNavLink
+
+
+INSERT_UPDATE NavigationComponent;$contentCV[unique=true];uid[unique=true];name;styleClass;&componentRef;navigationNode(&nodeRef)
+;;B2BHeaderNavComponent;B2B Header Navigation Component;accNavComponent;B2BHeaderNavComponent;B2BHeaderLinkNavNode
+
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='LandingPage2Template'];validComponentTypes(code);compTypeGroup(code)
+;ggB2BNavBar;;;navigation
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active
+;;ggB2BNavBarSlot;GG B2B Navigation Bar Slot ;true
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV)
+;;ggB2BNavBarSlot;B2BHeaderNavComponent
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage2Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-LandingPage2;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-ProductDetails;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductListPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-ProductListPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsGridPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-SearchResultsGridPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductGridPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-ProductGridPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CheckoutLoginPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-CheckoutLoginPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='MultiStepCheckoutSummaryPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-MultiStepCheckoutSummaryPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CartPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-CartPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='AccountPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-AccountPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LoginPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-LoginPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='OrderConfirmationPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-OrderConfirmationPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='StoreFinderPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-StoreFinderPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ErrorPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-ErrorPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsEmptyPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-SearchResultsEmptyPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsListPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-SearchResultsListPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CategoryPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-CategoryPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage1Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-LandingPage1;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage3Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-LandingPage3;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage4Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-LandingPage4;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage5Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-LandingPage5;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage6Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-LandingPage6;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ContentPage1Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-ContentPage1;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchAdvancedResultsEmptyPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-SearchAdvancedResultsEmptyPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='QuoteEditPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-QuoteEditPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductComparisonPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-ProductComparisonPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='BulkOrderFormPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-BulkOrderFormPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='QuickOrderPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-QuickOrderPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+####### login component #####
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkname;name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];
+;;B2BLoginNavLinkComponent;LOGIN;B2B Login Navigation Link;/login;B2BLoginNavLink;B2BLoginNavLink;;;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='LandingPage2Template'];validComponentTypes(code);compTypeGroup(code)
+;ggB2BLogin;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV);name;active
+;;ggB2BLoginSlot;B2BLoginNavLinkComponent;GG B2B Login Slot ;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage2Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-LandingPage2;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-ProductDetails;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductListPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-ProductListPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsGridPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-SearchResultsGridPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductGridPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-ProductGridPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CheckoutLoginPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-CheckoutLoginPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='MultiStepCheckoutSummaryPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-MultiStepCheckoutSummaryPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CartPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-CartPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='AccountPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-AccountPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LoginPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-LoginPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='OrderConfirmationPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-OrderConfirmationPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='StoreFinderPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-StoreFinderPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ErrorPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-ErrorPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsEmptyPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-SearchResultsEmptyPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsListPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-SearchResultsListPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CategoryPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-CategoryPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage1Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-LandingPage1;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage3Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-LandingPage3;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage4Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-LandingPage4;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage5Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-LandingPage5;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage6Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-LandingPage6;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ContentPage1Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-ContentPage1;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchAdvancedResultsEmptyPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-SearchAdvancedResultsEmptyPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='QuoteEditPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-QuoteEditPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductComparisonPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-ProductComparisonPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='BulkOrderFormPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-BulkOrderFormPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='QuickOrderPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-QuickOrderPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+
+############### header nodes end ###############
 
 
 ########Footer Navigation Node Starts ################

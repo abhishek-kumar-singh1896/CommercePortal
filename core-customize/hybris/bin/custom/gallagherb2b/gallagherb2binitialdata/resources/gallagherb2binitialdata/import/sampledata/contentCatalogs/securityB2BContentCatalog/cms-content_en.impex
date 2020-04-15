@@ -408,3 +408,19 @@ UPDATE CMSNavigationNode;$contentCV[unique=true];uid[unique=true];title[lang=$la
 UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
  ;;AccountSupportTicketHistoryLink;"Support Tickets"
  ### customerticketingaddon END
+
+ 
+ ########## header  nodes start ###########
+ 
+ 
+ 
+ 
+ ###### header nodes end #######
+UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkname[lang=$lang]
+;;B2BSolutionsNavLink;"SOLUTIONS"
+;;B2BIndustriesNavLink;"INDUSTRIES"
+;;B2BProductsNavLink;"PRODUCTS"
+;;B2BCaseStudiesNavLink;"CASE STUDIES"
+;;B2BMeetTeamNavLink;"MEET THE TEAM"
+;;B2BLoginNavLinkComponent;"LOGIN"
+ 
