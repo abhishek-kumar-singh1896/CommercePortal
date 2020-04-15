@@ -428,7 +428,7 @@
 						<persistence type="property" />
 						<description>heading for the button</description>
 					</attribute>
-					<attribute qualifier="button" type="java.lang.String">
+					<attribute qualifier="button" type="CMSLinkComponent">
 						<modifiers optional="true" />
 						<persistence type="property" />
 					</attribute>
