@@ -188,6 +188,24 @@
             </editorArea:tab>
         </editorArea:editorArea>
     </context>
+    <context merge-by="type" type="BaseStore" component="editor-area">
+        <editorArea:editorArea name="">
+            <editorArea:tab name="hmc.gallagher" position="3">
+                <editorArea:section name="hmc.section.gallagher">
+                    <editorArea:attribute qualifier="sovosConfiguration" />
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+    <context merge-by="type" type="AbstractOrder" component="editor-area">
+        <editorArea:editorArea name="">
+            <editorArea:tab name="hmc.gallagher" position="3">
+                <editorArea:section name="hmc.section.gallagher">
+                    <editorArea:attribute qualifier="taxTransactionDocId" />
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
 	<context merge-by="type" parent="Customer" type="B2BCustomer" component="create-wizard">
 	    <wz:flow xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config" id="CustomerWizard" title="create.title(ctx.TYPE_CODE)">
 			<wz:handler handlerId="verifyCustomerHandler1" handlerBean="verifyCustomerHandler" />

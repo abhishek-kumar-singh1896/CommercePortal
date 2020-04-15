@@ -78,7 +78,7 @@ public class GallagherSovosUtil
 					{
 						lineItem.setsFCountry(address.getCountry().getIsocode());
 						lineItem.setsFCity(address.getTown());
-						lineItem.setsFStateProv(null != address.getRegion() ? address.getRegion().getIsocode() : ""); // Need to check
+						lineItem.setsFStateProv(null != address.getRegion() ? address.getRegion().getName() : ""); // Need to check
 						lineItem.setsFPstlCd(address.getPostalcode());
 					}
 
@@ -90,7 +90,7 @@ public class GallagherSovosUtil
 
 			lineItem.setsTCountry(deliveryAddress.getCountry().getIsocode());
 			lineItem.setsTCity(deliveryAddress.getTown());
-			lineItem.setsTStateProv(null != deliveryAddress.getRegion() ? deliveryAddress.getRegion().getIsocode() : ""); // Need to check
+			lineItem.setsTStateProv(deliveryAddress.getRegion().getName()); // Need to check
 			lineItem.setsTPstlCd(deliveryAddress.getPostalcode());
 			lineItem.setsTStNameNum(deliveryAddress.getStreetnumber().concat(" ").concat(deliveryAddress.getStreetname()));
 
