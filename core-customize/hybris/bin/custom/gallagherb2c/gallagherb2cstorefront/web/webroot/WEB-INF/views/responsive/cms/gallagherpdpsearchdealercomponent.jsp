@@ -54,9 +54,11 @@
                         	<c:forEach items="${territoryManager.children}"
 									var="tmNode" varStatus="i">
 										<c:forEach items="${tmNode.entries}" var="tm">
-											<c:if test="${tm.item.uid == (regionCodeUpper).concat('TMLinkComp')}">
-												<a href="${tm.item.url}" target="_blank">${tm.item.linkName}</a>
-											</c:if>
+<%-- 											<c:if test="${tm.item.uid == (regionCodeUpper).concat('TMLinkComp')}"> --%>
+<%-- 												<a href="${tm.item.url}" target="_blank">${tm.item.linkName}</a> --%>
+<%-- 											</c:if> --%>
+												<cms:component component="${tm.item}"
+															evaluateRestriction="true" />
 										</c:forEach>
 									</c:forEach>
                         </div>

@@ -511,6 +511,26 @@
 				</attributes>
 			</itemtype>
 			
+			<itemtype code="GallagherRegionRestriction" generate="true" autocreate="true" extends="AbstractRestriction"
+				jaloclass="com.gallagher.core.jalo.GallagherRegionRestriction">
+				<attributes>
+					<attribute qualifier="description" type="java.lang.String" redeclare="true">
+						<persistence type="dynamic" attributeHandler="gallagherRegionRestrictionDynamicDescription" />
+						<modifiers write="false" />
+					</attribute>
+					<attribute qualifier="country" type="java.lang.String">
+						<description>Stores region code of the site</description>
+						<modifiers optional="false"/>
+						<persistence type="property"/>
+					</attribute>
+					<attribute qualifier="language" type="java.lang.String">
+						<description>Stores language code of the site</description>
+						<modifiers optional="true"/>
+						<persistence type="property"/>
+					</attribute>
+				</attributes>
+			</itemtype>
+			
 			<itemtype code="GallagherPDPSearchDealerComponent" extends="SimpleCMSComponent" generate="true"
 				autocreate="true" jaloclass="com.gallagher.core.jalo.GallagherPDPSearchDealerComponent">
 				<description>CMS component to display the search dealer and nearest territory manager in PDP</description>

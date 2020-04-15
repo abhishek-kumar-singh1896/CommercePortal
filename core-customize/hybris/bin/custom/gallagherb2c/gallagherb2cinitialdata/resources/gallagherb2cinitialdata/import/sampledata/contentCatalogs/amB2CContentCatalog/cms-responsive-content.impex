@@ -2467,3 +2467,44 @@ INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];positi
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid, $contentCV)
 ;;SearchGridBannerSlot;CategoryBanner
 ;;SearchResultsEmptyBannerSlot;CategoryBanner
+
+
+######## restriction for region and language based components ########
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV)	   ;onlyOneRestrictionMustApply[default='false']
+;;NZENSearchComponent;GallagherNZRegionRestriction
+;;AUENSearchComponent;GallagherAURegionRestriction
+;;USENSearchComponent;GallagherUSRegionRestriction
+;;CAENSearchComponent;GallagherCAENRegionRestriction
+;;CAFRSearchComponent;GallagherCAFRRegionRestriction
+;;GLOBALENSearchComponent;GallagherGlRegionRestriction
+
+;;NZTMLinkComp;GallagherNZRegionRestriction
+;;AUTMLinkComp;GallagherAURegionRestriction
+;;USTMLinkComp;GallagherUSRegionRestriction
+;;CATMLinkComp;GallagherCARegionRestriction
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV);onlyOneRestrictionMustApply[default='false']
+;;NZENFindStoreLink;GallagherNZRegionRestriction
+;;NZENFindManagerLink;GallagherNZRegionRestriction
+;;NZENSendMessageLink;GallagherNZRegionRestriction
+;;AUENFindStoreLink;GallagherAURegionRestriction
+;;AUENFindManagerLink;GallagherAURegionRestriction
+;;AUENSendMessageLink;GallagherAURegionRestriction
+;;USENFindStoreLink;GallagherUSRegionRestriction
+;;USENFindManagerLink;GallagherUSRegionRestriction
+;;USENSendMessageLink;GallagherUSRegionRestriction
+;;CAENFindStoreLink;GallagherCAENRegionRestriction
+;;CAENFindManagerLink;GallagherCAENRegionRestriction
+;;CAENSendMessageLink;GallagherCAENRegionRestriction
+;;CAFRFindStoreLink;GallagherCAFRRegionRestriction
+;;CAFRFindManagerLink;GallagherCAFRRegionRestriction
+;;CAFRSendMessageLink;GallagherCAFRRegionRestriction
+;;LATAMENFindStoreLink;GallagherLATAMRegionRestriction
+;;LATAMENFindManagerLink;GallagherLATAMRegionRestriction
+;;LATAMENSendMessageLink;GallagherLATAMRegionRestriction
+;;GLOBALENFindStoreLink;GallagherGlRegionRestriction
+;;GLOBALENFindManagerLink;GallagherGlRegionRestriction
+;;GLOBALENSendMessageLink;GallagherGlRegionRestriction
+
+#####################################

@@ -134,6 +134,14 @@
         <property name="restrictionEvaluator" ref="gallagherSiteTransactionRestrictionEvaluator" />
    </bean>
    
+   <bean id="gallagherRegionRestrictionEvaluator" class="com.gallagher.core.restrictions.GallagherRegionRestrictionEvaluator" />
+   <bean id="gallagherRegionRestrictionDynamicDescription" class="com.gallagher.core.restrictions.GallagherRegionRestrictionDynamicDescription" />
+   
+   <bean id="gallagherRegionRestrictionEvaluatorMapping" class="de.hybris.platform.cms2.servicelayer.services.evaluator.CMSRestrictionEvaluatorMapping">
+        <property name="restrictionTypeCode" value="GallagherRegionRestriction" />
+        <property name="restrictionEvaluator" ref="gallagherRegionRestrictionEvaluator" />
+   </bean>
+   
    <bean id="gallagherB2BUserGroupsStrategy" class="com.gallagher.core.usergroups.strategy.impl.GallagherB2BUserGroupsStrategyImpl">
    	<property name="groups">
 			<list>
