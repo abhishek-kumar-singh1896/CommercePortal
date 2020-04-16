@@ -953,16 +953,9 @@ INSERT_UPDATE GallagherAccordionListComponent;$contentCV[unique=true];uid[unique
 INSERT_UPDATE GallagherSovosConfigurartion ; code[unique=true]   ; name                       ; resultLevel ; taxCalculationType ; debitCreditInd ; transactionType ; organizationCode ; dropShipInd 
                                            ; b2c-us-sovos-config ; B2C US SOVOS Configuration ; 3           ; 1                  ; 1              ; 1               ; QASGUS           ; 1           
 										   
-$productCatalog=amB2CUSProductCatalog
-$classificationCatalog=AMB2CClassification
-$currencies=USD
-$net=true
-$storeUid=amB2CUS
-
-
 # Base Store
-INSERT_UPDATE BaseStore;uid[unique=true];sovosConfiguration(code);
-;$storeUid;b2c-us-sovos-config;
+INSERT_UPDATE BaseStore;uid[unique=true];sovosConfiguration(code);net;externalTaxEnabled;paymentProvider
+;amB2CUS;b2c-us-sovos-config;true;true;paymetric
 
 
 $storeUidUS=amB2CUS
