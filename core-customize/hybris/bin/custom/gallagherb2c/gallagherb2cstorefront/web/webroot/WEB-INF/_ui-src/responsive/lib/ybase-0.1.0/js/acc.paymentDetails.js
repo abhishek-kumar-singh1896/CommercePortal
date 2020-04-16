@@ -16,7 +16,13 @@ ACC.paymentDetails = {
 				onComplete: function ()
 				{
 					$(this).colorbox.resize();
-				}
+				},
+				onLoad : function() {
+					$('html, body').css('overflow', 'hidden');
+				},
+				onClosed:function() {
+			        $('html, body').css('overflow', '');
+			    }
 			});
 
 		})

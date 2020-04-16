@@ -469,3 +469,21 @@ INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];con
 
 
 #####consent management page #####	 
+
+#################Profile details page#################
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;PaymentDetailLink;Payment Detail Link;/my-account/payment-details;;;;
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;PaymentDetailLink;Payment Details
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;PaymentDetailNavNodeEntry;;Payment Detail Navigation Node Entry;PaymentDetailNavNode;PaymentDetailLink
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);children(uid,$contentCV)[mode=replace];links(uid, $contentCV);&nodeRef;title[lang=en]
+;PaymentDetailNavNode;;Payment Detail Navigation Node Menu;UserDropDownNavigationNode;;;PaymentDetailNavNode;"Payment Details"
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef;children(uid, $contentCV)[mode=replace]
+;UserDropDownNavigationNode;;Header Link Navigation Node; root;; UserDropDownNavigationNode; RegisterAProductNavNode,MyRegisteredProductNavNode,EditProfileNavNode,PaymentDetailNavNode,UpdatePasswordNavNode,OrderHistoryNavNode,PreferencesNavNode,LogoutNavNode
+
+######################################################

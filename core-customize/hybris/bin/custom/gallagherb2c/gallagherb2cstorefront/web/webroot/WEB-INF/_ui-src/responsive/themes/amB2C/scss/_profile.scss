@@ -116,6 +116,20 @@ table {
   }
 }
 
+.account-section .account-list .account-cards .account-cards-actions {
+  display: block;
+  width: 100%;
+}
+
+.account-section .account-list .account-cards .card,
+.account-section .account-list .account-cards .search-empty {
+  border: 1px solid #cccccc;
+}
+
+.account-section .account-list .account-cards.card-select {
+  border-top: 0;
+}
+
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
   .profile-container {
     padding: 0;
