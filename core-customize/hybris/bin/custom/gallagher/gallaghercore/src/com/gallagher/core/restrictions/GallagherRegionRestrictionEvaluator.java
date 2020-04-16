@@ -10,7 +10,6 @@ import de.hybris.platform.commerceservices.i18n.CommerceCommonI18NService;
 import javax.annotation.Resource;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
 
 import com.gallagher.core.model.GallagherRegionRestrictionModel;
 
@@ -30,7 +29,7 @@ public class GallagherRegionRestrictionEvaluator implements CMSRestrictionEvalua
 	@Resource(name = "commerceCommonI18NService")
 	private CommerceCommonI18NService commerceCommonI18NService;
 
-	private static final Logger LOGGER = Logger.getLogger(GallagherRegionRestrictionEvaluator.class);
+	//	private static final Logger LOGGER = Logger.getLogger(GallagherRegionRestrictionEvaluator.class);
 
 
 	@Override
@@ -49,9 +48,9 @@ public class GallagherRegionRestrictionEvaluator implements CMSRestrictionEvalua
 				returnValue = true;
 			}
 		}
-		final String s = "********** " + gallagherRegionRestrictionModel.getCountry() + " and language "
-				+ gallagherRegionRestrictionModel.getLanguage() + " returned " + String.valueOf(returnValue);
-		LOGGER.info(s);
+		//		final String s = "********** " + gallagherRegionRestrictionModel.getCountry() + " and language "
+		//				+ gallagherRegionRestrictionModel.getLanguage() + " returned " + String.valueOf(returnValue);
+		//		LOGGER.info(s);
 
 		return returnValue;
 	}
