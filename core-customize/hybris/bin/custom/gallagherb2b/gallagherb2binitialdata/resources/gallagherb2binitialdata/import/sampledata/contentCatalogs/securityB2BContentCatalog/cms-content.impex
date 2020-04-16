@@ -1875,18 +1875,17 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;pa
 
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkname;name;url;&linkRef;&componentRef;
-;;B2BAboutUsLink;About Us;B2B About Us Link ;https://www.google.com ;B2BAboutUsLink ; B2BAboutUsLink
-;;B2BContactUsLink;Contact Us;B2B Contact Us Link;https://www.google.com ; B2BContactUsLink ;B2BContactUsLink
-;;B2BNewsAndEventsLink;News & Events;B2B News And Events Link;https://www.google.com ;B2BNewsAndEventsLink;B2BNewsAndEventsLink
-;;B2BTeamLink;Meet the team;B2B Team Link;https://www.google.com;B2BTeamLink;B2BTeamLink
-;;B2BPartenerLink;Our Partners;B2B Partner Link;https://www.google.com ; B2BPartenerLink ;B2BPartenerLink
+;;B2BAboutUsLink;About Us;B2B About Us Link ; https://security.gallagher.com/Why-Gallagher;B2BAboutUsLink ; B2BAboutUsLink
+;;B2BContactUsLink;Contact Us;B2B Contact Us Link; https://security.gallagher.com/Contact-Us ; B2BContactUsLink ;B2BContactUsLink
+;;B2BNewsAndEventsLink;News & Events;B2B News And Events Link; https://security.gallagher.com/News-and-Events ;B2BNewsAndEventsLink;B2BNewsAndEventsLink
+;;B2BTeamLink;Meet the team;B2B Team Link; https://security.gallagher.com/Meet-the-Team;B2BTeamLink;B2BTeamLink
+;;B2BPartenerLink;Our Partners;B2B Partner Link; https://security.gallagher.com/Our-Partners; B2BPartenerLink ;B2BPartenerLink
 ;;B2BProductsLink;Products;B2B Products Link;https://www.google.com ; B2BProductsLink ; B2BProductsLink
-;;B2BCaseStudiesLink;Case studies;B2B Case Studies Link;https://www.google.com ; B2BCaseStudiesLink;B2BCaseStudiesLink
-;;B2BIndustriesLink;Industries;B2B Industries Link;https://www.google.com ; B2BIndustriesLink ; B2BIndustriesLink
-;;B2BSupportSiteLoginLink;Support site login;B2B Support Site Login Link;https://www.google.com ; B2BSupportSiteLoginLink ; B2BSupportSiteLoginLink
-;;B2BChannelPartnerLink;Become a channel partner;B2B Channel Partner Link;https://www.google.com ; B2BChannelPartnerLink ; B2BChannelPartnerLink
-;;B2BSecurityAdvisoryLink;Security Advisories;B2B Security Advisory Link;https://www.google.com ; B2BSecurityAdvisoryLink ;B2BSecurityAdvisoryLink
-
+;;B2BCaseStudiesLink;Case studies;B2B Case Studies Link;https://security.gallagher.com/Case-Studies ; B2BCaseStudiesLink;B2BCaseStudiesLink
+;;B2BIndustriesLink;Industries;B2B Industries Link;https://security.gallagher.com/Industries ; B2BIndustriesLink ; B2BIndustriesLink
+;;B2BSupportSiteLoginLink;Support site login;B2B Support Site Login Link;https://security-support.gallagher.com/default.aspx ; B2BSupportSiteLoginLink ; B2BSupportSiteLoginLink
+;;B2BChannelPartnerLink;Become a channel partner;B2B Channel Partner Link; https://security.gallagher.com/Register-your-interest-in-becoming-a-Channel-Partner ; B2BChannelPartnerLink ; B2BChannelPartnerLink
+;;B2BSecurityAdvisoryLink;Security Advisories;B2B Security Advisory Link;https://security.gallagher.com/Security-Advisories ; B2BSecurityAdvisoryLink ;B2BSecurityAdvisoryLink
 
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
@@ -1949,10 +1948,10 @@ INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[uni
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;linkName;&linkRef;&componentRef
 ;;B2BgallagherDivision1LnkCom;B2B Gallagher Division 1;'#';OTHER GALLAGHER DIVISIONS;B2BgallagherDivision1LnkCom;B2BgallagherDivision1LnkCom
-;;B2BgallagherDivision2LnkCom;B2B Gallagher Division 2;https://www.google.com;CORPORATE;B2BgallagherDivision2LnkCom;B2BgallagherDivision2LnkCom
+;;B2BgallagherDivision2LnkCom;B2B Gallagher Division 2;https://www.gallagher.com/ ;CORPORATE;B2BgallagherDivision2LnkCom;B2BgallagherDivision2LnkCom
 ;;B2BgallagherDivision3LnkCom;B2B Gallagher Division 3;https://www.google.com;ANIMAL MANAGEMENT;B2BgallagherDivision3LnkCom;B2BgallagherDivision3LnkCom
-;;B2BgallagherDivision4LnkCom;B2B Gallagher Division 4;https://www.google.com;FUEL SYSTEMS;B2BgallagherDivision4LnkCom;B2BgallagherDivision4LnkCom
-;;B2BgallagherDivision5LnkCom;B2B Gallagher Division 5;https://www.google.com;CONTRACT MANUFACTURING;B2BgallagherDivision5LnkCom;B2BgallagherDivision5LnkCom
+;;B2BgallagherDivision4LnkCom;B2B Gallagher Division 4; https://fuelsystems.gallagher.com/;FUEL SYSTEMS;B2BgallagherDivision4LnkCom;B2BgallagherDivision4LnkCom
+;;B2BgallagherDivision5LnkCom;B2B Gallagher Division 5;https://www.gallagher.com/about-us/business-units/contract-manufacturing ;CONTRACT MANUFACTURING;B2BgallagherDivision5LnkCom;B2BgallagherDivision5LnkCom
 
 
 
@@ -1993,30 +1992,34 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;ch
 ;root;;root;;
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&componentRef);&nodeRef;children(uid, $contentCV)
-;B2BFooterLinkNavNode;;B2B Footer Link Pages;root;;B2BFooterLinkNavNode;B2BCareersNavNode,B2BPrivacyStatementNavNode,B2BSiteMapNavNode
+;B2BFooterLinkNavNode;;B2B Footer Link Pages;root;;B2BFooterLinkNavNode;B2BCareersNavNode,B2BPrivacyStatementNavNode
 
 ##---- children of Footer Link navigation component ----##
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
 ;B2BCareersNavNode;;B2B Careers Page;B2BFooterLinkNavNode;;B2BCareersNavNode
 ;B2BPrivacyStatementNavNode;;B2B Privacy Statement Page;B2BFooterLinkNavNode;;B2BPrivacyStatementNavNode
-;B2BSiteMapNavNode;;B2B Site Map Page;B2BFooterLinkNavNode;;B2BSiteMapNavNode
+
 
 ## Links of the above navigation node entries ##
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef
-;;B2BCareersLink;B2B Careers Link;"#";B2BCareersLink;B2BCareersLink
-;;B2BPrivacyStatementLink;B2B Privacy Statement Link;"#";B2BPrivacyStatementLink;B2BPrivacyStatementLink
-;;B2BSiteMapLink;B2B Site Map Link;"#";B2BSiteMapLink;B2BSiteMapLink
+;;B2BCareersLink;B2B Careers Link;https://www.gallagher.com/careers;B2BCareersLink;B2BCareersLink
+;;B2BPrivacyStatementLink;B2B Privacy Statement Link;https://security.gallagher.com/;B2BPrivacyStatementLink;B2BPrivacyStatementLink
+
+
 
 
 ## entries of the above navigation nodes ##
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
 ;B2BCareersNavNodeEntry;;B2B Careers Navigation Node Entry;B2BCareersNavNode;B2BCareersLink
 ;B2BPrivacyStatementNavNodeEntry;;B2B Privacy Statement Nav Node Entry;B2BPrivacyStatementNavNode;B2BPrivacyStatementLink
-;B2BSiteMapNavNodeEntry;;Site Map Navigation Node Entry;B2BSiteMapNavNode;B2BSiteMapLink
+
 
 
 INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];footerLinkNagivationNode(&nodeRef);&componentRef
 ;;B2BGallagherFooterNavigationComponent;B2BFooterLinkNavNode;B2BGallagherFooterNavigationComponent
+
+
+
 
 
 

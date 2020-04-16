@@ -27,10 +27,10 @@
         margin: 0 0 5px 0;
         a {
           display: inline-block;
-          color: $black;
+          color: $gray-9;
           text-decoration: none;
           &:hover {
-            color: $primary-color;
+            color: $gray-9;
           }
         }
       }
@@ -86,12 +86,16 @@
             display: inline-block;
             text-decoration: none;
             text-transform: uppercase;
-            color: #fff;
+            color: $white;
             line-height: 50px;
             padding-bottom: 0;
             padding-left: 15px;
             background: #3b3634;
             font-size: 14px;
+
+            &:hover {
+              color: #837974;
+            }
           }
         }
       }
@@ -107,6 +111,13 @@
     }
 
     .division-dropdown {
+      &.open {
+        .down-arrow-icon {
+          -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+        }
+      }
+
       .btn {
         background: #322e2c;
         display: block;
@@ -114,6 +125,7 @@
         width: 100%;
         border: none;
         line-height: 32px;
+        font-weight: 500;
 
         &:hover,
         &:focus,
@@ -128,6 +140,7 @@
           display: inline-block;
           vertical-align: middle;
           height: 28px;
+          transition: all ease-in-out 0.3s;
 
           svg {
             width: 30px;
@@ -265,6 +278,46 @@
 //   }
 // }
 
+@media only screen and (max-width: 1599px) {
+  .footer-out {
+    .footer-bottom-section {
+      .footer-bottom-middle-section {
+        ul {
+          li {
+            margin-right: 8px;
+            a {
+              padding-left: 8px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .footer-out {
+    .footer-top-section {
+      .support-col {
+        clear: both;
+        margin-top: 10px;
+      }
+    }
+
+    .footer-bottom-section {
+      .footer-bottom-middle-section {
+        ul {
+          text-align: center;
+        }
+      }
+      .copyright {
+        text-align: center;
+        margin: 0;
+      }
+    }
+  }
+}
+
 @media only screen and (max-width: 767px) {
   .footer-out {
     .footer-top-section {
@@ -275,8 +328,13 @@
     }
 
     .footer-bottom-section {
+      .footer-bottom-middle-section {
+        ul {
+          text-align: center;
+        }
+      }
       .copyright {
-        text-align: center;        
+        text-align: center;
         margin: 0;
       }
     }

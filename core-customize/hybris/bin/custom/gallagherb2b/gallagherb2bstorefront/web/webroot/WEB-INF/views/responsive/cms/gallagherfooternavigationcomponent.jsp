@@ -10,8 +10,7 @@
 		<div class="footer-top-section">
 			<div class="container">
 				<div class="row">
-					<div
-						class="col-lg-8 col-lg-offset-2  col-sm-offset-1 col-sm-10 row">
+			<div class="col-lg-8 col-lg-offset-2  col-sm-offset-1 col-sm-10 row">
 
 						<c:forEach items="${component.navigationNode.children}"
 							var="childLevel1">
