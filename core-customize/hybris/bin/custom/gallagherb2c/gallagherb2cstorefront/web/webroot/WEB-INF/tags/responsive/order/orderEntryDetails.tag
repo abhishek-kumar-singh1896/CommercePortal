@@ -29,7 +29,7 @@
 <li class="item__list--item">
 
     <%-- chevron for multi-d products --%>
-    <div class="hidden-xs hidden-sm item__toggle">
+    <div class="d-none d-md-table-cell item__toggle">
         <c:if test="${orderEntry.product.multidimensional}">
             <div class="js-show-multiD-grid-in-order" data-index="${itemIndex}">
                 <ycommerce:testId code="cart_product_updateQuantity">
@@ -108,14 +108,14 @@
 
     <%-- price --%>
     <div class="item__price">
-        <span class="visible-xs visible-sm"><spring:theme code="basket.page.itemPrice"/>:</span>
+		  <span class="d-table-cell d-md-none"><spring:theme code="basket.page.itemPrice"/>:</span>
         <ycommerce:testId code="orderDetails_productItemPrice_label">
             <order:orderEntryPrice orderEntry="${orderEntry}"/>
         </ycommerce:testId>
     </div>
 
     <%-- quantity --%>
-    <div class="item__quantity hidden-xs hidden-sm">
+    <div class="item__quantity d-none d-lg-table-cell">
         <c:forEach items="${orderEntry.product.baseOptions}" var="option">
             <c:if test="${not empty option.selected and option.selected.url eq orderEntry.product.url}">
                 <c:forEach items="${option.selected.variantOptionQualifiers}" var="selectedOption">
@@ -131,7 +131,7 @@
         </c:forEach>
 
         <ycommerce:testId code="orderDetails_productQuantity_label">
-            <label class="visible-xs visible-sm"><spring:theme code="text.account.order.qty"/>:</label>
+            <label class="d-block d-lg-none"><spring:theme code="text.account.order.qty"/>:</label>
             <span class="qtyValue">
                 <c:choose>
                     <c:when test="${consignmentEntry ne null }">
@@ -146,14 +146,14 @@
     </div>
 
      <%-- total --%>
-    <div class="item__total hidden-xs hidden-sm">
+    <div class="item__total d-none d-lg-table-cell">
         <ycommerce:testId code="orderDetails_productTotalPrice_label">
             <format:price priceData="${orderEntry.totalPrice}" displayFreeForZero="true"/>
         </ycommerce:testId>
     </div>
 
 
-    <div class="item__quantity__total visible-xs visible-sm">
+    <div class="item__quantity__total d-block d-lg-none">
         <c:set var="showEditableGridClass" value=""/>
         <c:if test="${orderEntry.product.multidimensional}">
             <c:set var="showEditableGridClass"
