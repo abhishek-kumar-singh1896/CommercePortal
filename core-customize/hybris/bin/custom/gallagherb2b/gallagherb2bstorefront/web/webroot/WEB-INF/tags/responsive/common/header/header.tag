@@ -72,23 +72,23 @@
 									</a> 
 								</div>
 							</li>
-							<li>
-								<div class="cart-out">
-									<a href="javascript:void(0)" class="cart-link">
-										&nbsp;
-										<svg class="cart-icon">
-											<use xlink:href="${siteRootUrl}/theme-securityB2B/images/svg/gallagher-icons.svg#cart" />
-										</svg>
-									</a>
-								</div>
-							</li>
-							<li>
-								<sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')" >
+							<sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')" >
+								<li>
 									<cms:pageSlot position="ggB2BLogin" var="component">
 										<cms:component component="${component}" />
 									</cms:pageSlot>
-								</sec:authorize>
-								<sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
+								</li>
+							</sec:authorize>
+							<sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
+								<li>
+									<cms:pageSlot position="MiniCart" var="cart">
+										<cms:component component="${cart}" />
+									</cms:pageSlot>
+								</li>
+<%-- 							<cms:pageSlot position="MiniCart" var="cart" element="div" class="miniCartSlot componentContainer mobile__nav__row--table hidden-sm hidden-md hidden-lg"> --%>
+<%-- 								<cms:component component="${cart}" element="div" class="mobile__nav__row--table-cell" /> --%>
+<%-- 							</cms:pageSlot> --%>
+								<li>
 									<c:set var="maxNumberChars" value="25" /> 
 	 								<c:if test="${fn:length(user.firstName) gt maxNumberChars}"> 
 	 									<c:set target="${user}" property="firstName"
@@ -101,24 +101,50 @@
 										</button>
 										<ul class="dropdown-menu dropdown-menu-right"
 											aria-labelledby="dropdownMenuUser">
-											<%-- <cms:pageSlot position="HeaderLinks" var="link">
-												 <cms:component component="${link}" element="li" />
-											 </cms:pageSlot> --%>
+
+											<cms:pageSlot position="B2BMyAccount" var="feature">
+												<li>
+													<div class="menu-title">
+														${feature.navigationNode.name}
+													</div>
+												</li>												
+                       					<c:forEach items="${feature.navigationNode.children}"
+													var="childLevel1">
+													<c:forEach items="${childLevel1.entries}" var="entry">
+														<cms:component component="${entry.item}" element="li" 
+													 	evaluateRestriction="true" />
+													</c:forEach>
+												</c:forEach>
+											</cms:pageSlot>
+											
+											<cms:pageSlot position="B2BMyCompany" var="feature">
+												<li>
+													<div class="menu-title">
+														${feature.navigationNode.name}
+													</div>
+												</li>												
+                       					<c:forEach items="${feature.navigationNode.children}"
+													var="childLevel1">													
+													<c:forEach items="${childLevel1.entries}" var="entry">
+														<cms:component component="${entry.item}" element="li" 
+													 		evaluateRestriction="true" />
+													</c:forEach>
+												</c:forEach>
+											</cms:pageSlot>
+											
 											<li>
-												<div class="menu-title">My Account</div>
+												<ycommerce:testId code="header_signOut">
+													<c:url value="/logout" var="logoutUrl"/>
+													<a href="${fn:escapeXml(logoutUrl)}">
+														<spring:theme code="header.link.logout" />
+													</a>
+												</ycommerce:testId>
 											</li>
-											<li><a href="javascript:void(0)">Personal details</a></li>
-											<li><a href="javascript:void(0)">Email address</a></li>
-											<li><a href="javascript:void(0)">Update password</a></li>
-											<li>
-												<div class="menu-title margin-top">My Company</div>
-											</li>
-											<li><a href="javascript:void(0)">Users</a></li>
-											<li><a href="javascript:void(0)">Units</a></li>
-											<li><a href="javascript:void(0)">Sign out</a></li>
+											
 										</ul>
 									</div>
-								</sec:authorize>
+								</li>
+							</sec:authorize>
 								<%-- <sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
 	 								<c:set var="maxNumberChars" value="25" /> 
 	 								<c:if test="${fn:length(user.firstName) gt maxNumberChars}"> 
