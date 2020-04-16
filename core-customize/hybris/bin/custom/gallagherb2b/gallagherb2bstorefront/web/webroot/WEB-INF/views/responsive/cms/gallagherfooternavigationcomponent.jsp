@@ -116,7 +116,7 @@
 
 										<c:if test="${i.index != 0}">
 										<li>
-											<a href="javascript:void(0)">${dropdownValue1.item.linkName}</a>
+											<a href=${dropdownValue1.item.url}>${dropdownValue1.item.linkName}</a>
                                </li>
 										</c:if>
 									</c:forEach>
