@@ -42,10 +42,10 @@
     </div>
 
     <ul class="item__list">
-        <li class="hidden-xs hidden-sm">
+        <li class="d-none d-lg-block">
             <ul class="item__list--header">
-                <li class="item__toggle"></li>
-                <li class="item__image"></li>
+                <li class="item__toggle">&nbsp;</li>
+                <li class="item__image">&nbsp;</li>
                 <li class="item__info"><spring:theme code="basket.page.item"/></li>
                 <li class="item__price"><spring:theme code="basket.page.price"/></li>
                 <li class="item__quantity"><spring:theme code="basket.page.qty"/></li>
