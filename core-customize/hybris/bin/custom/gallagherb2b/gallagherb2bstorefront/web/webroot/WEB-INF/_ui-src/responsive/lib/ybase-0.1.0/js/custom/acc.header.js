@@ -6,6 +6,14 @@ ACC.header = {
 
 	clickOnNav: function(){
 			$(document).ready(function () {
+				
+					$('.second-level-nav ul li').hover(function(){
+						$(this).find('.second-level-link-desktop').addClass('active');
+						$(this).find('.dropdown-menu-out').removeClass('d-none').addClass('fadeInUp');
+					}, function(){
+						$(this).find('.second-level-link-desktop').removeClass('active');
+						$(this).find('.dropdown-menu-out').addClass('d-none').removeClass('fadeInUp');
+					});
 
 		            $(document).click(function (e) {
 		                // For desktop mega menu code

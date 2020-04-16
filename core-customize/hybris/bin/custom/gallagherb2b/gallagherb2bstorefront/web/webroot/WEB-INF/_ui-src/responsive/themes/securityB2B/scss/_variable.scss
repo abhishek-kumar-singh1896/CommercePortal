@@ -1,3 +1,5 @@
+$font-family-calibri: 'Calibri', Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif !default;
+$font-family-base: $font-family-calibri !default;
 $primary-color:                     #ff8400;
 $secondary-color:                   #231e1f;
 $terciary:                          #0a97cc;
@@ -6,13 +8,15 @@ $link-visited-color:                #52468c;
 
 $white:                             #ffffff;
 $gray-2:                            #f0f0f0;
-$gray-3:                            #e6e7e8;
+$gray-3:                            #eee;
 $gray-4:                            #cccecf;
 $gray-5:                            #b0b0b0;
 $gray-6:                            #929292;
 $gray-7:                            #575a5d;
 $gray-9:                            #322e2c;
 $black:                             #000 !default;
+
+$dropdown-bg-color:                 #e96b04;
 
 $footer-bottom-bg-color:            #3b3634;
 

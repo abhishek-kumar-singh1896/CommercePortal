@@ -1,63 +1,33 @@
-// @font-face {
-//   font-family: "GalaxiePolaris-Light";
-//   src: url("../fonts/GalaxiePolaris/GalaxiePolaris-Light.woff2") format("woff2"),
-//     url("../fonts/GalaxiePolaris/GalaxiePolaris-Light.woff") format("GalaxiePolaris-Light.woff");
-// }
-
-// @font-face {
-//   font-family: "GalaxiePolaris-Medium";
-//   src: url("../fonts/GalaxiePolaris/GalaxiePolaris-Medium.woff2") format("woff2"),
-//     url("../fonts/GalaxiePolaris/GalaxiePolaris-Medium.woff") format("GalaxiePolaris-Medium.woff");
-// }
-
-// @font-face {
-//   font-family: "GalaxiePolaris-Bold";
-//   src: url("../fonts/GalaxiePolaris/GalaxiePolaris-Bold.woff2") format("woff2"),
-//     url("../fonts/GalaxiePolaris/GalaxiePolaris-Bold.woff") format("GalaxiePolaris-Bold.woff");
-// }
-
-// @font-face {
-//   font-family: "GalaxiePolaris-Heavy";
-//   src: url("../fonts/GalaxiePolaris/GalaxiePolaris-Heavy.woff2") format("woff2"),
-//     url("../fonts/GalaxiePolaris/GalaxiePolaris-Heavy.woff") format("GalaxiePolaris-Heavy.woff");
-// }
-
-// @font-face {
-//   font-family: "GalaxiePolaris-Book";
-//   src: url("../fonts/GalaxiePolaris/GalaxiePolaris-Book.woff2") format("woff2"),
-//     url("../fonts/GalaxiePolaris/GalaxiePolaris-Book.woff") format("GalaxiePolaris-Book.woff");
-// }
-
 @font-face {
-  font-family: "GalaxiePolaris";
-  font-weight: 900;
-  src: url("../fonts/GalaxiePolaris/GalaxiePolaris-Heavy.woff2") format("woff2"),
-    url("../fonts/GalaxiePolaris/GalaxiePolaris-Heavy.woff") format("GalaxiePolaris-Heavy.woff");
+  font-family: "Calibri";
+  src: url("../fonts/Calibri/Calibri-Bold-eot.eot") format("embedded-opentype"),
+    url("../fonts/Calibri/Calibri-Bold-svg.svg") format("svg"),
+    url("../fonts/Calibri/Calibri-Bold-ttf.ttf") format("truetype"),
+    url("../fonts/Calibri/Calibri-Bold-woff.woff") format("woff");
+    font-weight: 700;
 }
 
 @font-face {
-  font-family: "GalaxiePolaris";
-  font-weight: bold;
-  src: url("../fonts/GalaxiePolaris/GalaxiePolaris-Bold.woff2") format("woff2"),
-    url("../fonts/GalaxiePolaris/GalaxiePolaris-Bold.woff") format("GalaxiePolaris-Bold.woff");
-  
-}
-@font-face {
-  font-family: "GalaxiePolaris";
-  font-weight: 300;
-  src: url("../fonts/GalaxiePolaris/GalaxiePolaris-Light.woff2") format("woff2"),
-    url("../fonts/GalaxiePolaris/GalaxiePolaris-Light.woff") format("GalaxiePolaris-Light.woff");
+  font-family: "Calibri-Bold-Italic";
+  src: url("../fonts/Calibri/Calibri-Bold-Italic-eot.eot") format("embedded-opentype"),
+    url("../fonts/Calibri/Calibri-Bold-Italic-svg.svg") format("svg"),
+    url("../fonts/Calibri/Calibri-Bold-Italic-ttf.ttf") format("truetype"),
+    url("../fonts/Calibri/Calibri-Bold-Italic-woff.woff") format("woff");
 }
 
 @font-face {
-  font-family: "GalaxiePolaris";
-  font-weight: 500;
-  src: url("../fonts/GalaxiePolaris/GalaxiePolaris-Medium.woff2") format("woff2"),
-    url("../fonts/GalaxiePolaris/GalaxiePolaris-Medium.woff") format("GalaxiePolaris-Medium.woff");
+  font-family: "Calibri-Italic";
+  src: url("../fonts/Calibri/Calibri-Italic-eot.eot") format("embedded-opentype"),
+    url("../fonts/Calibri/Calibri-Italic-svg.svg") format("svg"),
+    url("../fonts/Calibri/Calibri-Italic-ttf.ttf") format("truetype"),
+    url("../fonts/Calibri/Calibri-Italic-woff.woff") format("woff");
 }
+
 @font-face {
-  font-family: "GalaxiePolaris";
-  font-weight: normal;
-  src: url("../fonts/GalaxiePolaris/GalaxiePolaris-Book.woff2") format("woff2"),
-    url("../fonts/GalaxiePolaris/GalaxiePolaris-Book.woff") format("GalaxiePolaris-Book.woff");
+  font-family: "Calibri";
+  src: url("../fonts/Calibri/Calibri-Regular-eot.eot") format("embedded-opentype"),
+    url("../fonts/Calibri/Calibri-Regular-svg.svg") format("svg"),
+    url("../fonts/Calibri/Calibri-Regular-ttf.ttf") format("truetype"),
+    url("../fonts/Calibri/Calibri-Regular-woff.woff") format("woff");
+    font-weight: 500;
 }

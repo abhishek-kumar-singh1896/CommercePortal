@@ -156,7 +156,7 @@
 		</div>
 		
 <!-- 		ootb code from here -->
-		<nav class="navigation navigation--top hidden-xs hidden-sm">	
+		<%-- <nav class="navigation navigation--top hidden-xs hidden-sm">	
 			<div class="col-sm-12 col-md-8">
 				<div class="nav__right">
 					<ul class="nav__links nav__links--account">
@@ -215,7 +215,7 @@
 				</div>
 			</div>
 <!-- 		</div> -->
-	</nav> 
+	</nav>  --%>
 	<%-- a hook for the my account links in desktop/wide desktop--%>
 	<div class="hidden-xs hidden-sm js-secondaryNavAccount collapse" id="accNavComponentDesktopOne">
 		<ul class="nav__links">

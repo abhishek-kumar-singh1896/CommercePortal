@@ -1,4 +1,13 @@
+// html {
+//   height: 100%;
+//   margin: 0;
+//   padding: 0;
+//   scroll-behavior: smooth;
+// }
+
 html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   height: 100%;
   margin: 0;
   padding: 0;
@@ -10,8 +19,9 @@ body {
   margin: 0;
   padding: 0;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
-  text-rendering: optimizeLegibility !important;
-  -webkit-font-smoothing: antialiased !important;
+  font-family: $font-family-base;
+  // text-rendering: optimizeLegibility !important;
+  // -webkit-font-smoothing: antialiased !important;
 }
 
 .container {
