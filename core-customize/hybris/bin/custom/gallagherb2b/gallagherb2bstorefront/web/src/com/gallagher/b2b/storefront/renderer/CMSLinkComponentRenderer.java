@@ -44,15 +44,11 @@ public class CMSLinkComponentRenderer implements CMSComponentRenderer<CMSLinkCom
 {
 	private static final Logger LOG = Logger.getLogger(CMSLinkComponentRenderer.class);
 
-	protected static final PolicyFactory policy = new HtmlPolicyBuilder().allowStandardUrlProtocols()
-			.allowElements("a", "span")
-			.allowAttributes( "href", "style", "class", "title", "target", "download", "rel", "rev",
-					"hreflang", "type", "text", "accesskey", "contenteditable", "contextmenu", "dir", "draggable",
-					"dropzone", "hidden", "id", "lang", "spellcheck", "tabindex", "translate")
-			.onElements("a")
-			.allowAttributes("class")
-			.onElements("span")
-			.toFactory();
+	protected static final PolicyFactory policy = new HtmlPolicyBuilder().allowStandardUrlProtocols().allowElements("a", "span")
+			.allowAttributes("href", "style", "class", "title", "target", "download", "rel", "rev", "hreflang", "type", "text",
+					"accesskey", "contenteditable", "contextmenu", "dir", "draggable", "dropzone", "hidden", "id", "lang",
+					"spellcheck", "tabindex", "translate")
+			.onElements("a").allowAttributes("class").onElements("span").toFactory();
 
 
 	private Converter<ProductModel, ProductData> productUrlConverter;
@@ -117,7 +113,7 @@ public class CMSLinkComponentRenderer implements CMSComponentRenderer<CMSLinkCom
 				// Write additional attributes onto the link
 				if (component.getStyleAttributes() != null)
 				{
-					html.append(component.getStyleAttributes());
+					html.append(" class='" + component.getStyleAttributes() + "'");
 				}
 
 				if (StringUtils.isNotBlank(linkName))
