@@ -224,6 +224,7 @@ public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 				true, FARWORD_SLASH + ((CMSSiteModel) site).getRegionCode() + FARWORD_SLASH
 						+ ((CMSSiteModel) site).getDefaultLanguage().getIsocode());
 
+
 		final String url = MessageFormat.format(
 				getConfigurationService().getConfiguration().getString("keycloak.reset.password.url"), keycloakGUID, redirectURL);
 
