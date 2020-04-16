@@ -3,49 +3,49 @@
   margin-left: 30px;
   text-align: right;
 
-  &.with-logged-in-user {
-    .btn {
-      background: linear-gradient(to bottom, $button-highlight-top-color 0%, $button-highlight-bottom-color 100%);
+  // &.with-logged-in-user {
+  //   .btn {
+  //     background: linear-gradient(to bottom, $button-highlight-top-color 0%, $button-highlight-bottom-color 100%);
 
-      .user-icon {
-        min-width: 10px;
-        display: block;
-        svg {
-          width: 24px;
-          height: 24px;
-          fill: $gray-9;
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          margin: auto;
-        }
-      }
+  //     .user-icon {
+  //       min-width: 10px;
+  //       display: block;
+  //       svg {
+  //         width: 24px;
+  //         height: 24px;
+  //         fill: $gray-9;
+  //         position: absolute;
+  //         top: 0;
+  //         bottom: 0;
+  //         left: 0;
+  //         right: 0;
+  //         margin: auto;
+  //       }
+  //     }
 
-      &:hover {
-        color: $white;
+  //     &:hover {
+  //       color: $white;
 
-        svg {
-          fill: $white;
-        }
-      }
-    }
+  //       svg {
+  //         fill: $white;
+  //       }
+  //     }
+  //   }
 
-    .btn-group {
-      &.show {
-        .right-btn {
-          background: linear-gradient(
-            to bottom,
-            $button-highlight-color-logged-in-user 0%,
-            $button-highlight-color-logged-in-user 100%
-          );
-        }
-      }
-    }
-  }
+  //   .btn-group {
+  //     &.show {
+  //       .right-btn {
+  //         background: linear-gradient(
+  //           to bottom,
+  //           $button-highlight-color-logged-in-user 0%,
+  //           $button-highlight-color-logged-in-user 100%
+  //         );
+  //       }
+  //     }
+  //   }
+  // }
 
-  ul {
+  > ul {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -59,14 +59,14 @@
 
       a {
         display: block;
-        padding: 31px 24px;
+        padding: 31px 30px;
         color: $white;
         text-decoration: none;
         box-sizing: border-box;
         transition: all ease-in-out 0.3s;
         text-transform: uppercase;
-        font-weight: bold;
-        font-size: $font-size-18px;
+        font-weight: 700;
+        font-size: 18px;
 
         .arrow-down-icon {
           display: none;
@@ -124,6 +124,8 @@
   letter-spacing: 0.1px;
   z-index: 999;
   border: 2px solid $primary-color;
+  border-left: none;
+  border-right: none;
 
   .second-level-nav {
     font-size: $font-size-18px;

@@ -88,6 +88,50 @@
 										<cms:component component="${component}" />
 									</cms:pageSlot>
 								</sec:authorize>
+								<sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
+									<c:set var="maxNumberChars" value="25" /> 
+	 								<c:if test="${fn:length(user.firstName) gt maxNumberChars}"> 
+	 									<c:set target="${user}" property="firstName"
+	 										value="${fn:substring(user.firstName, 0, maxNumberChars)}..." /> 
+	 								</c:if> 
+									<div class="dropdown user-dropdown">
+										<button class="btn user-btn dropdown-toggle" type="button" id="dropdownMenuUser"
+											data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											<span class="user-name"><spring:theme code="header.welcome" arguments="${user.firstName},${user.lastName}" /></span>
+										</button>
+										<ul class="dropdown-menu dropdown-menu-right"
+											aria-labelledby="dropdownMenuUser">
+											<%-- <cms:pageSlot position="HeaderLinks" var="link">
+												 <cms:component component="${link}" element="li" />
+											 </cms:pageSlot> --%>
+											<li>
+												<div class="menu-title">My Account</div>
+											</li>
+											<li><a href="javascript:void(0)">Personal details</a></li>
+											<li><a href="javascript:void(0)">Email address</a></li>
+											<li><a href="javascript:void(0)">Update password</a></li>
+											<li>
+												<div class="menu-title margin-top">My Company</div>
+											</li>
+											<li><a href="javascript:void(0)">Users</a></li>
+											<li><a href="javascript:void(0)">Units</a></li>
+											<li><a href="javascript:void(0)">Sign out</a></li>
+										</ul>
+									</div>
+								</sec:authorize>
+								<%-- <sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
+	 								<c:set var="maxNumberChars" value="25" /> 
+	 								<c:if test="${fn:length(user.firstName) gt maxNumberChars}"> 
+	 									<c:set target="${user}" property="firstName"
+	 										value="${fn:substring(user.firstName, 0, maxNumberChars)}..." /> 
+	 								</c:if> 
+	
+									<!-- <li class="logged_in js-logged_in"> -->
+										<ycommerce:testId code="header_LoggedUser">
+											<spring:theme code="header.welcome" arguments="${user.firstName},${user.lastName}" />
+										</ycommerce:testId>
+									<!-- </li> -->
+							</sec:authorize> --%>
 							</li>
 						</ul>
 					</div>
@@ -117,14 +161,14 @@
 				<div class="nav__right">
 					<ul class="nav__links nav__links--account">
 						<c:if test="${empty hideHeaderLinks}">
-<%-- 							<c:if test="${uiExperienceOverride}"> --%>
+							<c:if test="${uiExperienceOverride}">
 <!-- 								<li class="backToMobileLink"> -->
-<%-- 									<c:url value="/_s/ui-experience?level=" var="backToMobileStoreUrl" /> --%>
-<%-- 									<a href="${fn:escapeXml(backToMobileStoreUrl)}"> --%>
-<%-- 										<spring:theme code="text.backToMobileStore" /> --%>
+									<c:url value="/_s/ui-experience?level=" var="backToMobileStoreUrl" />
+									<a href="${fn:escapeXml(backToMobileStoreUrl)}">
+										<spring:theme code="text.backToMobileStore" />
 <!-- 									</a> -->
 <!-- 								</li> -->
-<%-- 							</c:if> --%>
+							</c:if>
 
  							<sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
  								<c:set var="maxNumberChars" value="25" /> 
@@ -144,16 +188,16 @@
 								 <cms:component component="${link}" element="li" />
 							 </cms:pageSlot>
 
-<%-- 							<sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')" > --%>
+							<sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')" >
 <!-- 								<li class="liOffcanvas"> -->
-<%-- 									<ycommerce:testId code="header_Login_link"> --%>
-<%-- 										<c:url value="/login" var="loginUrl" /> --%>
-<%-- 										<a href="${fn:escapeXml(loginUrl)}"> --%>
-<%-- 											<spring:theme code="header.link.login" /> --%>
+									<ycommerce:testId code="header_Login_link">
+										<c:url value="/login" var="loginUrl" />
+										<a href="${fn:escapeXml(loginUrl)}">
+											<spring:theme code="header.link.login" />
 <!-- 										</a> -->
-<%-- 									</ycommerce:testId> --%>
+									</ycommerce:testId>
 <!-- 								</li> -->
-<%-- 							</sec:authorize> --%>
+							</sec:authorize>
 
 							<sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')" >
 								<li class="liOffcanvas">
@@ -171,7 +215,7 @@
 				</div>
 			</div>
 <!-- 		</div> -->
-	</nav>
+	</nav> 
 	<%-- a hook for the my account links in desktop/wide desktop--%>
 	<div class="hidden-xs hidden-sm js-secondaryNavAccount collapse" id="accNavComponentDesktopOne">
 		<ul class="nav__links">
@@ -183,7 +227,7 @@
 
 		</ul>
 	</div>
-	<nav class="navigation navigation--middle js-navigation--middle">
+	<%-- <nav class="navigation navigation--middle js-navigation--middle">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="mobile__nav__row mobile__nav__row--table">
@@ -233,9 +277,9 @@
 						</div>
 <!-- 						<div class="col-sm-10"> -->
 <!-- 							<div class="site-search"> -->
-<%-- 								<cms:pageSlot position="SearchBox" var="component"> --%>
-<%-- 									<cms:component component="${component}" element="div"/> --%>
-<%-- 								</cms:pageSlot> --%>
+								<cms:pageSlot position="SearchBox" var="component">
+									<cms:component component="${component}" element="div"/>
+								</cms:pageSlot>
 <!-- 							</div> -->
 <!-- 						</div> -->
 					</div>
@@ -263,7 +307,7 @@
 				</div>
 			</div>
 		</div>
-	</nav>
+	</nav> --%>
 	<a id="skiptonavigation"></a>
 	<%-- <nav:topNavigation /> --%>
 </header>
