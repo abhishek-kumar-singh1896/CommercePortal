@@ -5,6 +5,8 @@ package com.gallagher.keycloak.outboundservices.service.impl;
 
 import de.hybris.platform.acceleratorservices.urlencoder.UrlEncoderService;
 import de.hybris.platform.acceleratorservices.urlresolver.SiteBaseUrlResolutionService;
+import de.hybris.platform.basecommerce.model.site.BaseSiteModel;
+import de.hybris.platform.cms2.model.site.CMSSiteModel;
 import de.hybris.platform.commercefacades.user.data.CustomerData;
 import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.core.model.user.UserModel;
@@ -42,6 +44,7 @@ import com.gallagher.outboundservices.response.dto.GallagherKeycloakResponse;
 public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 {
 	private static final Logger LOGGER = Logger.getLogger(GallagherKeycloakServiceImpl.class);
+	private static final String FARWORD_SLASH = "/";
 
 	private final ConfigurationService configurationService;
 	private final UserService userService;
@@ -216,8 +219,10 @@ public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 			getBaseSiteService().setCurrentBaseSite("securityB2BGlobal", false);
 		}
 
-		final String redirectURL = getSiteBaseUrlResolutionService().getWebsiteUrlForSite(getBaseSiteService().getCurrentBaseSite(),
-				true, null);
+		final BaseSiteModel site = getBaseSiteService().getCurrentBaseSite();
+		final String redirectURL = getSiteBaseUrlResolutionService().getWebsiteUrlForSite(site,
+				true, FARWORD_SLASH + ((CMSSiteModel) site).getRegionCode() + FARWORD_SLASH
+						+ ((CMSSiteModel) site).getDefaultLanguage().getIsocode());
 
 		final String url = MessageFormat.format(
 				getConfigurationService().getConfiguration().getString("keycloak.reset.password.url"), keycloakGUID, redirectURL);
