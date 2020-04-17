@@ -6,7 +6,8 @@
 	xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config"
 	xmlns:na="http://www.hybris.com/cockpitng/config/notifications"
 	xmlns:list-view="http://www.hybris.com/cockpitng/component/listView"
-	xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+	xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea"
+	xmlns:y="http://www.hybris.com/cockpit/config/hybris">
 
 	<context merge-by="module" component="editorareaactions" type="Consignment">
 		<y:actions xmlns:y="http://www.hybris.com/cockpit/config/hybris">
@@ -119,14 +120,19 @@
         <editorArea:editorArea name="">
             <editorArea:tab name="hmc.gallagher" position="3">
                 <editorArea:section name="hmc.section.gallagher">
-                    <editorArea:attribute qualifier="duplicate" />
-                    <editorArea:attribute qualifier="keycloakGUID" />
-                    <editorArea:attribute qualifier="objectID" />
                     <editorArea:attribute qualifier="newsLetters" />
                     <editorArea:attribute qualifier="events" />
                     <editorArea:attribute qualifier="productRelease" />
                     <editorArea:attribute qualifier="productUpdate" />
                     <editorArea:attribute qualifier="productPromo" />
+                </editorArea:section>
+                <editorArea:section name="hmc.section.integration">
+                    <editorArea:attribute qualifier="duplicate" />
+                    <editorArea:attribute qualifier="keycloakGUID" />
+                    <editorArea:attribute qualifier="objectID" />
+                    <editorArea:attribute qualifier="sapContactID" />
+                    <editorArea:attribute qualifier="sapReplicationInfo" />
+                    <editorArea:attribute qualifier="sapIsReplicated" />
                 </editorArea:section>
             </editorArea:tab>
         </editorArea:editorArea>
@@ -188,6 +194,24 @@
             </editorArea:tab>
         </editorArea:editorArea>
     </context>
+    <context merge-by="type" type="BaseStore" component="editor-area">
+        <editorArea:editorArea name="">
+            <editorArea:tab name="hmc.gallagher" position="3">
+                <editorArea:section name="hmc.section.gallagher">
+                    <editorArea:attribute qualifier="sovosConfiguration" />
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+    <context merge-by="type" type="AbstractOrder" component="editor-area">
+        <editorArea:editorArea name="">
+            <editorArea:tab name="hmc.gallagher" position="3">
+                <editorArea:section name="hmc.section.gallagher">
+                    <editorArea:attribute qualifier="taxTransactionDocId" />
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
 	<context merge-by="type" parent="Customer" type="B2BCustomer" component="create-wizard">
 	    <wz:flow xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config" id="CustomerWizard" title="create.title(ctx.TYPE_CODE)">
 			<wz:handler handlerId="verifyCustomerHandler1" handlerBean="verifyCustomerHandler" />
@@ -241,4 +265,11 @@
 			</wz:step>
 	    </wz:flow>
 	</context>
+	<context type="GallagherSovosConfigurartion" component="base" merge-by="type">
+        <y:base>
+            <y:labels>
+                <y:label>code</y:label>
+            </y:labels>
+        </y:base>
+    </context>
 </config>

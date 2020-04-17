@@ -21,8 +21,11 @@
 # Languages
 INSERT_UPDATE Language ; isocode[unique=true] ; fallbackLanguages(isocode) ; active[default=true] 
                        ; en                   ;                            ;                      ;  
-                       ; de                   ; en                         ;                      ;  
-                       
+                       ; de                   ; en                         ;                      ;
+                       ; en_US                ; en                         ;                      ;  
+                       ; en_CA                ; en                         ;                      ;
+                       ; en_AU                ; en                         ;                      ;
+                       ; en_NZ                ; en                         ;                      ;                       
                        
 INSERT_UPDATE Currency ; isocode[unique=true] ; symbol ; sapCode ; digits ; conversion ; active[default=true] 
                        ; GBP                  ; £      ; GBP     ; 2      ; 1          ;                      

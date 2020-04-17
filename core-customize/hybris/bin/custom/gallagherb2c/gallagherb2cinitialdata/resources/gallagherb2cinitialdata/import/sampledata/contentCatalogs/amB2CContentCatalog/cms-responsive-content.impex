@@ -1300,10 +1300,10 @@ INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[uni
 ##Country dropdown for different websites
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;linkName;&linkRef;&componentRef;target(code)[default='sameWindow'];$category;$product;
-;;nz-en;New Zealand Link;$websiteBaseURL/am/nz/en;New Zealand;nz-en;nz-en
-;;au-en;Australia Link;$websiteBaseURL/am/au/en;Australia;au-en;au-en
-;;us-en;US Link;$websiteBaseURL/am/us/en;United States;us-en;us-en
-;;ca-en;Canada English Link;$websiteBaseURL/am/ca/en;Canada (EN);ca-en;ca-en
+;;nz-en_NZ;New Zealand Link;$websiteBaseURL/am/nz/en_NZ;New Zealand;nz-en;nz-en
+;;au-en_AU;Australia Link;$websiteBaseURL/am/au/en_AU;Australia;au-en;au-en
+;;us-en_US;US Link;$websiteBaseURL/am/us/en_US;United States;us-en;us-en
+;;ca-en_CA;Canada English Link;$websiteBaseURL/am/ca/en_CA;Canada (EN);ca-en;ca-en
 ;;ca-fr;Canada French Link;$websiteBaseURL/am/ca/fr;Canada (FR);ca-fr;ca-fr
 ;;latam-en;LatAm Link;$websiteBaseURL/am/latam/en;Latin America;latam-en;latam-en
 ;;global-en;Global Link;$websiteBaseURL/am/global/en;Global;global-en;global-en
@@ -2202,6 +2202,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;OrderHistoryLink;Order History Link;/my-account/update-profile;;;;
 ;;PreferencesLink;Preferences Link;/my-account/consents;;;;
 ;;LogoutLink;Logout Us Link;/logout;;;;
+;;PaymentDetailLink;Payment Detail Link;/my-account/payment-details;;;;
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];$category;$product;
 ;;UpdatePasswordLink;UpdatePasswordLink;$keycloakBaseURL$keycloakAuthURL$keycloakPasswordURL;UpdatePasswordLink;
@@ -2216,7 +2217,7 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;pa
 ;OrderHistoryNavNode;;Order History Navigation Node;UserDropDownNavigationNode;;;OrderHistoryNavNode;"Order History"
 ;PreferencesNavNode;;Prefernce Navigation Node;UserDropDownNavigationNode;;;PreferencesNavNode;"Preferences"
 ;LogoutNavNode;;Logout Us Navigation Node Menu;UserDropDownNavigationNode;;;LogoutNavNode;"Logout Us"
-
+;PaymentDetailNavNode;;Payment Detail Navigation Node Menu;UserDropDownNavigationNode;;;PaymentDetailNavNode;"Payment Details"
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
 ;RegisterAProductNavNodeEntry;;Register a Product Navigation Node Entry;RegisterAProductNavNode;RegisterAProductLink;
@@ -2226,7 +2227,7 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 ;OrderHistoryNavNodeEntry;;Order History Navigation Node Entry;OrderHistoryNavNode;OrderHistoryLink
 ;PreferencesNavNodeEntry;;Preferences Navigation Node Entry;PreferencesNavNode;PreferencesLink
 ;LogoutNavNodeEntry;;Logout Navigation Node Entry;LogoutNavNode;LogoutLink
-
+;PaymentDetailNavNodeEntry;;Payment Detail Navigation Node Entry;PaymentDetailNavNode;PaymentDetailLink
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
 ;;EditProfileLink;Edit Profile
@@ -2236,7 +2237,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef;children(uid, $contentCV)[mode=replace]
-;UserDropDownNavigationNode;;Header Link Navigation Node; root;; UserDropDownNavigationNode; RegisterAProductNavNode,MyRegisteredProductNavNode,EditProfileNavNode,UpdatePasswordNavNode,OrderHistoryNavNode,PreferencesNavNode,LogoutNavNode
+;UserDropDownNavigationNode;;Header Link Navigation Node; root;; UserDropDownNavigationNode; RegisterAProductNavNode,MyRegisteredProductNavNode,EditProfileNavNode,PaymentDetailNavNode,UpdatePasswordNavNode,OrderHistoryNavNode,PreferencesNavNode,LogoutNavNode
 
 INSERT_UPDATE NavigationComponent;$contentCV[unique=true];uid[unique=true];name;styleClass;&componentRef;navigationNode(&nodeRef)
 ;;UserDropDownNavigationComponent;User drop down Navigation component;;UserDropDownNavigationComponent;UserDropDownNavigationNode

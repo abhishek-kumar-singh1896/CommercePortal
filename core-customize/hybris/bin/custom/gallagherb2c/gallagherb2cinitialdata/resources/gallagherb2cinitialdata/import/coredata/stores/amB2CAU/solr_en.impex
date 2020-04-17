@@ -9,12 +9,12 @@
 $solrIndexedType=amB2CAUProductType
 
 # Language
-$lang=en
+$lang=en_AU
 
 # Solr Indexed Property
 UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];displayName[lang=$lang]
  ;$solrIndexedType;allPromotions;"Promotion"
- ;$solrIndexedType;availableInStores;"Stores"
+ #;$solrIndexedType;availableInStores;"Stores"
  ;$solrIndexedType;category;"Category"
  ;$solrIndexedType;code;"Code"
  ;$solrIndexedType;description;"Description"

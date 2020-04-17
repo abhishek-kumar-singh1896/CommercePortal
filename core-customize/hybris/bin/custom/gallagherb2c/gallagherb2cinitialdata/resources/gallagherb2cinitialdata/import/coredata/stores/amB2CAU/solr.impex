@@ -11,7 +11,7 @@ $facetSearchConfigDescription=Animal Management B2C CA Solr Index
 $searchIndexNamePrefix=amB2CAU
 $solrIndexedType=amB2CAUProductType
 $indexBaseSite=amB2CAU
-$indexLanguages=en
+$indexLanguages=en_AU
 $indexCurrencies=AUD
  
 # Import config properties into impex macros

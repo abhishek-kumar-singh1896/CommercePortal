@@ -14,7 +14,7 @@
 $productCatalogAU=securityB2BAUProductCatalog
 $contentCatalog=securityB2BContentCatalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
-$defaultLanguage=en 
+$defaultLanguage=en_AU 
 $storeUidAU=securityB2BAU
 $siteUidAU=securityB2BAU
 $webServiceSiteUid=$siteUidAUWS
@@ -34,7 +34,7 @@ $storefrontContextRoot=$config-storefrontContextRoot
                                                                                                            
 # CMS Site                                                                                                 
 INSERT_UPDATE CMSSite ; uid[unique=true] ; theme(code) ; channel(code) ; regionCode(code) ; stores(uid) ; contentCatalogs(id) ; defaultCatalog(id) ; defaultLanguage(isoCode) ; urlPatterns                                                                                                                                                                                                                                                                                                                                                                                        ; active ; previewURL                 ; startingPage(uid,$contentCV) ; urlEncodingAttributes ; defaultPromotionGroup(Identifier)[default=securityB2BAUPromoGrp] ; minimumSpendThreshold ; thresholdMessage ; minimumQuantityThreshold ; thresholdQuantityMessage ; redirectURL
-                      ; $siteUidAU       ; securityB2B ; B2B           ; au               ; $storeUidAU ; $contentCatalog     ; $productCatalogAU  ; $defaultLanguage         ; (?i)^https?://[^/]+(/[^?]*)?\?(.*\&)?(site=$siteUidAU)(|\&.*)$,(?i)^https?://$siteUidAU\.[^/]+(|/.*|\?.*)$,(?i)^https?://accstorefront.cj6th-gallagher1-d1-public.model-t.cc.commerce.ondemand.com/security/au+(|/.*|\?.*)$,(?i)^https?://accstorefront.cj6th-gallagher1-s1-public.model-t.cc.commerce.ondemand.com/security/au+(|/.*|\?.*)$,(?i)^https?://localhost:9002/security/au+(|/.*|\?.*)$ ; true   ; /security/?site=$siteUidAU ; homepage                     ; country,language      ;                                                                  ;                       ;                  ;                          ;                          ; /security/au/en
+                      ; $siteUidAU       ; securityB2B ; B2B           ; au               ; $storeUidAU ; $contentCatalog     ; $productCatalogAU  ; $defaultLanguage         ; (?i)^https?://[^/]+(/[^?]*)?\?(.*\&)?(site=$siteUidAU)(|\&.*)$,(?i)^https?://$siteUidAU\.[^/]+(|/.*|\?.*)$,(?i)^https?://accstorefront.cj6th-gallagher1-d1-public.model-t.cc.commerce.ondemand.com/security/au+(|/.*|\?.*)$,(?i)^https?://accstorefront.cj6th-gallagher1-s1-public.model-t.cc.commerce.ondemand.com/security/au+(|/.*|\?.*)$,(?i)^https?://localhost:9002/security/au+(|/.*|\?.*)$ ; true   ; /security/?site=$siteUidAU ; homepage                     ; country,language      ;                                                                  ;                       ;                  ;                          ;                          ; /security/au/en_AU
                       
 # SiteMap Configuration
 # SiteMap Language Currencies

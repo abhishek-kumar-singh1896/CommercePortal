@@ -13,7 +13,11 @@ UPDATE Language ; isocode[unique=true] ; name[lang=$lang]
                 ; de                   ; "German"         
                 ; en                   ; "English"        
                 ; ja                   ; "Japanese"       
-                ; zh                   ; "Chinese"        
+                ; zh                   ; "Chinese" 
+                ; en_US                ; "American English" 
+                ; en_CA                ; "Canadian English"        
+                ; en_AU                ; "Australian English" 
+                ; en_NZ                ; "New Zealand English" 
                 
 # Currencies    
 UPDATE Currency ; isocode[unique=true] ; name[lang=$lang]      

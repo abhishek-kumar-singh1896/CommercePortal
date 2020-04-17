@@ -14,7 +14,7 @@
 $productCatalogNZ=securityB2BNZProductCatalog
 $contentCatalog=securityB2BContentCatalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
-$defaultLanguage=en 
+$defaultLanguage=en_NZ
 $storeUidNZ=securityB2BNZ
 $siteUidNZ=securityB2BNZ
 $webServiceSiteUid=$siteUidNZWS
@@ -34,7 +34,7 @@ $storefrontContextRoot=$config-storefrontContextRoot
                                                                                                            
 # CMS Site                                                                                                 
 INSERT_UPDATE CMSSite ; uid[unique=true] ; theme(code) ; channel(code) ; regionCode(code) ; stores(uid) ; contentCatalogs(id) ; defaultCatalog(id) ; defaultLanguage(isoCode) ; urlPatterns                                                                                                                                                                                                                                                                                                                                                                                        ; active ; previewURL                 ; startingPage(uid,$contentCV) ; urlEncodingAttributes ; defaultPromotionGroup(Identifier)[default=securityB2BNZPromoGrp] ; minimumSpendThreshold ; thresholdMessage ; minimumQuantityThreshold ; thresholdQuantityMessage ; redirectURL 
-                      ; $siteUidNZ       ; securityB2B ; B2B           ; nz               ; $storeUidNZ ; $contentCatalog     ; $productCatalogNZ  ; $defaultLanguage         ; (?i)^https?://[^/]+(/[^?]*)?\?(.*\&)?(site=$siteUidNZ)(|\&.*)$,(?i)^https?://$siteUidNZ\.[^/]+(|/.*|\?.*)$,(?i)^https?://accstorefront.cj6th-gallagher1-d1-public.model-t.cc.commerce.ondemand.com/security/nz+(|/.*|\?.*)$,(?i)^https?://accstorefront.cj6th-gallagher1-s1-public.model-t.cc.commerce.ondemand.com/security/nz+(|/.*|\?.*)$,(?i)^https?://localhost:9002/security/nz+(|/.*|\?.*)$ ; true   ; /security/?site=$siteUidNZ ; homepage                     ; country,language      ;                                                                  ;                       ;                  ;                          ;                          ; /security/nz/en
+                      ; $siteUidNZ       ; securityB2B ; B2B           ; nz               ; $storeUidNZ ; $contentCatalog     ; $productCatalogNZ  ; $defaultLanguage         ; (?i)^https?://[^/]+(/[^?]*)?\?(.*\&)?(site=$siteUidNZ)(|\&.*)$,(?i)^https?://$siteUidNZ\.[^/]+(|/.*|\?.*)$,(?i)^https?://accstorefront.cj6th-gallagher1-d1-public.model-t.cc.commerce.ondemand.com/security/nz+(|/.*|\?.*)$,(?i)^https?://accstorefront.cj6th-gallagher1-s1-public.model-t.cc.commerce.ondemand.com/security/nz+(|/.*|\?.*)$,(?i)^https?://localhost:9002/security/nz+(|/.*|\?.*)$ ; true   ; /security/?site=$siteUidNZ ; homepage                     ; country,language      ;                                                                  ;                       ;                  ;                          ;                          ; /security/nz/en_NZ
                       
 # SiteMap Configuration
 # SiteMap Language Currencies

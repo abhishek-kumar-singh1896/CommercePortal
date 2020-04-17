@@ -8,7 +8,7 @@
 $productCatalog=amB2CUSProductCatalog
 $classificationCatalog=AMB2CClassification
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
-$languages=en
+$languages=en_US
 
 # Product catalog
 INSERT_UPDATE Catalog;id[unique=true]
