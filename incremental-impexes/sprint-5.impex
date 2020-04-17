@@ -1508,6 +1508,22 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;HighSecurityCategoryLink;High Security Category Link;/Security/High-Security/c/high-security;;HighSecurityCategoryLink;;"second-level-link-desktop"
 ;;IntegrationsCategoryLink;Integrations Category Link;/Security/Integrations/c/integrations;;IntegrationsCategoryLink;;"second-level-link-desktop"
 ;;SoftwareCategoryLink;Software Category Link;/Security/Software/c/software;;SoftwareCategoryLink;;"second-level-link-desktop"
-
-
 ########################################################
+
+############### Cleanup jobs ##########################
+INSERT_UPDATE MaintenanceCleanupJob;code[unique=true];springId;threshold
+;cleanUpLogsJobPerformable;cleanUpLogsJobPerformable;5
+
+INSERT_UPDATE MaintenanceCleanupJob;code[unique=true];threshold
+;cleanupCronJobsPerformable;5
+
+INSERT_UPDATE CronJob;code[unique=true];job(code);sessionLanguage(isocode)
+;gglCleanupCronJobLogs;cleanUpLogsJobPerformable;;en
+;gglCleanupCronJobs;cleanupCronJobsPerformable;;en
+
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+# Run the Clean up cronJob logs at 4:05 AM every day
+;gglCleanupCronJobLogs;0;5;4;-1;-1;-1;false;false;-1
+# Run the Cron job cleanup at 5:05 AM every day
+;gglCleanupCronJobs;0;5;5;-1;-1;-1;false;false;-1
+####################################################
