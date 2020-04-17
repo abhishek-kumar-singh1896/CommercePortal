@@ -106,7 +106,8 @@
     "scpiconnector",
     "scpiconnectorbackoffice",
 	"sapcpiorderexchange",
-	"sapcpiorderexchangeb2b"
+	"sapcpiorderexchangeb2b",
+	"sapcpiorderexchangeoms"
   ],
   "useConfig": {
     "solr": {
