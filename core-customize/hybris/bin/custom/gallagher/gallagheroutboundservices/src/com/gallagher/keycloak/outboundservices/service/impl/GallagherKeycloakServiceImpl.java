@@ -5,6 +5,8 @@ package com.gallagher.keycloak.outboundservices.service.impl;
 
 import de.hybris.platform.acceleratorservices.urlencoder.UrlEncoderService;
 import de.hybris.platform.acceleratorservices.urlresolver.SiteBaseUrlResolutionService;
+import de.hybris.platform.basecommerce.model.site.BaseSiteModel;
+import de.hybris.platform.cms2.model.site.CMSSiteModel;
 import de.hybris.platform.commercefacades.user.data.CustomerData;
 import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.core.model.user.UserModel;
@@ -41,13 +43,17 @@ import com.gallagher.outboundservices.response.dto.GallagherKeycloakResponse;
  */
 public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 {
+
 	private static final Logger LOGGER = Logger.getLogger(GallagherKeycloakServiceImpl.class);
 
-	private final ConfigurationService configurationService;
+	private static final String FARWORD_SLASH = "/";
+	private static final String KEYCLOAK_USER_URL = "keycloak.user.url";
+
 	private final UserService userService;
 	private final BaseSiteService baseSiteService;
-	private final SiteBaseUrlResolutionService siteBaseUrlResolutionService;
 	private final UrlEncoderService urlEncoderService;
+	private final ConfigurationService configurationService;
+	private final SiteBaseUrlResolutionService siteBaseUrlResolutionService;
 
 	public ConfigurationService getConfigurationService()
 	{
@@ -161,7 +167,7 @@ public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 
 		final HttpEntity<GallagherKeycloakUserRequest> entity = new HttpEntity<>(request, headers);
 
-		final String url = getConfigurationService().getConfiguration().getString("keycloak.user.url");
+		final String url = getConfigurationService().getConfiguration().getString(KEYCLOAK_USER_URL);
 
 		final ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
 
@@ -180,7 +186,7 @@ public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 		{
 			final OAuth2RestTemplate restTemplate = getRestTemplateForKeycloak();
 
-			final String userDetailUrl = getConfigurationService().getConfiguration().getString("keycloak.user.url") + "?email="
+			final String userDetailUrl = getConfigurationService().getConfiguration().getString(KEYCLOAK_USER_URL) + "?email="
 					+ email;
 
 			final ResponseEntity<GallagherKeycloakResponse[]> userDetailresponse = restTemplate.getForEntity(userDetailUrl,
@@ -216,8 +222,10 @@ public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 			getBaseSiteService().setCurrentBaseSite("securityB2BGlobal", false);
 		}
 
-		final String redirectURL = getSiteBaseUrlResolutionService().getWebsiteUrlForSite(getBaseSiteService().getCurrentBaseSite(),
-				true, null);
+		final BaseSiteModel site = getBaseSiteService().getCurrentBaseSite();
+		final String redirectURL = getSiteBaseUrlResolutionService().getWebsiteUrlForSite(site, true, FARWORD_SLASH
+				+ ((CMSSiteModel) site).getRegionCode() + FARWORD_SLASH + ((CMSSiteModel) site).getDefaultLanguage().getIsocode());
+
 
 		final String url = MessageFormat.format(
 				getConfigurationService().getConfiguration().getString("keycloak.reset.password.url"), keycloakGUID, redirectURL);
@@ -238,10 +246,11 @@ public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 		request.setUsername(customerData.getUid());
 		request.setFirstName(customerData.getFirstName());
 		request.setLastName(customerData.getLastName());
+		request.setEnabled(true);
 
 		final HttpEntity<GallagherKeycloakUserRequest> entity = new HttpEntity<>(request, headers);
 
-		final String userDetailUrl = getConfigurationService().getConfiguration().getString("keycloak.user.url") + "/"
+		final String userDetailUrl = getConfigurationService().getConfiguration().getString(KEYCLOAK_USER_URL) + "/"
 				+ customerData.getKeycloakGUID();
 
 		final ResponseEntity<String> response = restTemplate.exchange(userDetailUrl, HttpMethod.PUT, entity, String.class);
@@ -263,7 +272,7 @@ public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 
 		final HttpEntity<GallagherKeycloakUserRequest> entity = new HttpEntity<>(request, headers);
 
-		final String userDetailUrl = getConfigurationService().getConfiguration().getString("keycloak.user.url") + "/"
+		final String userDetailUrl = getConfigurationService().getConfiguration().getString(KEYCLOAK_USER_URL) + "/"
 				+ customerData.getKeycloakGUID();
 
 		final ResponseEntity<String> response = restTemplate.exchange(userDetailUrl, HttpMethod.PUT, entity, String.class);

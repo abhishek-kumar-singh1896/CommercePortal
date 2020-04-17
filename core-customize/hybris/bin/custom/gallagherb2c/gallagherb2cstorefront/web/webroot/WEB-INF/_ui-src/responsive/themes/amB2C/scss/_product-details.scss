@@ -565,7 +565,7 @@ h4 {
               }
 
               .product-tile-inner-container {
-                padding: 16px;
+                padding: 24px;
               }
             }
           }
@@ -691,8 +691,8 @@ h4 {
       .compare-list-top-img {
         margin: 0 auto;
         img {
-          height: 80px;
-          width: 106px;
+          height: 90px;
+          width: 90px;
           display: inline-block;
         }
       }
@@ -700,7 +700,7 @@ h4 {
       .compare-list-product-title {
         font-size: $font-size-16px;
         line-height: 20px;
-        margin-top: 16px;
+        margin-top: 10px;
         margin-bottom: 6px;
         padding: 0 4px;
       }

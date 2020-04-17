@@ -50,6 +50,7 @@ public class GallagherSCPICustomerOutboundService extends SapCpiCustomerOutbound
 						customerModel
 								.setSapContactID(getPropertyValue(responseEntityMap, GallagheroutboundservicesConstants.SAP_CONTACT_ID));
 						customerModel.setObjectID(getPropertyValue(responseEntityMap, GallagheroutboundservicesConstants.OBJECT_ID));
+						customerModel.setSapIsReplicated(true);
 
 						modelService.save(customerModel);
 
