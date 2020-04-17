@@ -8,21 +8,23 @@ ui-widget {
   }
 }
 
+.ui-widget.ui-widget-content {
+  background-color: $white;
+  padding: 16px 0;
+  border-radius: 6px;
+  border: 1px solid $primary-color;
+  box-shadow: 0 4px 11px 0 rgba(0, 0, 0, 0.1);
+}
+
 .search-results-highlight {
   font-weight: bold;
 }
 
-.ui-widget-content {
-  background-color: $white;
-  padding: 16px 24px;
-  border-radius: 6px;
-  border: 1px solid rgba(240, 240, 240, 0.5);
-  box-shadow: 0 4px 11px 0 rgba(0, 0, 0, 0.1);
-}
+
 .ui-menu {
   .ui-menu-item-wrapper {
     position: relative;
-    padding: 8px 0;
+    padding: 8px;
     display: block;
     color: $gray-9;
     text-decoration: none;
@@ -36,7 +38,7 @@ ui-widget {
       background: transparent;
       font-weight: 500;
       color: $primary-color;
-      padding: 8px 0;
+      padding: 8px;
       margin: 0;
     }
   }
