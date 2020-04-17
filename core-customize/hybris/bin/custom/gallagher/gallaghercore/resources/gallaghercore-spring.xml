@@ -220,4 +220,9 @@
     </bean>
 	
 
+    <alias name="gallagherExternalTaxesService" alias="externalTaxesService"/>
+    <bean id="gallagherExternalTaxesService"
+          class="com.gallagher.core.externaltax.impl.GallagherExternalTaxesService" parent="defaultExternalTaxesService" />
+		
+
 </beans>

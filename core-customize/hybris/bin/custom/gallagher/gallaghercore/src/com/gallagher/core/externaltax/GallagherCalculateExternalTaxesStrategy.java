@@ -16,7 +16,6 @@ import de.hybris.platform.externaltax.ExternalTaxDocument;
 import de.hybris.platform.util.TaxValue;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -60,15 +59,6 @@ public class GallagherCalculateExternalTaxesStrategy implements CalculateExterna
 
 		final GallagherSovosCalculatedTaxResponse response = gallagherSovosService.calculateExternalTax(request);
 
-		final StringBuilder orderTaxValueString = new StringBuilder();
-		orderTaxValueString.append(abstractOrder.getDeliveryAddress().getCountry().getIsocode()).append(" : ").append("0.00%")
-				.append(" = ").append(response.getTxAmt());
-
-		final TaxValue orderTaxValue = new TaxValue(orderTaxValueString.toString(), Double.valueOf(response.getTxAmt()), true,
-				Double.valueOf(response.getTxAmt()),
-				abstractOrder.getCurrency() == null ? "USD" : abstractOrder.getCurrency().getIsocode());
-
-		abstractOrder.setTotalTaxValues(Collections.singletonList(orderTaxValue));
 		abstractOrder.setTaxTransactionDocId(response.getTxwTrnDocId());
 
 		if (CollectionUtils.isNotEmpty(response.getLnRslts()))
@@ -85,7 +75,7 @@ public class GallagherCalculateExternalTaxesStrategy implements CalculateExterna
 						taxValueString.append(calculatedTax.getTxJurUIDJurTp()).append(" : ").append(calculatedTax.getTxRate())
 								.append(" = ").append(calculatedTax.getTxAmt());
 
-						final Double taxAmount = Double.valueOf(calculatedTax.getTxAmt()) + 12.00;
+						final Double taxAmount = Double.valueOf(calculatedTax.getTxAmt());
 						final TaxValue taxValue = new TaxValue(taxValueString.toString(), taxAmount, true, taxAmount,
 								abstractOrder.getCurrency() == null ? "USD" : abstractOrder.getCurrency().getIsocode());
 
@@ -96,10 +86,6 @@ public class GallagherCalculateExternalTaxesStrategy implements CalculateExterna
 				externalDocument.setTaxesForOrderEntry(Integer.valueOf(lienItem.getLnId()), taxValues);
 			}
 		}
-
-		final TaxValue taxValue = new TaxValue("taxCode1", 3.0D, true, 3.0D,
-				abstractOrder.getCurrency() == null ? "USD" : abstractOrder.getCurrency().getIsocode());
-		externalDocument.setShippingCostTaxes(taxValue);
 
 		return externalDocument;
 	}

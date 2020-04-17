@@ -45,10 +45,6 @@ public class RegisterProductRequest
 	@JsonProperty("Country")
 	private String country;
 
-	/*
-	 * @JsonProperty("PhoneNumber") private String phoneNumber;
-	 */
-
 
 	@JsonProperty("RegisteredProductPartyInformation")
 	private List<RegisteredProductPartyInformation> registeredProductPartyInformation;
@@ -155,12 +151,6 @@ public class RegisterProductRequest
 	{
 		this.country = country;
 	}
-
-	/*
-	 * public String getPhoneNumber() { return phoneNumber; }
-	 *
-	 * public void setPhoneNumber(final String phoneNumber) { this.phoneNumber = phoneNumber; }
-	 */
 
 	public List<RegisteredProductPartyInformation> getRegisteredProductPartyInformation()
 	{
