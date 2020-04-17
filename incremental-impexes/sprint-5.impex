@@ -1472,3 +1472,35 @@ INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@medi
 ;;/images/theme/logo-gallagher.svg;logo-gallagher.svg;$siteResource/images/theme/logo-gallagher.svg;image/svg+xml;GALLAGHER SECURITY;
 
 ####################### B2B Gallagher logo ends ###################
+
+#############B2b Navigation node changes###############
+$contentCatalog=securityB2BContentCatalog
+$contentCatalogName=Security B2B Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=securityB2BMasterProductCatalog
+$productCatalogName=Security B2B Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.gallagher.b2b.initialdata.constants.B2badvanceInitialDataConstants&/gallagherb2binitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.gallagher.b2b.initialdata.constants.B2badvanceInitialDataConstants&/gallagherb2binitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.gallagher.b2b.initialdata.constants.B2badvanceInitialDataConstants&/gallagherb2binitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=b2badvanceacceleratoraddon
+$medias=medias(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUidNZ=securityB2BNZ
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];styleAttributes
+;;PerimeterSecurityCategoryLink;Perimeter Security Category Link;/Security/Perimeter-Security/c/perimeter-security;;PerimeterSecurityCategoryLink;;"second-level-link-desktop"
+;;AccessControlCategoryLink;Access Control Category Link;/Security/Access-Control/c/access-control;;AccessControlCategoryLink;;"second-level-link-desktop"
+;;HighSecurityCategoryLink;High Security Category Link;/Security/High-Security/c/high-security;;HighSecurityCategoryLink;;"second-level-link-desktop"
+;;IntegrationsCategoryLink;Integrations Category Link;/Security/Integrations/c/integrations;;IntegrationsCategoryLink;;"second-level-link-desktop"
+;;SoftwareCategoryLink;Software Category Link;/Security/Software/c/software;;SoftwareCategoryLink;;"second-level-link-desktop"
+
+
+########################################################
