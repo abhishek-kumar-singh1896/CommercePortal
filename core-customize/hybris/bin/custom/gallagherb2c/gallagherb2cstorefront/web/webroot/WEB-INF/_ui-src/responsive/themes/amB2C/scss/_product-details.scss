@@ -2,7 +2,7 @@ h1 {
   &.product-detail-title {
     font-size: $font-size-48px;
     line-height: 48px;
-    font-family: $font-family-bold;
+    font-weight: bold;
     margin: 24px 0 32px 0;
   }
 }
@@ -14,7 +14,7 @@ h4 {
     line-height: 16px;
     color: $gray-9;
     margin: 0 0 16px 0;
-    font-weight: normal;
+    font-weight: 500;
     padding: 0;
   }
 
@@ -40,7 +40,7 @@ h4 {
     &.section-title {
       font-size: $font-size-40px;
       line-height: 48px;
-      font-weight: normal;
+      font-weight: 500;
       margin-bottom: 24px;
     }
   }
@@ -104,7 +104,7 @@ h4 {
       }
       .price-value {
         font-size: $font-size-28px;
-        font-family: $font-family-bold;
+        font-weight: bold;
         line-height: 36px;
         color: $primary-color;
         .currency-sign {
@@ -324,7 +324,7 @@ h4 {
       &.register-account-title {
         font-size: $font-size-32px;
         line-height: 36px;
-        font-weight: normal;
+        font-weight: 500;
         margin: 0 0 24px 0;
       }
     }
@@ -439,7 +439,7 @@ h4 {
           }
 
           .currency-value {
-            font-family: $font-family-bold;
+            font-weight: bold;
             color: $primary-color;
             font-size: $font-size-16px;
             padding-left: 4px;
@@ -456,7 +456,7 @@ h4 {
     .variant-title {
       font-size: $font-size-14px;
       color: $gray-7;
-      font-family: $font-family-bold;
+      font-weight: bold;
       margin-bottom: 4px;
     }
 
@@ -558,14 +558,14 @@ h4 {
               background: $white;
               width: inherit;
               min-width: inherit;
-              /*padding: 0;*/
+              padding: 0;
 
               &:last-child {
                 margin-right: 0;
               }
 
               .product-tile-inner-container {
-                padding: 16px;
+                padding: 24px;
               }
             }
           }
@@ -590,7 +590,7 @@ h4 {
   .left-column {
     width: 123px;
     background-color: $gray-7;
-    min-height: 420px;
+    min-height: 284px;
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
     padding-top: 125px;
@@ -691,8 +691,8 @@ h4 {
       .compare-list-top-img {
         margin: 0 auto;
         img {
-          height: 80px;
-          width: 106px;
+          height: 90px;
+          width: 90px;
           display: inline-block;
         }
       }
@@ -700,7 +700,7 @@ h4 {
       .compare-list-product-title {
         font-size: $font-size-16px;
         line-height: 20px;
-        margin-top: 16px;
+        margin-top: 10px;
         margin-bottom: 6px;
         padding: 0 4px;
       }
@@ -721,7 +721,7 @@ h4 {
 
   .price-col {
     font-size: $font-size-16px;
-    font-family: $font-family-bold;
+    font-weight: bold;
     color: $primary-color;
     border-bottom: none;
   }
