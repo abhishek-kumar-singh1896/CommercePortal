@@ -20,34 +20,34 @@
 	<c:set value="${productTagClasses} tag-${tag}" var="productTagClasses" />
 </c:forEach>
 
-<li class="product-tile">
+<li class="product-tile" onclick="window.location='${productUrl}'" title="${fn:escapeXml(product.name)}">
 	<ycommerce:testId
 		code="product_wholeProduct">
 		<div class="product-tile-inner-container">
 			<div class="row">
-				<div class="col-4 col-md-12 pr-xs-0">
+				<div class="col-md-12 pr-xs-0">
 				
 					<div class="product-status">
-					<c:if test = "${not empty referenceProduct.promoSticker}">
-						<img
-							src="${commonResourcePath}/images/${fn:toLowerCase(referenceProduct.promoSticker)}.svg" />
-						</c:if>
+						<c:if test = "${not empty referenceProduct.promoSticker}">
+							<img
+								src="${commonResourcePath}/images/${fn:toLowerCase(referenceProduct.promoSticker)}.svg" />
+							</c:if>
 					</div>
 					<div class="product-img-box">
-						<a class="product__list--thumb" href="${fn:escapeXml(productUrl)}"
-							title="${fn:escapeXml(referenceProduct.name)}">
+<%-- 						<a class="product__list--thumb" href="${fn:escapeXml(productUrl)}" --%>
+<%-- 							title="${fn:escapeXml(referenceProduct.name)}"> --%>
 							<c:forEach items="${referenceProduct.images}" var="medias">
-	                         <c:if test="${medias.format eq 'product'}">
-	                         <img src="${medias.url}" alt="${medias.altText}">
-	                         </c:if>
-	                         </c:forEach>
+								<c:if test="${medias.format eq 'product'}">
+									<img src="${medias.url}" alt="${medias.altText}">
+								</c:if>
+	                  </c:forEach>
 							<%-- <product:productPrimaryImage
 								product="${product}" format="product" /> --%>
-						</a>
+<!-- 						</a> -->
 					</div>
 				</div>
 				<!-- 		<div class="details"> -->
-				<div class="col-8 col-md-12">
+				<div class="col-md-12">
 					<div class="product-name-desc-out">
 						<div class="product-name">
 							<ycommerce:testId code="product_productName">
@@ -62,7 +62,7 @@
 			</div>
 			<div class="product-list-footer">
 				<div class="row">
-					<div class="col-6">
+					<div class="col-5">
 						<c:forEach items="${referenceProduct.animalCompatibility}" var="animal">
 							<span class="product-list-footer-left-icon"> <img
 								src="${commonResourcePath}/images/animals/${fn:escapeXml(animal)}.svg" />
@@ -70,7 +70,8 @@
 						</c:forEach>
 					</div>
 					<ycommerce:testId code="searchPage_price_label_${referenceProduct.code}">
-						<div class="col-6 text-right">
+						<div class="col-7 text-right">
+							<product:productListerItemPriceRRP product="${referenceProduct}" />
 							<product:productListerItemPrice product="${referenceProduct}" />
 						</div>
 					</ycommerce:testId>
