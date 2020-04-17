@@ -613,6 +613,18 @@
   }
 }
 
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .xs-main-menu-l1-footer {
+    .login-register-btn-section {
+      display: none;
+    }
+
+    &.with-logged-in-user {
+      display: none;
+    }
+  } 
+}
+
 @media only screen and (max-width: 767px) {
   .responsive-mega-menu-modal {
     .modal-dialog {
