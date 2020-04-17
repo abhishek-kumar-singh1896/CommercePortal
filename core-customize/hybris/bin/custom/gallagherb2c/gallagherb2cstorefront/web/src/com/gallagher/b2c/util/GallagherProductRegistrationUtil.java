@@ -58,7 +58,6 @@ public class GallagherProductRegistrationUtil
 		request.setDistrict(registerProductForm.getRegion());
 		request.setPostalCode(registerProductForm.getPostCode());
 		request.setCountry(registerProductForm.getCountry());
-		//request.setPhoneNumber(registerProductForm.getPhoneNumber());
 
 		request.setStatus("1");
 
