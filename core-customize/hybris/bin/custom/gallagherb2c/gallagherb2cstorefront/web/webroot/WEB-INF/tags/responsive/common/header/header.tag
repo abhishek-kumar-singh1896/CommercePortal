@@ -369,6 +369,7 @@
 					<div class="header-right-btn-group for-ipad-view">
 						<div class="btn-group" role="group"
 							aria-label="Button group with nested dropdown">
+							<div class="btn-group" role="group">
 								<button type="button" class="btn dropdown-toggle left-btn my-app-btn"
 	                     	id="myAppDropdown" data-toggle="dropdown" aria-haspopup="true"
 	                        aria-expanded="false">
@@ -392,6 +393,7 @@
 											</cms:pageSlot>
 										</ul>
                             </div>
+                        </div>
                         </div>
 
 					<!-- <button type="button" class="btn"> -->	
