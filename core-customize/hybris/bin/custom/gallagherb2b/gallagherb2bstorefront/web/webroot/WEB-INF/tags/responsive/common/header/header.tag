@@ -134,10 +134,9 @@
 											
 											<li>
 												<ycommerce:testId code="header_signOut">
-													<c:url value="/logout" var="logoutUrl"/>
-													<a href="${fn:escapeXml(logoutUrl)}">
-														<spring:theme code="header.link.logout" />
-													</a>
+													<cms:pageSlot position="ggB2BLogout" var="component">
+														<cms:component component="${component}" />
+                                    				</cms:pageSlot>
 												</ycommerce:testId>
 											</li>
 											
