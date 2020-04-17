@@ -140,15 +140,15 @@
                                                 </div>
                                             </div>
                                             </li>
-                                            <li><a href="javascript:void(0)"> <spring:theme code="text.Register.Product" />
-                                            </a></li>
-                                            <li><a href="javascript:void(0)"> <spring:theme code="text.Registered.Products" />
-                                            </a></li>
-                                            <li><a href="javascript:void(0)"> <spring:theme code="text.Account.Management" /> </a></li>
-                                            <li><c:url value="/logout" var="logoutUrl" /> <a
-                                                href="logoutUrl"> <spring:theme
-                                                        code="header.link.logout" />
-                                            </a></li>
+                                            <cms:pageSlot position="UserDropDown" var="feature">
+												<c:forEach items="${feature.navigationNode.children}"
+													var="childLevel1">
+													<c:forEach items="${childLevel1.entries}" var="entry">
+													<li>	<cms:component component="${entry.item}" 
+															evaluateRestriction="true" /></li>
+													</c:forEach>
+												</c:forEach>
+											</cms:pageSlot>
                                         </ul>
                                     </div>
                                 </div>

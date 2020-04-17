@@ -608,6 +608,17 @@
 				</attributes>
 			</itemtype>
 		</typegroup>
+
+		<typegroup name="Order">
+			<itemtype code="AbstractOrder" autocreate="false" generate="false">
+				<description>Extends existing type with additional attributes.</description>
+				<attributes>
+					<attribute qualifier="taxTransactionDocId" type="java.lang.String">
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+		</typegroup>
 		
 		<typegroup name="bynder">
 

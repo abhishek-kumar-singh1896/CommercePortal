@@ -2,20 +2,22 @@ package com.gallagher.sap.sapcpicustomerexchange.service.impl;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static de.hybris.platform.sap.sapcpiadapter.service.SapCpiOutboundService.RESPONSE_MESSAGE;
-import static de.hybris.platform.sap.sapcpiadapter.service.SapCpiOutboundService.RESPONSE_STATUS;
-import static de.hybris.platform.sap.sapcpiadapter.service.SapCpiOutboundService.SUCCESS;
 
 import de.hybris.platform.core.model.user.AddressModel;
 import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.sap.sapcpicustomerexchange.service.impl.SapCpiCustomerOutboundService;
+import de.hybris.platform.servicelayer.model.ModelService;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 
+import com.gallagher.outboundservices.constants.GallagheroutboundservicesConstants;
 import com.gallagher.sap.sapcpiadapter.service.GallagherSCPIOutboundService;
 
 
@@ -28,6 +30,9 @@ public class GallagherSCPICustomerOutboundService extends SapCpiCustomerOutbound
 {
 
 	private static final Logger LOG = LoggerFactory.getLogger(GallagherSCPICustomerOutboundService.class);
+
+	@Resource(name = "modelService")
+	private ModelService modelService;
 
 
 	@Override
@@ -42,6 +47,12 @@ public class GallagherSCPICustomerOutboundService extends SapCpiCustomerOutbound
 
 					if (isSentSuccessfully(responseEntityMap))
 					{
+						customerModel
+								.setSapContactID(getPropertyValue(responseEntityMap, GallagheroutboundservicesConstants.SAP_CONTACT_ID));
+						customerModel.setObjectID(getPropertyValue(responseEntityMap, GallagheroutboundservicesConstants.OBJECT_ID));
+						customerModel.setSapIsReplicated(true);
+
+						modelService.save(customerModel);
 
 						LOG.info(String.format("The customer [%s] has been sent to the SAP backend through SCPI! %n%s",
 								customerModel.getCustomerID(), getPropertyValue(responseEntityMap, RESPONSE_MESSAGE)));
@@ -74,8 +85,7 @@ public class GallagherSCPICustomerOutboundService extends SapCpiCustomerOutbound
 	 */
 	static boolean isSentSuccessfully(final ResponseEntity<Map> responseEntityMap)
 	{
-		return SUCCESS.equalsIgnoreCase(getPropertyValue(responseEntityMap, RESPONSE_STATUS))
-				&& responseEntityMap.getStatusCode().is2xxSuccessful();
+		return responseEntityMap.getStatusCode().is2xxSuccessful();
 	}
 
 	/**

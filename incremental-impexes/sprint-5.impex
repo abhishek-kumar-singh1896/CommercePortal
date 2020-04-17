@@ -609,11 +609,25 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ContentPage1Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;UserDropDown-ContentPage1;UserDropDown;;UserDropDownSlot;true
 
-
-
 ##############UserDropDown Ends################################
 
+#################Payment details page#################
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;PaymentDetailLink;Payment Detail Link;/my-account/payment-details;;;;
 
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;PaymentDetailLink;Payment Details
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;PaymentDetailNavNodeEntry;;Payment Detail Navigation Node Entry;PaymentDetailNavNode;PaymentDetailLink
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);children(uid,$contentCV)[mode=replace];links(uid, $contentCV);&nodeRef;title[lang=en]
+;PaymentDetailNavNode;;Payment Detail Navigation Node Menu;UserDropDownNavigationNode;;;PaymentDetailNavNode;"Payment Details"
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef;children(uid, $contentCV)[mode=replace]
+;UserDropDownNavigationNode;;Header Link Navigation Node; root;; UserDropDownNavigationNode; RegisterAProductNavNode,MyRegisteredProductNavNode,EditProfileNavNode,PaymentDetailNavNode,UpdatePasswordNavNode,OrderHistoryNavNode,PreferencesNavNode,LogoutNavNode
+
+######################################################
 
 
 ###################Support Navigation Starts###################
@@ -948,15 +962,48 @@ INSERT_UPDATE GallagherAccordionListComponent;$contentCV[unique=true];uid[unique
 
 #######################################################################################################
 
+### Sovos and Product Registration
 
-				  
-				  
-				  
-				  
-				 
+INSERT_UPDATE GallagherSovosConfigurartion ; code[unique=true]   ; name                       ; resultLevel ; taxCalculationType ; debitCreditInd ; transactionType ; organizationCode ; dropShipInd 
+                                           ; b2c-us-sovos-config ; B2C US SOVOS Configuration ; 3           ; 1                  ; 1              ; 1               ; QASGUS           ; 1           
+										   
+# Base Store
+INSERT_UPDATE BaseStore;uid[unique=true];sovosConfiguration(code);net;externalTaxEnabled;paymentProvider
+;amB2CUS;b2c-us-sovos-config;true;true;paymetric
 
 
+$storeUidUS=amB2CUS
+$storeUidCA=amB2CCA
+$productCatalog=amB2CUSProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$storeImage=storeImage(qualifier, $catalogVersion)
+$standardHours=amB2C-US-standard-hours
+$weekendHours=amB2C-US-weekend-hours
 
+INSERT_UPDATE PointOfService ; name[unique=true] ; type(code) ; address(&addrID) ; latitude ; longitude ; geocodeTimestamp[dateformat=dd-MM-yyyy] ; $storeImage ; openingSchedule(code) ; basestore(uid)[default=$storeUidUS] ; features(code) 
+                             ; USKC              ; WAREHOUSE  ; addr1            ; 35,6673  ; 139,75429 ; 29-04-2025                              ;             ; $standardHours        
+                             ; CAN1              ; WAREHOUSE  ; addr2            ; 35,6923  ; 139,8201  ; 29-04-2025                              ;             ; $standardHours        ; $storeUidCA                         
+                             
+INSERT_UPDATE Address ; &addrID ; streetname       ; streetnumber ; postalcode[unique=true] ; town[unique=true]   ; country(isocode) ; region(isocode) ; phone1        ; owner(PointOfService.name)[unique=true] 
+                      ; addr1   ; 41st Street      ; 5005 NW      ; 64150                   ; Riverside, Missouri ; US               ;                 ; +81 1988 3600 ; USKC                                    
+                      ; addr2   ; 20th Avenue East ; 2090         ; N4K 5R1                 ; Owen Sound, Ontario ; CA               ;                 ; +81 4649 8891 ; CAN1                                    
 
+INSERT_UPDATE Language ; isocode[unique=true] ; fallbackLanguages(isocode) ; active[default=true] 
+                       ; en                   ;                            ;                      ;  
+                       ; de                   ; en                         ;                      ;
+                       ; en_US                ; en                         ;                      ;  
+                       ; en_CA                ; en                         ;                      ;
+                       ; en_AU                ; en                         ;                      ;
+                       ; en_NZ                ; en                         ;                      ;                       
+$lang=en
 
-					 
+UPDATE Language ; isocode[unique=true] ; name[lang=$lang] 
+                ; de                   ; "German"         
+                ; en                   ; "English"        
+                ; ja                   ; "Japanese"       
+                ; zh                   ; "Chinese" 
+                ; en_US                ; "American English" 
+                ; en_CA                ; "Canadian English"        
+                ; en_AU                ; "Australian English" 
+                ; en_NZ                ; "New Zealand English" 
+                           
