@@ -128,7 +128,7 @@ ACC.productDetails = {
 	                controlNav: false,
 	                animationLoop: false,
 	                slideshow: false,
-	                itemWidth: 150,
+	                itemWidth: 200,
 	                itemMargin: 0,
 	                minItem: 2,
 	                touch: true,
