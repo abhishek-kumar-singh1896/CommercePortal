@@ -55,7 +55,7 @@
                 <sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')">
                 <div class="modal-footer">
                     <div class="xs-main-menu-l1-footer">
-                        <div class="btn-group btn-block mb-3" role="group" aria-label="Button group login register">
+                         <div class="btn-group btn-block mb-3 login-register-btn-section" role="group" aria-label="Button group login register">
                         	<ycommerce:testId code="header_Register_link">
 								<c:url value="/register" var="registerUrl" />
 								<button type="button" class="btn btn-secondary left-btn"

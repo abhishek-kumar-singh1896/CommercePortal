@@ -320,9 +320,14 @@ ACC.address = {
 				href: "#popup_confirm_address_removal_" + addressId,
 				onComplete: function ()
 				{
-
 					$(this).colorbox.resize();
-				}
+				},
+				onLoad : function() {
+					$('html, body').css('overflow', 'hidden');
+				},
+				onClosed:function() {
+			        $('html, body').css('overflow', '');
+			    }
 			});
 
 		})

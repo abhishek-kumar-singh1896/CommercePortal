@@ -2203,12 +2203,14 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;PreferencesLink;Preferences Link;/my-account/consents;;;;
 ;;LogoutLink;Logout Us Link;/logout;;;;
 ;;PaymentDetailLink;Payment Detail Link;/my-account/payment-details;;;;
+;;AddressBookLink;Address Book Link;/my-account/address-book;;;;
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];$category;$product;
 ;;UpdatePasswordLink;UpdatePasswordLink;$keycloakBaseURL$keycloakAuthURL$keycloakPasswordURL;UpdatePasswordLink;
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV)	   ;onlyOneRestrictionMustApply
-							  			;						  		;OrderHistoryLink;GallagherSiteTransactionRestriction;false
+							  			;			  ;OrderHistoryLink;GallagherSiteTransactionRestriction;false
+							  			; 			  ;PaymentDetailLink;GallagherSiteTransactionRestriction;false
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);children(uid,$contentCV)[mode=replace];links(uid, $contentCV);&nodeRef;title[lang=en]
 ;RegisterAProductNavNode;; Register a Product Navigation Node Menu;UserDropDownNavigationNode;;;RegisterAProductNavNode;"Register a Product"     
 ;MyRegisteredProductNavNode;;My Registered Product Navigation Node Menu;;;;MyRegisteredProductNavNode;"My Registered Product"
@@ -2218,6 +2220,7 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;pa
 ;PreferencesNavNode;;Prefernce Navigation Node;UserDropDownNavigationNode;;;PreferencesNavNode;"Preferences"
 ;LogoutNavNode;;Logout Us Navigation Node Menu;UserDropDownNavigationNode;;;LogoutNavNode;"Logout Us"
 ;PaymentDetailNavNode;;Payment Detail Navigation Node Menu;UserDropDownNavigationNode;;;PaymentDetailNavNode;"Payment Details"
+;AddressBookNavNode;;Address Book Navigation Node Menu;UserDropDownNavigationNode;;;AddressBookNavNode;"Manage Addresses"
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
 ;RegisterAProductNavNodeEntry;;Register a Product Navigation Node Entry;RegisterAProductNavNode;RegisterAProductLink;
@@ -2228,6 +2231,7 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 ;PreferencesNavNodeEntry;;Preferences Navigation Node Entry;PreferencesNavNode;PreferencesLink
 ;LogoutNavNodeEntry;;Logout Navigation Node Entry;LogoutNavNode;LogoutLink
 ;PaymentDetailNavNodeEntry;;Payment Detail Navigation Node Entry;PaymentDetailNavNode;PaymentDetailLink
+;AddressBookNavNodeEntry;;Address Book Navigation Node Entry;AddressBookNavNode;AddressBookLink
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
 ;;EditProfileLink;Edit Profile
@@ -2237,7 +2241,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef;children(uid, $contentCV)[mode=replace]
-;UserDropDownNavigationNode;;Header Link Navigation Node; root;; UserDropDownNavigationNode; RegisterAProductNavNode,MyRegisteredProductNavNode,EditProfileNavNode,PaymentDetailNavNode,UpdatePasswordNavNode,OrderHistoryNavNode,PreferencesNavNode,LogoutNavNode
+;UserDropDownNavigationNode;;Header Link Navigation Node; root;; UserDropDownNavigationNode; RegisterAProductNavNode,MyRegisteredProductNavNode,EditProfileNavNode,PaymentDetailNavNode,UpdatePasswordNavNode,OrderHistoryNavNode,AddressBookNavNode,PreferencesNavNode,LogoutNavNode
 
 INSERT_UPDATE NavigationComponent;$contentCV[unique=true];uid[unique=true];name;styleClass;&componentRef;navigationNode(&nodeRef)
 ;;UserDropDownNavigationComponent;User drop down Navigation component;;UserDropDownNavigationComponent;UserDropDownNavigationNode

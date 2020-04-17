@@ -130,6 +130,15 @@ table {
   border-top: 0;
 }
 
+.account-section .account-section-header-add a{
+    color: #575a5d;
+    text-decoration: none;
+}
+
+.account-section .account-section-header-add a:hover{
+    color: #ff8400;
+}
+
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
   .profile-container {
     padding: 0;
