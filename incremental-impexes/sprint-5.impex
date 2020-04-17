@@ -1462,3 +1462,13 @@ UPDATE Language ; isocode[unique=true] ; name[lang=$lang]
                 ; en_AU                ; "Australian English" 
                 ; en_NZ                ; "New Zealand English" 
                            
+						   
+
+###################### B2B Gallagher logo starts ##########################
+$contentCatalog=securityB2BContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$siteResource=jar:com.gallagher.b2b.initialdata.constants.B2badvanceInitialDataConstants&/gallagherb2binitialdata/import/sampledata/contentCatalogs/$contentCatalog
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/svg+xml'];altText;folder(qualifier)[default='images']
+;;/images/theme/logo-gallagher.svg;logo-gallagher.svg;$siteResource/images/theme/logo-gallagher.svg;image/svg+xml;GALLAGHER SECURITY;
+
+####################### B2B Gallagher logo ends ###################
