@@ -64,7 +64,6 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;ContactFooterLink;Contact Us Footer Link;'/';ContactFooterLink;ContactFooterLink;;;
 ;;NewsEventsFooterLink;News & Events Footer Link;'/';NewsEventsFooterLink;NewsEventsFooterLink;;;
 ;;InnovationAwardsFooterLink;Innovation & Awards Footer Link;'/';InnovationAwardsFooterLink;InnovationAwardsFooterLink;;;
-;;UpdatePasswordLink;UpdatePasswordLink;$keycloakBaseURL$keycloakAuthURL$keycloakPasswordURL;UpdatePasswordLink;
 
 # Lightbox Banner for Mini Cart
 INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink
@@ -2206,7 +2205,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;AddressBookLink;Address Book Link;/my-account/address-book;;;;
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];$category;$product;
-;;UpdatePasswordLink;UpdatePasswordLink;$keycloakBaseURL$keycloakAuthURL$keycloakPasswordURL;UpdatePasswordLink;
+;;UpdatePasswordLink;UpdatePasswordLink;/my-account/update-password;UpdatePasswordLink;
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV)	   ;onlyOneRestrictionMustApply
 							  			;			  ;OrderHistoryLink;GallagherSiteTransactionRestriction;false
