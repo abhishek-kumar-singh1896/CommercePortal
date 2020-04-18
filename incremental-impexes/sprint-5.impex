@@ -1514,35 +1514,57 @@ INSERT_UPDATE MaintenanceCleanupJob;code[unique=true];threshold
 ;cleanupCronJobsPerformable;5
 
 INSERT_UPDATE CronJob;code[unique=true];job(code);sessionLanguage(isocode)
-;gglCleanupCronJobLogs;cleanUpLogsJobPerformable;;en
-;gglCleanupCronJobs;cleanupCronJobsPerformable;;en
+;gglCleanupCronJobLogs;cleanUpLogsJobPerformable;en
+;gglCleanupCronJobs;cleanupCronJobsPerformable;en
 
-INSERT_UPDATE Trigger;cronJob(code)[unique=true];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+INSERT_UPDATE Trigger;cronJob(code)[unique=true]; second ; minute ; hour ; day ; month ; year ; relative ; active ; maxAcceptableDelay                   
 # Run the Clean up cronJob logs at 4:05 AM every day
-;gglCleanupCronJobLogs;0;5;4;-1;-1;-1;false;false;-1
+;gglCleanupCronJobLogs; 0      ; 15      ; -1   ; -1  ; -1    ; -1   ; true     ; false  ; -1                 
 # Run the Cron job cleanup at 5:05 AM every day
-;gglCleanupCronJobs;0;5;5;-1;-1;-1;false;false;-1
+;gglCleanupCronJobs; 0      ; 15      ; -1   ; -1  ; -1    ; -1   ; true     ; false  ; -1                 
 ####################################################
 
+INSERT_UPDATE Trigger ; cronJob(code)[unique=true] ; second ; minute ; hour ; day ; month ; year ; relative ; active ; maxAcceptableDelay                   
+                      ; update-amB2CAUIndex-cronJob  ; 0      ; 60      ; -1   ; -1  ; -1    ; -1   ; true     ; false  ; -1                 
+						; update-amB2CCAIndex-cronJob  ; 0      ; 60      ; -1   ; -1  ; -1    ; -1   ; true     ; false  ; -1            
+                      ; update-amB2CGlobalIndex-cronJob  ; 0      ; 60      ; -1   ; -1  ; -1    ; -1   ; true     ; false  ; -1                 
+; update-amB2CUSIndex-cronJob  ; 0      ; 60      ; -1   ; -1  ; -1    ; -1   ; true     ; false  ; -1                 
+; update-amB2CNZIndex-cronJob  ; 0      ; 60      ; -1   ; -1  ; -1    ; -1   ; true     ; false  ; -1                 
+; update-amB2CLatAmIndex-cronJob  ; 0      ; 60      ; -1   ; -1  ; -1    ; -1   ; true     ; false  ; -1                 
+;update-securityB2BAUIndex-cronJob;0;60;-1;-1;-1;-1;true;false;-1
+;update-securityB2BNZIndex-cronJob;0;60;-1;-1;-1;-1;true;false;-1
+;update-securityB2BGlobalIndex-cronJob;0;60;-1;-1;-1;-1;true;false;-1
+
+
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+;amB2CCreateBaseProductCronjob;0;60;-1;-1;-1;-1;true;true;-1
+;amB2CProductTransformationCompositeJob;0;60;-1;-1;-1;-1;true;true;-1
+
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+;securityB2BCreateBaseProductCronjob;0;60;-1;-1;-1;-1;true;true;-1
+;securityB2BProductTransformationCompositeJob;0;60;-1;-1;-1;-1;true;true;-1
+
+
+INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+;sync amB2CNZProductCatalog:Staged->Online						;0		;60		;-1		;-1		;-1		;-1		;true		;true	;-1
+;sync amB2CAUProductCatalog:Staged->Online						;0		;60		;-1		;-1		;-1		;-1		;true		;true	;-1
+;sync amB2CUSProductCatalog:Staged->Online						;0		;60		;-1		;-1		;-1		;-1		;true		;true	;-1
+;sync amB2CCAProductCatalog:Staged->Online						;0		;60		;-1		;-1		;-1		;-1		;true		;true	;-1
+;sync amB2CGlobalProductCatalog:Staged->Online						;0		;60		;-1		;-1		;-1		;-1		;true		;true	;-1
+;sync amB2CLatAmProductCatalog:Staged->Online						;0		;60		;-1		;-1		;-1		;-1		;true		;true	;-1
+;sync securityB2BNZProductCatalog:Staged->Online						;0		;60		;-1		;-1		;-1		;-1		;true		;true	;-1
+;sync securityB2BAUProductCatalog:Staged->Online						;0		;60		;-1		;-1		;-1		;-1		;true		;true	;-1
+;sync securityB2BGlobalProductCatalog:Staged->Online						;0		;60		;-1		;-1		;-1		;-1		;true		;true	;-1
 
 
 #########################Navigation Node Starts###############3333
-
- 
-
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef;children(uid, $contentCV)[mode=replace]
 ;B2BFooterNavigationNode;;Footer Navigation Node; root;;B2BFooterNavigationNode;B2BCompanyNavigationNode,B2BSolutionsNavigationNode,B2BSupportNavigationNode
-
-
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);children(uid,$contentCV)[mode=replace];links(uid, $contentCV);&nodeRef;title[lang=en]
 ;B2BCompanyNavigationNode;;B2B Company Navigation Node;B2BFooterNavigationNode;B2BAboutUsLinkNode,B2BContactUsLinkNode,B2BNewsAndEventsLinkNode,B2BTeamLinkNode,B2BPartenerLinkNode;;B2BCompanyNavigationNode;"Company"
 ;B2BSolutionsNavigationNode;;B2B Solutions Navigation Node;B2BFooterNavigationNode;B2BProductsLinkNode,B2BCaseStudiesLinkNode,B2BIndustriesLinkNode;;B2BSolutionsNavigationNode;"Solutions"
 ;B2BSupportNavigationNode;;B2B Support Navigation Node;B2BFooterNavigationNode;B2BSupportSiteLoginLinkNode,B2BChannelPartnerLinkNode,B2BSecurityAdvisoryLinkNode;;B2BSupportNavigationNode;"Support"
-
-
-
-
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkname;name;url;&linkRef;&componentRef;
 ;;B2BAboutUsLink;About Us;B2B About Us Link ; https://security.gallagher.com/Why-Gallagher;B2BAboutUsLink ; B2BAboutUsLink
@@ -1571,10 +1593,6 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 ;B2BSupportNavigationNodeEntry2;;B2B Support Navigation Node Entry2;B2BChannelPartnerLinkNode;B2BChannelPartnerLink
 ;B2BSupportNavigationNodeEntry3;;B2B Support Navigation Node Entry3;B2BSecurityAdvisoryLinkNode;B2BSecurityAdvisoryLink
 
-
-
-
-
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
 ;B2BAboutUsLinkNode;;B2B About Us Link Node;B2BCompanyNavigationNode;;B2BAboutUsLinkNode
 ;B2BContactUsLinkNode;;B2B Contact Us Link Node;B2BCompanyNavigationNode;;B2BContactUsLinkNode
@@ -1587,24 +1605,6 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;pa
 ;B2BSupportSiteLoginLinkNode;;B2B Supports Site Node;B2BSupportNavigationNode;;B2BSupportSiteLoginLinkNode
 ;B2BChannelPartnerLinkNode;;B2B Channel Node;B2BSupportNavigationNode;;B2BChannelPartnerLinkNode
 ;B2BSecurityAdvisoryLinkNode;;B2B Security Node;B2BSupportNavigationNode;;B2BSecurityAdvisoryLinkNode
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];wrapAfter;navigationNode(&nodeRef);&componentRef
 ;;B2BGallagherFooterNavigationComponent;5;B2BFooterNavigationNode;B2BGallagherFooterNavigationComponent

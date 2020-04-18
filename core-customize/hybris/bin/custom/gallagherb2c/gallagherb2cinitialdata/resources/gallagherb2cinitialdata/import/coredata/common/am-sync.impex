@@ -8,7 +8,7 @@ INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetPr
 
 INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
 #cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
-;sync amB2CNZProductCatalog:Staged->Online						;0		;30		;-1		;-1		;-1		;-1		;true		;true	;-1
+;sync amB2CNZProductCatalog:Staged->Online						;0		;60		;-1		;-1		;-1		;-1		;true		;true	;-1
 
 #----------------------------------------------------------------------
 
@@ -22,7 +22,7 @@ INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetPr
 
 INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
 #cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
-;sync amB2CAUProductCatalog:Staged->Online						;0		;30		;-1		;-1		;-1		;-1		;true		;true	;-1
+;sync amB2CAUProductCatalog:Staged->Online						;0		;60		;-1		;-1		;-1		;-1		;true		;true	;-1
 
 #----------------------------------------------------------------------
 
@@ -36,7 +36,7 @@ INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetPr
 
 INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
 #cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
-;sync amB2CUSProductCatalog:Staged->Online						;0		;30		;-1		;-1		;-1		;-1		;true		;true	;-1
+;sync amB2CUSProductCatalog:Staged->Online						;0		;60		;-1		;-1		;-1		;-1		;true		;true	;-1
 
 #----------------------------------------------------------------------
 
@@ -50,7 +50,7 @@ INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetPr
 
 INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
 #cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
-;sync amB2CCAProductCatalog:Staged->Online						;0		;30		;-1		;-1		;-1		;-1		;true		;true	;-1
+;sync amB2CCAProductCatalog:Staged->Online						;0		;60		;-1		;-1		;-1		;-1		;true		;true	;-1
 
 #----------------------------------------------------------------------
 
@@ -64,7 +64,7 @@ INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetPr
 
 INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
 #cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
-;sync amB2CGlobalProductCatalog:Staged->Online						;0		;30		;-1		;-1		;-1		;-1		;true		;true	;-1
+;sync amB2CGlobalProductCatalog:Staged->Online						;0		;60		;-1		;-1		;-1		;-1		;true		;true	;-1
 
 #----------------------------------------------------------------------
 
@@ -78,7 +78,7 @@ INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetPr
 
 INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
 #cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
-;sync amB2CLatAmProductCatalog:Staged->Online						;0		;30		;-1		;-1		;-1		;-1		;true		;true	;-1
+;sync amB2CLatAmProductCatalog:Staged->Online						;0		;60		;-1		;-1		;-1		;-1		;true		;true	;-1
 
 #----------------------------------------------------------------------
 

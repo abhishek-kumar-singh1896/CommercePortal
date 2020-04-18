@@ -49,15 +49,15 @@ INSERT_UPDATE GallagherCatalogVersionSyncJob;code[unique=true];sessionUser(uid);
 
 INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
 #cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
-;sync securityB2BNZProductCatalog:Staged->Online						;0		;30		;-1		;-1		;-1		;-1		;true		;true	;-1
+;sync securityB2BNZProductCatalog:Staged->Online						;0		;60		;-1		;-1		;-1		;-1		;true		;true	;-1
 
 INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
 #cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
-;sync securityB2BAUProductCatalog:Staged->Online						;0		;30		;-1		;-1		;-1		;-1		;true		;true	;-1
+;sync securityB2BAUProductCatalog:Staged->Online						;0		;60		;-1		;-1		;-1		;-1		;true		;true	;-1
 
 INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
 #cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
-;sync securityB2BGlobalProductCatalog:Staged->Online						;0		;30		;-1		;-1		;-1		;-1		;true		;true	;-1
+;sync securityB2BGlobalProductCatalog:Staged->Online						;0		;60		;-1		;-1		;-1		;-1		;true		;true	;-1
 
 
 # ImpEx for Importing cronjobs
