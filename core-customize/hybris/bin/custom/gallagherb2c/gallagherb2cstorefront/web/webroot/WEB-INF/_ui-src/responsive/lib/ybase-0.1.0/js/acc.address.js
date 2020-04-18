@@ -286,7 +286,13 @@ ACC.address = {
 			ACC.colorbox.open("Saved Addresses",{
 				href: "#addressbook",
 				inline: true,
-				width:"380px"
+				width:"380px",
+				onLoad:function() {
+			        $('html, body').css('overflow', 'hidden'); // page scrollbars off
+			    }, 
+			    onClosed:function() {
+			        $('html, body').css('overflow', ''); // page scrollbars on
+			    }
 			});
 			
 		})
@@ -314,9 +320,14 @@ ACC.address = {
 				href: "#popup_confirm_address_removal_" + addressId,
 				onComplete: function ()
 				{
-
 					$(this).colorbox.resize();
-				}
+				},
+				onLoad : function() {
+					$('html, body').css('overflow', 'hidden');
+				},
+				onClosed:function() {
+			        $('html, body').css('overflow', '');
+			    }
 			});
 
 		})

@@ -59,11 +59,7 @@ if (warehouse != null)
 line.clear()                                                                                                  ;                   
 }"                                                                                                            
                                                                                                               ; default           ; Default Warehouse                     ;                                                
-                                                                                                              ; am_warehouse_s    ; Animal Management B2C Warehouse South ; default                                        ;                                        
-                                                                                                              ; am_warehouse_e    ; Animal Management B2C Warehouse East  ; default                                        ;                                        
-                                                                                                              ; am_warehouse_w    ; Animal Management B2C Warehouse West  ; default                                        ;                                        
-                                                                                                              ; am_warehouse_n    ; Animal Management B2C Warehouse North ; default                                        ;                                        
-                                                                                                              
+                                                                                                             
 # Disable preview for email pages                                                                             
 UPDATE CMSPageType ; code[unique=true] ; previewDisabled 
                    ; EmailPage         ; true            
@@ -300,3 +296,5 @@ INSERT_UPDATE Warehouse ; code[unique=true] ; default ; vendor(code) ; name[lang
                         ; USKC              ; true    ; ERP          ; "Gallagher North America, Inc"   
                         ; ZA01              ; true    ; ERP          ; "Gallagher Powerfence SA"        
                         
+INSERT_UPDATE GallagherSovosConfigurartion ; code[unique=true]   ; name                       ; resultLevel ; taxCalculationType ; debitCreditInd ; transactionType ; organizationCode ; dropShipInd 
+                                           ; b2c-us-sovos-config ; B2C US SOVOS Configuration ; 3           ; 1                  ; 1              ; 1               ; QASGUS           ; 1           

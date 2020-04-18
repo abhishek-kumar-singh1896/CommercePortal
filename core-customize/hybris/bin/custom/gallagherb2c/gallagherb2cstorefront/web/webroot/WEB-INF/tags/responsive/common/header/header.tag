@@ -31,7 +31,6 @@
 						</cms:pageSlot>
 					</div>
 				</div>
-
 				<cms:pageSlot position="ggB2CNavBar" var="feature">
 					<c:if test="${feature.visible}">
 						<c:if test="${not empty feature.navigationNode && feature.navigationNode ne null}">
@@ -287,8 +286,8 @@
 														var="childLevel1">
 								
 														<c:forEach items="${childLevel1.entries}" var="entry">
-															<li>	
-																<a href="${entry.item.url }" target="_blank"> ${entry.item.linkName }</a>
+															<li>
+																<a href="${entry.item.url}" <c:if test ="${not empty entry.item.target && entry.item.target.code ne 'sameWindow'}">target="_blank"</c:if>> ${entry.item.linkName }</a>
 															</li>
 														</c:forEach>
 													</c:forEach>
@@ -370,6 +369,7 @@
 					<div class="header-right-btn-group for-ipad-view">
 						<div class="btn-group" role="group"
 							aria-label="Button group with nested dropdown">
+							<div class="btn-group" role="group">
 								<button type="button" class="btn dropdown-toggle left-btn my-app-btn"
 	                     	id="myAppDropdown" data-toggle="dropdown" aria-haspopup="true"
 	                        aria-expanded="false">
@@ -385,14 +385,15 @@
 													var="childLevel1">
 							
 													<c:forEach items="${childLevel1.entries}" var="entry">
-														<li>	
-															<a href="${entry.item.url }" target="_blank"> ${entry.item.linkName }</a>
+														<li>
+															<a href="${entry.item.url}" <c:if test ="${not empty entry.item.target && entry.item.target.code ne 'sameWindow'}">target="_blank"</c:if>> ${entry.item.linkName }</a>	
 														</li>
 													</c:forEach>
 												</c:forEach>
 											</cms:pageSlot>
 										</ul>
                             </div>
+                        </div>
                         </div>
 
 					<!-- <button type="button" class="btn"> -->	

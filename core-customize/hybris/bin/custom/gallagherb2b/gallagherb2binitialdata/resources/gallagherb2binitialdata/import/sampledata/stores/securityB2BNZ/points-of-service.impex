@@ -12,6 +12,7 @@
 #% impex.setLocale( Locale.GERMAN );
 
 $storeUidNZ=securityB2BNZ
+$storeUidAU=securityB2BAU
 $productCatalog=securityB2BNZProductCatalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 $storeImage=storeImage(qualifier, $catalogVersion)
@@ -45,15 +46,10 @@ INSERT_UPDATE SpecialOpeningDay;openingSchedule(code)[unique=true];date[unique=t
 INSERT_UPDATE StoreLocatorFeature;code[unique=true]
 
 INSERT_UPDATE PointOfService;name[unique=true];type(code);address(&addrID);latitude;longitude;geocodeTimestamp[dateformat=dd-MM-yyyy];$storeImage;openingSchedule(code);basestore(uid)[default=$storeUidNZ];features(code)
-;Hybris SecurityB2B Tulsa1		;STORE;addr1;36,08383;-95,86570;01-10-2011;securityB2B_store_01;$aucklandHours
-;Hybris SecurityB2B Tulsa2		;STORE;addr2;36,08486;-95,86670;01-10-2011;securityB2B_store_01;$aucklandHours
-;Hybris SecurityB2B Tulsa3		;STORE;addr3;36,08589;-95,86770;01-10-2011;securityB2B_store_01;$aucklandHours
-;Hybris SecurityB2B Tulsa4		;STORE;addr4;36,08692;-95,86870;01-10-2011;securityB2B_store_01;$aucklandHours
-;Hybris SecurityB2B Tulsa5		;STORE;addr5;36,08795;-95,86970;01-10-2011;securityB2B_store_01;$aucklandHours
+;ELEC		;WAREHOUSE;ELEC;36,08383;-95,86570;01-10-2011;securityB2B_store_01;$aucklandHours
+;AUME		;WAREHOUSE;AUME;36,08383;-95,86570;01-10-2011;securityB2B_store_01;$aucklandHours;$storeUidAU
 
-INSERT_UPDATE Address;&addrID;streetnumber[unique=true];streetname;town;region(country(isocode),isocode);country(isocode);postalcode[unique=true];phone1;owner(PointOfService.name)[unique=true]
-;addr1;9909;East 55th Place;Tulsa;US:US-OK;US;74146;1-800-331-3333 (Customer Service);Hybris SecurityB2B Tulsa1
-;addr2;9909;East 56th Place;Tulsa;US:US-OK;US;74146;1-800-331-3334 (Customer Service);Hybris SecurityB2B Tulsa2
-;addr3;9909;East 57th Place;Tulsa;US:US-OK;US;74146;1-800-331-3335 (Customer Service);Hybris SecurityB2B Tulsa3
-;addr4;9909;East 58th Place;Tulsa;US:US-OK;US;74146;1-800-331-3336 (Customer Service);Hybris SecurityB2B Tulsa4
-;addr5;9909;East 59th Place;Tulsa;US:US-OK;US;74146;1-800-331-3337 (Customer Service);Hybris SecurityB2B Tulsa5
+INSERT_UPDATE Address;&addrID;streetnumber[unique=true];streetname;town;country(isocode);postalcode[unique=true];phone1;owner(PointOfService.name)[unique=true]
+;ELEC;849 East Commerce Street;;San Antonio;NZ;78205;;ELEC
+;AUME;850 East Commerce Street;;San Antonio;NZ;78205;;AUME
+

@@ -19,4 +19,7 @@ public final class GallagheroutboundservicesConstants extends GeneratedGallagher
 
 	public static final String PLATFORM_LOGO_CODE = "gallagheroutboundservicesPlatformLogo";
 	public static final String C4C_CONTACT_ACTIVE_CODE = "2";
+
+	public static final String SAP_CONTACT_ID = "sapContactID";
+	public static final String OBJECT_ID = "objectID";
 }

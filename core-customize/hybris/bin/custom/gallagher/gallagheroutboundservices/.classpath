@@ -12,5 +12,6 @@
 	<classpathentry kind="src" path="/outboundservices"/>
 	<classpathentry kind="src" path="/platform"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/sapcpiadapter"/>
+	<classpathentry kind="src" path="/sapcpicustomerexchangeb2b"/>
 	<classpathentry kind="output" path="eclipsebin/notused"/>
 </classpath>

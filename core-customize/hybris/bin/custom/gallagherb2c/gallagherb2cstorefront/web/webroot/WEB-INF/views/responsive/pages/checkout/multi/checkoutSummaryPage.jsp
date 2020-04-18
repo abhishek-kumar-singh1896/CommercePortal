@@ -30,13 +30,13 @@
                 <div class="place-order-form hidden-xs">
                     <form:form action="${placeOrderUrl}" id="placeOrderForm1" modelAttribute="placeOrderForm">
                         <div class="checkbox">
-                            <label> <form:checkbox id="Terms1" path="termsCheck" />
+                            <label> <form:checkbox id="Terms2" path="termsCheck" class="Terms-1-Condition-1"/>
                                 <spring:theme var="termsAndConditionsHtml" code="checkout.summary.placeOrder.readTermsAndConditions" arguments="${fn:escapeXml(getTermsAndConditionsUrl)}" htmlEscape="false"/>
                                 ${ycommerce:sanitizeHTML(termsAndConditionsHtml)}
                             </label>
                         </div>
 
-                        <button id="placeOrder" type="submit" class="btn btn-primary btn-place-order btn-block">
+                        <button id="placeOrder" type="submit" class="btn btn-primary btn-place-order btn-block btn-place-order2" disabled>
                             <spring:theme code="checkout.summary.placeOrder" text="Place Order"/>
                         </button>
                     </form:form>

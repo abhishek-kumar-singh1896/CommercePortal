@@ -57,11 +57,11 @@ UPDATE BaseSite ; uid[unique=true] ; solrFacetSearchConfiguration(name)
                 
 # Define price ranges
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID ; solrValueRangeSet(name)[unique=true] ; name[unique=true]   ; from ; to     
-                             ; rangeRefGlobal1     ; securityB2BPriceRangeGlobal             ; US$0-NZ$49.99       ; 0    ; 49.99  
-                             ; rangeRefGlobal2     ; securityB2BPriceRangeGlobal             ; US$50-NZ$199.99     ; 50   ; 199.99 
-                             ; rangeRefGlobal3     ; securityB2BPriceRangeGlobal             ; US$200-NZ$499.99    ; 200  ; 499.99 
-                             ; rangeRefGlobal4     ; securityB2BPriceRangeGlobal             ; US$500-NZ$999.99    ; 500  ; 999.99 
-                             ; rangeRefGlobal5     ; securityB2BPriceRangeGlobal             ; US$1,000-NZ$100,000 ; 1000 ; 100000 
+                             ; rangeRefGlobal1     ; securityB2BPriceRangeGlobal             ; US$0-US$49.99       ; 0    ; 49.99  
+                             ; rangeRefGlobal2     ; securityB2BPriceRangeGlobal             ; US$50-US$199.99     ; 50   ; 199.99 
+                             ; rangeRefGlobal3     ; securityB2BPriceRangeGlobal             ; US$200-US$499.99    ; 200  ; 499.99 
+                             ; rangeRefGlobal4     ; securityB2BPriceRangeGlobal             ; US$500-US$999.99    ; 500  ; 999.99 
+                             ; rangeRefGlobal5     ; securityB2BPriceRangeGlobal             ; US$1,000-US$100,000 ; 1000 ; 100000 
                              
 # Define price range set     
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true]        ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                                

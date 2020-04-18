@@ -86,7 +86,7 @@
     "sapcoreconfigurationbackoffice",
     "sapmodelbackoffice",
     "sapcustomerb2bbackoffice",
-    "ysapcpiomsfulfillment",
+	"ysaporderfulfillment",
     "webservicescommons",
     "gallaghercore",
     "gallagherfacades",
@@ -96,20 +96,23 @@
     "gallagherb2bstorefront",
     "gallagherb2cinitialdata",
     "gallagherb2cstorefront",
+    "gallagherstorefront",
 	"sapcpiadapter",
     "sapcpiproductexchange",
     "sapcpicustomerexchange",
     "sapcpicustomerexchangeb2b",
-    "sapcpiorderexchangeoms",
-    "sapcpiorderexchangeomsb2b",
     "saporderexchangebackoffice",
     "sapcoretest",
     "scpiconnector",
     "scpiconnectorbackoffice",
 	"sapcpiorderexchange",
-	"sapcpiorderexchangeb2b"
+	"sapcpiorderexchangeb2b",
+	"sapcpiorderexchangeoms"
   ],
   "useConfig": {
+    "solr": {
+        "location": "solr"
+      },
     "properties": [
       {
         "location": "hybris/config/local-dev.properties",
@@ -271,6 +274,10 @@
         {
           "name": "acceleratorservices",
           "contextPath": "/acceleratorservices"
+        },
+		{
+          "name": "gallagherstorefront",
+          "contextPath": ""
         }
       ]
     },

@@ -154,7 +154,8 @@
 	<alias name="gallagherProductReferencePopulator" alias="productReferencePopulator" />
 	<bean id="gallagherProductReferencePopulator" parent="defaultProductReferencePopulator"
 		class="com.gallagher.facades.product.converters.populator.GallagherProductReferencePopulator">
-		<property name="productCon" ref="productConverter"></property>
+		<property name="productConverter" ref="productConverter"></property>
+		<property name="classificationPopulator" ref="productClassificationPopulator"></property>
 	</bean>
 
 	<alias name="gallagherProductPopulator" alias="productPopulator" />
@@ -202,5 +203,20 @@
 	<bean id="gallagherRegisteredProductsFacade" class="com.gallagher.facades.impl.GallagherRegisteredProductsFacadeImpl">
 		<property name="registeredProductsConverter" ref="registeredProductsConverter" />
 	</bean>
+	
+	<alias name="gallagherOrdermanagementProductPopulator" alias="ordermanagementProductPopulator" />
+	<bean id="gallagherOrdermanagementProductPopulator"
+			class="com.gallagher.facades.product.converters.populator.GallagherOrdermanagementProductBasicPopulator"/>
 
+	<alias name="gallagherProductBasicPopulator" alias="productBasicPopulator"/>
+	<bean id="gallagherProductBasicPopulator" parent="defaultProductBasicPopulator"
+   		class="com.gallagher.facades.product.converters.populator.GallagherProductBasicPopulator" />
+          
+	<alias name="gallagherProductUrlPopulator" alias="productUrlPopulator"/>
+	<bean id="gallagherProductUrlPopulator" parent="defaultProductUrlPopulator"
+			class="com.gallagher.facades.product.converters.populator.GallagherProductUrlPopulator" />
+
+	<alias name="gallagherGroupOrderEntryPopulator" alias="groupOrderEntryPopulator"/>
+	<bean id="gallagherGroupOrderEntryPopulator" parent="defaultGroupOrderEntryPopulator"
+			class="com.gallagher.facades.order.converters.populator.GallagherGroupOrderEntryPopulator"/>
 </beans>

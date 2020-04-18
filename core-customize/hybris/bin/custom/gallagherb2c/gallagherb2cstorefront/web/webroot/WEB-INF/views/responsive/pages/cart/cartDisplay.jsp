@@ -71,7 +71,7 @@
 						<button
 							class="btn btn-default btn--continue-shopping js-continue-shopping-button btn-xs-block"
 							data-continue-shopping-url="${fn:escapeXml(continueShoppingUrl)}">
-							<spring:theme code="cart.page.continue" />
+							<spring:theme code="cart.page.continue.shopping" />
 						</button>
 						
 					</div>

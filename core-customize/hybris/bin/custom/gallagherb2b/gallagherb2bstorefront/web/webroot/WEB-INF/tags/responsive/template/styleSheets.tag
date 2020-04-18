@@ -14,6 +14,7 @@
 	<c:otherwise>
 		<%-- Theme CSS files --%>
 		<link rel="stylesheet" type="text/css" media="all" href="${themeResourcePath}/css/style.css"/>
+		<link rel="stylesheet" type="text/css" media="all" href="${themeResourcePath}/css/theme.css"/>
 		<%--  AddOn Common CSS files --%>
 		<c:forEach items="${addOnCommonCssPaths}" var="addOnCommonCss">
 			<link rel="stylesheet" type="text/css" media="all" href="${addOnCommonCss}"/>
@@ -43,6 +44,8 @@
  
   <%-- stylesheet for bulk order --%>
  <link rel="stylesheet" type="text/css" media="all" href="${commonResourcePath}/customResponsiveCss/mobbulkorderform.css"/>
- 
+  
+ <!-- styleshet for search result grid -->
+ <link rel="stylesheet" type="text/css" media="all" href="${commonResourcePath}/customResponsiveCss/searchresultgrid.css"/>
  
 <cms:previewCSS cmsPageRequestContextData="${cmsPageRequestContextData}" />

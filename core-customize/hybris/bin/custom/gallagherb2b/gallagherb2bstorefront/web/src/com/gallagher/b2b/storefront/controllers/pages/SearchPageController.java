@@ -34,6 +34,7 @@ import de.hybris.platform.commerceservices.search.pagedata.PageableData;
 import de.hybris.platform.servicelayer.dto.converter.ConversionException;
 
 import java.io.UnsupportedEncodingException;
+import java.text.MessageFormat;
 import java.util.Collections;
 import java.util.List;
 
@@ -87,10 +88,21 @@ public class SearchPageController extends AbstractSearchPageController
 	@Autowired
 	private B2badvanceProductComparisonFacade productComparisonFacade;
 
+	private String getConfigurationPath(final String path)
+	{
+		return getConfigurationService().getConfiguration().getString(path);
+	}
+
 	@RequestMapping(method = RequestMethod.GET, params = "!q")
 	public String textSearch(@RequestParam(value = "text", defaultValue = "")
 	final String searchText, final HttpServletRequest request, final Model model) throws CMSItemNotFoundException
 	{
+		final String sitecoreSolutionPageURL = MessageFormat.format(getConfigurationPath("sitecore.solution.url"),
+				searchText);
+
+		final String mindtouchSRC = getConfigurationPath("mindtouch.src");
+		final String mindtouchID = getConfigurationPath("mindtouch.id");
+
 		if (StringUtils.isNotBlank(searchText))
 		{
 			final PageableData pageableData = createPageableData(0, getSearchPageSize(), null, ShowMode.Page);
@@ -133,6 +145,9 @@ public class SearchPageController extends AbstractSearchPageController
 				storeCmsPageInModel(model, getContentPageForLabelOrId(SEARCH_CMS_PAGE_ID));
 				updatePageTitle(encodedSearchText, model);
 			}
+			model.addAttribute("sitecoreSolutionPageData", sitecoreSolutionPageURL);
+			model.addAttribute("mindtouchSRC", mindtouchSRC);
+			model.addAttribute("mindtouchID", mindtouchID);
 			model.addAttribute("userLocation", customerLocationService.getUserLocation());
 			getRequestContextData(request).setSearch(searchPageData);
 			if (searchPageData != null)
@@ -177,8 +192,17 @@ public class SearchPageController extends AbstractSearchPageController
 		final ProductSearchPageData<SearchStateData, ProductData> searchPageData = performSearch(searchQuery, page, showMode,
 				sortCode, getSearchPageSize());
 
+		final String sitecoreSolutionPageURL = MessageFormat.format(getConfigurationPath("sitecore.solution.url"), searchText);
+
+		final String mindtouchSRC = getConfigurationPath("mindtouch.src");
+		final String mindtouchID = getConfigurationPath("mindtouch.id");
+
 		populateModel(model, searchPageData, showMode);
 		model.addAttribute("userLocation", customerLocationService.getUserLocation());
+		model.addAttribute("sitecoreSolutionPageData", sitecoreSolutionPageURL);
+		model.addAttribute("mindtouchSRC", mindtouchSRC);
+		model.addAttribute("mindtouchID", mindtouchID);
+		model.addAttribute("searchPageData", searchPageData);
 
 		if (searchPageData.getPagination().getTotalNumberOfResults() == 0)
 		{

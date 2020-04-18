@@ -5,6 +5,7 @@ package com.gallagher.b2c.controllers.pages;
 
 import de.hybris.platform.acceleratorfacades.futurestock.FutureStockFacade;
 import de.hybris.platform.acceleratorservices.controllers.page.PageType;
+import de.hybris.platform.acceleratorstorefrontcommons.breadcrumb.Breadcrumb;
 import de.hybris.platform.acceleratorstorefrontcommons.breadcrumb.impl.ProductBreadcrumbBuilder;
 import de.hybris.platform.acceleratorstorefrontcommons.constants.WebConstants;
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.pages.AbstractPageController;
@@ -15,6 +16,7 @@ import de.hybris.platform.acceleratorstorefrontcommons.forms.validation.ReviewVa
 import de.hybris.platform.acceleratorstorefrontcommons.util.MetaSanitizerUtil;
 import de.hybris.platform.acceleratorstorefrontcommons.util.XSSFilterUtil;
 import de.hybris.platform.acceleratorstorefrontcommons.variants.VariantSortStrategy;
+import de.hybris.platform.catalog.enums.ProductReferenceTypeEnum;
 import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
 import de.hybris.platform.cms2.model.pages.AbstractPageModel;
 import de.hybris.platform.cms2.servicelayer.services.CMSPageService;
@@ -22,6 +24,9 @@ import de.hybris.platform.commercefacades.order.data.ConfigurationInfoData;
 import de.hybris.platform.commercefacades.product.ProductFacade;
 import de.hybris.platform.commercefacades.product.ProductOption;
 import de.hybris.platform.commercefacades.product.data.BaseOptionData;
+import de.hybris.platform.commercefacades.product.data.ClassificationData;
+import de.hybris.platform.commercefacades.product.data.FeatureData;
+import de.hybris.platform.commercefacades.product.data.FeatureValueData;
 import de.hybris.platform.commercefacades.product.data.FutureStockData;
 import de.hybris.platform.commercefacades.product.data.ImageData;
 import de.hybris.platform.commercefacades.product.data.ImageDataType;
@@ -32,6 +37,7 @@ import de.hybris.platform.commerceservices.url.UrlResolver;
 import de.hybris.platform.core.model.product.ProductModel;
 import de.hybris.platform.product.ProductService;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
+import de.hybris.platform.servicelayer.session.SessionService;
 import de.hybris.platform.util.Config;
 
 import java.io.UnsupportedEncodingException;
@@ -40,8 +46,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -87,6 +96,7 @@ public class ProductPageController extends AbstractPageController
 	private static final String FUTURE_STOCK_ENABLED = "storefront.products.futurestock.enabled";
 	private static final String STOCK_SERVICE_UNAVAILABLE = "basket.page.viewFuture.unavailable";
 	private static final String NOT_MULTISKU_ITEM_ERROR = "basket.page.viewFuture.not.multisku";
+	private static final String CONTINUE_URL = "continueUrl";
 
 	@Resource(name = "productDataUrlResolver")
 	private UrlResolver<ProductData> productDataUrlResolver;
@@ -112,9 +122,12 @@ public class ProductPageController extends AbstractPageController
 	@Resource(name = "futureStockFacade")
 	private FutureStockFacade futureStockFacade;
 
+	@Resource(name = "sessionService")
+	private SessionService sessionService;
+
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN, method = RequestMethod.GET)
-	public String productDetail(@PathVariable("productCode") final String encodedProductCode, final Model model,
-			final HttpServletRequest request, final HttpServletResponse response)
+	public String productDetail(@PathVariable("productCode")
+	final String encodedProductCode, final Model model, final HttpServletRequest request, final HttpServletResponse response)
 			throws CMSItemNotFoundException, UnsupportedEncodingException
 	{
 		final String productCode = decodeWithScheme(encodedProductCode, UTF_8);
@@ -131,9 +144,9 @@ public class ProductPageController extends AbstractPageController
 
 		updatePageTitle(productCode, model);
 
+		getContinueUrl(model, productCode);
 
 		populateProductDetailForDisplay(productCode, model, request, extraOptions);
-
 		model.addAttribute(new ReviewForm());
 		model.addAttribute("pageType", PageType.PRODUCT.name());
 		model.addAttribute("futureStockEnabled", Boolean.valueOf(Config.getBoolean(FUTURE_STOCK_ENABLED, false)));
@@ -144,9 +157,23 @@ public class ProductPageController extends AbstractPageController
 		return getViewForPage(model);
 	}
 
+	/**
+	 * @param model
+	 * @param productCode
+	 */
+	private void getContinueUrl(final Model model, final String productCode)
+	{
+		final List<Breadcrumb> breadcrumbslist = productBreadcrumbBuilder.getBreadcrumbs(productCode);
+		final Breadcrumb secondLastBreadcrumb = breadcrumbslist.get(breadcrumbslist.size() - 2);
+		model.addAttribute(CONTINUE_URL,
+				(secondLastBreadcrumb.getUrl() != null && !secondLastBreadcrumb.getUrl().isEmpty()) ? secondLastBreadcrumb.getUrl()
+						: ROOT);
+	}
+
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN + "/orderForm", method = RequestMethod.GET)
-	public String productOrderForm(@PathVariable("productCode") final String encodedProductCode, final Model model,
-			final HttpServletRequest request, final HttpServletResponse response) throws CMSItemNotFoundException
+	public String productOrderForm(@PathVariable("productCode")
+	final String encodedProductCode, final Model model, final HttpServletRequest request, final HttpServletResponse response)
+			throws CMSItemNotFoundException
 	{
 		final String productCode = decodeWithScheme(encodedProductCode, UTF_8);
 		final List<ProductOption> extraOptions = Arrays.asList(ProductOption.VARIANT_MATRIX_BASE,
@@ -167,8 +194,9 @@ public class ProductPageController extends AbstractPageController
 	}
 
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN + "/zoomImages", method = RequestMethod.GET)
-	public String showZoomImages(@PathVariable("productCode") final String encodedProductCode,
-			@RequestParam(value = "galleryPosition", required = false) final String galleryPosition, final Model model)
+	public String showZoomImages(@PathVariable("productCode")
+	final String encodedProductCode, @RequestParam(value = "galleryPosition", required = false)
+	final String galleryPosition, final Model model)
 	{
 		final String productCode = decodeWithScheme(encodedProductCode, UTF_8);
 		final ProductData productData = productFacade.getProductForCodeAndOptions(productCode,
@@ -194,8 +222,8 @@ public class ProductPageController extends AbstractPageController
 	}
 
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN + "/quickView", method = RequestMethod.GET)
-	public String showQuickView(@PathVariable("productCode") final String encodedProductCode, final Model model,
-			final HttpServletRequest request)
+	public String showQuickView(@PathVariable("productCode")
+	final String encodedProductCode, final Model model, final HttpServletRequest request)
 	{
 		final String productCode = decodeWithScheme(encodedProductCode, UTF_8);
 		final ProductModel productModel = productService.getProductForCode(productCode);
@@ -213,9 +241,9 @@ public class ProductPageController extends AbstractPageController
 
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN + "/review", method =
 	{ RequestMethod.GET, RequestMethod.POST })
-	public String postReview(@PathVariable("productCode") final String encodedProductCode, final ReviewForm form,
-			final BindingResult result, final Model model, final HttpServletRequest request, final RedirectAttributes redirectAttrs)
-			throws CMSItemNotFoundException
+	public String postReview(@PathVariable("productCode")
+	final String encodedProductCode, final ReviewForm form, final BindingResult result, final Model model,
+			final HttpServletRequest request, final RedirectAttributes redirectAttrs) throws CMSItemNotFoundException
 	{
 		final String productCode = decodeWithScheme(encodedProductCode, UTF_8);
 		getReviewValidator().validate(form, result);
@@ -244,8 +272,9 @@ public class ProductPageController extends AbstractPageController
 
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN + "/reviewhtml/"
 			+ REVIEWS_PATH_VARIABLE_PATTERN, method = RequestMethod.GET)
-	public String reviewHtml(@PathVariable("productCode") final String encodedProductCode,
-			@PathVariable("numberOfReviews") final String numberOfReviews, final Model model, final HttpServletRequest request)
+	public String reviewHtml(@PathVariable("productCode")
+	final String encodedProductCode, @PathVariable("numberOfReviews")
+	final String numberOfReviews, final Model model, final HttpServletRequest request)
 	{
 		final String productCode = decodeWithScheme(encodedProductCode, UTF_8);
 		final ProductModel productModel = productService.getProductForCode(productCode);
@@ -273,8 +302,8 @@ public class ProductPageController extends AbstractPageController
 	}
 
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN + "/writeReview", method = RequestMethod.GET)
-	public String writeReview(@PathVariable("productCode") final String encodedProductCode, final Model model)
-			throws CMSItemNotFoundException
+	public String writeReview(@PathVariable("productCode")
+	final String encodedProductCode, final Model model) throws CMSItemNotFoundException
 	{
 		final String productCode = decodeWithScheme(encodedProductCode, UTF_8);
 		model.addAttribute(new ReviewForm());
@@ -294,9 +323,9 @@ public class ProductPageController extends AbstractPageController
 	}
 
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN + "/writeReview", method = RequestMethod.POST)
-	public String writeReview(@PathVariable("productCode") final String encodedProductCode, final ReviewForm form,
-			final BindingResult result, final Model model, final HttpServletRequest request, final RedirectAttributes redirectAttrs)
-			throws CMSItemNotFoundException
+	public String writeReview(@PathVariable("productCode")
+	final String encodedProductCode, final ReviewForm form, final BindingResult result, final Model model,
+			final HttpServletRequest request, final RedirectAttributes redirectAttrs) throws CMSItemNotFoundException
 	{
 		final String productCode = decodeWithScheme(encodedProductCode, UTF_8);
 		getReviewValidator().validate(form, result);
@@ -323,8 +352,9 @@ public class ProductPageController extends AbstractPageController
 	}
 
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN + "/futureStock", method = RequestMethod.GET)
-	public String productFutureStock(@PathVariable("productCode") final String encodedProductCode, final Model model,
-			final HttpServletRequest request, final HttpServletResponse response) throws CMSItemNotFoundException
+	public String productFutureStock(@PathVariable("productCode")
+	final String encodedProductCode, final Model model, final HttpServletRequest request, final HttpServletResponse response)
+			throws CMSItemNotFoundException
 	{
 		final String productCode = decodeWithScheme(encodedProductCode, UTF_8);
 		final boolean futureStockEnabled = Config.getBoolean(FUTURE_STOCK_ENABLED, false);
@@ -415,21 +445,26 @@ public class ProductPageController extends AbstractPageController
 		options.addAll(extraOptions);
 		final List<ProductData> sparepart = new ArrayList<ProductData>();
 		final List<ProductData> others = new ArrayList<ProductData>();
+		final List<ProductData> upselling = new ArrayList<ProductData>();
 		final List<ProductData> accessories = new ArrayList<ProductData>();
 		final ProductData productData = productFacade.getProductForCodeAndOptions(productCode, options);
 		final List<ProductReferenceData> references = productData.getProductReferences();
 
 		for (final ProductReferenceData product : references)
 		{
-			if (product.getReferenceType().getCode().equals("SPAREPART"))
+			if (ProductReferenceTypeEnum.SPAREPART.equals(product.getReferenceType()))
 			{
 				sparepart.add(product.getTarget());
 			}
-			else if (product.getReferenceType().getCode().equals("OTHERS"))
+			else if (ProductReferenceTypeEnum.OTHERS.equals(product.getReferenceType()))
 			{
 				others.add(product.getTarget());
 			}
-			else if (product.getReferenceType().getCode().equals("ACCESSORIES"))
+			else if (ProductReferenceTypeEnum.UPSELLING.equals(product.getReferenceType()))
+			{
+				upselling.add(product.getTarget());
+			}
+			else if (ProductReferenceTypeEnum.ACCESSORIES.equals(product.getReferenceType()))
 			{
 				accessories.add(product.getTarget());
 			}
@@ -451,6 +486,134 @@ public class ProductPageController extends AbstractPageController
 			model.addAttribute(WebConstants.MULTI_DIMENSIONAL_PRODUCT,
 					Boolean.valueOf(CollectionUtils.isNotEmpty(productData.getVariantMatrix())));
 		}
+
+		if (CollectionUtils.isNotEmpty(upselling))
+		{
+			final List<String> compareProducts = findCommonClassificationAttributes(productData, upselling, model);
+			if (CollectionUtils.isNotEmpty(compareProducts))
+			{
+				final ProductComparisonData firstComparisonData = new ProductComparisonData();
+				final Map<String, String> firstProductAttrValueMap = new TreeMap<>();
+				final Map<String, String> firstProductAttrValueMapFinal = new TreeMap<>();
+				firstComparisonData.setProductData(productData);
+
+
+				for (final ClassificationData classData : productData.getClassifications())
+				{
+					for (final FeatureData fd : classData.getFeatures())
+					{
+						String mapValue = null;
+						for (final FeatureValueData data : fd.getFeatureValues())
+						{
+							mapValue = data.getValue();
+						}
+						firstProductAttrValueMap.put(fd.getName(), mapValue);
+					}
+				}
+				for (final String attribute : compareProducts)
+				{
+					if (firstProductAttrValueMap.containsKey(attribute))
+					{
+						firstProductAttrValueMap.put(attribute, firstProductAttrValueMap.get(attribute));
+					}
+					else
+					{
+						firstProductAttrValueMap.put(attribute, "-");
+					}
+				}
+				firstComparisonData.setProductData(productData);
+				firstComparisonData.setProductAttrValueMap(firstProductAttrValueMap);
+				model.addAttribute("firstProduct", firstComparisonData);
+				model.addAttribute("compareProducts", compareProducts);
+			}
+		}
+	}
+
+	private List<String> findCommonClassificationAttributes(final ProductData firstProduct1,
+			final List<ProductData> productComparisonList, final Model model)
+	{
+		final Set<ProductComparisonData> productComparisonDataList = new HashSet<ProductComparisonData>();
+		final Set<String> result = new HashSet<String>();
+		final Set<String> classFeatureCodes = new HashSet<String>();
+		if (!productComparisonList.isEmpty())
+		{
+			final ProductData firstProduct = firstProduct1;
+			if (firstProduct.getClassifications() != null)
+			{
+				for (final ClassificationData classData : firstProduct.getClassifications())
+				{
+					final String classCode = classData.getCode();
+
+					final boolean addToCommonList = true;
+					//search through products
+					for (int i = 0; i < productComparisonList.size(); i++)
+					{
+						final ProductComparisonData comparisonData = new ProductComparisonData();
+						final Map<String, String> productAttrValueMap = new TreeMap<>();
+						boolean found = false;
+						final ProductData product = productComparisonList.get(i);
+						if (product.getClassifications() != null)
+						{
+							//search through class attr
+							for (final ClassificationData classInnerData : product.getClassifications())
+							{
+								if (classInnerData.getCode().equals(classCode))
+								{
+									//found
+									found = true;
+									for (final FeatureData fd : classInnerData.getFeatures())
+									{
+										if (fd.isComparable())
+										{
+
+											classFeatureCodes.add(fd.getName());
+											String mapValue = null;
+											for (final FeatureValueData data : fd.getFeatureValues())
+											{
+												mapValue = data.getValue();
+											}
+
+											productAttrValueMap.put(fd.getName(), mapValue);
+										}
+									}
+
+								}
+							}
+						}
+						comparisonData.setProductData(product);
+						comparisonData.setProductAttrValueMap(productAttrValueMap);
+						productComparisonDataList.add(comparisonData);
+					}
+				}
+			}
+		}
+		final List<String> featurelist = new ArrayList<String>(classFeatureCodes);
+		Collections.sort(featurelist);
+		final Set<ProductComparisonData> productComparisonDataListFinal = new HashSet<ProductComparisonData>();
+		for (final ProductComparisonData comparisonData : productComparisonDataList)
+		{
+			final ProductComparisonData comparisonDataFinal = new ProductComparisonData();
+			final Map<String, String> productAttrValueMapFinal = new TreeMap<>();
+			if (comparisonData.getProductAttrValueMap().size() > 0)
+			{
+				for (final String attribute : featurelist)
+				{
+					if (comparisonData.getProductAttrValueMap().containsKey(attribute))
+					{
+						productAttrValueMapFinal.put(attribute, comparisonData.getProductAttrValueMap().get(attribute));
+					}
+					else
+					{
+						productAttrValueMapFinal.put(attribute, "-");
+					}
+				}
+				comparisonDataFinal.setProductData(comparisonData.getProductData());
+				comparisonDataFinal.setProductAttrValueMap(productAttrValueMapFinal);
+				productComparisonDataListFinal.add(comparisonDataFinal);
+			}
+		}
+		model.addAttribute("comparisonProductList", productComparisonDataListFinal);
+		return featurelist;
 	}
 
 	protected void populateProductData(final ProductData productData, final Model model)
@@ -546,7 +709,4 @@ public class ProductPageController extends AbstractPageController
 		final ProductModel productModel = productService.getProductForCode(productCode);
 		return cmsPageService.getPageForProduct(productModel, getCmsPreviewService().getPagePreviewCriteria());
 	}
-
-
-
 }

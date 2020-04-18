@@ -1,0 +1,1809 @@
+REMOVE ZoneDeliveryMode; code[unique=true];net; active[default=true]
+; premium-net; true
+; standard-net       ; true
+; premium-gross      ; false
+; free-standard-shipping     ; true; false  ;
+
+
+# Pickup Delivery Mode
+REMOVE PickUpDeliveryMode    ; code[unique=true]  ; supportedMode(code)
+; pickup       ; BUY_AND_COLLECT
+
+##############################
+# Insert DeliveryMode taxes
+##############################
+REMOVE ProductTaxCode; productCode[unique=true]; taxCode ; taxArea[unique=true]
+; premium-gross   ; FR000000; GB
+; premium-net     ; FR000000; GB
+; standard-gross  ; FR000000; GB
+; standard-net    ; FR000000; GB
+; pickup  ; FR000000; GB
+; premium-gross   ; FR000000; US
+; standard-gross  ; FR000000; US
+; standard-net    ; FR000000; US
+; pickup  ; FR000000; US
+; premium-net     ; FR000000; US
+; premium-gross   ; FR000000; JP
+; standard-gross  ; FR000000; JP
+; pickup  ; FR000000; JP
+; standard-net    ; FR000000; JP
+; premium-net     ; FR000000; JP
+; premium-gross   ; FR000000; FR
+; standard-gross  ; FR000000; FR
+; standard-net    ; FR000000; FR
+; pickup  ; FR000000; FR
+; premium-net     ; FR000000; FR
+; premium-gross   ; FR000000; PL
+; standard-gross  ; FR000000; PL
+; standard-net    ; FR000000; PL
+; pickup  ; FR000000; PL
+; premium-net     ; FR000000; PL
+; premium-gross   ; FR000000; DE
+; standard-gross  ; FR000000; DE
+; standard-net    ; FR000000; DE
+; pickup  ; FR000000; DE
+; premium-net     ; FR000000; DE
+; premium-gross   ; FR000000; CA
+; standard-gross  ; FR000000; CA
+; standard-net    ; FR000000; CA
+; pickup  ; FR000000; CA
+; premium-net     ; FR000000; CA
+; premium-gross   ; FR000000; CN
+; standard-gross  ; FR000000; CN
+; standard-net    ; FR000000; CN
+; pickup  ; FR000000; CN
+; premium-net     ; FR000000; CN
+
+
+INSERT_UPDATE ZoneDeliveryMode ; code[unique=true] ; net   ; active[default=true]
+; standard-gross    ; false
+; am-standard-gross ; false
+
+
+##############################
+# Insert DeliveryMode taxes
+##############################
+INSERT_UPDATE ProductTaxCode ; productCode[unique=true] ; taxCode  ; taxArea[unique=true]
+; standard-gross   ; FR000000 ; US
+; am-standard-gross; FR000000 ; US
+; standard-gross   ; FR000000 ; CA
+; am-standard-gross; FR000000 ; CA
+
+$lang=en
+UPDATE ZoneDeliveryMode ; code[unique=true] ; name[lang=$lang]    ; description[lang=$lang]
+; standard-gross    ; "Standard Delivery" ; "3-5 business days"
+; am-standard-gross ; "Standard Delivery" ; "3-5 business days"
+
+REMOVE BaseStore2DeliveryModeRel;source(uid)[unique=true];target(code)[unique=true]
+;securityB2BAU;premium-gross
+;securityB2BAU;free-standard-shipping
+;securityB2BNZ;premium-gross
+;securityB2BNZ;free-standard-shipping
+;securityB2BGlobal;premium-gross
+;securityB2BGlobal;free-standard-shipping
+
+
+# Currencies
+$usCurrency=USD
+$caCurrency=CAD
+# Delivery Zones
+INSERT_UPDATE Zone ; code[unique=true] ; countries(isocode)
+; usa       ; US
+; ca; CA
+
+# Zone Delivery Modes
+INSERT_UPDATE ZoneDeliveryMode ; code[unique=true] ; net   ; active[default=true]
+; am-standard-gross ; false
+
+# USA
+INSERT_UPDATE ZoneDeliveryModeValue ; deliveryMode(code)[unique=true] ; zone(code)[default='usa'][unique=true] ; currency(isocode)[unique=true] ; value ; minimum[unique=true]
+; am-standard-gross       ;; $usCurrency    ; 15 ; 0
+; am-standard-gross       ;; $usCurrency    ; 20 ; 150.00
+; am-standard-gross       ;; $usCurrency    ; 30 ; 300.00
+; am-standard-gross       ;; $usCurrency    ; 0  ; 1000
+
+
+# Canada
+INSERT_UPDATE ZoneDeliveryModeValue ; deliveryMode(code)[unique=true] ; zone(code)[default='ca'][unique=true] ; currency(isocode)[unique=true] ; value ; minimum[unique=true]
+; am-standard-gross       ;; $caCurrency    ; 22 ; 0
+; am-standard-gross       ;; $caCurrency    ; 30 ; 150.00
+; am-standard-gross       ;; $caCurrency    ; 50 ; 300.00
+; am-standard-gross       ;; $caCurrency    ; 0  ; 1000
+
+
+##############################
+# Insert DeliveryMode taxes
+##############################
+INSERT_UPDATE ProductTaxCode ; productCode[unique=true] ; taxCode  ; taxArea[unique=true]
+; am-standard-gross; FR000000 ; US
+; am-standard-gross; FR000000 ; CA
+
+INSERT_UPDATE BaseStore2DeliveryModeRel;source(uid)[unique=true];target(code)[unique=true]
+;amB2CAU;am-standard-gross
+;amB2CNZ;am-standard-gross
+;amB2CCA;am-standard-gross
+;amB2CUS;am-standard-gross
+;amB2CGlobal;am-standard-gross
+;amB2CLatAm;am-standard-gross
+
+REMOVE BaseStore2DeliveryModeRel;source(uid)[unique=true];target(code)[unique=true]
+;amB2CAU;premium-gross
+;amB2CAU;standard-gross
+;amB2CAU;pickup
+;amB2CAU;free-standard-shipping
+;amB2CNZ;premium-gross
+;amB2CNZ;standard-gross
+;amB2CNZ;pickup
+;amB2CNZ;free-standard-shipping
+;amB2CUS;premium-gross
+;amB2CUS;standard-gross
+;amB2CUS;pickup
+;amB2CUS;free-standard-shipping
+;amB2CCA;premium-gross
+;amB2CCA;standard-gross
+;amB2CCA;pickup
+;amB2CCA;free-standard-shipping
+;amB2CGlobal;premium-gross
+;amB2CGlobal;standard-gross
+;amB2CGlobal;pickup
+;amB2CGlobal;free-standard-shipping
+;amB2CLatAm;premium-gross
+;amB2CLatAm;standard-gross
+;amB2CLatAm;pickup
+;amB2CLatAm;free-standard-shipping
+
+
+###############B2B#############################
+$contentCatalog=securityB2BContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online  ])[default=$contentCatalog:Online  ]
+$wideContent=CMSImageComponent,BannerComponent
+$jarEmailResource=jar:com.gallagher.b2b.initialdata.constants.B2badvanceInitialDataConstants&/gallagherb2binitialdata/import/coredata/contentCatalogs/securityB2BContentCatalog/emails
+
+# Import config properties into impex macros for modulegen
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$emailResource=$config-emailResourceValue
+
+# Language
+$lang=en
+
+
+# Import config properties into impex macros for modulegen
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$emailResource=$config-emailResourceValue
+
+# Language
+$lang=en
+ 
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+;securityB2BNZ-CMSImageComponent-template;java.util.Map
+;securityB2BNZ-BannerComponent-template;java.util.Map
+;securityB2BNZ-SimpleBannerComponent-template;java.util.Map
+;securityB2BNZ-CMSLinkComponent-template;java.util.Map
+;securityB2BNZ-CMSParagraphComponent-template;java.util.Map
+;securityB2BAU-CMSImageComponent-template;java.util.Map
+;securityB2BAU-BannerComponent-template;java.util.Map
+;securityB2BAU-SimpleBannerComponent-template;java.util.Map
+;securityB2BAU-CMSLinkComponent-template;java.util.Map
+;securityB2BAU-CMSParagraphComponent-template;java.util.Map;
+;securityB2BGlobal-CMSImageComponent-template;java.util.Map
+;securityB2BGlobal-BannerComponent-template;java.util.Map
+;securityB2BGlobal-SimpleBannerComponent-template;java.util.Map
+;securityB2BGlobal-CMSLinkComponent-template;java.util.Map
+;securityB2BGlobal-CMSParagraphComponent-template;java.util.Map
+
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+ ;securityB2BNZ-BannerComponent-template;"CMSBannerComponent Template";$emailResource/email-bannerComponentTemplate.vm
+ ;securityB2BNZ-CMSImageComponent-template;"CMSImageComponent Template";$emailResource/email-cmsImageComponentTemplate.vm
+ ;securityB2BNZ-CMSLinkComponent-template;"CMSLinkComponent Template";$emailResource/email-cmsLinkComponentTemplate.vm
+ ;securityB2BNZ-CMSParagraphComponent-template;"CMSParagraphComponent Template";$emailResource/email-cmsParagraphComponentTemplate.vm
+ ;securityB2BNZ-SimpleBannerComponent-template;"CMSSimpleBannerComponent Template";$emailResource/email-bannerComponentTemplate.vm
+ ;securityB2BAU-BannerComponent-template;"CMSBannerComponent Template";$emailResource/email-bannerComponentTemplate.vm
+ ;securityB2BAU-CMSImageComponent-template;"CMSImageComponent Template";$emailResource/email-cmsImageComponentTemplate.vm
+ ;securityB2BAU-CMSLinkComponent-template;"CMSLinkComponent Template";$emailResource/email-cmsLinkComponentTemplate.vm
+ ;securityB2BAU-CMSParagraphComponent-template;"CMSParagraphComponent Template";$emailResource/email-cmsParagraphComponentTemplate.vm
+ ;securityB2BAU-SimpleBannerComponent-template;"CMSSimpleBannerComponent Template";$emailResource/email-bannerComponentTemplate.vm
+ ;securityB2BGlobal-BannerComponent-template;"CMSBannerComponent Template";$emailResource/email-bannerComponentTemplate.vm
+ ;securityB2BGlobal-CMSImageComponent-template;"CMSImageComponent Template";$emailResource/email-cmsImageComponentTemplate.vm
+ ;securityB2BGlobal-CMSLinkComponent-template;"CMSLinkComponent Template";$emailResource/email-cmsLinkComponentTemplate.vm
+ ;securityB2BGlobal-CMSParagraphComponent-template;"CMSParagraphComponent Template";$emailResource/email-cmsParagraphComponentTemplate.vm
+ ;securityB2BGlobal-SimpleBannerComponent-template;"CMSSimpleBannerComponent Template";$emailResource/email-bannerComponentTemplate.vm
+ 
+
+# Import modulegen config properties into impex macros
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$jarResourceCms=$config-jarResourceCmsValue
+$emailPackageName=$config-emailContextPackageName
+
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$jarResourceCms=$config-jarResourceCmsValue
+$emailPackageName=$config-emailContextPackageName
+$gallagherEmailPackageName=$config-gallagherEmailContextPackageName
+
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+;securityB2B_Email_Customer_Registration_Body;$gallagherEmailPackageName.GallagherCustomerEmailContext
+;securityB2B_Email_Customer_Registration_Subject;$gallagherEmailPackageName.GallagherCustomerEmailContext
+
+# CMS components and Email velocity templates
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;securityB2B_Email_Customer_Registration_Body;"Customer Registration Email Body";$emailResource/email-customerRegistrationBody.vm
+;securityB2B_Email_Customer_Registration_Subject;"Customer Registration Email Subject";$emailResource/email-customerRegistrationSubject.vm
+
+#####################################################################################
+
+$picture=media(code, $contentCV);
+$siteResource=jar:com.gallagher.b2b.initialdata.constants.B2badvanceInitialDataConstants&/gallagherb2binitialdata/import/sampledata/contentCatalogs/$contentCatalog
+
+
+# CMS Image Components
+INSERT_UPDATE CMSImageComponent;$contentCV[unique=true];uid[unique=true];name
+;;EmailBannerSiteLogo;Email Banner for site logo
+
+# Content Slots
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV)
+;;EmailSiteLogoSlot;EmailBannerSiteLogo
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];folder(qualifier)[default='images']
+;;/images/theme/logo-gallagher_email.png;logo-gallagher_email.png;$siteResource/images/theme/logo-gallagher_email.png;;
+
+# CMS Image Components
+INSERT_UPDATE CMSImageComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
+;;EmailBannerSiteLogo;/images/theme/logo-gallagher_email.png;
+
+
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=$lang];fromName[lang=$lang]
+;;CustomerRegistrationEmail;"marketing@security.gallagher.com";"Gallagher online services"
+################################################################################
+
+############################B2C#############################################
+$contentCatalog=amB2CContentCatalog
+$contentCatalogName=Animal Management B2C Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online  ])[default=$contentCatalog:Online  ]
+#################Search item is not found##############################
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;MiddleContent-searchEmpty;Middle Slot for searchEmpty;true;NoSearchResultsParagraphComponent
+
+
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+;;NoSearchResultsParagraphComponent;No Search Results Paragraph Component;NoSearchResultsParagraphComponent
+
+# Removing Search empty page content
+UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];&componentRef
+;;NoSearchResultsParagraphComponent;NoSearchResultsParagraphComponent
+#######################################################################
+
+#############################search page banner########################
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active
+;;SearchGridBannerSlot;Banner for search grid page;true
+;;SearchResultsEmptyBannerSlot;Banner for search result empty page;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsGridPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;banner-SearchGridPage;SearchGridBanner;;SearchGridBannerSlot;true
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid, $contentCV)
+;;SearchGridBannerSlot;CategoryBanner
+;;SearchResultsEmptyBannerSlot;CategoryBanner
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsEmptyPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;banner-SearchResultsEmpty;SearchResultsEmptyBanner;;SearchResultsEmptyBannerSlot;true
+#####################################################################
+
+######################Account page header###########################
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='AccountPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;ggB2CNavBar;;;navigation
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='AccountPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2CNavBar-AccountPage;ggB2CNavBar;;ggB2CNavBarSlot;true
+####################################################################
+
+##################User dropdown link user to Account management######
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;AccountManagementLink;Account Management Link;/my-account/update-profile;;;;;;;
+#####################################################################
+
+##################### SAPP-459 #############
+
+$storeUidNZ=securityB2BNZ
+$storeUidUS=amB2CUS
+$storeUidCA=amB2CCA
+$standardHours=amB2C-US-standard-hours
+$weekendHours=amB2C-US-weekend-hours
+$aucklandHours=auckland-standard-hours
+$storeUidAU=securityB2BAU
+
+REMOVE UserTaxGroup ; code[unique=true]
+                           ; jp-taxes
+
+REMOVE ProductTaxGroup ; code[unique=true]
+                              ; jp-vat-full
+                              ; eu-vat-full
+                              ; eu-vat-half
+
+REMOVE Tax ; code[unique=true]
+                  ; jp-vat-full
+                  ; uk-vat-full
+                  ; uk-vat-half
+
+$vendor=default
+
+REMOVE Warehouse;code[unique=true]
+;security_warehouse_s
+;security_warehouse_e
+;security_warehouse_w
+;security_warehouse_n
+
+INSERT_UPDATE StockLevel;productCode[unique=true];warehouse(code)[unique=true,default=default];available;inStockStatus(code);maxPreOrder[default=1];maxStockLevelHistoryCount[default=-1];overSelling[default=0];preOrder[default=0];reserved[default=0]
+;t10-mifare-reader-black;ELEC;414;notSpecified
+;t11-multi-tech-reader-black;ELEC;228;notSpecified
+;t11-mifare-reader-black;ELEC;335;notSpecified
+;t12-multi-tech-reader-black;ELEC;161;notSpecified
+;t12-mifare-reader-black;ELEC;215;notSpecified
+;t15-multi-tech-reader-black;ELEC;122;notSpecified
+;t15-mifare-reader-black;ELEC;496;notSpecified
+;t20-multi-tech-reader-black;ELEC;241;notSpecified
+;t20-mifare-reader-black;ELEC;386;notSpecified
+;t10-mifare-reader-white;ELEC;414;notSpecified
+;t11-multi-tech-reader-white;ELEC;228;notSpecified
+;t11-mifare-reader-white;ELEC;335;notSpecified
+;t12-multi-tech-reader-white;ELEC;161;notSpecified
+;t12-mifare-reader-white;ELEC;215;notSpecified
+;t15-multi-tech-reader-white;ELEC;122;notSpecified
+;t15-mifare-reader-white;ELEC;496;notSpecified
+;t20-multi-tech-reader-white;ELEC;241;notSpecified
+;t20-mifare-reader-white;ELEC;386;notSpecified
+
+INSERT_UPDATE BaseStore2WarehouseRel;source(uid)[unique=true];target(code)[unique=true]
+;$storeUidNZ;ELEC
+
+INSERT_UPDATE PointOfService;name[unique=true];displayName;warehouses(code);address(&addrID);latitude;longitude;geocodeTimestamp[dateformat=dd.MM.yyyy];type(code)[default=WAREHOUSE]
+;ELEC;GGL Local Manufacturing;ELEC;ELEC;29,4235547;-98,4853322;11.12.2012
+;AUME;Gallagher Australia Pty Ltd;AUME;AUME;29,4235547;-98,4853322;11.12.2012
+
+REMOVE Address;&addrID;streetnumber[unique=true];streetname;town;country(isocode);postalcode[unique=true];phone1;owner(PointOfService.name)[unique=true]
+;security_warehouse_s;849 East Commerce Street;;San Antonio;NZ;78205;;security_warehouse_s
+;security_warehouse_e;100 7th Avenue;Brooklyn;New York;NZ;11215;;security_warehouse_e
+;security_warehouse_w;1111 Newport Center Drive;;Newport Beach;NZ;92660;;security_warehouse_w
+;security_warehouse_n;179 Bellevue Square;;Bellevue;NZ;98004;;security_warehouse_n
+
+INSERT_UPDATE Address;&addrID;streetnumber[unique=true];streetname;town;country(isocode);postalcode[unique=true];phone1;owner(PointOfService.name)[unique=true]
+;ELEC;849 East Commerce Street;;San Antonio;NZ;78205;;ELEC
+;AUME;850 East Commerce Street;;San Antonio;NZ;78205;;AUME
+
+
+REMOVE PointOfService;name[unique=true]
+;security_warehouse_s
+;security_warehouse_e
+;security_warehouse_w
+;security_warehouse_n
+
+INSERT_UPDATE BaseStore;uid[unique=true];defaultDeliveryOrigin(name)
+;$storeUidNZ;ELEC
+
+REMOVE Warehouse ; code[unique=true]
+; am_warehouse_s
+; am_warehouse_e
+; am_warehouse_w
+; am_warehouse_n
+
+INSERT_UPDATE StockLevel;productCode[unique=true];warehouse(code)[unique=true,default=default];available;inStockStatus(code);maxPreOrder[default=1];maxStockLevelHistoryCount[default=-1];overSelling[default=0];preOrder[default=0];reserved[default=0]
+;solar-fence-energizer-s10;CAN1;414;notSpecified
+;solar-fence-energizer-s10;USKC;414;notSpecified
+
+INSERT_UPDATE StockLevel;productCode[unique=true];warehouse(code)[unique=true,default=default];available;inStockStatus(code);maxPreOrder[default=1];maxStockLevelHistoryCount[default=-1];overSelling[default=0];preOrder[default=0];reserved[default=0]
+;solar-fence-energizer-s10;CAN1;414;notSpecified
+;solar-fence-energizer-s10;USKC;414;notSpecified
+
+REMOVE PointOfService ; name[unique=true] 
+                             ; NewYork    
+                             ; Chicago    
+                             ; Toronto    
+                             ; Vancouver  
+
+INSERT_UPDATE PointOfService ; name[unique=true] ; type(code) ; address(&addrID) ; latitude ; longitude ; geocodeTimestamp[dateformat=dd-MM-yyyy]  ; openingSchedule(code) ; basestore(uid)[default=$storeUidUS] ; features(code) 
+                             ; USKC           ; WAREHOUSE      ; addr1            ; 35,6673  ; 139,75429 ; 29-04-2025                               ; $standardHours        
+                             ; CAN1           ; WAREHOUSE      ; addr2            ; 35,6923  ; 139,8201  ; 29-04-2025                               ; $standardHours        ; $storeUidCA                         
+                             
+INSERT_UPDATE Address ; &addrID ; streetname        ; streetnumber ; postalcode[unique=true] ; town[unique=true] ; country(isocode) ; region(isocode) ; phone1        ; owner(PointOfService.name)[unique=true] 
+                      ; addr1   ; Waseda Dori       ; 13           ;                         ; Tokio             ; US               ;                 ; +81 1988 3600 ; USKC                                 
+                      ; addr2   ; Hibiya Dori       ; 20           ;                         ; Tokio             ; US               ;                 ; +81 4649 8891 ; CAN1                                                 
+
+INSERT_UPDATE PoS2WarehouseRel ; source(name)[unique=true] ; target(code)[unique=true] 
+                               ; CAN1                      ; CAN1                      
+                               ; USKC                      ; USKC                      
+$storeUidUS=amB2CUS
+$storeUidCA=amB2CCA
+
+REMOVE PointOfService;name[unique=true];
+;am_warehouse_s
+;am_warehouse_e
+;am_warehouse_w
+;am_warehouse_n
+
+INSERT_UPDATE BaseStore2WarehouseRel ; source(uid)[unique=true] ; target(code)[unique=true] 
+                                     ; $storeUidUS              ; USKC                  
+                                     ; $storeUidCA              ; CAN1
+                                     ;$storeUidNZ                ;ELEC 
+									;$storeUidAU				;ELEC
+									;$storeUidAU				;AUME
+
+INSERT_UPDATE BaseStore2WarehouseRel;source(uid)[unique=true];target(code)[unique=true]
+									 
+                                     
+INSERT_UPDATE PointOfService ; name[unique=true] ; displayName           ; warehouses(code) ; address(&addrID) ; latitude   ; longitude   ; geocodeTimestamp[dateformat=dd.MM.yyyy] ; type(code)[default=WAREHOUSE] 
+                             ; CAN1              ; AM CA Warehouse Store ; CAN1             ; CAN1             ; 33,5933317 ; 130,3515247 ; 11.12.2025                              
+                             ; USKC              ; AM US Warehouse Store ; USKC             ; USKC             ; 35,7116188 ; 139,7082147 ; 11.12.2025                              
+                             
+INSERT_UPDATE Address ; &addrID ; streetnumber[unique=true] ; streetname  ; town    ; country(isocode) ; postalcode[unique=true] ; phone1          ; owner(PointOfService.name)[unique=true] 
+                      ; CAN1    ; 2-3-26 Momochihama        ; Sawara Ward ; Fukuoka ; JP               ; 814-0001                ; +81 92-823-0236 ; CAN1                                    
+                      ; USKC    ; 1-5-16 Takadanobaba       ;             ; Tokio   ; JP               ; 169-0075                ; +813 3201 8968  ; USKC                                    
+                      
+INSERT_UPDATE BaseStore ; uid[unique=true] ; defaultDeliveryOrigin(name) 
+                        ; $storeUidUS      ; USKC                        
+                        ; $storeUidCA      ; CAN1
+                        
+REMOVE PointOfService;name[unique=true]
+;Hybris SecurityB2B Tulsa1
+;Hybris SecurityB2B Tulsa2
+;Hybris SecurityB2B Tulsa3
+;Hybris SecurityB2B Tulsa4
+;Hybris SecurityB2B Tulsa5
+
+INSERT_UPDATE PointOfService ; name[unique=true] ;  basestore(uid) 
+                             ; ELEC           ; $storeUidNZ
+							 ; AUME           ; $storeUidAU
+						 
+#####################################################################		
+
+
+#############UserDropDown Starts#####################################
+
+
+$contentCatalog=amB2CContentCatalog
+$contentCatalogName=Animal Management B2C Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=amB2CMasterProductCatalog
+$productCatalogName=Animal Management B2C US Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$siteResource=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$medias=medias(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$jarResourceCms=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/cockpits/cmscockpit
+$media=media(code, $contentCV);
+$productResource=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/productCatalogs/$productCatalog
+$picture=media(code, $contentCV);
+$keycloakBaseURL=$config-keycloak.base.url
+$keycloakAuthURL=$config-keycloak.auth.url/$config-keycloak.realm
+$keycloakPasswordURL=$config-keycloak.password.url
+$websiteBaseURL=$config-website.base.url.https
+
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;RegisterAProductLink;Register a product Link;/register-product;;;;
+;;MyRegisteredProductLink;My registered Product Link;/register-product/products;;;;
+;;EditProfileLink;Edit Profile Link;/my-account/update-profile;;;;
+;;OrderHistoryLink;OrderHistoryLink;/my-account/orders;;
+;;PreferencesLink;Preferences Link;/my-account/consents;;;;
+;;LogoutLink;Logout Us Link;/logout;;;;
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];$category;$product;
+;;UpdatePasswordLink;UpdatePasswordLink;/my-account/update-password;UpdatePasswordLink;
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);children(uid,$contentCV)[mode=replace];links(uid, $contentCV);&nodeRef;title[lang=en]
+;RegisterAProductNavNode;; Register a Product Navigation Node Menu;UserDropDownNavigationNode;;;RegisterAProductNavNode;"Register a Product"     
+;MyRegisteredProductNavNode;;My Registered Product Navigation Node Menu;;;;MyRegisteredProductNavNode;"My Registered Product"
+
+;EditProfileNavNode;;Edit Profile Navigation Node Menu;UserDropDownNavigationNode;;;EditProfileNavNode;"Edit profile"
+;UpdatePasswordNavNode;;Update Password Navigation Node Menu;UserDropDownNavigationNode;;;UpdatePasswordNavNode;"Update password"
+;OrderHistoryNavNode;;Order History Navigation Node;UserDropDownNavigationNode;;;OrderHistoryNavNode;"Order History"
+;PreferencesNavNode;;Prefernce Navigation Node;UserDropDownNavigationNode;;;PreferencesNavNode;"Preferences"
+;LogoutNavNode;;Logout Us Navigation Node Menu;UserDropDownNavigationNode;;;LogoutNavNode;"Logout Us"
+
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;RegisterAProductNavNodeEntry;;Register a Product Navigation Node Entry;RegisterAProductNavNode;RegisterAProductLink;
+;MyRegisteredProductNavNodeEntry;;My Registered Product Navigation Node Entry;MyRegisteredProductNavNode;MyRegisteredProductLink
+
+;EditProfileNavNodeEntry;;Edit Profile Navigation Node Entry;EditProfileNavNode;EditProfileLink
+;UpdatePasswordNavNodeEntry;;Update Password Navigation Node Entry;UpdatePasswordNavNode;UpdatePasswordLink
+;OrderHistoryNavNodeEntry;;Order History Navigation Node Entry;OrderHistoryNavNode;OrderHistoryLink
+;PreferencesNavNodeEntry;;Preferences Navigation Node Entry;PreferencesNavNode;PreferencesLink
+;LogoutNavNodeEntry;;Logout Navigation Node Entry;LogoutNavNode;LogoutLink
+
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;EditProfileLink;Edit Profile
+;;PreferencesLink;Preferences
+;;UpdatePasswordLink;Update Password
+;;OrderHistoryLink;Order History
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef;children(uid, $contentCV)[mode=replace]
+;UserDropDownNavigationNode;;Header Link Navigation Node; root;; UserDropDownNavigationNode; RegisterAProductNavNode,MyRegisteredProductNavNode,EditProfileNavNode,UpdatePasswordNavNode,OrderHistoryNavNode,PreferencesNavNode,LogoutNavNode
+
+INSERT_UPDATE NavigationComponent;$contentCV[unique=true];uid[unique=true];name;styleClass;&componentRef;navigationNode(&nodeRef)
+;;UserDropDownNavigationComponent;User drop down Navigation component;;UserDropDownNavigationComponent;UserDropDownNavigationNode
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV)
+;;UserDropDownSlot;UserDropDownNavigationComponent
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;UserDropDown;;NavigationComponent;narrow
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-ProductDetails;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage2Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-LandingPage2;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductListPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-ProductListPage;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsGridPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-SearchResultsGridPage;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductGridPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-ProductGridPage;UserDropDown;;UserDropDownSlot;true
+
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='RegisterProductPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-RegisterProductPage;UserDropDown;;UserDropDownSlot;true
+
+
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CartPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-CartPage;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='RegisteredProductsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-RegisteredProductPage;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CheckoutLoginPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-CheckoutLoginPage;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LoginPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-LoginPage;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='MultiStepCheckoutSummaryPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-MultiStepCheckoutSummaryPage;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='OrderConfirmationPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-OrderConfirmationPage;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='StoreFinderPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-StoreFinderPage;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ErrorPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-ErrorPage;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='AccountPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-AccountPage;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsEmptyPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-SearchResultsEmptyPage;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsListPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-SearchResultsListPage;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CategoryPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-CategoryPage;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage1Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-LandingPage1;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage3Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-LandingPage3;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage4Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-LandingPage4;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage5Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-LandingPage5;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage6Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-LandingPage6;UserDropDown;;UserDropDownSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ContentPage1Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;UserDropDown-ContentPage1;UserDropDown;;UserDropDownSlot;true
+
+##############UserDropDown Ends################################
+
+#################Payment details page#################
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;PaymentDetailLink;Payment Detail Link;/my-account/payment-details;;;;
+;;AddressBookLink;Address Book Link;/my-account/address-book;;;;
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;PaymentDetailLink;Payment Details
+;;AddressBookLink;Manage Addresses
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;PaymentDetailNavNodeEntry;;Payment Detail Navigation Node Entry;PaymentDetailNavNode;PaymentDetailLink
+;AddressBookNavNodeEntry;;Address Book Navigation Node Entry;AddressBookNavNode;AddressBookLink
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);children(uid,$contentCV)[mode=replace];links(uid, $contentCV);&nodeRef;title[lang=en]
+;PaymentDetailNavNode;;Payment Detail Navigation Node Menu;UserDropDownNavigationNode;;;PaymentDetailNavNode;"Payment Details"
+;AddressBookNavNode;;Address Book Navigation Node Menu;UserDropDownNavigationNode;;;AddressBookNavNode;"Manage Addresses"
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef;children(uid, $contentCV)[mode=replace]
+;UserDropDownNavigationNode;;Header Link Navigation Node; root;; UserDropDownNavigationNode; RegisterAProductNavNode,MyRegisteredProductNavNode,EditProfileNavNode,PaymentDetailNavNode,UpdatePasswordNavNode,OrderHistoryNavNode,AddressBookNavNode,PreferencesNavNode,LogoutNavNode
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV)	   ;onlyOneRestrictionMustApply
+							  			;			  ;OrderHistoryLink;GallagherSiteTransactionRestriction;false
+							  			; 			  ;PaymentDetailLink;GallagherSiteTransactionRestriction;false
+######################################################
+
+
+###################Support Navigation Starts###################
+
+
+$contentCatalog=amB2CContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online ])[default=$contentCatalog:Online ]
+$productCatalog=amB2CMasterProductCatalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Online '])[unique=true,default=$productCatalog:Online ]
+
+
+
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;SupportNavNodeEntry;;Support Navigation Node Entry;SupportNavNode;SupportLink
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);children(uid,$contentCV)[mode=replace];links(uid, $contentCV);&nodeRef;title[lang=en]
+;SupportNavNode;;Support Navigation Node Menu;HeaderLinkNavigationNode;CallUsSupport_Nav,SupportMaterial_Nav,TechnicalSupport_Nav,SoftwareDownloads_Nav;;SupportNavNode;"Support"
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef;children(uid, $contentCV)[mode=replace]
+;HeaderLinkNavigationNode;;Header Link Navigation Node; root;; HeaderLinkNavigationNode; SolutionsNavNode,ProductsNavNode,SupportNavNode,ContactNavNode
+
+
+
+
+
+
+
+
+
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];name;$contentCV[unique=true];children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
+;CallUsSupport_Nav;Call Us support Nav;;;"Our customer services team are hete to help.";CallUsSupport_Nav
+;SupportMaterial_Nav;Support Material Nav;;;"Search through our user manuals, guides and how-tos, brochures and videos.";SupportMaterial_Nav
+;TechnicalSupport_Nav;Technical Support Nav;;;"We provide technical help and support for Gallagher Weighing and EID hardware and software products";TechnicalSupport_Nav
+;SoftwareDownloads_Nav;Software Downloads Nav;;;"Download the latest software for your Weighing and EID products";SoftwareDownloads_Nav
+
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];linkName[lang=en];
+;;CallUsSupportLink;Call Us Link;https://www.google.com/;;;"<div class=""call-us-title"">Call us</div><div class=""call-us-contact-number"">0800 731 500</div>"
+;;NZENSupportMaterialLink;NZ Support Material Link;https://am.gallagher.com/nz/support/browse-resources;;;"Support Material"
+;;NZENTechnicalSupportLink;NZ Technical Support Link;https://am.gallagher.com/nz/contact-us/product-software-support;;;"Technical Support"
+;;NZENSoftwareDownloadsLink;NZ Software Downloads Link;https://am.gallagher.com/nz/support/software-downloads;;;"Software Downloads"
+;;CAENSupportMaterialLink;CA EN Support Material Link;https://am.gallagher.com/en-ca/support/browse-resources;;;"Support Material"
+;;CAENTechnicalSupportLink;CA EN Technical Support Link;https://am.gallagher.com/en-ca/contact-us/service-repair;;;"Technical Support"
+;;CAENSoftwareDownloadsLink;CA EN Software Downloads Link;https://am.gallagher.com/en-ca/support/software-downloads;;;"Software Downloads"
+;;CAFRSupportMaterialLink;CA FR Support Material Link;http://www.google.com/;;;"Support Material"
+;;CAFRTechnicalSupportLink;CA FR Technical Support Link;http://www.google.com/;;;"Technical Support"
+;;CAFRSoftwareDownloadsLink;CA FR Software Downloads Link;http://www.google.com/;;;"Software Downloads"
+;;AUENSupportMaterialLink;AU Support Material Link;https://am.gallagher.com/au/support/browse-resources;;;"Support Material"
+;;AUENTechnicalSupportLink;AU Technical Support Link;https://am.gallagher.com/au/about-us/our-people/customer-support-team;;;"Technical Support"
+;;AUENSoftwareDownloadsLink;AU Software Downloads Link;https://am.gallagher.com/au/support/software-downloads;;;"Software Downloads"
+;;USENSupportMaterialLink;US Support Material Link; https://am.gallagher.com/us/support/browse-resources;;;"Support Material"
+;;USENTechnicalSupportLink;US Technical Support Link;https://am.gallagher.com/us/contact-us/service-repair;;;"Technical Support"
+;;USENSoftwareDownloadsLink;US Software Downloads Link;https://am.gallagher.com/us/support/software-downloads;;;"Software Downloads"
+;;LATAMENSupportMaterialLink;LATAM Support Material Link;https://am.gallagher.com/es/soporte/buscar-recursos-de-productos?pcategory=all&resource=all&rsubcategory=all&page=0;;;"Support Material"
+;;LATAMENTechnicalSupportLink;LATAM Technical Support Link;http://www.google.com/;;;"Technical Support"
+;;LATAMENSoftwareDownloadsLink;LATAM Software Downloads Link;https://am.gallagher.com/es/soporte/descarga-de-software;;;"Software Downloads"
+;;GLOBALENSupportMaterialLink;Global Support Material Link;https://am.gallagher.com/global/support/browse-resources;;;"Support Material"
+;;GLOBALENTechnicalSupportLink;Global Technical Support Link;http://www.google.com/;;;"Technical Support"
+;;GLOBALENSoftwareDownloadsLink;Global Software Downloads Link;https://am.gallagher.com/global/support/software-downloads;;;"Software Downloads"
+
+
+
+
+
+
+
+
+
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];name;$contentCV[unique=true];navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
+;CallUsSupport_NavEntry;Call Us support Nav Entry;;CallUsSupport_Nav;CallUsSupportLink
+;NZSupportMaterial_NavEntry;NZ Support Material Nav Entry;;SupportMaterial_Nav;NZENSupportMaterialLink
+;NZTechnicalSupport_NavEntry;NZ Technical Support Nav Entry;;TechnicalSupport_Nav;NZENTechnicalSupportLink
+;NZSoftwareDownloads_NavEntry;NZ Software Downloads Nav Entry;;SoftwareDownloads_Nav;NZENSoftwareDownloadsLink
+;CAENSupportMaterial_NavEntry;CA EN Support Material Nav Entry;;SupportMaterial_Nav;CAENSupportMaterialLink
+;CAENTechnicalSupport_NavEntry;CA EN Technical Support Nav Entry;;TechnicalSupport_Nav;CAENTechnicalSupportLink
+;CAENSoftwareDownloads_NavEntry;CA EN Software Downloads Nav Entry;;SoftwareDownloads_Nav;CAENSoftwareDownloadsLink
+;CAFRSupportMaterial_NavEntry;CA FR Support Material Nav Entry;;SupportMaterial_Nav;CAFRSupportMaterialLink
+;CAFRTechnicalSupport_NavEntry;CA FR Technical Support Nav Entry;;TechnicalSupport_Nav;CAFRTechnicalSupportLink
+;CAFRSoftwareDownloads_NavEntry;CA FR Software Downloads Nav Entry;;SoftwareDownloads_Nav;CAFRSoftwareDownloadsLink
+;AUSupportMaterial_NavEntry;AU Support Material Nav Entry;;SupportMaterial_Nav;AUENSupportMaterialLink
+;AUTechnicalSupport_NavEntry;AU Technical Support Nav Entry;;TechnicalSupport_Nav;AUENTechnicalSupportLink
+;AUSoftwareDownloads_NavEntry;AU Software Downloads Nav Entry;;SoftwareDownloads_Nav;AUENSoftwareDownloadsLink
+;USSupportMaterial_NavEntry;US Support Material Nav Entry;;SupportMaterial_Nav;USENSupportMaterialLink
+;USTechnicalSupport_NavEntry;US Technical Support Nav Entry;;TechnicalSupport_Nav;USENTechnicalSupportLink
+;USSoftwareDownloads_NavEntry;US Software Downloads Nav Entry;;SoftwareDownloads_Nav;USENSoftwareDownloadsLink
+;LATAMSupportMaterial_NavEntry;LATAM Support Material Nav Entry;;SupportMaterial_Nav;LATAMENSupportMaterialLink
+;LATAMTechnicalSupport_NavEntry;LATAM Technical Support Nav Entry;;TechnicalSupport_Nav;LATAMENTechnicalSupportLink
+;LATAMSoftwareDownloads_NavEntry;LATAM Software Downloads Nav Entry;;SoftwareDownloads_Nav;LATAMENSoftwareDownloadsLink
+;GlobalSupportMaterial_NavEntry;Global Support Material Nav Entry;;SupportMaterial_Nav;GLOBALENSupportMaterialLink
+;GlobalTechnicalSupport_NavEntry;Global Technical Support Nav Entry;;TechnicalSupport_Nav;GLOBALENTechnicalSupportLink
+;GlobalSoftwareDownloads_NavEntry;Global Software Downloads Nav Entry;;SoftwareDownloads_Nav;GLOBALENSoftwareDownloadsLink
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##########################################################
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;SupportLink;"Support"
+
+
+INSERT_UPDATE GallagherNavigationComponent;$contentCV[unique=true];uid[unique=true];name;styleClass;&componentRef;navigationNode(&nodeRef);promotionBanner(uid, $contentCV)
+;;GallagherHeaderNavigationComponent;Gallagher Header Navigation component;;GallagherHeaderNavigationComponent;HeaderLinkNavigationNode;GallagherBannerPromo
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV)
+;;ggB2CNavBarSlot;GallagherHeaderNavigationComponent
+
+
+
+##################Support Navigation Ends####################
+
+
+
+
+
+
+
+########################FindUs Navigation Starts#################
+
+$contentCatalog=amB2CContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online ])[default=$contentCatalog:Online ]
+$productCatalog=amB2CMasterProductCatalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Online '])[unique=true,default=$productCatalog:Online ]
+
+
+
+
+
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;ContactNavNodeEntry;;Contact Navigation Node Entry;ContactNavNode;ContactLink
+
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);children(uid,$contentCV)[mode=replace];links(uid, $contentCV);&nodeRef;title[lang=en]
+;ContactNavNode;;Contact Us Navigation Node Menu;HeaderLinkNavigationNode;CallUs_Nav,FindStore_Nav,FindManager_Nav,SendMessage_Nav;;ContactNavNode;"Contact Us"
+
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef;children(uid, $contentCV)[mode=replace]
+;HeaderLinkNavigationNode;;Header Link Navigation Node; root;; HeaderLinkNavigationNode; SolutionsNavNode,ProductsNavNode,SupportNavNode,ContactNavNode
+
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];name;$contentCV[unique=true];children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
+;CallUs_Nav;Call Us Nav;;;"Our customer services team are hete to help.";CallUs_Nav
+;FindStore_Nav;Find Store Nav;;;"Our dealers are located nationwide.";FindStore_Nav
+;FindManager_Nav;Find Manager Monitoring Nav;;;"If you are looking for one-on-one system selection advice and training.";FindManager_Nav
+;SendMessage_Nav;Send Message Nav;;;"Have an enquiry or feedback? Contact us and we will get back to you";SendMessage_Nav
+
+
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];linkName[lang=en]
+;;CallUsLink;Call Us Link;https://www.google.com/;;;"<div class=""call-us-title"">Call us</div><div class=""call-us-contact-number"">0800 731 500</div>"
+;;NZENFindStoreLink;NZ EN Find Store Link;https://am.gallagher.com/nz/find-a-stockist;;;"Find your nearest store"
+;;NZENFindManagerLink;NZ EN Find Manager Link;https://am.gallagher.com/nz/about-us/our-people/territory-managers;;;"Find your territory manager"
+;;NZENSendMessageLink;NZ EN Send Message Link;https://am.gallagher.com/nz/contact-us;;;"Send us a message"
+;;AUENFindStoreLink;AU EN Find Store Link;https://am.gallagher.com/au/find-a-stockist;;;"Find your nearest store"
+;;AUENFindManagerLink;AU EN Find Manager Link;https://am.gallagher.com/au/about-us/our-people/territory-managers;;;"Find your territory manager"
+;;AUENSendMessageLink;AU EN Send Message Link; https://am.gallagher.com/au/contact-us;;;"Send us a message"
+;;USENFindStoreLink;US EN Find Store Link; https://am.gallagher.com/us/find-a-dealer;;;"Find your nearest store"
+;;USENFindManagerLink;US EN Find Manager Link;https://www.google.com/;;;"Find your territory manager"
+;;USENSendMessageLink;US EN Send Message Link;https://am.gallagher.com/us/contact-us;;;"Send us a message"
+;;CAENFindStoreLink;CA EN Find Store Link;https://am.gallagher.com/en-ca/find-a-dealer;;;"Find your nearest store"
+;;CAENFindManagerLink;CA EN Find Manager Link;https://www.google.com/;;;"Find your territory manager"
+;;CAENSendMessageLink;CA EN Send Message Link;https://am.gallagher.com/en-ca/contact-us;;;"Send us a message"
+;;CAFRFindStoreLink;CA FR Find Store Link;https://am.gallagher.com/fr-ca/trouver-un-fournisseur;;;"Find your nearest store"
+;;CAFRFindManagerLink;CA FR Find Manager Link;https://www.google.com/;;;"Find your territory manager"
+;;CAFRSendMessageLink;CA FR Send Message Link;https://am.gallagher.com/fr-ca/contactez-nous;;;"Send us a message"
+;;LATAMENFindStoreLink;LATAM EN Find Store Link;https://www.google.com/;;;"Find your nearest store"
+;;LATAMENFindManagerLink;LATAM EN Find Manager Link;https://www.google.com/;;;"Find your territory manager"
+;;LATAMENSendMessageLink;LATAM EN Send Message Link;https://am.gallagher.com/es/contactenos/;;;"Send us a message"
+;;GLOBALENFindStoreLink;GLOBAL EN Find Store Link;https://am.gallagher.com/global/find-a-distributor;;;"Find your nearest store"
+;;GLOBALENFindManagerLink;GLOBAL EN Find Manager Link;https://www.google.com/;;;"Find your territory manager"
+;;GLOBALENSendMessageLink;GLOBAL EN Send Message Link;https://www.google.com/;;;"Send us a message"
+
+
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];name;$contentCV[unique=true];navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
+;CallUs_NavEntry;Call Us Nav Entry;;CallUs_Nav;CallUsLink
+;NZENFindStore_NavEntry;NZ EN Find Store Nav Entry;;FindStore_Nav;NZENFindStoreLink
+;NZENFindManager_NavEntry;NZ EN Find Manager Nav Entry;;FindManager_Nav;NZENFindManagerLink
+;NZENSendMessage_NavEntry;NZ EN Send Message Nav Entry;;SendMessage_Nav;NZENSendMessageLink
+;AUENFindStore_NavEntry;AU EN Find Store Nav Entry;;FindStore_Nav;AUENFindStoreLink
+;AUENFindManager_NavEntry;AU EN Find Manager Nav Entry;;FindManager_Nav;AUENFindManagerLink
+;AUENSendMessage_NavEntry;AU EN Send Message Nav Entry;;SendMessage_Nav;AUENSendMessageLink
+;USENFindStore_NavEntry;US EN Find Store Nav Entry;;FindStore_Nav;USENFindStoreLink
+;USENFindManager_NavEntry;US EN Find Manager Nav Entry;;FindManager_Nav;USENFindManagerLink
+;USENSendMessage_NavEntry;US EN Send Message Nav Entry;;SendMessage_Nav;USENSendMessageLink
+;CAENFindStore_NavEntry;CA EN Find Store Nav Entry;;FindStore_Nav;CAENFindStoreLink
+;CAENFindManager_NavEntry;CA EN Find Manager Nav Entry;;FindManager_Nav;CAENFindManagerLink
+;CAENSendMessage_NavEntry;CA EN Send Message Nav Entry;;SendMessage_Nav;CAENSendMessageLink
+;CAFRFindStore_NavEntry;CA FR Find Store Nav Entry;;FindStore_Nav;CAFRFindStoreLink
+;CAFRFindManager_NavEntry;CA FR Find Manager Nav Entry;;FindManager_Nav;CAFRFindManagerLink
+;CAFRSendMessage_NavEntry;CA FR Send Message Nav Entry;;SendMessage_Nav;CAFRSendMessageLink
+;LATAMENFindStore_NavEntry;LATAM EN Find Store Nav Entry;;FindStore_Nav;LATAMENFindStoreLink
+;LATAMENFindManager_NavEntry;LATAM EN Find Manager Nav Entry;;FindManager_Nav;LATAMENFindManagerLink
+;LATAMENSendMessage_NavEntry;LATAM EN Send Message Nav Entry;;SendMessage_Nav;LATAMENSendMessageLink
+;GLOBALENFindStore_NavEntry;GLOBAL EN Find Store Nav Entry;;FindStore_Nav;GLOBALENFindStoreLink
+;GLOBALENFindManager_NavEntry;GLOBAL EN Find Manager Nav Entry;;FindManager_Nav;GLOBALENFindManagerLink
+;GLOBALENSendMessage_NavEntry;GLOBAL EN Send Message Nav Entry;;SendMessage_Nav;GLOBALENSendMessageLink
+
+
+
+
+
+
+
+
+
+
+
+INSERT_UPDATE GallagherNavigationComponent;$contentCV[unique=true];uid[unique=true];name;styleClass;&componentRef;navigationNode(&nodeRef);promotionBanner(uid, $contentCV)
+;;GallagherHeaderNavigationComponent;Gallagher Header Navigation component;;GallagherHeaderNavigationComponent;HeaderLinkNavigationNode;GallagherBannerPromo
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV)
+;;ggB2CNavBarSlot;GallagherHeaderNavigationComponent
+
+
+
+#####################FindUS Navigation Ends####################
+
+
+
+##################### category filter checkboxes for amb2cnz ##############
+$solrIndexedType=amB2CNZProductType
+INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] ; facet[default=true] ; facetType(code) ; includeInResponse[default=true] ; facetDisplayNameProvider         ; facetSortProvider        ; facetTopValuesProvider 
+                                      ; categoryPath:$solrIndexedType                                   ;                                                                                                   ;                     ; MultiSelectOr   ;                                 ;                                  ;                          
+                                      ; category:$solrIndexedType                                       ;                                                                                                   ;                     ; MultiSelectOr   ;                                 ; categoryFacetDisplayNameProvider ; defaultTopValuesProvider 
+                                      
+###################################################
+
+
+##################Outdoor Suitable facetType changed to MultiSelectOr###############
+$classSystemVersion=systemVersion(catalog(id[default='AMB2CClassification']),version[default='1.0'])
+$classCatalogVersion=catalogVersion(catalog(id[default='AMB2CClassification']),version[default='1.0'])
+$classAttribute=classificationAttribute(code,$classSystemVersion)
+$classClass=classificationClass(code,$classCatalogVersion)
+$classAttributeAssignment=classAttributeAssignment($classClass,$classAttribute,$classSystemVersion)
+$contentCatalogName=amB2CContentCatalog
+$solrIndexedType=amB2CUSProductType
+$contentCatalogVersion=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalogName]),CatalogVersion.version[default=Staged])[default=$contentCatalogName:Staged]
+
+
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=false] ; facetType(code) ; facetSort(code) ; priority ; visible ; fieldValueProvider                          ; customFacetSortProvider      ; rangeSets(name)   ; $classAttributeAssignment          
+                                  ; $solrIndexedType                         ; Outdoor Suitable  ; boolean    ;                    ;                         ;                          ;                           ;                      ; MultiSelectOr   ; Alpha           ; 1000     ; true    ; commerceClassificationPropertyValueProvider ;                              ;                   ; energisers:::outdoor-suitable::::  
+
+INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetDisplayNameProvider ; facetSortProvider            ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType]
+                                      ; Outdoor Suitable :$solrIndexedType                              ;                     ; MultiSelectOr   ; 1000     ;                          ;                              ;                        ;                                 ;                                                                                                  
+
+
+##################################################
+
+###############Register account button issue impex(GallagherButtonComponent)#########################
+
+$contentCatalog=amB2CContentCatalog
+$contentCatalogName=Animal Management B2C Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=amB2CMasterProductCatalog
+$productCatalogName=Animal Management B2C US Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$siteResource=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$medias=medias(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$jarResourceCms=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/cockpits/cmscockpit
+$media=media(code, $contentCV);
+$productResource=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/productCatalogs/$productCatalog
+$picture=media(code, $contentCV);
+$keycloakBaseURL=$config-keycloak.base.url
+$keycloakAuthURL=$config-keycloak.auth.url/$config-keycloak.realm
+$keycloakPasswordURL=$config-keycloak.password.url
+$websiteBaseURL=$config-website.base.url.https
+$lang=en
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;RegisterAProductPDPLink;Register a product Link;/register-product;;;;
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
+;;RegisterAProductPDPLink;"Register account"
+
+INSERT_UPDATE GallagherRegisterButtonComponent;$contentCV[unique=true];uid[unique=true];buttonHeading;button(uid,$contentCV)
+;;ProductRegisterBtn;Get two year warranty, register your product online;RegisterAProductPDPLink
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid, $contentCV)
+;;RegisterProductSlot;ProductRegisterBtn
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;GallagherButtonPLPLink;Register a product Link;https://www.google.co.in/;;;;
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
+;;GallagherButtonPLPLink;"Use our energizer selector"
+
+INSERT_UPDATE GallagherButtonComponent;$contentCV[unique=true];uid[unique=true];buttonHeading;button(uid,$contentCV)
+;;Rightbutton;Need some help figuring out the right energizer for your needs?;GallagherButtonPLPLink
+
+INSERT_UPDATE GallagherAccordionListComponent;$contentCV[unique=true];uid[unique=true];accordionHeading;accordions(uid, $contentCV);buttonInfo(uid, $contentCV)
+;;Accordions;What you need to consider;Accordion1,Accordion2,Accordion3;Rightbutton
+
+#######################################################################################################
+
+### Sovos and Product Registration
+
+
+########################### B2B Header Nodes start ##########################################
+
+$contentCatalog=securityB2BContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+#CMSLinkComponents
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkname;name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];
+;;B2BSolutionsNavLink;SOLUTIONS;B2B Solutions Navigation Link;"#";B2BSolutionsNavLink;B2BSolutionsNavLink;;;
+;;B2BIndustriesNavLink;INDUSTRIES;B2B Industries Navigation Link;"#";B2BIndustriesNavLink;B2BIndustriesNavLink;;;
+;;B2BProductsNavLink;PRODUCTS;B2B Products Navigation Link;"#";B2BProductsNavLink;B2BProductsNavLink;;;
+;;B2BCaseStudiesNavLink;CASE STUDIES;B2B Case Studies Navigation Link;"#";B2BCaseStudiesNavLink;B2BCaseStudiesNavLink;;;
+;;B2BMeetTeamNavLink;MEET THE TEAM ;B2B Meet The Team Navigation Link;"#";B2BMeetTeamNavLink;B2BMeetTeamNavLink;;;
+
+
+#CMS Navigation Node
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef;children(uid, $contentCV)
+;B2BHeaderLinkNavNode;;B2B Header Link Navigation Node; root;; B2BHeaderLinkNavNode; B2BSolutionsNavNode,B2BIndustriesNavNode,B2BProductsNavNode,B2BCaseStudiesNavNode,B2BMeeTeamNavNode
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
+;B2BSolutionsNavNode;;B2B Solutions Navigation Node;B2BHeaderLinkNavNode;;B2BSolutionsNavNode;
+;B2BIndustriesNavNode;;B2B Inddustries Navigation Node;B2BHeaderLinkNavNode;;B2BIndustriesNavNode;
+;B2BProductsNavNode;;B2B Products Navigation Node;B2BHeaderLinkNavNode;;B2BProductsNavNode;
+;B2BCaseStudiesNavNode;;B2B Case Studies Navigation Node;B2BHeaderLinkNavNode;;B2BCaseStudiesNavNode;
+;B2BMeeTeamNavNode;;B2B Meet The Team Navigation Node;B2BHeaderLinkNavNode;;B2BMeeTeamNavNode;
+
+#CMS Navigation Entry
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;B2BSolutionsNavNodeEntry;;B2B Solutions Navigation Node Entry;B2BSolutionsNavNode;B2BSolutionsNavLink;
+;B2BIndustriesNavNodeEntry;;B2B Industries Navigation Node Entry;B2BIndustriesNavNode;B2BIndustriesNavLink;
+;B2BProductsNavNodeEntry;;B2B Products Navigation Node Entry;B2BProductsNavNode;B2BProductsNavLink
+;B2BCaseStudiesNavNodeEntry;;B2B Support Navigation Node Entry;B2BCaseStudiesNavNode;B2BCaseStudiesNavLink
+;B2BMeeTeamNavNodeEntry;;B2B Meet The Team Navigation Node Entry;B2BMeeTeamNavNode;B2BMeetTeamNavLink
+
+
+INSERT_UPDATE NavigationComponent;$contentCV[unique=true];uid[unique=true];name;styleClass;&componentRef;navigationNode(&nodeRef)
+;;B2BHeaderNavComponent;B2B Header Navigation Component;accNavComponent;B2BHeaderNavComponent;B2BHeaderLinkNavNode
+
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='LandingPage2Template'];validComponentTypes(code);compTypeGroup(code)
+;ggB2BNavBar;;;navigation
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active
+;;ggB2BNavBarSlot;GG B2B Navigation Bar Slot ;true
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV)
+;;ggB2BNavBarSlot;B2BHeaderNavComponent
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage2Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-LandingPage2;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-ProductDetails;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductListPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-ProductListPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsGridPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-SearchResultsGridPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductGridPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-ProductGridPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CheckoutLoginPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-CheckoutLoginPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='MultiStepCheckoutSummaryPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-MultiStepCheckoutSummaryPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CartPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-CartPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='AccountPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-AccountPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LoginPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-LoginPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='OrderConfirmationPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-OrderConfirmationPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='StoreFinderPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-StoreFinderPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ErrorPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-ErrorPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsEmptyPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-SearchResultsEmptyPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsListPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-SearchResultsListPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CategoryPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-CategoryPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage1Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-LandingPage1;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage3Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-LandingPage3;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage4Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-LandingPage4;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage5Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-LandingPage5;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage6Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-LandingPage6;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ContentPage1Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-ContentPage1;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchAdvancedResultsEmptyPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-SearchAdvancedResultsEmptyPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='QuoteEditPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-QuoteEditPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductComparisonPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-ProductComparisonPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='BulkOrderFormPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-BulkOrderFormPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='QuickOrderPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BNavBar-QuickOrderPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
+####### login component #####
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkname;name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];
+;;B2BLoginNavLinkComponent;LOGIN;B2B Login Navigation Link;/login;B2BLoginNavLink;B2BLoginNavLink;;;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='LandingPage2Template'];validComponentTypes(code);compTypeGroup(code)
+;ggB2BLogin;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV);name;active
+;;ggB2BLoginSlot;B2BLoginNavLinkComponent;GG B2B Login Slot ;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage2Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-LandingPage2;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-ProductDetails;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductListPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-ProductListPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsGridPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-SearchResultsGridPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductGridPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-ProductGridPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CheckoutLoginPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-CheckoutLoginPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='MultiStepCheckoutSummaryPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-MultiStepCheckoutSummaryPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CartPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-CartPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='AccountPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-AccountPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LoginPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-LoginPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='OrderConfirmationPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-OrderConfirmationPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='StoreFinderPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-StoreFinderPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ErrorPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-ErrorPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsEmptyPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-SearchResultsEmptyPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsListPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-SearchResultsListPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CategoryPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-CategoryPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage1Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-LandingPage1;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage3Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-LandingPage3;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage4Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-LandingPage4;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage5Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-LandingPage5;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage6Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-LandingPage6;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ContentPage1Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-ContentPage1;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchAdvancedResultsEmptyPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-SearchAdvancedResultsEmptyPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='QuoteEditPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-QuoteEditPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductComparisonPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-ProductComparisonPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='BulkOrderFormPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-BulkOrderFormPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='QuickOrderPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogin-QuickOrderPage;ggB2BLogin;;ggB2BLoginSlot;true
+
+UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkname[lang=$lang]
+;;B2BSolutionsNavLink;"SOLUTIONS"
+;;B2BIndustriesNavLink;"INDUSTRIES"
+;;B2BProductsNavLink;"PRODUCTS"
+;;B2BCaseStudiesNavLink;"CASE STUDIES"
+;;B2BMeetTeamNavLink;"MEET THE TEAM"
+;;B2BLoginNavLinkComponent;"LOGIN"
+
+
+############################### B2B Header nodes end ####################################
+
+
+				  
+############################### B2B MiniCartSlot update #########################
+$contentCatalog=securityB2BContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(&componentRef)
+;;MiniCartSlot;MiniCart
+
+INSERT_UPDATE MiniCartComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;totalDisplay(code);shownProductCount;lightboxBannerComponent(&componentRef);restrictions(uid,$contentCV)
+;;MiniCart;Mini Cart;MiniCart;SUBTOTAL;3;LightboxHomeDeliveryBannerComponent;GallagherSiteTransactionRestriction
+
+INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink
+;;LightboxHomeDeliveryBannerComponent;Lightbox Home Delivery Banner Component;LightboxHomeDeliveryBannerComponent;
+
+				  
+############################### B2B MiniCartSlot update ends #########################
+
+
+############################### B2B Header user dropdown starts ############################
+
+INSERT_UPDATE NavigationComponent;$contentCV[unique=true];uid[unique=true];name;styleClass;&componentRef;navigationNode(&nodeRef)
+;;B2BMyAccountComponent;My Account;;B2BMyAccountComponent;B2BMyAccountNavNode
+;;B2BMyCompanyComponent;My Company;;B2BMyCompanyComponent;B2BMyCompanyNavNode
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&componentRef);&nodeRef
+#;B2badvanceNavNode;;B2badvance Site;SiteRootNode;;B2badvanceNavNode
+;B2BMyAccountNavNode;;My Account;B2badvanceNavNode;;B2BMyAccountNavNode
+;B2BMyCompanyNavNode;;My Company;B2badvanceNavNode;;B2BMyCompanyNavNode
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
+;PersonalDetailsNavNode;;Personal Details;B2BMyAccountNavNode;;PersonalDetailsNavNode
+;UpdateEmailNavNode;;Update Email;B2BMyAccountNavNode;;UpdateEmailNavNode
+;UpdatePasswordNavNode;;Update Password;B2BMyAccountNavNode;;UpdatePasswordNavNode
+;UnitsNavNode;;Units;B2BMyCompanyNavNode;;UnitsNavNode
+;UsersNavNode;;Users;B2BMyCompanyNavNode;;UsersNavNode
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV)
+                         ;;B2BMyAccountSlot;B2BMyAccountComponent
+						 ;;B2BMyCompanySlot;B2BMyCompanyComponent
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='LandingPage2Template'];validComponentTypes(code);compTypeGroup(code)
+;B2BMyAccount;;NavigationComponent;narrow
+;B2BMyCompany;;NavigationComponent;narrow
+
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage2Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyAccount-LandingPage2;B2BMyAccount;;B2BMyAccountSlot;true
+;;B2BMyCompany-LandingPage2;B2BMyCompany;;B2BMyCompanySlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyAccount-ProductDetails;B2BMyAccount;;B2BMyAccountSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductListPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyAccount-ProductListPage;B2BMyAccount;;B2BMyAccountSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsGridPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyAccount-SearchResultsGridPage;B2BMyAccount;;B2BMyAccountSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductGridPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyAccount-ProductGridPage;B2BMyAccount;;B2BMyAccountSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CheckoutLoginPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyAccount-CheckoutLoginPage;B2BMyAccount;;B2BMyAccountSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='MultiStepCheckoutSummaryPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyAccount-MultiStepCheckoutSummaryPage;B2BMyAccount;;B2BMyAccountSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CartPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyAccount-CartPage;B2BMyAccount;;B2BMyAccountSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='AccountPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyAccount-AccountPage;B2BMyAccount;;B2BMyAccountSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LoginPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyAccount-LoginPage;B2BMyAccount;;B2BMyAccountSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='OrderConfirmationPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyAccount-OrderConfirmationPage;B2BMyAccount;;B2BMyAccountSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='StoreFinderPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyAccount-StoreFinderPage;B2BMyAccount;;B2BMyAccountSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ErrorPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyAccount-ErrorPage;B2BMyAccount;;B2BMyAccountSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsEmptyPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyAccount-SearchResultsEmptyPage;B2BMyAccount;;B2BMyAccountSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsListPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyAccount-SearchResultsListPage;B2BMyAccount;;B2BMyAccountSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CategoryPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyAccount-CategoryPage;B2BMyAccount;;B2BMyAccountSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage1Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyAccount-LandingPage1;B2BMyAccount;;B2BMyAccountSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage3Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyAccount-LandingPage3;B2BMyAccount;;B2BMyAccountSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage4Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyAccount-LandingPage4;B2BMyAccount;;B2BMyAccountSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage5Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyAccount-LandingPage5;B2BMyAccount;;B2BMyAccountSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage6Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyAccount-LandingPage6;B2BMyAccount;;B2BMyAccountSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ContentPage1Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyAccount-ContentPage1;B2BMyAccount;;B2BMyAccountSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchAdvancedResultsEmptyPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyAccount-SearchAdvancedResultsEmptyPage;B2BMyAccount;;B2BMyAccountSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='QuoteEditPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyAccount-QuoteEditPage;B2BMyAccount;;B2BMyAccountSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductComparisonPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyAccount-ProductComparisonPage;B2BMyAccount;;B2BMyAccountSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='BulkOrderFormPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyAccount-BulkOrderFormPage;B2BMyAccount;;B2BMyAccountSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='QuickOrderPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyAccount-QuickOrderPage;B2BMyAccount;;B2BMyAccountSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyCompany-ProductDetails;B2BMyCompany;;B2BMyCompanySlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductListPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyCompany-ProductListPage;B2BMyCompany;;B2BMyCompanySlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsGridPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyCompany-SearchResultsGridPage;B2BMyCompany;;B2BMyCompanySlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductGridPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyCompany-ProductGridPage;B2BMyCompany;;B2BMyCompanySlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CheckoutLoginPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyCompany-CheckoutLoginPage;B2BMyCompany;;B2BMyCompanySlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='MultiStepCheckoutSummaryPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyCompany-MultiStepCheckoutSummaryPage;B2BMyCompany;;B2BMyCompanySlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CartPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyCompany-CartPage;B2BMyCompany;;B2BMyCompanySlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='AccountPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyCompany-AccountPage;B2BMyCompany;;B2BMyCompanySlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LoginPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyCompany-LoginPage;B2BMyCompany;;B2BMyCompanySlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='OrderConfirmationPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyCompany-OrderConfirmationPage;B2BMyCompany;;B2BMyCompanySlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='StoreFinderPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyCompany-StoreFinderPage;B2BMyCompany;;B2BMyCompanySlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ErrorPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyCompany-ErrorPage;B2BMyCompany;;B2BMyCompanySlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsEmptyPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyCompany-SearchResultsEmptyPage;B2BMyCompany;;B2BMyCompanySlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsListPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyCompany-SearchResultsListPage;B2BMyCompany;;B2BMyCompanySlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CategoryPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyCompany-CategoryPage;B2BMyCompany;;B2BMyCompanySlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage1Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyCompany-LandingPage1;B2BMyCompany;;B2BMyCompanySlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage3Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyCompany-LandingPage3;B2BMyCompany;;B2BMyCompanySlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage4Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyCompany-LandingPage4;B2BMyCompany;;B2BMyCompanySlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage5Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyCompany-LandingPage5;B2BMyCompany;;B2BMyCompanySlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage6Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyCompany-LandingPage6;B2BMyCompany;;B2BMyCompanySlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ContentPage1Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyCompany-ContentPage1;B2BMyCompany;;B2BMyCompanySlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchAdvancedResultsEmptyPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyCompany-SearchAdvancedResultsEmptyPage;B2BMyCompany;;B2BMyCompanySlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='QuoteEditPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyCompany-QuoteEditPage;B2BMyCompany;;B2BMyCompanySlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductComparisonPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyCompany-ProductComparisonPage;B2BMyCompany;;B2BMyCompanySlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='BulkOrderFormPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyCompany-BulkOrderFormPage;B2BMyCompany;;B2BMyCompanySlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='QuickOrderPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyCompany-QuickOrderPage;B2BMyCompany;;B2BMyCompanySlot;true
+
+
+INSERT_UPDATE CMSUserRestriction;$contentCV[unique=true];&userRestriction;name;uid[unique=true];users(uid)
+;;anonymousUserRestriction;Anonymous User Restriction;anonymousUserRestriction;anonymous
+
+INSERT_UPDATE CMSInverseRestriction;$contentCV[unique=true];name;originalRestriction(&userRestriction)[allownull=true];uid[unique=true];components(&componentRef)
+;;Logged in User;anonymousUserRestriction;loggedInUser;
+
+# CMS User Group Restrictions
+INSERT_UPDATE CMSUserGroupRestriction;$contentCV[unique=true];uid[unique=true];name;userGroups(uid);includeSubgroups;components(&componentRef)
+                                     ;;MyCompanyLinkAdminGroupRestriction;My Company Link Admin Group Restriction;b2badmingroup;true;B2BMyCompanyComponent
+									 
+				 
+
+INSERT_UPDATE GallagherSovosConfigurartion ; code[unique=true]   ; name                       ; resultLevel ; taxCalculationType ; debitCreditInd ; transactionType ; organizationCode ; dropShipInd 
+                                           ; b2c-us-sovos-config ; B2C US SOVOS Configuration ; 3           ; 1                  ; 1              ; 1               ; QASGUS           ; 1           
+										   
+# Base Store
+INSERT_UPDATE BaseStore;uid[unique=true];sovosConfiguration(code);net;externalTaxEnabled;paymentProvider
+;amB2CUS;b2c-us-sovos-config;true;true;paymetric
+
+
+################################# Header user dropdown ends #############################################
+
+$storeUidUS=amB2CUS
+$storeUidCA=amB2CCA
+$productCatalog=amB2CUSProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$storeImage=storeImage(qualifier, $catalogVersion)
+$standardHours=amB2C-US-standard-hours
+$weekendHours=amB2C-US-weekend-hours
+
+INSERT_UPDATE PointOfService ; name[unique=true] ; type(code) ; address(&addrID) ; latitude ; longitude ; geocodeTimestamp[dateformat=dd-MM-yyyy] ; $storeImage ; openingSchedule(code) ; basestore(uid)[default=$storeUidUS] ; features(code) 
+                             ; USKC              ; WAREHOUSE  ; addr1            ; 35,6673  ; 139,75429 ; 29-04-2025                              ;             ; $standardHours        
+                             ; CAN1              ; WAREHOUSE  ; addr2            ; 35,6923  ; 139,8201  ; 29-04-2025                              ;             ; $standardHours        ; $storeUidCA                         
+                             
+INSERT_UPDATE Address ; &addrID ; streetname       ; streetnumber ; postalcode[unique=true] ; town[unique=true]   ; country(isocode) ; region(isocode) ; phone1        ; owner(PointOfService.name)[unique=true] 
+                      ; addr1   ; 41st Street      ; 5005 NW      ; 64150                   ; Riverside, Missouri ; US               ;                 ; +81 1988 3600 ; USKC                                    
+                      ; addr2   ; 20th Avenue East ; 2090         ; N4K 5R1                 ; Owen Sound, Ontario ; CA               ;                 ; +81 4649 8891 ; CAN1                                    
+
+INSERT_UPDATE Language ; isocode[unique=true] ; fallbackLanguages(isocode) ; active[default=true] 
+                       ; en                   ;                            ;                      ;  
+                       ; de                   ; en                         ;                      ;
+                       ; en_US                ; en                         ;                      ;  
+                       ; en_CA                ; en                         ;                      ;
+                       ; en_AU                ; en                         ;                      ;
+                       ; en_NZ                ; en                         ;                      ;                       
+$lang=en
+
+UPDATE Language ; isocode[unique=true] ; name[lang=$lang] 
+                ; de                   ; "German"         
+                ; en                   ; "English"        
+                ; ja                   ; "Japanese"       
+                ; zh                   ; "Chinese" 
+                ; en_US                ; "American English" 
+                ; en_CA                ; "Canadian English"        
+                ; en_AU                ; "Australian English" 
+                ; en_NZ                ; "New Zealand English" 
+                           
+						   
+
+###################### B2B Gallagher logo starts ##########################
+$contentCatalog=securityB2BContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$siteResource=jar:com.gallagher.b2b.initialdata.constants.B2badvanceInitialDataConstants&/gallagherb2binitialdata/import/sampledata/contentCatalogs/$contentCatalog
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/svg+xml'];altText;folder(qualifier)[default='images']
+;;/images/theme/logo-gallagher.svg;logo-gallagher.svg;$siteResource/images/theme/logo-gallagher.svg;image/svg+xml;GALLAGHER SECURITY;
+
+####################### B2B Gallagher logo ends ###################
+
+#############B2b Navigation node changes###############
+$contentCatalog=securityB2BContentCatalog
+$contentCatalogName=Security B2B Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=securityB2BMasterProductCatalog
+$productCatalogName=Security B2B Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.gallagher.b2b.initialdata.constants.B2badvanceInitialDataConstants&/gallagherb2binitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.gallagher.b2b.initialdata.constants.B2badvanceInitialDataConstants&/gallagherb2binitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.gallagher.b2b.initialdata.constants.B2badvanceInitialDataConstants&/gallagherb2binitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=b2badvanceacceleratoraddon
+$medias=medias(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUidNZ=securityB2BNZ
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];styleAttributes
+;;PerimeterSecurityCategoryLink;Perimeter Security Category Link;/Security/Perimeter-Security/c/perimeter-security;;PerimeterSecurityCategoryLink;;"second-level-link-desktop"
+;;AccessControlCategoryLink;Access Control Category Link;/Security/Access-Control/c/access-control;;AccessControlCategoryLink;;"second-level-link-desktop"
+;;HighSecurityCategoryLink;High Security Category Link;/Security/High-Security/c/high-security;;HighSecurityCategoryLink;;"second-level-link-desktop"
+;;IntegrationsCategoryLink;Integrations Category Link;/Security/Integrations/c/integrations;;IntegrationsCategoryLink;;"second-level-link-desktop"
+;;SoftwareCategoryLink;Software Category Link;/Security/Software/c/software;;SoftwareCategoryLink;;"second-level-link-desktop"
+########################################################
+
+############### Cleanup jobs ##########################
+INSERT_UPDATE MaintenanceCleanupJob;code[unique=true];springId;threshold
+;cleanUpLogsJobPerformable;cleanUpLogsJobPerformable;5
+
+INSERT_UPDATE MaintenanceCleanupJob;code[unique=true];threshold
+;cleanupCronJobsPerformable;5
+
+INSERT_UPDATE CronJob;code[unique=true];job(code);sessionLanguage(isocode)
+;gglCleanupCronJobLogs;cleanUpLogsJobPerformable;en
+;gglCleanupCronJobs;cleanupCronJobsPerformable;en
+
+INSERT_UPDATE Trigger;cronJob(code)[unique=true]; second ; minute ; hour ; day ; month ; year ; relative ; active ; maxAcceptableDelay                   
+# Run the Clean up cronJob logs at 4:05 AM every day
+;gglCleanupCronJobLogs; 0      ; 30      ; -1   ; -1  ; -1    ; -1   ; true     ; true  ; -1                 
+# Run the Cron job cleanup at 5:05 AM every day
+;gglCleanupCronJobs; 0      ; 30      ; -1   ; -1  ; -1    ; -1   ; true     ; true  ; -1                 
+####################################################
+
+INSERT_UPDATE Trigger ; cronJob(code)[unique=true] ; second ; minute ; hour ; day ; month ; year ; relative ; active ; maxAcceptableDelay                   
+                      ; update-amB2CAUIndex-cronJob  ; 0      ; 60      ; -1   ; -1  ; -1    ; -1   ; true     ; false  ; -1                 
+						; update-amB2CCAIndex-cronJob  ; 0      ; 60      ; -1   ; -1  ; -1    ; -1   ; true     ; false  ; -1            
+                      ; update-amB2CGlobalIndex-cronJob  ; 0      ; 60      ; -1   ; -1  ; -1    ; -1   ; true     ; false  ; -1                 
+; update-amB2CUSIndex-cronJob  ; 0      ; 60      ; -1   ; -1  ; -1    ; -1   ; true     ; false  ; -1                 
+; update-amB2CNZIndex-cronJob  ; 0      ; 60      ; -1   ; -1  ; -1    ; -1   ; true     ; false  ; -1                 
+; update-amB2CLatAmIndex-cronJob  ; 0      ; 60      ; -1   ; -1  ; -1    ; -1   ; true     ; false  ; -1                 
+;update-securityB2BAUIndex-cronJob;0;60;-1;-1;-1;-1;true;false;-1
+;update-securityB2BNZIndex-cronJob;0;60;-1;-1;-1;-1;true;false;-1
+;update-securityB2BGlobalIndex-cronJob;0;60;-1;-1;-1;-1;true;false;-1
+
+
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+;amB2CCreateBaseProductCronjob;0;60;-1;-1;-1;-1;true;true;-1
+;amB2CProductTransformationCompositeJob;0;60;-1;-1;-1;-1;true;true;-1
+
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+;securityB2BCreateBaseProductCronjob;0;60;-1;-1;-1;-1;true;true;-1
+;securityB2BProductTransformationCompositeJob;0;60;-1;-1;-1;-1;true;true;-1
+
+
+INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+;sync amB2CNZProductCatalog:Staged->Online						;0		;60		;-1		;-1		;-1		;-1		;true		;true	;-1
+;sync amB2CAUProductCatalog:Staged->Online						;0		;60		;-1		;-1		;-1		;-1		;true		;true	;-1
+;sync amB2CUSProductCatalog:Staged->Online						;0		;60		;-1		;-1		;-1		;-1		;true		;true	;-1
+;sync amB2CCAProductCatalog:Staged->Online						;0		;60		;-1		;-1		;-1		;-1		;true		;true	;-1
+;sync amB2CGlobalProductCatalog:Staged->Online						;0		;60		;-1		;-1		;-1		;-1		;true		;true	;-1
+;sync amB2CLatAmProductCatalog:Staged->Online						;0		;60		;-1		;-1		;-1		;-1		;true		;true	;-1
+;sync securityB2BNZProductCatalog:Staged->Online						;0		;60		;-1		;-1		;-1		;-1		;true		;true	;-1
+;sync securityB2BAUProductCatalog:Staged->Online						;0		;60		;-1		;-1		;-1		;-1		;true		;true	;-1
+;sync securityB2BGlobalProductCatalog:Staged->Online						;0		;60		;-1		;-1		;-1		;-1		;true		;true	;-1
+
+
+#########################Navigation Node Starts###############3333
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef;children(uid, $contentCV)[mode=replace]
+;B2BFooterNavigationNode;;Footer Navigation Node; root;;B2BFooterNavigationNode;B2BCompanyNavigationNode,B2BSolutionsNavigationNode,B2BSupportNavigationNode
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);children(uid,$contentCV)[mode=replace];links(uid, $contentCV);&nodeRef;title[lang=en]
+;B2BCompanyNavigationNode;;B2B Company Navigation Node;B2BFooterNavigationNode;B2BAboutUsLinkNode,B2BContactUsLinkNode,B2BNewsAndEventsLinkNode,B2BTeamLinkNode,B2BPartenerLinkNode;;B2BCompanyNavigationNode;"Company"
+;B2BSolutionsNavigationNode;;B2B Solutions Navigation Node;B2BFooterNavigationNode;B2BProductsLinkNode,B2BCaseStudiesLinkNode,B2BIndustriesLinkNode;;B2BSolutionsNavigationNode;"Solutions"
+;B2BSupportNavigationNode;;B2B Support Navigation Node;B2BFooterNavigationNode;B2BSupportSiteLoginLinkNode,B2BChannelPartnerLinkNode,B2BSecurityAdvisoryLinkNode;;B2BSupportNavigationNode;"Support"
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkname;name;url;&linkRef;&componentRef;
+;;B2BAboutUsLink;About Us;B2B About Us Link ; https://security.gallagher.com/Why-Gallagher;B2BAboutUsLink ; B2BAboutUsLink
+;;B2BContactUsLink;Contact Us;B2B Contact Us Link; https://security.gallagher.com/Contact-Us ; B2BContactUsLink ;B2BContactUsLink
+;;B2BNewsAndEventsLink;News & Events;B2B News And Events Link; https://security.gallagher.com/News-and-Events ;B2BNewsAndEventsLink;B2BNewsAndEventsLink
+;;B2BTeamLink;Meet the team;B2B Team Link; https://security.gallagher.com/Meet-the-Team;B2BTeamLink;B2BTeamLink
+;;B2BPartenerLink;Our Partners;B2B Partner Link; https://security.gallagher.com/Our-Partners; B2BPartenerLink ;B2BPartenerLink
+;;B2BProductsLink;Products;B2B Products Link;https://www.google.com ; B2BProductsLink ; B2BProductsLink
+;;B2BCaseStudiesLink;Case studies;B2B Case Studies Link;https://security.gallagher.com/Case-Studies ; B2BCaseStudiesLink;B2BCaseStudiesLink
+;;B2BIndustriesLink;Industries;B2B Industries Link;https://security.gallagher.com/Industries ; B2BIndustriesLink ; B2BIndustriesLink
+;;B2BSupportSiteLoginLink;Support site login;B2B Support Site Login Link;https://security-support.gallagher.com/default.aspx ; B2BSupportSiteLoginLink ; B2BSupportSiteLoginLink
+;;B2BChannelPartnerLink;Become a channel partner;B2B Channel Partner Link; https://security.gallagher.com/Register-your-interest-in-becoming-a-Channel-Partner ; B2BChannelPartnerLink ; B2BChannelPartnerLink
+;;B2BSecurityAdvisoryLink;Security Advisories;B2B Security Advisory Link;https://security.gallagher.com/Security-Advisories ; B2BSecurityAdvisoryLink ;B2BSecurityAdvisoryLink
+
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;B2BCompanyNavigationNodeEntry1;;B2B Company Navigation Node Entry1;B2BAboutUsLinkNode;B2BAboutUsLink
+;B2BCompanyNavigationNodeEntry2;;B2B Company Navigation Node Entry2;B2BContactUsLinkNode;B2BContactUsLink
+;B2BCompanyNavigationNodeEntry3;;B2B Company Navigation Node Entry3;B2BNewsAndEventsLinkNode;B2BNewsAndEventsLink
+;B2BCompanyNavigationNodeEntry4;;B2B Company Navigation Node Entry4;B2BTeamLinkNode;B2BTeamLink
+;B2BCompanyNavigationNodeEntry5;;B2B Company Navigation Node Entry5;B2BPartenerLinkNode;B2BPartenerLink
+;B2BSolutionsNavigationNodeEntry1;;B2B Solutions Navigation Node Entry1;B2BProductsLinkNode;B2BProductsLink
+;B2BSolutionsNavigationNodeEntry2;;B2B Solutions Navigation Node Entry2;B2BCaseStudiesLinkNode;B2BCaseStudiesLink
+;B2BSolutionsNavigationNodeEntry3;;B2B Solutions Navigation Node Entry3;B2BIndustriesLinkNode;B2BIndustriesLink
+;B2BSupportNavigationNodeEntry1;;B2B Support Navigation Node Entry1;B2BSupportSiteLoginLinkNode;B2BSupportSiteLoginLink
+;B2BSupportNavigationNodeEntry2;;B2B Support Navigation Node Entry2;B2BChannelPartnerLinkNode;B2BChannelPartnerLink
+;B2BSupportNavigationNodeEntry3;;B2B Support Navigation Node Entry3;B2BSecurityAdvisoryLinkNode;B2BSecurityAdvisoryLink
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
+;B2BAboutUsLinkNode;;B2B About Us Link Node;B2BCompanyNavigationNode;;B2BAboutUsLinkNode
+;B2BContactUsLinkNode;;B2B Contact Us Link Node;B2BCompanyNavigationNode;;B2BContactUsLinkNode
+;B2BNewsAndEventsLinkNode;;B2B News Link Node;B2BCompanyNavigationNode;;B2BNewsAndEventsLinkNode
+;B2BTeamLinkNode;;B2B Team Node;B2BCompanyNavigationNode;;B2BTeamLinkNode
+;B2BPartenerLinkNode;;B2B Partner Node;B2BCompanyNavigationNode;;B2BPartenerLinkNode
+;B2BProductsLinkNode;;B2B Products Node;B2BSolutionsNavigationNode;;B2BProductsLinkNode
+;B2BCaseStudiesLinkNode;;B2B Case Studies Node;B2BSolutionsNavigationNode;;B2BCaseStudiesLinkNode
+;B2BIndustriesLinkNode;;B2B Industry Node;B2BSolutionsNavigationNode;;B2BIndustriesLinkNode
+;B2BSupportSiteLoginLinkNode;;B2B Supports Site Node;B2BSupportNavigationNode;;B2BSupportSiteLoginLinkNode
+;B2BChannelPartnerLinkNode;;B2B Channel Node;B2BSupportNavigationNode;;B2BChannelPartnerLinkNode
+;B2BSecurityAdvisoryLinkNode;;B2B Security Node;B2BSupportNavigationNode;;B2BSecurityAdvisoryLinkNode
+
+INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];wrapAfter;navigationNode(&nodeRef);&componentRef
+;;B2BGallagherFooterNavigationComponent;5;B2BFooterNavigationNode;B2BGallagherFooterNavigationComponent
+
+
+########################Navigation node END
+
+
+
+#########################Division Impex Start
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;linkName;&linkRef;&componentRef
+;;B2BgallagherDivision1LnkCom;B2B Gallagher Division 1;'#';OTHER GALLAGHER DIVISIONS;B2BgallagherDivision1LnkCom;B2BgallagherDivision1LnkCom
+;;B2BgallagherDivision2LnkCom;B2B Gallagher Division 2;https://www.gallagher.com/ ;CORPORATE;B2BgallagherDivision2LnkCom;B2BgallagherDivision2LnkCom
+;;B2BgallagherDivision3LnkCom;B2B Gallagher Division 3;https://www.google.com;ANIMAL MANAGEMENT;B2BgallagherDivision3LnkCom;B2BgallagherDivision3LnkCom
+;;B2BgallagherDivision4LnkCom;B2B Gallagher Division 4; https://fuelsystems.gallagher.com/;FUEL SYSTEMS;B2BgallagherDivision4LnkCom;B2BgallagherDivision4LnkCom
+;;B2BgallagherDivision5LnkCom;B2B Gallagher Division 5;https://www.gallagher.com/about-us/business-units/contract-manufacturing ;CONTRACT MANUFACTURING;B2BgallagherDivision5LnkCom;B2BgallagherDivision5LnkCom
+
+
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;B2BgallagherDivision1NavEty;;B2B Gallagher Division 1 navigation entry;B2BgallagherDivision1NavNod;B2BgallagherDivision1LnkCom
+;B2BgallagherDivision2NavEty;;B2BGallagher Division 2 navigation entry;B2BgallagherDivision2NavNod;B2BgallagherDivision2LnkCom
+;B2BgallagherDivision3NavEty;;B2B Gallagher Division 3 navigation entry;B2BgallagherDivision3NavNod;B2BgallagherDivision3LnkCom
+;B2BgallagherDivision4NavEty;;B2B Gallagher Division 4 navigation entry;B2BgallagherDivision4NavNod;B2BgallagherDivision4LnkCom
+;B2BgallagherDivision5NavEty;;B2B Gallagher Division 5 navigation entry;B2BgallagherDivision5NavNod;B2BgallagherDivision5LnkCom
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef);
+;B2BgallagherDivision1NavNod;;B2B Gallagher Division 1 navigation node;B2BgallagherDivision1NavNod
+;B2BgallagherDivision2NavNod;;B2B Gallagher Division 2 navigation node;B2BgallagherDivision2NavNod
+;B2BgallagherDivision3NavNod;;B2B Gallagher Division 3 navigation node;B2BgallagherDivision3NavNod
+;B2BgallagherDivision4NavNod;;B2B Gallagher Division 4 navigation node;B2BgallagherDivision4NavNod
+;B2BgallagherDivision5NavNod;;B2B Gallagher Division 5 navigation node;B2BgallagherDivision5NavNod
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&componentRef);&nodeRef;children(uid, $contentCV)
+;B2BothersDivisionsNavNod;;B2B Other division drop down;root;;B2BothersDivisionsNavNod;B2BgallagherDivision1NavNod,B2BgallagherDivision2NavNod,B2BgallagherDivision3NavNod,B2BgallagherDivision4NavNod,B2BgallagherDivision5NavNod
+
+INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];gallagherDivisionsLinkNagivationNode(&nodeRef);&componentRef
+;;B2BGallagherFooterNavigationComponent;B2BothersDivisionsNavNod;B2BGallagherFooterNavigationComponent
+
+
+
+##################Division impex end
+
+
+
+
+##Footer Link navigation component start 
+
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;children(uid,$contentCV)[mode=append]
+;root;;root;;
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&componentRef);&nodeRef;children(uid, $contentCV)
+;B2BFooterLinkNavNode;;B2B Footer Link Pages;root;;B2BFooterLinkNavNode;B2BCareersNavNode,B2BPrivacyStatementNavNode
+
+##---- children of Footer Link navigation component ----##
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
+;B2BCareersNavNode;;B2B Careers Page;B2BFooterLinkNavNode;;B2BCareersNavNode
+;B2BPrivacyStatementNavNode;;B2B Privacy Statement Page;B2BFooterLinkNavNode;;B2BPrivacyStatementNavNode
+
+
+## Links of the above navigation node entries ##
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef
+;;B2BCareersLink;B2B Careers Link;https://www.gallagher.com/careers;B2BCareersLink;B2BCareersLink
+;;B2BPrivacyStatementLink;B2B Privacy Statement Link;https://security.gallagher.com/;B2BPrivacyStatementLink;B2BPrivacyStatementLink
+
+
+
+
+## entries of the above navigation nodes ##
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;B2BCareersNavNodeEntry;;B2B Careers Navigation Node Entry;B2BCareersNavNode;B2BCareersLink
+;B2BPrivacyStatementNavNodeEntry;;B2B Privacy Statement Nav Node Entry;B2BPrivacyStatementNavNode;B2BPrivacyStatementLink
+
+
+
+INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];footerLinkNagivationNode(&nodeRef);&componentRef
+;;B2BGallagherFooterNavigationComponent;B2BFooterLinkNavNode;B2BGallagherFooterNavigationComponent
+
+
+
+##Footer Link navigation component End
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(&componentRef)
+;;FooterSlot;B2BGallagherFooterNavigationComponent
+
+
+############ B2B Header Logout component starts #############
+
+$contentCatalog=securityB2BContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkname;name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];
+;;B2BLogoutNavLinkComponent;Sign out;B2B Logout Navigation Link;/logout;B2BLogoutNavLinkComponent;B2BLogoutNavLinkComponent;;;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='LandingPage2Template'];validComponentTypes(code);compTypeGroup(code)
+;ggB2BLogout;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV);name;active
+;;ggB2BLogoutSlot;B2BLogoutNavLinkComponent;GG B2B Logout Slot ;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage2Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogout-LandingPage2;ggB2BLogout;;ggB2BLogoutSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogout-ProductDetails;ggB2BLogout;;ggB2BLogoutSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductListPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogout-ProductListPage;ggB2BLogout;;ggB2BLogoutSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsGridPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogout-SearchResultsGridPage;ggB2BLogout;;ggB2BLogoutSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductGridPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogout-ProductGridPage;ggB2BLogout;;ggB2BLogoutSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CheckoutLoginPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogout-CheckoutLoginPage;ggB2BLogout;;ggB2BLogoutSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='MultiStepCheckoutSummaryPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogout-MultiStepCheckoutSummaryPage;ggB2BLogout;;ggB2BLogoutSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CartPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogout-CartPage;ggB2BLogout;;ggB2BLogoutSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='AccountPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogout-AccountPage;ggB2BLogout;;ggB2BLogoutSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LoginPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogout-LoginPage;ggB2BLogout;;ggB2BLogoutSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='OrderConfirmationPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogout-OrderConfirmationPage;ggB2BLogout;;ggB2BLogoutSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='StoreFinderPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogout-StoreFinderPage;ggB2BLogout;;ggB2BLogoutSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ErrorPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogout-ErrorPage;ggB2BLogout;;ggB2BLogoutSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsEmptyPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogout-SearchResultsEmptyPage;ggB2BLogout;;ggB2BLogoutSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsListPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogout-SearchResultsListPage;ggB2BLogout;;ggB2BLogoutSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CategoryPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogout-CategoryPage;ggB2BLogout;;ggB2BLogoutSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage1Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogout-LandingPage1;ggB2BLogout;;ggB2BLogoutSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage3Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogout-LandingPage3;ggB2BLogout;;ggB2BLogoutSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage4Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogout-LandingPage4;ggB2BLogout;;ggB2BLogoutSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage5Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogout-LandingPage5;ggB2BLogout;;ggB2BLogoutSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage6Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogout-LandingPage6;ggB2BLogout;;ggB2BLogoutSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ContentPage1Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogout-ContentPage1;ggB2BLogout;;ggB2BLogoutSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchAdvancedResultsEmptyPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogout-SearchAdvancedResultsEmptyPage;ggB2BLogout;;ggB2BLogoutSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='QuoteEditPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogout-QuoteEditPage;ggB2BLogout;;ggB2BLogoutSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductComparisonPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogout-ProductComparisonPage;ggB2BLogout;;ggB2BLogoutSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='BulkOrderFormPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogout-BulkOrderFormPage;ggB2BLogout;;ggB2BLogoutSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='QuickOrderPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2BLogout-QuickOrderPage;ggB2BLogout;;ggB2BLogoutSlot;true
+
+##################### B2B Header logout component ends ###########
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

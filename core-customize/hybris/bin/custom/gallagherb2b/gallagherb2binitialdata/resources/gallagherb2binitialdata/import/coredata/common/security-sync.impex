@@ -49,15 +49,15 @@ INSERT_UPDATE GallagherCatalogVersionSyncJob;code[unique=true];sessionUser(uid);
 
 INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
 #cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
-;sync securityB2BNZProductCatalog:Staged->Online						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
+;sync securityB2BNZProductCatalog:Staged->Online						;0		;60		;-1		;-1		;-1		;-1		;true		;true	;-1
 
 INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
 #cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
-;sync securityB2BAUProductCatalog:Staged->Online						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
+;sync securityB2BAUProductCatalog:Staged->Online						;0		;60		;-1		;-1		;-1		;-1		;true		;true	;-1
 
 INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
 #cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
-;sync securityB2BGlobalProductCatalog:Staged->Online						;0		;10		;-1		;-1		;-1		;-1		;true		;true	;-1
+;sync securityB2BGlobalProductCatalog:Staged->Online						;0		;60		;-1		;-1		;-1		;-1		;true		;true	;-1
 
 
 # ImpEx for Importing cronjobs
@@ -80,6 +80,12 @@ INSERT_UPDATE Trigger;cronJob(code)[unique=true];second;minute;hour;day;month;ye
 $productQueryPrefix={baseProductCode} IS NULL AND {approvalStatus} =({{SELECT {pk} from {ArticleApprovalStatus} where {code}='approved'}})
 $productQuery={baseProductCode} IS NULL AND {approvalStatus} =({{SELECT {pk} from {ArticleApprovalStatus} where {code}='approved'}}) AND ?session.currentJob.baseStore IN ({{SELECT {SOURCE} FROM {BaseStoreProductRelation} where {TARGET} = {item:PK}}})
 
+$mediaQueryPrefix={code} IS NOT NULL
+$mediaQuery=?session.currentJob.baseStore IN ({{SELECT {SOURCE} FROM {BaseStoreMediaRelation} where {TARGET} = {item:PK}}})
+
+$mediaContainerQueryPrefix={qualifier} IS NOT NULL
+$mediaContainerQuery=?session.currentJob.baseStore IN ({{SELECT {SOURCE} FROM {BaseStoreMediaContainerRelation} where {TARGET} = {item:PK}}})
+
 INSERT_UPDATE JobSearchRestriction;code[unique=true];job(code)[path-delimiter=!];type(code);query
 ;B2BMaster->B2BNZ-SyncJob-Product-Restriction;sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged;Product;$productQueryPrefix
 ;B2BMaster->B2BAU-SyncJob-Product-Restriction;sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged;Product;$productQueryPrefix
@@ -89,7 +95,27 @@ INSERT_UPDATE JobSearchRestriction;code[unique=true];job(code)[path-delimiter=!]
 ;B2BMaster->B2BAU-SyncJob-Product-Restriction;sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged;Product;$productQuery
 ;B2BMaster->B2BGlobal-SyncJob-Product-Restriction;sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged;Product;$productQuery
 
+;B2BMaster->B2BNZ-SyncJob-Media-Restriction;sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged;Media;$mediaQueryPrefix
+;B2BMaster->B2BNZ-SyncJob-Media-Restriction;sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged;Media;$mediaQuery
+;B2BMaster->B2BAU-SyncJob-Media-Restriction;sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged;Media;$mediaQueryPrefix
+;B2BMaster->B2BAU-SyncJob-Media-Restriction;sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged;Media;$mediaQuery
+;B2BMaster->B2BGlobal-SyncJob-Media-Restriction;sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged;Media;$mediaQuery
+;B2BMaster->B2BGlobal-SyncJob-Media-Restriction;sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged;Media;$mediaQueryPrefix
+
+;B2BMaster->B2BNZ-SyncJob-MediaContainer-Restriction;sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged;MediaContainer;$mediaContainerQueryPrefix
+;B2BMaster->B2BNZ-SyncJob-MediaContainer-Restriction;sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged;MediaContainer;$mediaContainerQuery
+;B2BMaster->B2BAU-SyncJob-MediaContainer-Restriction;sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged;MediaContainer;$mediaContainerQueryPrefix
+;B2BMaster->B2BAU-SyncJob-MediaContainer-Restriction;sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged;MediaContainer;$mediaContainerQuery
+;B2BMaster->B2BGlobal-SyncJob-MediaContainer-Restriction;sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged;MediaContainer;$mediaContainerQueryPrefix
+;B2BMaster->B2BGlobal-SyncJob-MediaContainer-Restriction;sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged;MediaContainer;$mediaContainerQuery
+
+
+
 INSERT_UPDATE SyncAttributeDescriptorConfig;syncJob(code)[unique=true,path-delimiter=!];attributeDescriptor(enclosingType(code),qualifier)[unique=true];includedInSync;copyByValue
 ;sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged;Product:baseStores;false;false
 ;sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged;Product:baseStores;false;false
 ;sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged;Product:baseStores;false;false
+
+;sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged;Product:europe1Prices;false;false
+;sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged;Product:europe1Prices;false;false
+;sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged;Product:europe1Prices;false;false

@@ -17,6 +17,8 @@ import de.hybris.platform.servicelayer.internal.model.impl.LocaleProvider;
 import de.hybris.platform.servicelayer.media.MediaService;
 import de.hybris.platform.servicelayer.model.ModelService;
 import de.hybris.platform.servicelayer.search.FlexibleSearchService;
+import de.hybris.platform.store.BaseStoreModel;
+import de.hybris.platform.store.services.BaseStoreService;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
@@ -79,6 +81,13 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 	@Autowired
 	private GallagherMediaContainerDao gallagherMediaContainerDao;
 
+	@Autowired
+	private BaseStoreService baseStoreService;
+
+	@Autowired
+	private GallagherMediaConversionServiceImpl gallagherMediaConversionService;
+
+
 	@Override
 	public boolean updateMedia(final GallagherBynderSyncCronJobModel cronModel,
 			final GallagherBynderResponse gallagherBynderResponse)
@@ -97,6 +106,8 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 		LOGGER.info("Creating container for " + gallagherBynderResponse.getId());
 		//create a new container and adding images
 
+		gallagherBynderResponse.getProperty_skus().add("G98131");
+
 		//setting MediaContainerModel values
 		final LocaleProvider localeProvider = new StubLocaleProvider(Locale.ENGLISH);
 		final MediaContainerModel mediaContainerModel = modelService.create(MediaContainerModel.class);
@@ -104,6 +115,10 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 		mediaContainerModel.setQualifier(gallagherBynderResponse.getId());
 		mediaContainerModel.setName(gallagherBynderResponse.getName(), Locale.ENGLISH);
 
+		//ADDING BASE STORE
+		final List<BaseStoreModel> basestorelist = getBaseStoreModelList(gallagherBynderResponse.getProperty_region(),
+				cronModel.getCatalogId());
+		mediaContainerModel.setBaseStores(basestorelist);
 
 		final BynderMediaModel mediaModel = modelService.create(BynderMediaModel.class);
 		final MediaFolderModel folder = mediaService.getFolder(GallagherCoreConstants.Bynder.IMAGES);
@@ -118,7 +133,10 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 		mediaModel.setDescription(gallagherBynderResponse.getDescription());
 		mediaModel.setAltText(gallagherBynderResponse.getFileSize() / 1000000 + " mb");
 
+		//adding base Stores
+		mediaModel.setBaseStores(basestorelist);
 
+		//modelService.save(arg0);
 		modelService.save(mediaModel);
 		mediaService.setStreamForMedia(mediaModel, getImage(gallagherBynderResponse.getId()));
 		LOGGER.info("Media Saved for " + gallagherBynderResponse.getId());
@@ -353,5 +371,20 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 		final BynderOauthHeaderGenerator generator = new BynderOauthHeaderGenerator(consumerKey, consumerSecret, token,
 				tokenSecret);
 		return generator;
+	}
+
+	private List<BaseStoreModel> getBaseStoreModelList(final ArrayList<String> regionCodeList, final String catalogId)
+	{
+		final List<BaseStoreModel> baseStoreList = new ArrayList<>();
+		for (final String regioncode : regionCodeList)
+		{
+			if (!configurationService.getConfiguration().getString("bynder.commercebasestore." + catalogId + "." + regioncode)
+					.isEmpty())
+			{
+				baseStoreList.add(baseStoreService.getBaseStoreForUid(
+						configurationService.getConfiguration().getString("bynder.commercebasestore." + catalogId + "." + regioncode)));
+			}
+		}
+		return baseStoreList;
 	}
 }

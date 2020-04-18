@@ -6,7 +6,7 @@
 #
 
 # Language
-$lang=en
+$lang=en_NZ
 
 # Create Catalog
 UPDATE Catalog;id[unique=true];name[lang=$lang]

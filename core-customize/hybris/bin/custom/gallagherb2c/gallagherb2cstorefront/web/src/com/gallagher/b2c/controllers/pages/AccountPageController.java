@@ -52,6 +52,7 @@ import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.servicelayer.exceptions.AmbiguousIdentifierException;
 import de.hybris.platform.servicelayer.exceptions.ModelNotFoundException;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
+import de.hybris.platform.servicelayer.model.ModelService;
 import de.hybris.platform.servicelayer.user.UserService;
 import de.hybris.platform.util.Config;
 
@@ -73,6 +74,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -83,9 +85,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gallagher.b2c.controllers.ControllerConstants;
+import com.gallagher.core.forms.B2CCustomerPreferenceForm;
 import com.gallagher.keycloak.outboundservices.service.GallagherKeycloakService;
 
 
@@ -153,6 +157,9 @@ public class AccountPageController extends AbstractSearchPageController
 	private static final String CLOSE_ACCOUNT_CMS_PAGE = "close-account";
 
 	private static final Logger LOG = Logger.getLogger(AccountPageController.class);
+
+	@Resource(name = "modelService")
+	private ModelService modelService;
 
 	@Resource(name = "orderFacade")
 	private OrderFacade orderFacade;
@@ -596,18 +603,28 @@ public class AccountPageController extends AbstractSearchPageController
 	@RequireHardLogIn
 	public String updatePassword(final Model model) throws CMSItemNotFoundException
 	{
-		final UpdatePasswordForm updatePasswordForm = new UpdatePasswordForm();
+		final String customerUid = getCustomerFacade().getCurrentCustomerUid();
+		boolean success = false;
+		try
+		{
+			success = getKeycloakService().sendUpdatePasswordNotification(customerUid);
+		}
+		catch (final RestClientException | OAuth2Exception exception)
+		{
+			LOG.error("Exception occured while sending Update Password Link from Keycloak : " + exception);
+			success = false;
+		}
+		model.addAttribute("success", success);
 
-		model.addAttribute("updatePasswordForm", updatePasswordForm);
-
-		final ContentPageModel updatePasswordPage = getContentPageForLabelOrId(UPDATE_PASSWORD_CMS_PAGE);
-		storeCmsPageInModel(model, updatePasswordPage);
-		setUpMetaDataForContentPage(model, updatePasswordPage);
+		storeCmsPageInModel(model, getContentPageForLabelOrId(UPDATE_PASSWORD_CMS_PAGE));
+		setUpMetaDataForContentPage(model, getContentPageForLabelOrId(UPDATE_PASSWORD_CMS_PAGE));
 
 		model.addAttribute(BREADCRUMBS_ATTR, accountBreadcrumbBuilder.getBreadcrumbs("text.account.profile.updatePasswordForm"));
 		model.addAttribute(ThirdPartyConstants.SeoRobots.META_ROBOTS, ThirdPartyConstants.SeoRobots.NOINDEX_NOFOLLOW);
+
 		return getViewForPage(model);
 	}
+
 
 	@RequestMapping(value = "/update-password", method = RequestMethod.POST)
 	@RequireHardLogIn
@@ -965,7 +982,14 @@ public class AccountPageController extends AbstractSearchPageController
 	@RequireHardLogIn
 	public String consentManagement(final Model model) throws CMSItemNotFoundException
 	{
-		model.addAttribute("consentTemplateDataList", getConsentFacade().getConsentTemplatesWithConsents());
+		final CustomerModel currentCustomer = (CustomerModel) userService.getCurrentUser();
+		final B2CCustomerPreferenceForm customerPreferences = new B2CCustomerPreferenceForm();
+		customerPreferences.setNewsLetters(currentCustomer.getNewsLetters());
+		customerPreferences.setEvents(currentCustomer.getEvents());
+		customerPreferences.setProductPromo(currentCustomer.getProductPromo());
+		customerPreferences.setProductRelease(currentCustomer.getProductRelease());
+		customerPreferences.setProductUpdate(currentCustomer.getProductUpdate());
+		model.addAttribute("consentsPreferences", customerPreferences);
 		final ContentPageModel consentManagementPage = getContentPageForLabelOrId(CONSENT_MANAGEMENT_CMS_PAGE);
 		storeCmsPageInModel(model, consentManagementPage);
 		setUpMetaDataForContentPage(model, consentManagementPage);
@@ -974,10 +998,30 @@ public class AccountPageController extends AbstractSearchPageController
 		return getViewForPage(model);
 	}
 
+	@RequestMapping(value = "/consents", method = RequestMethod.POST)
+	@RequireHardLogIn
+	public String submitConsentManagement(@ModelAttribute("consentsPreferences")
+	final B2CCustomerPreferenceForm preferences, final Model model, final RedirectAttributes redirectAttributes)
+			throws CMSItemNotFoundException
+	{
+		final CustomerModel currentCustomer = (CustomerModel) userService.getCurrentUser();
+		currentCustomer.setNewsLetters(preferences.isNewsLetters());
+		currentCustomer.setEvents(preferences.isEvents());
+		currentCustomer.setProductPromo(preferences.isProductPromo());
+		currentCustomer.setProductRelease(preferences.isProductRelease());
+		currentCustomer.setProductUpdate(preferences.isProductUpdate());
+		currentCustomer.setIsUserExist(true);
+		modelService.save(currentCustomer);
+		GlobalMessages.addFlashMessage(redirectAttributes, GlobalMessages.CONF_MESSAGES_HOLDER,
+				"consentManagement.confirmation.message.title", null);
+		return REDIRECT_TO_CONSENT_MANAGEMENT;
+	}
+
 	@RequestMapping(value = "/consents/give/{consentTemplateId}/{version}", method = RequestMethod.POST)
 	@RequireHardLogIn
-	public String giveConsent(@PathVariable final String consentTemplateId, @PathVariable final Integer version,
-			final RedirectAttributes redirectModel)
+	public String giveConsent(@PathVariable
+	final String consentTemplateId, @PathVariable
+	final Integer version, final RedirectAttributes redirectModel)
 	{
 		try
 		{

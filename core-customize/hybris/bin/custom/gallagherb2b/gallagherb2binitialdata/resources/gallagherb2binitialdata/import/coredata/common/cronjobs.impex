@@ -15,5 +15,5 @@ INSERT_UPDATE CompositeEntry;code[unique=true];compositeCronjob(code);compositeC
 ;securityB2BProductTransformationJobEntry4;securityB2BProductTransformationCompositeJob;4;securityB2BProductTransformationCronjob
 
 INSERT_UPDATE Trigger;cronJob(code)[unique=true];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
-;securityB2BCreateBaseProductCronjob;0;15;-1;-1;-1;-1;true;true;-1
-;securityB2BProductTransformationCompositeJob;0;15;-1;-1;-1;-1;true;true;-1
+;securityB2BCreateBaseProductCronjob;0;60;-1;-1;-1;-1;true;true;-1
+;securityB2BProductTransformationCompositeJob;0;60;-1;-1;-1;-1;true;true;-1

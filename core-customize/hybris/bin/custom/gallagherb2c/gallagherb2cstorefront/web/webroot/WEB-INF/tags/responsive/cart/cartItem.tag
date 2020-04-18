@@ -24,6 +24,7 @@
 <c:set var="entryNumberHtml" value="${fn:escapeXml(entry.entryNumber)}"/>
 <c:set var="productCodeHtml" value="${fn:escapeXml(entry.product.code)}"/>
 <c:set var="quantityHtml" value="${fn:escapeXml(entry.quantity)}"/>
+<c:set var="tempicon" value="0" />
 
 <c:if test="${empty index}">
     <c:set property="index" value="${entryNumber}"/>
@@ -71,11 +72,14 @@
             <c:choose>
             <c:when test="${not empty entry.product.images}">
             <c:forEach items="${entry.product.images}" var="medias">
+             <c:if test="${tempicon == 0 }">
                                         <c:if test="${medias.format eq 'thumbnail'}">
+                                        <c:set var="tempicon" value="1" />
                                         <a href="${fn:escapeXml(productUrl)}" title="${fn:escapeXml(entry.product.name)}">
                                         <img src="${medias.url}" alt="${medias.altText}">
                                         </a>
                                         </c:if>
+             </c:if>                           
                                         </c:forEach>
              </c:when>
              <c:otherwise>
@@ -187,8 +191,16 @@
 
             <%-- price --%>
             <div class="item__price">
-                <span class="visible-xs visible-sm"><spring:theme code="basket.page.itemPrice"/>: </span>
-                <format:price priceData="${entry.basePrice}" displayFreeForZero="true"/>
+                <span class="visible-xs visible-sm">
+<%--                 <spring:theme code="basket.page.itemPrice"/>: --%>
+                 </span>
+                  <c:if test="${empty entry.product.price}">
+                                    RRP
+                                </c:if>
+                                   	<ycommerce:testId code="productDetails_productNamePrice_label_${entry.product.code}">
+										<product:productPricePanel product="${entry.product}" />
+									</ycommerce:testId>
+<%--                 <format:price priceData="${entry.basePrice}" displayFreeForZero="true"/> --%>
             </div>
 
             <%-- quantity --%>

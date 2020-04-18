@@ -26,6 +26,7 @@ import de.hybris.platform.commerceservices.search.facetdata.ProductSearchPageDat
 import de.hybris.platform.commerceservices.search.pagedata.PageableData;
 import de.hybris.platform.servicelayer.dto.converter.ConversionException;
 
+import java.text.MessageFormat;
 import java.util.Collections;
 import java.util.List;
 
@@ -35,6 +36,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -72,17 +74,28 @@ public class SearchPageController extends AbstractSearchPageController
 	@Resource(name = "cmsComponentService")
 	private CMSComponentService cmsComponentService;
 
+	private String getConfigurationPath(final String path)
+	{
+		return getConfigurationService().getConfiguration().getString(path);
+	}
+
 	@RequestMapping(method = RequestMethod.GET, params = "!q")
 	public String textSearch(@RequestParam(value = "text", defaultValue = "") final String searchText,
 			final HttpServletRequest request, final Model model) throws CMSItemNotFoundException
 	{
 		final ContentPageModel noResultPage = getContentPageForLabelOrId(NO_RESULTS_CMS_PAGE_ID);
+		final String sitecoreSupportPageURL = MessageFormat.format(getConfigurationPath("sitecore.support.url"),
+				searchText);
+		final String sitecoreSolutionPageURL = MessageFormat.format(getConfigurationPath("sitecore.solution.url"),
+				searchText);
+
 		if (StringUtils.isNotBlank(searchText))
 		{
 			final PageableData pageableData = createPageableData(0, getSearchPageSize(), null, ShowMode.Page);
 
 			final SearchStateData searchState = new SearchStateData();
 			final SearchQueryData searchQueryData = new SearchQueryData();
+			final MessageSource messageSource = getMessageSource();
 			searchQueryData.setValue(searchText);
 			searchState.setQuery(searchQueryData);
 
@@ -119,6 +132,8 @@ public class SearchPageController extends AbstractSearchPageController
 				storeCmsPageInModel(model, getContentPageForLabelOrId(SEARCH_CMS_PAGE_ID));
 				updatePageTitle(searchText, model);
 			}
+			model.addAttribute("sitecoreSupportPageData", sitecoreSupportPageURL);
+			model.addAttribute("sitecoreSolutionPageData", sitecoreSolutionPageURL);
 			model.addAttribute("userLocation", customerLocationService.getUserLocation());
 			getRequestContextData(request).setSearch(searchPageData);
 			if (searchPageData != null)
@@ -157,8 +172,16 @@ public class SearchPageController extends AbstractSearchPageController
 		final ProductSearchPageData<SearchStateData, ProductData> searchPageData = performSearch(searchQuery, page, showMode,
 				sortCode, getSearchPageSize());
 
+		final String sitecoreSupportPageURL = MessageFormat.format(getConfigurationPath("sitecore.support.url"),
+				searchText);
+		final String sitecoreSolutionPageURL = MessageFormat.format(getConfigurationPath("sitecore.solution.url"),
+				searchText);
+
 		populateModel(model, searchPageData, showMode);
 		model.addAttribute("userLocation", customerLocationService.getUserLocation());
+		model.addAttribute("sitecoreSupportPageData", sitecoreSupportPageURL);
+		model.addAttribute("sitecoreSolutionPageData", sitecoreSolutionPageURL);
+		model.addAttribute("searchPageData", searchPageData);
 
 		if (searchPageData.getPagination().getTotalNumberOfResults() == 0)
 		{

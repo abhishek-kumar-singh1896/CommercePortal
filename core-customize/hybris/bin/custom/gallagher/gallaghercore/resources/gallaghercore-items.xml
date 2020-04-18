@@ -51,6 +51,32 @@
 				<modifiers read="true" write="true" search="true" optional="true" />
 			</targetElement>
 		</relation>
+		
+		<relation code="BaseStoreMediaRelation" autocreate="true" generate="true" localized="false">
+			<deployment table="BaseStoreMediaRelation" typecode="30001" />
+			<sourceElement qualifier="baseStores" type="BaseStore" cardinality="many" ordered="false">
+				<description>Base Stores</description>
+				<modifiers read="true" write="true" search="true" optional="true" />
+			</sourceElement>
+			<targetElement qualifier="medias" type="Media" cardinality="many" collectiontype="list" ordered="true">
+				<description>Medias</description>
+				<modifiers read="true" write="true" search="true" optional="true" />
+			</targetElement>
+		</relation>
+	
+		<relation code="BaseStoreMediaContainerRelation" autocreate="true" generate="true" localized="false">
+			<deployment table="StoreMediaContainerRel" typecode="30002" />
+			<sourceElement qualifier="baseStores" type="BaseStore" cardinality="many" ordered="false">
+				<description>Base Stores</description>
+				<modifiers read="true" write="true" search="true" optional="true" />
+			</sourceElement>
+			<targetElement qualifier="mediaContainers" type="MediaContainer" cardinality="many" collectiontype="list"
+				ordered="true">
+				<description>MediaContainers</description>
+				<modifiers read="true" write="true" search="true" optional="true" />
+			</targetElement>
+		</relation>
+        
 	</relations>
 
 	<itemtypes>
@@ -207,6 +233,11 @@
 					<persistence type="property" />
 					<description>Indicates sub-heading for 'others' category product reference</description>
 				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="marketingDescription" type="localized:java.lang.String">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<description>Attribute for marketing description of the product</description>
+				</attribute>
 			</attributes>
 		</itemtype>
 		
@@ -242,6 +273,44 @@
 					<modifiers optional="true" />
 					<persistence type="property" />
 					<description>Used to store Url.</description>
+				</attribute>
+			</attributes>
+		</itemtype>
+
+		<itemtype code="GallagherSovosConfigurartion" autocreate="true" generate="true">
+			<deployment table="SovosConfigurartion" typecode="30003" />
+			<attributes>
+				<attribute qualifier="code" type="java.lang.String">
+					<modifiers optional="false" unique="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="name" type="java.lang.String">
+					<modifiers optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="resultLevel" type="java.lang.Integer">
+					<modifiers optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="taxCalculationType" type="java.lang.Integer">
+					<modifiers optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="debitCreditInd" type="java.lang.Integer">
+					<modifiers optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="transactionType" type="java.lang.Integer">
+					<modifiers optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="organizationCode" type="java.lang.String">
+					<modifiers optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="dropShipInd" type="java.lang.Integer">
+					<modifiers optional="true" />
+					<persistence type="property" />
 				</attribute>
 			</attributes>
 		</itemtype>
@@ -359,7 +428,7 @@
 						<persistence type="property" />
 						<description>heading for the button</description>
 					</attribute>
-					<attribute qualifier="button" type="java.lang.String">
+					<attribute qualifier="button" type="CMSLinkComponent">
 						<modifiers optional="true" />
 						<persistence type="property" />
 					</attribute>
@@ -438,6 +507,26 @@
 					<attribute qualifier="description" type="java.lang.String" redeclare="true">
 						<persistence type="dynamic" attributeHandler="gallagherSiteTransactionRestrictionDynamicDescription" />
 						<modifiers write="false" />
+					</attribute>
+				</attributes>
+			</itemtype>
+			
+			<itemtype code="GallagherRegionRestriction" generate="true" autocreate="true" extends="AbstractRestriction"
+				jaloclass="com.gallagher.core.jalo.GallagherRegionRestriction">
+				<attributes>
+					<attribute qualifier="description" type="java.lang.String" redeclare="true">
+						<persistence type="dynamic" attributeHandler="gallagherRegionRestrictionDynamicDescription" />
+						<modifiers write="false" />
+					</attribute>
+					<attribute qualifier="country" type="java.lang.String">
+						<description>Stores region code of the site</description>
+						<modifiers optional="false"/>
+						<persistence type="property"/>
+					</attribute>
+					<attribute qualifier="language" type="java.lang.String">
+						<description>Stores language code of the site</description>
+						<modifiers optional="true"/>
+						<persistence type="property"/>
 					</attribute>
 				</attributes>
 			</itemtype>
@@ -523,6 +612,28 @@
 				<description>Extends existing type with additional attributes.</description>
 				<attributes>
 					<attribute qualifier="regionCode" type="RegionCode">
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+		</typegroup>
+
+		<typegroup name="BaseStore">
+			<itemtype code="BaseStore" autocreate="false" generate="false">
+				<description>Extends existing type with additional attributes.</description>
+				<attributes>
+					<attribute qualifier="sovosConfiguration" type="GallagherSovosConfigurartion">
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+		</typegroup>
+
+		<typegroup name="Order">
+			<itemtype code="AbstractOrder" autocreate="false" generate="false">
+				<description>Extends existing type with additional attributes.</description>
+				<attributes>
+					<attribute qualifier="taxTransactionDocId" type="java.lang.String">
 						<persistence type="property" />
 					</attribute>
 				</attributes>

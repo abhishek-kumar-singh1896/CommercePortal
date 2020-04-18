@@ -233,7 +233,7 @@
           &.active {
             color: $primary-color;
             border-left: 4px solid $primary-color;
-            font-family: $font-family-bold;
+            font-weight: bold;
             background-color: transparent;
 
             .arrow-right-icon {
@@ -560,7 +560,7 @@
                 }
 
                 .user-name {
-                  font-family: $font-family-bold;
+                  font-weight: bold;
                   padding-bottom: 8px;
                   font-size: $font-size-13px;
                 }
@@ -611,6 +611,18 @@
     width: 100%;
     max-width: 100%;
   }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .xs-main-menu-l1-footer {
+    .login-register-btn-section {
+      display: none;
+    }
+
+    &.with-logged-in-user {
+      display: none;
+    }
+  } 
 }
 
 @media only screen and (max-width: 767px) {

@@ -5,6 +5,8 @@ package com.gallagher.facades;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+
 import com.gallagher.facades.product.data.RegisteredProductData;
 import com.gallagher.outboundservices.request.dto.RegisterProductRequest;
 
@@ -28,6 +30,7 @@ public interface GallagherRegisteredProductsFacade
 	 * Send Registered Product Information to c4c
 	 *
 	 * @param request
+	 * @return status
 	 */
-	void registerProduct(RegisterProductRequest request);
+	HttpStatus registerProduct(RegisterProductRequest request);
 }

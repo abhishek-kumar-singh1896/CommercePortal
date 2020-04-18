@@ -18,7 +18,7 @@ $facetSearchConfigDescription=Security B2B AU Solr Index
 $searchIndexNamePrefix=securityB2BAU
 $solrIndexedType=securityB2BAUProductType
 $indexBaseSite=securityB2BAU
-$indexLanguages=en
+$indexLanguages=en_AU
 $indexCurrencies=AUD
  
  
@@ -57,11 +57,11 @@ UPDATE BaseSite ; uid[unique=true] ; solrFacetSearchConfiguration(name)
                 
 # Define price ranges
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID ; solrValueRangeSet(name)[unique=true] ; name[unique=true]   ; from ; to     
-                             ; rangeRefAUD1     ; securityB2BPriceRangeAUD             ; AU$0-NZ$49.99       ; 0    ; 49.99  
-                             ; rangeRefAUD2     ; securityB2BPriceRangeAUD             ; AU$50-NZ$199.99     ; 50   ; 199.99 
-                             ; rangeRefAUD3     ; securityB2BPriceRangeAUD             ; AU$200-NZ$499.99    ; 200  ; 499.99 
-                             ; rangeRefAUD4     ; securityB2BPriceRangeAUD             ; AU$500-NZ$999.99    ; 500  ; 999.99 
-                             ; rangeRefAUD5     ; securityB2BPriceRangeAUD             ; AU$1,000-NZ$100,000 ; 1000 ; 100000 
+                             ; rangeRefAUD1     ; securityB2BPriceRangeAUD             ; AU$0-AU$49.99       ; 0    ; 49.99  
+                             ; rangeRefAUD2     ; securityB2BPriceRangeAUD             ; AU$50-AU$199.99     ; 50   ; 199.99 
+                             ; rangeRefAUD3     ; securityB2BPriceRangeAUD             ; AU$200-AU$499.99    ; 200  ; 499.99 
+                             ; rangeRefAUD4     ; securityB2BPriceRangeAUD             ; AU$500-AU$999.99    ; 500  ; 999.99 
+                             ; rangeRefAUD5     ; securityB2BPriceRangeAUD             ; AU$1,000-AU$100,000 ; 1000 ; 100000 
                              
 # Define price range set     
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true]        ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                                

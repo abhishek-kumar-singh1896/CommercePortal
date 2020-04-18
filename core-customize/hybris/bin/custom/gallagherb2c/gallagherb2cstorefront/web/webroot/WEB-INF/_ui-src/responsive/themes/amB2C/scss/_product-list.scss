@@ -115,7 +115,7 @@
           }
 
           .range-label-value {
-            font-family: $font-family-bold;
+            font-weight: bold;
           }
         }
 
@@ -160,7 +160,7 @@
 
           &.active {
             a {
-              font-family: $font-family-bold;
+              font-weight: bold;
               color: $black;
             }
           }
@@ -212,7 +212,7 @@
     .breadcrumb-item {
       &.active {
         color: $white;
-        font-family: $font-family-bold;
+        font-weight: bold;
       }
 
       & + .breadcrumb-item {
@@ -237,7 +237,7 @@
       margin: 0 0 24px 0;
       padding: 0;
       color: $white;
-      font-family: $font-family-heavy;
+      font-weight: 900;
       font-size: 3.428571em;
       line-height: 48px;
       -ms-word-break: break-all;
@@ -366,14 +366,14 @@
               display: block;
             }
 
-            height: 140px;
+            height: 135px;
             position: relative;
             text-align: center;
             margin-bottom: 16px;
 
             img {
-              max-height: 140px;
-              max-width: 100%;
+              height: 135px;
+              width: 135px;
             }
           }
 
@@ -427,7 +427,7 @@
             .currency-value {
               font-size: 1.142857em;
               color: $primary-color;
-              font-family: $font-family-bold;
+              font-weight: bold;
               sup {
                 &.currency-sign {
                   font-size: 0.5625em;
@@ -534,6 +534,8 @@
     }
     .sidebar-filter-section {
       min-height: inherit;
+      align-items: flex-start;
+
 
       .cross-icon-out {
         width: 100%;
@@ -775,7 +777,7 @@
       h1 {
         font-size: 2.285714em;
         line-height: 36px;
-        font-family: $font-family-bold;
+        font-weight: bold;
       }
     }
 

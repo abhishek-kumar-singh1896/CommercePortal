@@ -1,7 +1,7 @@
 .checkout-headline,
 .checkout-summary-headline,
 .checkout-order-summary .subtotals .totals {
-  font-family: $font-family-bold;
+  font-weight: bold;
   color: $gray-9;
 }
 
@@ -94,4 +94,8 @@ label {
       margin-left: 0;
       margin-right: 0;
   }
+  #cboxLoadedContent {
+    padding: 20px 20px 20px 20px;
+    margin-top: 74px;
+}
 }

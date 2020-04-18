@@ -7,7 +7,7 @@
 $productCatalog=amB2CLatAmProductCatalog
 $contentCatalog=amB2CContentCatalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
-$defaultLanguage=en
+$defaultLanguage=es_LA
 $storeUid=amB2CLatAm
 $siteUid=amB2CLatAm
 $webServiceSiteUid=$siteUidWS

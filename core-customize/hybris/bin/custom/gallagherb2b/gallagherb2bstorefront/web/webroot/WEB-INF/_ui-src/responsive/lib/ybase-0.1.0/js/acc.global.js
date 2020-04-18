@@ -7,7 +7,7 @@ ACC.global = {
         "bindHoverIntentMainNavigation",
         "initImager",
         "backToHome",
-        "bindDropdown",
+//        "bindDropdown",
         "closeAccAlert"
     ],
 

@@ -15,7 +15,8 @@
 		<c:url value="${product.url}" var="entryProductUrl"/>
 		<div class="thumb">
 			<a href="${fn:escapeXml(entryProductUrl)}">
-				<product:productPrimaryImage product="${entry.product}" format="cartIcon"/>
+<%-- 				<product:productPrimaryImage product="${entry.product}" format="cartIcon"/> --%>
+				<product:productIconImage product="${entry.product}" format="thumbnail"/>
 			</a>
 		</div>
 		<div class="details">

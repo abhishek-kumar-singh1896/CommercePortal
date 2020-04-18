@@ -9,12 +9,12 @@
 $solrIndexedType=amB2CAUProductType
 
 # Language
-$lang=en
+$lang=en_AU
 
 # Solr Indexed Property
 UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];displayName[lang=$lang]
  ;$solrIndexedType;allPromotions;"Promotion"
- ;$solrIndexedType;availableInStores;"Stores"
+ #;$solrIndexedType;availableInStores;"Stores"
  ;$solrIndexedType;category;"Category"
  ;$solrIndexedType;code;"Code"
  ;$solrIndexedType;description;"Description"
@@ -31,3 +31,5 @@ UPDATE SolrSort;indexedType(identifier)[unique=true];code[unique=true];name[lang
  ;$solrIndexedType;price-desc;"Price (highest first)"
  ;$solrIndexedType;relevance;"Relevance"
  ;$solrIndexedType;topRated;"Top Rated"
+ #;$solrIndexedType;market-dscr-asc;"Marketing Description (A-Z)"
+ #;$solrIndexedType;market-dscr-desc;"Marketing Description (Z-A)"

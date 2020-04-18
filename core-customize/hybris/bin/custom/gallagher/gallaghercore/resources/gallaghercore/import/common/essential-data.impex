@@ -21,10 +21,13 @@
 # Languages
 INSERT_UPDATE Language ; isocode[unique=true] ; fallbackLanguages(isocode) ; active[default=true] 
                        ; en                   ;                            ;                      ;  
-                       ; de                   ; en                         ;                      ;  
-                       ; ja                   ; en                         ;                      ;  
-                       ; zh                   ; en                         ;                      ;  
-                       
+                       ; de                   ; en                         ;                      ;
+                       ; en_US                ; en                         ;                      ;  
+                       ; en_CA                ; en                         ;                      ;
+                       ; en_AU                ; en                         ;                      ;
+                       ; en_NZ                ; en                         ;                      ;                       
+                       ; fr_CA					 ; fr								   ;							  ;
+                       ; es_LA					 ; en									;							  ;
                        
 INSERT_UPDATE Currency ; isocode[unique=true] ; symbol ; sapCode ; digits ; conversion ; active[default=true] 
                        ; GBP                  ; £      ; GBP     ; 2      ; 1          ;                      
@@ -84,24 +87,17 @@ INSERT_UPDATE MediaFormat ; qualifier[unique=true]
 # Tax & Tax Groups        
 INSERT_UPDATE UserTaxGroup ; code[unique=true] 
                            ; de-taxes          
-                           ; jp-taxes          
                            ; uk-taxes          
                            ; us-taxes          
                            ; ca-taxes          
                            
 INSERT_UPDATE ProductTaxGroup ; code[unique=true] 
-                              ; jp-vat-full       
-                              ; eu-vat-full       
-                              ; eu-vat-half       
                               ; us-sales-tax-full 
                               ; ca-sales-tax-full 
                               
 INSERT_UPDATE Tax ; code[unique=true] ; value ; currency(isocode) 
                   ; de-vat-full       ; 19    
                   ; de-vat-half       ; 7     
-                  ; jp-vat-full       ; 5     
-                  ; uk-vat-full       ; 20    
-                  ; uk-vat-half       ; 5     
                   ; us-sales-tax-full ; 0     
                   ; ca-sales-tax-full ; 0     
                   

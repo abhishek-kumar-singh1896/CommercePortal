@@ -26,14 +26,7 @@
 <!-- 		</a> -->
 		<div class="details">
 			<ycommerce:testId code="product_productName">
-				<c:choose>
-                						<c:when test="${fn:length(product.name) > 50}">
-                							${fn:substring(product.name, 0, 50)}...
-                						</c:when>
-                						<c:otherwise>
-                							${product.name}
-                						</c:otherwise>
-                					</c:choose>
+				${ycommerce:sanitizeHTML(product.name)}
 			</ycommerce:testId>
 
             <div class="partNumber">

@@ -66,6 +66,7 @@ core-customize/hybris/bin/custom/**/web/webroot/**/.sass-cache
 # Ignoring the _ui files generated from _ui-src
 core-customize/hybris/bin/custom/**/web/webroot/_ui/responsive/theme-*/css/theme.css
 core-customize/hybris/bin/custom/**/web/webroot/_ui/responsive/theme-*/fonts/*
+core-customize/hybris/bin/custom/**/web/webroot/_ui/responsive/theme-*/images/svg/*
 core-customize/hybris/bin/custom/**/web/webroot/_ui/responsive/theme-*/js/*
 core-customize/hybris/bin/custom/**/**/web/webroot/_ui/responsive/common/js/*
 
