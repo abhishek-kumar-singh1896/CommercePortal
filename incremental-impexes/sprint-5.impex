@@ -1519,9 +1519,9 @@ INSERT_UPDATE CronJob;code[unique=true];job(code);sessionLanguage(isocode)
 
 INSERT_UPDATE Trigger;cronJob(code)[unique=true]; second ; minute ; hour ; day ; month ; year ; relative ; active ; maxAcceptableDelay                   
 # Run the Clean up cronJob logs at 4:05 AM every day
-;gglCleanupCronJobLogs; 0      ; 15      ; -1   ; -1  ; -1    ; -1   ; true     ; false  ; -1                 
+;gglCleanupCronJobLogs; 0      ; 30      ; -1   ; -1  ; -1    ; -1   ; true     ; true  ; -1                 
 # Run the Cron job cleanup at 5:05 AM every day
-;gglCleanupCronJobs; 0      ; 15      ; -1   ; -1  ; -1    ; -1   ; true     ; false  ; -1                 
+;gglCleanupCronJobs; 0      ; 30      ; -1   ; -1  ; -1    ; -1   ; true     ; true  ; -1                 
 ####################################################
 
 INSERT_UPDATE Trigger ; cronJob(code)[unique=true] ; second ; minute ; hour ; day ; month ; year ; relative ; active ; maxAcceptableDelay                   
