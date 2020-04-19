@@ -5,7 +5,7 @@
 # Import the Animal Management Content Catalog
 #
 $contentCatalog=amB2CContentCatalog
-$languages=en,fr,en_AU,en_US,en_NZ,fr_CA,en_CA,es,es_LA
+$languages=en,fr,en_AU,en_US,en_NZ,fr_CA,en_CA,es_LA
 
 # Content catalog for CMS contents
 INSERT_UPDATE ContentCatalog;id[unique=true]
