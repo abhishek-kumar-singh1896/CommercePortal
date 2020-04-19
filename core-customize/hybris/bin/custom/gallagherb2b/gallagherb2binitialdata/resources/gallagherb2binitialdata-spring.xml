@@ -58,7 +58,7 @@
 	</bean>
 
 	<bean id="securityB2BCategorySource" parent="variantCategorySource">
-		<property name="rootCategory" value="1"/> <!-- '1' is the root icecat category -->
+		<property name="rootCategory" value="security"/> <!-- '1' is the root icecat category -->
 	</bean>
 	<bean id="securityB2BVariantCategorySource" parent="variantCategorySource"/>
 

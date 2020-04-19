@@ -16,7 +16,7 @@
 	<bean id="gallagherCoreSystemSetup" class="com.gallagher.core.setup.CoreSystemSetup" parent="abstractCoreSystemSetup" />
 
 	<bean id="amB2CCategorySource" parent="abstractCategorySource">
-		<property name="rootCategory" value="1" />
+		<property name="rootCategory" value="animal-management" />
 		<!-- '1' is the root icecat category -->
 	</bean>
 	<bean id="amB2CBrandCategorySource" parent="abstractCategorySource">

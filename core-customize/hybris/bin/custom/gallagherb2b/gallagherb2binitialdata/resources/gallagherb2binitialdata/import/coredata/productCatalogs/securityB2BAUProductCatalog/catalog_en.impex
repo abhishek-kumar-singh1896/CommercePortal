@@ -14,7 +14,7 @@
 # Localization en
 #
 
-$lang=en_AU
+$lang=en
 
 $productCatalog=securityB2BAUProductCatalog
 $classificationCatalog=SecurityB2BClassification
