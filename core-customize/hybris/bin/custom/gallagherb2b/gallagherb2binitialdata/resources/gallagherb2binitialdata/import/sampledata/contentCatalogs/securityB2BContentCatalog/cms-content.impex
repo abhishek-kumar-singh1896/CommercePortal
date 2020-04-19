@@ -413,8 +413,8 @@ INSERT_UPDATE CMSTabParagraphContainer;$contentCV[unique=true];uid[unique=true];
 
 
 ## footer slot ##
-INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(&componentRef)
-;;FooterSlot;FooterNavigationComponent
+#INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(&componentRef)
+#;;FooterSlot;FooterNavigationComponent
 
 INSERT_UPDATE FooterNavigationComponent;$contentCV[unique=true];uid[unique=true];wrapAfter;&componentRef;showLanguageCurrency;navigationNode(&nodeRef)
 ;;FooterNavigationComponent;4;FooterNavigationComponent;true;FooterNavNode;
