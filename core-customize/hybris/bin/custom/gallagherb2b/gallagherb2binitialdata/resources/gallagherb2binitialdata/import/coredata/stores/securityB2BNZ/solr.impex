@@ -18,7 +18,7 @@ $facetSearchConfigDescription=Security B2B NZ Solr Index
 $searchIndexNamePrefix=securityB2BNZ
 $solrIndexedType=securityB2BNZProductType
 $indexBaseSite=securityB2BNZ
-$indexLanguages=en_NZ
+$indexLanguages=en,en_NZ
 $indexCurrencies=NZD
  
  
