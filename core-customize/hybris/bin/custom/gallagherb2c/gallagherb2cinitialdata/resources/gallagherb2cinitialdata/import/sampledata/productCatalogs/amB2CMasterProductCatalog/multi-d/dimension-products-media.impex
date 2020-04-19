@@ -21,14 +21,14 @@ $conversionGroup=conversionGroup(code[default=AnimalManagementConversionGroup])
 INSERT_UPDATE MediaFolder;qualifier[unique=true];path[unique=true]
 ;images;images
 
-INSERT_UPDATE Media;mediaFormat(qualifier);code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];$catalogVersion;folder(qualifier)[default=images]
-;B2BADVANCE-BF;/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge-65-foot.jpg;$siteResource/images/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge.jpg
-;B2BADVANCE-BF;/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge-330-foot.jpg;$siteResource/images/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge.jpg
+INSERT_UPDATE Media;mediaFormat(qualifier);code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];baseStores(uid);mime[default='image/jpeg'];$catalogVersion;folder(qualifier)[default=images]
+;B2BADVANCE-BF;/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge-65-foot.jpg;$siteResource/images/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge.jpg;amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA,amB2CLatAm
+;B2BADVANCE-BF;/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge-330-foot.jpg;$siteResource/images/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge.jpg;amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA,amB2CLatAm
 
 
-INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$catalogVersion;$conversionGroup
-;heavy-duty-leadout-cable-12.5-gauge-65-foot;/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge-65-foot.jpg,/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge-65-foot.jpg,/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge-65-foot.jpg,/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge-65-foot.jpg,/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge-65-foot.jpg,/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge-65-foot.jpg
-;heavy-duty-leadout-cable-12.5-gauge-330-foot;/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge-330-foot.jpg,/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge-330-foot.jpg,/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge-330-foot.jpg,/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge-330-foot.jpg,/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge-330-foot.jpg,/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge-330-foot.jpg
+INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;baseStores(uid);$catalogVersion;$conversionGroup
+;heavy-duty-leadout-cable-12.5-gauge-65-foot;/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge-65-foot.jpg,/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge-65-foot.jpg,/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge-65-foot.jpg,/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge-65-foot.jpg,/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge-65-foot.jpg,/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge-65-foot.jpg;amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA,amB2CLatAm
+;heavy-duty-leadout-cable-12.5-gauge-330-foot;/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge-330-foot.jpg,/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge-330-foot.jpg,/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge-330-foot.jpg,/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge-330-foot.jpg,/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge-330-foot.jpg,/B2BADVANCE-BF/heavy-duty-leadout-cable-12.5-gauge-330-foot.jpg;amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA,amB2CLatAm
 
 
 
