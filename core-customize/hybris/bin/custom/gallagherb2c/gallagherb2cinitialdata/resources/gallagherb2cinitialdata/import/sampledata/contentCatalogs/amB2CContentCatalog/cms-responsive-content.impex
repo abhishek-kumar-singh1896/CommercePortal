@@ -2204,7 +2204,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;RegisterAProductLink;Register a product Link;/register-product;;;;
 ;;MyRegisteredProductLink;My registered Product Link;/register-product/products;;;;
 ;;EditProfileLink;Edit Profile Link;/my-account/update-profile;;;;
-;;OrderHistoryLink;Order History Link;/my-account/update-profile;;;;
+;;OrderHistoryLink;Order History Link;/my-account/orders;;;;
 ;;PreferencesLink;Preferences Link;/my-account/consents;;;;
 ;;LogoutLink;Logout Us Link;/logout;;;;
 ;;PaymentDetailLink;Payment Detail Link;/my-account/payment-details;;;;
