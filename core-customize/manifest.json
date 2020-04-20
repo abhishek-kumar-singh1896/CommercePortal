@@ -107,7 +107,8 @@
     "scpiconnectorbackoffice",
 	"sapcpiorderexchange",
 	"sapcpiorderexchangeb2b",
-	"sapcpiorderexchangeoms"
+	"sapcpiorderexchangeoms",
+	"paymetric"
   ],
   "useConfig": {
     "solr": {
