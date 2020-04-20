@@ -198,13 +198,6 @@ INSERT_UPDATE JobSearchRestriction;code[unique=true];job(code)[path-delimiter=!]
 
 
 INSERT_UPDATE SyncAttributeDescriptorConfig;syncJob(code)[unique=true,path-delimiter=!];attributeDescriptor(enclosingType(code),qualifier)[unique=true];includedInSync;copyByValue
-;sync amB2CMasterProductCatalog:Staged->amB2CNZProductCatalog:Staged;Product:baseStores;false;false
-;sync amB2CMasterProductCatalog:Staged->amB2CAUProductCatalog:Staged;Product:baseStores;false;false
-;sync amB2CMasterProductCatalog:Staged->amB2CUSProductCatalog:Staged;Product:baseStores;false;false
-;sync amB2CMasterProductCatalog:Staged->amB2CCAProductCatalog:Staged;Product:baseStores;false;false
-;sync amB2CMasterProductCatalog:Staged->amB2CGlobalProductCatalog:Staged;Product:baseStores;false;false
-;sync amB2CMasterProductCatalog:Staged->amB2CLatAmProductCatalog:Staged;Product:baseStores;false;false
-
 ;sync amB2CMasterProductCatalog:Staged->amB2CNZProductCatalog:Staged;Product:europe1Prices;false;false
 ;sync amB2CMasterProductCatalog:Staged->amB2CAUProductCatalog:Staged;Product:europe1Prices;false;false
 ;sync amB2CMasterProductCatalog:Staged->amB2CUSProductCatalog:Staged;Product:europe1Prices;false;false
