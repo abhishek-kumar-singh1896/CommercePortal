@@ -507,7 +507,10 @@ public class ProductPageController extends AbstractPageController
 						{
 							mapValue = data.getValue();
 						}
-						firstProductAttrValueMap.put(fd.getName(), mapValue);
+						if (StringUtils.isNotEmpty(fd.getName()) && StringUtils.isNotEmpty(mapValue))
+						{
+							firstProductAttrValueMap.put(fd.getName(), mapValue);
+						}
 					}
 				}
 				for (final String attribute : compareProducts)
