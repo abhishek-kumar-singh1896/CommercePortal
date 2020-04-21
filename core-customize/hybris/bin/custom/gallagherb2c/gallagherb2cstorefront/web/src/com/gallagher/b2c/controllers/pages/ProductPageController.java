@@ -514,15 +514,15 @@ public class ProductPageController extends AbstractPageController
 				{
 					if (firstProductAttrValueMap.containsKey(attribute))
 					{
-						firstProductAttrValueMap.put(attribute, firstProductAttrValueMap.get(attribute));
+						firstProductAttrValueMapFinal.put(attribute, firstProductAttrValueMap.get(attribute));
 					}
 					else
 					{
-						firstProductAttrValueMap.put(attribute, "-");
+						firstProductAttrValueMapFinal.put(attribute, "-");
 					}
 				}
 				firstComparisonData.setProductData(productData);
-				firstComparisonData.setProductAttrValueMap(firstProductAttrValueMap);
+				firstComparisonData.setProductAttrValueMap(firstProductAttrValueMapFinal);
 				model.addAttribute("firstProduct", firstComparisonData);
 				model.addAttribute("compareProducts", compareProducts);
 			}
