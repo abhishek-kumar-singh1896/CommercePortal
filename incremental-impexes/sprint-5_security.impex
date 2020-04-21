@@ -249,6 +249,9 @@ UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkname[lang=$
 
 ############################### B2B Header user dropdown starts ############################
 
+UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;UpdatePasswordLink;"Update password"	
+
 INSERT_UPDATE NavigationComponent;$contentCV[unique=true];uid[unique=true];name;styleClass;&componentRef;navigationNode(&nodeRef)
 ;;B2BMyAccountComponent;My Account;;B2BMyAccountComponent;B2BMyAccountNavNode
 ;;B2BMyCompanyComponent;My Company;;B2BMyCompanyComponent;B2BMyCompanyNavNode
@@ -725,3 +728,11 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 ;;ggB2BLogout-QuickOrderPage;ggB2BLogout;;ggB2BLogoutSlot;true
 
 ##################### B2B Header logout component ends ###########
+
+#B2B user dropdown linkname updation
+$contentCatalog=securityB2BContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+# Language
+$lang=en
+UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
+;;UpdatePasswordLink;"Update password"
