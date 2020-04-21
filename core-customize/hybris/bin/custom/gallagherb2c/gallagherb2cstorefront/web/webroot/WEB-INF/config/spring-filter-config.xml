@@ -203,7 +203,7 @@
 	<bean id="defaultCartRestoreCookieGenerator" class="com.gallagher.b2c.security.cookie.CartRestoreCookieGenerator" >
 		<property name="cookieSecure" value="true"/>
 		<property name="cookieMaxAge" value="360000000"/>
-		<property name="useDefaultPath" value="false"/>
+		<property name="useDefaultPath" value="true"/>
 		<property name="httpOnly" value="true"/>
 		<property name="baseSiteService" ref="baseSiteService"/>
 	</bean>
