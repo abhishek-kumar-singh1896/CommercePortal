@@ -71,8 +71,12 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 		else
 		{
 			final CustomerModel retrieveUser = retrieveUserBySubjectId.get(0);
-			retrieveUser.setName(token.getName());
-			retrieveUser.setUid(token.getEmail());
+			/* Update name and email only if updated to avoid sending data to SCPI */
+			if (!retrieveUser.getName().equals(token.getName()) || !retrieveUser.getUid().equals(token.getEmail()))
+			{
+				retrieveUser.setName(token.getName());
+				retrieveUser.setUid(token.getEmail());
+			}
 			retrieveUser.setIsUserExist(true);
 			modelService.save(retrieveUser);
 			success = true;
@@ -112,6 +116,7 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 				newCustomer.setObjectID(existingCustomers.get(0).getObjectID());
 				newCustomer.setSapContactID(existingCustomers.get(0).getContactID());
 			}
+			newCustomer.setSapIsReplicated(true);
 		}
 
 		//create customer in commerce and update C4C

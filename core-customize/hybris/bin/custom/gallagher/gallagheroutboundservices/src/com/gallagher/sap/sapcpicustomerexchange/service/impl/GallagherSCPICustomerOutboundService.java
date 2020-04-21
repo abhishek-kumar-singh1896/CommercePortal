@@ -47,12 +47,18 @@ public class GallagherSCPICustomerOutboundService extends SapCpiCustomerOutbound
 
 					if (isSentSuccessfully(responseEntityMap))
 					{
-						customerModel
-								.setSapContactID(getPropertyValue(responseEntityMap, GallagheroutboundservicesConstants.SAP_CONTACT_ID));
-						customerModel.setObjectID(getPropertyValue(responseEntityMap, GallagheroutboundservicesConstants.OBJECT_ID));
-						customerModel.setSapIsReplicated(true);
-
-						modelService.save(customerModel);
+						final String sapContactID = getPropertyValue(responseEntityMap,
+								GallagheroutboundservicesConstants.SAP_CONTACT_ID);
+						final String objectID = getPropertyValue(responseEntityMap, GallagheroutboundservicesConstants.OBJECT_ID);
+						if (Boolean.FALSE.equals(customerModel.getSapIsReplicated())
+								|| (customerModel.getObjectID() == null || !customerModel.getObjectID().equals(objectID))
+								|| (customerModel.getSapContactID() == null || !customerModel.getSapContactID().equals(sapContactID)))
+						{
+							customerModel.setSapContactID(sapContactID);
+							customerModel.setObjectID(objectID);
+							customerModel.setSapIsReplicated(true);
+							modelService.save(customerModel);
+						}
 
 						LOG.info(String.format("The customer [%s] has been sent to the SAP backend through SCPI! %n%s",
 								customerModel.getCustomerID(), getPropertyValue(responseEntityMap, RESPONSE_MESSAGE)));
