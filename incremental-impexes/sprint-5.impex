@@ -1,5 +1,6 @@
 REMOVE ZoneDeliveryMode; code[unique=true];net; active[default=true]
 ; premium-net; true
+; am-standard-gross; true
 ; standard-net       ; true
 ; premium-gross      ; false
 ; free-standard-shipping     ; true; false  ;
