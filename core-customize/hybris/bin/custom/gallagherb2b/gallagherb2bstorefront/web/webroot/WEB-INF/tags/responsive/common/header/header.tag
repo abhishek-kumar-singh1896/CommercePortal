@@ -337,6 +337,6 @@
 	<%-- <nav:topNavigation /> --%>
 </header>
 
-<cms:pageSlot position="BottomHeaderSlot" var="component" element="div"	class="container-fluid">
+<cms:pageSlot position="BottomHeaderSlot" var="component">
 	<cms:component component="${component}" />
 </cms:pageSlot>
