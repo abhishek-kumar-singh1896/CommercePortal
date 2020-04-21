@@ -279,6 +279,10 @@
 		{
           "name": "gallagherstorefront",
           "contextPath": ""
+        },
+		{
+          "name": "paymetric",
+          "contextPath": "/paymetric"
         }
       ]
     },
