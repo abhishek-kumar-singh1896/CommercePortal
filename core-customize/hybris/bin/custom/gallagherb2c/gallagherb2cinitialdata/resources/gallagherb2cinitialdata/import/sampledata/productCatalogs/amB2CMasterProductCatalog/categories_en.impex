@@ -9,7 +9,6 @@ $productCatalog=amB2CMasterProductCatalog
 $productCatalogName=Animal Management B2C US Product Catalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 
-
 # Language
 $lang=en
 
@@ -20,62 +19,128 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
 
 # Main Categories
 ;electric-fencing;;Electric Fencing
-;weighing-and-eid;;Weighing and EID
-;wireless-water-monitoring;;Wireless Water Monitoring
-;steel-gates-and-hardware;;Steel Gates and Hardware
-;gallagher-westonfence;;Gallagher Westonfence 
+;weighing-and-eid;;Weighing and EID 
+#;weighing-eid-and-animal-handling;;"Weighing, EID and Animal Handling"
+;wireless-water-monitoring;;Wireless Water Monitoring 
+;steel-gates-and-hardware;;Steel Gates and Hardware 
+;apps-and-software;;Apps and Software 
 ;automatic-watering;;Automatic Watering 
+;stock-prods-main;;Stock Prods 
+#;promotions;;Promotions
 
-# Sub Categories for 'electric-fencing'
+# 1.1 Sub Categories for 'electric-fencing'
 ;power;;Power
 ;permanent-fencing;;Permanent Fencing
 ;portable-fencing;;Portable Fencing
+#;fence-construction;;Fence Construction
+;fence-conductors;;Fence Conductors
 
-# Sub Categories for 'power'
-;energisers;;Energisers
+# 1.1.1 Sub Categories for 'power'
+;mains-energizers;;Mains Energizers
 ;remotes-and-fence-testers;;Remotes and Fence Testers
-;power-system-accessories;;Power System Accessories
+;power-system-accessories;;Power System Accessories 
+;multi-powered-energizers;;Multi Powered Energizers
+;battery-energizers;;Power System Accessories 
+;solar-energizers;;Solar Energizers
+;solar-panels;;Solar Panels
+;batteries;;Batteries
+;earthing;;Earthing
+;solar-and-solar-kits;;Solar and Solar Kits 
+;110-volt-energizers;;110 Volt Energizers 
+;grounding;;Grounding
+;power-management-tools;;Power Management Tools
 
-# Sub Categories for 'permanent-fencing'
-;wire-and-cable;;Wire and Cable
-;wire-strainers;;Wire Strainers
-;insulators;;Insulators
-;offsets;;Offsets
-;electric-gates-and-accessories;;Electric Gates and Accessories
-;fence-tools-and-accessories;;Fence Tools and Accessories
-;clamps-and-joiners;;Clamps and Joiners
-;posts;;Posts
-;permanent-fencing-gates;;Gates
+# 1.1.2 Sub Categories for 'permanent-fencing'
+;wire-and-cable;;Wire and Cable 
+;strainers;; Strainers
+;insulators;; Insulators
+;offsets;; Offsets
+;electric-gates;; Electric Gates
+;fence-tools-and-accessories;; Fence Tools and Accessories
+;clamps-and-joiners;; Clamps and Joiners 
+;posts;; Posts
+;irrigator-fence-crossing-system;;Irrigator Fence Crossing System 
+;gallagher-westonfence;; Gallagher Westonfence
+;gallagher-mega-anchor;; Gallagher Mega Anchor
+;pivot-irrigator-system;;Pivot Irrigator System
+;gate-hardware;; Gate Hardware
 
-# Sub Categories for 'portable-fencing'
-;tapes-wires-braids;;"Tapes, Wires, Braids"
-;reels-and-accessories;;Reels and Accessories
-;posts-pigtails-and-tread-ins;;Posts - Pigtails and Tread-ins
-;all-in-one-portable-fences;;All-in-One Portable Fences
+# 1.1.3 Sub Categories for 'portable-fencing'
+;tapes-wires-and-braids-pf;;"Tapes, Wires, Braids"
+;reels-and-accessories-pf;;Reels and Accessories 
+;posts-pigtails-and-treadins-pf;;"Posts - Pigtails and Tread-ins"
+;all-in-one-portable-fences;;"All-in-one Portable Fences"
+;electric-fence-kits;;Electric Fence Kits
+;netting;;Netting
 
-# Sub Categories for 'weighing-and-eid'
+# 1.1.4 Sub Categories for 'fence-construction'
+#;insulators 
+#;offsets
+#;posts
+#;strainers
+#;clamps-and-joiners 
+#;fence-tools-and-accessories 
+#;gates-and-gate-accessories;;Gates and Gate Accessories 
+
+# 1.1.5 Sub Categories for 'fence-conductors'
+;reels-and-accessories-fc;;;Reels and Accessories 
+;hi-tensile-wire-and-cable;;"Hi-Tensile Wire and Cable"
+;tapes-wires-and-braids-fc;;"Tapes, Wires and Braids"
+;posts-pigtails-and-treadins-fc;;"Posts - Pigtails and Treadins"
+
+
+# 1.2 Sub Categories for 'weighing-and-eid'
 ;weigh-scales-and-data-collectors;;Weigh Scales and Data Collectors
-;loadbars-and-accessories;;Loadbars and Accessories
-;platforms;;Platforms
-;drafters;;Drafters
-;eid-tag-readers;;EID Tag Readers
+;loadbars-and-accessories;;Loadbars and Accessories 
+;loadbars;;Loadbars
+;platforms;;Platforms 
+;drafters;;Drafters 
+;eid-tag-readers;;EID Tag Readers 
+;scale-heads-and-data-collectors;;Scale Heads and Data Collectors;
+;weighing-accessories;;Weighing Accessories
+;stock-prods-and-accessories;;Stock Prods and Accessories 
+;eid-tag-readers-and-barcoding-equipment;;EID tag readeres and Barcoding Equipment 
+
+# 1.3 Sub Categories for 'weighing-eid-and-animal-handling'
 ;platforms-and-crates;;Platforms and Crates
 ;handlers-and-drafters;;Handlers and Drafters 
-;eid-tag-readeres-and-barcoding-equipement;;EID Tag Readeres and Barcoding Equipement 
-;scale-heads-and-data-collectors;;Scale Heads and Data Collectors 
+;stock-prods;;Stock Prods
+#;weigh-scales-and-data-collectors 
+#;loadbars-and-accessories  
+#;eid-tag-readers
 
-# Sub Categories for 'wireless-water-monitoring'
 
-# Sub Categories for 'steel-gates-and-hardware'
+# 1.4 Sub Categories for 'wireless-water-monitoring'
+;water-flow-indicator;;Water Flow Indicator 
+;one-tank-systems;;One Tank Systems
+;antennae-and-cables;;Antennae and Cables 
+;additional-system-components;;Additional System Components
+
+
+# 1.5 Sub Categories for 'steel-gates-and-hardware'
 ;gates;;Gates
-;gate-hardware;;Gate Hardware
-
-# Sub Categories for 'gallagher-westonfence'
-;insulated-suspension-posts;;Insulated Suspension Posts
-
-# Sub Categories for 'automatic-watering'
-;applicable-to-all-products;;Applicable to All Products
+;gate-hardware;;Hardware
 
 
+# 1.6 Sub Categories for 'apps-and-software'
+;livestock;;Livestock
+;fence;;Fence
 
 
+# 1.7 Sub Categories for 'automatic-watering'
+;trough-valves;;Trough Valves
+;lil-spring;;Lil'Spring 
+;equi-fount;;EQUIFount 
+;mira-fount;;MiraFount
+;e-fount;;E-Fount
+;big-spring;;BIGSpring
+;pet-tanks;;Pet Tanks
+;watering-accessories;;Watering Accessories 
+
+ 
+# 1.8 Sub Categories for 'stock-prods-main'
+
+
+
+# 1.9 Sub Categories for 'promotions'
+#;bargain-barn;;Bargain Barn

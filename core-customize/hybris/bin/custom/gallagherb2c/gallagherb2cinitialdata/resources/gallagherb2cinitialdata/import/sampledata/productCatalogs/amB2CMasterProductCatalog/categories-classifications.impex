@@ -18,53 +18,108 @@ $unit=unit(code,$classSystemVersion)
 # Insert Classifications
 INSERT_UPDATE ClassificationClass;$classCatalogVersion;code[unique=true];allowedPrincipals(uid)[default='customergroup']
 # Classification Categories for 'power'
-;;energisers
+;;mains-energizers
 ;;remotes-and-fence-testers
 ;;power-system-accessories
+;;multi-powered-energizers
+;;battery-energizers 
+;;solar-energizers 
+;;solar-panels
+;;batteries 
+;;earthing 
+;;solar-and-solar-kits 
+;;110-volt-energizers   
+;;grounding
+;;power-management-tools
 
 # Classification Categories for 'permanent-fencing'
 ;;wire-and-cable
-;;wire-strainers
+;;strainers
 ;;insulators
 ;;offsets
-;;electric-gates-and-accessories
+;;electric-gates
 ;;fence-tools-and-accessories
 ;;clamps-and-joiners
 ;;posts
-;;permanent-fencing-gates
+;;irrigator-fence-crossing-system  
+;;gallagher-westonfence
+;;gallagher-mega-anchor
+;;pivot-irrigator-system
+;;gate-hardware
 
 # Classification Categories for 'portable-fencing'
-;;tapes-wires-braids
-;;reels-and-accessories
-;;posts-pigtails-and-tread-ins
-;;all-in-one-portable-fences
+;;tapes-wires-and-braids-pf
+;;reels-and-accessories-pf
+;;posts-pigtails-and-treadins-pf
+;;all-in-one-portable-fences   
+;;electric-fence-kits 
+;;netting 
+
+# Classification Categories for 'fence-construction'
+#;;insulators 
+#;;offsets
+#;;posts
+#;;strainers
+#;;clamps-and-joiners 
+#;;fence-tools-and-accessories 
+#;;gates-and-gate-accessories
+
+# Classification Categories for 'fence-conductors'
+;;reels-and-accessories-fc
+;;hi-tensile-wire-and-cable-fc
+;;tapes-wires-and-braids-fc
+;;posts-pigtails-and-treadins-fc
+
 
 # Classification Categories for 'weighing-and-eid'
 ;;weigh-scales-and-data-collectors
 ;;loadbars-and-accessories
+;;loadbars
 ;;platforms
 ;;drafters
 ;;eid-tag-readers
+;;scale-heads-and-data-collectors
+;;weighing-accessories 
+;;stock-prods-and-accessories
+
+# Classification Categories for 'weighing-eid-and-animal-handling'
 ;;platforms-and-crates
 ;;handlers-and-drafters
-;;eid-tag-readeres-and-barcoding-equipement
-;;scale-heads-and-data-collectors
+;;stock-prods
+#;;weigh-scales-and-data-collectors 
+#;;loadbars-and-accessories  
+#;;eid-tag-readers
 
 # Classification Categories for 'wireless-water-monitoring'
+;;water-flow-indicator 
+;;one-tank-systems 
+;;antennae-and-cables 
+;;additional-system-components
 
 # Classification Categories for 'steel-gates-and-hardware'
 ;;gates
 ;;gate-hardware
 
-# Classification Categories for 'gallagher-westonfence'
-;;insulated-suspension-posts
+# Classification Categories for 'apps-and-software'
+;;livestock
+;;fence
 
 # Classification Categories for 'automatic-watering'
-;;applicable-to-all-products
+;;trough-valves
+;;lil-spring 
+;;equi-fount 
+;;mira-fount
+;;e-fount
+;;big-spring
+;;pet-tanks 
+;;watering-accessories 
+
+# Classification Categories for 'promotions'
+#;;bargain-barn
 
 # Insert Classification Attributes
 INSERT_UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true]
-;;energiser-type
+;;energizer-type
 ;;animal-type
 ;;area-of-fence
 ;;multi-wire-distance-typical
@@ -101,54 +156,141 @@ INSERT_UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true]
 
 # Links ClassificationClasses to Categories
 INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
-;energisers;energisers
+;mains-energizers;mains-energizers
 ;remotes-and-fence-testers;remotes-and-fence-testers
 ;power-system-accessories;power-system-accessories
+;multi-powered-energizers;multi-powered-energizers
+;battery-energizers;battery-energizers 
+;solar-energizers;solar-energizers 
+;solar-panels;solar-panels
+;batteries;batteries 
+;earthing;earthing
+;solar-and-solar-kits;solar-and-solar-kits 
+;110-volt-energizers;110-volt-energizers
+;grounding;grounding
+;power-management-tools;power-management-tools
 
 ;wire-and-cable;wire-and-cable
-;wire-strainers;wire-strainers
+;strainers;strainers
 ;insulators;insulators
 ;offsets;offsets
-;electric-gates-and-accessories;electric-gates-and-accessories
+;electric-gates;electric-gates
 ;fence-tools-and-accessories;fence-tools-and-accessories
 ;clamps-and-joiners;clamps-and-joiners
 ;posts;posts
-;permanent-fencing-gates;permanent-fencing-gates
+;irrigator-fence-crossing-system;irrigator-fence-crossing-system  
+;gallagher-westonfence;gallagher-westonfence
+;gallagher-mega-anchor;gallagher-mega-anchor
+;pivot-irrigator-system;pivot-irrigator-system
+;gate-hardware;gate-hardware
 
-;tapes-wires-braids;tapes-wires-braids
-;reels-and-accessories;reels-and-accessories
-;posts-pigtails-and-tread-ins;posts-pigtails-and-tread-ins
+;tapes-wires-and-braids-pf;tapes-wires-and-braids-pf
+;reels-and-accessories-pf;reels-and-accessories-pf
+;posts-pigtails-and-treadins-pf;posts-pigtails-and-treadins-pf
 ;all-in-one-portable-fences;all-in-one-portable-fences
+;electric-fence-kits;electric-fence-kits
+;netting;netting
+
+;tapes-wires-and-braids-fc;tapes-wires-and-braids-fc
+;reels-and-accessories-fc;reels-and-accessories-fc
+;posts-pigtails-and-treadins-fc;posts-pigtails-and-treadins-fc
+
+#;gates-and-gate-accessories;gates-and-gate-accessories
+ 
+;hi-tensile-wire-and-cable;hi-tensile-wire-and-cable
 
 ;weigh-scales-and-data-collectors;weigh-scales-and-data-collectors
 ;loadbars-and-accessories;loadbars-and-accessories
+;loadbars;loadbars
 ;platforms;platforms
 ;drafters;drafters
 ;eid-tag-readers;eid-tag-readers
+;scale-heads-and-data-collectors;scale-heads-and-data-collectors
+;weighing-accessories;weighing-accessories
+;stock-prods-and-accessories;stock-prods-and-accessories
+
 ;platforms-and-crates;platforms-and-crates
 ;handlers-and-drafters;handlers-and-drafters
-;eid-tag-readeres-and-barcoding-equipement;eid-tag-readeres-and-barcoding-equipement
-;scale-heads-and-data-collectors;scale-heads-and-data-collectors
+;stock-prods;stock-prods
+
+;water-flow-indicator;water-flow-indicator
+;one-tank-systems;one-tank-systems
+;antennae-and-cables;antennae-and-cables
+;additional-system-components;additional-system-components
 
 ;gates;gates
 ;gate-hardware;gate-hardware
 
-;insulated-suspension-posts;insulated-suspension-posts
+;livestock;livestock
+;fence;fence
 
-;applicable-to-all-products;applicable-to-all-products
+;trough-valves;trough-valves
+;lil-spring;lil-spring
+;equi-fount;equi-fount
+;mira-fount;mira-fount
+;e-fount;e-fount
+;big-spring;big-spring
+;pet-tanks;pet-tanks
+;watering-accessories;watering-accessories 
+
+#;bargain-barn;bargain-barn
 
 INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attributeType(code[default=string]);multiValued[default=false];range[default=false];localized[default=true]
-# For Classification Category 'energisers'
-;energisers;energiser-type;0;
-;energisers;animal-type;1;
-;energisers;area-of-fence;2;Acres;number
-;energisers;area-of-typical-fence;3;Acres;number
-;energisers;area-of-clean-fence;4;Acres;number
-;energisers;multi-wire-distance-typical;5;KM;number
-;energisers;multi-wire-distance-clean;6;KM;number
-;energisers;stored-joules;7;Joules;number
-;energisers;i-series-compatible;8;;boolean
-;energisers;outdoor-suitable;9;;boolean
+# For Classification Category 'mains-energizers'
+;mains-energizers;animal-type;1;
+;mains-energizers;area-of-fence;2;Acres;number
+;mains-energizers;area-of-typical-fence;3;Acres;number
+;mains-energizers;area-of-clean-fence;4;Acres;number
+;mains-energizers;multi-wire-distance-typical;5;KM;number
+;mains-energizers;multi-wire-distance-clean;6;KM;number
+;mains-energizers;stored-joules;7;Joules;number
+;mains-energizers;i-series-compatible;8;;boolean
+;mains-energizers;outdoor-suitable;9;;boolean 
+
+# For Classification Category 'multi-powered-energizers'
+;multi-powered-energizers;animal-type;1;
+;multi-powered-energizers;area-of-fence;2;Acres;number
+;multi-powered-energizers;area-of-typical-fence;3;Acres;number
+;multi-powered-energizers;area-of-clean-fence;4;Acres;number
+;multi-powered-energizers;multi-wire-distance-typical;5;KM;number
+;multi-powered-energizers;multi-wire-distance-clean;6;KM;number
+;multi-powered-energizers;stored-joules;7;Joules;number
+;multi-powered-energizers;i-series-compatible;8;;boolean
+;multi-powered-energizers;outdoor-suitable;9;;boolean
+
+# For Classification Category 'solar-energizers'
+;solar-energizers;animal-type;1;
+;solar-energizers;area-of-fence;2;Acres;number
+;solar-energizers;area-of-typical-fence;3;Acres;number
+;solar-energizers;area-of-clean-fence;4;Acres;number
+;solar-energizers;multi-wire-distance-typical;5;KM;number
+;solar-energizers;multi-wire-distance-clean;6;KM;number
+;solar-energizers;stored-joules;7;Joules;number
+;solar-energizers;i-series-compatible;8;;boolean
+;solar-energizers;outdoor-suitable;9;;boolean
+
+# For Classification Category 'battery-energizers'
+;battery-energizers;animal-type;1;
+;battery-energizers;area-of-fence;2;Acres;number
+;battery-energizers;area-of-typical-fence;3;Acres;number
+;battery-energizers;area-of-clean-fence;4;Acres;number
+;battery-energizers;multi-wire-distance-typical;5;KM;number
+;battery-energizers;multi-wire-distance-clean;6;KM;number
+;battery-energizers;stored-joules;7;Joules;number
+;battery-energizers;i-series-compatible;8;;boolean
+;battery-energizers;outdoor-suitable;9;;boolean
+
+# For Classification Category '110-volt-energizers '
+;110-volt-energizers ;animal-type;1;
+;110-volt-energizers ;area-of-fence;2;Acres;number
+;110-volt-energizers ;area-of-typical-fence;3;Acres;number
+;110-volt-energizers ;area-of-clean-fence;4;Acres;number
+;110-volt-energizers ;multi-wire-distance-typical;5;KM;number
+;110-volt-energizers ;multi-wire-distance-clean;6;KM;number
+;110-volt-energizers ;stored-joules;7;Joules;number
+;110-volt-energizers ;i-series-compatible;8;;boolean
+;110-volt-energizers ;outdoor-suitable;9;;boolean
+
 
 # For Classification Category 'remotes-and-fence-testers'
 ;remotes-and-fence-testers;i-series-compatible;0;;boolean
@@ -164,8 +306,8 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;wire-and-cable;voltage-over-10km;3;KV;number
 ;wire-and-cable;resistance;4;;number
 
-# For Classification Category 'wire-strainers'
-;wire-strainers;strainer-type;0;
+# For Classification Category 'strainers'
+;strainers;strainer-type;0;
 
 # For Classification Category 'insulators'
 ;insulators;post-type;0;
@@ -175,8 +317,8 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;offsets;mounting-type;0;
 ;offsets;offset-mounting-type;1;
 
-# For Classification Category 'electric-gates-and-accessories'
-;electric-gates-and-accessories;gate-type;0;
+# For Classification Category 'electric-gates'
+;electric-gates;gate-type;0;
 
 # For Classification Category 'fence-tools-and-accessories'
 ;fence-tools-and-accessories;use;0;
@@ -185,21 +327,31 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 
 # For Classification Category 'posts'
 
-# For Classification Category 'permanent-fencing-gates'
-;permanent-fencing-gates;gate-type;0;
+# For Classification Category 'gates-and-gate-accessories'
+#;gates-and-gate-accessories;gate-type;0;
 
-# For Classification Category 'tapes-wires-braids'
-;tapes-wires-braids;mixed-metals;0;;boolean
-;tapes-wires-braids;voltage-over-500m;1;KV;number
-;tapes-wires-braids;voltage-over-1km;2;KV;number
-;tapes-wires-braids;resistance;3;;number
+# For Classification Category 'tapes-wires-and-braids'
+;tapes-wires-and-braids-pf;mixed-metals;0;;boolean
+;tapes-wires-and-braids-pf;voltage-over-500m;1;KV;number
+;tapes-wires-and-braids-pf;voltage-over-1km;2;KV;number
+;tapes-wires-and-braids-pf;resistance;3;;number
+
+;tapes-wires-and-braids-fc;mixed-metals;0;;boolean
+;tapes-wires-and-braids-fc;voltage-over-500m;1;KV;number
+;tapes-wires-and-braids-fc;voltage-over-1km;2;KV;number
+;tapes-wires-and-braids-fc;resistance;3;;number
 
 # For Classification Category 'reels-and-accessories'
-;reels-and-accessories;product-type;0;
+;reels-and-accessories-pf;product-type;0;
+;reels-and-accessories-fc;product-type;0;
 
-# For Classification Category 'posts-pigtails-and-tread-ins'
-;posts-pigtails-and-tread-ins;animal-type;0;
-;posts-pigtails-and-tread-ins;fence-type;1;
+
+# For Classification Category 'posts-pigtails-and-treadins'
+;posts-pigtails-and-treadins-pf;animal-type;0;
+;posts-pigtails-and-treadins-pf;fence-type;1;
+
+;posts-pigtails-and-treadins-fc;animal-type;0;
+;posts-pigtails-and-treadins-fc;fence-type;1;
 
 # For Classification Category 'all-in-one-portable-fences'
 
@@ -223,7 +375,7 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;handlers-and-drafters;product-features;0;
 
 # For Classification Category 'eid-tag-readeres-and-barcoding-equipement'
-;eid-tag-readeres-and-barcoding-equipement;product-type;0;
+#;eid-tag-readeres-and-barcoding-equipement;product-type;0;
 
 # For Classification Category 'scale-heads-and-data-collectors'
 ;scale-heads-and-data-collectors;product-features;0;
@@ -236,11 +388,46 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;gate-hardware;product-type;0;
 
 # For Classification Category 'insulated-suspension-posts'
-;insulated-suspension-posts;primary-usage;0;
-;insulated-suspension-posts;wires;1;;number
-;insulated-suspension-posts;post-height;2;MM;number
+#;insulated-suspension-posts;primary-usage;0;
+#;insulated-suspension-posts;wires;1;;number
+#;insulated-suspension-posts;post-height;2;MM;number
 
-# For Classification Category 'applicable-to-all-products'
-;applicable-to-all-products;product-features;0;
-;applicable-to-all-products;animal-type;1;
-;applicable-to-all-products;capacity;2;;number
+# For Classification Category 'trough-valves'
+;trough-valves;product-features;0;
+;trough-valves;animal-type;1;
+;trough-valves;capacity;2;;number
+
+# For Classification Category 'lil-spring '
+;lil-spring ;product-features;0;
+;lil-spring ;animal-type;1;
+;lil-spring ;capacity;2;;number
+
+# For Classification Category 'equi-fount'
+;equi-fount;product-features;0;
+;equi-fount;animal-type;1;
+;equi-fount;capacity;2;;number
+
+# For Classification Category 'mira-fount'
+;mira-fount;product-features;0;
+;mira-fount;animal-type;1;
+;mira-fount;capacity;2;;number
+
+# For Classification Category 'e-fount'
+;e-fount;product-features;0;
+;e-fount;animal-type;1;
+;e-fount;capacity;2;;number
+
+# For Classification Category 'big-spring'
+;big-spring;product-features;0;
+;big-spring;animal-type;1;
+;big-spring;capacity;2;;number
+
+# For Classification Category 'pet-tanks'
+;pet-tanks;product-features;0;
+;pet-tanks;animal-type;1;
+;pet-tanks;capacity;2;;number
+
+# For Classification Category 'watering-accessories'
+;watering-accessories ;product-features;0;
+;watering-accessories ;animal-type;1;
+;watering-accessories ;capacity;2;;number

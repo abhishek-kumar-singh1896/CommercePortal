@@ -526,20 +526,84 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 ;;PortablefencingTapesWiresBraids_nav_link;"Tapes, Wires, Braids"
 ;;PortablefencingTapesWiresBraids_nav_link1;"Reels and Accessories"
 ;;PortablefencingTapesWiresBraids_nav_link2;"Posts - Pigtails and Tread-ins"
+;;PortablefencingTapesWiresBraids_nav_link3;"All-in-one Portable Fences"
+;;PortablefencingTapesWiresBraids_nav_link4;"Electric Fence Kits"
+;;PortablefencingTapesWiresBraids_nav_link5;"Netting"
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
-;;PermanentfencingWireandCable_link;"Wire and Cable"
-;;PermanentfencingWireandCable_link1;"Wire Strainers"
-;;PermanentfencingWireandCable_link2;"Insulators"
-;;PermanentfencingWireandCable_link3;"Offsets"
-;;PermanentfencingWireandCable_link4;"Gates"
-;;PermanentfencingWireandCable_link5;"Fence tools and accessories"
+;;PermanentfencingWireandCable_link;"Gallagher Westonfence"
+;;PermanentfencingWireandCable_link1;"Gallagher Mega Anchor"
+;;PermanentfencingWireandCable_link2;"Wire and Cable"
+;;PermanentfencingWireandCable_link3;"Clamps and Joiners"
+;;PermanentfencingWireandCable_link4;"Posts"
+;;PermanentfencingWireandCable_link5;"Strainers"
+;;PermanentfencingWireandCable_link6;"Insulators"
+;;PermanentfencingWireandCable_link7;"Offsets"
+;;PermanentfencingWireandCable_link8;"Electric Gates"
+;;PermanentfencingWireandCable_link9;"Irrigator Fence Crossing System"
+;;PermanentfencingWireandCable_link10;"Pivot Irrigator System"
+;;PermanentfencingWireandCable_link11;"Fence tools and accessories"
+;;PermanentfencingWireandCable_link12;"Gate Hardware"
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
-;;PowerEnergisers_link;"Energisers"
-;;PowerEnergisers_link1;"Remotes and Fence Testers"
-;;PowerEnergisers_link2;"Power system accessories"
+;;PowerEnergisers_link;"Mains Energisers"
+;;PowerEnergisers_link1;"110 Volt Energizers"
+;;PowerEnergisers_link2;"Multi Powered Energizers"
+;;PowerEnergisers_link3;"Battery Energizers"
+;;PowerEnergisers_link4;"Solar Energizers "
+;;PowerEnergisers_link5;"Solar Panels"
+;;PowerEnergisers_link6;"Solar and Solar Kits "
+;;PowerEnergisers_link7;"Remotes and Fence Testers"
+;;PowerEnergisers_link8;"Batteries "
+;;PowerEnergisers_link9;"Earthing "
+;;PowerEnergisers_link10;"Power system accessories"
+;;PowerEnergisers_link11;"Grounding"
+;;PowerEnergisers_link12;"Power Management Tools"
 
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;FenceConductors_nav_link;"Tapes, Wires, Braids"
+;;FenceConductors_nav_link1;"Reels and Accessories"
+;;FenceConductors_nav_link2;"Posts - Pigtails and Tread-ins"
+;;FenceConductors_nav_link3;"All-in-one Portable Fences"
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;WeighinEid_link;"Weigh Scales and Data Collectors"
+;;WeighinEid_link1;"Scale Heads and Data Collectors"
+;;WeighinEid_link2;"Loadbars and Accessories"
+;;WeighinEid_link3;"Loadbars"
+;;WeighinEid_link4;"Platforms"
+;;WeighinEid_link5;"Platforms and Crates"
+;;WeighinEid_link6;"Drafters"
+;;WeighinEid_link7;"Handlers and Drafters"
+;;WeighinEid_link8;"EID Tag Readers "
+;;WeighinEid_link9;"EID tag readeres and Barcoding Equipment"
+;;WeighinEid_link10;"Weighing Accessories"
+;;WeighinEid_link11;"Stock Prods"
+;;WeighinEid_link12;"Stock Prods and Accessories"
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;WWM_link;"Water Flow Indicator"
+;;WWM_link1;"One Tank Systems"
+;;WWM_link2;"Antennae and Cables"
+;;WWM_link3;"Additional System Components"
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;AW_link;"Trough Valves"
+;;AW_link1;"Lil'Spring"
+;;AW_link2;"EQUIFount"
+;;AW_link3;"MiraFount"
+;;AW_link4;"E-Fount"
+;;AW_link5;"BIGSpring"
+;;AW_link6;"Pet Tanks"
+;;AW_link7;"Watering Accessories"
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;AppsSoftware_link;"Livestock"
+;;AppsSoftware_link1;"Fence"
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;SGH_link;"Gates"
+;;SGH_link1;"Hardware"
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
 ;;SolutionLink;"Solutions"
@@ -551,6 +615,9 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 ;;AllWirelessWaterMonitoringLink;"All Wireless Water Monitoring"
 ;;AllSteelGatesandHardwareLink;"All Steel Gates and Hardware"
 ;;AllFarminformationtoolsLink;"All Farm information tools"
+;;AllAutomaticWateringLink;"All Automatic Watering"
+;;AllAppsSoftwaresLink;"All Apps & Softwares"
+;;AllStockProdsMainLink;"Stock Prods"
 ;;StockprodsLink;"Stock prods"
 ;;NewProductsLink;"New Products"
 ;;PromotionsLink;"Promotions"
