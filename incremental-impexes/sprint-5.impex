@@ -1210,4 +1210,10 @@ UPDATE SolrFacetSearchConfig ; name[unique=true]; languages(isocode)
 							 ; amB2CCAIndex ; fr_CA,en_CA
 							 ; amB2CLatAmIndex ; es_LA
 
-
+#Removing extra cmslincomponents
+$contentCatalog=amB2CContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online ])[default=$contentCatalog:Online ]
+REMOVE CMSLinkComponent;$contentCV[unique=true];uid[unique=true]
+;;FindStoreLink;Find Store Link;https://www.google.com/;;;
+;;FindManagerLink;Find Manager Link;http://www.google.com/;;;
+;;SendMessageLink;Send Message Link;http://www.google.com/;;;
