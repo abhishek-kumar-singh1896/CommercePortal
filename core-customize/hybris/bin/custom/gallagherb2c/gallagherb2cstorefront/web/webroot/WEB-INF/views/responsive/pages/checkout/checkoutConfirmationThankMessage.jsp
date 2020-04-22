@@ -73,7 +73,7 @@
 	</c:if>
 </div>
 
-<div class="well well-tertiary well-single-headline">
+<div class="well well-single-headline order-summary-heading">
     <div class="well-headline">
         <spring:theme code="checkout.multi.order.summary" />
     </div>

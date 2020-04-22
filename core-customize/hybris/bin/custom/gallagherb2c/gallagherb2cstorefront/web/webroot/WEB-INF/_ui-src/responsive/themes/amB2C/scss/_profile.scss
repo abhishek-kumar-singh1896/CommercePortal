@@ -66,9 +66,23 @@ label {
       border-bottom: none;
     }
   }
+
+  &.order-summary-heading {
+    background: $white;
+
+    .well-headline {
+      background: $white;
+      border-top: 1px solid $gray-6;
+      border-bottom: 1px solid $gray-6;
+      padding: 15px 30px;
+    }
+  }
 }
 
-
+.account-section .account-section-content .account-section-header {
+  color: inherit;
+  border-bottom: none;
+}
 
 .account-section .account-section-content form {
   padding: 0;
@@ -97,6 +111,12 @@ table {
       font-weight: 500;
       font-size: inherit;
     }
+  }
+}
+
+.qty {
+  label {
+    color: inherit;
   }
 }
 
