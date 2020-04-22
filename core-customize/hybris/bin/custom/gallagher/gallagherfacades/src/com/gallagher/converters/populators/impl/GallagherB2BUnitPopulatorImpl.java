@@ -5,7 +5,6 @@ package com.gallagher.converters.populators.impl;
 
 import static de.hybris.platform.servicelayer.util.ServicesUtil.validateParameterNotNull;
 
-import de.hybris.platform.b2b.constants.B2BConstants;
 import de.hybris.platform.b2b.model.B2BCustomerModel;
 import de.hybris.platform.b2b.model.B2BUnitModel;
 import de.hybris.platform.b2bcommercefacades.company.converters.populators.B2BUnitPopulator;
@@ -26,11 +25,12 @@ import com.gallagher.converters.populators.GallagherB2BUnitPopulator;
 public class GallagherB2BUnitPopulatorImpl extends B2BUnitPopulator implements GallagherB2BUnitPopulator
 {
 
+	public static final String B2BTECHNICIANGROUP = "b2btechniciangroup";
+
 	@Override
 	public void populateTechnicians(final B2BUnitModel source, final B2BUnitData target)
 	{
-		final Collection<B2BCustomerModel> managers = getB2BUnitService().getUsersOfUserGroup(source,
-				B2BConstants.B2BTECHNICIANGROUP, false);
+		final Collection<B2BCustomerModel> managers = getB2BUnitService().getUsersOfUserGroup(source, B2BTECHNICIANGROUP, false);
 		if (CollectionUtils.isNotEmpty(managers))
 		{
 			target.setTechnicians(Converters.convertAll(managers, getB2BCustomerConverter()));
