@@ -17,12 +17,12 @@
 			<c:choose>
 				<c:when test="${not empty imageUrl}">
 					<img src="${fn:escapeXml(imageUrl)}"
-						class="img-fluid product-img" alt="${fn:escapeXml(product.name)}"
+						class="product-img" alt="${fn:escapeXml(product.name)}"
 						title="${fn:escapeXml(product.name)}" />
 				</c:when>
 				<c:when test="${not empty product.image}">
 					<img src="${fn:escapeXml(product.image.url)}"
-						class="img-fluid product-img" alt="${fn:escapeXml(product.name)}"
+						class="product-img" alt="${fn:escapeXml(product.name)}"
 						title="${fn:escapeXml(product.name)}" />
 				</c:when>
 				<c:otherwise>

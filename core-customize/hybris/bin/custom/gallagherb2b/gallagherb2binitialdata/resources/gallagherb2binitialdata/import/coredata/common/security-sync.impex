@@ -49,15 +49,15 @@ INSERT_UPDATE GallagherCatalogVersionSyncJob;code[unique=true];sessionUser(uid);
 
 INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
 #cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
-;sync securityB2BNZProductCatalog:Staged->Online						;0		;30		;-1		;-1		;-1		;-1		;true		;true	;-1
+;sync securityB2BNZProductCatalog:Staged->Online						;0		;60		;-1		;-1		;-1		;-1		;true		;true	;-1
 
 INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
 #cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
-;sync securityB2BAUProductCatalog:Staged->Online						;0		;30		;-1		;-1		;-1		;-1		;true		;true	;-1
+;sync securityB2BAUProductCatalog:Staged->Online						;0		;60		;-1		;-1		;-1		;-1		;true		;true	;-1
 
 INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
 #cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
-;sync securityB2BGlobalProductCatalog:Staged->Online						;0		;30		;-1		;-1		;-1		;-1		;true		;true	;-1
+;sync securityB2BGlobalProductCatalog:Staged->Online						;0		;60		;-1		;-1		;-1		;-1		;true		;true	;-1
 
 
 # ImpEx for Importing cronjobs
@@ -74,7 +74,7 @@ INSERT_UPDATE MediaConversionCronJob;$productCVStaged[unique=true];code[unique=t
 
 INSERT_UPDATE Trigger;cronJob(code)[unique=true];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
 #cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
-;SecurityMediaConversionMaster			;0		;30		;0		;0		;0		;0		;true		;true	;-1
+;SecurityMediaConversionMaster			;0		;5			;5		;-1	;-1	;-1	;false	;true			;-1
 
 # Synchronization Job Restriction
 $productQueryPrefix={baseProductCode} IS NULL AND {approvalStatus} =({{SELECT {pk} from {ArticleApprovalStatus} where {code}='approved'}})
@@ -112,10 +112,6 @@ INSERT_UPDATE JobSearchRestriction;code[unique=true];job(code)[path-delimiter=!]
 
 
 INSERT_UPDATE SyncAttributeDescriptorConfig;syncJob(code)[unique=true,path-delimiter=!];attributeDescriptor(enclosingType(code),qualifier)[unique=true];includedInSync;copyByValue
-;sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged;Product:baseStores;false;false
-;sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged;Product:baseStores;false;false
-;sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged;Product:baseStores;false;false
-
 ;sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged;Product:europe1Prices;false;false
 ;sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged;Product:europe1Prices;false;false
 ;sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged;Product:europe1Prices;false;false

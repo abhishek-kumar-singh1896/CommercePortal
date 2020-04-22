@@ -28,47 +28,47 @@ $conversionGroup=conversionGroup(code[default=B2bAdvanceConversionGroup])
 INSERT_UPDATE MediaFolder;qualifier[unique=true];path[unique=true]
 ;images;images
 
-INSERT_UPDATE Media;mediaFormat(qualifier);code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];$catalogVersion;folder(qualifier)[default=images]
-;B2BADVANCE-BF;/B2BADVANCE-BF/t10-mifare-reader-black.jpg;$siteResource/images/B2BADVANCE-BF/t10-mifare-reader.jpg
-;B2BADVANCE-BF;/B2BADVANCE-BF/t11-multi-tech-reader-black.jpg;$siteResource/images/B2BADVANCE-BF/t11-multi-tech-reader.jpg
-;B2BADVANCE-BF;/B2BADVANCE-BF/t11-mifare-reader-black.jpg;$siteResource/images/B2BADVANCE-BF/t11-mifare-reader.jpg
-;B2BADVANCE-BF;/B2BADVANCE-BF/t12-multi-tech-reader-black.jpg;$siteResource/images/B2BADVANCE-BF/t12-multi-tech-reader.jpg
-;B2BADVANCE-BF;/B2BADVANCE-BF/t12-mifare-reader-black.jpg;$siteResource/images/B2BADVANCE-BF/t12-mifare-reader.jpg
-;B2BADVANCE-BF;/B2BADVANCE-BF/t15-multi-tech-reader-black.jpg;$siteResource/images/B2BADVANCE-BF/t15-multi-tech-reader.jpg
-;B2BADVANCE-BF;/B2BADVANCE-BF/t15-mifare-reader-black.jpg;$siteResource/images/B2BADVANCE-BF/t15-mifare-reader.jpg
-;B2BADVANCE-BF;/B2BADVANCE-BF/t20-multi-tech-reader-black.jpg;$siteResource/images/B2BADVANCE-BF/t20-multi-tech-reader.jpg
-;B2BADVANCE-BF;/B2BADVANCE-BF/t20-mifare-reader-black.jpg;$siteResource/images/B2BADVANCE-BF/t20-mifare-reader.jpg
+INSERT_UPDATE Media;mediaFormat(qualifier);code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];baseStores(uid);mime[default='image/jpeg'];$catalogVersion;folder(qualifier)[default=images]
+;B2BADVANCE-BF;/B2BADVANCE-BF/t10-mifare-reader-black.jpg;$siteResource/images/B2BADVANCE-BF/t10-mifare-reader.jpg;securityB2BGlobal,securityB2BNZ,securityB2BAU
+;B2BADVANCE-BF;/B2BADVANCE-BF/t11-multi-tech-reader-black.jpg;$siteResource/images/B2BADVANCE-BF/t11-multi-tech-reader.jpg;securityB2BGlobal,securityB2BNZ,securityB2BAU
+;B2BADVANCE-BF;/B2BADVANCE-BF/t11-mifare-reader-black.jpg;$siteResource/images/B2BADVANCE-BF/t11-mifare-reader.jpg;securityB2BGlobal,securityB2BNZ,securityB2BAU
+;B2BADVANCE-BF;/B2BADVANCE-BF/t12-multi-tech-reader-black.jpg;$siteResource/images/B2BADVANCE-BF/t12-multi-tech-reader.jpg;securityB2BGlobal,securityB2BNZ,securityB2BAU
+;B2BADVANCE-BF;/B2BADVANCE-BF/t12-mifare-reader-black.jpg;$siteResource/images/B2BADVANCE-BF/t12-mifare-reader.jpg;securityB2BGlobal,securityB2BNZ,securityB2BAU
+;B2BADVANCE-BF;/B2BADVANCE-BF/t15-multi-tech-reader-black.jpg;$siteResource/images/B2BADVANCE-BF/t15-multi-tech-reader.jpg;securityB2BGlobal,securityB2BNZ,securityB2BAU
+;B2BADVANCE-BF;/B2BADVANCE-BF/t15-mifare-reader-black.jpg;$siteResource/images/B2BADVANCE-BF/t15-mifare-reader.jpg;securityB2BGlobal,securityB2BNZ,securityB2BAU
+;B2BADVANCE-BF;/B2BADVANCE-BF/t20-multi-tech-reader-black.jpg;$siteResource/images/B2BADVANCE-BF/t20-multi-tech-reader.jpg;securityB2BGlobal,securityB2BNZ,securityB2BAU
+;B2BADVANCE-BF;/B2BADVANCE-BF/t20-mifare-reader-black.jpg;$siteResource/images/B2BADVANCE-BF/t20-mifare-reader.jpg;securityB2BGlobal,securityB2BNZ,securityB2BAU
 
-;B2BADVANCE-BF;/B2BADVANCE-BF/t10-mifare-reader-white.jpg;$siteResource/images/B2BADVANCE-BF/t10-mifare-reader.jpg
-;B2BADVANCE-BF;/B2BADVANCE-BF/t11-multi-tech-reader-white.jpg;$siteResource/images/B2BADVANCE-BF/t11-multi-tech-reader.jpg
-;B2BADVANCE-BF;/B2BADVANCE-BF/t11-mifare-reader-white.jpg;$siteResource/images/B2BADVANCE-BF/t11-mifare-reader.jpg
-;B2BADVANCE-BF;/B2BADVANCE-BF/t12-multi-tech-reader-white.jpg;$siteResource/images/B2BADVANCE-BF/t12-multi-tech-reader.jpg
-;B2BADVANCE-BF;/B2BADVANCE-BF/t12-mifare-reader-white.jpg;$siteResource/images/B2BADVANCE-BF/t12-mifare-reader.jpg
-;B2BADVANCE-BF;/B2BADVANCE-BF/t15-multi-tech-reader-white.jpg;$siteResource/images/B2BADVANCE-BF/t15-multi-tech-reader.jpg
-;B2BADVANCE-BF;/B2BADVANCE-BF/t15-mifare-reader-white.jpg;$siteResource/images/B2BADVANCE-BF/t15-mifare-reader.jpg
-;B2BADVANCE-BF;/B2BADVANCE-BF/t20-multi-tech-reader-white.jpg;$siteResource/images/B2BADVANCE-BF/t20-multi-tech-reader.jpg
-;B2BADVANCE-BF;/B2BADVANCE-BF/t20-mifare-reader-white.jpg;$siteResource/images/B2BADVANCE-BF/t20-mifare-reader.jpg
+;B2BADVANCE-BF;/B2BADVANCE-BF/t10-mifare-reader-white.jpg;$siteResource/images/B2BADVANCE-BF/t10-mifare-reader.jpg;securityB2BGlobal,securityB2BNZ,securityB2BAU
+;B2BADVANCE-BF;/B2BADVANCE-BF/t11-multi-tech-reader-white.jpg;$siteResource/images/B2BADVANCE-BF/t11-multi-tech-reader.jpg;securityB2BGlobal,securityB2BNZ,securityB2BAU
+;B2BADVANCE-BF;/B2BADVANCE-BF/t11-mifare-reader-white.jpg;$siteResource/images/B2BADVANCE-BF/t11-mifare-reader.jpg;securityB2BGlobal,securityB2BNZ,securityB2BAU
+;B2BADVANCE-BF;/B2BADVANCE-BF/t12-multi-tech-reader-white.jpg;$siteResource/images/B2BADVANCE-BF/t12-multi-tech-reader.jpg;securityB2BGlobal,securityB2BNZ,securityB2BAU
+;B2BADVANCE-BF;/B2BADVANCE-BF/t12-mifare-reader-white.jpg;$siteResource/images/B2BADVANCE-BF/t12-mifare-reader.jpg;securityB2BGlobal,securityB2BNZ,securityB2BAU
+;B2BADVANCE-BF;/B2BADVANCE-BF/t15-multi-tech-reader-white.jpg;$siteResource/images/B2BADVANCE-BF/t15-multi-tech-reader.jpg;securityB2BGlobal,securityB2BNZ,securityB2BAU
+;B2BADVANCE-BF;/B2BADVANCE-BF/t15-mifare-reader-white.jpg;$siteResource/images/B2BADVANCE-BF/t15-mifare-reader.jpg;securityB2BGlobal,securityB2BNZ,securityB2BAU
+;B2BADVANCE-BF;/B2BADVANCE-BF/t20-multi-tech-reader-white.jpg;$siteResource/images/B2BADVANCE-BF/t20-multi-tech-reader.jpg;securityB2BGlobal,securityB2BNZ,securityB2BAU
+;B2BADVANCE-BF;/B2BADVANCE-BF/t20-mifare-reader-white.jpg;$siteResource/images/B2BADVANCE-BF/t20-mifare-reader.jpg;securityB2BGlobal,securityB2BNZ,securityB2BAU
 
-INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$catalogVersion;$conversionGroup
-;t10-mifare-reader-black;/B2BADVANCE-BF/t10-mifare-reader-black.jpg
-;t11-multi-tech-reader-black;/B2BADVANCE-BF/t11-multi-tech-reader-black.jpg
-;t11-mifare-reader-black;/B2BADVANCE-BF/t11-mifare-reader-black.jpg
-;t12-multi-tech-reader-black;/B2BADVANCE-BF/t12-multi-tech-reader-black.jpg
-;t12-mifare-reader-black;/B2BADVANCE-BF/t12-mifare-reader-black.jpg
-;t15-multi-tech-reader-black;/B2BADVANCE-BF/t15-multi-tech-reader-black.jpg
-;t15-mifare-reader-black;/B2BADVANCE-BF/t15-mifare-reader-black.jpg
-;t20-multi-tech-reader-black;/B2BADVANCE-BF/t20-multi-tech-reader-black.jpg
-;t20-mifare-reader-black;/B2BADVANCE-BF/t20-mifare-reader-black.jpg
+INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;baseStores(uid);$catalogVersion;$conversionGroup
+;t10-mifare-reader-black;/B2BADVANCE-BF/t10-mifare-reader-black.jpg;securityB2BGlobal,securityB2BNZ,securityB2BAU
+;t11-multi-tech-reader-black;/B2BADVANCE-BF/t11-multi-tech-reader-black.jpg;securityB2BGlobal,securityB2BNZ,securityB2BAU
+;t11-mifare-reader-black;/B2BADVANCE-BF/t11-mifare-reader-black.jpg;securityB2BGlobal,securityB2BNZ,securityB2BAU
+;t12-multi-tech-reader-black;/B2BADVANCE-BF/t12-multi-tech-reader-black.jpg;securityB2BGlobal,securityB2BNZ,securityB2BAU
+;t12-mifare-reader-black;/B2BADVANCE-BF/t12-mifare-reader-black.jpg;securityB2BGlobal,securityB2BNZ,securityB2BAU
+;t15-multi-tech-reader-black;/B2BADVANCE-BF/t15-multi-tech-reader-black.jpg;securityB2BGlobal,securityB2BNZ,securityB2BAU
+;t15-mifare-reader-black;/B2BADVANCE-BF/t15-mifare-reader-black.jpg;securityB2BGlobal,securityB2BNZ,securityB2BAU
+;t20-multi-tech-reader-black;/B2BADVANCE-BF/t20-multi-tech-reader-black.jpg;securityB2BGlobal,securityB2BNZ,securityB2BAU
+;t20-mifare-reader-black;/B2BADVANCE-BF/t20-mifare-reader-black.jpg;securityB2BGlobal,securityB2BNZ,securityB2BAU
 
-;t10-mifare-reader-white;/B2BADVANCE-BF/t10-mifare-reader-white.jpg
-;t11-multi-tech-reader-white;/B2BADVANCE-BF/t11-multi-tech-reader-white.jpg
-;t11-mifare-reader-white;/B2BADVANCE-BF/t11-mifare-reader-white.jpg
-;t12-multi-tech-reader-white;/B2BADVANCE-BF/t12-multi-tech-reader-white.jpg
-;t12-mifare-reader-white;/B2BADVANCE-BF/t12-mifare-reader-white.jpg
-;t15-multi-tech-reader-white;/B2BADVANCE-BF/t15-multi-tech-reader-white.jpg
-;t15-mifare-reader-white;/B2BADVANCE-BF/t15-mifare-reader-white.jpg
-;t20-multi-tech-reader-white;/B2BADVANCE-BF/t20-multi-tech-reader-white.jpg
-;t20-mifare-reader-white;/B2BADVANCE-BF/t20-mifare-reader-white.jpg
+;t10-mifare-reader-white;/B2BADVANCE-BF/t10-mifare-reader-white.jpg;securityB2BGlobal,securityB2BNZ,securityB2BAU
+;t11-multi-tech-reader-white;/B2BADVANCE-BF/t11-multi-tech-reader-white.jpg;securityB2BGlobal,securityB2BNZ,securityB2BAU
+;t11-mifare-reader-white;/B2BADVANCE-BF/t11-mifare-reader-white.jpg;securityB2BGlobal,securityB2BNZ,securityB2BAU
+;t12-multi-tech-reader-white;/B2BADVANCE-BF/t12-multi-tech-reader-white.jpg;securityB2BGlobal,securityB2BNZ,securityB2BAU
+;t12-mifare-reader-white;/B2BADVANCE-BF/t12-mifare-reader-white.jpg;securityB2BGlobal,securityB2BNZ,securityB2BAU
+;t15-multi-tech-reader-white;/B2BADVANCE-BF/t15-multi-tech-reader-white.jpg;securityB2BGlobal,securityB2BNZ,securityB2BAU
+;t15-mifare-reader-white;/B2BADVANCE-BF/t15-mifare-reader-white.jpg;securityB2BGlobal,securityB2BNZ,securityB2BAU
+;t20-multi-tech-reader-white;/B2BADVANCE-BF/t20-multi-tech-reader-white.jpg;securityB2BGlobal,securityB2BNZ,securityB2BAU
+;t20-mifare-reader-white;/B2BADVANCE-BF/t20-mifare-reader-white.jpg;securityB2BGlobal,securityB2BNZ,securityB2BAU
 
 
 INSERT_UPDATE Product;code[unique=true];$picture;$thumbnail;$detail;$others;$normal;$thumbnails;$galleryImages;$catalogVersion

@@ -64,7 +64,6 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;ContactFooterLink;Contact Us Footer Link;'/';ContactFooterLink;ContactFooterLink;;;
 ;;NewsEventsFooterLink;News & Events Footer Link;'/';NewsEventsFooterLink;NewsEventsFooterLink;;;
 ;;InnovationAwardsFooterLink;Innovation & Awards Footer Link;'/';InnovationAwardsFooterLink;InnovationAwardsFooterLink;;;
-;;UpdatePasswordLink;UpdatePasswordLink;$keycloakBaseURL$keycloakAuthURL$keycloakPasswordURL;UpdatePasswordLink;
 
 # Lightbox Banner for Mini Cart
 INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink
@@ -1300,21 +1299,21 @@ INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[uni
 ##Country dropdown for different websites
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;linkName;&linkRef;&componentRef;target(code)[default='sameWindow'];$category;$product;
-;;nz-en_NZ;New Zealand Link;$websiteBaseURL/am/nz/en_NZ;New Zealand;nz-en;nz-en
-;;au-en_AU;Australia Link;$websiteBaseURL/am/au/en_AU;Australia;au-en;au-en
-;;us-en_US;US Link;$websiteBaseURL/am/us/en_US;United States;us-en;us-en
-;;ca-en_CA;Canada English Link;$websiteBaseURL/am/ca/en_CA;Canada (EN);ca-en;ca-en
-;;ca-fr;Canada French Link;$websiteBaseURL/am/ca/fr;Canada (FR);ca-fr;ca-fr
-;;latam-en;LatAm Link;$websiteBaseURL/am/latam/en;Latin America;latam-en;latam-en
-;;global-en;Global Link;$websiteBaseURL/am/global/en;Global;global-en;global-en
+;;nz-en_NZ;New Zealand Link;$websiteBaseURL/am/nz/en_NZ/?clear=true;New Zealand;nz-en_NZ;nz-en_NZ
+;;au-en_AU;Australia Link;$websiteBaseURL/am/au/en_AU/?clear=true;Australia;au-en_AU;au-en_AU
+;;us-en_US;US Link;$websiteBaseURL/am/us/en_US/?clear=true;United States;us-en_US;us-en_US
+;;ca-en_CA;Canada English Link;$websiteBaseURL/am/ca/en_CA/?clear=true;Canada (EN);ca-en_CA;ca-en_CA
+;;ca-fr_CA;Canada French Link;$websiteBaseURL/am/ca/fr_CA/?clear=true;Canada (FR);ca-fr_CA;ca-fr_CA
+;;latam-es_LA;LatAm Link;$websiteBaseURL/am/latam/es_LA/?clear=true;Latin America;latam-es_LA;latam-es_LA
+;;global-en;Global Link;$websiteBaseURL/am/global/en/?clear=true;Global;global-en;global-en
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
-;newZealandNavEty;;New Zealand navigation entry;newZealandNavNod;nz-en
-;australiaNavEty;;Australia navigation entry;australiaNavNod;au-en
-;usNavEty;;US navigation entry;usNavNod;us-en
-;canadaEnNavEty;;Canada English navigation entry;canadaEnNavNod;ca-en
-;canadaFrNavEty;;Canada French navigation entry;canadaFrNavNod;ca-fr
-;latamNavEty;;LatAm navigation entry;latamNavNod;latam-en
+;newZealandNavEty;;New Zealand navigation entry;newZealandNavNod;nz-en_NZ
+;australiaNavEty;;Australia navigation entry;australiaNavNod;au-en_AU
+;usNavEty;;US navigation entry;usNavNod;us-en_US
+;canadaEnNavEty;;Canada English navigation entry;canadaEnNavNod;ca-en_CA
+;canadaFrNavEty;;Canada French navigation entry;canadaFrNavNod;ca-fr_CA
+;latamNavEty;;LatAm navigation entry;latamNavNod;latam-es_LA
 ;globalNavEty;;Global navigation entry;globalNavNod;global-en
 
 
@@ -1479,8 +1478,14 @@ INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=
 INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];validComponentTypes(code);compTypeGroup(code)
 ;ggB2CNavBar;;;navigation
 
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ErrorPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;ggB2CNavBar;;;navigation
+
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active
 ;;ggB2CNavBarSlot;GG B2C Navigation Bar Slot ;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ErrorPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2CNavBar-ErrorPage;ggB2CNavBar;;ggB2CNavBarSlot;true
 
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage2Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;ggB2CNavBar-LandingPage2;ggB2CNavBar;;ggB2CNavBarSlot;true
@@ -1841,9 +1846,9 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];name;$contentCV[unique=true];n
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
 ;;CallUsLink;Call Us Link;https://www.google.com/;;;
-;;FindStoreLink;Find Store Link;https://www.google.com/;;;
-;;FindManagerLink;Find Manager Link;http://www.google.com/;;;
-;;SendMessageLink;Send Message Link;http://www.google.com/;;;
+#;;FindStoreLink;Find Store Link;https://www.google.com/;;;
+#;;FindManagerLink;Find Manager Link;http://www.google.com/;;;
+#;;SendMessageLink;Send Message Link;http://www.google.com/;;;
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];name;$contentCV[unique=true];children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
 ;CallUs_Nav;Call Us Nav;;;"Our customer services team are here to help.";CallUs_Nav
@@ -2199,18 +2204,19 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;RegisterAProductLink;Register a product Link;/register-product;;;;
 ;;MyRegisteredProductLink;My registered Product Link;/register-product/products;;;;
 ;;EditProfileLink;Edit Profile Link;/my-account/update-profile;;;;
-;;OrderHistoryLink;Order History Link;/my-account/update-profile;;;;
+;;OrderHistoryLink;Order History Link;/my-account/orders;;;;
 ;;PreferencesLink;Preferences Link;/my-account/consents;;;;
 ;;LogoutLink;Logout Us Link;/logout;;;;
 ;;PaymentDetailLink;Payment Detail Link;/my-account/payment-details;;;;
 ;;AddressBookLink;Address Book Link;/my-account/address-book;;;;
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];$category;$product;
-;;UpdatePasswordLink;UpdatePasswordLink;$keycloakBaseURL$keycloakAuthURL$keycloakPasswordURL;UpdatePasswordLink;
+;;UpdatePasswordLink;UpdatePasswordLink;/my-account/update-password;UpdatePasswordLink;
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV)	   ;onlyOneRestrictionMustApply
 							  			;			  ;OrderHistoryLink;GallagherSiteTransactionRestriction;false
 							  			; 			  ;PaymentDetailLink;GallagherSiteTransactionRestriction;false
+							  			;          ;AddressBookLink;GallagherSiteTransactionRestriction;false
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);children(uid,$contentCV)[mode=replace];links(uid, $contentCV);&nodeRef;title[lang=en]
 ;RegisterAProductNavNode;; Register a Product Navigation Node Menu;UserDropDownNavigationNode;;;RegisterAProductNavNode;"Register a Product"     
 ;MyRegisteredProductNavNode;;My Registered Product Navigation Node Menu;;;;MyRegisteredProductNavNode;"My Registered Product"

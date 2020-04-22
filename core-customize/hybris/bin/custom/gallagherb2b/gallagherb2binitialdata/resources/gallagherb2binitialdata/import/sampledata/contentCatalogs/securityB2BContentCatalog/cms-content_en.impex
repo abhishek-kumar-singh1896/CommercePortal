@@ -57,7 +57,7 @@ UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$
 ;;SavedCartsLink;"Saved Carts"
 ;;TwitterLink;"Twitter"
 ;;UpdateEmailLink;"Email Address"
-;;UpdatePasswordLink;"Password"
+;;UpdatePasswordLink;"Update password"
 ;;BulkOrderCategoryLink;"Bulk Order"
 ;;OrderTemplatesLink;"My Templates"
 ;;InvoicesLink;"My Invoices"

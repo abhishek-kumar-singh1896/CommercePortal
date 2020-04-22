@@ -1095,7 +1095,7 @@
         	
     </macrodef>
     	
-    <target description="compile the _ui-src folder in _ui" name="gallagherb2bstorefront_compileuisrc">
+    <target description="compile the _ui-src folder in _ui for B2B" name="gallagherb2bstorefront_compileuisrc">
         		
         <gallagherb2bstorefront_compileuisrc_executor/>
         	
@@ -1107,15 +1107,15 @@
 				<replaceBackslashesInExtensionPath extensionname="gallagherb2bstorefront" property="gallagherb2bstorefrontPath" />
 				<gallagherb2bstorefront_sass_unzip_sass_gems/>
 				<echo message="Compiling scss files..." />
-				<property name="sourceDirectory" value="${ext.gallagherb2bstorefront.mapperToPath}/web/webroot/WEB-INF/_ui-src/responsive/themes/*/scss/theme.scss" />
+				<property name="sourceDirectoryB2B" value="${ext.gallagherb2bstorefront.mapperToPath}/web/webroot/WEB-INF/_ui-src/responsive/themes/*/scss/theme.scss" />
 				<script language="ruby" classpathref="gallagherb2bstorefront_sass_jruby">
 					<![CDATA[
 						require $project.getProperty('gallagherb2bstorefront_sass_gems_path')
 						require 'sass/exec'		
 						require 'fileutils'
-						sourceDirectory = $project.getProperty('sourceDirectory');
-						sourceMap = $project.getProperty('gallagherb2bstorefront.sass.source.map.enabled') == 'true' ? 'file' : 'none'
-						files = Dir.glob(sourceDirectory);
+						sourceDirectoryB2B = $project.getProperty('sourceDirectoryB2B');
+						sourceMapB2B = $project.getProperty('gallagherb2bstorefront.sass.source.map.enabled') == 'true' ? 'file' : 'none'
+						files = Dir.glob(sourceDirectoryB2B);
 						files.each do
 							| file |
 							puts "[Compiling scss file] : " + file
@@ -1124,7 +1124,7 @@
 							FileUtils.mkdir_p targetDir unless File.exists?(targetDir)
 							destinationFile = File.join(targetDir, File.basename(file, ".*") + '.css')
 							puts "[SASS compiled] : " + destinationFile
-							opts = Sass::Exec::SassScss.new([file, destinationFile, "--sourcemap="+sourceMap,  "--cache-location", $project.getProperty('platformhome')+"/.sass-cache"], "sass")
+							opts = Sass::Exec::SassScss.new([file, destinationFile, "--sourcemap="+sourceMapB2B,  "--cache-location", $project.getProperty('platformhome')+"/.sass-cache"], "sass")
 							opts.parse
 						end
 					]]>

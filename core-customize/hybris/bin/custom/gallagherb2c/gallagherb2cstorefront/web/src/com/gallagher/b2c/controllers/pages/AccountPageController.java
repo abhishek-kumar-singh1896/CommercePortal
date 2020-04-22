@@ -74,6 +74,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -84,6 +85,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gallagher.b2c.controllers.ControllerConstants;
@@ -601,18 +603,28 @@ public class AccountPageController extends AbstractSearchPageController
 	@RequireHardLogIn
 	public String updatePassword(final Model model) throws CMSItemNotFoundException
 	{
-		final UpdatePasswordForm updatePasswordForm = new UpdatePasswordForm();
+		final String customerUid = getCustomerFacade().getCurrentCustomerUid();
+		boolean success = false;
+		try
+		{
+			success = getKeycloakService().sendUpdatePasswordNotification(customerUid);
+		}
+		catch (final RestClientException | OAuth2Exception exception)
+		{
+			LOG.error("Exception occured while sending Update Password Link from Keycloak : " + exception);
+			success = false;
+		}
+		model.addAttribute("success", success);
 
-		model.addAttribute("updatePasswordForm", updatePasswordForm);
-
-		final ContentPageModel updatePasswordPage = getContentPageForLabelOrId(UPDATE_PASSWORD_CMS_PAGE);
-		storeCmsPageInModel(model, updatePasswordPage);
-		setUpMetaDataForContentPage(model, updatePasswordPage);
+		storeCmsPageInModel(model, getContentPageForLabelOrId(UPDATE_PASSWORD_CMS_PAGE));
+		setUpMetaDataForContentPage(model, getContentPageForLabelOrId(UPDATE_PASSWORD_CMS_PAGE));
 
 		model.addAttribute(BREADCRUMBS_ATTR, accountBreadcrumbBuilder.getBreadcrumbs("text.account.profile.updatePasswordForm"));
 		model.addAttribute(ThirdPartyConstants.SeoRobots.META_ROBOTS, ThirdPartyConstants.SeoRobots.NOINDEX_NOFOLLOW);
+
 		return getViewForPage(model);
 	}
+
 
 	@RequestMapping(value = "/update-password", method = RequestMethod.POST)
 	@RequireHardLogIn

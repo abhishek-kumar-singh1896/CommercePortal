@@ -44,16 +44,24 @@
                                     <%-- <c:url value="${firstProduct.productData.url}" var="productUrl" /> --%>
                                     <div class="compare-list-top-section">
                                         <div class="compare-list-top-img">
-	                                       	<c:forEach items="${firstProduct.productData.images}" var="medias">
-		                                        <c:if test="${medias.format eq 'thumbnail'}">
-		                                        <c:if test="${count lt 2}">
-		                                        <%-- <a href="${fn:escapeXml(productUrl)}" title="${fn:escapeXml(firstProduct.productData.name)}"> --%>
-		                                        	<img src="${medias.url}" alt="${medias.altText}">
-		                                        	<c:set var="count" value="${count+1}"/>
-		                                        <!-- </a> -->
-	                                        	</c:if>
-		                                        </c:if>
-	                                        </c:forEach>
+                                        <c:choose>
+	                                        <c:when test="${not empty firstProduct.productData.images}">
+		                                       	<c:forEach items="${firstProduct.productData.images}" var="medias">
+			                                        <c:if test="${medias.format eq 'thumbnail'}">
+			                                        <c:if test="${count lt 2}">
+			                                        <%-- <a href="${fn:escapeXml(productUrl)}" title="${fn:escapeXml(firstProduct.productData.name)}"> --%>
+			                                        	<img src="${medias.url}" alt="${medias.altText}">
+			                                        	<c:set var="count" value="${count+1}"/>
+			                                        <!-- </a> -->
+		                                        	</c:if>
+			                                        </c:if>
+		                                        </c:forEach>
+	                                        </c:when>
+	                                        <c:otherwise>
+												<theme:image code="img.missingProductImage.responsive.thumbnail" alt="check" title="check"/>
+											</c:otherwise>
+                                        </c:choose>
+	                                        
                                         </div>
                                         <div class="compare-list-product-title text-truncate">
                                             ${firstProduct.productData.name}

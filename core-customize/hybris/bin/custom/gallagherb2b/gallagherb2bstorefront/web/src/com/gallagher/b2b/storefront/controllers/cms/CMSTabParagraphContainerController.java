@@ -11,13 +11,14 @@
 package com.gallagher.b2b.storefront.controllers.cms;
 
 import de.hybris.platform.acceleratorcms.model.components.CMSTabParagraphContainerModel;
-import com.gallagher.b2b.storefront.controllers.ControllerConstants;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.gallagher.b2b.storefront.controllers.ControllerConstants;
 
 
 /**

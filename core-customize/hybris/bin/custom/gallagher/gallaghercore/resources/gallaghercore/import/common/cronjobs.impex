@@ -50,6 +50,11 @@ INSERT_UPDATE GallagherBynderSyncCronJob;code[unique=true];job(code);catalogId;s
 ;securityB2BBynderSyncCronJob;gallagherBynderSyncCronJob;securityB2BMasterProductCatalog;
 ;amB2CBynderSyncCronJob;gallagherBynderSyncCronJob;amB2CMasterProductCatalog;
 
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+# Run the bynder cronJob logs at 4:05 AM every day
+;securityB2BBynderSyncCronJob;0;5;1;-1;-1;-1;false;true;-1
+;amB2CBynderSyncCronJob;0;5;1;-1;-1;-1;false;true;-1
+
 ############### Cleanup jobs ##########################
 INSERT_UPDATE MaintenanceCleanupJob;code[unique=true];springId;threshold
 ;cleanUpLogsJobPerformable;cleanUpLogsJobPerformable;5
@@ -58,12 +63,12 @@ INSERT_UPDATE MaintenanceCleanupJob;code[unique=true];threshold
 ;cleanupCronJobsPerformable;5
 
 INSERT_UPDATE CronJob;code[unique=true];job(code);sessionLanguage(isocode)
-;gglCleanupCronJobLogs;cleanUpLogsJobPerformable;;en
-;gglCleanupCronJobs;cleanupCronJobsPerformable;;en
+;gglCleanupCronJobLogs;cleanUpLogsJobPerformable;en
+;gglCleanupCronJobs;cleanupCronJobsPerformable;en
 
 INSERT_UPDATE Trigger;cronJob(code)[unique=true];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
 # Run the Clean up cronJob logs at 4:05 AM every day
-;gglCleanupCronJobLogs;0;5;4;-1;-1;-1;false;false;-1
+;gglCleanupCronJobLogs;0;5;4;-1;-1;-1;false;true;-1
 # Run the Cron job cleanup at 5:05 AM every day
-;gglCleanupCronJobs;0;5;5;-1;-1;-1;false;false;-1
+;gglCleanupCronJobs;0;5;5;-1;-1;-1;false;true;-1
 ####################################################

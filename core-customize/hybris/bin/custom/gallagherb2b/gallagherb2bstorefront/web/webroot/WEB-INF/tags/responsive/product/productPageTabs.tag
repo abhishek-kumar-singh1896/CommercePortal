@@ -4,10 +4,10 @@
 <%@ taglib prefix="cms" uri="http://hybris.com/tld/cmstags"%>
 <!--<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>-->
 
-<div class="tabs js-tabs tabs-responsive">
+<!-- <div class="tabs js-tabs tabs-responsive"> -->
 
-	<!--
-<sec:authorize access="hasAnyRole('ROLE_DISTRIBUTOR')">
+<%-- 
+<!-- <sec:authorize access="hasAnyRole('ROLE_DISTRIBUTOR')"> -->
 	<div class="tabhead">
 		<a href=""><spring:theme code="product.product.details" /></a> <span
 			class="glyphicon"></span>
@@ -23,23 +23,34 @@
 			</div>
 		</div>
 	</div>
-</sec:authorize>
+<!-- </sec:authorize> -->
 
--->
+
 
 
 	<div id="details" class="tabhead">
 		<a href="">Product details</a> <span class="glyphicon"></span>
 	</div>
 	<div class="tabbody">
-		<div class="container-lg">
+<!-- 		<div class="container-lg">
 			<a target="_blank"
 				href="http://raymor.co.nz/wp-content/uploads/2016/10/567903_Raymor_WallBasins_Quartz-WEB.pdf">
 				<button id="btn-print-statement" class="btn-primary"
 					style="float: left" type="button">CLICK TO DOWNLOAD
 					PRODUCT DETAILS</button>
 			</a> <br>
+		</div> -->
+		
+		<div class="container-lg">
+			<div class="row">
+				<div class="col-md-6 col-lg-4">
+					<div class="tab-container">
+						<product:productDetailsTab product="${product}" />
+					</div>
+				</div>
+			</div>
 		</div>
+		
 	</div>
 
 	<div class="tabhead">
@@ -60,7 +71,7 @@
 
 
 
-	<div id="installation" class="tabhead">
+<!-- 	<div id="installation" class="tabhead">
 		<a href="">Installation manual</a> <span class="glyphicon"></span>
 	</div>
 	<div class="tabbody">
@@ -72,9 +83,9 @@
 					INSTALLATION MANUAL</button>
 			</a> <br>
 		</div>
-	</div>
+	</div> -->
 
-	<div id="video" class="tabhead">
+<!-- 	<div id="video" class="tabhead">
 		<a href="">Video</a> <span class="glyphicon"></span>
 	</div>
 	<div class="tabbody">
@@ -83,7 +94,7 @@
 				src="https://www.youtube.com/embed/kQIkXlpJ2Vg" frameborder="0"
 				allowfullscreen></iframe>
 		</div>
-	</div>
+	</div> -->
 	<div id="tabreview" class="tabhead">
 		<a href="">Reviews</a> <span class="glyphicon"></span>
 	</div>
@@ -125,9 +136,10 @@
 
 
 
-
+ --%>
+ 
 	<cms:pageSlot position="Tabs" var="tabs">
-		<cms:component component="${tabs}" />
+		<cms:component component="${tabs}" /> 
 	</cms:pageSlot>
 
-</div>
+<!-- </div> -->

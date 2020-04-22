@@ -20,9 +20,9 @@ $customerVersion = v=1
 #************************#           
 #*** B2B Customer URL ***#           
 #************************#           
-$b2bCustomerUrl = https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com/gw/odata/SAP/REPLICATE-B2B-CUSTOMER-FROM-SAP-COMMERCE-CLOUD-TO-SAP-ERP
-$b2bCustomerVersion = v=1            
-                                     
+$b2bCustomerUrl = https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com/gw/odata/SAP/ZGGL-REPLICATE-B2B-CUSTOMER-FROM-SAP-COMMERCE-CLOUD-TO-C4C
+$b2bCustomerVersion = v=1
+                                 
 #******************#                 
 #***  Order URL ***#                 
 #******************#                 
@@ -77,7 +77,7 @@ INSERT_UPDATE Endpoint ; id[unique = true]                       ; version[uniqu
 #*******************************#
 INSERT_UPDATE ConsumedDestination ; id[unique = true]                          ; url                                                                                     ; endpoint(id, version)                           ; credential(id)      ; additionalProperties(key, value)[map-delimiter = |]                             ; destinationTarget(id)[default = scpiDestinationTarget] 
                                   ; scpiCustomerDestination                    ; "$customerUrl;$customerVersion/Customers"                                               ; scpiCustomerEndpoint:unknown                    ; scpiOauthCredential ; "csrfURL->$customerUrl;$customerVersion/"                                       ;                                                        
-                                  ; scpiB2BCustomerDestination                 ; "$customerUrl;$customerVersion/Customers"                                               ; scpiB2BCustomerEndpoint:unknown                 ; scpiOauthCredential ; "csrfURL->$customerUrl;$b2bCustomerVersion/"                                    ;                                                        
+                                  ; scpiB2BCustomerDestination                 ; "$b2bCustomerUrl;$customerVersion/SAPCpiOutboundB2BCustomers"                              ; scpiB2BCustomerEndpoint:unknown                 ; scpiOauthCredential ; "csrfURL->$customerUrl;$b2bCustomerVersion/"                                    ;                                                        
                                   ; scpiOrderDestination                       ; "$orderUrl;$orderVersion/SAPCpiOutboundOrders"                                          ; scpiOrderEndpoint:unknown                       ; scpiOauthCredential ; "csrfURL->$orderUrl;$orderVersion/"                                             ;                                                        
                                   ; scpiOrderCancellationDestination           ; "$cancelOrderUrl;$cancelOrderVersion/SAPCpiOutboundOrderCancellations"                  ; scpiOrderCancellationEndpoint:unknown           ; scpiOauthCredential ; "csrfURL->$cancelOrderUrl;$cancelOrderVersion/"                                 ;                                                        
                                   ; scpiContactCollectionDestination           ; "$contactCollectionUrl;$contactCollectionVersion/ContactCollection"                     ; scpiContactCollectionEndpoint:unknown           ; scpiOauthCredential ; "csrfURL->$contactCollectionUrl;$contactCollectionVersion/"                     ;                                                        
