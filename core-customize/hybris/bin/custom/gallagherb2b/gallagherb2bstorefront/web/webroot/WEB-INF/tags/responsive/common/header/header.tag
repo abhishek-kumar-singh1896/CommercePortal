@@ -65,10 +65,11 @@
 							<li>
 								<div class="search-out">
 									<a href="javascript:void(0)" class="search-link" id="searchLink1">
-										&nbsp;
+										<span class="nav-icon-out">
 										<svg class="search-icon">
 											<use xlink:href="${siteRootUrl}/theme-securityB2B/images/svg/gallagher-icons.svg#search" />
 										</svg> 
+										</span>
 									</a> 
 								</div>
 							</li>
