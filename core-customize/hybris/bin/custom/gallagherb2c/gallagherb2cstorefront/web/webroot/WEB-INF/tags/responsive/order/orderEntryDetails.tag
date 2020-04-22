@@ -43,7 +43,7 @@
     <div class="item__image">
         <ycommerce:testId code="orderDetail_productThumbnail_link">
             <a href="${fn:escapeXml(productUrl)}">
-                <product:productPrimaryImage product="${orderEntry.product}" format="thumbnail"/>
+                <product:productIconImage product="${orderEntry.product}" format="thumbnail"/>
             </a>
         </ycommerce:testId>
     </div>
