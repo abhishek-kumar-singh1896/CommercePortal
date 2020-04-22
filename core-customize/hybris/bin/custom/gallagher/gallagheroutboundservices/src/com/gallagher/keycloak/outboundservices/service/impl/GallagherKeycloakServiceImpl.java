@@ -112,8 +112,9 @@ public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 
 		final UserModel user = getUserService().getUserForUID(customerUid);
 		final String keycloakGUID = ((CustomerModel) user).getKeycloakGUID();
+
 		final String redirectURI = getSiteBaseUrlResolutionService().getWebsiteUrlForSite(getBaseSiteService().getCurrentBaseSite(),
-				true, getUrlEncoderService().getCurrentUrlEncodingPattern());
+				true, null);
 
 		final String url = MessageFormat.format(
 				getConfigurationService().getConfiguration().getString("keycloak.reset.password.url"), keycloakGUID, redirectURI);
@@ -217,14 +218,18 @@ public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 
 		final HttpEntity<String> entity = new HttpEntity<>(request, headers);
 
+
 		if (getBaseSiteService().getCurrentBaseSite() == null)
 		{
 			getBaseSiteService().setCurrentBaseSite("securityB2BGlobal", false);
 		}
 
 		final BaseSiteModel site = getBaseSiteService().getCurrentBaseSite();
-		final String redirectURL = getSiteBaseUrlResolutionService().getWebsiteUrlForSite(site, true, FARWORD_SLASH
-				+ ((CMSSiteModel) site).getRegionCode() + FARWORD_SLASH + ((CMSSiteModel) site).getDefaultLanguage().getIsocode());
+		final String redirectURL = getSiteBaseUrlResolutionService().getWebsiteUrlForSite(site, true,
+				StringUtils.isEmpty(getUrlEncoderService().getUrlEncodingPattern())
+						? FARWORD_SLASH + ((CMSSiteModel) site).getRegionCode() + FARWORD_SLASH
+								+ ((CMSSiteModel) site).getDefaultLanguage().getIsocode()
+						: null);
 
 
 		final String url = MessageFormat.format(

@@ -11,8 +11,8 @@ $currencies=USD
 $net=false
 $storeUid=amB2CLatAm
 $defaultCurrency=USD
-$languages=en
-$defaultLanguage=en
+$languages=es_LA,en
+$defaultLanguage=es_LA
 $deliveryCountries=US
 $billingCountries=US
 $orderProcessCode=order-process
@@ -31,7 +31,7 @@ INSERT_UPDATE BaseStore;uid[unique=true];catalogs(id);currencies(isocode);net;ta
 
 
 INSERT_UPDATE BaseStore2DeliveryModeRel;source(uid)[unique=true];target(code)[unique=true]
-;$storeUid;am-standard-gross
+;$storeUid;am-standard-net
 
 INSERT_UPDATE AtpFormula;code[unique=true];availability;allocation;cancellation;increase;reserved;shrinkage;wastage
 ;Default_Formula;true;true;true;true;true;true;true;true

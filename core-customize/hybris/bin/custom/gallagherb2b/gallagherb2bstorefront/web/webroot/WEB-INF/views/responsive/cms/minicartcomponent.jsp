@@ -14,36 +14,30 @@
 </spring:url>
 <c:url value="/cart" var="cartUrl"/>
 
-<div class="nav-cart">
+<div class="cart-out">
 	<a 	href="#"
-		class="mini-cart-link js-mini-cart-link"
+		class="cart-link js-mini-cart-link"
 		data-mini-cart-url="${rolloverPopupUrl}"
 		data-mini-cart-refresh-url="${refreshMiniCartUrl}"
 		data-mini-cart-name="<spring:theme code="text.cart"/>"
 		data-mini-cart-empty-name="<spring:theme code="popup.cart.empty"/>"
 		data-mini-cart-items-text="<spring:theme code="basket.items"/>"
 		>
-		<div class="mini-cart-icon">
-			<span class="glyphicon glyphicon-shopping-cart "></span>
-		</div>
+				<span class="nav-icon-out">
+		<svg class="cart-icon">
+			<use xlink:href="${siteRootUrl}/theme-securityB2B/images/svg/gallagher-icons.svg#cart" />
+		</svg>
 		<ycommerce:testId code="miniCart_items_label">
-
-			<div class="mini-cart-price js-mini-cart-price hidden-xs hidden-sm">
-				<c:if test="${totalDisplay == 'TOTAL'}">
-					<format:price priceData="${totalPrice}" />
-				</c:if>
-
-				<c:if test="${totalDisplay == 'SUBTOTAL'}">
-					<format:price priceData="${subTotal}" />
-				</c:if>
-
-				<c:if test="${totalDisplay == 'TOTAL_WITHOUT_DELIVERY'}">
-					<format:price priceData="${totalNoDelivery}" />
-				</c:if>
+			<div class="js-mini-cart-count">
+				<span class="info-number">
+					<span class="info-text">
+						${totalItems lt 100 ? totalItems : "99+"}
+<%-- 						&nbsp;<spring:theme code="basket.items"/> --%>
+					</span>
+				</span>
 			</div>
-			<div class="mini-cart-count js-mini-cart-count"><span class="nav-items-total">${totalItems lt 100 ? totalItems : "99+"}<span class="items-desktop hidden-xs">&nbsp;<spring:theme code="basket.items"/></span></span></div>
 		</ycommerce:testId>
-
+</span>
 	</a>
 </div>
 <div class="mini-cart-container js-mini-cart-container"></div>

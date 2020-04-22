@@ -47,11 +47,11 @@
 					</c:choose>
 						<c:choose>
 							<c:when test="${region == regionCode.code}">
-								<option value="/security/${region}/${language}"
+								<option value="/security/${region}/${language}/?clear=true"
 									selected="selected">${currentRegion}</option>
 							</c:when>
 							<c:otherwise>
-								<option value="/security/${region}/${language}">
+								<option value="/security/${region}/${language}/?clear=true">
 									${currentRegion}</option>
 							</c:otherwise>
 						</c:choose>

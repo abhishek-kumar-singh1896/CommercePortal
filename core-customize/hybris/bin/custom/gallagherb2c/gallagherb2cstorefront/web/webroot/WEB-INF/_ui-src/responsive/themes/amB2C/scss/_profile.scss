@@ -66,9 +66,23 @@ label {
       border-bottom: none;
     }
   }
+
+  &.order-summary-heading {
+    background: $white;
+
+    .well-headline {
+      background: $white;
+      border-top: 1px solid $gray-6;
+      border-bottom: 1px solid $gray-6;
+      padding: 15px 30px;
+    }
+  }
 }
 
-
+.account-section .account-section-content .account-section-header {
+  color: inherit;
+  border-bottom: none;
+}
 
 .account-section .account-section-content form {
   padding: 0;
@@ -97,6 +111,12 @@ table {
       font-weight: 500;
       font-size: inherit;
     }
+  }
+}
+
+.qty {
+  label {
+    color: inherit;
   }
 }
 
@@ -137,6 +157,80 @@ table {
 
 .account-section .account-section-header-add a:hover{
     color: #ff8400;
+}
+
+.something-went-wrong {
+  max-width: 400px;
+  width: 100%;
+  margin: 40px 0 50px 0;
+  border-radius: 6px;
+  box-shadow: 0 0 4px rgba(0,0,0,0.08);
+  padding: 24px;
+  text-align: center;
+  border: 1px solid $gray-3;
+
+
+  .cross-icon-out {
+    margin: auto;
+    width: 52px;
+    height: 52px;
+    border-radius: 52px;
+    background: $danger;
+    svg {
+      width: 50px;
+      height: 50px;
+      fill: $white;
+    }
+  }
+
+  .oops-text {
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: $font-size-24px;
+    color: $danger;
+    text-align: center;
+  }
+
+  .something-went-wrong-text {
+    font-size: $font-size-16px;
+    font-weight: bold;
+    color: $gray-7;
+    margin-top: 10px;
+    text-align: center;
+  }
+}
+
+.password-update-sent {
+  max-width: 400px;
+  width: 100%;
+  margin: 40px 0 50px 0;
+  border-radius: 6px;
+  box-shadow: 0 0 4px rgba(0,0,0,0.08);
+  padding: 24px;
+  text-align: center;
+  border: 1px solid $gray-3;
+
+
+  .cross-icon-out {
+    margin: auto;
+    width: 52px;
+    height: 52px;
+    border-radius: 52px;
+    background: $success;
+    svg {
+      width: 50px;
+      height: 50px;
+      fill: $white;
+    }
+  }
+
+  .password-sent-text {
+    font-size: $font-size-16px;
+    font-weight: bold;
+    color: $gray-7;
+    margin-top: 10px;
+    text-align: center;
+  }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1023px) {

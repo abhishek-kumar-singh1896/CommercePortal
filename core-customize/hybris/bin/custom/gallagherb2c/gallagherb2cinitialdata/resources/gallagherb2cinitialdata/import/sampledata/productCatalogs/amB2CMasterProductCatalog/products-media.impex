@@ -22,29 +22,29 @@ $logo=logo(code, $catalogVersion)
 INSERT_UPDATE MediaFolder;qualifier[unique=true];path[unique=true]
 ;images;images
 
-INSERT_UPDATE Media;mediaFormat(qualifier);code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];$catalogVersion;folder(qualifier)[default=images]
-;B2BADVANCE-BF;/B2BADVANCE-BF/solar-fence-energizer-s10.jpg;$siteResource/images/B2BADVANCE-BF/solar-fence-energizer-s10.jpg
+INSERT_UPDATE Media;mediaFormat(qualifier);code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];baseStores(uid);mime[default='image/jpeg'];$catalogVersion;folder(qualifier)[default=images]
+;B2BADVANCE-BF;/B2BADVANCE-BF/solar-fence-energizer-s10.jpg;$siteResource/images/B2BADVANCE-BF/solar-fence-energizer-s10.jpg;amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA,amB2CLatAm
 
-INSERT_UPDATE Media;mediaFormat(qualifier);$catalogVersion;code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];mime[default='image/jpeg'];realfilename;folder(qualifier)[default='images'];altText;description
-;;;apslogo;$siteResource/images/aps-icon.png;;apslogo;;"aps";"Integrated EID system"
-;;;lcdlogo;$siteResource/images/lcd-icon.png;;lcdlogo;;"lcd";"Detail copy lorem ipsum dolor"
-;;;eidlogo;$siteResource/images/eid-icon.png;;eidlogo;;"eid";"Detail copy lorem ipsum dolor"
+INSERT_UPDATE Media;mediaFormat(qualifier);$catalogVersion;code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];mime[default='image/jpeg'];realfilename;folder(qualifier)[default='images'];altText;description;baseStores(uid)
+;;;apslogo;$siteResource/images/aps-icon.png;;apslogo;;"aps";"Integrated EID system";amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA,amB2CLatAm
+;;;lcdlogo;$siteResource/images/lcd-icon.png;;lcdlogo;;"lcd";"Detail copy lorem ipsum dolor";amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA,amB2CLatAm
+;;;eidlogo;$siteResource/images/eid-icon.png;;eidlogo;;"eid";"Detail copy lorem ipsum dolor";amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA,amB2CLatAm
 
-INSERT_UPDATE Media;mediaFormat(qualifier);$catalogVersion;code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];mime[default='application/pdf'];realfilename;folder(qualifier)[default='images'];altText;description
-;;;pdf1;$siteResource/images/pdf1.pdf;;pdf1;;"NZ AU, 0.7 MB";"Animal Management Weighing and EID Brochure"
-;;;pdf2;$siteResource/images/pdf2.pdf;;pdf2;;"NZ AU, 0.4 MB";"3E4402 TWR-5 Quick Start Guide"
-;;;pdf3;$siteResource/images/pdf3.pdf;;pdf3;;"NZ AU, 0.9 MB";"TWR & TW DL brochure 2019"
+INSERT_UPDATE Media;mediaFormat(qualifier);$catalogVersion;code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];mime[default='application/pdf'];realfilename;folder(qualifier)[default='images'];altText;description;baseStores(uid)
+;;;pdf1;$siteResource/images/pdf1.pdf;;pdf1;;"NZ AU, 0.7 MB";"Animal Management Weighing and EID Brochure";amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA,amB2CLatAm
+;;;pdf2;$siteResource/images/pdf2.pdf;;pdf2;;"NZ AU, 0.4 MB";"3E4402 TWR-5 Quick Start Guide";amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA,amB2CLatAm
+;;;pdf3;$siteResource/images/pdf3.pdf;;pdf3;;"NZ AU, 0.9 MB";"TWR & TW DL brochure 2019";amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA,amB2CLatAm
 
-INSERT_UPDATE Media;mediaFormat(qualifier);$catalogVersion;code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];mime[default='image/jpeg'];realfilename;folder(qualifier)[default='images'];altText;description
-;;;award1;$siteResource/images/product-two-column-img.png;;award1;;"award1";"award1"
-;;;award2;$siteResource/images/product-two-column-img.png;;award2;;"award2";"award2"
+INSERT_UPDATE Media;mediaFormat(qualifier);$catalogVersion;code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];mime[default='image/jpeg'];realfilename;folder(qualifier)[default='images'];altText;description;baseStores(uid)
+;;;award1;$siteResource/images/product-two-column-img.png;;award1;;"award1";"award1";amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA,amB2CLatAm
+;;;award2;$siteResource/images/product-two-column-img.png;;award2;;"award2";"award2";amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA,amB2CLatAm
 
-INSERT_UPDATE Media;mediaFormat(qualifier);$catalogVersion;code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];mime[default='video/mp4'];realfilename;folder(qualifier)[default='images'];altText;description
-;;;awardVideo;$siteResource/images/awardVideo.mp4;;awardVideo;;"awardVideo";"awardVideo"
+INSERT_UPDATE Media;mediaFormat(qualifier);$catalogVersion;code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];mime[default='video/mp4'];realfilename;folder(qualifier)[default='images'];altText;description;baseStores(uid)
+;;;awardVideo;$siteResource/images/awardVideo.mp4;;awardVideo;;"awardVideo";"awardVideo";amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA,amB2CLatAm
 
 
-INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$catalogVersion;$conversionGroup
-;solar-fence-energizer-s10;/B2BADVANCE-BF/solar-fence-energizer-s10.jpg,/B2BADVANCE-BF/solar-fence-energizer-s10.jpg,/B2BADVANCE-BF/solar-fence-energizer-s10.jpg,/B2BADVANCE-BF/solar-fence-energizer-s10.jpg,/B2BADVANCE-BF/solar-fence-energizer-s10.jpg,/B2BADVANCE-BF/solar-fence-energizer-s10.jpg
+INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;baseStores(uid);$catalogVersion;$conversionGroup
+;solar-fence-energizer-s10;/B2BADVANCE-BF/solar-fence-energizer-s10.jpg,/B2BADVANCE-BF/solar-fence-energizer-s10.jpg,/B2BADVANCE-BF/solar-fence-energizer-s10.jpg,/B2BADVANCE-BF/solar-fence-energizer-s10.jpg,/B2BADVANCE-BF/solar-fence-energizer-s10.jpg,/B2BADVANCE-BF/solar-fence-energizer-s10.jpg;amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA,amB2CLatAm
 
 
 

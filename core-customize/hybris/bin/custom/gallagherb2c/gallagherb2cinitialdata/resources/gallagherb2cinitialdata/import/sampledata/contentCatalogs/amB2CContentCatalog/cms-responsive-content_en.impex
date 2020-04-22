@@ -632,9 +632,9 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
 ;;CallUsLink;"<div class=""call-us-title"">Call us</div><div class=""call-us-contact-number"">0800 731 500</div>"
-;;FindStoreLink;"Find your nearest store"
-;;FindManagerLink;"Find your territory manager"
-;;SendMessageLink;"Send us a message"
+#;;FindStoreLink;"Find your nearest store"
+#;;FindManagerLink;"Find your territory manager"
+#;;SendMessageLink;"Send us a message"
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
 ;;CallUsSupportLink;"<div class=""call-us-title"">Call us</div><div class=""call-us-contact-number"">0800 731 500</div>"

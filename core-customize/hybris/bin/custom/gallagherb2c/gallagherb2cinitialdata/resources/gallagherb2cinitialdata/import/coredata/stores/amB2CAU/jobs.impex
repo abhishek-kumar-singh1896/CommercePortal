@@ -8,8 +8,8 @@ $includedFormats=300Wx300H,30Wx30H,365Wx246H,515Wx515H,65Wx65H,96Wx96H,1200Wx120
 
 INSERT_UPDATE MediaConversionCronJob;$productCVStaged[unique=true];code[unique=true];active[default=false];job(code);nodeId[default=0];includedFormats(qualifier);sessionLanguage(isocode)[default=en]
 # code								;job			   ;nodeId ;includedFormats
-;;amB2CConversionAU	;;mediaConversionJob;       ;$includedFormats
+#;;amB2CConversionAU	;;mediaConversionJob;       ;$includedFormats
 
 INSERT_UPDATE Trigger;cronJob(code)[unique=true];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
 #cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
-;amB2CConversionAU			;0		;5		;0		;0		;0		;0		;true		;true	;-1
+#;amB2CConversionAU			;0		;5		;0		;0		;0		;0		;true		;true	;-1

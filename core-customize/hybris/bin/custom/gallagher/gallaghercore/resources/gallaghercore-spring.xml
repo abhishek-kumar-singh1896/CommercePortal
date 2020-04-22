@@ -16,7 +16,7 @@
 	<bean id="gallagherCoreSystemSetup" class="com.gallagher.core.setup.CoreSystemSetup" parent="abstractCoreSystemSetup" />
 
 	<bean id="amB2CCategorySource" parent="abstractCategorySource">
-		<property name="rootCategory" value="1" />
+		<property name="rootCategory" value="animal-management" />
 		<!-- '1' is the root icecat category -->
 	</bean>
 	<bean id="amB2CBrandCategorySource" parent="abstractCategorySource">
@@ -134,6 +134,14 @@
         <property name="restrictionEvaluator" ref="gallagherSiteTransactionRestrictionEvaluator" />
    </bean>
    
+   <bean id="gallagherRegionRestrictionEvaluator" class="com.gallagher.core.restrictions.GallagherRegionRestrictionEvaluator" />
+   <bean id="gallagherRegionRestrictionDynamicDescription" class="com.gallagher.core.restrictions.GallagherRegionRestrictionDynamicDescription" />
+   
+   <bean id="gallagherRegionRestrictionEvaluatorMapping" class="de.hybris.platform.cms2.servicelayer.services.evaluator.CMSRestrictionEvaluatorMapping">
+        <property name="restrictionTypeCode" value="GallagherRegionRestriction" />
+        <property name="restrictionEvaluator" ref="gallagherRegionRestrictionEvaluator" />
+   </bean>
+   
    <bean id="gallagherB2BUserGroupsStrategy" class="com.gallagher.core.usergroups.strategy.impl.GallagherB2BUserGroupsStrategyImpl">
    	<property name="groups">
 			<list>
@@ -165,6 +173,56 @@
     <alias name="gallagherCalculateExternalTaxesStrategy" alias="calculateExternalTaxesStrategy"/>
     <bean id="gallagherCalculateExternalTaxesStrategy"
           class="com.gallagher.core.externaltax.GallagherCalculateExternalTaxesStrategy"/>
+	
+	<bean id="cleanUpLogsJobPerformable" parent="abstractGenericMaintenanceJobPerformable">
+		<property name="maintenanceCleanupStrategy">
+			<bean class="com.gallagher.core.jobs.maintenance.impl.CleanUpLogsStrategy">
+				<property name="modelService" ref="modelService" />
+				<property name="flexibleSearchService" ref="flexibleSearchService" />
+			</bean>
+		</property>
+	</bean>
+	
+	<!-- mainenance strategy bean definitions  -->
+    <bean id="cleanupCronJobsPerformable" parent="abstractGenericMaintenanceJobPerformable">
+        <property name="maintenanceCleanupStrategy">
+            <bean class="com.gallagher.core.jobs.maintenance.impl.GallagherCleanupCronJobStrategy">
+                <property name="modelService" ref="modelService"/>
+                <property name="typeService" ref="typeService"/>
+                <property name="status">
+                    <set>
+                        <value type="de.hybris.platform.cronjob.enums.CronJobStatus">FINISHED</value>
+                        <value type="de.hybris.platform.cronjob.enums.CronJobStatus">ABORTED</value>
+                    </set>
+                </property>
+                <property name="result">
+                    <set>
+                        <value type="de.hybris.platform.cronjob.enums.CronJobResult">SUCCESS</value>
+                        <value type="de.hybris.platform.cronjob.enums.CronJobResult">FAILURE</value>
+                        <value type="de.hybris.platform.cronjob.enums.CronJobResult">ERROR</value>
+                    </set>
+                </property>
+                <property name="excludedCronJobCodes">
+                    <set>
+                        <value>sync amB2CMasterProductCatalog:Staged->amB2CNZProductCatalog:Staged</value>
+								<value>sync amB2CMasterProductCatalog:Staged->amB2CAUProductCatalog:Staged</value>
+								<value>sync amB2CMasterProductCatalog:Staged->amB2CUSProductCatalog:Staged</value>
+								<value>sync amB2CMasterProductCatalog:Staged->amB2CCAProductCatalog:Staged</value>
+								<value>sync amB2CMasterProductCatalog:Staged->amB2CGlobalProductCatalog:Staged</value>
+								<value>sync amB2CMasterProductCatalog:Staged->amB2CLatAmProductCatalog:Staged</value>
+								<value>sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged</value>
+								<value>sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged</value>
+								<value>sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged</value>
+                    </set>
+                </property>
+            </bean>
+        </property>
+    </bean>
+	
+
+    <alias name="gallagherExternalTaxesService" alias="externalTaxesService"/>
+    <bean id="gallagherExternalTaxesService"
+          class="com.gallagher.core.externaltax.impl.GallagherExternalTaxesService" parent="defaultExternalTaxesService" />
 		
 
 </beans>

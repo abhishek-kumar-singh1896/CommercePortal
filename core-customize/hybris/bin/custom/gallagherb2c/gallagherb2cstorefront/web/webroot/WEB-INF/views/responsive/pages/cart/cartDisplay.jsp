@@ -73,10 +73,10 @@
 							data-continue-shopping-url="${fn:escapeXml(continueShoppingUrl)}">
 							<spring:theme code="cart.page.continue.shopping" />
 						</button>
-						
+
 					</div>
 					<div class="col-sm-6  text-right">
-					 <sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')">
+						<sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')">
 							<ycommerce:testId code="checkoutButton">
 								<button
 									class="btn btn-primary btn--continue-checkout js-continue-checkoutasguest-button btn-xs-block"
@@ -91,7 +91,7 @@
 								data-checkout-url="${fn:escapeXml(checkoutUrl)}">
 								<spring:theme code="cart.page.checkout" />
 							</button>
-						</ycommerce:testId>	
+						</ycommerce:testId>
 					</div>
 				</div>
 			</div>
@@ -132,7 +132,9 @@
 	<cart:cartItems cartData="${cartData}" />
 
 	<div class="row">
-		<cart:exportCart />
+		<div class="col-sm-6">
+			<%-- 		<cart:exportCart /> --%>
+		</div>
 	</div>
 </c:if>
 <cart:ajaxCartTopTotalSection />

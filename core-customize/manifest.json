@@ -106,7 +106,9 @@
     "scpiconnector",
     "scpiconnectorbackoffice",
 	"sapcpiorderexchange",
-	"sapcpiorderexchangeb2b"
+	"sapcpiorderexchangeb2b",
+	"sapcpiorderexchangeoms",
+	"paymetric"
   ],
   "useConfig": {
     "solr": {
@@ -277,6 +279,10 @@
 		{
           "name": "gallagherstorefront",
           "contextPath": ""
+        },
+		{
+          "name": "paymetric",
+          "contextPath": "/paymetric"
         }
       ]
     },

@@ -1,0 +1,45 @@
+ui-widget {
+  font-family: inherit;
+  font-size: inherit;
+
+  &.ui-menu {
+    max-width: 320px;
+    width: 100%;
+  }
+}
+
+.ui-widget.ui-widget-content {
+  background-color: $white;
+  padding: 16px 24px;
+  border-radius: 6px;
+  border: 1px solid $primary-color;
+  box-shadow: 0 4px 11px 0 rgba(0, 0, 0, 0.1);
+}
+
+.search-results-highlight {
+  font-weight: bold;
+}
+
+
+.ui-menu {
+  .ui-menu-item-wrapper {
+    position: relative;
+    padding: 8px;
+    display: block;
+    color: $gray-9;
+    text-decoration: none;
+
+    &:hover {
+      color: $primary-color;
+    }
+
+    &.ui-state-active {
+      border: none;
+      background: transparent;
+      font-weight: 500;
+      color: $primary-color;
+      padding: 8px;
+      margin: 0;
+    }
+  }
+}

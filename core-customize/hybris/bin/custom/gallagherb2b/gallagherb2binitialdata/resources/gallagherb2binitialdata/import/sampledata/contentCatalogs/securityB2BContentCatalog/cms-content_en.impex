@@ -57,7 +57,7 @@ UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$
 ;;SavedCartsLink;"Saved Carts"
 ;;TwitterLink;"Twitter"
 ;;UpdateEmailLink;"Email Address"
-;;UpdatePasswordLink;"Password"
+;;UpdatePasswordLink;"Update password"
 ;;BulkOrderCategoryLink;"Bulk Order"
 ;;OrderTemplatesLink;"My Templates"
 ;;InvoicesLink;"My Invoices"
@@ -408,3 +408,44 @@ UPDATE CMSNavigationNode;$contentCV[unique=true];uid[unique=true];title[lang=$la
 UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
  ;;AccountSupportTicketHistoryLink;"Support Tickets"
  ### customerticketingaddon END
+
+ 
+ ########## header  nodes start ###########
+ 
+ 
+ 
+ 
+ ###### header nodes end #######
+UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkname[lang=$lang]
+;;B2BSolutionsNavLink;"SOLUTIONS"
+;;B2BIndustriesNavLink;"INDUSTRIES"
+;;B2BProductsNavLink;"PRODUCTS"
+;;B2BCaseStudiesNavLink;"CASE STUDIES"
+;;B2BMeetTeamNavLink;"MEET THE TEAM"
+;;B2BLoginNavLinkComponent;"LOGIN"
+
+
+
+
+
+
+
+
+
+
+
+########Footer Lang##########
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;B2BCareersLink;"CAREERS"
+;;B2BPrivacyStatementLink;"PRIVACY STATEMENT"
+
+
+####Footer Lang Ends##########
+
+
+##########Notice Header Starts
+INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];noticeHeader[lang=en]
+;;B2BGallagherFooterNavigationComponent;"© GALLAGHER GROUP LIMITED 2008-2020 ALL RIGHTS RESERVED"
+
+##########Notice Header End
+ 
