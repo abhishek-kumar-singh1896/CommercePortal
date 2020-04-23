@@ -110,6 +110,10 @@
 	<extension name="scpiconnectorbackoffice" />
 	<extension name="webservicescommons" />
 	<extension name="sapmodel" />
+	<extension name="sapcpiorderexchange" />
+	<extension name="sapcpiorderexchangeb2b" />
+	<extension name="ysaporderfulfillment" />
+	
 	<extension name="gallagheroutboundservices" />
 	<extension name="gallaghercore" />
 	<extension name="gallagherfacades" />
@@ -120,10 +124,7 @@
 	<extension name="gallagherb2cinitialdata" />
 	<extension name="gallagherb2cstorefront" />
 	<extension name="gallagherstorefront" />
-	<extension name="sapcpiorderexchange" />
-	<extension name="sapcpiorderexchangeb2b" />
-	<extension name="ysaporderfulfillment" />
+	<extension name="gallagherscpiexchange" />
 	<extension name="paymetric" />
-	<extension name="sapcpiorderexchangeoms" />
   </extensions>
 </hybrisconfig>
