@@ -15,6 +15,103 @@
 	<cms:component component="${component}" />
 </cms:pageSlot>
 
+<div class="modal-updated responsive-mega-menu-modal hidden-lg" id="responsiveMegaMenu" tabindex="-1"
+			role="dialog" aria-labelledby="responsiveMegaMenuTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-scrollable" role="document">
+	
+		<!-- Main menu/L1 Content -->
+		<div class="modal-content xs-main-menu-l1 xs-mega-menu">
+	
+			<div class="xs-search-out hidden-lg">
+				<div class="search-result-out">
+					<div class="search-text-box-out">
+						<input type="text" class="form-control global-search" placeholder="Search">
+						<button type="submit" class="search-btn">
+							<svg class="search-icon">
+								<use xlink:href="${siteRootUrl}/theme-securityB2B/images/svg/gallagher-icons.svg#search" />
+							</svg>
+						</button>
+					</div>
+				</div>
+			</div>
+	
+			<div class="modal-body">
+				<div class="xs-main-menu-l1-links menu-listing">
+					<ul>
+						<sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')" >
+							<li>
+								<cms:pageSlot position="ggB2BLogin" var="component">
+									<cms:component component="${component}" />
+								</cms:pageSlot>
+							</li>
+						</sec:authorize>
+						<sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
+							<li>
+								<cms:pageSlot position="ggB2BLogout" var="component">
+									<cms:component component="${component}" />
+	                 				</cms:pageSlot>
+							</li>
+						</sec:authorize>
+						<cms:pageSlot position="ggB2BNavBar" var="feature">
+							<c:if test="${feature.visible}">
+								<c:if test="${not empty feature.navigationNode && feature.navigationNode ne null}">
+									<c:forEach items="${feature.navigationNode.children}" var="l1" varStatus="status">
+										<c:forEach items="${l1.entries}" var="dropdownValue">
+											<li>
+												<a href="javascript:void(0)" class="l1-anchor" id="xsLevel1Link${status.index+1}">
+												    ${dropdownValue.item.linkName}
+												</a>
+												<a href="javascript:void(0)" class="l1-anchor with-sublevel" id="xsLevel1Link4">
+													<span class="right-arrow-icon">
+														<svg>
+															<use xlink:href="${siteRootUrl}/theme-securityB2B/images/svg/gallagher-icons.svg#arrow-right" />
+														</svg>
+													</span>
+												</a>
+											</li>
+										</c:forEach>
+									</c:forEach>
+								</c:if>
+							</c:if>
+						</cms:pageSlot>
+						<sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">								
+							<cms:pageSlot position="B2BMyAccount" var="feature">
+								<li>
+									<a href="javascript:void(0)" class="with-sublevel-text">
+										${feature.navigationNode.name}
+									</a>
+									<a href="javascript:void(0)" class="l1-anchor with-sublevel" id="xsmyacclink">
+										<span class="right-arrow-icon">
+											<svg>
+												<use xlink:href="${siteRootUrl}/theme-securityB2B/images/svg/gallagher-icons.svg#arrow-right" />
+											</svg>
+										</span>
+									</a>
+								</li>
+							</cms:pageSlot>
+							
+							<cms:pageSlot position="B2BMyCompany" var="feature">
+								<li>
+									<a href="javascript:void(0)" class="with-sublevel-text">
+										${feature.navigationNode.name}
+									</a>
+									<a href="javascript:void(0)" class="l1-anchor with-sublevel" id="xsmycompanylink">
+										<span class="right-arrow-icon">
+											<svg>
+												<use xlink:href="${siteRootUrl}/theme-securityB2B/images/svg/gallagher-icons.svg#arrow-right" />
+											</svg>
+										</span>
+									</a>
+								</li>												
+							</cms:pageSlot>
+						</sec:authorize>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 <header class="main-header-out shadow-sm js-mainHeader">
 <%-- 	<nav class="navigation navigation--top hidden-xs hidden-sm"> --%>
 <!-- 		<div class="row"> -->
@@ -163,6 +260,23 @@
 					</div>
 				</div>
 				
+				<div class="xs-header-right-section">
+
+						<div class="xs-menu-out">
+							<a href="javascript:void(0)" class="hamburger-icon">
+								<span class="line1"></span>
+								<span class="line2"></span>
+								<span class="line3"></span>
+							</a>
+						</div>
+
+						<cms:pageSlot position="MiniCart" var="cart">
+										<cms:component component="${cart}" />
+									</cms:pageSlot>
+
+					</div>
+				</div>
+								
 			</div>
 			
 			<div class="megamenu-out second-level-menu shadow-sm d-none" id="mainNavLink3Container">
