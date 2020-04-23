@@ -25,11 +25,11 @@
 	</jsp:attribute>
 
 	<jsp:body>
-		<div class="branding-mobile hidden-md hidden-lg">
-			<div class="js-mobile-logo">
-				<%--populated by JS acc.navigation--%>
-			</div>
-		</div>
+<!-- 		<div class="branding-mobile hidden-md hidden-lg"> -->
+<!-- 			<div class="js-mobile-logo"> -->
+<%-- 				populated by JS acc.navigation --%>
+<!-- 			</div> -->
+<!-- 		</div> -->
 		<main data-currency-iso-code="${fn:escapeXml(currentCurrency.isocode)}">
 			<spring:theme code="text.skipToContent" var="skipToContent" />
 			<a href="#skip-to-content" class="skiptocontent" data-role="none">${fn:escapeXml(skipToContent)}</a>

@@ -14,7 +14,7 @@
 </spring:url>
 <c:url value="/cart" var="cartUrl"/>
 
-<div class="cart-out">
+<!-- <div class="cart-out"> -->
 	<a 	href="#"
 		class="cart-link js-mini-cart-link"
 		data-mini-cart-url="${rolloverPopupUrl}"
@@ -39,5 +39,5 @@
 		</ycommerce:testId>
 </span>
 	</a>
-</div>
+<!-- </div> -->
 <div class="mini-cart-container js-mini-cart-container"></div>
