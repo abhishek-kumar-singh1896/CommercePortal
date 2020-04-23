@@ -54,5 +54,6 @@
 	<bean id="gallagherSapOrderEntryContributor"
 		class="com.gallagher.sap.orderexchange.outbound.impl.GallagherOrderEntryContributor" parent="defaultSapOrderEntryContributor" />
 
-
+	<bean id="sapCpiOmsStockLevelPersistenceHook"
+      class="com.gallagher.sap.sapcpiorderexchange.inbound.events.GallagherSCPIOmmStockLevelPersistenceHook" />
 </beans>
