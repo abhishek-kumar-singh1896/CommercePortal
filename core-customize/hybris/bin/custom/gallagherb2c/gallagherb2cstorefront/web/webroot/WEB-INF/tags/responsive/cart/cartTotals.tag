@@ -19,7 +19,6 @@
 	</div>
 	<div class="col-6 cart-totals-right text-right">
 		<ycommerce:testId code="Order_Totals_Subtotal">
-			<sup class="currency-sign">${fn:escapeXml(cartData.subTotal.currencyIso)}</sup>
 			<format:price priceData="${cartData.subTotal}" />
 		</ycommerce:testId>
 	</div>
@@ -30,7 +29,6 @@
 			<spring:theme code="basket.page.totals.delivery" />
 		</div>
 		<div class="col-6 cart-totals-right text-right">
-				<sup class="currency-sign">${fn:escapeXml(cartData.deliveryCost.currencyIso)}</sup>
 			<format:price priceData="${cartData.deliveryCost}"
 				displayFreeForZero="TRUE" />
 		</div>
@@ -42,7 +40,6 @@
 			<spring:theme code="basket.page.totals.netTax" />
 		</div>
 		<div class="col-6 cart-totals-right text-right">
-			<sup class="currency-sign">${fn:escapeXml(cartData.totalTax.currencyIso)}</sup>
 			<format:price priceData="${cartData.totalTax}" />
 		</div>
 	</c:if>
@@ -57,7 +54,6 @@
 		</div>
 		<div class="col-6 cart-totals-right text-right discount">
 			<ycommerce:testId code="Quote_Totals_Savings">
-			<sup class="currency-sign">${fn:escapeXml(cartData.quoteDiscounts.currencyIso)}</sup>
 				<format:price priceData="${cartData.quoteDiscounts}"
 					displayNegationForDiscount="true" />
 			</ycommerce:testId>
@@ -70,7 +66,6 @@
 		</div>
 		<div class="col-6 cart-totals-right text-right discount">
 			<ycommerce:testId code="Order_Totals_Savings">
-			<sup class="currency-sign">${fn:escapeXml(cartData.totalDiscounts.currencyIso)}</sup>
 				<format:price priceData="${cartData.totalDiscounts}"
 					displayNegationForDiscount="true" />
 			</ycommerce:testId>
@@ -84,11 +79,9 @@
 		<ycommerce:testId code="cart_totalPrice_label">
 			<c:choose>
 				<c:when test="${showTax}">
-				<sup class="currency-sign">${fn:escapeXml(cartData.totalPrice.currencyIso)}</sup>
 					<format:price priceData="${cartData.totalPriceWithTax}" />
 				</c:when>
 				<c:otherwise>
-				<sup class="currency-sign">${fn:escapeXml(cartData.totalPrice.currencyIso)}</sup>
 					<format:price priceData="${cartData.totalPrice}" />
 				</c:otherwise>
 			</c:choose>
