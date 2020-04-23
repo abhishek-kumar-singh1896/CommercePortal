@@ -104,24 +104,6 @@ public class RegisterProductController extends AbstractPageController
 		model.addAttribute("registeredProducts", gallagherRegisteredProductsFacade.getRegisteredProducts());
 		model.addAttribute(WebConstants.BREADCRUMBS_KEY, contentPageBreadcrumbBuilder.getBreadcrumbs(regProductsPage));
 
-		//below attribute is for mocking purpose only. will be removed after GET call from C4C is used.
-
-		final ProductData productData = productFacade.getProductForCodeAndOptions("solar-fence-energizer-s10",
-				Arrays.asList(ProductOption.BASIC));
-		final Collection<ImageData> images = productData.getImages();
-		if (CollectionUtils.isNotEmpty(images))
-		{
-			for (final ImageData data : productData.getImages())
-			{
-				if (data.getFormat().equals("thumbnail"))
-				{
-					imageUrl = data.getUrl();
-					model.addAttribute("imageUrl", imageUrl);
-					break;
-				}
-			}
-		}
-
 		return getViewForPage(model);
 	}
 

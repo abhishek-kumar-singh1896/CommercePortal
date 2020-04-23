@@ -3,9 +3,11 @@
  */
 package com.gallagher.facades.impl;
 
+import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.servicelayer.dto.converter.Converter;
 import de.hybris.platform.servicelayer.user.UserService;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -39,8 +41,14 @@ public class GallagherRegisteredProductsFacadeImpl implements GallagherRegistere
 	@Override
 	public List<RegisteredProductData> getRegisteredProducts()
 	{
-		return getRegisteredProductsConverter()
-				.convertAll(gallagherC4COutboundServiceFacade.getRegisteredProductFromC4C(userService.getCurrentUser().getUid()));
+		if (userService.getCurrentUser() instanceof CustomerModel)
+		{
+			final CustomerModel customer = (CustomerModel) userService.getCurrentUser();
+			return getRegisteredProductsConverter()
+					.convertAll(gallagherC4COutboundServiceFacade.getRegisteredProductFromC4C(customer.getCustomerID()));
+		}
+
+		return Collections.emptyList();
 	}
 
 	protected Converter<GallagherRegisteredProduct, RegisteredProductData> getRegisteredProductsConverter()

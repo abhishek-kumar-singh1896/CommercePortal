@@ -66,7 +66,7 @@ public class GallagherProductRegistrationUtil
 			final CustomerModel customer = (CustomerModel) user;
 
 			final RegisteredProductPartyInformation customerInfo = new RegisteredProductPartyInformation();
-			customerInfo.setPartyID(customer.getSapContactID());
+			customerInfo.setPartyID(customer.getCustomerID());
 
 			customerInfo.setRoleCode("60");
 
