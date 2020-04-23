@@ -50,16 +50,42 @@ ACC.header = {
 					$('#responsiveMegaMenu').hide();
 				});
 
-				$('.l1-anchor.with-sublevel').click(function () {
-					let l1anchorId = $(this).attr('id');
-					let l1anchorText = $(this).parent().find('.with-sublevel-text').text();
-					$('.xs-mega-menu').not('#' + l1anchorId + 'Container').addClass('d-none').removeClass('fadeInRightXs');
-					$('#' + l1anchorId + 'Container').removeClass('d-none').addClass('fadeInRightXs');
-					$('#' + l1anchorId + 'Container').find('.back-text').text(l1anchorText);
+				// For mobile mega menu
 
-					let link1containerid = $('#' + l1anchorId + 'Container');
-					link1containerid.addClass('l2-container-active');
-				});
+			// Level 1 Click
+			$('.l1-anchor.with-sublevel').click(function () {
+				let l1anchorId = $(this).attr('id');
+				let l1anchorText = $(this).parent().find('.with-sublevel-text').text();
+				$('.xs-mega-menu').not('#' + l1anchorId + 'Container').addClass('d-none').removeClass('fadeInRightXs');
+				$('#' + l1anchorId + 'Container').removeClass('d-none').addClass('fadeInRightXs');
+				$('#' + l1anchorId + 'Container').find('.back-text').text(l1anchorText);
+
+				let link1containerid = $('#' + l1anchorId + 'Container');
+				link1containerid.addClass('l2-container-active');
+
+			});
+
+			$('.back-to-l1').click(function () {
+				$('.xs-main-menu-l2').addClass('d-none').removeClass("fadeInRightXs, l2-container-active");
+				$('.xs-main-menu-l1').removeClass('d-none').addClass('fadeInRightXs');
+			});
+
+
+			// Level 2 Click
+			$('.l2-anchor.with-sublevel').click(function () {
+				let l2anchorId = $(this).attr('id');
+				let l2anchorText = $(this).parent().find('.with-sublevel-text').text();
+				$('.xs-mega-menu').not('#' + l2anchorId + 'Container').addClass('d-none').removeClass('fadeInRightXs');
+
+				$('#' + l2anchorId + 'Container').removeClass('d-none').addClass('fadeInRightXs');
+				$('#' + l2anchorId + 'Container').find('.back-text').text(l2anchorText);
+			});
+
+			$('.back-to-l2').click(function () {
+				$('.xs-main-menu-l3, .xs-main-menu-l2').addClass('d-none').removeClass('fadeInRightXs');
+				$('.l2-container-active').removeClass('d-none').addClass('fadeInRightXs');
+
+			});
 
         });
 	}
