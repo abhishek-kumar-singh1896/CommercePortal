@@ -55,16 +55,19 @@
 									<c:forEach items="${feature.navigationNode.children}" var="l1" varStatus="status">
 										<c:forEach items="${l1.entries}" var="dropdownValue">
 											<li>
-												<a href="javascript:void(0)" class="l1-anchor" id="xsLevel1Link${status.index+1}">
+												<c:url var="L1link" value="${dropdownValue.item.url}"></c:url>
+												<a href="${L1link}" class="with-sublevel-text" id="xsLevel1Link${status.index+1}">
 												    ${dropdownValue.item.linkName}
 												</a>
-												<a href="javascript:void(0)" class="l1-anchor with-sublevel" id="xsLevel1Link4">
+												<c:if test="${dropdownValue.item.linkName eq 'PRODUCTS'}">
+												<a href="javascript:void(0)" class="l1-anchor with-sublevel" id="xsLevel1Link${status.index+1}">
 													<span class="right-arrow-icon">
 														<svg>
 															<use xlink:href="${siteRootUrl}/theme-securityB2B/images/svg/gallagher-icons.svg#arrow-right" />
 														</svg>
 													</span>
 												</a>
+												</c:if>
 											</li>
 										</c:forEach>
 									</c:forEach>
@@ -121,6 +124,8 @@
 			</div>
 		</div>
 		
+		<nav:megaMenu />
+
 		<!-- My Account menu content -->
 		<div class="modal-content xs-main-menu-l2 xs-mega-menu d-none" id="xsmyacclinkContainer">
 			<div class="modal-header">
@@ -207,8 +212,9 @@
 								<ul>
 									<c:forEach items="${feature.navigationNode.children}" var="l1" varStatus="status">
 										<c:forEach items="${l1.entries}" var="dropdownValue">
+											<c:url var="L1link" value="${dropdownValue.item.url}"></c:url>
 											<li class="first-level with-dropdown">
-												<a href="javascript:void(0)" id="mainNavLink${status.index+1}">
+												<a href="${L1link}" id="mainNavLink${status.index+1}">
 												    ${dropdownValue.item.linkName}
 												</a>
 											</li>

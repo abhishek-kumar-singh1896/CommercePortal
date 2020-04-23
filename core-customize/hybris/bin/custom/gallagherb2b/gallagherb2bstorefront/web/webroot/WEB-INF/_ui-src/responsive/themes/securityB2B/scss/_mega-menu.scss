@@ -199,6 +199,7 @@
         height: 100vh;
         max-height: 100vh;
         overflow-y: auto;
+        padding-bottom: 85px;
       }
     }
     .modal-content {
@@ -253,6 +254,7 @@
                 }
               }
 
+              
             }
           }
         }
@@ -293,15 +295,17 @@
 
             &:hover,
             &:focus {
-              color: $primary-color;
+              color: rgba(255,255,255,0.85);
 
               svg {
-                fill: $primary-color;
+                fill: $white;
+                opacity: 0.85;
               }
             }
           }
         }
       }
+
     }
   }
 }

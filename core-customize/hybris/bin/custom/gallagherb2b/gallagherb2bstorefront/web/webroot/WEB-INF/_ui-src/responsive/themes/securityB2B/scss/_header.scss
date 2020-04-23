@@ -329,6 +329,27 @@
   .cart-link {
     .nav-icon-out {
       padding: 30px 0 16px 0;
+
+      .info-number {
+        width: 24px;
+        height: 24px;
+        background-color: $gray-9;
+        position: absolute;
+        border-radius: 24px;
+        color: $white;
+        text-align: center;
+        top: 22px;
+        right: -8px;
+        z-index: 100;
+
+        .info-text {
+          font-size: 14px;
+          display: block;
+          padding-top: 3px;
+          text-align: center;
+          font-weight: 500;
+        }
+      }
     }
     svg {
       &.cart-icon {
