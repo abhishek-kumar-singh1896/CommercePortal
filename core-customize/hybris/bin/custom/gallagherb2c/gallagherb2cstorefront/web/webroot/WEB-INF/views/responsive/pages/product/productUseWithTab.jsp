@@ -4,6 +4,8 @@
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="format" tagdir="/WEB-INF/tags/shared/format" %>
+<c:set var="req" value="${pageContext.request}" />
+
 <c:if test="${not empty accessories}">
 <section id="${fn:replace(title,' ', '')}" class="common-sub-tab-section">
     <div class="use-with-section-out">
@@ -57,11 +59,12 @@
                 <div class="scale-indicator">
                 ${product.simulator.simulatorDescription}
                     <!-- 1:1 aspect ratio -->
+                  <c:set var="myurl" value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/am${product.simulator.simulatorURL}" />      
                     <div class="embed-responsive embed-responsive-1by1">
-                        <iframe class="embed-responsive-item"
-                            src="${product.simulator.simulatorURL}"
+                      <iframe 
+                            src="${myurl}"
                             allow="autoplay; encrypted-media" allowfullscreen="allowfullscreen"
-                            border="0" height="585" width="765"></iframe>
+                            border="0" height="585" width="767"></iframe>
                         <!-- <iframe class="embed-responsive-item"
                                             src="https://am.gallagher.com/simulator-tw3-web/story_html5.html"
                                             allow="autoplay; encrypted-media" allowfullscreen="allowfullscreen"
