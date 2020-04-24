@@ -1057,3 +1057,18 @@ INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];name;
 
 INSERT_UPDATE GallagherSiteTransactionRestriction;$contentCV[unique=true];uid[unique=true];name;&uid
 ;;GallagherSiteTransactionRestriction;Site Transaction Restriction;GallagherSiteTransactionRestriction
+
+
+
+###########Restriction On Footer#############
+
+
+INSERT_UPDATE GallagherRegionRestriction;$contentCV[unique=true];uid[unique=true]				;name										;&uid							;region(code);language(isocode)
+										;						;GallagherAURegionRestriction	;Gallagher Australia Region Restriction		;GallagherAURegionRestriction	;au		;
+
+										;						;GallagherNZRegionRestriction	;Gallagher New Zealand Region Restriction	;GallagherNZRegionRestriction	;nz		;
+										;						;GallagherGlRegionRestriction	;Gallagher Global Region Restriction		;GallagherGlRegionRestriction	;global	;
+										
+										
+										
+###############Restriction on Footer Ends######									

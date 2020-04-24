@@ -493,7 +493,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;SoftwareCategoryLink;Software Category Link;/Security/Software/c/software;;SoftwareCategoryLink;;"second-level-link-desktop"
 ########################################################
 
-#########################Navigation Node Starts###############3333
+#########################Navigation Node Starts###############
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef;children(uid, $contentCV)[mode=replace]
 ;B2BFooterNavigationNode;;Footer Navigation Node; root;;B2BFooterNavigationNode;B2BCompanyNavigationNode,B2BSolutionsNavigationNode,B2BSupportNavigationNode
 
@@ -548,44 +548,78 @@ INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[uni
 
 ########################Navigation node END
 
+###########Restriction On Footer#############
+
+
+INSERT_UPDATE GallagherRegionRestriction;$contentCV[unique=true];uid[unique=true]				;name										;&uid							;region(code);language(isocode)
+										;						;GallagherAURegionRestriction	;Gallagher Australia Region Restriction		;GallagherAURegionRestriction	;au		;
+
+										;						;GallagherNZRegionRestriction	;Gallagher New Zealand Region Restriction	;GallagherNZRegionRestriction	;nz		;
+										;						;GallagherGlRegionRestriction	;Gallagher Global Region Restriction		;GallagherGlRegionRestriction	;global	;
+										
+										
+										
+###############Restriction on Footer Ends######									
+
 
 
 #########################Division Impex Start
 
-INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;linkName;&linkRef;&componentRef
-;;B2BgallagherDivision1LnkCom;B2B Gallagher Division 1;'#';OTHER GALLAGHER DIVISIONS;B2BgallagherDivision1LnkCom;B2BgallagherDivision1LnkCom
-;;B2BgallagherDivision2LnkCom;B2B Gallagher Division 2;https://www.gallagher.com/ ;CORPORATE;B2BgallagherDivision2LnkCom;B2BgallagherDivision2LnkCom
-;;B2BgallagherDivision3LnkCom;B2B Gallagher Division 3;https://www.google.com;ANIMAL MANAGEMENT;B2BgallagherDivision3LnkCom;B2BgallagherDivision3LnkCom
-;;B2BgallagherDivision4LnkCom;B2B Gallagher Division 4; https://fuelsystems.gallagher.com/;FUEL SYSTEMS;B2BgallagherDivision4LnkCom;B2BgallagherDivision4LnkCom
-;;B2BgallagherDivision5LnkCom;B2B Gallagher Division 5;https://www.gallagher.com/about-us/business-units/contract-manufacturing ;CONTRACT MANUFACTURING;B2BgallagherDivision5LnkCom;B2BgallagherDivision5LnkCom
-
-
-
-INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
-;B2BgallagherDivision1NavEty;;B2B Gallagher Division 1 navigation entry;B2BgallagherDivision1NavNod;B2BgallagherDivision1LnkCom
-;B2BgallagherDivision2NavEty;;B2BGallagher Division 2 navigation entry;B2BgallagherDivision2NavNod;B2BgallagherDivision2LnkCom
-;B2BgallagherDivision3NavEty;;B2B Gallagher Division 3 navigation entry;B2BgallagherDivision3NavNod;B2BgallagherDivision3LnkCom
-;B2BgallagherDivision4NavEty;;B2B Gallagher Division 4 navigation entry;B2BgallagherDivision4NavNod;B2BgallagherDivision4LnkCom
-;B2BgallagherDivision5NavEty;;B2B Gallagher Division 5 navigation entry;B2BgallagherDivision5NavNod;B2BgallagherDivision5LnkCom
-
-
-INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef);
-;B2BgallagherDivision1NavNod;;B2B Gallagher Division 1 navigation node;B2BgallagherDivision1NavNod
-;B2BgallagherDivision2NavNod;;B2B Gallagher Division 2 navigation node;B2BgallagherDivision2NavNod
-;B2BgallagherDivision3NavNod;;B2B Gallagher Division 3 navigation node;B2BgallagherDivision3NavNod
-;B2BgallagherDivision4NavNod;;B2B Gallagher Division 4 navigation node;B2BgallagherDivision4NavNod
-;B2BgallagherDivision5NavNod;;B2B Gallagher Division 5 navigation node;B2BgallagherDivision5NavNod
-
-
-INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&componentRef);&nodeRef;children(uid, $contentCV)
-;B2BothersDivisionsNavNod;;B2B Other division drop down;root;;B2BothersDivisionsNavNod;B2BgallagherDivision1NavNod,B2BgallagherDivision2NavNod,B2BgallagherDivision3NavNod,B2BgallagherDivision4NavNod,B2BgallagherDivision5NavNod
-
-INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];gallagherDivisionsLinkNagivationNode(&nodeRef);&componentRef
-;;B2BGallagherFooterNavigationComponent;B2BothersDivisionsNavNod;B2BGallagherFooterNavigationComponent
+INSERT_UPDATE CMSLinkComponent ; $contentCV[unique=true] ; uid[unique=true]            ; name                     ; url                                                                      ; linkName                  ; &linkRef                    ; &componentRef               
+                               ;                         ; B2BgallagherDivision1LnkCom ; B2B Gallagher Division 1 ; '#'                                                                      ; OTHER GALLAGHER DIVISIONS ; B2BgallagherDivision1LnkCom ; B2BgallagherDivision1LnkCom 
+                               ;                         ; B2BgallagherDivision2LnkCom ; B2B Gallagher Division 2 ; https://www.gallagher.com/                                               ; CORPORATE                 ; B2BgallagherDivision2LnkCom ; B2BgallagherDivision2LnkCom 
+                               ;                         ; B2BgallagherDivision4LnkCom ; B2B Gallagher Division 4 ; https://fuelsystems.gallagher.com/                                       ; FUEL SYSTEMS              ; B2BgallagherDivision4LnkCom ; B2BgallagherDivision4LnkCom 
+                               ;                         ; B2BgallagherDivision5LnkCom ; B2B Gallagher Division 5 ; https://www.gallagher.com/about-us/business-units/contract-manufacturing ; CONTRACT MANUFACTURING    ; B2BgallagherDivision5LnkCom ; B2BgallagherDivision5LnkCom 
+                               
+                               
+INSERT_UPDATE CMSLinkComponent ; $contentCV[unique=true] ; uid[unique=true]              ; restrictions(uid,$contentCV) ; onlyOneRestrictionMustApply[default='false'] 
+                               ;                         ; B2BNZgallagherDivision3LnkCom ; GallagherNZRegionRestriction 
+                               ;                         ; B2BAUgallagherDivision3LnkCom ; GallagherAURegionRestriction 
+                               ;                         ; B2BGlgallagherDivision3LnkCom ; GallagherGlRegionRestriction 
+                               
+INSERT_UPDATE CMSLinkComponent ; $contentCV[unique=true] ; uid[unique=true]              ; name                            ; url                         ; linkName          ; &linkRef                      ; &componentRef                 
+                               ;                         ; B2BNZgallagherDivision3LnkCom ; B2B NZ Gallagher Division 3     ; https://am.gallagher.com/nz ; ANIMAL MANAGEMENT ; B2BNZgallagherDivision3LnkCom ; B2BNZgallagherDivision3LnkCom 
+                               ;                         ; B2BAUgallagherDivision3LnkCom ; B2B AU Gallagher Division 3     ; https://am.gallagher.com/au ; ANIMAL MANAGEMENT ; B2BAUgallagherDivision3LnkCom ; B2BAUgallagherDivision3LnkCom 
+                               ;                         ; B2BGlgallagherDivision3LnkCom ; B2B Global Gallagher Division 3 ; https://am.gallagher.com    ; ANIMAL MANAGEMENT ; B2BGlallagherDivision3LnkCom  ; B2BGlgallagherDivision3LnkCom 
+                               
+INSERT_UPDATE CMSNavigationEntry ; uid[unique=true]              ; $contentCV[unique=true] ; name                                         ; navigationNode(&nodeRef)      ; item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV) ;  
+                                 ; B2BNZgallagherDivision3NavEty ;                         ; B2B NZ Gallagher Division 3 navigation entry ; B2BNZgallagherDivision3NavNod ; B2BNZgallagherDivision3LnkCom                          
+                                 ; B2BAUgallagherDivision3NavEty ;                         ; B2B AU Gallagher Division 3 navigation entry ; B2BAUgallagherDivision3NavNod ; B2BAUgallagherDivision3LnkCom                          
+                                 ; B2BGlgallagherDivision3NavEty ;                         ; B2B GL Gallagher Division 3 navigation entry ; B2BGlgallagherDivision3NavNod ; B2BGlgallagherDivision3LnkCom                          
+                                 
+                                 
+                                 
+INSERT_UPDATE CMSNavigationEntry ; uid[unique=true]            ; $contentCV[unique=true] ; name                                      ; navigationNode(&nodeRef)    ; item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV) ;  
+                                 ; B2BgallagherDivision1NavEty ;                         ; B2B Gallagher Division 1 navigation entry ; B2BgallagherDivision1NavNod ; B2BgallagherDivision1LnkCom                            
+                                 ; B2BgallagherDivision2NavEty ;                         ; B2BGallagher Division 2 navigation entry  ; B2BgallagherDivision2NavNod ; B2BgallagherDivision2LnkCom                            
+                                 ; B2BgallagherDivision4NavEty ;                         ; B2B Gallagher Division 4 navigation entry ; B2BgallagherDivision4NavNod ; B2BgallagherDivision4LnkCom                            
+                                 ; B2BgallagherDivision5NavEty ;                         ; B2B Gallagher Division 5 navigation entry ; B2BgallagherDivision5NavNod ; B2BgallagherDivision5LnkCom                            
+                                 
+                                 
+INSERT_UPDATE CMSNavigationNode ; uid[unique=true]            ; $contentCV[unique=true] ; name                                     ; &nodeRef                    ; children(uid,$contentCV) ; links(&linkRef) ;  
+                                ; B2BgallagherDivision1NavNod ;                         ; B2B Gallagher Division 1 navigation node ; B2BgallagherDivision1NavNod 
+                                ; B2BgallagherDivision2NavNod ;                         ; B2B Gallagher Division 2 navigation node ; B2BgallagherDivision2NavNod 
+                                ; B2BgallagherDivision4NavNod ;                         ; B2B Gallagher Division 4 navigation node ; B2BgallagherDivision4NavNod 
+                                ; B2BgallagherDivision5NavNod ;                         ; B2B Gallagher Division 5 navigation node ; B2BgallagherDivision5NavNod 
+                                
+                                
+INSERT_UPDATE CMSNavigationNode ; uid[unique=true]              ; $contentCV[unique=true] ; name                                        ; &nodeRef                      ; children(uid,$contentCV) ; links(&linkRef) ;  
+                                ; B2BNZgallagherDivision3NavNod ;                         ; B2B NZ Gallagher Division 3 navigation node ; B2BNZgallagherDivision3NavNod 
+                                ; B2BAUgallagherDivision3NavNod ;                         ; B2B AU Gallagher Division 3 navigation node ; B2BAUgallagherDivision3NavNod 
+                                ; B2BGlgallagherDivision3NavNod ;                         ; B2B Gl Gallagher Division 3 navigation node ; B2BGlgallagherDivision3NavNod 
+                                
+                                
+INSERT_UPDATE CMSNavigationNode ; uid[unique=true]         ; $contentCV[unique=true] ; name                         ; parent(uid, $contentCV) ; links(&componentRef) ; &nodeRef                 ; children(uid, $contentCV)                                                                                                                                                                                 
+                                ; B2BothersDivisionsNavNod ;                         ; B2B Other division drop down ; root                    ;                      ; B2BothersDivisionsNavNod ; B2BgallagherDivision1NavNod,B2BgallagherDivision2NavNod,B2BNZgallagherDivision3NavNod,B2BAUgallagherDivision3NavNod,B2BGlgallagherDivision3NavNod,B2BgallagherDivision4NavNod,B2BgallagherDivision5NavNod 
+INSERT_UPDATE GallagherFooterNavigationComponent ; $contentCV[unique=true] ; uid[unique=true]                      ; gallagherDivisionsLinkNagivationNode(&nodeRef) ; &componentRef                         
+                                                 ;                         ; B2BGallagherFooterNavigationComponent ; B2BothersDivisionsNavNod                       ; B2BGallagherFooterNavigationComponent 
+            
 
 
 
 ##################Division impex end
+
+
 
 
 

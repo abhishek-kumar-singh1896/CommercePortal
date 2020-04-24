@@ -115,7 +115,8 @@
 
 										<c:if test="${i.index != 0}">
 										<li>
-											<a href=${dropdownValue1.item.url}>${dropdownValue1.item.linkName}</a>
+											<cms:component component="${dropdownValue1.item}"
+									evaluateRestriction="true" />
                                </li>
 										</c:if>
 									</c:forEach>
