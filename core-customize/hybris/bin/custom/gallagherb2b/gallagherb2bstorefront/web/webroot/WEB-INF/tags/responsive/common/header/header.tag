@@ -89,20 +89,6 @@
 									</a>
 								</li>
 							</cms:pageSlot>
-							<cms:pageSlot position="B2BMyAccount" var="feature">
-								<li>
-									<a href="javascript:void(0)" class="with-sublevel-text">
-										${feature.navigationNode.name}
-									</a>
-									<a href="javascript:void(0)" class="l1-anchor with-sublevel" id="xsmyacclink2">
-										<span class="right-arrow-icon">
-											<svg>
-												<use xlink:href="${siteRootUrl}/theme-securityB2B/images/svg/gallagher-icons.svg#arrow-right" />
-											</svg>
-										</span>
-									</a>
-								</li>
-							</cms:pageSlot>
 							
 							<cms:pageSlot position="B2BMyCompany" var="feature">
 								<li>
@@ -342,11 +328,13 @@
 						<span class="line3"></span>
 					</a>
 				</div>
-				<div class="xs-cart-out ">
-					<cms:pageSlot position="MiniCart" var="cart">
-									<cms:component component="${cart}" />
-					</cms:pageSlot>
-				</div>
+				<sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
+					<div class="xs-cart-out ">
+						<cms:pageSlot position="MiniCart" var="cart">
+										<cms:component component="${cart}" />
+						</cms:pageSlot>
+					</div>
+				</sec:authorize>
 			</div>
 		</div>
 							
