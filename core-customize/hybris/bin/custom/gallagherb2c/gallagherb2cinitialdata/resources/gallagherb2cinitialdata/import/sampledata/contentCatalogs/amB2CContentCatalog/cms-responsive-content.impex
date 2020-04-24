@@ -2394,7 +2394,15 @@ INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@medi
 ;;find-dealer-bg;find-dealer-bg.jpg;$siteResource/images/theme/find-dealer-bg.jpg;image/jpeg;Gallagher
 ;;tm-bg;tm-bg.jpeg;$siteResource/images/theme/tm-bg.jpeg;image/jpeg;Gallagher
 
-INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;linkName;&linkRef;&componentRef
+INSERT_UPDATE GallagherNewButtonComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV)	   ;onlyOneRestrictionMustApply[default='false']
+;;NZENSearchComponent;GallagherNZRegionRestriction
+;;AUENSearchComponent;GallagherAURegionRestriction
+;;USENSearchComponent;GallagherUSRegionRestriction
+;;CAENSearchComponent;GallagherCAENRegionRestriction
+;;CAFRSearchComponent;GallagherCAFRRegionRestriction
+;;GLOBALENSearchComponent;GallagherGlRegionRestriction
+
+INSERT_UPDATE GallagherNewButtonComponent;$contentCV[unique=true];uid[unique=true];name;url;linkName;&linkRef;&componentRef
 ;;NZENSearchComponent;NZ Search Component;https://am.gallagher.com/nz/find-a-stockist ;Search;NZENSearchComponent;NZENSearchComponent
 ;;AUENSearchComponent;AU Search Component;https://am.gallagher.com/au/find-a-stockist ;Search;AUENSearchComponent;AUENSearchComponent
 ;;USENSearchComponent;US Search Component;https://am.gallagher.com/us/find-a-dealer ;Search;USENSearchComponent;USENSearchComponent
@@ -2402,13 +2410,17 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;CAFRSearchComponent;CA FR Search Component;https://am.gallagher.com/fr-ca/trouver-un-fournisseur ;Search;CAFRSearchComponent;CAFRSearchComponent
 ;;GLOBALENSearchComponent;Global Search Component;https://am.gallagher.com/global/find-a-distributor ;Search;GLOBALENSearchComponent;GLOBALENSearchComponent
 
+
+
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;linkName;&linkRef;&componentRef
 ;;NZTMLinkComp;NZ Territory Manager Link Component;https://am.gallagher.com/nz/about-us/our-people/territory-managers ;Or Find Your Nearest Territory Manager;NZTMLinkComp;NZTMLinkComp
 ;;AUTMLinkComp;AU Territory Manager Link Component;https://am.gallagher.com/au/about-us/our-people/territory-managers ;Or Find Your Nearest Territory Manager;AUTMLinkComp;AUTMLinkComp
 ;;USTMLinkComp;US Territory Manager Link Component;https://www.google.com ;Or Find Your Nearest Territory Manager;USTMLinkComp;USTMLinkComp
 ;;CATMLinkComp;CA Territory Manager Link Component;https://www.google.com ;Or Find Your Nearest Territory Manager;CAFRTMLinkComp;CAFRTMLinkComp
 
 
-INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(GallagherNewButtonComponent.uid,GallagherNewButtonComponent.$contentCV);
 ;NZSearchNavEntry;;NZ Search Nav Entry;NZSearchNavNode;NZENSearchComponent
 ;AUSearchNavEntry;;AU Search Nav Entry;AUSearchNavNode;AUENSearchComponent
 ;USSearchNavEntry;;US Search Nav Entry;USSearchNavNode;USENSearchComponent
@@ -2416,6 +2428,7 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 ;CAFRSearchNavEntry;;CA FR Search Nav Entry;CAFRSearchNavNode;CAFRSearchComponent
 ;GlobalSearchNavEntry;;Global Search Nav Entry;GlobalSearchNavNode;GLOBALENSearchComponent
 
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
 ;NZTMNavEntry;;NZ Territory Manager Nav Entry;NZTMNavNode;NZTMLinkComp
 ;AUTMNavEntry;;AU Territory Manager Nav Entry;AUTMNavNode;AUTMLinkComp
 ;USTMNavEntry;;US Territory Manager Nav Entry;USTMNavNode;USTMLinkComp
@@ -2763,14 +2776,8 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents
 
 ######## restriction for region and language based components ########
 
-INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV)	   ;onlyOneRestrictionMustApply[default='true']
-;;NZENSearchComponent;GallagherNZRegionRestriction
-;;AUENSearchComponent;GallagherAURegionRestriction
-;;USENSearchComponent;GallagherUSRegionRestriction
-;;CAENSearchComponent;GallagherCAENRegionRestriction,GallagherCAENCARegionRestriction
-;;CAFRSearchComponent;GallagherCAFRRegionRestriction,GallagherCAFRCARegionRestriction
-;;GLOBALENSearchComponent;GallagherGlRegionRestriction
 
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV)	   ;onlyOneRestrictionMustApply[default='true']
 ;;NZTMLinkComp;GallagherNZRegionRestriction
 ;;AUTMLinkComp;GallagherAURegionRestriction
 ;;USTMLinkComp;GallagherUSRegionRestriction
