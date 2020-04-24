@@ -664,5 +664,14 @@
 			</itemtype>
 		</typegroup>
 
+<typegroup name="button">
+    
+
+<itemtype code="GallagherNewButtonComponent" autocreate="true" generate="true" extends="CMSLinkComponent">
+            </itemtype>
+
+   </typegroup>
+
+
 	</itemtypes>
 </items>

@@ -147,7 +147,7 @@ INSERT_UPDATE IntegrationObjectItemAttribute ; integrationObjectItem(integration
                                              ; OutboundB2BCustomer:SAPCpiOutboundB2BContact                        ; objectID                     ; SAPCpiOutboundB2BContact:objectID                   ;                                                            ; true                    
                                              
 INSERT_UPDATE SAPHTTPDestination ; httpDestinationName[unique=true] ; targetURL              ; userid            
-                                 ; GGLSCPI                          ; https://www.google.com ; CommerceCloud_Dev 
+                                 ; GGLSCPI                          ; https://www.gmail.com?sap-client=007 ; CommerceCloud_Dev 
                                  
 INSERT_UPDATE SapSystemType ; code[unique=true] 
                             ; SAPDEV            

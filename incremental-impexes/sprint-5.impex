@@ -1212,8 +1212,127 @@ UPDATE SolrFacetSearchConfig ; name[unique=true]; languages(isocode)
 
 #Removing extra cmslincomponents
 $contentCatalog=amB2CContentCatalog
-$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online ])[default=$contentCatalog:Online ]
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged ])[default=$contentCatalog:Staged ]
 REMOVE CMSLinkComponent;$contentCV[unique=true];uid[unique=true]
 ;;FindStoreLink;Find Store Link;https://www.google.com/;;;
 ;;FindManagerLink;Find Manager Link;http://www.google.com/;;;
 ;;SendMessageLink;Send Message Link;http://www.google.com/;;;
+
+
+######################### creating region restrictions instances ########################
+$contentCatalog=amB2CContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Satged])[default=$contentCatalog:Staged]
+
+
+INSERT_UPDATE GallagherRegionRestriction;$contentCV[unique=true];uid[unique=true]				;name										;&uid							;region(code);language(isocode)
+										;						;GallagherAURegionRestriction	;Gallagher Australia Region Restriction		;GallagherAURegionRestriction	;au		;
+										;						;GallagherCARegionRestriction	;Gallagher Canada Region Restriction		;GallagherCARegionRestriction	;ca		;
+										;						;GallagherCAENRegionRestriction	;Gallagher Canada English Region Restriction;GallagherCAENRegionRestriction	;ca		;en
+										;						;GallagherCAFRRegionRestriction	;Gallagher Canada French Region Restriction	;GallagherCAFRRegionRestriction	;ca		;fr
+										;						;GallagherGlRegionRestriction	;Gallagher Global Region Restriction		;GallagherGlRegionRestriction	;global	;
+										;						;GallagherLATAMRegionRestriction;Gallagher Latin America Region Restriction	;GallagherLATAMRegionRestriction;latam	;
+										;						;GallagherNZRegionRestriction	;Gallagher New Zealand Region Restriction	;GallagherNZRegionRestriction	;nz		;
+										;						;GallagherUSRegionRestriction	;Gallagher United States Region Restriction	;GallagherUSRegionRestriction	;us		;
+										;						;GallagherCAENCARegionRestriction;Gallagher Canada en_CA Region Restriction	;GallagherCAENCARegionRestriction;ca		;en_CA
+										;						;GallagherCAFRCARegionRestriction;Galagher Canada fr_CA Region restriction	;GallagherCAFRCARegionRestriction;ca	;fr_CA
+
+
+
+###################### restrictions applied for pdp and find us components ##############
+
+$contentCatalog=amB2CContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+REMOVE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV)	   ;onlyOneRestrictionMustApply[default='false']
+;;NZENSearchComponent;GallagherNZRegionRestriction
+;;AUENSearchComponent;GallagherAURegionRestriction
+;;USENSearchComponent;GallagherUSRegionRestriction
+;;CAENSearchComponent;GallagherCAENRegionRestriction
+;;CAFRSearchComponent;GallagherCAFRRegionRestriction
+;;GLOBALENSearchComponent;GallagherGlRegionRestriction
+
+
+
+INSERT_UPDATE GallagherNewButtonComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV)	   ;onlyOneRestrictionMustApply[default='false']
+;;NZENSearchComponent;GallagherNZRegionRestriction
+;;AUENSearchComponent;GallagherAURegionRestriction
+;;USENSearchComponent;GallagherUSRegionRestriction
+;;CAENSearchComponent;GallagherCAENRegionRestriction
+;;CAFRSearchComponent;GallagherCAFRRegionRestriction
+;;GLOBALENSearchComponent;GallagherGlRegionRestriction
+
+
+
+
+INSERT_UPDATE GallagherNewButtonComponent;$contentCV[unique=true];uid[unique=true];name;url;linkName;&linkRef;&componentRef
+;;NZENSearchComponent;NZ Search Component;https://am.gallagher.com/nz/find-a-stockist ;Search;NZENSearchComponent;NZENSearchComponent
+;;AUENSearchComponent;AU Search Component;https://am.gallagher.com/au/find-a-stockist ;Search;AUENSearchComponent;AUENSearchComponent
+;;USENSearchComponent;US Search Component;https://am.gallagher.com/us/find-a-dealer ;Search;USENSearchComponent;USENSearchComponent
+;;CAENSearchComponent;CA EN Search Component;https://am.gallagher.com/en-ca/find-a-dealer ;Search;CAENSearchComponent;CAENSearchComponent
+;;CAFRSearchComponent;CA FR Search Component;https://am.gallagher.com/fr-ca/trouver-un-fournisseur ;Search;CAFRSearchComponent;CAFRSearchComponent
+;;GLOBALENSearchComponent;Global Search Component;https://am.gallagher.com/global/find-a-distributor ;Search;GLOBALENSearchComponent;GLOBALENSearchComponent
+
+
+
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(GallagherNewButtonComponent.uid,GallagherNewButtonComponent.$contentCV);
+;NZSearchNavEntry;;NZ Search Nav Entry;NZSearchNavNode;NZENSearchComponent
+;AUSearchNavEntry;;AU Search Nav Entry;AUSearchNavNode;AUENSearchComponent
+;USSearchNavEntry;;US Search Nav Entry;USSearchNavNode;USENSearchComponent
+;CAENSearchNavEntry;;CA EN Search Nav Entry;CAENSearchNavNode;CAENSearchComponent
+;CAFRSearchNavEntry;;CA FR Search Nav Entry;CAFRSearchNavNode;CAFRSearchComponent
+;GlobalSearchNavEntry;;Global Search Nav Entry;GlobalSearchNavNode;GLOBALENSearchComponent
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV)	   ;onlyOneRestrictionMustApply[default='true']
+
+
+;;NZTMLinkComp;GallagherNZRegionRestriction
+;;AUTMLinkComp;GallagherAURegionRestriction
+;;USTMLinkComp;GallagherUSRegionRestriction
+;;CATMLinkComp;GallagherCARegionRestriction
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV);onlyOneRestrictionMustApply[default='true']
+;;NZENFindStoreLink;GallagherNZRegionRestriction
+;;NZENFindManagerLink;GallagherNZRegionRestriction
+;;NZENSendMessageLink;GallagherNZRegionRestriction
+;;AUENFindStoreLink;GallagherAURegionRestriction
+;;AUENFindManagerLink;GallagherAURegionRestriction
+;;AUENSendMessageLink;GallagherAURegionRestriction
+;;USENFindStoreLink;GallagherUSRegionRestriction
+;;USENFindManagerLink;GallagherUSRegionRestriction
+;;USENSendMessageLink;GallagherUSRegionRestriction
+;;CAENFindStoreLink;GallagherCAENRegionRestriction,GallagherCAENCARegionRestriction
+;;CAENFindManagerLink;GallagherCAENRegionRestriction,GallagherCAENCARegionRestriction
+;;CAENSendMessageLink;GallagherCAENRegionRestriction,GallagherCAENCARegionRestriction
+;;CAFRFindStoreLink;GallagherCAFRRegionRestriction,GallagherCAFRCARegionRestriction
+;;CAFRFindManagerLink;GallagherCAFRRegionRestriction,GallagherCAFRCARegionRestriction
+;;CAFRSendMessageLink;GallagherCAFRRegionRestriction,GallagherCAFRCARegionRestriction
+;;LATAMENFindStoreLink;GallagherLATAMRegionRestriction
+;;LATAMENFindManagerLink;GallagherLATAMRegionRestriction
+;;LATAMENSendMessageLink;GallagherLATAMRegionRestriction
+;;GLOBALENFindStoreLink;GallagherGlRegionRestriction
+;;GLOBALENFindManagerLink;GallagherGlRegionRestriction
+;;GLOBALENSendMessageLink;GallagherGlRegionRestriction
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV);onlyOneRestrictionMustApply[default='true']
+;;NZENSupportMaterialLink;GallagherNZRegionRestriction
+;;NZENTechnicalSupportLink;GallagherNZRegionRestriction
+;;NZENSoftwareDownloadsLink;GallagherNZRegionRestriction
+;;AUENSupportMaterialLink;GallagherAURegionRestriction
+;;AUENTechnicalSupportLink;GallagherAURegionRestriction
+;;AUENSoftwareDownloadsLink;GallagherAURegionRestriction
+;;USENSupportMaterialLink;GallagherUSRegionRestriction
+;;USENTechnicalSupportLink;GallagherUSRegionRestriction
+;;USENSoftwareDownloadsLink;GallagherUSRegionRestriction
+;;CAENSupportMaterialLink;GallagherCAENRegionRestriction,GallagherCAENCARegionRestriction
+;;CAENTechnicalSupportLink;GallagherCAENRegionRestriction,GallagherCAENCARegionRestriction
+;;CAENSoftwareDownloadsLink;GallagherCAENRegionRestriction,GallagherCAENCARegionRestriction
+;;CAFRSupportMaterialLink;GallagherCAFRRegionRestriction,GallagherCAFRCARegionRestriction
+;;CAFRTechnicalSupportLink;GallagherCAFRRegionRestriction,GallagherCAFRCARegionRestriction
+;;CAFRSoftwareDownloadsLink;GallagherCAFRRegionRestriction,GallagherCAFRCARegionRestriction
+;;LATAMENSupportMaterialLink;GallagherLATAMRegionRestriction
+;;LATAMENTechnicalSupportLink;GallagherLATAMRegionRestriction
+;;LATAMENSoftwareDownloadsLink;GallagherLATAMRegionRestriction
+;;GLOBALENSupportMaterialLink;GallagherGlRegionRestriction
+;;GLOBALENTechnicalSupportLink;GallagherGlRegionRestriction
+;;GLOBALENSoftwareDownloadsLink;GallagherGlRegionRestriction

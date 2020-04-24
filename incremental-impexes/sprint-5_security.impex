@@ -21,11 +21,11 @@ $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCata
 
 #CMSLinkComponents
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkname;name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];
-;;B2BSolutionsNavLink;SOLUTIONS;B2B Solutions Navigation Link;"#";B2BSolutionsNavLink;B2BSolutionsNavLink;;;
-;;B2BIndustriesNavLink;INDUSTRIES;B2B Industries Navigation Link;"#";B2BIndustriesNavLink;B2BIndustriesNavLink;;;
+;;B2BSolutionsNavLink;SOLUTIONS;B2B Solutions Navigation Link;https://www.google.com;B2BSolutionsNavLink;B2BSolutionsNavLink;;;
+;;B2BIndustriesNavLink;INDUSTRIES;B2B Industries Navigation Link;https://www.google.com;B2BIndustriesNavLink;B2BIndustriesNavLink;;;
 ;;B2BProductsNavLink;PRODUCTS;B2B Products Navigation Link;"#";B2BProductsNavLink;B2BProductsNavLink;;;
-;;B2BCaseStudiesNavLink;CASE STUDIES;B2B Case Studies Navigation Link;"#";B2BCaseStudiesNavLink;B2BCaseStudiesNavLink;;;
-;;B2BMeetTeamNavLink;MEET THE TEAM ;B2B Meet The Team Navigation Link;"#";B2BMeetTeamNavLink;B2BMeetTeamNavLink;;;
+;;B2BCaseStudiesNavLink;CASE STUDIES;B2B Case Studies Navigation Link;https://www.google.com;B2BCaseStudiesNavLink;B2BCaseStudiesNavLink;;;
+;;B2BMeetTeamNavLink;MEET THE TEAM ;B2B Meet The Team Navigation Link;https://www.google.com;B2BMeetTeamNavLink;B2BMeetTeamNavLink;;;
 
 
 #CMS Navigation Node
