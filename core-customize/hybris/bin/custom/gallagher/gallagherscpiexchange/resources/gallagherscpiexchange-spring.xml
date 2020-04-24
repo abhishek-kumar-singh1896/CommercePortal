@@ -56,4 +56,13 @@
 
 	<bean id="sapCpiOmsStockLevelPersistenceHook"
       class="com.gallagher.sap.sapcpiorderexchange.inbound.events.GallagherSCPIOmmStockLevelPersistenceHook" />
+      
+   	<!-- customerID generator for newly-registered B2BCustomer -->
+	<bean id="sapb2bContactIdGenerator" class="de.hybris.platform.servicelayer.keygenerator.impl.PersistentKeyGenerator">
+		<property name="key" value="sap_b2b_contact_id" />
+		<property name="digits" value="${keygen.customer.sap_contact_id.digits}" />
+		<property name="start" value="${keygen.b2b.customer.sap_contact_id.start}" />
+		<property name="type" value="${keygen.customer.sap_contact_id.type}" />
+		<property name="template" value="${keygen.customer.sap_contact_id.template}" />
+	</bean>
 </beans>
