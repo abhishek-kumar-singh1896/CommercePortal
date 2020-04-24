@@ -15,6 +15,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,7 +58,7 @@ public class GallagherC4COutboundServiceFacadeImpl extends DefaultOutboundServic
 	 * {@inheritDoc}
 	 */
 	@Override
-	public List<GallagherInboundCustomerEntry> getCustomerInfoFromC4C(final String email)
+	public List<GallagherInboundCustomerEntry> getCustomerInfoFromC4C(final String email, final String keycloakGUID)
 	{
 		final GallagherInboundCustomerEntry existingCustomer = new GallagherInboundCustomerEntry();
 		List<GallagherInboundCustomerEntry> existingCustomers = new ArrayList<>();
@@ -73,20 +75,32 @@ public class GallagherC4COutboundServiceFacadeImpl extends DefaultOutboundServic
 					OUTBOUND_CONTACT_COLLECTION_DESTINATION);
 			final RestOperations restOperations = getIntegrationRestTemplateFactory().create(destinationModel);
 
-			final String baseURL = destinationModel.getUrl();
 
-			final UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(baseURL).queryParam("$filter",
-					"Email eq '" + email + "'");
+			final String baseURL = destinationModel.getUrl();
 
 			final HttpHeaders headers = new HttpHeaders();
 			headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 
 			final HttpEntity entity = new HttpEntity(headers);
+			GallagherInboundCustomerInfo existingCustomerInfo = null;
+			if (StringUtils.isNotEmpty(keycloakGUID))
+			{
+				final UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(baseURL).queryParam("$filter",
+						"KeycloakID_KUT eq '" + keycloakGUID + "'");
+				final HttpEntity<GallagherInboundCustomerInfo> response = restOperations.exchange(builder.build().encode().toUri(),
+						HttpMethod.GET, entity, GallagherInboundCustomerInfo.class);
+				existingCustomerInfo = response.getBody();
+			}
+			if (null == existingCustomerInfo || null == existingCustomerInfo.getCustomerInfo()
+					|| CollectionUtils.isEmpty(existingCustomerInfo.getCustomerInfo().getCustomerEntries()))
+			{
+				final UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(baseURL).queryParam("$filter",
+						"Email eq '" + email + "'");
+				final HttpEntity<GallagherInboundCustomerInfo> response = restOperations.exchange(builder.build().encode().toUri(),
+						HttpMethod.GET, entity, GallagherInboundCustomerInfo.class);
+				existingCustomerInfo = response.getBody();
+			}
 
-			final HttpEntity<GallagherInboundCustomerInfo> response = restOperations.exchange(builder.build().encode().toUri(),
-					HttpMethod.GET, entity, GallagherInboundCustomerInfo.class);
-
-			final GallagherInboundCustomerInfo existingCustomerInfo = response.getBody();
 
 			if (null != existingCustomerInfo && null != existingCustomerInfo.getCustomerInfo()
 					&& null != existingCustomerInfo.getCustomerInfo().getCustomerEntries())

@@ -22,12 +22,12 @@
         </div>
 		<multi-checkout:checkoutSteps checkoutSteps="${checkoutSteps}" progressBarId="${progressBarId}">
 			<ycommerce:testId code="checkoutStepFour">
-				<div class="checkout-review hidden-xs">
+				<div class="d-none d-lg-block  checkout-review hidden-xs">
                     <div class="checkout-order-summary">
-                        <multi-checkout:orderTotals cartData="${cartData}" showTaxEstimate="${showTaxEstimate}" showTax="${showTax}" subtotalsCssClasses="dark"/>
+                        <multi-checkout:orderTotals cartData="${cartData}" showTaxEstimate="${showTaxEstimate}" showTax="true" subtotalsCssClasses="dark"/>
                     </div>
                 </div>
-                <div class="place-order-form hidden-xs">
+               <%--  <div class="place-order-form hidden-xs">
                     <form:form action="${placeOrderUrl}" id="placeOrderForm1" modelAttribute="placeOrderForm">
                         <div class="checkbox">
                             <label> <form:checkbox id="Terms2" path="termsCheck" class="Terms-1-Condition-1"/>
@@ -40,8 +40,8 @@
                             <spring:theme code="checkout.summary.placeOrder" text="Place Order"/>
                         </button>
                     </form:form>
-                </div>
-			</ycommerce:testId>
+                </div> --%>
+			</ycommerce:testId> 
 		</multi-checkout:checkoutSteps>
     </div>
 

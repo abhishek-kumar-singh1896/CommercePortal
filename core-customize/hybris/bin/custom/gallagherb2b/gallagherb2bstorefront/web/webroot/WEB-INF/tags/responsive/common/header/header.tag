@@ -15,161 +15,15 @@
 	<cms:component component="${component}" />
 </cms:pageSlot>
 
-<header class="main-header-out shadow-sm js-mainHeader">
-<%-- 	<nav class="navigation navigation--top hidden-xs hidden-sm"> --%>
-<!-- 		<div class="row"> -->
-<!-- 			<div class="col-sm-12 col-md-4"> -->
-<!-- 				<div class="nav__left js-site-logo"> -->
-<%-- 					<cms:pageSlot position="SiteLogo" var="logo" limit="1"> --%>
-<%-- 						<cms:component component="${logo}" element="div" class="yComponentWrapper"/> --%>
-<%-- 					</cms:pageSlot> --%>
-<!-- 				</div> -->
-<!-- 			</div> -->
-			
-		<div class="container">
-			<div class="header-out-row">
-			
-				<div class="header-left-section mr-auto">
-					<div class="logo-out gallagher-logo">
-						<cms:pageSlot position="SiteLogo" var="logo" limit="1">
-							<cms:component component="${logo}" element="div" />
-						</cms:pageSlot>
-					</div>
-				</div>
-
-				<cms:pageSlot position="ggB2BNavBar" var="feature">
-					<c:if test="${feature.visible}">
-						<c:if test="${not empty feature.navigationNode && feature.navigationNode ne null}">
-							<div class="header-middle-section">
-								<div class="main-nav-out">
-									<ul>
-										<c:forEach items="${feature.navigationNode.children}" var="l1" varStatus="status">
-											<c:forEach items="${l1.entries}" var="dropdownValue">
-												<li class="first-level with-dropdown">
-													<a href="javascript:void(0)" id="mainNavLink${status.index+1}">
-													    ${dropdownValue.item.linkName}
-													</a>
-												</li>
-											</c:forEach>
-										</c:forEach>
-									</ul>
-								</div>
-							</div>
-						</c:if>
-					</c:if>
-				</cms:pageSlot>
-
-				<div class="header-right-section">
-					<div class="main-nav-out">
-						<ul>
-							<li>
-								<div class="search-out">
-									<a href="javascript:void(0)" class="search-link" id="searchLink1">
-										&nbsp;
-										<svg class="search-icon">
-											<use xlink:href="${siteRootUrl}/theme-securityB2B/images/svg/gallagher-icons.svg#search" />
-										</svg> 
-									</a> 
-								</div>
-							</li>
-							<sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')" >
-								<li>
-									<cms:pageSlot position="ggB2BLogin" var="component">
-										<cms:component component="${component}" />
-									</cms:pageSlot>
-								</li>
-							</sec:authorize>
-							<sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
-								<li>
-									<cms:pageSlot position="MiniCart" var="cart">
-										<cms:component component="${cart}" />
-									</cms:pageSlot>
-								</li>
-<%-- 							<cms:pageSlot position="MiniCart" var="cart" element="div" class="miniCartSlot componentContainer mobile__nav__row--table hidden-sm hidden-md hidden-lg"> --%>
-<%-- 								<cms:component component="${cart}" element="div" class="mobile__nav__row--table-cell" /> --%>
-<%-- 							</cms:pageSlot> --%>
-								<li>
-									<c:set var="maxNumberChars" value="25" /> 
-	 								<c:if test="${fn:length(user.firstName) gt maxNumberChars}"> 
-	 									<c:set target="${user}" property="firstName"
-	 										value="${fn:substring(user.firstName, 0, maxNumberChars)}..." /> 
-	 								</c:if> 
-									<div class="dropdown user-dropdown">
-										<button class="btn user-btn dropdown-toggle" type="button" id="dropdownMenuUser"
-											data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											<span class="user-name"><spring:theme code="header.welcome" arguments="${user.firstName},${user.lastName}" /></span>
-										</button>
-										<ul class="dropdown-menu dropdown-menu-right"
-											aria-labelledby="dropdownMenuUser">
-
-											<cms:pageSlot position="B2BMyAccount" var="feature">
-												<li>
-													<div class="menu-title">
-														${feature.navigationNode.name}
-													</div>
-												</li>												
-                       					<c:forEach items="${feature.navigationNode.children}"
-													var="childLevel1">
-													<c:forEach items="${childLevel1.entries}" var="entry">
-														<cms:component component="${entry.item}" element="li" 
-													 	evaluateRestriction="true" />
-													</c:forEach>
-												</c:forEach>
-											</cms:pageSlot>
-											
-											<cms:pageSlot position="B2BMyCompany" var="feature">
-												<li>
-													<div class="menu-title">
-														${feature.navigationNode.name}
-													</div>
-												</li>												
-                       					<c:forEach items="${feature.navigationNode.children}"
-													var="childLevel1">													
-													<c:forEach items="${childLevel1.entries}" var="entry">
-														<cms:component component="${entry.item}" element="li" 
-													 		evaluateRestriction="true" />
-													</c:forEach>
-												</c:forEach>
-											</cms:pageSlot>
-											
-											<li>
-												<ycommerce:testId code="header_signOut">
-													<cms:pageSlot position="ggB2BLogout" var="component">
-														<cms:component component="${component}" />
-                             				</cms:pageSlot>
-												</ycommerce:testId>
-											</li>
-											
-										</ul>
-									</div>
-								</li>
-							</sec:authorize>
-								<%-- <sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
-	 								<c:set var="maxNumberChars" value="25" /> 
-	 								<c:if test="${fn:length(user.firstName) gt maxNumberChars}"> 
-	 									<c:set target="${user}" property="firstName"
-	 										value="${fn:substring(user.firstName, 0, maxNumberChars)}..." /> 
-	 								</c:if> 
+<div class="modal-updated responsive-mega-menu-modal hidden-lg" id="responsiveMegaMenu" tabindex="-1"
+			role="dialog" aria-labelledby="responsiveMegaMenuTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-scrollable" role="document">
 	
-									<!-- <li class="logged_in js-logged_in"> -->
-										<ycommerce:testId code="header_LoggedUser">
-											<spring:theme code="header.welcome" arguments="${user.firstName},${user.lastName}" />
-										</ycommerce:testId>
-									<!-- </li> -->
-							</sec:authorize> --%>
-							</li>
-						</ul>
-					</div>
-				</div>
-				
-			</div>
-			
-			<div class="megamenu-out second-level-menu shadow-sm d-none" id="mainNavLink3Container">
-				<nav:topNavigation />
-			</div>
-			
-			<div class="megamenu-out search-result-out search-link-container d-none" id="searchLink1Container">
-         	<div class="container">
+		<!-- Main menu/L1 Content -->
+		<div class="modal-content xs-main-menu-l1 xs-mega-menu">
+	
+			<div class="xs-search-out hidden-lg">
+				<div class="search-result-out">
 					<div class="search-text-box-out">
 						<cms:pageSlot position="SearchBox" var="component">
 							<cms:component component="${component}" />
@@ -177,9 +31,329 @@
 					</div>
 				</div>
 			</div>
-			
+	
+			<div class="modal-body">
+				<div class="xs-main-menu-l1-links menu-listing">
+					<ul>
+						<sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')" >
+							<li>
+								<cms:pageSlot position="ggB2BLogin" var="component">
+									<cms:component component="${component}" />
+								</cms:pageSlot>
+							</li>
+						</sec:authorize>
+						<sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
+							<li>
+								<cms:pageSlot position="ggB2BLogout" var="component">
+									<cms:component component="${component}" />
+	                 				</cms:pageSlot>
+							</li>
+						</sec:authorize>
+						<cms:pageSlot position="ggB2BNavBar" var="feature">
+							<c:if test="${feature.visible}">
+								<c:if test="${not empty feature.navigationNode && feature.navigationNode ne null}">
+									<c:forEach items="${feature.navigationNode.children}" var="l1" varStatus="status">
+										<c:forEach items="${l1.entries}" var="dropdownValue">
+											<li>
+												<c:url var="L1link" value="${dropdownValue.item.url}"></c:url>
+												<a href="${L1link}" class="with-sublevel-text">
+												    ${dropdownValue.item.linkName}
+												</a>
+												<c:if test="${dropdownValue.item.linkName eq 'PRODUCTS'}">
+												<a href="javascript:void(0)" class="l1-anchor with-sublevel" id="xsLevel1Link${status.index+1}">
+													<span class="right-arrow-icon">
+														<svg>
+															<use xlink:href="${siteRootUrl}/theme-securityB2B/images/svg/gallagher-icons.svg#arrow-right" />
+														</svg>
+													</span>
+												</a>
+												</c:if>
+											</li>
+										</c:forEach>
+									</c:forEach>
+								</c:if>
+							</c:if>
+						</cms:pageSlot>
+						<sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">								
+							<cms:pageSlot position="B2BMyAccount" var="feature">
+								<li>
+									<a href="javascript:void(0)" class="with-sublevel-text">
+										${feature.navigationNode.name}
+									</a>
+									<a href="javascript:void(0)" class="l1-anchor with-sublevel" id="xsmyacclink">
+										<span class="right-arrow-icon">
+											<svg>
+												<use xlink:href="${siteRootUrl}/theme-securityB2B/images/svg/gallagher-icons.svg#arrow-right" />
+											</svg>
+										</span>
+									</a>
+								</li>
+							</cms:pageSlot>
+							
+							<cms:pageSlot position="B2BMyCompany" var="feature">
+								<li>
+									<a href="javascript:void(0)" class="with-sublevel-text">
+										${feature.navigationNode.name}
+									</a>
+									<a href="javascript:void(0)" class="l1-anchor with-sublevel" id="xsmycompanylink">
+										<span class="right-arrow-icon">
+											<svg>
+												<use xlink:href="${siteRootUrl}/theme-securityB2B/images/svg/gallagher-icons.svg#arrow-right" />
+											</svg>
+										</span>
+									</a>
+								</li>												
+							</cms:pageSlot>
+						</sec:authorize>
+					</ul>
+				</div>
+			</div>
 		</div>
 		
+		<nav:megaMenu />
+
+		<!-- My Account menu content -->
+		<div class="modal-content xs-main-menu-l2 xs-mega-menu d-none" id="xsmyacclinkContainer">
+			<div class="modal-header">
+				<div class="left-title-out">
+					<a href="javascript:void(0)" class="back-to-l1">
+						<span>
+							<svg>
+								<use xlink:href="${siteRootUrl}/theme-securityB2B/images/svg/gallagher-icons.svg#arrow-left" />
+							</svg>
+						</span>
+
+						<span class="back-text"></span>
+					</a>
+				</div>
+			</div>
+			<div class="modal-body">
+				<div class="xs-main-menu-l2-links menu-listing">
+					<ul>
+						<cms:pageSlot position="B2BMyAccount" var="feature">											
+        					<c:forEach items="${feature.navigationNode.children}"
+								var="childLevel1">													
+								<c:forEach items="${childLevel1.entries}" var="entry">
+									<cms:component component="${entry.item}" element="li" 
+ 								 		evaluateRestriction="true" />
+								</c:forEach>
+							</c:forEach>
+						</cms:pageSlot>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<!-- My company menu content -->
+		<div class="modal-content xs-main-menu-l2 xs-mega-menu d-none" id="xsLevel1Link8Container">
+			<div class="modal-header">
+				<div class="left-title-out">
+					<a href="javascript:void(0)" class="back-to-l1">
+						<span>
+							<svg>
+								<use xlink:href="${siteRootUrl}/theme-securityB2B/images/svg/gallagher-icons.svg#arrow-left" />
+							</svg>
+						</span>
+						<span class="back-text"></span>
+					</a>
+				</div>
+			</div>
+			<div class="modal-body">
+				<div class="xs-main-menu-l2-links menu-listing">
+					<ul>
+						<cms:pageSlot position="B2BMyCompany" var="feature">											
+        					<c:forEach items="${feature.navigationNode.children}"
+								var="childLevel1">													
+								<c:forEach items="${childLevel1.entries}" var="entry">
+									<cms:component component="${entry.item}" element="li" 
+ 								 		evaluateRestriction="true" />
+								</c:forEach>
+							</c:forEach>
+						</cms:pageSlot>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+<header class="main-header-out shadow-sm js-mainHeader">
+	<div class="container header-container-xs">
+		<div class="header-out-row">
+		
+			<div class="header-left-section mr-auto">
+				<div class="logo-out gallagher-logo">
+					<cms:pageSlot position="SiteLogo" var="logo" limit="1">
+						<cms:component component="${logo}" element="div" />
+					</cms:pageSlot>
+				</div>
+			</div>
+
+			<cms:pageSlot position="ggB2BNavBar" var="feature">
+				<c:if test="${feature.visible}">
+					<c:if test="${not empty feature.navigationNode && feature.navigationNode ne null}">
+						<div class="header-middle-section">
+							<div class="main-nav-out">
+								<ul>
+									<c:forEach items="${feature.navigationNode.children}" var="l1" varStatus="status">
+										<c:forEach items="${l1.entries}" var="dropdownValue">
+											<c:url var="L1link" value="${dropdownValue.item.url}"></c:url>
+											<li class="first-level with-dropdown">
+												<a href="${L1link}" id="mainNavLink${status.index+1}">
+												    ${dropdownValue.item.linkName}
+												</a>
+											</li>
+										</c:forEach>
+									</c:forEach>
+								</ul>
+							</div>
+						</div>
+					</c:if>
+				</c:if>
+			</cms:pageSlot>
+
+			<div class="header-right-section">
+				<div class="main-nav-out">
+					<ul>
+						<li>
+							<div class="search-out">
+								<a href="javascript:void(0)" class="search-link" id="searchLink1">
+									<span class="nav-icon-out">
+									<svg class="search-icon">
+										<use xlink:href="${siteRootUrl}/theme-securityB2B/images/svg/gallagher-icons.svg#search" />
+									</svg> 
+									</span>
+								</a> 
+							</div>
+						</li>
+						<sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')" >
+							<li>
+								<cms:pageSlot position="ggB2BLogin" var="component">
+									<cms:component component="${component}" />
+								</cms:pageSlot>
+							</li>
+						</sec:authorize>
+						<sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
+							<li>
+								<div class="cart-out ">
+									<cms:pageSlot position="MiniCart" var="cart">
+										<cms:component component="${cart}" />
+									</cms:pageSlot>
+								</div>
+							</li>
+<%-- 							<cms:pageSlot position="MiniCart" var="cart" element="div" class="miniCartSlot componentContainer mobile__nav__row--table hidden-sm hidden-md hidden-lg"> --%>
+<%-- 								<cms:component component="${cart}" element="div" class="mobile__nav__row--table-cell" /> --%>
+<%-- 							</cms:pageSlot> --%>
+							<li>
+								<c:set var="maxNumberChars" value="25" /> 
+ 								<c:if test="${fn:length(user.firstName) gt maxNumberChars}"> 
+ 									<c:set target="${user}" property="firstName"
+ 										value="${fn:substring(user.firstName, 0, maxNumberChars)}..." /> 
+ 								</c:if> 
+								<div class="dropdown user-dropdown">
+									<button class="btn user-btn dropdown-toggle" type="button" id="dropdownMenuUser"
+										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<span class="user-name"><spring:theme code="header.welcome" arguments="${user.firstName},${user.lastName}" /></span>
+									</button>
+									<ul class="dropdown-menu dropdown-menu-right"
+										aria-labelledby="dropdownMenuUser">
+
+										<cms:pageSlot position="B2BMyAccount" var="feature">
+											<li>
+												<div class="menu-title">
+													${feature.navigationNode.name}
+												</div>
+											</li>												
+                      					<c:forEach items="${feature.navigationNode.children}"
+												var="childLevel1">
+												<c:forEach items="${childLevel1.entries}" var="entry">
+													<cms:component component="${entry.item}" element="li" 
+												 	evaluateRestriction="true" />
+												</c:forEach>
+											</c:forEach>
+										</cms:pageSlot>
+										
+										<cms:pageSlot position="B2BMyCompany" var="feature">
+											<li>
+												<div class="menu-title">
+													${feature.navigationNode.name}
+												</div>
+											</li>												
+                      					<c:forEach items="${feature.navigationNode.children}"
+												var="childLevel1">													
+												<c:forEach items="${childLevel1.entries}" var="entry">
+													<cms:component component="${entry.item}" element="li" 
+												 		evaluateRestriction="true" />
+												</c:forEach>
+											</c:forEach>
+										</cms:pageSlot>
+										
+										<li>
+											<ycommerce:testId code="header_signOut">
+												<cms:pageSlot position="ggB2BLogout" var="component">
+													<cms:component component="${component}" />
+                            				</cms:pageSlot>
+											</ycommerce:testId>
+										</li>
+										
+									</ul>
+								</div>
+							</li>
+						</sec:authorize>
+							<%-- <sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
+ 								<c:set var="maxNumberChars" value="25" /> 
+ 								<c:if test="${fn:length(user.firstName) gt maxNumberChars}"> 
+ 									<c:set target="${user}" property="firstName"
+ 										value="${fn:substring(user.firstName, 0, maxNumberChars)}..." /> 
+ 								</c:if> 
+
+								<!-- <li class="logged_in js-logged_in"> -->
+									<ycommerce:testId code="header_LoggedUser">
+										<spring:theme code="header.welcome" arguments="${user.firstName},${user.lastName}" />
+									</ycommerce:testId>
+								<!-- </li> -->
+						</sec:authorize> --%>
+						</li>
+					</ul>
+				</div>
+			</div>
+			
+			<div class="xs-header-right-section">
+
+				<div class="xs-menu-out">
+					<a href="javascript:void(0)" class="hamburger-icon">
+						<span class="line1"></span>
+						<span class="line2"></span>
+						<span class="line3"></span>
+					</a>
+				</div>
+				<sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
+					<div class="xs-cart-out ">
+						<cms:pageSlot position="MiniCart" var="cart">
+										<cms:component component="${cart}" />
+						</cms:pageSlot>
+					</div>
+				</sec:authorize>
+			</div>
+		</div>
+							
+	</div>
+		
+	<div class="megamenu-out second-level-menu shadow-sm d-none" id="mainNavLink3Container">
+		<nav:topNavigation />
+	</div>
+	
+	<div class="megamenu-out search-result-out search-link-container d-none" id="searchLink1Container">
+       <div class="container">
+			<div class="search-text-box-out">
+				<cms:pageSlot position="SearchBox" var="component">
+					<cms:component component="${component}" />
+				</cms:pageSlot>
+			</div>
+		</div>
+	</div>
+					
 <!-- 		ootb code from here -->
 		<%-- <nav class="navigation navigation--top hidden-xs hidden-sm">	
 			<div class="col-sm-12 col-md-8">
@@ -337,6 +511,6 @@
 	<%-- <nav:topNavigation /> --%>
 </header>
 
-<cms:pageSlot position="BottomHeaderSlot" var="component" element="div"	class="container-fluid">
+<cms:pageSlot position="BottomHeaderSlot" var="component">
 	<cms:component component="${component}" />
 </cms:pageSlot>

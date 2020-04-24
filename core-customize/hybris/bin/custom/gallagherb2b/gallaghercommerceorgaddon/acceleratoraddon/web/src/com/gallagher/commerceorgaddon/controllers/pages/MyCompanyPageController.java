@@ -17,7 +17,6 @@ import de.hybris.platform.b2bapprovalprocessfacades.company.data.B2BPermissionDa
 import de.hybris.platform.b2bapprovalprocessfacades.company.data.B2BPermissionTypeData;
 import de.hybris.platform.b2bcommercefacades.company.B2BBudgetFacade;
 import de.hybris.platform.b2bcommercefacades.company.B2BCostCenterFacade;
-import de.hybris.platform.b2bcommercefacades.company.B2BUnitFacade;
 import de.hybris.platform.b2bcommercefacades.company.B2BUserFacade;
 import de.hybris.platform.b2bcommercefacades.company.B2BUserGroupFacade;
 import de.hybris.platform.b2bcommercefacades.company.data.B2BBudgetData;
@@ -74,6 +73,7 @@ import com.gallagher.commerceorgaddon.forms.B2BCustomerForm;
 import com.gallagher.commerceorgaddon.forms.B2BPermissionForm;
 import com.gallagher.commerceorgaddon.forms.validation.B2BBudgetFormValidator;
 import com.gallagher.commerceorgaddon.forms.validation.B2BPermissionFormValidator;
+import com.gallagher.facades.GallagherB2BUnitFacade;
 import com.gallagher.facades.usergroups.GallagherB2BUserGroupFacade;
 import com.gallagher.keycloak.outboundservices.service.GallagherKeycloakService;
 
@@ -130,7 +130,7 @@ public class MyCompanyPageController extends AbstractSearchPageController
 	protected B2BUserFacade b2bUserFacade;
 
 	@Resource(name = "b2bUnitFacade")
-	protected B2BUnitFacade b2bUnitFacade;
+	protected GallagherB2BUnitFacade b2bUnitFacade;
 
 	@Resource(name = "b2bPermissionFacade")
 	protected B2BPermissionFacade b2bPermissionFacade;

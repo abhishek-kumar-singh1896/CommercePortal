@@ -900,6 +900,18 @@ INSERT_UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterT
 INSERT_UPDATE GallagherSiteTransactionRestriction;$contentCV[unique=true];uid[unique=true];name;&uid
 ;;GallagherSiteTransactionRestriction;Site Transaction Restriction;GallagherSiteTransactionRestriction
 
+INSERT_UPDATE GallagherRegionRestriction;$contentCV[unique=true];uid[unique=true]				;name										;&uid							;region(code);language(isocode)
+										;						;GallagherAURegionRestriction	;Gallagher Australia Region Restriction		;GallagherAURegionRestriction	;au		;
+										;						;GallagherCARegionRestriction	;Gallagher Canada Region Restriction		;GallagherCARegionRestriction	;ca		;
+										;						;GallagherCAENRegionRestriction	;Gallagher Canada English Region Restriction;GallagherCAENRegionRestriction	;ca		;en
+										;						;GallagherCAFRRegionRestriction	;Gallagher Canada French Region Restriction	;GallagherCAFRRegionRestriction	;ca		;fr
+										;						;GallagherGlRegionRestriction	;Gallagher Global Region Restriction		;GallagherGlRegionRestriction	;global	;
+										;						;GallagherLATAMRegionRestriction;Gallagher Latin America Region Restriction	;GallagherLATAMRegionRestriction;latam	;
+										;						;GallagherNZRegionRestriction	;Gallagher New Zealand Region Restriction	;GallagherNZRegionRestriction	;nz		;
+										;						;GallagherUSRegionRestriction	;Gallagher United States Region Restriction	;GallagherUSRegionRestriction	;us		;
+										;						;GallagherCAENCARegionRestriction;Gallagher Canada en_CA Region Restriction	;GallagherCAENCARegionRestriction;ca		;en_CA
+										;						;GallagherCAFRCARegionRestriction;Galagher Canada fr_CA Region restriction	;GallagherCAFRCARegionRestriction;ca	;fr_CA
+
 ############################## above is the desktop data, below is the responsive data ###########################################
 
 # Create PageTemplates

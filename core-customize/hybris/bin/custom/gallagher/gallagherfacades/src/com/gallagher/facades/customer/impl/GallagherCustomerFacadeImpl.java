@@ -4,6 +4,7 @@
 package com.gallagher.facades.customer.impl;
 
 import de.hybris.platform.commercefacades.customer.impl.DefaultCustomerFacade;
+import de.hybris.platform.commerceservices.enums.SiteChannel;
 
 import javax.annotation.Resource;
 
@@ -26,9 +27,9 @@ public class GallagherCustomerFacadeImpl extends DefaultCustomerFacade implement
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void updateCommerceCustomer(final GallagherAccessToken token, final boolean createIfNotExists)
+	public void updateCommerceCustomer(final GallagherAccessToken token, final SiteChannel channel)
 	{
-		gallagherCustomerService.updateCommerceCustomer(token, createIfNotExists);
+		gallagherCustomerService.updateCommerceCustomer(token, channel);
 	}
 
 }

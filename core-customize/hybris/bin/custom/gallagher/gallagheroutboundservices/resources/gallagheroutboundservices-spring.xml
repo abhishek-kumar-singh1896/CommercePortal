@@ -59,5 +59,11 @@
 		<property name="integrationRestTemplateFactory" ref="integrationRestTemplateFactory" />
 		<property name="cache" ref="csrfParametersCache" />
 	</bean>
+	
+	<alias name="gallagherSapSalesConditionsContributor" alias="sapSalesConditionsContributor" />
+	<bean id="gallagherSapSalesConditionsContributor" class="com.gallagher.sap.orderexchange.outbound.impl.GallagherSalesConditionsContributor" parent="defaultSapSalesConditionsContributor" />
+	
+	<alias name="gallagherSapOrderEntryContributor" alias="sapOrderEntryContributor" />
+	<bean id="gallagherSapOrderEntryContributor" class="com.gallagher.sap.orderexchange.outbound.impl.GallagherOrderEntryContributor" parent="defaultSapOrderEntryContributor" />
 
 </beans>

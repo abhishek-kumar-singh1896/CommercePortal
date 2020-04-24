@@ -20,7 +20,7 @@ INSERT_UPDATE Zone ; code[unique=true] ; countries(isocode)
 # Zone Delivery Modes
 INSERT_UPDATE ZoneDeliveryMode ; code[unique=true] ; net   ; active[default=true] 
                                ; standard-gross    ; false 
-                               ; am-standard-gross ; false 
+                               ; am-standard-net ; true 
                                
                                
 ############################## 
@@ -28,8 +28,8 @@ INSERT_UPDATE ZoneDeliveryMode ; code[unique=true] ; net   ; active[default=true
 ############################## 
 INSERT_UPDATE ProductTaxCode ; productCode[unique=true] ; taxCode  ; taxArea[unique=true] 
                              ; standard-gross           ; FR000000 ; US                   
-                             ; am-standard-gross        ; FR000000 ; US                   
+                             ; am-standard-net        ; FR000000 ; US                   
                              ; standard-gross           ; FR000000 ; CA                   
-                             ; am-standard-gross        ; FR000000 ; CA                   
+                             ; am-standard-net        ; FR000000 ; CA                   
                              
                              

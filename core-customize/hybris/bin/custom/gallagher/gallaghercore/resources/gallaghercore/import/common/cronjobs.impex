@@ -63,8 +63,8 @@ INSERT_UPDATE MaintenanceCleanupJob;code[unique=true];threshold
 ;cleanupCronJobsPerformable;5
 
 INSERT_UPDATE CronJob;code[unique=true];job(code);sessionLanguage(isocode)
-;gglCleanupCronJobLogs;cleanUpLogsJobPerformable;;en
-;gglCleanupCronJobs;cleanupCronJobsPerformable;;en
+;gglCleanupCronJobLogs;cleanUpLogsJobPerformable;en
+;gglCleanupCronJobs;cleanupCronJobsPerformable;en
 
 INSERT_UPDATE Trigger;cronJob(code)[unique=true];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
 # Run the Clean up cronJob logs at 4:05 AM every day

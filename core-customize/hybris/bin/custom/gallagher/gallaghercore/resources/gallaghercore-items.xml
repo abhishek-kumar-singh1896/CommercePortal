@@ -518,12 +518,12 @@
 						<persistence type="dynamic" attributeHandler="gallagherRegionRestrictionDynamicDescription" />
 						<modifiers write="false" />
 					</attribute>
-					<attribute qualifier="country" type="java.lang.String">
+					<attribute qualifier="region" type="RegionCode">
 						<description>Stores region code of the site</description>
 						<modifiers optional="false"/>
 						<persistence type="property"/>
 					</attribute>
-					<attribute qualifier="language" type="java.lang.String">
+					<attribute qualifier="language" type="Language">
 						<description>Stores language code of the site</description>
 						<modifiers optional="true"/>
 						<persistence type="property"/>
@@ -663,6 +663,15 @@
 				</attributes>
 			</itemtype>
 		</typegroup>
+
+<typegroup name="button">
+    
+
+<itemtype code="GallagherNewButtonComponent" autocreate="true" generate="true" extends="CMSLinkComponent">
+            </itemtype>
+
+   </typegroup>
+
 
 	</itemtypes>
 </items>

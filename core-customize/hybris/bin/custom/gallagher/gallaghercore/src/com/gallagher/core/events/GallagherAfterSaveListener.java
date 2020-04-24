@@ -74,7 +74,7 @@ public class GallagherAfterSaveListener implements AfterSaveListener
 				{
 					final CustomerModel customer = getModelService().get(pk);
 
-					if (Boolean.TRUE.equals(customer.getDuplicate()) || customer.getContactEmail().contains("vikram"))
+					if (Boolean.TRUE.equals(customer.getDuplicate()))
 					{
 						final List<EmailAddressModel> toEmailAddresses = getToEmailAddresses();
 						final EmailAddressModel fromEmailAddress = getFromEmailAddress();

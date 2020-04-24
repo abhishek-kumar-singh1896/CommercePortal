@@ -24,12 +24,11 @@
                            <c:forEach items="${searchDealer.children}"
 										var="sdNode" varStatus="i">
 										<c:forEach items="${sdNode.entries}" var="sd">												
-											<c:if test="${sd.item.uid == (regionCodeUpper).concat(languageUpper).concat('SearchComponent')}">
-		                            	<button type="submit" class="btn btn-highlight px-5"
-		                            		onclick="window.location.href = '${fn:escapeXml(sd.item.url)}'">
-															${sd.item.linkName}
-												</button>
-											</c:if>
+											<%-- <c:if test="${sd.item.uid == (regionCodeUpper).concat(languageUpper).concat('SearchComponent')}"> --%>
+		                       
+												<cms:component component="${sd.item}"
+															evaluateRestriction="true" />
+									<%-- 		</c:if> --%>
 										</c:forEach>
 									</c:forEach>
                                 

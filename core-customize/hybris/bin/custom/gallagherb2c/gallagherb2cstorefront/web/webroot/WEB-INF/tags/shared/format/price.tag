@@ -18,14 +18,14 @@
 		<c:if test="${displayNegationForDiscount}">
 			-
 		</c:if>
-		${formattedPrice}
+		<sup class="currency-sign">${fn:escapeXml(priceData.currencyIso)}</sup>${formattedPrice}
 	</c:when>
 	<c:otherwise>
 		<c:if test="${displayFreeForZero}">
 			<spring:theme code="text.free" text="FREE"/>
 		</c:if>
 		<c:if test="${not displayFreeForZero}">
-			${formattedPrice}
+			<sup class="currency-sign">${fn:escapeXml(priceData.currencyIso)}</sup>${formattedPrice}
 		</c:if>
 	</c:otherwise>
 </c:choose>

@@ -112,10 +112,6 @@ INSERT_UPDATE JobSearchRestriction;code[unique=true];job(code)[path-delimiter=!]
 
 
 INSERT_UPDATE SyncAttributeDescriptorConfig;syncJob(code)[unique=true,path-delimiter=!];attributeDescriptor(enclosingType(code),qualifier)[unique=true];includedInSync;copyByValue
-;sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged;Product:baseStores;false;false
-;sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged;Product:baseStores;false;false
-;sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged;Product:baseStores;false;false
-
 ;sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged;Product:europe1Prices;false;false
 ;sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged;Product:europe1Prices;false;false
 ;sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged;Product:europe1Prices;false;false

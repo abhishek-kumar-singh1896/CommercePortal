@@ -1478,8 +1478,17 @@ INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=
 INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];validComponentTypes(code);compTypeGroup(code)
 ;ggB2CNavBar;;;navigation
 
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ErrorPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;ggB2CNavBar;;;navigation
+
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active
 ;;ggB2CNavBarSlot;GG B2C Navigation Bar Slot ;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2CNavBar-ProductDetailsPage;ggB2CNavBar;;ggB2CNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ErrorPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2CNavBar-ErrorPage;ggB2CNavBar;;ggB2CNavBarSlot;true
 
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage2Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;ggB2CNavBar-LandingPage2;ggB2CNavBar;;ggB2CNavBarSlot;true
@@ -1493,15 +1502,62 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductGridPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;ggB2CNavBar-ProductGridPage;ggB2CNavBar;;ggB2CNavBarSlot;true
 
-INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
-;;ggB2CNavBar-ProductDetailsPage;ggB2CNavBar;;ggB2CNavBarSlot;true
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='RegisterProductPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2CNavBar-RegisterProductPage;ggB2CNavBar;;ggB2CNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CartPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2CNavBar-CartPage;ggB2CNavBar;;ggB2CNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='RegisteredProductsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2CNavBar-RegisteredProductPage;ggB2CNavBar;;ggB2CNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CheckoutLoginPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2CNavBar-CheckoutLoginPage;ggB2CNavBar;;ggB2CNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LoginPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2CNavBar-LoginPage;ggB2CNavBar;;ggB2CNavBarSlot;true
 
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='MultiStepCheckoutSummaryPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;ggB2CNavBar-MultiStepCheckoutSummaryPage;ggB2CNavBar;;ggB2CNavBarSlot;true
 
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='OrderConfirmationPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2CNavBar-OrderConfirmationPage;ggB2CNavBar;;ggB2CNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='StoreFinderPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2CNavBar-StoreFinderPage;ggB2CNavBar;;ggB2CNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ErrorPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2CNavBar-ErrorPage;ggB2CNavBar;;ggB2CNavBarSlot;true
+
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='AccountPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;ggB2CNavBar-AccountPage;ggB2CNavBar;;ggB2CNavBarSlot;true
-;;ConsentSection-AccountPage;consent;;consentSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsEmptyPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2CNavBar-SearchResultsEmptyPage;ggB2CNavBar;;ggB2CNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsListPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2CNavBar-SearchResultsListPage;ggB2CNavBar;;ggB2CNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CategoryPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2CNavBar-CategoryPage;ggB2CNavBar;;ggB2CNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage1Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2CNavBar-LandingPage1;ggB2CNavBar;;ggB2CNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage3Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2CNavBar-LandingPage3;ggB2CNavBar;;ggB2CNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage4Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2CNavBar-LandingPage4;ggB2CNavBar;;ggB2CNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage5Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2CNavBar-LandingPage5;ggB2CNavBar;;ggB2CNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage6Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2CNavBar-LandingPage6;ggB2CNavBar;;ggB2CNavBarSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ContentPage1Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2CNavBar-ContentPage1;ggB2CNavBar;;ggB2CNavBarSlot;true
 
 #####Header navigation bar refactor ends######
 
@@ -1533,57 +1589,57 @@ INSERT_UPDATE CMSNavigationNode ; uid[unique=true]                     ; $conten
                                 ;PortablefencingTapesWiresBraids_nav11  ;                         ; Power Navigation PortablefencingTapesWiresBraids_nav  ; "Portable fencing"  ; PortablefencingTapesWiresBraids_nav11
 
 INSERT_UPDATE CMSNavigationEntry ; uid[unique=true]          ; $contentCV[unique=true] ; name                                        ; navigationNode(&nodeRef) ; item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV) 
-                                 ; PowerEnergisers_navEntry11  ;                         ; Power Navigation PowerEnergisers_nav Entry  ; PowerEnergisers_nav11      ; PowerEnergisers_link11                                   
-                                 ; PowerEnergisers_navEntry12 ;                         ; Power Navigation PowerEnergisers_nav Entry1 ; PowerEnergisers_nav11     ; PowerEnergisers_link12                                  
-                                 ; PowerEnergisers_navEntry13 ;                         ; Power Navigation PowerEnergisers_nav Entry2 ; PowerEnergisers_nav11      ; PowerEnergisers_link13                                  
+#                                 ; PowerEnergisers_navEntry11  ;                         ; Power Navigation PowerEnergisers_nav Entry  ; PowerEnergisers_nav11      ; PowerEnergisers_link11                                   
+#                                 ; PowerEnergisers_navEntry12 ;                         ; Power Navigation PowerEnergisers_nav Entry1 ; PowerEnergisers_nav11     ; PowerEnergisers_link12                                  
+#                                 ; PowerEnergisers_navEntry13 ;                         ; Power Navigation PowerEnergisers_nav Entry2 ; PowerEnergisers_nav11      ; PowerEnergisers_link13                                  
 
 
 INSERT_UPDATE CMSLinkComponent ; $contentCV[unique=true] ; uid[unique=true]      ; name                                   ; url                                                    ; category(code, $productCV) ; target(code)[default='sameWindow'] ;  ;  
-                               ;                         ; PowerEnergisers_link11  ; Electric fencing PowerEnergisers_link  ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ;  
-                               ;                         ; PowerEnergisers_link12 ; Electric fencing PowerEnergisers_link1 ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ;  
-                               ;                         ; PowerEnergisers_link13 ; Electric fencing PowerEnergisers_link2 ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ;  
+#                               ;                         ; PowerEnergisers_link11  ; Electric fencing PowerEnergisers_link  ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ;  
+#                               ;                         ; PowerEnergisers_link12 ; Electric fencing PowerEnergisers_link1 ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ;  
+#                               ;                         ; PowerEnergisers_link13 ; Electric fencing PowerEnergisers_link2 ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ;  
 
 
 
 INSERT_UPDATE CMSNavigationEntry ; uid[unique=true]                       ; $contentCV[unique=true] ; name                                                     ; navigationNode(&nodeRef)         ; item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV) 
-                                 ; PermanentfencingWireandCable_navEntry111  ;                         ; Power Navigation PermanentfencingWireandCable_nav Entry  ; PermanentfencingWireandCable_nav11 ; PermanentfencingWireandCable_link111                      
-                                 ; PermanentfencingWireandCable_navEntry112 ;                         ; Power Navigation PermanentfencingWireandCable_nav Entry1 ; PermanentfencingWireandCable_nav11 ; PermanentfencingWireandCable_link112                     
-                                 ; PermanentfencingWireandCable_navEntry113 ;                         ; Power Navigation PermanentfencingWireandCable_nav Entry2 ; PermanentfencingWireandCable_nav11 ; PermanentfencingWireandCable_link113                     
-                                 ; PermanentfencingWireandCable_navEntry114 ;                         ; Power Navigation PermanentfencingWireandCable_nav Entry3 ; PermanentfencingWireandCable_nav11 ; PermanentfencingWireandCable_link114                  
-                                 ; PermanentfencingWireandCable_navEntry115 ;                         ; Power Navigation PermanentfencingWireandCable_nav Entry4 ; PermanentfencingWireandCable_nav11 ; PermanentfencingWireandCable_link115                     
-                                 ; PermanentfencingWireandCable_navEntry116 ;                         ; Power Navigation PermanentfencingWireandCable_nav Entry5 ; PermanentfencingWireandCable_nav11 ; PermanentfencingWireandCable_link116    
+#                                 ; PermanentfencingWireandCable_navEntry111  ;                         ; Power Navigation PermanentfencingWireandCable_nav Entry  ; PermanentfencingWireandCable_nav11 ; PermanentfencingWireandCable_link111                      
+#                                 ; PermanentfencingWireandCable_navEntry112 ;                         ; Power Navigation PermanentfencingWireandCable_nav Entry1 ; PermanentfencingWireandCable_nav11 ; PermanentfencingWireandCable_link112                     
+#                                 ; PermanentfencingWireandCable_navEntry113 ;                         ; Power Navigation PermanentfencingWireandCable_nav Entry2 ; PermanentfencingWireandCable_nav11 ; PermanentfencingWireandCable_link113                     
+#                                 ; PermanentfencingWireandCable_navEntry114 ;                         ; Power Navigation PermanentfencingWireandCable_nav Entry3 ; PermanentfencingWireandCable_nav11 ; PermanentfencingWireandCable_link114                  
+#                                 ; PermanentfencingWireandCable_navEntry115 ;                         ; Power Navigation PermanentfencingWireandCable_nav Entry4 ; PermanentfencingWireandCable_nav11 ; PermanentfencingWireandCable_link115                     
+#                                 ; PermanentfencingWireandCable_navEntry116 ;                         ; Power Navigation PermanentfencingWireandCable_nav Entry5 ; PermanentfencingWireandCable_nav11 ; PermanentfencingWireandCable_link116    
 
 
 INSERT_UPDATE CMSLinkComponent ; $contentCV[unique=true] ; uid[unique=true]                   ; name                                                ; url                                                    ; category(code, $productCV) ; target(code)[default='sameWindow'] ;  ;  
-                               ;                         ; PermanentfencingWireandCable_link111  ; Electric fencing PermanentfencingWireandCable_link  ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ;  
-                               ;                         ; PermanentfencingWireandCable_link112 ; Electric fencing PermanentfencingWireandCable_link1 ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ;  
-                               ;                         ; PermanentfencingWireandCable_link113 ; Electric fencing PermanentfencingWireandCable_link2 ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ;  
-                               ;                         ; PermanentfencingWireandCable_link114 ; Electric fencing PermanentfencingWireandCable_link3 ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ;  
-                               ;                         ; PermanentfencingWireandCable_link115 ; Electric fencing PermanentfencingWireandCable_link4 ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ;  
-                               ;                         ; PermanentfencingWireandCable_link116 ; Electric fencing PermanentfencingWireandCable_link5 ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ;  								 
+#                               ;                         ; PermanentfencingWireandCable_link111  ; Electric fencing PermanentfencingWireandCable_link  ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ;  
+#                               ;                         ; PermanentfencingWireandCable_link112 ; Electric fencing PermanentfencingWireandCable_link1 ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ;  
+#                               ;                         ; PermanentfencingWireandCable_link113 ; Electric fencing PermanentfencingWireandCable_link2 ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ;  
+#                               ;                         ; PermanentfencingWireandCable_link114 ; Electric fencing PermanentfencingWireandCable_link3 ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ;  
+#                               ;                         ; PermanentfencingWireandCable_link115 ; Electric fencing PermanentfencingWireandCable_link4 ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ;  
+#                               ;                         ; PermanentfencingWireandCable_link116 ; Electric fencing PermanentfencingWireandCable_link5 ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ;  								 
 								
 INSERT_UPDATE CMSNavigationEntry ; uid[unique=true]                          ; $contentCV[unique=true] ; name                                                        ; navigationNode(&nodeRef)            ; item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV) 
-                                 ; PortablefencingTapesWiresBraids_navEntry111  ;                         ; Power Navigation PortablefencingTapesWiresBraids_nav Entry  ; PortablefencingTapesWiresBraids_nav11 ; PortablefencingTapesWiresBraids_nav_link111               
-                                 ; PortablefencingTapesWiresBraids_navEntry112 ;                         ; Power Navigation PortablefencingTapesWiresBraids_nav Entry1 ; PortablefencingTapesWiresBraids_nav11 ; PortablefencingTapesWiresBraids_nav_link112              
-                                 ; PortablefencingTapesWiresBraids_navEntry113;                         ; Power Navigation PortablefencingTapesWiresBraids_nav Entry2 ; PortablefencingTapesWiresBraids_nav11 ; PortablefencingTapesWiresBraids_nav_link113           
+#                                 ; PortablefencingTapesWiresBraids_navEntry111  ;                         ; Power Navigation PortablefencingTapesWiresBraids_nav Entry  ; PortablefencingTapesWiresBraids_nav11 ; PortablefencingTapesWiresBraids_nav_link111               
+#                                 ; PortablefencingTapesWiresBraids_navEntry112 ;                         ; Power Navigation PortablefencingTapesWiresBraids_nav Entry1 ; PortablefencingTapesWiresBraids_nav11 ; PortablefencingTapesWiresBraids_nav_link112              
+#                                 ; PortablefencingTapesWiresBraids_navEntry113;                         ; Power Navigation PortablefencingTapesWiresBraids_nav Entry2 ; PortablefencingTapesWiresBraids_nav11 ; PortablefencingTapesWiresBraids_nav_link113           
                                  
 
 INSERT_UPDATE CMSLinkComponent ; $contentCV[unique=true] ; uid[unique=true]                          ; name                                                       ; url                                                    ; category(code, $productCV) ; target(code)[default='sameWindow'] ;  ;  
-                               ;                         ; PortablefencingTapesWiresBraids_nav_link111  ; Electric fencing PortablefencingTapesWiresBraids_nav_link  ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ;  
-                               ;                         ; PortablefencingTapesWiresBraids_nav_link112 ; Electric fencing PortablefencingTapesWiresBraids_nav_link2 ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ;  
-                               ;                         ; PortablefencingTapesWiresBraids_nav_link113 ; Electric fencing PortablefencingTapesWiresBraids_nav_link3 ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ;  
+#                               ;                         ; PortablefencingTapesWiresBraids_nav_link111  ; Electric fencing PortablefencingTapesWiresBraids_nav_link  ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ;  
+#                               ;                         ; PortablefencingTapesWiresBraids_nav_link112 ; Electric fencing PortablefencingTapesWiresBraids_nav_link2 ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ;  
+#                               ;                         ; PortablefencingTapesWiresBraids_nav_link113 ; Electric fencing PortablefencingTapesWiresBraids_nav_link3 ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ;  
 
 
 
 
 INSERT_UPDATE CMSNavigationNode ; uid[unique=true]                    ; $contentCV[unique=true] ; name                                   ; children(uid,$contentCV)[mode=replace] ; title[lang=en]      ; &nodeRef                            
-                                ; ElectricfencingPower_Nav1111            ;                         ; Power Navigation Node Menu             ; PowerEnergisers_nav11                    ; "Power"             ; ElectricfencingPower_Nav1111
-                                ;ElectricfencingPermanentfencing_Nav1 ;                         ; Permanent fencing Navigation Node Menu ; PermanentfencingWireandCable_nav11       ; "Permanent fencing" ; ElectricfencingPermanentfencing_Nav1 
-								;ElectricfencingPower_Nav11           ;                         ; Portable fencing Navigation Node Menu  ; PortablefencingTapesWiresBraids_nav11   ; "Portable fencing"   ; ElectricfencingPower_Nav11           
+#                                ; ElectricfencingPower_Nav1111            ;                         ; Power Navigation Node Menu             ; PowerEnergisers_nav11                    ; "Power"             ; ElectricfencingPower_Nav1111
+#                                ;ElectricfencingPermanentfencing_Nav1 ;                         ; Permanent fencing Navigation Node Menu ; PermanentfencingWireandCable_nav11       ; "Permanent fencing" ; ElectricfencingPermanentfencing_Nav1 
+#								;ElectricfencingPower_Nav11           ;                         ; Portable fencing Navigation Node Menu  ; PortablefencingTapesWiresBraids_nav11   ; "Portable fencing"   ; ElectricfencingPower_Nav11           
 								
 
 INSERT_UPDATE CMSNavigationEntry ; uid[unique=true]                         ; $contentCV[unique=true] ; name                                           ; navigationNode(&nodeRef)              ; item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV) 
-                                 ; ElectricfencingPower_NavEntry1111            ;                         ; Power Navigation Node Entry                    ; ElectricfencingPower_Nav1111            ;    PowerEnergisers111                                       								
+#                                 ; ElectricfencingPower_NavEntry1111            ;                         ; Power Navigation Node Entry                    ; ElectricfencingPower_Nav1111            ;    PowerEnergisers111                                       								
 								 ; ElectricfencingPermanentfencing_NavEntry ;                         ; Power ElectricfencingPermanentfencing_NavEntry ; ElectricfencingPermanentfencing_Nav1   ;    PowerEnergisers112    
                                  ; ElectricfencingPower_NavEntry11           ;                         ; Power Navigation Node Entry                    ; ElectricfencingPower_Nav11           ;  PowerEnergisers113
                                  
@@ -1665,11 +1721,24 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;ti
 ;PermanentfencingWireandCable_nav1;;Power Navigation PermanentfencingWireandCable_nav;"Permanent fencing";PermanentfencingWireandCable_nav1
 ;PortablefencingTapesWiresBraids_nav;;Power Navigation PortablefencingTapesWiresBraids_nav;"Portable fencing";PortablefencingTapesWiresBraids_nav
 ;PortablefencingTapesWiresBraids_nav1;;Power Navigation PortablefencingTapesWiresBraids_nav1;"Portable fencing";PortablefencingTapesWiresBraids_nav1
+;FenceConductors_nav;;Power navigation FenceConductors_nav;"Fence Concuctors";FenceConductors_nav
+
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
 ;PowerEnergisers_navEntry;;Power Navigation PowerEnergisers_nav Entry;PowerEnergisers_nav;PowerEnergisers_link
 ;PowerEnergisers_navEntry1;;Power Navigation PowerEnergisers_nav Entry1;PowerEnergisers_nav;PowerEnergisers_link1
 ;PowerEnergisers_navEntry2;;Power Navigation PowerEnergisers_nav Entry2;PowerEnergisers_nav;PowerEnergisers_link2
+;PowerEnergisers_navEntry3;;Power Navigation PowerEnergisers_nav Entry3;PowerEnergisers_nav;PowerEnergisers_link3
+;PowerEnergisers_navEntry4;;Power Navigation PowerEnergisers_nav Entry4;PowerEnergisers_nav;PowerEnergisers_link4
+;PowerEnergisers_navEntry5;;Power Navigation PowerEnergisers_nav Entry5;PowerEnergisers_nav;PowerEnergisers_link5
+;PowerEnergisers_navEntry6;;Power Navigation PowerEnergisers_nav Entry6;PowerEnergisers_nav;PowerEnergisers_link6
+;PowerEnergisers_navEntry7;;Power Navigation PowerEnergisers_nav Entry7;PowerEnergisers_nav;PowerEnergisers_link7
+;PowerEnergisers_navEntry8;;Power Navigation PowerEnergisers_nav Entry8;PowerEnergisers_nav;PowerEnergisers_link8
+;PowerEnergisers_navEntry9;;Power Navigation PowerEnergisers_nav Entry9;PowerEnergisers_nav;PowerEnergisers_link9
+;PowerEnergisers_navEntry10;;Power Navigation PowerEnergisers_nav Entry10;PowerEnergisers_nav;PowerEnergisers_link10
+;PowerEnergisers_navEntry11;;Power Navigation PowerEnergisers_nav Entry11;PowerEnergisers_nav;PowerEnergisers_link11
+;PowerEnergisers_navEntry12;;Power Navigation PowerEnergisers_nav Entry12;PowerEnergisers_nav;PowerEnergisers_link12
+
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
 ;;PowerEnergisers_link01;Electric fencing PowerEnergisers_link01;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
@@ -1737,23 +1806,36 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
-;;PortablefencingTapesWiresBraids_nav_link;Electric fencing PortablefencingTapesWiresBraids_nav_link;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
-;;PortablefencingTapesWiresBraids_nav_link1;Electric fencing PortablefencingTapesWiresBraids_nav_link1;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
-;;PortablefencingTapesWiresBraids_nav_link2;Electric fencing PortablefencingTapesWiresBraids_nav_link2;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
+;;PortablefencingTapesWiresBraids_nav_link;Electric fencing Portablefencing_nav_link;/Animal-Management/electric-fencing/portable-fencing/c/tapes-wires-and-braids;tapes-wires-and-braids-pf;;;
+;;PortablefencingTapesWiresBraids_nav_link1;Electric fencing Portablefencing_nav_link1;/Animal-Management/electric-fencing/portable-fencing/c/reels-and-accessories;reels-and-accessories-pf;;;
+;;PortablefencingTapesWiresBraids_nav_link2;Electric fencing Portablefencing_nav_link2;/Animal-Management/electric-fencing/portable-fencing/c/posts-pigtails-and-treadins;posts-pigtails-and-treadins-pf;;;
+;;PortablefencingTapesWiresBraids_nav_link3;Electric fencing Portablefencing_nav_link2;/Animal-Management/electric-fencing/portable-fencing/c/all-in-one-portable-fences;all-in-one-portable-fences;;;
+;;PortablefencingTapesWiresBraids_nav_link4;Electric fencing Portablefencing_nav_link2;/Animal-Management/electric-fencing/portable-fencing/c/electric-fence-kits;electric-fence-kits;;;
+;;PortablefencingTapesWiresBraids_nav_link5;Electric fencing Portablefencing_nav_link2;/Animal-Management/electric-fencing/portable-fencing/c/netting;netting;;;
 
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
 ;PortablefencingTapesWiresBraids_navEntry;;Power Navigation PortablefencingTapesWiresBraids_nav Entry;PortablefencingTapesWiresBraids_nav;PortablefencingTapesWiresBraids_nav_link
 ;PortablefencingTapesWiresBraids_navEntry1;;Power Navigation PortablefencingTapesWiresBraids_nav Entry1;PortablefencingTapesWiresBraids_nav;PortablefencingTapesWiresBraids_nav_link1
 ;PortablefencingTapesWiresBraids_navEntry2;;Power Navigation PortablefencingTapesWiresBraids_nav Entry2;PortablefencingTapesWiresBraids_nav;PortablefencingTapesWiresBraids_nav_link2
+;PortablefencingTapesWiresBraids_navEntry3;;Power Navigation PortablefencingTapesWiresBraids_nav Entry3;PortablefencingTapesWiresBraids_nav;PortablefencingTapesWiresBraids_nav_link3
+;PortablefencingTapesWiresBraids_navEntry4;;Power Navigation PortablefencingTapesWiresBraids_nav Entry4;PortablefencingTapesWiresBraids_nav;PortablefencingTapesWiresBraids_nav_link4
+;PortablefencingTapesWiresBraids_navEntry5;;Power Navigation PortablefencingTapesWiresBraids_nav Entry5;PortablefencingTapesWiresBraids_nav;PortablefencingTapesWiresBraids_nav_link5
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
-;;PermanentfencingWireandCable_link;Electric fencing PermanentfencingWireandCable_link;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
-;;PermanentfencingWireandCable_link1;Electric fencing PermanentfencingWireandCable_link1;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
-;;PermanentfencingWireandCable_link2;Electric fencing PermanentfencingWireandCable_link2;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
-;;PermanentfencingWireandCable_link3;Electric fencing PermanentfencingWireandCable_link3;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
-;;PermanentfencingWireandCable_link4;Electric fencing PermanentfencingWireandCable_link4;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
-;;PermanentfencingWireandCable_link5;Electric fencing PermanentfencingWireandCable_link5;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
+;;PermanentfencingWireandCable_link;Electric fencing Permanentfencing_link;/Animal-Management/electric-fencing/permanent-fencing/c/gallagher-westonfence;gallagher-westonfence;;;
+;;PermanentfencingWireandCable_link1;Electric fencing Permanentfencing_link1;/Animal-Management/electric-fencing/permanent-fencing/c/gallagher-mega-anchor;gallagher-mega-anchor;;;
+;;PermanentfencingWireandCable_link2;Electric fencing Permanentfencing_link2;/Animal-Management/electric-fencing/permanent-fencing/c/wire-and-cable;wire-and-cable;;;
+;;PermanentfencingWireandCable_link3;Electric fencing Permanentfencing_link3;/Animal-Management/electric-fencing/permanent-fencing/c/clamps-and-joiners;clamps-and-joiners;;;
+;;PermanentfencingWireandCable_link4;Electric fencing Permanentfencing_link4;/Animal-Management/electric-fencing/permanent-fencing/c/posts;posts;;;
+;;PermanentfencingWireandCable_link5;Electric fencing Permanentfencing_link5;/Animal-Management/electric-fencing/permanent-fencing/c/strainers;strainers;;;
+;;PermanentfencingWireandCable_link6;Electric fencing Permanentfencing_link6;/Animal-Management/electric-fencing/permanent-fencing/c/insulators;insulators;;;
+;;PermanentfencingWireandCable_link7;Electric fencing Permanentfencing_link7;/Animal-Management/electric-fencing/permanent-fencing/c/offsets;offsets;;;
+;;PermanentfencingWireandCable_link8;Electric fencing Permanentfencing_link8;/Animal-Management/electric-fencing/permanent-fencing/c/electric-gates;electric-gates;;;
+;;PermanentfencingWireandCable_link9;Electric fencing Permanentfencing_link9;/Animal-Management/electric-fencing/permanent-fencing/c/irrigator-fence-crossing-system;irrigator-fence-crossing-system;;;
+;;PermanentfencingWireandCable_link10;Electric fencing Permanentfencing_link10;/Animal-Management/electric-fencing/permanent-fencing/c/pivot-irrigator-system;pivot-irrigator-system;;;
+;;PermanentfencingWireandCable_link11;Electric fencing Permanentfencing_link11;/Animal-Management/electric-fencing/permanent-fencing/c/fence-tools-and-accessories;fence-tools-and-accessories;;;
+;;PermanentfencingWireandCable_link12;Electric fencing Permanentfencing_link12;/Animal-Management/electric-fencing/permanent-fencing/c/gate-hardware;gate-hardware;;;
 
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
@@ -1763,11 +1845,155 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 ;PermanentfencingWireandCable_navEntry3;;Power Navigation PermanentfencingWireandCable_nav Entry3;PermanentfencingWireandCable_nav;PermanentfencingWireandCable_link3
 ;PermanentfencingWireandCable_navEntry4;;Power Navigation PermanentfencingWireandCable_nav Entry4;PermanentfencingWireandCable_nav;PermanentfencingWireandCable_link4
 ;PermanentfencingWireandCable_navEntry5;;Power Navigation PermanentfencingWireandCable_nav Entry5;PermanentfencingWireandCable_nav;PermanentfencingWireandCable_link5
+;PermanentfencingWireandCable_navEntry6;;Power Navigation PermanentfencingWireandCable_nav Entry6;PermanentfencingWireandCable_nav;PermanentfencingWireandCable_link6
+;PermanentfencingWireandCable_navEntry7;;Power Navigation PermanentfencingWireandCable_nav Entry7;PermanentfencingWireandCable_nav;PermanentfencingWireandCable_link7
+;PermanentfencingWireandCable_navEntry8;;Power Navigation PermanentfencingWireandCable_nav Entry8;PermanentfencingWireandCable_nav;PermanentfencingWireandCable_link8
+;PermanentfencingWireandCable_navEntry9;;Power Navigation PermanentfencingWireandCable_nav Entry9;PermanentfencingWireandCable_nav;PermanentfencingWireandCable_link9
+;PermanentfencingWireandCable_navEntry10;;Power Navigation PermanentfencingWireandCable_nav Entry10;PermanentfencingWireandCable_nav;PermanentfencingWireandCable_link10
+;PermanentfencingWireandCable_navEntry11;;Power Navigation PermanentfencingWireandCable_nav Entry11;PermanentfencingWireandCable_nav;PermanentfencingWireandCable_link11
+;PermanentfencingWireandCable_navEntry12;;Power Navigation PermanentfencingWireandCable_nav Entry12;PermanentfencingWireandCable_nav;PermanentfencingWireandCable_link12
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
-;;PowerEnergisers_link;Electric fencing PowerEnergisers_link;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
-;;PowerEnergisers_link1;Electric fencing PowerEnergisers_link1;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
-;;PowerEnergisers_link2;Electric fencing PowerEnergisers_link2;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
+;;FenceConductors_nav_link;Electric fencing FenceConductors_nav_link;/Animal-Management/electric-fencing/fence-conductors/c/posts-pigtails-and-treadins;posts-pigtails-and-treadins-fc;;;
+;;FenceConductors_nav_link1;Electric fencing FenceConductors_nav_link1;/Animal-Management/electric-fencing/fence-conductors/c/reels-and-accessories;reels-and-accessories-fc;;;
+;;FenceConductors_nav_link2;Electric fencing FenceConductors_nav_link2;/Animal-Management/electric-fencing/fence-conductors/c/hi-tensile-wire-and-cable;hi-tensile-wire-and-cable;;;
+;;FenceConductors_nav_link3;Electric fencing FenceConductors_nav_link2;/Animal-Management/electric-fencing/fence-conductors/c/tapes-wires-and-braids;tapes-wires-and-braids-fc;;;
+
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
+;FenceConductors_navEntry;;Power Navigation FenceConductors_nav Entry;FenceConductors_nav;FenceConductors_nav_link
+;FenceConductors_navEntry1;;Power Navigation FenceConductors_nav Entry1;FenceConductors_nav;FenceConductors_nav_link1
+;FenceConductors_navEntry2;;Power Navigation FenceConductors_nav Entry2;FenceConductors_nav;FenceConductors_nav_link2
+;FenceConductors_navEntry3;;Power Navigation FenceConductors_nav Entry3;FenceConductors_nav;FenceConductors_nav_link3
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
+;WeighingAndEID_Nav;;Weighing and EID Navigation Node Menu;WeighinEidNode_nav;"Weighing and EID";WeighingAndEID_Nav
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;title[lang=en];&nodeRef
+;WeighinEidNode_nav;;Weighin Eid Navigation WeighinEidNode_nav;"Weighing and EID";WeighinEidNode_nav
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
+;WeighinEidNode_navEntry;; WeighinEidNode_nav Entry;WeighinEidNode_nav;WeighinEid_link
+;WeighinEidNode_navEntry1;; WeighinEidNode_nav Entry1;WeighinEidNode_nav;WeighinEid_link1
+;WeighinEidNode_navEntry2;; WeighinEidNode_nav Entry2;WeighinEidNode_nav;WeighinEid_link2
+;WeighinEidNode_navEntry3;; WeighinEidNode_nav Entry3;WeighinEidNode_nav;WeighinEid_link3
+;WeighinEidNode_navEntry4;; WeighinEidNode_nav Entry4;WeighinEidNode_nav;WeighinEid_link4
+;WeighinEidNode_navEntry5;; WeighinEidNode_nav Entry5;WeighinEidNode_nav;WeighinEid_link5
+;WeighinEidNode_navEntry6;; WeighinEidNode_nav Entry6;WeighinEidNode_nav;WeighinEid_link6
+;WeighinEidNode_navEntry7;; WeighinEidNode_nav Entry7;WeighinEidNode_nav;WeighinEid_link7
+;WeighinEidNode_navEntry8;; WeighinEidNode_nav Entry8;WeighinEidNode_nav;WeighinEid_link8
+;WeighinEidNode_navEntry9;; WeighinEidNode_nav Entry9;WeighinEidNode_nav;WeighinEid_link9
+;WeighinEidNode_navEntry10;; WeighinEidNode_nav Entry10;WeighinEidNode_nav;WeighinEid_link10
+;WeighinEidNode_navEntry11;; WeighinEidNode_nav Entry11;WeighinEidNode_nav;WeighinEid_link11
+;WeighinEidNode_navEntry12;; WeighinEidNode_nav Entry12;WeighinEidNode_nav;WeighinEid_link12
+
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;WeighinEid_link;WeighinEid_link;/Animal-Management/weighing-and-eid/c/weigh-scales-and-data-collectors;weigh-scales-and-data-collectors;;;
+;;WeighinEid_link1; Weighing And Eid link1;/Animal-Management/weighing-and-eid/c/scale-heads-and-data-collectors;scale-heads-and-data-collectors;;;
+;;WeighinEid_link2; Weighing And Eid link2;/Animal-Management/weighing-and-eid/c/loadbars-and-accessories;loadbars-and-accessories;;;
+;;WeighinEid_link3; Weighing And Eid link3;/Animal-Management/weighing-and-eid/c/loadbars;loadbars;;;
+;;WeighinEid_link4; Weighing And Eid link4;/Animal-Management/weighing-and-eid/c/platforms;platforms;;;
+;;WeighinEid_link5; Weighing And Eid link5;/Animal-Management/weighing-and-eid/c/platforms-and-crates;platforms-and-crates;;;
+;;WeighinEid_link6; Weighing And Eid link6;/Animal-Management/weighing-and-eid/c/drafters;drafters;;;
+;;WeighinEid_link7; Weighing And Eid link7;/Animal-Management/weighing-and-eid/c/handlers-and-drafters;handlers-and-drafters;;;
+;;WeighinEid_link8; Weighing And Eid link8;/Animal-Management/weighing-and-eid/c/eid-tag-readers;eid-tag-readers;;;
+;;WeighinEid_link9; Weighing And Eid link9;/Animal-Management/weighing-and-eid/c/eid-tag-readers-and-barcoding-equipment;eid-tag-readers-and-barcoding-equipment;;;
+;;WeighinEid_link10; Weighing And Eid link10;/Animal-Management/weighing-and-eid/c/weighing-accessories;weighing-accessories;;;
+;;WeighinEid_link11; Weighing And Eid link11;/Animal-Management/weighing-and-eid/c/stock-prods;stock-prods;;;
+;;WeighinEid_link12; Weighing And Eid link12;/Animal-Management/weighing-and-eid/c/stock-prods-and-accessories;stock-prods-and-accessories;;;
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
+;WWMNav;;Weighing and EID Navigation Node Menu;WWMNode_Nav;"Wireless Water Monitoring";WWMNav
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;title[lang=en];&nodeRef
+;WWMNode_Nav;;Wireless Water Monitoring Navigation Node Nav;"Wireless Water Monitoring";WWMNode_Nav
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
+;WWMNode_NavEntry;;WWMNode_Nav Entry;WWMNode_Nav;WWM_link
+;WWMNode_NavEntry1;;WWMNode_Nav Entry1;WWMNode_Nav;WWM_link1
+;WWMNode_NavEntry2;;WWMNode_Nav Entry2;WWMNode_Nav;WWM_link2
+;WWMNode_NavEntry3;;WWMNode_Nav Entry3;WWMNode_Nav;WWM_link3
+
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;WWM_link;Wireless Water Monitoring link;/Animal-Management/wireless-water-monitoring/c/water-flow-indicator;weigh-scales-and-data-collectors;;;
+;;WWM_link1;Wireless Water Monitoring link1;/Animal-Management/wireless-water-monitoring/c/one-tank-systems;scale-heads-and-data-collectors;;;
+;;WWM_link2;Wireless Water Monitoring link2;/Animal-Management/wireless-water-monitoring/c/antennae-and-cables ;loadbars-and-accessories;;;
+;;WWM_link3;Wireless Water Monitoring link3;/Animal-Management/wireless-water-monitoring/c/additional-system-components;loadbars;;;
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
+;AWNav;;Automatic Watering Navigation Node Menu;AWNode_Nav;"Automatic Watering";AWNav
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;title[lang=en];&nodeRef
+;AWNode_Nav;;Automatic Watering Navigation Node Nav;"Automatic Watering";AWNode_Nav
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
+;AWNode_NavEntry;;AWNode_Nav Entry;AWNode_Nav;AW_link
+;AWNode_NavEntry1;;AWNode_Nav Entry1;AWNode_Nav;AW_link1
+;AWNode_NavEntry2;;AWNode_Nav Entry2;AWNode_Nav;AW_link2
+;AWNode_NavEntry3;;AWNode_Nav Entry3;AWNode_Nav;AW_link3
+;AWNode_NavEntry4;;AWNode_Nav Entry4;AWNode_Nav;AW_link4
+;AWNode_NavEntry5;;AWNode_Nav Entry5;AWNode_Nav;AW_link5
+;AWNode_NavEntry6;;AWNode_Nav Entry6;AWNode_Nav;AW_link6
+;AWNode_NavEntry7;;AWNode_Nav Entry7;AWNode_Nav;AW_link7
+
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;AW_link;Automatic Watering link;/Animal-Management/automatic-watering/c/trough-valves;trough-valves;;;
+;;AW_link1;Automatic Watering link1;/Animal-Management/automatic-watering/c/lil-spring;lil-spring;;;
+;;AW_link2;Automatic Watering link2;/Animal-Management/automatic-watering/c/equi-fount;equi-fount;;;
+;;AW_link3;Automatic Watering link3;/Animal-Management/automatic-watering/c/mira-fount;mira-fount;;;
+;;AW_link4;Automatic Watering link4;/Animal-Management/automatic-watering/c/e-fount;e-fount;;;
+;;AW_link5;Automatic Watering link5;/Animal-Management/automatic-watering/c/big-spring;big-spring;;;
+;;AW_link6;Automatic Watering link6;/Animal-Management/automatic-watering/c/pet-tanks;pet-tanks;;;
+;;AW_link7;Automatic Watering link7;/Animal-Management/automatic-watering/c/watering-accessories;watering-accessories;;;
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
+;AppSoftwareNav;;Steel Gates and Hardware Navigation Node Menu;AppSoftwareNode_Nav;"Apps and Software";AppSoftwareNav
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;title[lang=en];&nodeRef
+;AppSoftwareNode_Nav;;Steel Gates and Hardware Navigation Node Nav;"Apps and Software";AppSoftwareNode_Nav
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
+;AppsSoftwareNode_NavEntry;;AppSoftwareNode_Nav Entry;AppSoftwareNode_Nav;AppsSoftware_link
+;AppsSoftwareNode_NavEntry1;;AppSoftwareNode_Nav Entry1;AppSoftwareNode_Nav;AppsSoftware_link1
+
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;AppsSoftware_link;Apps and Software link;/Animal-Management/apps-and-software/c/livestock;livestock;;;
+;;AppsSoftware_link1;Apps and Software link1;/Animal-Management/apps-and-software/c/fence;fence;;;
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
+;SGHNav;;Steel Gates and Hardware Navigation Node Menu;SGHNode_Nav;"Steel Gates and Hardware";SGHNav
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;title[lang=en];&nodeRef
+;SGHNode_Nav;;Steel Gates and Hardware Navigation Node Nav;"Steel Gates and Hardware";SGHNode_Nav
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
+;SGHNode_NavEntry;;SGHNode_Nav Entry;SGHNode_Nav;SGH_link
+;SGHNode_NavEntry1;;SGHNode_Nav Entry1;SGHNode_Nav;SGH_link1
+
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;SGH_link;Steel Gates and Hardware link;/Animal-Management/steel-gates-and-hardware/c/gates;gates;;;
+;;SGH_link1;Steel Gates and Hardware link1;/Animal-Management/steel-gates-and-hardware/c/gate-hardware;gate-hardware;;;
+
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;PowerEnergisers_link;Electric fencing PowerEnergisers_link;/Animal-Management/electric-fencing/power/c/mains-energizers;mains-energizers;;;
+;;PowerEnergisers_link1;Electric fencing PowerEnergisers_link1;/Animal-Management/electric-fencing/power/c/110-volt-energizers;110-volt-energizers;;;
+;;PowerEnergisers_link2;Electric fencing PowerEnergisers_link2;/Animal-Management/electric-fencing/power/c/multi-powered-energizers;multi-powered-energizers;;;
+;;PowerEnergisers_link3;Electric fencing PowerEnergisers_link3;/Animal-Management/electric-fencing/power/c/battery-energizers;battery-energizers;;;
+;;PowerEnergisers_link4;Electric fencing PowerEnergisers_link4;/Animal-Management/electric-fencing/power/c/solar-energizers;solar-energizers;;;
+;;PowerEnergisers_link5;Electric fencing PowerEnergisers_link5;/Animal-Management/electric-fencing/power/c/solar-panels;solar-panels;;;
+;;PowerEnergisers_link6;Electric fencing PowerEnergisers_link6;/Animal-Management/electric-fencing/power/c/solar-and-solar-kits;solar-and-solar-kits;;;
+;;PowerEnergisers_link7;Electric fencing PowerEnergisers_link7;/Animal-Management/electric-fencing/power/c/remotes-and-fence-testers;remotes-and-fence-testers;;;
+;;PowerEnergisers_link8;Electric fencing PowerEnergisers_link8;/Animal-Management/electric-fencing/power/c/batteries;batteries;;;
+;;PowerEnergisers_link9;Electric fencing PowerEnergisers_link9;/Animal-Management/electric-fencing/power/c/earthing;earthing;;;
+;;PowerEnergisers_link10;Electric fencing PowerEnergisers_link10;/Animal-Management/electric-fencing/power/c/power-system-accessories;power-system-accessories;;;
+;;PowerEnergisers_link11;Electric fencing PowerEnergisers_link11;/Animal-Management/electric-fencing/power/c/grounding;grounding;;;
+;;PowerEnergisers_link12;Electric fencing PowerEnergisers_link12;/Animal-Management/electric-fencing/power/c/power-management-tools;power-management-tools;;;
 
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
@@ -1789,6 +2015,8 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;ch
 ;ElectricfencingPower_Nav;;Power Navigation Node Menu;PowerEnergisers_nav;"Power";ElectricfencingPower_Nav
 ;ElectricfencingPermanentfencing_Nav;;Permanent fencing Navigation Node Menu;PermanentfencingWireandCable_nav;"Permanent fencing";ElectricfencingPermanentfencing_Nav
 ;ElectricfencingPortablefencing_Nav;;Portable fencing Navigation Node Menu;PortablefencingTapesWiresBraids_nav;"Portable fencing";ElectricfencingPortablefencing_Nav
+;ElectricfencingFenceconductors_Nav;;Fence Conductors Navigation Node Menu;FenceConductors_nav;"Fence Conductors";ElectricfencingFenceconductors_Nav
+
 ;ElectricfencingPower_Nav1;;Power Navigation Node Menu;PowerEnergisers_nav1;"Power";ElectricfencingPower_Nav1
 ;ElectricfencingPower_Nav2;;Power Navigation Node Menu;PortablefencingTapesWiresBraids_nav1;"Power2";ElectricfencingPower_Nav2
 ;ElectricfencingPower_Nav3;;Power Navigation Node Menu;PermanentfencingWireandCable_nav1;"Power3";ElectricfencingPower_Nav3
@@ -1807,22 +2035,27 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 ;ElectricfencingPower_NavEntry5;;Power Navigation Node Entry;ElectricfencingPower_Nav5;PowerEnergisers5
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
-;;AllElectricFencingLink;All Electric Fencing Link;https://www.google.com/;;;
-;;AllWeighingEIDLink;All Weighing EID Link;https://www.google.com/;;;
-;;AllWirelessWaterMonitoringLink;All Wireless Water Monitoring;http://www.wiki.com/;;;
-;;AllSteelGatesandHardwareLink;All Steel Gates and Hardware Link;http://www.wiki.com/;;;
+;;AllElectricFencingLink;All Electric Fencing Link;/Animal-Management/c/electric-fencing;electric-fencing;;
+;;AllWeighingEIDLink;All Weighing EID Link;/Animal-Management/c/weighing-and-eid;weighing-and-eid;;
+;;AllWirelessWaterMonitoringLink;All Wireless Water Monitoring;/Animal-Management/c/wireless-water-monitoring;wireless-water-monitoring;;
+;;AllSteelGatesandHardwareLink;All Steel Gates and Hardware Link;/Animal-Management/c/steel-gates-and-hardware;steel-gates-and-hardware;;
 ;;AllFarminformationtoolsLink;All Farm information tools Link;http://www.wiki.com/;;;
+;;AllAutomaticWateringLink;All Automatic Watering Link;/Animal-Management/c/automatic-watering;automatic-watering;;
+;;AllAppsSoftwaresLink;All Apps Softwares Link;/Animal-Management/c/apps-and-software;apps-and-software
+;;AllStockProdsMainLink;All Stock Prods;/Animal-Management/c/stock-prods;stock-prods-main
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];styleAttributes
 ;;NewProductsLink;New Products Link;/Animal-Management/Electric-Fencing/c/electric-fencing;;;"nav-link gray-link"
 ;;PromotionsLink;PromotionsLink Link;/Animal-Management/Electric-Fencing/c/electric-fencing;;;"nav-link gray-link"
-;;StockprodsLink;Stock prods Link;/Animal-Management/Electric-Fencing/c/electric-fencing;;;"nav-link"
+;;AllStockProdsMainLink;Stock prods Link;/Animal-Management/c/stock-prods;;;"nav-link"
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];name;$contentCV[unique=true];children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
-;Electricfencing_Nav;Electric fencing Nav;;ElectricfencingPower_Nav,ElectricfencingPermanentfencing_Nav,ElectricfencingPortablefencing_Nav;"Electric Fencing";Electricfencing_Nav
-;WeighingEID_Nav;Weighing EID Nav;;ElectricfencingPower_Nav1;"Weighing and EID";WeighingEID_Nav
-;WirelessWaterMonitoring_Nav;Wireless Water Monitoring Nav;;ElectricfencingPower_Nav2;"Wireless Water Monitoring";WirelessWaterMonitoring_Nav
-;SteelGatesandHardware_Nav;Steel Gatesand Hardware Nav;;ElectricfencingPower_Nav3;"Steel Gates and Hardware";SteelGatesandHardware_Nav
+;Electricfencing_Nav;Electric fencing Nav;;ElectricfencingPower_Nav,ElectricfencingPermanentfencing_Nav,ElectricfencingPortablefencing_Nav,ElectricfencingFenceconductors_Nav;"Electric Fencing";Electricfencing_Nav
+;WeighingEID_Nav;Weighing EID Nav;;WeighingAndEID_Nav;"Weighing and EID";WeighingEID_Nav
+;WirelessWaterMonitoring_Nav;Wireless Water Monitoring Nav;;WWMNav;"Wireless Water Monitoring" ;WirelessWaterMonitoring_Nav
+;AutomaticWatering_Nav; Automatic Watering Nav;;AWNav;"Automatic Watering";AutomaticWatering_Nav
+;AppsSoftware_Nav; All Apps and Software Nav;;AppSoftwareNav;"Apps and Software";AppsSoftware_Nav
+;SteelGatesandHardware_Nav;Steel Gatesand Hardware Nav;;SGHNav;"Steel Gates and Hardware";SteelGatesandHardware_Nav
 ;FarmInformationTools_Nav;Farm Information Tools Nav;;ElectricfencingPower_Nav4;"Farm information tools";FarmInformationTools_Nav
 ;Stockprods_Nav;Stockprods Nav;;;"Stock prods";Stockprods_Nav
 ;NewProducts_Nav;New Products Nav;;;"New Products";NewProducts_Nav
@@ -1832,29 +2065,82 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];name;$contentCV[unique=true];n
 ;Electricfencing_NavEntry;Electric fencing Nav Entry;;Electricfencing_Nav;AllElectricFencingLink
 ;WeighingEID_NavEntry;Weighing EID Nav Entry;;WeighingEID_Nav;AllWeighingEIDLink
 ;WirelessWaterMonitoring_NavEntry;Wireless Water Monitoring Nav Entry;;WirelessWaterMonitoring_Nav;AllWirelessWaterMonitoringLink
+;AutomaticWatering_NavEntry;Automatic Watering Nav Entry;;AutomaticWatering_Nav;AllAutomaticWateringLink
+;AppsSoftware_NavEntry;Apps and Software Nav Entry;;AppsSoftware_Nav;AllAppsSoftwaresLink
 ;SteelGatesandHardware_NavEntry;Steel Gatesand Hardware Nav Entry;;SteelGatesandHardware_Nav;AllSteelGatesandHardwareLink
-;FarmInformationTools_NavEntry;Farm Information Tools Nav Entry;;FarmInformationTools_Nav;AllFarminformationtoolsLink
-;Stockprods_NavEntry;Stockprods Nav Entry;;Stockprods_Nav;StockprodsLink
-;NewProducts_NavEntry;New Products Nav Entry;;NewProducts_Nav;NewProductsLink
-;Promotions_NavEntry;Promotions Nav Entry;;Promotions_Nav;PromotionsLink
+#;FarmInformationTools_NavEntry;Farm Information Tools Nav Entry;;FarmInformationTools_Nav;AllFarminformationtoolsLink
+;Stockprods_NavEntry;Stockprods Nav Entry;;Stockprods_Nav;AllStockProdsMainLink
+#;NewProducts_NavEntry;New Products Nav Entry;;NewProducts_Nav;NewProductsLink
+#;Promotions_NavEntry;Promotions Nav Entry;;Promotions_Nav;PromotionsLink
 
-INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
-;;CallUsLink;Call Us Link;https://www.google.com/;;;
-;;FindStoreLink;Find Store Link;https://www.google.com/;;;
-;;FindManagerLink;Find Manager Link;http://www.google.com/;;;
-;;SendMessageLink;Send Message Link;http://www.google.com/;;;
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];name;$contentCV[unique=true];children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
-;CallUs_Nav;Call Us Nav;;;"Our customer services team are here to help.";CallUs_Nav
+;CallUs_Nav;Call Us Nav;;;"Our customer services team are hete to help.";CallUs_Nav
 ;FindStore_Nav;Find Store Nav;;;"Our dealers are located nationwide.";FindStore_Nav
 ;FindManager_Nav;Find Manager Monitoring Nav;;;"If you are looking for one-on-one system selection advice and training.";FindManager_Nav
 ;SendMessage_Nav;Send Message Nav;;;"Have an enquiry or feedback? Contact us and we will get back to you";SendMessage_Nav
 
+
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];linkName[lang=en]
+;;CallUsLink;Call Us Link;https://www.google.com/;;;"<div class=""call-us-title"">Call us</div><div class=""call-us-contact-number"">0800 731 500</div>"
+;;NZENFindStoreLink;NZ EN Find Store Link;https://am.gallagher.com/nz/find-a-stockist;;;"Find your nearest store"
+;;NZENFindManagerLink;NZ EN Find Manager Link;https://am.gallagher.com/nz/about-us/our-people/territory-managers;;;"Find your territory manager"
+;;NZENSendMessageLink;NZ EN Send Message Link;https://am.gallagher.com/nz/contact-us;;;"Send us a message"
+;;AUENFindStoreLink;AU EN Find Store Link;https://am.gallagher.com/au/find-a-stockist;;;"Find your nearest store"
+;;AUENFindManagerLink;AU EN Find Manager Link;https://am.gallagher.com/au/about-us/our-people/territory-managers;;;"Find your territory manager"
+;;AUENSendMessageLink;AU EN Send Message Link; https://am.gallagher.com/au/contact-us;;;"Send us a message"
+;;USENFindStoreLink;US EN Find Store Link; https://am.gallagher.com/us/find-a-dealer;;;"Find your nearest store"
+;;USENFindManagerLink;US EN Find Manager Link;https://www.google.com/;;;"Find your territory manager"
+;;USENSendMessageLink;US EN Send Message Link;https://am.gallagher.com/us/contact-us;;;"Send us a message"
+;;CAENFindStoreLink;CA EN Find Store Link;https://am.gallagher.com/en-ca/find-a-dealer;;;"Find your nearest store"
+;;CAENFindManagerLink;CA EN Find Manager Link;https://www.google.com/;;;"Find your territory manager"
+;;CAENSendMessageLink;CA EN Send Message Link;https://am.gallagher.com/en-ca/contact-us;;;"Send us a message"
+;;CAFRFindStoreLink;CA FR Find Store Link;https://am.gallagher.com/fr-ca/trouver-un-fournisseur;;;"Find your nearest store"
+;;CAFRFindManagerLink;CA FR Find Manager Link;https://www.google.com/;;;"Find your territory manager"
+;;CAFRSendMessageLink;CA FR Send Message Link;https://am.gallagher.com/fr-ca/contactez-nous;;;"Send us a message"
+;;LATAMENFindStoreLink;LATAM EN Find Store Link;https://www.google.com/;;;"Find your nearest store"
+;;LATAMENFindManagerLink;LATAM EN Find Manager Link;https://www.google.com/;;;"Find your territory manager"
+;;LATAMENSendMessageLink;LATAM EN Send Message Link;https://am.gallagher.com/es/contactenos/;;;"Send us a message"
+;;GLOBALENFindStoreLink;GLOBAL EN Find Store Link;https://am.gallagher.com/global/find-a-distributor;;;"Find your nearest store"
+;;GLOBALENFindManagerLink;GLOBAL EN Find Manager Link;https://www.google.com/;;;"Find your territory manager"
+;;GLOBALENSendMessageLink;GLOBAL EN Send Message Link;https://www.google.com/;;;"Send us a message"
+
+
+
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];name;$contentCV[unique=true];navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
 ;CallUs_NavEntry;Call Us Nav Entry;;CallUs_Nav;CallUsLink
-;FindStore_NavEntry;Find Store Nav Entry;;FindStore_Nav;FindStoreLink
-;FindManager_NavEntry;Find Manager Nav Entry;;FindManager_Nav;FindManagerLink
-;SendMessage_NavEntry;Send Message Nav Entry;;SendMessage_Nav;SendMessageLink
+;NZENFindStore_NavEntry;NZ EN Find Store Nav Entry;;FindStore_Nav;NZENFindStoreLink
+;NZENFindManager_NavEntry;NZ EN Find Manager Nav Entry;;FindManager_Nav;NZENFindManagerLink
+;NZENSendMessage_NavEntry;NZ EN Send Message Nav Entry;;SendMessage_Nav;NZENSendMessageLink
+;AUENFindStore_NavEntry;AU EN Find Store Nav Entry;;FindStore_Nav;AUENFindStoreLink
+;AUENFindManager_NavEntry;AU EN Find Manager Nav Entry;;FindManager_Nav;AUENFindManagerLink
+;AUENSendMessage_NavEntry;AU EN Send Message Nav Entry;;SendMessage_Nav;AUENSendMessageLink
+;USENFindStore_NavEntry;US EN Find Store Nav Entry;;FindStore_Nav;USENFindStoreLink
+;USENFindManager_NavEntry;US EN Find Manager Nav Entry;;FindManager_Nav;USENFindManagerLink
+;USENSendMessage_NavEntry;US EN Send Message Nav Entry;;SendMessage_Nav;USENSendMessageLink
+;CAENFindStore_NavEntry;CA EN Find Store Nav Entry;;FindStore_Nav;CAENFindStoreLink
+;CAENFindManager_NavEntry;CA EN Find Manager Nav Entry;;FindManager_Nav;CAENFindManagerLink
+;CAENSendMessage_NavEntry;CA EN Send Message Nav Entry;;SendMessage_Nav;CAENSendMessageLink
+;CAFRFindStore_NavEntry;CA FR Find Store Nav Entry;;FindStore_Nav;CAFRFindStoreLink
+;CAFRFindManager_NavEntry;CA FR Find Manager Nav Entry;;FindManager_Nav;CAFRFindManagerLink
+;CAFRSendMessage_NavEntry;CA FR Send Message Nav Entry;;SendMessage_Nav;CAFRSendMessageLink
+;LATAMENFindStore_NavEntry;LATAM EN Find Store Nav Entry;;FindStore_Nav;LATAMENFindStoreLink
+;LATAMENFindManager_NavEntry;LATAM EN Find Manager Nav Entry;;FindManager_Nav;LATAMENFindManagerLink
+;LATAMENSendMessage_NavEntry;LATAM EN Send Message Nav Entry;;SendMessage_Nav;LATAMENSendMessageLink
+;GLOBALENFindStore_NavEntry;GLOBAL EN Find Store Nav Entry;;FindStore_Nav;GLOBALENFindStoreLink
+;GLOBALENFindManager_NavEntry;GLOBAL EN Find Manager Nav Entry;;FindManager_Nav;GLOBALENFindManagerLink
+;GLOBALENSendMessage_NavEntry;GLOBAL EN Send Message Nav Entry;;SendMessage_Nav;GLOBALENSendMessageLink
+
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;CallUsLink;Call Us Link;https://www.google.com/;;;
+#;;FindStoreLink;Find Store Link;https://www.google.com/;;;
+#;;FindManagerLink;Find Manager Link;http://www.google.com/;;;
+#;;SendMessageLink;Send Message Link;http://www.google.com/;;;
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];name;$contentCV[unique=true];navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
+;CallUs_NavEntry;Call Us Nav Entry;;CallUs_Nav;CallUsLink
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];name;$contentCV[unique=true];children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
 ;CallUsSupport_Nav;Call Us support Nav;;;"Our customer services team are here to help.";CallUsSupport_Nav
@@ -1921,7 +2207,8 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);children(uid,$contentCV)[mode=replace];links(uid, $contentCV);&nodeRef;title[lang=en]
 ;SolutionsNavNode ;; Solutions Navigation Node Menu;HeaderLinkNavigationNode;Electricfencing_Nav1,WeighingEID_Nav1,WirelessWaterMonitoring_Nav1,SteelGatesandHardware_Nav1,FarmInformationTools_Nav1,Stockprods_Nav1,NewProducts_Nav1,Promotions_Nav1;;SolutionsNavNode;"Solutions"     
-;ProductsNavNode;;Products Navigation Node Menu;;Electricfencing_Nav,WeighingEID_Nav,WirelessWaterMonitoring_Nav,SteelGatesandHardware_Nav,FarmInformationTools_Nav,Stockprods_Nav,NewProducts_Nav,Promotions_Nav;;ProductsNavNode;"Products"
+#;ProductsNavNode;;Products Navigation Node Menu;;Electricfencing_Nav,WeighingEID_Nav,WirelessWaterMonitoring_Nav,SteelGatesandHardware_Nav,FarmInformationTools_Nav,Stockprods_Nav,NewProducts_Nav,Promotions_Nav;;ProductsNavNode;"Products"
+;ProductsNavNode;;Products Navigation Node Menu;;Electricfencing_Nav,WeighingEID_Nav,WirelessWaterMonitoring_Nav,AutomaticWatering_Nav,AppsSoftware_Nav,SteelGatesandHardware_Nav,Stockprods_Nav;;ProductsNavNode;"Products"
 ;SupportNavNode;;Support Navigation Node Menu;HeaderLinkNavigationNode;CallUsSupport_Nav,SupportMaterial_Nav,TechnicalSupport_Nav,SoftwareDownloads_Nav;;SupportNavNode;"Support"
 ;ContactNavNode;;Contact Us Navigation Node Menu;HeaderLinkNavigationNode;CallUs_Nav,FindStore_Nav,FindManager_Nav,SendMessage_Nav;;ContactNavNode;"Contact Us"
 
@@ -2107,7 +2394,15 @@ INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@medi
 ;;find-dealer-bg;find-dealer-bg.jpg;$siteResource/images/theme/find-dealer-bg.jpg;image/jpeg;Gallagher
 ;;tm-bg;tm-bg.jpeg;$siteResource/images/theme/tm-bg.jpeg;image/jpeg;Gallagher
 
-INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;linkName;&linkRef;&componentRef
+INSERT_UPDATE GallagherNewButtonComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV)	   ;onlyOneRestrictionMustApply[default='false']
+;;NZENSearchComponent;GallagherNZRegionRestriction
+;;AUENSearchComponent;GallagherAURegionRestriction
+;;USENSearchComponent;GallagherUSRegionRestriction
+;;CAENSearchComponent;GallagherCAENRegionRestriction
+;;CAFRSearchComponent;GallagherCAFRRegionRestriction
+;;GLOBALENSearchComponent;GallagherGlRegionRestriction
+
+INSERT_UPDATE GallagherNewButtonComponent;$contentCV[unique=true];uid[unique=true];name;url;linkName;&linkRef;&componentRef
 ;;NZENSearchComponent;NZ Search Component;https://am.gallagher.com/nz/find-a-stockist ;Search;NZENSearchComponent;NZENSearchComponent
 ;;AUENSearchComponent;AU Search Component;https://am.gallagher.com/au/find-a-stockist ;Search;AUENSearchComponent;AUENSearchComponent
 ;;USENSearchComponent;US Search Component;https://am.gallagher.com/us/find-a-dealer ;Search;USENSearchComponent;USENSearchComponent
@@ -2115,13 +2410,17 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;CAFRSearchComponent;CA FR Search Component;https://am.gallagher.com/fr-ca/trouver-un-fournisseur ;Search;CAFRSearchComponent;CAFRSearchComponent
 ;;GLOBALENSearchComponent;Global Search Component;https://am.gallagher.com/global/find-a-distributor ;Search;GLOBALENSearchComponent;GLOBALENSearchComponent
 
+
+
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;linkName;&linkRef;&componentRef
 ;;NZTMLinkComp;NZ Territory Manager Link Component;https://am.gallagher.com/nz/about-us/our-people/territory-managers ;Or Find Your Nearest Territory Manager;NZTMLinkComp;NZTMLinkComp
 ;;AUTMLinkComp;AU Territory Manager Link Component;https://am.gallagher.com/au/about-us/our-people/territory-managers ;Or Find Your Nearest Territory Manager;AUTMLinkComp;AUTMLinkComp
 ;;USTMLinkComp;US Territory Manager Link Component;https://www.google.com ;Or Find Your Nearest Territory Manager;USTMLinkComp;USTMLinkComp
 ;;CATMLinkComp;CA Territory Manager Link Component;https://www.google.com ;Or Find Your Nearest Territory Manager;CAFRTMLinkComp;CAFRTMLinkComp
 
 
-INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(GallagherNewButtonComponent.uid,GallagherNewButtonComponent.$contentCV);
 ;NZSearchNavEntry;;NZ Search Nav Entry;NZSearchNavNode;NZENSearchComponent
 ;AUSearchNavEntry;;AU Search Nav Entry;AUSearchNavNode;AUENSearchComponent
 ;USSearchNavEntry;;US Search Nav Entry;USSearchNavNode;USENSearchComponent
@@ -2129,6 +2428,7 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 ;CAFRSearchNavEntry;;CA FR Search Nav Entry;CAFRSearchNavNode;CAFRSearchComponent
 ;GlobalSearchNavEntry;;Global Search Nav Entry;GlobalSearchNavNode;GLOBALENSearchComponent
 
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
 ;NZTMNavEntry;;NZ Territory Manager Nav Entry;NZTMNavNode;NZTMLinkComp
 ;AUTMNavEntry;;AU Territory Manager Nav Entry;AUTMNavNode;AUTMLinkComp
 ;USTMNavEntry;;US Territory Manager Nav Entry;USTMNavNode;USTMLinkComp
@@ -2198,7 +2498,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;RegisterAProductLink;Register a product Link;/register-product;;;;
 ;;MyRegisteredProductLink;My registered Product Link;/register-product/products;;;;
 ;;EditProfileLink;Edit Profile Link;/my-account/update-profile;;;;
-;;OrderHistoryLink;Order History Link;/my-account/update-profile;;;;
+;;OrderHistoryLink;Order History Link;/my-account/orders;;;;
 ;;PreferencesLink;Preferences Link;/my-account/consents;;;;
 ;;LogoutLink;Logout Us Link;/logout;;;;
 ;;PaymentDetailLink;Payment Detail Link;/my-account/payment-details;;;;
@@ -2210,6 +2510,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV)	   ;onlyOneRestrictionMustApply
 							  			;			  ;OrderHistoryLink;GallagherSiteTransactionRestriction;false
 							  			; 			  ;PaymentDetailLink;GallagherSiteTransactionRestriction;false
+							  			;          ;AddressBookLink;GallagherSiteTransactionRestriction;false
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);children(uid,$contentCV)[mode=replace];links(uid, $contentCV);&nodeRef;title[lang=en]
 ;RegisterAProductNavNode;; Register a Product Navigation Node Menu;UserDropDownNavigationNode;;;RegisterAProductNavNode;"Register a Product"     
 ;MyRegisteredProductNavNode;;My Registered Product Navigation Node Menu;;;;MyRegisteredProductNavNode;"My Registered Product"
@@ -2475,20 +2776,14 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents
 
 ######## restriction for region and language based components ########
 
-INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV)	   ;onlyOneRestrictionMustApply[default='false']
-;;NZENSearchComponent;GallagherNZRegionRestriction
-;;AUENSearchComponent;GallagherAURegionRestriction
-;;USENSearchComponent;GallagherUSRegionRestriction
-;;CAENSearchComponent;GallagherCAENRegionRestriction
-;;CAFRSearchComponent;GallagherCAFRRegionRestriction
-;;GLOBALENSearchComponent;GallagherGlRegionRestriction
 
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV)	   ;onlyOneRestrictionMustApply[default='true']
 ;;NZTMLinkComp;GallagherNZRegionRestriction
 ;;AUTMLinkComp;GallagherAURegionRestriction
 ;;USTMLinkComp;GallagherUSRegionRestriction
 ;;CATMLinkComp;GallagherCARegionRestriction
 
-INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV);onlyOneRestrictionMustApply[default='false']
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV);onlyOneRestrictionMustApply[default='true']
 ;;NZENFindStoreLink;GallagherNZRegionRestriction
 ;;NZENFindManagerLink;GallagherNZRegionRestriction
 ;;NZENSendMessageLink;GallagherNZRegionRestriction
@@ -2498,12 +2793,12 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrict
 ;;USENFindStoreLink;GallagherUSRegionRestriction
 ;;USENFindManagerLink;GallagherUSRegionRestriction
 ;;USENSendMessageLink;GallagherUSRegionRestriction
-;;CAENFindStoreLink;GallagherCAENRegionRestriction
-;;CAENFindManagerLink;GallagherCAENRegionRestriction
-;;CAENSendMessageLink;GallagherCAENRegionRestriction
-;;CAFRFindStoreLink;GallagherCAFRRegionRestriction
-;;CAFRFindManagerLink;GallagherCAFRRegionRestriction
-;;CAFRSendMessageLink;GallagherCAFRRegionRestriction
+;;CAENFindStoreLink;GallagherCAENRegionRestriction,GallagherCAENCARegionRestriction
+;;CAENFindManagerLink;GallagherCAENRegionRestriction,GallagherCAENCARegionRestriction
+;;CAENSendMessageLink;GallagherCAENRegionRestriction,GallagherCAENCARegionRestriction
+;;CAFRFindStoreLink;GallagherCAFRRegionRestriction,GallagherCAENCARegionRestriction
+;;CAFRFindManagerLink;GallagherCAFRRegionRestriction,GallagherCAFRCARegionRestriction
+;;CAFRSendMessageLink;GallagherCAFRRegionRestriction,GallagherCAFRCARegionRestriction
 ;;LATAMENFindStoreLink;GallagherLATAMRegionRestriction
 ;;LATAMENFindManagerLink;GallagherLATAMRegionRestriction
 ;;LATAMENSendMessageLink;GallagherLATAMRegionRestriction
@@ -2511,4 +2806,107 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrict
 ;;GLOBALENFindManagerLink;GallagherGlRegionRestriction
 ;;GLOBALENSendMessageLink;GallagherGlRegionRestriction
 
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV);onlyOneRestrictionMustApply[default='true']
+;;NZENSupportMaterialLink;GallagherNZRegionRestriction
+;;NZENTechnicalSupportLink;GallagherNZRegionRestriction
+;;NZENSoftwareDownloadsLink;GallagherNZRegionRestriction
+;;AUENSupportMaterialLink;GallagherAURegionRestriction
+;;AUENTechnicalSupportLink;GallagherAURegionRestriction
+;;AUENSoftwareDownloadsLink;GallagherAURegionRestriction
+;;USENSupportMaterialLink;GallagherUSRegionRestriction
+;;USENTechnicalSupportLink;GallagherUSRegionRestriction
+;;USENSoftwareDownloadsLink;GallagherUSRegionRestriction
+;;CAENSupportMaterialLink;GallagherCAENRegionRestriction,GallagherCAENCARegionRestriction
+;;CAENTechnicalSupportLink;GallagherCAENRegionRestriction,GallagherCAENCARegionRestriction
+;;CAENSoftwareDownloadsLink;GallagherCAENRegionRestriction,GallagherCAENCARegionRestriction
+;;CAFRSupportMaterialLink;GallagherCAFRRegionRestriction,GallagherCAFRCARegionRestriction
+;;CAFRTechnicalSupportLink;GallagherCAFRRegionRestriction,GallagherCAFRCARegionRestriction
+;;CAFRSoftwareDownloadsLink;GallagherCAFRRegionRestriction,GallagherCAFRCARegionRestriction
+;;LATAMENSupportMaterialLink;GallagherLATAMRegionRestriction
+;;LATAMENTechnicalSupportLink;GallagherLATAMRegionRestriction
+;;LATAMENSoftwareDownloadsLink;GallagherLATAMRegionRestriction
+;;GLOBALENSupportMaterialLink;GallagherGlRegionRestriction
+;;GLOBALENTechnicalSupportLink;GallagherGlRegionRestriction
+;;GLOBALENSoftwareDownloadsLink;GallagherGlRegionRestriction
+
 #####################################
+
+############## mega menu link components restrictions ###############
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV)	   ;onlyOneRestrictionMustApply[default='true']
+
+;;PowerEnergisers_link;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherLATAMRegionRestriction
+;;PowerEnergisers_link1;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;PowerEnergisers_link2;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;PowerEnergisers_link3;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;PowerEnergisers_link4;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;PowerEnergisers_link5;GallagherNZRegionRestriction,GallagherGlRegionRestriction
+;;PowerEnergisers_link6;GallagherAURegionRestriction
+;;PowerEnergisers_link7;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;PowerEnergisers_link8;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction
+;;PowerEnergisers_link9;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherLATAMRegionRestriction
+;;PowerEnergisers_link10;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherLATAMRegionRestriction
+;;PowerEnergisers_link11;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;PowerEnergisers_link12;GallagherCARegionRestriction,GallagherUSRegionRestriction
+
+;;PermanentfencingWireandCable_link;GallagherAURegionRestriction
+;;PermanentfencingWireandCable_link1;GallagherAURegionRestriction
+;;PermanentfencingWireandCable_link2;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+;;PermanentfencingWireandCable_link3;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+;;PermanentfencingWireandCable_link4;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+;;PermanentfencingWireandCable_link5;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+;;PermanentfencingWireandCable_link6;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+;;PermanentfencingWireandCable_link7;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+;;PermanentfencingWireandCable_link8;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+;;PermanentfencingWireandCable_link9;GallagherNZRegionRestriction,GallagherGlRegionRestriction
+;;PermanentfencingWireandCable_link10;GallagherAURegionRestriction
+;;PermanentfencingWireandCable_link11;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+;;PermanentfencingWireandCable_link12;GallagherAURegionRestriction
+
+;;PortablefencingTapesWiresBraids_nav_link;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+;;PortablefencingTapesWiresBraids_nav_link1;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+;;PortablefencingTapesWiresBraids_nav_link2;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+;;PortablefencingTapesWiresBraids_nav_link3;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+;;PortablefencingTapesWiresBraids_nav_link4;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;PortablefencingTapesWiresBraids_nav_link5;GallagherCARegionRestriction,GallagherUSRegionRestriction
+
+;;FenceConductors_nav_link;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;FenceConductors_nav_link1;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;FenceConductors_nav_link2;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;FenceConductors_nav_link3;GallagherCARegionRestriction,GallagherUSRegionRestriction
+
+;;WeighinEid_link;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherLATAMRegionRestriction
+;;WeighinEid_link1;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;WeighinEid_link2;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherLATAMRegionRestriction
+;;WeighinEid_link3;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;WeighinEid_link4;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherLATAMRegionRestriction,GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;WeighinEid_link5;GallagherAURegionRestriction
+;;WeighinEid_link6;GallagherNZRegionRestriction,GallagherGlRegionRestriction
+;;WeighinEid_link7;GallagherAURegionRestriction
+;;WeighinEid_link8;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherLATAMRegionRestriction,GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;WeighinEid_link9;GallagherAURegionRestriction
+;;WeighinEid_link10;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;WeighinEid_link11;GallagherAURegionRestriction
+;;WeighinEid_link12;GallagherCARegionRestriction,GallagherUSRegionRestriction
+
+;;WWM_link;GallagherNZRegionRestriction,GallagherGlRegionRestriction
+;;WWM_link1;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherLATAMRegionRestriction
+;;WWM_link2;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction
+;;WWM_link3;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherLATAMRegionRestriction
+
+;;AW_link;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;AW_link1;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;AW_link2;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;AW_link3;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;AW_link4;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;AW_link5;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;AW_link6;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;AW_link7;GallagherCARegionRestriction,GallagherUSRegionRestriction
+
+;;AppsSoftware_link;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction
+;;AppsSoftware_link1;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction
+
+;;SGH_link;GallagherNZRegionRestriction
+;;SGH_link1;GallagherNZRegionRestriction
+
+;;AllStockProdsMainLink;GallagherNZRegionRestriction,GallagherGlRegionRestriction

@@ -297,4 +297,5 @@ INSERT_UPDATE Warehouse ; code[unique=true] ; default ; vendor(code) ; name[lang
                         ; ZA01              ; true    ; ERP          ; "Gallagher Powerfence SA"        
                         
 INSERT_UPDATE GallagherSovosConfigurartion ; code[unique=true]   ; name                       ; resultLevel ; taxCalculationType ; debitCreditInd ; transactionType ; organizationCode ; dropShipInd 
-                                           ; b2c-us-sovos-config ; B2C US SOVOS Configuration ; 3           ; 1                  ; 1              ; 1               ; QASGUS           ; 1           
+                                           ; b2c-us-sovos-config ; B2C US SOVOS Configuration ; 3           ; 1                  ; 1              ; 1               ; QASGUS           ; 1
+                                           ; b2c-ca-sovos-config ; B2C CA SOVOS Configuration ; 3           ; 1                  ; 1              ; 1               ; QASGCA           ; 1           

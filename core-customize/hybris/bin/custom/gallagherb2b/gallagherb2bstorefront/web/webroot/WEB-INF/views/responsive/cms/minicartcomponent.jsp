@@ -14,7 +14,7 @@
 </spring:url>
 <c:url value="/cart" var="cartUrl"/>
 
-<div class="cart-out">
+<!-- <div class="cart-out"> -->
 	<a 	href="#"
 		class="cart-link js-mini-cart-link"
 		data-mini-cart-url="${rolloverPopupUrl}"
@@ -23,6 +23,7 @@
 		data-mini-cart-empty-name="<spring:theme code="popup.cart.empty"/>"
 		data-mini-cart-items-text="<spring:theme code="basket.items"/>"
 		>
+				<span class="nav-icon-out">
 		<svg class="cart-icon">
 			<use xlink:href="${siteRootUrl}/theme-securityB2B/images/svg/gallagher-icons.svg#cart" />
 		</svg>
@@ -36,7 +37,7 @@
 				</span>
 			</div>
 		</ycommerce:testId>
-
+</span>
 	</a>
-</div>
+<!-- </div> -->
 <div class="mini-cart-container js-mini-cart-container"></div>

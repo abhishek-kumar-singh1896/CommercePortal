@@ -258,15 +258,23 @@
                     <spring:param name="unit" value="${unit.uid}"/>
                     <spring:param name="role" value="b2bcustomergroup"/>
                 </spring:url>
+                 <spring:url value="/my-company/organization-management/manage-units/technicians" var="editTechniciansUrl" htmlEscape="false">
+                    <spring:param name="unit" value="${unit.uid}"/>
+                     <spring:param name="role" value="b2btechniciangroup"/>
+                </spring:url>
 
-                <company:userList users="${unit.approvers}" action="approvers" role="b2bapprovergroup" editUrl="${editApproversUrl}"
+
+            <company:userList users="${unit.technicians}" action="technicians" role="b2btechniciangroup" editUrl="${editTechniciansUrl}"
                                   createUrl="${createUserUrl}"/>
+                                  
+              <%--   <company:userList users="${unit.approvers}" action="approvers" role="b2bapprovergroup" editUrl="${editApproversUrl}"
+                                  createUrl="${createUserUrl}"/> --%>
 
                 <company:userList users="${unit.administrators}" action="administrators" role="b2badmingroup" editUrl="${editAdministratorUrl}"
                                   createUrl="${createUserUrl}"/>
 
-                <company:userList users="${unit.managers}" action="managers" role="b2bmanagergroup" editUrl="${editManagersUrl}"
-                                  createUrl="${createUserUrl}"/>
+            <%--     <company:userList users="${unit.managers}" action="managers" role="b2bmanagergroup" editUrl="${editManagersUrl}"
+                                  createUrl="${createUserUrl}"/> --%>
 
                 <company:userList users="${unit.customers}" action="customers" role="b2bcustomergroup" editUrl="${editCustomersUrl}"
                                   createUrl="${createUserUrl}"/>

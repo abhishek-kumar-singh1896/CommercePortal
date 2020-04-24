@@ -20,13 +20,13 @@ $customerVersion = v=1
 #************************#           
 #*** B2B Customer URL ***#           
 #************************#           
-$b2bCustomerUrl = https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com/gw/odata/SAP/REPLICATE-B2B-CUSTOMER-FROM-SAP-COMMERCE-CLOUD-TO-SAP-ERP
+$b2bCustomerUrl = https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com/gw/odata/SAP/ZGGL-REPLICATE-B2B-CUSTOMER-FROM-SAP-COMMERCE-CLOUD-TO-C4C
 $b2bCustomerVersion = v=1            
                                      
 #******************#                 
 #***  Order URL ***#                 
 #******************#                 
-$orderUrl = https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com/gw/odata/SAP/REPLICATE-ORDERS-FROM-SAP-COMMERCE-CLOUD-TO-SAP-ERP
+$orderUrl = https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com/gw/odata/SAP/GGL-PLAYPEN-REPLICATE-ORDERS-FROM-SAP-COMMERCE-CLOUD-TO-SAP-ERP_COPY
 $orderVersion = v=1                  
                                      
 #*************************#          
@@ -38,7 +38,7 @@ $cancelOrderVersion = v=1
 #******************************#     
 #*** Contact Collection URL ***#     
 #******************************#     
-$contactCollectionUrl = https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com/gw/odata/SAP/GGL_C4C_ODATAAPI
+$contactCollectionUrl = https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com/gw/odata/SAP/GGL_C4C_CONTACTSEARCH
 $contactCollectionVersion = v=1      
                                      
 #****************************#       
@@ -77,7 +77,7 @@ INSERT_UPDATE Endpoint ; id[unique = true]                       ; version[uniqu
 #*******************************#
 INSERT_UPDATE ConsumedDestination ; id[unique = true]                          ; url                                                                                     ; endpoint(id, version)                           ; credential(id)      ; additionalProperties(key, value)[map-delimiter = |]                             ; destinationTarget(id)[default = scpiDestinationTarget] 
                                   ; scpiCustomerDestination                    ; "$customerUrl;$customerVersion/Customers"                                               ; scpiCustomerEndpoint:unknown                    ; scpiOauthCredential ; "csrfURL->$customerUrl;$customerVersion/"                                       ;                                                        
-                                  ; scpiB2BCustomerDestination                 ; "$customerUrl;$customerVersion/Customers"                                               ; scpiB2BCustomerEndpoint:unknown                 ; scpiOauthCredential ; "csrfURL->$customerUrl;$b2bCustomerVersion/"                                    ;                                                        
+                                  ; scpiB2BCustomerDestination                 ; "$b2bCustomerUrl;$customerVersion/SAPCpiOutboundB2BCustomers"                           ; scpiB2BCustomerEndpoint:unknown                 ; scpiOauthCredential ; "csrfURL->$customerUrl;$b2bCustomerVersion/"                                    ;                                                        
                                   ; scpiOrderDestination                       ; "$orderUrl;$orderVersion/SAPCpiOutboundOrders"                                          ; scpiOrderEndpoint:unknown                       ; scpiOauthCredential ; "csrfURL->$orderUrl;$orderVersion/"                                             ;                                                        
                                   ; scpiOrderCancellationDestination           ; "$cancelOrderUrl;$cancelOrderVersion/SAPCpiOutboundOrderCancellations"                  ; scpiOrderCancellationEndpoint:unknown           ; scpiOauthCredential ; "csrfURL->$cancelOrderUrl;$cancelOrderVersion/"                                 ;                                                        
                                   ; scpiContactCollectionDestination           ; "$contactCollectionUrl;$contactCollectionVersion/ContactCollection"                     ; scpiContactCollectionEndpoint:unknown           ; scpiOauthCredential ; "csrfURL->$contactCollectionUrl;$contactCollectionVersion/"                     ;                                                        
@@ -145,14 +145,18 @@ INSERT_UPDATE IntegrationObjectItemAttribute ; integrationObjectItem(integration
                                              ; OutboundB2BCustomer:SAPCpiOutboundB2BContact                        ; keycloakGUID                 ; SAPCpiOutboundB2BContact:keycloakGUID               ;                                                            ; true                    
                                              ; OutboundB2BCustomer:SAPCpiOutboundB2BContact                        ; sapContactID                 ; SAPCpiOutboundB2BContact:contactId                  ;                                                            ; true                    
                                              ; OutboundB2BCustomer:SAPCpiOutboundB2BContact                        ; objectID                     ; SAPCpiOutboundB2BContact:objectID                   ;                                                            ; true                    
+                                             
+INSERT_UPDATE SAPHTTPDestination ; httpDestinationName[unique=true] ; targetURL              ; userid            
+                                 ; GGLSCPI                          ; https://www.gmail.com?sap-client=007 ; CommerceCloud_Dev 
+                                 
 INSERT_UPDATE SapSystemType ; code[unique=true] 
                             ; SAPDEV            
-INSERT_UPDATE SAPLogicalSystem ; sapLogicalSystemName[unique=true] ; sapSystemType(code) ; senderName ; senderPort ; defaultLogicalSystem ; sapHTTPDestination 
-                               ; DEVCLNT212                        ; SAPDEV              ; CPIDEV     ; SAPSXP     ; true                 
+INSERT_UPDATE SAPLogicalSystem ; sapLogicalSystemName[unique=true] ; sapSystemType(code) ; senderName ; senderPort ; defaultLogicalSystem ; sapHTTPDestination(httpDestinationName) 
+                               ; DEVCLNT212                        ; SAPDEV              ; CPIDEV     ; SAPSXP     ; true                 ; GGLSCPI                                 
                                
 INSERT_UPDATE SAPGlobalConfiguration ; replicateregistereduser ; core_name[unique=true] ; sapLogicalSystemGlobalConfig  (sapLogicalSystemName) 
                                      ; true                    ; GLOBAL                 ; DEVCLNT212                                           
                                      
 INSERT_UPDATE SAPConfiguration ; core_name[unique=true] ; baseStores(uid) ; sapcommon_referenceCustomer ; sapcommon_transactionType ; sapcommon_salesOrganization ; sapcommon_distributionChannel ; sapcommon_division ; replicateregisteredb2buser ; saporderexchange_itemPriceConditionType ; saporderexchange_paymentCostConditionType ; saporderexchange_deliveryCostConditionType 
-                               ; amB2CUS                ; amB2CUS         ; 83070                       ; ZECM                      ; GUS                         ; US                            ; AG                 ; false                      ; PR00                                    ;                                           ; 14                                         
-                               ; amB2CCA                ; amB2CCA         ; 83136                       ; ZECM                      ; GCA                         ; CA                            ; AG                 ; false                      ; PR00                                    ;                                           ; 12                                         
+                               ; amB2CUS                ; amB2CUS         ; 0000083070                  ; ZECM                      ; GUS                         ; US                            ; AG                 ; false                      ; PR00                                    ;                                           ; ZFTA                                       
+                               ; amB2CCA                ; amB2CCA         ; 0000083136                  ; ZECM                      ; GCA                         ; CA                            ; AG                 ; false                      ; PR00                                    ;                                           ; ZFTA                                       

@@ -96,6 +96,7 @@ public class BusinessUnitUserManagementPageController extends MyCompanyPageContr
 						urlEncode(unit), urlEncode(role)));
 		b2bCustomerForm.setParentB2BUnit(unit);
 		b2bCustomerForm.setRoles(Collections.singleton(role));
+		b2bCustomerForm.setParentB2BUnits(Collections.singletonList(unit));
 		profileValidator.validate(b2bCustomerForm, bindingResult);
 		final String url = createUser(b2bCustomerForm, bindingResult, model, redirectModel);
 		final List<Breadcrumb> breadcrumbs = myCompanyBreadcrumbBuilder.createManageUnitsDetailsBreadcrumbs(unit);
@@ -406,6 +407,38 @@ public class BusinessUnitUserManagementPageController extends MyCompanyPageContr
 	final String role) throws CMSItemNotFoundException
 	{
 		return populateDisplayNamesForRoles(b2bUserFacade.removeUserRole(user, role));
+	}
+
+	@RequestMapping(value = "/technicians", method = RequestMethod.GET)
+	@RequireHardLogIn
+	public String getPagedTechniciansForUnit(@RequestParam(value = "page", defaultValue = "0")
+	final int page, @RequestParam(value = "show", defaultValue = "Page")
+	final AbstractSearchPageController.ShowMode showMode, @RequestParam(value = "sort", defaultValue = UserModel.NAME)
+	final String sortCode, @RequestParam("unit")
+	final String unit, @RequestParam("role")
+	final String role, final Model model, final HttpServletRequest request) throws CMSItemNotFoundException
+	{
+		storeCmsPageInModel(model, getContentPageForLabelOrId(MY_COMPANY_CMS_PAGE));
+		setUpMetaDataForContentPage(model, getContentPageForLabelOrId(MANAGE_UNITS_CMS_PAGE));
+
+		final List<Breadcrumb> breadcrumbs = myCompanyBreadcrumbBuilder.createManageUnitsDetailsBreadcrumbs(unit);
+		breadcrumbs.add(new Breadcrumb(String.format("/my-company/organization-management/manage-units/technicians?unit=%s&role=%s",
+				urlEncode(unit), urlEncode(role)), getMessageSource().getMessage("text.company.manage.units.technicians", new Object[]
+		{ unit }, "Business Unit {0} Technicians", getI18nService().getCurrentLocale()), null));
+		model.addAttribute("breadcrumbs", breadcrumbs);
+
+		final B2BUnitData unitData = b2bUnitFacade.getUnitForUid(unit);
+		model.addAttribute("unit", unitData);
+
+		// Handle paged search results
+		final PageableData pageableData = createPageableData(page, getSearchPageSize(), sortCode, showMode);
+		final SearchPageData<CustomerData> searchPageData = b2bUnitFacade.getPagedTechniciansForUnit(pageableData, unit);
+		populateModel(model, searchPageData, showMode);
+		model.addAttribute("action", "technicians");
+		model.addAttribute("baseUrl", MANAGE_UNITS_BASE_URL);
+		model.addAttribute("cancelUrl", getCancelUrl(MANAGE_UNIT_DETAILS_URL, request.getContextPath(), unit));
+		model.addAttribute(ThirdPartyConstants.SeoRobots.META_ROBOTS, ThirdPartyConstants.SeoRobots.NOINDEX_NOFOLLOW);
+		return GallaghercommerceorgaddonControllerConstants.Views.Pages.MyCompany.MyCompanyManageUnitUserListPage;
 	}
 
 }

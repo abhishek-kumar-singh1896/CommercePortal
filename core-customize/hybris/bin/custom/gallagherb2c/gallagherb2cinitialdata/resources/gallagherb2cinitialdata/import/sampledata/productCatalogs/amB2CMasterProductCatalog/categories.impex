@@ -18,107 +18,236 @@ INSERT_UPDATE Category;code[unique=true];allowedPrincipals(uid)[default='custome
 # Main Categories
 ;electric-fencing
 ;weighing-and-eid
+#;weighing-eid-and-animal-handling
 ;wireless-water-monitoring
-;steel-gates-and-hardware
-;gallagher-westonfence
 ;automatic-watering
+;apps-and-software
+;steel-gates-and-hardware
+;stock-prods-main
+#;promotions 
 
-# Sub Categories for 'electric-fencing'
+# 1.1 Sub Categories for 'electric-fencing'
 ;power
 ;permanent-fencing
 ;portable-fencing
+#;fence-construction
+;fence-conductors 
 
-# Sub Categories for 'power'
-;energisers
+
+# 1.1.1 Sub Categories for 'power'
+;mains-energizers
+;110-volt-energizers
+;multi-powered-energizers
+;battery-energizers 
+;solar-energizers 
+;solar-panels
+;solar-and-solar-kits 
 ;remotes-and-fence-testers
+;batteries 
+;earthing 
 ;power-system-accessories
+;grounding
+;power-management-tools
 
-# Sub Categories for 'permanent-fencing'
+# 1.1.2 Sub Categories for 'permanent-fencing'
+;gallagher-westonfence
+;gallagher-mega-anchor
 ;wire-and-cable
-;wire-strainers
-;insulators
-;offsets
-;electric-gates-and-accessories
-;fence-tools-and-accessories
 ;clamps-and-joiners
 ;posts
-;permanent-fencing-gates
+;strainers
+;insulators
+;offsets
+;electric-gates
+;irrigator-fence-crossing-system  
+;pivot-irrigator-system
+;fence-tools-and-accessories
+;gate-hardware
 
-# Sub Categories for 'portable-fencing'
-;tapes-wires-braids
-;reels-and-accessories
-;posts-pigtails-and-tread-ins
-;all-in-one-portable-fences
+# 1.1.3 Sub Categories for 'portable-fencing'
+;tapes-wires-and-braids-pf
+;reels-and-accessories-pf
+;posts-pigtails-and-treadins-pf
+;all-in-one-portable-fences   
+;electric-fence-kits 
+;netting 
 
-# Sub Categories for 'weighing-and-eid'
+# 1.1.4 Sub Categories for 'fence-construction'
+#;insulators 
+#;offsets
+#;posts
+#;strainers
+#;clamps-and-joiners
+#;fence-tools-and-accessories 
+#;gates-and-gate-accessories 
+
+# 1.1.4 Sub Categories for 'fence-conductors'
+;posts-pigtails-and-treadins-fc
+;reels-and-accessories-fc
+;hi-tensile-wire-and-cable 
+;tapes-wires-and-braids-fc
+
+
+# 1.2 Sub Categories for 'weighing-and-eid'
 ;weigh-scales-and-data-collectors
-;loadbars-and-accessories
-;platforms
-;drafters
-;eid-tag-readers
-;platforms-and-crates
-;handlers-and-drafters
-;eid-tag-readeres-and-barcoding-equipement
 ;scale-heads-and-data-collectors
+;loadbars-and-accessories
+;loadbars
+;platforms
+;platforms-and-crates
+;drafters
+;handlers-and-drafters
+;eid-tag-readers
+;eid-tag-readers-and-barcoding-equipment
+;weighing-accessories
+;stock-prods
+;stock-prods-and-accessories
 
-# Sub Categories for 'wireless-water-monitoring'
 
-# Sub Categories for 'steel-gates-and-hardware'
+# Sub Categories for 'weighing-eid-and-animal-handling'
+#;stock-prods
+#;weigh-scales-and-data-collectors 
+#;loadbars-and-accessories  
+#;eid-tag-readers
+
+
+# 1.3 Sub Categories for 'wireless-water-monitoring'
+;water-flow-indicator 
+;one-tank-systems 
+;antennae-and-cables 
+;additional-system-components 
+
+
+# 1.4 Sub Categories for 'automatic-watering'
+;trough-valves
+;lil-spring 
+;equi-fount 
+;mira-fount
+;e-fount
+;big-spring
+;pet-tanks 
+;watering-accessories 
+
+
+# 1.5 Sub Categories for 'apps-and-software'
+;livestock
+;fence
+
+
+# 1.6 Sub Categories for 'steel-gates-and-hardware'
 ;gates
 ;gate-hardware
 
-# Sub Categories for 'gallagher-westonfence'
-;insulated-suspension-posts
+ 
+# 1.7 Sub Categories for 'stock-prods-main'
 
-# Sub Categories for 'automatic-watering'
-;applicable-to-all-products
+
+
+# 1.9 Sub Categories for 'promotions'
+#;bargain-barn
 
 
 # Insert Category Structure
 INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
 ;electric-fencing;animal-management
 ;weighing-and-eid;animal-management
+#;weighing-eid-and-animal-handling;animal-management
 ;wireless-water-monitoring;animal-management
 ;steel-gates-and-hardware;animal-management
-;gallagher-westonfence;animal-management
+;apps-and-software;animal-management
 ;automatic-watering;animal-management
+;stock-prods-main;animal-management
+#;promotions;animal-management
 
 ;power;electric-fencing
 ;permanent-fencing;electric-fencing
 ;portable-fencing;electric-fencing
+#;fence-construction;electric-fencing
+;fence-conductors;electric-fencing
 
-;energisers;power
+;mains-energizers;power
 ;remotes-and-fence-testers;power
 ;power-system-accessories;power
+;multi-powered-energizers;power
+;battery-energizers;power 
+;solar-energizers;power
+;solar-panels;power
+;batteries;power
+;earthing;power
+;solar-and-solar-kits;power
+;110-volt-energizers;power
+;grounding;power
+;power-management-tools;power
 
 ;wire-and-cable;permanent-fencing
-;wire-strainers;permanent-fencing
+;strainers;permanent-fencing
 ;insulators;permanent-fencing
 ;offsets;permanent-fencing
-;electric-gates-and-accessories;permanent-fencing
+;electric-gates;permanent-fencing
 ;fence-tools-and-accessories;permanent-fencing
 ;clamps-and-joiners;permanent-fencing
 ;posts;permanent-fencing
-;permanent-fencing-gates;permanent-fencing
+;irrigator-fence-crossing-system;permanent-fencing   
+;gallagher-westonfence;permanent-fencing
+;gallagher-mega-anchor;permanent-fencing
+;pivot-irrigator-system;permanent-fencing
+;gate-hardware;permanent-fencing
 
-;tapes-wires-braids;portable-fencing
-;reels-and-accessories;portable-fencing
-;posts-pigtails-and-tread-ins;portable-fencing
+;tapes-wires-and-braids-pf;portable-fencing
+;reels-and-accessories-pf;portable-fencing
+;posts-pigtails-and-treadins-pf;portable-fencing
 ;all-in-one-portable-fences;portable-fencing
+;electric-fence-kits;portable-fencing
+;netting;portable-fencing
+
+#;insulators;fence-construction 
+#;offsets;fence-construction 
+#;posts;fence-construction 
+#;strainers;fence-construction 
+#;clamps-and-joiners;fence-construction 
+#;fence-tools-and-accessories;fence-construction 
+#;gates-and-gate-accessories;fence-construction 
+
+;reels-and-accessories-fc;fence-conductors 
+;hi-tensile-wire-and-cable;fence-conductors
+;tapes-wires-and-braids-fc;fence-conductors
+;posts-pigtails-and-treadins-fc;fence-conductors
 
 ;weigh-scales-and-data-collectors;weighing-and-eid
 ;loadbars-and-accessories;weighing-and-eid
+;loadbars;weighing-and-eid
 ;platforms;weighing-and-eid
 ;drafters;weighing-and-eid
 ;eid-tag-readers;weighing-and-eid
-;platforms-and-crates;weighing-and-eid
-;handlers-and-drafters;weighing-and-eid
-;eid-tag-readeres-and-barcoding-equipement;weighing-and-eid
 ;scale-heads-and-data-collectors;weighing-and-eid
+;weighing-accessories;weighing-and-eid
+;stock-prods-and-accessories;weighing-and-eid
+;platforms-and-crates;weighing-and-eid
+
+#;handlers-and-drafters;weighing-eid-and-animal-handling
+#;stock-prods;weighing-eid-and-animal-handling
+#;weigh-scales-and-data-collectors;weighing-eid-and-animal-handling
+#;loadbars-and-accessories;weighing-eid-and-animal-handling
+#;eid-tag-readers;weighing-eid-and-animal-handling
+
+;water-flow-indicator;wireless-water-monitoring
+;one-tank-systems;wireless-water-monitoring
+;antennae-and-cables;wireless-water-monitoring
+;additional-system-components;wireless-water-monitoring
 
 ;gates;steel-gates-and-hardware
 ;gate-hardware;steel-gates-and-hardware
 
-;insulated-suspension-posts;gallagher-westonfence
+;livestock;apps-and-software
+;fence;apps-and-software
 
-;applicable-to-all-products;automatic-watering
+;trough-valves;automatic-watering
+;lil-spring;automatic-watering
+;equi-fount;automatic-watering
+;mira-fount;automatic-watering
+;e-fount;automatic-watering
+;big-spring;automatic-watering
+;pet-tanks;automatic-watering
+;watering-accessories;automatic-watering
+
+#;bargain-barn;promotions

@@ -88,15 +88,6 @@
     "sapcustomerb2bbackoffice",
 	"ysaporderfulfillment",
     "webservicescommons",
-    "gallaghercore",
-    "gallagherfacades",
-    "gallaghertest",
-    "gallagherbackoffice",
-    "gallagherb2binitialdata",
-    "gallagherb2bstorefront",
-    "gallagherb2cinitialdata",
-    "gallagherb2cstorefront",
-    "gallagherstorefront",
 	"sapcpiadapter",
     "sapcpiproductexchange",
     "sapcpicustomerexchange",
@@ -107,7 +98,17 @@
     "scpiconnectorbackoffice",
 	"sapcpiorderexchange",
 	"sapcpiorderexchangeb2b",
-	"sapcpiorderexchangeoms"
+    "gallaghercore",
+    "gallagherfacades",
+    "gallaghertest",
+    "gallagherbackoffice",
+    "gallagherb2binitialdata",
+    "gallagherb2bstorefront",
+    "gallagherb2cinitialdata",
+    "gallagherb2cstorefront",
+    "gallagherstorefront",
+	"gallagherscpiexchange",
+	"paymetric"
   ],
   "useConfig": {
     "solr": {
@@ -278,6 +279,10 @@
 		{
           "name": "gallagherstorefront",
           "contextPath": ""
+        },
+		{
+          "name": "paymetric",
+          "contextPath": "/paymetric"
         }
       ]
     },

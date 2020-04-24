@@ -507,22 +507,25 @@ public class ProductPageController extends AbstractPageController
 						{
 							mapValue = data.getValue();
 						}
-						firstProductAttrValueMap.put(fd.getName(), mapValue);
+						if (StringUtils.isNotEmpty(fd.getName()) && StringUtils.isNotEmpty(mapValue))
+						{
+							firstProductAttrValueMap.put(fd.getName(), mapValue);
+						}
 					}
 				}
 				for (final String attribute : compareProducts)
 				{
 					if (firstProductAttrValueMap.containsKey(attribute))
 					{
-						firstProductAttrValueMap.put(attribute, firstProductAttrValueMap.get(attribute));
+						firstProductAttrValueMapFinal.put(attribute, firstProductAttrValueMap.get(attribute));
 					}
 					else
 					{
-						firstProductAttrValueMap.put(attribute, "-");
+						firstProductAttrValueMapFinal.put(attribute, "-");
 					}
 				}
 				firstComparisonData.setProductData(productData);
-				firstComparisonData.setProductAttrValueMap(firstProductAttrValueMap);
+				firstComparisonData.setProductAttrValueMap(firstProductAttrValueMapFinal);
 				model.addAttribute("firstProduct", firstComparisonData);
 				model.addAttribute("compareProducts", compareProducts);
 			}

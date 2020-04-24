@@ -219,4 +219,18 @@
 	<alias name="gallagherGroupOrderEntryPopulator" alias="groupOrderEntryPopulator"/>
 	<bean id="gallagherGroupOrderEntryPopulator" parent="defaultGroupOrderEntryPopulator"
 			class="com.gallagher.facades.order.converters.populator.GallagherGroupOrderEntryPopulator"/>
+	
+	<alias name="gallagherB2BUnitFacade" alias="b2bUnitFacade" />
+	<bean id="gallagherB2BUnitFacade" parent="defaultB2BUnitFacade"
+		class="com.gallagher.facades.impl.GallagherB2BUnitFacadeImpl">
+	</bean>		
+	
+	<alias name="gallagherB2BUnitPopulator" alias="b2bUnitPopulator" />
+	<bean id="gallagherB2BUnitPopulator" parent="defaultB2BUnitPopulator"
+		class="com.gallagher.converters.populators.impl.GallagherB2BUnitPopulatorImpl">
+	</bean>
+
+	<alias name="gallagherCreditCardPaymentInfoPopulator" alias="creditCardPaymentInfoPopulator" />
+	<bean id="gallagherCreditCardPaymentInfoPopulator"
+		class="com.gallagher.facades.order.converters.populator.GallagherCreditCardPaymentInfoPopulator" parent="defaultCreditCardPaymentInfoPopulator" />
 </beans>

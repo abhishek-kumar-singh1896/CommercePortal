@@ -21,12 +21,12 @@
             </div>
         </div>
         <c:if test="${order.totalDiscounts.value > 0}">
-            <div class="col-xs-6">
+            <div class="col-7">
                 <div class="subtotals__item--state-discount">
                     <spring:theme code="text.account.order.discount"/>
                 </div>
             </div>
-            <div class="col-xs-6">
+            <div class="col-5">
                 <div class="text-right subtotals__item--state-discount">
                     <ycommerce:testId code="orderTotal_discount_label">
                         <format:price priceData="${order.totalDiscounts}" displayNegationForDiscount="true" />
@@ -35,19 +35,19 @@
             </div>
         </c:if>
         <c:if test="${order.quoteDiscounts.value > 0}">
-            <div class="col-xs-6 cart-totals-left discount">
+            <div class="col-7 cart-totals-left discount">
                 <spring:theme code="basket.page.quote.discounts" />
             </div>
-            <div class="col-xs-6 cart-totals-right text-right discount">
+            <div class="col-5 cart-totals-right text-right discount">
                 <ycommerce:testId code="Quote_Quote_Savings">
                     <format:price priceData="${order.quoteDiscounts}" displayNegationForDiscount="true" />
                 </ycommerce:testId>
             </div>
         </c:if>
-        <div class="col-5">
+        <div class="col-7">
             <spring:theme code="text.account.order.shipping"/>
         </div>
-        <div class="col-7">
+        <div class="col-5">
             <div class="text-right">
                 <ycommerce:testId code="orderTotal_devlieryCost_label">
                     <format:price priceData="${order.deliveryCost}" displayFreeForZero="true"/>
@@ -56,10 +56,10 @@
         </div>
 
         <c:if test="${order.net}">
-            <div class="col-xs-6">
+            <div class="col-7">
                 <spring:theme code="text.account.order.netTax"/>
             </div>
-            <div class="col-xs-6">
+            <div class="col-5">
                 <div class="text-right">
                     <format:price priceData="${order.totalTax}"/>
                 </div>
@@ -74,7 +74,7 @@
 
         <c:choose>
             <c:when test="${order.net}">
-                <div class="col-xs-6">
+                <div class="col-5">
                     <div class="text-right totals">
                         <format:price priceData="${order.totalPriceWithTax}"/>
                     </div>

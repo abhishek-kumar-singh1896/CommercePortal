@@ -138,22 +138,6 @@
   }
 }
 
-// .contact-us-container-xs,
-// .support-container-xs {
-//   .call-us-contact-number {
-//     font-size: 1.428571em;
-//     color: $primary-color;
-//     line-height: 24px;
-//     margin: 8px 0;
-//   }
-
-//   .contact-us-description {
-//     font-size: 1em;
-//     line-height: 17px;
-//     color: $gray-5;
-//   }
-// }
-
 .menu-container-title {
   color: $white;
   margin-bottom: 24px;
@@ -205,25 +189,33 @@
 .responsive-mega-menu-modal {
   .modal-dialog {
     margin: 0;
-    max-width: 300px;
     float: right;
     width: 100%;
     max-height: 100%;
-    background: $gray-9;
+    background: $dropdown-bg-color;
 
     &.modal-dialog-scrollable {
       .modal-content {
         height: 100vh;
         max-height: 100vh;
+        overflow-y: auto;
+        padding-bottom: 85px;
       }
     }
     .modal-content {
       border-radius: 0;
       border: none;
-      background: $gray-9;
-      color: $gray-4;
+      background: $dropdown-bg-color;
+      color: $white;
       height: 100vh;
       max-height: 100vh;
+      font-size: $font-size-16px;
+
+      &.xs-main-menu-l1 {
+        .modal-body {
+          padding-top: 0;
+        }
+      }
 
       .menu-listing {
         ul {
@@ -232,35 +224,45 @@
           padding: 0;
 
           li {
+            border-bottom: 1px solid $white;
+            position: relative;
             a {
               display: block;
-              color: $gray-4;
+              color: $white;
               display: block;
               position: relative;
-              padding: 16px 16px 16px 0;
+              padding: 26px 76px 26px 0;
               text-decoration: none;
+              text-transform: uppercase;
               .right-arrow-icon {
+                svg {
+                  fill: $white;
+                  width: 30px;
+                  height: 30px;
+                }
+              }
+
+              &.with-sublevel {
                 position: absolute;
                 right: 0;
                 top: 0;
-                bottom: 0;
-                margin: auto;
-                height: 25px;
+                z-index: 100;
+                background: rgba(255, 255, 255, 0.02);
+                padding: 20px 24px;
 
-                svg {
-                  fill: $gray-4;
-                  width: 22px;
-                  height: 22px;
+                &:hover {
+                  opacity: 0.75;
                 }
               }
 
               &:hover,
               &:focus {
-                color: $primary-color;
+                color: $white;
+                opacity: 0.85;
 
                 .right-arrow-icon {
                   svg {
-                    fill: $primary-color;
+                    fill: $white;
                   }
                 }
               }
@@ -282,18 +284,19 @@
       .modal-header {
         border-bottom: none;
         padding-bottom: 12px;
-        font-size: 0.857142em;
-        border-bottom: 1px solid $gray-7;
+        font-size: $font-size-16px;
+        border-bottom: 1px solid $white;
 
         .left-title-out {
           a {
-            color: $gray-4;
+            color: $white;
             text-decoration: none;
             padding-left: 24px;
             position: relative;
+            text-transform: uppercase;
 
             svg {
-              fill: $gray-4;
+              fill: $white;
               width: 22px;
               height: 22px;
               position: absolute;
@@ -303,141 +306,12 @@
 
             &:hover,
             &:focus {
-              color: $primary-color;
+              color: rgba(255, 255, 255, 0.85);
 
               svg {
-                fill: $primary-color;
+                fill: $white;
+                opacity: 0.85;
               }
-            }
-          }
-        }
-
-        button {
-          &.close {
-            color: $primary-color;
-            opacity: 1;
-            font-size: 1em;
-            text-shadow: none;
-
-            .cross-icon {
-              font-size: 1.7em;
-              vertical-align: middle;
-              display: inline-block;
-              padding-left: 4px;
-            }
-          }
-        }
-      }
-
-      .modal-footer {
-        border: none;
-        padding: 0;
-        border-top: 1px solid $gray-7;
-
-        .left-btn {
-          margin-right: 2px;
-        }
-
-        .xs-main-menu-l1-footer {
-          width: 100%;
-          padding: 8px 16px;
-          margin: 16px 0 0 0;
-          .user-profile-btn-group,
-          .my-app-btn-group {
-            width: 50%;
-
-            &.show {
-              .user-profile-btn {
-                background: linear-gradient(
-                  to bottom,
-                  $button-highlight-color-logged-in-user 0%,
-                  $button-highlight-color-logged-in-user 100%
-                );
-
-                &:hover {
-                  svg {
-                    fill: $gray-9;
-                  }
-                }
-              }
-            }
-          }
-
-          .user-profile-dropdown,
-          .my-app-dropdown {
-            min-width: 175px;
-            max-width: 175px;
-            border-radius: 0;
-            box-shadow: none;
-            background-color: $black;
-            color: $white;
-          }
-
-          .user-profile-dropdown-inner,
-          .my-app-dropdown-inner {
-            padding: 8px 16px 0 16px;
-            color: $gray-3;
-            letter-spacing: 0.25px;
-
-            ul {
-              list-style: none;
-              margin: 0;
-              padding: 0;
-
-              li {
-                padding: 0;
-                margin: 0;
-
-                a {
-                  display: block;
-                  color: $white;
-                  padding: 8px 0;
-                  text-decoration: none;
-                  font-size: $font-size-11px;
-
-                  &:hover {
-                    color: $primary-color;
-                  }
-                }
-
-                .user-name {
-                  font-weight: bold;
-                  padding-bottom: 8px;
-                  font-size: $font-size-13px;
-                }
-              }
-            }
-          }
-        }
-
-        .xs-main-menu-l2-footer {
-          width: 100%;
-          height: 140px;
-          padding: 0;
-          margin: 0;
-          text-align: center;
-          position: relative;
-
-          .menu-l2-footer-container {
-            position: absolute;
-            top: 50%;
-            -webkit-transform: translateY(-50%);
-            transform: translateY(-50%);
-            width: 100%;
-            text-align: center;
-          }
-          .promotion-title {
-            color: $white;
-            font-size: 1.42857em;
-            line-height: 24px;
-            margin-bottom: 8px;
-          }
-
-          .promotion-link {
-            a {
-              color: $primary-color;
-              text-decoration: none;
-              font-size: 1em;
             }
           }
         }
@@ -459,6 +333,9 @@
         .search-out,
         .cart-out {
           min-width: 40px;
+          a {
+            padding: 29px 22px;
+          }
         }
         a {
           padding: 29px 15px;

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved. -->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+	<bean id="gallagherscpiexchangeSystemSetup" class="com.gallagher.setup.GallagherscpiexchangeSystemSetup">
+		<!-- constructor arg injection example -->
+		<constructor-arg ref="gallagherscpiexchangeService" />
+	</bean>
+
+	<bean id="gallagherscpiexchangeService" class="com.gallagher.service.impl.DefaultGallagherscpiexchangeService">
+		<!-- setter injection example -->
+		<property name="modelService" ref="modelService" />
+		<property name="mediaService" ref="mediaService" />
+		<property name="flexibleSearchService" ref="flexibleSearchService" />
+	</bean>
+
+	<!-- Send Outbound Customer Service -->
+	<alias name="gallagherSCPICustomerOutboundService" alias="customerExportService" />
+	<bean id="gallagherSCPICustomerOutboundService"
+		class="com.gallagher.sap.sapcpicustomerexchange.service.impl.GallagherSCPICustomerOutboundService"
+		parent="sapCpiCustomerOutboundService" />
+
+	<!-- Outbound B2BCustomer Conversion Service -->
+	<alias name="gallagherSCPIB2BCustomerConversionService" alias="sapCpiB2BCustomerConversionService" />
+	<bean id="gallagherSCPIB2BCustomerConversionService"
+		class="com.gallagher.sap.sapcpicustomerexchangeb2b.outbound.services.impl.GallagherSCPIB2BCustomerConversionServiceImpl"
+		parent="sapCpiB2BCustomerDefaultConversionService" />
+
+
+	<!-- action to trigger the sap consumer -->
+	<alias alias="customerPublishAction" name="gallagherCustomerPublishAction" />
+	<bean id="gallagherCustomerPublishAction" class="com.gallagher.sapcustomerb2c.outbound.GallagherCustomerPublishAction"
+		parent="defaultCustomerPublishAction" />
+
+
+	<bean id="gallagherCsrfOutboundRequestDecorator"
+		class="com.gallagher.outboundservices.decorator.impl.GallagherCsrfOutboundRequestDecoratorImpl">
+		<property name="integrationRestTemplateFactory" ref="integrationRestTemplateFactory" />
+		<property name="cache" ref="csrfParametersCache" />
+	</bean>
+
+	<alias name="gallagherSapSalesConditionsContributor" alias="sapSalesConditionsContributor" />
+	<bean id="gallagherSapSalesConditionsContributor"
+		class="com.gallagher.sap.orderexchange.outbound.impl.GallagherSalesConditionsContributor"
+		parent="defaultSapSalesConditionsContributor" />
+
+	<alias name="gallagherSapOrderEntryContributor" alias="sapOrderEntryContributor" />
+	<bean id="gallagherSapOrderEntryContributor"
+		class="com.gallagher.sap.orderexchange.outbound.impl.GallagherOrderEntryContributor" parent="defaultSapOrderEntryContributor" />
+
+	<bean id="sapCpiOmsStockLevelPersistenceHook"
+      class="com.gallagher.sap.sapcpiorderexchange.inbound.events.GallagherSCPIOmmStockLevelPersistenceHook" />
+      
+   	<!-- customerID generator for newly-registered B2BCustomer -->
+	<bean id="sapb2bContactIdGenerator" class="de.hybris.platform.servicelayer.keygenerator.impl.PersistentKeyGenerator">
+		<property name="key" value="sap_b2b_contact_id" />
+		<property name="digits" value="${keygen.customer.sap_contact_id.digits}" />
+		<property name="start" value="${keygen.b2b.customer.sap_contact_id.start}" />
+		<property name="type" value="${keygen.customer.sap_contact_id.type}" />
+		<property name="template" value="${keygen.customer.sap_contact_id.template}" />
+	</bean>
+</beans>

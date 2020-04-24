@@ -634,7 +634,7 @@ public class UserManagementPageController extends MyCompanyPageController
 		final String emailLowerCase = email.toLowerCase();
 
 		//		if (!eValidator.isValid(email))
-		if (!(Pattern.matches("^[a-z0-9._%+{}|'=!$^&*?/-]+@[a-z.-]+\\.[a-z]+$", emailLowerCase)))
+		if (!(Pattern.matches("^([\\w-\\.]+)@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\\.)+(.*)$", emailLowerCase)))
 		{
 			existingCustomer.setEmailError("invalid");
 		}
@@ -655,7 +655,7 @@ public class UserManagementPageController extends MyCompanyPageController
 			try
 			{
 				final List<GallagherInboundCustomerEntry> existingCustomers = getGallagherC4COutboundServiceFacade()
-						.getCustomerInfoFromC4C(email);
+						.getCustomerInfoFromC4C(email, null);
 				if (CollectionUtils.isNotEmpty(existingCustomers) && existingCustomers.size() > 1)
 				{
 					existingCustomer.setContactID(existingCustomers.get(0).getContactID());

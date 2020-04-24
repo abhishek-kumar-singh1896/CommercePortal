@@ -1,0 +1,1527 @@
+##################################### CREATING RESTRICTIONS #########################
+
+$contentCatalog=amB2CContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+
+INSERT_UPDATE GallagherRegionRestriction;$contentCV[unique=true];uid[unique=true]				;name										;&uid							;region(code);language(isocode)
+										;						;GallagherAURegionRestriction	;Gallagher Australia Region Restriction		;GallagherAURegionRestriction	;au		;
+										;						;GallagherCARegionRestriction	;Gallagher Canada Region Restriction		;GallagherCARegionRestriction	;ca		;
+										;						;GallagherCAENRegionRestriction	;Gallagher Canada English Region Restriction;GallagherCAENRegionRestriction	;ca		;en
+										;						;GallagherCAFRRegionRestriction	;Gallagher Canada French Region Restriction	;GallagherCAFRRegionRestriction	;ca		;fr
+										;						;GallagherGlRegionRestriction	;Gallagher Global Region Restriction		;GallagherGlRegionRestriction	;global	;
+										;						;GallagherLATAMRegionRestriction;Gallagher Latin America Region Restriction	;GallagherLATAMRegionRestriction;latam	;
+										;						;GallagherNZRegionRestriction	;Gallagher New Zealand Region Restriction	;GallagherNZRegionRestriction	;nz		;
+										;						;GallagherUSRegionRestriction	;Gallagher United States Region Restriction	;GallagherUSRegionRestriction	;us		;
+										;						;GallagherCAENCARegionRestriction;Gallagher Canada en_CA Region Restriction	;GallagherCAENCARegionRestriction;ca		;en_CA
+										;						;GallagherCAFRCARegionRestriction;Galagher Canada fr_CA Region restriction	;GallagherCAFRCARegionRestriction;ca	;fr_CA
+
+
+
+###################################### EXTRA CATEORIES REMOVAL ########################
+
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+
+
+REMOVE Category;code[unique=true];$catalogVersion
+
+# Sub Categories for 'gallagher-westonfence'
+;insulated-suspension-posts
+#main categories
+;gallagher-westonfence
+
+# Sub Categories for 'power'
+;energisers
+
+# Sub Categories for 'permanent-fencing'
+;wire-strainers
+;electric-gates-and-accessories
+;permanent-fencing-gates
+
+# Sub Categories for 'portable-fencing'
+;tapes-wires-braids
+;posts-pigtails-and-tread-ins
+
+# 1.2 Sub Categories for 'weighing-and-eid'
+;eid-tag-readeres-and-barcoding-equipement
+
+# Sub Categories for 'automatic-watering'
+;applicable-to-all-products
+
+
+############################ CREATING CATEGORIES #############################
+
+$productCatalog=amB2CMasterProductCatalog
+$productCatalogName=Animal Management B2C US Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$supercategories=source(code, $catalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+
+# Insert Categories
+INSERT_UPDATE Category;code[unique=true];allowedPrincipals(uid)[default='customergroup'];$catalogVersion
+# Root Category
+;animal-management
+
+# Main Categories
+;electric-fencing
+;weighing-and-eid
+#;weighing-eid-and-animal-handling
+;wireless-water-monitoring
+;automatic-watering
+;apps-and-software
+;steel-gates-and-hardware
+;stock-prods-main
+#;promotions 
+
+# 1.1 Sub Categories for 'electric-fencing'
+;power
+;permanent-fencing
+;portable-fencing
+#;fence-construction
+;fence-conductors 
+
+
+# 1.1.1 Sub Categories for 'power'
+;mains-energizers
+;110-volt-energizers
+;multi-powered-energizers
+;battery-energizers 
+;solar-energizers 
+;solar-panels
+;solar-and-solar-kits 
+;remotes-and-fence-testers
+;batteries 
+;earthing 
+;power-system-accessories
+;grounding
+;power-management-tools
+
+# 1.1.2 Sub Categories for 'permanent-fencing'
+;gallagher-westonfence
+;gallagher-mega-anchor
+;wire-and-cable
+;clamps-and-joiners
+;posts
+;strainers
+;insulators
+;offsets
+;electric-gates
+;irrigator-fence-crossing-system  
+;pivot-irrigator-system
+;fence-tools-and-accessories
+;gate-hardware
+
+# 1.1.3 Sub Categories for 'portable-fencing'
+;tapes-wires-and-braids-pf
+;reels-and-accessories-pf
+;posts-pigtails-and-treadins-pf
+;all-in-one-portable-fences   
+;electric-fence-kits 
+;netting 
+
+# 1.1.4 Sub Categories for 'fence-construction'
+#;insulators 
+#;offsets
+#;posts
+#;strainers
+#;clamps-and-joiners
+#;fence-tools-and-accessories 
+#;gates-and-gate-accessories 
+
+# 1.1.4 Sub Categories for 'fence-conductors'
+;posts-pigtails-and-treadins-fc
+;reels-and-accessories-fc
+;hi-tensile-wire-and-cable 
+;tapes-wires-and-braids-fc
+
+
+# 1.2 Sub Categories for 'weighing-and-eid'
+;weigh-scales-and-data-collectors
+;scale-heads-and-data-collectors
+;loadbars-and-accessories
+;loadbars
+;platforms
+;platforms-and-crates
+;drafters
+;handlers-and-drafters
+;eid-tag-readers
+;eid-tag-readers-and-barcoding-equipment
+;weighing-accessories
+;stock-prods
+;stock-prods-and-accessories
+
+
+# Sub Categories for 'weighing-eid-and-animal-handling'
+#;stock-prods
+#;weigh-scales-and-data-collectors 
+#;loadbars-and-accessories  
+#;eid-tag-readers
+
+
+# 1.3 Sub Categories for 'wireless-water-monitoring'
+;water-flow-indicator 
+;one-tank-systems 
+;antennae-and-cables 
+;additional-system-components 
+
+
+# 1.4 Sub Categories for 'automatic-watering'
+;trough-valves
+;lil-spring 
+;equi-fount 
+;mira-fount
+;e-fount
+;big-spring
+;pet-tanks 
+;watering-accessories 
+
+
+# 1.5 Sub Categories for 'apps-and-software'
+;livestock
+;fence
+
+
+# 1.6 Sub Categories for 'steel-gates-and-hardware'
+;gates
+;gate-hardware
+
+ 
+# 1.7 Sub Categories for 'stock-prods-main'
+
+
+
+# 1.9 Sub Categories for 'promotions'
+#;bargain-barn
+
+
+# Insert Category Structure
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;electric-fencing;animal-management
+;weighing-and-eid;animal-management
+#;weighing-eid-and-animal-handling;animal-management
+;wireless-water-monitoring;animal-management
+;steel-gates-and-hardware;animal-management
+;apps-and-software;animal-management
+;automatic-watering;animal-management
+;stock-prods-main;animal-management
+#;promotions;animal-management
+
+;power;electric-fencing
+;permanent-fencing;electric-fencing
+;portable-fencing;electric-fencing
+#;fence-construction;electric-fencing
+;fence-conductors;electric-fencing
+
+;mains-energizers;power
+;remotes-and-fence-testers;power
+;power-system-accessories;power
+;multi-powered-energizers;power
+;battery-energizers;power 
+;solar-energizers;power
+;solar-panels;power
+;batteries;power
+;earthing;power
+;solar-and-solar-kits;power
+;110-volt-energizers;power
+;grounding;power
+;power-management-tools;power
+
+;wire-and-cable;permanent-fencing
+;strainers;permanent-fencing
+;insulators;permanent-fencing
+;offsets;permanent-fencing
+;electric-gates;permanent-fencing
+;fence-tools-and-accessories;permanent-fencing
+;clamps-and-joiners;permanent-fencing
+;posts;permanent-fencing
+;irrigator-fence-crossing-system;permanent-fencing   
+;gallagher-westonfence;permanent-fencing
+;gallagher-mega-anchor;permanent-fencing
+;pivot-irrigator-system;permanent-fencing
+;gate-hardware;permanent-fencing
+
+;tapes-wires-and-braids-pf;portable-fencing
+;reels-and-accessories-pf;portable-fencing
+;posts-pigtails-and-treadins-pf;portable-fencing
+;all-in-one-portable-fences;portable-fencing
+;electric-fence-kits;portable-fencing
+;netting;portable-fencing
+
+#;insulators;fence-construction 
+#;offsets;fence-construction 
+#;posts;fence-construction 
+#;strainers;fence-construction 
+#;clamps-and-joiners;fence-construction 
+#;fence-tools-and-accessories;fence-construction 
+#;gates-and-gate-accessories;fence-construction 
+
+;reels-and-accessories-fc;fence-conductors 
+;hi-tensile-wire-and-cable;fence-conductors
+;tapes-wires-and-braids-fc;fence-conductors
+;posts-pigtails-and-treadins-fc;fence-conductors
+
+;weigh-scales-and-data-collectors;weighing-and-eid
+;loadbars-and-accessories;weighing-and-eid
+;loadbars;weighing-and-eid
+;platforms;weighing-and-eid
+;drafters;weighing-and-eid
+;eid-tag-readers;weighing-and-eid
+;scale-heads-and-data-collectors;weighing-and-eid
+;weighing-accessories;weighing-and-eid
+;stock-prods-and-accessories;weighing-and-eid
+;platforms-and-crates;weighing-and-eid
+
+#;handlers-and-drafters;weighing-eid-and-animal-handling
+#;stock-prods;weighing-eid-and-animal-handling
+#;weigh-scales-and-data-collectors;weighing-eid-and-animal-handling
+#;loadbars-and-accessories;weighing-eid-and-animal-handling
+#;eid-tag-readers;weighing-eid-and-animal-handling
+
+;water-flow-indicator;wireless-water-monitoring
+;one-tank-systems;wireless-water-monitoring
+;antennae-and-cables;wireless-water-monitoring
+;additional-system-components;wireless-water-monitoring
+
+;gates;steel-gates-and-hardware
+;gate-hardware;steel-gates-and-hardware
+
+;livestock;apps-and-software
+;fence;apps-and-software
+
+;trough-valves;automatic-watering
+;lil-spring;automatic-watering
+;equi-fount;automatic-watering
+;mira-fount;automatic-watering
+;e-fount;automatic-watering
+;big-spring;automatic-watering
+;pet-tanks;automatic-watering
+;watering-accessories;automatic-watering
+
+#;bargain-barn;promotions
+
+
+
+################################# CATEGORIES LOCALIZATION (ENGLISH) #############################
+
+
+$productCatalog=amB2CMasterProductCatalog
+$productCatalogName=Animal Management B2C US Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+
+# Language
+$lang=en
+
+
+# Create Categories
+UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
+;animal-management;;Animal Management
+
+# Main Categories
+;electric-fencing;;Electric Fencing
+;weighing-and-eid;;Weighing and EID 
+#;weighing-eid-and-animal-handling;;"Weighing, EID and Animal Handling"
+;wireless-water-monitoring;;Wireless Water Monitoring 
+;steel-gates-and-hardware;;Steel Gates and Hardware 
+;apps-and-software;;Apps and Software 
+;automatic-watering;;Automatic Watering 
+;stock-prods-main;;Stock Prods 
+#;promotions;;Promotions
+
+# 1.1 Sub Categories for 'electric-fencing'
+;power;;Power
+;permanent-fencing;;Permanent Fencing
+;portable-fencing;;Portable Fencing
+#;fence-construction;;Fence Construction
+;fence-conductors;;Fence Conductors
+
+# 1.1.1 Sub Categories for 'power'
+;mains-energizers;;Mains Energizers
+;remotes-and-fence-testers;;Remotes and Fence Testers
+;power-system-accessories;;Power System Accessories 
+;multi-powered-energizers;;Multi Powered Energizers
+;battery-energizers;;Power System Accessories 
+;solar-energizers;;Solar Energizers
+;solar-panels;;Solar Panels
+;batteries;;Batteries
+;earthing;;Earthing
+;solar-and-solar-kits;;Solar and Solar Kits 
+;110-volt-energizers;;110 Volt Energizers 
+;grounding;;Grounding
+;power-management-tools;;Power Management Tools
+
+# 1.1.2 Sub Categories for 'permanent-fencing'
+;wire-and-cable;;Wire and Cable 
+;strainers;; Strainers
+;insulators;; Insulators
+;offsets;; Offsets
+;electric-gates;; Electric Gates
+;fence-tools-and-accessories;; Fence Tools and Accessories
+;clamps-and-joiners;; Clamps and Joiners 
+;posts;; Posts
+;irrigator-fence-crossing-system;;Irrigator Fence Crossing System 
+;gallagher-westonfence;; Gallagher Westonfence
+;gallagher-mega-anchor;; Gallagher Mega Anchor
+;pivot-irrigator-system;;Pivot Irrigator System
+;gate-hardware;; Gate Hardware
+
+# 1.1.3 Sub Categories for 'portable-fencing'
+;tapes-wires-and-braids-pf;;"Tapes, Wires, Braids"
+;reels-and-accessories-pf;;Reels and Accessories 
+;posts-pigtails-and-treadins-pf;;"Posts - Pigtails and Tread-ins"
+;all-in-one-portable-fences;;"All-in-one Portable Fences"
+;electric-fence-kits;;Electric Fence Kits
+;netting;;Netting
+
+# 1.1.4 Sub Categories for 'fence-construction'
+#;insulators 
+#;offsets
+#;posts
+#;strainers
+#;clamps-and-joiners 
+#;fence-tools-and-accessories 
+#;gates-and-gate-accessories;;Gates and Gate Accessories 
+
+# 1.1.5 Sub Categories for 'fence-conductors'
+;reels-and-accessories-fc;;;Reels and Accessories 
+;hi-tensile-wire-and-cable;;"Hi-Tensile Wire and Cable"
+;tapes-wires-and-braids-fc;;"Tapes, Wires and Braids"
+;posts-pigtails-and-treadins-fc;;"Posts - Pigtails and Treadins"
+
+
+# 1.2 Sub Categories for 'weighing-and-eid'
+;weigh-scales-and-data-collectors;;Weigh Scales and Data Collectors
+;loadbars-and-accessories;;Loadbars and Accessories 
+;loadbars;;Loadbars
+;platforms;;Platforms 
+;drafters;;Drafters 
+;eid-tag-readers;;EID Tag Readers 
+;scale-heads-and-data-collectors;;Scale Heads and Data Collectors;
+;weighing-accessories;;Weighing Accessories
+;stock-prods-and-accessories;;Stock Prods and Accessories 
+;eid-tag-readers-and-barcoding-equipment;;EID tag readeres and Barcoding Equipment 
+
+# 1.3 Sub Categories for 'weighing-eid-and-animal-handling'
+;platforms-and-crates;;Platforms and Crates
+;handlers-and-drafters;;Handlers and Drafters 
+;stock-prods;;Stock Prods
+#;weigh-scales-and-data-collectors 
+#;loadbars-and-accessories  
+#;eid-tag-readers
+
+
+# 1.4 Sub Categories for 'wireless-water-monitoring'
+;water-flow-indicator;;Water Flow Indicator 
+;one-tank-systems;;One Tank Systems
+;antennae-and-cables;;Antennae and Cables 
+;additional-system-components;;Additional System Components
+
+
+# 1.5 Sub Categories for 'steel-gates-and-hardware'
+;gates;;Gates
+;gate-hardware;;Hardware
+
+
+# 1.6 Sub Categories for 'apps-and-software'
+;livestock;;Livestock
+;fence;;Fence
+
+
+# 1.7 Sub Categories for 'automatic-watering'
+;trough-valves;;Trough Valves
+;lil-spring;;Lil'Spring 
+;equi-fount;;EQUIFount 
+;mira-fount;;MiraFount
+;e-fount;;E-Fount
+;big-spring;;BIGSpring
+;pet-tanks;;Pet Tanks
+;watering-accessories;;Watering Accessories 
+
+ 
+# 1.8 Sub Categories for 'stock-prods-main'
+
+
+
+# 1.9 Sub Categories for 'promotions'
+#;bargain-barn;;Bargain Barn
+
+
+############################## CATEGORIES CLASSIFICATION ###############################
+
+$productCatalog=amB2CMasterProductCatalog
+$productCatalogName=Animal Management B2C US Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$classCatalogVersion=catalogversion(catalog(id[default='AMB2CClassification']),version[default='1.0'])[unique=true,default='AMB2CClassification:1.0']
+$classSystemVersion=systemVersion(catalog(id[default='AMB2CClassification']),version[default='1.0'])[unique=true]
+$class=classificationClass(ClassificationClass.code,$classCatalogVersion)[unique=true]
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+$attribute=classificationAttribute(code,$classSystemVersion)[unique=true]
+$unit=unit(code,$classSystemVersion)
+
+# Insert Classifications
+INSERT_UPDATE ClassificationClass;$classCatalogVersion;code[unique=true];allowedPrincipals(uid)[default='customergroup']
+# Classification Categories for 'power'
+;;mains-energizers
+;;remotes-and-fence-testers
+;;power-system-accessories
+;;multi-powered-energizers
+;;battery-energizers 
+;;solar-energizers 
+;;solar-panels
+;;batteries 
+;;earthing 
+;;solar-and-solar-kits 
+;;110-volt-energizers   
+;;grounding
+;;power-management-tools
+
+# Classification Categories for 'permanent-fencing'
+;;wire-and-cable
+;;strainers
+;;insulators
+;;offsets
+;;electric-gates
+;;fence-tools-and-accessories
+;;clamps-and-joiners
+;;posts
+;;irrigator-fence-crossing-system  
+;;gallagher-westonfence
+;;gallagher-mega-anchor
+;;pivot-irrigator-system
+;;gate-hardware
+
+# Classification Categories for 'portable-fencing'
+;;tapes-wires-and-braids-pf
+;;reels-and-accessories-pf
+;;posts-pigtails-and-treadins-pf
+;;all-in-one-portable-fences   
+;;electric-fence-kits 
+;;netting 
+
+# Classification Categories for 'fence-construction'
+#;;insulators 
+#;;offsets
+#;;posts
+#;;strainers
+#;;clamps-and-joiners 
+#;;fence-tools-and-accessories 
+#;;gates-and-gate-accessories
+
+# Classification Categories for 'fence-conductors'
+;;reels-and-accessories-fc
+;;hi-tensile-wire-and-cable
+;;tapes-wires-and-braids-fc
+;;posts-pigtails-and-treadins-fc
+
+
+# Classification Categories for 'weighing-and-eid'
+;;weigh-scales-and-data-collectors
+;;loadbars-and-accessories
+;;loadbars
+;;platforms
+;;drafters
+;;eid-tag-readers
+;;scale-heads-and-data-collectors
+;;weighing-accessories 
+;;stock-prods-and-accessories
+
+# Classification Categories for 'weighing-eid-and-animal-handling'
+;;platforms-and-crates
+;;handlers-and-drafters
+;;stock-prods
+#;;weigh-scales-and-data-collectors 
+#;;loadbars-and-accessories  
+#;;eid-tag-readers
+
+# Classification Categories for 'wireless-water-monitoring'
+;;water-flow-indicator 
+;;one-tank-systems 
+;;antennae-and-cables 
+;;additional-system-components
+
+# Classification Categories for 'steel-gates-and-hardware'
+;;gates
+;;gate-hardware
+
+# Classification Categories for 'apps-and-software'
+;;livestock
+;;fence
+
+# Classification Categories for 'automatic-watering'
+;;trough-valves
+;;lil-spring 
+;;equi-fount 
+;;mira-fount
+;;e-fount
+;;big-spring
+;;pet-tanks 
+;;watering-accessories 
+
+# Classification Categories for 'promotions'
+#;;bargain-barn
+
+# Insert Classification Attributes
+INSERT_UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true]
+;;energizer-type
+;;animal-type
+;;area-of-fence
+;;multi-wire-distance-typical
+;;stored-joules
+;;i-series-compatible
+;;outdoor-suitable
+;;product-type
+;;conductor-type
+;;voltage-over-2km
+;;voltage-over-5km
+;;voltage-over-10km
+;;resistance
+;;strainer-type
+;;post-type
+;;insulator-type
+;;mounting-type
+;;gate-type
+;;use
+;;mixed-metals
+;;voltage-over-500m
+;;voltage-over-1km
+;;fence-type
+;;product-features
+;;strength
+;;offset-mounting-type
+;;primary-usage
+;;wires
+;;post-height
+;;area-of-typical-fence
+;;area-of-clean-fence
+;;multi-wire-distance-clean
+;;capacity
+
+
+# Links ClassificationClasses to Categories
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;mains-energizers;mains-energizers
+;remotes-and-fence-testers;remotes-and-fence-testers
+;power-system-accessories;power-system-accessories
+;multi-powered-energizers;multi-powered-energizers
+;battery-energizers;battery-energizers 
+;solar-energizers;solar-energizers 
+;solar-panels;solar-panels
+;batteries;batteries 
+;earthing;earthing
+;solar-and-solar-kits;solar-and-solar-kits 
+;110-volt-energizers;110-volt-energizers
+;grounding;grounding
+;power-management-tools;power-management-tools
+
+;wire-and-cable;wire-and-cable
+;strainers;strainers
+;insulators;insulators
+;offsets;offsets
+;electric-gates;electric-gates
+;fence-tools-and-accessories;fence-tools-and-accessories
+;clamps-and-joiners;clamps-and-joiners
+;posts;posts
+;irrigator-fence-crossing-system;irrigator-fence-crossing-system  
+;gallagher-westonfence;gallagher-westonfence
+;gallagher-mega-anchor;gallagher-mega-anchor
+;pivot-irrigator-system;pivot-irrigator-system
+;gate-hardware;gate-hardware
+
+;tapes-wires-and-braids-pf;tapes-wires-and-braids-pf
+;reels-and-accessories-pf;reels-and-accessories-pf
+;posts-pigtails-and-treadins-pf;posts-pigtails-and-treadins-pf
+;all-in-one-portable-fences;all-in-one-portable-fences
+;electric-fence-kits;electric-fence-kits
+;netting;netting
+
+;tapes-wires-and-braids-fc;tapes-wires-and-braids-fc
+;reels-and-accessories-fc;reels-and-accessories-fc
+;posts-pigtails-and-treadins-fc;posts-pigtails-and-treadins-fc
+
+#;gates-and-gate-accessories;gates-and-gate-accessories
+ 
+;hi-tensile-wire-and-cable;hi-tensile-wire-and-cable
+
+;weigh-scales-and-data-collectors;weigh-scales-and-data-collectors
+;loadbars-and-accessories;loadbars-and-accessories
+;loadbars;loadbars
+;platforms;platforms
+;drafters;drafters
+;eid-tag-readers;eid-tag-readers
+;scale-heads-and-data-collectors;scale-heads-and-data-collectors
+;weighing-accessories;weighing-accessories
+;stock-prods-and-accessories;stock-prods-and-accessories
+
+;platforms-and-crates;platforms-and-crates
+;handlers-and-drafters;handlers-and-drafters
+;stock-prods;stock-prods
+
+;water-flow-indicator;water-flow-indicator
+;one-tank-systems;one-tank-systems
+;antennae-and-cables;antennae-and-cables
+;additional-system-components;additional-system-components
+
+;gates;gates
+;gate-hardware;gate-hardware
+
+;livestock;livestock
+;fence;fence
+
+;trough-valves;trough-valves
+;lil-spring;lil-spring
+;equi-fount;equi-fount
+;mira-fount;mira-fount
+;e-fount;e-fount
+;big-spring;big-spring
+;pet-tanks;pet-tanks
+;watering-accessories;watering-accessories 
+
+#;bargain-barn;bargain-barn
+
+INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attributeType(code[default=string]);multiValued[default=false];range[default=false];localized[default=true]
+# For Classification Category 'mains-energizers'
+;mains-energizers;animal-type;1;
+;mains-energizers;area-of-fence;2;Acres;number
+;mains-energizers;area-of-typical-fence;3;Acres;number
+;mains-energizers;area-of-clean-fence;4;Acres;number
+;mains-energizers;multi-wire-distance-typical;5;KM;number
+;mains-energizers;multi-wire-distance-clean;6;KM;number
+;mains-energizers;stored-joules;7;Joules;number
+;mains-energizers;i-series-compatible;8;;boolean
+;mains-energizers;outdoor-suitable;9;;boolean 
+
+# For Classification Category 'multi-powered-energizers'
+;multi-powered-energizers;animal-type;1;
+;multi-powered-energizers;area-of-fence;2;Acres;number
+;multi-powered-energizers;area-of-typical-fence;3;Acres;number
+;multi-powered-energizers;area-of-clean-fence;4;Acres;number
+;multi-powered-energizers;multi-wire-distance-typical;5;KM;number
+;multi-powered-energizers;multi-wire-distance-clean;6;KM;number
+;multi-powered-energizers;stored-joules;7;Joules;number
+;multi-powered-energizers;i-series-compatible;8;;boolean
+;multi-powered-energizers;outdoor-suitable;9;;boolean
+
+# For Classification Category 'solar-energizers'
+;solar-energizers;animal-type;1;
+;solar-energizers;area-of-fence;2;Acres;number
+;solar-energizers;area-of-typical-fence;3;Acres;number
+;solar-energizers;area-of-clean-fence;4;Acres;number
+;solar-energizers;multi-wire-distance-typical;5;KM;number
+;solar-energizers;multi-wire-distance-clean;6;KM;number
+;solar-energizers;stored-joules;7;Joules;number
+;solar-energizers;i-series-compatible;8;;boolean
+;solar-energizers;outdoor-suitable;9;;boolean
+
+# For Classification Category 'battery-energizers'
+;battery-energizers;animal-type;1;
+;battery-energizers;area-of-fence;2;Acres;number
+;battery-energizers;area-of-typical-fence;3;Acres;number
+;battery-energizers;area-of-clean-fence;4;Acres;number
+;battery-energizers;multi-wire-distance-typical;5;KM;number
+;battery-energizers;multi-wire-distance-clean;6;KM;number
+;battery-energizers;stored-joules;7;Joules;number
+;battery-energizers;i-series-compatible;8;;boolean
+;battery-energizers;outdoor-suitable;9;;boolean
+
+# For Classification Category '110-volt-energizers '
+;110-volt-energizers ;animal-type;1;
+;110-volt-energizers ;area-of-fence;2;Acres;number
+;110-volt-energizers ;area-of-typical-fence;3;Acres;number
+;110-volt-energizers ;area-of-clean-fence;4;Acres;number
+;110-volt-energizers ;multi-wire-distance-typical;5;KM;number
+;110-volt-energizers ;multi-wire-distance-clean;6;KM;number
+;110-volt-energizers ;stored-joules;7;Joules;number
+;110-volt-energizers ;i-series-compatible;8;;boolean
+;110-volt-energizers ;outdoor-suitable;9;;boolean
+
+
+# For Classification Category 'remotes-and-fence-testers'
+;remotes-and-fence-testers;i-series-compatible;0;;boolean
+
+# For Classification Category 'power-system-accessories'
+;power-system-accessories;product-type;0;
+;power-system-accessories;i-series-compatible;1;
+
+# For Classification Category 'wire-and-cable'
+;wire-and-cable;conductor-type;0;
+;wire-and-cable;voltage-over-2km;1;KV;number
+;wire-and-cable;voltage-over-5km;2;KV;number
+;wire-and-cable;voltage-over-10km;3;KV;number
+;wire-and-cable;resistance;4;;number
+
+# For Classification Category 'strainers'
+;strainers;strainer-type;0;
+
+# For Classification Category 'insulators'
+;insulators;post-type;0;
+;insulators;insulator-type;1;
+
+# For Classification Category 'offsets'
+;offsets;mounting-type;0;
+;offsets;offset-mounting-type;1;
+
+# For Classification Category 'electric-gates'
+;electric-gates;gate-type;0;
+
+# For Classification Category 'fence-tools-and-accessories'
+;fence-tools-and-accessories;use;0;
+
+# For Classification Category 'clamps-and-joiners'
+
+# For Classification Category 'posts'
+
+# For Classification Category 'gates-and-gate-accessories'
+#;gates-and-gate-accessories;gate-type;0;
+
+# For Classification Category 'tapes-wires-and-braids'
+;tapes-wires-and-braids-pf;mixed-metals;0;;boolean
+;tapes-wires-and-braids-pf;voltage-over-500m;1;KV;number
+;tapes-wires-and-braids-pf;voltage-over-1km;2;KV;number
+;tapes-wires-and-braids-pf;resistance;3;;number
+
+;tapes-wires-and-braids-fc;mixed-metals;0;;boolean
+;tapes-wires-and-braids-fc;voltage-over-500m;1;KV;number
+;tapes-wires-and-braids-fc;voltage-over-1km;2;KV;number
+;tapes-wires-and-braids-fc;resistance;3;;number
+
+# For Classification Category 'reels-and-accessories'
+;reels-and-accessories-pf;product-type;0;
+;reels-and-accessories-fc;product-type;0;
+
+
+# For Classification Category 'posts-pigtails-and-treadins'
+;posts-pigtails-and-treadins-pf;animal-type;0;
+;posts-pigtails-and-treadins-pf;fence-type;1;
+
+;posts-pigtails-and-treadins-fc;animal-type;0;
+;posts-pigtails-and-treadins-fc;fence-type;1;
+
+# For Classification Category 'all-in-one-portable-fences'
+
+# For Classification Category 'weigh-scales-and-data-collectors'
+;weigh-scales-and-data-collectors;product-features;0;
+
+# For Classification Category 'loadbars-and-accessories'
+;loadbars-and-accessories;animal-type;0;
+
+# For Classification Category 'platforms'
+
+# For Classification Category 'drafters'
+
+# For Classification Category 'eid-tag-readers'
+;eid-tag-readers;product-type;0;
+
+# For Classification Category 'platforms-and-crates'
+;platforms-and-crates;animal-type;0;
+
+# For Classification Category 'handlers-and-drafters'
+;handlers-and-drafters;product-features;0;
+
+# For Classification Category 'eid-tag-readeres-and-barcoding-equipement'
+#;eid-tag-readeres-and-barcoding-equipement;product-type;0;
+
+# For Classification Category 'scale-heads-and-data-collectors'
+;scale-heads-and-data-collectors;product-features;0;
+
+# For Classification Category 'gates'
+;gates;animal-type;0;
+;gates;strength;1;
+
+# For Classification Category 'gate-hardware'
+;gate-hardware;product-type;0;
+
+# For Classification Category 'insulated-suspension-posts'
+#;insulated-suspension-posts;primary-usage;0;
+#;insulated-suspension-posts;wires;1;;number
+#;insulated-suspension-posts;post-height;2;MM;number
+
+# For Classification Category 'trough-valves'
+;trough-valves;product-features;0;
+;trough-valves;animal-type;1;
+;trough-valves;capacity;2;;number
+
+# For Classification Category 'lil-spring '
+;lil-spring ;product-features;0;
+;lil-spring ;animal-type;1;
+;lil-spring ;capacity;2;;number
+
+# For Classification Category 'equi-fount'
+;equi-fount;product-features;0;
+;equi-fount;animal-type;1;
+;equi-fount;capacity;2;;number
+
+# For Classification Category 'mira-fount'
+;mira-fount;product-features;0;
+;mira-fount;animal-type;1;
+;mira-fount;capacity;2;;number
+
+# For Classification Category 'e-fount'
+;e-fount;product-features;0;
+;e-fount;animal-type;1;
+;e-fount;capacity;2;;number
+
+# For Classification Category 'big-spring'
+;big-spring;product-features;0;
+;big-spring;animal-type;1;
+;big-spring;capacity;2;;number
+
+# For Classification Category 'pet-tanks'
+;pet-tanks;product-features;0;
+;pet-tanks;animal-type;1;
+;pet-tanks;capacity;2;;number
+
+# For Classification Category 'watering-accessories'
+;watering-accessories ;product-features;0;
+;watering-accessories ;animal-type;1;
+;watering-accessories ;capacity;2;;number
+
+
+############################# CATEGORIES CLASSIFICATION LOCALIZATION (ENGLISH) #######################
+
+$productCatalog=amB2CMasterProductCatalog
+$productCatalogName=Animal Management B2C US Product Catalog
+$classCatalogVersion=catalogversion(catalog(id[default='AMB2CClassification']),version[default='1.0'])[unique=true,default='AMB2CClassification:1.0']
+$classSystemVersion=systemVersion(catalog(id[default='AMB2CClassification']),version[default='1.0'])[unique=true]
+
+# Language
+$lang=en
+
+
+# Create Categories
+UPDATE ClassificationClass;code[unique=true];name[lang=$lang];$classCatalogVersion
+# Classification Category for 'power'
+;mains-energizers;Mains Energizers
+;remotes-and-fence-testers;Remotes and Fence Testers
+;power-system-accessories;Power System Accessories 
+;multi-powered-energizers;Multi Powered Energizers
+;battery-energizers;Power System Accessories 
+;solar-energizers;Solar Energizers
+;solar-panels;Solar Panels
+;batteries;Batteries
+;earthing;Earthing
+;solar-and-solar-kits;Solar and Solar Kits 
+;110-volt-energizers;110 Volt Energizers 
+;grounding;Grounding
+;power-management-tools;Power Management Tools
+
+# 1.1.2 Classification category for 'permanent-fencing'
+;wire-and-cable;Wire and Cable 
+;strainers; Strainers
+;insulators; Insulators
+;offsets; Offsets
+;electric-gates; Electric Gates
+;fence-tools-and-accessories; Fence Tools and Accessories
+;clamps-and-joiners; Clamps and Joiners 
+;posts; Posts
+;irrigator-fence-crossing-system;Irrigator Fence Crossing System 
+;gallagher-westonfence; Gallagher Westonfence
+;gallagher-mega-anchor; Gallagher Mega Anchor
+;pivot-irrigator-system;Pivot Irrigator System
+;gate-hardware; Gate Hardware
+
+# 1.1.3 Classification category for 'portable-fencing'
+;tapes-wires-and-braids-pf;"Tapes, Wires and Braids"
+;reels-and-accessories-pf;"Reels and Accessories" 
+;posts-pigtails-and-treadins-pf;"Posts - Pigtails and Treadins"
+;all-in-one-portable-fences;"All-in-one Portable Fences"
+;electric-fence-kits;Electric Fence Kits
+;netting;Netting
+
+# 1.1.4 Classification category for 'fence-construction'
+#;insulators 
+#;offsets
+#;posts
+#;strainers
+#;clamps-and-joiners 
+#;fence-tools-and-accessories 
+#;gates-and-gate-accessories;Gates and Gate Accessories 
+
+# 1.1.5 Classification category for 'fence-conductors'
+;reels-and-accessories-fc;"Reels and Accessories" 
+;hi-tensile-wire-and-cable;"Hi-Tensile Wire and Cable"
+;tapes-wires-and-braids-fc;"Tapes, Wires and Braids"
+;posts-pigtails-and-treadins-fc;"Posts - Pigtails and Treadins"
+
+
+# 1.2 Classification category for 'weighing-and-eid'
+;weigh-scales-and-data-collectors;Weigh Scales and Data Collectors
+;loadbars-and-accessories;Loadbars and Accessories 
+;loadbars;Loadbars
+;platforms;Platforms 
+;drafters;Drafters 
+;eid-tag-readers;EID Tag Readers 
+;scale-heads-and-data-collectors;
+;weighing-accessories;Weighing Accessories
+;stock-prods-and-accessories;Stock Prods and Accessories 
+
+# 1.3 Classification category for 'weighing-eid-and-animal-handling'
+;platforms-and-crates;Platforms and Crates
+;handlers-and-drafters;Handlers and Drafters 
+;stock-prods;Stock Prods
+#;weigh-scales-and-data-collectors 
+#;loadbars-and-accessories  
+#;eid-tag-readers
+
+
+# 1.4 Classification category for 'wireless-water-monitoring'
+;water-flow-indicator;Water Flow Indicator 
+;one-tank-systems;One Tank Systems
+;antennae-and-cables;Antennae and Cables 
+;additional-system-components;Additional System Components
+
+
+# 1.5 Classification category for 'steel-gates-and-hardware'
+;gates;Gates
+;gate-hardware;Hardware
+
+
+# 1.6 Classification category for 'apps-and-software'
+;livestock;Livestock
+;fence;Fence
+
+
+# 1.7 Classification category for 'automatic-watering'
+;trough-valves;Trough Valves
+;lil-spring;Lil'Spring 
+;equi-fount;EQUIFount 
+;mira-fount;MiraFount
+;e-fount;E-Fount
+;big-spring;BIGSpring
+;pet-tanks;Pet Tanks
+;watering-accessories;Watering Accessories 
+
+ 
+# 1.8 Classification category for 'stock-prods-main'
+
+
+
+# 1.9 Classification category for 'promotions'
+#;bargain-barn;Bargain Barn
+
+
+
+# Create Categories
+UPDATE ClassificationAttribute;code[unique=true];$classSystemVersion;name[lang=$lang]
+;energiser-type;;Energiser Type
+;animal-type;;Animal Type
+;area-of-fence;;Area of Fence
+;multi-wire-distance-typical;;Multi Wire Distance (typical)
+;stored-joules;;Stored Joules
+;i-series-compatible;;i Series Compatible
+;outdoor-suitable;;Outdoor Suitable
+;product-type;;Product Type
+;conductor-type;;Conductor Type
+;voltage-over-2km;;Voltage (kV) over 2km
+;voltage-over-5km;;Voltage (kV) over 5km
+;voltage-over-10km;;Voltage (kV) over 10km
+;resistance;;Resistance (Ohms / km)
+;strainer-type;;Strainer Type
+;post-type;;Post Type
+;insulator-type;;Insulator Type
+;mounting-type;;Mounting Type
+;gate-type;;Gate Type
+;use;;Use
+;mixed-metals;;Mixed Metals
+;voltage-over-500m;;Voltage (kV) over 500m
+;voltage-over-1km;;Voltage (kV) over 1km
+;fence-type;;Fence Type
+;product-features;;Product Features
+;strength;;Strength
+;offset-mounting-type;;Offset Mounting Type
+;primary-usage;;Primary Usage
+;wires;;Wires
+;post-height;;Post Height
+;area-of-typical-fence;;Area of Typical Fence
+;area-of-clean-fence;;Area of Clean Fence
+;multi-wire-distance-clean;;Multi Wire Distance (clean)
+;capacity;;Capacity (L)
+
+
+
+################################## HEADER MEGA MENU ###################################
+
+$contentCatalog=amB2CContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=amB2CMasterProductCatalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);children(uid,$contentCV)[mode=replace];links(uid, $contentCV);&nodeRef;title[lang=en]
+;ProductsNavNode;;Products Navigation Node Menu;;Electricfencing_Nav,WeighingEID_Nav,WirelessWaterMonitoring_Nav,AutomaticWatering_Nav,AppsSoftware_Nav,SteelGatesandHardware_Nav,Stockprods_Nav;;ProductsNavNode;"Products"
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef;children(uid, $contentCV)[mode=replace]
+;HeaderLinkNavigationNode;;Header Link Navigation Node; root;; HeaderLinkNavigationNode; SolutionsNavNode,ProductsNavNode,SupportNavNode,ContactNavNode
+
+
+INSERT_UPDATE GallagherNavigationComponent;$contentCV[unique=true];uid[unique=true];name;styleClass;&componentRef;navigationNode(&nodeRef);promotionBanner(uid, $contentCV)
+;;GallagherHeaderNavigationComponent;Gallagher Header Navigation component;;GallagherHeaderNavigationComponent;HeaderLinkNavigationNode;GallagherBannerPromo
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;AllElectricFencingLink;All Electric Fencing Link;/Animal-Management/c/electric-fencing;electric-fencing;;
+;;AllWeighingEIDLink;All Weighing EID Link;/Animal-Management/c/weighing-and-eid;weighing-and-eid;;
+;;AllWirelessWaterMonitoringLink;All Wireless Water Monitoring;/Animal-Management/c/wireless-water-monitoring;wireless-water-monitoring;;
+;;AllSteelGatesandHardwareLink;All Steel Gates and Hardware Link;/Animal-Management/c/steel-gates-and-hardware;steel-gates-and-hardware;;
+#;;AllFarminformationtoolsLink;All Farm information tools Link;http://www.wiki.com/;;;
+;;AllAutomaticWateringLink;All Automatic Watering Link;/Animal-Management/c/automatic-watering;automatic-watering;;
+;;AllAppsSoftwaresLink;All Apps Softwares Link;/Animal-Management/c/apps-and-software;apps-and-software
+;;AllStockProdsMainLink;All Stock Prods;/Animal-Management/c/stock-prods;stock-prods-main
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;category(code, $productCV);target(code)[default='sameWindow'];styleAttributes
+;;AllStockProdsMainLink;All Stock prods Link;;;"nav-link"
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;AllAutomaticWateringLink;"All Automatic Watering"
+;;AllAppsSoftwaresLink;"All Apps & Softwares"
+;;AllStockProdsMainLink;"Stock Prods"
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];name;$contentCV[unique=true];children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
+;Electricfencing_Nav;Electric fencing Nav;;ElectricfencingPower_Nav,ElectricfencingPermanentfencing_Nav,ElectricfencingPortablefencing_Nav,ElectricfencingFenceconductors_Nav;"Electric Fencing";Electricfencing_Nav
+;WeighingEID_Nav;Weighing EID Nav;;WeighingAndEID_Nav;"Weighing and EID";WeighingEID_Nav
+;WirelessWaterMonitoring_Nav;Wireless Water Monitoring Nav;;WWMNav;"Wireless Water Monitoring" ;WirelessWaterMonitoring_Nav
+;AutomaticWatering_Nav; Automatic Watering Nav;;AWNav;"Automatic Watering";AutomaticWatering_Nav
+;AppsSoftware_Nav; All Apps and Software Nav;;AppSoftwareNav;"Apps and Software";AppsSoftware_Nav
+;SteelGatesandHardware_Nav;Steel Gatesand Hardware Nav;;SGHNav;"Steel Gates and Hardware";SteelGatesandHardware_Nav
+#;FarmInformationTools_Nav;Farm Information Tools Nav;;ElectricfencingPower_Nav4;"Farm information tools";FarmInformationTools_Nav
+;Stockprods_Nav;Stockprods Nav;;;"Stock prods";Stockprods_Nav
+#;NewProducts_Nav;New Products Nav;;;"New Products";NewProducts_Nav
+#;Promotions_Nav;Promotions Nav;;;"Promotions";Promotions_Nav
+
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];name;$contentCV[unique=true];navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
+;Electricfencing_NavEntry;Electric fencing Nav Entry;;Electricfencing_Nav;AllElectricFencingLink
+;WeighingEID_NavEntry;Weighing EID Nav Entry;;WeighingEID_Nav;AllWeighingEIDLink
+;WirelessWaterMonitoring_NavEntry;Wireless Water Monitoring Nav Entry;;WirelessWaterMonitoring_Nav;AllWirelessWaterMonitoringLink
+;AutomaticWatering_NavEntry;Automatic Watering Nav Entry;;AutomaticWatering_Nav;AllAutomaticWateringLink
+;AppsSoftware_NavEntry;Apps and Software Nav Entry;;AppsSoftware_Nav;AllAppsSoftwaresLink
+;SteelGatesandHardware_NavEntry;Steel Gatesand Hardware Nav Entry;;SteelGatesandHardware_Nav;AllSteelGatesandHardwareLink
+#;FarmInformationTools_NavEntry;Farm Information Tools Nav Entry;;FarmInformationTools_Nav;AllFarminformationtoolsLink
+;Stockprods_NavEntry;Stockprods Nav Entry;;Stockprods_Nav;AllStockProdsMainLink
+#;NewProducts_NavEntry;New Products Nav Entry;;NewProducts_Nav;NewProductsLink
+#;Promotions_NavEntry;Promotions Nav Entry;;Promotions_Nav;PromotionsLink
+
+#**********************************************************************************************************************************************************************
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
+;ElectricfencingPower_Nav;;Power Navigation Node Menu;PowerEnergisers_nav;"Power";ElectricfencingPower_Nav
+;ElectricfencingPermanentfencing_Nav;;Permanent fencing Navigation Node Menu;PermanentfencingWireandCable_nav;"Permanent fencing";ElectricfencingPermanentfencing_Nav
+;ElectricfencingPortablefencing_Nav;;Portable fencing Navigation Node Menu;PortablefencingTapesWiresBraids_nav;"Portable fencing";ElectricfencingPortablefencing_Nav
+;ElectricfencingFenceconductors_Nav;;Fence Conductors Navigation Node Menu;FenceConductors_nav;"Fence Conductors";ElectricfencingFenceconductors_Nav
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;title[lang=en];&nodeRef
+;PowerEnergisers_nav;;Power Navigation PowerEnergisers_nav;"Power";PowerEnergisers_nav
+;PermanentfencingWireandCable_nav;;Power Navigation PermanentfencingWireandCable_nav;"Permanent fencing";PermanentfencingWireandCable_nav
+;PortablefencingTapesWiresBraids_nav;;Power Navigation PortablefencingTapesWiresBraids_nav;"Portable fencing";PortablefencingTapesWiresBraids_nav
+;FenceConductors_nav;;Power navigation FenceConductors_nav;"Fence Conductors";FenceConductors_nav
+
+#***********************************************************************************************************************************************************************
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
+;PowerEnergisers_navEntry;;Power Navigation PowerEnergisers_nav Entry;PowerEnergisers_nav;PowerEnergisers_link
+;PowerEnergisers_navEntry1;;Power Navigation PowerEnergisers_nav Entry1;PowerEnergisers_nav;PowerEnergisers_link1
+;PowerEnergisers_navEntry2;;Power Navigation PowerEnergisers_nav Entry2;PowerEnergisers_nav;PowerEnergisers_link2
+;PowerEnergisers_navEntry3;;Power Navigation PowerEnergisers_nav Entry3;PowerEnergisers_nav;PowerEnergisers_link3
+;PowerEnergisers_navEntry4;;Power Navigation PowerEnergisers_nav Entry4;PowerEnergisers_nav;PowerEnergisers_link4
+;PowerEnergisers_navEntry5;;Power Navigation PowerEnergisers_nav Entry5;PowerEnergisers_nav;PowerEnergisers_link5
+;PowerEnergisers_navEntry6;;Power Navigation PowerEnergisers_nav Entry6;PowerEnergisers_nav;PowerEnergisers_link6
+;PowerEnergisers_navEntry7;;Power Navigation PowerEnergisers_nav Entry7;PowerEnergisers_nav;PowerEnergisers_link7
+;PowerEnergisers_navEntry8;;Power Navigation PowerEnergisers_nav Entry8;PowerEnergisers_nav;PowerEnergisers_link8
+;PowerEnergisers_navEntry9;;Power Navigation PowerEnergisers_nav Entry9;PowerEnergisers_nav;PowerEnergisers_link9
+;PowerEnergisers_navEntry10;;Power Navigation PowerEnergisers_nav Entry10;PowerEnergisers_nav;PowerEnergisers_link10
+;PowerEnergisers_navEntry11;;Power Navigation PowerEnergisers_nav Entry11;PowerEnergisers_nav;PowerEnergisers_link11
+;PowerEnergisers_navEntry12;;Power Navigation PowerEnergisers_nav Entry12;PowerEnergisers_nav;PowerEnergisers_link12
+
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;PowerEnergisers_link;Electric fencing PowerEnergisers_link;/Animal-Management/electric-fencing/power/c/mains-energizers;mains-energizers;;;
+;;PowerEnergisers_link1;Electric fencing PowerEnergisers_link1;/Animal-Management/electric-fencing/power/c/110-volt-energizers;110-volt-energizers;;;
+;;PowerEnergisers_link2;Electric fencing PowerEnergisers_link2;/Animal-Management/electric-fencing/power/c/multi-powered-energizers;multi-powered-energizers;;;
+;;PowerEnergisers_link3;Electric fencing PowerEnergisers_link3;/Animal-Management/electric-fencing/power/c/battery-energizers;battery-energizers;;;
+;;PowerEnergisers_link4;Electric fencing PowerEnergisers_link4;/Animal-Management/electric-fencing/power/c/solar-energizers;solar-energizers;;;
+;;PowerEnergisers_link5;Electric fencing PowerEnergisers_link5;/Animal-Management/electric-fencing/power/c/solar-panels;solar-panels;;;
+;;PowerEnergisers_link6;Electric fencing PowerEnergisers_link6;/Animal-Management/electric-fencing/power/c/solar-and-solar-kits;solar-and-solar-kits;;;
+;;PowerEnergisers_link7;Electric fencing PowerEnergisers_link7;/Animal-Management/electric-fencing/power/c/remotes-and-fence-testers;remotes-and-fence-testers;;;
+;;PowerEnergisers_link8;Electric fencing PowerEnergisers_link8;/Animal-Management/electric-fencing/power/c/batteries;batteries;;;
+;;PowerEnergisers_link9;Electric fencing PowerEnergisers_link9;/Animal-Management/electric-fencing/power/c/earthing;earthing;;;
+;;PowerEnergisers_link10;Electric fencing PowerEnergisers_link10;/Animal-Management/electric-fencing/power/c/power-system-accessories;power-system-accessories;;;
+;;PowerEnergisers_link11;Electric fencing PowerEnergisers_link11;/Animal-Management/electric-fencing/power/c/grounding;grounding;;;
+;;PowerEnergisers_link12;Electric fencing PowerEnergisers_link12;/Animal-Management/electric-fencing/power/c/power-management-tools;power-management-tools;;;
+
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;PowerEnergisers_link;"Mains Energisers"
+;;PowerEnergisers_link1;"110 Volt Energizers"
+;;PowerEnergisers_link2;"Multi Powered Energizers"
+;;PowerEnergisers_link3;"Battery Energizers"
+;;PowerEnergisers_link4;"Solar Energizers "
+;;PowerEnergisers_link5;"Solar Panels"
+;;PowerEnergisers_link6;"Solar and Solar Kits "
+;;PowerEnergisers_link7;"Remotes and Fence Testers"
+;;PowerEnergisers_link8;"Batteries "
+;;PowerEnergisers_link9;"Earthing "
+;;PowerEnergisers_link10;"Power system accessories"
+;;PowerEnergisers_link11;"Grounding"
+;;PowerEnergisers_link12;"Power Management Tools"
+
+
+#***********************************************************************************************************************************************************************
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
+;PermanentfencingWireandCable_navEntry;;Power Navigation PermanentfencingWireandCable_nav Entry;PermanentfencingWireandCable_nav;PermanentfencingWireandCable_link
+;PermanentfencingWireandCable_navEntry1;;Power Navigation PermanentfencingWireandCable_nav Entry1;PermanentfencingWireandCable_nav;PermanentfencingWireandCable_link1
+;PermanentfencingWireandCable_navEntry2;;Power Navigation PermanentfencingWireandCable_nav Entry2;PermanentfencingWireandCable_nav;PermanentfencingWireandCable_link2
+;PermanentfencingWireandCable_navEntry3;;Power Navigation PermanentfencingWireandCable_nav Entry3;PermanentfencingWireandCable_nav;PermanentfencingWireandCable_link3
+;PermanentfencingWireandCable_navEntry4;;Power Navigation PermanentfencingWireandCable_nav Entry4;PermanentfencingWireandCable_nav;PermanentfencingWireandCable_link4
+;PermanentfencingWireandCable_navEntry5;;Power Navigation PermanentfencingWireandCable_nav Entry5;PermanentfencingWireandCable_nav;PermanentfencingWireandCable_link5
+;PermanentfencingWireandCable_navEntry6;;Power Navigation PermanentfencingWireandCable_nav Entry6;PermanentfencingWireandCable_nav;PermanentfencingWireandCable_link6
+;PermanentfencingWireandCable_navEntry7;;Power Navigation PermanentfencingWireandCable_nav Entry7;PermanentfencingWireandCable_nav;PermanentfencingWireandCable_link7
+;PermanentfencingWireandCable_navEntry8;;Power Navigation PermanentfencingWireandCable_nav Entry8;PermanentfencingWireandCable_nav;PermanentfencingWireandCable_link8
+;PermanentfencingWireandCable_navEntry9;;Power Navigation PermanentfencingWireandCable_nav Entry9;PermanentfencingWireandCable_nav;PermanentfencingWireandCable_link9
+;PermanentfencingWireandCable_navEntry10;;Power Navigation PermanentfencingWireandCable_nav Entry10;PermanentfencingWireandCable_nav;PermanentfencingWireandCable_link10
+;PermanentfencingWireandCable_navEntry11;;Power Navigation PermanentfencingWireandCable_nav Entry11;PermanentfencingWireandCable_nav;PermanentfencingWireandCable_link11
+;PermanentfencingWireandCable_navEntry12;;Power Navigation PermanentfencingWireandCable_nav Entry12;PermanentfencingWireandCable_nav;PermanentfencingWireandCable_link12
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;PermanentfencingWireandCable_link;Electric fencing Permanentfencing_link;/Animal-Management/electric-fencing/permanent-fencing/c/gallagher-westonfence;gallagher-westonfence;;;
+;;PermanentfencingWireandCable_link1;Electric fencing Permanentfencing_link1;/Animal-Management/electric-fencing/permanent-fencing/c/gallagher-mega-anchor;gallagher-mega-anchor;;;
+;;PermanentfencingWireandCable_link2;Electric fencing Permanentfencing_link2;/Animal-Management/electric-fencing/permanent-fencing/c/wire-and-cable;wire-and-cable;;;
+;;PermanentfencingWireandCable_link3;Electric fencing Permanentfencing_link3;/Animal-Management/electric-fencing/permanent-fencing/c/clamps-and-joiners;clamps-and-joiners;;;
+;;PermanentfencingWireandCable_link4;Electric fencing Permanentfencing_link4;/Animal-Management/electric-fencing/permanent-fencing/c/posts;posts;;;
+;;PermanentfencingWireandCable_link5;Electric fencing Permanentfencing_link5;/Animal-Management/electric-fencing/permanent-fencing/c/strainers;strainers;;;
+;;PermanentfencingWireandCable_link6;Electric fencing Permanentfencing_link6;/Animal-Management/electric-fencing/permanent-fencing/c/insulators;insulators;;;
+;;PermanentfencingWireandCable_link7;Electric fencing Permanentfencing_link7;/Animal-Management/electric-fencing/permanent-fencing/c/offsets;offsets;;;
+;;PermanentfencingWireandCable_link8;Electric fencing Permanentfencing_link8;/Animal-Management/electric-fencing/permanent-fencing/c/electric-gates;electric-gates;;;
+;;PermanentfencingWireandCable_link9;Electric fencing Permanentfencing_link9;/Animal-Management/electric-fencing/permanent-fencing/c/irrigator-fence-crossing-system;irrigator-fence-crossing-system;;;
+;;PermanentfencingWireandCable_link10;Electric fencing Permanentfencing_link10;/Animal-Management/electric-fencing/permanent-fencing/c/pivot-irrigator-system;pivot-irrigator-system;;;
+;;PermanentfencingWireandCable_link11;Electric fencing Permanentfencing_link11;/Animal-Management/electric-fencing/permanent-fencing/c/fence-tools-and-accessories;fence-tools-and-accessories;;;
+;;PermanentfencingWireandCable_link12;Electric fencing Permanentfencing_link12;/Animal-Management/electric-fencing/permanent-fencing/c/gate-hardware;gate-hardware;;;
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;PermanentfencingWireandCable_link;"Gallagher Westonfence"
+;;PermanentfencingWireandCable_link1;"Gallagher Mega Anchor"
+;;PermanentfencingWireandCable_link2;"Wire and Cable"
+;;PermanentfencingWireandCable_link3;"Clamps and Joiners"
+;;PermanentfencingWireandCable_link4;"Posts"
+;;PermanentfencingWireandCable_link5;"Strainers"
+;;PermanentfencingWireandCable_link6;"Insulators"
+;;PermanentfencingWireandCable_link7;"Offsets"
+;;PermanentfencingWireandCable_link8;"Electric Gates"
+;;PermanentfencingWireandCable_link9;"Irrigator Fence Crossing System"
+;;PermanentfencingWireandCable_link10;"Pivot Irrigator System"
+;;PermanentfencingWireandCable_link11;"Fence tools and accessories"
+;;PermanentfencingWireandCable_link12;"Gate Hardware"
+
+
+#***********************************************************************************************************************************************************************
+
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;PortablefencingTapesWiresBraids_nav_link;Electric fencing Portablefencing_nav_link;/Animal-Management/electric-fencing/portable-fencing/c/tapes-wires-and-braids;tapes-wires-and-braids-pf;;;
+;;PortablefencingTapesWiresBraids_nav_link1;Electric fencing Portablefencing_nav_link1;/Animal-Management/electric-fencing/portable-fencing/c/reels-and-accessories;reels-and-accessories-pf;;;
+;;PortablefencingTapesWiresBraids_nav_link2;Electric fencing Portablefencing_nav_link2;/Animal-Management/electric-fencing/portable-fencing/c/posts-pigtails-and-treadins;posts-pigtails-and-treadins-pf;;;
+;;PortablefencingTapesWiresBraids_nav_link3;Electric fencing Portablefencing_nav_link2;/Animal-Management/electric-fencing/portable-fencing/c/all-in-one-portable-fences;all-in-one-portable-fences;;;
+;;PortablefencingTapesWiresBraids_nav_link4;Electric fencing Portablefencing_nav_link2;/Animal-Management/electric-fencing/portable-fencing/c/electric-fence-kits;electric-fence-kits;;;
+;;PortablefencingTapesWiresBraids_nav_link5;Electric fencing Portablefencing_nav_link2;/Animal-Management/electric-fencing/portable-fencing/c/netting;netting;;;
+
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
+;PortablefencingTapesWiresBraids_navEntry;;Power Navigation PortablefencingTapesWiresBraids_nav Entry;PortablefencingTapesWiresBraids_nav;PortablefencingTapesWiresBraids_nav_link
+;PortablefencingTapesWiresBraids_navEntry1;;Power Navigation PortablefencingTapesWiresBraids_nav Entry1;PortablefencingTapesWiresBraids_nav;PortablefencingTapesWiresBraids_nav_link1
+;PortablefencingTapesWiresBraids_navEntry2;;Power Navigation PortablefencingTapesWiresBraids_nav Entry2;PortablefencingTapesWiresBraids_nav;PortablefencingTapesWiresBraids_nav_link2
+;PortablefencingTapesWiresBraids_navEntry3;;Power Navigation PortablefencingTapesWiresBraids_nav Entry3;PortablefencingTapesWiresBraids_nav;PortablefencingTapesWiresBraids_nav_link3
+;PortablefencingTapesWiresBraids_navEntry4;;Power Navigation PortablefencingTapesWiresBraids_nav Entry4;PortablefencingTapesWiresBraids_nav;PortablefencingTapesWiresBraids_nav_link4
+;PortablefencingTapesWiresBraids_navEntry5;;Power Navigation PortablefencingTapesWiresBraids_nav Entry5;PortablefencingTapesWiresBraids_nav;PortablefencingTapesWiresBraids_nav_link5
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;PortablefencingTapesWiresBraids_nav_link;"Tapes, Wires, Braids"
+;;PortablefencingTapesWiresBraids_nav_link1;"Reels and Accessories"
+;;PortablefencingTapesWiresBraids_nav_link2;"Posts - Pigtails and Tread-ins"
+;;PortablefencingTapesWiresBraids_nav_link3;"All-in-one Portable Fences"
+;;PortablefencingTapesWiresBraids_nav_link4;"Electric Fence Kits"
+;;PortablefencingTapesWiresBraids_nav_link5;"Netting"
+
+
+#***********************************************************************************************************************************************************************
+
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;FenceConductors_nav_link;Electric fencing FenceConductors_nav_link;/Animal-Management/electric-fencing/fence-conductors/c/posts-pigtails-and-treadins;posts-pigtails-and-treadins-fc;;;
+;;FenceConductors_nav_link1;Electric fencing FenceConductors_nav_link1;/Animal-Management/electric-fencing/fence-conductors/c/reels-and-accessories;reels-and-accessories-fc;;;
+;;FenceConductors_nav_link2;Electric fencing FenceConductors_nav_link2;/Animal-Management/electric-fencing/fence-conductors/c/hi-tensile-wire-and-cable;hi-tensile-wire-and-cable;;;
+;;FenceConductors_nav_link3;Electric fencing FenceConductors_nav_link2;/Animal-Management/electric-fencing/fence-conductors/c/tapes-wires-and-braids;tapes-wires-and-braids-fc;;;
+
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
+;FenceConductors_navEntry;;Power Navigation FenceConductors_nav Entry;FenceConductors_nav;FenceConductors_nav_link
+;FenceConductors_navEntry1;;Power Navigation FenceConductors_nav Entry1;FenceConductors_nav;FenceConductors_nav_link1
+;FenceConductors_navEntry2;;Power Navigation FenceConductors_nav Entry2;FenceConductors_nav;FenceConductors_nav_link2
+;FenceConductors_navEntry3;;Power Navigation FenceConductors_nav Entry3;FenceConductors_nav;FenceConductors_nav_link3
+
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;FenceConductors_nav_link;"Tapes, Wires, Braids"
+;;FenceConductors_nav_link1;"Reels and Accessories"
+;;FenceConductors_nav_link2;"Posts - Pigtails and Tread-ins"
+;;FenceConductors_nav_link3;"All-in-one Portable Fences"
+
+
+#***********************************************************************************************************************************************************************
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
+;WeighingAndEID_Nav;;Weighing and EID Navigation Node Menu;WeighinEidNode_nav;"Weighing and EID";WeighingAndEID_Nav
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;title[lang=en];&nodeRef
+;WeighinEidNode_nav;;Weighin Eid Navigation WeighinEidNode_nav;"Weighing and EID";WeighinEidNode_nav
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
+;WeighinEidNode_navEntry;; WeighinEidNode_nav Entry;WeighinEidNode_nav;WeighinEid_link
+;WeighinEidNode_navEntry1;; WeighinEidNode_nav Entry1;WeighinEidNode_nav;WeighinEid_link1
+;WeighinEidNode_navEntry2;; WeighinEidNode_nav Entry2;WeighinEidNode_nav;WeighinEid_link2
+;WeighinEidNode_navEntry3;; WeighinEidNode_nav Entry3;WeighinEidNode_nav;WeighinEid_link3
+;WeighinEidNode_navEntry4;; WeighinEidNode_nav Entry4;WeighinEidNode_nav;WeighinEid_link4
+;WeighinEidNode_navEntry5;; WeighinEidNode_nav Entry5;WeighinEidNode_nav;WeighinEid_link5
+;WeighinEidNode_navEntry6;; WeighinEidNode_nav Entry6;WeighinEidNode_nav;WeighinEid_link6
+;WeighinEidNode_navEntry7;; WeighinEidNode_nav Entry7;WeighinEidNode_nav;WeighinEid_link7
+;WeighinEidNode_navEntry8;; WeighinEidNode_nav Entry8;WeighinEidNode_nav;WeighinEid_link8
+;WeighinEidNode_navEntry9;; WeighinEidNode_nav Entry9;WeighinEidNode_nav;WeighinEid_link9
+;WeighinEidNode_navEntry10;; WeighinEidNode_nav Entry10;WeighinEidNode_nav;WeighinEid_link10
+;WeighinEidNode_navEntry11;; WeighinEidNode_nav Entry11;WeighinEidNode_nav;WeighinEid_link11
+;WeighinEidNode_navEntry12;; WeighinEidNode_nav Entry12;WeighinEidNode_nav;WeighinEid_link12
+
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;WeighinEid_link;WeighinEid_link;/Animal-Management/weighing-and-eid/c/weigh-scales-and-data-collectors;weigh-scales-and-data-collectors;;;
+;;WeighinEid_link1; Weighing And Eid link1;/Animal-Management/weighing-and-eid/c/scale-heads-and-data-collectors;scale-heads-and-data-collectors;;;
+;;WeighinEid_link2; Weighing And Eid link2;/Animal-Management/weighing-and-eid/c/loadbars-and-accessories;loadbars-and-accessories;;;
+;;WeighinEid_link3; Weighing And Eid link3;/Animal-Management/weighing-and-eid/c/loadbars;loadbars;;;
+;;WeighinEid_link4; Weighing And Eid link4;/Animal-Management/weighing-and-eid/c/platforms;platforms;;;
+;;WeighinEid_link5; Weighing And Eid link5;/Animal-Management/weighing-and-eid/c/platforms-and-crates;platforms-and-crates;;;
+;;WeighinEid_link6; Weighing And Eid link6;/Animal-Management/weighing-and-eid/c/drafters;drafters;;;
+;;WeighinEid_link7; Weighing And Eid link7;/Animal-Management/weighing-and-eid/c/handlers-and-drafters;handlers-and-drafters;;;
+;;WeighinEid_link8; Weighing And Eid link8;/Animal-Management/weighing-and-eid/c/eid-tag-readers;eid-tag-readers;;;
+;;WeighinEid_link9; Weighing And Eid link9;/Animal-Management/weighing-and-eid/c/eid-tag-readers-and-barcoding-equipment;eid-tag-readers-and-barcoding-equipment;;;
+;;WeighinEid_link10; Weighing And Eid link10;/Animal-Management/weighing-and-eid/c/weighing-accessories;weighing-accessories;;;
+;;WeighinEid_link11; Weighing And Eid link11;/Animal-Management/weighing-and-eid/c/stock-prods;stock-prods;;;
+;;WeighinEid_link12; Weighing And Eid link12;/Animal-Management/weighing-and-eid/c/stock-prods-and-accessories;stock-prods-and-accessories;;;
+
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;WeighinEid_link;"Weigh Scales and Data Collectors"
+;;WeighinEid_link1;"Scale Heads and Data Collectors"
+;;WeighinEid_link2;"Loadbars and Accessories"
+;;WeighinEid_link3;"Loadbars"
+;;WeighinEid_link4;"Platforms"
+;;WeighinEid_link5;"Platforms and Crates"
+;;WeighinEid_link6;"Drafters"
+;;WeighinEid_link7;"Handlers and Drafters"
+;;WeighinEid_link8;"EID Tag Readers "
+;;WeighinEid_link9;"EID tag readeres and Barcoding Equipment"
+;;WeighinEid_link10;"Weighing Accessories"
+;;WeighinEid_link11;"Stock Prods"
+;;WeighinEid_link12;"Stock Prods and Accessories"
+
+
+#***********************************************************************************************************************************************************************
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
+;WWMNav;;Weighing and EID Navigation Node Menu;WWMNode_Nav;"Wireless Water Monitoring";WWMNav
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;title[lang=en];&nodeRef
+;WWMNode_Nav;;Wireless Water Monitoring Navigation Node Nav;"Wireless Water Monitoring";WWMNode_Nav
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
+;WWMNode_NavEntry;;WWMNode_Nav Entry;WWMNode_Nav;WWM_link
+;WWMNode_NavEntry1;;WWMNode_Nav Entry1;WWMNode_Nav;WWM_link1
+;WWMNode_NavEntry2;;WWMNode_Nav Entry2;WWMNode_Nav;WWM_link2
+;WWMNode_NavEntry3;;WWMNode_Nav Entry3;WWMNode_Nav;WWM_link3
+
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;WWM_link;Wireless Water Monitoring link;/Animal-Management/wireless-water-monitoring/c/water-flow-indicator;weigh-scales-and-data-collectors;;;
+;;WWM_link1;Wireless Water Monitoring link1;/Animal-Management/wireless-water-monitoring/c/one-tank-systems;scale-heads-and-data-collectors;;;
+;;WWM_link2;Wireless Water Monitoring link2;/Animal-Management/wireless-water-monitoring/c/antennae-and-cables ;loadbars-and-accessories;;;
+;;WWM_link3;Wireless Water Monitoring link3;/Animal-Management/wireless-water-monitoring/c/additional-system-components;loadbars;;;
+
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;WWM_link;"Water Flow Indicator"
+;;WWM_link1;"One Tank Systems"
+;;WWM_link2;"Antennae and Cables"
+;;WWM_link3;"Additional System Components"
+
+
+#***********************************************************************************************************************************************************************
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
+;AWNav;;Automatic Watering Navigation Node Menu;AWNode_Nav;"Automatic Watering";AWNav
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;title[lang=en];&nodeRef
+;AWNode_Nav;;Automatic Watering Navigation Node Nav;"Automatic Watering";AWNode_Nav
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
+;AWNode_NavEntry;;AWNode_Nav Entry;AWNode_Nav;AW_link
+;AWNode_NavEntry1;;AWNode_Nav Entry1;AWNode_Nav;AW_link1
+;AWNode_NavEntry2;;AWNode_Nav Entry2;AWNode_Nav;AW_link2
+;AWNode_NavEntry3;;AWNode_Nav Entry3;AWNode_Nav;AW_link3
+;AWNode_NavEntry4;;AWNode_Nav Entry4;AWNode_Nav;AW_link4
+;AWNode_NavEntry5;;AWNode_Nav Entry5;AWNode_Nav;AW_link5
+;AWNode_NavEntry6;;AWNode_Nav Entry6;AWNode_Nav;AW_link6
+;AWNode_NavEntry7;;AWNode_Nav Entry7;AWNode_Nav;AW_link7
+
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;AW_link;Automatic Watering link;/Animal-Management/automatic-watering/c/trough-valves;trough-valves;;;
+;;AW_link1;Automatic Watering link1;/Animal-Management/automatic-watering/c/lil-spring;lil-spring;;;
+;;AW_link2;Automatic Watering link2;/Animal-Management/automatic-watering/c/equi-fount;equi-fount;;;
+;;AW_link3;Automatic Watering link3;/Animal-Management/automatic-watering/c/mira-fount;mira-fount;;;
+;;AW_link4;Automatic Watering link4;/Animal-Management/automatic-watering/c/e-fount;e-fount;;;
+;;AW_link5;Automatic Watering link5;/Animal-Management/automatic-watering/c/big-spring;big-spring;;;
+;;AW_link6;Automatic Watering link6;/Animal-Management/automatic-watering/c/pet-tanks;pet-tanks;;;
+;;AW_link7;Automatic Watering link7;/Animal-Management/automatic-watering/c/watering-accessories;watering-accessories;;;
+
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;AW_link;"Trough Valves"
+;;AW_link1;"Lil'Spring"
+;;AW_link2;"EQUIFount"
+;;AW_link3;"MiraFount"
+;;AW_link4;"E-Fount"
+;;AW_link5;"BIGSpring"
+;;AW_link6;"Pet Tanks"
+;;AW_link7;"Watering Accessories"
+
+
+#***********************************************************************************************************************************************************************
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
+;AppSoftwareNav;;Steel Gates and Hardware Navigation Node Menu;AppSoftwareNode_Nav;"Apps and Software";AppSoftwareNav
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;title[lang=en];&nodeRef
+;AppSoftwareNode_Nav;;Steel Gates and Hardware Navigation Node Nav;"Apps and Software";AppSoftwareNode_Nav
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
+;AppsSoftwareNode_NavEntry;;AppSoftwareNode_Nav Entry;AppSoftwareNode_Nav;AppsSoftware_link
+;AppsSoftwareNode_NavEntry1;;AppSoftwareNode_Nav Entry1;AppSoftwareNode_Nav;AppsSoftware_link1
+
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;AppsSoftware_link;Apps and Software link;/Animal-Management/apps-and-software/c/livestock;livestock;;;
+;;AppsSoftware_link1;Apps and Software link1;/Animal-Management/apps-and-software/c/fence;fence;;;
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;AppsSoftware_link;"Livestock"
+;;AppsSoftware_link1;"Fence"
+
+
+#***********************************************************************************************************************************************************************
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
+;SGHNav;;Steel Gates and Hardware Navigation Node Menu;SGHNode_Nav;"Steel Gates and Hardware";SGHNav
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;title[lang=en];&nodeRef
+;SGHNode_Nav;;Steel Gates and Hardware Navigation Node Nav;"Steel Gates and Hardware";SGHNode_Nav
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
+;SGHNode_NavEntry;;SGHNode_Nav Entry;SGHNode_Nav;SGH_link
+;SGHNode_NavEntry1;;SGHNode_Nav Entry1;SGHNode_Nav;SGH_link1
+
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;SGH_link;Steel Gates and Hardware link;/Animal-Management/steel-gates-and-hardware/c/gates;gates;;;
+;;SGH_link1;Steel Gates and Hardware link1;/Animal-Management/steel-gates-and-hardware/c/gate-hardware;gate-hardware;;;
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;SGH_link;"Gates"
+;;SGH_link1;"Hardware"
+
+
+
+################################### MEGA MENU RESTRICTIONS ###############################
+
+$contentCatalog=amB2CContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged ])[default=$contentCatalog:Staged ]
+
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV)	   ;onlyOneRestrictionMustApply[default='true']
+
+;;PowerEnergisers_link;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherLATAMRegionRestriction
+;;PowerEnergisers_link1;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;PowerEnergisers_link2;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;PowerEnergisers_link3;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;PowerEnergisers_link4;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;PowerEnergisers_link5;GallagherNZRegionRestriction,GallagherGlRegionRestriction
+;;PowerEnergisers_link6;GallagherAURegionRestriction
+;;PowerEnergisers_link7;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;PowerEnergisers_link8;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction
+;;PowerEnergisers_link9;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherLATAMRegionRestriction
+;;PowerEnergisers_link10;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherLATAMRegionRestriction
+;;PowerEnergisers_link11;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;PowerEnergisers_link12;GallagherCARegionRestriction,GallagherUSRegionRestriction
+
+;;PermanentfencingWireandCable_link;GallagherAURegionRestriction
+;;PermanentfencingWireandCable_link1;GallagherAURegionRestriction
+;;PermanentfencingWireandCable_link2;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+;;PermanentfencingWireandCable_link3;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+;;PermanentfencingWireandCable_link4;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+;;PermanentfencingWireandCable_link5;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+;;PermanentfencingWireandCable_link6;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+;;PermanentfencingWireandCable_link7;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+;;PermanentfencingWireandCable_link8;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+;;PermanentfencingWireandCable_link9;GallagherNZRegionRestriction,GallagherGlRegionRestriction
+;;PermanentfencingWireandCable_link10;GallagherAURegionRestriction
+;;PermanentfencingWireandCable_link11;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+;;PermanentfencingWireandCable_link12;GallagherAURegionRestriction
+
+;;PortablefencingTapesWiresBraids_nav_link;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+;;PortablefencingTapesWiresBraids_nav_link1;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+;;PortablefencingTapesWiresBraids_nav_link2;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+;;PortablefencingTapesWiresBraids_nav_link3;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+;;PortablefencingTapesWiresBraids_nav_link4;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;PortablefencingTapesWiresBraids_nav_link5;GallagherCARegionRestriction,GallagherUSRegionRestriction
+
+;;FenceConductors_nav_link;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;FenceConductors_nav_link1;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;FenceConductors_nav_link2;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;FenceConductors_nav_link3;GallagherCARegionRestriction,GallagherUSRegionRestriction
+
+;;WeighinEid_link;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherLATAMRegionRestriction
+;;WeighinEid_link1;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;WeighinEid_link2;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherLATAMRegionRestriction
+;;WeighinEid_link3;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;WeighinEid_link4;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherLATAMRegionRestriction,GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;WeighinEid_link5;GallagherAURegionRestriction
+;;WeighinEid_link6;GallagherNZRegionRestriction,GallagherGlRegionRestriction
+;;WeighinEid_link7;GallagherAURegionRestriction
+;;WeighinEid_link8;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherLATAMRegionRestriction,GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;WeighinEid_link9;GallagherAURegionRestriction
+;;WeighinEid_link10;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;WeighinEid_link11;GallagherAURegionRestriction
+;;WeighinEid_link12;GallagherCARegionRestriction,GallagherUSRegionRestriction
+
+;;WWM_link;GallagherNZRegionRestriction,GallagherGlRegionRestriction
+;;WWM_link1;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherLATAMRegionRestriction
+;;WWM_link2;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction
+;;WWM_link3;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherLATAMRegionRestriction
+
+;;AW_link;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;AW_link1;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;AW_link2;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;AW_link3;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;AW_link4;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;AW_link5;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;AW_link6;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;AW_link7;GallagherCARegionRestriction,GallagherUSRegionRestriction
+
+;;AppsSoftware_link;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction
+;;AppsSoftware_link1;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction
+
+;;SGH_link;GallagherNZRegionRestriction
+;;SGH_link1;GallagherNZRegionRestriction
+
+;;AllStockProdsMainLink;GallagherNZRegionRestriction,GallagherGlRegionRestriction
+
