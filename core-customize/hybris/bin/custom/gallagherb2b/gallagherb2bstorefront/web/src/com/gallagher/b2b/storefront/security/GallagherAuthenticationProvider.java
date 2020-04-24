@@ -4,6 +4,7 @@
 package com.gallagher.b2b.storefront.security;
 
 import de.hybris.platform.acceleratorstorefrontcommons.security.AbstractAcceleratorAuthenticationProvider;
+import de.hybris.platform.commerceservices.enums.SiteChannel;
 import de.hybris.platform.jalo.JaloSession;
 import de.hybris.platform.jalo.user.User;
 import de.hybris.platform.jalo.user.UserManager;
@@ -65,7 +66,7 @@ public class GallagherAuthenticationProvider extends AbstractAcceleratorAuthenti
 
 		//update user if exist in commerce
 		final GallagherAccessToken galToken = getTokenDetails(accessToken);
-		customerFacade.updateCommerceCustomer(galToken, false);
+		customerFacade.updateCommerceCustomer(galToken, SiteChannel.B2B);
 		try
 		{
 			userDetails = retrieveUser(username);

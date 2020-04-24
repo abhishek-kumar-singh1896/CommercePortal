@@ -20,13 +20,15 @@ import com.gallagher.outboundservices.response.dto.GallagherRegisteredProduct;
 public interface GallagherC4COutboundServiceFacade
 {
 	/**
-	 * Returns contact information for an email from C4C via SCPI
+	 * Returns contact information for an keycloakGUID/email from C4C via SCPI
 	 *
 	 * @param customerEmail
+	 * @param keycloakGUID
+	 *           guid returned by keycloak
 	 *
-	 * @return List of contact entries for the email provided
+	 * @return List of contact entries for the email/keycloakGUID provided
 	 */
-	List<GallagherInboundCustomerEntry> getCustomerInfoFromC4C(final String email);
+	List<GallagherInboundCustomerEntry> getCustomerInfoFromC4C(final String email, final String keycloakGUID);
 
 	/**
 	 * Send Registered Product Information to C4C via SCPI

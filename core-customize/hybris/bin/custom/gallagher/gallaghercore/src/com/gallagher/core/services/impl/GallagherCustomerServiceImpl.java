@@ -5,6 +5,8 @@ package com.gallagher.core.services.impl;
 
 import de.hybris.platform.commerceservices.customer.CustomerAccountService;
 import de.hybris.platform.commerceservices.customer.DuplicateUidException;
+import de.hybris.platform.commerceservices.enums.SiteChannel;
+import de.hybris.platform.commerceservices.strategies.CustomerNameStrategy;
 import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.servicelayer.model.ModelService;
 
@@ -44,11 +46,14 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 	@Resource(name = "customerAccountService")
 	private CustomerAccountService customerAccountService;
 
+	@Resource(name = "customerNameStrategy")
+	private CustomerNameStrategy customerNameStrategy;
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean updateCommerceCustomer(final GallagherAccessToken token, final boolean createIfNotExists)
+	public boolean updateCommerceCustomer(final GallagherAccessToken token, final SiteChannel channel)
 	{
 		boolean success = false;
 
@@ -56,7 +61,7 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 
 		if (CollectionUtils.isEmpty(retrieveUserBySubjectId))
 		{
-			if (createIfNotExists)
+			if (SiteChannel.B2C.equals(channel))
 			{
 				try
 				{
@@ -70,15 +75,24 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 		}
 		else
 		{
+
 			final CustomerModel retrieveUser = retrieveUserBySubjectId.get(0);
-			/* Update name and email only if updated to avoid sending data to SCPI */
-			if (!retrieveUser.getName().equals(token.getName()) || !retrieveUser.getUid().equals(token.getEmail()))
+
+			if (SiteChannel.B2B.equals(channel))
 			{
-				retrieveUser.setName(token.getName());
-				retrieveUser.setUid(token.getEmail());
+				updateCustomerFromC4C(retrieveUser);
 			}
-			retrieveUser.setIsUserExist(true);
-			modelService.save(retrieveUser);
+			else
+			{
+				/* Update name and email only if updated to avoid sending data to SCPI */
+				if (!retrieveUser.getName().equals(token.getName()) || !retrieveUser.getUid().equals(token.getEmail()))
+				{
+					retrieveUser.setName(token.getName());
+					retrieveUser.setUid(token.getEmail());
+				}
+				retrieveUser.setIsUserExist(true);
+				modelService.save(retrieveUser);
+			}
 			success = true;
 		}
 
@@ -97,7 +111,7 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 
 		//check if customer exist in the C4C
 		final List<GallagherInboundCustomerEntry> existingCustomers = gallagherC4COutboundServiceFacade
-				.getCustomerInfoFromC4C(token.getEmail());
+				.getCustomerInfoFromC4C(token.getEmail(), token.getSubjectId());
 
 
 		//if customer exist and count > 1 then
@@ -105,16 +119,11 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 		//else if customer count = 1 then update C4C
 		if (CollectionUtils.isNotEmpty(existingCustomers))
 		{
+			newCustomer.setSapContactID(existingCustomers.get(0).getContactID());
+			newCustomer.setObjectID(existingCustomers.get(0).getObjectID());
 			if (existingCustomers.size() > 1)
 			{
-				newCustomer.setSapContactID(existingCustomers.get(0).getContactID());
-				newCustomer.setObjectID(existingCustomers.get(0).getObjectID());
 				newCustomer.setDuplicate(true);
-			}
-			else
-			{
-				newCustomer.setObjectID(existingCustomers.get(0).getObjectID());
-				newCustomer.setSapContactID(existingCustomers.get(0).getContactID());
 			}
 			newCustomer.setSapIsReplicated(true);
 		}
@@ -130,6 +139,29 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 			throw new DuplicateUidException(dupUidEx.getMessage(), dupUidEx);
 
 		}
+
+		return true;
+	}
+
+	private boolean updateCustomerFromC4C(final CustomerModel customer)
+	{
+
+		//check if customer exist in the C4C
+		final List<GallagherInboundCustomerEntry> existingCustomers = gallagherC4COutboundServiceFacade
+				.getCustomerInfoFromC4C(customer.getUid(), customer.getKeycloakGUID());
+
+		if (CollectionUtils.isNotEmpty(existingCustomers))
+		{
+			final GallagherInboundCustomerEntry c4cCustomer = existingCustomers.get(0);
+			final String customerName = customerNameStrategy.getName(c4cCustomer.getFirstName(), c4cCustomer.getLastName());
+			/* Update name and email only if updated to avoid sending data to SCPI */
+			if (customer.getName() == null || !customer.getName().equals(customerName))
+			{
+				customer.setName(customerName);
+				modelService.save(customer);
+			}
+		}
+
 
 		return true;
 	}

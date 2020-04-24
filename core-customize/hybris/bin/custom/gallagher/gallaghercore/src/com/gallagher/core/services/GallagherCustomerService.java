@@ -3,6 +3,8 @@
  */
 package com.gallagher.core.services;
 
+import de.hybris.platform.commerceservices.enums.SiteChannel;
+
 import com.gallagher.core.dtos.GallagherAccessToken;
 
 
@@ -19,8 +21,8 @@ public interface GallagherCustomerService
 	 *
 	 * @param token
 	 *           to get the customer
-	 * @param createIfNotExists
+	 * @param channel
 	 *           if user is not available then create a new User (B2C). For B2B only update will be performed
 	 */
-	boolean updateCommerceCustomer(final GallagherAccessToken token, final boolean createIfNotExists);
+	boolean updateCommerceCustomer(final GallagherAccessToken token, final SiteChannel channel);
 }

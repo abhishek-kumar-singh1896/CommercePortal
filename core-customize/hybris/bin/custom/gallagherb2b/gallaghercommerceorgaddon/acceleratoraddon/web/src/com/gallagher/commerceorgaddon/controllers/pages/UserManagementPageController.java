@@ -655,7 +655,7 @@ public class UserManagementPageController extends MyCompanyPageController
 			try
 			{
 				final List<GallagherInboundCustomerEntry> existingCustomers = getGallagherC4COutboundServiceFacade()
-						.getCustomerInfoFromC4C(email);
+						.getCustomerInfoFromC4C(email, null);
 				if (CollectionUtils.isNotEmpty(existingCustomers) && existingCustomers.size() > 1)
 				{
 					existingCustomer.setContactID(existingCustomers.get(0).getContactID());

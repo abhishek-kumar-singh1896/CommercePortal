@@ -95,7 +95,7 @@ public class VerifyCustomerHandler implements FlowActionHandler
 				final WidgetModel widget = adapter.getWidgetInstanceManager().getModel();
 
 				final List<GallagherInboundCustomerEntry> existingCustomers = getGallagherC4COutboundServiceFacade()
-						.getCustomerInfoFromC4C(email);
+						.getCustomerInfoFromC4C(email, null);
 
 				if ((CollectionUtils.isNotEmpty(existingCustomers) && existingCustomers.size() > 1))
 				{

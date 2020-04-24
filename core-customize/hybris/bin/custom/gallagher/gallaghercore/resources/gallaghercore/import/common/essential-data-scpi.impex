@@ -38,7 +38,7 @@ $cancelOrderVersion = v=1
 #******************************#     
 #*** Contact Collection URL ***#     
 #******************************#     
-$contactCollectionUrl = https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com/gw/odata/SAP/GGL_C4C_ODATAAPI
+$contactCollectionUrl = https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com/gw/odata/SAP/GGL_C4C_CONTACTSEARCH
 $contactCollectionVersion = v=1      
                                      
 #****************************#       
