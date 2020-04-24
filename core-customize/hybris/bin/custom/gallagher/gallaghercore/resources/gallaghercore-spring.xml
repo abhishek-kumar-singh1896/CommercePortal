@@ -223,6 +223,14 @@
     <alias name="gallagherExternalTaxesService" alias="externalTaxesService"/>
     <bean id="gallagherExternalTaxesService"
           class="com.gallagher.core.externaltax.impl.GallagherExternalTaxesService" parent="defaultExternalTaxesService" />
-		
+	
+	 <!-- order -->
+    <bean id="gglOrderCodeGenerator" class="de.hybris.platform.servicelayer.keygenerator.impl.PersistentKeyGenerator">
+        <property name="key" value="${keygen.ggl.order.code.name}"/>
+        <property name="digits" value="${keygen.order.code.digits}"/>
+        <property name="start" value="${keygen.ggl.order.code.start}"/>
+        <property name="type" value="${keygen.order.code.type}"/>
+        <property name="template" value="${keygen.order.code.template}"/>
+    </bean>
 
 </beans>
