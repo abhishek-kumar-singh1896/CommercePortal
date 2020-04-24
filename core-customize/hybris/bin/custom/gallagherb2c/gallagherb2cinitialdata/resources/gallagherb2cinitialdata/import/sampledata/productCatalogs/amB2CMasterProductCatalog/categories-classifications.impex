@@ -66,7 +66,7 @@ INSERT_UPDATE ClassificationClass;$classCatalogVersion;code[unique=true];allowed
 
 # Classification Categories for 'fence-conductors'
 ;;reels-and-accessories-fc
-;;hi-tensile-wire-and-cable-fc
+;;hi-tensile-wire-and-cable
 ;;tapes-wires-and-braids-fc
 ;;posts-pigtails-and-treadins-fc
 
