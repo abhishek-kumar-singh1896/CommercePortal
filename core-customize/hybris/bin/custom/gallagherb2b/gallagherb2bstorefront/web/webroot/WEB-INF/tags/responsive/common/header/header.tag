@@ -56,7 +56,7 @@
 										<c:forEach items="${l1.entries}" var="dropdownValue">
 											<li>
 												<c:url var="L1link" value="${dropdownValue.item.url}"></c:url>
-												<a href="${L1link}" class="with-sublevel-text" id="xsLevel1Link${status.index+1}">
+												<a href="${L1link}" class="with-sublevel-text">
 												    ${dropdownValue.item.linkName}
 												</a>
 												<c:if test="${dropdownValue.item.linkName eq 'PRODUCTS'}">

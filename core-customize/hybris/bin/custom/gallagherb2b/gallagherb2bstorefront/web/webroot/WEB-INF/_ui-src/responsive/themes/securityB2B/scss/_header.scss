@@ -497,3 +497,14 @@
     }
   }
 }
+
+
+@media only screen and (max-width: 320px) {
+  .main-header-out {
+    .logo-out {   
+      img {
+        width: 155px;
+      }
+    }
+  }
+}

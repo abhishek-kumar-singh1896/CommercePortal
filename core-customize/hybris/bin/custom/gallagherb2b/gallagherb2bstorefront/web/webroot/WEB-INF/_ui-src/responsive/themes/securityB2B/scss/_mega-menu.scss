@@ -242,6 +242,19 @@
                 }
               }
 
+              &.with-sublevel {
+                position: absolute;
+                right: 0;
+                top: 0;
+                z-index: 100;
+                background: rgba(255, 255, 255, 0.02);
+                padding: 20px 24px;
+
+                &:hover {
+                  opacity: 0.75;
+                }
+              }
+
               &:hover,
               &:focus {
                 color: $white;
@@ -253,8 +266,6 @@
                   }
                 }
               }
-
-              
             }
           }
         }
@@ -295,7 +306,7 @@
 
             &:hover,
             &:focus {
-              color: rgba(255,255,255,0.85);
+              color: rgba(255, 255, 255, 0.85);
 
               svg {
                 fill: $white;
@@ -305,7 +316,6 @@
           }
         }
       }
-
     }
   }
 }
