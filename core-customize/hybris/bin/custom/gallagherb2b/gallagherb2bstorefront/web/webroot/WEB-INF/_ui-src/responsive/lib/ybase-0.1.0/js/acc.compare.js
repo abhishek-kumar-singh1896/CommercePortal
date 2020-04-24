@@ -125,8 +125,10 @@ ACC.compare = {
 		             }
 		         }
 		         return $("<li id='licnt_" + counter + "'/>")
-		         .append("<a href='#'><input type='hidden' value=" + imageCartUrl + " class='imageCartUrl' /><div class='image-container' id='liImage_" + counter + "' ><img src='" + imageurl +  
-		         		"' alt='' /></div><div class='product-attr'><div class='manufacturer attr'>" + item.manufacturer + 
+		         .append("<a href='#'><input type='hidden' value=" + imageCartUrl + " class='imageCartUrl' /><div class='image-container' id='liImage_" + counter + "' ><img style='width:30px; height:30px;' src='" + imageurl +  
+		         		"' alt='' /></div><div class='product-attr'><div class='manufacturer attr'>"
+//		        		 + item.manufacturer
+		        		 + 
 		         		"</div><div class='code attr' id='liCode_" + counter + "'>" + item.code + 
 		         		"</div><div class='name' id='liName_" + counter + "'>" + item.name + "</div></div></a>")
 		         .appendTo(ul);

@@ -699,8 +699,6 @@ $productCatalog=amB2CMasterProductCatalog
 $productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Online '])[unique=true,default=$productCatalog:Online ]
 
 
-
-
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
 ;SupportNavNodeEntry;;Support Navigation Node Entry;SupportNavNode;SupportLink
 
@@ -711,15 +709,6 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;pa
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef;children(uid, $contentCV)[mode=replace]
 ;HeaderLinkNavigationNode;;Header Link Navigation Node; root;; HeaderLinkNavigationNode; SolutionsNavNode,ProductsNavNode,SupportNavNode,ContactNavNode
-
-
-
-
-
-
-
-
-
 
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];name;$contentCV[unique=true];children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
@@ -754,14 +743,6 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;GLOBALENSoftwareDownloadsLink;Global Software Downloads Link;https://am.gallagher.com/global/support/software-downloads;;;"Software Downloads"
 
 
-
-
-
-
-
-
-
-
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];name;$contentCV[unique=true];navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
 ;CallUsSupport_NavEntry;Call Us support Nav Entry;;CallUsSupport_Nav;CallUsSupportLink
 ;NZSupportMaterial_NavEntry;NZ Support Material Nav Entry;;SupportMaterial_Nav;NZENSupportMaterialLink
@@ -785,34 +766,6 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];name;$contentCV[unique=true];n
 ;GlobalSupportMaterial_NavEntry;Global Support Material Nav Entry;;SupportMaterial_Nav;GLOBALENSupportMaterialLink
 ;GlobalTechnicalSupport_NavEntry;Global Technical Support Nav Entry;;TechnicalSupport_Nav;GLOBALENTechnicalSupportLink
 ;GlobalSoftwareDownloads_NavEntry;Global Software Downloads Nav Entry;;SoftwareDownloads_Nav;GLOBALENSoftwareDownloadsLink
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -844,33 +797,20 @@ $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCata
 $productCatalog=amB2CMasterProductCatalog
 $productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Online '])[unique=true,default=$productCatalog:Online ]
 
-
-
-
-
-
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
 ;ContactNavNodeEntry;;Contact Navigation Node Entry;ContactNavNode;ContactLink
-
-
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);children(uid,$contentCV)[mode=replace];links(uid, $contentCV);&nodeRef;title[lang=en]
 ;ContactNavNode;;Contact Us Navigation Node Menu;HeaderLinkNavigationNode;CallUs_Nav,FindStore_Nav,FindManager_Nav,SendMessage_Nav;;ContactNavNode;"Contact Us"
 
-
-
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef;children(uid, $contentCV)[mode=replace]
 ;HeaderLinkNavigationNode;;Header Link Navigation Node; root;; HeaderLinkNavigationNode; SolutionsNavNode,ProductsNavNode,SupportNavNode,ContactNavNode
-
-
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];name;$contentCV[unique=true];children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
 ;CallUs_Nav;Call Us Nav;;;"Our customer services team are hete to help.";CallUs_Nav
 ;FindStore_Nav;Find Store Nav;;;"Our dealers are located nationwide.";FindStore_Nav
 ;FindManager_Nav;Find Manager Monitoring Nav;;;"If you are looking for one-on-one system selection advice and training.";FindManager_Nav
 ;SendMessage_Nav;Send Message Nav;;;"Have an enquiry or feedback? Contact us and we will get back to you";SendMessage_Nav
-
-
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];linkName[lang=en]
 ;;CallUsLink;Call Us Link;https://www.google.com/;;;"<div class=""call-us-title"">Call us</div><div class=""call-us-contact-number"">0800 731 500</div>"
@@ -921,14 +861,6 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];name;$contentCV[unique=true];n
 ;GLOBALENFindStore_NavEntry;GLOBAL EN Find Store Nav Entry;;FindStore_Nav;GLOBALENFindStoreLink
 ;GLOBALENFindManager_NavEntry;GLOBAL EN Find Manager Nav Entry;;FindManager_Nav;GLOBALENFindManagerLink
 ;GLOBALENSendMessage_NavEntry;GLOBAL EN Send Message Nav Entry;;SendMessage_Nav;GLOBALENSendMessageLink
-
-
-
-
-
-
-
-
 
 
 
@@ -1223,6 +1155,9 @@ REMOVE CMSLinkComponent;$contentCV[unique=true];uid[unique=true]
 $contentCatalog=amB2CContentCatalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Satged])[default=$contentCatalog:Staged]
 
+$contentCatalog=amB2CContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
 
 INSERT_UPDATE GallagherRegionRestriction;$contentCV[unique=true];uid[unique=true]				;name										;&uid							;region(code);language(isocode)
 										;						;GallagherAURegionRestriction	;Gallagher Australia Region Restriction		;GallagherAURegionRestriction	;au		;
@@ -1243,7 +1178,7 @@ INSERT_UPDATE GallagherRegionRestriction;$contentCV[unique=true];uid[unique=true
 $contentCatalog=amB2CContentCatalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
 
-REMOVE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV)	   ;onlyOneRestrictionMustApply[default='false']
+REMOVE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV)	   ;onlyOneRestrictionMustApply[default='true']
 ;;NZENSearchComponent;GallagherNZRegionRestriction
 ;;AUENSearchComponent;GallagherAURegionRestriction
 ;;USENSearchComponent;GallagherUSRegionRestriction
@@ -1253,12 +1188,12 @@ REMOVE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(ui
 
 
 
-INSERT_UPDATE GallagherNewButtonComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV)	   ;onlyOneRestrictionMustApply[default='false']
+INSERT_UPDATE GallagherNewButtonComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV)	   ;onlyOneRestrictionMustApply[default='true']
 ;;NZENSearchComponent;GallagherNZRegionRestriction
 ;;AUENSearchComponent;GallagherAURegionRestriction
 ;;USENSearchComponent;GallagherUSRegionRestriction
-;;CAENSearchComponent;GallagherCAENRegionRestriction
-;;CAFRSearchComponent;GallagherCAFRRegionRestriction
+;;CAENSearchComponent;GallagherCAENRegionRestriction,GallagherCAENCARegionRestriction
+;;CAFRSearchComponent;GallagherCAFRRegionRestriction, GallagherCAFRCARegionRestriction
 ;;GLOBALENSearchComponent;GallagherGlRegionRestriction
 
 
@@ -1267,7 +1202,7 @@ INSERT_UPDATE GallagherNewButtonComponent;$contentCV[unique=true];uid[unique=tru
 INSERT_UPDATE GallagherNewButtonComponent;$contentCV[unique=true];uid[unique=true];name;url;linkName;&linkRef;&componentRef
 ;;NZENSearchComponent;NZ Search Component;https://am.gallagher.com/nz/find-a-stockist ;Search;NZENSearchComponent;NZENSearchComponent
 ;;AUENSearchComponent;AU Search Component;https://am.gallagher.com/au/find-a-stockist ;Search;AUENSearchComponent;AUENSearchComponent
-;;USENSearchComponent;US Search Component;https://am.gallagher.com/us/find-a-dealer ;Search;USENSearchComponent;USENSearchComponent
+;;USENSearchComponent;US Search Component;https://am.gallaghern.com/us/find-a-dealer ;Search;USENSearchComponent;USENSearchComponent
 ;;CAENSearchComponent;CA EN Search Component;https://am.gallagher.com/en-ca/find-a-dealer ;Search;CAENSearchComponent;CAENSearchComponent
 ;;CAFRSearchComponent;CA FR Search Component;https://am.gallagher.com/fr-ca/trouver-un-fournisseur ;Search;CAFRSearchComponent;CAFRSearchComponent
 ;;GLOBALENSearchComponent;Global Search Component;https://am.gallagher.com/global/find-a-distributor ;Search;GLOBALENSearchComponent;GLOBALENSearchComponent

@@ -1806,12 +1806,12 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
-;;PortablefencingTapesWiresBraids_nav_link;Electric fencing Portablefencing_nav_link;/Animal-Management/c/electric-fencing/portable-fencing/tapes-wires-and-braids;tapes-wires-and-braids-pf;;;
-;;PortablefencingTapesWiresBraids_nav_link1;Electric fencing Portablefencing_nav_link1;/Animal-Management/c/electric-fencing/portable-fencing/reels-and-accessories;reels-and-accessories-pf;;;
-;;PortablefencingTapesWiresBraids_nav_link2;Electric fencing Portablefencing_nav_link2;/Animal-Management/c/electric-fencing/portable-fencing/posts-pigtails-and-treadins;posts-pigtails-and-treadins-pf;;;
-;;PortablefencingTapesWiresBraids_nav_link3;Electric fencing Portablefencing_nav_link2;/Animal-Management/c/electric-fencing/portable-fencing/all-in-one-portable-fences;all-in-one-portable-fences;;;
-;;PortablefencingTapesWiresBraids_nav_link4;Electric fencing Portablefencing_nav_link2;/Animal-Management/c/electric-fencing/portable-fencing/electric-fence-kits;electric-fence-kits;;;
-;;PortablefencingTapesWiresBraids_nav_link5;Electric fencing Portablefencing_nav_link2;/Animal-Management/c/electric-fencing/portable-fencing/netting;netting;;;
+;;PortablefencingTapesWiresBraids_nav_link;Electric fencing Portablefencing_nav_link;/Animal-Management/electric-fencing/portable-fencing/c/tapes-wires-and-braids;tapes-wires-and-braids-pf;;;
+;;PortablefencingTapesWiresBraids_nav_link1;Electric fencing Portablefencing_nav_link1;/Animal-Management/electric-fencing/portable-fencing/c/reels-and-accessories;reels-and-accessories-pf;;;
+;;PortablefencingTapesWiresBraids_nav_link2;Electric fencing Portablefencing_nav_link2;/Animal-Management/electric-fencing/portable-fencing/c/posts-pigtails-and-treadins;posts-pigtails-and-treadins-pf;;;
+;;PortablefencingTapesWiresBraids_nav_link3;Electric fencing Portablefencing_nav_link2;/Animal-Management/electric-fencing/portable-fencing/c/all-in-one-portable-fences;all-in-one-portable-fences;;;
+;;PortablefencingTapesWiresBraids_nav_link4;Electric fencing Portablefencing_nav_link2;/Animal-Management/electric-fencing/portable-fencing/c/electric-fence-kits;electric-fence-kits;;;
+;;PortablefencingTapesWiresBraids_nav_link5;Electric fencing Portablefencing_nav_link2;/Animal-Management/electric-fencing/portable-fencing/c/netting;netting;;;
 
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
@@ -1823,19 +1823,19 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 ;PortablefencingTapesWiresBraids_navEntry5;;Power Navigation PortablefencingTapesWiresBraids_nav Entry5;PortablefencingTapesWiresBraids_nav;PortablefencingTapesWiresBraids_nav_link5
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
-;;PermanentfencingWireandCable_link;Electric fencing Permanentfencing_link;/Animal-Management/c/electric-fencing/permanent-fencing/gallagher-westonfence;gallagher-westonfence;;;
-;;PermanentfencingWireandCable_link1;Electric fencing Permanentfencing_link1;/Animal-Management/c/electric-fencing/permanent-fencing/gallagher-mega-anchor;gallagher-mega-anchor;;;
-;;PermanentfencingWireandCable_link2;Electric fencing Permanentfencing_link2;/Animal-Management/c/electric-fencing/permanent-fencing/wire-and-cable;wire-and-cable;;;
-;;PermanentfencingWireandCable_link3;Electric fencing Permanentfencing_link3;/Animal-Management/c/electric-fencing/permanent-fencing/clamps-and-joiners;clamps-and-joiners;;;
-;;PermanentfencingWireandCable_link4;Electric fencing Permanentfencing_link4;/Animal-Management/c/electric-fencing/permanent-fencing/posts;posts;;;
-;;PermanentfencingWireandCable_link5;Electric fencing Permanentfencing_link5;/Animal-Management/c/electric-fencing/permanent-fencing/strainers;strainers;;;
-;;PermanentfencingWireandCable_link6;Electric fencing Permanentfencing_link6;/Animal-Management/c/electric-fencing/permanent-fencing/insulators;insulators;;;
-;;PermanentfencingWireandCable_link7;Electric fencing Permanentfencing_link7;/Animal-Management/c/electric-fencing/permanent-fencing/offsets;offsets;;;
-;;PermanentfencingWireandCable_link8;Electric fencing Permanentfencing_link8;/Animal-Management/c/electric-fencing/permanent-fencing/electric-gates;electric-gates;;;
-;;PermanentfencingWireandCable_link9;Electric fencing Permanentfencing_link9;/Animal-Management/c/electric-fencing/permanent-fencing/irrigator-fence-crossing-system;irrigator-fence-crossing-system;;;
-;;PermanentfencingWireandCable_link10;Electric fencing Permanentfencing_link10;/Animal-Management/c/electric-fencing/permanent-fencing/pivot-irrigator-system;pivot-irrigator-system;;;
-;;PermanentfencingWireandCable_link11;Electric fencing Permanentfencing_link11;/Animal-Management/c/electric-fencing/permanent-fencing/fence-tools-and-accessories;fence-tools-and-accessories;;;
-;;PermanentfencingWireandCable_link12;Electric fencing Permanentfencing_link12;/Animal-Management/c/electric-fencing/permanent-fencing/gate-hardware;gate-hardware;;;
+;;PermanentfencingWireandCable_link;Electric fencing Permanentfencing_link;/Animal-Management/electric-fencing/permanent-fencing/c/gallagher-westonfence;gallagher-westonfence;;;
+;;PermanentfencingWireandCable_link1;Electric fencing Permanentfencing_link1;/Animal-Management/electric-fencing/permanent-fencing/c/gallagher-mega-anchor;gallagher-mega-anchor;;;
+;;PermanentfencingWireandCable_link2;Electric fencing Permanentfencing_link2;/Animal-Management/electric-fencing/permanent-fencing/c/wire-and-cable;wire-and-cable;;;
+;;PermanentfencingWireandCable_link3;Electric fencing Permanentfencing_link3;/Animal-Management/electric-fencing/permanent-fencing/c/clamps-and-joiners;clamps-and-joiners;;;
+;;PermanentfencingWireandCable_link4;Electric fencing Permanentfencing_link4;/Animal-Management/electric-fencing/permanent-fencing/c/posts;posts;;;
+;;PermanentfencingWireandCable_link5;Electric fencing Permanentfencing_link5;/Animal-Management/electric-fencing/permanent-fencing/c/strainers;strainers;;;
+;;PermanentfencingWireandCable_link6;Electric fencing Permanentfencing_link6;/Animal-Management/electric-fencing/permanent-fencing/c/insulators;insulators;;;
+;;PermanentfencingWireandCable_link7;Electric fencing Permanentfencing_link7;/Animal-Management/electric-fencing/permanent-fencing/c/offsets;offsets;;;
+;;PermanentfencingWireandCable_link8;Electric fencing Permanentfencing_link8;/Animal-Management/electric-fencing/permanent-fencing/c/electric-gates;electric-gates;;;
+;;PermanentfencingWireandCable_link9;Electric fencing Permanentfencing_link9;/Animal-Management/electric-fencing/permanent-fencing/c/irrigator-fence-crossing-system;irrigator-fence-crossing-system;;;
+;;PermanentfencingWireandCable_link10;Electric fencing Permanentfencing_link10;/Animal-Management/electric-fencing/permanent-fencing/c/pivot-irrigator-system;pivot-irrigator-system;;;
+;;PermanentfencingWireandCable_link11;Electric fencing Permanentfencing_link11;/Animal-Management/electric-fencing/permanent-fencing/c/fence-tools-and-accessories;fence-tools-and-accessories;;;
+;;PermanentfencingWireandCable_link12;Electric fencing Permanentfencing_link12;/Animal-Management/electric-fencing/permanent-fencing/c/gate-hardware;gate-hardware;;;
 
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
@@ -1854,10 +1854,10 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 ;PermanentfencingWireandCable_navEntry12;;Power Navigation PermanentfencingWireandCable_nav Entry12;PermanentfencingWireandCable_nav;PermanentfencingWireandCable_link12
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
-;;FenceConductors_nav_link;Electric fencing FenceConductors_nav_link;/Animal-Management/c/electric-fencing/fence-conductors/posts-pigtails-and-treadins;posts-pigtails-and-treadins-fc;;;
-;;FenceConductors_nav_link1;Electric fencing FenceConductors_nav_link1;/Animal-Management/c/electric-fencing/fence-conductors/reels-and-accessories;reels-and-accessories-fc;;;
-;;FenceConductors_nav_link2;Electric fencing FenceConductors_nav_link2;/Animal-Management/c/electric-fencing/fence-conductors/hi-tensile-wire-and-cable;hi-tensile-wire-and-cable;;;
-;;FenceConductors_nav_link3;Electric fencing FenceConductors_nav_link2;/Animal-Management/c/electric-fencing/fence-conductors/tapes-wires-and-braids;tapes-wires-and-braids-fc;;;
+;;FenceConductors_nav_link;Electric fencing FenceConductors_nav_link;/Animal-Management/electric-fencing/fence-conductors/c/posts-pigtails-and-treadins;posts-pigtails-and-treadins-fc;;;
+;;FenceConductors_nav_link1;Electric fencing FenceConductors_nav_link1;/Animal-Management/electric-fencing/fence-conductors/c/reels-and-accessories;reels-and-accessories-fc;;;
+;;FenceConductors_nav_link2;Electric fencing FenceConductors_nav_link2;/Animal-Management/electric-fencing/fence-conductors/c/hi-tensile-wire-and-cable;hi-tensile-wire-and-cable;;;
+;;FenceConductors_nav_link3;Electric fencing FenceConductors_nav_link2;/Animal-Management/electric-fencing/fence-conductors/c/tapes-wires-and-braids;tapes-wires-and-braids-fc;;;
 
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
@@ -1889,19 +1889,19 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
-;;WeighinEid_link;WeighinEid_link;/Animal-Management/c/weighing-and-eid/weigh-scales-and-data-collectors;weigh-scales-and-data-collectors;;;
-;;WeighinEid_link1; Weighing And Eid link1;/Animal-Management/c/weighing-and-eid/scale-heads-and-data-collectors;scale-heads-and-data-collectors;;;
-;;WeighinEid_link2; Weighing And Eid link2;/Animal-Management/c/weighing-and-eid/loadbars-and-accessories;loadbars-and-accessories;;;
-;;WeighinEid_link3; Weighing And Eid link3;/Animal-Management/c/weighing-and-eid/loadbars;loadbars;;;
-;;WeighinEid_link4; Weighing And Eid link4;/Animal-Management/c/weighing-and-eid/platforms;platforms;;;
-;;WeighinEid_link5; Weighing And Eid link5;/Animal-Management/c/weighing-and-eid/platforms-and-crates;platforms-and-crates;;;
-;;WeighinEid_link6; Weighing And Eid link6;/Animal-Management/c/weighing-and-eid/drafters;drafters;;;
-;;WeighinEid_link7; Weighing And Eid link7;/Animal-Management/c/weighing-and-eid/handlers-and-drafters;handlers-and-drafters;;;
-;;WeighinEid_link8; Weighing And Eid link8;/Animal-Management/c/weighing-and-eid/eid-tag-readers;eid-tag-readers;;;
-;;WeighinEid_link9; Weighing And Eid link9;/Animal-Management/c/weighing-and-eid/eid-tag-readers-and-barcoding-equipment;eid-tag-readers-and-barcoding-equipment;;;
-;;WeighinEid_link10; Weighing And Eid link10;/Animal-Management/c/weighing-and-eid/weighing-accessories;weighing-accessories;;;
-;;WeighinEid_link11; Weighing And Eid link11;/Animal-Management/c/weighing-and-eid/stock-prods;stock-prods;;;
-;;WeighinEid_link12; Weighing And Eid link12;/Animal-Management/c/weighing-and-eid/stock-prods-and-accessories;stock-prods-and-accessories;;;
+;;WeighinEid_link;WeighinEid_link;/Animal-Management/weighing-and-eid/c/weigh-scales-and-data-collectors;weigh-scales-and-data-collectors;;;
+;;WeighinEid_link1; Weighing And Eid link1;/Animal-Management/weighing-and-eid/c/scale-heads-and-data-collectors;scale-heads-and-data-collectors;;;
+;;WeighinEid_link2; Weighing And Eid link2;/Animal-Management/weighing-and-eid/c/loadbars-and-accessories;loadbars-and-accessories;;;
+;;WeighinEid_link3; Weighing And Eid link3;/Animal-Management/weighing-and-eid/c/loadbars;loadbars;;;
+;;WeighinEid_link4; Weighing And Eid link4;/Animal-Management/weighing-and-eid/c/platforms;platforms;;;
+;;WeighinEid_link5; Weighing And Eid link5;/Animal-Management/weighing-and-eid/c/platforms-and-crates;platforms-and-crates;;;
+;;WeighinEid_link6; Weighing And Eid link6;/Animal-Management/weighing-and-eid/c/drafters;drafters;;;
+;;WeighinEid_link7; Weighing And Eid link7;/Animal-Management/weighing-and-eid/c/handlers-and-drafters;handlers-and-drafters;;;
+;;WeighinEid_link8; Weighing And Eid link8;/Animal-Management/weighing-and-eid/c/eid-tag-readers;eid-tag-readers;;;
+;;WeighinEid_link9; Weighing And Eid link9;/Animal-Management/weighing-and-eid/c/eid-tag-readers-and-barcoding-equipment;eid-tag-readers-and-barcoding-equipment;;;
+;;WeighinEid_link10; Weighing And Eid link10;/Animal-Management/weighing-and-eid/c/weighing-accessories;weighing-accessories;;;
+;;WeighinEid_link11; Weighing And Eid link11;/Animal-Management/weighing-and-eid/c/stock-prods;stock-prods;;;
+;;WeighinEid_link12; Weighing And Eid link12;/Animal-Management/weighing-and-eid/c/stock-prods-and-accessories;stock-prods-and-accessories;;;
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
 ;WWMNav;;Weighing and EID Navigation Node Menu;WWMNode_Nav;"Wireless Water Monitoring";WWMNav
@@ -1917,10 +1917,10 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
-;;WWM_link;Wireless Water Monitoring link;/Animal-Management/c/wireless-water-monitoring/water-flow-indicator;weigh-scales-and-data-collectors;;;
-;;WWM_link1;Wireless Water Monitoring link1;/Animal-Management/c/wireless-water-monitoring/one-tank-systems;scale-heads-and-data-collectors;;;
-;;WWM_link2;Wireless Water Monitoring link2;/Animal-Management/c/wireless-water-monitoring/antennae-and-cables ;loadbars-and-accessories;;;
-;;WWM_link3;Wireless Water Monitoring link3;/Animal-Management/c/wireless-water-monitoring/additional-system-components;loadbars;;;
+;;WWM_link;Wireless Water Monitoring link;/Animal-Management/wireless-water-monitoring/c/water-flow-indicator;weigh-scales-and-data-collectors;;;
+;;WWM_link1;Wireless Water Monitoring link1;/Animal-Management/wireless-water-monitoring/c/one-tank-systems;scale-heads-and-data-collectors;;;
+;;WWM_link2;Wireless Water Monitoring link2;/Animal-Management/wireless-water-monitoring/c/antennae-and-cables ;loadbars-and-accessories;;;
+;;WWM_link3;Wireless Water Monitoring link3;/Animal-Management/wireless-water-monitoring/c/additional-system-components;loadbars;;;
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
 ;AWNav;;Automatic Watering Navigation Node Menu;AWNode_Nav;"Automatic Watering";AWNav
@@ -1940,14 +1940,14 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
-;;AW_link;Automatic Watering link;/Animal-Management/c/automatic-watering/trough-valves;trough-valves;;;
-;;AW_link1;Automatic Watering link1;/Animal-Management/c/automatic-watering/lil-spring;lil-spring;;;
-;;AW_link2;Automatic Watering link2;/Animal-Management/c/automatic-watering/equi-fount;equi-fount;;;
-;;AW_link3;Automatic Watering link3;/Animal-Management/c/automatic-watering/mira-fount;mira-fount;;;
-;;AW_link4;Automatic Watering link4;/Animal-Management/c/automatic-watering/e-fount;e-fount;;;
-;;AW_link5;Automatic Watering link5;/Animal-Management/c/automatic-watering/big-spring;big-spring;;;
-;;AW_link6;Automatic Watering link6;/Animal-Management/c/automatic-watering/pet-tanks;pet-tanks;;;
-;;AW_link7;Automatic Watering link7;/Animal-Management/c/automatic-watering/watering-accessories;watering-accessories;;;
+;;AW_link;Automatic Watering link;/Animal-Management/automatic-watering/c/trough-valves;trough-valves;;;
+;;AW_link1;Automatic Watering link1;/Animal-Management/automatic-watering/c/lil-spring;lil-spring;;;
+;;AW_link2;Automatic Watering link2;/Animal-Management/automatic-watering/c/equi-fount;equi-fount;;;
+;;AW_link3;Automatic Watering link3;/Animal-Management/automatic-watering/c/mira-fount;mira-fount;;;
+;;AW_link4;Automatic Watering link4;/Animal-Management/automatic-watering/c/e-fount;e-fount;;;
+;;AW_link5;Automatic Watering link5;/Animal-Management/automatic-watering/c/big-spring;big-spring;;;
+;;AW_link6;Automatic Watering link6;/Animal-Management/automatic-watering/c/pet-tanks;pet-tanks;;;
+;;AW_link7;Automatic Watering link7;/Animal-Management/automatic-watering/c/watering-accessories;watering-accessories;;;
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
 ;AppSoftwareNav;;Steel Gates and Hardware Navigation Node Menu;AppSoftwareNode_Nav;"Apps and Software";AppSoftwareNav
@@ -1961,8 +1961,8 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
-;;AppsSoftware_link;Apps and Software link;/Animal-Management/c/apps-and-software/livestock;livestock;;;
-;;AppsSoftware_link1;Apps and Software link1;/Animal-Management/c/apps-and-software/fence;fence;;;
+;;AppsSoftware_link;Apps and Software link;/Animal-Management/apps-and-software/c/livestock;livestock;;;
+;;AppsSoftware_link1;Apps and Software link1;/Animal-Management/apps-and-software/c/fence;fence;;;
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
 ;SGHNav;;Steel Gates and Hardware Navigation Node Menu;SGHNode_Nav;"Steel Gates and Hardware";SGHNav
@@ -1976,24 +1976,24 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
-;;SGH_link;Steel Gates and Hardware link;/Animal-Management/c/steel-gates-and-hardware/gates;gates;;;
-;;SGH_link1;Steel Gates and Hardware link1;/Animal-Management/c/steel-gates-and-hardware/gate-hardware;gate-hardware;;;
+;;SGH_link;Steel Gates and Hardware link;/Animal-Management/steel-gates-and-hardware/c/gates;gates;;;
+;;SGH_link1;Steel Gates and Hardware link1;/Animal-Management/steel-gates-and-hardware/c/gate-hardware;gate-hardware;;;
 
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
-;;PowerEnergisers_link;Electric fencing PowerEnergisers_link;/Animal-Management/c/electric-fencing/power/mains-energizers;mains-energizers;;;
-;;PowerEnergisers_link1;Electric fencing PowerEnergisers_link1;/Animal-Management/c/electric-fencing/power/110-volt-energizers;110-volt-energizers;;;
-;;PowerEnergisers_link2;Electric fencing PowerEnergisers_link2;/Animal-Management/c/electric-fencing/power/multi-powered-energizers;multi-powered-energizers;;;
-;;PowerEnergisers_link3;Electric fencing PowerEnergisers_link3;/Animal-Management/c/electric-fencing/power/battery-energizers;battery-energizers;;;
-;;PowerEnergisers_link4;Electric fencing PowerEnergisers_link4;/Animal-Management/c/electric-fencing/power/solar-energizers;solar-energizers;;;
-;;PowerEnergisers_link5;Electric fencing PowerEnergisers_link5;/Animal-Management/c/electric-fencing/power/solar-panels;solar-panels;;;
-;;PowerEnergisers_link6;Electric fencing PowerEnergisers_link6;/Animal-Management/c/electric-fencing/power/solar-and-solar-kits;solar-and-solar-kits;;;
-;;PowerEnergisers_link7;Electric fencing PowerEnergisers_link7;/Animal-Management/c/electric-fencing/power/remotes-and-fence-testers;remotes-and-fence-testers;;;
-;;PowerEnergisers_link8;Electric fencing PowerEnergisers_link8;/Animal-Management/c/electric-fencing/power/batteries;batteries;;;
-;;PowerEnergisers_link9;Electric fencing PowerEnergisers_link9;/Animal-Management/c/electric-fencing/power/earthing;earthing;;;
-;;PowerEnergisers_link10;Electric fencing PowerEnergisers_link10;/Animal-Management/c/electric-fencing/power/power-system-accessories;power-system-accessories;;;
-;;PowerEnergisers_link11;Electric fencing PowerEnergisers_link11;/Animal-Management/c/electric-fencing/power/grounding;grounding;;;
-;;PowerEnergisers_link12;Electric fencing PowerEnergisers_link12;/Animal-Management/c/electric-fencing/power/power-management-tools;power-management-tools;;;
+;;PowerEnergisers_link;Electric fencing PowerEnergisers_link;/Animal-Management/electric-fencing/power/c/mains-energizers;mains-energizers;;;
+;;PowerEnergisers_link1;Electric fencing PowerEnergisers_link1;/Animal-Management/electric-fencing/power/c/110-volt-energizers;110-volt-energizers;;;
+;;PowerEnergisers_link2;Electric fencing PowerEnergisers_link2;/Animal-Management/electric-fencing/power/c/multi-powered-energizers;multi-powered-energizers;;;
+;;PowerEnergisers_link3;Electric fencing PowerEnergisers_link3;/Animal-Management/electric-fencing/power/c/battery-energizers;battery-energizers;;;
+;;PowerEnergisers_link4;Electric fencing PowerEnergisers_link4;/Animal-Management/electric-fencing/power/c/solar-energizers;solar-energizers;;;
+;;PowerEnergisers_link5;Electric fencing PowerEnergisers_link5;/Animal-Management/electric-fencing/power/c/solar-panels;solar-panels;;;
+;;PowerEnergisers_link6;Electric fencing PowerEnergisers_link6;/Animal-Management/electric-fencing/power/c/solar-and-solar-kits;solar-and-solar-kits;;;
+;;PowerEnergisers_link7;Electric fencing PowerEnergisers_link7;/Animal-Management/electric-fencing/power/c/remotes-and-fence-testers;remotes-and-fence-testers;;;
+;;PowerEnergisers_link8;Electric fencing PowerEnergisers_link8;/Animal-Management/electric-fencing/power/c/batteries;batteries;;;
+;;PowerEnergisers_link9;Electric fencing PowerEnergisers_link9;/Animal-Management/electric-fencing/power/c/earthing;earthing;;;
+;;PowerEnergisers_link10;Electric fencing PowerEnergisers_link10;/Animal-Management/electric-fencing/power/c/power-system-accessories;power-system-accessories;;;
+;;PowerEnergisers_link11;Electric fencing PowerEnergisers_link11;/Animal-Management/electric-fencing/power/c/grounding;grounding;;;
+;;PowerEnergisers_link12;Electric fencing PowerEnergisers_link12;/Animal-Management/electric-fencing/power/c/power-management-tools;power-management-tools;;;
 
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
