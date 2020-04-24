@@ -1,6 +1,8 @@
 ############################### B2B MiniCartSlot update #########################
 $contentCatalog=securityB2BContentCatalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$lang=en
+
 UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(&componentRef)
 ;;MiniCartSlot;MiniCart
 
