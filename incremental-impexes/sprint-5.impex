@@ -156,7 +156,7 @@ REMOVE BaseStore2DeliveryModeRel;source(uid)[unique=true];target(code)[unique=tr
 
 ###############B2B#############################
 $contentCatalog=securityB2BContentCatalog
-$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online  ])[default=$contentCatalog:Online  ]
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged  ])[default=$contentCatalog:Staged  ]
 $wideContent=CMSImageComponent,BannerComponent
 $jarEmailResource=jar:com.gallagher.b2b.initialdata.constants.B2badvanceInitialDataConstants&/gallagherb2binitialdata/import/coredata/contentCatalogs/securityB2BContentCatalog/emails
 
@@ -258,7 +258,7 @@ INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=
 ############################B2C#############################################
 $contentCatalog=amB2CContentCatalog
 $contentCatalogName=Animal Management B2C Content Catalog
-$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online  ])[default=$contentCatalog:Online  ]
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged  ])[default=$contentCatalog:Staged  ]
 #################Search item is not found##############################
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
 ;;MiddleContent-searchEmpty;Middle Slot for searchEmpty;true;NoSearchResultsParagraphComponent
@@ -694,9 +694,9 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrict
 
 
 $contentCatalog=amB2CContentCatalog
-$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online ])[default=$contentCatalog:Online ]
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged ])[default=$contentCatalog:Staged ]
 $productCatalog=amB2CMasterProductCatalog
-$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Online '])[unique=true,default=$productCatalog:Online ]
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged ]
 
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
@@ -793,9 +793,9 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents
 ########################FindUs Navigation Starts#################
 
 $contentCatalog=amB2CContentCatalog
-$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online ])[default=$contentCatalog:Online ]
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged ])[default=$contentCatalog:Staged ]
 $productCatalog=amB2CMasterProductCatalog
-$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Online '])[unique=true,default=$productCatalog:Online ]
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged ]
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
 ;ContactNavNodeEntry;;Contact Navigation Node Entry;ContactNavNode;ContactLink
