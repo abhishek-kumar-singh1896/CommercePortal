@@ -1153,7 +1153,7 @@ REMOVE CMSLinkComponent;$contentCV[unique=true];uid[unique=true]
 
 ######################### creating region restrictions instances ########################
 $contentCatalog=amB2CContentCatalog
-$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Satged])[default=$contentCatalog:Staged]
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
 
 $contentCatalog=amB2CContentCatalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
