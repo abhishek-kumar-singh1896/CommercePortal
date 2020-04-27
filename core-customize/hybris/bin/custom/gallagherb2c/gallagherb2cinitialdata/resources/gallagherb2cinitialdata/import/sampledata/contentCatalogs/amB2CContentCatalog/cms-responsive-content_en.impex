@@ -209,10 +209,10 @@ UPDATE ProductCarouselComponent;$contentCV[unique=true];uid[unique=true];title[l
 
 # Media Content
 INSERT_UPDATE Media;mediaFormat(qualifier);$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];mime[default='image/jpeg'];realfilename;folder(qualifier)[default='images'];altText
-;widescreen;;Elec_1400x80_HomeDiscount_EN_01_1400W.jpg;$siteResource/images/banners/homepage/responsive/Elec_1400x80_HomeDiscount_EN_01_1400W.jpg;;Elec_1400x80_HomeDiscount_EN_01_1400W.jpg;;"Save Big on Select Camera Accessories & Supplies"
-;mobile;;Elec_480x118_HomeDiscount_EN_01_480W.jpg;$siteResource/images/banners/homepage/responsive/Elec_480x118_HomeDiscount_EN_01_480W.jpg;;Elec_480x118_HomeDiscount_EN_01_480W.jpg;;"Save Big on Select Camera Accessories & Supplies"
-;tablet;;Elec_770x80_HomeDiscount_EN_01_770W.jpg;$siteResource/images/banners/homepage/responsive/Elec_770x80_HomeDiscount_EN_01_770W.jpg;;Elec_770x80_HomeDiscount_EN_01_770W.jpg;;"Save Big on Select Camera Accessories & Supplies"
-;desktop;;Elec_960x80_HomeDiscount_EN_01_960W.jpg;$siteResource/images/banners/homepage/responsive/Elec_960x80_HomeDiscount_EN_01_960W.jpg;;Elec_960x80_HomeDiscount_EN_01_960W.jpg;;"Save Big on Select Camera Accessories & Supplies"
+;widescreen;;Elec_1400x80_HomeDiscount_EN_01_1400W.jpg;$siteResource/images/banners/homepage/responsive/Elec_1400x80_HomeDiscount_EN_01_1400W.jpg;;Elec_1400x80_HomeDiscount_EN_01_1400W.jpg;;"Save Big On Animal Management Equipment"
+;mobile;;Elec_480x118_HomeDiscount_EN_01_480W.jpg;$siteResource/images/banners/homepage/responsive/Elec_480x118_HomeDiscount_EN_01_480W.jpg;;Elec_480x118_HomeDiscount_EN_01_480W.jpg;;"Save Big On Animal Management Equipment"
+;tablet;;Elec_770x80_HomeDiscount_EN_01_770W.jpg;$siteResource/images/banners/homepage/responsive/Elec_770x80_HomeDiscount_EN_01_770W.jpg;;Elec_770x80_HomeDiscount_EN_01_770W.jpg;;"Save Big On Animal Management Equipment"
+;desktop;;Elec_960x80_HomeDiscount_EN_01_960W.jpg;$siteResource/images/banners/homepage/responsive/Elec_960x80_HomeDiscount_EN_01_960W.jpg;;Elec_960x80_HomeDiscount_EN_01_960W.jpg;;"Save Big On Animal Management Equipment"
 ;widescreen;;Am_1400x440_HomeSpeed_EN_01_1400W.jpg;$siteResource/images/banners/homepage/responsive/Am_1400x440_HomeSpeed_EN_01_1400W.jpg;;Am_1400x440_HomeSpeed_EN_01_1400W.jpg;;"Save Big On Animal Management Equipment"
 ;mobile;;Am_480x320_HomeSpeed_EN_01_480W.jpg;$siteResource/images/banners/homepage/responsive/Am_480x320_HomeSpeed_EN_01_480W.jpg;;Am_480x320_HomeSpeed_EN_01_480W.jpg;;"Save Big On Animal Management Equipment"
 ;tablet;;Am_770x350_HomeSpeed_EN_01_770W.jpg;$siteResource/images/banners/homepage/responsive/Am_770x350_HomeSpeed_EN_01_770W.jpg;;Am_770x350_HomeSpeed_EN_01_770W.jpg;;"Save Big On Animal Management Equipment"
@@ -231,11 +231,11 @@ INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique
 # Media Content
 INSERT_UPDATE Media;mediaFormat(qualifier);$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];mime[default='image/jpeg'];realfilename;folder(qualifier)[default='images'];altText
 ;tablet;;Elec_200x150_HomeFamLight_EN_01_200W.jpg;$siteResource/images/banners/homepage/responsive/Elec_200x150_HomeFamLight_EN_01_200W.jpg;;Elec_200x150_HomeFamLight_EN_01_200W.jpg;;"Camera Lenses"
-;tablet;;Elec_200x150_HomeFam_EN_01_200W.jpg;$siteResource/images/banners/homepage/responsive/Elec_200x150_HomeFam_EN_01_200W.jpg;;Elec_200x150_HomeFam_EN_01_200W.jpg;;"Compact Cameras"
+;tablet;;Elec_200x150_HomeFam_EN_01_200W.jpg;$siteResource/images/banners/homepage/responsive/Elec_200x150_HomeFam_EN_01_200W.jpg;;Elec_200x150_HomeFam_EN_01_200W.jpg;;"Energizers"
 ;desktop;;Elec_240x180_HomeFamLight_EN_01_240W.jpg;$siteResource/images/banners/homepage/responsive/Elec_240x180_HomeFamLight_EN_01_240W.jpg;;Elec_240x180_HomeFamLight_EN_01_240W.jpg;;"Camera Lenses"
-;desktop;;Elec_240x180_HomeFam_EN_01_240W.jpg;$siteResource/images/banners/homepage/responsive/Elec_240x180_HomeFam_EN_01_240W.jpg;;Elec_240x180_HomeFam_EN_01_240W.jpg;;"Compact Cameras"
-;widescreen;;Am_350x262_HomeFam_EN_01_350W.jpg;$siteResource/images/banners/homepage/responsive/Am_350x262_HomeFam_EN_01_350W.jpg;;Am_350x262_HomeFam_EN_01_350W.jpg;;"Compact Cameras"
-;widescreen;;Am_350x262_HomeFam_EN_01_350W2.jpg;$siteResource/images/banners/homepage/responsive/Am_350x262_HomeFam_EN_01_350W2.jpg;;Am_350x262_HomeFam_EN_01_350W2.jpg;;"Compact Cameras"
+;desktop;;Elec_240x180_HomeFam_EN_01_240W.jpg;$siteResource/images/banners/homepage/responsive/Elec_240x180_HomeFam_EN_01_240W.jpg;;Elec_240x180_HomeFam_EN_01_240W.jpg;;"Energizers"
+;widescreen;;Am_350x262_HomeFam_EN_01_350W.jpg;$siteResource/images/banners/homepage/responsive/Am_350x262_HomeFam_EN_01_350W.jpg;;Am_350x262_HomeFam_EN_01_350W.jpg;;"Energizers"
+;widescreen;;Am_350x262_HomeFam_EN_01_350W2.jpg;$siteResource/images/banners/homepage/responsive/Am_350x262_HomeFam_EN_01_350W2.jpg;;Am_350x262_HomeFam_EN_01_350W2.jpg;;"Energizers"
 
 INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$contentCV[unique=true]
 ;amB2C-homepage-light-fam-en;Elec_200x150_HomeFam_EN_01_200W.jpg,Elec_240x180_HomeFam_EN_01_240W.jpg,Am_350x262_HomeFam_EN_01_350W.jpg
@@ -253,8 +253,8 @@ INSERT_UPDATE Media;mediaFormat(qualifier);$contentCV[unique=true];code[unique=t
 ;tablet;;Elec_200x150_HomeKid_EN_01_200W.jpg;$siteResource/images/banners/homepage/responsive/Elec_200x150_HomeKid_EN_01_200W.jpg;;Elec_200x150_HomeKid_EN_01_200W.jpg;;"Power Supplies"
 ;desktop;;Elec_240x180_HomeCaptureFirst_EN_01_240W.jpg;$siteResource/images/banners/homepage/responsive/Elec_240x180_HomeCaptureFirst_EN_01_240W.jpg;;Elec_240x180_HomeCaptureFirst_EN_01_240W.jpg;;"Camcorders"
 ;desktop;;Elec_240x180_HomeKid_EN_01_240W.jpg;$siteResource/images/banners/homepage/responsive/Elec_240x180_HomeKid_EN_01_240W.jpg;;Elec_240x180_HomeKid_EN_01_240W.jpg;;"Power Supplies"
-;widescreen;;Am_350x262_HomeFam_EN_01_350W1.jpg;$siteResource/images/banners/homepage/responsive/Am_350x262_HomeFam_EN_01_350W1.jpg;;Am_350x262_HomeFam_EN_01_350W1.jpg;;"Compact Cameras"
-;widescreen;;Am_350x262_HomeFam_EN_01_350W3.jpg;$siteResource/images/banners/homepage/responsive/Am_350x262_HomeFam_EN_01_350W3.jpg;;Am_350x262_HomeFam_EN_01_350W3.jpg;;"Compact Cameras"
+;widescreen;;Am_350x262_HomeFam_EN_01_350W1.jpg;$siteResource/images/banners/homepage/responsive/Am_350x262_HomeFam_EN_01_350W1.jpg;;Am_350x262_HomeFam_EN_01_350W1.jpg;;"Energizers"
+;widescreen;;Am_350x262_HomeFam_EN_01_350W3.jpg;$siteResource/images/banners/homepage/responsive/Am_350x262_HomeFam_EN_01_350W3.jpg;;Am_350x262_HomeFam_EN_01_350W3.jpg;;"Energizers"
 
 INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$contentCV[unique=true]
 ;amB2C-homepage-camcorders-02-en;Elec_200x150_HomeCaptureFirst_EN_01_200W.jpg,Elec_240x180_HomeCaptureFirst_EN_01_240W.jpg,Am_350x262_HomeFam_EN_01_350W1.jpg
@@ -268,18 +268,18 @@ INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique
 
 # Media Content
 INSERT_UPDATE Media;mediaFormat(qualifier);$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];mime[default='image/jpeg'];realfilename;folder(qualifier)[default='images'];altText
-;tablet;;Elec_200x200_HomeService_EN_01_200W.jpg;$siteResource/images/banners/homepage/responsive/Elec_200x200_HomeService_EN_01_200W.jpg;;Elec_200x200_HomeService_EN_01_200W.jpg;;"Sony Light HVL-20DW2"
-;tablet;;Elec_200x200_HomeShipment_EN_01_200W.jpg;$siteResource/images/banners/homepage/responsive/Elec_200x200_HomeShipment_EN_01_200W.jpg;;Elec_200x200_HomeShipment_EN_01_200W.jpg;;"Samsung NV10 Compact Camera"
-;tablet;;Elec_200x200_HomeShop_EN_01_200W.jpg;$siteResource/images/banners/homepage/responsive/Elec_200x200_HomeShop_EN_01_200W.jpg;;Elec_200x200_HomeShop_EN_01_200W.jpg;;"Logitech QuickCam for Notebook Pro"
-;tablet;;Elec_200x200_HomeSmallDiscount_EN_01_200W.jpg;$siteResource/images/banners/homepage/responsive/Elec_200x200_HomeSmallDiscount_EN_01_200W.jpg;;Elec_200x200_HomeSmallDiscount_EN_01_200W.jpg;;"Canyon Web Camera 100KpxelIM CMOS"
-;desktop;;Elec_240x240_HomeService_EN_01_240W.jpg;$siteResource/images/banners/homepage/responsive/Elec_240x240_HomeService_EN_01_240W.jpg;;Elec_240x240_HomeService_EN_01_240W.jpg;;"Sony Light HVL-20DW2"
-;desktop;;Elec_240x240_HomeShipment_EN_01_240W.jpg;$siteResource/images/banners/homepage/responsive/Elec_240x240_HomeShipment_EN_01_240W.jpg;;Elec_240x240_HomeShipment_EN_01_240W.jpg;;"Samsung NV10 Compact Camera"
-;desktop;;Elec_240x240_HomeShop_EN_01_240W.jpg;$siteResource/images/banners/homepage/responsive/Elec_240x240_HomeShop_EN_01_240W.jpg;;Elec_240x240_HomeShop_EN_01_240W.jpg;;"Logitech QuickCam for Notebook Pro"
-;desktop;;Elec_240x240_HomeSmallDiscount_EN_01_240W.jpg;$siteResource/images/banners/homepage/responsive/Elec_240x240_HomeSmallDiscount_EN_01_240W.jpg;;Elec_240x240_HomeSmallDiscount_EN_01_240W.jpg;;"Canyon Web Camera 100KpxelIM CMOS"
-;widescreen;;Am_350x350_HomeService_EN_01_350W.jpg;$siteResource/images/banners/homepage/responsive/Am_350x350_HomeService_EN_01_350W.jpg;;Am_350x350_HomeService_EN_01_350W.jpg;;"Sony Light HVL-20DW2"
-;widescreen;;Am_350x350_HomeService_EN_01_350W1.jpg;$siteResource/images/banners/homepage/responsive/Am_350x350_HomeService_EN_01_350W1.jpg;;Am_350x350_HomeService_EN_01_350W1.jpg;;"Samsung NV10 Compact Camera"
-;widescreen;;Am_350x350_HomeService_EN_01_350W2.jpg;$siteResource/images/banners/homepage/responsive/Am_350x350_HomeService_EN_01_350W2.jpg;;Am_350x350_HomeService_EN_01_350W2.jpg;;"Logitech QuickCam for Notebook Pro"
-;widescreen;;Am_350x350_HomeService_EN_01_350W3.jpg;$siteResource/images/banners/homepage/responsive/Am_350x350_HomeService_EN_01_350W3.jpg;;Am_350x350_HomeService_EN_01_350W3.jpg;;"Canyon Web Camera 100KpxelIM CMOS"
+;tablet;;Elec_200x200_HomeService_EN_01_200W.jpg;$siteResource/images/banners/homepage/responsive/Elec_200x200_HomeService_EN_01_200W.jpg;;Elec_200x200_HomeService_EN_01_200W.jpg;;"Solar Fence Energizer"
+;tablet;;Elec_200x200_HomeShipment_EN_01_200W.jpg;$siteResource/images/banners/homepage/responsive/Elec_200x200_HomeShipment_EN_01_200W.jpg;;Elec_200x200_HomeShipment_EN_01_200W.jpg;;"Solar Fence Energizer"
+;tablet;;Elec_200x200_HomeShop_EN_01_200W.jpg;$siteResource/images/banners/homepage/responsive/Elec_200x200_HomeShop_EN_01_200W.jpg;;Elec_200x200_HomeShop_EN_01_200W.jpg;;"Solar Fence Energizer"
+;tablet;;Elec_200x200_HomeSmallDiscount_EN_01_200W.jpg;$siteResource/images/banners/homepage/responsive/Elec_200x200_HomeSmallDiscount_EN_01_200W.jpg;;Elec_200x200_HomeSmallDiscount_EN_01_200W.jpg;;"Solar Fence Energizer"
+;desktop;;Elec_240x240_HomeService_EN_01_240W.jpg;$siteResource/images/banners/homepage/responsive/Elec_240x240_HomeService_EN_01_240W.jpg;;Elec_240x240_HomeService_EN_01_240W.jpg;;"Solar Fence Energizer"
+;desktop;;Elec_240x240_HomeShipment_EN_01_240W.jpg;$siteResource/images/banners/homepage/responsive/Elec_240x240_HomeShipment_EN_01_240W.jpg;;Elec_240x240_HomeShipment_EN_01_240W.jpg;;"Solar Fence Energizer"
+;desktop;;Elec_240x240_HomeShop_EN_01_240W.jpg;$siteResource/images/banners/homepage/responsive/Elec_240x240_HomeShop_EN_01_240W.jpg;;Elec_240x240_HomeShop_EN_01_240W.jpg;;"Solar Fence Energizer"
+;desktop;;Elec_240x240_HomeSmallDiscount_EN_01_240W.jpg;$siteResource/images/banners/homepage/responsive/Elec_240x240_HomeSmallDiscount_EN_01_240W.jpg;;Elec_240x240_HomeSmallDiscount_EN_01_240W.jpg;;"Solar Fence Energizer"
+;widescreen;;Am_350x350_HomeService_EN_01_350W.jpg;$siteResource/images/banners/homepage/responsive/Am_350x350_HomeService_EN_01_350W.jpg;;Am_350x350_HomeService_EN_01_350W.jpg;;"Solar Fence Energizer"
+;widescreen;;Am_350x350_HomeService_EN_01_350W1.jpg;$siteResource/images/banners/homepage/responsive/Am_350x350_HomeService_EN_01_350W1.jpg;;Am_350x350_HomeService_EN_01_350W1.jpg;;"Solar Fence Energizer"
+;widescreen;;Am_350x350_HomeService_EN_01_350W2.jpg;$siteResource/images/banners/homepage/responsive/Am_350x350_HomeService_EN_01_350W2.jpg;;Am_350x350_HomeService_EN_01_350W2.jpg;;"Solar Fence Energizer"
+;widescreen;;Am_350x350_HomeService_EN_01_350W3.jpg;$siteResource/images/banners/homepage/responsive/Am_350x350_HomeService_EN_01_350W3.jpg;;Am_350x350_HomeService_EN_01_350W3.jpg;;"Solar Fence Energizer"
 
 INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$contentCV[unique=true]
 ;amB2C-homepage-service-en;Elec_200x200_HomeService_EN_01_200W.jpg,Elec_240x240_HomeService_EN_01_240W.jpg,Am_350x350_HomeService_EN_01_350W.jpg

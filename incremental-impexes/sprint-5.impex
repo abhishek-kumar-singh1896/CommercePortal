@@ -1351,3 +1351,52 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrict
 ;;GLOBALENTechnicalSupportLink;GallagherGlRegionRestriction
 ;;GLOBALENSoftwareDownloadsLink;GallagherGlRegionRestriction
 
+##################################################Alt text change for home page#################
+
+$contentCatalog=amB2CContentCatalog
+$contentCatalogName=Animal Management B2C Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=amB2CMasterProductCatalog
+$productCatalogName=Animal Management B2C US Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV)
+$medias=medias(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV)[lang=$lang];
+$siteResource=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/productCatalogs/$productCatalog
+# Language
+$lang=en
+
+INSERT_UPDATE Media;mediaFormat(qualifier);$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];mime[default='image/jpeg'];realfilename;folder(qualifier)[default='images'];altText
+;tablet;;Elec_200x150_HomeFam_EN_01_200W.jpg;$siteResource/images/banners/homepage/responsive/Elec_200x150_HomeFam_EN_01_200W.jpg;;Elec_200x150_HomeFam_EN_01_200W.jpg;;"Energizers"
+;desktop;;Elec_240x180_HomeFam_EN_01_240W.jpg;$siteResource/images/banners/homepage/responsive/Elec_240x180_HomeFam_EN_01_240W.jpg;;Elec_240x180_HomeFam_EN_01_240W.jpg;;"Energizers"
+;widescreen;;Am_350x262_HomeFam_EN_01_350W.jpg;$siteResource/images/banners/homepage/responsive/Am_350x262_HomeFam_EN_01_350W.jpg;;Am_350x262_HomeFam_EN_01_350W.jpg;;"Energizers"
+;widescreen;;Am_350x262_HomeFam_EN_01_350W2.jpg;$siteResource/images/banners/homepage/responsive/Am_350x262_HomeFam_EN_01_350W2.jpg;;Am_350x262_HomeFam_EN_01_350W2.jpg;;"Energizers"
+
+# Media Content
+INSERT_UPDATE Media;mediaFormat(qualifier);$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];mime[default='image/jpeg'];realfilename;folder(qualifier)[default='images'];altText
+;widescreen;;Am_350x262_HomeFam_EN_01_350W1.jpg;$siteResource/images/banners/homepage/responsive/Am_350x262_HomeFam_EN_01_350W1.jpg;;Am_350x262_HomeFam_EN_01_350W1.jpg;;"Energizers"
+;widescreen;;Am_350x262_HomeFam_EN_01_350W3.jpg;$siteResource/images/banners/homepage/responsive/Am_350x262_HomeFam_EN_01_350W3.jpg;;Am_350x262_HomeFam_EN_01_350W3.jpg;;"Energizers"
+
+INSERT_UPDATE Media;mediaFormat(qualifier);$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];mime[default='image/jpeg'];realfilename;folder(qualifier)[default='images'];altText
+;widescreen;;Elec_1400x80_HomeDiscount_EN_01_1400W.jpg;$siteResource/images/banners/homepage/responsive/Elec_1400x80_HomeDiscount_EN_01_1400W.jpg;;Elec_1400x80_HomeDiscount_EN_01_1400W.jpg;;"Save Big On Animal Management Equipment"
+;mobile;;Elec_480x118_HomeDiscount_EN_01_480W.jpg;$siteResource/images/banners/homepage/responsive/Elec_480x118_HomeDiscount_EN_01_480W.jpg;;Elec_480x118_HomeDiscount_EN_01_480W.jpg;;"Save Big On Animal Management Equipment"
+;tablet;;Elec_770x80_HomeDiscount_EN_01_770W.jpg;$siteResource/images/banners/homepage/responsive/Elec_770x80_HomeDiscount_EN_01_770W.jpg;;Elec_770x80_HomeDiscount_EN_01_770W.jpg;;"Save Big On Animal Management Equipment"
+;desktop;;Elec_960x80_HomeDiscount_EN_01_960W.jpg;$siteResource/images/banners/homepage/responsive/Elec_960x80_HomeDiscount_EN_01_960W.jpg;;Elec_960x80_HomeDiscount_EN_01_960W.jpg;;"Save Big On Animal Management Equipment"
+
+INSERT_UPDATE Media;mediaFormat(qualifier);$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];mime[default='image/jpeg'];realfilename;folder(qualifier)[default='images'];altText
+;tablet;;Elec_200x200_HomeService_EN_01_200W.jpg;$siteResource/images/banners/homepage/responsive/Elec_200x200_HomeService_EN_01_200W.jpg;;Elec_200x200_HomeService_EN_01_200W.jpg;;"Solar Fence Energizer"
+;tablet;;Elec_200x200_HomeShipment_EN_01_200W.jpg;$siteResource/images/banners/homepage/responsive/Elec_200x200_HomeShipment_EN_01_200W.jpg;;Elec_200x200_HomeShipment_EN_01_200W.jpg;;"Solar Fence Energizer"
+;tablet;;Elec_200x200_HomeShop_EN_01_200W.jpg;$siteResource/images/banners/homepage/responsive/Elec_200x200_HomeShop_EN_01_200W.jpg;;Elec_200x200_HomeShop_EN_01_200W.jpg;;"Solar Fence Energizer"
+;tablet;;Elec_200x200_HomeSmallDiscount_EN_01_200W.jpg;$siteResource/images/banners/homepage/responsive/Elec_200x200_HomeSmallDiscount_EN_01_200W.jpg;;Elec_200x200_HomeSmallDiscount_EN_01_200W.jpg;;"Solar Fence Energizer"
+;desktop;;Elec_240x240_HomeService_EN_01_240W.jpg;$siteResource/images/banners/homepage/responsive/Elec_240x240_HomeService_EN_01_240W.jpg;;Elec_240x240_HomeService_EN_01_240W.jpg;;"Solar Fence Energizer"
+;desktop;;Elec_240x240_HomeShipment_EN_01_240W.jpg;$siteResource/images/banners/homepage/responsive/Elec_240x240_HomeShipment_EN_01_240W.jpg;;Elec_240x240_HomeShipment_EN_01_240W.jpg;;"Solar Fence Energizer"
+;desktop;;Elec_240x240_HomeShop_EN_01_240W.jpg;$siteResource/images/banners/homepage/responsive/Elec_240x240_HomeShop_EN_01_240W.jpg;;Elec_240x240_HomeShop_EN_01_240W.jpg;;"Solar Fence Energizer"
+;desktop;;Elec_240x240_HomeSmallDiscount_EN_01_240W.jpg;$siteResource/images/banners/homepage/responsive/Elec_240x240_HomeSmallDiscount_EN_01_240W.jpg;;Elec_240x240_HomeSmallDiscount_EN_01_240W.jpg;;"Solar Fence Energizer"
+;widescreen;;Am_350x350_HomeService_EN_01_350W.jpg;$siteResource/images/banners/homepage/responsive/Am_350x350_HomeService_EN_01_350W.jpg;;Am_350x350_HomeService_EN_01_350W.jpg;;"Solar Fence Energizer"
+;widescreen;;Am_350x350_HomeService_EN_01_350W1.jpg;$siteResource/images/banners/homepage/responsive/Am_350x350_HomeService_EN_01_350W1.jpg;;Am_350x350_HomeService_EN_01_350W1.jpg;;"Solar Fence Energizer"
+;widescreen;;Am_350x350_HomeService_EN_01_350W2.jpg;$siteResource/images/banners/homepage/responsive/Am_350x350_HomeService_EN_01_350W2.jpg;;Am_350x350_HomeService_EN_01_350W2.jpg;;"Solar Fence Energizer"
+;widescreen;;Am_350x350_HomeService_EN_01_350W3.jpg;$siteResource/images/banners/homepage/responsive/Am_350x350_HomeService_EN_01_350W3.jpg;;Am_350x350_HomeService_EN_01_350W3.jpg;;"Solar Fence Energizer"
+
+####################################################
+
