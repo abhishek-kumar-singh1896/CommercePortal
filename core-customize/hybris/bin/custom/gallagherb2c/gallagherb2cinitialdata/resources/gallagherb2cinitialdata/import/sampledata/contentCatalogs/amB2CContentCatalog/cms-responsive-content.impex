@@ -1298,7 +1298,7 @@ INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[uni
 
 ##Country dropdown for different websites
 
-INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;linkName;&linkRef;&componentRef;target(code)[default='sameWindow'];$category;$product;
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;linkName[lang=en];&linkRef;&componentRef;target(code)[default='sameWindow'];$category;$product;
 ;;nz-en_NZ;New Zealand Link;$websiteBaseURL/am/nz/en_NZ/?clear=true;New Zealand;nz-en_NZ;nz-en_NZ
 ;;au-en_AU;Australia Link;$websiteBaseURL/am/au/en_AU/?clear=true;Australia;au-en_AU;au-en_AU
 ;;us-en_US;US Link;$websiteBaseURL/am/us/en_US/?clear=true;United States;us-en_US;us-en_US
