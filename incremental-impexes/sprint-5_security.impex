@@ -771,3 +771,14 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents
 ;;BottomHeaderSlot;breadcrumbComponent
 
 #################################################################
+
+########userdropdown components for CompanyPageTemplate
+
+$contentCatalog=securityB2BContentCatalog
+$contentCatalogName=Security B2B Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CompanyPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BMyAccount-CompanyPage;B2BMyAccount;;B2BMyAccountSlot;true
+;;B2BMyCompany-CompanyPage;B2BMyCompany;;B2BMyCompanySlot;true
+;;ggB2BLogout-CompanyPage;ggB2BLogout;;ggB2BLogoutSlot;true
+
