@@ -1181,29 +1181,13 @@ INSERT_UPDATE GallagherRegionRestriction;$contentCV[unique=true];uid[unique=true
 $contentCatalog=amB2CContentCatalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
 
-REMOVE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV)	   ;onlyOneRestrictionMustApply[default='true']
-;;NZENSearchComponent;GallagherNZRegionRestriction
-;;AUENSearchComponent;GallagherAURegionRestriction
-;;USENSearchComponent;GallagherUSRegionRestriction
-;;CAENSearchComponent;GallagherCAENRegionRestriction
-;;CAFRSearchComponent;GallagherCAFRRegionRestriction
-;;GLOBALENSearchComponent;GallagherGlRegionRestriction
-
-REMOVE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV)	   ;onlyOneRestrictionMustApply[default='true']
-;;NZENSearchComponent;GallagherNZRegionRestriction
-;;AUENSearchComponent;GallagherAURegionRestriction
-;;USENSearchComponent;GallagherUSRegionRestriction
-;;CAENSearchComponent;GallagherCAENRegionRestriction
-;;CAFRSearchComponent;GallagherCAFRRegionRestriction
-;;GLOBALENSearchComponent;GallagherGlRegionRestriction
-
-INSERT_UPDATE GallagherNewButtonComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV)	   ;onlyOneRestrictionMustApply[default='false']
-;;NZENSearchComponent;GallagherNZRegionRestriction
-;;AUENSearchComponent;GallagherAURegionRestriction
-;;USENSearchComponent;GallagherUSRegionRestriction
-;;CAENSearchComponent;GallagherCAENRegionRestriction
-;;CAFRSearchComponent;GallagherCAFRRegionRestriction
-;;GLOBALENSearchComponent;GallagherGlRegionRestriction
+REMOVE CMSLinkComponent;$contentCV[unique=true];uid[unique=true]
+;;NZENSearchComponent
+;;AUENSearchComponent
+;;USENSearchComponent
+;;CAENSearchComponent
+;;CAFRSearchComponent
+;;GLOBALENSearchComponent
 
 INSERT_UPDATE GallagherNewButtonComponent;$contentCV[unique=true];uid[unique=true];name;url;linkName;&linkRef;&componentRef
 ;;NZENSearchComponent;NZ Search Component;https://am.gallagher.com/nz/find-a-stockist ;Search;NZENSearchComponent;NZENSearchComponent
@@ -1212,6 +1196,16 @@ INSERT_UPDATE GallagherNewButtonComponent;$contentCV[unique=true];uid[unique=tru
 ;;CAENSearchComponent;CA EN Search Component;https://am.gallagher.com/en-ca/find-a-dealer ;Search;CAENSearchComponent;CAENSearchComponent
 ;;CAFRSearchComponent;CA FR Search Component;https://am.gallagher.com/fr-ca/trouver-un-fournisseur ;Search;CAFRSearchComponent;CAFRSearchComponent
 ;;GLOBALENSearchComponent;Global Search Component;https://am.gallagher.com/global/find-a-distributor ;Search;GLOBALENSearchComponent;GLOBALENSearchComponent
+
+
+INSERT_UPDATE GallagherNewButtonComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV)	   ;onlyOneRestrictionMustApply[default='true']
+;;NZENSearchComponent;GallagherNZRegionRestriction
+;;AUENSearchComponent;GallagherAURegionRestriction
+;;USENSearchComponent;GallagherUSRegionRestriction
+;;CAENSearchComponent;GallagherCAENRegionRestriction,GallagherCAENCARegionRestriction
+;;CAFRSearchComponent;GallagherCAFRRegionRestriction,GallagherCAFRCARegionRestriction
+;;GLOBALENSearchComponent;GallagherGlRegionRestriction
+
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;linkName;&linkRef;&componentRef
 ;;NZTMLinkComp;NZ Territory Manager Link Component;https://am.gallagher.com/nz/about-us/our-people/territory-managers ;Or Find Your Nearest Territory Manager;NZTMLinkComp;NZTMLinkComp

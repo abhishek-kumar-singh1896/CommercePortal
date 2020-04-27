@@ -2398,8 +2398,8 @@ INSERT_UPDATE GallagherNewButtonComponent;$contentCV[unique=true];uid[unique=tru
 ;;NZENSearchComponent;GallagherNZRegionRestriction
 ;;AUENSearchComponent;GallagherAURegionRestriction
 ;;USENSearchComponent;GallagherUSRegionRestriction
-;;CAENSearchComponent;GallagherCAENRegionRestriction
-;;CAFRSearchComponent;GallagherCAFRRegionRestriction
+;;CAENSearchComponent;GallagherCAENRegionRestriction,GallagherCAENCARegionRestriction
+;;CAFRSearchComponent;GallagherCAFRRegionRestriction,GallagherCAFRCARegionRestriction
 ;;GLOBALENSearchComponent;GallagherGlRegionRestriction
 
 INSERT_UPDATE GallagherNewButtonComponent;$contentCV[unique=true];uid[unique=true];name;url;linkName;&linkRef;&componentRef
