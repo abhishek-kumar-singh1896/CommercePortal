@@ -1400,3 +1400,9 @@ INSERT_UPDATE Media;mediaFormat(qualifier);$contentCV[unique=true];code[unique=t
 
 ####################################################
 
+##################fallbackLanguages change for fr_CA####################
+
+INSERT_UPDATE Language ; isocode[unique=true] ; fallbackLanguages(isocode) ; active[default=true] 
+                       ; fr_CA				  ; en						   ;					  ;
+
+#########################################################################
