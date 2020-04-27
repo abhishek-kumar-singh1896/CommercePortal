@@ -3,9 +3,8 @@
  */
 package com.gallagher.outboundservices.response.dto;
 
-import java.util.Date;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 /**
@@ -14,81 +13,71 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GallagherRegisteredProduct
 {
-	private String name;
-	private String code;
-	private String attachment;
-	private String attachmentUrl;
-	private Date registrationDate;
-	private Date purchaseDate;
-	private byte[] image;
+	@JsonProperty("SerialID")
+	private String serialID;
 
-	public String getName()
+	@JsonProperty("ProductID")
+	private String productID;
+
+	@JsonProperty("ReferenceDate")
+	private String referenceDate;
+
+	@JsonProperty("CreationDateTime")
+	private String creationDateTime;
+
+	@JsonProperty("RegisteredProductAttachmentFolder")
+	private GallagherRegisteredProductAttachmentFolder registeredProductAttachmentFolder;
+
+
+	public String getSerialID()
 	{
-		return name;
+		return serialID;
 	}
 
-	public void setName(final String name)
+	public void setSerialID(final String serialID)
 	{
-		this.name = name;
+		this.serialID = serialID;
 	}
 
-	public String getCode()
+	public String getProductID()
 	{
-		return code;
+		return productID;
 	}
 
-	public void setCode(final String code)
+	public void setProductID(final String productID)
 	{
-		this.code = code;
+		this.productID = productID;
 	}
 
-	public String getAttachment()
+	public String getReferenceDate()
 	{
-		return attachment;
+		return referenceDate;
 	}
 
-	public void setAttachment(final String attachment)
+	public void setReferenceDate(final String referenceDate)
 	{
-		this.attachment = attachment;
+		this.referenceDate = referenceDate;
 	}
 
-	public String getAttachmentUrl()
+	public String getCreationDateTime()
 	{
-		return attachmentUrl;
+		return creationDateTime;
 	}
 
-	public void setAttachmentUrl(final String attachmentUrl)
+	public void setCreationDateTime(final String creationDateTime)
 	{
-		this.attachmentUrl = attachmentUrl;
+		this.creationDateTime = creationDateTime;
 	}
 
-	public Date getRegistrationDate()
+	public GallagherRegisteredProductAttachmentFolder getRegisteredProductAttachmentFolder()
 	{
-		return registrationDate;
+		return registeredProductAttachmentFolder;
 	}
 
-	public void setRegistrationDate(final Date registrationDate)
+	public void setRegisteredProductAttachmentFolder(
+			final GallagherRegisteredProductAttachmentFolder registeredProductAttachmentFolder)
 	{
-		this.registrationDate = registrationDate;
+		this.registeredProductAttachmentFolder = registeredProductAttachmentFolder;
 	}
 
-	public Date getPurchaseDate()
-	{
-		return purchaseDate;
-	}
-
-	public void setPurchaseDate(final Date purchaseDate)
-	{
-		this.purchaseDate = purchaseDate;
-	}
-
-	public byte[] getImage()
-	{
-		return image;
-	}
-
-	public void setImage(final byte[] image)
-	{
-		this.image = image;
-	}
 }

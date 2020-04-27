@@ -50,8 +50,7 @@ $registerProductVersion = v=1
 #*****************************************#
 #*** Registered Product Collection URL ***#
 #*****************************************#
-$registeredProductCollectionUrl = https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com/gw/odata/SAP/GGL_C4C_ODATAAPI
-$registeredProductCollectionVersion = v=1
+$registeredProductCollectionUrl = https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com/http/RegisteredProductCollection
                                      
 #****************************#       
 #***  Destination Target  ***#       
@@ -69,7 +68,7 @@ INSERT_UPDATE Endpoint ; id[unique = true]                       ; version[uniqu
                        ; scpiOrderCancellationEndpoint           ; unknown                ; "$cancelOrderUrl;$cancelOrderVersion/"                     ; scpiOrderCancellationEndpoint           
                        ; scpiContactCollectionEndpoint           ; unknown                ; "$contactCollectionUrl;$contactCollectionVersion/"         ; scpiContactCollectionEndpoint           
                        ; scpiRegisterProductEndpoint             ; unknown                ; "$registerProductUrl;$registerProductVersion/"             ; scpiRegisterProductEndpoint             
-                       ; scpiRegisteredProductCollectionEndpoint ; unknown                ; "$registerProductUrl;$registeredProductCollectionVersion/" ; scpiRegisteredProductCollectionEndpoint 
+                       ; scpiRegisteredProductCollectionEndpoint ; unknown                ; $registerProductUrl                                ; scpiRegisteredProductCollectionEndpoint 
                        
                        
 #*******************************#
@@ -82,7 +81,7 @@ INSERT_UPDATE ConsumedDestination ; id[unique = true]                          ;
                                   ; scpiOrderCancellationDestination           ; "$cancelOrderUrl;$cancelOrderVersion/SAPCpiOutboundOrderCancellations"                  ; scpiOrderCancellationEndpoint:unknown           ; scpiOauthCredential ; "csrfURL->$cancelOrderUrl;$cancelOrderVersion/"                                 ;                                                        
                                   ; scpiContactCollectionDestination           ; "$contactCollectionUrl;$contactCollectionVersion/ContactCollection"                     ; scpiContactCollectionEndpoint:unknown           ; scpiOauthCredential ; "csrfURL->$contactCollectionUrl;$contactCollectionVersion/"                     ;                                                        
                                   ; scpiRegisterProductDestination             ; "$registerProductUrl;$registerProductVersion/RegisteredProductCollection"               ; scpiRegisterProductEndpoint:unknown             ; scpiOauthCredential ; "csrfURL->$registerProductUrl;$registerProductVersion/"                         ;                                                        
-                                  ; scpiRegisteredProductCollectionDestination ; "$registeredProductCollectionUrl;$registeredProductCollectionVersion/ContactCollection" ; scpiRegisteredProductCollectionEndpoint:unknown ; scpiOauthCredential ; "csrfURL->$registeredProductCollectionUrl;$registeredProductCollectionVersion/" ;                                                        
+                                  ; scpiRegisteredProductCollectionDestination ; $registeredProductCollectionUrl                                           ; scpiRegisteredProductCollectionEndpoint:unknown ; scpiOauthCredential ; csrfURL->$registeredProductCollectionUrl                    ;                                                        
                                   
 INSERT_UPDATE IflowConfiguration ; iflowKey[unique=true]              ; iflowUrl                                                           
                                  ; ZGGL_REPLICATE_B2C_Customer_To_C4C ; /gw/odata/SAP/ZGGL-REPLICATE-CUSTOMER-FROM-SAP-COMMERCE-TO-SAP-C4C ; v=1 

@@ -6,8 +6,6 @@ package com.gallagher.c4c.outboundservices.facade.impl;
 import de.hybris.platform.apiregistryservices.model.ConsumedDestinationModel;
 import de.hybris.platform.outboundservices.facade.impl.DefaultOutboundServiceFacade;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -31,11 +29,14 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.gallagher.c4c.outboundservices.facade.GallagherC4COutboundServiceFacade;
 import com.gallagher.outboundservices.decorator.GallagherCsrfOutboundRequestDecorator;
+import com.gallagher.outboundservices.request.dto.GallgherRegisteredProductQuery;
+import com.gallagher.outboundservices.request.dto.GallgherRegisteredProductRequest;
 import com.gallagher.outboundservices.request.dto.RegisterProductRequest;
 import com.gallagher.outboundservices.response.dto.GallagherInboundCustomerEntry;
 import com.gallagher.outboundservices.response.dto.GallagherInboundCustomerInfo;
 import com.gallagher.outboundservices.response.dto.GallagherRegisterProductResponse;
 import com.gallagher.outboundservices.response.dto.GallagherRegisteredProduct;
+import com.gallagher.outboundservices.response.dto.GallagherRegisteredProductResponse;
 
 
 /**
@@ -141,7 +142,7 @@ public class GallagherC4COutboundServiceFacadeImpl extends DefaultOutboundServic
 	 * {@inheritDoc}
 	 */
 	@Override
-	public List<GallagherRegisteredProduct> getRegisteredProductFromC4C(final String email)
+	public List<GallagherRegisteredProduct> getRegisteredProductFromC4C(final String customerID)
 	{
 		final ConsumedDestinationModel destinationModel = getConsumedDestinationModelById(
 				REGISTERED_PRODUCT_COLLECTION_DESTINATION);
@@ -149,42 +150,24 @@ public class GallagherC4COutboundServiceFacadeImpl extends DefaultOutboundServic
 
 		final String baseURL = destinationModel.getUrl();
 
-		final UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(baseURL).queryParam("$filter",
-				"Email eq '" + email + "'");
+		final UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(baseURL);
 
 		final HttpHeaders headers = new HttpHeaders();
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		headers.setContentType(MediaType.APPLICATION_JSON);
 
-		final HttpEntity entity = new HttpEntity(headers);
+		final GallgherRegisteredProductRequest registeredProductRequest = new GallgherRegisteredProductRequest();
+		final GallgherRegisteredProductQuery registeredProductQuery = new GallgherRegisteredProductQuery();
 
-		//final HttpEntity<GallagherRegisteredProduct[]> response = restOperations.exchange(builder.build().encode().toUri(),
-		//		HttpMethod.GET, entity, GallagherRegisteredProduct[].class);
+		registeredProductQuery.setCustomerID(customerID);
+		registeredProductRequest.setProductQuery(registeredProductQuery);
 
-		//return Arrays.asList(response.getBody());
+		final HttpEntity<GallgherRegisteredProductRequest> entity = new HttpEntity<>(registeredProductRequest, headers);
 
-		final List<GallagherRegisteredProduct> registeredProductsList = new ArrayList<GallagherRegisteredProduct>();
-		for (int i = 0; i <= 5; i++)
-		{
-			final GallagherRegisteredProduct registeredProduct = new GallagherRegisteredProduct();
-			registeredProduct.setAttachment("this is attachment");
-			registeredProduct.setAttachmentUrl("https://images.google.com");
-			registeredProduct.setCode("solar-fence-energizer-s10");
-			registeredProduct.setName("Solar Fence Energiser");
-			registeredProduct.setImage(null);
+		final HttpEntity<GallagherRegisteredProductResponse> response = restOperations.exchange(builder.build().encode().toUri(),
+				HttpMethod.GET, entity, GallagherRegisteredProductResponse.class);
 
-			final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-			try
-			{
-				registeredProduct.setPurchaseDate(simpleDateFormat.parse("12/01/2020"));
-				registeredProduct.setRegistrationDate(simpleDateFormat.parse("15/03/2020"));
-			}
-			catch (final ParseException e)
-			{
-				e.printStackTrace();
-			}
-			registeredProductsList.add(registeredProduct);
-		}
-		return registeredProductsList;
+		return response.getBody().getRegisteredProductCollection().getRegisteredProduct();
 	}
 
 }

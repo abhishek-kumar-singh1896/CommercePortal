@@ -41,9 +41,9 @@ public interface GallagherC4COutboundServiceFacade
 	/**
 	 * Returns Registered Product information for an email from C4C via SCPI
 	 *
-	 * @param customerEmail
+	 * @param customerID
 	 *
-	 * @return List of Registered Product for the email provided
+	 * @return List of Registered Product for the customerID provided
 	 */
-	List<GallagherRegisteredProduct> getRegisteredProductFromC4C(final String email);
+	List<GallagherRegisteredProduct> getRegisteredProductFromC4C(final String customerID);
 }
