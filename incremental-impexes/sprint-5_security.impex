@@ -781,4 +781,6 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 ;;B2BMyAccount-CompanyPage;B2BMyAccount;;B2BMyAccountSlot;true
 ;;B2BMyCompany-CompanyPage;B2BMyCompany;;B2BMyCompanySlot;true
 ;;ggB2BLogout-CompanyPage;ggB2BLogout;;ggB2BLogoutSlot;true
+;;ggB2BNavBar-CompanyPage;ggB2BNavBar;;ggB2BNavBarSlot;true
+
 
