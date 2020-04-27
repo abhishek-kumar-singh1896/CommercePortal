@@ -9,11 +9,11 @@
 	<%-- if empty webroot, skip originalContextPath, simply use favIconPath --%>
 	<c:when test="${fn:length(originalContextPath) eq 1}">
 		<link rel="shortcut icon" type="image/x-icon" media="all"
-			href="/_ui/responsive/theme-amB2C/images/favicon.ico" />
+			href="/_ui/responsive/theme-securityB2B/images/favicon.ico" />
 	</c:when>
 	<c:otherwise>
 		<link rel="shortcut icon" type="image/x-icon" media="all"
-			href="${originalContextPath}/_ui/responsive/theme-amB2C/images/favicon.ico" />
+			href="${originalContextPath}/_ui/responsive/theme-securityB2B/images/favicon.ico" />
 	</c:otherwise>
 </c:choose>
 <title>Server Error</title>
