@@ -156,7 +156,7 @@ REMOVE BaseStore2DeliveryModeRel;source(uid)[unique=true];target(code)[unique=tr
 
 ###############B2B#############################
 $contentCatalog=securityB2BContentCatalog
-$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online  ])[default=$contentCatalog:Online  ]
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged  ])[default=$contentCatalog:Staged  ]
 $wideContent=CMSImageComponent,BannerComponent
 $jarEmailResource=jar:com.gallagher.b2b.initialdata.constants.B2badvanceInitialDataConstants&/gallagherb2binitialdata/import/coredata/contentCatalogs/securityB2BContentCatalog/emails
 
@@ -258,7 +258,7 @@ INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=
 ############################B2C#############################################
 $contentCatalog=amB2CContentCatalog
 $contentCatalogName=Animal Management B2C Content Catalog
-$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online  ])[default=$contentCatalog:Online  ]
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged  ])[default=$contentCatalog:Staged  ]
 #################Search item is not found##############################
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
 ;;MiddleContent-searchEmpty;Middle Slot for searchEmpty;true;NoSearchResultsParagraphComponent
@@ -307,7 +307,7 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CartPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;ggB2CNavBar-CartPage;ggB2CNavBar;;ggB2CNavBarSlot;true
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='RegisteredProductsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
-;;ggB2CNavBar-RegisteredProductPage;ggB2CNavBar;;ggB2CNavBarSlot;true
+;;ggB2CNavBar-RegisteredProducts;ggB2CNavBar;;ggB2CNavBarSlot;true
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CheckoutLoginPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;ggB2CNavBar-CheckoutLoginPage;ggB2CNavBar;;ggB2CNavBarSlot;true
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LoginPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
@@ -323,7 +323,7 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='AccountPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;ggB2CNavBar-AccountPage;ggB2CNavBar;;ggB2CNavBarSlot;true
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsEmptyPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
-;;ggB2CNavBar-SearchResultsEmptyPage;ggB2CNavBar;;ggB2CNavBarSlot;true
+;;ggB2CNavBar-SearchResultsEmpty;ggB2CNavBar;;ggB2CNavBarSlot;true
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsListPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;ggB2CNavBar-SearchResultsListPage;ggB2CNavBar;;ggB2CNavBarSlot;true
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CategoryPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
@@ -694,9 +694,9 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrict
 
 
 $contentCatalog=amB2CContentCatalog
-$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online ])[default=$contentCatalog:Online ]
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged ])[default=$contentCatalog:Staged ]
 $productCatalog=amB2CMasterProductCatalog
-$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Online '])[unique=true,default=$productCatalog:Online ]
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged ]
 
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
@@ -793,9 +793,9 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents
 ########################FindUs Navigation Starts#################
 
 $contentCatalog=amB2CContentCatalog
-$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online ])[default=$contentCatalog:Online ]
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged ])[default=$contentCatalog:Staged ]
 $productCatalog=amB2CMasterProductCatalog
-$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Online '])[unique=true,default=$productCatalog:Online ]
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged ]
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
 ;ContactNavNodeEntry;;Contact Navigation Node Entry;ContactNavNode;ContactLink
@@ -1146,14 +1146,17 @@ UPDATE SolrFacetSearchConfig ; name[unique=true]; languages(isocode)
 $contentCatalog=amB2CContentCatalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged ])[default=$contentCatalog:Staged ]
 REMOVE CMSLinkComponent;$contentCV[unique=true];uid[unique=true]
-;;FindStoreLink;Find Store Link;https://www.google.com/;;;
-;;FindManagerLink;Find Manager Link;http://www.google.com/;;;
-;;SendMessageLink;Send Message Link;http://www.google.com/;;;
+;;FindStoreLink
+;;FindManagerLink
+;;SendMessageLink
+;;TechnicalSupportLink
+;;SoftwareDownloadsLink
+;;SupportMaterialLink
 
 
 ######################### creating region restrictions instances ########################
 $contentCatalog=amB2CContentCatalog
-$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Satged])[default=$contentCatalog:Staged]
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
 
 $contentCatalog=amB2CContentCatalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
@@ -1178,14 +1181,21 @@ INSERT_UPDATE GallagherRegionRestriction;$contentCV[unique=true];uid[unique=true
 $contentCatalog=amB2CContentCatalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
 
-REMOVE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV)	   ;onlyOneRestrictionMustApply[default='true']
-;;NZENSearchComponent;GallagherNZRegionRestriction
-;;AUENSearchComponent;GallagherAURegionRestriction
-;;USENSearchComponent;GallagherUSRegionRestriction
-;;CAENSearchComponent;GallagherCAENRegionRestriction
-;;CAFRSearchComponent;GallagherCAFRRegionRestriction
-;;GLOBALENSearchComponent;GallagherGlRegionRestriction
+REMOVE CMSLinkComponent;$contentCV[unique=true];uid[unique=true]
+;;NZENSearchComponent
+;;AUENSearchComponent
+;;USENSearchComponent
+;;CAENSearchComponent
+;;CAFRSearchComponent
+;;GLOBALENSearchComponent
 
+INSERT_UPDATE GallagherNewButtonComponent;$contentCV[unique=true];uid[unique=true];name;url;linkName;&linkRef;&componentRef
+;;NZENSearchComponent;NZ Search Component;https://am.gallagher.com/nz/find-a-stockist ;Search;NZENSearchComponent;NZENSearchComponent
+;;AUENSearchComponent;AU Search Component;https://am.gallagher.com/au/find-a-stockist ;Search;AUENSearchComponent;AUENSearchComponent
+;;USENSearchComponent;US Search Component;https://am.gallagher.com/us/find-a-dealer ;Search;USENSearchComponent;USENSearchComponent
+;;CAENSearchComponent;CA EN Search Component;https://am.gallagher.com/en-ca/find-a-dealer ;Search;CAENSearchComponent;CAENSearchComponent
+;;CAFRSearchComponent;CA FR Search Component;https://am.gallagher.com/fr-ca/trouver-un-fournisseur ;Search;CAFRSearchComponent;CAFRSearchComponent
+;;GLOBALENSearchComponent;Global Search Component;https://am.gallagher.com/global/find-a-distributor ;Search;GLOBALENSearchComponent;GLOBALENSearchComponent
 
 
 INSERT_UPDATE GallagherNewButtonComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV)	   ;onlyOneRestrictionMustApply[default='true']
@@ -1193,22 +1203,15 @@ INSERT_UPDATE GallagherNewButtonComponent;$contentCV[unique=true];uid[unique=tru
 ;;AUENSearchComponent;GallagherAURegionRestriction
 ;;USENSearchComponent;GallagherUSRegionRestriction
 ;;CAENSearchComponent;GallagherCAENRegionRestriction,GallagherCAENCARegionRestriction
-;;CAFRSearchComponent;GallagherCAFRRegionRestriction, GallagherCAFRCARegionRestriction
+;;CAFRSearchComponent;GallagherCAFRRegionRestriction,GallagherCAFRCARegionRestriction
 ;;GLOBALENSearchComponent;GallagherGlRegionRestriction
 
 
-
-
-INSERT_UPDATE GallagherNewButtonComponent;$contentCV[unique=true];uid[unique=true];name;url;linkName;&linkRef;&componentRef
-;;NZENSearchComponent;NZ Search Component;https://am.gallagher.com/nz/find-a-stockist ;Search;NZENSearchComponent;NZENSearchComponent
-;;AUENSearchComponent;AU Search Component;https://am.gallagher.com/au/find-a-stockist ;Search;AUENSearchComponent;AUENSearchComponent
-;;USENSearchComponent;US Search Component;https://am.gallaghern.com/us/find-a-dealer ;Search;USENSearchComponent;USENSearchComponent
-;;CAENSearchComponent;CA EN Search Component;https://am.gallagher.com/en-ca/find-a-dealer ;Search;CAENSearchComponent;CAENSearchComponent
-;;CAFRSearchComponent;CA FR Search Component;https://am.gallagher.com/fr-ca/trouver-un-fournisseur ;Search;CAFRSearchComponent;CAFRSearchComponent
-;;GLOBALENSearchComponent;Global Search Component;https://am.gallagher.com/global/find-a-distributor ;Search;GLOBALENSearchComponent;GLOBALENSearchComponent
-
-
-
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;linkName;&linkRef;&componentRef
+;;NZTMLinkComp;NZ Territory Manager Link Component;https://am.gallagher.com/nz/about-us/our-people/territory-managers ;Or Find Your Nearest Territory Manager;NZTMLinkComp;NZTMLinkComp
+;;AUTMLinkComp;AU Territory Manager Link Component;https://am.gallagher.com/au/about-us/our-people/territory-managers ;Or Find Your Nearest Territory Manager;AUTMLinkComp;AUTMLinkComp
+;;USTMLinkComp;US Territory Manager Link Component;https://www.google.com ;Or Find Your Nearest Territory Manager;USTMLinkComp;USTMLinkComp
+;;CATMLinkComp;CA Territory Manager Link Component;https://www.google.com ;Or Find Your Nearest Territory Manager;CAFRTMLinkComp;CAFRTMLinkComp
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(GallagherNewButtonComponent.uid,GallagherNewButtonComponent.$contentCV);
 ;NZSearchNavEntry;;NZ Search Nav Entry;NZSearchNavNode;NZENSearchComponent
@@ -1218,13 +1221,89 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 ;CAFRSearchNavEntry;;CA FR Search Nav Entry;CAFRSearchNavNode;CAFRSearchComponent
 ;GlobalSearchNavEntry;;Global Search Nav Entry;GlobalSearchNavNode;GLOBALENSearchComponent
 
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;NZTMNavEntry;;NZ Territory Manager Nav Entry;NZTMNavNode;NZTMLinkComp
+;AUTMNavEntry;;AU Territory Manager Nav Entry;AUTMNavNode;AUTMLinkComp
+;USTMNavEntry;;US Territory Manager Nav Entry;USTMNavNode;USTMLinkComp
+;CATMNavEntry;;CA Territory Manager Nav Entry;CATMNavNode;CATMLinkComp
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef);
+;NZSearchNavNode;;NZ Search Navigation Node;NZSearchNavNode
+;AUSearchNavNode;;AU Search Navigation Node;AUSearchNavNode
+;USSearchNavNode;;US Search Navigation Node;USSearchNavNode
+;CAENSearchNavNode;;CA EN Search Navigation Node;CAENSearchNavNode
+;CAFRSearchNavNode;;CA FR Search Navigation Node;CAFRSearchNavNode
+;GlobalSearchNavNode;;Global Search Navigation Node;GlobalSearchNavNode
+
+;NZTMNavNode;;NZ Territory Manager Navigation Node;NZTMNavNode
+;AUTMNavNode;;AU Territory Manager Navigation Node;AUTMNavNode
+;USTMNavNode;;US Territory Manager Navigation Node;USTMNavNode
+;CATMNavNode;;CA Territory Manager Navigation Node;CATMNavNode
+
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV)	   ;onlyOneRestrictionMustApply[default='true']
-
-
 ;;NZTMLinkComp;GallagherNZRegionRestriction
 ;;AUTMLinkComp;GallagherAURegionRestriction
 ;;USTMLinkComp;GallagherUSRegionRestriction
 ;;CATMLinkComp;GallagherCARegionRestriction
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&componentRef);&nodeRef;children(uid, $contentCV)
+;PDPSearchNavNode;;PDP Country Search Navigation Node;root;;PDPSearchNavNode;NZSearchNavNode,AUSearchNavNode,USSearchNavNode,CAENSearchNavNode,CAFRSearchNavNode,GlobalSearchNavNode
+;PDPTMNavNode;;PDP Country Territory Manager Navigation Node;root;;PDPTMNavNode;NZTMNavNode,AUTMNavNode,USTMNavNode,CATMNavNode
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];name;$contentCV[unique=true];children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
+;CallUsSupport_Nav;Call Us support Nav;;;"Our customer services team are here to help.";CallUsSupport_Nav
+;SupportMaterial_Nav;Support Material Nav;;;"Search through our user manuals, guides and how-tos, brochures and videos.";SupportMaterial_Nav
+;TechnicalSupport_Nav;Technical Support Nav;;;"We provide technical help and support for Gallagher Weighing and EID hardware and software products";TechnicalSupport_Nav
+;SoftwareDownloads_Nav;Software Downloads Nav;;;"Download the latest software for your Weighing and EID products";SoftwareDownloads_Nav
+
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];name;$contentCV[unique=true];navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
+;CallUsSupport_NavEntry;Call Us support Nav Entry;;CallUsSupport_Nav;CallUsSupportLink
+;NZSupportMaterial_NavEntry;NZ Support Material Nav Entry;;SupportMaterial_Nav;NZENSupportMaterialLink
+;NZTechnicalSupport_NavEntry;NZ Technical Support Nav Entry;;TechnicalSupport_Nav;NZENTechnicalSupportLink
+;NZSoftwareDownloads_NavEntry;NZ Software Downloads Nav Entry;;SoftwareDownloads_Nav;NZENSoftwareDownloadsLink
+;CAENSupportMaterial_NavEntry;CA EN Support Material Nav Entry;;SupportMaterial_Nav;CAENSupportMaterialLink
+;CAENTechnicalSupport_NavEntry;CA EN Technical Support Nav Entry;;TechnicalSupport_Nav;CAENTechnicalSupportLink
+;CAENSoftwareDownloads_NavEntry;CA EN Software Downloads Nav Entry;;SoftwareDownloads_Nav;CAENSoftwareDownloadsLink
+;CAFRSupportMaterial_NavEntry;CA FR Support Material Nav Entry;;SupportMaterial_Nav;CAFRSupportMaterialLink
+;CAFRTechnicalSupport_NavEntry;CA FR Technical Support Nav Entry;;TechnicalSupport_Nav;CAFRTechnicalSupportLink
+;CAFRSoftwareDownloads_NavEntry;CA FR Software Downloads Nav Entry;;SoftwareDownloads_Nav;CAFRSoftwareDownloadsLink
+;AUSupportMaterial_NavEntry;AU Support Material Nav Entry;;SupportMaterial_Nav;AUENSupportMaterialLink
+;AUTechnicalSupport_NavEntry;AU Technical Support Nav Entry;;TechnicalSupport_Nav;AUENTechnicalSupportLink
+;AUSoftwareDownloads_NavEntry;AU Software Downloads Nav Entry;;SoftwareDownloads_Nav;AUENSoftwareDownloadsLink
+;USSupportMaterial_NavEntry;US Support Material Nav Entry;;SupportMaterial_Nav;USENSupportMaterialLink
+;USTechnicalSupport_NavEntry;US Technical Support Nav Entry;;TechnicalSupport_Nav;USENTechnicalSupportLink
+;USSoftwareDownloads_NavEntry;US Software Downloads Nav Entry;;SoftwareDownloads_Nav;USENSoftwareDownloadsLink
+;LATAMSupportMaterial_NavEntry;LATAM Support Material Nav Entry;;SupportMaterial_Nav;LATAMENSupportMaterialLink
+;LATAMTechnicalSupport_NavEntry;LATAM Technical Support Nav Entry;;TechnicalSupport_Nav;LATAMENTechnicalSupportLink
+;LATAMSoftwareDownloads_NavEntry;LATAM Software Downloads Nav Entry;;SoftwareDownloads_Nav;LATAMENSoftwareDownloadsLink
+;GlobalSupportMaterial_NavEntry;Global Support Material Nav Entry;;SupportMaterial_Nav;GLOBALENSupportMaterialLink
+;GlobalTechnicalSupport_NavEntry;Global Technical Support Nav Entry;;TechnicalSupport_Nav;GLOBALENTechnicalSupportLink
+;GlobalSoftwareDownloads_NavEntry;Global Software Downloads Nav Entry;;SoftwareDownloads_Nav;GLOBALENSoftwareDownloadsLink
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];linkName[lang=en];
+;;CallUsSupportLink;Call Us Link;https://www.google.com/;;;"<div class=""call-us-title"">Call us</div><div class=""call-us-contact-number"">0800 731 500</div>"
+;;NZENSupportMaterialLink;NZ Support Material Link;https://am.gallagher.com/nz/support/browse-resources;;;"Support Material"
+;;NZENTechnicalSupportLink;NZ Technical Support Link;https://am.gallagher.com/nz/contact-us/product-software-support;;;"Technical Support"
+;;NZENSoftwareDownloadsLink;NZ Software Downloads Link;https://am.gallagher.com/nz/support/software-downloads;;;"Software Downloads"
+;;CAENSupportMaterialLink;CA EN Support Material Link;https://am.gallagher.com/en-ca/support/browse-resources;;;"Support Material"
+;;CAENTechnicalSupportLink;CA EN Technical Support Link;https://am.gallagher.com/en-ca/contact-us/service-repair;;;"Technical Support"
+;;CAENSoftwareDownloadsLink;CA EN Software Downloads Link;https://am.gallagher.com/en-ca/support/software-downloads;;;"Software Downloads"
+;;CAFRSupportMaterialLink;CA FR Support Material Link;http://www.google.com/;;;"Support Material"
+;;CAFRTechnicalSupportLink;CA FR Technical Support Link;http://www.google.com/;;;"Technical Support"
+;;CAFRSoftwareDownloadsLink;CA FR Software Downloads Link;http://www.google.com/;;;"Software Downloads"
+;;AUENSupportMaterialLink;AU Support Material Link;https://am.gallagher.com/au/support/browse-resources;;;"Support Material"
+;;AUENTechnicalSupportLink;AU Technical Support Link;https://am.gallagher.com/au/about-us/our-people/customer-support-team;;;"Technical Support"
+;;AUENSoftwareDownloadsLink;AU Software Downloads Link;https://am.gallagher.com/au/support/software-downloads;;;"Software Downloads"
+;;USENSupportMaterialLink;US Support Material Link; https://am.gallagher.com/us/support/browse-resources;;;"Support Material"
+;;USENTechnicalSupportLink;US Technical Support Link;https://am.gallagher.com/us/contact-us/service-repair;;;"Technical Support"
+;;USENSoftwareDownloadsLink;US Software Downloads Link;https://am.gallagher.com/us/support/software-downloads;;;"Software Downloads"
+;;LATAMENSupportMaterialLink;LATAM Support Material Link;https://am.gallagher.com/es/soporte/buscar-recursos-de-productos?pcategory=all&resource=all&rsubcategory=all&page=0;;;"Support Material"
+;;LATAMENTechnicalSupportLink;LATAM Technical Support Link;http://www.google.com/;;;"Technical Support"
+;;LATAMENSoftwareDownloadsLink;LATAM Software Downloads Link;https://am.gallagher.com/es/soporte/descarga-de-software;;;"Software Downloads"
+;;GLOBALENSupportMaterialLink;Global Support Material Link;https://am.gallagher.com/global/support/browse-resources;;;"Support Material"
+;;GLOBALENTechnicalSupportLink;Global Technical Support Link;http://www.google.com/;;;"Technical Support"
+;;GLOBALENSoftwareDownloadsLink;Global Software Downloads Link;https://am.gallagher.com/global/support/software-downloads;;;"Software Downloads"
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV);onlyOneRestrictionMustApply[default='true']
 ;;NZENFindStoreLink;GallagherNZRegionRestriction
@@ -1271,3 +1350,59 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrict
 ;;GLOBALENSupportMaterialLink;GallagherGlRegionRestriction
 ;;GLOBALENTechnicalSupportLink;GallagherGlRegionRestriction
 ;;GLOBALENSoftwareDownloadsLink;GallagherGlRegionRestriction
+
+##################################################Alt text change for home page#################
+
+$contentCatalog=amB2CContentCatalog
+$contentCatalogName=Animal Management B2C Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=amB2CMasterProductCatalog
+$productCatalogName=Animal Management B2C US Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV)
+$medias=medias(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV)[lang=$lang];
+$siteResource=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/productCatalogs/$productCatalog
+# Language
+$lang=en
+
+INSERT_UPDATE Media;mediaFormat(qualifier);$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];mime[default='image/jpeg'];realfilename;folder(qualifier)[default='images'];altText
+;tablet;;Elec_200x150_HomeFam_EN_01_200W.jpg;$siteResource/images/banners/homepage/responsive/Elec_200x150_HomeFam_EN_01_200W.jpg;;Elec_200x150_HomeFam_EN_01_200W.jpg;;"Energizers"
+;desktop;;Elec_240x180_HomeFam_EN_01_240W.jpg;$siteResource/images/banners/homepage/responsive/Elec_240x180_HomeFam_EN_01_240W.jpg;;Elec_240x180_HomeFam_EN_01_240W.jpg;;"Energizers"
+;widescreen;;Am_350x262_HomeFam_EN_01_350W.jpg;$siteResource/images/banners/homepage/responsive/Am_350x262_HomeFam_EN_01_350W.jpg;;Am_350x262_HomeFam_EN_01_350W.jpg;;"Energizers"
+;widescreen;;Am_350x262_HomeFam_EN_01_350W2.jpg;$siteResource/images/banners/homepage/responsive/Am_350x262_HomeFam_EN_01_350W2.jpg;;Am_350x262_HomeFam_EN_01_350W2.jpg;;"Energizers"
+
+# Media Content
+INSERT_UPDATE Media;mediaFormat(qualifier);$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];mime[default='image/jpeg'];realfilename;folder(qualifier)[default='images'];altText
+;widescreen;;Am_350x262_HomeFam_EN_01_350W1.jpg;$siteResource/images/banners/homepage/responsive/Am_350x262_HomeFam_EN_01_350W1.jpg;;Am_350x262_HomeFam_EN_01_350W1.jpg;;"Energizers"
+;widescreen;;Am_350x262_HomeFam_EN_01_350W3.jpg;$siteResource/images/banners/homepage/responsive/Am_350x262_HomeFam_EN_01_350W3.jpg;;Am_350x262_HomeFam_EN_01_350W3.jpg;;"Energizers"
+
+INSERT_UPDATE Media;mediaFormat(qualifier);$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];mime[default='image/jpeg'];realfilename;folder(qualifier)[default='images'];altText
+;widescreen;;Elec_1400x80_HomeDiscount_EN_01_1400W.jpg;$siteResource/images/banners/homepage/responsive/Elec_1400x80_HomeDiscount_EN_01_1400W.jpg;;Elec_1400x80_HomeDiscount_EN_01_1400W.jpg;;"Save Big On Animal Management Equipment"
+;mobile;;Elec_480x118_HomeDiscount_EN_01_480W.jpg;$siteResource/images/banners/homepage/responsive/Elec_480x118_HomeDiscount_EN_01_480W.jpg;;Elec_480x118_HomeDiscount_EN_01_480W.jpg;;"Save Big On Animal Management Equipment"
+;tablet;;Elec_770x80_HomeDiscount_EN_01_770W.jpg;$siteResource/images/banners/homepage/responsive/Elec_770x80_HomeDiscount_EN_01_770W.jpg;;Elec_770x80_HomeDiscount_EN_01_770W.jpg;;"Save Big On Animal Management Equipment"
+;desktop;;Elec_960x80_HomeDiscount_EN_01_960W.jpg;$siteResource/images/banners/homepage/responsive/Elec_960x80_HomeDiscount_EN_01_960W.jpg;;Elec_960x80_HomeDiscount_EN_01_960W.jpg;;"Save Big On Animal Management Equipment"
+
+INSERT_UPDATE Media;mediaFormat(qualifier);$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];mime[default='image/jpeg'];realfilename;folder(qualifier)[default='images'];altText
+;tablet;;Elec_200x200_HomeService_EN_01_200W.jpg;$siteResource/images/banners/homepage/responsive/Elec_200x200_HomeService_EN_01_200W.jpg;;Elec_200x200_HomeService_EN_01_200W.jpg;;"Solar Fence Energizer"
+;tablet;;Elec_200x200_HomeShipment_EN_01_200W.jpg;$siteResource/images/banners/homepage/responsive/Elec_200x200_HomeShipment_EN_01_200W.jpg;;Elec_200x200_HomeShipment_EN_01_200W.jpg;;"Solar Fence Energizer"
+;tablet;;Elec_200x200_HomeShop_EN_01_200W.jpg;$siteResource/images/banners/homepage/responsive/Elec_200x200_HomeShop_EN_01_200W.jpg;;Elec_200x200_HomeShop_EN_01_200W.jpg;;"Solar Fence Energizer"
+;tablet;;Elec_200x200_HomeSmallDiscount_EN_01_200W.jpg;$siteResource/images/banners/homepage/responsive/Elec_200x200_HomeSmallDiscount_EN_01_200W.jpg;;Elec_200x200_HomeSmallDiscount_EN_01_200W.jpg;;"Solar Fence Energizer"
+;desktop;;Elec_240x240_HomeService_EN_01_240W.jpg;$siteResource/images/banners/homepage/responsive/Elec_240x240_HomeService_EN_01_240W.jpg;;Elec_240x240_HomeService_EN_01_240W.jpg;;"Solar Fence Energizer"
+;desktop;;Elec_240x240_HomeShipment_EN_01_240W.jpg;$siteResource/images/banners/homepage/responsive/Elec_240x240_HomeShipment_EN_01_240W.jpg;;Elec_240x240_HomeShipment_EN_01_240W.jpg;;"Solar Fence Energizer"
+;desktop;;Elec_240x240_HomeShop_EN_01_240W.jpg;$siteResource/images/banners/homepage/responsive/Elec_240x240_HomeShop_EN_01_240W.jpg;;Elec_240x240_HomeShop_EN_01_240W.jpg;;"Solar Fence Energizer"
+;desktop;;Elec_240x240_HomeSmallDiscount_EN_01_240W.jpg;$siteResource/images/banners/homepage/responsive/Elec_240x240_HomeSmallDiscount_EN_01_240W.jpg;;Elec_240x240_HomeSmallDiscount_EN_01_240W.jpg;;"Solar Fence Energizer"
+;widescreen;;Am_350x350_HomeService_EN_01_350W.jpg;$siteResource/images/banners/homepage/responsive/Am_350x350_HomeService_EN_01_350W.jpg;;Am_350x350_HomeService_EN_01_350W.jpg;;"Solar Fence Energizer"
+;widescreen;;Am_350x350_HomeService_EN_01_350W1.jpg;$siteResource/images/banners/homepage/responsive/Am_350x350_HomeService_EN_01_350W1.jpg;;Am_350x350_HomeService_EN_01_350W1.jpg;;"Solar Fence Energizer"
+;widescreen;;Am_350x350_HomeService_EN_01_350W2.jpg;$siteResource/images/banners/homepage/responsive/Am_350x350_HomeService_EN_01_350W2.jpg;;Am_350x350_HomeService_EN_01_350W2.jpg;;"Solar Fence Energizer"
+;widescreen;;Am_350x350_HomeService_EN_01_350W3.jpg;$siteResource/images/banners/homepage/responsive/Am_350x350_HomeService_EN_01_350W3.jpg;;Am_350x350_HomeService_EN_01_350W3.jpg;;"Solar Fence Energizer"
+
+####################################################
+
+##################fallbackLanguages change for fr_CA####################
+
+INSERT_UPDATE Language ; isocode[unique=true] ; fallbackLanguages(isocode) ; active[default=true] 
+                       ; fr_CA				  ; en						   ;					  ;
+
+#########################################################################

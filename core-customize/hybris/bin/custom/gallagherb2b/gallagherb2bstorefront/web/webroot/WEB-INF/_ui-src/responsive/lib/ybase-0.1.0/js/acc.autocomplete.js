@@ -122,7 +122,7 @@ ACC.autocomplete = {
 
 	bindDisableSearch: function ()
     {
-        $('#js-site-search-input').keyup(function(){
+        $('.js-site-search-input').keyup(function(){
         	$('#js-site-search-input').val($('#js-site-search-input').val().replace(/^\s+/gm,''));
             $('.js_search_button').prop('disabled', this.value == "" ? true : false);
         })

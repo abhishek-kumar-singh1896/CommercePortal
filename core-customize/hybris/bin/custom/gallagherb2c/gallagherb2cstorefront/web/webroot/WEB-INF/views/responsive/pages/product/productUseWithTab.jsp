@@ -51,18 +51,20 @@
 </section>
 </c:if>
 <c:if test="${not empty product.simulator.simulatorDescription || not empty product.simulator.simulatorURL}">
+  <c:url value="${product.simulator.simulatorURL}" var="simulatorUrl"/>
 <div class="common-sub-tab-section pt-0">
     <section id="scale-indicator">
+
+ 
 
         <div class="scale-indicator-out">
             <div class="container">
                 <div class="scale-indicator">
                 ${product.simulator.simulatorDescription}
                     <!-- 1:1 aspect ratio -->
-                  <c:set var="myurl" value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}/am${product.simulator.simulatorURL}" />      
-                    <div class="embed-responsive embed-responsive-1by1">
+                 <div class="embed-responsive embed-responsive-1by1">
                       <iframe 
-                            src="${myurl}"
+                            src="${fn:escapeXml(contextPath)}${product.simulator.simulatorURL}"
                             allow="autoplay; encrypted-media" allowfullscreen="allowfullscreen"
                             border="0" height="585" width="767"></iframe>
                         <!-- <iframe class="embed-responsive-item"

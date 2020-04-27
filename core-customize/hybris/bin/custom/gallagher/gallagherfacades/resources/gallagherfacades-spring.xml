@@ -233,4 +233,8 @@
 	<alias name="gallagherCreditCardPaymentInfoPopulator" alias="creditCardPaymentInfoPopulator" />
 	<bean id="gallagherCreditCardPaymentInfoPopulator"
 		class="com.gallagher.facades.order.converters.populator.GallagherCreditCardPaymentInfoPopulator" parent="defaultCreditCardPaymentInfoPopulator" />
+		
+	    <alias name="gallagherStoreSessionFacade" alias="storeSessionFacade"/>
+    <bean id="gallagherStoreSessionFacade"
+          class="com.gallagher.facades.storesession.impl.GallagherStoreSessionFacadeImpl" parent="defaultStoreSessionFacade"/>
 </beans>

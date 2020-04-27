@@ -23,6 +23,8 @@ import org.springframework.beans.factory.annotation.Required;
 import org.springframework.util.PathMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import com.gallagher.facades.storesession.GallagherStoreSessionFacade;
+
 
 /**
  * Filter that initializes the session for the gallagherb2cstorefront. This is a spring configured filter that is
@@ -48,7 +50,7 @@ public class StorefrontFilter extends OncePerRequestFilter
 		if (isSessionNotInitialized(session, queryString))
 		{
 			initDefaults(request);
-
+			((GallagherStoreSessionFacade) getStoreSessionFacade()).resetEncodingAttributes();
 			markSessionInitialized(session);
 		}
 
@@ -57,8 +59,8 @@ public class StorefrontFilter extends OncePerRequestFilter
 			if (StringUtils.isBlank(request.getHeader(AJAX_REQUEST_HEADER_NAME)) && !isRequestPathExcluded(request))
 			{
 				final String requestURL = request.getRequestURL().toString();
-				session.setAttribute(ORIGINAL_REFERER, StringUtils.isNotBlank(queryString) ? requestURL + "?" + queryString
-						: requestURL);
+				session.setAttribute(ORIGINAL_REFERER,
+						StringUtils.isNotBlank(queryString) ? requestURL + "?" + queryString : requestURL);
 			}
 
 			getBrowseHistory().addBrowseHistoryEntry(new BrowseHistoryEntry(request.getRequestURI(), null));

@@ -18,6 +18,9 @@ public class GallagherSovosCalculatedTaxLineItem
 	@JsonProperty("lnId")
 	private String lnId;
 
+	@JsonProperty("txAmt")
+	private String txAmt;
+
 	@JsonProperty("jurRslts")
 	private List<GallagherSovosCalculatedTax> jurRslts;
 
@@ -29,6 +32,16 @@ public class GallagherSovosCalculatedTaxLineItem
 	public String getLnId()
 	{
 		return this.lnId;
+	}
+
+	public String getTxAmt()
+	{
+		return txAmt;
+	}
+
+	public void setTxAmt(final String txAmt)
+	{
+		this.txAmt = txAmt;
 	}
 
 	public void setJurRslts(final List<GallagherSovosCalculatedTax> jurRslts)

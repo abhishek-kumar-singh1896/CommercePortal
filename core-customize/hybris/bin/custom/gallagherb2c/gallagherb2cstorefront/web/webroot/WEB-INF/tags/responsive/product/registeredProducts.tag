@@ -15,11 +15,6 @@
 		<div class="col-md-2 col-lg-2 col-xl-1">
 		<!-- 				remove first when tag once GET call from C4C is implemented -->
 			<c:choose>
-				<c:when test="${not empty imageUrl}">
-					<img src="${fn:escapeXml(imageUrl)}"
-						class="product-img" alt="${fn:escapeXml(product.name)}"
-						title="${fn:escapeXml(product.name)}" />
-				</c:when>
 				<c:when test="${not empty product.image}">
 					<img src="${fn:escapeXml(product.image.url)}"
 						class="product-img" alt="${fn:escapeXml(product.name)}"

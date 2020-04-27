@@ -62,7 +62,8 @@
   }
 
   input.form-control,
-  textarea.form-control {
+  textarea.form-control,
+  select.form-control {
     border-color: $danger;
     background-color: transparent;
 
@@ -131,6 +132,9 @@ textarea + .help-block {
     border-radius: 6px;
     height: 40px;
     line-height: 28px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-weight: 500;
 
     &:hover {

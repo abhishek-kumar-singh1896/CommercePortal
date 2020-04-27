@@ -18,7 +18,9 @@ import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.binary.Base64;
-import org.apache.log4j.Logger;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -27,6 +29,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import com.gallagher.outboundservices.request.dto.GallagherSovosCalculateTaxRequest;
 import com.gallagher.outboundservices.response.dto.GallagherSovosCalculatedTaxResponse;
 import com.gallagher.sovos.outboundservices.service.GallagherSovosService;
@@ -39,7 +44,11 @@ import com.gallagher.sovos.outboundservices.service.GallagherSovosService;
  */
 public class GallagherSovosServiceImpl implements GallagherSovosService
 {
-	private static final Logger LOGGER = Logger.getLogger(GallagherSovosServiceImpl.class);
+	private static final Logger LOG = LoggerFactory.getLogger(GallagherSovosServiceImpl.class);
+
+	private static final ObjectWriter OBJECT_WRITER = new ObjectMapper().writer().withDefaultPrettyPrinter();
+
+	private static final String ENABLE_SOVOS_LOGGING_KEY = "sovos.service.request.logging";
 
 	@Resource(name = "configurationService")
 	private ConfigurationService configurationService;
@@ -86,18 +95,93 @@ public class GallagherSovosServiceImpl implements GallagherSovosService
 		}
 		catch (final NoSuchAlgorithmException | InvalidKeyException exception)
 		{
-			LOGGER.error("Exception occured while creating Sovos HMAC Signature.", exception);
+			LOG.error("Exception occured while creating Sovos HMAC Signature.", exception);
 		}
 
 		final HttpEntity<GallagherSovosCalculateTaxRequest> entity = new HttpEntity<>(request, headers);
 
 		final UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(baseURL + restURL);
 
+		final String transactionId = RandomStringUtils.random(16, true, true);
+		logRequest(request, transactionId);
+
 		final ResponseEntity<GallagherSovosCalculatedTaxResponse> result = restTemplate.exchange(builder.build().encode().toUri(),
 				HttpMethod.POST, entity, GallagherSovosCalculatedTaxResponse.class);
-
+		logResponse(result.getBody(), transactionId);
 		return result.getBody();
+	}
 
+	/**
+	 * Log request.
+	 *
+	 * @param request
+	 *           the request object
+	 * @param transactionId
+	 *           the transaction id
+	 */
+	private void logRequest(final Object request, final String transactionId)
+	{
+		if (isLoggingEnabled())
+		{
+			logJsonObject(request, new StringBuilder(150).append("Request : SOVOS transaction ID ").append(transactionId).toString(),
+					"JSON processing error occurred for request");
+		}
+	}
+
+	/**
+	 * Log response.
+	 *
+	 * @param response
+	 *           the response object
+	 * @param transactionId
+	 *           the transaction id
+	 */
+	private void logResponse(final Object response, final String transactionId)
+	{
+		if (isLoggingEnabled())
+		{
+			logJsonObject(response,
+					new StringBuilder(150).append("Response : SOVOS transaction ID ").append(transactionId).toString(),
+					"JSON processing error occurred for request");
+		}
+	}
+
+	/**
+	 * Logs the JSON object.
+	 *
+	 * @param object
+	 *           JSON object to be logged.
+	 * @param infoLogString
+	 *           the info log string
+	 * @param errorLogString
+	 *           the error log string
+	 */
+	private void logJsonObject(final Object object, final String infoLogString, final String errorLogString)
+	{
+		if (object != null)
+		{
+			try
+			{
+				final String objectJson = OBJECT_WRITER.writeValueAsString(object);
+				LOG.info(infoLogString + "\n" + objectJson);
+			}
+			catch (final JsonProcessingException jPE)
+			{
+				LOG.error(errorLogString, jPE);
+			}
+		}
+	}
+
+
+
+	/**
+	 * This method decides if the request should be logged.
+	 *
+	 * @return true, if request is to be logged.
+	 */
+	private boolean isLoggingEnabled()
+	{
+		return configurationService.getConfiguration().getBoolean(ENABLE_SOVOS_LOGGING_KEY, false);
 	}
 
 }

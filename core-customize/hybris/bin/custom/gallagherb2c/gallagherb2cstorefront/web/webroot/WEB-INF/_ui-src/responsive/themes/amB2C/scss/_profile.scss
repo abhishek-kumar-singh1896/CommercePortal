@@ -20,25 +20,6 @@ label {
   font-weight: bold;
 }
 
-.account-section .account-section-content .consent-management-list__content {
-  height: inherit;
-  overflow: auto;
-}
-
-.account-section .account-section-content .consent-management-list__title:before {
-	
-	display:none;
-	
-}
-
-.account-section .account-section-content .consent-management-list__title {
-    padding: 25px 15px 18px 25px;
-}
-
-.account-section .account-section-content .consent-management-list__content-inner {
-    padding: 0 40px 10px 25px;
-}
-
 .order-detail-overview {
   padding: 20px 30px;
   background-color: $white;
@@ -136,39 +117,15 @@ table {
   }
 }
 
-.account-section .account-list .account-cards .account-cards-actions {
-  display: block;
-  width: 100%;
-}
-
-.account-section .account-list .account-cards .card,
-.account-section .account-list .account-cards .search-empty {
-  border: 1px solid #cccccc;
-}
-
-.account-section .account-list .account-cards.card-select {
-  border-top: 0;
-}
-
-.account-section .account-section-header-add a{
-    color: #575a5d;
-    text-decoration: none;
-}
-
-.account-section .account-section-header-add a:hover{
-    color: #ff8400;
-}
-
 .something-went-wrong {
   max-width: 400px;
   width: 100%;
   margin: 40px 0 50px 0;
   border-radius: 6px;
-  box-shadow: 0 0 4px rgba(0,0,0,0.08);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.08);
   padding: 24px;
   text-align: center;
   border: 1px solid $gray-3;
-
 
   .cross-icon-out {
     margin: auto;
@@ -205,11 +162,10 @@ table {
   width: 100%;
   margin: 40px 0 50px 0;
   border-radius: 6px;
-  box-shadow: 0 0 4px rgba(0,0,0,0.08);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.08);
   padding: 24px;
   text-align: center;
   border: 1px solid $gray-3;
-
 
   .cross-icon-out {
     margin: auto;
@@ -231,6 +187,34 @@ table {
     margin-top: 10px;
     text-align: center;
   }
+}
+
+.account-section .account-list.account-addressbook .account-cards .account-cards-actions {
+  display: inline-block;
+  width: 80px;
+  right: 15px;
+  position: absolute;
+  bottom: 14px;
+}
+
+.account-section .account-list.account-addressbook .account-cards .card, 
+.account-section .account-list.account-addressbook .account-cards .search-empty {
+  border: 1px solid $gray-4;
+}
+
+.account-section .account-list.account-addressbook .account-cards .card .default-text {
+  font-size: 1.28571em;
+  color: $primary-color;
+  font-weight: normal;
+}
+
+.account-section .account-list.account-addressbook .account-cards .card:first-child {
+  border-color: $primary-color;
+  box-shadow: 0 0 16px rgba(255,132,0,0.3) inset;
+}
+
+.account-section .account-list.account-addressbook .account-cards.card-select {
+  border-top: none;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
