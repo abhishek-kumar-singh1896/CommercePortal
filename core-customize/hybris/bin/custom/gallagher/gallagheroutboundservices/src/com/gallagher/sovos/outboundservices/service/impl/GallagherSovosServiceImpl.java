@@ -48,7 +48,7 @@ public class GallagherSovosServiceImpl implements GallagherSovosService
 
 	private static final ObjectWriter OBJECT_WRITER = new ObjectMapper().writer().withDefaultPrettyPrinter();
 
-	private static final String ENABLE_SOVOS_LOGGING_KEY = "sovos.service.request.logging=true";
+	private static final String ENABLE_SOVOS_LOGGING_KEY = "sovos.service.request.logging";
 
 	@Resource(name = "configurationService")
 	private ConfigurationService configurationService;
@@ -124,7 +124,7 @@ public class GallagherSovosServiceImpl implements GallagherSovosService
 		if (isLoggingEnabled())
 		{
 			logJsonObject(request, new StringBuilder(150).append("Request : SOVOS transaction ID ").append(transactionId).toString(),
-					"JSON processing error occurred for request", false);
+					"JSON processing error occurred for request");
 		}
 	}
 
@@ -142,7 +142,7 @@ public class GallagherSovosServiceImpl implements GallagherSovosService
 		{
 			logJsonObject(response,
 					new StringBuilder(150).append("Response : SOVOS transaction ID ").append(transactionId).toString(),
-					"JSON processing error occurred for request", false);
+					"JSON processing error occurred for request");
 		}
 	}
 
@@ -156,22 +156,14 @@ public class GallagherSovosServiceImpl implements GallagherSovosService
 	 * @param errorLogString
 	 *           the error log string
 	 */
-	private void logJsonObject(final Object object, final String infoLogString, final String errorLogString,
-			final boolean logInInfo)
+	private void logJsonObject(final Object object, final String infoLogString, final String errorLogString)
 	{
 		if (object != null)
 		{
 			try
 			{
 				final String objectJson = OBJECT_WRITER.writeValueAsString(object);
-				if (logInInfo)
-				{
-					LOG.info(infoLogString, objectJson);
-				}
-				else
-				{
-					LOG.debug(infoLogString, objectJson);
-				}
+				LOG.info(infoLogString + "\n" + objectJson);
 			}
 			catch (final JsonProcessingException jPE)
 			{
