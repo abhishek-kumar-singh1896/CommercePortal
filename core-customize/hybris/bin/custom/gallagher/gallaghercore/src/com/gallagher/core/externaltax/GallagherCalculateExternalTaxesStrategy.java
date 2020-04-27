@@ -11,6 +11,7 @@
 package com.gallagher.core.externaltax;
 
 import de.hybris.platform.commerceservices.externaltax.CalculateExternalTaxesStrategy;
+import de.hybris.platform.core.model.c2l.CurrencyModel;
 import de.hybris.platform.core.model.order.AbstractOrderModel;
 import de.hybris.platform.externaltax.ExternalTaxDocument;
 import de.hybris.platform.util.TaxValue;
@@ -21,6 +22,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.gallagher.core.util.GallagherSovosUtil;
 import com.gallagher.outboundservices.request.dto.GallagherSovosCalculateTaxRequest;
@@ -71,16 +73,14 @@ public class GallagherCalculateExternalTaxesStrategy implements CalculateExterna
 				{
 					for (final GallagherSovosCalculatedTax calculatedTax : lienItem.getJurRslts())
 					{
-						final StringBuilder taxValueString = new StringBuilder();
-						taxValueString.append(calculatedTax.getTxJurUIDJurTp()).append(" : ").append(calculatedTax.getTxRate())
-								.append(" = ").append(calculatedTax.getTxAmt());
-
-						final Double taxAmount = Double.valueOf(calculatedTax.getTxAmt());
-						final TaxValue taxValue = new TaxValue(taxValueString.toString(), taxAmount, true, taxAmount,
-								abstractOrder.getCurrency() == null ? "USD" : abstractOrder.getCurrency().getIsocode());
-
-						taxValues.add(taxValue);
+						taxValues.add(getTaxValue(abstractOrder.getCurrency(), calculatedTax.getTxJurUIDJurTp(),
+								calculatedTax.getTxRate(), calculatedTax.getTxAmt()));
 					}
+				}
+				else if (StringUtils.isNotEmpty(lienItem.getTxAmt()) && Double.valueOf(lienItem.getTxAmt()) == 0.0)
+				{
+					taxValues.add(getTaxValue(abstractOrder.getCurrency(), "1", "0", lienItem.getTxAmt()));
+
 				}
 
 				externalDocument.setTaxesForOrderEntry(Integer.valueOf(lienItem.getLnId()), taxValues);
@@ -88,5 +88,28 @@ public class GallagherCalculateExternalTaxesStrategy implements CalculateExterna
 		}
 
 		return externalDocument;
+	}
+
+	/**
+	 * Returns tax value for the data resevied from Sovos
+	 *
+	 * @param currency
+	 *           order currency
+	 * @param taxCode
+	 *           taxCode
+	 * @param taxRate
+	 *           rate of tax
+	 * @param amount
+	 *           total calculated tax for this entry
+	 * @return Tax Value
+	 */
+	private TaxValue getTaxValue(final CurrencyModel currency, final String taxCode, final String taxRate, final String amount)
+	{
+		final StringBuilder taxValueString = new StringBuilder();
+		taxValueString.append(taxCode).append(" : ").append(taxRate).append(" = ").append(amount);
+		final Double taxAmount = Double.valueOf(amount);
+		final TaxValue taxValue = new TaxValue(taxValueString.toString(), taxAmount, true, taxAmount,
+				currency == null ? "USD" : currency.getIsocode());
+		return taxValue;
 	}
 }

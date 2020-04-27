@@ -34,30 +34,34 @@ public class GallagherSalesConditionsContributor extends DefaultSalesConditionsC
 		while (taxIterator.hasNext())
 		{
 			final TaxValue next = taxIterator.next();
-			final Map<String, Object> row = new HashMap<>();
-			row.put(OrderCsvColumns.ORDER_ID, order.getCode());
-			row.put(SalesConditionCsvColumns.CONDITION_ENTRY_NUMBER, entry.getEntryNumber());
-			row.put(SalesConditionCsvColumns.CONDITION_CODE, next.getCode().split(":")[0].trim());
-			row.put(SalesConditionCsvColumns.CONDITION_VALUE, next.getValue());
-			row.put(SalesConditionCsvColumns.CONDITION_COUNTER, getConditionCounterTax());
-
-			if (next.isAbsolute())
+			/* Add only if tax is non zero which is a case for tax free regions like Virgin Islands etc. */
+			if (next.getValue() > 0)
 			{
-				row.put(SalesConditionCsvColumns.ABSOLUTE, Boolean.TRUE);
-				row.put(SalesConditionCsvColumns.CONDITION_CURRENCY_ISO_CODE, order.getCurrency().getIsocode());
-				row.put(SalesConditionCsvColumns.CONDITION_UNIT_CODE, entry.getUnit().getCode());
-				row.put(SalesConditionCsvColumns.CONDITION_PRICE_QUANTITY, entry.getProduct().getPriceQuantity());
-			}
-			else
-			{
-				row.put(SalesConditionCsvColumns.ABSOLUTE, Boolean.FALSE);
-			}
+				final Map<String, Object> row = new HashMap<>();
+				row.put(OrderCsvColumns.ORDER_ID, order.getCode());
+				row.put(SalesConditionCsvColumns.CONDITION_ENTRY_NUMBER, entry.getEntryNumber());
+				row.put(SalesConditionCsvColumns.CONDITION_CODE, next.getCode().split(":")[0].trim());
+				row.put(SalesConditionCsvColumns.CONDITION_VALUE, next.getValue());
+				row.put(SalesConditionCsvColumns.CONDITION_COUNTER, getConditionCounterTax());
 
-			getBatchIdAttributes().forEach(row::putIfAbsent);
-			row.put("dh_batchId", order.getCode());
+				if (next.isAbsolute())
+				{
+					row.put(SalesConditionCsvColumns.ABSOLUTE, Boolean.TRUE);
+					row.put(SalesConditionCsvColumns.CONDITION_CURRENCY_ISO_CODE, order.getCurrency().getIsocode());
+					row.put(SalesConditionCsvColumns.CONDITION_UNIT_CODE, entry.getUnit().getCode());
+					row.put(SalesConditionCsvColumns.CONDITION_PRICE_QUANTITY, entry.getProduct().getPriceQuantity());
+				}
+				else
+				{
+					row.put(SalesConditionCsvColumns.ABSOLUTE, Boolean.FALSE);
+				}
 
-			result.add(row);
-			break; // Currently only the first entry is used
+				getBatchIdAttributes().forEach(row::putIfAbsent);
+				row.put("dh_batchId", order.getCode());
+
+				result.add(row);
+				//break; // Consider multiple taxes for order entry
+			}
 		}
 	}
 
