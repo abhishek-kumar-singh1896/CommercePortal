@@ -578,7 +578,6 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 ;;TopHeaderSlot-SearchResultsEmpty;TopHeaderSlot;;TopHeaderSlot;true
 ;;BottomHeaderSlot-SearchResultsEmpty;BottomHeaderSlot;;BottomHeaderSlot;true
 ;;PlaceholderContentSlot-SearchResultsEmpty;PlaceholderContentSlot;;PlaceholderContentSlot;true
-;;ggB2CNavBar-SearchResultsEmpty;ggB2CNavBar;;ggB2CNavBarSlot;true
 ;;banner-SearchResultsEmpty;SearchResultsEmptyBanner;;SearchResultsEmptyBannerSlot;true
 
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CategoryPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
