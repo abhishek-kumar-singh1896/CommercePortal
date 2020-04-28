@@ -41,7 +41,10 @@ public class GallagherSearchResultProductPopulator extends SearchResultProductPo
 			animalList.replaceAll(String::toLowerCase);
 			target.setAnimalCompatibility(animalList);
 		}
-
+		if (!StringUtils.isEmpty(this.<String> getValue(source, "plpProductDescription")))
+		{
+			target.setPlpProductDescription(this.<String> getValue(source, "plpProductDescription"));
+		}
 
 	}
 
