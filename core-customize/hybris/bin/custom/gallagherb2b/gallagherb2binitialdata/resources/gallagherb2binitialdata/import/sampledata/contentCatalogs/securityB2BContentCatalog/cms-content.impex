@@ -9,6 +9,7 @@
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
 
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
 $contentCatalog=securityB2BContentCatalog
 $contentCatalogName=Security B2B Content Catalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
@@ -29,6 +30,8 @@ $addonExtensionName=b2badvanceacceleratoraddon
 $medias=medias(code, $contentCV);
 $mediaContainer=media(qualifier, $contentCV);
 $siteUidNZ=securityB2BNZ
+$websiteBaseURL=$config-website.base.url.https
+
 
 ###### Navigation Start ######
 ## navigation is in tree structure ##
@@ -1861,21 +1864,13 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 
 #########################Navigation Node Starts###############3333
 
- 
-
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef;children(uid, $contentCV)[mode=replace]
 ;B2BFooterNavigationNode;;Footer Navigation Node; root;;B2BFooterNavigationNode;B2BCompanyNavigationNode,B2BSolutionsNavigationNode,B2BSupportNavigationNode
-
-
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);children(uid,$contentCV)[mode=replace];links(uid, $contentCV);&nodeRef;title[lang=en]
 ;B2BCompanyNavigationNode;;B2B Company Navigation Node;B2BFooterNavigationNode;B2BAboutUsLinkNode,B2BContactUsLinkNode,B2BNewsAndEventsLinkNode,B2BTeamLinkNode,B2BPartenerLinkNode;;B2BCompanyNavigationNode;"Company"
 ;B2BSolutionsNavigationNode;;B2B Solutions Navigation Node;B2BFooterNavigationNode;B2BProductsLinkNode,B2BCaseStudiesLinkNode,B2BIndustriesLinkNode;;B2BSolutionsNavigationNode;"Solutions"
 ;B2BSupportNavigationNode;;B2B Support Navigation Node;B2BFooterNavigationNode;B2BSupportSiteLoginLinkNode,B2BChannelPartnerLinkNode,B2BSecurityAdvisoryLinkNode;;B2BSupportNavigationNode;"Support"
-
-
-
-
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkname;name;url;&linkRef;&componentRef;
 ;;B2BAboutUsLink;About Us;B2B About Us Link ; https://security.gallagher.com/Why-Gallagher;B2BAboutUsLink ; B2BAboutUsLink
@@ -1904,10 +1899,6 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 ;B2BSupportNavigationNodeEntry2;;B2B Support Navigation Node Entry2;B2BChannelPartnerLinkNode;B2BChannelPartnerLink
 ;B2BSupportNavigationNodeEntry3;;B2B Support Navigation Node Entry3;B2BSecurityAdvisoryLinkNode;B2BSecurityAdvisoryLink
 
-
-
-
-
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
 ;B2BAboutUsLinkNode;;B2B About Us Link Node;B2BCompanyNavigationNode;;B2BAboutUsLinkNode
 ;B2BContactUsLinkNode;;B2B Contact Us Link Node;B2BCompanyNavigationNode;;B2BContactUsLinkNode
@@ -1920,24 +1911,6 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;pa
 ;B2BSupportSiteLoginLinkNode;;B2B Supports Site Node;B2BSupportNavigationNode;;B2BSupportSiteLoginLinkNode
 ;B2BChannelPartnerLinkNode;;B2B Channel Node;B2BSupportNavigationNode;;B2BChannelPartnerLinkNode
 ;B2BSecurityAdvisoryLinkNode;;B2B Security Node;B2BSupportNavigationNode;;B2BSecurityAdvisoryLinkNode
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];wrapAfter;navigationNode(&nodeRef);&componentRef
 ;;B2BGallagherFooterNavigationComponent;5;B2BFooterNavigationNode;B2BGallagherFooterNavigationComponent
@@ -1979,17 +1952,9 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;pa
 
 INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];gallagherDivisionsLinkNagivationNode(&nodeRef);&componentRef
 ;;B2BGallagherFooterNavigationComponent;B2BothersDivisionsNavNod;B2BGallagherFooterNavigationComponent
-
-
-
 ##################Division impex end
 
-
-
-
 ##Footer Link navigation component start 
-
-
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;children(uid,$contentCV)[mode=append]
 ;root;;root;;
@@ -2002,39 +1967,46 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;pa
 ;B2BCareersNavNode;;B2B Careers Page;B2BFooterLinkNavNode;;B2BCareersNavNode
 ;B2BPrivacyStatementNavNode;;B2B Privacy Statement Page;B2BFooterLinkNavNode;;B2BPrivacyStatementNavNode
 
-
 ## Links of the above navigation node entries ##
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef
 ;;B2BCareersLink;B2B Careers Link;https://www.gallagher.com/careers;B2BCareersLink;B2BCareersLink
 ;;B2BPrivacyStatementLink;B2B Privacy Statement Link;https://security.gallagher.com/;B2BPrivacyStatementLink;B2BPrivacyStatementLink
-
-
-
 
 ## entries of the above navigation nodes ##
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
 ;B2BCareersNavNodeEntry;;B2B Careers Navigation Node Entry;B2BCareersNavNode;B2BCareersLink
 ;B2BPrivacyStatementNavNodeEntry;;B2B Privacy Statement Nav Node Entry;B2BPrivacyStatementNavNode;B2BPrivacyStatementLink
 
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;linkName;&linkRef;&componentRef;target(code)[default='sameWindow']
+;;nzB2BLink;B2B New Zealand Link;$websiteBaseURL/security/nz/en_NZ/?clear=true; New Zealand;nzB2BLink;nzB2BLink
+;;auB2BLink;B2B Australia Link;$websiteBaseURL/security/au/en_AU/?clear=true; Australia;auB2BLink;auB2BLink
+;;globalB2BLink;B2B Global Link;$websiteBaseURL/security/global/en/?clear=true; Global;globalB2BLink;globalB2BLink
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+;nzB2BNavEntry;;B2B New Zealand navigation entry;nzB2BNavNode;nzB2BLink
+;auB2BNavEntry;;B2B Australia navigation entry;auB2BNavNode;auB2BLink
+;globalB2BNavEntry;;B2B Global navigation entry;globalB2BNavNode;globalB2BLink
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef);
+;nzB2BNavNode;;New Zealand navigation node;nzB2BNavNode
+;auB2BNavNode;;Australia navigation node;auB2BNavNode
+;globalB2BNavNode;;Global navigation node;globalB2BNavNode
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&componentRef);&nodeRef;children(uid, $contentCV)
+;B2BcountryDropdownNavNod;;Country drop down;root;;B2BcountryDropdownNavNod;nzB2BNavNode,auB2BNavNode,globalB2BNavNode
+
+INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];countryDropdownLinkNagivationNode(&nodeRef);&componentRef
+;;B2BGallagherFooterNavigationComponent;B2BcountryDropdownNavNod;B2BGallagherFooterNavigationComponent
 
 
 INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];footerLinkNagivationNode(&nodeRef);&componentRef
 ;;B2BGallagherFooterNavigationComponent;B2BFooterLinkNavNode;B2BGallagherFooterNavigationComponent
 
-
-
-
-
-
-
-
 ##Footer Link navigation component End
-
-
 
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(&componentRef)
 ;;FooterSlot;B2BGallagherFooterNavigationComponent
-
 
 ############ Header user dropdown startes here ######################
 
@@ -2042,12 +2014,10 @@ INSERT_UPDATE NavigationComponent;$contentCV[unique=true];uid[unique=true];name;
 ;;B2BMyAccountComponent;My Account;;B2BMyAccountComponent;B2BMyAccountNavNode
 ;;B2BMyCompanyComponent;My Company;;B2BMyCompanyComponent;B2BMyCompanyNavNode
 
-
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&componentRef);&nodeRef
 #;B2badvanceNavNode;;B2badvance Site;SiteRootNode;;B2badvanceNavNode
 ;B2BMyAccountNavNode;;My Account;B2badvanceNavNode;;B2BMyAccountNavNode
 ;B2BMyCompanyNavNode;;My Company;B2badvanceNavNode;;B2BMyCompanyNavNode
-
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
 ;PersonalDetailsNavNode;;Personal Details;B2BMyAccountNavNode;;PersonalDetailsNavNode
