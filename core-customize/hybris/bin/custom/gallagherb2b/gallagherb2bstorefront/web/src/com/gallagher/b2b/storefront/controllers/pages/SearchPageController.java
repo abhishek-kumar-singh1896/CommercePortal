@@ -97,8 +97,7 @@ public class SearchPageController extends AbstractSearchPageController
 	public String textSearch(@RequestParam(value = "text", defaultValue = "")
 	final String searchText, final HttpServletRequest request, final Model model) throws CMSItemNotFoundException
 	{
-		final String sitecoreSolutionPageURL = MessageFormat.format(getConfigurationPath("sitecore.solution.url"),
-				searchText);
+		final String sitecoreSolutionPageURL = MessageFormat.format(getConfigurationPath("sitecore.solution.url"), searchText);
 
 		final String mindtouchSRC = getConfigurationPath("mindtouch.src");
 		final String mindtouchID = getConfigurationPath("mindtouch.id");
@@ -191,8 +190,12 @@ public class SearchPageController extends AbstractSearchPageController
 	{
 		final ProductSearchPageData<SearchStateData, ProductData> searchPageData = performSearch(searchQuery, page, showMode,
 				sortCode, getSearchPageSize());
-
-		final String sitecoreSolutionPageURL = MessageFormat.format(getConfigurationPath("sitecore.solution.url"), searchText);
+		String searchStr = searchText;
+		if (StringUtils.isEmpty(searchText) && StringUtils.isNotEmpty(searchPageData.getFreeTextSearch()))
+		{
+			searchStr = searchPageData.getFreeTextSearch();
+		}
+		final String sitecoreSolutionPageURL = MessageFormat.format(getConfigurationPath("sitecore.solution.url"), searchStr);
 
 		final String mindtouchSRC = getConfigurationPath("mindtouch.src");
 		final String mindtouchID = getConfigurationPath("mindtouch.id");

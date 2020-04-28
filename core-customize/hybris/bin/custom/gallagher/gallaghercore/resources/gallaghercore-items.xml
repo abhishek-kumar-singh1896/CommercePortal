@@ -238,7 +238,28 @@
 					<persistence type="property" />
 					<description>Attribute for marketing description of the product</description>
 				</attribute>
+				
+				<attribute autocreate="true" qualifier="plpProductDescription" type="localized:java.lang.String">
+                    <modifiers read="true" write="true" search="true" optional="true" />
+                    <persistence type="property">
+                        <columntype database="oracle">
+                            <value>CLOB</value>
+                        </columntype>
+                        <columntype database="sap">
+                            <value>NCLOB</value>
+                        </columntype>
+                        <columntype>
+                            <value>HYBRIS.LONG_STRING</value>
+                        </columntype>
+                    </persistence>
+                    <custom-properties>
+                        <property name="hmcIndexField">
+                            <value>"thefield"</value>
+                        </property>
+                    </custom-properties>
+                </attribute>
 			</attributes>
+			
 		</itemtype>
 		
 		<itemtype code="PDPSimulator" generate="true" autocreate="true">

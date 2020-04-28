@@ -282,8 +282,9 @@ public class AccountPageController extends AbstractSearchPageController
 
 
 	@RequestMapping(value = "/addressform", method = RequestMethod.GET)
-	public String getCountryAddressForm(@RequestParam("addressCode") final String addressCode,
-			@RequestParam("countryIsoCode") final String countryIsoCode, final Model model)
+	public String getCountryAddressForm(@RequestParam("addressCode")
+	final String addressCode, @RequestParam("countryIsoCode")
+	final String countryIsoCode, final Model model)
 	{
 		model.addAttribute("supportedCountries", getCountries());
 		populateModelRegionAndCountry(model, countryIsoCode);
@@ -328,9 +329,10 @@ public class AccountPageController extends AbstractSearchPageController
 
 	@RequestMapping(value = "/orders", method = RequestMethod.GET)
 	@RequireHardLogIn
-	public String orders(@RequestParam(value = "page", defaultValue = "0") final int page,
-			@RequestParam(value = "show", defaultValue = "Page") final ShowMode showMode,
-			@RequestParam(value = "sort", required = false) final String sortCode, final Model model) throws CMSItemNotFoundException
+	public String orders(@RequestParam(value = "page", defaultValue = "0")
+	final int page, @RequestParam(value = "show", defaultValue = "Page")
+	final ShowMode showMode, @RequestParam(value = "sort", required = false)
+	final String sortCode, final Model model) throws CMSItemNotFoundException
 	{
 		// Handle paged search results
 		final PageableData pageableData = createPageableData(page, 5, sortCode, showMode);
@@ -346,8 +348,8 @@ public class AccountPageController extends AbstractSearchPageController
 
 	@RequestMapping(value = "/order/" + ORDER_CODE_PATH_VARIABLE_PATTERN, method = RequestMethod.GET)
 	@RequireHardLogIn
-	public String order(@PathVariable("orderCode") final String orderCode, final Model model,
-			final RedirectAttributes redirectModel) throws CMSItemNotFoundException
+	public String order(@PathVariable("orderCode")
+	final String orderCode, final Model model, final RedirectAttributes redirectModel) throws CMSItemNotFoundException
 	{
 		try
 		{
@@ -378,8 +380,9 @@ public class AccountPageController extends AbstractSearchPageController
 	@RequestMapping(value = "/order/" + ORDER_CODE_PATH_VARIABLE_PATTERN
 			+ "/getReadOnlyProductVariantMatrix", method = RequestMethod.GET)
 	@RequireHardLogIn
-	public String getProductVariantMatrixForResponsive(@PathVariable("orderCode") final String orderCode,
-			@RequestParam("productCode") final String productCode, final Model model)
+	public String getProductVariantMatrixForResponsive(@PathVariable("orderCode")
+	final String orderCode, @RequestParam("productCode")
+	final String productCode, final Model model)
 	{
 		final OrderData orderData = orderFacade.getOrderDetailsForCodeWithoutUser(orderCode);
 
@@ -769,7 +772,8 @@ public class AccountPageController extends AbstractSearchPageController
 		GlobalMessages.addFlashMessage(redirectModel, GlobalMessages.CONF_MESSAGES_HOLDER, "account.confirmation.address.added",
 				null);
 
-		return REDIRECT_TO_EDIT_ADDRESS_PAGE + newAddress.getId();
+		return REDIRECT_TO_ADDRESS_BOOK_PAGE;
+
 	}
 
 	protected void setUpAddressFormAfterError(final AddressForm addressForm, final Model model)
@@ -786,8 +790,8 @@ public class AccountPageController extends AbstractSearchPageController
 
 	@RequestMapping(value = "/edit-address/" + ADDRESS_CODE_PATH_VARIABLE_PATTERN, method = RequestMethod.GET)
 	@RequireHardLogIn
-	public String editAddress(@PathVariable("addressCode") final String addressCode, final Model model)
-			throws CMSItemNotFoundException
+	public String editAddress(@PathVariable("addressCode")
+	final String addressCode, final Model model) throws CMSItemNotFoundException
 	{
 		final AddressForm addressForm = new AddressForm();
 		model.addAttribute(COUNTRY_DATA_ATTR, checkoutFacade.getCountries(CountryType.SHIPPING));
@@ -917,7 +921,8 @@ public class AccountPageController extends AbstractSearchPageController
 	@RequestMapping(value = "/remove-address/" + ADDRESS_CODE_PATH_VARIABLE_PATTERN, method =
 	{ RequestMethod.GET, RequestMethod.POST })
 	@RequireHardLogIn
-	public String removeAddress(@PathVariable("addressCode") final String addressCode, final RedirectAttributes redirectModel)
+	public String removeAddress(@PathVariable("addressCode")
+	final String addressCode, final RedirectAttributes redirectModel)
 	{
 		final AddressData addressData = new AddressData();
 		addressData.setId(addressCode);
@@ -929,7 +934,8 @@ public class AccountPageController extends AbstractSearchPageController
 
 	@RequestMapping(value = "/set-default-address/" + ADDRESS_CODE_PATH_VARIABLE_PATTERN, method = RequestMethod.GET)
 	@RequireHardLogIn
-	public String setDefaultAddress(@PathVariable("addressCode") final String addressCode, final RedirectAttributes redirectModel)
+	public String setDefaultAddress(@PathVariable("addressCode")
+	final String addressCode, final RedirectAttributes redirectModel)
 	{
 		final AddressData addressData = new AddressData();
 		addressData.setDefaultAddress(true);
@@ -956,7 +962,8 @@ public class AccountPageController extends AbstractSearchPageController
 
 	@RequestMapping(value = "/set-default-payment-details", method = RequestMethod.POST)
 	@RequireHardLogIn
-	public String setDefaultPaymentDetails(@RequestParam final String paymentInfoId)
+	public String setDefaultPaymentDetails(@RequestParam
+	final String paymentInfoId)
 	{
 		CCPaymentInfoData paymentInfoData = null;
 		if (StringUtils.isNotBlank(paymentInfoId))
@@ -969,8 +976,8 @@ public class AccountPageController extends AbstractSearchPageController
 
 	@RequestMapping(value = "/remove-payment-method", method = RequestMethod.POST)
 	@RequireHardLogIn
-	public String removePaymentMethod(@RequestParam(value = "paymentInfoId") final String paymentMethodId,
-			final RedirectAttributes redirectAttributes) throws CMSItemNotFoundException
+	public String removePaymentMethod(@RequestParam(value = "paymentInfoId")
+	final String paymentMethodId, final RedirectAttributes redirectAttributes) throws CMSItemNotFoundException
 	{
 		userFacade.unlinkCCPaymentInfo(paymentMethodId);
 		GlobalMessages.addFlashMessage(redirectAttributes, GlobalMessages.CONF_MESSAGES_HOLDER,
@@ -1047,8 +1054,8 @@ public class AccountPageController extends AbstractSearchPageController
 
 	@RequestMapping(value = "/consents/withdraw/{consentCode}", method = RequestMethod.POST)
 	@RequireHardLogIn
-	public String withdrawConsent(@PathVariable final String consentCode, final RedirectAttributes redirectModel)
-			throws CMSItemNotFoundException
+	public String withdrawConsent(@PathVariable
+	final String consentCode, final RedirectAttributes redirectModel) throws CMSItemNotFoundException
 	{
 		try
 		{

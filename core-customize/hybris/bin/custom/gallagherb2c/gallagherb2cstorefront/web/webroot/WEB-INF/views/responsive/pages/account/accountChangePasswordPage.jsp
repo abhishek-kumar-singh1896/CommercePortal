@@ -32,7 +32,7 @@
 						<div class="cross-icon-out">
 							<svg>
                                         <use
-									xlink:href="img/gallagher-icons.svg#cross" />
+									xlink:href="${commonResourcePath}/images/gallagher-icons.svg#check" />
                                     </svg>
 						</div>
 						<div class="password-sent-text">
@@ -46,7 +46,7 @@
 						<div class="cross-icon-out">
 							<svg>
                                         <use
-									xlink:href="img/gallagher-icons.svg#cross" />
+									xlink:href="${commonResourcePath}/images/gallagher-icons.svg#cross" />
                                     </svg>
 						</div>
 						<div class="oops-text">Ooops,</div>

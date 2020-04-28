@@ -148,6 +148,7 @@
                     <editorArea:attribute qualifier="baseStores" />
                     <editorArea:attribute qualifier="variantForImage" />
                     <editorArea:attribute qualifier="eligibleForLatAm" />
+                    <editorArea:attribute qualifier="plpProductDescription" />
                 </editorArea:section>
                 <editorArea:section name="hmc.section.gallagher.ProductReferences.SpareParts">
                 	<editorArea:attribute qualifier="sparePartsReferenceHeading" />

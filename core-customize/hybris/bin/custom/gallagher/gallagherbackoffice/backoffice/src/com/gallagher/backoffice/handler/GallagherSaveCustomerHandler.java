@@ -2,9 +2,12 @@ package com.gallagher.backoffice.handler;
 
 import de.hybris.platform.b2b.model.B2BCustomerModel;
 import de.hybris.platform.b2b.model.B2BUnitModel;
+import de.hybris.platform.basecommerce.model.site.BaseSiteModel;
 import de.hybris.platform.commercefacades.storesession.StoreSessionFacade;
 import de.hybris.platform.commercefacades.user.data.CustomerData;
 import de.hybris.platform.commerceservices.strategies.CustomerNameStrategy;
+import de.hybris.platform.core.model.c2l.CurrencyModel;
+import de.hybris.platform.core.model.c2l.LanguageModel;
 import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.servicelayer.event.EventService;
 import de.hybris.platform.servicelayer.model.ModelService;
@@ -25,8 +28,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
 import org.springframework.web.client.RestClientException;
 
-import com.gallagher.core.services.GallagherCurrencyService;
-import com.gallagher.core.services.GallagherLanguageService;
 import com.gallagher.keycloak.outboundservices.service.GallagherKeycloakService;
 import com.hybris.cockpitng.config.jaxb.wizard.CustomType;
 import com.hybris.cockpitng.core.model.WidgetModel;
@@ -57,12 +58,6 @@ public class GallagherSaveCustomerHandler implements FlowActionHandler
 
 	@Resource(name = "customerNameStrategy")
 	private CustomerNameStrategy customerNameStrategy;
-
-	@Resource(name = "gallagherCurrencyService")
-	private GallagherCurrencyService gallagherCurrencyService;
-
-	@Resource(name = "gallagherLanguageService")
-	private GallagherLanguageService gallagherLanguaeService;
 
 	@Resource(name = "baseSiteService")
 	private BaseSiteService baseSiteService;
@@ -159,11 +154,13 @@ public class GallagherSaveCustomerHandler implements FlowActionHandler
 					B2BUnitModel.class);
 			String isoCode;
 			b2bRegistrationEvent.setCustomer(b2bCustomer);
+			BaseStoreModel defaultBaseStore = null;
+			BaseSiteModel defaultSite = null;
 			if (defaultB2BUnit.getAddresses().isEmpty())
 			{
 				isoCode = "Global";
-				b2bRegistrationEvent.setBaseStore(baseStoreService.getBaseStoreForUid("securityB2BGlobal"));
-				b2bRegistrationEvent.setSite(baseSiteService.getBaseSiteForUID("securityB2BGlobal"));
+				defaultBaseStore = baseStoreService.getBaseStoreForUid("securityB2BGlobal");
+				defaultSite = baseSiteService.getBaseSiteForUID("securityB2BGlobal");
 			}
 			else
 			{
@@ -176,41 +173,29 @@ public class GallagherSaveCustomerHandler implements FlowActionHandler
 					{
 						String securityB2BisoCode = new String("securityB2B");
 						securityB2BisoCode = securityB2BisoCode.concat(isoCode);
-						b2bRegistrationEvent.setBaseStore(baseStoreService.getBaseStoreForUid(securityB2BisoCode));
-						b2bRegistrationEvent.setSite(baseSiteService.getBaseSiteForUID(securityB2BisoCode));
+						defaultBaseStore = baseStoreService.getBaseStoreForUid(securityB2BisoCode);
+						defaultSite = baseSiteService.getBaseSiteForUID(securityB2BisoCode);
 						flag = true;
 						break;
 					}
 				}
 				if (!flag)
 				{
-					b2bRegistrationEvent.setBaseStore(baseStoreService.getBaseStoreForUid("securityB2BGlobal"));
-					b2bRegistrationEvent.setSite(baseSiteService.getBaseSiteForUID("securityB2BGlobal"));
+					defaultBaseStore = baseStoreService.getBaseStoreForUid("securityB2BGlobal");
+					defaultSite = baseSiteService.getBaseSiteForUID("securityB2BGlobal");
 				}
 			}
-			if (b2bCustomer.getSessionCurrency() != null)
-			{
-				b2bRegistrationEvent.setCurrency(b2bCustomer.getSessionCurrency());
-			}
-			else
-			{
-				if (gallagherCurrencyService.getCurrencyByCountryIsoCode(isoCode) != null)
-				{
-					b2bRegistrationEvent.setCurrency(gallagherCurrencyService.getCurrencyByCountryIsoCode(isoCode));
-				}
-				else
-				{
-					b2bRegistrationEvent.setCurrency(gallagherCurrencyService.getCurrencyByCountryIsoCode("US"));
-				}
-			}
-			if (b2bCustomer.getSessionLanguage() != null)
-			{
-				b2bRegistrationEvent.setLanguage(b2bCustomer.getSessionLanguage());
-			}
-			else
-			{
-				b2bRegistrationEvent.setLanguage(gallagherLanguaeService.getLanguageByisoCode("en"));
-			}
+
+			b2bRegistrationEvent.setBaseStore(defaultBaseStore);
+			b2bRegistrationEvent.setSite(defaultSite);
+
+			final CurrencyModel currency = getCurrency(defaultBaseStore, b2bCustomer.getSessionCurrency());
+			b2bRegistrationEvent.setCurrency(currency);
+			b2bCustomer.setSessionCurrency(currency);
+
+			final LanguageModel language = getLanguage(defaultBaseStore, b2bCustomer.getSessionLanguage());
+			b2bRegistrationEvent.setLanguage(language);
+			b2bCustomer.setSessionLanguage(language);
 
 			b2bCustomer.setIsUserExist(isUserExist);
 			modelService.save(b2bCustomer);
@@ -227,5 +212,53 @@ public class GallagherSaveCustomerHandler implements FlowActionHandler
 				}
 			});
 		}
+	}
+
+	/**
+	 * Returns the currency for this customer. If user selected currency is not in allowed list of currencies then use
+	 * the default currency.
+	 *
+	 * @param baseStore
+	 *           base store
+	 * @param sessionCurrency
+	 *           session currency selected by user
+	 * @return currency to be set
+	 */
+	private CurrencyModel getCurrency(final BaseStoreModel baseStore, final CurrencyModel sessionCurrency)
+	{
+		CurrencyModel currency;
+		if (sessionCurrency == null)
+		{
+			currency = baseStore.getDefaultCurrency();
+		}
+		else
+		{
+			currency = baseStore.getCurrencies().contains(sessionCurrency) ? sessionCurrency : baseStore.getDefaultCurrency();
+		}
+		return currency;
+	}
+
+	/**
+	 * Returns the language for this customer. If user selected language is not in allowed list of languages then use the
+	 * default language.
+	 *
+	 * @param baseStore
+	 *           base store
+	 * @param sessionLanguage
+	 *           session language selected by user
+	 * @return language to be set
+	 */
+	private LanguageModel getLanguage(final BaseStoreModel baseStore, final LanguageModel sessionLanguage)
+	{
+		LanguageModel language;
+		if (sessionLanguage == null)
+		{
+			language = baseStore.getDefaultLanguage();
+		}
+		else
+		{
+			language = baseStore.getLanguages().contains(sessionLanguage) ? sessionLanguage : baseStore.getDefaultLanguage();
+		}
+		return language;
 	}
 }

@@ -162,20 +162,24 @@ public class SearchPageController extends AbstractSearchPageController
 	}
 
 	@RequestMapping(method = RequestMethod.GET, params = "q")
-	public String refineSearch(@RequestParam("q") final String searchQuery,
-			@RequestParam(value = "page", defaultValue = "0") final int page,
-			@RequestParam(value = "show", defaultValue = "Page") final ShowMode showMode,
-			@RequestParam(value = "sort", required = false) final String sortCode,
-			@RequestParam(value = "text", required = false) final String searchText, final HttpServletRequest request,
-			final Model model) throws CMSItemNotFoundException
+	public String refineSearch(@RequestParam("q")
+	final String searchQuery, @RequestParam(value = "page", defaultValue = "0")
+	final int page, @RequestParam(value = "show", defaultValue = "Page")
+	final ShowMode showMode, @RequestParam(value = "sort", required = false)
+	final String sortCode, @RequestParam(value = "text", required = false)
+	final String searchText, final HttpServletRequest request, final Model model) throws CMSItemNotFoundException
 	{
+
 		final ProductSearchPageData<SearchStateData, ProductData> searchPageData = performSearch(searchQuery, page, showMode,
 				sortCode, getSearchPageSize());
 
-		final String sitecoreSupportPageURL = MessageFormat.format(getConfigurationPath("sitecore.support.url"),
-				searchText);
-		final String sitecoreSolutionPageURL = MessageFormat.format(getConfigurationPath("sitecore.solution.url"),
-				searchText);
+		String searchStr = searchText;
+		if (StringUtils.isEmpty(searchText) && StringUtils.isNotEmpty(searchPageData.getFreeTextSearch()))
+		{
+			searchStr = searchPageData.getFreeTextSearch();
+		}
+		final String sitecoreSupportPageURL = MessageFormat.format(getConfigurationPath("sitecore.support.url"), searchStr);
+		final String sitecoreSolutionPageURL = MessageFormat.format(getConfigurationPath("sitecore.solution.url"), searchStr);
 
 		populateModel(model, searchPageData, showMode);
 		model.addAttribute("userLocation", customerLocationService.getUserLocation());

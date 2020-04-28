@@ -4,10 +4,11 @@
 #
 # Import the CMS Site configuration for the Animal Management B2C store
 #
-
+ 
 # Language
 $lang=en
-
+$langLA=es_LA
+ 
 # Create CMS Site
-UPDATE CMSSite;uid[unique=true];name[lang=$lang];locale[lang=$lang]
- ;amB2CLatAm;"Animal Management LatAm B2C Site";pt_BR
+UPDATE CMSSite ; uid[unique=true] ; name[lang=$lang]                   ; name[lang=$langLA]                 ; locale[lang=$lang] 
+               ; amB2CLatAm       ; "Animal Management LatAm B2C Site" ; "Animal Management LatAm B2C Site" ; es_LA              

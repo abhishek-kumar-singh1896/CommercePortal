@@ -52,7 +52,7 @@
 						</ycommerce:testId>
 					</div>
 					<div class="product-id">${product.code}</div>
-					<div class="product-description">${product.description}</div>
+					<div class="product-description">${product.plpProductDescription}</div>
 				</div>
 			</div>
 		</div>
