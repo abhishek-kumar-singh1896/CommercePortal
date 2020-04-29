@@ -253,6 +253,18 @@
                 &:hover {
                   opacity: 0.75;
                 }
+
+                &.with-sublevel-text {
+                  position: relative;
+                  background-color: transparent;
+                  padding: 26px 40px 26px 0;
+
+                  .right-arrow-icon {
+                    position: absolute;
+                    right: 15px;
+                    top: 21px;
+                  }
+                }
               }
 
               &:hover,

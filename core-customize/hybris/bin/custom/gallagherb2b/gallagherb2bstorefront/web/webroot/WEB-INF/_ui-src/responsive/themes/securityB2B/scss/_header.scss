@@ -436,6 +436,12 @@
   }
 }
 
+@media only screen and (min-width: 1200px) {
+  .responsive-mega-menu-modal {
+    display: none !important;
+  }
+}
+
 @media only screen and (max-width: 1199px) {
   .main-header-out {
     .header-container-xs {
@@ -498,10 +504,9 @@
   }
 }
 
-
 @media only screen and (max-width: 320px) {
   .main-header-out {
-    .logo-out {   
+    .logo-out {
       img {
         width: 155px;
       }

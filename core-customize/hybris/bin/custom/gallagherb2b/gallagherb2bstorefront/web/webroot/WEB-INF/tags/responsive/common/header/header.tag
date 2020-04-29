@@ -56,18 +56,23 @@
 										<c:forEach items="${l1.entries}" var="dropdownValue">
 											<li>
 												<c:url var="L1link" value="${dropdownValue.item.url}"></c:url>
-												<a href="${L1link}" class="with-sublevel-text">
-												    ${dropdownValue.item.linkName}
-												</a>
-												<c:if test="${dropdownValue.item.linkName eq 'PRODUCTS'}">
-												<a href="javascript:void(0)" class="l1-anchor with-sublevel" id="xsLevel1Link${status.index+1}">
-													<span class="right-arrow-icon">
-														<svg>
-															<use xlink:href="${siteRootUrl}/theme-securityB2B/images/svg/gallagher-icons.svg#arrow-right" />
-														</svg>
-													</span>
-												</a>
-												</c:if>
+												<c:choose>
+													<c:when test="${dropdownValue.item.linkName eq 'PRODUCTS'}">
+														<a href="javascript:void(0)" class="with-sublevel-text l1-anchor with-sublevel" id="xsLevel1Link${status.index+1}">
+															${dropdownValue.item.linkName}
+															<span class="right-arrow-icon">
+																<svg>
+																	<use xlink:href="${siteRootUrl}/theme-securityB2B/images/svg/gallagher-icons.svg#arrow-right" />
+																</svg>
+															</span>
+														</a>
+													</c:when>
+													<c:otherwise>
+														<a href="${L1link}" class="with-sublevel-text">
+														    ${dropdownValue.item.linkName}
+														</a>
+													</c:otherwise>
+												</c:choose>
 											</li>
 										</c:forEach>
 									</c:forEach>
