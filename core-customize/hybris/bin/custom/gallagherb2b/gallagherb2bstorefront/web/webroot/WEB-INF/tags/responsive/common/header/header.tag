@@ -82,10 +82,8 @@
 						<sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">								
 							<cms:pageSlot position="B2BMyAccount" var="feature">
 								<li>
-									<a href="javascript:void(0)" class="with-sublevel-text">
+									<a href="javascript:void(0)" class="with-sublevel-text l1-anchor with-sublevel" id="xsmyacclink">
 										${feature.navigationNode.name}
-									</a>
-									<a href="javascript:void(0)" class="l1-anchor with-sublevel" id="xsmyacclink">
 										<span class="right-arrow-icon">
 											<svg>
 												<use xlink:href="${siteRootUrl}/theme-securityB2B/images/svg/gallagher-icons.svg#arrow-right" />
@@ -97,10 +95,8 @@
 							
 							<cms:pageSlot position="B2BMyCompany" var="feature">
 								<li>
-									<a href="javascript:void(0)" class="with-sublevel-text">
+									<a href="javascript:void(0)" class="with-sublevel-text l1-anchor with-sublevel" id="xsmycompanylink">
 										${feature.navigationNode.name}
-									</a>
-									<a href="javascript:void(0)" class="l1-anchor with-sublevel" id="xsmycompanylink">
 										<span class="right-arrow-icon">
 											<svg>
 												<use xlink:href="${siteRootUrl}/theme-securityB2B/images/svg/gallagher-icons.svg#arrow-right" />
