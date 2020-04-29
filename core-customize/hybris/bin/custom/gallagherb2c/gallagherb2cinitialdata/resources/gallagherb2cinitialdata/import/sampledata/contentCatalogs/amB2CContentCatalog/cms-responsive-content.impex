@@ -2635,13 +2635,23 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 # CMS Paragraph Component (Contact information)
 INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
 ;;registerProductSubHeading;Register product Paragraph Component;registerProductSubHeading
-;;registerProductPopupSubHeading;Register product popup Paragraph Component;registerProductPopupSubHeading
 ;;consentManagementSubHeading;consent Management SubHeading Paragraph Component;consentManagementSubHeading
+
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;restrictions(uid,$contentCV);onlyOneRestrictionMustApply[default='true']
+;;registerProductPopupSubHeadingNZEN;Register product popup Paragraph Component NZ EN;registerProductPopupSubHeadingNZEN;GallagherNZRegionRestriction
+;;registerProductPopupSubHeadingCAEN;Register product popup Paragraph Component CA EN ;registerProductPopupSubHeadingCAEN;GallagherCAENRegionRestriction,GallagherCAENCARegionRestriction
+;;registerProductPopupSubHeadingAUEN;Register product popup Paragraph Component AU EN;registerProductPopupSubHeadingAUEN;GallagherAURegionRestriction
+;;registerProductPopupSubHeadingUSEN;Register product popup Paragraph Component US EN;registerProductPopupSubHeadingUSEN;GallagherUSRegionRestriction
+;;registerProductPopupSubHeadingCAFR;Register product popup Paragraph Component CA FR;registerProductPopupSubHeadingCAFR;GallagherCAFRRegionRestriction,GallagherCAFRCARegionRestriction
+;;registerProductPopupSubHeadingLATAMEN;Register product popup Paragraph Component LATAM EN;registerProductPopupSubHeadingLATAMEN;GallagherLATAMRegionRestriction
+
 
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid, $contentCV)
 ;;Section1RegisterSlot;registerProductSubHeading
-;;Section2RegisterPopupSlot;registerProductPopupSubHeading
 ;;consentSlot;consentManagementSubHeading
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid, $contentCV)
+;;Section2RegisterPopupSlot;registerProductPopupSubHeadingNZEN,registerProductPopupSubHeadingCAEN,registerProductPopupSubHeadingAUEN,registerProductPopupSubHeadingUSEN,registerProductPopupSubHeadingCAFR,registerProductPopupSubHeadingLATAMEN
 
 #### Register Product Page####
 

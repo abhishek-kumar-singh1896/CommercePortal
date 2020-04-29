@@ -1414,16 +1414,50 @@ INSERT_UPDATE Language ; isocode[unique=true] ; fallbackLanguages(isocode) ; act
 #########################################################################
 
 
-##################### product categories corrected ####################
-$productCatalog=amB2CMasterProductCatalog
-$productCatalogName=Animal Management B2C US Product Catalog
-$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
-$supercategories=supercategories(code, $catalogVersion)
-$baseProduct=baseProduct(code,$catalogVersion)
-$approved=approvalstatus(code)[default='approved']
- 
-# Insert Products
-INSERT_UPDATE Product ; code[unique=true]                   ; $supercategories ; manufacturerName ; manufacturerAID ; unit(code) ; eligibleForLatAm ; baseStores(uid) ; ean ; variantType(code) ; $catalogVersion ; $approved 
-                      ; solar-fence-energizer-s10           ; mains-energizers ;                  ;                 ; EA      	; TRUE				 ; amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA
-                      ; G02411                              ; mains-energizers ;                  ;                 ; EA         ; TRUE             ; amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA
-#########################################################
+
+
+
+##########Register Product ############
+REMOVE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+;;registerProductPopupSubHeading;"If these details do not match your product, please contact the Customer services Team Email: <a href='mailto:sales.nz@am.gallagher' target='_blank'>sales.nz@am.gallagher</a> | Telephone number: 0800 731 500"
+
+REMOVE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=$lang]
+;;registerProductPopupSubHeading;Register product popup Paragraph Component;registerProductPopupSubHeading
+
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;restrictions(uid,$contentCV);onlyOneRestrictionMustApply[default='true']
+;;registerProductPopupSubHeadingNZEN;Register product popup Paragraph Component NZ EN;registerProductPopupSubHeadingNZEN;GallagherNZRegionRestriction
+;;registerProductPopupSubHeadingCAEN;Register product popup Paragraph Component CA EN ;registerProductPopupSubHeadingCAEN;GallagherCAENRegionRestriction,GallagherCAENCARegionRestriction
+;;registerProductPopupSubHeadingAUEN;Register product popup Paragraph Component AU EN;registerProductPopupSubHeadingAUEN;GallagherAURegionRestriction
+;;registerProductPopupSubHeadingUSEN;Register product popup Paragraph Component US EN;registerProductPopupSubHeadingUSEN;GallagherUSRegionRestriction
+;;registerProductPopupSubHeadingCAFR;Register product popup Paragraph Component CA FR;registerProductPopupSubHeadingCAFR;GallagherCAFRRegionRestriction,GallagherCAFRCARegionRestriction
+;;registerProductPopupSubHeadingLATAMEN;Register product popup Paragraph Component LATAM EN;registerProductPopupSubHeadingLATAMEN;GallagherLATAMRegionRestriction
+
+
+
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid, $contentCV)
+;;Section2RegisterPopupSlot;registerProductPopupSubHeadingNZEN,registerProductPopupSubHeadingCAEN,registerProductPopupSubHeadingAUEN,registerProductPopupSubHeadingUSEN,registerProductPopupSubHeadingCAFR,registerProductPopupSubHeadingLATAMEN
+
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=$lang]
+;;registerProductPopupSubHeadingNZEN;"If these details do not match your product, please contact our Customer Service Team for assistance. Email:<a href ='mailto:cs@am.gallagher.com' target='_blank'>cs@am.gallagher.com</a> | Toll Free: 0800 731 500"
+
+;;registerProductPopupSubHeadingCAEN;"If these details do not match your product, please contact our Customer Service Team for assistance. Email:<a href='mailto:marketing.na@am.gallagher.com' target='_blank'>marketing.na@am.gallagher.com</a> | Toll Free: 1-800-531-5908"
+
+
+;;registerProductPopupSubHeadingCAFR;"Si ces détails ne correspondent pas à votre produit, veuillez contacter l'équipe du service client pour obtenir de l'aide. 
+Courriel:<a href='mailto:marketing.na@am.gallagher.com' target='_blank'> marketing.na@am.gallagher.com </a>| Téléphone: 1-800-531-5908"
+
+;;registerProductPopupSubHeadingAUEN;"If these details do not match your product, please contact our Customer Service Team for assistance. Email: <a href='mailto:sales.au@am.gallagher.com' target='_blank'>sales.au@am.gallagher.com </a>| Toll Free: 1800 425 524"
+
+
+;;registerProductPopupSubHeadingUSEN;"If these details do not match your product, please contact our Customer Service Team for assistance.  Email:<a href='mailto:marketing.na@am.gallagher.com' target='_blank'> marketing.na@am.gallagher.com </a>| Toll Free: 1-800-531-5908"
+
+
+
+
+;;registerProductPopupSubHeadingLATAMEN;"Si estas características no concuerdan con tu producto, por favor contacta al Equipo de Atención al Cliente. Email:<a href='mailto:info@gallagher.cl' target='_blank'> info@gallagher.cl </a> | Fono:   (+56) (64) 2 260402"
+
+
+
+########Register Product Impex End##########33
