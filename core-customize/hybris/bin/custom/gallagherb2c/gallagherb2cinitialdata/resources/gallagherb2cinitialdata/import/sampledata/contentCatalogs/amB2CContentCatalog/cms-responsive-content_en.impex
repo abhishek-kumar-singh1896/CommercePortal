@@ -699,6 +699,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
 ;;EditProfileLink;Edit Profile
+;;EmailAddressLink;Email Address
 ;;PreferencesLink;Preferences
 ;;UpdatePasswordLink;Update Password
 ;;OrderHistoryLink;Order History
