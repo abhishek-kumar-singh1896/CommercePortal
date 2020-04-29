@@ -1047,7 +1047,9 @@ $productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='
 
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);children(uid,$contentCV)[mode=replace];links(uid, $contentCV);&nodeRef;title[lang=en]
-;ProductsNavNode;;Products Navigation Node Menu;;Electricfencing_Nav,WeighingEID_Nav,WirelessWaterMonitoring_Nav,AutomaticWatering_Nav,AppsSoftware_Nav,SteelGatesandHardware_Nav,Stockprods_Nav;;ProductsNavNode;"Products"
+#;ProductsNavNode;;Products Navigation Node Menu;;Electricfencing_Nav,WeighingEID_Nav,WirelessWaterMonitoring_Nav,AutomaticWatering_Nav,AppsSoftware_Nav,SteelGatesandHardware_Nav,Stockprods_Nav;;ProductsNavNode;"Products"
+;ProductsNavNode;;Products Navigation Node Menu;;Electricfencing_Nav,WeighingEID_Nav,WirelessWaterMonitoring_Nav,AutomaticWatering_Nav,AppsSoftware_Nav,SteelGatesandHardware_Nav;;ProductsNavNode;"Products"
+
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef;children(uid, $contentCV)[mode=replace]
 ;HeaderLinkNavigationNode;;Header Link Navigation Node; root;; HeaderLinkNavigationNode; SolutionsNavNode,ProductsNavNode,SupportNavNode,ContactNavNode
@@ -1103,15 +1105,15 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];name;$contentCV[unique=true];n
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
 ;ElectricfencingPower_Nav;;Power Navigation Node Menu;PowerEnergisers_nav;"Power";ElectricfencingPower_Nav
-;ElectricfencingPermanentfencing_Nav;;Permanent fencing Navigation Node Menu;PermanentfencingWireandCable_nav;"Permanent fencing";ElectricfencingPermanentfencing_Nav
-;ElectricfencingPortablefencing_Nav;;Portable fencing Navigation Node Menu;PortablefencingTapesWiresBraids_nav;"Portable fencing";ElectricfencingPortablefencing_Nav
+;ElectricfencingPermanentfencing_Nav;;Permanent fencing Navigation Node Menu;PermanentfencingWireandCable_nav;"Permanent Fencing";ElectricfencingPermanentfencing_Nav
+;ElectricfencingPortablefencing_Nav;;Portable fencing Navigation Node Menu;PortablefencingTapesWiresBraids_nav;"Portable Fencing";ElectricfencingPortablefencing_Nav
 ;ElectricfencingFenceconductors_Nav;;Fence Conductors Navigation Node Menu;FenceConductors_nav;"Fence Conductors";ElectricfencingFenceconductors_Nav
 
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;title[lang=en];&nodeRef
 ;PowerEnergisers_nav;;Power Navigation PowerEnergisers_nav;"Power";PowerEnergisers_nav
-;PermanentfencingWireandCable_nav;;Power Navigation PermanentfencingWireandCable_nav;"Permanent fencing";PermanentfencingWireandCable_nav
-;PortablefencingTapesWiresBraids_nav;;Power Navigation PortablefencingTapesWiresBraids_nav;"Portable fencing";PortablefencingTapesWiresBraids_nav
+;PermanentfencingWireandCable_nav;;Power Navigation PermanentfencingWireandCable_nav;"Permanent Fencing";PermanentfencingWireandCable_nav
+;PortablefencingTapesWiresBraids_nav;;Power Navigation PortablefencingTapesWiresBraids_nav;"Portable Fencing";PortablefencingTapesWiresBraids_nav
 ;FenceConductors_nav;;Power navigation FenceConductors_nav;"Fence Conductors";FenceConductors_nav
 
 #***********************************************************************************************************************************************************************
@@ -1149,7 +1151,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
-;;PowerEnergisers_link;"Mains Energisers"
+;;PowerEnergisers_link;"Mains Energizers"
 ;;PowerEnergisers_link1;"110 Volt Energizers"
 ;;PowerEnergisers_link2;"Multi Powered Energizers"
 ;;PowerEnergisers_link3;"Battery Energizers"
@@ -1159,7 +1161,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 ;;PowerEnergisers_link7;"Remotes and Fence Testers"
 ;;PowerEnergisers_link8;"Batteries "
 ;;PowerEnergisers_link9;"Earthing "
-;;PowerEnergisers_link10;"Power system accessories"
+;;PowerEnergisers_link10;"POWER SYSTEM ACCESSORIES"
 ;;PowerEnergisers_link11;"Grounding"
 ;;PowerEnergisers_link12;"Power Management Tools"
 
@@ -1208,7 +1210,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 ;;PermanentfencingWireandCable_link8;"Electric Gates"
 ;;PermanentfencingWireandCable_link9;"Irrigator Fence Crossing System"
 ;;PermanentfencingWireandCable_link10;"Pivot Irrigator System"
-;;PermanentfencingWireandCable_link11;"Fence tools and accessories"
+;;PermanentfencingWireandCable_link11;"FENCE TOOLS AND ACCESSORIES"
 ;;PermanentfencingWireandCable_link12;"Gate Hardware"
 
 
@@ -1437,7 +1439,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
 ;;SGH_link;"Gates"
-;;SGH_link1;"Hardware"
+;;SGH_link1;"Gate Hardware"
 
 
 
@@ -1447,81 +1449,158 @@ $contentCatalog=amB2CContentCatalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged ])[default=$contentCatalog:Staged ]
 
 
+#INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV)	   ;onlyOneRestrictionMustApply[default='true']
+
+#;;PowerEnergisers_link;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherLATAMRegionRestriction
+#;;PowerEnergisers_link1;GallagherCARegionRestriction,GallagherUSRegionRestriction
+#;;PowerEnergisers_link2;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherCARegionRestriction,GallagherUSRegionRestriction
+#;;PowerEnergisers_link3;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherCARegionRestriction,GallagherUSRegionRestriction
+#;;PowerEnergisers_link4;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherCARegionRestriction,GallagherUSRegionRestriction
+#;;PowerEnergisers_link5;GallagherNZRegionRestriction,GallagherGlRegionRestriction
+#;;PowerEnergisers_link6;GallagherAURegionRestriction
+#;;PowerEnergisers_link7;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherCARegionRestriction,GallagherUSRegionRestriction
+#;;PowerEnergisers_link8;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction
+#;;PowerEnergisers_link9;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherLATAMRegionRestriction
+#;;PowerEnergisers_link10;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherLATAMRegionRestriction
+#;;PowerEnergisers_link11;GallagherCARegionRestriction,GallagherUSRegionRestriction
+#;;PowerEnergisers_link12;GallagherCARegionRestriction,GallagherUSRegionRestriction
+
+#;;PermanentfencingWireandCable_link;GallagherAURegionRestriction
+#;;PermanentfencingWireandCable_link1;GallagherAURegionRestriction
+#;;PermanentfencingWireandCable_link2;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+#;;PermanentfencingWireandCable_link3;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+#;;PermanentfencingWireandCable_link4;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+#;;PermanentfencingWireandCable_link5;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+#;;PermanentfencingWireandCable_link6;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+#;;PermanentfencingWireandCable_link7;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+#;;PermanentfencingWireandCable_link8;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+#;;PermanentfencingWireandCable_link9;GallagherNZRegionRestriction,GallagherGlRegionRestriction
+#;;PermanentfencingWireandCable_link10;GallagherAURegionRestriction
+#;;PermanentfencingWireandCable_link11;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+#;;PermanentfencingWireandCable_link12;GallagherAURegionRestriction
+
+#;;PortablefencingTapesWiresBraids_nav_link;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+#;;PortablefencingTapesWiresBraids_nav_link1;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+#;;PortablefencingTapesWiresBraids_nav_link2;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+#;;PortablefencingTapesWiresBraids_nav_link3;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+#;;PortablefencingTapesWiresBraids_nav_link4;GallagherCARegionRestriction,GallagherUSRegionRestriction
+#;;PortablefencingTapesWiresBraids_nav_link5;GallagherCARegionRestriction,GallagherUSRegionRestriction
+
+#;;FenceConductors_nav_link;GallagherCARegionRestriction,GallagherUSRegionRestriction
+#;;FenceConductors_nav_link1;GallagherCARegionRestriction,GallagherUSRegionRestriction
+#;;FenceConductors_nav_link2;GallagherCARegionRestriction,GallagherUSRegionRestriction
+#;;FenceConductors_nav_link3;GallagherCARegionRestriction,GallagherUSRegionRestriction
+
+#;;WeighinEid_link;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherLATAMRegionRestriction
+#;;WeighinEid_link1;GallagherCARegionRestriction,GallagherUSRegionRestriction
+#;;WeighinEid_link2;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherLATAMRegionRestriction
+#;;WeighinEid_link3;GallagherCARegionRestriction,GallagherUSRegionRestriction
+#;;WeighinEid_link4;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherLATAMRegionRestriction,GallagherCARegionRestriction,GallagherUSRegionRestriction
+#;;WeighinEid_link5;GallagherAURegionRestriction
+#;;WeighinEid_link6;GallagherNZRegionRestriction,GallagherGlRegionRestriction
+#;;WeighinEid_link7;GallagherAURegionRestriction
+#;;WeighinEid_link8;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherLATAMRegionRestriction,GallagherCARegionRestriction,GallagherUSRegionRestriction
+#;;WeighinEid_link9;GallagherAURegionRestriction
+#;;WeighinEid_link10;GallagherCARegionRestriction,GallagherUSRegionRestriction
+#;;WeighinEid_link11;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
+#;;WeighinEid_link12;GallagherCARegionRestriction,GallagherUSRegionRestriction
+
+#;;WWM_link;GallagherNZRegionRestriction,GallagherGlRegionRestriction
+#;;WWM_link1;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherLATAMRegionRestriction
+#;;WWM_link2;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction
+#;;WWM_link3;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherLATAMRegionRestriction
+
+#;;AW_link;GallagherCARegionRestriction,GallagherUSRegionRestriction
+#;;AW_link1;GallagherCARegionRestriction,GallagherUSRegionRestriction
+#;;AW_link2;GallagherCARegionRestriction,GallagherUSRegionRestriction
+#;;AW_link3;GallagherCARegionRestriction,GallagherUSRegionRestriction
+#;;AW_link4;GallagherCARegionRestriction,GallagherUSRegionRestriction
+#;;AW_link5;GallagherCARegionRestriction,GallagherUSRegionRestriction
+#;;AW_link6;GallagherCARegionRestriction,GallagherUSRegionRestriction
+#;;AW_link7;GallagherCARegionRestriction,GallagherUSRegionRestriction
+
+#;;AppsSoftware_link;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction
+#;;AppsSoftware_link1;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction
+
+#;;SGH_link;GallagherNZRegionRestriction
+#;;SGH_link1;GallagherNZRegionRestriction
+
+#;;AllStockProdsMainLink;GallagherNZRegionRestriction,GallagherGlRegionRestriction
+
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV)	   ;onlyOneRestrictionMustApply[default='true']
 
-;;PowerEnergisers_link;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherLATAMRegionRestriction
-;;PowerEnergisers_link1;GallagherCARegionRestriction,GallagherUSRegionRestriction
-;;PowerEnergisers_link2;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherCARegionRestriction,GallagherUSRegionRestriction
-;;PowerEnergisers_link3;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherCARegionRestriction,GallagherUSRegionRestriction
-;;PowerEnergisers_link4;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherCARegionRestriction,GallagherUSRegionRestriction
-;;PowerEnergisers_link5;GallagherNZRegionRestriction,GallagherGlRegionRestriction
-;;PowerEnergisers_link6;GallagherAURegionRestriction
-;;PowerEnergisers_link7;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherCARegionRestriction,GallagherUSRegionRestriction
-;;PowerEnergisers_link8;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction
-;;PowerEnergisers_link9;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherLATAMRegionRestriction
-;;PowerEnergisers_link10;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherLATAMRegionRestriction
-;;PowerEnergisers_link11;GallagherCARegionRestriction,GallagherUSRegionRestriction
-;;PowerEnergisers_link12;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;PowerEnergisers_link;
+;;PowerEnergisers_link1;
+;;PowerEnergisers_link2;
+;;PowerEnergisers_link3;
+;;PowerEnergisers_link4;
+;;PowerEnergisers_link5;
+;;PowerEnergisers_link6;
+;;PowerEnergisers_link7;
+;;PowerEnergisers_link8;
+;;PowerEnergisers_link9;
+;;PowerEnergisers_link10;
+;;PowerEnergisers_link11;
+;;PowerEnergisers_link12;
 
-;;PermanentfencingWireandCable_link;GallagherAURegionRestriction
-;;PermanentfencingWireandCable_link1;GallagherAURegionRestriction
-;;PermanentfencingWireandCable_link2;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
-;;PermanentfencingWireandCable_link3;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
-;;PermanentfencingWireandCable_link4;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
-;;PermanentfencingWireandCable_link5;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
-;;PermanentfencingWireandCable_link6;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
-;;PermanentfencingWireandCable_link7;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
-;;PermanentfencingWireandCable_link8;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
-;;PermanentfencingWireandCable_link9;GallagherNZRegionRestriction,GallagherGlRegionRestriction
-;;PermanentfencingWireandCable_link10;GallagherAURegionRestriction
-;;PermanentfencingWireandCable_link11;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
-;;PermanentfencingWireandCable_link12;GallagherAURegionRestriction
+;;PermanentfencingWireandCable_link;
+;;PermanentfencingWireandCable_link1;
+;;PermanentfencingWireandCable_link2;
+;;PermanentfencingWireandCable_link3;
+;;PermanentfencingWireandCable_link4;
+;;PermanentfencingWireandCable_link5;
+;;PermanentfencingWireandCable_link6;
+;;PermanentfencingWireandCable_link7;
+;;PermanentfencingWireandCable_link8;
+;;PermanentfencingWireandCable_link9;
+;;PermanentfencingWireandCable_link10;
+;;PermanentfencingWireandCable_link11;
+;;PermanentfencingWireandCable_link12;
 
-;;PortablefencingTapesWiresBraids_nav_link;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
-;;PortablefencingTapesWiresBraids_nav_link1;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
-;;PortablefencingTapesWiresBraids_nav_link2;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
-;;PortablefencingTapesWiresBraids_nav_link3;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
-;;PortablefencingTapesWiresBraids_nav_link4;GallagherCARegionRestriction,GallagherUSRegionRestriction
-;;PortablefencingTapesWiresBraids_nav_link5;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;PortablefencingTapesWiresBraids_nav_link;
+;;PortablefencingTapesWiresBraids_nav_link1;
+;;PortablefencingTapesWiresBraids_nav_link2;
+;;PortablefencingTapesWiresBraids_nav_link3;
+;;PortablefencingTapesWiresBraids_nav_link4;
+;;PortablefencingTapesWiresBraids_nav_link5;
 
-;;FenceConductors_nav_link;GallagherCARegionRestriction,GallagherUSRegionRestriction
-;;FenceConductors_nav_link1;GallagherCARegionRestriction,GallagherUSRegionRestriction
-;;FenceConductors_nav_link2;GallagherCARegionRestriction,GallagherUSRegionRestriction
-;;FenceConductors_nav_link3;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;FenceConductors_nav_link;
+;;FenceConductors_nav_link1;
+;;FenceConductors_nav_link2;
+;;FenceConductors_nav_link3;
 
-;;WeighinEid_link;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherLATAMRegionRestriction
-;;WeighinEid_link1;GallagherCARegionRestriction,GallagherUSRegionRestriction
-;;WeighinEid_link2;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherLATAMRegionRestriction
-;;WeighinEid_link3;GallagherCARegionRestriction,GallagherUSRegionRestriction
-;;WeighinEid_link4;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherLATAMRegionRestriction,GallagherCARegionRestriction,GallagherUSRegionRestriction
-;;WeighinEid_link5;GallagherAURegionRestriction
-;;WeighinEid_link6;GallagherNZRegionRestriction,GallagherGlRegionRestriction
-;;WeighinEid_link7;GallagherAURegionRestriction
-;;WeighinEid_link8;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherLATAMRegionRestriction,GallagherCARegionRestriction,GallagherUSRegionRestriction
-;;WeighinEid_link9;GallagherAURegionRestriction
-;;WeighinEid_link10;GallagherCARegionRestriction,GallagherUSRegionRestriction
-;;WeighinEid_link11;GallagherAURegionRestriction
-;;WeighinEid_link12;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;WeighinEid_link;
+;;WeighinEid_link1;
+;;WeighinEid_link2;
+;;WeighinEid_link3;
+;;WeighinEid_link4;
+;;WeighinEid_link5;
+;;WeighinEid_link6;
+;;WeighinEid_link7;
+;;WeighinEid_link8;
+;;WeighinEid_link9;
+;;WeighinEid_link10;
+;;WeighinEid_link11;
+;;WeighinEid_link12;
 
-;;WWM_link;GallagherNZRegionRestriction,GallagherGlRegionRestriction
-;;WWM_link1;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherLATAMRegionRestriction
-;;WWM_link2;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction
-;;WWM_link3;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherLATAMRegionRestriction
+;;WWM_link;
+;;WWM_link1;
+;;WWM_link2;
+;;WWM_link3;
 
-;;AW_link;GallagherCARegionRestriction,GallagherUSRegionRestriction
-;;AW_link1;GallagherCARegionRestriction,GallagherUSRegionRestriction
-;;AW_link2;GallagherCARegionRestriction,GallagherUSRegionRestriction
-;;AW_link3;GallagherCARegionRestriction,GallagherUSRegionRestriction
-;;AW_link4;GallagherCARegionRestriction,GallagherUSRegionRestriction
-;;AW_link5;GallagherCARegionRestriction,GallagherUSRegionRestriction
-;;AW_link6;GallagherCARegionRestriction,GallagherUSRegionRestriction
-;;AW_link7;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;AW_link;
+;;AW_link1;
+;;AW_link2;
+;;AW_link3;
+;;AW_link4;
+;;AW_link5;
+;;AW_link6;
+;;AW_link7;
 
-;;AppsSoftware_link;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction
-;;AppsSoftware_link1;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction
+;;AppsSoftware_link;
+;;AppsSoftware_link1;
 
-;;SGH_link;GallagherNZRegionRestriction
-;;SGH_link1;GallagherNZRegionRestriction
+;;SGH_link;
+;;SGH_link1;
 
-;;AllStockProdsMainLink;GallagherNZRegionRestriction,GallagherGlRegionRestriction
-
+;;AllStockProdsMainLink;
