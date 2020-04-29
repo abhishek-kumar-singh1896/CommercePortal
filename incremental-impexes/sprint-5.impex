@@ -1412,3 +1412,18 @@ INSERT_UPDATE Language ; isocode[unique=true] ; fallbackLanguages(isocode) ; act
                        ; fr_CA				  ; en						   ;					  ;
 
 #########################################################################
+
+
+##################### product categories corrected ####################
+$productCatalog=amB2CMasterProductCatalog
+$productCatalogName=Animal Management B2C US Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$supercategories=supercategories(code, $catalogVersion)
+$baseProduct=baseProduct(code,$catalogVersion)
+$approved=approvalstatus(code)[default='approved']
+ 
+# Insert Products
+INSERT_UPDATE Product ; code[unique=true]                   ; $supercategories ; manufacturerName ; manufacturerAID ; unit(code) ; eligibleForLatAm ; baseStores(uid) ; ean ; variantType(code) ; $catalogVersion ; $approved 
+                      ; solar-fence-energizer-s10           ; mains-energizers ;                  ;                 ; EA      	; TRUE				 ; amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA
+                      ; G02411                              ; mains-energizers ;                  ;                 ; EA         ; TRUE             ; amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA
+#########################################################
