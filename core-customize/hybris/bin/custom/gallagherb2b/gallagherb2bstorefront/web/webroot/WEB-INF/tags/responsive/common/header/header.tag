@@ -146,7 +146,7 @@
 		</div>
 
 		<!-- My company menu content -->
-		<div class="modal-content xs-main-menu-l2 xs-mega-menu d-none" id="xsLevel1Link8Container">
+		<div class="modal-content xs-main-menu-l2 xs-mega-menu d-none" id="xsmycompanylinkContainer">
 			<div class="modal-header">
 				<div class="left-title-out">
 					<a href="javascript:void(0)" class="back-to-l1">
