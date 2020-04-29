@@ -267,7 +267,8 @@
 		<div class="register-product-modal-container">
 			<div class="hint-text mb-4">
 				<cms:pageSlot position="Section2" var="feature" element="div">
-					<cms:component component="${feature}" />
+					<cms:component component="${feature}" 
+					evaluateRestriction="true" />
 				</cms:pageSlot>
 			</div>
 

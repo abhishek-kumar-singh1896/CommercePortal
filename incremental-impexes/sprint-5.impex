@@ -538,6 +538,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;RegisterAProductLink;Register a product Link;/register-product;;;
 ;;MyRegisteredProductLink;My registered Product Link;/register-product/products;;;
 ;;EditProfileLink;Edit Profile Link;/my-account/update-profile;;;
+;;EmailAddressLink;Email Address Link;/my-account/update-email;;;;
 ;;OrderHistoryLink;OrderHistoryLink;/my-account/orders;
 ;;PreferencesLink;Preferences Link;/my-account/consents;;;
 ;;LogoutLink;Logout Us Link;/logout;;;
@@ -550,6 +551,8 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;pa
 ;MyRegisteredProductNavNode;;My Registered Product Navigation Node Menu;;;;MyRegisteredProductNavNode;"My Registered Product"
 
 ;EditProfileNavNode;;Edit Profile Navigation Node Menu;UserDropDownNavigationNode;;;EditProfileNavNode;"Edit profile"
+;EmailAddressNavNode;;Email Address Navigation Node Menu;UserDropDownNavigationNode;;;EmailAddressNavNode;"Email Address"
+
 ;UpdatePasswordNavNode;;Update Password Navigation Node Menu;UserDropDownNavigationNode;;;UpdatePasswordNavNode;"Update password"
 ;OrderHistoryNavNode;;Order History Navigation Node;UserDropDownNavigationNode;;;OrderHistoryNavNode;"Order History"
 ;PreferencesNavNode;;Prefernce Navigation Node;UserDropDownNavigationNode;;;PreferencesNavNode;"Preferences"
@@ -561,6 +564,8 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 ;MyRegisteredProductNavNodeEntry;;My Registered Product Navigation Node Entry;MyRegisteredProductNavNode;MyRegisteredProductLink
 
 ;EditProfileNavNodeEntry;;Edit Profile Navigation Node Entry;EditProfileNavNode;EditProfileLink
+;EmailAddressNavNodeEntry;;Email Address Navigation Node Entry;EmailAddressNavNode;EmailAddressLink
+
 ;UpdatePasswordNavNodeEntry;;Update Password Navigation Node Entry;UpdatePasswordNavNode;UpdatePasswordLink
 ;OrderHistoryNavNodeEntry;;Order History Navigation Node Entry;OrderHistoryNavNode;OrderHistoryLink
 ;PreferencesNavNodeEntry;;Preferences Navigation Node Entry;PreferencesNavNode;PreferencesLink
@@ -569,13 +574,14 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
 ;;EditProfileLink;Edit Profile
+;;EmailAddressLink;Email Address
 ;;PreferencesLink;Preferences
 ;;UpdatePasswordLink;Update Password
 ;;OrderHistoryLink;Order History
 
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef;children(uid, $contentCV)[mode=replace]
-;UserDropDownNavigationNode;;Header Link Navigation Node; root;; UserDropDownNavigationNode; RegisterAProductNavNode,MyRegisteredProductNavNode,EditProfileNavNode,UpdatePasswordNavNode,OrderHistoryNavNode,PreferencesNavNode,LogoutNavNode
+;UserDropDownNavigationNode;;Header Link Navigation Node; root;; UserDropDownNavigationNode; RegisterAProductNavNode,MyRegisteredProductNavNode,EditProfileNavNode,EmailAddressNavNode,UpdatePasswordNavNode,OrderHistoryNavNode,PreferencesNavNode,LogoutNavNode
 
 INSERT_UPDATE NavigationComponent;$contentCV[unique=true];uid[unique=true];name;styleClass;&componentRef;navigationNode(&nodeRef)
 ;;UserDropDownNavigationComponent;User drop down Navigation component;;UserDropDownNavigationComponent;UserDropDownNavigationNode
@@ -1406,3 +1412,52 @@ INSERT_UPDATE Language ; isocode[unique=true] ; fallbackLanguages(isocode) ; act
                        ; fr_CA				  ; en						   ;					  ;
 
 #########################################################################
+
+
+
+
+
+##########Register Product ############
+REMOVE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+;;registerProductPopupSubHeading;"If these details do not match your product, please contact the Customer services Team Email: <a href='mailto:sales.nz@am.gallagher' target='_blank'>sales.nz@am.gallagher</a> | Telephone number: 0800 731 500"
+
+REMOVE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=$lang]
+;;registerProductPopupSubHeading;Register product popup Paragraph Component;registerProductPopupSubHeading
+
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;restrictions(uid,$contentCV);onlyOneRestrictionMustApply[default='true']
+;;registerProductPopupSubHeadingNZEN;Register product popup Paragraph Component NZ EN;registerProductPopupSubHeadingNZEN;GallagherNZRegionRestriction
+;;registerProductPopupSubHeadingCAEN;Register product popup Paragraph Component CA EN ;registerProductPopupSubHeadingCAEN;GallagherCAENRegionRestriction,GallagherCAENCARegionRestriction
+;;registerProductPopupSubHeadingAUEN;Register product popup Paragraph Component AU EN;registerProductPopupSubHeadingAUEN;GallagherAURegionRestriction
+;;registerProductPopupSubHeadingUSEN;Register product popup Paragraph Component US EN;registerProductPopupSubHeadingUSEN;GallagherUSRegionRestriction
+;;registerProductPopupSubHeadingCAFR;Register product popup Paragraph Component CA FR;registerProductPopupSubHeadingCAFR;GallagherCAFRRegionRestriction,GallagherCAFRCARegionRestriction
+;;registerProductPopupSubHeadingLATAMEN;Register product popup Paragraph Component LATAM EN;registerProductPopupSubHeadingLATAMEN;GallagherLATAMRegionRestriction
+
+
+
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid, $contentCV)
+;;Section2RegisterPopupSlot;registerProductPopupSubHeadingNZEN,registerProductPopupSubHeadingCAEN,registerProductPopupSubHeadingAUEN,registerProductPopupSubHeadingUSEN,registerProductPopupSubHeadingCAFR,registerProductPopupSubHeadingLATAMEN
+
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=$lang]
+;;registerProductPopupSubHeadingNZEN;"If these details do not match your product, please contact our Customer Service Team for assistance. Email:<a href ='mailto:cs@am.gallagher.com' target='_blank'>cs@am.gallagher.com</a> | Toll Free: 0800 731 500"
+
+;;registerProductPopupSubHeadingCAEN;"If these details do not match your product, please contact our Customer Service Team for assistance. Email:<a href='mailto:marketing.na@am.gallagher.com' target='_blank'>marketing.na@am.gallagher.com</a> | Toll Free: 1-800-531-5908"
+
+
+;;registerProductPopupSubHeadingCAFR;"Si ces détails ne correspondent pas à votre produit, veuillez contacter l'équipe du service client pour obtenir de l'aide. 
+Courriel:<a href='mailto:marketing.na@am.gallagher.com' target='_blank'> marketing.na@am.gallagher.com </a>| Téléphone: 1-800-531-5908"
+
+;;registerProductPopupSubHeadingAUEN;"If these details do not match your product, please contact our Customer Service Team for assistance. Email: <a href='mailto:sales.au@am.gallagher.com' target='_blank'>sales.au@am.gallagher.com </a>| Toll Free: 1800 425 524"
+
+
+;;registerProductPopupSubHeadingUSEN;"If these details do not match your product, please contact our Customer Service Team for assistance.  Email:<a href='mailto:marketing.na@am.gallagher.com' target='_blank'> marketing.na@am.gallagher.com </a>| Toll Free: 1-800-531-5908"
+
+
+
+
+;;registerProductPopupSubHeadingLATAMEN;"Si estas características no concuerdan con tu producto, por favor contacta al Equipo de Atención al Cliente. Email:<a href='mailto:info@gallagher.cl' target='_blank'> info@gallagher.cl </a> | Fono:   (+56) (64) 2 260402"
+
+
+
+########Register Product Impex End##########33

@@ -36,11 +36,17 @@
 			<svg class="cart-icon">
             <use
 					xlink:href="${commonResourcePath}/images/gallagher-icons.svg#cart" />
-        </svg> <c:if test="${totalItems gt 0}">
-				<span class="info-number"> <span class="info-text">
+        </svg>
+        <c:if test="${totalItems eq 0}">
+        <c:set var="hiddencomponent" value="hidden" />
+        </c:if>
+         <span class="info-number" ${hiddencomponent}>
+        	<c:if test="${totalItems gt 0}">
+				 <span class="info-text">
 						${totalItems lt 10 ? fn:escapeXml(totalItems) : "9+"} </span>
-				</span>
+				
 			</c:if>
+			</span>
 		</a>
 	</div>
 	<div class="mini-cart-container js-mini-cart-container"></div>

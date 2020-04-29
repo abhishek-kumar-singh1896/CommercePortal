@@ -148,7 +148,7 @@
                     <editorArea:attribute qualifier="baseStores" />
                     <editorArea:attribute qualifier="variantForImage" />
                     <editorArea:attribute qualifier="eligibleForLatAm" />
-                    <editorArea:attribute qualifier="plpProductDescription" />
+                   <editorArea:attribute qualifier="plpProductDescription" editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)" />
                 </editorArea:section>
                 <editorArea:section name="hmc.section.gallagher.ProductReferences.SpareParts">
                 	<editorArea:attribute qualifier="sparePartsReferenceHeading" />

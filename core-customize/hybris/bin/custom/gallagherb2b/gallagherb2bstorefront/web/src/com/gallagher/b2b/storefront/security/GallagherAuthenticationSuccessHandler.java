@@ -75,7 +75,7 @@ public class GallagherAuthenticationSuccessHandler implements AuthenticationSucc
 						{
 							redirectPath = "/security/global/en";
 						}
-
+						LOGGER.info("Redirection based upon country " + redirectPath);
 						response.sendRedirect(redirectPath);
 						return;
 					}
@@ -88,6 +88,7 @@ public class GallagherAuthenticationSuccessHandler implements AuthenticationSucc
 		{
 			if (fallback != null)
 			{
+				LOGGER.info("Redirection based upon fallback");
 				fallback.onAuthenticationSuccess(request, response, authentication);
 			}
 		}
@@ -95,6 +96,7 @@ public class GallagherAuthenticationSuccessHandler implements AuthenticationSucc
 		{
 			try
 			{
+				LOGGER.info("Redirection based upon cookie " + location);
 				response.addCookie(KeycloakCookieBasedRedirect.createCookieFromRedirectUrl(null));
 				response.sendRedirect(location);
 			}

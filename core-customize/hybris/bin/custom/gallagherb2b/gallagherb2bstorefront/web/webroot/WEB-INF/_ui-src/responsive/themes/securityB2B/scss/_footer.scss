@@ -174,10 +174,12 @@
             text-transform: uppercase;
             display: block;
             line-height: 1.42857;
+            background-color: #464646;
 
-            &:hover {
+            &:hover,
+            &:focus {
               color: #837974;
-              background: transparent;
+              background-color: #464646;
             }
           }
         }
@@ -220,6 +222,23 @@
 
     .country-col {
       min-width: 200px;
+    }
+  }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1279px) {
+  .footer-out {
+    .footer-bottom-section {
+      .footer-bottom-left-section,
+      .footer-bottom-middle-section {
+        width: 100%;
+        display: block;
+
+        .left-social-links-col,
+        .copyright-col .copyright {
+          text-align: center;
+        }
+      }
     }
   }
 }

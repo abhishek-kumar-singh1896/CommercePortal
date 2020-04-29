@@ -43,7 +43,12 @@ ACC.minicart = {
                 $(".js-mini-cart-link .js-mini-cart-count").append($numberItem);
                 $(".js-mini-cart-link .js-mini-cart-price").text(jsonData.miniCartPrice);    
 				$(".info-number").empty();
-				$(".info-number").append(jsonData.miniCartCount); 
+				if(jsonData.miniCartCount > 9 ){
+					$(".info-number").append("9+");
+					}else{
+						$(".info-number").append(jsonData.miniCartCount);
+						$(".info-number").removeAttr('hidden');
+					}
 			}
 		});
 	}
