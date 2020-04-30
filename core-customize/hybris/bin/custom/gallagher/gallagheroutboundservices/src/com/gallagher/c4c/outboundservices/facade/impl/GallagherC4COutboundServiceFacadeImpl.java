@@ -29,8 +29,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.gallagher.c4c.outboundservices.facade.GallagherC4COutboundServiceFacade;
 import com.gallagher.outboundservices.decorator.GallagherCsrfOutboundRequestDecorator;
-import com.gallagher.outboundservices.request.dto.GallgherRegisteredProductQuery;
-import com.gallagher.outboundservices.request.dto.GallgherRegisteredProductRequest;
 import com.gallagher.outboundservices.request.dto.RegisterProductRequest;
 import com.gallagher.outboundservices.response.dto.GallagherInboundCustomerEntry;
 import com.gallagher.outboundservices.response.dto.GallagherInboundCustomerInfo;
@@ -148,22 +146,12 @@ public class GallagherC4COutboundServiceFacadeImpl extends DefaultOutboundServic
 				REGISTERED_PRODUCT_COLLECTION_DESTINATION);
 		final RestOperations restOperations = getIntegrationRestTemplateFactory().create(destinationModel);
 
-		final String baseURL = destinationModel.getUrl();
-
-		final UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(baseURL);
+		final UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(destinationModel.getUrl()).queryParam("$filter",
+				"customerID eq '" + customerID + "'");
 
 		final HttpHeaders headers = new HttpHeaders();
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-		headers.setContentType(MediaType.APPLICATION_JSON);
-
-		final GallgherRegisteredProductRequest registeredProductRequest = new GallgherRegisteredProductRequest();
-		final GallgherRegisteredProductQuery registeredProductQuery = new GallgherRegisteredProductQuery();
-
-		registeredProductQuery.setCustomerID(customerID);
-		registeredProductRequest.setProductQuery(registeredProductQuery);
-
-		final HttpEntity<GallgherRegisteredProductRequest> entity = new HttpEntity<>(registeredProductRequest, headers);
-
+		final HttpEntity entity = new HttpEntity(headers);
 		final HttpEntity<GallagherRegisteredProductResponse> response = restOperations.exchange(builder.build().encode().toUri(),
 				HttpMethod.GET, entity, GallagherRegisteredProductResponse.class);
 
