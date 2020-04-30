@@ -30,7 +30,7 @@ $addonExtensionName=b2badvanceacceleratoraddon
 $medias=medias(code, $contentCV);
 $mediaContainer=media(qualifier, $contentCV);
 $siteUidNZ=securityB2BNZ
-$websiteBaseURL=$config-website.base.url.https
+$websiteBaseURL=$config-website.base.url.https.b2b
 
 
 ###### Navigation Start ######
