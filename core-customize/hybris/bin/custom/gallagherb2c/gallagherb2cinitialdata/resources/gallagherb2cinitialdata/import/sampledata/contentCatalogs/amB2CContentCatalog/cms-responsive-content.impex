@@ -1508,7 +1508,8 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CartPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;ggB2CNavBar-CartPage;ggB2CNavBar;;ggB2CNavBarSlot;true
 
-#INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='RegisteredProductsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='RegisteredProductsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;ggB2CNavBar-RegisteredProducts;ggB2CNavBar;;ggB2CNavBarSlot;true
 #;;ggB2CNavBar-RegisteredProductPage;ggB2CNavBar;;ggB2CNavBarSlot;true
 
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CheckoutLoginPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
