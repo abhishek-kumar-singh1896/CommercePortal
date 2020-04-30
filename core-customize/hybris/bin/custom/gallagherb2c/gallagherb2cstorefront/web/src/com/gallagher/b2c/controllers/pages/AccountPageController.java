@@ -886,7 +886,9 @@ public class AccountPageController extends AbstractSearchPageController
 
 		GlobalMessages.addFlashMessage(redirectModel, GlobalMessages.CONF_MESSAGES_HOLDER, "account.confirmation.address.updated",
 				null);
-		return REDIRECT_TO_EDIT_ADDRESS_PAGE + newAddress.getId();
+		//	return REDIRECT_TO_EDIT_ADDRESS_PAGE + newAddress.getId();
+
+		return REDIRECT_PREFIX + "/my-account/" + ADDRESS_BOOK_CMS_PAGE;
 	}
 
 	@RequestMapping(value = "/select-suggested-address", method = RequestMethod.POST)

@@ -1,0 +1,48 @@
+$contentCatalog=amB2CContentCatalog
+$contentCatalogName=Animal Management B2C Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=amB2CMasterProductCatalog
+$productCatalogName=Animal Management B2C US Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV)
+$medias=medias(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV)[lang=$lang];
+$siteResource=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/productCatalogs/$productCatalog
+# Language
+$lang=es_LA
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
+;;PowerEnergisers_link;"Energizadores de Cerco"
+;;PowerEnergisers_link9;"Conexión a tierra "
+;;PowerEnergisers_link10;"Accesorios para los Sistemas de Energía"
+
+;;WeighinEid_link;"Colectores de Datos y Pesaje de Ganado"
+;;WeighinEid_link2;"Barras de carga y accesorios"
+;;WeighinEid_link4;"Plataformas"
+;;WeighinEid_link8;"Lectores de etiquetas IDE"
+
+
+;;WWM_link1;"Sistemas de Estanque Único"
+;;WWM_link3;"Componentes Adicionales del Sistema"
+
+;;AllElectricFencingLink;"Todas Cercado Eléctrico"
+;;AllWeighingEIDLink;"Todas Pesaje e Identificación Electrónica"
+;;AllWirelessWaterMonitoringLink;"Todas Monitoreo Inalámbrico del Agua"
+#;;AllSteelGatesandHardwareLink;"Todas Puertas de acero y herrajes"
+#;;AllAutomaticWateringLink;"Todas Riego Atomático"
+#;;AllAppsSoftwaresLink;"Todas Aplicaciones y software"
+#;;AllStockProdsMainLink;"All Productos de stock"
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];title[lang=$lang];&nodeRef
+;Electricfencing_Nav;;"Cercado Eléctrico";Electricfencing_Nav
+;WeighingEID_Nav;;WeighingAndEID_Nav;"Pesaje e Identificación Electrónica";WeighingEID_Nav
+;WirelessWaterMonitoring_Nav;;WWMNav;"Monitoreo Inalámbrico del Agua";WirelessWaterMonitoring_Nav
+
+;ElectricfencingPower_Nav;;"Energia";ElectricfencingPower_Nav
+;ElectricfencingPermanentfencing_Nav;;"Cerco Permanente";ElectricfencingPermanentfencing_Nav
+;ElectricfencingPortablefencing_Nav;;"Cerco Portátil";ElectricfencingPortablefencing_Nav
+
+;PowerEnergisers_nav;;"Energia";PowerEnergisers_nav
+;PermanentfencingWireandCable_nav;;"Cerco Permanente";PermanentfencingWireandCable_nav
+;PortablefencingTapesWiresBraids_nav;;"Cerco Portátil";PortablefencingTapesWiresBraids_nav
