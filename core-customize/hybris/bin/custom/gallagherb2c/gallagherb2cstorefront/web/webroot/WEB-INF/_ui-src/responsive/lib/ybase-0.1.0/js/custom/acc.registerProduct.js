@@ -54,13 +54,20 @@ ACC.registerProduct = {
 								var productaltText=result.productaltText;
 								var serialNumber =result.registerProductForm.serialNumber;
 								var productSku =result.registerProductForm.productSku;
-								var image='<img src="'+ productImage+'" alt="'+productaltText+'"/>';
 								$("#phoneNumberInput").text(phoneNumber);
 								$('#product-name').text(productName);
 								$('#product-id').text(productCode);
 								$('#product-serial').text(serialNumber);
-								$('.product-image').find('img').remove();
-								$('.product-image').prepend(image);
+								if(null==productImage){
+									$('.product-image-available').addClass('d-none');
+									$('.product-image-missing').removeClass('d-none');
+								}else{
+									var image='<img src="'+ productImage+'" alt="'+productaltText+'"/>';
+									$('.product-image-missing').addClass('d-none');
+									$('.product-image-available').find('img').remove();
+									$('.product-image-available').prepend(image);
+									$('.product-image-available').removeClass('d-none');
+								}
 								
 								var registerPopup = $(".register-product-modal-container").html();
 						        ACC.colorbox.open(titleHeader, {

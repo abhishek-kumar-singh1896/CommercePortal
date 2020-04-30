@@ -10,6 +10,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="sec"	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="theme" tagdir="/WEB-INF/tags/shared/theme" %>
 <sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
 	<c:url value="/register-product/verify" var="verifyURL" />
 	<c:url value="/register-product/submit" var="submitURL" />
@@ -273,7 +274,13 @@
 			</div>
 
 			<div class="row mb-2">
-				<div class="col-3 product-image"></div>
+				<div class="col-3 product-image">
+					<div class="product-image-missing d-none">
+						<theme:image code="img.missingProductImage.responsive.thumbnail" alt="check" title="check"/>
+					</div>
+					<div class="product-image-available d-none">
+					</div>
+				</div>
 				<div class="col-9 register-product-right-section">
 					<div id="product-name" class="product-name"></div>
 					<div id="product-id" class="product-name"></div>
