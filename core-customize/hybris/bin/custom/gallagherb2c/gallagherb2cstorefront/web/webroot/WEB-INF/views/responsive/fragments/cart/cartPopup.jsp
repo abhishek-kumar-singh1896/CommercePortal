@@ -55,10 +55,10 @@
 								</div>
 
 								<div class="row mt-2">
-									<div class="col-5">
+									<div class="col-4">
 										<div class="mini-cart-id">${entry.product.code}</div>
 									</div>
-									<div class="col-7 text-right">
+									<div class="col-8 text-right">
 										<div class="mini-cart-price">
 											<format:price priceData="${entry.basePrice}" />
 										</div>
