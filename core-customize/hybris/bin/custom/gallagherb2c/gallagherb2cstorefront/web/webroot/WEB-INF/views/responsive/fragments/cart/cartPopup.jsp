@@ -55,7 +55,7 @@
 								</div>
 
 								<div class="row mt-2">
-									<div class="col-4">
+									<div class="col-4 text-break pr-0">
 										<div class="mini-cart-id">${entry.product.code}</div>
 									</div>
 									<div class="col-8 text-right">
