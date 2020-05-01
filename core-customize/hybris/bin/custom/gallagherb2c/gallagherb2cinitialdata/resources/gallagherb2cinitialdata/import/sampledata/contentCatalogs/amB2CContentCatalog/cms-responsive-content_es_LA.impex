@@ -46,3 +46,9 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];title[l
 ;PowerEnergisers_nav;;"Energia";PowerEnergisers_nav
 ;PermanentfencingWireandCable_nav;;"Cerco Permanente";PermanentfencingWireandCable_nav
 ;PortablefencingTapesWiresBraids_nav;;"Cerco Portátil";PortablefencingTapesWiresBraids_nav
+
+
+
+
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=$lang]
+;;registerProductPopupSubHeading;"Si estas caracterÃ­sticas no concuerdan con tu producto, por favor contacta al Equipo de AtenciÃ³n al Cliente. Email:<a href='mailto:info@gallagher.cl' target='_blank'> info@gallagher.cl </a> | Fono: Â Â (+56) (64) 2 260402"
