@@ -561,10 +561,10 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 ;;PowerEnergisers_link12;"Power Management Tools"
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
-;;FenceConductors_nav_link;"Tapes, Wires, Braids"
-;;FenceConductors_nav_link1;"Reels and Accessories"
-;;FenceConductors_nav_link2;"Posts - Pigtails and Tread-ins"
-;;FenceConductors_nav_link3;"All-in-one Portable Fences"
+;;FenceConductors_nav_link;"Reels and Accessories"
+;;FenceConductors_nav_link1;"Hi-Tensile Wire and Cable"
+;;FenceConductors_nav_link2;"Tapes, Wires, Braids"
+;;FenceConductors_nav_link3;"Posts - Pigtails and Tread-ins"
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
 ;;WeighinEid_link;"Weigh Scales and Data Collectors"

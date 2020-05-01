@@ -183,7 +183,7 @@ INSERT_UPDATE Category;code[unique=true];allowedPrincipals(uid)[default='custome
 
 # 1.6 Sub Categories for 'steel-gates-and-hardware'
 ;gates
-;gate-hardware
+;gate-hardware-sgh
 
  
 # 1.7 Sub Categories for 'stock-prods-main'
@@ -270,6 +270,9 @@ INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
 ;weighing-accessories;weighing-and-eid
 ;stock-prods-and-accessories;weighing-and-eid
 ;platforms-and-crates;weighing-and-eid
+;handlers-and-drafters;weighing-and-eid
+;eid-tag-readers-and-barcoding-equipment;weighing-and-eid
+;stock-prods;weighing-and-eid
 
 #;handlers-and-drafters;weighing-eid-and-animal-handling
 #;stock-prods;weighing-eid-and-animal-handling
@@ -283,7 +286,7 @@ INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
 ;additional-system-components;wireless-water-monitoring
 
 ;gates;steel-gates-and-hardware
-;gate-hardware;steel-gates-and-hardware
+;gate-hardware-sgh;steel-gates-and-hardware
 
 ;livestock;apps-and-software
 ;fence;apps-and-software
@@ -337,9 +340,9 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
 # 1.1.1 Sub Categories for 'power'
 ;mains-energizers;;Mains Energizers
 ;remotes-and-fence-testers;;Remotes and Fence Testers
-;power-system-accessories;;Power System Accessories 
+;power-system-accessories;;POWER SYSTEM ACCESSORIES 
 ;multi-powered-energizers;;Multi Powered Energizers
-;battery-energizers;;Power System Accessories 
+;battery-energizers;;Battery Energizers 
 ;solar-energizers;;Solar Energizers
 ;solar-panels;;Solar Panels
 ;batteries;;Batteries
@@ -355,7 +358,7 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
 ;insulators;; Insulators
 ;offsets;; Offsets
 ;electric-gates;; Electric Gates
-;fence-tools-and-accessories;; Fence Tools and Accessories
+;fence-tools-and-accessories;; FENCE TOOLS AND ACCESSORIES
 ;clamps-and-joiners;; Clamps and Joiners 
 ;posts;; Posts
 ;irrigator-fence-crossing-system;;Irrigator Fence Crossing System 
@@ -382,7 +385,7 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
 #;gates-and-gate-accessories;;Gates and Gate Accessories 
 
 # 1.1.5 Sub Categories for 'fence-conductors'
-;reels-and-accessories-fc;;;Reels and Accessories 
+;reels-and-accessories-fc;;Reels and Accessories 
 ;hi-tensile-wire-and-cable;;"Hi-Tensile Wire and Cable"
 ;tapes-wires-and-braids-fc;;"Tapes, Wires and Braids"
 ;posts-pigtails-and-treadins-fc;;"Posts - Pigtails and Treadins"
@@ -418,7 +421,7 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
 
 # 1.5 Sub Categories for 'steel-gates-and-hardware'
 ;gates;;Gates
-;gate-hardware;;Hardware
+;gate-hardware-sgh;;Gate Hardware
 
 
 # 1.6 Sub Categories for 'apps-and-software'
@@ -541,7 +544,7 @@ INSERT_UPDATE ClassificationClass;$classCatalogVersion;code[unique=true];allowed
 
 # Classification Categories for 'steel-gates-and-hardware'
 ;;gates
-;;gate-hardware
+;;gate-hardware-sgh
 
 # Classification Categories for 'apps-and-software'
 ;;livestock
@@ -662,7 +665,7 @@ INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
 ;additional-system-components;additional-system-components
 
 ;gates;gates
-;gate-hardware;gate-hardware
+;gate-hardware-sgh;gate-hardware-sgh
 
 ;livestock;livestock
 ;fence;fence
@@ -827,8 +830,8 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;gates;animal-type;0;
 ;gates;strength;1;
 
-# For Classification Category 'gate-hardware'
-;gate-hardware;product-type;0;
+# For Classification Category 'gate-hardware-sgh'
+;gate-hardware-sgh;product-type;0;
 
 # For Classification Category 'insulated-suspension-posts'
 #;insulated-suspension-posts;primary-usage;0;
@@ -892,9 +895,9 @@ UPDATE ClassificationClass;code[unique=true];name[lang=$lang];$classCatalogVersi
 # Classification Category for 'power'
 ;mains-energizers;Mains Energizers
 ;remotes-and-fence-testers;Remotes and Fence Testers
-;power-system-accessories;Power System Accessories 
+;power-system-accessories;POWER SYSTEM ACCESSORIES
 ;multi-powered-energizers;Multi Powered Energizers
-;battery-energizers;Power System Accessories 
+;battery-energizers;Battery Energizers
 ;solar-energizers;Solar Energizers
 ;solar-panels;Solar Panels
 ;batteries;Batteries
@@ -910,7 +913,7 @@ UPDATE ClassificationClass;code[unique=true];name[lang=$lang];$classCatalogVersi
 ;insulators; Insulators
 ;offsets; Offsets
 ;electric-gates; Electric Gates
-;fence-tools-and-accessories; Fence Tools and Accessories
+;fence-tools-and-accessories; FENCE TOOLS AND ACCESSORIES
 ;clamps-and-joiners; Clamps and Joiners 
 ;posts; Posts
 ;irrigator-fence-crossing-system;Irrigator Fence Crossing System 
@@ -972,7 +975,7 @@ UPDATE ClassificationClass;code[unique=true];name[lang=$lang];$classCatalogVersi
 
 # 1.5 Classification category for 'steel-gates-and-hardware'
 ;gates;Gates
-;gate-hardware;Hardware
+;gate-hardware-sgh;Gate Hardware
 
 
 # 1.6 Classification category for 'apps-and-software'
@@ -1002,7 +1005,7 @@ UPDATE ClassificationClass;code[unique=true];name[lang=$lang];$classCatalogVersi
 
 # Create Categories
 UPDATE ClassificationAttribute;code[unique=true];$classSystemVersion;name[lang=$lang]
-;energiser-type;;Energiser Type
+;energizer-type;;Energizer Type
 ;animal-type;;Animal Type
 ;area-of-fence;;Area of Fence
 ;multi-wire-distance-typical;;Multi Wire Distance (typical)
@@ -1238,7 +1241,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 ;;PortablefencingTapesWiresBraids_nav_link;"Tapes, Wires, Braids"
 ;;PortablefencingTapesWiresBraids_nav_link1;"Reels and Accessories"
 ;;PortablefencingTapesWiresBraids_nav_link2;"Posts - Pigtails and Tread-ins"
-;;PortablefencingTapesWiresBraids_nav_link3;"All-in-one Portable Fences"
+;;PortablefencingTapesWiresBraids_nav_link3;"All-in-One Portable Fences"
 ;;PortablefencingTapesWiresBraids_nav_link4;"Electric Fence Kits"
 ;;PortablefencingTapesWiresBraids_nav_link5;"Netting"
 
@@ -1247,11 +1250,10 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
-;;FenceConductors_nav_link;Electric fencing FenceConductors_nav_link;/Animal-Management/electric-fencing/fence-conductors/c/posts-pigtails-and-treadins;posts-pigtails-and-treadins-fc;;;
-;;FenceConductors_nav_link1;Electric fencing FenceConductors_nav_link1;/Animal-Management/electric-fencing/fence-conductors/c/reels-and-accessories;reels-and-accessories-fc;;;
-;;FenceConductors_nav_link2;Electric fencing FenceConductors_nav_link2;/Animal-Management/electric-fencing/fence-conductors/c/hi-tensile-wire-and-cable;hi-tensile-wire-and-cable;;;
-;;FenceConductors_nav_link3;Electric fencing FenceConductors_nav_link2;/Animal-Management/electric-fencing/fence-conductors/c/tapes-wires-and-braids;tapes-wires-and-braids-fc;;;
-
+;;FenceConductors_nav_link;Electric fencing FenceConductors_nav_link;/Animal-Management/electric-fencing/fence-conductors/c/reels-and-accessories;reels-and-accessories-fc;;;
+;;FenceConductors_nav_link1;Electric fencing FenceConductors_nav_link1;/Animal-Management/electric-fencing/fence-conductors/c/hi-tensile-wire-and-cable;hi-tensile-wire-and-cable;;;
+;;FenceConductors_nav_link2;Electric fencing FenceConductors_nav_link2;/Animal-Management/electric-fencing/fence-conductors/c/tapes-wires-and-braids;tapes-wires-and-braids-fc;;;
+;;FenceConductors_nav_link3;Electric fencing FenceConductors_nav_link2;/Animal-Management/electric-fencing/fence-conductors/c/posts-pigtails-and-treadins;posts-pigtails-and-treadins-fc;;;
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
 ;FenceConductors_navEntry;;Power Navigation FenceConductors_nav Entry;FenceConductors_nav;FenceConductors_nav_link
@@ -1261,10 +1263,10 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
-;;FenceConductors_nav_link;"Tapes, Wires, Braids"
-;;FenceConductors_nav_link1;"Reels and Accessories"
-;;FenceConductors_nav_link2;"Posts - Pigtails and Tread-ins"
-;;FenceConductors_nav_link3;"All-in-one Portable Fences"
+;;FenceConductors_nav_link;"Reels and Accessories"
+;;FenceConductors_nav_link1;"Hi-Tensile Wire and Cable"
+;;FenceConductors_nav_link2;"Tapes, Wires, Braids"
+;;FenceConductors_nav_link3;"Posts - Pigtails and Tread-ins"
 
 
 #***********************************************************************************************************************************************************************
@@ -1341,10 +1343,10 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
-;;WWM_link;Wireless Water Monitoring link;/Animal-Management/wireless-water-monitoring/c/water-flow-indicator;weigh-scales-and-data-collectors;;;
-;;WWM_link1;Wireless Water Monitoring link1;/Animal-Management/wireless-water-monitoring/c/one-tank-systems;scale-heads-and-data-collectors;;;
-;;WWM_link2;Wireless Water Monitoring link2;/Animal-Management/wireless-water-monitoring/c/antennae-and-cables ;loadbars-and-accessories;;;
-;;WWM_link3;Wireless Water Monitoring link3;/Animal-Management/wireless-water-monitoring/c/additional-system-components;loadbars;;;
+;;WWM_link;Wireless Water Monitoring link;/Animal-Management/wireless-water-monitoring/c/water-flow-indicator;water-flow-indicator;;;
+;;WWM_link1;Wireless Water Monitoring link1;/Animal-Management/wireless-water-monitoring/c/one-tank-systems;one-tank-systems;;;
+;;WWM_link2;Wireless Water Monitoring link2;/Animal-Management/wireless-water-monitoring/c/antennae-and-cables ;antennae-and-cables;;;
+;;WWM_link3;Wireless Water Monitoring link3;/Animal-Management/wireless-water-monitoring/c/additional-system-components;additional-system-components;;;
 
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
@@ -1435,7 +1437,7 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
 ;;SGH_link;Steel Gates and Hardware link;/Animal-Management/steel-gates-and-hardware/c/gates;gates;;;
-;;SGH_link1;Steel Gates and Hardware link1;/Animal-Management/steel-gates-and-hardware/c/gate-hardware;gate-hardware;;;
+;;SGH_link1;Steel Gates and Hardware link1;/Animal-Management/steel-gates-and-hardware/c/gate-hardware;gate-hardware-sgh;;;
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
 ;;SGH_link;"Gates"
@@ -1694,7 +1696,7 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
 
 # 1.3 Sub Categories for 'wireless-water-monitoring'
 ;water-flow-indicator;;Water Flow Indicator 
-;one-tank-systems;Sistemas de Estanque Único
+;one-tank-systems;;Sistemas de Estanque Único
 ;additional-system-components;;Componentes Adicionales del Sistema
 
 

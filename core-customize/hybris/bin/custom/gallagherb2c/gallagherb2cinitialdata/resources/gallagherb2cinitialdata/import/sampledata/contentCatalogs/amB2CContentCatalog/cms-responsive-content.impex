@@ -1855,10 +1855,10 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 ;PermanentfencingWireandCable_navEntry12;;Power Navigation PermanentfencingWireandCable_nav Entry12;PermanentfencingWireandCable_nav;PermanentfencingWireandCable_link12
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
-;;FenceConductors_nav_link;Electric fencing FenceConductors_nav_link;/Animal-Management/electric-fencing/fence-conductors/c/posts-pigtails-and-treadins;posts-pigtails-and-treadins-fc;;;
-;;FenceConductors_nav_link1;Electric fencing FenceConductors_nav_link1;/Animal-Management/electric-fencing/fence-conductors/c/reels-and-accessories;reels-and-accessories-fc;;;
-;;FenceConductors_nav_link2;Electric fencing FenceConductors_nav_link2;/Animal-Management/electric-fencing/fence-conductors/c/hi-tensile-wire-and-cable;hi-tensile-wire-and-cable;;;
-;;FenceConductors_nav_link3;Electric fencing FenceConductors_nav_link2;/Animal-Management/electric-fencing/fence-conductors/c/tapes-wires-and-braids;tapes-wires-and-braids-fc;;;
+;;FenceConductors_nav_link;Electric fencing FenceConductors_nav_link;/Animal-Management/electric-fencing/fence-conductors/c/reels-and-accessories;reels-and-accessories-fc;;;
+;;FenceConductors_nav_link1;Electric fencing FenceConductors_nav_link1;/Animal-Management/electric-fencing/fence-conductors/c/hi-tensile-wire-and-cable;hi-tensile-wire-and-cable;;;
+;;FenceConductors_nav_link2;Electric fencing FenceConductors_nav_link2;/Animal-Management/electric-fencing/fence-conductors/c/tapes-wires-and-braids;tapes-wires-and-braids-fc;;;
+;;FenceConductors_nav_link3;Electric fencing FenceConductors_nav_link2;/Animal-Management/electric-fencing/fence-conductors/c/posts-pigtails-and-treadins;posts-pigtails-and-treadins-fc;;;
 
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
@@ -1918,10 +1918,10 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
-;;WWM_link;Wireless Water Monitoring link;/Animal-Management/wireless-water-monitoring/c/water-flow-indicator;weigh-scales-and-data-collectors;;;
-;;WWM_link1;Wireless Water Monitoring link1;/Animal-Management/wireless-water-monitoring/c/one-tank-systems;scale-heads-and-data-collectors;;;
-;;WWM_link2;Wireless Water Monitoring link2;/Animal-Management/wireless-water-monitoring/c/antennae-and-cables ;loadbars-and-accessories;;;
-;;WWM_link3;Wireless Water Monitoring link3;/Animal-Management/wireless-water-monitoring/c/additional-system-components;loadbars;;;
+;;WWM_link;Wireless Water Monitoring link;/Animal-Management/wireless-water-monitoring/c/water-flow-indicator;water-flow-indicator;;;
+;;WWM_link1;Wireless Water Monitoring link1;/Animal-Management/wireless-water-monitoring/c/one-tank-systems;one-tank-systems;;;
+;;WWM_link2;Wireless Water Monitoring link2;/Animal-Management/wireless-water-monitoring/c/antennae-and-cables ;antennae-and-cables;;;
+;;WWM_link3;Wireless Water Monitoring link3;/Animal-Management/wireless-water-monitoring/c/additional-system-components;additional-system-components;;;
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
 ;AWNav;;Automatic Watering Navigation Node Menu;AWNode_Nav;"Automatic Watering";AWNav
@@ -1978,7 +1978,7 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
 ;;SGH_link;Steel Gates and Hardware link;/Animal-Management/steel-gates-and-hardware/c/gates;gates;;;
-;;SGH_link1;Steel Gates and Hardware link1;/Animal-Management/steel-gates-and-hardware/c/gate-hardware;gate-hardware;;;
+;;SGH_link1;Steel Gates and Hardware link1;/Animal-Management/steel-gates-and-hardware/c/gate-hardware;gate-hardware-sgh;;;
 
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;

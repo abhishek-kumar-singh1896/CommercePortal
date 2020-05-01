@@ -19,9 +19,9 @@ UPDATE ClassificationClass;code[unique=true];name[lang=$lang];$classCatalogVersi
 # Classification Category for 'power'
 ;mains-energizers;Mains Energizers
 ;remotes-and-fence-testers;Remotes and Fence Testers
-;power-system-accessories;Power System Accessories 
+;power-system-accessories;POWER SYSTEM ACCESSORIES 
 ;multi-powered-energizers;Multi Powered Energizers
-;battery-energizers;Power System Accessories 
+;battery-energizers;Battery Energizers
 ;solar-energizers;Solar Energizers
 ;solar-panels;Solar Panels
 ;batteries;Batteries
@@ -37,7 +37,7 @@ UPDATE ClassificationClass;code[unique=true];name[lang=$lang];$classCatalogVersi
 ;insulators; Insulators
 ;offsets; Offsets
 ;electric-gates; Electric Gates
-;fence-tools-and-accessories; Fence Tools and Accessories
+;fence-tools-and-accessories; FENCE TOOLS AND ACCESSORIES
 ;clamps-and-joiners; Clamps and Joiners 
 ;posts; Posts
 ;irrigator-fence-crossing-system;Irrigator Fence Crossing System 
@@ -99,7 +99,7 @@ UPDATE ClassificationClass;code[unique=true];name[lang=$lang];$classCatalogVersi
 
 # 1.5 Classification category for 'steel-gates-and-hardware'
 ;gates;Gates
-;gate-hardware;Hardware
+;gate-hardware-sgh;Gate Hardware
 
 
 # 1.6 Classification category for 'apps-and-software'
@@ -129,7 +129,7 @@ UPDATE ClassificationClass;code[unique=true];name[lang=$lang];$classCatalogVersi
 
 # Create Categories
 UPDATE ClassificationAttribute;code[unique=true];$classSystemVersion;name[lang=$lang]
-;energiser-type;;Energiser Type
+;energizer-type;;Energizer Type
 ;animal-type;;Animal Type
 ;area-of-fence;;Area of Fence
 ;multi-wire-distance-typical;;Multi Wire Distance (typical)
