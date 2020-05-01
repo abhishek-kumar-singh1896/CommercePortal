@@ -24,7 +24,8 @@ $lang=en
 UPDATE ClassificationClass;$classCatalogVersion;code[unique=true];name[lang=$lang]
 ;;Assigned Features;Assigned Features
 ;;Cable specifications (HBUS data only);Cable specifications (HBUS data only)
-
+;;controllers;Controllers
+;;readers-and-terminals;Readers And Terminals
 
 # Insert Classification Attributes
 UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true];name[lang=$lang]
@@ -48,3 +49,23 @@ UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true];name[lang=$
 ;;Cat5e††;Cat5e††
 ;;Gallagher HBUS Cable††;Gallagher HBUS Cable††
 ;;Standards Compliance;Standards Compliance
+
+;;maximum-read-distance;maximum read distance
+;;environmental-protection;Environmental Protection
+;;impact-rating;Impact rating
+;;voltage-readers;Voltage
+;;dimensions-mm;Dimensions
+;;dimensions-inches;Dimensions
+;;cable-specifications-cat5e;Cable Specifications Cat5e
+;;cable-specifications-hbus;Cable Specifications HBUS
+;;standards-compliance-readers;Standards compliance
+;;voltage-controllers;Voltage
+;;dimensions-controllers;Dimensions
+;;ethernet-network-connection;Ethernet network Connection
+;;rs485-device-communications;RS485 Device Communications
+;;ports;Ports
+;;tcp/ip-protocol;TCP/IP Protocol
+;;standards-compliance-controllers;Standards Compliance
+;;device-limits?;Device limits?
+;;ethernet-connection-type;Ethernet connection type
+
