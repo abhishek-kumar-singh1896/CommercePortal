@@ -1590,14 +1590,14 @@ INSERT_UPDATE CMSNavigationNode ; uid[unique=true]                     ; $conten
                                 ;PortablefencingTapesWiresBraids_nav11  ;                         ; Power Navigation PortablefencingTapesWiresBraids_nav  ; "Portable fencing"  ; PortablefencingTapesWiresBraids_nav11
 
 INSERT_UPDATE CMSNavigationEntry ; uid[unique=true]          ; $contentCV[unique=true] ; name                                        ; navigationNode(&nodeRef) ; item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV) 
-                                 ; PowerEnergisers_navEntry11  ;                         ; Power Navigation PowerEnergisers_nav Entry  ; PowerEnergisers_nav11      ; PowerEnergisers_link11                                   
-                                 ; PowerEnergisers_navEntry12 ;                         ; Power Navigation PowerEnergisers_nav Entry1 ; PowerEnergisers_nav11     ; PowerEnergisers_link12                                  
-                                 ; PowerEnergisers_navEntry13 ;                         ; Power Navigation PowerEnergisers_nav Entry2 ; PowerEnergisers_nav11      ; PowerEnergisers_link13                                  
+                                 ; PowerEnergisers_navEntry112  ;                         ; Power Navigation PowerEnergisers_nav Entry  ; PowerEnergisers_nav11      ; PowerEnergisers_link112                                   
+                                 ; PowerEnergisers_navEntry122 ;                         ; Power Navigation PowerEnergisers_nav Entry1 ; PowerEnergisers_nav11     ; PowerEnergisers_link122                                  
+                               ; PowerEnergisers_navEntry13 ;                         ; Power Navigation PowerEnergisers_nav Entry2 ; PowerEnergisers_nav11      ; PowerEnergisers_link13                                  
 
 
 INSERT_UPDATE CMSLinkComponent ; $contentCV[unique=true] ; uid[unique=true]      ; name                                   ; url                                                    ; category(code, $productCV) ; target(code)[default='sameWindow'] ;  ;  
-                               ;                         ; PowerEnergisers_link11  ; Electric fencing PowerEnergisers_link  ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ;  
-                               ;                         ; PowerEnergisers_link12 ; Electric fencing PowerEnergisers_link1 ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ;  
+                               ;                         ; PowerEnergisers_link112  ; Electric fencing PowerEnergisers_link  ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ;  
+                               ;                         ; PowerEnergisers_link122 ; Electric fencing PowerEnergisers_link1 ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ;  
                                ;                         ; PowerEnergisers_link13 ; Electric fencing PowerEnergisers_link2 ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ;  
 
 
@@ -1743,12 +1743,12 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
 ;;PowerEnergisers_link01;Electric fencing PowerEnergisers_link01;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
-;;PowerEnergisers_link11;Electric fencing PowerEnergisers_link11;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
+;;PowerEnergisers_link112;Electric fencing PowerEnergisers_link112;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
 ;;PowerEnergisers_link22;Electric fencing PowerEnergisers_link22;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
 ;PowerEnergisers_navEntry01;;Power Navigation PowerEnergisers_nav Entry01;PowerEnergisers_nav1;PowerEnergisers_link01
-;PowerEnergisers_navEntry11;;Power Navigation PowerEnergisers_nav Entry11;PowerEnergisers_nav1;PowerEnergisers_link11
+;PowerEnergisers_navEntry112;;Power Navigation PowerEnergisers_nav Entry112;PowerEnergisers_nav1;PowerEnergisers_link112
 ;PowerEnergisers_navEntry22;;Power Navigation PowerEnergisers_nav Entry22;PowerEnergisers_nav1;PowerEnergisers_link22
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
