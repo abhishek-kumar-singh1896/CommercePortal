@@ -30,7 +30,7 @@
 			</ycommerce:testId>
 
             <div class="partNumber">
-					SKU: ${product.partNumber}
+					SKU: ${product.partNumber} 
 			</div>
 
 			<c:if test="${not empty product.potentialPromotions}">
