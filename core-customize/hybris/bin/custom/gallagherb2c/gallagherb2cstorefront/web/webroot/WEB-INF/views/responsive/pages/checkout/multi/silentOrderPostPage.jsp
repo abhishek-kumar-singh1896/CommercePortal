@@ -23,29 +23,12 @@
         </div>
 		<multiCheckout:checkoutSteps checkoutSteps="${checkoutSteps}" progressBarId="${progressBarId}">
 			<jsp:body>
-
-			    <!-- BEGIN: Payment Images -->
-                <br/> <div>
-                <!-- BEGIN: Credit Cards Image -->
-                <input type="image" id="creditCardImage" style="padding-left: 5px; padding-bottom: 20px; height: 45px; width: 150px; display: none; outline: none;"
-                src="/paymetric/XiIntercept3/credit_card_logos_32.gif"/> <!-- END: Credit Cards Image -->
-                </div>
-                <br/>
-                <!-- END: Payment Images -->
-                <!-- BEGIN: XiIntercept Credit Card Integration -->
-                <link rel="stylesheet" href="/paymetric/XiIntercept3/XIeCommerce3.css" type="text/css" /> <script type="text/javascript" src="/paymetric/XiIntercept3/XIeCommerce3.js"></script> <div id="light" class="white_content">
-                <iframe id="xiFrame" style = "width:360px; height:150px;" src="/paymetric/XiIntercept3/XIeCommerce3RQ.jsp"
-                onload="return InitForTokenization (true, 'card_accountNumber', 'cmdSubmit', 'xiFrame', 'light', 'fade');">
-                        </iframe>
-                    </div>
-                 <div id="fade" class="black_overlay"></div>
-                 <!-- END: XiIntercept Credit Card Integration -->
-
+					 <multiCheckout:paymetricIFrame />
                 <c:if test="${not empty paymentFormUrl}">
                     <div class="checkout-paymentmethod">
                         <div class="checkout-indent">
 
-                            <div class="headline"><spring:theme code="checkout.multi.paymentMethod"/></div>
+                            <div class="headline" style="display:none;" ><spring:theme code="checkout.multi.paymentMethod"/></div>
 
 							    <ycommerce:testId code="paymentDetailsForm">
 							
@@ -67,19 +50,19 @@
 										</c:if>	
 									</div>
 
-									<div class="form-group">
+									<div class="form-group d-none">
 										<formElement:formSelectBox idKey="card_cardType" labelKey="payment.cardType" path="card_cardType" selectCSSClass="form-control" mandatory="true" skipBlank="false" skipBlankMessageKey="payment.cardType.pleaseSelect" items="${sopCardTypes}" tabindex="1"/>
 									</div>
 	
-									<div class="form-group">
+									<div class="form-group d-none">
 										<formElement:formInputBox idKey="card_nameOnCard" labelKey="payment.nameOnCard" path="card_nameOnCard" inputCSS="form-control" tabindex="2" mandatory="false" />
 									</div>
 	 
-									<div class="form-group">
+									<div class="form-group d-none">
 										<formElement:formInputBox idKey="card_accountNumber" labelKey="payment.cardNumber" path="card_accountNumber" inputCSS="form-control" mandatory="true" tabindex="3" autocomplete="off" />
 									</div>
 	
-							<div class="form-group">
+							<div class="form-group d-none">
 									<fieldset id="startDate">
 										<label for="" class="control-label"><spring:theme code="payment.startDate"/></label>
 											<div class="col-6">
@@ -91,7 +74,7 @@
 									</fieldset>
 							</div>		
 
-								<div class="form-group">
+								<div class="form-group d-none">
 									<fieldset id="cardDate">
 										<label for="" class="control-label"><spring:theme code="payment.expiryDate"/></label>
 										<div class="row">
@@ -105,12 +88,12 @@
 									</fieldset>
 								</div>	
 
-							<div class="form-group">
+							<div class="form-group d-none">
 										<div class="col-xs-6">
 											<formElement:formInputBox idKey="card_cvNumber" labelKey="payment.cvn" path="card_cvNumber" inputCSS="form-control" mandatory="true" tabindex="8" />
 										</div>
 							</div>		
-									<div class="row">
+									<div class="row d-none">
 										<div class="col-xs-6">
 											<div id="issueNum">
 												<formElement:formInputBox idKey="card_issueNumber" labelKey="payment.issueNumber" path="card_issueNumber" inputCSS="text" mandatory="false" tabindex="9"/>
@@ -159,7 +142,11 @@
                          </div>
                     </div>
 
-                    <button id="cmdSubmit" onclick="swapToken();" type="button" class="btn btn-primary btn-block submit_silentOrderPostForm checkout-next"><spring:theme code="checkout.multi.paymentMethod.continue"/></button>
+                    <%-- <button type="button" class="btn btn-primary btn-block submit_silentOrderPostForm checkout-next"><spring:theme code="checkout.multi.paymentMethod.continue"/></button> --%>
+                    
+                    <button id="cmdSubmit" style="display:none;" type="button" class="btn btn-primary btn-block submit_silentOrderPostForm checkout-next"><spring:theme code="checkout.multi.paymentMethod.continue"/></button>
+					<button onclick="submitHostedIFrame();" type="button" class="btn btn-primary btn-block checkout-next"><spring:theme code="checkout.multi.paymentMethod.continue"/></button>
+                    
                 </c:if>
 
 				<c:if test="${not empty paymentInfos}">
