@@ -23,3 +23,6 @@ UPDATE ClassificationAttributeUnit;code[unique=true];$systemVersion;name[lang=$l
 ;Vdc;;Voltage DC;
 ;mA;;milliAmpere;
 ;m;;meter;
+;ip-rating;;IP rating;
+;ik-rating;;IK rating;
+;inches;;Inches

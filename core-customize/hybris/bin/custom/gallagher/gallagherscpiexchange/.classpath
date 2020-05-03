@@ -12,5 +12,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/sapcpicustomerexchange"/>
 	<classpathentry kind="src" path="/platform"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/gallagheroutboundservices"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/sapcpiorderexchange"/>
 	<classpathentry kind="output" path="eclipsebin/notused"/>
 </classpath>

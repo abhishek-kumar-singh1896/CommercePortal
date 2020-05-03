@@ -535,7 +535,7 @@
     .sidebar-filter-section {
       min-height: inherit;
       align-items: flex-start;
-
+      
 
       .cross-icon-out {
         width: 100%;
@@ -765,6 +765,13 @@
             .product-status {
               top: -8px;
               right: 0px;
+            }
+
+            .product-img-box {
+              img {
+                width: 100px;
+                height: 100px;
+              }
             }
           }
         }

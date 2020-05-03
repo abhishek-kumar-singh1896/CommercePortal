@@ -155,9 +155,19 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 			final GallagherInboundCustomerEntry c4cCustomer = existingCustomers.get(0);
 			final String customerName = customerNameStrategy.getName(c4cCustomer.getFirstName(), c4cCustomer.getLastName());
 			/* Update name and email only if updated to avoid sending data to SCPI */
+			boolean updated = false;
 			if (customer.getName() == null || !customer.getName().equals(customerName))
 			{
 				customer.setName(customerName);
+				updated = true;
+			}
+			if (customer.getUid() == null || !customer.getUid().equals(c4cCustomer.getEmail()))
+			{
+				customer.setUid(c4cCustomer.getEmail());
+				updated = true;
+			}
+			if (updated)
+			{
 				modelService.save(customer);
 			}
 		}

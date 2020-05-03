@@ -10,7 +10,7 @@
 
 		<requires-extension name="sapcpicustomerexchange" />
 		<requires-extension name="sapcpicustomerexchangeb2b" />
-		<requires-extension name="saporderexchange" />
+		<requires-extension name="sapcpiorderexchange" />
 		<requires-extension name="gallagheroutboundservices" />
 
 		<coremodule generated="true" manager="com.gallagher.jalo.GallagherscpiexchangeManager" packageroot="com.gallagher" />

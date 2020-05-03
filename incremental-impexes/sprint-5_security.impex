@@ -815,3 +815,70 @@ INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[uni
 ;;B2BGallagherFooterNavigationComponent;B2BcountryDropdownNavNod;B2BGallagherFooterNavigationComponent
 
 ###############country selector dropdown ends #################
+
+######################B2B customer registration email impex############
+
+$contentCatalog=securityB2BContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$jarEmailResource=jar:com.gallagher.b2b.initialdata.constants.B2badvanceInitialDataConstants&/gallagherb2binitialdata/import/coredata/contentCatalogs/securityB2BContentCatalog/emails
+
+# Import config properties into impex macros for modulegen
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$emailResource=$config-emailResourceValue
+
+# de
+UPDATE RendererTemplate;code[unique=true];description[lang=de];templateScript[lang=de,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+ ;securityB2B_Email_Customer_Registration_Body;"Customer Registration Email Body";$emailResource/email-customerRegistrationBody.vm
+ ;securityB2B_Email_Customer_Registration_Subject;"Customer Registration Email Subject";$emailResource/email-customerRegistrationSubject.vm
+ 
+# en_AU
+UPDATE RendererTemplate;code[unique=true];description[lang=en_AU];templateScript[lang=en_AU,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+ ;securityB2B_Email_Customer_Registration_Body;"Customer Registration Email Body";$emailResource/email-customerRegistrationBody.vm
+ ;securityB2B_Email_Customer_Registration_Subject;"Customer Registration Email Subject";$emailResource/email-customerRegistrationSubject.vm
+ 
+# en_CA
+UPDATE RendererTemplate;code[unique=true];description[lang=en_CA];templateScript[lang=en_CA,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+ ;securityB2B_Email_Customer_Registration_Body;"Customer Registration Email Body";$emailResource/email-customerRegistrationBody.vm
+ ;securityB2B_Email_Customer_Registration_Subject;"Customer Registration Email Subject";$emailResource/email-customerRegistrationSubject.vm
+
+# en_NZ
+UPDATE RendererTemplate;code[unique=true];description[lang=en_NZ];templateScript[lang=en_NZ,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+ ;securityB2B_Email_Customer_Registration_Body;"Customer Registration Email Body";$emailResource/email-customerRegistrationBody.vm
+ ;securityB2B_Email_Customer_Registration_Subject;"Customer Registration Email Subject";$emailResource/email-customerRegistrationSubject.vm
+ 
+# en_US
+UPDATE RendererTemplate;code[unique=true];description[lang=en_US];templateScript[lang=en_US,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+ ;securityB2B_Email_Customer_Registration_Body;"Customer Registration Email Body";$emailResource/email-customerRegistrationBody.vm
+ ;securityB2B_Email_Customer_Registration_Subject;"Customer Registration Email Subject";$emailResource/email-customerRegistrationSubject.vm
+ 
+# en
+UPDATE RendererTemplate;code[unique=true];description[lang=en];templateScript[lang=en,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+ ;securityB2B_Email_Customer_Registration_Body;"Customer Registration Email Body";$emailResource/email-customerRegistrationBody.vm
+ ;securityB2B_Email_Customer_Registration_Subject;"Customer Registration Email Subject";$emailResource/email-customerRegistrationSubject.vm
+
+# es_LA
+UPDATE RendererTemplate;code[unique=true];description[lang=es_LA];templateScript[lang=es_LA,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+ ;securityB2B_Email_Customer_Registration_Body;"Customer Registration Email Body";$emailResource/email-customerRegistrationBody.vm
+ ;securityB2B_Email_Customer_Registration_Subject;"Customer Registration Email Subject";$emailResource/email-customerRegistrationSubject.vm
+
+# fr_CA
+UPDATE RendererTemplate;code[unique=true];description[lang=fr_CA];templateScript[lang=fr_CA,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+ ;securityB2B_Email_Customer_Registration_Body;"Customer Registration Email Body";$emailResource/email-customerRegistrationBody.vm
+ ;securityB2B_Email_Customer_Registration_Subject;"Customer Registration Email Subject";$emailResource/email-customerRegistrationSubject.vm
+ 
+# fr
+UPDATE RendererTemplate;code[unique=true];description[lang=fr];templateScript[lang=fr,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+ ;securityB2B_Email_Customer_Registration_Body;"Customer Registration Email Body";$emailResource/email-customerRegistrationBody.vm
+ ;securityB2B_Email_Customer_Registration_Subject;"Customer Registration Email Subject";$emailResource/email-customerRegistrationSubject.vm
+ 
+# ja
+UPDATE RendererTemplate;code[unique=true];description[lang=ja];templateScript[lang=ja,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+ ;securityB2B_Email_Customer_Registration_Body;"Customer Registration Email Body";$emailResource/email-customerRegistrationBody.vm
+ ;securityB2B_Email_Customer_Registration_Subject;"Customer Registration Email Subject";$emailResource/email-customerRegistrationSubject.vm
+ 
+# zh
+UPDATE RendererTemplate;code[unique=true];description[lang=zh];templateScript[lang=zh,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+ ;securityB2B_Email_Customer_Registration_Body;"Customer Registration Email Body";$emailResource/email-customerRegistrationBody.vm
+ ;securityB2B_Email_Customer_Registration_Subject;"Customer Registration Email Subject";$emailResource/email-customerRegistrationSubject.vm
+
+##########################################################################

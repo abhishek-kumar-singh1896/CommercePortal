@@ -136,7 +136,7 @@ INSERT_UPDATE Category;code[unique=true];allowedPrincipals(uid)[default='custome
 
 # 1.6 Sub Categories for 'steel-gates-and-hardware'
 ;gates
-;gate-hardware
+;gate-hardware-sgh
 
  
 # 1.7 Sub Categories for 'stock-prods-main'
@@ -223,6 +223,9 @@ INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
 ;weighing-accessories;weighing-and-eid
 ;stock-prods-and-accessories;weighing-and-eid
 ;platforms-and-crates;weighing-and-eid
+;handlers-and-drafters;weighing-and-eid
+;eid-tag-readers-and-barcoding-equipment;weighing-and-eid
+;stock-prods;weighing-and-eid
 
 #;handlers-and-drafters;weighing-eid-and-animal-handling
 #;stock-prods;weighing-eid-and-animal-handling
@@ -236,7 +239,7 @@ INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
 ;additional-system-components;wireless-water-monitoring
 
 ;gates;steel-gates-and-hardware
-;gate-hardware;steel-gates-and-hardware
+;gate-hardware-sgh;steel-gates-and-hardware
 
 ;livestock;apps-and-software
 ;fence;apps-and-software

@@ -38,9 +38,9 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
 # 1.1.1 Sub Categories for 'power'
 ;mains-energizers;;Mains Energizers
 ;remotes-and-fence-testers;;Remotes and Fence Testers
-;power-system-accessories;;Power System Accessories 
+;power-system-accessories;;POWER SYSTEM ACCESSORIES
 ;multi-powered-energizers;;Multi Powered Energizers
-;battery-energizers;;Power System Accessories 
+;battery-energizers;;Battery Energizers
 ;solar-energizers;;Solar Energizers
 ;solar-panels;;Solar Panels
 ;batteries;;Batteries
@@ -56,7 +56,7 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
 ;insulators;; Insulators
 ;offsets;; Offsets
 ;electric-gates;; Electric Gates
-;fence-tools-and-accessories;; Fence Tools and Accessories
+;fence-tools-and-accessories;; FENCE TOOLS AND ACCESSORIES
 ;clamps-and-joiners;; Clamps and Joiners 
 ;posts;; Posts
 ;irrigator-fence-crossing-system;;Irrigator Fence Crossing System 
@@ -69,7 +69,7 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
 ;tapes-wires-and-braids-pf;;"Tapes, Wires, Braids"
 ;reels-and-accessories-pf;;Reels and Accessories 
 ;posts-pigtails-and-treadins-pf;;"Posts - Pigtails and Tread-ins"
-;all-in-one-portable-fences;;"All-in-one Portable Fences"
+;all-in-one-portable-fences;;"All-in-One Portable Fences"
 ;electric-fence-kits;;Electric Fence Kits
 ;netting;;Netting
 
@@ -83,7 +83,7 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
 #;gates-and-gate-accessories;;Gates and Gate Accessories 
 
 # 1.1.5 Sub Categories for 'fence-conductors'
-;reels-and-accessories-fc;;;Reels and Accessories 
+;reels-and-accessories-fc;;Reels and Accessories 
 ;hi-tensile-wire-and-cable;;"Hi-Tensile Wire and Cable"
 ;tapes-wires-and-braids-fc;;"Tapes, Wires and Braids"
 ;posts-pigtails-and-treadins-fc;;"Posts - Pigtails and Treadins"
@@ -119,7 +119,7 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
 
 # 1.5 Sub Categories for 'steel-gates-and-hardware'
 ;gates;;Gates
-;gate-hardware;;Hardware
+;gate-hardware-sgh;;Gate Hardware
 
 
 # 1.6 Sub Categories for 'apps-and-software'

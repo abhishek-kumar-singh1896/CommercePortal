@@ -25,5 +25,6 @@ public class GallagherProductBasicPopulator<SOURCE extends ProductModel, TARGET 
 		{
 			productData.setName(productMarktingDescription);
 		}
+		productData.setPartNumber((String) getProductAttribute(productModel, ProductModel.PARTNUMBER));
 	}
 }

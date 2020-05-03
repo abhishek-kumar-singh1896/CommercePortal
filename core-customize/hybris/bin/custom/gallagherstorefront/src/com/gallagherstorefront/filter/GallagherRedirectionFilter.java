@@ -20,8 +20,10 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.filter.GenericFilterBean;
 
 import com.gallagher.core.enums.RegionCode;
@@ -39,6 +41,8 @@ public class GallagherRedirectionFilter extends GenericFilterBean
 
 	private static final String SLASH = "/";
 
+	private static final String UNKNOWN = "unknown";
+
 	private static final String AM_BASE = "amB2C";
 
 	private static final String GLOBAL = "Global";
@@ -46,6 +50,12 @@ public class GallagherRedirectionFilter extends GenericFilterBean
 	private static final String SECURITY = "security";
 
 	private static final String SECURITY_BASE = "securityB2B";
+
+	private static final String LOCALHOST_IPV6 = "0:0:0:0:0:0:0:1";
+
+	private static final String LOCALHOST_IPV4 = "127.0.0.1";
+
+	private static final String IP_SERVICE = "https://ipinfo.io/%s/country";
 
 	private static final Logger LOG = LoggerFactory.getLogger(GallagherRedirectionFilter.class.getName());
 
@@ -77,7 +87,22 @@ public class GallagherRedirectionFilter extends GenericFilterBean
 			base = AM_BASE;
 		}
 
-		final String countryCode = req.getLocale().getCountry();
+		final String remoteAddr = getClientIPAddress(req);
+
+		final String countryCode;
+		if (StringUtils.isNotEmpty(remoteAddr) && !isLocalHost(remoteAddr))
+		{
+			final RestTemplate restTemplate = new RestTemplate();
+			final String url = String.format(IP_SERVICE, remoteAddr.split(",")[0]);
+			countryCode = restTemplate.getForObject(url, String.class);
+		}
+		else
+		{
+			countryCode = "Global";
+		}
+
+		//final String countryCode = req.getLocale().getCountry();
+
 		final StringBuilder countrySite = new StringBuilder(base).append(countryCode);
 		BaseSiteModel site = baseSiteService.getBaseSiteForUID(countrySite.toString());
 		if (site == null)
@@ -98,7 +123,51 @@ public class GallagherRedirectionFilter extends GenericFilterBean
 		String redirectURL = siteBaseUrlResolutionService.getWebsiteUrlForSite(site, true, null);
 		redirectURL = redirectURL + SLASH + ((CMSSiteModel) site).getRegionCode() + SLASH
 				+ ((CMSSiteModel) site).getDefaultLanguage().getIsocode();
-		LOG.info("Redirecting the request to {} for country {}", redirectURL, countryCode);
+		LOG.info("Redirecting the request to {} for country {}. Detected IP is {}", redirectURL, countryCode, remoteAddr);
 		res.sendRedirect(redirectURL);
+	}
+
+	/**
+	 * Returns the IP address of client
+	 *
+	 * @param request
+	 * @return IP address
+	 */
+	private String getClientIPAddress(final HttpServletRequest request)
+	{
+		String remoteAddr = request.getHeader("X-Forwarded-For");
+		if (StringUtils.isEmpty(remoteAddr) || UNKNOWN.equalsIgnoreCase(remoteAddr))
+		{
+			remoteAddr = request.getHeader("Proxy-Client-remoteAddr");
+		}
+		if (StringUtils.isEmpty(remoteAddr) || UNKNOWN.equalsIgnoreCase(remoteAddr))
+		{
+			remoteAddr = request.getHeader("WL-Proxy-Client-remoteAddr");
+		}
+		if (StringUtils.isEmpty(remoteAddr) || UNKNOWN.equalsIgnoreCase(remoteAddr))
+		{
+			remoteAddr = request.getHeader("HTTP_CLIENT_IP");
+		}
+		if (StringUtils.isEmpty(remoteAddr) || UNKNOWN.equalsIgnoreCase(remoteAddr))
+		{
+			remoteAddr = request.getHeader("HTTP_X_FORWARDED_FOR");
+		}
+		if (StringUtils.isEmpty(remoteAddr) || UNKNOWN.equalsIgnoreCase(remoteAddr))
+		{
+			remoteAddr = request.getRemoteAddr();
+		}
+		return remoteAddr;
+	}
+
+	/**
+	 * Returns true if IP is localhost i.e. 127.0.0.1 (IPV4) or 0:0:0:0:0:0:0:1 (IPV6)
+	 *
+	 * @param ipAddress
+	 *           to be verified
+	 * @return whether IP belongs to localhost or not
+	 */
+	private boolean isLocalHost(final String ipAddress)
+	{
+		return LOCALHOST_IPV4.equals(ipAddress) || LOCALHOST_IPV6.equals(ipAddress);
 	}
 }

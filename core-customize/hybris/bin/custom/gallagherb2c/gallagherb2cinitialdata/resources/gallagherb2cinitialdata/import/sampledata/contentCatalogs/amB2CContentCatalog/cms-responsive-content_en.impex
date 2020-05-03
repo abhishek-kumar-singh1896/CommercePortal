@@ -561,10 +561,10 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 ;;PowerEnergisers_link12;"Power Management Tools"
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
-;;FenceConductors_nav_link;"Tapes, Wires, Braids"
-;;FenceConductors_nav_link1;"Reels and Accessories"
-;;FenceConductors_nav_link2;"Posts - Pigtails and Tread-ins"
-;;FenceConductors_nav_link3;"All-in-one Portable Fences"
+;;FenceConductors_nav_link;"Reels and Accessories"
+;;FenceConductors_nav_link1;"Hi-Tensile Wire and Cable"
+;;FenceConductors_nav_link2;"Tapes, Wires, Braids"
+;;FenceConductors_nav_link3;"Posts - Pigtails and Tread-ins"
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
 ;;WeighinEid_link;"Weigh Scales and Data Collectors"
@@ -709,27 +709,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=$lang]
 ;;registerProductSubHeading;"If you are from Europe please go to <a href='http://www.gallagher.eu' target='_blank'>www.gallagher.eu</a> to register your product and obtain your energizer warranty extension"
 ;;consentManagementSubHeading;"To personalize your experience, we'd like your consent to receive your profile data:"
-INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=$lang]
-;;registerProductPopupSubHeadingNZEN;"If these details do not match your product, please contact our Customer Service Team for assistance. Email:<a href ='mailto:cs@am.gallagher.com' target='_blank'>cs@am.gallagher.com</a> | Toll Free: 0800 731 500"
-
-;;registerProductPopupSubHeadingCAEN;"If these details do not match your product, please contact our Customer Service Team for assistance. Email:<a href='mailto:marketing.na@am.gallagher.com' target='_blank'>marketing.na@am.gallagher.com</a> | Toll Free: 1-800-531-5908"
-
-
-;;registerProductPopupSubHeadingCAFR;"Si ces détails ne correspondent pas à votre produit, veuillez contacter l'équipe du service client pour obtenir de l'aide. 
-Courriel:<a href='mailto:marketing.na@am.gallagher.com' target='_blank'> marketing.na@am.gallagher.com </a>| Téléphone: 1-800-531-5908"
-
-;;registerProductPopupSubHeadingAUEN;"If these details do not match your product, please contact our Customer Service Team for assistance. Email: <a href='mailto:sales.au@am.gallagher.com' target='_blank'>sales.au@am.gallagher.com </a>| Toll Free: 1800 425 524"
-
-
-;;registerProductPopupSubHeadingUSEN;"If these details do not match your product, please contact our Customer Service Team for assistance.  Email:<a href='mailto:marketing.na@am.gallagher.com' target='_blank'> marketing.na@am.gallagher.com </a>| Toll Free: 1-800-531-5908"
-
-
-
-
-;;registerProductPopupSubHeadingLATAMEN;"Si estas características no concuerdan con tu producto, por favor contacta al Equipo de Atención al Cliente. Email:<a href='mailto:info@gallagher.cl' target='_blank'> info@gallagher.cl </a> | Fono:   (+56) (64) 2 260402"
-
-
-
+;;registerProductPopupSubHeading;"If these details do not match your product, please contact the Customer services Team Email: <a href='mailto:sales.nz@am.gallagher' target='_blank'>sales.nz@am.gallagher</a> | Telephone number: 0800 731 500"
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
 ;;RegisterAProductPDPLink;"Register account"

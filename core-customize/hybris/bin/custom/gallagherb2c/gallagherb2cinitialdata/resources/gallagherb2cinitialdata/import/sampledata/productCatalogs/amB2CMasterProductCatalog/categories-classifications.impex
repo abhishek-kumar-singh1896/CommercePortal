@@ -98,7 +98,7 @@ INSERT_UPDATE ClassificationClass;$classCatalogVersion;code[unique=true];allowed
 
 # Classification Categories for 'steel-gates-and-hardware'
 ;;gates
-;;gate-hardware
+;;gate-hardware-sgh
 
 # Classification Categories for 'apps-and-software'
 ;;livestock
@@ -219,7 +219,7 @@ INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
 ;additional-system-components;additional-system-components
 
 ;gates;gates
-;gate-hardware;gate-hardware
+;gate-hardware-sgh;gate-hardware-sgh
 
 ;livestock;livestock
 ;fence;fence
@@ -384,8 +384,8 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;gates;animal-type;0;
 ;gates;strength;1;
 
-# For Classification Category 'gate-hardware'
-;gate-hardware;product-type;0;
+# For Classification Category 'gate-hardware-sgh'
+;gate-hardware-sgh;product-type;0;
 
 # For Classification Category 'insulated-suspension-posts'
 #;insulated-suspension-posts;primary-usage;0;
