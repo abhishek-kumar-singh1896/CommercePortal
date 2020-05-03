@@ -15,6 +15,8 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.gallagher.constants.GallagherSalesConditionCsvColumns;
+
 
 /**
  * Builds the Row map for the CSV files for the Sales Conditions in an Order
@@ -40,7 +42,12 @@ public class GallagherSalesConditionsContributor extends DefaultSalesConditionsC
 				final Map<String, Object> row = new HashMap<>();
 				row.put(OrderCsvColumns.ORDER_ID, order.getCode());
 				row.put(SalesConditionCsvColumns.CONDITION_ENTRY_NUMBER, entry.getEntryNumber());
-				row.put(SalesConditionCsvColumns.CONDITION_CODE, next.getCode().split(":")[0].trim());
+				final String[] taxCondArray = next.getCode().split(":")[0].trim().split("_");
+				row.put(SalesConditionCsvColumns.CONDITION_CODE, taxCondArray[0]);
+				if (taxCondArray.length == 2)
+				{
+					row.put(GallagherSalesConditionCsvColumns.TAX_JURISDICTION_CODE, taxCondArray[1]);
+				}
 				row.put(SalesConditionCsvColumns.CONDITION_VALUE, next.getValue());
 				row.put(SalesConditionCsvColumns.CONDITION_COUNTER, getConditionCounterTax());
 

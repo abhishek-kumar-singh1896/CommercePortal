@@ -23,6 +23,9 @@ public class GallagherSovosCalculatedTax
 	@JsonProperty("txJurUIDJurTp")
 	private String txJurUIDJurTp;
 
+	@JsonProperty("txJurUIDTxwTJId")
+	private String txJurUIDTxwTJId;
+
 	public void setTxAmt(final String txAmt)
 	{
 		this.txAmt = txAmt;
@@ -51,5 +54,15 @@ public class GallagherSovosCalculatedTax
 	public String getTxJurUIDJurTp()
 	{
 		return this.txJurUIDJurTp;
+	}
+
+	public String getTxJurUIDTxwTJId()
+	{
+		return txJurUIDTxwTJId;
+	}
+
+	public void setTxJurUIDTxwTJId(final String txJurUIDTxwTJId)
+	{
+		this.txJurUIDTxwTJId = txJurUIDTxwTJId;
 	}
 }

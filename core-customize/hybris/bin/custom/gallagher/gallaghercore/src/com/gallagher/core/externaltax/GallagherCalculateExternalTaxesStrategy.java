@@ -10,6 +10,7 @@
  */
 package com.gallagher.core.externaltax;
 
+import de.hybris.platform.acceleratorservices.config.SiteConfigService;
 import de.hybris.platform.commerceservices.externaltax.CalculateExternalTaxesStrategy;
 import de.hybris.platform.core.model.c2l.CurrencyModel;
 import de.hybris.platform.core.model.order.AbstractOrderModel;
@@ -39,8 +40,16 @@ import com.gallagher.sovos.outboundservices.service.GallagherSovosService;
  */
 public class GallagherCalculateExternalTaxesStrategy implements CalculateExternalTaxesStrategy
 {
+	/**
+	 *
+	 */
+	private static final String GGL_ITEMTAX_CODE_PREFIX = "ggl.itemtax.code.prefix";
+
 	@Resource(name = "gallagherSovosService")
 	private GallagherSovosService gallagherSovosService;
+
+	@Resource(name = "siteConfigService")
+	private SiteConfigService siteConfigService;
 
 	/**
 	 * Gallagher implementation to return an external tax document.
@@ -73,13 +82,15 @@ public class GallagherCalculateExternalTaxesStrategy implements CalculateExterna
 				{
 					for (final GallagherSovosCalculatedTax calculatedTax : lienItem.getJurRslts())
 					{
-						taxValues.add(getTaxValue(abstractOrder.getCurrency(), calculatedTax.getTxJurUIDJurTp(),
-								calculatedTax.getTxRate(), calculatedTax.getTxAmt()));
+						final String taxCode = siteConfigService.getString(GGL_ITEMTAX_CODE_PREFIX, StringUtils.EMPTY)
+								.concat(calculatedTax.getTxJurUIDJurTp());
+						taxValues.add(getTaxValue(abstractOrder, taxCode, calculatedTax.getTxJurUIDTxwTJId(), calculatedTax.getTxRate(),
+								calculatedTax.getTxAmt()));
 					}
 				}
 				else if (StringUtils.isNotEmpty(lienItem.getTxAmt()) && Double.valueOf(lienItem.getTxAmt()) == 0.0)
 				{
-					taxValues.add(getTaxValue(abstractOrder.getCurrency(), "1", "0", lienItem.getTxAmt()));
+					taxValues.add(getTaxValue(abstractOrder, "1", null, "0", lienItem.getTxAmt()));
 
 				}
 
@@ -91,10 +102,12 @@ public class GallagherCalculateExternalTaxesStrategy implements CalculateExterna
 	}
 
 	/**
-	 * Returns tax value for the data resevied from Sovos
+	 * Returns tax value for the data received from Sovos
 	 *
-	 * @param currency
-	 *           order currency
+	 * @param abstractOrder
+	 *
+	 * @param taxJurisdictionCode
+	 *           of the returned tax
 	 * @param taxCode
 	 *           taxCode
 	 * @param taxRate
@@ -103,10 +116,18 @@ public class GallagherCalculateExternalTaxesStrategy implements CalculateExterna
 	 *           total calculated tax for this entry
 	 * @return Tax Value
 	 */
-	private TaxValue getTaxValue(final CurrencyModel currency, final String taxCode, final String taxRate, final String amount)
+	private TaxValue getTaxValue(final AbstractOrderModel abstractOrder, final String taxCode, final String taxJurisdictionCode,
+			final String taxRate, final String amount)
 	{
+		final CurrencyModel currency = abstractOrder.getCurrency();
+
 		final StringBuilder taxValueString = new StringBuilder();
-		taxValueString.append(taxCode).append(" : ").append(taxRate).append(" = ").append(amount);
+		taxValueString.append(taxCode);
+		if (StringUtils.isNotEmpty(taxJurisdictionCode))
+		{
+			taxValueString.append("_").append(taxJurisdictionCode);
+		}
+		taxValueString.append(" : ").append(taxRate).append(" = ").append(amount);
 		final Double taxAmount = Double.valueOf(amount);
 		final TaxValue taxValue = new TaxValue(taxValueString.toString(), taxAmount, true, taxAmount,
 				currency == null ? "USD" : currency.getIsocode());

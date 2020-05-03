@@ -57,7 +57,7 @@
 	<bean id="sapCpiOmsStockLevelPersistenceHook"
       class="com.gallagher.sap.sapcpiorderexchange.inbound.events.GallagherSCPIOmmStockLevelPersistenceHook" />
       
-   	<!-- customerID generator for newly-registered B2BCustomer -->
+   <!-- customerID generator for newly-registered B2BCustomer -->
 	<bean id="sapb2bContactIdGenerator" class="de.hybris.platform.servicelayer.keygenerator.impl.PersistentKeyGenerator">
 		<property name="key" value="sap_b2b_contact_id" />
 		<property name="digits" value="${keygen.customer.sap_contact_id.digits}" />
@@ -65,4 +65,13 @@
 		<property name="type" value="${keygen.customer.sap_contact_id.type}" />
 		<property name="template" value="${keygen.customer.sap_contact_id.template}" />
 	</bean>
+	
+	 <!-- Order and Order Cancellation Conversion Service -->
+    <alias name="gallagherSCPIOmmOrderConversionService" alias="sapCpiOrderConversionService"/>
+    <bean id="gallagherSCPIOmmOrderConversionService"
+          class="com.gallagher.sap.sapcpiorderexchange.service.impl.GallagherSCPIOmmOrderConversionService" parent="sapCpiOmmOrderConversionService" />
+          
+	 <!-- OMM Order Mapper -->
+    <alias name="gallagherSCPIOmmOrderMapperService" alias="sapCpiOrderMapperService"/>
+    <bean id="gallagherSCPIOmmOrderMapperService" class="com.gallagher.sap.sapcpiorderexchange.service.impl.GallagherSCPIOmmOrderMapperService" parent="sapCpiOmmOrderMapperService" />          
 </beans>
