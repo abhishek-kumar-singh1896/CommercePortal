@@ -47,7 +47,7 @@
 				</p>
 			</div>
 
-			<h2 class="secondary-title mt-5"><spring:theme code="registerProduct.under.title"/>${user.firstName}&nbsp${user.lastName}</h2>
+			<h2 class="secondary-title mt-5"><spring:theme code="registerProduct.under.title"/>&nbsp${user.firstName}&nbsp${user.lastName}</h2>
 			<form:form method="post" action="${submitURL}"
 				id="registerProductForm" class="registerProduct_form" enctype="multipart/form-data"
 				modelAttribute="registerProductForm">
