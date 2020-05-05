@@ -85,8 +85,8 @@ public class GallagherRedirectionFilter extends GenericFilterBean
 
 		final HttpServletRequest req = (HttpServletRequest) request;
 		final HttpServletResponse res = (HttpServletResponse) response;
-		final String requestURI = req.getRequestURI();
 
+		final String requestURI = req.getServerName();
 		String base = null;
 		if (requestURI.contains(SECURITY))
 		{
