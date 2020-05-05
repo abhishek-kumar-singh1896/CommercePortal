@@ -3,6 +3,9 @@
  */
 package com.gallagher.b2c.validators;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -45,7 +48,7 @@ public class RegisterProductValidator implements Validator
 		final String country = registerProductForm.getCountry();
 		final String phoneNumber = registerProductForm.getPhoneNumber();
 		final String region = registerProductForm.getRegion();
-
+		int flag = 0;
 
 		if (StringUtils.isEmpty(productSKU) || StringUtils.length(productSKU) > 7)
 		{
@@ -58,6 +61,36 @@ public class RegisterProductValidator implements Validator
 		if (StringUtils.isEmpty(datePurchased))
 		{
 			errors.rejectValue("datePurchased", "registerProduct.datePurchased.invalid");
+		}
+		if (!StringUtils.isEmpty(datePurchased))
+		{
+			final Date date = new Date();
+			Date dateConvert = null;
+			try
+			{
+				dateConvert = new SimpleDateFormat("dd/MM/yyyy").parse(datePurchased);
+			}
+			catch (final ParseException e)
+			{
+				e.printStackTrace();
+				errors.rejectValue("datePurchased", "registerProduct.datePurchased.invalid");
+			}
+			if (null != dateConvert)
+			{
+				final int returnValue = date.compareTo(dateConvert);
+				if (!datePurchased.contains("/"))
+				{
+					flag = 1;
+				}
+				else if (returnValue == -1)
+				{
+					flag = 1;
+				}
+				if (flag == 1)
+				{
+					errors.rejectValue("datePurchased", "registerProduct.datePurchased.invalid");
+				}
+			}
 		}
 		if (StringUtils.isEmpty(addressLine1))
 		{
