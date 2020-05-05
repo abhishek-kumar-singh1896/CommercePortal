@@ -16,7 +16,6 @@ import de.hybris.platform.acceleratorstorefrontcommons.forms.UpdateEmailForm;
 import de.hybris.platform.acceleratorstorefrontcommons.forms.UpdatePasswordForm;
 import de.hybris.platform.acceleratorstorefrontcommons.forms.UpdateProfileForm;
 import de.hybris.platform.acceleratorstorefrontcommons.forms.validation.AddressValidator;
-import de.hybris.platform.acceleratorstorefrontcommons.forms.validation.EmailValidator;
 import de.hybris.platform.acceleratorstorefrontcommons.forms.validation.PasswordValidator;
 import de.hybris.platform.acceleratorstorefrontcommons.forms.validation.ProfileValidator;
 import de.hybris.platform.acceleratorstorefrontcommons.forms.verification.AddressVerificationResultHandler;
@@ -26,7 +25,6 @@ import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
 import de.hybris.platform.cms2.model.pages.ContentPageModel;
 import de.hybris.platform.commercefacades.address.AddressVerificationFacade;
 import de.hybris.platform.commercefacades.address.data.AddressVerificationResult;
-import de.hybris.platform.commercefacades.customer.CustomerFacade;
 import de.hybris.platform.commercefacades.i18n.I18NFacade;
 import de.hybris.platform.commercefacades.order.CheckoutFacade;
 import de.hybris.platform.commercefacades.order.OrderFacade;
@@ -89,7 +87,9 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gallagher.b2c.controllers.ControllerConstants;
+import com.gallagher.b2c.validators.GallagherEmailValidator;
 import com.gallagher.core.forms.B2CCustomerPreferenceForm;
+import com.gallagher.facades.customer.GallagherCustomerFacade;
 import com.gallagher.keycloak.outboundservices.service.GallagherKeycloakService;
 
 
@@ -171,7 +171,7 @@ public class AccountPageController extends AbstractSearchPageController
 	private UserFacade userFacade;
 
 	@Resource(name = "customerFacade")
-	private CustomerFacade customerFacade;
+	private GallagherCustomerFacade customerFacade;
 
 	@Resource(name = "accountBreadcrumbBuilder")
 	private ResourceBreadcrumbBuilder accountBreadcrumbBuilder;
@@ -185,8 +185,8 @@ public class AccountPageController extends AbstractSearchPageController
 	@Resource(name = "profileValidator")
 	private ProfileValidator profileValidator;
 
-	@Resource(name = "emailValidator")
-	private EmailValidator emailValidator;
+	@Resource(name = "gallagherEmailValidator")
+	private GallagherEmailValidator emailValidator;
 
 	@Resource(name = "i18NFacade")
 	private I18NFacade i18NFacade;
@@ -227,7 +227,7 @@ public class AccountPageController extends AbstractSearchPageController
 		return profileValidator;
 	}
 
-	protected EmailValidator getEmailValidator()
+	protected GallagherEmailValidator getEmailValidator()
 	{
 		return emailValidator;
 	}
@@ -457,15 +457,18 @@ public class AccountPageController extends AbstractSearchPageController
 		getEmailValidator().validate(updateEmailForm, bindingResult);
 		String returnAction = REDIRECT_TO_UPDATE_EMAIL_PAGE;
 
+
 		if (!bindingResult.hasErrors() && !updateEmailForm.getEmail().equals(updateEmailForm.getChkEmail()))
 		{
 			bindingResult.rejectValue("chkEmail", "validation.checkEmail.equals", new Object[] {}, "validation.checkEmail.equals");
 		}
 
+
 		if (bindingResult.hasErrors())
 		{
 			returnAction = setErrorMessagesAndCMSPage(model, UPDATE_EMAIL_CMS_PAGE);
 		}
+
 		else
 		{
 			try
@@ -475,8 +478,9 @@ public class AccountPageController extends AbstractSearchPageController
 				final CustomerData customerData = new CustomerData();
 				customerData.setEmail(updateEmailForm.getEmail());
 				customerData.setKeycloakGUID(currentCustomerData.getKeycloakGUID());
+				//	customerFacade.changeUid(updateEmailForm.getEmail(),updateEmailForm.getPassword());
 
-				customerFacade.changeUid(updateEmailForm.getEmail(), updateEmailForm.getPassword());
+				customerFacade.changeUid(updateEmailForm.getEmail());
 				GlobalMessages.addFlashMessage(redirectAttributes, GlobalMessages.CONF_MESSAGES_HOLDER,
 						"text.account.profile.confirmationUpdated", null);
 
@@ -496,11 +500,7 @@ public class AccountPageController extends AbstractSearchPageController
 				bindingResult.rejectValue("email", "profile.email.unique");
 				returnAction = setErrorMessagesAndCMSPage(model, UPDATE_EMAIL_CMS_PAGE);
 			}
-			catch (final PasswordMismatchException passwordMismatchException)
-			{
-				bindingResult.rejectValue("password", PROFILE_CURRENT_PASSWORD_INVALID);
-				returnAction = setErrorMessagesAndCMSPage(model, UPDATE_EMAIL_CMS_PAGE);
-			}
+
 			catch (final HttpClientErrorException error)
 			{
 				LOG.error("Some went wrong while updating the email." + error);
