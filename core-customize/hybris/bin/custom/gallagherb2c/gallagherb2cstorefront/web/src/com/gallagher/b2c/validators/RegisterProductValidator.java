@@ -71,7 +71,7 @@ public class RegisterProductValidator implements Validator
 		{
 			errors.rejectValue("postCode", "registerProduct.postCode.invalid");
 		}
-		if (StringUtils.isEmpty(country))
+		if (country.equals("0"))
 		{
 			errors.rejectValue("country", "registerProduct.country.invalid");
 		}
