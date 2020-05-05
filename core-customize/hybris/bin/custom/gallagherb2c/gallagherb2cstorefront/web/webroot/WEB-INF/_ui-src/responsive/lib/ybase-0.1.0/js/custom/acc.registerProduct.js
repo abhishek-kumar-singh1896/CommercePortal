@@ -4,8 +4,18 @@ ACC.registerProduct = {
 		"clickOnRegister",
 	    "bindVerifyRegisterProduct",
 	    "getJSONDataForRegisterProduct",
-	    "handlePopup"
+	    "handlePopup",
+	    ["handleEnter", $('#registerProductForm').length > 0]
+
 	],
+	handleEnter:function(){
+		$('#registerProductForm input').keydown(function (e) {
+			if (e.keyCode == 13) {
+				e.preventDefault();
+				return false;
+			}
+		});
+	},
 	clickOnRegister: function(){
 		$(document).ready(function () {
 			// For custom file input
