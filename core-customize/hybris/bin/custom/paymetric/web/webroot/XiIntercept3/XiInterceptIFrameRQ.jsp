@@ -206,20 +206,26 @@ catch(Exception ex)
                 }
 	        }
 	    </script>
+	    <style type="text/css">
+	    	iframe#xieCommFrame {
+			   width: calc(100% - 20px) !important;
+    			margin-right: 20px;
+			}
+	    </style>
 	</head>
 	<body>
 	    <div class="sampleBody">
 	        <div class="payment-content">
                 <div class="billing-info">
                     <div id="iframewrapper">
-                        <iframe id="xieCommFrame" name="xieCommFrame" style="border:0;" src="${iFrameUrl}" onload="IFrame_OnLoad();return false;"></iframe>
+                        <iframe id="xieCommFrame" name="xieCommFrame" style="border:0; width: 100% !important;" src="${iFrameUrl}" onload="IFrame_OnLoad();return false;"></iframe>
                     </div>
 					<input id="xiTokenize" type="button" value="Tokenize..." onclick="submitform(); return false;" style="display: none" />
 	            	<input type="hidden" id="AccessToken" value="${accessToken}" />
 	            	<input type="hidden" id="SignedToken" value="${signature}" />
 	        	</div>
 	        </div>
-	        <br/>
+<!-- 	        <br/> -->
 	        <div id="Status" ${errorstyle}>${errormessage}</div>
 	    </div>
 	</body>

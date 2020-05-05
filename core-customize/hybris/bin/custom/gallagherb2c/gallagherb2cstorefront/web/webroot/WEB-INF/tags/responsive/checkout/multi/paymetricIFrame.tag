@@ -1,12 +1,12 @@
 <!-- BEGIN: Payment Images -->
-<br />
-<div>
-	<!-- BEGIN: Credit Cards Image -->
-	<input type="image" id="creditCardImage"
-		style="padding-left: 5px; padding-bottom: 20px; height: 45px; width: 150px; display: none; outline: none;"
-		src="/paymetric/XiIntercept3/credit_card_logos_32.gif" />
+<!-- <br /> -->
+<!-- <div> -->
+<!-- 	<!-- BEGIN: Credit Cards Image -->
+<!-- 	<input type="image" id="creditCardImage" -->
+<!-- 		style="padding-left: 5px; padding-bottom: 20px; height: 45px; width: 150px; display: none; outline: none;" -->
+<!-- 		src="/paymetric/XiIntercept3/credit_card_logos_32.gif" /> -->
 	<!-- END: Credit Cards Image -->
-</div>
+<!-- </div> -->
 <!-- END: Payment Images -->
 <!-- BEGIN: XiIntercept Credit Card Integration -->
 <link rel="stylesheet" href="/paymetric/XiIntercept3/XIeCommerce3.css"
@@ -14,17 +14,19 @@
 <script type="text/javascript"
 	src="/paymetric/XiIntercept3/XIeCommerce3.js"></script>
 <script type="text/javascript" src="/paymetric/XiIntercept3/xml2json.js"></script>
-<iframe id="xiFrameHosted" class="hosted-iframe"
+<div class="payment-steps-body">
+	<iframe id="xiFrameHosted" class="hosted-iframe"
 	src="/paymetric/XiIntercept3/XiInterceptIFrameRQ.jsp?store=${cartData.store}"
 	onload="setTimeout(function(){resizeIFrameToFitContent('xiFrameHosted');}, 50);"
 	style="border: none; width: 100%; height: 100%;"> </iframe>
+</div>
 <script type="text/javascript">
 	function resizeIFrameToFitContent(id) {
 		var iFrame = document.getElementById(id);
 		iFrame.style.height = (iFrame.contentWindow.document.body.scrollHeight + 5)
 				+ 'px';
-		iFrame.style.width = (iFrame.contentWindow.document.body.scrollWidth + 5)
-				+ 'px';
+// 		iFrame.style.width = (iFrame.contentWindow.document.body.scrollWidth + 5)
+// 				+ 'px';
 	}
 	function handleXiInterceptResponse(id) {
 		var iField = 0;
