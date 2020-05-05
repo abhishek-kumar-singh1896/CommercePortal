@@ -108,9 +108,15 @@ ACC.registerProduct = {
 		function showFieldErrors(errorsMap) {
 			$('#registerProductForm').find('.form-control').removeClass('has-error').next().find('.error-text').addClass('d-none');
 			for (var fieldName in errorsMap) {
-				$('#' + fieldName).focus();
-				$('#' + fieldName).addClass('has-error').next().find('.error-text').removeClass('d-none');
-				$('#' + fieldName).next().find('.error-inner-text').text(errorsMap[fieldName]);
+				if(fieldName=="country"){
+					$('#' + fieldName).focus();
+					$('#' + fieldName).addClass('has-error').next().next().find('.error-text').removeClass('d-none');
+					$('#' + fieldName).next().next().find('.error-inner-text').text(errorsMap[fieldName]);
+				}else{
+					$('#' + fieldName).focus();
+					$('#' + fieldName).addClass('has-error').next().find('.error-text').removeClass('d-none');
+					$('#' + fieldName).next().find('.error-inner-text').text(errorsMap[fieldName]);
+				}
 			}
 		}
 

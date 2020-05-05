@@ -7,10 +7,12 @@ import de.hybris.platform.acceleratorservices.urlresolver.SiteBaseUrlResolutionS
 import de.hybris.platform.basecommerce.model.site.BaseSiteModel;
 import de.hybris.platform.cms2.model.site.CMSSiteModel;
 import de.hybris.platform.core.model.c2l.CountryModel;
+import de.hybris.platform.servicelayer.config.ConfigurationService;
 import de.hybris.platform.servicelayer.i18n.CommonI18NService;
 import de.hybris.platform.site.BaseSiteService;
 
 import java.io.IOException;
+import java.net.InetAddress;
 
 import javax.annotation.Resource;
 import javax.servlet.FilterChain;
@@ -23,10 +25,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.filter.GenericFilterBean;
 
 import com.gallagher.core.enums.RegionCode;
+import com.maxmind.geoip2.WebServiceClient;
+import com.maxmind.geoip2.exception.GeoIp2Exception;
+import com.maxmind.geoip2.model.CountryResponse;
+import com.maxmind.geoip2.record.Country;
 
 
 /**
@@ -38,6 +43,8 @@ import com.gallagher.core.enums.RegionCode;
  */
 public class GallagherRedirectionFilter extends GenericFilterBean
 {
+
+	private static final String DEFAULT_VALUE = "";
 
 	private static final String SLASH = "/";
 
@@ -65,6 +72,9 @@ public class GallagherRedirectionFilter extends GenericFilterBean
 	@Resource(name = "commonI18NService")
 	private CommonI18NService commonI18NService;
 
+	@Resource(name = "configurationService")
+	private ConfigurationService configurationService;
+
 	@Resource(name = "siteBaseUrlResolutionService")
 	private SiteBaseUrlResolutionService siteBaseUrlResolutionService;
 
@@ -75,8 +85,8 @@ public class GallagherRedirectionFilter extends GenericFilterBean
 
 		final HttpServletRequest req = (HttpServletRequest) request;
 		final HttpServletResponse res = (HttpServletResponse) response;
-		final String requestURI = req.getRequestURI();
 
+		final String requestURI = req.getServerName();
 		String base = null;
 		if (requestURI.contains(SECURITY))
 		{
@@ -92,9 +102,7 @@ public class GallagherRedirectionFilter extends GenericFilterBean
 		final String countryCode;
 		if (StringUtils.isNotEmpty(remoteAddr) && !isLocalHost(remoteAddr))
 		{
-			final RestTemplate restTemplate = new RestTemplate();
-			final String url = String.format(IP_SERVICE, remoteAddr.split(",")[0]);
-			countryCode = restTemplate.getForObject(url, String.class);
+			countryCode = getCountryofIPAddress(remoteAddr.split(",")[0]);
 		}
 		else
 		{
@@ -125,6 +133,36 @@ public class GallagherRedirectionFilter extends GenericFilterBean
 				+ ((CMSSiteModel) site).getDefaultLanguage().getIsocode();
 		LOG.info("Redirecting the request to {} for country {}. Detected IP is {}", redirectURL, countryCode, remoteAddr);
 		res.sendRedirect(redirectURL);
+	}
+
+	/**
+	 * Returns the country for the IP address
+	 *
+	 * @param remoteAddr
+	 *           IP address
+	 * @return country ISO code
+	 */
+	private String getCountryofIPAddress(final String remoteAddr)
+	{
+		String countryCode = GLOBAL;
+		final int maxMindAccountID = configurationService.getConfiguration().getInt("maxmind.account.id", 0);
+		final String maxMindKey = configurationService.getConfiguration().getString("maxmind.account.key", DEFAULT_VALUE);
+		if (StringUtils.isNotEmpty(maxMindKey) && maxMindAccountID != 0)
+		{
+			try (WebServiceClient client = new WebServiceClient.Builder(maxMindAccountID, maxMindKey).build())
+			{
+
+				final InetAddress ipAddress = InetAddress.getByName(remoteAddr);
+				final CountryResponse response = client.country(ipAddress);
+				final Country country = response.getCountry();
+				countryCode = country.getIsoCode();
+			}
+			catch (IOException | GeoIp2Exception ex)
+			{
+				LOG.error("Exception occurred while fetching country for redirection", ex);
+			}
+		}
+		return countryCode;
 	}
 
 	/**

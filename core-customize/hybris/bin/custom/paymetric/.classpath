@@ -25,5 +25,7 @@
 	<classpathentry kind="src" path="/acceleratorcms"/>
 	<classpathentry kind="src" path="/payment"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/basecommerce"/>
+	<classpathentry kind="lib" path="lib/XiInterceptSDK-v3.10.1.J11.jar"/>
+	<classpathentry kind="lib" path="lib/XiPayWSLib-1.20.jar"/>
 	<classpathentry kind="output" path="eclipsebin"/>
 </classpath>

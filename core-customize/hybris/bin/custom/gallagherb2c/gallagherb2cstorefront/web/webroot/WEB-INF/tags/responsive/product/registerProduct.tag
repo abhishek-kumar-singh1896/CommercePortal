@@ -88,7 +88,7 @@
 								</div>
 							</div>
 							
-							<div class="col-md-6 mb-4">
+							<div class="col-12 mb-4">
 						<label for="attachedFile" class="common-form-label"><spring:theme code="registerProduct.attachReciept.title"/></label>
 						<div class="input-group">
 							<div class="custom-file">
