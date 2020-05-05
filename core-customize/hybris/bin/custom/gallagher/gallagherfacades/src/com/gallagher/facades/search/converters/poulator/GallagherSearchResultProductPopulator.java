@@ -46,6 +46,7 @@ public class GallagherSearchResultProductPopulator extends SearchResultProductPo
 			target.setPlpProductDescription(this.<String> getValue(source, "plpProductDescription"));
 		}
 		target.setPartNumber(this.<String> getValue(source, "partNumber"));
+		target.setCategoryPaths(this.<List<String>> getValue(source, "categoryPath"));
 
 	}
 
