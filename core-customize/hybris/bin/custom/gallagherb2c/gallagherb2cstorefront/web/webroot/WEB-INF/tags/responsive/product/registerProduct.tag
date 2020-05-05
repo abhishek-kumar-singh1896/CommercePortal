@@ -47,7 +47,7 @@
 				</p>
 			</div>
 
-			<h2 class="secondary-title mt-5"><spring:theme code="registerProduct.under.title"/>${user.firstName}&nbsp${user.lastName}</h2>
+			<h2 class="secondary-title mt-5"><spring:theme code="registerProduct.under.title"/>&nbsp${user.firstName}&nbsp${user.lastName}</h2>
 			<form:form method="post" action="${submitURL}"
 				id="registerProductForm" class="registerProduct_form" enctype="multipart/form-data"
 				modelAttribute="registerProductForm">
@@ -87,6 +87,32 @@
 									</span>
 								</div>
 							</div>
+							
+							<div class="col-md-6 mb-4">
+						<label for="attachedFile" class="common-form-label"><spring:theme code="registerProduct.attachReciept.title"/></label>
+						<div class="input-group">
+							<div class="custom-file">
+								<form:input type="file" class="form-control custom-file-input"
+							id="attachedFile" path="attachedFile" name="attachedFile"/>
+								<!-- <input type="file" class="custom-file-input" id="attachReceipt"> -->
+								<label class="custom-file-label" for="attachedFile"
+									aria-describedby="Attach a Receipt"><spring:theme code="registerProduct.chooseFile.title"/></label>
+							</div>
+						</div>
+						<div class="hint-text">
+							<spring:theme code="text.product.registration.filesize" arguments="${fileMaxSize}"/>
+						</div>
+
+						<!-- <div class="error-label">
+                        <span class="error-icon">
+                            <svg>
+                                <use xlink:href="img/gallagher-icons.svg#cross" />
+                            </svg>
+                        </span>
+                        <span class="error-text">Please fill</span>
+                    </div> -->
+
+					</div>
 
 							<div class="col-12 mb-4">
 								<label for="datePurchased" class="common-form-label"><spring:theme code="registerProduct.date.title"/></label>
@@ -229,31 +255,7 @@
 						</div>
 					</div>
 
-					<div class="col-md-6 mb-4">
-						<label for="attachedFile" class="common-form-label"><spring:theme code="registerProduct.attachReciept.title"/></label>
-						<div class="input-group">
-							<div class="custom-file">
-								<form:input type="file" class="form-control custom-file-input"
-							id="attachedFile" path="attachedFile" name="attachedFile"/>
-								<!-- <input type="file" class="custom-file-input" id="attachReceipt"> -->
-								<label class="custom-file-label" for="attachedFile"
-									aria-describedby="Attach a Receipt"><spring:theme code="registerProduct.chooseFile.title"/></label>
-							</div>
-						</div>
-						<div class="hint-text">
-							<spring:theme code="text.product.registration.filesize" arguments="${fileMaxSize}"/>
-						</div>
-
-						<!-- <div class="error-label">
-                        <span class="error-icon">
-                            <svg>
-                                <use xlink:href="img/gallagher-icons.svg#cross" />
-                            </svg>
-                        </span>
-                        <span class="error-text">Please fill</span>
-                    </div> -->
-
-					</div>
+					
 
 				</div>
 

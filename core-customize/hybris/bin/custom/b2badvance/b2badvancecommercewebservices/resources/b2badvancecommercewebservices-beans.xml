@@ -226,6 +226,11 @@
 		<property name="action" type="String" />
 	</bean>
 	
+	<bean class="de.hybris.platform.commercewebservicescommons.dto.product.ProductWsDTO">
+		<property name="promoSticker" type="String" />
+		<property name="categoryPaths" type="java.util.List&lt;String&gt;" />
+	</bean>
+	
 	<bean class="com.enterprisewide.b2badvance.commercewebservices.product.dto.BaseProductWsDTO" extends="com.enterprisewide.b2badvance.commercewebservices.product.dto.ProductWsDTO">
 		<property name="variantCategories" type="java.util.List&lt;java.lang.String>" />
 	</bean>

@@ -871,14 +871,4 @@ UPDATE RendererTemplate;code[unique=true];description[lang=fr];templateScript[la
  ;securityB2B_Email_Customer_Registration_Body;"Customer Registration Email Body";$emailResource/email-customerRegistrationBody.vm
  ;securityB2B_Email_Customer_Registration_Subject;"Customer Registration Email Subject";$emailResource/email-customerRegistrationSubject.vm
  
-# ja
-UPDATE RendererTemplate;code[unique=true];description[lang=ja];templateScript[lang=ja,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
- ;securityB2B_Email_Customer_Registration_Body;"Customer Registration Email Body";$emailResource/email-customerRegistrationBody.vm
- ;securityB2B_Email_Customer_Registration_Subject;"Customer Registration Email Subject";$emailResource/email-customerRegistrationSubject.vm
- 
-# zh
-UPDATE RendererTemplate;code[unique=true];description[lang=zh];templateScript[lang=zh,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
- ;securityB2B_Email_Customer_Registration_Body;"Customer Registration Email Body";$emailResource/email-customerRegistrationBody.vm
- ;securityB2B_Email_Customer_Registration_Subject;"Customer Registration Email Subject";$emailResource/email-customerRegistrationSubject.vm
-
 ##########################################################################
