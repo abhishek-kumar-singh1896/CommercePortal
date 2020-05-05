@@ -72,7 +72,7 @@ public class GallagherRegisteredProductsPopulator implements Populator<Gallagher
 			target.setAttachmentUrl(attachment.getDocumentLink());
 		}
 
-		final SimpleDateFormat dateFromat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'");
+		final SimpleDateFormat dateFromat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
 		try
 		{
