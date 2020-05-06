@@ -58,7 +58,7 @@
 		</div>
 		<div class="product-list-footer">
 			<div class="row">
-				<div class="col-5">
+				<div class="col-5 pr-0">
 					<c:forEach items="${product.animalCompatibility}" begin="0" end="1" var="animal" >
 						<span class="product-list-footer-left-icon"> <img
 							src="${commonResourcePath}/images/animals/${fn:escapeXml(animal)}.svg" />
@@ -66,7 +66,7 @@
 					</c:forEach>
 				</div>
 				<ycommerce:testId code="searchPage_price_label_${product.code}">
-					<div class="col-7 text-right">
+					<div class="col-7 text-right pl-0">
 						<product:productListerItemPrice product="${product}" />
 					</div>
 				</ycommerce:testId>
