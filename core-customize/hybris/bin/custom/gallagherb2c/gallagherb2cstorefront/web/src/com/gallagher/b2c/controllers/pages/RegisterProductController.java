@@ -68,6 +68,8 @@ public class RegisterProductController extends AbstractPageController
 {
 	private static final String REDIRECT_TO_REGISTER_PRODUCT = REDIRECT_PREFIX + "/register-product";
 
+	private static final String REDIRECT_TO_REGISTERED_PRODUCT = REDIRECT_PREFIX + "/register-product/products";
+
 	private static final Logger LOG = Logger.getLogger(RegisterProductController.class);
 
 	private static final String REG_PRODUCTS_PAGE = "regProducts";
@@ -230,7 +232,7 @@ public class RegisterProductController extends AbstractPageController
 		model.addAttribute(rg);
 		GlobalMessages.addFlashMessage(redirectAttributes, GlobalMessages.CONF_MESSAGES_HOLDER,
 				"registerProduct.confirmation.message.title", null);
-		return REDIRECT_TO_REGISTER_PRODUCT;
+		return REDIRECT_TO_REGISTERED_PRODUCT;
 	}
 
 
