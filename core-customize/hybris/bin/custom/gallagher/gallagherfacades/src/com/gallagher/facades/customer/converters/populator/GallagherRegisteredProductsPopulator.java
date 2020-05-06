@@ -60,7 +60,7 @@ public class GallagherRegisteredProductsPopulator implements Populator<Gallagher
 	@Override
 	public void populate(final GallagherRegisteredProduct source, final RegisteredProductData target) throws ConversionException
 	{
-		target.setCode(source.getProductID());
+		target.setCode(source.getSerialID());
 		final ProductModel productModel = getSessionService().executeInLocalView(new SessionExecutionBody()
 		{
 			@Override
