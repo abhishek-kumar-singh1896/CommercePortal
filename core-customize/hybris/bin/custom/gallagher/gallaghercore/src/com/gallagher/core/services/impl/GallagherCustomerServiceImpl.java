@@ -6,9 +6,17 @@ package com.gallagher.core.services.impl;
 import de.hybris.platform.commerceservices.customer.CustomerAccountService;
 import de.hybris.platform.commerceservices.customer.DuplicateUidException;
 import de.hybris.platform.commerceservices.enums.SiteChannel;
+import de.hybris.platform.commerceservices.event.AbstractCommerceUserEvent;
+import de.hybris.platform.commerceservices.event.ChangeUIDEvent;
 import de.hybris.platform.commerceservices.strategies.CustomerNameStrategy;
 import de.hybris.platform.core.model.user.CustomerModel;
+import de.hybris.platform.servicelayer.event.EventService;
+import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
+import de.hybris.platform.servicelayer.i18n.CommonI18NService;
 import de.hybris.platform.servicelayer.model.ModelService;
+import de.hybris.platform.servicelayer.user.UserService;
+import de.hybris.platform.site.BaseSiteService;
+import de.hybris.platform.store.services.BaseStoreService;
 
 import java.util.List;
 
@@ -16,6 +24,8 @@ import javax.annotation.Resource;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Required;
+import org.springframework.util.Assert;
 
 import com.gallagher.c4c.outboundservices.facade.GallagherC4COutboundServiceFacade;
 import com.gallagher.core.daos.GallagherCustomerDao;
@@ -33,6 +43,20 @@ import com.gallagher.outboundservices.response.dto.GallagherInboundCustomerEntry
 public class GallagherCustomerServiceImpl implements GallagherCustomerService
 {
 	private static final Logger LOGGER = Logger.getLogger(GallagherCustomerServiceImpl.class);
+	@Resource(name = "userService")
+	private UserService userService;
+
+	@Resource(name = "eventService")
+	private EventService eventService;
+
+	@Resource(name = "commonI18NService")
+	private CommonI18NService commonI18NService;
+
+	@Resource(name = "baseStoreService")
+	private BaseStoreService baseStoreService;
+
+	@Resource(name = "baseSiteService")
+	private BaseSiteService baseSiteService;
 
 	@Resource(name = "gallagherCustomerDao")
 	private GallagherCustomerDao gallagherCustomerDao;
@@ -175,4 +199,101 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 
 		return true;
 	}
+
+	public void changeUid(final String newUid) throws DuplicateUidException
+	{
+		Assert.hasText(newUid, "The field [newEmail] cannot be empty");
+		//Assert.hasText(currentPassword, "The field [currentPassword] cannot be empty");
+		final String newUidLower = newUid.toLowerCase();
+		final CustomerModel currentUser = (CustomerModel) getUserService().getCurrentUser();
+		final ChangeUIDEvent event = new ChangeUIDEvent(currentUser.getOriginalUid(), newUid);
+		currentUser.setOriginalUid(newUid);
+
+		// check uniqueness only if the uids are case insensitive different
+		if (!currentUser.getUid().equalsIgnoreCase(newUid))
+		{
+			checkUidUniqueness(newUidLower);
+			currentUser.setUid(newUidLower);
+		}
+		//adjustPassword(currentUser, newUidLower, currentPassword);
+		modelService.save(currentUser);
+		getEventService().publishEvent(initializeEvent(event, currentUser));
+	}
+
+	protected UserService getUserService()
+	{
+		return userService;
+	}
+
+	@Required
+	public void setUserService(final UserService userService)
+	{
+		this.userService = userService;
+	}
+
+	protected void checkUidUniqueness(final String newUid) throws DuplicateUidException
+	{
+		// Check if the newUid is available
+		try
+		{
+			if (getUserService().getUserForUID(newUid) != null)
+			{
+				throw new DuplicateUidException("User with email " + newUid + " already exists.");
+			}
+		}
+		catch (final UnknownIdentifierException unknownIdentifierException)
+		{
+			// That's ok - user for new uid was not found
+		}
+	}
+
+	protected CommonI18NService getCommonI18NService()
+	{
+		return commonI18NService;
+	}
+
+	@Required
+	public void setCommonI18NService(final CommonI18NService commonI18NService)
+	{
+		this.commonI18NService = commonI18NService;
+	}
+
+	protected EventService getEventService()
+	{
+		return eventService;
+	}
+
+	protected BaseStoreService getBaseStoreService()
+	{
+		return baseStoreService;
+	}
+
+	@Required
+	public void setBaseStoreService(final BaseStoreService service)
+	{
+		this.baseStoreService = service;
+	}
+
+	protected BaseSiteService getBaseSiteService()
+	{
+		return baseSiteService;
+	}
+
+	@Required
+	public void setBaseSiteService(final BaseSiteService siteService)
+	{
+		this.baseSiteService = siteService;
+	}
+
+
+	protected AbstractCommerceUserEvent initializeEvent(final AbstractCommerceUserEvent event, final CustomerModel customerModel)
+	{
+		event.setBaseStore(getBaseStoreService().getCurrentBaseStore());
+		event.setSite(getBaseSiteService().getCurrentBaseSite());
+		event.setCustomer(customerModel);
+		event.setLanguage(getCommonI18NService().getCurrentLanguage());
+		event.setCurrency(getCommonI18NService().getCurrentCurrency());
+		return event;
+	}
+
 }

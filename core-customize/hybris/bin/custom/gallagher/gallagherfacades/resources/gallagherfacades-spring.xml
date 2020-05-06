@@ -187,7 +187,12 @@
 
 	<alias name="gallagherRegisteredProductsPopulator" alias="registeredProductsPopulator" />
 	<bean id="gallagherRegisteredProductsPopulator"
-		class="com.gallagher.facades.customer.converters.populator.GallagherRegisteredProductsPopulator" />
+		class="com.gallagher.facades.customer.converters.populator.GallagherRegisteredProductsPopulator" >
+		<property name="searchRestrictionService" ref="searchRestrictionService"/>
+		<property name="sessionService" ref="sessionService" />
+		<property name="baseSiteService" ref="baseSiteService" />
+		<property name="catalogVersionService" ref="catalogVersionService" />
+	</bean>
 
 	<alias name="gallagherRegisteredProductsConverter" alias="registeredProductsConverter" />
 	<bean id="gallagherRegisteredProductsConverter" parent="abstractPopulatingConverter">

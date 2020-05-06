@@ -45,6 +45,7 @@ ACC.minicart = {
 				$(".info-number").empty();
 				if(jsonData.miniCartCount > 9 ){
 					$(".info-number").append("9+");
+					$(".info-number").removeAttr('hidden');
 					}else{
 						$(".info-number").append(jsonData.miniCartCount);
 						$(".info-number").removeAttr('hidden');

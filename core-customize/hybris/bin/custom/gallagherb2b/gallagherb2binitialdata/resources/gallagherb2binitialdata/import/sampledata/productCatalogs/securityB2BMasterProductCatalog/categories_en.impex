@@ -23,30 +23,30 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
 ;security;;Security
 
 # Main Categories
-;perimeter-security;;Perimeter Security
-;access-control;;Access Control
+;access-control;;Access Control Hardware
 ;high-security;;High Security
-;integrations;;Integrations
+;perimeter-hardware;;Perimeter Hardware
 ;software;;Software
 
-# Perimeter Security Categories
-;fence-controllers;;Fence Controllers
-;sensors;;Sensors
-
-# Access Control Categories
+# Access Control Hardware Categories
 ;controllers;;Controllers
 ;readers-and-terminals;;Readers and Terminals
+;security-kits;;Security Kits
+;other-ach;;Other
+
+# Perimeter Hardware Categories
+;fence-controllers;;Fence Controllers
+;sensors;;Sensors
+;other-ph;;Other
+
 
 #High Security Categories
 
-#Integrations Categories
-;facilities-management;;Facilities Management
-;interface-tools;;Interface Tools
-;personnel-management;;Personnel Management
 
 #Software Categories
 ;business-efficiency-features;;Business Efficiency Features
 ;health-and-safety-features;;Health and Safety Features
-;interface-tools;;Interface Tools
+;integrations;;Integrations
 ;management-platforms;;Management Platforms
 ;workforce-management-features;;Workforce Management Features
+

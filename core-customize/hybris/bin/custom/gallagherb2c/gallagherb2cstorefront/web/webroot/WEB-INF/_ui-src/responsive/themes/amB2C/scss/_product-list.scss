@@ -428,6 +428,10 @@
               font-size: 1.142857em;
               color: $primary-color;
               font-weight: bold;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              
               sup {
                 &.currency-sign {
                   font-size: 0.5625em;

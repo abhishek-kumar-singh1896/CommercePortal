@@ -44,12 +44,6 @@
 									</c:forEach>
 									<input type="hidden" value="${fn:escapeXml(silentOrderPageData.parameters['billTo_email'])}" name="billTo_email" id="billTo_email">
 						
-									<div class="form-group">
-										<c:if test="${not empty paymentInfos}">
-											<button type="button" class="btn btn-default btn-block js-saved-payments"><spring:theme code="checkout.multi.paymentMethod.addPaymentDetails.useSavedCard"/></button>
-										</c:if>	
-									</div>
-
 									<div class="form-group d-none">
 										<formElement:formSelectBox idKey="card_cardType" labelKey="payment.cardType" path="card_cardType" selectCSSClass="form-control" mandatory="true" skipBlank="false" skipBlankMessageKey="payment.cardType.pleaseSelect" items="${sopCardTypes}" tabindex="1"/>
 									</div>
@@ -102,8 +96,19 @@
 									</div>
 
 									<sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
-										<formElement:formCheckbox idKey="savePaymentMethod" labelKey="checkout.multi.sop.savePaymentInfo" path="savePaymentInfo"
-					                          inputCSS="" labelCSS="" mandatory="false" tabindex="10"/>
+										<formElement:formCheckbox idKey="savePaymentMethod"
+													labelKey="checkout.multi.sop.savePaymentInfo"
+													path="savePaymentInfo" inputCSS="" labelCSS=""
+													mandatory="false" tabindex="10" />
+										<div class="form-group">
+										<c:if test="${not empty paymentInfos}">
+											<button type="button"
+															class="btn btn-default btn-block js-saved-payments">
+															<spring:theme
+																code="checkout.multi.paymentMethod.addPaymentDetails.useSavedCard" />
+														</button>
+										</c:if>	
+									</div>
 									</sec:authorize>
 									
                                     <hr/>

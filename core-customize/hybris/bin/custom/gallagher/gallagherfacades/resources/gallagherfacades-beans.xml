@@ -56,6 +56,7 @@
 		<property name="othersReferenceSubHeading" type="String" />
 		<property name="plpProductDescription" type="String" />
 		<property name="categoryPaths" type="java.util.List&lt;String&gt;" />
+		<property name="modifiedTime" type="java.util.Date" />
 <!-- 		<property name="marketingDescription" type="String"/> -->
 	</bean>
 

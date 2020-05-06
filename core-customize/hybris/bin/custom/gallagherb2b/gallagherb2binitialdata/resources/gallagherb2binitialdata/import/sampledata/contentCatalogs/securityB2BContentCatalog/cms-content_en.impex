@@ -64,8 +64,8 @@ UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$
 
 # CMS Mega menu Link Components
 UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
-;;PerimeterSecurityCategoryLink;"Perimeter Security"
-;;AccessControlCategoryLink;"Access Control"
+;;PerimeterSecurityCategoryLink;"Perimeter Hardware"
+;;AccessControlCategoryLink;"Access Control Hardware"
 ;;HighSecurityCategoryLink;"High Security"
 ;;IntegrationsCategoryLink;"Integrations"
 ;;SoftwareCategoryLink;"Software"
@@ -134,8 +134,8 @@ UPDATE CMSNavigationNode;$contentCV[unique=true];uid[unique=true];title[lang=en]
  ;;SafetyNavNode;"Safety"
  ;;SandersNavNode;"Sanders"
  ;;ScrewdriversNavNode;"Screwdrivers"
- ;;PerimeterSecurityNavNode;"Perimeter Security"
- ;;AccessControlNavNode;"Access Control"
+ ;;PerimeterSecurityNavNode;"Perimeter Hardware"
+ ;;AccessControlNavNode;"Access Control Hardware"
 
 # SecurityB2B FAQ Page
 
