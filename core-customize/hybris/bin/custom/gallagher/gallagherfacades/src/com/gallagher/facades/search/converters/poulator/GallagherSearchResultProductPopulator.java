@@ -48,7 +48,7 @@ public class GallagherSearchResultProductPopulator extends SearchResultProductPo
 		}
 		target.setPartNumber(this.<String> getValue(source, "partNumber"));
 		target.setCategoryPaths(this.<List<String>> getValue(source, "categoryPath"));
-		target.setModifiedTime(this.<List<Date>> getValue(source, "modifiedtime"));
+		target.setModifiedTime(this.<Date> getValue(source, "modifiedtime"));
 
 	}
 

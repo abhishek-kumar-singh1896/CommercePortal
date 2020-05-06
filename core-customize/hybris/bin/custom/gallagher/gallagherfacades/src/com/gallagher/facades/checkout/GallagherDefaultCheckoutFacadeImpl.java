@@ -40,28 +40,13 @@ public class GallagherDefaultCheckoutFacadeImpl extends DefaultAcceleratorChecko
 			if (currentUserDefaultShipmentAddress != null)
 			{
 				final Collection<CountryModel> countries = getCommonI18NService().getAllCountries();
-				boolean checkCountry = false;
-				if (CollectionUtils.isNotEmpty(countries))
-				{
-					for (final CountryModel cm : countries)
-					{
-						if (getCommonI18NService().getAllCountries()
-								.equals(currentUserDefaultShipmentAddress.getCountry().getIsocode()))
-						{
-							checkCountry = true;
-						}
-					}
-				}
-				if (checkCountry)
+				if (CollectionUtils.isNotEmpty(countries) && countries.contains(currentUserDefaultShipmentAddress.getCountry()))
 				{
 					final AddressModel supportedDeliveryAddress = getDeliveryAddressModelForCode(
 							currentUserDefaultShipmentAddress.getPk().toString());
 					if (supportedDeliveryAddress != null)
 					{
-						final CommerceCheckoutParameter parameter = createCommerceCheckoutParameter(cartModel, true);
-						parameter.setAddress(supportedDeliveryAddress);
-						parameter.setIsDeliveryAddress(false);
-						return getCommerceCheckoutService().setDeliveryAddress(parameter);
+						return setDeliveryAddress(cartModel, supportedDeliveryAddress);
 					}
 				}
 			}
@@ -72,12 +57,25 @@ public class GallagherDefaultCheckoutFacadeImpl extends DefaultAcceleratorChecko
 				true);
 		if (supportedDeliveryAddresses != null && !supportedDeliveryAddresses.isEmpty())
 		{
-			final CommerceCheckoutParameter parameter = createCommerceCheckoutParameter(cartModel, true);
-			parameter.setAddress(supportedDeliveryAddresses.get(0));
-			parameter.setIsDeliveryAddress(false);
-			return getCommerceCheckoutService().setDeliveryAddress(parameter);
+			final AddressModel supportedDeliveryAddress = supportedDeliveryAddresses.get(0);
+			return setDeliveryAddress(cartModel, supportedDeliveryAddress);
 		}
 		return false;
+	}
+
+	/**
+	 * Returns true if the delivery address is set
+	 *
+	 * @param cartModel
+	 * @param supportedDeliveryAddress
+	 * @return true if the delivery address is set
+	 */
+	private boolean setDeliveryAddress(final CartModel cartModel, final AddressModel supportedDeliveryAddress)
+	{
+		final CommerceCheckoutParameter parameter = createCommerceCheckoutParameter(cartModel, true);
+		parameter.setAddress(supportedDeliveryAddress);
+		parameter.setIsDeliveryAddress(false);
+		return getCommerceCheckoutService().setDeliveryAddress(parameter);
 	}
 
 }
