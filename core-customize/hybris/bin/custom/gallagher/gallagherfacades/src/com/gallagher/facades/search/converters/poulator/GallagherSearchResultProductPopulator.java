@@ -7,6 +7,7 @@ import de.hybris.platform.commercefacades.product.data.ProductData;
 import de.hybris.platform.commercefacades.search.converters.populator.SearchResultProductPopulator;
 import de.hybris.platform.commerceservices.search.resultdata.SearchResultValueData;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -47,6 +48,7 @@ public class GallagherSearchResultProductPopulator extends SearchResultProductPo
 		}
 		target.setPartNumber(this.<String> getValue(source, "partNumber"));
 		target.setCategoryPaths(this.<List<String>> getValue(source, "categoryPath"));
+		target.setModifiedTime(this.<List<Date>> getValue(source, "modifiedtime"));
 
 	}
 

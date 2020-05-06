@@ -229,6 +229,7 @@
 	<bean class="de.hybris.platform.commercewebservicescommons.dto.product.ProductWsDTO">
 		<property name="promoSticker" type="String" />
 		<property name="categoryPaths" type="java.util.List&lt;String&gt;" />
+		<property name="modifiedTime" type="java.util.Date" />
 	</bean>
 	
 	<bean class="com.enterprisewide.b2badvance.commercewebservices.product.dto.BaseProductWsDTO" extends="com.enterprisewide.b2badvance.commercewebservices.product.dto.ProductWsDTO">
