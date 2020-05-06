@@ -54,7 +54,6 @@ import com.gallagher.b2c.util.GallagherProductRegistrationUtil;
 import com.gallagher.b2c.validators.RegisterProductValidator;
 import com.gallagher.facades.GallagherRegisteredProductsFacade;
 import com.gallagher.outboundservices.request.dto.RegisterProductRequest;
-import com.hybris.charon.exp.InternalServerException;
 
 
 /**
@@ -224,10 +223,12 @@ public class RegisterProductController extends AbstractPageController
 				GlobalMessages.addMessage(model, GlobalMessages.ERROR_MESSAGES_HOLDER, "registerProduct.error.message.title", null);
 			}
 		}
-		catch (final UnknownIdentifierException | InternalServerException exception)
+		catch (final RuntimeException exception)
 		{
 			populateForm(registerProductForm1, rg);
-			GlobalMessages.addMessage(model, GlobalMessages.ERROR_MESSAGES_HOLDER, "registerProduct.error.message.title", null);
+			GlobalMessages.addFlashMessage(redirectAttributes, GlobalMessages.ERROR_MESSAGES_HOLDER,
+					"registerProduct.error.message.title", null);
+			return REDIRECT_TO_REGISTER_PRODUCT;
 		}
 		model.addAttribute(rg);
 		GlobalMessages.addFlashMessage(redirectAttributes, GlobalMessages.CONF_MESSAGES_HOLDER,
