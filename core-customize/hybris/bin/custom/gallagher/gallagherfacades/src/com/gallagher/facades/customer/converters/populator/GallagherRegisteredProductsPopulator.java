@@ -20,8 +20,6 @@ import de.hybris.platform.servicelayer.session.SessionExecutionBody;
 import de.hybris.platform.servicelayer.session.SessionService;
 import de.hybris.platform.site.BaseSiteService;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -118,18 +116,8 @@ public class GallagherRegisteredProductsPopulator implements Populator<Gallagher
 			target.setAttachmentUrl(attachment.getDocumentLink());
 		}
 
-		final SimpleDateFormat dateFromat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-
-		try
-		{
-			target.setPurchaseDate(dateFromat.parse(source.getReferenceDate()));
-			target.setRegistrationDate(dateFromat.parse(source.getCreationDateTime()));
-		}
-		catch (final ParseException exception)
-		{
-			LOGGER.error("Exception occured while parsing the Date.", exception);
-		}
-
+		target.setPurchaseDate(source.getReferenceDate());
+		target.setRegistrationDate(source.getCreationDateTime());
 	}
 
 	protected CatalogVersionModel getCatalogVersion()
@@ -144,24 +132,20 @@ public class GallagherRegisteredProductsPopulator implements Populator<Gallagher
 		return catalogVersion;
 	}
 
-
 	public BaseSiteService getBaseSiteService()
 	{
 		return baseSiteService;
 	}
-
 
 	public void setBaseSiteService(final BaseSiteService baseSiteService)
 	{
 		this.baseSiteService = baseSiteService;
 	}
 
-
 	public CatalogVersionService getCatalogVersionService()
 	{
 		return catalogVersionService;
 	}
-
 
 	public void setCatalogVersionService(final CatalogVersionService catalogVersionService)
 	{
@@ -173,7 +157,6 @@ public class GallagherRegisteredProductsPopulator implements Populator<Gallagher
 		return sessionService;
 	}
 
-
 	public void setSessionService(final SessionService sessionService)
 	{
 		this.sessionService = sessionService;
@@ -183,7 +166,6 @@ public class GallagherRegisteredProductsPopulator implements Populator<Gallagher
 	{
 		return searchRestrictionService;
 	}
-
 
 	public void setSearchRestrictionService(final SearchRestrictionService searchRestrictionService)
 	{
