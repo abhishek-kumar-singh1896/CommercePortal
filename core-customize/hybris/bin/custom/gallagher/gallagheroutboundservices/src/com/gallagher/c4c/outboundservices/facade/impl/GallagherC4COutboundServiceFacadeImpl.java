@@ -180,17 +180,17 @@ public class GallagherC4COutboundServiceFacadeImpl extends DefaultOutboundServic
 		final ConsumedDestinationModel destinationModel = getConsumedDestinationModelById(
 				REGISTERED_PRODUCT_COLLECTION_DESTINATION);
 		final RestOperations restOperations = getIntegrationRestTemplateFactory().create(destinationModel);
-
 		final UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(destinationModel.getUrl()).queryParam("$filter",
 				"customerID eq '" + customerID + "'");
-
 		final HttpHeaders headers = new HttpHeaders();
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 		final HttpEntity entity = new HttpEntity(headers);
 		final HttpEntity<GallagherRegisteredProductResponse> response = restOperations.exchange(builder.build().encode().toUri(),
 				HttpMethod.GET, entity, GallagherRegisteredProductResponse.class);
-
-		return response.getBody().getRegisteredProductCollection().getRegisteredProduct();
+		final List<GallagherRegisteredProduct> registeredProducts = response.getBody().getRegisteredProductCollection()
+				.getRegisteredProduct();
+		Collections.sort(registeredProducts, Collections.reverseOrder());
+		return registeredProducts;
 	}
 
 }

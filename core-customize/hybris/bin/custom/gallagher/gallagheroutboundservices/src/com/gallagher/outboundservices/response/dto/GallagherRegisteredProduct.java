@@ -3,6 +3,10 @@
  */
 package com.gallagher.outboundservices.response.dto;
 
+
+
+import java.util.Date;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -11,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Representation of Registered Product
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class GallagherRegisteredProduct
+public class GallagherRegisteredProduct implements Comparable<GallagherRegisteredProduct>
 {
 	@JsonProperty("SerialID")
 	private String serialID;
@@ -20,14 +24,13 @@ public class GallagherRegisteredProduct
 	private String productID;
 
 	@JsonProperty("ReferenceDate")
-	private String referenceDate;
+	private Date referenceDate;
 
 	@JsonProperty("CreationDateTime")
-	private String creationDateTime;
+	private Date creationDateTime;
 
 	@JsonProperty("RegisteredProductAttachmentFolder")
 	private GallagherRegisteredProductAttachmentFolder registeredProductAttachmentFolder;
-
 
 	public String getSerialID()
 	{
@@ -49,22 +52,22 @@ public class GallagherRegisteredProduct
 		this.productID = productID;
 	}
 
-	public String getReferenceDate()
+	public Date getReferenceDate()
 	{
 		return referenceDate;
 	}
 
-	public void setReferenceDate(final String referenceDate)
+	public void setReferenceDate(final Date referenceDate)
 	{
 		this.referenceDate = referenceDate;
 	}
 
-	public String getCreationDateTime()
+	public Date getCreationDateTime()
 	{
 		return creationDateTime;
 	}
 
-	public void setCreationDateTime(final String creationDateTime)
+	public void setCreationDateTime(final Date creationDateTime)
 	{
 		this.creationDateTime = creationDateTime;
 	}
@@ -80,4 +83,9 @@ public class GallagherRegisteredProduct
 		this.registeredProductAttachmentFolder = registeredProductAttachmentFolder;
 	}
 
+	@Override
+	public int compareTo(final GallagherRegisteredProduct registeredProduct)
+	{
+		return creationDateTime.compareTo(registeredProduct.getCreationDateTime());
+	}
 }
