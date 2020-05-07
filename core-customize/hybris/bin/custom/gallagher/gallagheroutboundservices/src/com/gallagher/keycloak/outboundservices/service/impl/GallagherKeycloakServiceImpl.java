@@ -273,7 +273,8 @@ public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
 		final GallagherKeycloakUserRequest request = new GallagherKeycloakUserRequest();
-		request.setLastName(customerData.getEmail());
+		request.setEmail(customerData.getUid());
+		request.setEnabled(true);
 
 		final HttpEntity<GallagherKeycloakUserRequest> entity = new HttpEntity<>(request, headers);
 
