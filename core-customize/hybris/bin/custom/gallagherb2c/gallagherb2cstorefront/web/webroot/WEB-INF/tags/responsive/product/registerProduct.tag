@@ -218,7 +218,7 @@
 							</span>
 						</div>
 					</div>
-					<div class="col-md-6 mb-4">
+					<div class="col-md-6 mb-4 select-country">
 						<label for="country" class="common-form-label"><spring:theme code="registerProduct.country.title"/></label>
 						<form:select path="country" id="country"
 							class="form-control js-example-basic-single">

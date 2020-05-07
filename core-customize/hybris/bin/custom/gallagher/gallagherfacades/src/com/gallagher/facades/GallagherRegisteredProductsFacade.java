@@ -5,10 +5,9 @@ package com.gallagher.facades;
 
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
-
 import com.gallagher.facades.product.data.RegisteredProductData;
 import com.gallagher.outboundservices.request.dto.RegisterProductRequest;
+import com.gallagher.outboundservices.response.dto.GallagherRegisterProductErrorResponse;
 
 
 /**
@@ -32,5 +31,5 @@ public interface GallagherRegisteredProductsFacade
 	 * @param request
 	 * @return status
 	 */
-	HttpStatus registerProduct(RegisterProductRequest request);
+	GallagherRegisterProductErrorResponse registerProduct(RegisterProductRequest request);
 }

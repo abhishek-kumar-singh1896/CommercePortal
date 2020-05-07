@@ -6,6 +6,7 @@ package com.gallagher.c4c.outboundservices.facade.impl;
 import de.hybris.platform.apiregistryservices.model.ConsumedDestinationModel;
 import de.hybris.platform.outboundservices.facade.impl.DefaultOutboundServiceFacade;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -21,17 +22,20 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestOperations;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gallagher.c4c.outboundservices.facade.GallagherC4COutboundServiceFacade;
 import com.gallagher.outboundservices.decorator.GallagherCsrfOutboundRequestDecorator;
 import com.gallagher.outboundservices.request.dto.RegisterProductRequest;
 import com.gallagher.outboundservices.response.dto.GallagherInboundCustomerEntry;
 import com.gallagher.outboundservices.response.dto.GallagherInboundCustomerInfo;
+import com.gallagher.outboundservices.response.dto.GallagherRegisterProductErrorDTO;
+import com.gallagher.outboundservices.response.dto.GallagherRegisterProductErrorResponse;
 import com.gallagher.outboundservices.response.dto.GallagherRegisterProductResponse;
 import com.gallagher.outboundservices.response.dto.GallagherRegisteredProduct;
 import com.gallagher.outboundservices.response.dto.GallagherRegisteredProductResponse;
@@ -115,12 +119,13 @@ public class GallagherC4COutboundServiceFacadeImpl extends DefaultOutboundServic
 	 * {@inheritDoc}
 	 */
 	@Override
-	public HttpStatus registerProduct(final RegisterProductRequest request)
+	public GallagherRegisterProductErrorResponse registerProduct(final RegisterProductRequest request)
 	{
 		final ConsumedDestinationModel destinationModel = getConsumedDestinationModelById(REGISTER_PRODUCT_DESTINATION);
 		final RestOperations restOperations = getIntegrationRestTemplateFactory().create(destinationModel);
 
 		final String baseURL = destinationModel.getUrl();
+		GallagherRegisterProductErrorResponse error = null;
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
@@ -129,11 +134,40 @@ public class GallagherC4COutboundServiceFacadeImpl extends DefaultOutboundServic
 		headers = gallagherCsrfOutboundRequestDecorator.decorate(headers, destinationModel);
 
 		final HttpEntity<RegisterProductRequest> entity = new HttpEntity<>(request, headers);
+		try
+		{
+			final ResponseEntity<GallagherRegisterProductResponse> response = restOperations.exchange(baseURL, HttpMethod.POST,
+					entity, GallagherRegisterProductResponse.class);
+		}
+		catch (final HttpServerErrorException httpSerEx)
+		{
+			final String responseBody = httpSerEx.getResponseBodyAsString();
+			try
+			{
+				if (responseBody != null && responseBody.contains("message"))
+				{
+					error = new ObjectMapper().readValue(responseBody, GallagherRegisterProductErrorResponse.class);
+				}
+				else
+				{
+					error = createEmptyError();
+				}
+			}
+			catch (final IOException ioEx)
+			{
+				error = createEmptyError();
+			}
 
-		final ResponseEntity<GallagherRegisterProductResponse> response = restOperations.exchange(baseURL, HttpMethod.POST, entity,
-				GallagherRegisterProductResponse.class);
+		}
+		return error;
+	}
 
-		return response.getStatusCode();
+	private GallagherRegisterProductErrorResponse createEmptyError()
+	{
+		final GallagherRegisterProductErrorResponse error = new GallagherRegisterProductErrorResponse();
+		error.setError(new GallagherRegisterProductErrorDTO());
+		error.getError().setCode("error");
+		return error;
 	}
 
 	/**
