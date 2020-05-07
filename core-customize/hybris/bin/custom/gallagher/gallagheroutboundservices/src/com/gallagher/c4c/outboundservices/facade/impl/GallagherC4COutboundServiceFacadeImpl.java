@@ -24,6 +24,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestOperations;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -139,7 +140,7 @@ public class GallagherC4COutboundServiceFacadeImpl extends DefaultOutboundServic
 			final ResponseEntity<GallagherRegisterProductResponse> response = restOperations.exchange(baseURL, HttpMethod.POST,
 					entity, GallagherRegisterProductResponse.class);
 		}
-		catch (final HttpServerErrorException httpSerEx)
+		catch (final HttpServerErrorException | HttpClientErrorException httpSerEx)
 		{
 			final String responseBody = httpSerEx.getResponseBodyAsString();
 			try

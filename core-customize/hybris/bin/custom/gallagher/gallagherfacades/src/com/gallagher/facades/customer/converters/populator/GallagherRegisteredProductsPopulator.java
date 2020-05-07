@@ -102,6 +102,10 @@ public class GallagherRegisteredProductsPopulator implements Populator<Gallagher
 				}
 			}
 		}
+		else
+		{
+			target.setName(source.getProductID());
+		}
 
 		if (null != source.getRegisteredProductAttachmentFolder()
 				&& null != source.getRegisteredProductAttachmentFolder().getRegisteredProductAttachmentFolderItem())

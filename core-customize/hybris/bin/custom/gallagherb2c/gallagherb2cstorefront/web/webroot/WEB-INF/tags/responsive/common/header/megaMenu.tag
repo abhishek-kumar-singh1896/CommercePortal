@@ -95,12 +95,12 @@
 
                                    <div class="my-app-dropdown-inner">
                                    		<ul>
-		                                    <cms:pageSlot position="MyAppDropdown" var="feature">
-		                                    	<c:forEach items="${feature.navigationNode.children}"
-															var="childLevel1">
-																<c:forEach items="${childLevel1.entries}" var="entry">
+		                                    <cms:pageSlot position="MyAppDropdown" var="appFeature">
+		                                    	<c:forEach items="${appFeature.navigationNode.children}"
+															var="appChildLevel1">
+																<c:forEach items="${appChildLevel1.entries}" var="appEntry">
 																	<li>
-																		<a href="${entry.item.url}" <c:if test ="${not empty entry.item.target && entry.item.target.code ne 'sameWindow'}">target="_blank"</c:if>> ${entry.item.linkName }</a>
+																		<a href="${appEntry.item.url}" <c:if test ="${not empty appEntry.item.target && appEntry.item.target.code ne 'sameWindow'}">target="_blank"</c:if>> ${appEntry.item.linkName }</a>
 																	</li>
 																</c:forEach>
 															</c:forEach>
@@ -140,11 +140,11 @@
                                                 </div>
                                             </div>
                                             </li>
-                                            <cms:pageSlot position="UserDropDown" var="feature">
-												<c:forEach items="${feature.navigationNode.children}"
-													var="childLevel1">
-													<c:forEach items="${childLevel1.entries}" var="entry">
-													<li>	<cms:component component="${entry.item}" 
+                                            <cms:pageSlot position="UserDropDown" var="userFeature">
+												<c:forEach items="${userFeature.navigationNode.children}"
+													var="userChildLevel">
+													<c:forEach items="${userChildLevel.entries}" var="userEntry">
+													<li>	<cms:component component="${userEntry.item}" 
 															evaluateRestriction="true" /></li>
 													</c:forEach>
 												</c:forEach>

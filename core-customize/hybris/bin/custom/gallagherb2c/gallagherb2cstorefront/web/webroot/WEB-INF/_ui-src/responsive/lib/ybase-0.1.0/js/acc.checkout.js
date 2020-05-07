@@ -179,13 +179,21 @@ ACC.checkout = {
 	},
 	bindTermAndCondition : function() {
 
-		$(document).on("input", ".Terms-1-Condition-1", function() {
+//		$(document).on("input", ".Terms-1-Condition-1", function() {
+//			if ($('#Terms1').is(':checked')) {
+//				$(".btn-place-order1").removeAttr("disabled");
+//			} else {
+//				$(".btn-place-order1").attr("disabled", true);
+//			}
+//
+//		});
+		
+		$('.Terms-1-Condition-1').change(function(){
 			if ($('#Terms1').is(':checked')) {
 				$(".btn-place-order1").removeAttr("disabled");
 			} else {
 				$(".btn-place-order1").attr("disabled", true);
 			}
-
 		});
 		
 		$(document).on("input", ".Terms-1-Condition-1", function() {
