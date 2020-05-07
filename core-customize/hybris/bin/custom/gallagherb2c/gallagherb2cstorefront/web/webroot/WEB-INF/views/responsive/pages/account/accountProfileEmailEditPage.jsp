@@ -37,8 +37,8 @@
 				<form:form action="update-email" method="post" modelAttribute="updateEmailForm">
 				
 				
-					<formElement:formInputBox idKey="profile.email" labelKey="profile.email" path="email" inputCSS="text" mandatory="true"/>
-					<formElement:formInputBox idKey="profile.checkEmail"  labelKey="profile.checkEmail" path="chkEmail" inputCSS="text" mandatory="true"/>
+					<formElement:formInputBox idKey="profile.email" labelKey="profile.email" path="email" inputCSS="text" mandatory="true" placeholder="Enter email address"/>
+					<formElement:formInputBox idKey="profile.checkEmail"  labelKey="profile.checkEmail" path="chkEmail" inputCSS="text" mandatory="true" placeholder="Confirm new email address"/>
 					<%-- <formElement:formPasswordBox idKey="profile.pwd" labelKey="profile.pwd" path="password" inputCSS="text form-control" mandatory="true"/>
 					<input type="hidden" id="recaptchaChallangeAnswered" value="${fn:escapeXml(requestScope.recaptchaChallangeAnswered)}"/>
 					<div class="form_field-elements control-group js-recaptcha-captchaaddon"></div> --%>

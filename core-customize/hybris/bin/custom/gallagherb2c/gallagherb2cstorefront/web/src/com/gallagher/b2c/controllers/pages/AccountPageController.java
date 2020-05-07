@@ -110,6 +110,7 @@ public class AccountPageController extends AbstractSearchPageController
 	private static final String FORM_GLOBAL_ERROR = "form.global.error";
 	private static final String PROFILE_CURRENT_PASSWORD_INVALID = "profile.currentPassword.invalid";
 	private static final String TEXT_ACCOUNT_PROFILE = "text.account.profile";
+	private static final String TEXT_ACCOUNT_EMAILADDRESS = "text.account.email";
 	private static final String ADDRESS_DATA_ATTR = "addressData";
 	private static final String ADDRESS_FORM_ATTR = "addressForm";
 	private static final String COUNTRY_ATTR = "country";
@@ -437,13 +438,13 @@ public class AccountPageController extends AbstractSearchPageController
 		final CustomerData customerData = customerFacade.getCurrentCustomer();
 		final UpdateEmailForm updateEmailForm = new UpdateEmailForm();
 
-		updateEmailForm.setEmail(customerData.getDisplayUid());
+		//updateEmailForm.setEmail(customerData.getDisplayUid());
 
 		model.addAttribute("updateEmailForm", updateEmailForm);
 		final ContentPageModel updateEmailPage = getContentPageForLabelOrId(UPDATE_EMAIL_CMS_PAGE);
 		storeCmsPageInModel(model, updateEmailPage);
 		setUpMetaDataForContentPage(model, updateEmailPage);
-		model.addAttribute(BREADCRUMBS_ATTR, accountBreadcrumbBuilder.getBreadcrumbs(TEXT_ACCOUNT_PROFILE));
+		model.addAttribute(BREADCRUMBS_ATTR, accountBreadcrumbBuilder.getBreadcrumbs(TEXT_ACCOUNT_EMAILADDRESS));
 		model.addAttribute(ThirdPartyConstants.SeoRobots.META_ROBOTS, ThirdPartyConstants.SeoRobots.NOINDEX_NOFOLLOW);
 		return getViewForPage(model);
 	}
