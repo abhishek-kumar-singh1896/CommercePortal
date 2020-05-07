@@ -274,6 +274,7 @@ public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 
 		final GallagherKeycloakUserRequest request = new GallagherKeycloakUserRequest();
 		request.setEmail(customerData.getUid());
+		request.setUsername(customerData.getUid());
 		request.setEnabled(true);
 
 		final HttpEntity<GallagherKeycloakUserRequest> entity = new HttpEntity<>(request, headers);

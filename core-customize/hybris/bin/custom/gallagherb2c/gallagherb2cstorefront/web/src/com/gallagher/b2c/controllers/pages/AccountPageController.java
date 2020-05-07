@@ -476,7 +476,7 @@ public class AccountPageController extends AbstractSearchPageController
 				final CustomerModel currentCustomerData = (CustomerModel) userService.getCurrentUser();
 
 				final CustomerData customerData = new CustomerData();
-				customerData.setEmail(updateEmailForm.getEmail());
+				customerData.setUid(updateEmailForm.getEmail());
 				customerData.setKeycloakGUID(currentCustomerData.getKeycloakGUID());
 				//	customerFacade.changeUid(updateEmailForm.getEmail(),updateEmailForm.getPassword());
 
@@ -503,6 +503,13 @@ public class AccountPageController extends AbstractSearchPageController
 
 			catch (final HttpClientErrorException error)
 			{
+				final String errorMessage = error.getResponseBodyAsString();
+				if (errorMessage.contains("same username"))
+				{
+					bindingResult.rejectValue("email", "profile.email.unique");
+					returnAction = setErrorMessagesAndCMSPage(model, UPDATE_EMAIL_CMS_PAGE);
+				}
+
 				LOG.error("Some went wrong while updating the email." + error);
 			}
 		}
