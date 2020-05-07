@@ -39,7 +39,8 @@ public class GallagherDefaultCheckoutFacadeImpl extends DefaultAcceleratorChecko
 			final AddressModel currentUserDefaultShipmentAddress = currentUser.getDefaultShipmentAddress();
 			if (currentUserDefaultShipmentAddress != null)
 			{
-				final Collection<CountryModel> countries = getCommonI18NService().getAllCountries();
+				final Collection<CountryModel> countries = cartModel.getStore() == null ? null
+						: cartModel.getStore().getDeliveryCountries();
 				if (CollectionUtils.isNotEmpty(countries) && countries.contains(currentUserDefaultShipmentAddress.getCountry()))
 				{
 					final AddressModel supportedDeliveryAddress = getDeliveryAddressModelForCode(
