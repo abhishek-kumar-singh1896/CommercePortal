@@ -1,6 +1,3 @@
-/**
- *
- */
 package com.gallagher.b2c.controllers.pages;
 
 import de.hybris.platform.acceleratorstorefrontcommons.annotations.RequireHardLogIn;
@@ -33,8 +30,8 @@ import java.util.stream.Collectors;
 import javax.annotation.Resource;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -54,6 +51,8 @@ import com.gallagher.b2c.util.GallagherProductRegistrationUtil;
 import com.gallagher.b2c.validators.RegisterProductValidator;
 import com.gallagher.facades.GallagherRegisteredProductsFacade;
 import com.gallagher.outboundservices.request.dto.RegisterProductRequest;
+import com.gallagher.outboundservices.response.dto.GallagherRegisterProductErrorResponse;
+import com.hybris.charon.exp.InternalServerException;
 
 
 /**
@@ -130,7 +129,7 @@ public class RegisterProductController extends AbstractPageController
 		final long fileSie = getSiteConfigService().getLong(IMPORT_FILE_MAX_SIZE_BYTES_KEY, 0);
 		model.addAttribute("fileMaxSize", fileSie == 0 ? 0 : (fileSie / 1024) / 1024);
 
-		model.addAttribute(new RegisterProductForm());
+		model.addAttribute("registerProductForm", new RegisterProductForm());
 		return getView();
 	}
 
@@ -194,7 +193,7 @@ public class RegisterProductController extends AbstractPageController
 
 
 	/**
-	 * @param registerProductForm1
+	 * @param registerProductForm
 	 * @param model
 	 * @param redirectAttributes
 	 * @return
@@ -203,56 +202,48 @@ public class RegisterProductController extends AbstractPageController
 	@RequestMapping(method = RequestMethod.POST, value = "/submit")
 	@RequireHardLogIn
 	public String submitRegisterProduct(@ModelAttribute
-	final RegisterProductForm registerProductForm1, final Model model, final RedirectAttributes redirectAttributes)
-			throws CMSItemNotFoundException
+	final RegisterProductForm registerProductForm, final Model model, final RedirectAttributes redirectAttributes,
+			final BindingResult bindingResult) throws CMSItemNotFoundException
 	{
 		final RegisterProductRequest request = new RegisterProductRequest();
-		GallagherProductRegistrationUtil.convert(registerProductForm1, request, userService.getCurrentUser());
+		GallagherProductRegistrationUtil.convert(registerProductForm, request, userService.getCurrentUser());
 		final RegisterProductForm rg = new RegisterProductForm();
+		String redirectPage = null;
 		try
 		{
-			final HttpStatus status = gallagherRegisteredProductsFacade.registerProduct(request);
+			final GallagherRegisterProductErrorResponse error = gallagherRegisteredProductsFacade.registerProduct(request);
 
-			if (HttpStatus.CREATED.equals(status))
+			if (error == null)
 			{
 				GlobalMessages.addConfMessage(model, "registerProduct.confirmation.message.title");
+				GlobalMessages.addFlashMessage(redirectAttributes, GlobalMessages.CONF_MESSAGES_HOLDER,
+						"registerProduct.confirmation.message.title", null);
+				redirectPage = REDIRECT_TO_REGISTERED_PRODUCT;
 			}
 			else
 			{
-				populateForm(registerProductForm1, rg);
-				GlobalMessages.addMessage(model, GlobalMessages.ERROR_MESSAGES_HOLDER, "registerProduct.error.message.title", null);
+				if (error.getError() != null && error.getError().getMessage() != null
+						&& StringUtils.isNotEmpty(error.getError().getMessage().getValue()))
+				{
+					GlobalMessages.addMessage(model, GlobalMessages.ERROR_MESSAGES_HOLDER, error.getError().getMessage().getValue(),
+							null);
+				}
+				else
+				{
+					GlobalMessages.addMessage(model, GlobalMessages.ERROR_MESSAGES_HOLDER, "registerProduct.error.message.title",
+							null);
+				}
+				redirectPage = getProductRegistrationPage(model);
+				model.addAttribute("registerProductForm", registerProductForm);
 			}
 		}
-		catch (final RuntimeException exception)
+		catch (final UnknownIdentifierException | InternalServerException exception)
 		{
-			populateForm(registerProductForm1, rg);
-			GlobalMessages.addFlashMessage(redirectAttributes, GlobalMessages.ERROR_MESSAGES_HOLDER,
-					"registerProduct.error.message.title", null);
-			return REDIRECT_TO_REGISTER_PRODUCT;
+			redirectPage = getProductRegistrationPage(model);
+			model.addAttribute("registerProductForm", registerProductForm);
+			GlobalMessages.addMessage(model, GlobalMessages.ERROR_MESSAGES_HOLDER, "registerProduct.error.message.title", null);
 		}
-		model.addAttribute(rg);
-		GlobalMessages.addFlashMessage(redirectAttributes, GlobalMessages.CONF_MESSAGES_HOLDER,
-				"registerProduct.confirmation.message.title", null);
-		return REDIRECT_TO_REGISTERED_PRODUCT;
-	}
-
-
-	/**
-	 * @param registerProductForm1
-	 * @param rg
-	 */
-	private void populateForm(final RegisterProductForm registerProductForm1, final RegisterProductForm rg)
-	{
-		rg.setAddressLine1(registerProductForm1.getAddressLine1());
-		rg.setAddressLine2(registerProductForm1.getAddressLine2());
-		rg.setCountry(registerProductForm1.getCountry());
-		rg.setDatePurchased(registerProductForm1.getDatePurchased());
-		rg.setPhoneNumber(registerProductForm1.getPhoneNumber());
-		rg.setPostCode(registerProductForm1.getProductSku());
-		rg.setSerialNumber(registerProductForm1.getSerialNumber());
-		rg.setProductSku(registerProductForm1.getProductSku());
-		rg.setTownCity(registerProductForm1.getTownCity());
-		rg.setRegion(registerProductForm1.getRegion());
+		return redirectPage;
 	}
 
 	protected void populateFieldErrors(final RPFormResponseData jsonResponse, final List<FieldError> fieldErrors)
