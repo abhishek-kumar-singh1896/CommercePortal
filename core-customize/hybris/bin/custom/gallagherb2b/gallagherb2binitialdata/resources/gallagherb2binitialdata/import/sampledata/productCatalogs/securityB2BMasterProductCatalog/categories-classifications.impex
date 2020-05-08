@@ -29,6 +29,11 @@ INSERT_UPDATE ClassificationClass;$classCatalogVersion;code[unique=true];allowed
 # Classification Categories for 'access-control'
 ;;controllers
 ;;readers-and-terminals
+;;credentials
+;;starter-kits
+;;insulators
+;;fence-controllers
+;;sensors
 
 
 
@@ -56,31 +61,72 @@ INSERT_UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true];;;;;
 ;;maximum-read-distance
 ;;environmental-protection
 ;;impact-rating
-;;voltage-readers
+;;voltage-Vdc
 ;;dimensions-mm
 ;;dimensions-inches
 ;;cable-specifications-cat5e
 ;;cable-specifications-hbus
 ;;standards-compliance-readers
-;;voltage-controllers
-;;dimensions-controllers
+;;voltage
+;;dimensions
 ;;ethernet-network-connection
 ;;rs485-device-communications
 ;;ports
 ;;tcp/ip-protocol
 ;;standards-compliance-controllers
-;;device-limits?
+;;device-limits
 ;;ethernet-connection-type
 
-
+INSERT_UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true];;;;;;
+;;material
+;;tracking-distance
+;;dimensions-mm
+;;fence-circuits
+;;pulse-rate
+;;low-feel
+;;output-per-circuit
+;;maximum-hv-circuit-resistance
+;;hv
+;;hv-dual-pulse
+;;max-recommended-fence-zone-length
+;;sync-options
+;;max-contact-rating
+;;software
+;;power-supply-voltage
+;;power-consumption
+;;aux-dc-output
+;;internal-backup-battery
+;;protection-rating
+;;operating-tempreature-cel
+;;operating-tempreature-fah
+;;communications-transfer-speed
+;;max-hbus-distance
+;;cable-specification
+;;encryption-level
+;;max-lv-sync-cable-distance
+;;standards-compliance
+;;current
+;;number-of-sensors-per-controller
+;;command-centre-version
+;;environmental-protection-rating
+;;impact-rating
+;;temperature-operating-cel
+;;temperature-operating-fah
+;;temperature-storage-cel
+;;temperature-storage-fah
 
 
 # Links ClassificationClasses to Categories
 INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories;;;;;;
-;t-series-readers-and-terminals;Assigned Features;
-;t-series-readers-and-terminals;Cable specifications (HBUS data only);
+;readers-and-terminals;Assigned Features;
+;readers-and-terminals;Cable specifications (HBUS data only);
 ;controllers;controllers
 ;readers-and-terminals;readers-and-terminals
+;credentials;credentials
+;starter-kits;starter-kits
+;insulators;insulators
+;fence-controllers;fence-controllers
+;sensors;sensors
 
 
 INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attributeType(code[default=string]);multiValued[default=false];range[default=false];localized[default=false]
@@ -111,7 +157,7 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;controllers;maximum-read-distance;1;mm
 ;controllers;environmental-protection;2;ip-rating
 ;controllers;impact-rating;3;ik-rating
-;controllers;voltage-readers;4;Vdc
+;controllers;voltage-Vdc;4;Vdc
 ;controllers;dimensions-mm;5;mm
 ;controllers;dimensions-inches;6;inches
 ;controllers;cable-specifications-cat5e;7
@@ -121,12 +167,62 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 
 
 # For Classification Category 'readers-and-terminals'
-;readers-and-terminals;voltage-controllers;1
-;readers-and-terminals;dimensions-controllers;2
+;readers-and-terminals;voltage;1
+;readers-and-terminals;dimensions;2
 ;readers-and-terminals;ethernet-network-connection;3
 ;readers-and-terminals;rs485-device-communications;4
 ;readers-and-terminals;ports;5
 ;readers-and-terminals;tcp/ip-protocol;6
 ;readers-and-terminals;standards-compliance-controllers;7
-;readers-and-terminals;device-limits?;8
+;readers-and-terminals;device-limits;8
 ;readers-and-terminals;ethernet-connection-type;9
+
+
+INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attributeType(code[default=string]);multiValued[default=false];range[default=false];localized[default=false]
+									;insulators;material;1;
+									;insulators;tracking-distance;2;mm
+									;insulators;dimensions-mm;3;mm
+
+									;fence-controllers;fence-circuits;1;
+									;fence-controllers;pulse-rate;2;
+									;fence-controllers;low-feel;3;
+									;fence-controllers;output-per-circuit;4;J
+									;fence-controllers;maximum-hv-circuit-resistance;5;ohms
+									;fence-controllers;hv;6;
+									;fence-controllers;hv-dual-pulse;7;
+									;fence-controllers;max-recommended-fence-zone-length;8;m
+									;fence-controllers;sync-options;9;
+									;fence-controllers;max-contact-rating;10;
+									;fence-controllers;software;11;
+									;fence-controllers;power-supply-voltage;12;V-Hz
+									;fence-controllers;power-consumption;13;W
+									;fence-controllers;aux-dc-output;14;V-Hz
+									;fence-controllers;internal-backup-battery;15;
+									;fence-controllers;protection-rating;16;ip-rating
+									;fence-controllers;operating-tempreature-cel;17;cel
+									;fence-controllers;operating-tempreature-fah;18;fah
+									;fence-controllers;communications-transfer-speed;19;
+									;fence-controllers;max-hbus-distance;20;m
+									;fence-controllers;cable-specification;21;
+									;fence-controllers;encryption-level;22;AES
+									;fence-controllers;max-lv-sync-cable-distance;23;km
+									;fence-controllers;standards-compliance;24;
+
+									;sensors;voltage-Vdc;1;Vdc
+									;sensors;power-consumption;2;mA
+									;sensors;current;3;mA
+									;sensors;operating-tempreature-cel;4;cel
+									;sensors;operating-tempreature-fah;5;fah
+									;sensors;number-of-sensors-per-controller;6;
+									;sensors;dimensions-mm;7;mm
+									;sensors;command-centre-version;8;
+									;sensors;environmental-protection-rating;9;ip-rating
+									;sensors;impact-rating;10;ik-rating
+
+									;starter-kits;dimensions-mm;1;mm
+
+									;credentials ;dimensions-mm;1;mm
+									;credentials ;temperature-operating-cel;2;cel
+									;credentials ;temperature-operating-fah;3;fah
+									;credentials ;temperature-storage-cel;4;cel
+									;credentials ;temperature-storage-fah;5;fah

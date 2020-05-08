@@ -32,11 +32,14 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
 ;controllers;;Controllers
 ;readers-and-terminals;;Readers and Terminals
 ;security-kits;;Security Kits
+;starter-kits;;Starter Kits
+;credentials;;Credentials
 ;other-ach;;Other
 
 # Perimeter Hardware Categories
 ;fence-controllers;;Fence Controllers
 ;sensors;;Sensors
+;insulators;;Insulators
 ;other-ph;;Other
 
 

@@ -1,0 +1,74 @@
+$productCatalog=amB2CMasterProductCatalog
+$productCatalogName=Animal Management B2C US Product Catalog
+$classCatalogVersion=catalogversion(catalog(id[default='AMB2CClassification']),version[default='1.0'])[unique=true,default='AMB2CClassification:1.0']
+$classSystemVersion=systemVersion(catalog(id[default='AMB2CClassification']),version[default='1.0'])[unique=true]
+
+# Language
+$lang=en_US
+
+UPDATE ClassificationAttribute	;code[unique=true];name[lang=$lang];$classSystemVersion
+								;animal;Animal
+								;animal-type;Animal Type
+								;capacity;Capacity
+								;capacity-l;Capacity (L)
+								;clean-wire-fence-distance;Clean Wire Fence Distance
+								;livestock-web-mobile-app;Compatible with Gallagher Livestock web/mobile app
+								;conductor-capacity;Conductor Capacity
+								;contents;Contents
+								;current;Current
+								;dc-input;DC Input
+								;diameter-or-tape-width;Diameter or Tape Width
+								;digital-display;Digital Display
+								;drafting;Drafting
+								;eid-compatiable;EID Compatiable
+								;energy-output;Energy (output)
+								;energy-stored;Energy (stored)
+								;fence-type;Fence Type
+								;gate-type;Gate Type
+								;gear-ratio;Gear Ratio
+								;i-series-compatible;i Series Compatible
+								;includes-joint-clamp;Includes Joint Clamp
+								;insulator-type;Insulator Type
+								;intergrated-eid-reader;Intergrated EID Reader
+								;internal-rechargeable-battery;Internal rechargeable battery
+								;i-series-compatiable;i-series Compatiable
+								;length;Length
+								;maximum-output-current;Maximum output current
+								;measures-current;Measures Current
+								;measures-voltage;Measures Voltage
+								;mixed-metals;Mixed Metals
+								;mount-type;Mount Type
+								;number-of-traits-recorded;Number of Traits Recorded
+								;number-of-wires;Number of Wires
+								;ohms-per-km;Ohms Per Km
+								;outdoors-suitable;Outdoors Suitable
+								;pack-quantity;Pack Quantity
+								;post-height;Post Height
+								;post-type;Post Type
+								;power-input;Power Input
+								;pre-wound-with;Pre-wound with
+								;product-depth;Product Depth
+								;product-features;Product Features
+								;product-height;Product Height
+								;product-length;Product Length
+								;product-type;Product Type
+								;product-weight;Product Weight
+								;product-width;Product Width
+								;property-size;Property Size
+								;rechargeable;Rechargeable
+								;strainer-type;Strainer Type
+								;typical-fence-distance-gallagher-recommendation;Typical Fence Distance (Gallagher Recommendation)
+								;use;Use
+								;view-pedigree-tree;View Pedigree Tree
+								;voltage;Voltage
+								;voltage-10km-fence;Voltage (kV) at 10km of fence
+								;voltage-1km-fence;Voltage (kV) at 1km of fence
+								;voltage-2km-fence;Voltage (kV) at 2km of fence
+								;voltage-500m-fence;Voltage (kV) at 500m of fence
+								;voltage-5km-fence;Voltage (kV) at 5km of fence
+								;warranty;Warranty
+								;watts;Watts
+								;weighing-capacity;Weighing Capacity
+								;wifi;Wifi
+								;wire-amount;Wire Amount
+								;wire-diameter;Wire Diameter

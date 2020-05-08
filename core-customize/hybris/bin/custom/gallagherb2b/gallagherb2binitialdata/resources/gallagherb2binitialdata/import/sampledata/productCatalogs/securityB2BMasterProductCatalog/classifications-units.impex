@@ -21,3 +21,12 @@ INSERT_UPDATE ClassificationAttributeUnit;code[unique=true];symbol;unitType;name
 ;ip-rating;ip-rating;ip-rating;IP rating;
 ;ik-rating;ik-rating;ik-rating;IK rating;
 ;inches;inches;inches;Inches;
+
+;J;J;J;Joules
+;ohms;ohms;ohms;ohms
+;V-Hz;V/Hz;V/Hz;V/Hz
+;W;W;W;Watt
+;cel;°C;°C;Celsius
+;fah;°F;°F;Fahrenheit
+;AES;AES;AES;AES
+;km;km;km;kilometer

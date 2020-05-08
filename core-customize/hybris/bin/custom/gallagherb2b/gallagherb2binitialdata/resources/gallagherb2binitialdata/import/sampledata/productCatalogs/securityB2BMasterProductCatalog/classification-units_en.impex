@@ -26,3 +26,11 @@ UPDATE ClassificationAttributeUnit;code[unique=true];$systemVersion;name[lang=$l
 ;ip-rating;;IP rating;
 ;ik-rating;;IK rating;
 ;inches;;Inches
+;J;J;J;Joules
+;ohms;ohms
+;V-Hz;V/Hz
+;W;Watt
+;cel;Celsius
+;fah;Fahrenheit
+;AES;AES
+;km;kilometer

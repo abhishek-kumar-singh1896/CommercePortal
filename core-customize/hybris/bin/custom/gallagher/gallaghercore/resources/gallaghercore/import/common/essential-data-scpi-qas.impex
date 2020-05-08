@@ -6,21 +6,21 @@
 #***  OAuth CredentialS ***#
 #**************************#
 INSERT_UPDATE OAuthClientDetails ; clientId[unique = true] ; oAuthUrl                                                                    ; scope 
-                                 ; CommerceCloud_Dev       ; https://oauthasservices-c3d61cfcf.ap1.hana.ondemand.com/oauth2/api/v1/token 
+                                 ; CommerceCloud_QAS       ; https://oauthasservices-c3d61cfcf.ap1.hana.ondemand.com/oauth2/api/v1/token 
                                  
 INSERT_UPDATE ExposedOAuthCredential ; id[unique = true]   ; oAuthClientDetails(clientId) ; password        
-                                     ; scpiOauthCredential ; CommerceCloud_Dev            ; Integration123! 
+                                     ; scpiOauthCredential ; CommerceCloud_QAS            ; 1nt3Gr4T10n123! 
                                      
 #********************#               
 #*** Customer URL ***#               
 #********************#               
-$customerUrl = https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com/gw/odata/SAP/ZGGL-REPLICATE-CUSTOMER-FROM-SAP-COMMERCE-TO-SAP-C4C
+$customerUrl = https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com/gw/odata/SAP/ZGGL-REPLICATE-CUSTOMER-FROM-SAP-COMMERCE-TO-SAP-C4C_QAS
 $customerVersion = v=1               
                                      
 #************************#           
 #*** B2B Customer URL ***#           
 #************************#           
-$b2bCustomerUrl = https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com/gw/odata/SAP/ZGGL-REPLICATE-B2B-CUSTOMER-FROM-SAP-COMMERCE-CLOUD-TO-C4C
+$b2bCustomerUrl = https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com/gw/odata/SAP/ZGGL-REPLICATE-B2B-CUSTOMER-FROM-SAP-COMMERCE-CLOUD-TO-C4C_QAS
 $b2bCustomerVersion = v=1            
                                      
 #******************#                 
@@ -38,19 +38,19 @@ $cancelOrderVersion = v=1
 #******************************#     
 #*** Contact Collection URL ***#     
 #******************************#     
-$contactCollectionUrl = https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com/gw/odata/SAP/GGL_C4C_CONTACTSEARCH
+$contactCollectionUrl = https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com/gw/odata/SAP/GGL_C4C_CONTACTSEARCH_QAS
 $contactCollectionVersion = v=1      
                                      
 #****************************#       
 #*** Register Product URL ***#       
 #****************************#       
-$registerProductUrl = https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com/gw/odata/SAP/GGL_C4C_POSTCUSTOMERPRODUCT
+$registerProductUrl = https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com/gw/odata/SAP/GGL_C4C_POSTCUSTOMERPRODUCT_QAS
 $registerProductVersion = v=1        
                                      
 #*****************************************#
 #*** Registered Product Collection URL ***#
 #*****************************************#
-$registeredProductCollectionUrl = https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com/http/RegisteredProductCollection
+$registeredProductCollectionUrl = https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com/http/RegisteredProductCollection/QAS/RegisteredProductCollection
                                      
 #****************************#       
 #***  Destination Target  ***#       

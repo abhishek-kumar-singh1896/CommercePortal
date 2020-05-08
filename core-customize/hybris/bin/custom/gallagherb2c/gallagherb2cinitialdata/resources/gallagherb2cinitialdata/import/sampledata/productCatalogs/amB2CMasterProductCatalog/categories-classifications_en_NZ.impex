@@ -1,0 +1,76 @@
+$productCatalog=amB2CMasterProductCatalog
+$productCatalogName=Animal Management B2C US Product Catalog
+$classCatalogVersion=catalogversion(catalog(id[default='AMB2CClassification']),version[default='1.0'])[unique=true,default='AMB2CClassification:1.0']
+$classSystemVersion=systemVersion(catalog(id[default='AMB2CClassification']),version[default='1.0'])[unique=true]
+
+# Language
+$lang=en_NZ
+
+UPDATE ClassificationAttribute	;code[unique=true];name[lang=$lang];$classSystemVersion
+								;energy-stored;Energy (stored)
+								;energy-output;Energy (output)
+								;multiwire-distance-gallagher-recommendation;Multiwire Distance (Gallagher Recommendation)
+								;multiwire-distance-ideal-conditions;Multiwire Distance (ideal conditions)
+								;i-series-compatible;i Series Compatible
+								;outdoors-suitable;Outdoors Suitable
+								;product-height;Product Height
+								;product-width;Product Width
+								;product-depth;Product Depth
+								;product-weight;Product Weight
+								;property-size;Property Size
+								;power-input;Power Input
+								;watts;Watts
+								;warranty;Warranty
+								;voltage;Voltage
+								;dc-input;DC Input
+								;maximum-output-current;Maximum output current
+								;capacity;Capacity
+								;current;Current
+								;measures-voltage;Measures Voltage
+								;measures-current;Measures Current
+								;digital-display;Digital Display
+								;voltage-2km-fence;Voltage (kV) at 2km of fence
+								;voltage-5km-fence;Voltage (kV) at 5km of fence
+								;diameter-or-tape-width;Diameter or Tape Width
+								;ohms-per-km;Ohms Per Km
+								;voltage-10km-fence;Voltage (kV) at 10km of fence
+								;animal;Animal
+								;product-length;Product Length
+								;contents;Contents
+								;post-height;Post Height
+								;number-of-wires;Number of Wires
+								;strainer-type;Strainer Type
+								;includes-joint-clamp;Includes Joint Clamp
+								;post-type;Post Type
+								;insulator-type;Insulator Type
+								;wire-diameter;Wire Diameter
+								;mount-type;Mount Type
+								;gate-type;Gate Type
+								;use;Use
+								;voltage-500m-fence;Voltage (kV) at 500m of fence
+								;voltage-1km-fence;Voltage (kV) at 1km of fence
+								;mixed-metals;Mixed Metals
+								;length;Length
+								;gear-ratio;Gear Ratio
+								;conductor-capacity;Conductor Capacity
+								;pre-wound-with;Pre-wound with
+								;animal-type;Animal Type
+								;fence-type;Fence Type
+								;wire;Wire
+								;wire-type;Wire Type
+								;height;Height
+								;strength;Strength
+								;product-type;Product Type
+								;length-of-shaft;Length of Shaft (A)
+								;diameter-of-pin;Diameter of Pin (B)
+								;height-of-pin;Height of Pin (C)
+								;wifi;Wifi
+								;number-of-traits-recorded;Number of Traits Recorded
+								;eid-compatiable;EID Compatiable
+								;internal-rechargeable-battery;Internal rechargeable battery
+								;drafting;Drafting
+								;intergrated-eid-reader;Intergrated EID Reader
+								;livestock-web-mobile-app;Compatible with Gallagher Livestock web/mobile app
+								;view-pedigree-tree;View Pedigree Tree
+								;weighing-capacity;Weighing Capacity
+								;rechargeable;Rechargeable

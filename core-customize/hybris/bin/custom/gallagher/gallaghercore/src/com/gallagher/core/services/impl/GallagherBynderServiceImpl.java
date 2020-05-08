@@ -35,6 +35,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -130,7 +131,7 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 		mediaModel.setMediaContainer(mediaContainerModel);
 		mediaModel.setFolder(folder);
 		mediaModel.setRealFileName(gallagherBynderResponse.getName());
-		mediaModel.setDescription(gallagherBynderResponse.getDescription());
+		mediaModel.setDescription(getMediaDescription(gallagherBynderResponse));
 		mediaModel.setAltText(gallagherBynderResponse.getFileSize() / 1000000 + " mb");
 
 		//adding base Stores
@@ -210,7 +211,7 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 		mediaModel.setCatalogVersion(catlogmodel);
 		mediaModel.setFolder(folder);
 		mediaModel.setRealFileName(gallagherBynderResponse.getName());
-		mediaModel.setDescription(gallagherBynderResponse.getDescription());
+		mediaModel.setDescription(getMediaDescription(gallagherBynderResponse));
 		mediaModel.setAltText(gallagherBynderResponse.getFileSize() / 1000000 + " mb");
 
 		modelService.save(mediaModel);
@@ -235,6 +236,21 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 			}
 		}
 		return true;
+	}
+
+	/**
+	 * Returns the media description. If there are more than 200 characters, first 200 characters will be considered
+	 *
+	 * @param gallagherBynderResponse
+	 *           to get the asset description
+	 * @return description
+	 */
+	private String getMediaDescription(final GallagherBynderResponse gallagherBynderResponse)
+	{
+		return StringUtils.isNotEmpty(gallagherBynderResponse.getDescription())
+				&& gallagherBynderResponse.getDescription().length() > 200
+						? gallagherBynderResponse.getDescription().substring(0, 199)
+						: gallagherBynderResponse.getDescription();
 	}
 
 	@Override
