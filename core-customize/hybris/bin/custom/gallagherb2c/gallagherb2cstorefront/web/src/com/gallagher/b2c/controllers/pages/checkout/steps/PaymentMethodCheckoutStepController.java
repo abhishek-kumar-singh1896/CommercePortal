@@ -26,7 +26,6 @@ import de.hybris.platform.commercefacades.order.data.CartData;
 import de.hybris.platform.commercefacades.user.data.AddressData;
 import de.hybris.platform.commercefacades.user.data.CountryData;
 import de.hybris.platform.commerceservices.enums.CountryType;
-import com.gallagher.b2c.controllers.ControllerConstants;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -49,6 +48,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.gallagher.b2c.controllers.ControllerConstants;
 
 
 @Controller
@@ -408,6 +409,7 @@ public class PaymentMethodCheckoutStepController extends AbstractCheckoutStepCon
 		CYBERSOURCE_SOP_CARD_TYPES.put("visa", "001");
 		CYBERSOURCE_SOP_CARD_TYPES.put("master", "002");
 		CYBERSOURCE_SOP_CARD_TYPES.put("amex", "003");
+		CYBERSOURCE_SOP_CARD_TYPES.put("discover", "004");
 		CYBERSOURCE_SOP_CARD_TYPES.put("diners", "005");
 		CYBERSOURCE_SOP_CARD_TYPES.put("maestro", "024");
 	}

@@ -44,7 +44,8 @@ UPDATE CreditCardType ; code[unique=true]   ; name[lang=$lang]
                       ; master              ; "Mastercard"          
                       ; mastercard_eurocard ; "Mastercard/Eurocard" 
                       ; switch              ; "Switch"              
-                      ; visa                ; "Visa"                
+                      ; visa                ; "Visa" 
+                      ; discover            ; "Discover"                
                       
 # DistanceUnits for Storelocator
 UPDATE DistanceUnit ; code[unique=true] ; name[lang=$lang] 
