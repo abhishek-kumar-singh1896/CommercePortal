@@ -3415,7 +3415,8 @@ $lang=en
 								   
 								   
 INSERT_UPDATE VariantCategory      ; code[unique=true] ; name       ; $supercategories ; hasImage ; $catalogVersion ; allowedPrincipals(uid)[default='customergroup']
-                                   ;B2B_Controllers     ;Controllers;B2B_Color          ;true
+                                   ; B2B_Color         ; Color Variant    ;                  ; true     
+								   ;B2B_Controllers     ;Controllers Variant;          ;true
 								   
 							
 							
@@ -3510,7 +3511,10 @@ INSERT_UPDATE Category;code[unique=true];allowedPrincipals(uid)[default='custome
 ;controllers
 ;readers-and-terminals
 ;security-kits
+;starter-kits
+;credentials
 ;other-ach
+
 
 #1.2 High Security sub-categories
 
@@ -3537,6 +3541,8 @@ INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
 ;controllers;access-control
 ;readers-and-terminals;access-control
 ;security-kits;access-control
+;starter-kits;access-control
+;credentials;access-control
 ;other-ach;access-control
 
 #perimeter-hardware
@@ -3573,6 +3579,8 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
 ;controllers;;Controllers
 ;readers-and-terminals;;Readers and Terminals
 ;security-kits;;Security Kits
+;starter-kits;Starter Kits
+;credentials;Credentials
 ;other-ach;;Other
 
 # Perimeter Hardware Categories

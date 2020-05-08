@@ -22,8 +22,8 @@ $lang=en
  
 # Insert Variant Category
 INSERT_UPDATE VariantCategory ; code[unique=true] ; name        ; $supercategories ; hasImage ; $catalogVersion ; allowedPrincipals(uid)[default='customergroup'] 
-                              ; B2B_Color         ; Color       ;                  ; true     
-                              ; B2B_Controllers   ; Controllers ; B2B_Color        ; true     
+                              ; B2B_Color         ; Color Variant    ;                  ; true     
+                              ; B2B_Controllers   ; Controllers Variant ; 			        ; true     
                               
 #Insert Variant Value Category
 INSERT_UPDATE VariantValueCategory ; code[unique=true]      ; name                  ; $supercategories ; sequence ; $catalogVersion ; allowedPrincipals(uid)[default='customergroup'] 
