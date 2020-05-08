@@ -53,19 +53,55 @@ UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true];name[lang=$
 ;;maximum-read-distance;maximum read distance
 ;;environmental-protection;Environmental Protection
 ;;impact-rating;Impact rating
-;;voltage-readers;Voltage
+;;voltage-Vdc;Voltage
 ;;dimensions-mm;Dimensions
 ;;dimensions-inches;Dimensions
 ;;cable-specifications-cat5e;Cable Specifications Cat5e
 ;;cable-specifications-hbus;Cable Specifications HBUS
 ;;standards-compliance-readers;Standards compliance
-;;voltage-controllers;Voltage
-;;dimensions-controllers;Dimensions
+;;voltage;Voltage
+;;dimensions;Dimensions
 ;;ethernet-network-connection;Ethernet network Connection
 ;;rs485-device-communications;RS485 Device Communications
 ;;ports;Ports
 ;;tcp/ip-protocol;TCP/IP Protocol
 ;;standards-compliance-controllers;Standards Compliance
-;;device-limits?;Device limits?
+;;device-limits;Device limits
 ;;ethernet-connection-type;Ethernet connection type
 
+UPDATE ClassificationAttribute;code[unique=true];name[lang=$lang];$classSystemVersion
+							;temperature-operating-cel;Temperature (Operating)
+							;temperature-storage-cel;Temperature (Storage)
+							;temperature-operating-fah;Temperature (Operating)
+							;temperature-storage-fah;Temperature (Storage)
+							;material;Material
+							;tracking-distance;Tracking distance
+							;fence-circuits;Fence Circuits 
+							;pulse-rate;Pulse rate
+							;low-feel;Low Feel
+							;output-per-circuit;Output per Circuit
+							;maximum-hv-circuit-resistance;Maximum HV circuit resistance
+							;hv;HV
+							;hv-dual-pulse;HV Dual Pulse
+							;max-recommended-fence-zone-length;Max recommended fence zone length
+							;sync-options;Sync options
+							;max-contact-rating;Max contact rating
+							;software;Software
+							;power-supply-voltage;Power supply voltage
+							;power-consumption;Power Consumption
+							;aux-dc-output;Aux DC Output
+							;internal-backup-battery;Internal Backup battery
+							;protection-rating;Protection rating
+							;communications-transfer-speed;Communications Transfer speed
+							;max-hbus-distance;Max HBUS Distance 
+							;cable-specification;Cable Specification
+							;encryption-level;Encryption level
+							;max-lv-sync-cable-distance;Max LV sync cable distance
+							;standards-compliance;Standards compliance
+							;power-consumption;Power Consumption
+							;current;Current
+							;operating-tempreature-cel;Operating Tempreature
+							;operating-tempreature-fah;Operating Tempreature
+							;number-of-sensors-per-controller;Number of Sensors per Controller
+							;command-centre-version;Command Centre version
+							;environmental-protection-rating;Environmental Protection Rating

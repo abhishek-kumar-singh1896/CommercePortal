@@ -78,48 +78,48 @@ INSERT_UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true];;;;;
 ;;ethernet-connection-type
 
 INSERT_UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true];;;;;;
-;material
-;tracking-distance
-;dimensions-mm
-;fence-circuits
-;pulse-rate
-;low-feel
-;output-per-circuit
-;maximum-hv-circuit-resistance
-;hv
-;hv-dual-pulse
-;max-recommended-fence-zone-length
-;sync-options
-;max-contact-rating
-;software
-;power-supply-voltage
-;power-consumption
-;aux-dc-output
-;internal-backup-battery
-;protection-rating
-;operating-tempreature-cel
-;operating-tempreature-fah
-;communications-transfer-speed
-;max-hbus-distance
-;cable-specification
-;encryption-level
-;max-lv-sync-cable-distance
-;standards-compliance
-;current
-;number-of-sensors-per-controller
-;command-centre-version
-;environmental-protection-rating
-;impact-rating
-;temperature-operating-cel
-;temperature-operating-fah
-;temperature-storage-cel
-;temperature-storage-fah
+;;material
+;;tracking-distance
+;;dimensions-mm
+;;fence-circuits
+;;pulse-rate
+;;low-feel
+;;output-per-circuit
+;;maximum-hv-circuit-resistance
+;;hv
+;;hv-dual-pulse
+;;max-recommended-fence-zone-length
+;;sync-options
+;;max-contact-rating
+;;software
+;;power-supply-voltage
+;;power-consumption
+;;aux-dc-output
+;;internal-backup-battery
+;;protection-rating
+;;operating-tempreature-cel
+;;operating-tempreature-fah
+;;communications-transfer-speed
+;;max-hbus-distance
+;;cable-specification
+;;encryption-level
+;;max-lv-sync-cable-distance
+;;standards-compliance
+;;current
+;;number-of-sensors-per-controller
+;;command-centre-version
+;;environmental-protection-rating
+;;impact-rating
+;;temperature-operating-cel
+;;temperature-operating-fah
+;;temperature-storage-cel
+;;temperature-storage-fah
 
 
 # Links ClassificationClasses to Categories
 INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories;;;;;;
-;t-series-readers-and-terminals;Assigned Features;
-;t-series-readers-and-terminals;Cable specifications (HBUS data only);
+;readers-and-terminals;Assigned Features;
+;readers-and-terminals;Cable specifications (HBUS data only);
 ;controllers;controllers
 ;readers-and-terminals;readers-and-terminals
 ;credentials;credentials
@@ -221,7 +221,7 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 
 									;starter-kits;dimensions-mm;1;mm
 
-									;credentials ;dimesnions-mm;1;mm
+									;credentials ;dimensions-mm;1;mm
 									;credentials ;temperature-operating-cel;2;cel
 									;credentials ;temperature-operating-fah;3;fah
 									;credentials ;temperature-storage-cel;4;cel

@@ -44,6 +44,7 @@ INSERT_UPDATE Category;code[unique=true];allowedPrincipals(uid)[default='custome
 #1.3 Perimeter Hardware sub-categories
 ;fence-controllers
 ;sensors
+;insulators
 ;other-ph
 
 #1.4 Software Categories
@@ -72,6 +73,7 @@ INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
 #perimeter-hardware
 ;fence-controllers;perimeter-hardware
 ;sensors;perimeter-hardware
+;insulators;insulators
 ;other-ph;perimeter-hardware
 
 #Software

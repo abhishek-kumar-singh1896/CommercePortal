@@ -3521,6 +3521,7 @@ INSERT_UPDATE Category;code[unique=true];allowedPrincipals(uid)[default='custome
 #1.3 Perimeter Hardware sub-categories
 ;fence-controllers
 ;sensors
+;insulators
 ;other-ph
 
 #1.4 Software Categories
@@ -3548,6 +3549,7 @@ INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
 #perimeter-hardware
 ;fence-controllers;perimeter-hardware
 ;sensors;perimeter-hardware
+;insulators;perimeter-hardware
 ;other-ph;perimeter-hardware
 
 #Software
@@ -3579,13 +3581,14 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
 ;controllers;;Controllers
 ;readers-and-terminals;;Readers and Terminals
 ;security-kits;;Security Kits
-;starter-kits;Starter Kits
-;credentials;Credentials
+;starter-kits;;Starter Kits
+;credentials;;Credentials
 ;other-ach;;Other
 
 # Perimeter Hardware Categories
 ;fence-controllers;;Fence Controllers
 ;sensors;;Sensors
+;insulators;;Insulators
 ;other-ph;;Other
 
 #High Security Categories
