@@ -45,3 +45,24 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
 ;additional-system-components;;Componentes Adicionales del Sistema
 
 
+UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
+;wire-and-cable;;Alambres y Cables
+;clamps-and-joiners;;Abrazaderas y Conectores
+;posts;;Postes
+;strainers;;Tensores
+;insulators;;Aisladores
+;offsets;;Desplazadores
+;electric-gates;;Portones eléctricos
+;tapes-wires-and-braids-pf;;Cintas, Cordones y Alambre
+;reels-and-accessories-pf;;Carretes y Accesorios
+;posts-pigtails-and-treadins-pf;;Postes - Cola de Chancho y Estacas múltiples
+;all-in-one-portable-fences;;Cercos portátiles todo en uno
+;weigh-scales-and-data-collectors;;Colectores de Datos y Pesaje de Ganado
+;loadbars-and-accessories;;Barras de carga y accesorios
+;drafters;;Apartadores
+;eid-tag-readers;;Lectores de etiquetas
+;one-tank-systems;;Sistemas de Estanque Único
+;antennae-and-cables;;Antenas y Cable
+;additional-system-components;;Componentes Adicionales del Sistema
+
+

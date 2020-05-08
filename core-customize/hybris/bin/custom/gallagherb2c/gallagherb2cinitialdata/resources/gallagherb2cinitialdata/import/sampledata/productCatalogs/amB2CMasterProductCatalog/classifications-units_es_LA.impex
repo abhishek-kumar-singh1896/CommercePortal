@@ -8,10 +8,10 @@
 # Information and shall use it only in accordance with the terms of the
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
-# ImpEx for Importing Units into SecurityB2B Store
+# ImpEx for Importing Units into AMB2C Store
 
 # Macros / Replacement Parameter definitions
-$systemVersion=systemVersion(catalog(id[default='SecurityB2BClassification']),version[default='1.0'])[unique=true]
+$systemVersion=systemVersion(catalog(id[default='AMB2CClassification']),version[default='1.0'])
 
 #
 # Localization en
@@ -19,18 +19,4 @@ $systemVersion=systemVersion(catalog(id[default='SecurityB2BClassification']),ve
 $lang=en
 
 UPDATE ClassificationAttributeUnit;code[unique=true];$systemVersion;name[lang=$lang]
-;mm;;milimeter;
-;Vdc;;Voltage DC;
-;mA;;milliAmpere;
-;m;;meter;
-;ip-rating;;IP rating;
-;ik-rating;;IK rating;
-;inches;;Inches
-;J;;Joules
-;ohms;;ohms
-;V-Hz;;V/Hz
-;W;;Watt
-;cel;;Celsius
-;fah;;Fahrenheit
-;AES;;AES
-;km;;kilometer
+;Years;;años
