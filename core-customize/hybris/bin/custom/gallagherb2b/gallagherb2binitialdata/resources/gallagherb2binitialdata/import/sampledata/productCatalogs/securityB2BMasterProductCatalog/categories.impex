@@ -73,7 +73,7 @@ INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
 #perimeter-hardware
 ;fence-controllers;perimeter-hardware
 ;sensors;perimeter-hardware
-;insulators;insulators
+;insulators;perimeter-hardware
 ;other-ph;perimeter-hardware
 
 #Software
