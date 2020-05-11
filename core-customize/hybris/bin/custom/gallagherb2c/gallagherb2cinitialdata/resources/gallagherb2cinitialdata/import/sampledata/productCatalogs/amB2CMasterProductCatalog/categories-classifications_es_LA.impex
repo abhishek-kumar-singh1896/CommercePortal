@@ -50,6 +50,9 @@ UPDATE ClassificationClass;code[unique=true];name[lang=$lang];$classCatalogVersi
 ;one-tank-systems;Sistemas de Estanque Único
 ;antennae-and-cables;Antenas y Cable
 ;additional-system-components;Componentes Adicionales del Sistema
+;energizers;Energizadores de Cerco
+
+
 
 UPDATE ClassificationAttribute	;code[unique=true];name[lang=$lang];$classSystemVersion
 								;energy-stored;Energía Almacenada

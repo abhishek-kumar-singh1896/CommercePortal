@@ -125,7 +125,9 @@ UPDATE ClassificationClass;code[unique=true];name[lang=$lang];$classCatalogVersi
 # 1.9 Classification category for 'promotions'
 #;bargain-barn;Bargain Barn
 
-
+UPDATE ClassificationClass;code[unique=true];name[lang=$lang];$classCatalogVersion
+;gates-and-gate-accessories;Gates and Gate Accessories
+;energizers;Energizers
 
 # Create Categories
 UPDATE ClassificationAttribute;code[unique=true];$classSystemVersion;name[lang=$lang]

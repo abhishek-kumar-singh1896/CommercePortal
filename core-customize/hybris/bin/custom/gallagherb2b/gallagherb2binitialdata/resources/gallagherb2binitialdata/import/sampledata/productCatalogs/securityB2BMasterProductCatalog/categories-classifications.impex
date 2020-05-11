@@ -154,28 +154,28 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
  
  
  # For Classification Category 'controllers'
-;controllers;maximum-read-distance;1;mm
-;controllers;environmental-protection;2;ip-rating
-;controllers;impact-rating;3;ik-rating
-;controllers;voltage-Vdc;4;Vdc
-;controllers;dimensions-mm;5;mm
-;controllers;dimensions-inches;6;inches
-;controllers;cable-specifications-cat5e;7
-;controllers;cable-specifications-hbus;8
-;controllers;standards-compliance-readers;9
+;readers-and-terminals;maximum-read-distance;1;mm
+;readers-and-terminals;environmental-protection;2;ip-rating
+;readers-and-terminals;impact-rating;3;ik-rating
+;readers-and-terminals;voltage-Vdc;4;Vdc
+;readers-and-terminals;dimensions-mm;5;mm
+;readers-and-terminals;dimensions-inches;6;inches
+;readers-and-terminals;cable-specifications-cat5e;7
+;readers-and-terminals;cable-specifications-hbus;8
+;readers-and-terminals;standards-compliance-readers;9
 
 
 
 # For Classification Category 'readers-and-terminals'
-;readers-and-terminals;voltage;1
-;readers-and-terminals;dimensions;2
-;readers-and-terminals;ethernet-network-connection;3
-;readers-and-terminals;rs485-device-communications;4
-;readers-and-terminals;ports;5
-;readers-and-terminals;tcp/ip-protocol;6
-;readers-and-terminals;standards-compliance-controllers;7
-;readers-and-terminals;device-limits;8
-;readers-and-terminals;ethernet-connection-type;9
+;controllers;voltage;1
+;controllers;dimensions;2
+;controllers;ethernet-network-connection;3
+;controllers;rs485-device-communications;4
+;controllers;ports;5
+;controllers;tcp/ip-protocol;6
+;controllers;standards-compliance-controllers;7
+;controllers;device-limits;8
+;controllers;ethernet-connection-type;9
 
 
 INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attributeType(code[default=string]);multiValued[default=false];range[default=false];localized[default=false]

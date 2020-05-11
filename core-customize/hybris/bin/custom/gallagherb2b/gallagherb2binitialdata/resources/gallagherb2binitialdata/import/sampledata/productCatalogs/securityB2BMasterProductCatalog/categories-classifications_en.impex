@@ -69,6 +69,13 @@ UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true];name[lang=$
 ;;device-limits;Device limits
 ;;ethernet-connection-type;Ethernet connection type
 
+UPDATE ClassificationClass;$classCatalogVersion;code[unique=true];name[lang=$lang]
+										;;sensors;Sensors
+										;;starter-kits;Starter Kits
+										;;credentials;Credentials
+										;;fence-controllers;Fence Controllers
+										;;insulators;Insulators
+
 UPDATE ClassificationAttribute;code[unique=true];name[lang=$lang];$classSystemVersion
 							;temperature-operating-cel;Temperature (Operating)
 							;temperature-storage-cel;Temperature (Storage)
