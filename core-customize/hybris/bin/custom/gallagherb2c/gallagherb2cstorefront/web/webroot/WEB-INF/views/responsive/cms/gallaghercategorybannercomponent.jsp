@@ -20,7 +20,7 @@
 			</div>
 
 			<div class="banner-text-container">
-				<h1>${searchPageData.categoryCode}</h1>
+				<h1>${categoryName}</h1>
 				${searchPageData.description}
 				<p></p>
 			</div>
