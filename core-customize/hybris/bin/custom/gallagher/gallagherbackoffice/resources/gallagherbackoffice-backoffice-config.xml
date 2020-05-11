@@ -235,7 +235,7 @@
 	            <wz:content id="step2.content">
 	                <wz:property-list root="newCust" merge-mode="REPLACE">
 <!-- 	                    <wz:property qualifier="uid" type="java.lang.String" label="create.customer.verification.email" readonly="true"/> -->
-	                    <wz:property qualifier="customerID" type="java.lang.String" label="create.customer.verification.customerID"/>
+<!-- 	                    <wz:property qualifier="customerID" type="java.lang.String" label="create.customer.verification.customerID"/> -->
 	                    <wz:property qualifier="name" type="java.lang.String" label="create.customer.verification.name"/>
 	                    <wz:property qualifier="description" type="java.lang.String" label="create.customer.verification.description"/>
 	                </wz:property-list>
