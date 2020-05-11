@@ -189,12 +189,19 @@ table {
   }
 }
 
-.account-section .account-list.account-addressbook .account-cards .account-cards-actions {
+.account-section .account-list.account-addressbook .account-cards .account-cards-actions,
+.account-section .account-list .account-cards .account-cards-actions {
   display: inline-block;
   width: 80px;
   right: 15px;
   position: absolute;
   bottom: 14px;
+}
+
+.card-bottom-section{
+	width: 100%;
+	display: block;
+	margin-top: 20px;
 }
 
 .account-section .account-list.account-addressbook .account-cards .card, 
