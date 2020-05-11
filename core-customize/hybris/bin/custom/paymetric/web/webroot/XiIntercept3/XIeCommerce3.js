@@ -420,6 +420,8 @@ function submitHostedIFrame()
     	hosted = (!document.getElementsByClassName ? getElementsByClassName(document.body, "hosted-iframe") : document.getElementsByClassName("hosted-iframe"));
     	if(hosted != null && hosted.length > 0)
     	{
+//    		alert();
+//    		document.getElementByClassName("billing-info").offsetTop;
     		for (var iNo = 0; iNo < hosted.length; iNo++)
     		{
         		hosted[iNo].contentWindow.submitform();

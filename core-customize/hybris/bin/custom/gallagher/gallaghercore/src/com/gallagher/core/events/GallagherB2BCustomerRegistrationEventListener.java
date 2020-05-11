@@ -14,13 +14,12 @@ import de.hybris.platform.servicelayer.util.ServicesUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
 
-import com.sap.hybris.sapcustomerb2b.outbound.B2BRegistrationEvent;
-
 
 /**
  * Customer Registration event listener to trigger welcome mail
  */
-public class GallagherB2BCustomerRegistrationEventListener extends AbstractAcceleratorSiteEventListener<B2BRegistrationEvent>
+public class GallagherB2BCustomerRegistrationEventListener
+		extends AbstractAcceleratorSiteEventListener<GallagherB2BRegistrationEvent>
 {
 
 	private static final Logger LOGGER = Logger.getLogger(GallagherB2BCustomerRegistrationEventListener.class);
@@ -66,7 +65,7 @@ public class GallagherB2BCustomerRegistrationEventListener extends AbstractAccel
 	 * platform.servicelayer.event.events.AbstractEvent)
 	 */
 	@Override
-	protected SiteChannel getSiteChannelForEvent(final B2BRegistrationEvent event)
+	protected SiteChannel getSiteChannelForEvent(final GallagherB2BRegistrationEvent event)
 	{
 		final BaseSiteModel site = event.getSite();
 		ServicesUtil.validateParameterNotNullStandardMessage("event.order.site", site);
@@ -81,7 +80,7 @@ public class GallagherB2BCustomerRegistrationEventListener extends AbstractAccel
 	 * event.events.AbstractEvent)
 	 */
 	@Override
-	protected void onSiteEvent(final B2BRegistrationEvent registerEvent)
+	protected void onSiteEvent(final GallagherB2BRegistrationEvent registerEvent)
 	{
 		LOGGER.info("B2B Customer logger start...");
 		final StoreFrontCustomerProcessModel storeFrontCustomerProcessModel = (StoreFrontCustomerProcessModel) getBusinessProcessService()

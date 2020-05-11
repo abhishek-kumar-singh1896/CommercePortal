@@ -244,6 +244,15 @@
           class="com.gallagher.facades.storesession.impl.GallagherStoreSessionFacadeImpl" parent="defaultStoreSessionFacade"/>
           
     <alias name="gallagherDefaultCheckoutFacade" alias="acceleratorCheckoutFacade"/>
-    <bean id="gallagherDefaultCheckoutFacade" class="com.gallagher.facades.checkout.GallagherDefaultCheckoutFacadeImpl" parent="defaultAcceleratorCheckoutFacade">
-    </bean>
+    <bean id="gallagherDefaultCheckoutFacade" class="com.gallagher.facades.checkout.GallagherDefaultCheckoutFacadeImpl" parent="defaultAcceleratorCheckoutFacade" />
+
+	<alias name="gallagherB2BUserFacade" alias="b2bUserFacade" />
+	<bean id="gallagherB2BUserFacade" class="com.gallagher.facades.company.impl.GallagherB2BUserFacadeImpl"
+		parent="defaultB2BUserFacade">
+		<property name="eventService" ref="eventService" />
+		<property name="baseSiteService" ref="baseSiteService" />
+		<property name="baseStoreService" ref="baseStoreService" />
+		<property name="commonI18NService" ref="commonI18NService" />
+	</bean>
+ 	    
 </beans>

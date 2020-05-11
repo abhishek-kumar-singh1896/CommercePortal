@@ -8,7 +8,20 @@ $systemVersion=systemVersion(catalog(id[default='AMB2CClassification']),version[
 
 INSERT_UPDATE ClassificationAttributeUnit;code[unique=true];symbol;unitType;name[lang=en];;name[lang=de];$systemVersion[unique=true]
 ;Acres;Acres;Acres;Acres;
-;KM;KM;Kilometer;Kilometer;
 ;Joules;Joules;Joules;Joules;
 ;KV;KV;KV;KV;
-;MM;MM;Millimeter;Millimeter;
+;mm;mm;millimeter;millimeter;
+
+;Years;Years;Years;Years
+;W;W;W;Watts
+;V;V;V;Voltage
+;kg;kg;kg;Kilogram
+;mA;mA;mA;milliampere
+;Ah;Ah;Ah;AmpereHour
+;kV;kV;kV;Kilovolt
+;Hectares;Hectares;Hectares;Hectares
+;lbs;lbs;lbs;lbs
+;L;L;L;Litre
+;miles;miles;miles;miles
+;hectares;hectares;hectares;hectares
+;km;km;km;Kilometer

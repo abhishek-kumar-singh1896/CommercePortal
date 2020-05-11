@@ -5,6 +5,8 @@ package com.gallagher.outboundservices.response.dto;
 
 import java.util.ArrayList;
 
+import com.google.gson.annotations.SerializedName;
+
 
 /**
  *
@@ -380,7 +382,19 @@ public class GallagherBynderResponse
 		private String mini;
 		private String webimage;
 		private String thul;
+		@SerializedName(value = "General Purpose")
+		private String generalPurpose;
 
+
+		public String getGeneralPurpose()
+		{
+			return generalPurpose;
+		}
+
+		public void setGeneralPurpose(final String generalPurpose)
+		{
+			this.generalPurpose = generalPurpose;
+		}
 
 		// Getter Methods
 		public String getMini()

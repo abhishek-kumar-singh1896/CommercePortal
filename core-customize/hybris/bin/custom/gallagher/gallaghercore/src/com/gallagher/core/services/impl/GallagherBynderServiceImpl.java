@@ -26,6 +26,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -139,7 +141,8 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 
 		//modelService.save(arg0);
 		modelService.save(mediaModel);
-		mediaService.setStreamForMedia(mediaModel, getImage(gallagherBynderResponse.getId()));
+		mediaService.setStreamForMedia(mediaModel,
+				getImageFromURL(getEncodedUrl(gallagherBynderResponse.getThumbnails().getGeneralPurpose())));
 		LOGGER.info("Media Saved for " + gallagherBynderResponse.getId());
 
 		//getting products and adding container to that product
@@ -160,6 +163,28 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 			}
 		}
 		return true;
+	}
+
+	/**
+	 * Encode the file name/last part of url if it contains spaces
+	 *
+	 * @param url
+	 * @return encoded url
+	 */
+	private String getEncodedUrl(final String url)
+	{
+		String encodedUrl = url;
+		final int lastSlashIndex = url.lastIndexOf("/");
+		try
+		{
+			encodedUrl = url.substring(0, lastSlashIndex + 1)
+					+ URLEncoder.encode(url.substring(lastSlashIndex + 1), StandardCharsets.UTF_8);
+		}
+		catch (final IndexOutOfBoundsException iOBEx)
+		{
+			LOGGER.error("There is some issue in Bynder media URL " + url);
+		}
+		return encodedUrl;
 	}
 
 	@Override
@@ -326,11 +351,24 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 		final GallagherBynderMediaResponse gallagherBynderMediaResponse = getFileUrl(id);
 		final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		final InputStream stream = null;
+		return getImageFromURL(gallagherBynderMediaResponse.getS3_file());
+
+	}
+
+	/**
+	 * Returns media stream from url
+	 *
+	 * @param url
+	 *           to get the stream
+	 * @return Stream
+	 */
+	private InputStream getImageFromURL(final String url)
+	{
 		byte[] response = null;
 
 		try
 		{
-			final InputStream in = new BufferedInputStream(new URL(gallagherBynderMediaResponse.getS3_file()).openStream());
+			final InputStream in = new BufferedInputStream(new URL(url).openStream());
 			final ByteArrayOutputStream out = new ByteArrayOutputStream();
 			final byte[] buf = new byte[1024];
 			int n = 0;
@@ -350,7 +388,6 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 		}
 
 		return new ByteArrayInputStream(response);
-
 	}
 
 	/**

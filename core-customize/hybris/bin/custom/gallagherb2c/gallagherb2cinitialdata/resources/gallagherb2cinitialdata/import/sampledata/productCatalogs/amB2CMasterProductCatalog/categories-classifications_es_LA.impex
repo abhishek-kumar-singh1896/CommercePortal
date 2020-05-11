@@ -31,6 +31,29 @@ UPDATE ClassificationClass;code[unique=true];name[lang=$lang];$classCatalogVersi
 ;one-tank-systems;Sistemas de Estanque Único
 ;additional-system-components;Componentes Adicionales del Sistema
 
+UPDATE ClassificationClass;code[unique=true];name[lang=$lang];$classCatalogVersion
+;wire-and-cable;Alambres y Cables
+;clamps-and-joiners;Abrazaderas y Conectores
+;posts;Postes
+;strainers;Tensores
+;insulators;Aisladores
+;offsets;Desplazadores
+;electric-gates;Portones eléctricos
+;tapes-wires-and-braids-pf;Cintas, Cordones y Alambre
+;reels-and-accessories-pf;Carretes y Accesorios
+;posts-pigtails-and-treadins-pf;Postes - Cola de Chancho y Estacas múltiples
+;all-in-one-portable-fences;Cercos portátiles todo en uno
+;weigh-scales-and-data-collectors;Colectores de Datos y Pesaje de Ganado
+;loadbars-and-accessories;Barras de carga y accesorios
+;drafters;Apartadores
+;eid-tag-readers;Lectores de etiquetas
+;one-tank-systems;Sistemas de Estanque Único
+;antennae-and-cables;Antenas y Cable
+;additional-system-components;Componentes Adicionales del Sistema
+;energizers;Energizadores de Cerco
+
+
+
 UPDATE ClassificationAttribute	;code[unique=true];name[lang=$lang];$classSystemVersion
 								;energy-stored;Energía Almacenada
 								;energy-output;Energía de Salida
@@ -48,10 +71,10 @@ UPDATE ClassificationAttribute	;code[unique=true];name[lang=$lang];$classSystemV
 								;measures-voltage;Measures Voltage
 								;measures-current;Measures Current
 								;digital-display;Digital Display
-								;voltage-2km-fence;Voltaje (kV) a 2 km del cerco
-								;voltage-5km-fence;Voltaje (kV) a 5 km del cerco
+								;voltage-at-2km;Voltaje (kV) a 2 km del cerco
+								;voltage-at-5km;Voltaje (kV) a 5 km del cerco
 								;ohms-per-km;Ohms Per Km
-								;voltage-10km-fence;Voltaje (kV) a 10 km del cerco
+								;voltage-at-10km;Voltaje (kV) a 10 km del cerco
 								;post-height;Post Height
 								;animal;Animal
 								;number-of-wires;Number of Wires
@@ -63,8 +86,8 @@ UPDATE ClassificationAttribute	;code[unique=true];name[lang=$lang];$classSystemV
 								;product-length;Product Length
 								;gate-type;Gate Type
 								;length;Length
-								;voltage-500m-fence;Voltaje (kV) a 500m del cerco
-								;voltage-1km-fence;Voltaje (kV) a 1km del cerco
+								;voltage-at-500m;Voltaje (kV) a 500m del cerco
+								;voltage-at-1km;Voltaje (kV) a 1km del cerco
 								;diameter-or-tape-width;Diámetro o ancho de la cinta
 								;mixed-metals;Mixed Metals
 								;gear-ratio;Proporción de Engranaje

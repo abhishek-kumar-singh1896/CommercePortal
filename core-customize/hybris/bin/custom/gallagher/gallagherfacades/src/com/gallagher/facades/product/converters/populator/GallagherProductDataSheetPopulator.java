@@ -62,7 +62,7 @@ public class GallagherProductDataSheetPopulator<SOURCE extends ProductModel, TAR
 		for (final MediaModel logo : logos)
 		{
 			final ImageData imageData = getImageConverter().convert(logo);
-			imageData.setDescription(logo.getDescription());
+			imageData.setDescription(logo.getRealFileName());
 			imageData.setMime(logo.getMime());
 			imageData.setImageType(imageType);
 			list.add(imageData);
