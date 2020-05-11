@@ -198,22 +198,27 @@ table {
 }
 
 .account-section .account-list.account-addressbook .account-cards .card, 
-.account-section .account-list.account-addressbook .account-cards .search-empty {
+.account-section .account-list.account-addressbook .account-cards .search-empty,
+.account-section .account-list.payment-details .account-cards .card, 
+.account-section .account-list.payment-details .account-cards .search-empty {
   border: 1px solid $gray-4;
 }
 
-.account-section .account-list.account-addressbook .account-cards .card .default-text {
+.account-section .account-list.account-addressbook .account-cards .card .default-text,
+.account-section .account-list.payment-details .account-cards .card .default-text {
   font-size: 1.28571em;
   color: $primary-color;
   font-weight: normal;
 }
 
-.account-section .account-list.account-addressbook .account-cards .card:first-child {
+.account-section .account-list.account-addressbook .account-cards .card:first-child,
+.account-section .account-list.payment-details .account-cards .card:first-child {
   border-color: $primary-color;
   box-shadow: 0 0 16px rgba(255,132,0,0.3) inset;
 }
 
-.account-section .account-list.account-addressbook .account-cards.card-select {
+.account-section .account-list.account-addressbook .account-cards.card-select,
+.account-section .account-list.payment-details .account-cards.card-select {
   border-top: none;
 }
 

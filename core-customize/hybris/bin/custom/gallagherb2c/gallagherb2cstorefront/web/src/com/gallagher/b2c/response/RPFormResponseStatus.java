@@ -26,7 +26,9 @@ public enum RPFormResponseStatus
 
 	SUCCESS("success"),
 
-	PRODUCTNOTFOUND("productnotfound");
+	PRODUCTNOTFOUND("productnotfound"),
+
+	SERIALNUMBEREXISTS("serialnumberexists");
 
 	/**
 	 * Code for the enum value

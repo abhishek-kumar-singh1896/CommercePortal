@@ -188,7 +188,7 @@ catch(Exception ex)
                         		msg += "\t" + e[index].definedName + ": " + e[index].message + "\n";
                         	}
                         	
-//             	    		displayError("IFrame_OnLoad().onInvalidHandler()", msg);
+            	    		displayError("IFrame_OnLoad().onInvalidHandler()", msg);
                         },
 						onError: function (e)
                         {

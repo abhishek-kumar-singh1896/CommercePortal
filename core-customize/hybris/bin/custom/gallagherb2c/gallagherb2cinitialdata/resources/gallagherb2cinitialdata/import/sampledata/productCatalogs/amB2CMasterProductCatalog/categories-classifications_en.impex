@@ -163,7 +163,8 @@ UPDATE ClassificationAttribute;code[unique=true];$classSystemVersion;name[lang=$
 ;multi-wire-distance-clean;;Multi Wire Distance (clean)
 ;capacity;;Capacity (L)
 
-UPDATE ClassificationAttribute	;code[unique=true];name[lang=$lang];$classSystemVersion;animal;Animal
+UPDATE ClassificationAttribute	;code[unique=true];name[lang=$lang];$classSystemVersion
+								;animal;Animal
 								;animal-type;Animal Type
 								;capacity;Capacity
 								;livestock-web-mobile-app;Compatible with Gallagher Livestock web/mobile app
@@ -214,11 +215,11 @@ UPDATE ClassificationAttribute	;code[unique=true];name[lang=$lang];$classSystemV
 								;use;Use
 								;view-pedigree-tree;View Pedigree Tree
 								;voltage;Voltage
-								;voltage-10km-fence;Voltage (kV) at 10km of fence
-								;voltage-1km-fence;Voltage (kV) at 1km of fence
-								;voltage-2km-fence;Voltage (kV) at 2km of fence
-								;voltage-500m-fence;Voltage (kV) at 500m of fence
-								;voltage-5km-fence;Voltage (kV) at 5km of fence
+								;voltage-at-10km;Voltage (kV) at 10km of fence
+								;voltage-at-1km;Voltage (kV) at 1km of fence
+								;voltage-at-2km;Voltage (kV) at 2km of fence
+								;voltage-at-500m;Voltage (kV) at 500m of fence
+								;voltage-at-5km;Voltage (kV) at 5km of fence
 								;warranty;Warranty
 								;watts;Watts
 								;weighing-capacity;Weighing Capacity

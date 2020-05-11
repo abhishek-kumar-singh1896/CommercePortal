@@ -68,10 +68,10 @@ UPDATE ClassificationAttribute	;code[unique=true];name[lang=$lang];$classSystemV
 								;measures-voltage;Measures Voltage
 								;measures-current;Measures Current
 								;digital-display;Digital Display
-								;voltage-2km-fence;Voltaje (kV) a 2 km del cerco
-								;voltage-5km-fence;Voltaje (kV) a 5 km del cerco
+								;voltage-at-2km;Voltaje (kV) a 2 km del cerco
+								;voltage-at-5km;Voltaje (kV) a 5 km del cerco
 								;ohms-per-km;Ohms Per Km
-								;voltage-10km-fence;Voltaje (kV) a 10 km del cerco
+								;voltage-at-10km;Voltaje (kV) a 10 km del cerco
 								;post-height;Post Height
 								;animal;Animal
 								;number-of-wires;Number of Wires
@@ -83,8 +83,8 @@ UPDATE ClassificationAttribute	;code[unique=true];name[lang=$lang];$classSystemV
 								;product-length;Product Length
 								;gate-type;Gate Type
 								;length;Length
-								;voltage-500m-fence;Voltaje (kV) a 500m del cerco
-								;voltage-1km-fence;Voltaje (kV) a 1km del cerco
+								;voltage-at-500m;Voltaje (kV) a 500m del cerco
+								;voltage-at-1km;Voltaje (kV) a 1km del cerco
 								;diameter-or-tape-width;Diámetro o ancho de la cinta
 								;mixed-metals;Mixed Metals
 								;gear-ratio;Proporción de Engranaje

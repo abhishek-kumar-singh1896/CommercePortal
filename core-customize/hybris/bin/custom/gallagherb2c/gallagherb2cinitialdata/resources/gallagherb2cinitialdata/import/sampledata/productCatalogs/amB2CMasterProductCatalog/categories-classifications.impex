@@ -242,6 +242,8 @@ INSERT_UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true]
 ;;warranty
 ;;typical-fence-distance-gallagher-recommendation
 ;;clean-wire-fence-distance
+;;capacity-l
+;;pack-size
  
 
 # Links ClassificationClasses to Categories
@@ -554,8 +556,6 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;solar-panels;product-weight;6;kg
 ;solar-panels;product-weight;7;lbs
 
-
-
 ;batteries;warranty;1;Years
 ;batteries;voltage;2;V
 ;batteries;dc-input;3;V
@@ -568,8 +568,6 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;batteries;product-weight;10;kg
 ;batteries;product-weight;11;lbs
 
-
-
 ;earthing;warranty;1;Years
 ;earthing;product-height;2;mm
 ;earthing;product-width;3;mm
@@ -578,14 +576,11 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;earthing;width-or-length;6;mm
 ;earthing;height;7;mm
 
-
 ;grounding;warranty;1;Years
 ;grounding;product-height;2;mm
 ;grounding;product-width;3;mm
 ;grounding;product-depth;4;mm
 ;grounding;product-weight;5;lbs
-
-
 
 ;remotes-and-fence-testers;measures-voltage;1;;boolean
 ;remotes-and-fence-testers;measures-current;2;;boolean
@@ -597,7 +592,6 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;remotes-and-fence-testers;product-depth;8;mm
 ;remotes-and-fence-testers;product-weight;9;kg
 ;remotes-and-fence-testers;product-weight;10;lbs
-
 
 ;power-system-accessories;warranty;1;Years
 ;power-system-accessories;i-series-compatiable;2;;boolean
@@ -612,6 +606,21 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;power-system-accessories;height;11;mm
 ;power-system-accessories;width-or-length;12;mm
 
+;gallagher-westonfence;warranty;1;Years
+;gallagher-westonfence;pack-size;2
+;gallagher-westonfence;primary-usage;3
+;gallagher-westonfence;wires;4
+;gallagher-westonfence;post-height;5;mm
+;gallagher-westonfence;product-width;6;mm
+;gallagher-westonfence;product-depth;7;mm
+;gallagher-westonfence;product-weight;8;kg
+
+;gallagher-mega-anchor;warranty;1;Years
+;gallagher-mega-anchor;post-height;2;mm
+;gallagher-mega-anchor;product-width;3;mm
+;gallagher-mega-anchor;product-depth;4;mm
+;gallagher-mega-anchor;product-weight;5;kg
+;gallagher-mega-anchor;contents;6
 
 ;wire-and-cable;voltage-at-2km;1;kV
 ;wire-and-cable;voltage-at-5km;2;kV
@@ -626,7 +635,6 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;wire-and-cable;product-weight;11;kg
 ;wire-and-cable;contents;12
 
-
 ;clamps-and-joiners;warranty;1;Years
 ;clamps-and-joiners;product-height;2;mm
 ;clamps-and-joiners;product-width;3;mm
@@ -637,7 +645,6 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;clamps-and-joiners;height;8;mm
 ;clamps-and-joiners;width-or-length;9;mm
 ;clamps-and-joiners;product-weight;10;lbs
-
 
 ;posts;post-height;1;mm
 ;posts;animal;2
@@ -651,7 +658,6 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;posts;pack-quantity;9
 ;posts;width-or-length;10;mm
 
-
 ;strainers;strainer-type;1
 ;strainers;includes-joint-clamp;2;;boolean
 ;strainers;warranty;3;Years
@@ -664,8 +670,6 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;strainers;pack-quantity;10
 ;strainers;height;11;mm
 ;strainers;width-or-length;12;mm
-
-
 
 ;insulators;post-type;1
 ;insulators;insulator-type;2
@@ -683,7 +687,6 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;insulators;width-or-length;14;mm
 ;insulators;diameter-or-width;15;mm
 
-
 ;offsets;post-type;1
 ;offsets;mount-type;2
 ;offsets;product-length;3;mm
@@ -696,7 +699,6 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;offsets;pack-quantity;10
 ;offsets;width-or-length;11;mm
 
-
 ;electric-gates;warranty;1;Years
 ;electric-gates;gate-type;2
 ;electric-gates;product-length;3;mm
@@ -707,7 +709,6 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;electric-gates;length;8;mm
 ;electric-gates;width-or-length;9;mm
 
-
 ;fence-tools-and-accessories;use;1
 ;fence-tools-and-accessories;warranty;2;Years
 ;fence-tools-and-accessories;product-height;3;mm
@@ -716,7 +717,6 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;fence-tools-and-accessories;product-weight;6;kg
 ;fence-tools-and-accessories;contents;7
 ;fence-tools-and-accessories;product-weight;8;lbs
-
 
 ;tapes-wires-and-braids-pf;voltage-at-500m;1;kV
 ;tapes-wires-and-braids-pf;voltage-at-1km;2;kV
@@ -734,7 +734,6 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;tapes-wires-and-braids-pf;height;14;mm
 ;tapes-wires-and-braids-pf;width-or-length;15;mm
 
-
 ;reels-and-accessories-pf;gear-ratio;1
 ;reels-and-accessories-pf;conductor-capacity;2
 ;reels-and-accessories-pf;pre-wound-with;3
@@ -747,7 +746,6 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;reels-and-accessories-pf;height;10;mm
 ;reels-and-accessories-pf;width-or-length;11;mm
 ;reels-and-accessories-pf;driver-capacity-long;12
-
 
 ;posts-pigtails-and-treadins-pf;animal-type;1
 ;posts-pigtails-and-treadins-pf;fence-type;2
@@ -763,7 +761,6 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;posts-pigtails-and-treadins-pf;height;12;mm
 ;posts-pigtails-and-treadins-pf;width-or-length;13;mm
 
-
 ;all-in-one-portable-fences;wire-type;1
 ;all-in-one-portable-fences;length;2;mm
 ;all-in-one-portable-fences;height;3;mm
@@ -775,7 +772,6 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;all-in-one-portable-fences;height;9;mm
 ;all-in-one-portable-fences;width-or-length;10;mm
 
-
 ;gates;warranty;1;Years
 ;gates;animal-type;2
 ;gates;strength;3
@@ -784,7 +780,6 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;gates;product-depth;5;mm
 ;gates;product-weight;6;kg
 ;gates;contents;7
-
 
 ;gate-hardware;warranty;1;Years
 ;gate-hardware;product-type;2
@@ -796,9 +791,6 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;gate-hardware;product-depth;8;mm
 ;gate-hardware;product-weight;9;kg
 ;gate-hardware;contents;10
-
-
-
 
 ;weigh-scales-and-data-collectors;wifi;1;;boolean
 ;weigh-scales-and-data-collectors;number-of-traits-recorded;2;
@@ -816,9 +808,6 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;weigh-scales-and-data-collectors;height;14;mm
 ;weigh-scales-and-data-collectors;width-or-length;15;mm
 
-
-
-
 ;loadbars-and-accessories;animal;1
 ;loadbars-and-accessories;use;2
 ;loadbars-and-accessories;weighing-capacity;3;kg
@@ -831,7 +820,6 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;loadbars-and-accessories;width-or-length;10;mm
 ;loadbars-and-accessories;product-weight;11;lbs
 
-
 ;platforms;animal;1
 ;platforms;weighing-capacity;2;kg
 ;platforms;warranty;3;Years
@@ -843,7 +831,6 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;platforms;height;9;mm
 ;platforms;width-or-length;10;mm
 
-
 ;drafters;warranty;1;Years
 ;drafters;product-height;2;mm
 ;drafters;product-width;3;mm
@@ -851,7 +838,6 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;drafters;product-weight;5;kg
 ;drafters;height;6;mm
 ;drafters;width-or-length;7;mm
-
 
 ;eid-tag-readers;product-type;1
 ;eid-tag-readers;livestock-web-mobile-app;2;;boolean
@@ -863,7 +849,6 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;eid-tag-readers;product-weight;8;lbs
 ;eid-tag-readers;height;9;mm
 ;eid-tag-readers;width-or-length;10;mm
-
 
 ;stock-prods;rechargeable;1;;boolean
 ;stock-prods;warranty;2;Years
@@ -878,7 +863,6 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;water-flow-indicator;product-depth;4;mm
 ;water-flow-indicator;product-weight;5;kg
 
-
 ;one-tank-systems;warranty;1;Years
 ;one-tank-systems;product-height;2;mm
 ;one-tank-systems;product-width;3;mm
@@ -887,7 +871,6 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;one-tank-systems;height;6;mm
 ;one-tank-systems;width-or-length;7;mm
 
-
 ;antennae-and-cables;warranty;1;Years
 ;antennae-and-cables;product-height;2;mm
 ;antennae-and-cables;product-width;3;mm
@@ -895,7 +878,6 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;antennae-and-cables;product-weight;5;kg
 ;antennae-and-cables;height;6;mm
 ;antennae-and-cables;width-or-length;7;mm
-
 
 ;additional-system-components;warranty;1;Years
 ;additional-system-components;product-height;2;mm
@@ -912,7 +894,6 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;gates-and-gate-accessories;product-depth;5;mm
 ;gates-and-gate-accessories;product-weight;6;lbs
 ;gates-and-gate-accessories;pack-quantity;7
-
 
 ;reels-and-accessories-fc;gear-ratio;1
 ;reels-and-accessories-fc;conductor-capacity;2
@@ -936,7 +917,6 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;hi-tensile-wire-and-cable;product-depth;10;mm
 ;hi-tensile-wire-and-cable;product-weight;11;lbs
 ;hi-tensile-wire-and-cable;pack-quantity;12
-
 
 ;tapes-wires-and-braids-fc;voltage-at-500m;1;kV
 ;tapes-wires-and-braids-fc;voltage-at-1km;2;kV
@@ -977,13 +957,11 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;scale-heads-and-data-collectors;product-depth;12;mm
 ;scale-heads-and-data-collectors;product-weight;13;lbs
 
-
 ;weighing-accessories;warranty;1;Years
 ;weighing-accessories;product-height;2;mm
 ;weighing-accessories;product-width;3;mm
 ;weighing-accessories;product-depth;4;mm
 ;weighing-accessories;product-weight;5;lbs
-
 
 ;stock-prods-and-accessories;warranty;1;Years
 ;stock-prods-and-accessories;rechargeable;2;;boolean
@@ -992,10 +970,9 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;stock-prods-and-accessories;product-depth;5;mm
 ;stock-prods-and-accessories;product-weight;6;lbs
 
-
 ;trough-valves;product-features;1
 ;trough-valves;animal-type;2
-;trough-valves;capacity;3;L
+;trough-valves;capacity-l;3;L
 ;trough-valves;warranty;4;Years
 ;trough-valves;product-height;5;mm
 ;trough-valves;product-width;6;mm
@@ -1004,70 +981,61 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 
 ;lil-spring;product-features;1
 ;lil-spring;animal-type;2
-;lil-spring;capacity;3;L
+;lil-spring;capacity-l;3;L
 ;lil-spring;warranty;4;Years
 ;lil-spring;product-height;5;mm
 ;lil-spring;product-width;6;mm
 ;lil-spring;product-depth;7;mm
 ;lil-spring;product-weight;8;lbs
 
-
 ;equi-fount;product-features;1
 ;equi-fount;animal-type;2
-;equi-fount;capacity;3;L
+;equi-fount;capacity-l;3;L
 ;equi-fount;warranty;4;Years
 ;equi-fount;product-height;5;mm
 ;equi-fount;product-width;6;mm
 ;equi-fount;product-depth;7;mm
 ;equi-fount;product-weight;8;lbs 
 
-
-
 ;mira-fount;product-features;1
 ;mira-fount;animal-type;2
-;mira-fount;capacity;3;L
+;mira-fount;capacity-l;3;L
 ;mira-fount;warranty;4;Years
 ;mira-fount;product-height;5;mm
 ;mira-fount;product-width;6;mm
 ;mira-fount;product-depth;7;mm
 ;mira-fount;product-weight;8;lbs 
 
-
 ;e-fount;product-features;1
 ;e-fount;animal-type;2
-;e-fount;capacity;3;L
+;e-fount;capacity-l;3;L
 ;e-fount;warranty;4;Years
 ;e-fount;product-height;5;mm
 ;e-fount;product-width;6;mm
 ;e-fount;product-depth;7;mm
 ;e-fount;product-weight;8;lbs 
 
-
 ;big-spring;product-features;1
 ;big-spring;animal-type;2
-;big-spring;capacity;3;L
+;big-spring;capacity-l;3;L
 ;big-spring;warranty;4;Years
 ;big-spring;product-height;5;mm
 ;big-spring;product-width;6;mm
 ;big-spring;product-depth;7;mm
 ;big-spring;product-weight;8;lbs
 
-
-
 ;pet-tanks;product-features;1
 ;pet-tanks;animal-type;2
-;pet-tanks;capacity;3;L
+;pet-tanks;capacity-l;3;L
 ;pet-tanks;warranty;4;Years
 ;pet-tanks;product-height;5;mm
 ;pet-tanks;product-width;6;mm
 ;pet-tanks;product-depth;7;mm
 ;pet-tanks;product-weight;8;lbs
 
-
-
 ;watering-accessories ;product-features;1
 ;watering-accessories ;animal-type;2
-;watering-accessories ;capacity;3;L
+;watering-accessories ;capacity-l;3;L
 ;watering-accessories ;warranty;4;Years
 ;watering-accessories ;product-height;5;mm
 ;watering-accessories ;product-width;6;mm
