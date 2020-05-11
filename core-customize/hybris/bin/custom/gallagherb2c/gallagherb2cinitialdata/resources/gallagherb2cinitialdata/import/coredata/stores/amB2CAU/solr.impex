@@ -7,7 +7,7 @@
 $productCatalog=amB2CAUProductCatalog
 $catalogVersions=catalogVersions(catalog(id),version); 
 $facetSearchConfigName=amB2CAUIndex
-$facetSearchConfigDescription=Animal Management B2C AU Solr Index
+$facetSearchConfigDescription=Animal Management B2C CA Solr Index
 $searchIndexNamePrefix=amB2CAU
 $solrIndexedType=amB2CAUProductType
 $indexBaseSite=amB2CAU
