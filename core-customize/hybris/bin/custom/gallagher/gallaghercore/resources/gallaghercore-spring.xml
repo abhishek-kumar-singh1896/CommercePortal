@@ -204,6 +204,10 @@
                 </property>
                 <property name="excludedCronJobCodes">
                     <set>
+                        <value>amB2CCreateBaseProductCronjob</value>
+                        <value>amB2CProductTransformationCronjob</value>
+                        <value>securityB2BCreateBaseProductCronjob</value>
+                        <value>securityB2BProductTransformationCronjob</value>
                         <value>sync amB2CMasterProductCatalog:Staged->amB2CNZProductCatalog:Staged</value>
 								<value>sync amB2CMasterProductCatalog:Staged->amB2CAUProductCatalog:Staged</value>
 								<value>sync amB2CMasterProductCatalog:Staged->amB2CUSProductCatalog:Staged</value>
