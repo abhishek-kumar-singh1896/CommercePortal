@@ -20,7 +20,8 @@ UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.Conf
 #                                                                                                          
 # Setup the indexed types, their properties, and the update queries                                        
 #                                                                                                          
-                                                                                                           
+
+
 # Declare the indexed type Product                                                                         
 INSERT_UPDATE SolrIndexedType ; identifier[unique=true] ; type(code) ; variant ; sorts(&sortRefID)                                     
                               ; $solrIndexedType        ; Product    ; false   ; sortRef1,sortRef2,sortRef3,sortRef4,sortRef5,sortRef6 
