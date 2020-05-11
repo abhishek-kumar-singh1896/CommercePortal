@@ -3,6 +3,7 @@
  */
 package com.gallagher.core.services.impl;
 
+import de.hybris.platform.commercefacades.user.data.CustomerData;
 import de.hybris.platform.commerceservices.customer.CustomerAccountService;
 import de.hybris.platform.commerceservices.customer.DuplicateUidException;
 import de.hybris.platform.commerceservices.enums.SiteChannel;
@@ -31,6 +32,7 @@ import com.gallagher.c4c.outboundservices.facade.GallagherC4COutboundServiceFaca
 import com.gallagher.core.daos.GallagherCustomerDao;
 import com.gallagher.core.dtos.GallagherAccessToken;
 import com.gallagher.core.services.GallagherCustomerService;
+import com.gallagher.keycloak.outboundservices.service.GallagherKeycloakService;
 import com.gallagher.outboundservices.response.dto.GallagherInboundCustomerEntry;
 
 
@@ -72,6 +74,9 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 
 	@Resource(name = "customerNameStrategy")
 	private CustomerNameStrategy customerNameStrategy;
+
+	@Resource(name = "gallagherKeycloakService")
+	private GallagherKeycloakService keycloakService;
 
 	/**
 	 * {@inheritDoc}
@@ -193,6 +198,11 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 			if (updated)
 			{
 				modelService.save(customer);
+				final CustomerData customerData = new CustomerData();
+				customerData.setUid(customer.getUid());
+				customerData.setFirstName(c4cCustomer.getFirstName());
+				customerData.setLastName(c4cCustomer.getLastName());
+				keycloakService.updateKeyCloakUserProfile(customerData);
 			}
 		}
 
