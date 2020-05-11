@@ -28,6 +28,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
 import org.springframework.web.client.RestClientException;
 
+import com.gallagher.core.events.GallagherB2BRegistrationEvent;
 import com.gallagher.keycloak.outboundservices.service.GallagherKeycloakService;
 import com.hybris.cockpitng.config.jaxb.wizard.CustomType;
 import com.hybris.cockpitng.core.model.WidgetModel;
@@ -36,7 +37,6 @@ import com.hybris.cockpitng.util.notifications.event.NotificationEvent;
 import com.hybris.cockpitng.widgets.configurableflow.ConfigurableFlowController;
 import com.hybris.cockpitng.widgets.configurableflow.FlowActionHandler;
 import com.hybris.cockpitng.widgets.configurableflow.FlowActionHandlerAdapter;
-import com.sap.hybris.sapcustomerb2b.outbound.B2BRegistrationEvent;
 
 
 /**
@@ -147,7 +147,7 @@ public class GallagherSaveCustomerHandler implements FlowActionHandler
 	{
 		if (adapter.getWidgetInstanceManager().getModel().getValue("newCust", CustomerModel.class) instanceof B2BCustomerModel)
 		{
-			final B2BRegistrationEvent b2bRegistrationEvent = new B2BRegistrationEvent();
+			final GallagherB2BRegistrationEvent b2bRegistrationEvent = new GallagherB2BRegistrationEvent();
 			final B2BCustomerModel b2bCustomer = (B2BCustomerModel) adapter.getWidgetInstanceManager().getModel().getValue("newCust",
 					CustomerModel.class);
 			final B2BUnitModel defaultB2BUnit = adapter.getWidgetInstanceManager().getModel().getValue("newCust.defaultB2BUnit",
