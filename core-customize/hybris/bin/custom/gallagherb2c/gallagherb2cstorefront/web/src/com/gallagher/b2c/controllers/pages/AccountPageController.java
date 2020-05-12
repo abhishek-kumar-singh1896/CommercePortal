@@ -479,15 +479,23 @@ public class AccountPageController extends AbstractSearchPageController
 				final CustomerData customerData = new CustomerData();
 				customerData.setUid(updateEmailForm.getEmail());
 				customerData.setKeycloakGUID(currentCustomerData.getKeycloakGUID());
-				//	customerFacade.changeUid(updateEmailForm.getEmail(),updateEmailForm.getPassword());
-
-				customerFacade.changeUid(updateEmailForm.getEmail());
-				GlobalMessages.addFlashMessage(redirectAttributes, GlobalMessages.CONF_MESSAGES_HOLDER,
-						"text.account.profile.confirmationUpdated", null);
-
+				try
+				{
+					if (userService.getUserForUID(updateEmailForm.getEmail()) != null)
+					{
+						throw new DuplicateUidException("User with email " + updateEmailForm.getEmail() + " already exists.");
+					}
+				}
+				catch (final UnknownIdentifierException unknownIdentifierException)
+				{
+					// That's ok - user for new uid was not found
+				}
 				getKeycloakService().updateKeycloakUserEmail(customerData);
 
 				// Replace the spring security authentication with the new UID
+				customerFacade.changeUid(updateEmailForm.getEmail());
+				GlobalMessages.addFlashMessage(redirectAttributes, GlobalMessages.CONF_MESSAGES_HOLDER,
+						"text.account.profile.confirmationUpdated", null);
 				final String newUid = customerFacade.getCurrentCustomer().getUid().toLowerCase();
 
 				final Authentication oldAuthentication = SecurityContextHolder.getContext().getAuthentication();
