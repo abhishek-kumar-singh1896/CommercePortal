@@ -99,8 +99,8 @@ INSERT_UPDATE JobSearchRestriction;code[unique=true];job(code)[path-delimiter=!]
 ;B2BMaster->B2BNZ-SyncJob-Media-Restriction;sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged;Media;$mediaQuery
 ;B2BMaster->B2BAU-SyncJob-Media-Restriction;sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged;Media;$mediaQueryPrefix
 ;B2BMaster->B2BAU-SyncJob-Media-Restriction;sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged;Media;$mediaQuery
-;B2BMaster->B2BGlobal-SyncJob-Media-Restriction;sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged;Media;$mediaQuery
 ;B2BMaster->B2BGlobal-SyncJob-Media-Restriction;sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged;Media;$mediaQueryPrefix
+;B2BMaster->B2BGlobal-SyncJob-Media-Restriction;sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged;Media;$mediaQuery
 
 ;B2BMaster->B2BNZ-SyncJob-MediaContainer-Restriction;sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged;MediaContainer;$mediaContainerQueryPrefix
 ;B2BMaster->B2BNZ-SyncJob-MediaContainer-Restriction;sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged;MediaContainer;$mediaContainerQuery

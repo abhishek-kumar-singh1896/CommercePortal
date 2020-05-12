@@ -1,5 +1,7 @@
 eclipse.preferences.version=1
 encoding//web/webroot/WEB-INF/messages/base.properties=UTF-8
+encoding//web/webroot/WEB-INF/messages/base_es_LA.properties=UTF-8
+encoding//web/webroot/WEB-INF/messages/base_fr_CA.properties=UTF-8
 encoding//web/webroot/WEB-INF/messages/site-apparel-de.properties=UTF-8
 encoding//web/webroot/WEB-INF/messages/site-apparel-uk.properties=UTF-8
 encoding//web/webroot/WEB-INF/messages/site-electronics.properties=UTF-8
