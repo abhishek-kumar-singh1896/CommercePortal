@@ -21,7 +21,11 @@ INSERT_UPDATE GallagherRegionRestriction;$contentCV[unique=true];uid[unique=true
 ###################################### EXTRA CATEORIES REMOVAL ########################
 
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
-
+$productCatalog=amB2CMasterProductCatalog
+$productCatalogName=Animal Management B2C US Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$supercategories=source(code, $catalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
 
 REMOVE Category;code[unique=true];$catalogVersion
 
