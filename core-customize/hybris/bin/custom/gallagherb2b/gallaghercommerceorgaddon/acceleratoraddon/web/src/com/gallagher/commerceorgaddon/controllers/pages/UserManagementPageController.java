@@ -631,10 +631,21 @@ public class UserManagementPageController extends MyCompanyPageController
 		GallagherInboundCustomerEntry existingCustomer = new GallagherInboundCustomerEntry();
 
 		//		final EmailValidator eValidator = EmailValidator.getInstance();
-		final String emailLowerCase = email.toLowerCase();
-
+		String emailLowerCase = email.toLowerCase();
+		emailLowerCase = emailLowerCase.trim();
 		//		if (!eValidator.isValid(email))
-		if (!(Pattern.matches("^([\\w-\\.]+)@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\\.)+(.*)$", emailLowerCase)))
+		//if (!(Pattern.matches("^([\\w-\\.]+)@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\\.)+(.*)$", emailLowerCase)))
+		/*
+		 * if (!(Pattern.matches(
+		 * "^[A-Za-z0-9]+([&+?/!$%^*|'{}._-][a-zA-Z\\d]+)@([A-Za-z0-9]+[a-zA-Z\\d&*+?/!$%^*|'{}._-]+.)+[A-Za-z]{2,6}$",
+		 * emailLowerCase)))
+		 */
+		/*
+		 * if (!(Pattern.matches(
+		 * "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$",
+		 * emailLowerCase)))
+		 */
+		if (!(Pattern.matches("^[a-z0-9._%+{}|'=!$^&*?/-]+@[0-9a-z.-]+\\.[0-9a-z]+$", emailLowerCase)))
 		{
 			existingCustomer.setEmailError("invalid");
 		}
@@ -677,4 +688,6 @@ public class UserManagementPageController extends MyCompanyPageController
 
 		return existingCustomer;
 	}
+
 }
+
