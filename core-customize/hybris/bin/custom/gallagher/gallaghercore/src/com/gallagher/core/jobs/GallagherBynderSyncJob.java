@@ -12,6 +12,7 @@ import de.hybris.platform.servicelayer.cronjob.PerformResult;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -102,21 +103,21 @@ public class GallagherBynderSyncJob extends AbstractJobPerformable<GallagherBynd
 	{
 		for (final GallagherBynderResponse gallagherBynderResponse : response)
 		{
-
+			final List<String> skus = getSKUs(gallagherBynderResponse, model);
 			if (gallagherBynderResponse.getArchive() == 0)
 			{
 				if (gallagherBynderResponse.getProperty_assettype().get(0).equals(GallagherCoreConstants.Bynder.IMAGE)
 						|| gallagherBynderResponse.getProperty_assettype().get(0).equals(GallagherCoreConstants.Bynder.IMAGE_VECTOR))
 				{
-					gallagherBynderService.updateMedia(model, gallagherBynderResponse);
+					gallagherBynderService.updateMedia(model, gallagherBynderResponse, skus);
 				}
 				if (gallagherBynderResponse.getProperty_assettype().get(0).equals(GallagherCoreConstants.Bynder.DOCUMENTS))
 				{
-					gallagherBynderService.updateDocumentMedia(model, gallagherBynderResponse);
+					gallagherBynderService.updateDocumentMedia(model, gallagherBynderResponse, skus);
 				}
 				if (gallagherBynderResponse.getProperty_assettype().get(0).equals(GallagherCoreConstants.Bynder.VIDEOS))
 				{
-					gallagherBynderService.updateVideoMedia(model, gallagherBynderResponse);
+					gallagherBynderService.updateVideoMedia(model, gallagherBynderResponse, skus);
 				}
 			}
 			else
@@ -132,10 +133,34 @@ public class GallagherBynderSyncJob extends AbstractJobPerformable<GallagherBynd
 				}
 				if (gallagherBynderResponse.getProperty_assettype().get(0).equals(GallagherCoreConstants.Bynder.VIDEOS))
 				{
-					gallagherBynderService.deleteVideoMedia(model, gallagherBynderResponse);
+					gallagherBynderService.deleteVideoMedia(model, gallagherBynderResponse, skus);
 				}
 			}
 		}
+	}
+
+	/**
+	 * Returns the SKUs
+	 *
+	 * @param gallagherBynderResponse
+	 *           to get the SKU from correct field
+	 * @param cronJob
+	 *           to get the catalog
+	 * @return sku list
+	 */
+	private List<String> getSKUs(final GallagherBynderResponse gallagherBynderResponse,
+			final GallagherBynderSyncCronJobModel cronJob)
+	{
+		List<String> skus;
+		if ("amB2CMasterProductCatalog".equals(cronJob.getCatalogId()))
+		{
+			skus = gallagherBynderResponse.getProperty_skus();
+		}
+		else
+		{
+			skus = gallagherBynderResponse.getProperty_part_numbers();
+		}
+		return skus;
 	}
 
 	private String getHeader(final Map<String, String> params)

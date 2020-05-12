@@ -93,7 +93,7 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 
 	@Override
 	public boolean updateMedia(final GallagherBynderSyncCronJobModel cronModel,
-			final GallagherBynderResponse gallagherBynderResponse)
+			final GallagherBynderResponse gallagherBynderResponse, final List<String> skus)
 	{
 
 		final CatalogVersionModel catlogmodel = catalogVersionService.getCatalogVersion(cronModel.getCatalogId(), "Staged");
@@ -146,10 +146,9 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 		LOGGER.info("Media Saved for " + gallagherBynderResponse.getId());
 
 		//getting products and adding container to that product
-		if (CollectionUtils.isNotEmpty(gallagherBynderResponse.getProperty_skus()))
+		if (CollectionUtils.isNotEmpty(skus))
 		{
-			final List<ProductModel> products = gallagherMediaContainerDao
-					.getProductModeList(gallagherBynderResponse.getProperty_skus(), catlogmodel.getPk());
+			final List<ProductModel> products = gallagherMediaContainerDao.getProductModeList(skus, catlogmodel.getPk());
 			if (CollectionUtils.isNotEmpty(products))
 			{
 				for (final ProductModel product : products)
@@ -214,7 +213,7 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 
 	@Override
 	public boolean updateDocumentMedia(final GallagherBynderSyncCronJobModel cronModel,
-			final GallagherBynderResponse gallagherBynderResponse)
+			final GallagherBynderResponse gallagherBynderResponse, final List<String> skus)
 	{
 		final CatalogVersionModel catlogmodel = catalogVersionService.getCatalogVersion(cronModel.getCatalogId(), "Staged");
 		LOGGER.info("Updating Media for " + gallagherBynderResponse.getId());
@@ -243,11 +242,10 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 		mediaService.setStreamForMedia(mediaModel, getImage(gallagherBynderResponse.getId()));
 
 
-		if (CollectionUtils.isNotEmpty(gallagherBynderResponse.getProperty_skus()))
+		if (CollectionUtils.isNotEmpty(skus))
 		{
 			//getting products and adding container to that product
-			final List<ProductModel> products = gallagherMediaContainerDao
-					.getProductModeList(gallagherBynderResponse.getProperty_skus(), catlogmodel.getPk());
+			final List<ProductModel> products = gallagherMediaContainerDao.getProductModeList(skus, catlogmodel.getPk());
 			if (CollectionUtils.isNotEmpty(products))
 			{
 				for (final ProductModel product : products)
@@ -291,16 +289,15 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 
 	@Override
 	public boolean updateVideoMedia(final GallagherBynderSyncCronJobModel cronModel,
-			final GallagherBynderResponse gallagherBynderResponse)
+			final GallagherBynderResponse gallagherBynderResponse, final List<String> skus)
 	{
 		final CatalogVersionModel catlogmodel = catalogVersionService.getCatalogVersion(cronModel.getCatalogId(), "Staged");
 		LOGGER.info("Updating Media for " + gallagherBynderResponse.getId());
 
-		if (CollectionUtils.isNotEmpty(gallagherBynderResponse.getProperty_skus()))
+		if (CollectionUtils.isNotEmpty(skus))
 		{
 			//getting products and adding container to that product
-			final List<ProductModel> products = gallagherMediaContainerDao
-					.getProductModeList(gallagherBynderResponse.getProperty_skus(), catlogmodel.getPk());
+			final List<ProductModel> products = gallagherMediaContainerDao.getProductModeList(skus, catlogmodel.getPk());
 			if (CollectionUtils.isNotEmpty(products))
 			{
 				for (final ProductModel product : products)
@@ -319,16 +316,15 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 
 	@Override
 	public boolean deleteVideoMedia(final GallagherBynderSyncCronJobModel cronModel,
-			final GallagherBynderResponse gallagherBynderResponse)
+			final GallagherBynderResponse gallagherBynderResponse, final List<String> skus)
 	{
 		final CatalogVersionModel catlogmodel = catalogVersionService.getCatalogVersion(cronModel.getCatalogId(), "Staged");
 		LOGGER.info("Deleting Video Media for " + gallagherBynderResponse.getId());
 
-		if (CollectionUtils.isNotEmpty(gallagherBynderResponse.getProperty_skus()))
+		if (CollectionUtils.isNotEmpty(skus))
 		{
 			//getting products and adding container to that product
-			final List<ProductModel> products = gallagherMediaContainerDao
-					.getProductModeList(gallagherBynderResponse.getProperty_skus(), catlogmodel.getPk());
+			final List<ProductModel> products = gallagherMediaContainerDao.getProductModeList(skus, catlogmodel.getPk());
 			if (CollectionUtils.isNotEmpty(products))
 			{
 				for (final ProductModel product : products)

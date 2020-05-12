@@ -3,6 +3,8 @@
  */
 package com.gallagher.core.services;
 
+import java.util.List;
+
 import com.gallagher.core.cronjob.model.GallagherBynderSyncCronJobModel;
 import com.gallagher.outboundservices.response.dto.GallagherBynderResponse;
 
@@ -13,18 +15,19 @@ import com.gallagher.outboundservices.response.dto.GallagherBynderResponse;
 public interface GallagherBynderService
 {
 
-	public boolean updateMedia(final GallagherBynderSyncCronJobModel model, final GallagherBynderResponse gallagherBynderResponse);
+	boolean updateMedia(final GallagherBynderSyncCronJobModel model, final GallagherBynderResponse gallagherBynderResponse,
+			final List<String> skus);
 
-	public boolean deleteMedia(final GallagherBynderSyncCronJobModel model, final GallagherBynderResponse gallagherBynderResponse);
+	boolean deleteMedia(final GallagherBynderSyncCronJobModel model, final GallagherBynderResponse gallagherBynderResponse);
 
-	public boolean updateDocumentMedia(final GallagherBynderSyncCronJobModel model,
-			final GallagherBynderResponse gallagherBynderResponse);
+	boolean updateDocumentMedia(final GallagherBynderSyncCronJobModel model, final GallagherBynderResponse gallagherBynderResponse,
+			final List<String> skus);
 
-	public boolean deleteDocumentMedia(GallagherBynderSyncCronJobModel cronModel, GallagherBynderResponse gallagherBynderResponse);
+	boolean deleteDocumentMedia(GallagherBynderSyncCronJobModel cronModel, GallagherBynderResponse gallagherBynderResponse);
 
-	public boolean updateVideoMedia(final GallagherBynderSyncCronJobModel model,
-			final GallagherBynderResponse gallagherBynderResponse);
+	boolean updateVideoMedia(final GallagherBynderSyncCronJobModel model, final GallagherBynderResponse gallagherBynderResponse,
+			final List<String> skus);
 
-	public boolean deleteVideoMedia(final GallagherBynderSyncCronJobModel model,
-			final GallagherBynderResponse gallagherBynderResponse);
+	boolean deleteVideoMedia(final GallagherBynderSyncCronJobModel model, final GallagherBynderResponse gallagherBynderResponse,
+			final List<String> skus);
 }

@@ -50,7 +50,7 @@ public class GallagherMediaContainerDaoImpl extends DefaultMediaContainerDao imp
 	}
 
 
-	public List<ProductModel> getProductModeList(final ArrayList<String> property_part_numbers, final PK pk)
+	public List<ProductModel> getProductModeList(final List<String> property_part_numbers, final PK pk)
 	{
 
 		final String query = "select {PK} from {Product} where {code} in (?code) and {catalogversion} = '" + pk + "'";
