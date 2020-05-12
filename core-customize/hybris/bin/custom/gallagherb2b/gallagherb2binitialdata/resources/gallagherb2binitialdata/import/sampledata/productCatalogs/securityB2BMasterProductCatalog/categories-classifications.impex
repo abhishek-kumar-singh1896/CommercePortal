@@ -24,9 +24,6 @@ $unit=unit(code,$classSystemVersion)
 
 # Insert Classifications
 INSERT_UPDATE ClassificationClass;$classCatalogVersion;code[unique=true];allowedPrincipals(uid)[default='customergroup'];;;;;
-;;Assigned Features
-;;Cable specifications (HBUS data only)
-# Classification Categories for 'access-control'
 ;;controllers
 ;;readers-and-terminals
 ;;credentials
@@ -35,52 +32,19 @@ INSERT_UPDATE ClassificationClass;$classCatalogVersion;code[unique=true];allowed
 ;;fence-controllers
 ;;sensors
 
-
-
-# Insert Classification Attributes
 INSERT_UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true];;;;;;
-;;Maximum Read distance - MIFARE
-;;MIFARE DESFire
-;;MIFARE DESFire EV2
-;;MIFARE Plus
-;;125kHz
-;;Mobile Connect
-;;Dimensions mm
-;;Dimensions inches
-;;Environmental protection
-;;Impact rating
-;;UV Stability
-;;Voltage
-;;Idle current 13.6Vdc - MIFARE
-;;Idle current 13.6Vdc - Multi
-;;Operational Temperature Range
-;;Humidity
-;;Cat5e††
-;;Gallagher HBUS Cable††
-;;Standards Compliance
 ;;maximum-read-distance
 ;;environmental-protection
 ;;impact-rating
-;;voltage-Vdc
-;;dimensions-mm
-;;dimensions-inches
+;;dimensions
 ;;cable-specifications-cat5e
 ;;cable-specifications-hbus
-;;standards-compliance-readers
 ;;voltage
-;;dimensions
-;;ethernet-network-connection
 ;;rs485-device-communications
 ;;ports
 ;;tcp/ip-protocol
-;;standards-compliance-controllers
-;;device-limits
-;;ethernet-connection-type
-
-INSERT_UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true];;;;;;
 ;;material
 ;;tracking-distance
-;;dimensions-mm
 ;;fence-circuits
 ;;pulse-rate
 ;;low-feel
@@ -97,8 +61,7 @@ INSERT_UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true];;;;;
 ;;aux-dc-output
 ;;internal-backup-battery
 ;;protection-rating
-;;operating-tempreature-cel
-;;operating-tempreature-fah
+;;operating-temperature
 ;;communications-transfer-speed
 ;;max-hbus-distance
 ;;cable-specification
@@ -109,17 +72,16 @@ INSERT_UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true];;;;;
 ;;number-of-sensors-per-controller
 ;;command-centre-version
 ;;environmental-protection-rating
-;;impact-rating
-;;temperature-operating-cel
-;;temperature-operating-fah
-;;temperature-storage-cel
-;;temperature-storage-fah
-
+;;temperature-operating
+;;temperature-operating
+;;idle-current
+;;ethernet-network-connection
+;;temperature-storage
+;;power
+;;dimensions-inches
 
 # Links ClassificationClasses to Categories
 INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories;;;;;;
-;readers-and-terminals;Assigned Features;
-;readers-and-terminals;Cable specifications (HBUS data only);
 ;controllers;controllers
 ;readers-and-terminals;readers-and-terminals
 ;credentials;credentials
@@ -129,59 +91,30 @@ INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories;;;;;;
 ;sensors;sensors
 
 
-INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attributeType(code[default=string]);multiValued[default=false];range[default=false];localized[default=false]
-;Assigned Features;Maximum Read distance - MIFARE;0;mm
-;Assigned Features;MIFARE DESFire;1;mm
-;Assigned Features;MIFARE DESFire EV2;2;mm
-;Assigned Features;MIFARE Plus;3;mm
-;Assigned Features;125kHz;4;mm
-;Assigned Features;Mobile Connect;5;
-;Assigned Features;Dimensions mm;6;
-;Assigned Features;Dimensions inches;7;
-;Assigned Features;Environmental protection;8;
-;Assigned Features;Impact rating;9;
-;Assigned Features;UV Stability;10;
-;Assigned Features;Voltage;11;Vdc
-;Assigned Features;Idle current 13.6Vdc - MIFARE;12;mA
-;Assigned Features;Idle current 13.6Vdc - Multi;13;mA
-;Assigned Features;Operational Temperature Range;14;
-;Assigned Features;Humidity;15;
-
-;Cable specifications (HBUS data only);Cat5e††;0;
-;Cable specifications (HBUS data only);Gallagher HBUS Cable††;1;
-;Cable specifications (HBUS data only);Standards Compliance;2;
- 
- 
- 
- # For Classification Category 'controllers'
-;readers-and-terminals;maximum-read-distance;1;mm
-;readers-and-terminals;environmental-protection;2;ip-rating
-;readers-and-terminals;impact-rating;3;ik-rating
-;readers-and-terminals;voltage-Vdc;4;Vdc
-;readers-and-terminals;dimensions-mm;5;mm
-;readers-and-terminals;dimensions-inches;6;inches
-;readers-and-terminals;cable-specifications-cat5e;7
-;readers-and-terminals;cable-specifications-hbus;8
-;readers-and-terminals;standards-compliance-readers;9
-
-
-
-# For Classification Category 'readers-and-terminals'
-;controllers;voltage;1
-;controllers;dimensions;2
-;controllers;ethernet-network-connection;3
-;controllers;rs485-device-communications;4
-;controllers;ports;5
-;controllers;tcp/ip-protocol;6
-;controllers;standards-compliance-controllers;7
-;controllers;device-limits;8
-;controllers;ethernet-connection-type;9
-
-
-INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attributeType(code[default=string]);multiValued[default=false];range[default=false];localized[default=false]
+INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attributeType(code[default=number]);multiValued[default=false];range[default=false];localized[default=false]
+									;readers-and-terminals;maximum-read-distance;1;mm;number
+									;readers-and-terminals;environmental-protection;2;ip-rating;number
+									;readers-and-terminals;impact-rating;3;ik-rating;number
+									;readers-and-terminals;voltage;4;Vdc;number
+									;readers-and-terminals;dimensions;5;mm;number
+									;readers-and-terminals;dimensions-inches;6;inches;number
+									;readers-and-terminals;cable-specifications-cat5e;7
+									;readers-and-terminals;cable-specifications-hbus;8
+									;readers-and-terminals;standards-compliance;9
+									
+									;controllers;power;1;V;number
+									;controllers;idle-current;2;Vdc;number
+									;controllers;operating-temperature;3
+									;controllers;dimensions;4;mm;number
+									;controllers;ethernet-network-connection;5
+									;controllers;rs485-device-communications;6
+									;controllers;ports;7
+									;controllers;tcp/ip-protocol;8
+									;controllers;standards-compliance;9
+									
 									;insulators;material;1;
 									;insulators;tracking-distance;2;mm
-									;insulators;dimensions-mm;3;mm
+									;insulators;dimensions;3;mm
 
 									;fence-controllers;fence-circuits;1;
 									;fence-controllers;pulse-rate;2;
@@ -199,8 +132,8 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 									;fence-controllers;aux-dc-output;14;V-Hz
 									;fence-controllers;internal-backup-battery;15;
 									;fence-controllers;protection-rating;16;ip-rating
-									;fence-controllers;operating-tempreature-cel;17;cel
-									;fence-controllers;operating-tempreature-fah;18;fah
+									;fence-controllers;operating-temperature;17;cel
+									;fence-controllers;operating-temperature;18;fah
 									;fence-controllers;communications-transfer-speed;19;
 									;fence-controllers;max-hbus-distance;20;m
 									;fence-controllers;cable-specification;21;
@@ -208,21 +141,21 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 									;fence-controllers;max-lv-sync-cable-distance;23;km
 									;fence-controllers;standards-compliance;24;
 
-									;sensors;voltage-Vdc;1;Vdc
+									;sensors;voltage;1;Vdc
 									;sensors;power-consumption;2;mA
 									;sensors;current;3;mA
-									;sensors;operating-tempreature-cel;4;cel
-									;sensors;operating-tempreature-fah;5;fah
+									;sensors;operating-temperature;4;cel
+									;sensors;operating-temperature;5;fah
 									;sensors;number-of-sensors-per-controller;6;
-									;sensors;dimensions-mm;7;mm
+									;sensors;dimensions;7;mm
 									;sensors;command-centre-version;8;
 									;sensors;environmental-protection-rating;9;ip-rating
 									;sensors;impact-rating;10;ik-rating
 
-									;starter-kits;dimensions-mm;1;mm
+									;starter-kits;dimensions;1;mm
 
-									;credentials ;dimensions-mm;1;mm
-									;credentials ;temperature-operating-cel;2;cel
-									;credentials ;temperature-operating-fah;3;fah
-									;credentials ;temperature-storage-cel;4;cel
-									;credentials ;temperature-storage-fah;5;fah
+									;credentials ;dimensions;1;mm
+									;credentials ;temperature-operating;2;cel
+									;credentials ;temperature-operating;3;fah
+									;credentials ;temperature-storage;4;cel
+									;credentials ;temperature-storage;5;fah

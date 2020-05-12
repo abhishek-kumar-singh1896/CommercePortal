@@ -18,8 +18,8 @@ INSERT_UPDATE ClassificationAttributeUnit;code[unique=true];symbol;unitType;name
 ;Vdc;Vdc;Vdc;Voltage DC;
 ;mA;mA;mA;milliAmpere;
 ;m;m;m;meter;
-;ip-rating;ip-rating;ip-rating;IP rating;
-;ik-rating;ik-rating;ik-rating;IK rating;
+;ip-rating;IP Rating;ip-rating;IP rating;
+;ik-rating;IK Rating;ik-rating;IK rating;
 ;inches;inches;inches;Inches;
 
 ;J;J;J;Joules
@@ -30,3 +30,4 @@ INSERT_UPDATE ClassificationAttributeUnit;code[unique=true];symbol;unitType;name
 ;fah;°F;°F;Fahrenheit
 ;AES;AES;AES;AES
 ;km;km;km;kilometer
+;V;V;V;Volt

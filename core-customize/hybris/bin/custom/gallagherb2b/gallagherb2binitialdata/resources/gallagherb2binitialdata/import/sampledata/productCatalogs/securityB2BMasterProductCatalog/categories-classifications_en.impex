@@ -22,65 +22,33 @@ $lang=en
 
 # Insert Classifications
 UPDATE ClassificationClass;$classCatalogVersion;code[unique=true];name[lang=$lang]
-;;Assigned Features;Assigned Features
-;;Cable specifications (HBUS data only);Cable specifications (HBUS data only)
 ;;controllers;Controllers
 ;;readers-and-terminals;Readers And Terminals
+;;credentials;Credentials
+;;starter-kits;Starter Kits
+;;insulators;Insulators
+;;fence-controllers;Fence Controllers
+;;sensors;Sensors
 
 # Insert Classification Attributes
 UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true];name[lang=$lang]
-;;Maximum Read distance - MIFARE;Maximum Read distance - MIFARE
-;;MIFARE DESFire;MIFARE DESFire
-;;MIFARE DESFire EV2;MIFARE DESFire EV2
-;;MIFARE Plus;MIFARE Plus
-;;125kHz;125kHz
-;;Mobile Connect;Mobile Connect
-;;Dimensions mm;Dimensions mm (H x W x D)
-;;Dimensions inches;Dimensions inches (H x W x D)
-;;Environmental protection;Environmental protection
-;;Impact rating;Impact rating
-;;UV Stability;UV Stability
-;;Voltage;Voltage
-;;Idle current 13.6Vdc - MIFARE;Idle current @ 13.6Vdc - MIFARE
-;;Idle current 13.6Vdc - Multi;Idle current @ 13.6Vdc - Multi
-;;Operational Temperature Range;Operational Temperature Range
-;;Humidity;Humidity
-
-;;Cat5e††;Cat5e††
-;;Gallagher HBUS Cable††;Gallagher HBUS Cable††
-;;Standards Compliance;Standards Compliance
 
 ;;maximum-read-distance;maximum read distance
 ;;environmental-protection;Environmental Protection
 ;;impact-rating;Impact rating
-;;voltage-Vdc;Voltage
-;;dimensions-mm;Dimensions
-;;dimensions-inches;Dimensions
+;;dimensions;Dimensions
 ;;cable-specifications-cat5e;Cable Specifications Cat5e
 ;;cable-specifications-hbus;Cable Specifications HBUS
-;;standards-compliance-readers;Standards compliance
 ;;voltage;Voltage
-;;dimensions;Dimensions
 ;;ethernet-network-connection;Ethernet network Connection
 ;;rs485-device-communications;RS485 Device Communications
 ;;ports;Ports
 ;;tcp/ip-protocol;TCP/IP Protocol
-;;standards-compliance-controllers;Standards Compliance
-;;device-limits;Device limits
-;;ethernet-connection-type;Ethernet connection type
 
-UPDATE ClassificationClass;$classCatalogVersion;code[unique=true];name[lang=$lang]
-										;;sensors;Sensors
-										;;starter-kits;Starter Kits
-										;;credentials;Credentials
-										;;fence-controllers;Fence Controllers
-										;;insulators;Insulators
 
 UPDATE ClassificationAttribute;code[unique=true];name[lang=$lang];$classSystemVersion
-							;temperature-operating-cel;Temperature (Operating)
-							;temperature-storage-cel;Temperature (Storage)
-							;temperature-operating-fah;Temperature (Operating)
-							;temperature-storage-fah;Temperature (Storage)
+							;temperature-operating;Temperature (Operating)
+							;temperature-storage;Temperature (Storage)
 							;material;Material
 							;tracking-distance;Tracking distance
 							;fence-circuits;Fence Circuits 
@@ -105,10 +73,11 @@ UPDATE ClassificationAttribute;code[unique=true];name[lang=$lang];$classSystemVe
 							;encryption-level;Encryption level
 							;max-lv-sync-cable-distance;Max LV sync cable distance
 							;standards-compliance;Standards compliance
-							;power-consumption;Power Consumption
 							;current;Current
-							;operating-tempreature-cel;Operating Tempreature
-							;operating-tempreature-fah;Operating Tempreature
+							;operating-temperature;Operating Temperature
 							;number-of-sensors-per-controller;Number of Sensors per Controller
 							;command-centre-version;Command Centre version
 							;environmental-protection-rating;Environmental Protection Rating
+							;idle-current;Idle Current
+							;power;Power
+							;dimensions-inches;Dimensions
