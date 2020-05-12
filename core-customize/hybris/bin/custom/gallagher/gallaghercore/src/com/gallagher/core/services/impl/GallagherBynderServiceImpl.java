@@ -237,7 +237,10 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 		mediaModel.setRealFileName(gallagherBynderResponse.getName());
 		mediaModel.setDescription(getMediaDescription(gallagherBynderResponse));
 		mediaModel.setAltText(gallagherBynderResponse.getFileSize() / 1000000 + " mb");
-
+		//ADDING BASE STORE
+		final List<BaseStoreModel> basestorelist = getBaseStoreModelList(gallagherBynderResponse.getProperty_region(),
+				cronModel.getCatalogId());
+		mediaModel.setBaseStores(basestorelist);
 		modelService.save(mediaModel);
 		mediaService.setStreamForMedia(mediaModel, getImage(gallagherBynderResponse.getId()));
 
