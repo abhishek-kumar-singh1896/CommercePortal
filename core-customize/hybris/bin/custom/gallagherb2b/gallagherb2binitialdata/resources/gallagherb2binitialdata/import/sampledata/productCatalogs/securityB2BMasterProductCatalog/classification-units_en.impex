@@ -34,3 +34,4 @@ UPDATE ClassificationAttributeUnit;code[unique=true];$systemVersion;name[lang=$l
 ;fah;;Fahrenheit
 ;AES;;AES
 ;km;;kilometer
+;V;;Volt

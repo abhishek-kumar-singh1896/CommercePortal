@@ -17,10 +17,10 @@
 										${fn:escapeXml(value.value)}
 										<c:choose>
 											<c:when test="${feature.range}">
-												${not status.last ? '-' : fn:escapeXml(feature.featureUnit.symbol)}
+												&nbsp; ${not status.last ? '-' : fn:escapeXml(feature.featureUnit.symbol)}
 											</c:when>
 											<c:otherwise>
-												${fn:escapeXml(feature.featureUnit.symbol)}
+												&nbsp; ${fn:escapeXml(feature.featureUnit.symbol)}
 												${not status.last ? '<br/>' : ''}
 											</c:otherwise>
 										</c:choose>

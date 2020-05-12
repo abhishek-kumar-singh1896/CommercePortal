@@ -26,7 +26,7 @@ INSERT_UPDATE Product;code[unique=true];baseProductCode;$supercategories;unit(co
 ;heavy-duty-leadout-cable-12.5-gauge-65-foot;heavy-duty-leadout-cable-12.5-gauge;B2C_65Foot;EA;TRUE;TRUE;amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA
 ;heavy-duty-leadout-cable-12.5-gauge-330-foot;heavy-duty-leadout-cable-12.5-gauge;B2C_330Foot;EA;;TRUE;amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA
 
-INSERT_UPDATE VariantCategory   ; code[unique=true] ; name       ; $supercategories ; hasImage[default=true] ; $catalogVersion ; allowedPrincipals(uid)[default='customergroup']
+INSERT_UPDATE VariantCategory   ; code[unique=true] ; name[lang=en]       ; $supercategories ; hasImage[default=false] ; $catalogVersion ; allowedPrincipals(uid)[default='customergroup']
 								;b2c-vc-pack-size;Pack Size Variant
 								;b2c-vc-height;Height Variant
 								;b2c-vc-length;Length Variant
@@ -46,7 +46,7 @@ INSERT_UPDATE VariantCategory   ; code[unique=true] ; name       ; $supercategor
 								;b2c-vc-other-dimensions;Other Dimensions Variant
 
 #Insert Variant Value Category
-INSERT_UPDATE VariantValueCategory  ; code[unique=true] 	; name       ; $supercategories ; sequence ; $catalogVersion ; allowedPrincipals(uid)[default='customergroup']
+INSERT_UPDATE VariantValueCategory  ; code[unique=true] 	; name[lang=en]       ; $supercategories ; sequence ; $catalogVersion ; allowedPrincipals(uid)[default='customergroup']
 									;b2c-vvc-pack-size-1	;Pack of 1  	;b2c-vc-pack-size	;1
 									;b2c-vvc-pack-size-2	;Pack of 2  	;b2c-vc-pack-size	;2
 									;b2c-vvc-pack-size-3	;Pack fo 3	;b2c-vc-pack-size	;3

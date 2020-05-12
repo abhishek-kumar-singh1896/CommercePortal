@@ -107,9 +107,13 @@ public class GallagherSaveCustomerHandler implements FlowActionHandler
 
 			widget.setValue("newCust.uid", email);
 			controller.getRenderer().refreshView();
-			adapter.custom();
+			final B2BCustomerModel savedCustomer = pushToC4C(adapter, isUserExist);
+			//adapter.custom();
 			adapter.done();
-			pushToC4C(adapter, isUserExist);
+			if (savedCustomer != null)
+			{
+				notificationService.notifyUser((String) null, "b2bCustomerCreated", NotificationEvent.Level.SUCCESS, savedCustomer);
+			}
 		}
 		catch (final RestClientException | OAuth2Exception exception)
 		{
@@ -143,13 +147,13 @@ public class GallagherSaveCustomerHandler implements FlowActionHandler
 		return notificationService;
 	}
 
-	private void pushToC4C(final FlowActionHandlerAdapter adapter, final boolean isUserExist)
+	private B2BCustomerModel pushToC4C(final FlowActionHandlerAdapter adapter, final boolean isUserExist)
 	{
+		final B2BCustomerModel b2bCustomer;
 		if (adapter.getWidgetInstanceManager().getModel().getValue("newCust", CustomerModel.class) instanceof B2BCustomerModel)
 		{
 			final GallagherB2BRegistrationEvent b2bRegistrationEvent = new GallagherB2BRegistrationEvent();
-			final B2BCustomerModel b2bCustomer = (B2BCustomerModel) adapter.getWidgetInstanceManager().getModel().getValue("newCust",
-					CustomerModel.class);
+			b2bCustomer = (B2BCustomerModel) adapter.getWidgetInstanceManager().getModel().getValue("newCust", CustomerModel.class);
 			final B2BUnitModel defaultB2BUnit = adapter.getWidgetInstanceManager().getModel().getValue("newCust.defaultB2BUnit",
 					B2BUnitModel.class);
 			String isoCode;
@@ -198,7 +202,7 @@ public class GallagherSaveCustomerHandler implements FlowActionHandler
 			b2bCustomer.setSessionLanguage(language);
 
 			b2bCustomer.setIsUserExist(isUserExist);
-			modelService.save(b2bCustomer);
+
 
 			sessionService.executeInLocalView(new SessionExecutionBody()
 			{
@@ -208,10 +212,16 @@ public class GallagherSaveCustomerHandler implements FlowActionHandler
 					baseSiteService.setCurrentBaseSite(b2bRegistrationEvent.getSite(), false);
 					storeSessionFacade.setCurrentLanguage(b2bRegistrationEvent.getLanguage().getIsocode());
 					storeSessionFacade.setCurrentCurrency(b2bRegistrationEvent.getCurrency().getIsocode());
+					modelService.save(b2bCustomer);
 					b2bEventService.publishEvent(b2bRegistrationEvent);
 				}
 			});
 		}
+		else
+		{
+			b2bCustomer = null;
+		}
+		return b2bCustomer;
 	}
 
 	/**
