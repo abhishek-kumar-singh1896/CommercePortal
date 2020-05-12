@@ -24,6 +24,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.util.Assert;
@@ -190,7 +191,8 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 				customer.setName(customerName);
 				updated = true;
 			}
-			if (customer.getUid() == null || !customer.getUid().equals(c4cCustomer.getEmail()))
+			if (StringUtils.isNotEmpty(c4cCustomer.getEmail())
+					&& (customer.getUid() == null || !customer.getUid().equals(c4cCustomer.getEmail())))
 			{
 				customer.setUid(c4cCustomer.getEmail());
 				updated = true;
@@ -200,6 +202,7 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 				modelService.save(customer);
 				final CustomerData customerData = new CustomerData();
 				customerData.setUid(customer.getUid());
+				customerData.setKeycloakGUID(customer.getKeycloakGUID());
 				customerData.setFirstName(c4cCustomer.getFirstName());
 				customerData.setLastName(c4cCustomer.getLastName());
 				keycloakService.updateKeyCloakUserProfile(customerData);
