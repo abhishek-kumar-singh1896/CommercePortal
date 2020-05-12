@@ -479,8 +479,17 @@ public class AccountPageController extends AbstractSearchPageController
 				final CustomerData customerData = new CustomerData();
 				customerData.setUid(updateEmailForm.getEmail());
 				customerData.setKeycloakGUID(currentCustomerData.getKeycloakGUID());
-				//	customerFacade.changeUid(updateEmailForm.getEmail(),updateEmailForm.getPassword());
-
+				try
+				{
+					if (userService.getUserForUID(updateEmailForm.getEmail()) != null)
+					{
+						throw new DuplicateUidException("User with email " + updateEmailForm.getEmail() + " already exists.");
+					}
+				}
+				catch (final UnknownIdentifierException unknownIdentifierException)
+				{
+					// That's ok - user for new uid was not found
+				}
 				getKeycloakService().updateKeycloakUserEmail(customerData);
 
 				// Replace the spring security authentication with the new UID
