@@ -481,13 +481,12 @@ public class AccountPageController extends AbstractSearchPageController
 				customerData.setKeycloakGUID(currentCustomerData.getKeycloakGUID());
 				//	customerFacade.changeUid(updateEmailForm.getEmail(),updateEmailForm.getPassword());
 
-				customerFacade.changeUid(updateEmailForm.getEmail());
-				GlobalMessages.addFlashMessage(redirectAttributes, GlobalMessages.CONF_MESSAGES_HOLDER,
-						"text.account.profile.confirmationUpdated", null);
-
 				getKeycloakService().updateKeycloakUserEmail(customerData);
 
 				// Replace the spring security authentication with the new UID
+				customerFacade.changeUid(updateEmailForm.getEmail());
+				GlobalMessages.addFlashMessage(redirectAttributes, GlobalMessages.CONF_MESSAGES_HOLDER,
+						"text.account.profile.confirmationUpdated", null);
 				final String newUid = customerFacade.getCurrentCustomer().getUid().toLowerCase();
 
 				final Authentication oldAuthentication = SecurityContextHolder.getContext().getAuthentication();
