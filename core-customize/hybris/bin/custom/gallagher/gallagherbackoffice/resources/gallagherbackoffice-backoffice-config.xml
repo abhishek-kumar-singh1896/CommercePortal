@@ -89,7 +89,7 @@
                     <wz:cancel/>
                     <wz:back/>
                     <wz:custom label="Done" composedHandler="saveCustomerHandler">
-                        <wz:save property="newCust"/>
+                        
                     </wz:custom>
                 </wz:navigation>
             </wz:step>
@@ -109,6 +109,16 @@
 			<na:notifications eventType="c4cConnectionError" level="FAILURE">
 				<na:message>text.connection.exception.error</na:message>
 			</na:notifications>
+			
+			<na:notifications eventType="b2bCustomerCreated" level="SUCCESS">
+				<na:message>b2b.customer.created</na:message>
+				<na:references>
+					<na:reference placeholder="0" label="#root.name" link="true">
+						<na:context parameter="triggerContext" value="#root" evaluate="true"/>
+					</na:reference>
+				</na:references>
+			</na:notifications>
+			
 		</na:notification-area>
 	</context>
     <context merge-by="type" parent="User" type="Customer" component="listview">
@@ -255,15 +265,28 @@
                    		<wz:property qualifier="defaultB2BUnit"/>
 					</wz:property-list>
 				</wz:content>
-				<wz:navigation id="step3.navigation">
+				<wz:navigation id="step3.navigation" merge-mode="REPLACE">
 					<wz:back/>
 					<wz:cancel/>
 					<wz:next visible="newCust.defaultB2BUnit != null"/>
                <wz:custom label="Done" composedHandler="saveCustomerHandler"  visible="newCust.defaultB2BUnit != null">
-                    <wz:save property="newCust"/>
+                    
                </wz:custom>
 				</wz:navigation>
 			</wz:step>
+			<wz:step id="step4" label="create.customer.groups.label" sublabel="create.customer.groups.sublabel" merge-mode="REPLACE">
+                <wz:content id="step4.content">
+                    <wz:property-list root="newCust" merge-mode="REPLACE">
+                        <wz:property qualifier="groups" type="java.lang.String" label="create.customer.verification.groups"/>
+                    </wz:property-list>
+                </wz:content>
+                <wz:navigation id="step4.navigation" merge-mode="REPLACE">
+                    <wz:cancel/>
+                    <wz:back/>
+                    <wz:custom label="Done" composedHandler="saveCustomerHandler">
+                    </wz:custom>
+                </wz:navigation>
+            </wz:step>
 	    </wz:flow>
 	</context>
 	<context type="GallagherSovosConfigurartion" component="base" merge-by="type">
