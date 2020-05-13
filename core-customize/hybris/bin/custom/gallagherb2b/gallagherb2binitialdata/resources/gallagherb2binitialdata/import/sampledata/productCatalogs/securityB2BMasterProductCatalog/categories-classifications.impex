@@ -62,6 +62,8 @@ INSERT_UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true];;;;;
 ;;internal-backup-battery
 ;;protection-rating
 ;;operating-temperature
+;;operating-temperature-cel
+;;operating-temperature-fr
 ;;communications-transfer-speed
 ;;max-hbus-distance
 ;;cable-specification
@@ -72,13 +74,15 @@ INSERT_UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true];;;;;
 ;;number-of-sensors-per-controller
 ;;command-centre-version
 ;;environmental-protection-rating
-;;temperature-operating
-;;temperature-operating
+;;temperature-operating-fr
+;;temperature-operating-cel
 ;;idle-current
 ;;ethernet-network-connection
-;;temperature-storage
+;;temperature-storage-fr
+;;temperature-storage-cel
 ;;power
 ;;dimensions-inches
+
 
 # Links ClassificationClasses to Categories
 INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories;;;;;;
@@ -132,8 +136,8 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 									;fence-controllers;aux-dc-output;14;V-Hz
 									;fence-controllers;internal-backup-battery;15;
 									;fence-controllers;protection-rating;16;ip-rating
-									;fence-controllers;operating-temperature;17;cel
-									;fence-controllers;operating-temperature;18;fah
+									;fence-controllers;operating-temperature-cel;17;cel
+									;fence-controllers;operating-temperature-fr;18;fah
 									;fence-controllers;communications-transfer-speed;19;
 									;fence-controllers;max-hbus-distance;20;m
 									;fence-controllers;cable-specification;21;
@@ -144,8 +148,8 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 									;sensors;voltage;1;Vdc
 									;sensors;power-consumption;2;mA
 									;sensors;current;3;mA
-									;sensors;operating-temperature;4;cel
-									;sensors;operating-temperature;5;fah
+									;sensors;operating-temperature-cel;4;cel
+									;sensors;operating-temperature-fr;5;fah
 									;sensors;number-of-sensors-per-controller;6;
 									;sensors;dimensions;7;mm
 									;sensors;command-centre-version;8;
@@ -155,7 +159,7 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 									;starter-kits;dimensions;1;mm
 
 									;credentials ;dimensions;1;mm
-									;credentials ;temperature-operating;2;cel
-									;credentials ;temperature-operating;3;fah
-									;credentials ;temperature-storage;4;cel
-									;credentials ;temperature-storage;5;fah
+									;credentials ;temperature-operating-cel;2;cel
+									;credentials ;temperature-operating-fr;3;fah
+									;credentials ;temperature-storage-cel;4;cel
+									;credentials ;temperature-storage-fr;5;fah

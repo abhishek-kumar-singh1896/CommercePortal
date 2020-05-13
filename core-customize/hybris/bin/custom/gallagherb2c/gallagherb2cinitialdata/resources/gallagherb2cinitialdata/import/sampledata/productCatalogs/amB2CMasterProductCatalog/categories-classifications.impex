@@ -17,22 +17,13 @@ $unit=unit(code,$classSystemVersion)
 
 # Insert Classifications
 INSERT_UPDATE ClassificationClass;$classCatalogVersion;code[unique=true];allowedPrincipals(uid)[default='customergroup']
-# Classification Categories for 'power'
-;;mains-energizers
-;;remotes-and-fence-testers
-;;power-system-accessories
-;;multi-powered-energizers
-;;battery-energizers 
-;;solar-energizers 
-;;solar-panels
 ;;batteries 
 ;;earthing 
-;;solar-and-solar-kits 
-;;110-volt-energizers   
+;;solar-panels
+;;remotes-and-fence-testers
+;;power-system-accessories
 ;;grounding
-;;power-management-tools
 
-# Classification Categories for 'permanent-fencing'
 ;;wire-and-cable
 ;;strainers
 ;;insulators
@@ -41,13 +32,9 @@ INSERT_UPDATE ClassificationClass;$classCatalogVersion;code[unique=true];allowed
 ;;fence-tools-and-accessories
 ;;clamps-and-joiners
 ;;posts
-;;irrigator-fence-crossing-system  
 ;;gallagher-westonfence
 ;;gallagher-mega-anchor
-;;pivot-irrigator-system
-;;gate-hardware
 
-# Classification Categories for 'portable-fencing'
 ;;tapes-wires-and-braids-pf
 ;;reels-and-accessories-pf
 ;;posts-pigtails-and-treadins-pf
@@ -55,26 +42,12 @@ INSERT_UPDATE ClassificationClass;$classCatalogVersion;code[unique=true];allowed
 ;;electric-fence-kits 
 ;;netting 
 
-# Classification Categories for 'fence-construction'
-#;;insulators 
-#;;offsets
-#;;posts
-#;;strainers
-#;;clamps-and-joiners 
-#;;fence-tools-and-accessories 
-#;;gates-and-gate-accessories
-
-# Classification Categories for 'fence-conductors'
 ;;reels-and-accessories-fc
 ;;hi-tensile-wire-and-cable
 ;;tapes-wires-and-braids-fc
-;;posts-pigtails-and-treadins-fc
 
-
-# Classification Categories for 'weighing-and-eid'
 ;;weigh-scales-and-data-collectors
 ;;loadbars-and-accessories
-;;loadbars
 ;;platforms
 ;;drafters
 ;;eid-tag-readers
@@ -82,29 +55,16 @@ INSERT_UPDATE ClassificationClass;$classCatalogVersion;code[unique=true];allowed
 ;;weighing-accessories 
 ;;stock-prods-and-accessories
 
-# Classification Categories for 'weighing-eid-and-animal-handling'
-;;platforms-and-crates
-;;handlers-and-drafters
 ;;stock-prods
-#;;weigh-scales-and-data-collectors 
-#;;loadbars-and-accessories  
-#;;eid-tag-readers
 
-# Classification Categories for 'wireless-water-monitoring'
 ;;water-flow-indicator 
 ;;one-tank-systems 
 ;;antennae-and-cables 
 ;;additional-system-components
 
-# Classification Categories for 'steel-gates-and-hardware'
 ;;gates
 ;;gate-hardware-sgh
 
-# Classification Categories for 'apps-and-software'
-;;livestock
-;;fence
-
-# Classification Categories for 'automatic-watering'
 ;;trough-valves
 ;;lil-spring 
 ;;equi-fount 
@@ -112,50 +72,82 @@ INSERT_UPDATE ClassificationClass;$classCatalogVersion;code[unique=true];allowed
 ;;e-fount
 ;;big-spring
 ;;pet-tanks 
-;;watering-accessories 
+;;watering-accessories
+
 
 INSERT_UPDATE ClassificationClass;$classCatalogVersion;code[unique=true];allowedPrincipals(uid)[default='customergroup']
 ;;energizers
 ;;gates-and-gate-accessories
 
-# Classification Categories for 'promotions'
-#;;bargain-barn
 
-# Insert Classification Attributes
-INSERT_UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true]
-;;energizer-type
-;;animal-type
-;;area-of-fence
-;;multi-wire-distance-typical
-;;stored-joules
-;;i-series-compatible
-;;outdoor-suitable
-;;product-type
-;;conductor-type
-;;voltage-over-2km
-;;voltage-over-5km
-;;voltage-over-10km
-;;resistance
-;;strainer-type
-;;post-type
-;;insulator-type
-;;mounting-type
-;;gate-type
-;;use
-;;mixed-metals
-;;voltage-over-500m
-;;voltage-over-1km
-;;fence-type
-;;product-features
-;;strength
-;;offset-mounting-type
-;;primary-usage
-;;wires
-;;post-height
-;;area-of-typical-fence
-;;area-of-clean-fence
-;;multi-wire-distance-clean
-;;capacity
+# Links ClassificationClasses to Categories
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;mains-energizers;energizers
+;110-volt-energizers;energizers
+;multi-powered-energizers;energizers
+;battery-energizers;energizers
+;solar-energizers;energizers
+
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;remotes-and-fence-testers;remotes-and-fence-testers
+;power-system-accessories;power-system-accessories
+;solar-panels;solar-panels
+;batteries;batteries 
+;earthing;earthing
+;grounding;grounding
+
+;wire-and-cable;wire-and-cable
+;strainers;strainers
+;insulators;insulators
+;offsets;offsets
+;electric-gates;electric-gates
+;fence-tools-and-accessories;fence-tools-and-accessories
+;clamps-and-joiners;clamps-and-joiners
+;posts;posts
+;gallagher-westonfence;gallagher-westonfence
+;gallagher-mega-anchor;gallagher-mega-anchor
+
+;tapes-wires-and-braids-pf;tapes-wires-and-braids-pf
+;reels-and-accessories-pf;reels-and-accessories-pf
+;posts-pigtails-and-treadins-pf;posts-pigtails-and-treadins-pf
+;all-in-one-portable-fences;all-in-one-portable-fences
+;electric-fence-kits;electric-fence-kits
+;netting;netting
+
+;tapes-wires-and-braids-fc;tapes-wires-and-braids-fc
+;reels-and-accessories-fc;reels-and-accessories-fc
+
+;gates-and-gate-accessories;gates-and-gate-accessories
+ 
+;hi-tensile-wire-and-cable;hi-tensile-wire-and-cable
+
+;weigh-scales-and-data-collectors;weigh-scales-and-data-collectors
+;loadbars-and-accessories;loadbars-and-accessories
+;platforms;platforms
+;drafters;drafters
+;eid-tag-readers;eid-tag-readers
+;scale-heads-and-data-collectors;scale-heads-and-data-collectors
+;weighing-accessories;weighing-accessories
+;stock-prods-and-accessories;stock-prods-and-accessories
+
+;stock-prods;stock-prods
+
+;water-flow-indicator;water-flow-indicator
+;one-tank-systems;one-tank-systems
+;antennae-and-cables;antennae-and-cables
+;additional-system-components;additional-system-components
+
+;gates;gates
+;gate-hardware-sgh;gate-hardware-sgh
+
+;trough-valves;trough-valves
+;lil-spring;lil-spring
+;equi-fount;equi-fount
+;mira-fount;mira-fount
+;e-fount;e-fount
+;big-spring;big-spring
+;pet-tanks;pet-tanks
+;watering-accessories;watering-accessories 
 
 
 INSERT_UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true]
@@ -244,285 +236,15 @@ INSERT_UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true]
 ;;clean-wire-fence-distance
 ;;capacity-l
 ;;pack-size
- 
-
-# Links ClassificationClasses to Categories
-INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
-;mains-energizers;mains-energizers
-;remotes-and-fence-testers;remotes-and-fence-testers
-;power-system-accessories;power-system-accessories
-;multi-powered-energizers;multi-powered-energizers
-;battery-energizers;battery-energizers 
-;solar-energizers;solar-energizers 
-;solar-panels;solar-panels
-;batteries;batteries 
-;earthing;earthing
-;solar-and-solar-kits;solar-and-solar-kits 
-;110-volt-energizers;110-volt-energizers
-;grounding;grounding
-;power-management-tools;power-management-tools
-
-;wire-and-cable;wire-and-cable
-;strainers;strainers
-;insulators;insulators
-;offsets;offsets
-;electric-gates;electric-gates
-;fence-tools-and-accessories;fence-tools-and-accessories
-;clamps-and-joiners;clamps-and-joiners
-;posts;posts
-;irrigator-fence-crossing-system;irrigator-fence-crossing-system  
-;gallagher-westonfence;gallagher-westonfence
-;gallagher-mega-anchor;gallagher-mega-anchor
-;pivot-irrigator-system;pivot-irrigator-system
-;gate-hardware;gate-hardware
-
-;tapes-wires-and-braids-pf;tapes-wires-and-braids-pf
-;reels-and-accessories-pf;reels-and-accessories-pf
-;posts-pigtails-and-treadins-pf;posts-pigtails-and-treadins-pf
-;all-in-one-portable-fences;all-in-one-portable-fences
-;electric-fence-kits;electric-fence-kits
-;netting;netting
-
-;tapes-wires-and-braids-fc;tapes-wires-and-braids-fc
-;reels-and-accessories-fc;reels-and-accessories-fc
-;posts-pigtails-and-treadins-fc;posts-pigtails-and-treadins-fc
-
-;gates-and-gate-accessories;gates-and-gate-accessories
- 
-;hi-tensile-wire-and-cable;hi-tensile-wire-and-cable
-
-;weigh-scales-and-data-collectors;weigh-scales-and-data-collectors
-;loadbars-and-accessories;loadbars-and-accessories
-;loadbars;loadbars
-;platforms;platforms
-;drafters;drafters
-;eid-tag-readers;eid-tag-readers
-;scale-heads-and-data-collectors;scale-heads-and-data-collectors
-;weighing-accessories;weighing-accessories
-;stock-prods-and-accessories;stock-prods-and-accessories
-
-;platforms-and-crates;platforms-and-crates
-;handlers-and-drafters;handlers-and-drafters
-;stock-prods;stock-prods
-
-;water-flow-indicator;water-flow-indicator
-;one-tank-systems;one-tank-systems
-;antennae-and-cables;antennae-and-cables
-;additional-system-components;additional-system-components
-
-;gates;gates
-;gate-hardware-sgh;gate-hardware-sgh
-
-;livestock;livestock
-;fence;fence
-
-;trough-valves;trough-valves
-;lil-spring;lil-spring
-;equi-fount;equi-fount
-;mira-fount;mira-fount
-;e-fount;e-fount
-;big-spring;big-spring
-;pet-tanks;pet-tanks
-;watering-accessories;watering-accessories 
-
-#;bargain-barn;bargain-barn
-
-INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attributeType(code[default=string]);multiValued[default=false];range[default=false];localized[default=true]
-# For Classification Category 'mains-energizers'
-;mains-energizers;animal-type;1;
-;mains-energizers;area-of-fence;2;Acres;number
-;mains-energizers;area-of-typical-fence;3;Acres;number
-;mains-energizers;area-of-clean-fence;4;Acres;number
-;mains-energizers;multi-wire-distance-typical;5;km;number
-;mains-energizers;multi-wire-distance-clean;6;km;number
-;mains-energizers;stored-joules;7;Joules;number
-;mains-energizers;i-series-compatible;8;;boolean
-;mains-energizers;outdoor-suitable;9;;boolean 
-
-# For Classification Category 'multi-powered-energizers'
-;multi-powered-energizers;animal-type;1;
-;multi-powered-energizers;area-of-fence;2;Acres;number
-;multi-powered-energizers;area-of-typical-fence;3;Acres;number
-;multi-powered-energizers;area-of-clean-fence;4;Acres;number
-;multi-powered-energizers;multi-wire-distance-typical;5;km;number
-;multi-powered-energizers;multi-wire-distance-clean;6;km;number
-;multi-powered-energizers;stored-joules;7;Joules;number
-;multi-powered-energizers;i-series-compatible;8;;boolean
-;multi-powered-energizers;outdoor-suitable;9;;boolean
-
-# For Classification Category 'solar-energizers'
-;solar-energizers;animal-type;1;
-;solar-energizers;area-of-fence;2;Acres;number
-;solar-energizers;area-of-typical-fence;3;Acres;number
-;solar-energizers;area-of-clean-fence;4;Acres;number
-;solar-energizers;multi-wire-distance-typical;5;km;number
-;solar-energizers;multi-wire-distance-clean;6;km;number
-;solar-energizers;stored-joules;7;Joules;number
-;solar-energizers;i-series-compatible;8;;boolean
-;solar-energizers;outdoor-suitable;9;;boolean
-
-# For Classification Category 'battery-energizers'
-;battery-energizers;animal-type;1;
-;battery-energizers;area-of-fence;2;Acres;number
-;battery-energizers;area-of-typical-fence;3;Acres;number
-;battery-energizers;area-of-clean-fence;4;Acres;number
-;battery-energizers;multi-wire-distance-typical;5;km;number
-;battery-energizers;multi-wire-distance-clean;6;km;number
-;battery-energizers;stored-joules;7;Joules;number
-;battery-energizers;i-series-compatible;8;;boolean
-;battery-energizers;outdoor-suitable;9;;boolean
-
-# For Classification Category '110-volt-energizers '
-;110-volt-energizers ;animal-type;1;
-;110-volt-energizers ;area-of-fence;2;Acres;number
-;110-volt-energizers ;area-of-typical-fence;3;Acres;number
-;110-volt-energizers ;area-of-clean-fence;4;Acres;number
-;110-volt-energizers ;multi-wire-distance-typical;5;km;number
-;110-volt-energizers ;multi-wire-distance-clean;6;km;number
-;110-volt-energizers ;stored-joules;7;Joules;number
-;110-volt-energizers ;i-series-compatible;8;;boolean
-;110-volt-energizers ;outdoor-suitable;9;;boolean
-
-
-# For Classification Category 'remotes-and-fence-testers'
-;remotes-and-fence-testers;i-series-compatible;0;;boolean
-
-# For Classification Category 'power-system-accessories'
-;power-system-accessories;product-type;0;
-;power-system-accessories;i-series-compatible;1;
-
-# For Classification Category 'wire-and-cable'
-;wire-and-cable;conductor-type;0;
-;wire-and-cable;voltage-over-2km;1;kV;number
-;wire-and-cable;voltage-over-5km;2;kV;number
-;wire-and-cable;voltage-over-10km;3;kV;number
-;wire-and-cable;resistance;4;;number
-
-# For Classification Category 'strainers'
-;strainers;strainer-type;0;
-
-# For Classification Category 'insulators'
-;insulators;post-type;0;
-;insulators;insulator-type;1;
-
-# For Classification Category 'offsets'
-;offsets;mounting-type;0;
-;offsets;offset-mounting-type;1;
-
-# For Classification Category 'electric-gates'
-;electric-gates;gate-type;0;
-
-# For Classification Category 'fence-tools-and-accessories'
-;fence-tools-and-accessories;use;0;
-
-# For Classification Category 'clamps-and-joiners'
-
-# For Classification Category 'posts'
-
-# For Classification Category 'gates-and-gate-accessories'
-#;gates-and-gate-accessories;gate-type;0;
-
-# For Classification Category 'tapes-wires-and-braids'
-;tapes-wires-and-braids-pf;mixed-metals;0;;boolean
-;tapes-wires-and-braids-pf;voltage-over-500m;1;kV;number
-;tapes-wires-and-braids-pf;voltage-over-1km;2;kV;number
-;tapes-wires-and-braids-pf;resistance;3;;number
-
-;tapes-wires-and-braids-fc;mixed-metals;0;;boolean
-;tapes-wires-and-braids-fc;voltage-over-500m;1;kV;number
-;tapes-wires-and-braids-fc;voltage-over-1km;2;kV;number
-;tapes-wires-and-braids-fc;resistance;3;;number
-
-# For Classification Category 'reels-and-accessories'
-;reels-and-accessories-pf;product-type;0;
-;reels-and-accessories-fc;product-type;0;
-
-
-# For Classification Category 'posts-pigtails-and-treadins'
-;posts-pigtails-and-treadins-pf;animal-type;0;
-;posts-pigtails-and-treadins-pf;fence-type;1;
-
-;posts-pigtails-and-treadins-fc;animal-type;0;
-;posts-pigtails-and-treadins-fc;fence-type;1;
-
-# For Classification Category 'all-in-one-portable-fences'
-
-# For Classification Category 'weigh-scales-and-data-collectors'
-;weigh-scales-and-data-collectors;product-features;0;
-
-# For Classification Category 'loadbars-and-accessories'
-;loadbars-and-accessories;animal-type;0;
-
-# For Classification Category 'platforms'
-
-# For Classification Category 'drafters'
-
-# For Classification Category 'eid-tag-readers'
-;eid-tag-readers;product-type;0;
-
-# For Classification Category 'platforms-and-crates'
-;platforms-and-crates;animal-type;0;
-
-# For Classification Category 'handlers-and-drafters'
-;handlers-and-drafters;product-features;0;
-
-# For Classification Category 'eid-tag-readeres-and-barcoding-equipement'
-#;eid-tag-readeres-and-barcoding-equipement;product-type;0;
-
-# For Classification Category 'scale-heads-and-data-collectors'
-;scale-heads-and-data-collectors;product-features;0;
-
-# For Classification Category 'gates'
-;gates;animal-type;0;
-;gates;strength;1;
-
-# For Classification Category 'gate-hardware-sgh'
-;gate-hardware-sgh;product-type;0;
-
-# For Classification Category 'insulated-suspension-posts'
-#;insulated-suspension-posts;primary-usage;0;
-#;insulated-suspension-posts;wires;1;;number
-#;insulated-suspension-posts;post-height;2;mm;number
-
-# For Classification Category 'trough-valves'
-;trough-valves;product-features;0;
-;trough-valves;animal-type;1;
-;trough-valves;capacity;2;;number
-
-# For Classification Category 'lil-spring '
-;lil-spring ;product-features;0;
-;lil-spring ;animal-type;1;
-;lil-spring ;capacity;2;;number
-
-# For Classification Category 'equi-fount'
-;equi-fount;product-features;0;
-;equi-fount;animal-type;1;
-;equi-fount;capacity;2;;number
-
-# For Classification Category 'mira-fount'
-;mira-fount;product-features;0;
-;mira-fount;animal-type;1;
-;mira-fount;capacity;2;;number
-
-# For Classification Category 'e-fount'
-;e-fount;product-features;0;
-;e-fount;animal-type;1;
-;e-fount;capacity;2;;number
-
-# For Classification Category 'big-spring'
-;big-spring;product-features;0;
-;big-spring;animal-type;1;
-;big-spring;capacity;2;;number
-
-# For Classification Category 'pet-tanks'
-;pet-tanks;product-features;0;
-;pet-tanks;animal-type;1;
-;pet-tanks;capacity;2;;number
-
-# For Classification Category 'watering-accessories'
-;watering-accessories ;product-features;0;
-;watering-accessories ;animal-type;1;
-;watering-accessories ;capacity;2;;number
+;;product-weight-lbs 
+;;product-height-inch
+;;product-width-inch
+;;product-depth-inch
+;;post-height-inch
+;;product-length-inch
+;;length-inch
+;;primary-usage
+;;wires
 
 INSERT_UPDATE ClassAttributeAssignment;$attribute;$class;position;$unit;attributeType(code[default=string]);multiValued[default=false];range[default=false];localized[default=true]
 ;energy-stored;energizers;1;Joules;number
@@ -541,503 +263,540 @@ INSERT_UPDATE ClassAttributeAssignment;$attribute;$class;position;$unit;attribut
 ;warranty;energizers;14;Years;number
 ;typical-fence-distance-gallagher-recommendation;energizers;15;miles;number
 ;clean-wire-fence-distance;energizers;16;miles;number
-;product-weight;energizers;17;lbs;number
+;product-weight-lbs;energizers;17;lbs;number
 ;property-size;energizers;18;Acres;number
+;product-height-inch;energizers;19;inches;number
+;product-width-inch;energizers;20;inches;number
+;product-depth-inch;energizers;21;inches;number
 
 
 INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attributeType(code[default=string]);multiValued[default=false];range[default=false];localized[default=true]
 
-# For Classification Category 'solar-panels'
-;solar-panels;warranty;1;Years
-;solar-panels;watts;2;W
-;solar-panels;product-height;3;mm
-;solar-panels;product-width;4;mm
-;solar-panels;product-depth;5;mm
-;solar-panels;product-weight;6;kg
-;solar-panels;product-weight;7;lbs
+;solar-panels;warranty;1;Years;number
+;solar-panels;watts;2;W;number
+;solar-panels;product-height;3;mm;number
+;solar-panels;product-width;4;mm;number
+;solar-panels;product-depth;5;mm;number
+;solar-panels;product-weight;6;kg;number
+;solar-panels;product-height-inch;7;inches;number
+;solar-panels;product-width-inch;8;inches;number
+;solar-panels;product-depth-inch;9;inches;number
+;solar-panels;product-weight-lbs;10;lbs;number
 
-;batteries;warranty;1;Years
-;batteries;voltage;2;V
-;batteries;dc-input;3;V
-;batteries;maximum-output-current;4;mA
-;batteries;capacity;5;Ah
-;batteries;current;6;mA
-;batteries;product-height;7;mm
-;batteries;product-width;8;mm
-;batteries;product-depth;9;mm
-;batteries;product-weight;10;kg
-;batteries;product-weight;11;lbs
+;batteries;warranty;1;Years;number
+;batteries;voltage;2;V;number
+;batteries;dc-input;3;V;number
+;batteries;maximum-output-current;4;mA;number
+;batteries;capacity;5;Ah;number
+;batteries;current;6;mA;number
+;batteries;product-height;7;mm;number
+;batteries;product-width;8;mm;number
+;batteries;product-depth;9;mm;number
+;batteries;product-weight;10;kg;number
+;batteries;product-height-inch;11;inches;number
+;batteries;product-width-inch;12;inches;number
+;batteries;product-depth-inch;13;inches;number
+;batteries;product-weight-lbs;14;lbs;number
 
-;earthing;warranty;1;Years
-;earthing;product-height;2;mm
-;earthing;product-width;3;mm
-;earthing;product-depth;4;mm
-;earthing;product-weight;5;kg
-;earthing;width-or-length;6;mm
-;earthing;height;7;mm
+;earthing;warranty;1;Years;number
+;earthing;product-height;2;mm;number
+;earthing;product-width;3;mm;number
+;earthing;product-depth;4;mm;number
+;earthing;product-weight;5;kg;number
+;earthing;width-or-length;6;mm;number
+;earthing;height;7;mm;number
 
-;grounding;warranty;1;Years
-;grounding;product-height;2;mm
-;grounding;product-width;3;mm
-;grounding;product-depth;4;mm
-;grounding;product-weight;5;lbs
+;grounding;warranty;1;Years;number
+;grounding;product-height-inch;2;inches;number
+;grounding;product-width-inch;3;inches;number
+;grounding;product-depth-inch;4;inches;number
+;grounding;product-weight-lbs;5;lbs;number
 
 ;remotes-and-fence-testers;measures-voltage;1;;boolean
 ;remotes-and-fence-testers;measures-current;2;;boolean
 ;remotes-and-fence-testers;digital-display;3;;boolean
-;remotes-and-fence-testers;warranty;4;Years
+;remotes-and-fence-testers;warranty;4;Years;number
 ;remotes-and-fence-testers;i-series-compatiable;5;;boolean
-;remotes-and-fence-testers;product-height;6;mm
-;remotes-and-fence-testers;product-width;7;mm
-;remotes-and-fence-testers;product-depth;8;mm
-;remotes-and-fence-testers;product-weight;9;kg
-;remotes-and-fence-testers;product-weight;10;lbs
+;remotes-and-fence-testers;product-height;6;mm;number
+;remotes-and-fence-testers;product-width;7;mm;number
+;remotes-and-fence-testers;product-depth;8;mm;number
+;remotes-and-fence-testers;product-weight;9;kg;number
+;remotes-and-fence-testers;product-height-inch;10;inches;number
+;remotes-and-fence-testers;product-width-inch;11;inches;number
+;remotes-and-fence-testers;product-depth-inch;12;inches;number
+;remotes-and-fence-testers;product-weight-lbs;13;lbs;number
 
-;power-system-accessories;warranty;1;Years
+;power-system-accessories;warranty;1;Years;number
 ;power-system-accessories;i-series-compatiable;2;;boolean
-;power-system-accessories;product-height;3;mm
-;power-system-accessories;product-width;4;mm
-;power-system-accessories;product-depth;5;mm
-;power-system-accessories;product-weight;6;kg
-;power-system-accessories;product-weight;7;lbs
-;power-system-accessories;measures-voltage;8;;boolean
-;power-system-accessories;measures-current;9;;boolean
-;power-system-accessories;digital-display;10;;boolean
-;power-system-accessories;height;11;mm
-;power-system-accessories;width-or-length;12;mm
+;power-system-accessories;product-height;3;mm;number
+;power-system-accessories;product-width;4;mm;number
+;power-system-accessories;product-depth;5;mm;number
+;power-system-accessories;product-weight;6;kg;number
+;power-system-accessories;product-width-inch;7;inches;number
+;power-system-accessories;product-depth-inch;8;inches;number
+;power-system-accessories;product-height-inch;9;inches;number
+;power-system-accessories;product-weight-lbs;10;lbs;number
+;power-system-accessories;measures-voltage;11;;boolean
+;power-system-accessories;measures-current;12;;boolean
+;power-system-accessories;digital-display;13;;boolean
+;power-system-accessories;height;14;mm;number
+;power-system-accessories;width-or-length;15;mm;number
 
-;gallagher-westonfence;warranty;1;Years
-;gallagher-westonfence;pack-size;2
-;gallagher-westonfence;primary-usage;3
-;gallagher-westonfence;wires;4
-;gallagher-westonfence;post-height;5;mm
-;gallagher-westonfence;product-width;6;mm
-;gallagher-westonfence;product-depth;7;mm
-;gallagher-westonfence;product-weight;8;kg
+;gallagher-westonfence;primary-usage;3;;
+;gallagher-westonfence;wires;4;;
+;gallagher-westonfence;post-height;5;mm;number
+;gallagher-westonfence;product-width;6;mm;number
+;gallagher-westonfence;product-depth;7;mm;number
+;gallagher-westonfence;product-weight;8;kg;number
 
-;gallagher-mega-anchor;warranty;1;Years
-;gallagher-mega-anchor;post-height;2;mm
-;gallagher-mega-anchor;product-width;3;mm
-;gallagher-mega-anchor;product-depth;4;mm
-;gallagher-mega-anchor;product-weight;5;kg
-;gallagher-mega-anchor;contents;6
+;gallagher-mega-anchor;warranty;1;Years;number
+;gallagher-mega-anchor;post-height;2;mm;number
+;gallagher-mega-anchor;product-width;3;mm;number
+;gallagher-mega-anchor;product-depth;4;mm;number
+;gallagher-mega-anchor;product-weight;5;kg;number
+;gallagher-mega-anchor;contents;6;;
 
-;wire-and-cable;voltage-at-2km;1;kV
-;wire-and-cable;voltage-at-5km;2;kV
-;wire-and-cable;diameter-or-tape-width;3;mm
-;wire-and-cable;ohms-per-km;4
-;wire-and-cable;voltage-at-10km;5;kV
-;wire-and-cable;warranty;6;Years
-;wire-and-cable;animal;7
-;wire-and-cable;product-length;8;mm
-;wire-and-cable;product-width;9;mm
-;wire-and-cable;product-depth;10;mm
-;wire-and-cable;product-weight;11;kg
-;wire-and-cable;contents;12
+;wire-and-cable;voltage-at-2km;1;kV;number
+;wire-and-cable;voltage-at-5km;2;kV;number
+;wire-and-cable;diameter-or-tape-width;3;mm;number
+;wire-and-cable;ohms-per-km;4;;
+;wire-and-cable;voltage-at-10km;5;kV;number
+;wire-and-cable;warranty;6;Years;number
+;wire-and-cable;animal;7;;
+;wire-and-cable;product-length;8;mm;number
+;wire-and-cable;product-width;9;mm;number
+;wire-and-cable;product-depth;10;mm;number
+;wire-and-cable;product-weight;11;kg;number
+;wire-and-cable;contents;12;;
 
-;clamps-and-joiners;warranty;1;Years
-;clamps-and-joiners;product-height;2;mm
-;clamps-and-joiners;product-width;3;mm
-;clamps-and-joiners;product-depth;4;mm
-;clamps-and-joiners;product-weight;5;kg
-;clamps-and-joiners;contents;6
-;clamps-and-joiners;pack-quantity;7
-;clamps-and-joiners;height;8;mm
-;clamps-and-joiners;width-or-length;9;mm
-;clamps-and-joiners;product-weight;10;lbs
+;clamps-and-joiners;warranty;1;Years;number
+;clamps-and-joiners;product-height;2;mm;number
+;clamps-and-joiners;product-width;3;mm;number
+;clamps-and-joiners;product-depth;4;mm;number
+;clamps-and-joiners;product-weight;5;kg;number
+;clamps-and-joiners;contents;6;;
+;clamps-and-joiners;pack-quantity;7;;number
+;clamps-and-joiners;height;8;mm;number
+;clamps-and-joiners;width-or-length;9;mm;number
+;clamps-and-joiners;product-width-inch;10;inches;number
+;clamps-and-joiners;product-depth-inch;11;inches;number
+;clamps-and-joiners;product-height-inch;12;inches;number
+;clamps-and-joiners;product-weight-lbs;13;lbs;number
 
-;posts;post-height;1;mm
-;posts;animal;2
-;posts;number-of-wires;3
-;posts;warranty;4;Years
-;posts;product-width;5;mm
-;posts;product-depth;6;mm
-;posts;product-weight;7;kg
-;posts;contents;8
-;posts;product-weight;8;lbs
-;posts;pack-quantity;9
-;posts;width-or-length;10;mm
+;posts;post-height;1;mm;number
+;posts;animal;2;;
+;posts;number-of-wires;3;;number
+;posts;warranty;4;Years;number
+;posts;product-width;5;mm;number
+;posts;product-depth;6;mm;number
+;posts;product-weight;7;kg;number
+;posts;contents;8;;
+;posts;product-width-inch;9;inches;number
+;posts;product-depth-inch;10;inches;number
+;posts;product-height-inch;11;inches;number
+;posts;product-weight-lbs;12;lbs;number
+;posts;pack-quantity;13;;number
+;posts;width-or-length;14;mm;number
 
-;strainers;strainer-type;1
+;strainers;strainer-type;1;;
 ;strainers;includes-joint-clamp;2;;boolean
-;strainers;warranty;3;Years
-;strainers;product-height;4;mm
-;strainers;product-width;5;mm
-;strainers;product-depth;6;mm
-;strainers;product-weight;7;kg
-;strainers;contents;8
-;strainers;product-weight;9;lbs
-;strainers;pack-quantity;10
-;strainers;height;11;mm
-;strainers;width-or-length;12;mm
+;strainers;warranty;3;Years;number
+;strainers;product-height;4;mm;number
+;strainers;product-width;5;mm;number
+;strainers;product-depth;6;mm;number
+;strainers;product-weight;7;kg;number
+;strainers;contents;8;;
+;strainers;product-height-inch;9;inches;number
+;strainers;product-width-inch;10;inches;number
+;strainers;product-depth-inch;11;inches;number
+;strainers;product-weight-lbs;12;lbs;number
+;strainers;pack-quantity;13;;number
+;strainers;height;14;mm;number
+;strainers;width-or-length;15;mm;number
 
-;insulators;post-type;1
-;insulators;insulator-type;2
-;insulators;wire-diameter;3;mm
-;insulators;animal;4
-;insulators;warranty;5;Years
-;insulators;product-height;6;mm
-;insulators;product-width;7;mm
-;insulators;product-depth;8;mm
-;insulators;product-weight;9;kg
-;insulators;contents;10
-;insulators;product-weight;11;lbs
-;insulators;pack-quantity;12
-;insulators;height;13;mm
-;insulators;width-or-length;14;mm
-;insulators;diameter-or-width;15;mm
+;insulators;post-type;1;;
+;insulators;insulator-type;2;;
+;insulators;wire-diameter;3;mm;number
+;insulators;animal;4;;
+;insulators;warranty;5;Years;number
+;insulators;product-height;6;mm;number
+;insulators;product-width;7;mm;number
+;insulators;product-depth;8;mm;number
+;insulators;product-weight;9;kg;number
+;insulators;contents;10;;
+;insulators;product-weight-lbs;11;lbs;number
+;insulators;pack-quantity;12;;number
+;insulators;height;13;mm;number
+;insulators;width-or-length;14;mm;number
+;insulators;diameter-or-width;15;mm;number
 
-;offsets;post-type;1
-;offsets;mount-type;2
-;offsets;product-length;3;mm
-;offsets;warranty;4;Years
-;offsets;product-width;5;mm
-;offsets;product-depth;6;mm
-;offsets;product-weight;7;kg
-;offsets;contents;8
-;offsets;product-weight;9;lbs
-;offsets;pack-quantity;10
-;offsets;width-or-length;11;mm
+;offsets;post-type;1;;
+;offsets;mount-type;2;;
+;offsets;product-length;3;mm;number
+;offsets;warranty;4;Years;number
+;offsets;product-width;5;mm;number
+;offsets;product-depth;6;mm;number
+;offsets;product-weight;7;kg;number
+;offsets;contents;8;;
+;offsets;product-width-inch;9;inches;number
+;offsets;product-depth-inch;10;inches;number
+;offsets;product-length-inch;11;inches;number
+;offsets;product-weight-lbs;12;lbs;number
+;offsets;pack-quantity;13;;
+;offsets;width-or-length;14;mm;number
 
-;electric-gates;warranty;1;Years
-;electric-gates;gate-type;2
-;electric-gates;product-length;3;mm
-;electric-gates;product-width;4;mm
-;electric-gates;product-depth;5;mm
-;electric-gates;product-weight;6;kg
-;electric-gates;contents;7
-;electric-gates;length;8;mm
-;electric-gates;width-or-length;9;mm
+;electric-gates;warranty;1;Years;number
+;electric-gates;gate-type;2;;
+;electric-gates;product-length;3;mm;number
+;electric-gates;product-width;4;mm;number
+;electric-gates;product-depth;5;mm;number
+;electric-gates;product-weight;6;kg;number
+;electric-gates;contents;7;;
+;electric-gates;length;8;mm;number
+;electric-gates;width-or-length;9;mm;number
 
-;fence-tools-and-accessories;use;1
-;fence-tools-and-accessories;warranty;2;Years
-;fence-tools-and-accessories;product-height;3;mm
-;fence-tools-and-accessories;product-width;4;mm
-;fence-tools-and-accessories;product-depth;5;mm
-;fence-tools-and-accessories;product-weight;6;kg
-;fence-tools-and-accessories;contents;7
-;fence-tools-and-accessories;product-weight;8;lbs
+;fence-tools-and-accessories;use;1;;
+;fence-tools-and-accessories;warranty;2;Years;number
+;fence-tools-and-accessories;product-height;3;mm;number
+;fence-tools-and-accessories;product-width;4;mm;number
+;fence-tools-and-accessories;product-depth;5;mm;number
+;fence-tools-and-accessories;product-weight;6;kg;number
+;fence-tools-and-accessories;contents;7;;
+;fence-tools-and-accessories;product-height-inch;3;inches;number
+;fence-tools-and-accessories;product-width-inch;4;inches;number
+;fence-tools-and-accessories;product-depth-inch;5;inches;number
+;fence-tools-and-accessories;product-weight-lbs;8;lbs;number
 
-;tapes-wires-and-braids-pf;voltage-at-500m;1;kV
-;tapes-wires-and-braids-pf;voltage-at-1km;2;kV
-;tapes-wires-and-braids-pf;diameter-or-tape-width;3;mm
-;tapes-wires-and-braids-pf;warranty;4;Years
-;tapes-wires-and-braids-pf;mixed-metals;5
-;tapes-wires-and-braids-pf;ohms-per-km;6
-;tapes-wires-and-braids-pf;length;7;mm
-;tapes-wires-and-braids-pf;product-height;8;mm
-;tapes-wires-and-braids-pf;product-width;9;mm
-;tapes-wires-and-braids-pf;product-depth;10;mm
-;tapes-wires-and-braids-pf;product-weight;11;kg
-;tapes-wires-and-braids-pf;contents;12
-;tapes-wires-and-braids-pf;product-length;13;mm
-;tapes-wires-and-braids-pf;height;14;mm
-;tapes-wires-and-braids-pf;width-or-length;15;mm
+;tapes-wires-and-braids-pf;voltage-at-500m;1;kV;number
+;tapes-wires-and-braids-pf;voltage-at-1km;2;kV;number
+;tapes-wires-and-braids-pf;diameter-or-tape-width;3;mm;number
+;tapes-wires-and-braids-pf;warranty;4;Years;number
+;tapes-wires-and-braids-pf;mixed-metals;5;;
+;tapes-wires-and-braids-pf;ohms-per-km;6;;number
+;tapes-wires-and-braids-pf;length;7;mm;number
+;tapes-wires-and-braids-pf;product-height;8;mm;number
+;tapes-wires-and-braids-pf;product-width;9;mm;number
+;tapes-wires-and-braids-pf;product-depth;10;mm;number
+;tapes-wires-and-braids-pf;product-weight;11;kg;number
+;tapes-wires-and-braids-pf;contents;12;;
+;tapes-wires-and-braids-pf;product-length;13;mm;number
+;tapes-wires-and-braids-pf;height;14;mm;number
+;tapes-wires-and-braids-pf;width-or-length;15;mm;number
 
-;reels-and-accessories-pf;gear-ratio;1
-;reels-and-accessories-pf;conductor-capacity;2
-;reels-and-accessories-pf;pre-wound-with;3
-;reels-and-accessories-pf;warranty;4;Years
-;reels-and-accessories-pf;product-height;5;mm
-;reels-and-accessories-pf;product-width;6;mm
-;reels-and-accessories-pf;product-depth;7;mm
-;reels-and-accessories-pf;product-weight;8;kg
-;reels-and-accessories-pf;contents;9
-;reels-and-accessories-pf;height;10;mm
-;reels-and-accessories-pf;width-or-length;11;mm
-;reels-and-accessories-pf;driver-capacity-long;12
+;reels-and-accessories-pf;gear-ratio;1;;
+;reels-and-accessories-pf;conductor-capacity;2;;
+;reels-and-accessories-pf;pre-wound-with;3;;
+;reels-and-accessories-pf;warranty;4;Years;number
+;reels-and-accessories-pf;product-height;5;mm;number
+;reels-and-accessories-pf;product-width;6;mm;number
+;reels-and-accessories-pf;product-depth;7;mm;number
+;reels-and-accessories-pf;product-weight;8;kg;number
+;reels-and-accessories-pf;contents;9;;
+;reels-and-accessories-pf;height;10;mm;number
+;reels-and-accessories-pf;width-or-length;11;mm;number
+;reels-and-accessories-pf;driver-capacity-long;12;;
 
-;posts-pigtails-and-treadins-pf;animal-type;1
-;posts-pigtails-and-treadins-pf;fence-type;2
-;posts-pigtails-and-treadins-pf;wire;3
-;posts-pigtails-and-treadins-pf;post-height;4;mm
-;posts-pigtails-and-treadins-pf;warranty;5;Years
-;posts-pigtails-and-treadins-pf;product-width;6;mm 
-;posts-pigtails-and-treadins-pf;product-depth;7;mm
-;posts-pigtails-and-treadins-pf;product-weight;8;kg
-;posts-pigtails-and-treadins-pf;contents;9
-;posts-pigtails-and-treadins-pf;product-weight;10;lbs
-;posts-pigtails-and-treadins-pf;wire-amount;11
-;posts-pigtails-and-treadins-pf;height;12;mm
-;posts-pigtails-and-treadins-pf;width-or-length;13;mm
+;posts-pigtails-and-treadins-pf;animal-type;1;;
+;posts-pigtails-and-treadins-pf;fence-type;2;;
+;posts-pigtails-and-treadins-pf;wire;3;;
+;posts-pigtails-and-treadins-pf;post-height;4;mm;number
+;posts-pigtails-and-treadins-pf;warranty;5;Years;number
+;posts-pigtails-and-treadins-pf;product-width;6;mm ;number
+;posts-pigtails-and-treadins-pf;product-depth;7;mm;number
+;posts-pigtails-and-treadins-pf;product-weight;8;kg;number
+;posts-pigtails-and-treadins-pf;product-width-inch;6;inches;number
+;posts-pigtails-and-treadins-pf;product-depth-inch;7;inches;number
+;posts-pigtails-and-treadins-pf;post-height-inch;8;inches;number
+;posts-pigtails-and-treadins-pf;product-weight-lbs;9;lbs;number
+;posts-pigtails-and-treadins-pf;contents;10;;
+;posts-pigtails-and-treadins-pf;wire-amount;11;;
+;posts-pigtails-and-treadins-pf;height;12;mm;number
+;posts-pigtails-and-treadins-pf;width-or-length;13;mm;number
 
-;all-in-one-portable-fences;wire-type;1
-;all-in-one-portable-fences;length;2;mm
-;all-in-one-portable-fences;height;3;mm
-;all-in-one-portable-fences;warranty;4;Years
-;all-in-one-portable-fences;product-width;5;mm
-;all-in-one-portable-fences;product-depth;6;mm
-;all-in-one-portable-fences;product-weight;7;kg
-;all-in-one-portable-fences;contents;8
-;all-in-one-portable-fences;height;9;mm
-;all-in-one-portable-fences;width-or-length;10;mm
+;all-in-one-portable-fences;wire-type;1;;
+;all-in-one-portable-fences;length;2;mm;number
+;all-in-one-portable-fences;height;3;mm;number
+;all-in-one-portable-fences;warranty;4;Years;number
+;all-in-one-portable-fences;product-width;5;mm;number
+;all-in-one-portable-fences;product-depth;6;mm;number
+;all-in-one-portable-fences;product-weight;7;kg;number
+;all-in-one-portable-fences;contents;8;;
+;all-in-one-portable-fences;height;9;mm;number
+;all-in-one-portable-fences;width-or-length;10;mm;number
 
-;gates;warranty;1;Years
-;gates;animal-type;2
-;gates;strength;3
-;gates;product-height;4;mm
-;gates;product-length;5;mm
-;gates;product-depth;5;mm
-;gates;product-weight;6;kg
-;gates;contents;7
+;gates;warranty;1;Years;number
+;gates;animal-type;2;;
+;gates;strength;3;;
+;gates;product-height;4;mm;number
+;gates;product-length;5;mm;number
+;gates;product-depth;5;mm;number
+;gates;product-weight;6;kg;number
+;gates;contents;7;;
 
-;gate-hardware;warranty;1;Years
-;gate-hardware;product-type;2
-;gate-hardware;length-of-shaft;3;mm
-;gate-hardware;diameter-of-pin;4;mm
-;gate-hardware;height-of-pin;5;mm
-;gate-hardware;product-height;6;mm
-;gate-hardware;product-width;7;mm
-;gate-hardware;product-depth;8;mm
-;gate-hardware;product-weight;9;kg
-;gate-hardware;contents;10
+;gate-hardware-sgh;warranty;1;Years;number
+;gate-hardware-sgh;product-type;2;;
+;gate-hardware-sgh;length-of-shaft;3;mm;number
+;gate-hardware-sgh;diameter-of-pin;4;mm;number
+;gate-hardware-sgh;height-of-pin;5;mm;number
+;gate-hardware-sgh;product-height;6;mm;number
+;gate-hardware-sgh;product-width;7;mm;number
+;gate-hardware-sgh;product-depth;8;mm;number
+;gate-hardware-sgh;product-weight;9;kg;number
+;gate-hardware-sgh;contents;10;;
 
 ;weigh-scales-and-data-collectors;wifi;1;;boolean
-;weigh-scales-and-data-collectors;number-of-traits-recorded;2;
+;weigh-scales-and-data-collectors;number-of-traits-recorded;2;;
 ;weigh-scales-and-data-collectors;eid-compatiable;3;;boolean
 ;weigh-scales-and-data-collectors;internal-rechargeable-battery;4;;boolean
 ;weigh-scales-and-data-collectors;drafting;5;;boolean
 ;weigh-scales-and-data-collectors;intergrated-eid-reader;6;;boolean
 ;weigh-scales-and-data-collectors;livestock-web-mobile-app;7;;boolean
 ;weigh-scales-and-data-collectors;view-pedigree-tree;8;;boolean
-;weigh-scales-and-data-collectors;warranty;9;Years
-;weigh-scales-and-data-collectors;product-height;10;mm
-;weigh-scales-and-data-collectors;product-width;11;mm
-;weigh-scales-and-data-collectors;product-depth;12;mm
-;weigh-scales-and-data-collectors;product-weight;13;kg
-;weigh-scales-and-data-collectors;height;14;mm
-;weigh-scales-and-data-collectors;width-or-length;15;mm
+;weigh-scales-and-data-collectors;warranty;9;Years;number
+;weigh-scales-and-data-collectors;product-height;10;mm;number
+;weigh-scales-and-data-collectors;product-width;11;mm;number
+;weigh-scales-and-data-collectors;product-depth;12;mm;number
+;weigh-scales-and-data-collectors;product-weight;13;kg;number
+;weigh-scales-and-data-collectors;height;14;mm;number
+;weigh-scales-and-data-collectors;width-or-length;15;mm;number
 
-;loadbars-and-accessories;animal;1
-;loadbars-and-accessories;use;2
-;loadbars-and-accessories;weighing-capacity;3;kg
-;loadbars-and-accessories;warranty;4;Years
-;loadbars-and-accessories;product-length;5;mm
-;loadbars-and-accessories;product-width;6;mm
-;loadbars-and-accessories;product-depth;7;mm
-;loadbars-and-accessories;product-weight;8;kg
-;loadbars-and-accessories;height;9;mm
-;loadbars-and-accessories;width-or-length;10;mm
-;loadbars-and-accessories;product-weight;11;lbs
+;loadbars-and-accessories;animal;1;;
+;loadbars-and-accessories;use;2;;
+;loadbars-and-accessories;weighing-capacity;3;kg;number
+;loadbars-and-accessories;warranty;4;Years;number
+;loadbars-and-accessories;product-length;5;mm;number
+;loadbars-and-accessories;product-width;6;mm;number
+;loadbars-and-accessories;product-depth;7;mm;number
+;loadbars-and-accessories;product-weight;8;kg;number
+;loadbars-and-accessories;height;9;mm;number
+;loadbars-and-accessories;width-or-length;10;mm;number
+;loadbars-and-accessories;product-length-inch;11;inches;number
+;loadbars-and-accessories;product-width-inch;12;inches;number
+;loadbars-and-accessories;product-depth-inch;13;inches;number
+;loadbars-and-accessories;product-weight-lbs;14;lbs;number
 
-;platforms;animal;1
-;platforms;weighing-capacity;2;kg
-;platforms;warranty;3;Years
-;platforms;product-length;4;mm
-;platforms;product-width;5;mm
-;platforms;product-depth;6;mm
-;platforms;product-weight;7;kg
-;platforms;product-weight;8;lbs
-;platforms;height;9;mm
-;platforms;width-or-length;10;mm
+;platforms;animal;1;;
+;platforms;weighing-capacity;2;kg;number
+;platforms;warranty;3;Years;number
+;platforms;product-length;4;mm;number
+;platforms;product-width;5;mm;number
+;platforms;product-depth;6;mm;number
+;platforms;product-weight;7;kg;number
+;platforms;product-length-inch;4;inches;number
+;platforms;product-width-inch;5;inches;number
+;platforms;product-depth-inch;6;inches;number
+;platforms;product-weight-lbs;8;lbs;number
+;platforms;height;9;mm;number
+;platforms;width-or-length;10;mm;number
 
-;drafters;warranty;1;Years
-;drafters;product-height;2;mm
-;drafters;product-width;3;mm
-;drafters;product-depth;4;mm
-;drafters;product-weight;5;kg
-;drafters;height;6;mm
-;drafters;width-or-length;7;mm
+;drafters;warranty;1;Years;number
+;drafters;product-height;2;mm;number
+;drafters;product-width;3;mm;number
+;drafters;product-depth;4;mm;number
+;drafters;product-weight;5;kg;number
+;drafters;height;6;mm;number
+;drafters;width-or-length;7;mm;number
 
-;eid-tag-readers;product-type;1
+;eid-tag-readers;product-type;1;;
 ;eid-tag-readers;livestock-web-mobile-app;2;;boolean
-;eid-tag-readers;warranty;3;Years
-;eid-tag-readers;product-height;4;mm
-;eid-tag-readers;product-width;5;mm
-;eid-tag-readers;product-depth;6;mm
-;eid-tag-readers;product-weight;7;kg
-;eid-tag-readers;product-weight;8;lbs
-;eid-tag-readers;height;9;mm
-;eid-tag-readers;width-or-length;10;mm
+;eid-tag-readers;warranty;3;Years;number
+;eid-tag-readers;product-height;4;mm;number
+;eid-tag-readers;product-width;5;mm;number
+;eid-tag-readers;product-depth;6;mm;number
+;eid-tag-readers;product-weight;7;kg;number
+;eid-tag-readers;product-weight-lbs;8;lbs;number
+;eid-tag-readers;height;9;mm;number
+;eid-tag-readers;width-or-length;10;mm;number
 
 ;stock-prods;rechargeable;1;;boolean
-;stock-prods;warranty;2;Years
-;stock-prods;product-length;3;mm
-;stock-prods;product-width;4;mm
-;stock-prods;product-depth;5;mm
-;stock-prods;product-weight;6;kg
+;stock-prods;warranty;2;Years;number
+;stock-prods;product-length;3;mm;number
+;stock-prods;product-width;4;mm;number
+;stock-prods;product-depth;5;mm;number
+;stock-prods;product-weight;6;kg;number
 
-;water-flow-indicator;warranty;1;Years
-;water-flow-indicator;product-height;2;mm
-;water-flow-indicator;product-width;3;mm
-;water-flow-indicator;product-depth;4;mm
-;water-flow-indicator;product-weight;5;kg
+;water-flow-indicator;warranty;1;Years;number
+;water-flow-indicator;product-height;2;mm;number
+;water-flow-indicator;product-width;3;mm;number
+;water-flow-indicator;product-depth;4;mm;number
+;water-flow-indicator;product-weight;5;kg;number
 
-;one-tank-systems;warranty;1;Years
-;one-tank-systems;product-height;2;mm
-;one-tank-systems;product-width;3;mm
-;one-tank-systems;product-depth;4;mm
-;one-tank-systems;product-weight;5;kg
-;one-tank-systems;height;6;mm
-;one-tank-systems;width-or-length;7;mm
+;one-tank-systems;warranty;1;Years;number
+;one-tank-systems;product-height;2;mm;number
+;one-tank-systems;product-width;3;mm;number
+;one-tank-systems;product-depth;4;mm;number
+;one-tank-systems;product-weight;5;kg;number
+;one-tank-systems;height;6;mm;number
+;one-tank-systems;width-or-length;7;mm;number
 
-;antennae-and-cables;warranty;1;Years
-;antennae-and-cables;product-height;2;mm
-;antennae-and-cables;product-width;3;mm
-;antennae-and-cables;product-depth;4;mm
-;antennae-and-cables;product-weight;5;kg
-;antennae-and-cables;height;6;mm
-;antennae-and-cables;width-or-length;7;mm
+;antennae-and-cables;warranty;1;Years;number
+;antennae-and-cables;product-height;2;mm;number
+;antennae-and-cables;product-width;3;mm;number
+;antennae-and-cables;product-depth;4;mm;number
+;antennae-and-cables;product-weight;5;kg;number
+;antennae-and-cables;height;6;mm;number
+;antennae-and-cables;width-or-length;7;mm;number
 
-;additional-system-components;warranty;1;Years
-;additional-system-components;product-height;2;mm
-;additional-system-components;product-width;3;mm
-;additional-system-components;product-depth;4;mm
-;additional-system-components;product-weight;5;kg
-;additional-system-components;height;6;mm
-;additional-system-components;width-or-length;7;mm
+;additional-system-components;warranty;1;Years;number
+;additional-system-components;product-height;2;mm;number
+;additional-system-components;product-width;3;mm;number
+;additional-system-components;product-depth;4;mm;number
+;additional-system-components;product-weight;5;kg;number
+;additional-system-components;height;6;mm;number
+;additional-system-components;width-or-length;7;mm;number
 
-;gates-and-gate-accessories;warranty;1;Years
-;gates-and-gate-accessories;gate-type;2
-;gates-and-gate-accessories;length;3;mm
-;gates-and-gate-accessories;product-width;4;mm
-;gates-and-gate-accessories;product-depth;5;mm
-;gates-and-gate-accessories;product-weight;6;lbs
-;gates-and-gate-accessories;pack-quantity;7
+;gates-and-gate-accessories;warranty;1;Years;number
+;gates-and-gate-accessories;gate-type;2;;
+;gates-and-gate-accessories;length-inch;3;inches;number
+;gates-and-gate-accessories;product-width-inch;4;inches;number
+;gates-and-gate-accessories;product-depth-inch;5;inches;number
+;gates-and-gate-accessories;product-weight-lbs;6;lbs;number
+;gates-and-gate-accessories;pack-quantity;7;;
 
-;reels-and-accessories-fc;gear-ratio;1
-;reels-and-accessories-fc;conductor-capacity;2
-;reels-and-accessories-fc;pre-wound-with;3
-;reels-and-accessories-fc;warranty;4;Years
-;reels-and-accessories-fc;product-height;5;mm
-;reels-and-accessories-fc;product-width;6;mm
-;reels-and-accessories-fc;product-depth;7;mm
-;reels-and-accessories-fc;product-weight;8;lbs
-;reels-and-accessories-fc;pack-quantity;9
+;reels-and-accessories-fc;gear-ratio;1;;
+;reels-and-accessories-fc;conductor-capacity;2;;
+;reels-and-accessories-fc;pre-wound-with;3;;
+;reels-and-accessories-fc;warranty;4;Years;number
+;reels-and-accessories-fc;product-height-inch;5;inches;number
+;reels-and-accessories-fc;product-width-inch;6;inches;number
+;reels-and-accessories-fc;product-depth-inch;7;inches;number
+;reels-and-accessories-fc;product-weight-lbs;8;lbs;number
+;reels-and-accessories-fc;pack-quantity;9;;number
 
-;hi-tensile-wire-and-cable;voltage-at-2km;1;kV
-;hi-tensile-wire-and-cable;voltage-at-5km;2;kV
-;hi-tensile-wire-and-cable;diameter-or-tape-width;3;mm
-;hi-tensile-wire-and-cable;ohms-per-km;4
-;hi-tensile-wire-and-cable;voltage-at-10km;5;kV
-;hi-tensile-wire-and-cable;warranty;6;Years
-;hi-tensile-wire-and-cable;animal;7
-;hi-tensile-wire-and-cable;product-height;8;mm
-;hi-tensile-wire-and-cable;product-width;9;mm
-;hi-tensile-wire-and-cable;product-depth;10;mm
-;hi-tensile-wire-and-cable;product-weight;11;lbs
-;hi-tensile-wire-and-cable;pack-quantity;12
+;hi-tensile-wire-and-cable;voltage-at-2km;1;kV;number
+;hi-tensile-wire-and-cable;voltage-at-5km;2;kV;number
+;hi-tensile-wire-and-cable;diameter-or-tape-width;3;mm;number
+;hi-tensile-wire-and-cable;ohms-per-km;4;;
+;hi-tensile-wire-and-cable;voltage-at-10km;5;kV;number
+;hi-tensile-wire-and-cable;warranty;6;Years;number
+;hi-tensile-wire-and-cable;animal;7;;
+;hi-tensile-wire-and-cable;product-height-inch;8;inches;number
+;hi-tensile-wire-and-cable;product-width-inch;9;inches;number
+;hi-tensile-wire-and-cable;product-depth-inch;10;inches;number
+;hi-tensile-wire-and-cable;product-weight-lbs;11;lbs;number
+;hi-tensile-wire-and-cable;pack-quantity;12;;
 
-;tapes-wires-and-braids-fc;voltage-at-500m;1;kV
-;tapes-wires-and-braids-fc;voltage-at-1km;2;kV
-;tapes-wires-and-braids-fc;warranty;3;Years
-;tapes-wires-and-braids-fc;mixed-metals;4
-;tapes-wires-and-braids-fc;ohms-per-km;5
-;tapes-wires-and-braids-fc;length;6;mm
-;tapes-wires-and-braids-fc;product-height;7;mm
-;tapes-wires-and-braids-fc;product-width;8;mm
-;tapes-wires-and-braids-fc;product-depth;9;mm
-;tapes-wires-and-braids-fc;product-weight;10;lbs
-;tapes-wires-and-braids-fc;pack-quantity;11
+;tapes-wires-and-braids-fc;voltage-at-500m;1;kV;number
+;tapes-wires-and-braids-fc;voltage-at-1km;2;kV;number
+;tapes-wires-and-braids-fc;warranty;3;Years;number
+;tapes-wires-and-braids-fc;mixed-metals;4;;
+;tapes-wires-and-braids-fc;ohms-per-km;5;;number
+;tapes-wires-and-braids-fc;length-inch;6;inches;number
+;tapes-wires-and-braids-fc;product-height-inch;7;inches;number
+;tapes-wires-and-braids-fc;product-width-inch;8;inches;number
+;tapes-wires-and-braids-fc;product-depth-inch;9;inches;number
+;tapes-wires-and-braids-fc;product-weight-lbs;10;lbs;number
+;tapes-wires-and-braids-fc;pack-quantity;11;;number
 
-;electric-fence-kits;contents;1
-;electric-fence-kits;warranty;2;Years
-;electric-fence-kits;product-height;3;mm
-;electric-fence-kits;product-width;4;mm
-;electric-fence-kits;product-depth;5;mm
-;electric-fence-kits;product-weight;6;lbs
+;electric-fence-kits;contents;1;;
+;electric-fence-kits;warranty;2;Years;number
+;electric-fence-kits;product-height-inch;3;inches;number
+;electric-fence-kits;product-width-inch;4;inches;number
+;electric-fence-kits;product-depth-inch;5;inches;number
+;electric-fence-kits;product-weight-lbs;6;lbs;number
 
-;netting;warranty;1;Years
-;netting;product-height;2;mm
-;netting;product-width;3;mm
-;netting;product-depth;4;mm
-;netting;product-weight;5;lbs
+;netting;warranty;1;Years;number
+;netting;product-height-inch;2;inches;number
+;netting;product-width-inch;3;inches;number
+;netting;product-depth-inch;4;inches;number
+;netting;product-weight-lbs;5;lbs;number
 
 ;scale-heads-and-data-collectors;wifi;1;;boolean
-;scale-heads-and-data-collectors;number-of-traits-recorded;2;
+;scale-heads-and-data-collectors;number-of-traits-recorded;2;;number
 ;scale-heads-and-data-collectors;eid-compatiable;3;;boolean
 ;scale-heads-and-data-collectors;internal-rechargeable-battery;4;;boolean
 ;scale-heads-and-data-collectors;drafting;5;;boolean
 ;scale-heads-and-data-collectors;intergrated-eid-reader;6;;boolean
 ;scale-heads-and-data-collectors;livestock-web-mobile-app;7;;boolean
 ;scale-heads-and-data-collectors;view-pedigree-tree;8;;boolean
-;scale-heads-and-data-collectors;warranty;9;Years
-;scale-heads-and-data-collectors;product-height;10;mm
-;scale-heads-and-data-collectors;product-width;11;mm
-;scale-heads-and-data-collectors;product-depth;12;mm
-;scale-heads-and-data-collectors;product-weight;13;lbs
+;scale-heads-and-data-collectors;warranty;9;Years;number
+;scale-heads-and-data-collectors;product-height-inch;10;inches;number
+;scale-heads-and-data-collectors;product-width-inch;11;inches;number
+;scale-heads-and-data-collectors;product-depth-inch;12;inches;number
+;scale-heads-and-data-collectors;product-weight-lbs;13;lbs;number
 
-;weighing-accessories;warranty;1;Years
-;weighing-accessories;product-height;2;mm
-;weighing-accessories;product-width;3;mm
-;weighing-accessories;product-depth;4;mm
-;weighing-accessories;product-weight;5;lbs
+;weighing-accessories;warranty;1;Years;number
+;weighing-accessories;product-height-inch;2;inches;number
+;weighing-accessories;product-width-inch;3;inches;number
+;weighing-accessories;product-depth-inch;4;inches;number
+;weighing-accessories;product-weight-lbs;5;lbs;number
 
-;stock-prods-and-accessories;warranty;1;Years
+;stock-prods-and-accessories;warranty;1;Years;number
 ;stock-prods-and-accessories;rechargeable;2;;boolean
-;stock-prods-and-accessories;product-length;3;mm
-;stock-prods-and-accessories;product-width;4;mm
-;stock-prods-and-accessories;product-depth;5;mm
-;stock-prods-and-accessories;product-weight;6;lbs
+;stock-prods-and-accessories;product-length-inch;3;inches;number
+;stock-prods-and-accessories;product-width-inch;4;inches;number
+;stock-prods-and-accessories;product-depth-inch;5;inches;number
+;stock-prods-and-accessories;product-weight-lbs;6;lbs;number
 
-;trough-valves;product-features;1
-;trough-valves;animal-type;2
-;trough-valves;capacity-l;3;L
-;trough-valves;warranty;4;Years
-;trough-valves;product-height;5;mm
-;trough-valves;product-width;6;mm
-;trough-valves;product-depth;7;mm
-;trough-valves;product-weight;8;lbs
+;trough-valves;product-features;1;;
+;trough-valves;animal-type;2;;
+;trough-valves;capacity-l;3;L;number
+;trough-valves;warranty;4;Years;number
+;trough-valves;product-height-inch;5;inches;number
+;trough-valves;product-width-inch;6;inches;number
+;trough-valves;product-depth-inch;7;inches;number
+;trough-valves;product-weight-lbs;8;lbs;number
 
-;lil-spring;product-features;1
-;lil-spring;animal-type;2
-;lil-spring;capacity-l;3;L
-;lil-spring;warranty;4;Years
-;lil-spring;product-height;5;mm
-;lil-spring;product-width;6;mm
-;lil-spring;product-depth;7;mm
-;lil-spring;product-weight;8;lbs
+;lil-spring;product-features;1;;
+;lil-spring;animal-type;2;;
+;lil-spring;capacity-l;3;L;number
+;lil-spring;warranty;4;Years;number
+;lil-spring;product-height-inch;5;inches;number
+;lil-spring;product-width-inch;6;inches;number
+;lil-spring;product-depth-inch;7;inches;number
+;lil-spring;product-weight-lbs;8;lbs;number
 
-;equi-fount;product-features;1
-;equi-fount;animal-type;2
-;equi-fount;capacity-l;3;L
-;equi-fount;warranty;4;Years
-;equi-fount;product-height;5;mm
-;equi-fount;product-width;6;mm
-;equi-fount;product-depth;7;mm
-;equi-fount;product-weight;8;lbs 
+;equi-fount;product-features;1;;
+;equi-fount;animal-type;2;;
+;equi-fount;capacity-l;3;L;number
+;equi-fount;warranty;4;Years;number
+;equi-fount;product-height-inch;5;inches;number
+;equi-fount;product-width-inch;6;inches;number
+;equi-fount;product-depth-inch;7;inches;number
+;equi-fount;product-weight-lbs;8;lbs ;number
 
-;mira-fount;product-features;1
-;mira-fount;animal-type;2
-;mira-fount;capacity-l;3;L
-;mira-fount;warranty;4;Years
-;mira-fount;product-height;5;mm
-;mira-fount;product-width;6;mm
-;mira-fount;product-depth;7;mm
-;mira-fount;product-weight;8;lbs 
+;mira-fount;product-features;1;;
+;mira-fount;animal-type;2;;
+;mira-fount;capacity-l;3;L;number
+;mira-fount;warranty;4;Years;number
+;mira-fount;product-height-inch;5;inches;number
+;mira-fount;product-width-inch;6;inches;number
+;mira-fount;product-depth-inch;7;inches;number
+;mira-fount;product-weight-lbs;8;lbs ;number
 
-;e-fount;product-features;1
-;e-fount;animal-type;2
-;e-fount;capacity-l;3;L
-;e-fount;warranty;4;Years
-;e-fount;product-height;5;mm
-;e-fount;product-width;6;mm
-;e-fount;product-depth;7;mm
-;e-fount;product-weight;8;lbs 
+;e-fount;product-features;1;;
+;e-fount;animal-type;2;;
+;e-fount;capacity-l;3;L;number
+;e-fount;warranty;4;Years;number
+;e-fount;product-height-inch;5;inches;number
+;e-fount;product-width-inch;6;inches;number
+;e-fount;product-depth-inch;7;inches;number
+;e-fount;product-weight-lbs;8;lbs ;number
 
-;big-spring;product-features;1
-;big-spring;animal-type;2
-;big-spring;capacity-l;3;L
-;big-spring;warranty;4;Years
-;big-spring;product-height;5;mm
-;big-spring;product-width;6;mm
-;big-spring;product-depth;7;mm
-;big-spring;product-weight;8;lbs
+;big-spring;product-features;1;;
+;big-spring;animal-type;2;;
+;big-spring;capacity-l;3;L;number
+;big-spring;warranty;4;Years;number
+;big-spring;product-height-inch;5;inches;number
+;big-spring;product-width-inch;6;inches;number
+;big-spring;product-depth-inch;7;inches;number
+;big-spring;product-weight-lbs;8;lbs;number
 
-;pet-tanks;product-features;1
-;pet-tanks;animal-type;2
-;pet-tanks;capacity-l;3;L
-;pet-tanks;warranty;4;Years
-;pet-tanks;product-height;5;mm
-;pet-tanks;product-width;6;mm
-;pet-tanks;product-depth;7;mm
-;pet-tanks;product-weight;8;lbs
+;pet-tanks;product-features;1;;
+;pet-tanks;animal-type;2;;
+;pet-tanks;capacity-l;3;L;number
+;pet-tanks;warranty;4;Years;number
+;pet-tanks;product-height-inch;5;inches;number
+;pet-tanks;product-width-inch;6;inches;number
+;pet-tanks;product-depth-inch;7;inches;number
+;pet-tanks;product-weight-lbs;8;lbs;number
 
-;watering-accessories ;product-features;1
-;watering-accessories ;animal-type;2
-;watering-accessories ;capacity-l;3;L
-;watering-accessories ;warranty;4;Years
-;watering-accessories ;product-height;5;mm
-;watering-accessories ;product-width;6;mm
-;watering-accessories ;product-depth;7;mm
-;watering-accessories ;product-weight;8;lbs
+;watering-accessories ;product-features;1;;
+;watering-accessories ;animal-type;2;;
+;watering-accessories ;capacity-l;3;L;number
+;watering-accessories ;warranty;4;Years;number
+;watering-accessories ;product-height-inch;5;inches;number
+;watering-accessories ;product-width-inch;6;inches;number
+;watering-accessories ;product-depth-inch;7;inches;number
+;watering-accessories ;product-weight;8;lbs;number
+

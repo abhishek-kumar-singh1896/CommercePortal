@@ -16,22 +16,14 @@ $lang=en
 
 # Create Categories
 UPDATE ClassificationClass;code[unique=true];name[lang=$lang];$classCatalogVersion
-# Classification Category for 'power'
-;mains-energizers;Mains Energizers
+
 ;remotes-and-fence-testers;Remotes and Fence Testers
 ;power-system-accessories;POWER SYSTEM ACCESSORIES 
-;multi-powered-energizers;Multi Powered Energizers
-;battery-energizers;Battery Energizers
-;solar-energizers;Solar Energizers
 ;solar-panels;Solar Panels
 ;batteries;Batteries
 ;earthing;Earthing
-;solar-and-solar-kits;Solar and Solar Kits 
-;110-volt-energizers;110 Volt Energizers 
 ;grounding;Grounding
-;power-management-tools;Power Management Tools
 
-# 1.1.2 Classification category for 'permanent-fencing'
 ;wire-and-cable;Wire and Cable 
 ;strainers; Strainers
 ;insulators; Insulators
@@ -40,13 +32,10 @@ UPDATE ClassificationClass;code[unique=true];name[lang=$lang];$classCatalogVersi
 ;fence-tools-and-accessories; FENCE TOOLS AND ACCESSORIES
 ;clamps-and-joiners; Clamps and Joiners 
 ;posts; Posts
-;irrigator-fence-crossing-system;Irrigator Fence Crossing System 
 ;gallagher-westonfence; Gallagher Westonfence
 ;gallagher-mega-anchor; Gallagher Mega Anchor
-;pivot-irrigator-system;Pivot Irrigator System
-;gate-hardware; Gate Hardware
+;gate-hardware-sgh; Gate Hardware
 
-# 1.1.3 Classification category for 'portable-fencing'
 ;tapes-wires-and-braids-pf;"Tapes, Wires and Braids"
 ;reels-and-accessories-pf;"Reels and Accessories" 
 ;posts-pigtails-and-treadins-pf;"Posts - Pigtails and Treadins"
@@ -54,60 +43,29 @@ UPDATE ClassificationClass;code[unique=true];name[lang=$lang];$classCatalogVersi
 ;electric-fence-kits;Electric Fence Kits
 ;netting;Netting
 
-# 1.1.4 Classification category for 'fence-construction'
-#;insulators 
-#;offsets
-#;posts
-#;strainers
-#;clamps-and-joiners 
-#;fence-tools-and-accessories 
-#;gates-and-gate-accessories;Gates and Gate Accessories 
-
-# 1.1.5 Classification category for 'fence-conductors'
 ;reels-and-accessories-fc;"Reels and Accessories" 
 ;hi-tensile-wire-and-cable;"Hi-Tensile Wire and Cable"
 ;tapes-wires-and-braids-fc;"Tapes, Wires and Braids"
-;posts-pigtails-and-treadins-fc;"Posts - Pigtails and Treadins"
 
 
-# 1.2 Classification category for 'weighing-and-eid'
 ;weigh-scales-and-data-collectors;Weigh Scales and Data Collectors
 ;loadbars-and-accessories;Loadbars and Accessories 
-;loadbars;Loadbars
 ;platforms;Platforms 
 ;drafters;Drafters 
 ;eid-tag-readers;EID Tag Readers 
-;scale-heads-and-data-collectors;
+;scale-heads-and-data-collectors;Scale Heads and Data Collectors
 ;weighing-accessories;Weighing Accessories
 ;stock-prods-and-accessories;Stock Prods and Accessories 
 
-# 1.3 Classification category for 'weighing-eid-and-animal-handling'
-;platforms-and-crates;Platforms and Crates
-;handlers-and-drafters;Handlers and Drafters 
 ;stock-prods;Stock Prods
-#;weigh-scales-and-data-collectors 
-#;loadbars-and-accessories  
-#;eid-tag-readers
 
-
-# 1.4 Classification category for 'wireless-water-monitoring'
 ;water-flow-indicator;Water Flow Indicator 
 ;one-tank-systems;One Tank Systems
 ;antennae-and-cables;Antennae and Cables 
 ;additional-system-components;Additional System Components
 
-
-# 1.5 Classification category for 'steel-gates-and-hardware'
 ;gates;Gates
-;gate-hardware-sgh;Gate Hardware
 
-
-# 1.6 Classification category for 'apps-and-software'
-;livestock;Livestock
-;fence;Fence
-
-
-# 1.7 Classification category for 'automatic-watering'
 ;trough-valves;Trough Valves
 ;lil-spring;Lil'Spring 
 ;equi-fount;EQUIFount 
@@ -115,55 +73,11 @@ UPDATE ClassificationClass;code[unique=true];name[lang=$lang];$classCatalogVersi
 ;e-fount;E-Fount
 ;big-spring;BIGSpring
 ;pet-tanks;Pet Tanks
-;watering-accessories;Watering Accessories 
-
- 
-# 1.8 Classification category for 'stock-prods-main'
-
-
-
-# 1.9 Classification category for 'promotions'
-#;bargain-barn;Bargain Barn
+;watering-accessories;Watering Accessories
 
 UPDATE ClassificationClass;code[unique=true];name[lang=$lang];$classCatalogVersion
 ;gates-and-gate-accessories;Gates and Gate Accessories
 ;energizers;Energizers
-
-# Create Categories
-UPDATE ClassificationAttribute;code[unique=true];$classSystemVersion;name[lang=$lang]
-;energizer-type;;Energizer Type
-;animal-type;;Animal Type
-;area-of-fence;;Area of Fence
-;multi-wire-distance-typical;;Multi Wire Distance (typical)
-;stored-joules;;Stored Joules
-;i-series-compatible;;i Series Compatible
-;outdoor-suitable;;Outdoor Suitable
-;product-type;;Product Type
-;conductor-type;;Conductor Type
-;voltage-over-2km;;Voltage (kV) over 2km
-;voltage-over-5km;;Voltage (kV) over 5km
-;voltage-over-10km;;Voltage (kV) over 10km
-;resistance;;Resistance (Ohms / km)
-;strainer-type;;Strainer Type
-;post-type;;Post Type
-;insulator-type;;Insulator Type
-;mounting-type;;Mounting Type
-;gate-type;;Gate Type
-;use;;Use
-;mixed-metals;;Mixed Metals
-;voltage-over-500m;;Voltage (kV) over 500m
-;voltage-over-1km;;Voltage (kV) over 1km
-;fence-type;;Fence Type
-;product-features;;Product Features
-;strength;;Strength
-;offset-mounting-type;;Offset Mounting Type
-;primary-usage;;Primary Usage
-;wires;;Wires
-;post-height;;Post Height
-;area-of-typical-fence;;Area of Typical Fence
-;area-of-clean-fence;;Area of Clean Fence
-;multi-wire-distance-clean;;Multi Wire Distance (clean)
-;capacity;;Capacity (L)
 
 UPDATE ClassificationAttribute	;code[unique=true];name[lang=$lang];$classSystemVersion
 								;animal;Animal

@@ -72,3 +72,10 @@ UPDATE ClassificationAttribute	;code[unique=true];name[lang=$lang];$classSystemV
 								;wifi;Wifi
 								;wire-amount;Wire Amount
 								;wire-diameter;Wire Diameter
+								;product-weight-lbs;Product Weight
+								;product-height-inch;Product Height
+								;product-width-inch;Product Width
+								;product-depth-inch;Product Depth
+								;post-height-inch;Post Height
+								;product-length-inch;Product Length
+								;length-inch;Length
