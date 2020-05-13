@@ -47,8 +47,10 @@ UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true];name[lang=$
 
 
 UPDATE ClassificationAttribute;code[unique=true];name[lang=$lang];$classSystemVersion
-							;temperature-operating;Temperature (Operating)
-							;temperature-storage;Temperature (Storage)
+							;temperature-operating-cel;Temperature (Operating)
+							;temperature-operating-fr;Temperature (Operating)
+							;temperature-storage-cel;Temperature (Storage)
+							;temperature-storage-fr;Temperature (Storage)
 							;material;Material
 							;tracking-distance;Tracking distance
 							;fence-circuits;Fence Circuits 
@@ -75,6 +77,8 @@ UPDATE ClassificationAttribute;code[unique=true];name[lang=$lang];$classSystemVe
 							;standards-compliance;Standards compliance
 							;current;Current
 							;operating-temperature;Operating Temperature
+							;operating-temperature-cel;Operating Temperature
+							;operating-temperature-fr;Operating Temperature
 							;number-of-sensors-per-controller;Number of Sensors per Controller
 							;command-centre-version;Command Centre version
 							;environmental-protection-rating;Environmental Protection Rating

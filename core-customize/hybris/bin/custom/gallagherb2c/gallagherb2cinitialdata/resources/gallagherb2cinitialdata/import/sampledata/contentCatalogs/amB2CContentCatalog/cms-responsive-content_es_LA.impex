@@ -22,22 +22,18 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 ;;WeighinEid_link4;"Plataformas"
 ;;WeighinEid_link8;"Lectores de etiquetas IDE"
 
-
 ;;WWM_link1;"Sistemas de Estanque Único"
 ;;WWM_link3;"Componentes Adicionales del Sistema"
 
 ;;AllElectricFencingLink;"Todas Cercado Eléctrico"
 ;;AllWeighingEIDLink;"Todas Pesaje e Identificación Electrónica"
 ;;AllWirelessWaterMonitoringLink;"Todas Monitoreo Inalámbrico del Agua"
-#;;AllSteelGatesandHardwareLink;"Todas Puertas de acero y herrajes"
-#;;AllAutomaticWateringLink;"Todas Riego Atomático"
-#;;AllAppsSoftwaresLink;"Todas Aplicaciones y software"
-#;;AllStockProdsMainLink;"All Productos de stock"
+
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];title[lang=$lang];&nodeRef
 ;Electricfencing_Nav;;"Cercado Eléctrico";Electricfencing_Nav
-;WeighingEID_Nav;;WeighingAndEID_Nav;"Pesaje e Identificación Electrónica";WeighingEID_Nav
-;WirelessWaterMonitoring_Nav;;WWMNav;"Monitoreo Inalámbrico del Agua";WirelessWaterMonitoring_Nav
+;WeighingEID_Nav;;"Pesaje e Identificación Electrónica";WeighingEID_Nav
+;WirelessWaterMonitoring_Nav;;"Monitoreo Inalámbrico del Agua";WirelessWaterMonitoring_Nav
 
 ;ElectricfencingPower_Nav;;"Energia";ElectricfencingPower_Nav
 ;ElectricfencingPermanentfencing_Nav;;"Cerco Permanente";ElectricfencingPermanentfencing_Nav
@@ -46,8 +42,6 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];title[l
 ;PowerEnergisers_nav;;"Energia";PowerEnergisers_nav
 ;PermanentfencingWireandCable_nav;;"Cerco Permanente";PermanentfencingWireandCable_nav
 ;PortablefencingTapesWiresBraids_nav;;"Cerco Portátil";PortablefencingTapesWiresBraids_nav
-
-
 
 
 INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=$lang]

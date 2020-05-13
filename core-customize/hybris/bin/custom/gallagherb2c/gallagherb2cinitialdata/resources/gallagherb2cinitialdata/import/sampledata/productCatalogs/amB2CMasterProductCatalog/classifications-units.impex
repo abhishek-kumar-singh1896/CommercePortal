@@ -25,3 +25,4 @@ INSERT_UPDATE ClassificationAttributeUnit;code[unique=true];symbol;unitType;name
 ;miles;miles;miles;miles
 ;hectares;hectares;hectares;hectares
 ;km;km;km;Kilometer
+;inches;"""";inches;Inches;
