@@ -31,9 +31,6 @@ REMOVE Category;code[unique=true];$catalogVersion
 
 # Sub Categories for 'gallagher-westonfence'
 ;insulated-suspension-posts
-#main categories
-;gallagher-westonfence
-
 # Sub Categories for 'power'
 ;energisers
 
