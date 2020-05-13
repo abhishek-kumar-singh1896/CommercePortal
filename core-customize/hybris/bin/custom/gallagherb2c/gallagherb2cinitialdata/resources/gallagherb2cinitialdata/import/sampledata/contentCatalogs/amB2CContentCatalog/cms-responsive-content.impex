@@ -2913,3 +2913,49 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrict
 #;;SGH_link1;GallagherNZRegionRestriction
 
 #;;AllStockProdsMainLink;GallagherNZRegionRestriction,GallagherGlRegionRestriction
+
+
+######All Electric fencing Category page###########
+INSERT_UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved'];previewImage(code, $contentCV)
+;;AllElectricFencingCategoryPage;All Electric Fencing Category Page;CategoryPageTemplate;false;;;
+
+INSERT_UPDATE CMSCategoryRestriction;$contentCV[unique=true];uid[unique=true];name;categories(code, $productCV);pages(uid, $contentCV)
+;;AllElectricFencing-LandingPageRestriction;Restriction for All Electric Fencing;electric-fencing;AllElectricFencingCategoryPage
+
+#section 1
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];folder(qualifier)[default='images'];altText
+;;bannerImage.jpg;$siteResource/images/theme/promotion-img-1.png;;;""
+
+INSERT_UPDATE GallagherCategoryBannerComponent;$contentCV[unique=true];uid[unique=true];$picture
+;;CategoryBanner;bannerImage.jpg
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid, $contentCV)
+;;Section1Slot-AllElectricFencing;CategoryBanner
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='AllElectricFencingCategoryPage'];contentSlot(uid,$contentCV)[unique=true]
+                                ;;Section1-AllElectricFencing;Section1;;Section1Slot-AllElectricFencing
+								
+#section 2
+
+INSERT_UPDATE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];name;category(code, $productCV);&componentRef
+;;PowerFeatureComponent;PowerFeatureComponent;power;PowerFeatureComponent
+;;PermanentFencingFeatureComponent;PermanentFencingFeatureComponent;permanent-fencing;PermanentFencingFeatureComponent
+;;PortableFencingFeatureComponent;PortableFencingFeatureComponent;portable-fencing;PortableFencingFeatureComponent
+;;FenceConductorsFeatureComponent;FenceConductorsFeatureComponent;fence-conductors;FenceConductorsFeatureComponent
+;;EnergisersFeatureComponent;EnergisersFeatureComponent;energisers;EnergisersFeatureComponent
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];folder(qualifier)[default='images'];altText
+;;power-category-img.jpg;$siteResource/images/banners/category/power-category-img.png;;;"Power"
+;;permanent-fencing-category-img.jpg;$siteResource/images/banners/category/permanent-fencing-category-img.png;;;"Permanent Fencing"
+;;portable-fencing-category-img.jpg;$siteResource/images/banners/category/portable-fencing-category-img.png;;;"Portable Fencing"
+;;fence-conductors-category-img.jpg;$siteResource/images/banners/category/fence-conductors-category-img.png;;;"Fence Conductors"
+;;energisers-category-img.jpg;$siteResource/images/banners/category/energisers-category-img.png;;;"Energisers"
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];active;cmsComponents(&componentRef)
+;;Section2Slot-AllElectricFencing;true;PowerFeatureComponent,PermanentFencingFeatureComponent,PortableFencingFeatureComponent,FenceConductorsFeatureComponent,EnergisersFeatureComponent
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='AllElectricFencingCategoryPage'];contentSlot(uid,$contentCV)[unique=true]
+                                ;;Section2-AllElectricFencing;Section2;;Section2Slot-AllElectricFencing
+
+###################################################
