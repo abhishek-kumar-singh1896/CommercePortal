@@ -33,6 +33,7 @@ import de.hybris.platform.commercefacades.storesession.data.CurrencyData;
 import de.hybris.platform.commercefacades.user.UserFacade;
 import de.hybris.platform.commercefacades.user.data.CustomerData;
 import de.hybris.platform.servicelayer.exceptions.ModelSavingException;
+import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 import de.hybris.platform.servicelayer.i18n.FormatFactory;
 import de.hybris.platform.servicelayer.interceptor.InterceptorException;
 import de.hybris.platform.servicelayer.interceptor.impl.UniqueAttributesInterceptor;
@@ -47,6 +48,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
@@ -183,9 +185,9 @@ public class MyCompanyPageController extends AbstractSearchPageController
 	}
 
 	@ModelAttribute("b2bUnits")
-	public List<SelectOption> getB2BUnits()
+	public List<SelectOption> getAllB2BUnitsMap()
 	{
-		return populateUnitsCheckBoxes(b2bUnitFacade.getAllActiveUnitsOfOrganization());
+		return populateUnitsCheckBoxes(b2bUnitFacade.getActiveUnitsOfOrganizationMap());
 	}
 
 	@ModelAttribute("b2bCostCenterCurrencies")
@@ -430,6 +432,20 @@ public class MyCompanyPageController extends AbstractSearchPageController
 			return editUser(b2BCustomerForm.getUid(), model);
 		}
 
+		/* Check if this user is already there in system */
+		try
+		{
+
+			if (getCustomerFacade().getUserForUID(b2BCustomerForm.getEmail()) != null)
+			{
+				return handleDuplicateUser(b2BCustomerForm, bindingResult, model);
+			}
+		}
+		catch (final UnknownIdentifierException uIdEx)
+		{
+			//No Need To Handle
+		}
+
 		final CustomerData b2bCustomerData = new CustomerData();
 		b2bCustomerData.setTitleCode(b2BCustomerForm.getTitleCode());
 		b2bCustomerData.setFirstName(b2BCustomerForm.getFirstName());
@@ -442,21 +458,9 @@ public class MyCompanyPageController extends AbstractSearchPageController
 		b2bCustomerData.setDuplicate(b2BCustomerForm.isDuplicate());
 		b2bCustomerData.setObjectID(b2BCustomerForm.getObjectId());
 
-
 		try
 		{
-			String keycloakGUID = getGallagherKeycloakService().getKeycloakUserFromEmail(b2bCustomerData.getEmail());
-			if (keycloakGUID != null)
-			{
-				b2bCustomerData.setKeycloakGUID(keycloakGUID);
-				b2bCustomerData.setIsUserExist(true);
-			}
-			else
-			{
-				keycloakGUID = getGallagherKeycloakService().createKeycloakUser(b2bCustomerData);
-				b2bCustomerData.setKeycloakGUID(keycloakGUID);
-				b2bCustomerData.setIsUserExist(false);
-			}
+			updateKeycloakInformation(b2bCustomerData);
 		}
 		catch (final RestClientException | OAuth2Exception exception)
 		{
@@ -493,12 +497,7 @@ public class MyCompanyPageController extends AbstractSearchPageController
 			if (e.getCause() instanceof InterceptorException
 					&& ((InterceptorException) e.getCause()).getInterceptor().getClass().equals(UniqueAttributesInterceptor.class))
 			{
-				LOG.error("The uid of the model being stored already exists, could not save. Edit user instead.");
-
-				bindingResult.rejectValue("email", "text.manageuser.error.email.exists.title");
-				GlobalMessages.addErrorMessage(model, "form.global.error");
-				model.addAttribute("b2BCustomerForm", b2BCustomerForm);
-				return editUser(b2BCustomerForm.getUid(), model);
+				return handleDuplicateUser(b2BCustomerForm, bindingResult, model);
 			}
 			else
 			{
@@ -506,6 +505,47 @@ public class MyCompanyPageController extends AbstractSearchPageController
 			}
 		}
 		return String.format(REDIRECT_TO_USER_DETAILS, urlEncode(b2bCustomerData.getUid()));
+	}
+
+	/**
+	 * Handles the duplicate user registration
+	 *
+	 * @param b2BCustomerForm
+	 *           to get the Uid
+	 * @param bindingResult
+	 *           to add error
+	 * @param model
+	 *           to be updated
+	 * @return edit user page
+	 * @throws CMSItemNotFoundException
+	 */
+	private String handleDuplicateUser(final B2BCustomerForm b2BCustomerForm, final BindingResult bindingResult, final Model model)
+			throws CMSItemNotFoundException
+	{
+		LOG.error("The uid of the model being stored already exists, could not save. Edit user instead.");
+		bindingResult.rejectValue("email", "text.manageuser.error.email.exists.title");
+		GlobalMessages.addErrorMessage(model, "form.global.error");
+		model.addAttribute("b2BCustomerForm", b2BCustomerForm);
+		return editUser(b2BCustomerForm.getUid(), model);
+	}
+
+	/**
+	 * @param b2bCustomerData
+	 */
+	private void updateKeycloakInformation(final CustomerData b2bCustomerData)
+	{
+		String keycloakGUID = getGallagherKeycloakService().getKeycloakUserFromEmail(b2bCustomerData.getEmail());
+		if (keycloakGUID != null)
+		{
+			b2bCustomerData.setKeycloakGUID(keycloakGUID);
+			b2bCustomerData.setIsUserExist(true);
+		}
+		else
+		{
+			keycloakGUID = getGallagherKeycloakService().createKeycloakUser(b2bCustomerData);
+			b2bCustomerData.setKeycloakGUID(keycloakGUID);
+			b2bCustomerData.setIsUserExist(false);
+		}
 	}
 
 	public String editUser(final String user, final Model model) throws CMSItemNotFoundException
@@ -944,5 +984,13 @@ public class MyCompanyPageController extends AbstractSearchPageController
 
 		return selectBoxList;
 	}
+
+	protected List<SelectOption> populateUnitsCheckBoxes(final Map<String, String> activeUnitsOfOrganizationMap)
+	{
+		final List<SelectOption> selectBoxList = new ArrayList<SelectOption>();
+		activeUnitsOfOrganizationMap.forEach((code, name) -> selectBoxList.add(new SelectOption(code, name)));
+		return selectBoxList;
+	}
+
 
 }
