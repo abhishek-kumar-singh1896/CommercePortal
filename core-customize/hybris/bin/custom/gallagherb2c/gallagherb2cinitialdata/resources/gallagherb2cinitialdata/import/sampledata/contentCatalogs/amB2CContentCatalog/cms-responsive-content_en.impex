@@ -719,3 +719,11 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 
 INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=en];
 ;;guestLoginProductSubHeading;abcd;
+
+INSERT_UPDATE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];title[lang=$lang];$picture[lang=$lang];description[lang=$lang]
+;;PowerFeatureComponent;Power;power-category-img.jpg;"High quality, fully tested solar panels provide consistent, reliable power to your Battery Energizer.​"
+;;PermanentFencingFeatureComponent;Permanent Fencing;permanent-fencing-category-img.jpg;"Reliable, long-lasting Energizer batteries to power portable fences in even the most remote locations."
+;;PortableFencingFeatureComponent;Portable Fencing;portable-fencing-category-img.jpg;"Correct earthing makes sure the electric shock reaches the animal when it touches the fence, and is a key component of your electric fence system."
+;;FenceConductorsFeatureComponent;Fence Conductors;fence-conductors-category-img.jpg;"Upgrade your fence system with tools to help locate faults quickly, make fence and property more secure and much more."
+;;EnergisersFeatureComponent;Energisers;energisers-category-img.jpg;"High quality, fully tested solar panels provide consistent, reliable power to your Battery Energizer."
+

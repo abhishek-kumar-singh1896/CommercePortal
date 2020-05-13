@@ -21,15 +21,18 @@ $approved=approvalstatus(code)[default='approved']
 $lang=en
  
 # Insert Variant Category
-INSERT_UPDATE VariantCategory ; code[unique=true] ; name        ; $supercategories ; hasImage ; $catalogVersion ; allowedPrincipals(uid)[default='customergroup'] 
+INSERT_UPDATE VariantCategory ; code[unique=true] ; name[lang=$lang]        ; $supercategories ; hasImage[default=false] ; $catalogVersion ; allowedPrincipals(uid)[default='customergroup'] 
                               ; B2B_Color         ; Color Variant    ;                  ; true     
-                              ; B2B_Controllers   ; Controllers Variant ; 			        ; true     
+                              ; B2B_Controllers   ; Controllers Variant ; 			        ; false     
+                              ; B2B_Technology	  ; Technology Variant
+                              ; B2B_PackSize		  ; Pack Size variant
+                              ; B2B_Type			  ; Type Variant
+                              ; B2B_Plan			  ; Plan Variant
                               
 #Insert Variant Value Category
-INSERT_UPDATE VariantValueCategory ; code[unique=true]      ; name                  ; $supercategories ; sequence ; $catalogVersion ; allowedPrincipals(uid)[default='customergroup'] 
+INSERT_UPDATE VariantValueCategory ; code[unique=true]      ; name [lang=$lang]     ; $supercategories ; sequence ; $catalogVersion ; allowedPrincipals(uid)[default='customergroup'] 
                                    ; B2B_Black              ; Black                 ; B2B_Color        ; 1        
                                    ; B2B_White              ; White                 ; B2B_Color        ; 2        
-                                   ; B2B_Blue               ; Blue                  ; B2B_Color        ; 3        
                                    ; B2B_PIV                ; PIV                   ; B2B_Controllers  ; 1        
                                    ; B2B_2Door              ; 2 Door                ; B2B_Controllers  ; 2        
                                    ; B2B_Standard           ; Standard              ; B2B_Controllers  ; 3        
@@ -38,6 +41,21 @@ INSERT_UPDATE VariantValueCategory ; code[unique=true]      ; name              
                                    ; B2B_PoE+               ; PoE+,                 ; B2B_Controllers  ; 6        
                                    ; B2B_ HBUS              ; HBUS                  ; B2B_Controllers  ; 7        
                                    ; B2B_Wiegand via HBUS   ; Wiegand via HBUS      ; B2B_Controllers  ; 8        
+                                   ; B2B-VVC-Technology-1	; Mifare						; B2B_Technology	 ; 1
+                                   ; B2B-VVC-Technology-2	; Multi Tech				; B2B_Technology	 ; 2
+                                   ; B2B-VVC-Technology-3	; PoE+ HBUS					; B2B_Technology	 ; 3
+                                   ; B2B-VVC-Technology-4	; PoE+, Wiegand via HBUS; B2B_Technology	 ; 4
+                                   ; B2B-VVC-Technology-5	; Standard HBUS			; B2B_Technology	 ; 5
+                                   ; B2B-VVC-Technology-6	; Standard, Wiegand via HBUS;B2B_Technology; 6
+                                   ; B2B-VVC-PackSize-1		; 50							; B2B_PackSize		 ; 1
+                                   ; B2B-VVC-PackSize-2		; 100							; B2B_PackSize		 ; 2
+                                   ; B2B-VVC-Type-1			; Break Away				; B2B_Type			 ; 1
+                                   ; B2B-VVC-Type-2			; Hard Claw					; B2B_Type			 ; 2
+                                   ; B2B-VVC-Type-3			; High Spec					; B2B_Type			 ; 3
+                                   ; B2B-VVC-Type-4			; 2 Door						; B2B_Type			 ; 4
+                                   ; B2B-VVC-Plan-1			; Standard					; B2B_Plan			 ; 1
+                                   ; B2B-VVC-Plan-2			; Fixed						; B2B_Plan			 ; 2
+                                   ; B2B-VVC-Plan-3			; Enterprise				; B2B_Plan			 ; 3
                                    
                                    
                                    

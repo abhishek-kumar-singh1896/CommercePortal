@@ -21,15 +21,7 @@
                             <div class="row">
                                 <div class="col-lg-4 col-md-5">
                                     <div class="tile-image">
-                                    	
-                                        <c:forEach items="${reference.target.images}" var="medias">
-                                        <c:if test="${medias.format eq 'thumbnail'}">
-                                        <a href="${fn:escapeXml(productUrl)}" title="${fn:escapeXml(reference.target.name)}">
-                                        <img src="${medias.url}" alt="${medias.altText}">
-                                        </a>
-                                        </c:if>
-                                        </c:forEach>
-										<%-- <product:productPrimaryImage product="${reference.target}" format="product" /> --%>
+                                    	<product:productIconImage product="${reference.target}" format="thumbnail"/>
                                     </div>
                                 </div>
                                 <div class="col-lg-8 col-md-7">
