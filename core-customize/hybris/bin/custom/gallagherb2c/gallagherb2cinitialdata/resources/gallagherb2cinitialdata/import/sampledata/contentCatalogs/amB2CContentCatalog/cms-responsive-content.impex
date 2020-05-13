@@ -1858,7 +1858,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;FenceConductors_nav_link;Electric fencing FenceConductors_nav_link;/Animal-Management/electric-fencing/fence-conductors/c/reels-and-accessories;reels-and-accessories-fc;;;
 ;;FenceConductors_nav_link1;Electric fencing FenceConductors_nav_link1;/Animal-Management/electric-fencing/fence-conductors/c/hi-tensile-wire-and-cable;hi-tensile-wire-and-cable;;;
 ;;FenceConductors_nav_link2;Electric fencing FenceConductors_nav_link2;/Animal-Management/electric-fencing/fence-conductors/c/tapes-wires-and-braids;tapes-wires-and-braids-fc;;;
-;;FenceConductors_nav_link3;Electric fencing FenceConductors_nav_link2;/Animal-Management/electric-fencing/fence-conductors/c/posts-pigtails-and-treadins;posts-pigtails-and-treadins-fc;;;
+;;FenceConductors_nav_link3;Electric fencing FenceConductors_nav_link3;/Animal-Management/electric-fencing/fence-conductors/c/posts-pigtails-and-treadins;posts-pigtails-and-treadins-fc;;;
 
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
@@ -2943,7 +2943,7 @@ INSERT_UPDATE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];
 ;;PermanentFencingFeatureComponent;PermanentFencingFeatureComponent;permanent-fencing;PermanentFencingFeatureComponent
 ;;PortableFencingFeatureComponent;PortableFencingFeatureComponent;portable-fencing;PortableFencingFeatureComponent
 ;;FenceConductorsFeatureComponent;FenceConductorsFeatureComponent;fence-conductors;FenceConductorsFeatureComponent
-;;EnergisersFeatureComponent;EnergisersFeatureComponent;energisers;EnergisersFeatureComponent
+;;EnergisersFeatureComponent;EnergisersFeatureComponent;solar-energizers;EnergisersFeatureComponent
 
 INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];folder(qualifier)[default='images'];altText
 ;;power-category-img.jpg;$siteResource/images/banners/category/power-category-img.png;;;"Power"

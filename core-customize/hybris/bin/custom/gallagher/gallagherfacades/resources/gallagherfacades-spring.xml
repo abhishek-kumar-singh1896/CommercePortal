@@ -254,5 +254,9 @@
 		<property name="baseStoreService" ref="baseStoreService" />
 		<property name="commonI18NService" ref="commonI18NService" />
 	</bean>
+	
+	<alias name="gallagherCmsLinkComponentValidator" alias="cmsLinkComponentValidator"/>
+	<bean id="gallagherCmsLinkComponentValidator" class="com.gallagher.facades.cmsitems.validator.GallagherCMSLinkComponentValidator"
+			parent="defaultCmsLinkComponentValidator"/>
  	    
 </beans>
