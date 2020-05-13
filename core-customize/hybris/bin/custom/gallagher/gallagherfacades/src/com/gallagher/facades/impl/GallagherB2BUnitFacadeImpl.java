@@ -13,8 +13,8 @@ import de.hybris.platform.commercefacades.user.data.CustomerData;
 import de.hybris.platform.commerceservices.search.pagedata.PageableData;
 import de.hybris.platform.commerceservices.search.pagedata.SearchPageData;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.beanutils.BeanPropertyValueEqualsPredicate;
@@ -46,20 +46,24 @@ public class GallagherB2BUnitFacadeImpl extends DefaultB2BUnitFacade implements 
 		return searchPageData;
 	}
 
+
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public List<String> getAllActiveUnitsOfOrganization()
+	public Map<String, String> getActiveUnitsOfOrganizationMap()
 	{
 		final B2BCustomerModel currentUser = (B2BCustomerModel) this.getUserService().getCurrentUser();
 		final Set<B2BUnitModel> units = getB2BUnitService().getAllUnitsOfOrganization(currentUser);
-		final List<String> b2BUnitList = new ArrayList<String>(units.size());
+		final Map<String, String> b2BUnits = new HashMap<>(units.size());
 		for (final B2BUnitModel b2BUnitModel : units)
 		{
 			if (Boolean.TRUE.equals(b2BUnitModel.getActive()))
 			{
-				b2BUnitList.add(b2BUnitModel.getName());
+				b2BUnits.put(b2BUnitModel.getUid(), b2BUnitModel.getName());
 			}
 		}
-		return b2BUnitList;
+		return b2BUnits;
 	}
 
 }

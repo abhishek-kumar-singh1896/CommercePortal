@@ -35,9 +35,23 @@ public class GallagherB2BUserFacadeImpl extends DefaultB2BUserFacade
 	public void updateCustomer(final CustomerData customerData)
 	{
 		super.updateCustomer(customerData);
+		publishCustomerRegistrationEvent(customerData);
+	}
+
+	private void publishCustomerRegistrationEvent(final CustomerData customerData)
+	{
 		if (StringUtils.isEmpty(customerData.getUid()))
 		{
-			final B2BCustomerModel customerModel = getUserService().getUserForUID(customerData.getUid(), B2BCustomerModel.class);
+			String updateUid = null;
+			if (StringUtils.isNotBlank(customerData.getDisplayUid()))
+			{
+				updateUid = customerData.getDisplayUid();
+			}
+			else if (customerData.getEmail() != null)
+			{
+				updateUid = customerData.getEmail();
+			}
+			final B2BCustomerModel customerModel = getUserService().getUserForUID(updateUid, B2BCustomerModel.class);
 			eventService.publishEvent(initializeEvent(new GallagherB2BRegistrationEvent(), customerModel));
 		}
 	}
