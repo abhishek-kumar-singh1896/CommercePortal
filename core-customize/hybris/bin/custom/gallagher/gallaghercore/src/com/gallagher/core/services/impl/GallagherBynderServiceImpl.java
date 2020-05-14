@@ -65,6 +65,8 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 
 	private static final Logger LOGGER = Logger.getLogger(GallagherBynderServiceImpl.class);
 
+	private static final String HERO = "Hero";
+
 	@Autowired
 	private FlexibleSearchService flexibleSearchService;
 
@@ -73,7 +75,6 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 
 	@Autowired
 	private MediaService mediaService;
-
 
 	@Autowired
 	private ConfigurationService configurationService;
@@ -117,6 +118,8 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 		mediaContainerModel.setCatalogVersion(catlogmodel);
 		mediaContainerModel.setQualifier(gallagherBynderResponse.getId());
 		mediaContainerModel.setName(gallagherBynderResponse.getName(), Locale.ENGLISH);
+		mediaContainerModel.setHero((CollectionUtils.isNotEmpty((gallagherBynderResponse.getProperty_Website()))
+				&& gallagherBynderResponse.getProperty_Website().contains(HERO)) ? true : false);
 
 		//ADDING BASE STORE
 		final List<BaseStoreModel> basestorelist = getBaseStoreModelList(gallagherBynderResponse.getProperty_region(),
@@ -305,7 +308,7 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 			{
 				for (final ProductModel product : products)
 				{
-					final Map<String, String> videomap = new HashMap<String, String>();
+					final Map<String, String> videomap = new HashMap<>();
 					videomap.putAll(product.getVideos());
 					videomap.put(gallagherBynderResponse.getId(), gallagherBynderResponse.getThumbnails().getThul());
 					product.setVideos(videomap);
@@ -425,7 +428,7 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 		return generator;
 	}
 
-	private List<BaseStoreModel> getBaseStoreModelList(final ArrayList<String> regionCodeList, final String catalogId)
+	private List<BaseStoreModel> getBaseStoreModelList(final List<String> regionCodeList, final String catalogId)
 	{
 		final List<BaseStoreModel> baseStoreList = new ArrayList<>();
 		for (final String regioncode : regionCodeList)

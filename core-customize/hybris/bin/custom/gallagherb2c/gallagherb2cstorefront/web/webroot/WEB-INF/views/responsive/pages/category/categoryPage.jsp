@@ -7,6 +7,8 @@
 	tagdir="/WEB-INF/tags/responsive/nav/breadcrumb"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="category" tagdir="/WEB-INF/tags/responsive/category"%>
+
 
 <template:page pageTitle="${pageTitle}">
     <div class="product-category-list">
@@ -18,9 +20,9 @@
       <div class="container">
         <div class="product-category-list-container-out">
             <div class="row">
-                <cms:pageSlot position="Section2" var="feature">
-                    <cms:component component="${feature}"/>
-                </cms:pageSlot>
+				<c:forEach items="${searchPageData.subCategories}" var="category">
+					<category:categoryFeatureComponent categoryData="${category}" />
+				</c:forEach>
             </div>
         </div>
     </div>

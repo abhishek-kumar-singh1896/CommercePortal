@@ -4,6 +4,7 @@
 package com.gallagher.outboundservices.response.dto;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -20,160 +21,165 @@ public class GallagherBynderResponse
 	private String id;
 	private float height;
 	private float archive;
-	ArrayList<Object> tags = new ArrayList<Object>();
 	private String datePublished;
 	private float fileSize;
 	private String brandId;
 	private String name;
-	ArrayList<Object> extension = new ArrayList<Object>();
 	private String description;
 	private String userCreated;
 	private String dateCreated;
 	private float isPublic;
-	ArrayList<Object> propertyOptions = new ArrayList<Object>();
 	private String orientation;
 	private String dateModified;
 	private float width;
 	private float watermarked;
 	private float limited;
-	Thumbnails thumbnails;
-	ArrayList<String> property_part_numbers = new ArrayList<String>();
+	private Thumbnails thumbnails;
+	private List<String> property_Website;
+	private List<Object> tags = new ArrayList<Object>();
+	private List<Object> extension = new ArrayList<Object>();
+	private List<Object> propertyOptions = new ArrayList<Object>();
+	private List<String> property_part_numbers = new ArrayList<String>();
+	private List<String> property_product_subtype = new ArrayList<String>();
+	private List<String> property_assettype = new ArrayList<String>();
+	private List<String> property_region = new ArrayList<String>();
+	private List<String> property_product_type = new ArrayList<String>();
+	private List<String> property_skus = new ArrayList<String>();
+	private List<String> property_business_unit = new ArrayList<String>();
+	private List<String> property_product_name = new ArrayList<String>();
+	private List<String> property_asset_subtype = new ArrayList<String>();
 
-	public ArrayList<Object> getTags()
+	public List<Object> getTags()
 	{
 		return tags;
 	}
 
-	public void setTags(final ArrayList<Object> tags)
+	public void setTags(final List<Object> tags)
 	{
 		this.tags = tags;
 	}
 
-	public ArrayList<Object> getExtension()
+	public List<String> getProperty_Website()
+	{
+		return property_Website;
+	}
+
+	public void setProperty_Website(final List<String> property_Website)
+	{
+		this.property_Website = property_Website;
+	}
+
+	public List<Object> getExtension()
 	{
 		return extension;
 	}
 
-	public void setExtension(final ArrayList<Object> extension)
+	public void setExtension(final List<Object> extension)
 	{
 		this.extension = extension;
 	}
 
-	public ArrayList<Object> getPropertyOptions()
+	public List<Object> getPropertyOptions()
 	{
 		return propertyOptions;
 	}
 
-	public void setPropertyOptions(final ArrayList<Object> propertyOptions)
+	public void setPropertyOptions(final List<Object> propertyOptions)
 	{
 		this.propertyOptions = propertyOptions;
 	}
 
-	public ArrayList<String> getProperty_part_numbers()
+	public List<String> getProperty_part_numbers()
 	{
 		return property_part_numbers;
 	}
 
-	public void setProperty_part_numbers(final ArrayList<String> property_part_numbers)
+	public void setProperty_part_numbers(final List<String> property_part_numbers)
 	{
 		this.property_part_numbers = property_part_numbers;
 	}
 
-	public ArrayList<String> getProperty_skus()
+	public List<String> getProperty_skus()
 	{
 		return property_skus;
 	}
 
-	public void setProperty_skus(final ArrayList<String> property_skus)
+	public void setProperty_skus(final List<String> property_skus)
 	{
 		this.property_skus = property_skus;
 	}
 
 
 
-	public ArrayList<String> getProperty_product_subtype()
+	public List<String> getProperty_product_subtype()
 	{
 		return property_product_subtype;
 	}
 
-	public void setProperty_product_subtype(final ArrayList<String> property_product_subtype)
+	public void setProperty_product_subtype(final List<String> property_product_subtype)
 	{
 		this.property_product_subtype = property_product_subtype;
 	}
 
-	public ArrayList<String> getProperty_assettype()
+	public List<String> getProperty_assettype()
 	{
 		return property_assettype;
 	}
 
-	public void setProperty_assettype(final ArrayList<String> property_assettype)
+	public void setProperty_assettype(final List<String> property_assettype)
 	{
 		this.property_assettype = property_assettype;
 	}
 
-	public ArrayList<String> getProperty_region()
+	public List<String> getProperty_region()
 	{
 		return property_region;
 	}
 
-	public void setProperty_region(final ArrayList<String> property_region)
+	public void setProperty_region(final List<String> property_region)
 	{
 		this.property_region = property_region;
 	}
 
-	public ArrayList<String> getProperty_product_type()
+	public List<String> getProperty_product_type()
 	{
 		return property_product_type;
 	}
 
-	public void setProperty_product_type(final ArrayList<String> property_product_type)
+	public void setProperty_product_type(final List<String> property_product_type)
 	{
 		this.property_product_type = property_product_type;
 	}
 
-	public ArrayList<String> getProperty_business_unit()
+	public List<String> getProperty_business_unit()
 	{
 		return property_business_unit;
 	}
 
-	public void setProperty_business_unit(final ArrayList<String> property_business_unit)
+	public void setProperty_business_unit(final List<String> property_business_unit)
 	{
 		this.property_business_unit = property_business_unit;
 	}
 
-	public ArrayList<String> getProperty_product_name()
+	public List<String> getProperty_product_name()
 	{
 		return property_product_name;
 	}
 
-	public void setProperty_product_name(final ArrayList<String> property_product_name)
+	public void setProperty_product_name(final List<String> property_product_name)
 	{
 		this.property_product_name = property_product_name;
 	}
 
-	public ArrayList<String> getProperty_asset_subtype()
+	public List<String> getProperty_asset_subtype()
 	{
 		return property_asset_subtype;
 	}
 
-	public void setProperty_asset_subtype(final ArrayList<String> property_asset_subtype)
+	public void setProperty_asset_subtype(final List<String> property_asset_subtype)
 	{
 		this.property_asset_subtype = property_asset_subtype;
 	}
-
-
-
-	ArrayList<String> property_product_subtype = new ArrayList<String>();
-	ArrayList<String> property_assettype = new ArrayList<String>();
-	ArrayList<String> property_region = new ArrayList<String>();
-	ArrayList<String> property_product_type = new ArrayList<String>();
-	ArrayList<String> property_skus = new ArrayList<String>();
-	ArrayList<String> property_business_unit = new ArrayList<String>();
-	ArrayList<String> property_product_name = new ArrayList<String>();
-	ArrayList<String> property_asset_subtype = new ArrayList<String>();
-
-
-	// Getter Methods
 
 	public String getCopyright()
 	{

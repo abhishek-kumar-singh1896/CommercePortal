@@ -29,45 +29,70 @@ public class GallagherImageValueProvider extends ImageValueProvider
 	@Override
 	protected MediaModel findMedia(final ProductModel product, final MediaFormatModel mediaFormat)
 	{
+		MediaModel requestedMedia = null;
 		if (product != null && mediaFormat != null)
 		{
 			final Collection<VariantProductModel> variantProducts = product.getVariants();
 
-			if (null != variantProducts && CollectionUtils.isNotEmpty(variantProducts))
+			if (CollectionUtils.isNotEmpty(variantProducts))
 			{
 				for (final VariantProductModel variantProduct : variantProducts)
 				{
 					if (variantProduct.isVariantForImage())
 					{
-						final List<MediaContainerModel> galleryImages = variantProduct.getGalleryImages();
-						if (galleryImages != null && !galleryImages.isEmpty())
-						{
-							for (final MediaContainerModel container : galleryImages)
-							{
-								try
-								{
-									final MediaModel media = getMediaContainerService().getMediaForFormat(container, mediaFormat);
-									if (media != null)
-									{
-										return media;
-									}
-								}
-								catch (final ModelNotFoundException ignore)
-								{
-									// ignore
-								}
-							}
-						}
-
+						requestedMedia = getRequiredMedia(mediaFormat, variantProduct.getGalleryImages());
 						break;
 					}
 				}
 			}
 			else
 			{
-				return super.findMedia(product, mediaFormat);
+				requestedMedia = getRequiredMedia(mediaFormat, product.getGalleryImages());
 			}
 		}
-		return null;
+		return requestedMedia;
+	}
+
+	/**
+	 * Returns the required format media from the gallery images. It will give the priority to Hero media and it will
+	 * return the first media if Hero is not available
+	 *
+	 * @param mediaFormat
+	 *           to be returned
+	 * @param galleryImages
+	 *           to get media with the required format
+	 * @return required media
+	 */
+	private MediaModel getRequiredMedia(final MediaFormatModel mediaFormat, final List<MediaContainerModel> galleryImages)
+	{
+		MediaModel requestedMedia = null;
+		if (CollectionUtils.isNotEmpty(galleryImages))
+		{
+			// Search each media container in the gallery for an image of the right format
+			for (final MediaContainerModel container : galleryImages)
+			{
+				try
+				{
+					final MediaModel media = getMediaContainerService().getMediaForFormat(container, mediaFormat);
+					if (media != null)
+					{
+						if (Boolean.TRUE.equals(container.getHero()))
+						{
+							requestedMedia = media;
+							break;
+						}
+						else if (requestedMedia == null)
+						{
+							requestedMedia = media;
+						}
+					}
+				}
+				catch (final ModelNotFoundException ignore)
+				{
+					// ignore
+				}
+			}
+		}
+		return requestedMedia;
 	}
 }
