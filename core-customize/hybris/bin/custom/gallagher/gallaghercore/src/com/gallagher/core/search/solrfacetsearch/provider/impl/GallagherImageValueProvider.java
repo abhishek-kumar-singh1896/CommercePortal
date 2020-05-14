@@ -76,7 +76,7 @@ public class GallagherImageValueProvider extends ImageValueProvider
 					final MediaModel media = getMediaContainerService().getMediaForFormat(container, mediaFormat);
 					if (media != null)
 					{
-						if (container.getHero())
+						if (Boolean.TRUE.equals(container.getHero()))
 						{
 							requestedMedia = media;
 							break;
