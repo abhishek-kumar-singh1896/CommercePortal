@@ -223,6 +223,27 @@
             </editorArea:tab>
         </editorArea:editorArea>
     </context>
+
+	<context merge-by="type" parent="CronJob" type="GallagherProductProcessingCronJob" component="editor-area">
+		<editorArea:editorArea name="">
+			<editorArea:essentials>
+				<editorArea:essentialSection name="hmc.essential">
+					<editorArea:attribute qualifier="lastStartTime" />
+				</editorArea:essentialSection>
+			</editorArea:essentials>
+		</editorArea:editorArea>
+	</context>
+	
+	<context merge-by="type" parent="CronJob" type="GallagherBynderSyncCronJob" component="editor-area">
+		<editorArea:editorArea name="">
+			<editorArea:essentials>
+				<editorArea:essentialSection name="hmc.essential">
+					<editorArea:attribute qualifier="lastStartTime" />
+				</editorArea:essentialSection>
+			</editorArea:essentials>
+		</editorArea:editorArea>
+	</context>
+            
 	<context merge-by="type" parent="Customer" type="B2BCustomer" component="create-wizard">
 	    <wz:flow xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config" id="CustomerWizard" title="create.title(ctx.TYPE_CODE)">
 			<wz:handler handlerId="verifyCustomerHandler1" handlerBean="verifyCustomerHandler" />

@@ -118,7 +118,8 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 		mediaContainerModel.setCatalogVersion(catlogmodel);
 		mediaContainerModel.setQualifier(gallagherBynderResponse.getId());
 		mediaContainerModel.setName(gallagherBynderResponse.getName(), Locale.ENGLISH);
-		mediaContainerModel.setHero(HERO.equals(gallagherBynderResponse.getProperty_Website()) ? true : false);
+		mediaContainerModel.setHero((CollectionUtils.isNotEmpty((gallagherBynderResponse.getProperty_Website()))
+				&& gallagherBynderResponse.getProperty_Website().contains(HERO)) ? true : false);
 
 		//ADDING BASE STORE
 		final List<BaseStoreModel> basestorelist = getBaseStoreModelList(gallagherBynderResponse.getProperty_region(),

@@ -34,20 +34,20 @@ public class GallagherBynderResponse
 	private float width;
 	private float watermarked;
 	private float limited;
-	private String property_Website;
 	private Thumbnails thumbnails;
-	List<Object> tags = new ArrayList<Object>();
-	List<Object> extension = new ArrayList<Object>();
-	List<Object> propertyOptions = new ArrayList<Object>();
-	List<String> property_part_numbers = new ArrayList<String>();
-	List<String> property_product_subtype = new ArrayList<String>();
-	List<String> property_assettype = new ArrayList<String>();
-	List<String> property_region = new ArrayList<String>();
-	List<String> property_product_type = new ArrayList<String>();
-	List<String> property_skus = new ArrayList<String>();
-	List<String> property_business_unit = new ArrayList<String>();
-	List<String> property_product_name = new ArrayList<String>();
-	List<String> property_asset_subtype = new ArrayList<String>();
+	private List<String> property_Website;
+	private List<Object> tags = new ArrayList<Object>();
+	private List<Object> extension = new ArrayList<Object>();
+	private List<Object> propertyOptions = new ArrayList<Object>();
+	private List<String> property_part_numbers = new ArrayList<String>();
+	private List<String> property_product_subtype = new ArrayList<String>();
+	private List<String> property_assettype = new ArrayList<String>();
+	private List<String> property_region = new ArrayList<String>();
+	private List<String> property_product_type = new ArrayList<String>();
+	private List<String> property_skus = new ArrayList<String>();
+	private List<String> property_business_unit = new ArrayList<String>();
+	private List<String> property_product_name = new ArrayList<String>();
+	private List<String> property_asset_subtype = new ArrayList<String>();
 
 	public List<Object> getTags()
 	{
@@ -59,12 +59,12 @@ public class GallagherBynderResponse
 		this.tags = tags;
 	}
 
-	public String getProperty_Website()
+	public List<String> getProperty_Website()
 	{
 		return property_Website;
 	}
 
-	public void setProperty_Website(final String property_Website)
+	public void setProperty_Website(final List<String> property_Website)
 	{
 		this.property_Website = property_Website;
 	}
