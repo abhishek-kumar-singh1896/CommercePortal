@@ -39,7 +39,6 @@ import de.hybris.platform.core.model.product.ProductModel;
 import de.hybris.platform.product.ProductService;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 import de.hybris.platform.util.Config;
-import com.gallagher.b2b.storefront.controllers.ControllerConstants;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -69,6 +68,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.gallagher.b2b.storefront.controllers.ControllerConstants;
 import com.google.common.collect.Maps;
 
 
@@ -119,8 +119,8 @@ public class ProductPageController extends AbstractPageController
 	private FutureStockFacade futureStockFacade;
 
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN, method = RequestMethod.GET)
-	public String productDetail(@PathVariable("productCode") final String encodedProductCode, final Model model,
-			final HttpServletRequest request, final HttpServletResponse response)
+	public String productDetail(@PathVariable("productCode")
+	final String encodedProductCode, final Model model, final HttpServletRequest request, final HttpServletResponse response)
 			throws CMSItemNotFoundException, UnsupportedEncodingException
 	{
 		final String productCode = decodeWithScheme(encodedProductCode, UTF_8);
@@ -151,8 +151,9 @@ public class ProductPageController extends AbstractPageController
 	}
 
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN + "/orderForm", method = RequestMethod.GET)
-	public String productOrderForm(@PathVariable("productCode") final String encodedProductCode, final Model model,
-			final HttpServletRequest request, final HttpServletResponse response) throws CMSItemNotFoundException
+	public String productOrderForm(@PathVariable("productCode")
+	final String encodedProductCode, final Model model, final HttpServletRequest request, final HttpServletResponse response)
+			throws CMSItemNotFoundException
 	{
 		final String productCode = decodeWithScheme(encodedProductCode, UTF_8);
 		final List<ProductOption> extraOptions = Arrays.asList(ProductOption.VARIANT_MATRIX_BASE,
@@ -173,8 +174,9 @@ public class ProductPageController extends AbstractPageController
 	}
 
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN + "/zoomImages", method = RequestMethod.GET)
-	public String showZoomImages(@PathVariable("productCode") final String encodedProductCode,
-			@RequestParam(value = "galleryPosition", required = false) final String galleryPosition, final Model model)
+	public String showZoomImages(@PathVariable("productCode")
+	final String encodedProductCode, @RequestParam(value = "galleryPosition", required = false)
+	final String galleryPosition, final Model model)
 	{
 		final String productCode = decodeWithScheme(encodedProductCode, UTF_8);
 		final ProductData productData = productFacade.getProductForCodeAndOptions(productCode,
@@ -200,8 +202,8 @@ public class ProductPageController extends AbstractPageController
 	}
 
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN + "/quickView", method = RequestMethod.GET)
-	public String showQuickView(@PathVariable("productCode") final String encodedProductCode, final Model model,
-			final HttpServletRequest request)
+	public String showQuickView(@PathVariable("productCode")
+	final String encodedProductCode, final Model model, final HttpServletRequest request)
 	{
 		final String productCode = decodeWithScheme(encodedProductCode, UTF_8);
 		final ProductModel productModel = productService.getProductForCode(productCode);
@@ -219,9 +221,9 @@ public class ProductPageController extends AbstractPageController
 
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN + "/review", method =
 	{ RequestMethod.GET, RequestMethod.POST })
-	public String postReview(@PathVariable("productCode") final String encodedProductCode, final ReviewForm form,
-			final BindingResult result, final Model model, final HttpServletRequest request, final RedirectAttributes redirectAttrs)
-			throws CMSItemNotFoundException
+	public String postReview(@PathVariable("productCode")
+	final String encodedProductCode, final ReviewForm form, final BindingResult result, final Model model,
+			final HttpServletRequest request, final RedirectAttributes redirectAttrs) throws CMSItemNotFoundException
 	{
 		final String productCode = decodeWithScheme(encodedProductCode, UTF_8);
 		getReviewValidator().validate(form, result);
@@ -250,8 +252,9 @@ public class ProductPageController extends AbstractPageController
 
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN + "/reviewhtml/"
 			+ REVIEWS_PATH_VARIABLE_PATTERN, method = RequestMethod.GET)
-	public String reviewHtml(@PathVariable("productCode") final String encodedProductCode,
-			@PathVariable("numberOfReviews") final String numberOfReviews, final Model model, final HttpServletRequest request)
+	public String reviewHtml(@PathVariable("productCode")
+	final String encodedProductCode, @PathVariable("numberOfReviews")
+	final String numberOfReviews, final Model model, final HttpServletRequest request)
 	{
 		final String productCode = decodeWithScheme(encodedProductCode, UTF_8);
 		final ProductModel productModel = productService.getProductForCode(productCode);
@@ -279,8 +282,8 @@ public class ProductPageController extends AbstractPageController
 	}
 
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN + "/writeReview", method = RequestMethod.GET)
-	public String writeReview(@PathVariable("productCode") final String encodedProductCode, final Model model)
-			throws CMSItemNotFoundException
+	public String writeReview(@PathVariable("productCode")
+	final String encodedProductCode, final Model model) throws CMSItemNotFoundException
 	{
 		final String productCode = decodeWithScheme(encodedProductCode, UTF_8);
 		model.addAttribute(new ReviewForm());
@@ -300,9 +303,9 @@ public class ProductPageController extends AbstractPageController
 	}
 
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN + "/writeReview", method = RequestMethod.POST)
-	public String writeReview(@PathVariable("productCode") final String encodedProductCode, final ReviewForm form,
-			final BindingResult result, final Model model, final HttpServletRequest request, final RedirectAttributes redirectAttrs)
-			throws CMSItemNotFoundException
+	public String writeReview(@PathVariable("productCode")
+	final String encodedProductCode, final ReviewForm form, final BindingResult result, final Model model,
+			final HttpServletRequest request, final RedirectAttributes redirectAttrs) throws CMSItemNotFoundException
 	{
 		final String productCode = decodeWithScheme(encodedProductCode, UTF_8);
 		getReviewValidator().validate(form, result);
@@ -329,8 +332,9 @@ public class ProductPageController extends AbstractPageController
 	}
 
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN + "/futureStock", method = RequestMethod.GET)
-	public String productFutureStock(@PathVariable("productCode") final String encodedProductCode, final Model model,
-			final HttpServletRequest request, final HttpServletResponse response) throws CMSItemNotFoundException
+	public String productFutureStock(@PathVariable("productCode")
+	final String encodedProductCode, final Model model, final HttpServletRequest request, final HttpServletResponse response)
+			throws CMSItemNotFoundException
 	{
 		final String productCode = decodeWithScheme(encodedProductCode, UTF_8);
 		final boolean futureStockEnabled = Config.getBoolean(FUTURE_STOCK_ENABLED, false);
@@ -414,7 +418,7 @@ public class ProductPageController extends AbstractPageController
 				ProductOption.URL, ProductOption.PRICE, ProductOption.SUMMARY, ProductOption.DESCRIPTION, ProductOption.GALLERY,
 				ProductOption.CATEGORIES, ProductOption.REVIEW, ProductOption.PROMOTIONS, ProductOption.CLASSIFICATION,
 				ProductOption.VARIANT_FULL, ProductOption.STOCK, ProductOption.VOLUME_PRICES, ProductOption.PRICE_RANGE,
-				ProductOption.DELIVERY_MODE_AVAILABILITY));
+				ProductOption.DELIVERY_MODE_AVAILABILITY, ProductOption.DATA_SHEET));
 
 		options.addAll(extraOptions);
 
