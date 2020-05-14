@@ -7,6 +7,7 @@
 <%@ taglib prefix="action" tagdir="/WEB-INF/tags/responsive/action"%>
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="theme" tagdir="/WEB-INF/tags/shared/theme"%>
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
@@ -36,12 +37,32 @@
 					<div class="product-img-box">
 <%-- 						<a class="product__list--thumb" href="${fn:escapeXml(productUrl)}" --%>
 <%-- 							title="${fn:escapeXml(referenceProduct.name)}"> --%>
-							<c:forEach items="${referenceProduct.images}" var="medias">
+							<%-- <c:forEach items="${referenceProduct.images}" var="medias">
 								<c:if test="${medias.format eq 'product'}">
 									<img src="${medias.url}" alt="${medias.altText}">
 								</c:if>
-	                  </c:forEach>
-							<%-- <product:productPrimaryImage
+	                  		</c:forEach> --%>
+	                  		<c:set var="tempicon" value="0" />
+							<c:choose>
+								<c:when test="${not empty referenceProduct.images}">
+									<c:forEach items="${product.images}" var="medias">
+										<c:if test="${tempicon == 0 }">
+											<c:if test="${medias.format eq 'product'}">
+												<c:set var="tempicon" value="1" />
+												<img src="${medias.url}" alt="${medias.altText}">
+											</c:if>
+										</c:if>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<c:if test="${tempicon == 0 }">
+										<c:set value="${fn:escapeXml(product.name)}" var="productNameHtml" />
+										<c:set value="thumbnail" var="format" />
+										<theme:image code="img.missingProductImage.responsive.${format}"/>
+									</c:if>
+								</c:otherwise>
+							</c:choose>
+														<%-- <product:productPrimaryImage
 								product="${product}" format="product" /> --%>
 <!-- 						</a> -->
 					</div>
