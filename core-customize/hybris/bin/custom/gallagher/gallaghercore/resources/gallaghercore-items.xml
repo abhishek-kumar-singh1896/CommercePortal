@@ -36,9 +36,10 @@
 	</enumtypes>
 
 	<maptypes>
-		<maptype code="VideoDataMap" argumenttype="java.lang.String" returntype="java.lang.String" generate="true" autocreate="true" />
+		<maptype code="VideoDataMap" argumenttype="java.lang.String" returntype="java.lang.String" generate="true"
+			autocreate="true" />
 	</maptypes>
-	
+
 	<relations>
 		<relation code="BaseStoreProductRelation" autocreate="true" generate="true" localized="false">
 			<deployment table="BaseStoreProductRelation" typecode="30000" />
@@ -51,7 +52,7 @@
 				<modifiers read="true" write="true" search="true" optional="true" />
 			</targetElement>
 		</relation>
-		
+
 		<relation code="BaseStoreMediaRelation" autocreate="true" generate="true" localized="false">
 			<deployment table="BaseStoreMediaRelation" typecode="30001" />
 			<sourceElement qualifier="baseStores" type="BaseStore" cardinality="many" ordered="false">
@@ -63,7 +64,7 @@
 				<modifiers read="true" write="true" search="true" optional="true" />
 			</targetElement>
 		</relation>
-	
+
 		<relation code="BaseStoreMediaContainerRelation" autocreate="true" generate="true" localized="false">
 			<deployment table="StoreMediaContainerRel" typecode="30002" />
 			<sourceElement qualifier="baseStores" type="BaseStore" cardinality="many" ordered="false">
@@ -76,7 +77,7 @@
 				<modifiers read="true" write="true" search="true" optional="true" />
 			</targetElement>
 		</relation>
-        
+
 	</relations>
 
 	<itemtypes>
@@ -109,11 +110,11 @@
 					<description>Indicates if customer is exist or not</description>
 				</attribute>
 				<attribute autocreate="true" generate="true" qualifier="newsLetters" type="java.lang.Boolean">
-               <modifiers optional="true" />
-               <persistence type="property" />
-               <description>Indicates if customer subscribe newsletters</description>
-             </attribute>
-             <attribute autocreate="true" generate="true" qualifier="events" type="java.lang.Boolean">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<description>Indicates if customer subscribe newsletters</description>
+				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="events" type="java.lang.Boolean">
 					<modifiers optional="true" />
 					<persistence type="property" />
 					<description>Indicates if customer subscribe events</description>
@@ -213,12 +214,14 @@
 					<persistence type="property" />
 					<description>Contains description and url for simulator</description>
 				</attribute>
-				<attribute autocreate="true" generate="true" qualifier="sparePartsReferenceHeading" type="localized:java.lang.String">
+				<attribute autocreate="true" generate="true" qualifier="sparePartsReferenceHeading"
+					type="localized:java.lang.String">
 					<modifiers optional="true" />
 					<persistence type="property" />
 					<description>Indicates heading for spare parts category product reference</description>
 				</attribute>
-				<attribute autocreate="true" generate="true" qualifier="sparePartsReferenceSubHeading" type="localized:java.lang.String">
+				<attribute autocreate="true" generate="true" qualifier="sparePartsReferenceSubHeading"
+					type="localized:java.lang.String">
 					<modifiers optional="true" />
 					<persistence type="property" />
 					<description>Indicates sub-heading for spare parts category product reference</description>
@@ -238,36 +241,36 @@
 					<persistence type="property" />
 					<description>Attribute for marketing description of the product</description>
 				</attribute>
-				
+
 				<attribute autocreate="true" qualifier="plpProductDescription" type="localized:java.lang.String">
-                    <modifiers read="true" write="true" search="true" optional="true" />
-                    <persistence type="property">
-                        <columntype database="oracle">
-                            <value>CLOB</value>
-                        </columntype>
-                        <columntype database="sap">
-                            <value>NCLOB</value>
-                        </columntype>
-                        <columntype>
-                            <value>HYBRIS.LONG_STRING</value>
-                        </columntype>
-                    </persistence>
-                    <custom-properties>
-                        <property name="hmcIndexField">
-                            <value>"thefield"</value>
-                        </property>
-                    </custom-properties>
-                </attribute>
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property">
+						<columntype database="oracle">
+							<value>CLOB</value>
+						</columntype>
+						<columntype database="sap">
+							<value>NCLOB</value>
+						</columntype>
+						<columntype>
+							<value>HYBRIS.LONG_STRING</value>
+						</columntype>
+					</persistence>
+					<custom-properties>
+						<property name="hmcIndexField">
+							<value>"thefield"</value>
+						</property>
+					</custom-properties>
+				</attribute>
 			</attributes>
-			
+
 		</itemtype>
-		
+
 		<itemtype code="PDPSimulator" generate="true" autocreate="true">
 			<description>Extending Product type with additional attributes of status and animals.</description>
 			<deployment table="PDPSimulator" typecode="32467" />
 			<attributes>
 				<attribute autocreate="true" generate="true" qualifier="simulatorCode" type="java.lang.String">
-					<modifiers optional="true" unique="true"/>
+					<modifiers optional="true" unique="true" />
 					<persistence type="property" />
 					<description>Used to store simulator code.</description>
 				</attribute>
@@ -455,7 +458,7 @@
 					</attribute>
 				</attributes>
 			</itemtype>
-			
+
 			<itemtype code="GallagherRegisterButtonComponent" autocreate="true" generate="true" extends="GallagherButtonComponent">
 			</itemtype>
 
@@ -531,7 +534,7 @@
 					</attribute>
 				</attributes>
 			</itemtype>
-			
+
 			<itemtype code="GallagherRegionRestriction" generate="true" autocreate="true" extends="AbstractRestriction"
 				jaloclass="com.gallagher.core.jalo.GallagherRegionRestriction">
 				<attributes>
@@ -541,19 +544,19 @@
 					</attribute>
 					<attribute qualifier="region" type="RegionCode">
 						<description>Stores region code of the site</description>
-						<modifiers optional="false"/>
-						<persistence type="property"/>
+						<modifiers optional="false" />
+						<persistence type="property" />
 					</attribute>
 					<attribute qualifier="language" type="Language">
 						<description>Stores language code of the site</description>
-						<modifiers optional="true"/>
-						<persistence type="property"/>
+						<modifiers optional="true" />
+						<persistence type="property" />
 					</attribute>
 				</attributes>
 			</itemtype>
-			
-			<itemtype code="GallagherPDPSearchDealerComponent" extends="SimpleCMSComponent" generate="true"
-				autocreate="true" jaloclass="com.gallagher.core.jalo.GallagherPDPSearchDealerComponent">
+
+			<itemtype code="GallagherPDPSearchDealerComponent" extends="SimpleCMSComponent" generate="true" autocreate="true"
+				jaloclass="com.gallagher.core.jalo.GallagherPDPSearchDealerComponent">
 				<description>CMS component to display the search dealer and nearest territory manager in PDP</description>
 				<deployment table="GallagherPDPSearchDealer" typecode="12067" />
 				<attributes>
@@ -562,7 +565,7 @@
 						<description>Used to display expert advice text</description>
 					</attribute>
 					<attribute type="CMSParagraphComponent" qualifier="contactNoText">
-						<persistence type="property"/>
+						<persistence type="property" />
 						<description>Used to display contact number for contacting territory manager</description>
 					</attribute>
 					<attribute type="CMSParagraphComponent" qualifier="findDealerText">
@@ -587,7 +590,7 @@
 					</attribute>
 				</attributes>
 			</itemtype>
-			
+
 
 		</typegroup>
 
@@ -660,12 +663,23 @@
 				</attributes>
 			</itemtype>
 		</typegroup>
-		
+
 		<typegroup name="bynder">
 
 			<itemtype code="BynderMedia" extends="Media" autocreate="true" generate="true"
 				jaloclass="com.gallagher.core.jalo.BynderMedia">
 				<description>Bynder Media Model is used to store data from Bynder</description>
+			</itemtype>
+
+			<itemtype code="MediaContainer" autocreate="false" generate="false">
+				<attributes>
+					<attribute qualifier="hero" type="java.lang.Boolean">
+						<modifiers optional="true" />
+						<persistence type="property" />
+						<defaultvalue>java.lang.Boolean.FALSE</defaultvalue>
+						<description>Flag to identify media to be shown on category/list page.</description>
+					</attribute>
+				</attributes>
 			</itemtype>
 
 			<itemtype code="GallagherBynderSyncCronJob" extends="CronJob"
@@ -685,13 +699,13 @@
 			</itemtype>
 		</typegroup>
 
-<typegroup name="button">
-    
+		<typegroup name="button">
 
-<itemtype code="GallagherNewButtonComponent" autocreate="true" generate="true" extends="CMSLinkComponent">
-            </itemtype>
 
-   </typegroup>
+			<itemtype code="GallagherNewButtonComponent" autocreate="true" generate="true" extends="CMSLinkComponent">
+			</itemtype>
+
+		</typegroup>
 
 
 	</itemtypes>
