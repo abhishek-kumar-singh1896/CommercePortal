@@ -3,6 +3,8 @@
  */
 package com.gallagher.core.jobs;
 
+import de.hybris.platform.catalog.CatalogVersionService;
+import de.hybris.platform.catalog.model.CatalogVersionModel;
 import de.hybris.platform.cronjob.enums.CronJobResult;
 import de.hybris.platform.cronjob.enums.CronJobStatus;
 import de.hybris.platform.servicelayer.config.ConfigurationService;
@@ -47,6 +49,9 @@ public class GallagherBynderSyncJob extends AbstractJobPerformable<GallagherBynd
 	private ConfigurationService configurationService;
 
 	@Autowired
+	private CatalogVersionService catalogVersionService;
+
+	@Autowired
 	private GallagherBynderService gallagherBynderService;
 
 	@Override
@@ -54,7 +59,6 @@ public class GallagherBynderSyncJob extends AbstractJobPerformable<GallagherBynd
 	{
 
 		PerformResult result = new PerformResult(CronJobResult.SUCCESS, CronJobStatus.FINISHED);
-		;
 		try
 		{
 			final Date date = new Date();
@@ -101,6 +105,7 @@ public class GallagherBynderSyncJob extends AbstractJobPerformable<GallagherBynd
 	 */
 	private void handleAssets(final GallagherBynderSyncCronJobModel model, final GallagherBynderResponse[] response)
 	{
+		final CatalogVersionModel catalog = catalogVersionService.getCatalogVersion(model.getCatalogId(), "Staged");
 		for (final GallagherBynderResponse gallagherBynderResponse : response)
 		{
 			final List<String> skus = getSKUs(gallagherBynderResponse, model);
@@ -109,15 +114,15 @@ public class GallagherBynderSyncJob extends AbstractJobPerformable<GallagherBynd
 				if (gallagherBynderResponse.getProperty_assettype().get(0).equals(GallagherCoreConstants.Bynder.IMAGE)
 						|| gallagherBynderResponse.getProperty_assettype().get(0).equals(GallagherCoreConstants.Bynder.IMAGE_VECTOR))
 				{
-					gallagherBynderService.updateMedia(model, gallagherBynderResponse, skus);
+					gallagherBynderService.updateMedia(model, gallagherBynderResponse, skus, catalog);
 				}
 				if (gallagherBynderResponse.getProperty_assettype().get(0).equals(GallagherCoreConstants.Bynder.DOCUMENTS))
 				{
-					gallagherBynderService.updateDocumentMedia(model, gallagherBynderResponse, skus);
+					gallagherBynderService.updateDocumentMedia(model, gallagherBynderResponse, skus, catalog);
 				}
 				if (gallagherBynderResponse.getProperty_assettype().get(0).equals(GallagherCoreConstants.Bynder.VIDEOS))
 				{
-					gallagherBynderService.updateVideoMedia(model, gallagherBynderResponse, skus);
+					gallagherBynderService.updateVideoMedia(model, gallagherBynderResponse, skus, catalog);
 				}
 			}
 			else
@@ -125,15 +130,15 @@ public class GallagherBynderSyncJob extends AbstractJobPerformable<GallagherBynd
 				if (gallagherBynderResponse.getProperty_assettype().get(0).equals(GallagherCoreConstants.Bynder.IMAGE)
 						|| gallagherBynderResponse.getProperty_assettype().get(0).equals(GallagherCoreConstants.Bynder.IMAGE_VECTOR))
 				{
-					gallagherBynderService.deleteMedia(model, gallagherBynderResponse);
+					gallagherBynderService.deleteMedia(model, gallagherBynderResponse, catalog);
 				}
 				if (gallagherBynderResponse.getProperty_assettype().get(0).equals(GallagherCoreConstants.Bynder.DOCUMENTS))
 				{
-					gallagherBynderService.deleteDocumentMedia(model, gallagherBynderResponse);
+					gallagherBynderService.deleteDocumentMedia(model, gallagherBynderResponse, catalog);
 				}
 				if (gallagherBynderResponse.getProperty_assettype().get(0).equals(GallagherCoreConstants.Bynder.VIDEOS))
 				{
-					gallagherBynderService.deleteVideoMedia(model, gallagherBynderResponse, skus);
+					gallagherBynderService.deleteVideoMedia(model, gallagherBynderResponse, skus, catalog);
 				}
 			}
 		}
