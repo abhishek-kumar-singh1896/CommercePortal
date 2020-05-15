@@ -323,6 +323,7 @@
         <advanced-search:advanced-search xmlns:advanced-search="http://www.hybris.com/cockpitng/config/advancedsearch">
             <advanced-search:field-list>
                 <advanced-search:field xmlns="http://www.hybris.com/cockpitng/config/advancedsearch" name="marketingDescription" selected="true" operator="contains"/>
+            	 <advanced-search:field name="baseStores" selected="false"/>
             </advanced-search:field-list>
         </advanced-search:advanced-search>
     </context>

@@ -45,7 +45,7 @@
 	                  		<c:set var="tempicon" value="0" />
 							<c:choose>
 								<c:when test="${not empty referenceProduct.images}">
-									<c:forEach items="${product.images}" var="medias">
+									<c:forEach items="${referenceProduct.images}" var="medias">
 										<c:if test="${tempicon == 0 }">
 											<c:if test="${medias.format eq 'product'}">
 												<c:set var="tempicon" value="1" />
