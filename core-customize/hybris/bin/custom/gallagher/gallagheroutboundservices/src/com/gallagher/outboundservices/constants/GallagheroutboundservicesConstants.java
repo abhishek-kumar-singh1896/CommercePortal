@@ -4,7 +4,8 @@
 package com.gallagher.outboundservices.constants;
 
 /**
- * Global class for all Gallagheroutboundservices constants. You can add global constants for your extension into this class.
+ * Global class for all Gallagheroutboundservices constants. You can add global constants for your extension into this
+ * class.
  */
 public final class GallagheroutboundservicesConstants extends GeneratedGallagheroutboundservicesConstants
 {
@@ -22,4 +23,6 @@ public final class GallagheroutboundservicesConstants extends GeneratedGallagher
 
 	public static final String SAP_CONTACT_ID = "sapContactID";
 	public static final String OBJECT_ID = "objectID";
+
+	public static final String SAP_ACCOUNT_ID = "AccountID";
 }
