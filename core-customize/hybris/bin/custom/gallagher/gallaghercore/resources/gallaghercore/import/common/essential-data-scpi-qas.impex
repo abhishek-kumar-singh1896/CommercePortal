@@ -26,7 +26,7 @@ $b2bCustomerVersion = v=1
 #******************#                 
 #***  Order URL ***#                 
 #******************#                 
-$orderUrl = https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com/gw/odata/SAP/ZGGL-REPLICATE-ORDERS-FROM-SAP-COMMERCE-CLOUD-TO-SAP-ERP
+$orderUrl = https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com/gw/odata/SAP/ZGGL-REPLICATE-ORDERS-FROM-COMMERCE-CLOUD-TO-SAP-ERP_QAS
 $orderVersion = v=1                  
                                      
 #*************************#          
