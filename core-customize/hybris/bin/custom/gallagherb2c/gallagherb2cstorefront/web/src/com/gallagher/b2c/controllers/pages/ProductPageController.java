@@ -511,6 +511,11 @@ public class ProductPageController extends AbstractPageController
 						{
 							firstProductAttrValueMap.put(fd.getName(), mapValue);
 						}
+						else if (StringUtils.isEmpty(fd.getName()) && StringUtils.isNotEmpty(mapValue))
+						{
+							firstProductAttrValueMap
+									.put(fd.getCode().substring(fd.getCode().lastIndexOf('.') + 1, fd.getCode().length()), mapValue);
+						}
 					}
 				}
 				for (final String attribute : compareProducts)
@@ -568,15 +573,24 @@ public class ProductPageController extends AbstractPageController
 									{
 										if (fd.isComparable())
 										{
-
-											classFeatureCodes.add(fd.getName());
+											String keyValue = null;
+											if (StringUtils.isNotEmpty(fd.getName()))
+											{
+												keyValue = fd.getName();
+												classFeatureCodes.add(keyValue);
+											}
+											else
+											{
+												keyValue = fd.getCode().substring(fd.getCode().lastIndexOf('.') + 1, fd.getCode().length());
+												classFeatureCodes.add(keyValue);
+											}
 											String mapValue = null;
 											for (final FeatureValueData data : fd.getFeatureValues())
 											{
 												mapValue = data.getValue();
 											}
 
-											productAttrValueMap.put(fd.getName(), mapValue);
+											productAttrValueMap.put(keyValue, mapValue);
 										}
 									}
 
