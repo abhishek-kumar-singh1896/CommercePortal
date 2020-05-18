@@ -3453,18 +3453,10 @@ $productCatalog=securityB2BMasterProductCatalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 #b2b remove categories
 REMOVE Category;code[unique=true];$catalogVersion
-;sensors
-;fence-controllers
 ;perimeter-security
 ;facilities-management
 ;interface-tools
 ;personnel-management
-;integrations
-;business-efficiency-features
-;health-and-safety-features
-;integrations
-;workforce-management-features
-;management-platforms
 
 $contentCatalog=securityB2BContentCatalog
 $contentCatalogName=Security B2B Content Catalog
@@ -3626,7 +3618,7 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 ## links of the above navigation nodes ##
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];styleAttributes
 ;;PerimeterSecurityCategoryLink;Perimeter Hardware Category Link;/Security/Perimeter-Security/c/perimeter-hardware;;PerimeterSecurityCategoryLink;;"second-level-link-desktop"
-;;AccessControlCategoryLink;Access Control Hardware Category Link;/Security/Access-Control/c/access-control-hardware;;AccessControlCategoryLink;;"second-level-link-desktop"
+;;AccessControlCategoryLink;Access Control Hardware Category Link;/Security/Access-Control/c/access-control;;AccessControlCategoryLink;;"second-level-link-desktop"
 ;;HighSecurityCategoryLink;High Security Category Link;/Security/High-Security/c/high-security;;HighSecurityCategoryLink;;"second-level-link-desktop"
 #;;IntegrationsCategoryLink;Integrations Category Link;/Security/Integrations/c/integrations;;IntegrationsCategoryLink;;"second-level-link-desktop"
 ;;SoftwareCategoryLink;Software Category Link;/Security/Software/c/software;;SoftwareCategoryLink;;"second-level-link-desktop"

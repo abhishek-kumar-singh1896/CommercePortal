@@ -143,6 +143,7 @@
                     <editorArea:attribute qualifier="sapContactID" />
                     <editorArea:attribute qualifier="sapReplicationInfo" />
                     <editorArea:attribute qualifier="sapIsReplicated" />
+                    <editorArea:attribute qualifier="sapAccountID"/>
                 </editorArea:section>
             </editorArea:tab>
         </editorArea:editorArea>
@@ -324,6 +325,7 @@
             <advanced-search:field-list>
                 <advanced-search:field xmlns="http://www.hybris.com/cockpitng/config/advancedsearch" name="marketingDescription" selected="true" operator="contains"/>
             	 <advanced-search:field name="baseStores" selected="false"/>
+            	 <advanced-search:field name="sapAccountID" selected="false"/>
             </advanced-search:field-list>
         </advanced-search:advanced-search>
     </context>

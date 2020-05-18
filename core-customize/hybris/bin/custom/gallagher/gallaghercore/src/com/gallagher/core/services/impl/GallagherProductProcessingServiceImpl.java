@@ -191,119 +191,129 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void createAndProcessVariantProduct(final String catalogId, final Date lastStartTime)
+	public boolean createAndProcessVariantProduct(final String catalogId, final Date lastStartTime)
 	{
 		final CatalogVersionModel catalogVersion = catalogVersionService.getCatalogVersion(catalogId, STAGED);
 
 		final List<ProductModel> products = gallagherProductProcessingDao.getVariantProductsForTransformation(catalogVersion,
 				lastStartTime);
-
+		boolean success = true;
 		for (final ProductModel product : products)
 		{
-			final String variantProductCode = product.getCode();
-			final String baseProductCode = product.getBaseProductCode();
-
-			final List<BaseStoreModel> baseStores = new ArrayList<>();
-			baseStores.addAll(product.getBaseStores());
-
-			if (product.isEligibleForLatAm() && catalogId.contains("B2C"))
+			try
 			{
-				baseStores.add(baseStoreService.getBaseStoreForUid("amB2CLatAm"));
+				final String variantProductCode = product.getCode();
+				final String baseProductCode = product.getBaseProductCode();
+
+				final List<BaseStoreModel> baseStores = new ArrayList<>();
+				baseStores.addAll(product.getBaseStores());
+
+				if (product.isEligibleForLatAm() && catalogId.contains("B2C"))
+				{
+					baseStores.add(baseStoreService.getBaseStoreForUid("amB2CLatAm"));
+				}
+
+				final Map<BaseStoreModel, CatalogVersionModel> storeCatalogMap = processVariantProductForCode(variantProductCode,
+						baseProductCode, baseStores, catalogId);
+
+				for (final BaseStoreModel baseStore : baseStores)
+				{
+					final CatalogVersionModel regionalCatalogVersion = storeCatalogMap.get(baseStore);
+
+					final ProductModel baseProduct = productService.getProductForCode(regionalCatalogVersion, baseProductCode);
+
+					try
+					{
+						final ProductModel existingProduct = productService.getProductForCode(regionalCatalogVersion,
+								variantProductCode);
+
+						LOGGER.info("Variant Product with code " + variantProductCode + " and CatalogVersion "
+								+ regionalCatalogVersion.getCatalog().getId() + " found, Updating the information.");
+
+						final GenericVariantProductModel existingVariantProduct = (GenericVariantProductModel) existingProduct;
+						existingVariantProduct.setApprovalStatus(ArticleApprovalStatus.APPROVED);
+
+						for (final LanguageModel language : baseStore.getLanguages())
+						{
+							final Locale locale = LocaleUtils.toLocale(language.getIsocode());
+							existingVariantProduct.setName(product.getName(locale), locale);
+							existingVariantProduct.setDescription(product.getDescription(locale), locale);
+						}
+
+						existingVariantProduct.setVariantForImage(product.isVariantForImage());
+
+						final Collection<CategoryModel> variantCategories = getVariantCategories(product.getSupercategories(),
+								regionalCatalogVersion);
+						if (!CollectionUtils.isEmpty(variantCategories))
+						{
+							existingVariantProduct.setSupercategories(variantCategories);
+						}
+						else
+						{
+							LOGGER.error("Product with code " + variantProductCode + " and CatalogVersion "
+									+ regionalCatalogVersion.getCatalog().getId()
+									+ " is not saved due to variant categories are not proper.");
+							continue;
+						}
+
+						populateVariantData(product, existingVariantProduct);
+
+						populateImages(product, existingVariantProduct, regionalCatalogVersion);
+
+						modelService.save(existingVariantProduct);
+
+					}
+					catch (final UnknownIdentifierException exception)
+					{
+						LOGGER.info("Variant Product with code " + variantProductCode + " and CatalogVersion "
+								+ regionalCatalogVersion.getCatalog().getId() + " not found, Creating new one.");
+
+						final GenericVariantProductModel newVariantProduct = new GenericVariantProductModel();
+						newVariantProduct.setCode(variantProductCode);
+						newVariantProduct.setApprovalStatus(ArticleApprovalStatus.APPROVED);
+
+						for (final LanguageModel language : baseStore.getLanguages())
+						{
+							final Locale locale = LocaleUtils.toLocale(language.getIsocode());
+							newVariantProduct.setName(product.getName(locale), locale);
+							newVariantProduct.setDescription(product.getDescription(locale), locale);
+						}
+
+						newVariantProduct.setVariantForImage(product.isVariantForImage());
+						newVariantProduct.setCatalogVersion(regionalCatalogVersion);
+
+						final Collection<CategoryModel> variantCategories = getVariantCategories(product.getSupercategories(),
+								regionalCatalogVersion);
+						if (!CollectionUtils.isEmpty(variantCategories))
+						{
+							newVariantProduct.setSupercategories(variantCategories);
+						}
+						else
+						{
+							LOGGER.error("Product with code " + variantProductCode + " and CatalogVersion "
+									+ regionalCatalogVersion.getCatalog().getId()
+									+ " is not saved due to variant categories are not proper.");
+							continue;
+						}
+
+						newVariantProduct.setBaseProduct(baseProduct);
+
+						populateVariantData(product, newVariantProduct);
+
+						populateImages(product, newVariantProduct, regionalCatalogVersion);
+
+						modelService.save(newVariantProduct);
+					}
+
+				}
 			}
-
-			final Map<BaseStoreModel, CatalogVersionModel> storeCatalogMap = processVariantProductForCode(variantProductCode,
-					baseProductCode, baseStores, catalogId);
-
-			for (final BaseStoreModel baseStore : baseStores)
+			catch (final Exception ex)
 			{
-				final CatalogVersionModel regionalCatalogVersion = storeCatalogMap.get(baseStore);
-
-				final ProductModel baseProduct = productService.getProductForCode(regionalCatalogVersion, baseProductCode);
-
-				try
-				{
-					final ProductModel existingProduct = productService.getProductForCode(regionalCatalogVersion, variantProductCode);
-
-					LOGGER.info("Variant Product with code " + variantProductCode + " and CatalogVersion "
-							+ regionalCatalogVersion.getCatalog().getId() + " found, Updating the information.");
-
-					final GenericVariantProductModel existingVariantProduct = (GenericVariantProductModel) existingProduct;
-					existingVariantProduct.setApprovalStatus(ArticleApprovalStatus.APPROVED);
-
-					for (final LanguageModel language : baseStore.getLanguages())
-					{
-						final Locale locale = LocaleUtils.toLocale(language.getIsocode());
-						existingVariantProduct.setName(product.getName(locale), locale);
-						existingVariantProduct.setDescription(product.getDescription(locale), locale);
-					}
-
-					existingVariantProduct.setVariantForImage(product.isVariantForImage());
-
-					final Collection<CategoryModel> variantCategories = getVariantCategories(product.getSupercategories(),
-							regionalCatalogVersion);
-					if (!CollectionUtils.isEmpty(variantCategories))
-					{
-						existingVariantProduct.setSupercategories(variantCategories);
-					}
-					else
-					{
-						LOGGER.error("Product with code " + variantProductCode + " and CatalogVersion "
-								+ regionalCatalogVersion.getCatalog().getId()
-								+ " is not saved due to variant categories are not proper.");
-						continue;
-					}
-
-					populateVariantData(product, existingVariantProduct);
-
-					populateImages(product, existingVariantProduct, regionalCatalogVersion);
-
-					modelService.save(existingVariantProduct);
-
-				}
-				catch (final UnknownIdentifierException exception)
-				{
-					LOGGER.info("Variant Product with code " + variantProductCode + " and CatalogVersion "
-							+ regionalCatalogVersion.getCatalog().getId() + " not found, Creating new one.");
-
-					final GenericVariantProductModel newVariantProduct = new GenericVariantProductModel();
-					newVariantProduct.setCode(variantProductCode);
-					newVariantProduct.setApprovalStatus(ArticleApprovalStatus.APPROVED);
-
-					for (final LanguageModel language : baseStore.getLanguages())
-					{
-						final Locale locale = LocaleUtils.toLocale(language.getIsocode());
-						newVariantProduct.setName(product.getName(locale), locale);
-						newVariantProduct.setDescription(product.getDescription(locale), locale);
-					}
-
-					newVariantProduct.setVariantForImage(product.isVariantForImage());
-					newVariantProduct.setCatalogVersion(regionalCatalogVersion);
-
-					final Collection<CategoryModel> variantCategories = getVariantCategories(product.getSupercategories(),
-							regionalCatalogVersion);
-					if (!CollectionUtils.isEmpty(variantCategories))
-					{
-						newVariantProduct.setSupercategories(variantCategories);
-					}
-					else
-					{
-						LOGGER.error("Product with code " + variantProductCode + " and CatalogVersion "
-								+ regionalCatalogVersion.getCatalog().getId()
-								+ " is not saved due to variant categories are not proper.");
-						continue;
-					}
-
-					newVariantProduct.setBaseProduct(baseProduct);
-
-					populateVariantData(product, newVariantProduct);
-
-					populateImages(product, newVariantProduct, regionalCatalogVersion);
-
-					modelService.save(newVariantProduct);
-				}
-
+				success = false;
+				LOGGER.error("There is some problem while transforming Product [" + product.getCode() + "]", ex);
 			}
 		}
+		return success;
 	}
 
 	/**

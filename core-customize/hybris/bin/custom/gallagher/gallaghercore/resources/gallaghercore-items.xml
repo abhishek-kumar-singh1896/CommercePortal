@@ -134,6 +134,11 @@
 					<persistence type="property" />
 					<description>Indicates if customer subscribe productPromo</description>
 				</attribute>
+				<attribute autocreate="true" qualifier="sapAccountID" type="java.lang.String">
+					<modifiers optional="true" unique="false" read="true" write="true" />
+					<persistence type="property" />
+					<description>Indicates customer C4C accountId</description>
+				</attribute>
 			</attributes>
 		</itemtype>
 

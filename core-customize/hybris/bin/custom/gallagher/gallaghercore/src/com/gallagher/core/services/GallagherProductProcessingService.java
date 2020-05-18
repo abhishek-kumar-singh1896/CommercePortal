@@ -30,7 +30,8 @@ public interface GallagherProductProcessingService
 	 *
 	 * @param catalogId
 	 * @param lastStartTime
+	 * @return process result
 	 */
-	void createAndProcessVariantProduct(final String catalogId, final Date lastStartTime);
+	boolean createAndProcessVariantProduct(final String catalogId, final Date lastStartTime);
 
 }

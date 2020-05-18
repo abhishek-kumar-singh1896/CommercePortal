@@ -149,6 +149,7 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 		//else if customer count = 1 then update C4C
 		if (CollectionUtils.isNotEmpty(existingCustomers))
 		{
+			newCustomer.setSapAccountID(existingCustomers.get(0).getAccountID());
 			newCustomer.setSapContactID(existingCustomers.get(0).getContactID());
 			newCustomer.setObjectID(existingCustomers.get(0).getObjectID());
 			if (existingCustomers.size() > 1)

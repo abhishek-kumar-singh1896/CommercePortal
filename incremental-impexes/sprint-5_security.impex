@@ -1361,6 +1361,29 @@ UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];title[lang=e
 ;;ProductSpecsTabComponent;Specs
 ;;ProductDocumentTabComponent;Documents
 
+#######PDF impex for testing pupose########
+
+$productCatalog=securityB2BMasterProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$siteResource=jar:com.gallagher.b2b.initialdata.constants.B2badvanceInitialDataConstants&/gallagherb2binitialdata/import/sampledata/productCatalogs/$productCatalog
+$thumbnail=thumbnail(code, $catalogVersion)
+$picture=picture(code, $catalogVersion)
+$thumbnails=thumbnails(code, $catalogVersion)
+$detail=detail(code, $catalogVersion)
+$normal=normal(code, $catalogVersion)
+$others=others(code, $catalogVersion)
+$data_sheet=data_sheet(code, $catalogVersion)
+$medias=medias(code, $catalogVersion)
+$galleryImages=galleryImages(qualifier, $catalogVersion)
+$conversionGroup=conversionGroup(code[default=B2bAdvanceConversionGroup])
+
+INSERT_UPDATE Media;mediaFormat(qualifier);$catalogVersion;code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];mime[default='application/pdf'];realfilename;folder(qualifier)[default='images'];altText;description;baseStores(uid)
+;;;pdf4;$siteResource/images/pdf4.pdf;;pdf4;;"NZ AU, 0.7 MB";"Animal Management Weighing and EID Brochure";securityB2BNZ,securityB2BAU,securityB2BGlobal
+;;;pdf5;$siteResource/images/pdf5.pdf;;pdf5;;"NZ AU, 0.4 MB";"3E4402 TWR-5 Quick Start Guide";securityB2BNZ,securityB2BAU,securityB2BGlobal
+;;;pdf6;$siteResource/images/pdf6.pdf;;pdf6;;"NZ AU, 0.9 MB";"TWR & TW DL brochure 2019";securityB2BNZ,securityB2BAU,securityB2BGlobal
+
+###########################################
+
 #####################Documents Tab Impexes End############
 
 

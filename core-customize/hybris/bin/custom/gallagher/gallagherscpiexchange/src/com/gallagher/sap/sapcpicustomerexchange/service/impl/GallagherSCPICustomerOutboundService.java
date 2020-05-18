@@ -47,6 +47,15 @@ public class GallagherSCPICustomerOutboundService extends SapCpiCustomerOutbound
 
 					if (isSentSuccessfully(responseEntityMap))
 					{
+						String sapAccountID = null;
+						try
+						{
+							sapAccountID = getPropertyValue(responseEntityMap, GallagheroutboundservicesConstants.SAP_ACCOUNT_ID);
+						}
+						catch (final IllegalArgumentException iArgEx)
+						{
+							LOG.error("Account ID not generated for Customer [" + customerModel.getCustomerID() + "]");
+						}
 						final String sapContactID = getPropertyValue(responseEntityMap,
 								GallagheroutboundservicesConstants.SAP_CONTACT_ID);
 						final String objectID = getPropertyValue(responseEntityMap, GallagheroutboundservicesConstants.OBJECT_ID);
@@ -54,6 +63,7 @@ public class GallagherSCPICustomerOutboundService extends SapCpiCustomerOutbound
 								|| (customerModel.getObjectID() == null || !customerModel.getObjectID().equals(objectID))
 								|| (customerModel.getSapContactID() == null || !customerModel.getSapContactID().equals(sapContactID)))
 						{
+							customerModel.setSapAccountID(sapAccountID);
 							customerModel.setSapContactID(sapContactID);
 							customerModel.setObjectID(objectID);
 							customerModel.setSapIsReplicated(true);

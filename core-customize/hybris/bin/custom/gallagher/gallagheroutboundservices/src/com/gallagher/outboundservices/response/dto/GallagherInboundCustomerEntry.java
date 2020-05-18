@@ -34,6 +34,9 @@ public class GallagherInboundCustomerEntry implements Comparable<GallagherInboun
 	@JsonProperty("Email")
 	private String email;
 
+	@JsonProperty("AccountID")
+	private String accountID;
+
 	private boolean duplicate;
 
 	private String emailError;
@@ -136,6 +139,16 @@ public class GallagherInboundCustomerEntry implements Comparable<GallagherInboun
 	public void setObjectID(final String objectID)
 	{
 		this.objectID = objectID;
+	}
+
+	public String getAccountID()
+	{
+		return accountID;
+	}
+
+	public void setAccountID(final String accountID)
+	{
+		this.accountID = accountID;
 	}
 
 	@Override
