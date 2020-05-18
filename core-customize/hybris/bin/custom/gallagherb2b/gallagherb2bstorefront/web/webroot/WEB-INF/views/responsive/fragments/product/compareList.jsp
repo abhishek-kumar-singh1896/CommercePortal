@@ -8,7 +8,7 @@
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags"%>
 <%@ taglib prefix="format" tagdir="/WEB-INF/tags/shared/format"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
+<%@ taglib prefix="theme" tagdir="/WEB-INF/tags/shared/theme" %>
 
 
 <div class="resizeableColorbox hidden-xs">
@@ -79,7 +79,7 @@
 																title="${fn:escapeXml(product.name)}" />
 														</c:otherwise>
 													</c:choose></a> </c:when> <c:otherwise>
-											<theme:image code="img.missingProductImage.${format}"
+											<theme:image code="img.missingProductImage.responsive.thumbnail"
 												alt="${fn:escapeXml(product.name)}"
 												title="${fn:escapeXml(product.name)}" />
 										</c:otherwise> </c:choose>
