@@ -313,6 +313,7 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 				LOGGER.error("There is some problem while transforming Product [" + product.getCode() + "]", ex);
 			}
 		}
+		return success;
 	}
 
 	/**
