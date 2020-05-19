@@ -49,6 +49,7 @@
 			<map merge="true">
 				<entry key="thumbnailb2c" value="167Wx120H" />
 				<entry key="productb2c" value="500Wx500H" />
+				<entry key="productb2b" value="480Wx480H" />
 			</map>
 		</property>
 	</bean>
@@ -64,6 +65,7 @@
 				<value>thumbnail</value>
 				<value>thumbnailb2c</value>
 				<value>productb2c</value>
+				<value>productb2b</value>
 			</list>
 		</property>
 	</bean>
@@ -79,6 +81,7 @@
 				<value>cartIcon</value>
 				<value>thumbnailb2c</value>
 				<value>productb2c</value>
+				<value>productb2b</value>
 			</list>
 		</property>
 	</bean>
