@@ -491,12 +491,14 @@ input[type=number]::-webkit-outer-spin-button {
 width: calc(50% - 8px);
 margin-right: 8px;
 margin-bottom: 10px;
-	
+padding-top: 9px;
+padding-bottom: 9px;	
 }
 
 #div .year_date_combo{
 width: calc(50% - 8px);
 margin-left: 8px;
 margin-bottom: 10px;
-	
+padding-top: 9px;
+padding-bottom: 9px;		
 }
