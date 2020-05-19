@@ -99,7 +99,7 @@ public class CartRestorationFilter extends OncePerRequestFilter
 
 			if (!StringUtils.isEmpty(guid))
 			{
-				getCartRestoreCookieGenerator().addCookie(response, guid);
+				getCartRestoreCookieGenerator().addCookie(request, response, guid);
 			}
 		}
 		else if (request.getSession().isNew() || (getCartService().hasSessionCart() && !getBaseSiteService().getCurrentBaseSite()
