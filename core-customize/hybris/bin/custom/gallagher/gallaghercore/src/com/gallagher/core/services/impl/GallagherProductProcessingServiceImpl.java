@@ -40,8 +40,7 @@ import javax.annotation.Resource;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.LocaleUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 
 import com.gallagher.core.dao.GallagherProductProcessingDao;
 import com.gallagher.core.services.GallagherProductProcessingService;
@@ -83,7 +82,7 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 	@Resource(name = "baseStoreService")
 	protected BaseStoreService baseStoreService;
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(GallagherProductProcessingServiceImpl.class);
+	private static final Logger LOGGER = Logger.getLogger(GallagherProductProcessingServiceImpl.class);
 	private static final String STAGED = "Staged";
 
 	/**
