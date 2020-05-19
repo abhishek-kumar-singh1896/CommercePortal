@@ -127,11 +127,11 @@ $includedFormats=300Wx300H,30Wx30H,365Wx246H,515Wx515H,65Wx65H,96Wx96H,1200Wx120
 
 INSERT_UPDATE MediaConversionCronJob;$productCVStaged[unique=true];code[unique=true];job(code);includedFormats(qualifier);sessionLanguage(isocode)[default=en]
 # code								;job			   ;nodeId ;includedFormats
-;;amB2CConversionMaster	;mediaConversionJob;$includedFormats
+;;amB2CMediaConversionMaster	;mediaConversionJob;$includedFormats
 
 INSERT_UPDATE Trigger;cronJob(code)[unique=true];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
 #cronJob								;second	;minute	;hour	;day	;month	;year	;relative	;active	;maxAcceptableDelay
-#;amB2CConversionMaster			;0		;5			;5		;-1	;-1	;-1	;false	;true			;-1
+#;amB2CMediaConversionMaster			;0		;5			;5		;-1	;-1	;-1	;false	;true			;-1
 
 # Synchronization Job Restriction
 $productQueryPrefix={baseProductCode} IS NULL AND {approvalStatus} =({{SELECT {pk} from {ArticleApprovalStatus} where {code}='approved'}})
