@@ -1,13 +1,16 @@
+/*!
+ * Bowser - a browser detector
+ * https://github.com/ded/bowser
+ * MIT License | (c) Dustin Diaz 2015
+ */
+!function(e,t,n){typeof module!="undefined"&&module.exports?module.exports=n():typeof define=="function"&&define.amd?define(t,n):e[t]=n()}(this,"bowser",function(){function t(t){function n(e){var n=t.match(e);return n&&n.length>1&&n[1]||""}function r(e){var n=t.match(e);return n&&n.length>1&&n[2]||""}function N(e){switch(e){case"NT":return"NT";case"XP":return"XP";case"NT 5.0":return"2000";case"NT 5.1":return"XP";case"NT 5.2":return"2003";case"NT 6.0":return"Vista";case"NT 6.1":return"7";case"NT 6.2":return"8";case"NT 6.3":return"8.1";case"NT 10.0":return"10";default:return undefined}}var i=n(/(ipod|iphone|ipad)/i).toLowerCase(),s=/like android/i.test(t),o=!s&&/android/i.test(t),u=/nexus\s*[0-6]\s*/i.test(t),a=!u&&/nexus\s*[0-9]+/i.test(t),f=/CrOS/.test(t),l=/silk/i.test(t),c=/sailfish/i.test(t),h=/tizen/i.test(t),p=/(web|hpw)os/i.test(t),d=/windows phone/i.test(t),v=/SamsungBrowser/i.test(t),m=!d&&/windows/i.test(t),g=!i&&!l&&/macintosh/i.test(t),y=!o&&!c&&!h&&!p&&/linux/i.test(t),b=r(/edg([ea]|ios)\/(\d+(\.\d+)?)/i),w=n(/version\/(\d+(\.\d+)?)/i),E=/tablet/i.test(t)&&!/tablet pc/i.test(t),S=!E&&/[^-]mobi/i.test(t),x=/xbox/i.test(t),T;/opera/i.test(t)?T={name:"Opera",opera:e,version:w||n(/(?:opera|opr|opios)[\s\/](\d+(\.\d+)?)/i)}:/opr\/|opios/i.test(t)?T={name:"Opera",opera:e,version:n(/(?:opr|opios)[\s\/](\d+(\.\d+)?)/i)||w}:/SamsungBrowser/i.test(t)?T={name:"Samsung Internet for Android",samsungBrowser:e,version:w||n(/(?:SamsungBrowser)[\s\/](\d+(\.\d+)?)/i)}:/coast/i.test(t)?T={name:"Opera Coast",coast:e,version:w||n(/(?:coast)[\s\/](\d+(\.\d+)?)/i)}:/yabrowser/i.test(t)?T={name:"Yandex Browser",yandexbrowser:e,version:w||n(/(?:yabrowser)[\s\/](\d+(\.\d+)?)/i)}:/ucbrowser/i.test(t)?T={name:"UC Browser",ucbrowser:e,version:n(/(?:ucbrowser)[\s\/](\d+(?:\.\d+)+)/i)}:/mxios/i.test(t)?T={name:"Maxthon",maxthon:e,version:n(/(?:mxios)[\s\/](\d+(?:\.\d+)+)/i)}:/epiphany/i.test(t)?T={name:"Epiphany",epiphany:e,version:n(/(?:epiphany)[\s\/](\d+(?:\.\d+)+)/i)}:/puffin/i.test(t)?T={name:"Puffin",puffin:e,version:n(/(?:puffin)[\s\/](\d+(?:\.\d+)?)/i)}:/sleipnir/i.test(t)?T={name:"Sleipnir",sleipnir:e,version:n(/(?:sleipnir)[\s\/](\d+(?:\.\d+)+)/i)}:/k-meleon/i.test(t)?T={name:"K-Meleon",kMeleon:e,version:n(/(?:k-meleon)[\s\/](\d+(?:\.\d+)+)/i)}:d?(T={name:"Windows Phone",osname:"Windows Phone",windowsphone:e},b?(T.msedge=e,T.version=b):(T.msie=e,T.version=n(/iemobile\/(\d+(\.\d+)?)/i))):/msie|trident/i.test(t)?T={name:"Internet Explorer",msie:e,version:n(/(?:msie |rv:)(\d+(\.\d+)?)/i)}:f?T={name:"Chrome",osname:"Chrome OS",chromeos:e,chromeBook:e,chrome:e,version:n(/(?:chrome|crios|crmo)\/(\d+(\.\d+)?)/i)}:/edg([ea]|ios)/i.test(t)?T={name:"Microsoft Edge",msedge:e,version:b}:/vivaldi/i.test(t)?T={name:"Vivaldi",vivaldi:e,version:n(/vivaldi\/(\d+(\.\d+)?)/i)||w}:c?T={name:"Sailfish",osname:"Sailfish OS",sailfish:e,version:n(/sailfish\s?browser\/(\d+(\.\d+)?)/i)}:/seamonkey\//i.test(t)?T={name:"SeaMonkey",seamonkey:e,version:n(/seamonkey\/(\d+(\.\d+)?)/i)}:/firefox|iceweasel|fxios/i.test(t)?(T={name:"Firefox",firefox:e,version:n(/(?:firefox|iceweasel|fxios)[ \/](\d+(\.\d+)?)/i)},/\((mobile|tablet);[^\)]*rv:[\d\.]+\)/i.test(t)&&(T.firefoxos=e,T.osname="Firefox OS")):l?T={name:"Amazon Silk",silk:e,version:n(/silk\/(\d+(\.\d+)?)/i)}:/phantom/i.test(t)?T={name:"PhantomJS",phantom:e,version:n(/phantomjs\/(\d+(\.\d+)?)/i)}:/slimerjs/i.test(t)?T={name:"SlimerJS",slimer:e,version:n(/slimerjs\/(\d+(\.\d+)?)/i)}:/blackberry|\bbb\d+/i.test(t)||/rim\stablet/i.test(t)?T={name:"BlackBerry",osname:"BlackBerry OS",blackberry:e,version:w||n(/blackberry[\d]+\/(\d+(\.\d+)?)/i)}:p?(T={name:"WebOS",osname:"WebOS",webos:e,version:w||n(/w(?:eb)?osbrowser\/(\d+(\.\d+)?)/i)},/touchpad\//i.test(t)&&(T.touchpad=e)):/bada/i.test(t)?T={name:"Bada",osname:"Bada",bada:e,version:n(/dolfin\/(\d+(\.\d+)?)/i)}:h?T={name:"Tizen",osname:"Tizen",tizen:e,version:n(/(?:tizen\s?)?browser\/(\d+(\.\d+)?)/i)||w}:/qupzilla/i.test(t)?T={name:"QupZilla",qupzilla:e,version:n(/(?:qupzilla)[\s\/](\d+(?:\.\d+)+)/i)||w}:/chromium/i.test(t)?T={name:"Chromium",chromium:e,version:n(/(?:chromium)[\s\/](\d+(?:\.\d+)?)/i)||w}:/chrome|crios|crmo/i.test(t)?T={name:"Chrome",chrome:e,version:n(/(?:chrome|crios|crmo)\/(\d+(\.\d+)?)/i)}:o?T={name:"Android",version:w}:/safari|applewebkit/i.test(t)?(T={name:"Safari",safari:e},w&&(T.version=w)):i?(T={name:i=="iphone"?"iPhone":i=="ipad"?"iPad":"iPod"},w&&(T.version=w)):/googlebot/i.test(t)?T={name:"Googlebot",googlebot:e,version:n(/googlebot\/(\d+(\.\d+))/i)||w}:T={name:n(/^(.*)\/(.*) /),version:r(/^(.*)\/(.*) /)},!T.msedge&&/(apple)?webkit/i.test(t)?(/(apple)?webkit\/537\.36/i.test(t)?(T.name=T.name||"Blink",T.blink=e):(T.name=T.name||"Webkit",T.webkit=e),!T.version&&w&&(T.version=w)):!T.opera&&/gecko\//i.test(t)&&(T.name=T.name||"Gecko",T.gecko=e,T.version=T.version||n(/gecko\/(\d+(\.\d+)?)/i)),!T.windowsphone&&(o||T.silk)?(T.android=e,T.osname="Android"):!T.windowsphone&&i?(T[i]=e,T.ios=e,T.osname="iOS"):g?(T.mac=e,T.osname="macOS"):x?(T.xbox=e,T.osname="Xbox"):m?(T.windows=e,T.osname="Windows"):y&&(T.linux=e,T.osname="Linux");var C="";T.windows?C=N(n(/Windows ((NT|XP)( \d\d?.\d)?)/i)):T.windowsphone?C=n(/windows phone (?:os)?\s?(\d+(\.\d+)*)/i):T.mac?(C=n(/Mac OS X (\d+([_\.\s]\d+)*)/i),C=C.replace(/[_\s]/g,".")):i?(C=n(/os (\d+([_\s]\d+)*) like mac os x/i),C=C.replace(/[_\s]/g,".")):o?C=n(/android[ \/-](\d+(\.\d+)*)/i):T.webos?C=n(/(?:web|hpw)os\/(\d+(\.\d+)*)/i):T.blackberry?C=n(/rim\stablet\sos\s(\d+(\.\d+)*)/i):T.bada?C=n(/bada\/(\d+(\.\d+)*)/i):T.tizen&&(C=n(/tizen[\/\s](\d+(\.\d+)*)/i)),C&&(T.osversion=C);var k=!T.windows&&C.split(".")[0];if(E||a||i=="ipad"||o&&(k==3||k>=4&&!S)||T.silk)T.tablet=e;else if(S||i=="iphone"||i=="ipod"||o||u||T.blackberry||T.webos||T.bada)T.mobile=e;return T.msedge||T.msie&&T.version>=10||T.yandexbrowser&&T.version>=15||T.vivaldi&&T.version>=1||T.chrome&&T.version>=20||T.samsungBrowser&&T.version>=4||T.firefox&&T.version>=20||T.safari&&T.version>=6||T.opera&&T.version>=10||T.ios&&T.osversion&&T.osversion.split(".")[0]>=6||T.blackberry&&T.version>=10.1||T.chromium&&T.version>=20?T.a=e:T.msie&&T.version<10||T.chrome&&T.version<20||T.firefox&&T.version<20||T.safari&&T.version<6||T.opera&&T.version<10||T.ios&&T.osversion&&T.osversion.split(".")[0]<6||T.chromium&&T.version<20?T.c=e:T.x=e,T}function r(e){return e.split(".").length}function i(e,t){var n=[],r;if(Array.prototype.map)return Array.prototype.map.call(e,t);for(r=0;r<e.length;r++)n.push(t(e[r]));return n}function s(e){var t=Math.max(r(e[0]),r(e[1])),n=i(e,function(e){var n=t-r(e);return e+=(new Array(n+1)).join(".0"),i(e.split("."),function(e){return(new Array(20-e.length)).join("0")+e}).reverse()});while(--t>=0){if(n[0][t]>n[1][t])return 1;if(n[0][t]!==n[1][t])return-1;if(t===0)return 0}}function o(e,r,i){var o=n;typeof r=="string"&&(i=r,r=void 0),r===void 0&&(r=!1),i&&(o=t(i));var u=""+o.version;for(var a in e)if(e.hasOwnProperty(a)&&o[a]){if(typeof e[a]!="string")throw new Error("Browser version in the minVersion map should be a string: "+a+": "+String(e));return s([u,e[a]])<0}return r}function u(e,t,n){return!o(e,t,n)}var e=!0,n=t(typeof navigator!="undefined"?navigator.userAgent||"":"");return n.test=function(e){for(var t=0;t<e.length;++t){var r=e[t];if(typeof r=="string"&&r in n)return!0}return!1},n.isUnsupportedBrowser=o,n.compareVersions=s,n.check=u,n._detect=t,n.detect=t,n})
 
-// Browser Sniffing
-var strAgent = window.navigator.userAgent;
-var strAppVersion = window.navigator.appVersion;
-
-var IE =  (((document.all) && (strAppVersion.indexOf("MSIE")!=-1)) || strAgent.indexOf("Trident") != -1) ? true : false;
-var IE6 = ((document.all) && (strAppVersion.indexOf("MSIE 6.")!=-1)) ? true : false;
-var gtIEWin7 = IE && ((strAgent.indexOf("Windows NT 6.1") == -1) && (strAgent.indexOf("Windows NT 6.0") == -1) && (strAgent.indexOf("Windows NT 5.1") == -1) && (strAgent.indexOf("Windows NT 5.0") == -1));
-var FF = (strAgent.indexOf("Firefox")!=-1);
-var Safari3 =  (strAppVersion.indexOf("Safari") && strAppVersion.indexOf("Version/3"));
+var isChrome = bowser.chrome;
+var IE =  bowser.msie;
+var IE6 = bowser.msie && parseInt(bowser.version, 10) === 6;
+var gtIEWin7 = bowser.msie && parseInt(bowser.version, 10) > 7;
+var FF = bowser.firefox;
+var Safari3 =  bowser.safari && parseInt(bowser.version, 10) === 3;
 
 // Message Delimitors
 var g_strDelim = "|~|";
@@ -19,6 +22,7 @@ var g_oPrintOptions = new Object();
 
 // LMS Support
 var g_bLMSPresent = false;
+var g_oInterfaceObject;
 
 if (g_bLMS)
 {
@@ -31,16 +35,19 @@ if (g_bAOSupport)
 }
 
 var g_strQuery = document.location.search.substr(1);
+var g_bElement = false;
+var g_bFillWindow = false;
 
 // Write the swf object
-function WriteSwfObject(strSwfFile, nWidth, nHeight, strScale, strAlign, strQuality, strBgColor, bCaptureRC, strWMode, strFlashVars, targetElement)
+function WriteSwfObject(strSwfFile, nWidth, nHeight, strScale, strAlign, strQuality, strBgColor, bCaptureRC, strWMode, strFlashVars, targetElement, bFillWindow)
 {
 	var strHtml = "";
 	var strWidth = nWidth + "px";
 	var strHeight = nHeight + "px";
 	var strPublishSize = "&vPublishWidth=" + nWidth + "&vPublishHeight=" + nHeight;
+	g_oInterfaceObject = getInterfaceObject(strFlashVars);
 	
-	if (strScale == "show all")
+	if (g_strResizeType === "fit")
 	{
 		strWidth = "100%";
 		strHeight = "100%";
@@ -54,6 +61,7 @@ function WriteSwfObject(strSwfFile, nWidth, nHeight, strScale, strAlign, strQual
 	
 	strFlashVars += "vHtmlContainer=true";
 	strFlashVars += "&TinCan=" + (g_bTinCan ? "true" : "false");
+	strFlashVars += "&vRise=" + (g_oInterfaceObject.isRise ? "true" : "false");
 	
 	if (navigator.userAgent.toLowerCase().indexOf("chrome") >= 0 && strWMode != "transparent")
 	{
@@ -74,7 +82,7 @@ function WriteSwfObject(strSwfFile, nWidth, nHeight, strScale, strAlign, strQual
 	}
 	
 	// Whether or not we are loaded by an LMS
-	strFlashVars += "&vLMSPresent=" + g_bLMSPresent;	
+	strFlashVars += "&vLMSPresent=" + g_bLMSPresent;
 	
 	// Whether or not we are loaded by AO
 	strFlashVars += "&vAOSupport=" + g_bAOSupport;
@@ -82,13 +90,17 @@ function WriteSwfObject(strSwfFile, nWidth, nHeight, strScale, strAlign, strQual
 	// Set the publish width and height
 	strFlashVars += strPublishSize;
 	
+	// Set the theme info
+	strFlashVars += "&vThemeName=" + g_strThemeName;
+	strFlashVars += "&vPreloaderColor=" + g_strPreloaderColor;
+	
 	// Set the LMS Resume data
 	if (g_bLMSPresent)
 	{
 		RetrieveStateData();
 
 		strFlashVars += "&vResumeData=" + encodeURI(g_strResumeData);
-	}	
+	}
 	
 	strFlashVars += GetHostVars();
 	
@@ -106,7 +118,33 @@ function WriteSwfObject(strSwfFile, nWidth, nHeight, strScale, strAlign, strQual
 		strRole = " role='application'";
 	}
 	
-	strHtml += "<div" + strRole + " style='width:" + strWidth + "; height:" + strHeight + ";' id='divSwf' >";
+	// create the swf div
+	var divSwf = document.createElement("div");
+	divSwf.setAttribute("role", "application");
+	divSwf.setAttribute("id", "divSwf");
+	divSwf.style.width = strWidth;
+	divSwf.style.height = strHeight;
+	
+	if (!targetElement)
+	{
+		document.body.appendChild(divSwf);
+		g_bFillWindow = true;
+	}
+	else
+	{
+		g_bFillWindow = bFillWindow
+		g_bElement = true;
+		g_oContainer = targetElement;
+		targetElement.appendChild(divSwf);
+	}	
+
+	// Get the swf dims
+	if (isChrome && bFillWindow && g_strResizeType === "fit" && strScale === "noscale") {
+		strWidth = divSwf.clientWidth + "px";
+		strHeight = divSwf.clientHeight + "px";
+		InitResizeListeners();
+	}
+
 	strHtml += "<object type='application/x-shockwave-flash' data='" + strSwfFile +"' width='" + strWidth + "' height='" + strHeight + "' align='" + strAlign + "' id='player'>";
 	strHtml += "<param name='scale' value='" + strScale + "' />";
 	strHtml += "<param name='movie' value='" + strSwfFile + "' />";
@@ -118,32 +156,98 @@ function WriteSwfObject(strSwfFile, nWidth, nHeight, strScale, strAlign, strQual
 	strHtml += "<param name='wmode' value='" + strWMode + "'/>";
 	strHtml += "<param name='allowScriptAccess' value='always'>";
 	strHtml += "</object>";
-	strHtml += "</div>";
-
-	if (!targetElement)
-	{
-		document.write(strHtml);
-	}
-	else
-	{
-		g_bElement = true;
-		g_oContainer = targetElement;
-		targetElement.innerHTML = strHtml;
-	}
 	
+	divSwf.innerHTML = strHtml;	
+
 	if (bCaptureRC)
 	{
 		AddRightClickListener();
 	}
 	
 	setTimeout(SetPlayerFocus, 500);
+	
+	document.addEventListener("visibilitychange", UpdateVisibility);
+}
+
+function getInterfaceObject(strFlashVars) {
+	var settings = parseFlashVars(strFlashVars);
+	return window[settings.vInterfaceObject] || window.vInterfaceObject || {};
+}
+
+function parseFlashVars(strFlashVars) {
+	var settings = {};
+	var valuePairs = strFlashVars.split("&");
+	var length = valuePairs.length;
+	var i;
+	var valueSet;
+	
+	for (i = 0; i < length; i++) {
+		valueSet = valuePairs[i].split("=");
+		settings[valueSet[0]] = valueSet[1];
+	}
+	
+	return settings;
+}
+
+function UpdateVisibility(e) {
+	var player = GetPlayer();
+	if (player != null) {
+		if (document.hidden) {
+			player.TriggerPause();
+		} else {
+			player.TriggerPlay();
+		}
+	}
+}
+
+// Prevent Chrome from stretching the swf when resizing the browser
+var g_bExactFit = true;
+
+function InitJSResize() {
+	if (isChrome && g_bFillWindow) {
+		g_bExactFit = false;
+		return true;
+	}
+	return false;
+}
+
+function InitResizeListeners() 
+{
+	var divSwf = document.getElementById("divSwf");
+	var lastWidth = 0, lastHeight = 0, maxWidth = 0, maxHeight = 0;
+	
+	divSwf.className = [divSwf.className, "no-scroll"].join(" ");
+	
+	var handleResize = function() {
+		var width = divSwf.clientWidth;
+		var height = divSwf.clientHeight;
+			
+		if (width != lastWidth || height != lastHeight) {
+			try {
+				var player = GetPlayer();
+				player.UpdateSize(width, height);
+			} catch (e) {}
+			
+			if (width > maxWidth || height > maxHeight || g_bExactFit) {				
+				player.style.width = width + 'px';
+				player.style.height = height + 'px';
+				maxWidth = width;
+				maxHeight = height;
+			}
+			
+			lastWidth = width;
+			lastHeight = height;
+		}
+	};
+	
+	window.addEventListener('resize', handleResize);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // Flash Comm
 ////////////////////////////////////////////////////////////////////////////////
 
-function onBWEvent(command, args) 
+function onBWEvent(command, args)
 {
 	args = unescape(args);
 	command = String(command);
@@ -159,13 +263,13 @@ function onBWEvent(command, args)
 			
 		case "BW_UpdateStatus":
 			g_oContentResults.strStatus = arrArgs[0];
-			g_oContentResults.nScore = arrArgs[1]; 
+			g_oContentResults.nScore = arrArgs[1];
 			// Min Score - arrArgs[2]
 			// Max Score - arrArgs[3]
 			g_oContentResults.nPassingScore = arrArgs[4];
 			g_oContentResults.strType = arrArgs[5];
-			g_oContentResults.dtmFinished = new Date();
-			break; 
+			g_oContentResults.dtmFinished = JSON.stringify(new Date());
+			break;
 			
 		case "BW_StoreQuestionResult":
 			var strQuizId = arrArgs[0];
@@ -192,7 +296,7 @@ function onBWEvent(command, args)
 			var oResult = new QuestionResults(strId, strLMSId, strType, strCorrectResponse, strUserResponse, nLatency, strStatus, nPoints, strCompletedTime, nWeight, nQuestionNumber, strDescription, bTracked);
 			
 			g_listQuizzes[strQuizId].AddQuestionResult(oResult);
-			break; 
+			break;
 		
 		case "BW_UpdateQuizResults":
 			var strQuizId = arrArgs[0];
@@ -201,13 +305,13 @@ function onBWEvent(command, args)
 			var nPassPercent = arrArgs[3];
 			var nScore = arrArgs[4];
 			var nPercentScore = arrArgs[5];
-			if (g_listQuizzes[strQuizId] == null) 
+			if (g_listQuizzes[strQuizId] == null)
 			{
 				g_listQuizzes[strQuizId] = new QuizData(strQuizId, strQuizName);
 			}
 			g_listQuizzes[strQuizId].nPassingScore = nPassPercent;
-			g_listQuizzes[strQuizId].nPtScore = nPercentScore; 
-			g_listQuizzes[strQuizId].dtmFinished = new Date();			
+			g_listQuizzes[strQuizId].nPtScore = nPercentScore;
+			g_listQuizzes[strQuizId].dtmFinished = new Date();
 			break;
 		case "BW_PrintResults":
 			g_oPrintOptions.bShowUserScore = (arrArgs[0] == "true");
@@ -219,10 +323,10 @@ function onBWEvent(command, args)
 			g_oPrintOptions.arrQuizzes = arrArgs[6].split(",");
 			g_oPrintOptions.bSurvey = (arrArgs[7] == "true");
 			
-			window.open(GetBasePath() + g_strContentFolder + "/report.html", "Reports") 
+			PrintResults();
 			break;
 			
-		case "BW_EmailResults":			
+		case "BW_EmailResults":
 			EmailResults(arrArgs[0] == "true", arrArgs[1] == "true", arrArgs[2] == "true", arrArgs[3] == "true", arrArgs[4], arrArgs[5], arrArgs[6].split(","));
 			break;
 			
@@ -281,7 +385,7 @@ function onBWEvent(command, args)
 				{
 					CloseWindow();
 				}
-			}			
+			}
 			break;
 		
 		case "BW_OpenVideo":
@@ -355,6 +459,27 @@ function CloseWindow()
 	top.window.close();
 }
 
+
+function PrintResults()
+{
+	var printData = {
+		g_oContentResults: g_oContentResults,
+		g_oPrintOptions: g_oPrintOptions,
+		g_listQuizzes: g_listQuizzes
+	};
+
+	var reportHtml = window.open(GetBasePath() + g_strContentFolder + "/report.html", "Reports");
+	if (reportHtml.postMessage != null)
+	{
+		window.addEventListener('message', function(event) {
+			if (event.data === 'getQuizData')
+			{
+				reportHtml.postMessage(JSON.stringify(printData), '*');
+			}
+		}, false);
+	}
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 // Browser Resize
 ////////////////////////////////////////////////////////////////////////////////
@@ -398,7 +523,7 @@ function ResizeOptimal()
 	{
 		if (GetContentWidth() != g_nWidth || GetContentHeight() != g_nHeight)
 		{
-			// First we need to reposition the browser so that it can actually grow to the appropiate size.  
+			// First we need to reposition the browser so that it can actually grow to the appropiate size.
 			// When positioning, we will overestimate the browser height by 160 if possible to accomadate the toolbar and statusbar
 			if (nXPos + g_nWindowWidth > screen.availWidth)
 			{
@@ -443,7 +568,7 @@ function ResizeOptimal()
 
 				// sometimes there is a third party toolbar that doesn't load until after we have finish resizing everything, so we will do a check for this
 				g_nSizeInterval = setInterval(CheckSize, 500);
-			}, 0);		
+			}, 0);
 		}
 	}
 	else
@@ -625,7 +750,7 @@ function UpdateWebObjectPosition(strId, nXPos, nYPos, nWidth, nHeight)
 }
 
 function OpenWebObject(strId, strUrl, nXPos, nYPos, nWidth, nHeight, nSlideXOffset, nSlideYOffset)
-{	
+{
 	var oWebObject = g_oWebObjects[strId];
 	
 	if (!oWebObject)
@@ -634,7 +759,7 @@ function OpenWebObject(strId, strUrl, nXPos, nYPos, nWidth, nHeight, nSlideXOffs
 		oWebObject.strId = strId;
 		oWebObject.strInitUrl = strUrl;
 		
-		// Create the DIV	
+		// Create the DIV
 		oWebObject.Div = document.createElement('div');
 		oWebObject.Div.style.position = "absolute";
 		
@@ -666,7 +791,7 @@ function OpenWebObject(strId, strUrl, nXPos, nYPos, nWidth, nHeight, nSlideXOffs
 	{
 		var oTarget = document.getElementById('divWebObjects');
 		oTarget.removeChild(oWebObject.Div);
-		oTarget.appendChild(oWebObject.Div);		
+		oTarget.appendChild(oWebObject.Div);
 	}
 	
 	oWebObject.Open = true;
@@ -717,7 +842,7 @@ function OpenWebObject(strId, strUrl, nXPos, nYPos, nWidth, nHeight, nSlideXOffs
 }
 
 function RestoreWebObjects()
-{ 
+{
 	var oWebObject = null;
 
 	for (var i = 0; i < g_arrStoredWebObjects.length; i++)
@@ -731,7 +856,7 @@ function RestoreWebObjects()
 }
 
 function CloseAllWebObjects(strStore)
-{	
+{
 	var bStore = (strStore == "true");
 	
 	for (var items in g_oWebObjects)
@@ -741,7 +866,7 @@ function CloseAllWebObjects(strStore)
 		if (bStore && oWebObject.Open)
 		{
 			g_arrStoredWebObjects.push(items);
-		}		
+		}
 		
 		CloseWebObject(items);
 	}
@@ -769,21 +894,25 @@ function GetDivRect(oPosition)
 	var nClientWidth = GetContentWidth();
 	var nClientHeight = GetContentHeight();
 	var nLeftMargin = 0;
+	var nTopMargin = 0;
 	var nSwfWidth = parseInt(g_nWidth);
 	var nSwfHeight = parseInt(g_nHeight);
 	
 	if (g_strScale == "noscale")
 	{
-		nLeftMargin = (nClientWidth - nSwfWidth) / 2;
-		nTopMargin = (nClientHeight - nSwfHeight) / 2;
+		if (g_strResizeType != "fit")
+		{
+			nLeftMargin = (nClientWidth - nSwfWidth) / 2;
+			nTopMargin = (nClientHeight - nSwfHeight) / 2;
 		
-		if (nLeftMargin < 0)
-		{
-			nLeftMargin = 0;
-		}
-		if (nTopMargin < 0)
-		{
-			nTopMargin = 0;
+			if (nLeftMargin < 0)
+			{
+				nLeftMargin = 0;
+			}
+			if (nTopMargin < 0)
+			{
+				nTopMargin = 0;
+			}
 		}
 		
 		oRect.left = nLeftMargin + oPosition.XPos;
@@ -852,7 +981,7 @@ function OpenUrl(strUrl, strWindow, strWindowSize, strWidth, strHeight, strUseDe
 	var strOptions = "";
 	
 	if (!bUseDefaultControls && !bUseDefaultSize)
-	{	
+	{
 		if (bFullScreen)
 		{
 			nWndWidth = screen.availWidth;
@@ -888,7 +1017,7 @@ function OpenUrl(strUrl, strWindow, strWindowSize, strWidth, strHeight, strUseDe
 		}
 		
 		if (bChrome)
-		{	
+		{
 			if (bFullScreen || !bUseDefaultSize)
 			{
 				strMenubar = "false";
@@ -1015,16 +1144,16 @@ function OpenVideo(strUrl, strWndWidth, strWndHeight, strVidWidth, strVidHeight,
 	var nWndWidth = parseInt(strWndWidth);
 	var nWndHeight = parseInt(strWndHeight);
 	
-	var strSearch = "exUrl=" + strUrl + 
+	var strSearch = "exUrl=" + strUrl +
 					"&exWndWidth=" + strWndWidth +
 					"&exWndHeight=" + strWndHeight +
-					"&exWidth=" + strVidWidth + 
-					"&exHeight=" + strVidHeight + 
-					"&exDuration=" + strDuration + 
-					"&exPlaybar=" + strPlaybar + 
-					"&exVolume=" + strVolume + 
+					"&exWidth=" + strVidWidth +
+					"&exHeight=" + strVidHeight +
+					"&exDuration=" + strDuration +
+					"&exPlaybar=" + strPlaybar +
+					"&exVolume=" + strVolume +
 					"&exAutoPlay=" + strAutoPlay +
-					"&exType=" + strType + 
+					"&exType=" + strType +
 					"&exASVersion=" + strASVersion;
 					
 	if (nWndWidth > screen.availWidth)
@@ -1040,7 +1169,7 @@ function OpenVideo(strUrl, strWndWidth, strWndHeight, strVidWidth, strVidHeight,
 	if (navigator.userAgent.toLowerCase().indexOf("chrome") >= 0)
 	{
 		strMenubar = "false";
-	}	
+	}
 
 
 	var strOptions = "";
@@ -1068,12 +1197,12 @@ function OpenVideo(strUrl, strWndWidth, strWndHeight, strVidWidth, strVidHeight,
 	var nWidth = screen.availWidth;
 	var nHeight = screen.availHeight;
 	
-	if (window.screenX != undefined) 
+	if (window.screenX != undefined)
 	{
 		nXPos = window.screenX;
 		nYPos = window.screenY;
 		nWidth = window.innerWidth;
-		nHeight = window.innerHeight;		
+		nHeight = window.innerHeight;
 	}
 	else if (window.screenLeft != undefined)
 	{
@@ -1147,13 +1276,13 @@ function DivContextMenu()
 
 function NSMouseDown()
 {
-	return function(evt) 
-	{ 
-		if (evt.button == 2) 
-		{ 
+	return function(evt)
+	{
+		if (evt.button == 2)
+		{
 			if (NotifyRightDown(evt.target.id))
 			{
-				evt.stopPropagation(); 
+				evt.stopPropagation();
 				evt.preventDefault();
 			}
 		}
@@ -1162,17 +1291,17 @@ function NSMouseDown()
 
 function NSMouseUp()
 {
-	return function(evt) 
-	{ 
-		if (evt.button == 2) 
+	return function(evt)
+	{
+		if (evt.button == 2)
 		{
 			if (NotifyRightUp(evt.target.id))
 			{
-				evt.stopPropagation(); 
+				evt.stopPropagation();
 				evt.preventDefault();
 			}
-		} 
-	} 
+		}
+	}
 }
 
 function NotifyRightDown(strId)
@@ -1242,7 +1371,7 @@ function EmailResults(bShowUserScore, bShowPassingScore, bShowPassFail, bShowQui
 	var strMainHeader = " " + strTitle + strNewLine + "Status, Score, Passing Score, Max Score, Min Score, Time" + strNewLine;
 	var strLineHeader = strNewLine + strNewLine + "Date, Time, Score, Quiz Name, Interaction ID, Interaction Type, Student Response, Result, Weight, Latency" + strNewLine;
 	var strMainData = strNewLine;
-	var strLineData = strNewLine; 
+	var strLineData = strNewLine;
 			
 	var oQuizResult = g_listQuizzes[strMainQuizId];
 	// Status
@@ -1309,7 +1438,7 @@ function EmailResults(bShowUserScore, bShowPassingScore, bShowPassFail, bShowQui
 			// Latency
 			strLineData += arrQuestions[i].nLatency;
 			
-			strLineData += strNewLine;		
+			strLineData += strNewLine;
 		}
 	}
 	
@@ -1323,12 +1452,12 @@ function EmailResults(bShowUserScore, bShowPassingScore, bShowPassFail, bShowQui
 	else
 	{
 		sHTML += '<FORM id="formQuiz" method="POST" action="mailto:' + strAddress + '?subject=' + g_strSubject + '" enctype="text/plain">';
-		sHTML += '<INPUT TYPE="hidden" NAME="Quiz Results" VALUE=\'' + strQuizResults + '\'>';	
+		sHTML += '<INPUT TYPE="hidden" NAME="Quiz Results" VALUE=\'' + strQuizResults + '\'>';
 	}
 	sHTML += '<br><input type="submit"><br>';
 	sHTML += '</FORM>';
 	document.getElementById("divEmail").innerHTML = sHTML;
-	document.getElementById("formQuiz").submit();	
+	document.getElementById("formQuiz").submit();
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -1410,14 +1539,14 @@ function QuizData(strQuizId, strQuizName)
 
 function ContentResults()
 {
-	this.dtmFinished = new Date();
+	this.dtmFinished = JSON.stringify(new Date());
 	this.nPassingScore = 80;
 	this.nScore = 0;
 	this.strStatus = "incomplete";
 	this.strType = "view";
 }
 
-function QuestionResults(strId, strLMSId, strType, strCorrectResponse, strUserResponse, nLatency, strStatus, nPoints, strCompletedTime, nWeight, nQuestionNumber, strDescription, bTracked) 
+function QuestionResults(strId, strLMSId, strType, strCorrectResponse, strUserResponse, nLatency, strStatus, nPoints, strCompletedTime, nWeight, nQuestionNumber, strDescription, bTracked)
 {
 	this.strId = strId;
 	this.strLMSId = strLMSId;
@@ -1432,12 +1561,6 @@ function QuestionResults(strId, strLMSId, strType, strCorrectResponse, strUserRe
 	this.nQuestionNumber = nQuestionNumber;
 	this.strDescription = strDescription;
 	this.bTracked = bTracked;
-	
-/*	this.AlertResults = function()
-	{
-		var strTemp = "Id: " + strId + "\nType: " + strType + "\nCorrectResponse: " + strCorrectResponse + "\nUserResponse: " + strUserResponse + "\nLatency: " + nLatency + "\nStatus: " + strStatus + "\nPoints: " + nPoints + "\nCompletedTime: " + strCompletedTime + "\nWeight: " + nWeight + "\nQuestionNumber: " + nQuestionNumber + "\nDescription: " + strDescription;
-		alert(strTemp);
-	}*/
 }
 
 /****************************************************/
@@ -1456,6 +1579,14 @@ var g_bFatalError = false;
 function GetTinCanData()
 {
 	return decodeURIComponent(g_strQuery);
+}
+
+function SendRiseStatement(statement)
+{
+	if (g_oInterfaceObject.isRise && g_oInterfaceObject.LmsUpdate != null)
+	{
+		g_oInterfaceObject.LmsUpdate(JSON.parse(statement));
+	}
 }
 	
 function SendTinCanStatement(nMessageType, strMethod, strData, strUrl, arrHeaders)
@@ -1510,7 +1641,7 @@ function PostAsyncRequest(nMessageType, strMethod, strData, strUrl, arrHeaders)
 			g_bFatalError = true;
 			GetPlayer().FatalTinCanError(0);
 		}
-	}	
+	}
 }
 
 function PostXDomainRequest(nMessageType, strMethod, strData, strUrl, arrHeaders, bSync)
@@ -1520,7 +1651,7 @@ function PostXDomainRequest(nMessageType, strMethod, strData, strUrl, arrHeaders
 	
 	xDomain.MessageType = nMessageType;
 	xDomain.status = 0;
-    
+
 	xDomain.onload = function()
 	{
 		xDomain.status = 200;
@@ -1552,7 +1683,7 @@ function PostXDomainRequest(nMessageType, strMethod, strData, strUrl, arrHeaders
 			var xmlHttp = new XMLHttpRequest();
 			xmlHttp.open("GET", window.location + "?" + (new Date).getTime(), false);
 			xmlHttp.send(null);
-		}	
+		}
 	}
 	
 	return xDomain.status;
@@ -1567,10 +1698,10 @@ function PostXmlHttp(nMessageType, strMethod, strData, strUrl, arrHeaders)
 		g_bWaitingTinCanResponse = true;
 		
 		xmlHttp.MessageType = nMessageType;
-		xmlHttp.onreadystatechange = function() 
+		xmlHttp.onreadystatechange = function()
 		{
-			if (xmlHttp.readyState == 4) 
-			{		
+			if (xmlHttp.readyState == 4)
+			{
 				if (xmlHttp.status >= 400 && !(IE && xmlHttp.status == 1223))
 				{
 					OnSendError(xmlHttp);
@@ -1580,7 +1711,7 @@ function PostXmlHttp(nMessageType, strMethod, strData, strUrl, arrHeaders)
 					OnSendComplete(xmlHttp);
 				}
 			}
-		}		
+		}
 	
 		xmlHttp.open(strMethod, strUrl, true);
 		
@@ -1605,10 +1736,10 @@ function OnSendComplete(commObj)
 	}
 	
 	g_bWaitingTinCanResponse = false;
-	g_oCurrentRequest = null;	
+	g_oCurrentRequest = null;
 
 	if (g_arrTinCanMsgQueue.length > 0 && !g_bStopPosting)
-	{				
+	{
 		SendRequest(g_arrTinCanMsgQueue.shift());
 	}
 }
@@ -1620,10 +1751,10 @@ function OnSendError(commObj)
 		GetPlayer().SetTinCanResume("");
 		
 		g_bWaitingTinCanResponse = false;
-		g_oCurrentRequest = null;	
+		g_oCurrentRequest = null;
 
 		if (g_arrTinCanMsgQueue.length > 0 && !g_bStopPosting)
-		{				
+		{
 			SendRequest(g_arrTinCanMsgQueue.shift());
 		}
 	}
@@ -1642,7 +1773,7 @@ function OnSendError(commObj)
 			{
 				GetPlayer().FatalTinCanError(commObj.status);
 			}
-		}	
+		}
 	}
 }
 
@@ -1664,7 +1795,7 @@ function CreateXmlHttp()
 	var arrCtrlName = new Array("MSXML2.XMLHttp.5.0", "MSXML2.XMLHttp.4.0", "MSXML2.XMLHttp.3.0", "MSXML2.XMLHttp", "Microsoft.XMLHttp");
 	var nIndex = 0;
 	
-	if (window.XMLHttpRequest) 
+	if (window.XMLHttpRequest)
 	{
 		try
 		{
@@ -1716,7 +1847,7 @@ function PostSyncRequest(strMethod, strData, strUrl, arrHeaders)
 		if (nStatus != 200)
 		{
 			if(confirm("Could not save the result data. You may need to login again. Retry?"))
-			{		    
+			{
 				PostSyncRequest(strMethod, strData, strUrl, arrHeaders);
 				return;
 			}
@@ -1757,7 +1888,7 @@ function PostSyncXmlHttp(strMethod, strData, strUrl, arrHeaders)
 		xmlHttp.send(strData);
 		
 		if(xmlHttp.status >= 400 && !(IE && xmlHttp.status == 1223))
-		{	
+		{
 			nStatus = -1;
 		}
 	}
@@ -1782,3 +1913,76 @@ function UseXDomainRequest(strUrl)
 	
 	return bResult;
 }
+
+
+// tracking for OS and browser
+
+// https://gist.github.com/982883
+var uuid = function (a){
+	return a           // if the placeholder was passed, return
+	? (              // a random number from 0 to 15
+	  a ^            // unless b is 8,
+	  Math.random()  // in which case
+	  * 16           // a random number from
+	  >> a/4         // 8 to 11
+	  ).toString(16) // in hexadecimal
+	: (              // or otherwise a concatenated string:
+	  [1e7] +        // 10000000 +
+	  -1e3 +         // -1000 +
+	  -4e3 +         // -4000 +
+	  -8e3 +         // -80000000 +
+	  -1e11          // -100000000000,
+	  ).replace(     // replacing
+	    /[018]/g,    // zeroes, ones, and eights with
+	    uuid         // random hex digits
+	  );
+};
+
+
+function DoOnLoad() {
+	if (!g_bSuppressAnalytics) {
+		var xhr = CreateXmlHttp();
+		var now = new Date();
+		var protocol = window.location.protocol;
+		// Stringify here since older IEs do not implement `JSON.stringify`
+		var data = '{"messageId":"' + uuid() + '",' +
+		  '"sentAt":"' + now.toISOString() + '",' +
+		  '"batch":[{' +
+			'"event":"player_course_load",' +
+			'"properties":{' +
+			  '"os":"' + [ bowser.osname, bowser.osversion ].join(' ') + '",' +
+			  '"browser":"' + [ bowser.name, bowser.version ].join(' ') + '",' +
+			  '"playerVersion":"' + window.g_strPlayerVersion + '",' +
+			  '"playerType":"Flash",' +
+			  '"lmsPresent":"' + window.g_bLMS + '",' +
+			  '"tinCanPresent":"' + window.g_bTinCan + '",' +
+			  '"aoSupport":"' + window.g_bAOSupport + '",' +
+			  '"publishSource":"' + window.g_strPublishSource + '",' +
+			  '"protocol":"' + protocol.substr(0, protocol.length - 1) + '",' + // remove the colon
+			  '"productChannel":"' + window.g_strProductChannel + '",' + 
+			  '"aid":"' + window.g_strAID + '",' + 
+			  '"cid":"' + window.g_strCID + '",' + 
+			'},' +
+			'"type":"track",' +
+			'"messageId":"' + uuid() + '",' +
+			'"timestamp":"' + now.toISOString() + '",' +
+			'"context":{' +
+			  '"ip":"0.0.0.0",' +
+			  '"page":{' +
+			'"path":"/",' +
+			'"referrer":"",' +
+			'"search":"",' +
+			'"title":"",' +
+			'"url":"http://"' +
+			  '}' +
+			'},' +
+			'"integrations":{},' +
+			'"anonymousId":"' + uuid() + '"' +
+		  '}]}';
+
+		xhr.open('POST', 'https://metrics.articulate.com/v1/import');
+		xhr.setRequestHeader('Content-Type', 'application/json');
+		xhr.send(data);
+	}
+};
+
