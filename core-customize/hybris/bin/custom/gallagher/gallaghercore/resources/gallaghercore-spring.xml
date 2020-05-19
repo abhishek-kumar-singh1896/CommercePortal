@@ -208,6 +208,25 @@
                         <value>amB2CProductTransformationCronjob</value>
                         <value>securityB2BCreateBaseProductCronjob</value>
                         <value>securityB2BProductTransformationCronjob</value>
+                        <value>securityB2BBynderSyncCronJob</value>
+                        <value>amB2CBynderSyncCronJob</value>
+                        <value>securityB2BMediaCompositeJob</value>
+                        <value>amB2CMediaCompositeJob</value>
+                        <value>securityB2BBynderSyncCronJob</value>
+                        <value>amB2CBynderSyncCronJob</value>
+                        <value>amB2CConversionMaster</value>
+                        <value>SecurityMediaConversionMaster</value>
+                        <value>securityB2BProductTransformationCompositeJob</value>
+                        <value>amB2CProductTransformationCompositeJob</value>
+                        <value>sync securityB2BNZProductCatalog:Staged->Online</value>
+                        <value>sync securityB2BAUProductCatalog:Staged->Online</value>
+                        <value>sync securityB2BGlobalProductCatalog:Staged->Online</value>
+                        <value>sync amB2CNZProductCatalog:Staged->Online</value>
+                        <value>sync amB2CAUProductCatalog:Staged->Online</value>
+                        <value>sync amB2CUSProductCatalog:Staged->Online</value>
+                        <value>sync amB2CCAProductCatalog:Staged->Online</value>
+                        <value>sync amB2CGlobalProductCatalog:Staged->Online</value>
+                        <value>sync amB2CLatAmProductCatalog:Staged->Online</value>                        
                         <value>sync amB2CMasterProductCatalog:Staged->amB2CNZProductCatalog:Staged</value>
 								<value>sync amB2CMasterProductCatalog:Staged->amB2CAUProductCatalog:Staged</value>
 								<value>sync amB2CMasterProductCatalog:Staged->amB2CUSProductCatalog:Staged</value>
