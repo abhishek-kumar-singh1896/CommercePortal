@@ -31,7 +31,7 @@
 		</c:if>
 		<c:if test="${not empty productList}">
 			<div class="clear-items">
-				<button type="button" class="neutral" id="pcClearBtnId"
+				<button type="button" class="btn btn-small btn-primary" id="pcClearBtnId"
 					onclick="pcClearList('<c:url value="/"/>', '${pcPopup}')">
 					<spring:theme code="productcomparison.button.clear_items"
 						text="CLEAR LIST" />

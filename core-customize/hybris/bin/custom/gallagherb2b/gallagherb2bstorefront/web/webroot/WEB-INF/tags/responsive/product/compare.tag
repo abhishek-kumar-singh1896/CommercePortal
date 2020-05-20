@@ -15,8 +15,8 @@
 		</c:if>
 	</div>
 	<div class="button-box">
-		<button type="button" class="neutral compare-product" onclick="pcShowComparePage('<c:url value="/"/>',false,false)" ><spring:theme code="productcomparison.button.compare_items" text="COMPARE ITEMS" /></button>
-		<button class="neutral" type="button" onclick="ACC.compare.updateCompare(null, 'removeAll')"><spring:theme code="productcomparison.button.clear_items" text="CLEAR LIST"/></button>
+		<button type="button" class="btn btn-small btn-primary compare-product" onclick="pcShowComparePage('<c:url value="/"/>',false,false)" ><spring:theme code="productcomparison.button.compare_items" text="COMPARE ITEMS" /></button>
+		<button class="btn btn-small btn-primary" type="button" onclick="ACC.compare.updateCompare(null, 'removeAll')"><spring:theme code="productcomparison.button.clear_items" text="CLEAR LIST"/></button>
 		<div class="compare-tray-add">
 			<div class="compare-add-input">
 				<input id="addToCompareInput" type="text" class="text product js-compare-search-input" placeholder="I'm looking for"/>

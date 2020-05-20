@@ -1,0 +1,17 @@
+.product_compare .top table th {
+    border-top: none;
+    border-bottom: none;
+    font-weight: bold;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .product__listing.product__grid .product-item img {
+    width: 100%;
+  }
+}
+
+@media (max-width: 639px) {
+  .product__listing.product__grid .product-item img {
+    width: 100%;
+  }
+}
