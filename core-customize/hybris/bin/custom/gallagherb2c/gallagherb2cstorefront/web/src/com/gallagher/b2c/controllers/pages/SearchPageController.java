@@ -50,6 +50,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/search")
 public class SearchPageController extends AbstractSearchPageController
 {
+	private static final String SITECORE_SOLUTION_URL = "sitecore.solution.url";
+	private static final String SITECORE_SUPPORT_URL = "sitecore.support.url";
 	private static final String SEARCH_META_DESCRIPTION_ON = "search.meta.description.on";
 	private static final String SEARCH_META_DESCRIPTION_RESULTS = "search.meta.description.results";
 
@@ -74,19 +76,21 @@ public class SearchPageController extends AbstractSearchPageController
 	@Resource(name = "cmsComponentService")
 	private CMSComponentService cmsComponentService;
 
-	private String getConfigurationPath(final String path)
+	private String getSiteCoreConfigurationPath(final String path)
 	{
-		return getConfigurationService().getConfiguration().getString(path);
+		return getSiteConfigService().getString(
+				new StringBuilder(path).append(".").append(getStoreSessionFacade().getCurrentLanguage().getIsocode()).toString(),
+				"#");
 	}
 
 	@RequestMapping(method = RequestMethod.GET, params = "!q")
-	public String textSearch(@RequestParam(value = "text", defaultValue = "") final String searchText,
-			final HttpServletRequest request, final Model model) throws CMSItemNotFoundException
+	public String textSearch(@RequestParam(value = "text", defaultValue = "")
+	final String searchText, final HttpServletRequest request, final Model model) throws CMSItemNotFoundException
 	{
 		final ContentPageModel noResultPage = getContentPageForLabelOrId(NO_RESULTS_CMS_PAGE_ID);
-		final String sitecoreSupportPageURL = MessageFormat.format(getConfigurationPath("sitecore.support.url"),
-				searchText);
-		final String sitecoreSolutionPageURL = MessageFormat.format(getConfigurationPath("sitecore.solution.url"),
+
+		final String sitecoreSupportPageURL = MessageFormat.format(getSiteCoreConfigurationPath(SITECORE_SUPPORT_URL), searchText);
+		final String sitecoreSolutionPageURL = MessageFormat.format(getSiteCoreConfigurationPath(SITECORE_SOLUTION_URL),
 				searchText);
 
 		if (StringUtils.isNotBlank(searchText))
@@ -178,8 +182,8 @@ public class SearchPageController extends AbstractSearchPageController
 		{
 			searchStr = searchPageData.getFreeTextSearch();
 		}
-		final String sitecoreSupportPageURL = MessageFormat.format(getConfigurationPath("sitecore.support.url"), searchStr);
-		final String sitecoreSolutionPageURL = MessageFormat.format(getConfigurationPath("sitecore.solution.url"), searchStr);
+		final String sitecoreSupportPageURL = MessageFormat.format(getSiteCoreConfigurationPath(SITECORE_SUPPORT_URL), searchStr);
+		final String sitecoreSolutionPageURL = MessageFormat.format(getSiteCoreConfigurationPath(SITECORE_SOLUTION_URL), searchStr);
 
 		populateModel(model, searchPageData, showMode);
 		model.addAttribute("userLocation", customerLocationService.getUserLocation());
