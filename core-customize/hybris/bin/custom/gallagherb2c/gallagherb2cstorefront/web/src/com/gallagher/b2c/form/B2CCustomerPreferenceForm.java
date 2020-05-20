@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.gallagher.core.forms;
+package com.gallagher.b2c.form;
 
 /**
  * Pojo to collect customers preferences

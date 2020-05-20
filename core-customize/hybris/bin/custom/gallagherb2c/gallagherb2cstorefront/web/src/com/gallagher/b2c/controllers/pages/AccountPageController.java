@@ -87,8 +87,8 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gallagher.b2c.controllers.ControllerConstants;
+import com.gallagher.b2c.form.B2CCustomerPreferenceForm;
 import com.gallagher.b2c.validators.GallagherEmailValidator;
-import com.gallagher.core.forms.B2CCustomerPreferenceForm;
 import com.gallagher.facades.customer.GallagherCustomerFacade;
 import com.gallagher.keycloak.outboundservices.service.GallagherKeycloakService;
 
