@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved. -->
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:aop="http://www.springframework.org/schema/aop"
@@ -84,8 +84,15 @@
 		<property name="typeCode" value="B2BCustomer" />
 		<property name="order" value="2147483647" />
 	</bean>
-
-	<bean id="gallagherCustomerInterceptor" class="com.gallagher.sapcustomerb2c.outbound.GallagherCustomerInterceptor"
+	
+	<!-- register the customer interceptor to trigger the sap consumer export -->
+	<bean id="gallagherSAPCustomerInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="gallagherSAPCustomerInterceptor" />
+		<property name="typeCode" value="Customer" />
+		<property name="order" value="5000" />
+	</bean>
+	
+	<bean id="gallagherSAPCustomerInterceptor" class="com.gallagher.sapcustomerb2c.outbound.GallagherSAPCustomerInterceptor"
 		parent="defaultCustomerInterceptor">
 	</bean>
 </beans>

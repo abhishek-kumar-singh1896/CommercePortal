@@ -73,6 +73,7 @@
 	<bean id="gallagherBuildPayloadRequestDecorator"
 		class="com.gallagher.outboundservices.decorator.impl.GallagherPayloadBuildingRequestDecorator"
 		parent="defaultBuildPayloadRequestDecorator">
+		<property name="integrationObjectService" ref="integrationObjectService"/>
 	</bean>
 
 </beans>
