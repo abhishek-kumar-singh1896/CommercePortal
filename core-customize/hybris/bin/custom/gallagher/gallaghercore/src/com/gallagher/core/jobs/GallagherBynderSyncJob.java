@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.time.DateUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -71,8 +72,9 @@ public class GallagherBynderSyncJob extends AbstractJobPerformable<GallagherBynd
 				final StringBuilder queryparamsBuilder = new StringBuilder(queryparams);
 				if (model.getLastStartTime() != null)
 				{
+					final Date lastStartTime = DateUtils.addMinutes(model.getLastStartTime(), -2);
 					queryparamsBuilder.append("&").append(GallagherCoreConstants.Bynder.DATE_MODIFIED).append("=")
-							.append(new SimpleDateFormat(GallagherCoreConstants.Bynder.DATE_FORMAT).format(model.getLastStartTime()));
+							.append(new SimpleDateFormat(GallagherCoreConstants.Bynder.DATE_FORMAT).format(lastStartTime));
 				}
 
 				final String url = baseurl + "?" + queryparamsBuilder.toString();

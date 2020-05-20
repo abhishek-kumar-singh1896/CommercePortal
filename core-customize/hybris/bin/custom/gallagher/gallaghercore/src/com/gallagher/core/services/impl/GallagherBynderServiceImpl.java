@@ -111,7 +111,7 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 			LOGGER.info("Creating container for " + gallagherBynderResponse.getId());
 			//create a new container and adding images
 
-			gallagherBynderResponse.getProperty_skus().add("G98131");
+			//gallagherBynderResponse.getProperty_skus().add("G98131");
 
 			//setting MediaContainerModel values
 			final LocaleProvider localeProvider = new StubLocaleProvider(Locale.ENGLISH);
