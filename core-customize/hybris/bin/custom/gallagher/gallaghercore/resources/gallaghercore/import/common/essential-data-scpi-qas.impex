@@ -149,7 +149,8 @@ INSERT_UPDATE IntegrationObjectItemAttribute ; integrationObjectItem(integration
                                              ; OutboundB2BCustomer:SAPCpiOutboundB2BContact                        ; keycloakGUID                 ; SAPCpiOutboundB2BContact:keycloakGUID               ;                                                            ; true                    
                                              ; OutboundB2BCustomer:SAPCpiOutboundB2BContact                        ; sapContactID                 ; SAPCpiOutboundB2BContact:contactId                  ;                                                            ; true                    
                                              ; OutboundB2BCustomer:SAPCpiOutboundB2BContact                        ; objectID                     ; SAPCpiOutboundB2BContact:objectID                   ;                                                            ; true                    
-                                             
+                                             ; OutboundB2BCustomer:SAPCpiOutboundB2BContact                        ; units                        ; SAPCpiOutboundB2BContact:units                      ;                                                            ;                         
+
 INSERT_UPDATE SAPHTTPDestination ; httpDestinationName[unique=true] ; targetURL                            ; userid            
                                  ; GGLSCPI                          ; https://www.gmail.com?sap-client=007 ; CommerceCloud_Dev 
                                  
