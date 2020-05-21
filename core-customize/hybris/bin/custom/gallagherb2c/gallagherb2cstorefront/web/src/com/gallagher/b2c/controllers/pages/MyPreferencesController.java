@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.gallagher.b2c.controllers.ControllerConstants;
-import com.gallagher.core.forms.B2CCustomerPreferenceForm;
+import com.gallagher.b2c.form.B2CCustomerPreferenceForm;
 
 
 /**
