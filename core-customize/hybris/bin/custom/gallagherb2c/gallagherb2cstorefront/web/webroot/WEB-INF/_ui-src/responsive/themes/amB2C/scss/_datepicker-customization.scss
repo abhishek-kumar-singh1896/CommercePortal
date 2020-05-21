@@ -88,3 +88,7 @@ table.ui-datepicker-calendar {
 .ui-datepicker td a {
 	padding: 6px 4px;
 }
+
+.ui-datepicker {
+	z-index:100 !important;
+}

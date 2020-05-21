@@ -41,3 +41,17 @@ body.page-registerProduct {
 		height: 320px!important;
 	}
 }
+
+@media only screen and (max-width: 767px) {
+  body.page-registerProduct {
+	#colorbox,
+	#cboxWrapper {
+		height: 375px!important;
+	}
+	
+	#cboxContent,
+	#cboxLoadedContent {
+		height: 370px!important;
+	}
+}
+}

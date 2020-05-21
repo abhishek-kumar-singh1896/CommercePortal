@@ -41,9 +41,14 @@
 <div class="visible-xs clearfix">
     <form:form action="${placeOrderUrl}" id="placeOrderForm1" modelAttribute="placeOrderForm" class="place-order-form col-xs-12">
         <div class="checkbox">
-            <label> <form:checkbox id="Terms1" path="termsCheck"  class="Terms-1-Condition-1"/>
+            <label>
+            <div class="checkbox-container">
+            <form:checkbox id="Terms1" path="termsCheck"  class="Terms-1-Condition-1"/>
+            </div>
+               <div class="checkbox-right-text">
                 <spring:theme var="termsAndConditionsHtml" code="checkout.summary.placeOrder.readTermsAndConditions" arguments="${fn:escapeXml(getTermsAndConditionsUrl)}" htmlEscape="false"/>
             	${ycommerce:sanitizeHTML(termsAndConditionsHtml)}
+            	</div>
             </label>
         </div>
 
