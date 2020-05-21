@@ -24,7 +24,7 @@ $lang=en
 UPDATE ClassificationClass;$classCatalogVersion;code[unique=true];name[lang=$lang]
 ;;controllers;Controllers
 ;;readers-and-terminals;Readers And Terminals
-;;credentials;Credentials
+#;;credentials;Credentials
 ;;starter-kits;Starter Kits
 ;;insulators;Insulators
 ;;fence-controllers;Fence Controllers

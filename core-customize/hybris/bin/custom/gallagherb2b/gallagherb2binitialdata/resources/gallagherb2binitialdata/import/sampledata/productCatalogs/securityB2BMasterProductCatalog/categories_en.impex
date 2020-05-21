@@ -33,7 +33,7 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
 ;readers-and-terminals;;Readers and Terminals
 ;security-kits;;Security Kits
 ;starter-kits;;Starter Kits
-;credentials;;Credentials
+#;credentials;;Credentials
 ;other-ach;;Other
 
 # Perimeter Hardware Categories
