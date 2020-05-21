@@ -4,9 +4,14 @@
 package com.gallagher.sap.sapcpicustomerexchangeb2b.outbound.services.impl;
 
 import de.hybris.platform.b2b.model.B2BCustomerModel;
+import de.hybris.platform.b2b.model.B2BUnitModel;
+import de.hybris.platform.core.model.security.PrincipalGroupModel;
 import de.hybris.platform.sap.sapcpiadapter.model.SAPCpiOutboundB2BContactModel;
 import de.hybris.platform.sap.sapcpiadapter.model.SAPCpiOutboundB2BCustomerModel;
 import de.hybris.platform.sap.sapcpicustomerexchangeb2b.outbound.services.impl.SapCpiB2BCustomerDefaultConversionService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -28,6 +33,25 @@ public class GallagherSCPIB2BCustomerConversionServiceImpl extends SapCpiB2BCust
 		sapCpiOutboundB2BContact.setKeycloakGUID(b2bCustomer.getKeycloakGUID());
 		sapCpiOutboundB2BContact.setContactId(b2bCustomer.getSapContactID());
 		sapCpiOutboundB2BContact.setObjectID(b2bCustomer.getObjectID());
+		sapCpiOutboundB2BContact.setUnits(getUnits(b2bCustomer));
+	}
+
+	/**
+	 * Returns the uids of all B2B Units
+	 *
+	 * @return b2bunit Ids
+	 */
+	private List<String> getUnits(final B2BCustomerModel b2bCustomer)
+	{
+		final List<String> groups = new ArrayList<String>();
+		for (final PrincipalGroupModel group : b2bCustomer.getGroups())
+		{
+			if (group instanceof B2BUnitModel && !group.equals(b2bCustomer.getDefaultB2BUnit()))
+			{
+				groups.add(group.getUid());
+			}
+		}
+		return groups;
 	}
 
 	/**
