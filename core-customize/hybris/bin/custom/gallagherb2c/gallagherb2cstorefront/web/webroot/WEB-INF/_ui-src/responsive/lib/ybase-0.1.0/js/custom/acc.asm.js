@@ -1,6 +1,11 @@
 ACC.productList = {
-	$(document).ready(function ()
-	{  		
+
+	_autoload: [
+	    "asm"
+	],
+	
+	asm: function(){
+		$(document).ready(function () {
 	    $("#_asmPersonifyForm input[name='customerName'], input[name='customerId']").hover(function() {
 				$("#asmHover").remove();
 				var item = ( $(this).attr('data-hover') )? jQuery.parseJSON($(this).attr('data-hover')) : $(this).data( "hover" );
@@ -26,5 +31,5 @@ ACC.productList = {
 	    );
 
 	});	
-		
+	}	
 }

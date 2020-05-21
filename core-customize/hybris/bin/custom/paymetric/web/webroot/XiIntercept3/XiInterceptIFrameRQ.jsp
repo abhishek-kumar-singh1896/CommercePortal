@@ -188,7 +188,10 @@ catch(Exception ex)
                         		msg += "\t" + e[index].definedName + ": " + e[index].message + "\n";
                         	}
                         	
-            	    		displayError("IFrame_OnLoad().onInvalidHandler()", msg);
+                        	var elmnt = document.getElementById("xieCommFrame");
+                        	elmnt.scrollIntoView();
+                        	
+            	    		/* displayError("IFrame_OnLoad().onInvalidHandler()", msg); */
                         },
 						onError: function (e)
                         {

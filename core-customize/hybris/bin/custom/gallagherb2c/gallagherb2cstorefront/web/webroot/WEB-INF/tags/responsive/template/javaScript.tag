@@ -88,7 +88,6 @@
 		<script src="${commonResourcePathHtml}/js/_autoload.js"></script>
 		<script src="${commonResourcePathHtml}/js/jquery.flexslider.js"></script>
 		<script src="${commonResourcePathHtml}/js/jquery-ui-1.12.1.min.js"></script>
-		<script src="${commonResourcePathHtml}/js/custom/acc.productListNav.js"></script>
 		<script src="${commonResourcePathHtml}/js/custom/acc.productList.js"></script>
 		<script src="${commonResourcePathHtml}/js/custom/acc.productDetails.js"></script>		
 		<script src="${commonResourcePathHtml}/js/custom/acc.asm.js"></script>
