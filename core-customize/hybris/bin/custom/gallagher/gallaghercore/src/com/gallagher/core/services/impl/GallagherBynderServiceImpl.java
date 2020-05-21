@@ -432,11 +432,15 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 		{
 			for (final String regioncode : regionCodeList)
 			{
-				if (!configurationService.getConfiguration().getString("bynder.commercebasestore." + catalogId + "." + regioncode)
-						.isEmpty())
+				final String baseStores = configurationService.getConfiguration()
+						.getString("bynder.commercebasestore." + catalogId + "." + regioncode);
+
+				if (StringUtils.isNotEmpty(baseStores))
 				{
-					baseStoreList.add(baseStoreService.getBaseStoreForUid(configurationService.getConfiguration()
-							.getString("bynder.commercebasestore." + catalogId + "." + regioncode)));
+					for (final String baseStore : baseStores.split(","))
+					{
+						baseStoreList.add(baseStoreService.getBaseStoreForUid(baseStore));
+					}
 				}
 			}
 		}
