@@ -124,7 +124,7 @@ UPDATE ClassificationAttribute	;code[unique=true];name[lang=$lang];$classSystemV
 								;product-type;Product Type
 								;product-weight;Product Weight
 								;product-width;Product Width
-								;property-size;Property Size
+								;property-size-acres;Property Size
 								;rechargeable;Rechargeable
 								;strainer-type;Strainer Type
 								;strength;Strength

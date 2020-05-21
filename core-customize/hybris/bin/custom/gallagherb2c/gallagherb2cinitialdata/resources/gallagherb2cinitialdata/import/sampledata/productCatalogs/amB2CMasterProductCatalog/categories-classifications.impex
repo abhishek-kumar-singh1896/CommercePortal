@@ -245,6 +245,7 @@ INSERT_UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true]
 ;;length-inch
 ;;primary-usage
 ;;wires
+;;property-size-acres
 
 INSERT_UPDATE ClassAttributeAssignment;$attribute;$class;position;$unit;attributeType(code[default=string]);multiValued[default=false];range[default=false];localized[default=true]
 ;energy-stored;energizers;1;Joules;number
@@ -264,7 +265,7 @@ INSERT_UPDATE ClassAttributeAssignment;$attribute;$class;position;$unit;attribut
 ;typical-fence-distance-gallagher-recommendation;energizers;15;miles;number
 ;clean-wire-fence-distance;energizers;16;miles;number
 ;product-weight-lbs;energizers;17;lbs;number
-;property-size;energizers;18;Acres;number
+;property-size-acres;energizers;18;Acres;number
 ;product-height-inch;energizers;19;inches;number
 ;product-width-inch;energizers;20;inches;number
 ;product-depth-inch;energizers;21;inches;number
