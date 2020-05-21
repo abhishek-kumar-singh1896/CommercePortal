@@ -1,5 +1,14 @@
 .register-product-out {
   margin-bottom: 40px;
+
+  .select-country {
+	.select2-container {
+  .select2-container--focus,
+  *:focus {
+    border: 1px solid $terciary;
+  }
+}
+}
 }
 .register-product-desc {
   p {
