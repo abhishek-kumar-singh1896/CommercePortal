@@ -1,7 +1,7 @@
 ACC.productDetails = {
 
 	_autoload: [
-	    "clickOnTab"
+		["clickOnTab",$('.product-detail-tab').length > 0]
 	],
 
 	clickOnTab: function(){
