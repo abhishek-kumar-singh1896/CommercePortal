@@ -26,7 +26,7 @@ UPDATE ClassificationClass;$classCatalogVersion;code[unique=true];name[lang=$lan
 ;;readers-and-terminals;Readers And Terminals
 #;;credentials;Credentials
 ;;starter-kits;Starter Kits
-;;insulators;Insulators
+#;;insulators;Insulators
 ;;fence-controllers;Fence Controllers
 ;;sensors;Sensors
 

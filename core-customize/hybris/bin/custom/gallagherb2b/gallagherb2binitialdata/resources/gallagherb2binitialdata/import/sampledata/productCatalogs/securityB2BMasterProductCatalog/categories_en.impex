@@ -39,7 +39,7 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
 # Perimeter Hardware Categories
 ;fence-controllers;;Fence Controllers
 ;sensors;;Sensors
-;insulators;;Insulators
+#;insulators;;Insulators
 ;other-ph;;Other
 
 

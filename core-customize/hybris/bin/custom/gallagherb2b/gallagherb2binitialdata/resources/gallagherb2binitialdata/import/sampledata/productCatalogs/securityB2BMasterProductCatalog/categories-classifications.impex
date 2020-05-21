@@ -28,7 +28,7 @@ INSERT_UPDATE ClassificationClass;$classCatalogVersion;code[unique=true];allowed
 ;;readers-and-terminals
 #;;credentials
 #;;starter-kits
-;;insulators
+#;;insulators
 ;;fence-controllers
 ;;sensors
 
@@ -90,7 +90,7 @@ INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories;;;;;;
 ;readers-and-terminals;readers-and-terminals
 ;credentials;credentials
 #;starter-kits;starter-kits
-;insulators;insulators
+#;insulators;insulators
 ;fence-controllers;fence-controllers
 ;sensors;sensors
 
@@ -116,9 +116,9 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 									;controllers;tcp/ip-protocol;8
 									;controllers;standards-compliance;9
 									
-									;insulators;material;1;
-									;insulators;tracking-distance;2;mm
-									;insulators;dimensions;3;mm
+#									;insulators;material;1;
+#									;insulators;tracking-distance;2;mm
+#									;insulators;dimensions;3;mm
 
 									;fence-controllers;fence-circuits;1;
 									;fence-controllers;pulse-rate;2;
