@@ -14,7 +14,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.gallagher.constants.GallagherPartnerCsvcolumns;
+import com.gallagher.constants.GallagherPartnerCsvColumns;
 import com.gallagher.constants.GallagherSalesConditionCsvColumns;
 
 
@@ -90,7 +90,7 @@ public class GallagherSCPIOmmOrderConversionService extends SapCpiOmmOrderConver
 			sapCpiOrderAddress.setStreet(mapAttribute(PartnerCsvColumns.STREET, row));
 			sapCpiOrderAddress.setTelNumber(mapAttribute(PartnerCsvColumns.TEL_NUMBER, row));
 			sapCpiOrderAddress.setTitleCode(mapAttribute(PartnerCsvColumns.TITLE, row));
-			sapCpiOrderAddress.setTaxJurCode(mapAttribute(GallagherPartnerCsvcolumns.TAX_JURISDICTION_CODE, row));
+			sapCpiOrderAddress.setTaxJurCode(mapAttribute(GallagherPartnerCsvColumns.TAX_JURISDICTION_CODE, row));
 
 			if (sapCpiOrderAddress.getDocumentAddressId() != null && !sapCpiOrderAddress.getDocumentAddressId().isEmpty())
 			{
