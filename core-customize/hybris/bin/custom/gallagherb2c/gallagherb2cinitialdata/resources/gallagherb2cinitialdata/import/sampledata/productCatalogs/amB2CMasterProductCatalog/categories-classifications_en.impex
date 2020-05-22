@@ -34,7 +34,7 @@ UPDATE ClassificationClass;code[unique=true];name[lang=$lang];$classCatalogVersi
 ;posts; Posts
 ;gallagher-westonfence; Gallagher Westonfence
 ;gallagher-mega-anchor; Gallagher Mega Anchor
-;gate-hardware-sgh; Gate Hardware
+;gate-hardware; Gate Hardware
 
 ;tapes-wires-and-braids-pf;"Tapes, Wires and Braids"
 ;reels-and-accessories-pf;"Reels and Accessories" 
@@ -65,6 +65,7 @@ UPDATE ClassificationClass;code[unique=true];name[lang=$lang];$classCatalogVersi
 ;additional-system-components;Additional System Components
 
 ;gates;Gates
+;gate-hardware-sgh; Gate Hardware
 
 ;trough-valves;Trough Valves
 ;lil-spring;Lil'Spring 

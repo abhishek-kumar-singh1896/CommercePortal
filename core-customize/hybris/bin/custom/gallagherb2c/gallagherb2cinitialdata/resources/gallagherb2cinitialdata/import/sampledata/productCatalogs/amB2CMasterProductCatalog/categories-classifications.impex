@@ -34,6 +34,7 @@ INSERT_UPDATE ClassificationClass;$classCatalogVersion;code[unique=true];allowed
 ;;posts
 ;;gallagher-westonfence
 ;;gallagher-mega-anchor
+;;gate-hardware
 
 ;;tapes-wires-and-braids-pf
 ;;reels-and-accessories-pf
@@ -106,6 +107,7 @@ INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
 ;posts;posts
 ;gallagher-westonfence;gallagher-westonfence
 ;gallagher-mega-anchor;gallagher-mega-anchor
+;gate-hardware;gate-hardware
 
 ;tapes-wires-and-braids-pf;tapes-wires-and-braids-pf
 ;reels-and-accessories-pf;reels-and-accessories-pf
@@ -369,6 +371,17 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;wire-and-cable;product-depth;10;mm;number
 ;wire-and-cable;product-weight;11;kg;number
 ;wire-and-cable;contents;12;;
+
+;gate-hardware;warranty;1;Years;number
+;gate-hardware;product-type;2;;
+;gate-hardware;length-of-shaft;3;mm;number
+;gate-hardware;diameter-of-pin;4;mm;number
+;gate-hardware;height-of-pin;5;mm;number
+;gate-hardware;product-height;6;mm;number
+;gate-hardware;product-width;7;mm;number
+;gate-hardware;product-depth;8;mm;number
+;gate-hardware;product-weight;9;kg;number
+;gate-hardware;contents;10;;
 
 ;clamps-and-joiners;warranty;1;Years;number
 ;clamps-and-joiners;product-height;2;mm;number
