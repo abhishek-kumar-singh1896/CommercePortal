@@ -14,7 +14,9 @@ import de.hybris.platform.acceleratorservices.config.SiteConfigService;
 import de.hybris.platform.commerceservices.externaltax.CalculateExternalTaxesStrategy;
 import de.hybris.platform.core.model.c2l.CurrencyModel;
 import de.hybris.platform.core.model.order.AbstractOrderModel;
+import de.hybris.platform.core.model.user.AddressModel;
 import de.hybris.platform.externaltax.ExternalTaxDocument;
+import de.hybris.platform.servicelayer.model.ModelService;
 import de.hybris.platform.util.TaxValue;
 
 import java.util.ArrayList;
@@ -43,13 +45,16 @@ public class GallagherCalculateExternalTaxesStrategy implements CalculateExterna
 	/**
 	 *
 	 */
-	private static final String GGL_ITEMTAX_CODE_PREFIX = "ggl.itemtax.code.prefix";
+	private static final String GGL_ITEMTAX_CODE = "ggl.itemtax.code";
 
 	@Resource(name = "gallagherSovosService")
 	private GallagherSovosService gallagherSovosService;
 
 	@Resource(name = "siteConfigService")
 	private SiteConfigService siteConfigService;
+
+	@Resource(name = "modelService")
+	private ModelService modelService;
 
 	/**
 	 * Gallagher implementation to return an external tax document.
@@ -82,15 +87,14 @@ public class GallagherCalculateExternalTaxesStrategy implements CalculateExterna
 				{
 					for (final GallagherSovosCalculatedTax calculatedTax : lienItem.getJurRslts())
 					{
-						final String taxCode = siteConfigService.getString(GGL_ITEMTAX_CODE_PREFIX, StringUtils.EMPTY)
-								.concat(calculatedTax.getTxJurUIDJurTp());
-						taxValues.add(getTaxValue(abstractOrder, taxCode, calculatedTax.getTxJurUIDTxwTJId(), calculatedTax.getTxRate(),
-								calculatedTax.getTxAmt()));
+						final String taxCode = siteConfigService.getString(GGL_ITEMTAX_CODE.concat(calculatedTax.getTxJurUIDJurTp()),
+								StringUtils.EMPTY);
+						taxValues.add(getTaxValue(abstractOrder, taxCode, calculatedTax.getTxRate(), calculatedTax.getTxAmt()));
 					}
 				}
 				else if (StringUtils.isNotEmpty(lienItem.getTxAmt()) && Double.valueOf(lienItem.getTxAmt()) == 0.0)
 				{
-					taxValues.add(getTaxValue(abstractOrder, "1", null, "0", lienItem.getTxAmt()));
+					taxValues.add(getTaxValue(abstractOrder, "1", "0", lienItem.getTxAmt()));
 
 				}
 
@@ -98,8 +102,12 @@ public class GallagherCalculateExternalTaxesStrategy implements CalculateExterna
 			}
 		}
 
+		updateAddressGeoCode(abstractOrder.getDeliveryAddress());
+		updateAddressGeoCode(abstractOrder.getPaymentAddress());
+
 		return externalDocument;
 	}
+
 
 	/**
 	 * Returns tax value for the data received from Sovos
@@ -116,21 +124,34 @@ public class GallagherCalculateExternalTaxesStrategy implements CalculateExterna
 	 *           total calculated tax for this entry
 	 * @return Tax Value
 	 */
-	private TaxValue getTaxValue(final AbstractOrderModel abstractOrder, final String taxCode, final String taxJurisdictionCode,
-			final String taxRate, final String amount)
+	private TaxValue getTaxValue(final AbstractOrderModel abstractOrder, final String taxCode, final String taxRate,
+			final String amount)
 	{
 		final CurrencyModel currency = abstractOrder.getCurrency();
 
 		final StringBuilder taxValueString = new StringBuilder();
 		taxValueString.append(taxCode);
-		if (StringUtils.isNotEmpty(taxJurisdictionCode))
-		{
-			taxValueString.append("_").append(taxJurisdictionCode);
-		}
-		taxValueString.append(" : ").append(taxRate).append(" = ").append(amount);
+		//		if (StringUtils.isNotEmpty(taxJurisdictionCode))
+		//		{
+		//			taxValueString.append("_").append(taxJurisdictionCode);
+		//		}
+		taxValueString.append(" : ").append(Double.valueOf(taxRate) * 100);
 		final Double taxAmount = Double.valueOf(amount);
 		final TaxValue taxValue = new TaxValue(taxValueString.toString(), taxAmount, true, taxAmount,
 				currency == null ? "USD" : currency.getIsocode());
 		return taxValue;
 	}
+
+	/**
+	 * Gallagher implementation to update geoCode of address
+	 */
+	private void updateAddressGeoCode(final AddressModel address)
+	{
+		if (address != null && StringUtils.isEmpty(address.getGeoCode()))
+		{
+			address.setGeoCode(gallagherSovosService.getGeoCode(address));
+			modelService.save(address);
+		}
+	}
+
 }

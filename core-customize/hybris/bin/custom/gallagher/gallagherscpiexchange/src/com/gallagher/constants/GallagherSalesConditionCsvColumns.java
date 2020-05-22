@@ -19,4 +19,7 @@ public class GallagherSalesConditionCsvColumns
 
 	@SuppressWarnings("javadoc")
 	public static final String TAX_JURISDICTION_CODE = "taxJurisdictionCode";
+
+	@SuppressWarnings("javadoc")
+	public static final String CONDITION_TOTAL_AMOUNT = "totalAmt";
 }

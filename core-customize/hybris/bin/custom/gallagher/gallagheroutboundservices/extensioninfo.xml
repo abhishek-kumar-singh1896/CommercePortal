@@ -12,6 +12,7 @@
 		<requires-extension name="acceleratorservices" />
 		<requires-extension name="basecommerce" />
 		<requires-extension name="sapcpiadapter" />
+		<requires-extension name="sapcustomerb2c"/>
 
 		<coremodule generated="true" manager="com.gallagher.outboundservices.jalo.GallagheroutboundservicesManager"
 			packageroot="com.gallagher.outboundservices" />

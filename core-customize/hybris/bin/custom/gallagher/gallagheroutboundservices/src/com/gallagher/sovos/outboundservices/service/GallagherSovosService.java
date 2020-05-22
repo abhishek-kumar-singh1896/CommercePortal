@@ -3,6 +3,8 @@
  */
 package com.gallagher.sovos.outboundservices.service;
 
+import de.hybris.platform.core.model.user.AddressModel;
+
 import com.gallagher.outboundservices.request.dto.GallagherSovosCalculateTaxRequest;
 import com.gallagher.outboundservices.response.dto.GallagherSovosCalculatedTaxResponse;
 
@@ -24,4 +26,12 @@ public interface GallagherSovosService
 	 */
 	GallagherSovosCalculatedTaxResponse calculateExternalTax(final GallagherSovosCalculateTaxRequest request);
 
+	/**
+	 * Return geoCode as Json Response
+	 *
+	 * @param AddressModel
+	 *
+	 * @return String
+	 */
+	String getGeoCode(final AddressModel address);
 }

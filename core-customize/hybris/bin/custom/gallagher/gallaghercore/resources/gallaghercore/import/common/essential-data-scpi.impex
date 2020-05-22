@@ -26,7 +26,7 @@ $b2bCustomerVersion = v=1
 #******************#                 
 #***  Order URL ***#                 
 #******************#                 
-$orderUrl = https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com/gw/odata/SAP/ZGGL-REPLICATE-ORDERS-FROM-SAP-COMMERCE-CLOUD-TO-SAP-ERP
+$orderUrl = https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com/gw/odata/SAP/ZGGL-REPLICATE-ORDERS-FROM-COMMERCE-CLOUD-TO-SAP-ERP
 $orderVersion = v=1                  
                                      
 #*************************#          
@@ -168,4 +168,8 @@ INSERT_UPDATE SAPConfiguration ; core_name[unique=true] ; baseStores(uid)   ; sa
                                ; securityB2BNZ          ; securityB2BNZ     ;                             ;                           ;                             ;                               ;                    ; true                       ;                                         ;                                           ;                                            
                                ; securityB2BAU          ; securityB2BAU     ;                             ;                           ;                             ;                               ;                    ; true                       ;                                         ;                                           ;                                            
                                ; securityB2BGlobal      ; securityB2BGlobal ;                             ;                           ;                             ;                               ;                    ; true                       ;                                         ;                                           ;                                            
+                               
+INSERT_UPDATE IntegrationObjectItemAttribute; integrationObjectItem(integrationObject(code), code)[unique = true]; attributeName[unique = true]; attributeDescriptor(enclosingType(code), qualifier); returnIntegrationObjectItem(integrationObject(code), code); unique[default = false]
+; OutboundOMMOrderOMSOrder:SAPCpiOutboundPriceComponent ; totalAmt                      ; SAPCpiOutboundPriceComponent:totalAmt             ;                                                       ;
+; OutboundOMMOrderOMSOrder:SAPCpiOutboundAddress        ; taxJurCode                    ; SAPCpiOutboundAddress: taxJurCode                  ;                                                       ;
                                

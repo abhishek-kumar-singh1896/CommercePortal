@@ -6,6 +6,11 @@
 
 	<!-- SapCpiOrderPriceComponent -->
 	<bean class="de.hybris.platform.sap.sapcpiadapter.data.SapCpiOrderPriceComponent">
-		<property name="taxJurisdictionCode" type="String" />
+		<property name="totalAmt" type="String" />
 	</bean>
+	
+	
+	<bean class="de.hybris.platform.sap.sapcpiadapter.data.SapCpiOrderAddress">
+        <property name="taxJurCode" type="String"/>
+   </bean>
 </beans>

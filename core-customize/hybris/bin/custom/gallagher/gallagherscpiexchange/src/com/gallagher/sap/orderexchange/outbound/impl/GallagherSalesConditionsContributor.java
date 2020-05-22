@@ -40,16 +40,16 @@ public class GallagherSalesConditionsContributor extends DefaultSalesConditionsC
 			if (next.getValue() > 0)
 			{
 				final Map<String, Object> row = new HashMap<>();
+				final String[] taxCodeArray = next.getCode().split(":");
 				row.put(OrderCsvColumns.ORDER_ID, order.getCode());
 				row.put(SalesConditionCsvColumns.CONDITION_ENTRY_NUMBER, entry.getEntryNumber());
-				final String[] taxCondArray = next.getCode().split(":")[0].trim().split("_");
-				row.put(SalesConditionCsvColumns.CONDITION_CODE, taxCondArray[0]);
-				if (taxCondArray.length == 2)
+				row.put(SalesConditionCsvColumns.CONDITION_CODE, taxCodeArray[0].trim());
+				if (taxCodeArray.length >= 2)
 				{
-					row.put(GallagherSalesConditionCsvColumns.TAX_JURISDICTION_CODE, taxCondArray[1]);
+					row.put(SalesConditionCsvColumns.CONDITION_VALUE, taxCodeArray[1].trim());
 				}
-				row.put(SalesConditionCsvColumns.CONDITION_VALUE, next.getValue());
 				row.put(SalesConditionCsvColumns.CONDITION_COUNTER, getConditionCounterTax());
+				row.put(GallagherSalesConditionCsvColumns.CONDITION_TOTAL_AMOUNT, next.getValue());
 
 				if (next.isAbsolute())
 				{
@@ -70,6 +70,26 @@ public class GallagherSalesConditionsContributor extends DefaultSalesConditionsC
 				//break; // Consider multiple taxes for order entry
 			}
 		}
+	}
+
+	@Override
+	protected void createGrossPriceRow(final OrderModel order, final List<Map<String, Object>> result,
+			final AbstractOrderEntryModel entry)
+	{
+		final Map<String, Object> row = new HashMap<>();
+		row.put(OrderCsvColumns.ORDER_ID, order.getCode());
+		row.put(SalesConditionCsvColumns.CONDITION_ENTRY_NUMBER, entry.getEntryNumber());
+		row.put(SalesConditionCsvColumns.CONDITION_CODE, getGrossPrice());
+		row.put(SalesConditionCsvColumns.CONDITION_VALUE, entry.getBasePrice());
+		row.put(SalesConditionCsvColumns.CONDITION_UNIT_CODE, entry.getUnit().getCode());
+		row.put(SalesConditionCsvColumns.CONDITION_PRICE_QUANTITY, entry.getProduct().getPriceQuantity());
+		row.put(SalesConditionCsvColumns.CONDITION_CURRENCY_ISO_CODE, order.getCurrency().getIsocode());
+		row.put(SalesConditionCsvColumns.ABSOLUTE, Boolean.TRUE);
+		row.put(SalesConditionCsvColumns.CONDITION_COUNTER, getConditionCounterGrossPrice());
+		row.put(GallagherSalesConditionCsvColumns.CONDITION_TOTAL_AMOUNT, entry.getTotalPrice());
+		getBatchIdAttributes().forEach(row::putIfAbsent);
+		row.put("dh_batchId", order.getCode());
+		result.add(row);
 	}
 
 }

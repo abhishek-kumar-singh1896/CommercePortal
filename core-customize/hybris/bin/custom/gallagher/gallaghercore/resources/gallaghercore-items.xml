@@ -343,6 +343,16 @@
 				</attribute>
 			</attributes>
 		</itemtype>
+		
+		<itemtype code="Address" autocreate="false" generate="false">
+			<description>Extending Address type geoCode attribute.</description>
+			<attributes>
+				<attribute qualifier="geoCode" type="java.lang.String">
+					<description></description>
+					<persistence type="property"/>
+				</attribute>
+			</attributes>
+		</itemtype>
 
 		<typegroup name="cms">
 

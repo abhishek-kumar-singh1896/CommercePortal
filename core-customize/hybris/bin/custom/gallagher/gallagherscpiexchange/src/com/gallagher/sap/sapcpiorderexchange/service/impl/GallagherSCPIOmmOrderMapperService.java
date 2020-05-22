@@ -1,6 +1,8 @@
 package com.gallagher.sap.sapcpiorderexchange.service.impl;
 
+import de.hybris.platform.sap.sapcpiadapter.data.SapCpiOrderAddress;
 import de.hybris.platform.sap.sapcpiadapter.data.SapCpiOrderPriceComponent;
+import de.hybris.platform.sap.sapcpiadapter.model.SAPCpiOutboundAddressModel;
 import de.hybris.platform.sap.sapcpiadapter.model.SAPCpiOutboundPriceComponentModel;
 import de.hybris.platform.sap.sapcpiorderexchange.service.impl.SapCpiOmmOrderMapperService;
 
@@ -37,7 +39,7 @@ public class GallagherSCPIOmmOrderMapperService extends SapCpiOmmOrderMapperServ
 			sapCpiOutboundPriceComponent.setUnit(price.getUnit());
 			sapCpiOutboundPriceComponent.setAbsolute(price.getAbsolute());
 			sapCpiOutboundPriceComponent.setConditionCode(price.getConditionCode());
-			sapCpiOutboundPriceComponent.setTaxJurisdictionCode(price.getTaxJurisdictionCode());
+			sapCpiOutboundPriceComponent.setTotalAmt(price.getTotalAmt());
 			sapCpiOutboundPriceComponent.setConditionCounter(price.getConditionCounter());
 			sapCpiOutboundPriceComponent.setCurrencyIsoCode(price.getCurrencyIsoCode());
 			sapCpiOutboundPriceComponent.setPriceQuantity(price.getPriceQuantity());
@@ -47,6 +49,46 @@ public class GallagherSCPIOmmOrderMapperService extends SapCpiOmmOrderMapperServ
 		});
 
 		return new HashSet<>(sapCpiOutboundPriceComponents);
+
+	}
+
+	@Override
+	protected Set<SAPCpiOutboundAddressModel> mapOrderAddresses(final List<SapCpiOrderAddress> sapCpiOrderAddresses)
+	{
+
+		final List<SAPCpiOutboundAddressModel> sapCpiOutboundAddresses = new ArrayList<>();
+
+		sapCpiOrderAddresses.forEach(address -> {
+
+			final SAPCpiOutboundAddressModel sapCpiOutboundAddress = new SAPCpiOutboundAddressModel();
+			sapCpiOutboundAddress.setOrderId(address.getOrderId());
+			sapCpiOutboundAddress.setDocumentAddressId(address.getDocumentAddressId());
+			sapCpiOutboundAddress.setFirstName(address.getFirstName());
+			sapCpiOutboundAddress.setLastName(address.getLastName());
+			sapCpiOutboundAddress.setMiddleName(address.getMiddleName());
+			sapCpiOutboundAddress.setMiddleName2(address.getMiddleName2());
+			sapCpiOutboundAddress.setStreet(address.getStreet());
+			sapCpiOutboundAddress.setCity(address.getCity());
+			sapCpiOutboundAddress.setDistrict(address.getDistrict());
+			sapCpiOutboundAddress.setBuilding(address.getBuilding());
+			sapCpiOutboundAddress.setApartment(address.getApartment());
+			sapCpiOutboundAddress.setPobox(address.getPobox());
+			sapCpiOutboundAddress.setFaxNumber(address.getFaxNumber());
+			sapCpiOutboundAddress.setTitleCode(address.getTitleCode());
+			sapCpiOutboundAddress.setTelNumber(address.getTelNumber());
+			sapCpiOutboundAddress.setHouseNumber(address.getHouseNumber());
+			sapCpiOutboundAddress.setPostalCode(address.getPostalCode());
+			sapCpiOutboundAddress.setRegionIsoCode(address.getRegionIsoCode());
+			sapCpiOutboundAddress.setCountryIsoCode(address.getCountryIsoCode());
+			sapCpiOutboundAddress.setEmail(address.getEmail());
+			sapCpiOutboundAddress.setLanguageIsoCode(address.getLanguageIsoCode());
+			sapCpiOutboundAddress.setTaxJurCode(address.getTaxJurCode());
+
+			sapCpiOutboundAddresses.add(sapCpiOutboundAddress);
+
+		});
+
+		return new HashSet<>(sapCpiOutboundAddresses);
 
 	}
 }

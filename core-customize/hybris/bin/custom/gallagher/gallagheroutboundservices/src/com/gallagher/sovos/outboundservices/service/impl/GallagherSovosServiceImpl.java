@@ -3,6 +3,7 @@
  */
 package com.gallagher.sovos.outboundservices.service.impl;
 
+import de.hybris.platform.core.model.user.AddressModel;
 import de.hybris.platform.servicelayer.config.ConfigurationService;
 
 import java.security.InvalidKeyException;
@@ -33,7 +34,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.gallagher.outboundservices.request.dto.GallagherSovosCalculateTaxRequest;
+import com.gallagher.outboundservices.request.dto.GallagherSovosGeoCodeRequest;
 import com.gallagher.outboundservices.response.dto.GallagherSovosCalculatedTaxResponse;
+import com.gallagher.outboundservices.response.dto.GallagherSovosGeoCodeResponse;
+import com.gallagher.outboundservices.util.GallagherSovosGeoCodeUtil;
 import com.gallagher.sovos.outboundservices.service.GallagherSovosService;
 
 
@@ -70,33 +74,7 @@ public class GallagherSovosServiceImpl implements GallagherSovosService
 		request.setUsrname(username);
 		request.setPswrd(password);
 
-		final HttpHeaders headers = new HttpHeaders();
-		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-		headers.setContentType(MediaType.APPLICATION_JSON);
-
-		final TimeZone timeZone = TimeZone.getTimeZone("UTC");
-		final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
-		dateFormat.setTimeZone(timeZone);
-		final String dateISOString = dateFormat.format(new Date());
-
-		headers.set("Date", dateISOString);
-
-		try
-		{
-			final String input = HttpMethod.POST.toString() + MediaType.APPLICATION_JSON.toString() + dateISOString + restURL
-					+ username + password;
-			final SecretKeySpec signingKey = new SecretKeySpec(secretKey.getBytes(), "HmacSHA1");
-			final Mac mac = Mac.getInstance("HmacSHA1");
-			mac.init(signingKey);
-			final byte[] rawHmac = mac.doFinal(input.getBytes());
-			final String hmacDigest = new String(Base64.encodeBase64(rawHmac));
-
-			headers.set("Authorization", "TAX" + " " + username + ':' + hmacDigest);
-		}
-		catch (final NoSuchAlgorithmException | InvalidKeyException exception)
-		{
-			LOG.error("Exception occured while creating Sovos HMAC Signature.", exception);
-		}
+		final HttpHeaders headers = getHeaders(restURL, username, password, secretKey);
 
 		final HttpEntity<GallagherSovosCalculateTaxRequest> entity = new HttpEntity<>(request, headers);
 
@@ -109,6 +87,40 @@ public class GallagherSovosServiceImpl implements GallagherSovosService
 				HttpMethod.POST, entity, GallagherSovosCalculatedTaxResponse.class);
 		logResponse(result.getBody(), transactionId);
 		return result.getBody();
+	}
+
+
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getGeoCode(final AddressModel address)
+	{
+		final GallagherSovosGeoCodeRequest request = new GallagherSovosGeoCodeRequest();
+		GallagherSovosGeoCodeUtil.convert(address, request);
+
+		final RestTemplate restTemplate = new RestTemplate();
+		final String baseURL = configurationService.getConfiguration().getString("sovos.baseURL");
+		final String restURL = configurationService.getConfiguration().getString("sovos.geoCode.restURL");
+		final String username = configurationService.getConfiguration().getString("sovos.username");
+		final String password = configurationService.getConfiguration().getString("sovos.password");
+		final String secretKey = configurationService.getConfiguration().getString("sovos.secretKey");
+		final boolean oOCLmtInd = Boolean.FALSE;
+
+		request.setUsrname(username);
+		request.setPswrd(password);
+		request.setoOCLmtInd(oOCLmtInd);
+
+		final HttpHeaders headers = getHeaders(restURL, username, password, secretKey);
+
+		final HttpEntity<GallagherSovosGeoCodeRequest> entity = new HttpEntity<>(request, headers);
+
+		final UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(baseURL + restURL);
+
+		final ResponseEntity<GallagherSovosGeoCodeResponse> result = restTemplate.exchange(builder.build().encode().toUri(),
+				HttpMethod.POST, entity, GallagherSovosGeoCodeResponse.class);
+		return result.getBody().getGeoCd();
 	}
 
 	/**
@@ -173,7 +185,6 @@ public class GallagherSovosServiceImpl implements GallagherSovosService
 	}
 
 
-
 	/**
 	 * This method decides if the request should be logged.
 	 *
@@ -184,4 +195,38 @@ public class GallagherSovosServiceImpl implements GallagherSovosService
 		return configurationService.getConfiguration().getBoolean(ENABLE_SOVOS_LOGGING_KEY, false);
 	}
 
+	/**
+	 * create headers
+	 */
+	private HttpHeaders getHeaders(final String restURL, final String username, final String password, final String secretKey)
+	{
+		final HttpHeaders headers = new HttpHeaders();
+		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		headers.setContentType(MediaType.APPLICATION_JSON);
+
+		final TimeZone timeZone = TimeZone.getTimeZone("UTC");
+		final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
+		dateFormat.setTimeZone(timeZone);
+		final String dateISOString = dateFormat.format(new Date());
+
+		headers.set("Date", dateISOString);
+
+		try
+		{
+			final String input = HttpMethod.POST.toString() + MediaType.APPLICATION_JSON.toString() + dateISOString + restURL
+					+ username + password;
+			final SecretKeySpec signingKey = new SecretKeySpec(secretKey.getBytes(), "HmacSHA1");
+			final Mac mac = Mac.getInstance("HmacSHA1");
+			mac.init(signingKey);
+			final byte[] rawHmac = mac.doFinal(input.getBytes());
+			final String hmacDigest = new String(Base64.encodeBase64(rawHmac));
+
+			headers.set("Authorization", "TAX" + " " + username + ':' + hmacDigest);
+		}
+		catch (final NoSuchAlgorithmException | InvalidKeyException exception)
+		{
+			LOG.error("Exception occured while creating Sovos HMAC Signature.", exception);
+		}
+		return headers;
+	}
 }

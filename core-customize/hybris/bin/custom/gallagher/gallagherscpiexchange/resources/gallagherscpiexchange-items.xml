@@ -7,10 +7,18 @@
 	<itemtypes>
 		<itemtype code="SAPCpiOutboundPriceComponent" generate="false" autocreate="false">
 			<attributes>
-				<attribute qualifier="taxJurisdictionCode" type="java.lang.String">
+				<attribute qualifier="totalAmt" type="java.lang.String">
 					<persistence type="property" />
 				</attribute>
 			</attributes>
 		</itemtype>
+		<itemtype code="SAPCpiOutboundAddress" generate="false" autocreate="false">
+            <attributes>
+                <attribute qualifier="taxJurCode" type="java.lang.String">
+                	<persistence type="property"/>
+                </attribute>
+            </attributes>
+
+       </itemtype>
 	</itemtypes>
 </items>

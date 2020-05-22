@@ -76,4 +76,15 @@
 		<property name="integrationObjectService" ref="integrationObjectService"/>
 	</bean>
 
+	<!-- register an address interceptor to trigger the sap consumer export -->
+	<bean id="gallagherAddressInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="gallagherAddressInterceptor" />
+		<property name="typeCode" value="Address" />
+	</bean>
+
+	<bean id="gallagherAddressInterceptor" class="com.gallagher.outboundservices.interceptors.GallagherAddressInterceptor" autowire="byName">
+		<property name="baseStoreService" ref="baseStoreService" />
+		<property name="customerAddressReplicationUtilityService" ref="customerAddressReplicationUtilityService" />
+		<property name="gallagherSovosService" ref="gallagherSovosService"/>
+	</bean>
 </beans>

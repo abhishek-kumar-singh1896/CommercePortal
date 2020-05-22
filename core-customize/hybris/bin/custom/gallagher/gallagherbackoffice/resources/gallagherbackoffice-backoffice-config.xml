@@ -224,6 +224,16 @@
             </editorArea:tab>
         </editorArea:editorArea>
     </context>
+    
+	<context merge-by="type" type="Address" component="editor-area">
+		<editorArea:editorArea name="">
+			<editorArea:tab name="hmc.gallagher" position="3">
+				<editorArea:section name="hmc.section.gallagher">
+					<editorArea:attribute qualifier="geoCode" />
+				</editorArea:section>
+			</editorArea:tab>
+		</editorArea:editorArea>
+	</context>
 
 	<context merge-by="type" parent="CronJob" type="GallagherProductProcessingCronJob" component="editor-area">
 		<editorArea:editorArea name="">
