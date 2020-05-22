@@ -22,11 +22,11 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
 ;weighing-and-eid;;Weighing and EID 
 #;weighing-eid-and-animal-handling;;"Weighing, EID and Animal Handling"
 ;wireless-water-monitoring;;Wireless Water Monitoring 
-;steel-gates-and-hardware;;Steel Gates and Hardware 
+#;steel-gates-and-hardware;;Steel Gates and Hardware
 ;apps-and-software;;Apps and Software 
 ;automatic-watering;;Automatic Watering 
 ;stock-prods-main;;Stock Prods 
-#;promotions;;Promotions
+#;promotions;;WirelessWaterMonitoring_Nav3Promotions
 
 # 1.1 Sub Categories for 'electric-fencing'
 ;power;;Power
@@ -38,7 +38,7 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
 # 1.1.1 Sub Categories for 'power'
 ;mains-energizers;;Mains Energizers
 ;remotes-and-fence-testers;;Remotes and Fence Testers
-;power-system-accessories;;POWER SYSTEM ACCESSORIES
+;power-system-accessories;;Power System Accessories
 ;multi-powered-energizers;;Multi Powered Energizers
 ;battery-energizers;;Battery Energizers
 ;solar-energizers;;Solar Energizers
@@ -56,7 +56,7 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
 ;insulators;; Insulators
 ;offsets;; Offsets
 ;electric-gates;; Electric Gates
-;fence-tools-and-accessories;; FENCE TOOLS AND ACCESSORIES
+;fence-tools-and-accessories;; Fence Tools and Accesories
 ;clamps-and-joiners;; Clamps and Joiners 
 ;posts;; Posts
 ;irrigator-fence-crossing-system;;Irrigator Fence Crossing System 

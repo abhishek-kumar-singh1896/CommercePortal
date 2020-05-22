@@ -15,3 +15,55 @@ $lang=fr_CA
 INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=$lang]
 ;;registerProductPopupSubHeading;"Si ces dÃ©tails ne correspondent pas Ã  votre produit, veuillez contacter l'Ã©quipe du service client pour obtenir de l'aide. 
 Courriel:<a href='mailto:marketing.na@am.gallagher.com' target='_blank'> marketing.na@am.gallagher.com </a>| TÃ©lÃ©phone: 1-800-531-5908"
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
+;;PowerEnergisers_link1;"Systèmes D'Alimentation"
+;;PowerEnergisers_link2;"Électrificateurs à batterie/solaires"
+;;PowerEnergisers_link3;"Électrificateurs à batterie"
+;;PowerEnergisers_link4;"Électrificateurs solaires"
+;;PowerEnergisers_link5;"Panneaux solaires"
+;;PowerEnergisers_link8;"Piles"
+;;PowerEnergisers_link7;"Télécommandes et dispositifs d’essais de clôtures"
+;;PowerEnergisers_link11;"Mise à la terre"
+;;PowerEnergisers_link12;"Outils de gestion de l’alimentation"
+
+;;PermanentfencingWireandCable_link6;"Isolateurs"
+;;PermanentfencingWireandCable_link7;"Isolateurs de distancement"
+;;PermanentfencingWireandCable_link4;"Poteaux"
+;;PermanentfencingWireandCable_link5;"Tendeurs"
+;;PermanentfencingWireandCable_link3;"Pinces et raccords"
+;;PermanentfencingWireandCable_link11;"Outils et accessoires de clôture"
+;;PermanentfencingWireandCable_link13;"Barrières électriques"
+;;PermanentfencingWireandCable_link2;"Fils et câbles"
+
+;;PortablefencingTapesWiresBraids_nav_link1;"Moulinets"
+;;PortablefencingTapesWiresBraids_nav_link;"Tresses métalliques et rubans"
+;;PortablefencingTapesWiresBraids_nav_link2;"Poteaux - à boucle ouverte et à visser"
+;;PortablefencingTapesWiresBraids_nav_link4;"Trousses de clôture électrique"
+;;PortablefencingTapesWiresBraids_nav_link5;"Filet et fil maillé"
+
+;;WeighinEid_link1;"Balances et outils de collecte de données pour bétail"
+;;WeighinEid_link10;"Barres de pesée et accessoires"
+;;WeighinEid_link4;"Plateformes"
+;;WeighinEid_link8;"Lecteurs d’étiquette d’EID"
+;;WeighinEid_link2;"Accessoires"
+
+;;WWM_link10;"Réservoirs pour animaux domestiques"
+;;WWM_link11;"Accessoires"
+
+;;AllElectricFencingLink;"Clôture électrique"
+;;AllWeighingEIDLink;"Balances et outils de collecte de données pour bétail"
+;;AllWirelessWaterMonitoringLink;"Systèmes d’abreuvement pour bétail"
+;;AllAppsSoftwaresLink;"Logiciel"
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];title[lang=$lang];&nodeRef
+;PowerEnergisers_nav;;"Puissance";PowerEnergisers_nav
+;PermanentfencingWireandCable_nav;;"Clôtures permanentes";PermanentfencingWireandCable_nav
+;PortablefencingTapesWiresBraids_nav;;"Clôtures portatives";PortablefencingTapesWiresBraids_nav
+
+;AppSoftwareNode_Nav;;"Logiciel";AppSoftwareNode_Nav
+
+;WWMNode_Nav;;"Systèmes d’abreuvement pour bétail";WWMNode_Nav
+
+;WeighinEidNode_nav;;"Balances et outils de collecte de données pour bétail";WeighinEidNode_nav
+

@@ -467,7 +467,7 @@ INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique
 
 # CMS Footer Navigation Component
 UPDATE FooterNavigationComponent;$contentCV[unique=true];uid[unique=true];notice[lang=en][translator=de.hybris.platform.acceleratorservices.dataimport.batch.converter.CopyrightTranslator,dateFormat=yyyy]
-;;FooterNavigationComponent;"Copyright © {0} SAP SE or an SAP affiliate company. All rights reserved."
+#;;FooterNavigationComponent;"Copyright © {0} SAP SE or an SAP affiliate company. All rights reserved."
 
 ###### Gallagher Navigation Footer Component Refactor Start ######
 
@@ -529,6 +529,10 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 ;;PortablefencingTapesWiresBraids_nav_link3;"All-in-one Portable Fences"
 ;;PortablefencingTapesWiresBraids_nav_link4;"Electric Fence Kits"
 ;;PortablefencingTapesWiresBraids_nav_link5;"Netting"
+;;PortablefencingTapesWiresBraids_nav_link6;"Reels and Accessories"
+;;PortablefencingTapesWiresBraids_nav_link7;"Hi-Tensile Wire and Cable"
+;;PortablefencingTapesWiresBraids_nav_link8;"Tapes, Wires, Braids"
+;;PortablefencingTapesWiresBraids_nav_link9;"Posts - Pigtails and Tread-ins"
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
 ;;PermanentfencingWireandCable_link;"Gallagher Westonfence"
@@ -542,8 +546,10 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 ;;PermanentfencingWireandCable_link8;"Electric Gates"
 ;;PermanentfencingWireandCable_link9;"Irrigator Fence Crossing System"
 ;;PermanentfencingWireandCable_link10;"Pivot Irrigator System"
-;;PermanentfencingWireandCable_link11;"FENCE TOOLS AND ACCESSORIES"
+;;PermanentfencingWireandCable_link11;"Fence Tools and Accessories"
 ;;PermanentfencingWireandCable_link12;"Gate Hardware"
+;;PermanentfencingWireandCable_link13;"Gates"
+;;PermanentfencingWireandCable_link14;"Gate Hardware"
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
 ;;PowerEnergisers_link;"Mains Energizers"
@@ -556,15 +562,15 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 ;;PowerEnergisers_link7;"Remotes and Fence Testers"
 ;;PowerEnergisers_link8;"Batteries "
 ;;PowerEnergisers_link9;"Earthing "
-;;PowerEnergisers_link10;"POWER SYSTEM ACCESSORIES"
+;;PowerEnergisers_link10;"Power System Accessories"
 ;;PowerEnergisers_link11;"Grounding"
 ;;PowerEnergisers_link12;"Power Management Tools"
 
-INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
-;;FenceConductors_nav_link;"Reels and Accessories"
-;;FenceConductors_nav_link1;"Hi-Tensile Wire and Cable"
-;;FenceConductors_nav_link2;"Tapes, Wires, Braids"
-;;FenceConductors_nav_link3;"Posts - Pigtails and Tread-ins"
+#INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+#;;FenceConductors_nav_link;"Reels and Accessories"
+#;;FenceConductors_nav_link1;"Hi-Tensile Wire and Cable"
+#;;FenceConductors_nav_link2;"Tapes, Wires, Braids"
+#;;FenceConductors_nav_link3;"Posts - Pigtails and Tread-ins"
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
 ;;WeighinEid_link;"Weigh Scales and Data Collectors"
@@ -587,23 +593,33 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 ;;WWM_link2;"Antennae and Cables"
 ;;WWM_link3;"Additional System Components"
 
-INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
-;;AW_link;"Trough Valves"
-;;AW_link1;"Lil'Spring"
-;;AW_link2;"EQUIFount"
-;;AW_link3;"MiraFount"
-;;AW_link4;"E-Fount"
-;;AW_link5;"BIGSpring"
-;;AW_link6;"Pet Tanks"
-;;AW_link7;"Watering Accessories"
+;;WWM_link4;"Trough Valves"
+;;WWM_link5;"Lil'Spring"
+;;WWM_link6;"EQUIFount"
+;;WWM_link7;"MiraFount"
+;;WWM_link8;"E-Fount"
+;;WWM_link9;"BIGSpring"
+;;WWM_link10;"Pet Tanks"
+;;WWM_link11;"Watering Accessories"
+
+#INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+#;;AW_link;"Trough Valves"
+#;;AW_link1;"Lil'Spring"
+#;;AW_link2;"EQUIFount"
+#;;AW_link3;"MiraFount"
+#;;AW_link4;"E-Fount"
+#;;AW_link5;"BIGSpring"
+#;;AW_link6;"Pet Tanks"
+#;;AW_link7;"Watering Accessories"
+
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
 ;;AppsSoftware_link;"Livestock"
 ;;AppsSoftware_link1;"Fence"
 
-INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
-;;SGH_link;"Gates"
-;;SGH_link1;"Gate Hardware"
+#INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+#;;SGH_link;"Gates"
+#;;SGH_link1;"Gate Hardware"
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
 ;;SolutionLink;"Solutions"
@@ -670,6 +686,8 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 ;;PermanentfencingWireandCable_link114;"Offsets"
 ;;PermanentfencingWireandCable_link115;"Gates"
 ;;PermanentfencingWireandCable_link116;"Fence tools and accessories"
+;;PermanentfencingWireandCable_link117;"Gates"
+;;PermanentfencingWireandCable_link118;"Gate Hardware"
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
 ;;PortablefencingTapesWiresBraids_nav_link111;"Tapes, Wires, Braids"

@@ -20,10 +20,25 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 ;;WeighinEid_link;"Colectores de Datos y Pesaje de Ganado"
 ;;WeighinEid_link2;"Barras de carga y accesorios"
 ;;WeighinEid_link4;"Plataformas"
+;;WeighinEid_link6;"Apartadores"
 ;;WeighinEid_link8;"Lectores de etiquetas IDE"
 
 ;;WWM_link1;"Sistemas de Estanque Único"
+;;WWM_link2;"Antenas y Cable"
 ;;WWM_link3;"Componentes Adicionales del Sistema"
+
+;;PermanentfencingWireandCable_link2;"Alambres y Cables"
+;;PermanentfencingWireandCable_link3;"Abrazaderas y Conectores"
+;;PermanentfencingWireandCable_link4;"Postes"
+;;PermanentfencingWireandCable_link5;"Tensores"
+;;PermanentfencingWireandCable_link6;"Aisladores"
+;;PermanentfencingWireandCable_link7;"Desplazadores"
+;;PermanentfencingWireandCable_link8;"Portones eléctricos"
+
+;;PortablefencingTapesWiresBraids_nav_link;"Cintas, Cordones y Alambre"
+;;PortablefencingTapesWiresBraids_nav_link1;"Carretes y Accesorios"
+;;PortablefencingTapesWiresBraids_nav_link2;"Postes - Cola de Chancho y Estacas múltiples"
+;;PortablefencingTapesWiresBraids_nav_link3;"Cercos portátiles todo en uno"
 
 ;;AllElectricFencingLink;"Todas Cercado Eléctrico"
 ;;AllWeighingEIDLink;"Todas Pesaje e Identificación Electrónica"
@@ -42,6 +57,10 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];title[l
 ;PowerEnergisers_nav;;"Energia";PowerEnergisers_nav
 ;PermanentfencingWireandCable_nav;;"Cerco Permanente";PermanentfencingWireandCable_nav
 ;PortablefencingTapesWiresBraids_nav;;"Cerco Portátil";PortablefencingTapesWiresBraids_nav
+
+;WWMNode_Nav;;"Monitoreo Inalámbrico del Agua";WWMNode_Nav
+
+;WeighinEidNode_nav;;"Pesaje e Identificación Electrónica";WeighinEidNode_nav
 
 
 INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=$lang]

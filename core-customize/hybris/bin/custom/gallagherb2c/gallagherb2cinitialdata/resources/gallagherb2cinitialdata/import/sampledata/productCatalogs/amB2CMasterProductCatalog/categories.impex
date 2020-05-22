@@ -22,7 +22,7 @@ INSERT_UPDATE Category;code[unique=true];allowedPrincipals(uid)[default='custome
 ;wireless-water-monitoring
 ;automatic-watering
 ;apps-and-software
-;steel-gates-and-hardware
+#;steel-gates-and-hardware
 ;stock-prods-main
 #;promotions 
 
@@ -31,8 +31,9 @@ INSERT_UPDATE Category;code[unique=true];allowedPrincipals(uid)[default='custome
 ;permanent-fencing
 ;portable-fencing
 #;fence-construction
-;fence-conductors 
-
+;fence-conductors
+;gates
+;gate-hardware-sgh
 
 # 1.1.1 Sub Categories for 'power'
 ;mains-energizers
@@ -135,8 +136,8 @@ INSERT_UPDATE Category;code[unique=true];allowedPrincipals(uid)[default='custome
 
 
 # 1.6 Sub Categories for 'steel-gates-and-hardware'
-;gates
-;gate-hardware-sgh
+#;gates
+#;gate-hardware-sgh
 
  
 # 1.7 Sub Categories for 'stock-prods-main'
@@ -153,7 +154,7 @@ INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
 ;weighing-and-eid;animal-management
 #;weighing-eid-and-animal-handling;animal-management
 ;wireless-water-monitoring;animal-management
-;steel-gates-and-hardware;animal-management
+#;steel-gates-and-hardware;animal-management
 ;apps-and-software;animal-management
 ;automatic-watering;animal-management
 ;stock-prods-main;animal-management
@@ -164,6 +165,8 @@ INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
 ;portable-fencing;electric-fencing
 #;fence-construction;electric-fencing
 ;fence-conductors;electric-fencing
+;gates;electric-fencing
+;gate-hardware-sgh;electric-fencing
 
 ;mains-energizers;power
 ;remotes-and-fence-testers;power
@@ -237,9 +240,6 @@ INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
 ;one-tank-systems;wireless-water-monitoring
 ;antennae-and-cables;wireless-water-monitoring
 ;additional-system-components;wireless-water-monitoring
-
-;gates;steel-gates-and-hardware
-;gate-hardware-sgh;steel-gates-and-hardware
 
 ;livestock;apps-and-software
 ;fence;apps-and-software
