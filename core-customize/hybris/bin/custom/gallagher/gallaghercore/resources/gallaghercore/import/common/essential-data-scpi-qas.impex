@@ -150,7 +150,7 @@ INSERT_UPDATE IntegrationObjectItemAttribute ; integrationObjectItem(integration
                                              ; OutboundB2BCustomer:SAPCpiOutboundB2BContact                        ; sapContactID                 ; SAPCpiOutboundB2BContact:contactId                  ;                                                            ; true                    
                                              ; OutboundB2BCustomer:SAPCpiOutboundB2BContact                        ; objectID                     ; SAPCpiOutboundB2BContact:objectID                   ;                                                            ; true                    
                                              ; OutboundB2BCustomer:SAPCpiOutboundB2BContact                        ; units                        ; SAPCpiOutboundB2BContact:units                      ;                                                            ;                         
-
+                                             
 INSERT_UPDATE SAPHTTPDestination ; httpDestinationName[unique=true] ; targetURL                            ; userid            
                                  ; GGLSCPI                          ; https://www.gmail.com?sap-client=007 ; CommerceCloud_Dev 
                                  
@@ -169,3 +169,7 @@ INSERT_UPDATE SAPConfiguration ; core_name[unique=true] ; baseStores(uid)   ; sa
                                ; securityB2BAU          ; securityB2BAU     ;                             ;                           ;                             ;                               ;                    ; true                       ;                                         ;                                           ;                                            
                                ; securityB2BGlobal      ; securityB2BGlobal ;                             ;                           ;                             ;                               ;                    ; true                       ;                                         ;                                           ;                                            
                                
+INSERT_UPDATE IntegrationObjectItemAttribute ; integrationObjectItem(integrationObject(code), code)[unique = true] ; attributeName[unique = true] ; attributeDescriptor(enclosingType(code), qualifier) ; returnIntegrationObjectItem(integrationObject(code), code) ; unique[default = false] 
+                                             ; OutboundOMMOrderOMSOrder:SAPCpiOutboundPriceComponent               ; totalAmt                     ; SAPCpiOutboundPriceComponent:totalAmt               ;                                                            ;                         
+                                             ; OutboundOMMOrderOMSOrder:SAPCpiOutboundAddress                      ; taxJurCode                   ; SAPCpiOutboundAddress: taxJurCode                   ;                                                            ;                         
+                                             
