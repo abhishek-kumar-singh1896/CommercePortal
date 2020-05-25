@@ -548,18 +548,19 @@ public class ProductPageController extends AbstractPageController
 			final ProductData firstProduct = firstProduct1;
 			if (firstProduct.getClassifications() != null)
 			{
-				for (final ClassificationData classData : firstProduct.getClassifications())
+				for (int i = 0; i < productComparisonList.size(); i++)
 				{
-					final String classCode = classData.getCode();
-
-					final boolean addToCommonList = true;
-					//search through products
-					for (int i = 0; i < productComparisonList.size(); i++)
+					final ProductComparisonData comparisonData = new ProductComparisonData();
+					final Map<String, String> productAttrValueMap = new TreeMap<>();
+					final ProductData product = productComparisonList.get(i);
+					for (final ClassificationData classData : firstProduct.getClassifications())
 					{
-						final ProductComparisonData comparisonData = new ProductComparisonData();
-						final Map<String, String> productAttrValueMap = new TreeMap<>();
+						final String classCode = classData.getCode();
+
+						final boolean addToCommonList = true;
+						//search through products
 						boolean found = false;
-						final ProductData product = productComparisonList.get(i);
+
 						if (product.getClassifications() != null)
 						{
 							//search through class attr
@@ -597,10 +598,29 @@ public class ProductPageController extends AbstractPageController
 								}
 							}
 						}
-						comparisonData.setProductData(product);
-						comparisonData.setProductAttrValueMap(productAttrValueMap);
-						productComparisonDataList.add(comparisonData);
+						for (final FeatureData firstFd : classData.getFeatures())
+						{
+							String firstKeyValue = null;
+							if (StringUtils.isNotEmpty(firstFd.getName()))
+							{
+								firstKeyValue = firstFd.getName();
+							}
+							else
+							{
+								firstKeyValue = firstFd.getCode().substring(firstFd.getCode().lastIndexOf('.') + 1,
+										firstFd.getCode().length());
+							}
+							if (!productAttrValueMap.containsKey(firstKeyValue))
+							{
+								classFeatureCodes.add(firstKeyValue);
+								productAttrValueMap.put(firstKeyValue, "-");
+							}
+						}
+
 					}
+					comparisonData.setProductData(product);
+					comparisonData.setProductAttrValueMap(productAttrValueMap);
+					productComparisonDataList.add(comparisonData);
 				}
 			}
 		}
