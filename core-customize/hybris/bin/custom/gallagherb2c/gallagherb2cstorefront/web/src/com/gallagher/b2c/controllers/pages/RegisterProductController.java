@@ -41,6 +41,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gallagher.b2c.controllers.ControllerConstants;
@@ -101,8 +102,16 @@ public class RegisterProductController extends AbstractPageController
 		final ContentPageModel regProductsPage = getContentPageForLabelOrId(REG_PRODUCTS_PAGE);
 		storeCmsPageInModel(model, regProductsPage);
 		setUpMetaDataForContentPage(model, regProductsPage);
-		model.addAttribute("registeredProducts", gallagherRegisteredProductsFacade.getRegisteredProducts());
 		model.addAttribute(WebConstants.BREADCRUMBS_KEY, contentPageBreadcrumbBuilder.getBreadcrumbs(regProductsPage));
+		try
+		{
+			model.addAttribute("registeredProducts", gallagherRegisteredProductsFacade.getRegisteredProducts());
+		}
+		catch (final HttpClientErrorException httpErrorEx)
+		{
+			LOG.error("Error while fetching registered products", httpErrorEx);
+			GlobalMessages.addMessage(model, GlobalMessages.ERROR_MESSAGES_HOLDER, "registeredProduct.error.message.title", null);
+		}
 
 		return getViewForPage(model);
 	}
