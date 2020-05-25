@@ -16,7 +16,7 @@ $systemVersion=systemVersion(catalog(id[default='AMB2CClassification']),version[
 #
 # Localization en
 #
-$lang=en
+$lang=es_LA
 
 UPDATE ClassificationAttributeUnit;code[unique=true];$systemVersion;name[lang=$lang]
 ;Years;;años

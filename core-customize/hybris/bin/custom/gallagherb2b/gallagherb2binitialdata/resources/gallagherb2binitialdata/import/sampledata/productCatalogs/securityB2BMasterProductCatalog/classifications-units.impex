@@ -14,20 +14,20 @@
 $systemVersion=systemVersion(catalog(id[default='SecurityB2BClassification']),version[default='1.0'])
 
 INSERT_UPDATE ClassificationAttributeUnit;code[unique=true];symbol;unitType;name[lang=en];;;$systemVersion[unique=true]
-;mm;mm;mm;milimeter;
-;Vdc;Vdc;Vdc;Voltage DC;
-;mA;mA;mA;milliAmpere;
+;mm;mm;mm;mm;
+;Vdc;Vdc;Vdc;Vdc;
+;mA;mA;mA;mA;
 ;m;m;m;meter;
 ;ip-rating;IP Rating;ip-rating;IP rating;
 ;ik-rating;IK Rating;ik-rating;IK rating;
-;inches;inches;inches;Inches;
+;inches;inches;inches;inches;
 
-;J;J;J;Joules
+;J;J;J;J
 ;ohms;ohms;ohms;ohms
 ;V-Hz;V/Hz;V/Hz;V/Hz
-;W;W;W;Watt
-;cel;°C;°C;Celsius
-;fah;°F;°F;Fahrenheit
+;W;W;W;W
+;cel;°C;°C;°C
+;fah;°F;°F;°F
 ;AES;AES;AES;AES
-;km;km;km;kilometer
-;V;V;V;Volt
+;km;km;km;km
+;V;V;V;V
