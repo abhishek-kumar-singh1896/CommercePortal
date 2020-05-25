@@ -32,7 +32,7 @@
                         </c:choose>
                         <div class="variant-name">${fn:escapeXml(productMatrix[0].parentVariantCategory.name)}</div>
                         <%-- <c:choose> --%>
-                            <c:if test="${productMatrix[0].parentVariantCategory.hasImage}">
+<%--                             <c:if test="${productMatrix[0].parentVariantCategory.hasImage}"> --%>
                                 <ul class="variant-list">
                                     <c:forEach items="${productMatrix}" var="variantCategory">
                                       <li
@@ -63,7 +63,7 @@
                                         <c:set var="i" value="${i + 1}"/>
                                     </c:forEach>
                                 </ul>
-                            </c:if>
+<%--                             </c:if> --%>
                             <%-- <c:otherwise>
                                 <select id="priority${loop.index}" class="selectPriority form-control">
                                     <c:forEach items="${productMatrix}" var="variantCategory">
