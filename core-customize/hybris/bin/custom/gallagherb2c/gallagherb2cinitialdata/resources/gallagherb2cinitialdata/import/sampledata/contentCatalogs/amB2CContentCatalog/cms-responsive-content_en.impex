@@ -530,7 +530,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 ;;PortablefencingTapesWiresBraids_nav_link4;"Electric Fence Kits"
 ;;PortablefencingTapesWiresBraids_nav_link5;"Netting"
 ;;PortablefencingTapesWiresBraids_nav_link6;"Reels and Accessories"
-;;PortablefencingTapesWiresBraids_nav_link7;"Hi-Tensile Wire and Cable"
+#;;PortablefencingTapesWiresBraids_nav_link7;"Hi-Tensile Wire and Cable"
 ;;PortablefencingTapesWiresBraids_nav_link8;"Tapes, Wires, Braids"
 ;;PortablefencingTapesWiresBraids_nav_link9;"Posts - Pigtails and Tread-ins"
 
@@ -550,6 +550,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 ;;PermanentfencingWireandCable_link12;"Gate Hardware"
 ;;PermanentfencingWireandCable_link13;"Gates"
 ;;PermanentfencingWireandCable_link14;"Gate Hardware"
+;;PermanentfencingWireandCable_link15;"Hi-Tensile Wire and Cable"
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
 ;;PowerEnergisers_link;"Mains Energizers"

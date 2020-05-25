@@ -195,6 +195,7 @@ INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
 ;gallagher-mega-anchor;permanent-fencing
 ;pivot-irrigator-system;permanent-fencing
 ;gate-hardware;permanent-fencing
+;hi-tensile-wire-and-cable;permanent-fencing
 
 ;tapes-wires-and-braids-pf;portable-fencing
 ;reels-and-accessories-pf;portable-fencing
@@ -212,7 +213,7 @@ INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
 #;gates-and-gate-accessories;fence-construction 
 
 ;reels-and-accessories-fc;fence-conductors 
-;hi-tensile-wire-and-cable;fence-conductors
+#;hi-tensile-wire-and-cable;fence-conductors
 ;tapes-wires-and-braids-fc;fence-conductors
 ;posts-pigtails-and-treadins-fc;fence-conductors
 
