@@ -65,3 +65,29 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];title[l
 
 INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=$lang]
 ;;registerProductPopupSubHeading;"Si estas caracterÃ­sticas no concuerdan con tu producto, por favor contacta al Equipo de AtenciÃ³n al Cliente. Email:<a href='mailto:info@gallagher.cl' target='_blank'> info@gallagher.cl </a> | Fono: Â Â (+56) (64) 2 260402"
+
+
+UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
+                       ;;AboutSAPCommerceLink;"About SAP Commerce Cloud"
+                       ;;AgileCommerceBlogLink;"Agile Commerce Blog"
+                       ;;AllBrandsCategoryLink;"Animal Management"
+                       ;;ElectricFencingCategoryLink;"Electric Fencing"
+                       ;;DocumentationLink;"Documentation"
+                       ;;FAQLink;"FAQ"
+                       ;;FacebookLink;"Facebook"
+                       ;;HomepageNavLink;"Home"
+                       ;;TwitterLink;"Twitter"
+                       ;;VisitSAPLink;"Visit SAP"
+                       ;;ProductsFooterLink;"Products"
+                       ;;ElectricFencingFooterLink;"Cercado Eléctrico"
+                       ;;WeighingEIDFooterLink;"Pesaje e Identificación Electrónica"
+                       ;;WirelessMonitoringFooterLink;"Monitoreo Inalámbrico del Agua"
+                       ;;AppsSoftFooterLink;"Apps and Software"
+#;;SteelGatesHardwareFooterLink;"Steel Gates and Hardware"
+#;;FarmInfoToolsFooterLink;"Farm Information Tools"
+#;;StockProdsFooterLink;"Stock Prods"
+                       ;;AboutUsFooterLink;"About Us"
+                       ;;SupportFooterLink;"Support"
+                       ;;ContactFooterLink;"Contact Us"
+                       ;;NewsEventsFooterLink;"News & Events"
+                       ;;InnovationAwardsFooterLink;"Innovation & Awards"

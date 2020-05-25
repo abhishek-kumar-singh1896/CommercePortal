@@ -13,3 +13,38 @@ $lang=en_AU
 
 INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=$lang]
 ;;registerProductPopupSubHeading;"If these details do not match your product, please contact our Customer Service Team for assistance. Email:Â <a href='mailto:sales.au@am.gallagher.com' target='_blank'>sales.au@am.gallagher.com </a>| Toll Free: 1800 425 524"
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
+;;AllWeighingEIDLink;"Weighing, EID and Animal Handling"
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;title[lang=en];&nodeRef
+;WeighinEidNode_nav;;Weighin Eid Navigation WeighinEidNode_nav;"Weighing, EID and Animal Handling";WeighinEidNode_nav
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];title[lang=$lang];&nodeRef
+;WeighingEID_Nav;;"Weighing, EID and Animal Handling";WeiClôture électriqueghingEID_Nav
+
+
+UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
+;;AboutSAPCommerceLink;"About SAP Commerce Cloud"
+;;AgileCommerceBlogLink;"Agile Commerce Blog"
+;;AllBrandsCategoryLink;"Animal Management"
+;;ElectricFencingCategoryLink;"Electric Fencing"
+;;DocumentationLink;"Documentation"
+;;FAQLink;"FAQ"
+;;FacebookLink;"Facebook"
+;;HomepageNavLink;"Home"
+;;TwitterLink;"Twitter"
+;;VisitSAPLink;"Visit SAP"
+;;ProductsFooterLink;"Products"
+;;ElectricFencingFooterLink;"Electric Fencing"
+;;WeighingEIDFooterLink;"Weighing, EID and Animal Handling"
+;;WirelessMonitoringFooterLink;"Wireless Water Monitoring"
+;;AppsSoftFooterLink;"Apps and Software"
+#;;SteelGatesHardwareFooterLink;"Steel Gates and Hardware"
+#;;FarmInfoToolsFooterLink;"Farm Information Tools"
+#;;StockProdsFooterLink;"Stock Prods"
+;;AboutUsFooterLink;"About Us"
+;;SupportFooterLink;"Support"
+;;ContactFooterLink;"Contact Us"
+;;NewsEventsFooterLink;"News & Events"
+;;InnovationAwardsFooterLink;"Innovation & Awards"

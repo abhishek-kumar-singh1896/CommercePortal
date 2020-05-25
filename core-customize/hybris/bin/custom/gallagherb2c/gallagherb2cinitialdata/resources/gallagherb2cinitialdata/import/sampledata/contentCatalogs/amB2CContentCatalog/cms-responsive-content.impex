@@ -53,10 +53,27 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;FAQLink;FAQ Link;/faq;FAQLink;FAQLin;;;;
 ;;TermsAndConditionsLink;Terms and Conditions Link;/termsAndConditions;TermsAndConditionsLink;TermsAndConditionsLink;;;;
 ;;ProductsFooterLink;Products Footer Link;'/';ProductsFooterLink;ProductsFooterLink;;;
-;;ElectricFencingFooterLink;Electric Fencing Footer Link;'/';ElectricFencingFooterLink;ElectricFencingFooterLink;;;
-;;WeighingEIDFooterLink;Weighing and EID Footer Link;'/';WeighingEIDFooterLink;WeighingEIDFooterLink;;;
+
+;;ElectricFencingFooterLink;Electric Fencing;/electric-fencing/c/electric-fencing;ElectricFencingFooterLink;ElectricFencingFooterLink;;;
+;;ElectricFencingLATAMFooterLink;Cercado Eléctrico ;/electric-fencing/c/electric-fencing;ElectricFencingLATAMFooterLink;ElectricFencingLATAMFooterLink;;;
+;;ElectricFencingCAFRFooterLink;Clôture électrique;/electric-fencing/c/electric-fencing;ElectricFencingCAFRFooterLink;ElectricFencingCAFRFooterLink;;;
+
+;;WeighingEIDFooterLink;Weighing and EID;/weighing-and-eid/c/weighing-and-eid;WeighingEIDFooterLink;WeighingEIDFooterLink;;;
+;;WeighingEIDAUFooterLink;Weighing, EID and Animal Handling;/weighing-and-eid/c/weighing-and-eid;WeighingEIDAUFooterLink;WeighingEIDAUFooterLink;;;
+;;WeighingEIDCAFRFooterLink;Balances et outils de collecte de données pour bétail;/weighing-and-eid/c/weighing-and-eid;WeighingEIDCAFRFooterLink;WeighingEIDCAFRFooterLink;;;
+;;WeighingEIDLATAMFooterLink;Pesaje e Identificación Electrónica;/weighing-and-eid/c/weighing-and-eid;WeighingEIDLATAMFooterLink;WeighingEIDLATAMFooterLink;;;
+
+;;WirelessMonitoringFooterLink;Wireless Water monitoring;/wireless-water-monitoring/c/wireless-water-monitoring;WirelessMonitoringFooterLink;WirelessMonitoringFooterLink;;;
+;;WirelessMonitoringAUFooterLink;Wireless Water Monitoring;/wireless-water-monitoring/c/wireless-water-monitoring;WirelessMonitoringAUFooterLink;WirelessMonitoringAUFooterLink;;;
+;;WirelessMonitoringUSFooterLink;Automatic Watering;/wireless-water-monitoring/c/wireless-water-monitoring;WirelessMonitoringUSFooterLink;WirelessMonitoringUSFooterLink;;;
+;;WirelessMonitoringCAFooterLink;Systèmes d’abreuvement pour bétail;/wireless-water-monitoring/c/wireless-water-monitoring;WirelessMonitoringCAFooterLink;WirelessMonitoringCAFooterLink;;;
+;;WirelessMonitoringLATAMFooterLink;Monitoreo Inalámbrico del Agua;/wireless-water-monitoring/c/wireless-water-monitoring;WirelessMonitoringLATAMFooterLink;WirelessMonitoringLATAMFooterLink;;;
+
+;;AppsSoftFooterLink;Apps and Software;/apps-and-software/c/apps-and-software;AppsSoftFooterLink;AppsSoftFooterLink;;;
+;;AppsSoftCAFRFooterLink;Logiciel;/apps-and-software/c/apps-and-software;AppsSoftCAFRFooterLink;AppsSoftCAFRFooterLink;;;
+
+
 #;;SteelGatesHardwareFooterLink;Steel Gates and Hardware Footer Link;'/';SteelGatesHardwareFooterLink;SteelGatesHardwareFooterLink;;;
-;;WirelessMonitoringFooterLink;Wireless Water monitoring Footer Link;'/';WirelessMonitoringFooterLink;WirelessMonitoringFooterLink;;;
 #;;FarmInfoToolsFooterLink;Farm Information tools Footer Link;'/';FarmInfoToolsFooterLink;FarmInfoToolsFooterLink;;;
 #;;StockProdsFooterLink;Stock Prods Footer Link;'/';StockProdsFooterLink;StockProdsFooterLink;;;
 ;;AboutUsFooterLink;About Us Footer Link;'/';AboutUsFooterLink;AboutUsFooterLink;;;
@@ -195,7 +212,8 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;pa
 #;SAPCommerceNavNode;;SAP Commerce Cloud Pages;AMB2CNavNode;AboutSAPCommerceLink,FAQLink;SAPCommerceNavNode
 #;SAPCustomerExperienceNavNode;;SAP Customer Experience Pages;AMB2CNavNode;VisitSAPLink,ContactUsLink;SAPCustomerExperienceNavNode
 ;FollowUsNavNode;;Follow Us Pages;AMB2CNavNode;AgileCommerceBlogLink,LinkedInLink,FacebookLink,TwitterLink;FollowUsNavNode
-;SAPCommerceNavNode;;SAP Commerce Cloud Pages;AMB2CNavNode;ProductsFooterLink,ElectricFencingFooterLink,WeighingEIDFooterLink,WirelessMonitoringFooterLink,WirelessMonitoringCAFooterLink,AppsSoftFooterLink;SAPCommerceNavNode
+#;SAPCommerceNavNode;;SAP Commerce Cloud Pages;AMB2CNavNode;ProductsFooterLink,ElectricFencingFooterLink,ElectricFencingLATAMFooterLink,ElectricFencingCAFRFooterLink,WeighingEIDFooterLink,WeighingEIDAUFooterLink,WeighingEIDCAFRFooterLink,WeighingEIDLATAMFooterLink,WirelessMonitoringFooterLink,WirelessMonitoringAUFooterLink,WirelessMonitoringUSFooterLink,WirelessMonitoringCAFooterLink,WirelessMonitoringLATAMFooterLink,AppsSoftFooterLink,AppsSoftCAFRFooterLink;SAPCommerceNavNode
+;SAPCommerceNavNode;;SAP Commerce Cloud Pages;AMB2CNavNode;ProductsFooterLink,ElectricFencingFooterLink,WeighingEIDFooterLink,WirelessMonitoringFooterLink,AppsSoftFooterLink;SAPCommerceNavNode
 ;SAPCustomerExperienceNavNode;;SAP Customer Experience Pages;AMB2CNavNode;AboutUsFooterLink,SupportFooterLink,ContactFooterLink,NewsEventsFooterLink,InnovationAwardsFooterLink;SAPCustomerExperienceNavNode
 
 # Preview Image for use in the CMS Cockpit for special ContentPages
@@ -1174,9 +1192,27 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;pa
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
 ;ProductsFooterNode;;Products Footer Node;SAPCommerceNavNode;;ProductsFooterNode
+
 ;ElectricFencingFooterNode;;Electric Fencing Footer Node;SAPCommerceNavNode;;ElectricFencingFooterNode
+;ElectricFencingCAFRFooterNode;;Electric Fencing CAFR Footer Node;SAPCommerceNavNode;;ElectricFencingCAFRFooterNode
+;ElectricFencingLATAMFooterNode;;Electric Fencing LATAM Footer Node;SAPCommerceNavNode;;ElectricFencingLATAMFooterNode
+
 ;WeighingEIDFooterNode;;Weighing EID Footer Node;SAPCommerceNavNode;;WeighingEIDFooterNode
+;WeighingEIDAUFooterNode;;Weighing EID AU Footer Node;SAPCommerceNavNode;;WeighingEIDAUFooterNode
+;WeighingEIDCAFRFooterNode;;Weighing EID CAFR Footer Node;SAPCommerceNavNode;;WeighingEIDCAFRFooterNode
+;WeighingEIDLATAMFooterNode;;Weighing EID LATAM Footer Node;SAPCommerceNavNode;;WeighingEIDLATAMFooterNode
+
 ;WirelessWtaerMonitoringFooterNode;;Wireless Wtaer Monitoring Footer Node;SAPCommerceNavNode;;WirelessWtaerMonitoringFooterNode
+;WirelessWtaerMonitoringAUFooterNode;;Wireless Wtaer Monitoring AU Footer Node;SAPCommerceNavNode;;WirelessWtaerMonitoringAUFooterNode
+;WirelessWtaerMonitoringUSFooterNode;;Wireless Wtaer Monitoring US Footer Node;SAPCommerceNavNode;;WirelessWtaerMonitoringUSFooterNode
+;WirelessWataerMonitoringCAFooterNode;;Wireless Wtaer Monitoring CAFR Footer Node;SAPCommerceNavNode;;WirelessWataerMonitoringCAFooterNode
+;WirelessWtaerMonitoringLATAMFooterNode;;Wireless Wtaer Monitoring LATAM Footer Node;SAPCommerceNavNode;;WirelessWtaerMonitoringLATAMFooterNode
+
+;AppsSoftFooterNode;;Apps and Software Footer Node;SAPCommerceNavNode;;AppsSoftFooterNode
+;AppsSoftFooterCAFRNode;;Apps and Software CAFR Footer Node;SAPCommerceNavNode;;AppsSoftFooterCAFRNode
+
+
+
 #;SteelGatesHardwareFooterNode;;Steel Gates Hardware Footer Node;SAPCommerceNavNode;;SteelGatesHardwareFooterNode
 #;FarmInformationToolsFooterNode;;Farm Information Tools Footer Node;SAPCommerceNavNode;;FarmInformationToolsFooterNode
 #;StockProdsFooterNode;;Stock Prods Footer Node;SAPCommerceNavNode;;StockProdsFooterNode
@@ -1191,7 +1227,8 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&n
 #;SAPCommerceNavNode;;SAP Commerce Cloud Pages;SAPCommerceNavNode;AboutSAPCommerceNavNode,FAQNavNode
 #;SAPCustomerExperienceNavNode;;SAP Customer Experience Pages;SAPCustomerExperienceNavNode;AboutSAPCustomerExperienceNavNode,ContactUsNavNode
 #;FollowUsNavNode;;Follow Us Pages;FollowUsNavNode;AgileCommerceBlogNavNode,LinkedInNavNode,FacebookNavNode,TwitterNavNode
-;SAPCommerceNavNode;;SAP Commerce Cloud Pages;SAPCommerceNavNode;ProductsFooterNode,ElectricFencingFooterNode,WeighingEIDFooterNode,WirelessWtaerMonitoringFooterNode,WirelessWataerMonitoringCAFooterNode,AppsSoftFooterNode
+#;SAPCommerceNavNode;;SAP Commerce Cloud Pages;SAPCommerceNavNode;ProductsFooterNode,ElectricFencingFooterNode,ElectricFencingCAFRFooterNode,ElectricFencingLATAMFooterNode,WeighingEIDFooterNode,WeighingEIDAUFooterNode,WeighingEIDCAFRFooterNode,WeighingEIDLATAMFooterNode,WirelessWtaerMonitoringFooterNode,WirelessWtaerMonitoringAUFooterNode,WirelessWtaerMonitoringUSFooterNode,WirelessWataerMonitoringCAFooterNode,WirelessWtaerMonitoringLATAMFooterNode,AppsSoftFooterNode,AppsSoftFooterCAFRNode
+;SAPCommerceNavNode;;SAP Commerce Cloud Pages;SAPCommerceNavNode;ProductsFooterNode,ElectricFencingFooterNode,WeighingEIDFooterNode,WirelessWtaerMonitoringFooterNode,AppsSoftFooterNode
 ;SAPCustomerExperienceNavNode;;SAP Customer Experience Pages;SAPCustomerExperienceNavNode;AboutUsFooterNode,SupportFooterNode,ContactFooterNode,NewsEventsFooterNode,InnovationAwardsFooterNode
 
 # children of above navigation nodes #
@@ -1216,9 +1253,25 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 ;FacebookNavNodeEntry;;Facebook Navigation Node Entry;FacebookNavNode;FacebookLink;
 ;TwitterNavNodeEntry;;Twitter Navigation Node Entry;TwitterNavNode;TwitterLink;
 ;ProductsFooterNodeEntry;;Products Footer Node Entry;ProductsFooterNode;ProductsFooterLink;
+
+;ElectricFencingCAFRFooterNodeEntry;;Electric Fencing Footer CAFR Node Entry;ElectricFencingCAFRFooterNode;ElectricFencingCAFRFooterLink
+;ElectricFencingLATAMFooterNodeEntry;;Electric Fencing LATAM Footer Node Entry;ElectricFencingLATAMFooterNode;ElectricFencingLATAMFooterLink
 ;ElectricFencingFooterNodeEntry;;Electric Fencing Footer Node Entry;ElectricFencingFooterNode;ElectricFencingFooterLink
+
 ;WeighingEIDFooterNodeEntry;;Weighing EID Footer Node Entry;WeighingEIDFooterNode;WeighingEIDFooterLink
+;WeighingEIDAUFooterNodeEntry;;Weighing EID AU Footer Node Entry;WeighingEIDAUFooterNode;WeighingEIDAUFooterLink
+;WeighingEIDCAFRFooterNodeEntry;;Weighing EID CAFR Footer Node Entry;WeighingEIDCAFRFooterNode;WeighingEIDCAFRFooterLink
+;WeighingEIDLATAMFooterNodeEntry;;Weighing EID LATAM Footer Node Entry;WeighingEIDLATAMFooterNode;WeighingEIDLATAMFooterLink
+
 ;WirelessWtaerMonitoringFooterNodeEntry;;Wireless Wtaer Monitoring Footer Node Entry;WirelessWtaerMonitoringFooterNode;WirelessMonitoringFooterLink;
+;WirelessWtaerMonitoringAUFooterNodeEntry;;Wireless Wtaer Monitoring AU Footer Node Entry;WirelessWtaerMonitoringAUFooterNode;WirelessMonitoringAUFooterLink;
+;WirelessWtaerMonitoringUSFooterNodeEntry;;Wireless Wtaer Monitoring Footer US Node Entry;WirelessWtaerMonitoringUSFooterNode;WirelessMonitoringUSFooterLink;
+;WirelessWataerMonitoringCAFooterNodeEntry;;Wireless Wtaer Monitoring Footer Node Entry;WirelessWataerMonitoringCAFooterNode;WirelessMonitoringCAFooterLink;
+;WirelessWtaerMonitoringLATAMFooterNodeEntry;;Wireless Wtaer Monitoring LATAM Footer Node Entry;WirelessWtaerMonitoringLATAMFooterNode;WirelessMonitoringLATAMFooterLink;
+
+;AppsSoftFooterNodeEntry;;Apps and Software Footer Node Entry;AppsSoftFooterNode;AppsSoftFooterLink;
+;AppsSoftFooterCAFRNodeEntry;;Apps and Software CAFR Footer Node Entry;AppsSoftFooterCAFRNode;AppsSoftCAFRFooterLink;
+
 #;SteelGatesHardwareFooterNodeEntry;;Steel Gates Hardware Footer Node Entry;SteelGatesHardwareFooterNode;SteelGatesHardwareFooterLink
 #;FarmInformationToolsFooterNodeEntry;;Farm Information Tools Footer Node Entry;FarmInformationToolsFooterNode;FarmInfoToolsFooterLink
 #;StockProdsFooterNodeEntry;;Stock Prods Footer Node Entry;StockProdsFooterNode;StockProdsFooterLink
@@ -1347,8 +1400,8 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&n
 #;SAPCommerceNavNode;;SAP Commerce Cloud Pages;SAPCommerceNavNode;AboutSAPCommerceNavNode,FAQNavNode
 #;SAPCustomerExperienceNavNode;;SAP Customer Experience Pages;SAPCustomerExperienceNavNode;AboutSAPCustomerExperienceNavNode,ContactUsNavNode
 #;FollowUsNavNode;;Follow Us Pages;FollowUsNavNode;AgileCommerceBlogNavNode,LinkedInNavNode,FacebookNavNode,TwitterNavNode
+#;SAPCommerceNavNode;;SAP Commerce Cloud Pages;SAPCommerceNavNode; ProductsFooterNode,ElectricFencingFooterNode,ElectricFencingCAFRFooterNode,ElectricFencingLATAMFooterNode,WeighingEIDFooterNode,WeighingEIDAUFooterNode,WeighingEIDCAFRFooterNode,WeighingEIDLATAMFooterNode,WirelessWtaerMonitoringFooterNode,WirelessWtaerMonitoringAUFooterNode,WirelessWtaerMonitoringUSFooterNode,WirelessWataerMonitoringCAFooterNode,WirelessWtaerMonitoringLATAMFooterNode,AppsSoftFooterNode,AppsSoftFooterCAFRNode
 ;SAPCommerceNavNode;;SAP Commerce Cloud Pages;SAPCommerceNavNode; ProductsFooterNode,ElectricFencingFooterNode,WeighingEIDFooterNode,WirelessWtaerMonitoringFooterNode,AppsSoftFooterNode
-;SAPCustomerExperienceNavNode;;SAP Customer Experience Pages; SAPCustomerExperienceNavNode; AboutUsFooterNode,SupportFooterNode,ContactFooterNode,NewsEventsFooterNode,InnovationAwardsFooterNode
 
 # children of above navigation nodes #
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef);
@@ -1368,9 +1421,25 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 ;AboutSAPCustomerExperienceNavNodeEntry;;About Hybris Navigation Node Entry;AboutSAPCustomerExperienceNavNode;VisitSAPLink;
 ;ContactUsNavNodeEntry;;Contact Us Navigation Node Entry;ContactUsNavNode;ContactUsLink;
 ;ProductsFooterNodeEntry;;Products Footer Node Entry;ProductsFooterNode;ProductsFooterLink;
+
+;ElectricFencingCAFRFooterNodeEntry;;Electric Fencing Footer CAFR Node Entry;ElectricFencingCAFRFooterNode;ElectricFencingCAFRFooterLink
+;ElectricFencingLATAMFooterNodeEntry;;Electric Fencing LATAM Footer Node Entry;ElectricFencingLATAMFooterNode;ElectricFencingLATAMFooterLink
 ;ElectricFencingFooterNodeEntry;;Electric Fencing Footer Node Entry;ElectricFencingFooterNode;ElectricFencingFooterLink
+
 ;WeighingEIDFooterNodeEntry;;Weighing EID Footer Node Entry;WeighingEIDFooterNode;WeighingEIDFooterLink
+;WeighingEIDAUFooterNodeEntry;;Weighing EID AU Footer Node Entry;WeighingEIDAUFooterNode;WeighingEIDAUFooterLink
+;WeighingEIDCAFRFooterNodeEntry;;Weighing EID CAFR Footer Node Entry;WeighingEIDCAFRFooterNode;WeighingEIDCAFRFooterLink
+;WeighingEIDLATAMFooterNodeEntry;;Weighing EID LATAM Footer Node Entry;WeighingEIDLATAMFooterNode;WeighingEIDLATAMFooterLink
+
 ;WirelessWtaerMonitoringFooterNodeEntry;;Wireless Wtaer Monitoring Footer Node Entry;WirelessWtaerMonitoringFooterNode;WirelessMonitoringFooterLink;
+;WirelessWtaerMonitoringAUFooterNodeEntry;;Wireless Wtaer Monitoring AU Footer Node Entry;WirelessWtaerMonitoringAUFooterNode;WirelessMonitoringAUFooterLink;
+;WirelessWtaerMonitoringUSFooterNodeEntry;;Wireless Wtaer Monitoring Footer US Node Entry;WirelessWtaerMonitoringUSFooterNode;WirelessMonitoringUSFooterLink;
+;WirelessWataerMonitoringCAFooterNodeEntry;;Wireless Wtaer Monitoring Footer Node Entry;WirelessWataerMonitoringCAFooterNode;WirelessMonitoringCAFooterLink;
+;WirelessWtaerMonitoringLATAMFooterNodeEntry;;Wireless Wtaer Monitoring LATAM Footer Node Entry;WirelessWtaerMonitoringLATAMFooterNode;WirelessMonitoringLATAMFooterLink;
+
+;AppsSoftFooterNodeEntry;;Apps and Software Footer Node Entry;AppsSoftFooterNode;AppsSoftFooterLink;
+;AppsSoftFooterCAFRNodeEntry;;Apps and Software CAFR Footer Node Entry;AppsSoftFooterCAFRNode;AppsSoftCAFRFooterLink;
+
 #;SteelGatesHardwareFooterNodeEntry;;Steel Gates Hardware Footer Node Entry;SteelGatesHardwareFooterNode;SteelGatesHardwareFooterLink
 #;FarmInformationToolsFooterNodeEntry;;Farm Information Tools Footer Node Entry;FarmInformationToolsFooterNode;FarmInfoToolsFooterLink
 #;StockProdsFooterNodeEntry;;Stock Prods Footer Node Entry;StockProdsFooterNode;StockProdsFooterLink
@@ -1402,10 +1471,27 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;FAQLink;FAQ Link;/faq;FAQLink;FAQLin;;;;
 ;;TermsAndConditionsLink;Terms and Conditions Link;/termsAndConditions;TermsAndConditionsLink;TermsAndConditionsLink;;;;
 ;;ProductsFooterLink;Products Footer Link;'/';ProductsFooterLink;ProductsFooterLink;;;
-;;ElectricFencingFooterLink;Electric Fencing Footer Link;'/';ElectricFencingFooterLink;ElectricFencingFooterLink;;;
-;;WeighingEIDFooterLink;Weighing and EID Footer Link;'/';WeighingEIDFooterLink;WeighingEIDFooterLink;;;
+
+;;ElectricFencingFooterLink;Electric Fencing;/electric-fencing/c/electric-fencing;ElectricFencingFooterLink;ElectricFencingFooterLink;;;
+;;ElectricFencingLATAMFooterLink;Cercado Eléctrico ;/electric-fencing/c/electric-fencing;ElectricFencingLATAMFooterLink;ElectricFencingLATAMFooterLink;;;
+;;ElectricFencingCAFRFooterLink;Clôture électrique;/electric-fencing/c/electric-fencing;ElectricFencingCAFRFooterLink;ElectricFencingCAFRFooterLink;;;
+
+;;WeighingEIDFooterLink;Weighing and EID;/weighing-and-eid/c/weighing-and-eid;WeighingEIDFooterLink;WeighingEIDFooterLink;;;
+;;WeighingEIDAUFooterLink;Weighing, EID and Animal Handling;/weighing-and-eid/c/weighing-and-eid;WeighingEIDAUFooterLink;WeighingEIDAUFooterLink;;;
+;;WeighingEIDCAFRFooterLink;Balances et outils de collecte de données pour bétail;/weighing-and-eid/c/weighing-and-eid;WeighingEIDCAFRFooterLink;WeighingEIDCAFRFooterLink;;;
+;;WeighingEIDLATAMFooterLink;Pesaje e Identificación Electrónica;/weighing-and-eid/c/weighing-and-eid;WeighingEIDLATAMFooterLink;WeighingEIDLATAMFooterLink;;;
+
+;;WirelessMonitoringFooterLink;Wireless Water monitoring;/wireless-water-monitoring/c/wireless-water-monitoring;WirelessMonitoringFooterLink;WirelessMonitoringFooterLink;;;
+;;WirelessMonitoringAUFooterLink;Wireless Water Monitoring;/wireless-water-monitoring/c/wireless-water-monitoring;WirelessMonitoringAUFooterLink;WirelessMonitoringAUFooterLink;;;
+;;WirelessMonitoringUSFooterLink;Automatic Watering;/wireless-water-monitoring/c/wireless-water-monitoring;WirelessMonitoringUSFooterLink;WirelessMonitoringUSFooterLink;;;
+;;WirelessMonitoringCAFooterLink;Systèmes d’abreuvement pour bétail;/wireless-water-monitoring/c/wireless-water-monitoring;WirelessMonitoringCAFooterLink;WirelessMonitoringCAFooterLink;;;
+;;WirelessMonitoringLATAMFooterLink;Monitoreo Inalámbrico del Agua;/wireless-water-monitoring/c/wireless-water-monitoring;WirelessMonitoringLATAMFooterLink;WirelessMonitoringLATAMFooterLink;;;
+
+;;AppsSoftFooterLink;Apps and Software;/apps-and-software/c/apps-and-software;AppsSoftFooterLink;AppsSoftFooterLink;;;
+;;AppsSoftCAFRFooterLink;Logiciel;/apps-and-software/c/apps-and-software;AppsSoftCAFRFooterLink;AppsSoftCAFRFooterLink;;;
+
+
 #;;SteelGatesHardwareFooterLink;Steel Gates and Hardware Footer Link;'/';SteelGatesHardwareFooterLink;SteelGatesHardwareFooterLink;;;
-;;WirelessMonitoringFooterLink;Wireless Water monitoring Footer Link;'/';WirelessMonitoringFooterLink;WirelessMonitoringFooterLink;;;
 #;;FarmInfoToolsFooterLink;Farm Information tools Footer Link;'/';FarmInfoToolsFooterLink;FarmInfoToolsFooterLink;;;
 #;;StockProdsFooterLink;Stock Prods Footer Link;'/';StockProdsFooterLink;StockProdsFooterLink;;;
 ;;AboutUsFooterLink;About Us Footer Link;'/';AboutUsFooterLink;AboutUsFooterLink;;;
@@ -1883,7 +1969,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;PortablefencingTapesWiresBraids_nav_link5;Electric fencing Portablefencing_nav_link5;/Animal-Management/electric-fencing/portable-fencing/c/netting;netting;;;
 
 ;;PortablefencingTapesWiresBraids_nav_link6;Electric fencing Portablefencing_nav_link6;/Animal-Management/electric-fencing/fence-conductors/c/reels-and-accessories;reels-and-accessories-fc;;;
-;;PortablefencingTapesWiresBraids_nav_link7;Electric fencing Portablefencing_nav_link7;/Animal-Management/electric-fencing/fence-conductors/c/hi-tensile-wire-and-cable;hi-tensile-wire-and-cable;;;
+#;;PortablefencingTapesWiresBraids_nav_link7;Electric fencing Portablefencing_nav_link7;/Animal-Management/electric-fencing/fence-conductors/c/hi-tensile-wire-and-cable;hi-tensile-wire-and-cable;;;
 ;;PortablefencingTapesWiresBraids_nav_link8;Electric fencing Portablefencing_nav_link8;/Animal-Management/electric-fencing/fence-conductors/c/tapes-wires-and-braids;tapes-wires-and-braids-fc;;;
 ;;PortablefencingTapesWiresBraids_nav_link9;Electric fencing Portablefencing_nav_link9;/Animal-Management/electric-fencing/fence-conductors/c/posts-pigtails-and-treadins;posts-pigtails-and-treadins-fc;;;
 
@@ -1896,7 +1982,7 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 ;PortablefencingTapesWiresBraids_navEntry5;;Power Navigation PortablefencingTapesWiresBraids_nav Entry5;PortablefencingTapesWiresBraids_nav;PortablefencingTapesWiresBraids_nav_link5
 
 ;PortablefencingTapesWiresBraids_navEntry6;;Power Navigation PortablefencingTapesWiresBraids_nav Entry6;PortablefencingTapesWiresBraids_nav;PortablefencingTapesWiresBraids_nav_link6
-;PortablefencingTapesWiresBraids_navEntry7;;Power Navigation PortablefencingTapesWiresBraids_nav Entry7;PortablefencingTapesWiresBraids_nav;PortablefencingTapesWiresBraids_nav_link7
+#;PortablefencingTapesWiresBraids_navEntry7;;Power Navigation PortablefencingTapesWiresBraids_nav Entry7;PortablefencingTapesWiresBraids_nav;PortablefencingTapesWiresBraids_nav_link7
 ;PortablefencingTapesWiresBraids_navEntry8;;Power Navigation PortablefencingTapesWiresBraids_nav Entry8;PortablefencingTapesWiresBraids_nav;PortablefencingTapesWiresBraids_nav_link8
 ;PortablefencingTapesWiresBraids_navEntry9;;Power Navigation PortablefencingTapesWiresBraids_nav Entry93;PortablefencingTapesWiresBraids_nav;PortablefencingTapesWiresBraids_nav_link9
 
@@ -1916,6 +2002,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;PermanentfencingWireandCable_link12;Electric fencing Permanentfencing_link12;/Animal-Management/electric-fencing/permanent-fencing/c/gate-hardware;gate-hardware;;;
 ;;PermanentfencingWireandCable_link13;Electric fencing Permanentfencing_link13;/Animal-Management/steel-gates-and-hardware/c/gates;gates;;;
 ;;PermanentfencingWireandCable_link14;Electric fencing Permanentfencing_link14;/Animal-Management/steel-gates-and-hardware/c/gate-hardware;gate-hardware-sgh;;;
+;;PermanentfencingWireandCable_link15;Electric fencing Permanentfencing_link15;/Animal-Management/electric-fencing/fence-conductors/c/hi-tensile-wire-and-cable;hi-tensile-wire-and-cable;;;
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
 ;PermanentfencingWireandCable_navEntry;;Power Navigation PermanentfencingWireandCable_nav Entry;PermanentfencingWireandCable_nav;PermanentfencingWireandCable_link
@@ -1933,6 +2020,7 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 ;PermanentfencingWireandCable_navEntry12;;Power Navigation PermanentfencingWireandCable_nav Entry12;PermanentfencingWireandCable_nav;PermanentfencingWireandCable_link12
 ;PermanentfencingWireandCable_navEntry13;;Power Navigation PermanentfencingWireandCable_nav Entry13;PermanentfencingWireandCable_nav;PermanentfencingWireandCable_link13
 ;PermanentfencingWireandCable_navEntry14;;Power Navigation PermanentfencingWireandCable_nav Entry14;PermanentfencingWireandCable_nav;PermanentfencingWireandCable_link14
+;PermanentfencingWireandCable_navEntry15;;Power Navigation PermanentfencingWireandCable_nav Entry15;PermanentfencingWireandCable_nav;PermanentfencingWireandCable_link15
 
 #INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
 #;;FenceConductors_nav_link;Electric fencing FenceConductors_nav_link;/Animal-Management/electric-fencing/fence-conductors/c/reels-and-accessories;reels-and-accessories-fc;;;
@@ -1963,7 +2051,7 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 ;WeighinEidNode_navEntry6;; WeighinEidNode_nav Entry6;WeighinEidNode_nav;WeighinEid_link6
 ;WeighinEidNode_navEntry7;; WeighinEidNode_nav Entry7;WeighinEidNode_nav;WeighinEid_link7
 ;WeighinEidNode_navEntry8;; WeighinEidNode_nav Entry8;WeighinEidNode_nav;WeighinEid_link8
-;WeighinEidNode_navEntry9;; WeighinEidNode_nav Entry9;WeighinEidNode_nav;WeighinEid_link9
+#;WeighinEidNode_navEntry9;; WeighinEidNode_nav Entry9;WeighinEidNode_nav;WeighinEid_link9
 ;WeighinEidNode_navEntry10;; WeighinEidNode_nav Entry10;WeighinEidNode_nav;WeighinEid_link10
 ;WeighinEidNode_navEntry11;; WeighinEidNode_nav Entry11;WeighinEidNode_nav;WeighinEid_link11
 ;WeighinEidNode_navEntry12;; WeighinEidNode_nav Entry12;WeighinEidNode_nav;WeighinEid_link12
@@ -1979,7 +2067,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;WeighinEid_link6; Weighing And Eid link6;/Animal-Management/weighing-and-eid/c/drafters;drafters;;;
 ;;WeighinEid_link7; Weighing And Eid link7;/Animal-Management/weighing-and-eid/c/handlers-and-drafters;handlers-and-drafters;;;
 ;;WeighinEid_link8; Weighing And Eid link8;/Animal-Management/weighing-and-eid/c/eid-tag-readers;eid-tag-readers;;;
-;;WeighinEid_link9; Weighing And Eid link9;/Animal-Management/weighing-and-eid/c/eid-tag-readers-and-barcoding-equipment;eid-tag-readers-and-barcoding-equipment;;;
+#;;WeighinEid_link9; Weighing And Eid link9;/Animal-Management/weighing-and-eid/c/eid-tag-readers-and-barcoding-equipment;eid-tag-readers-and-barcoding-equipment;;;
 ;;WeighinEid_link10; Weighing And Eid link10;/Animal-Management/weighing-and-eid/c/weighing-accessories;weighing-accessories;;;
 ;;WeighinEid_link11; Weighing And Eid link11;/Animal-Management/weighing-and-eid/c/stock-prods;stock-prods;;;
 ;;WeighinEid_link12; Weighing And Eid link12;/Animal-Management/weighing-and-eid/c/stock-prods-and-accessories;stock-prods-and-accessories;;;
@@ -2052,9 +2140,13 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;ti
 ;AppSoftwareNode_Nav;;Apps and Software Navigation Node Nav;"Apps and Software";AppSoftwareNode_Nav
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
-;AppsSoftwareNode_NavEntry;;AppSoftwareNode_Nav Entry;AppSoftwareNode_Nav;AppsSoftware_link
+#;AppsSoftwareNode_NavEntry;;AppSoftwareNode_Nav Entry;AppSoftwareNode_Nav;AppsSoftware_link
 ;AppsSoftwareNode_NavEntry1;;AppSoftwareNode_Nav Entry1;AppSoftwareNode_Nav;AppsSoftware_link1
 
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+#;;AppsSoftware_link;Apps and Software link;/Animal-Management/apps-and-software/c/livestock;livestock;;;
+;;AppsSoftware_link1;Apps and Software link1;/Animal-Management/apps-and-software/c/fence;fence;;;
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
 ;;AppsSoftware_link;Apps and Software link;/Animal-Management/apps-and-software/c/livestock;livestock;;;
@@ -2128,7 +2220,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;AllElectricFencingLink;All Electric Fencing Link;/Animal-Management/c/electric-fencing;electric-fencing;;
 ;;AllWeighingEIDLink;All Weighing EID Link;/Animal-Management/c/weighing-and-eid;weighing-and-eid;;
 ;;AllWirelessWaterMonitoringLink;All Wireless Water Monitoring;/Animal-Management/c/wireless-water-monitoring;wireless-water-monitoring;;
-;;AllSteelGatesandHardwareLink;All Steel Gates and Hardware Link;/Animal-Management/c/steel-gates-and-hardware;steel-gates-and-hardware;;
+;;AllSteelGatesandHardwareLink;All Steel Gates and Hardware Link;/Animal-Management/c/gate-hardware;gate-hardware;;
 ;;AllFarminformationtoolsLink;All Farm information tools Link;http://www.wiki.com/;;;
 #;;AllAutomaticWateringLink;All Automatic Watering Link;/Animal-Management/c/automatic-watering;automatic-watering;;
 ;;AllAppsSoftwaresLink;All Apps Softwares Link;/Animal-Management/c/apps-and-software;apps-and-software
@@ -2335,12 +2427,26 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents
 #CMSLinkComponents
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkname;name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];$category;$product;
 ;;ProductsFooterLink;Products;Products Footer Link;'/';ProductsFooterLink;ProductsFooterLink;;;
-;;ElectricFencingFooterLink;Electric Fencing;Electric Fencing Footer Link;/Electric-Fencing/c/electric-fencing;ElectricFencingFooterLink;ElectricFencingFooterLink;;;
-;;WeighingEIDFooterLink;Weighing and EID;Weighing and EID Footer Link;/Weighing-and-EID/c/weighing-and-eid;WeighingEIDFooterLink;WeighingEIDFooterLink;;;
+
+;;ElectricFencingFooterLink;Electric Fencing;/electric-fencing/c/electric-fencing;ElectricFencingFooterLink;ElectricFencingFooterLink;;;
+;;ElectricFencingLATAMFooterLink;Cercado Eléctrico ;/electric-fencing/c/electric-fencing;ElectricFencingLATAMFooterLink;ElectricFencingLATAMFooterLink;;;
+;;ElectricFencingCAFRFooterLink;Clôture électrique;/electric-fencing/c/electric-fencing;ElectricFencingCAFRFooterLink;ElectricFencingCAFRFooterLink;;;
+
+;;WeighingEIDFooterLink;Weighing and EID;/weighing-and-eid/c/weighing-and-eid;WeighingEIDFooterLink;WeighingEIDFooterLink;;;
+;;WeighingEIDAUFooterLink;Weighing, EID and Animal Handling;/weighing-and-eid/c/weighing-and-eid;WeighingEIDAUFooterLink;WeighingEIDAUFooterLink;;;
+;;WeighingEIDCAFRFooterLink;Balances et outils de collecte de données pour bétail;/weighing-and-eid/c/weighing-and-eid;WeighingEIDCAFRFooterLink;WeighingEIDCAFRFooterLink;;;
+;;WeighingEIDLATAMFooterLink;Pesaje e Identificación Electrónica;/weighing-and-eid/c/weighing-and-eid;WeighingEIDLATAMFooterLink;WeighingEIDLATAMFooterLink;;;
+
+;;WirelessMonitoringFooterLink;Wireless Water monitoring;/wireless-water-monitoring/c/wireless-water-monitoring;WirelessMonitoringFooterLink;WirelessMonitoringFooterLink;;;
+;;WirelessMonitoringAUFooterLink;Wireless Water Monitoring;/wireless-water-monitoring/c/wireless-water-monitoring;WirelessMonitoringAUFooterLink;WirelessMonitoringAUFooterLink;;;
+;;WirelessMonitoringUSFooterLink;Automatic Watering;/wireless-water-monitoring/c/wireless-water-monitoring;WirelessMonitoringUSFooterLink;WirelessMonitoringUSFooterLink;;;
+;;WirelessMonitoringCAFooterLink;Systèmes d’abreuvement pour bétail;/wireless-water-monitoring/c/wireless-water-monitoring;WirelessMonitoringCAFooterLink;WirelessMonitoringCAFooterLink;;;
+;;WirelessMonitoringLATAMFooterLink;Monitoreo Inalámbrico del Agua;/wireless-water-monitoring/c/wireless-water-monitoring;WirelessMonitoringLATAMFooterLink;WirelessMonitoringLATAMFooterLink;;;
+
+;;AppsSoftFooterLink;Apps and Software;/apps-and-software/c/apps-and-software;AppsSoftFooterLink;AppsSoftFooterLink;;;
+;;AppsSoftCAFRFooterLink;Logiciel;/apps-and-software/c/apps-and-software;AppsSoftCAFRFooterLink;AppsSoftCAFRFooterLink;;;
+
 #;;SteelGatesHardwareFooterLink;Steel Gates and Hardware;Steel Gates and Hardware Footer Link;'/';SteelGatesHardwareFooterLink;SteelGatesHardwareFooterLink;;;
-;;WirelessMonitoringFooterLink;Wireless Water Monitoring;Wireless Water monitoring Footer Link;/Wireless-Water-Monitoring/c/wireless-water-monitoring;WirelessMonitoringFooterLink;WirelessMonitoringFooterLink;;;
-;;AppsSoftFooterLink;Apps and Software;Apps and Software Footer Link;/Wireless-Water-Monitoring/c/wireless-water-monitoring;AppsSoftFooterLink;AppsSoftFooterLink;;;
-;;WirelessMonitoringCAFooterLink;Automatic Watering;Automatic Watering (CA) Footer Link;/Wireless-Water-Monitoring/c/wireless-water-monitoring;WirelessMonitoringCAFooterLink;WirelessMonitoringCAFooterLink;;;
 #;;FarmInfoToolsFooterLink;Farm Information Tools;Farm Information tools Footer Link;'/';FarmInfoToolsFooterLink;FarmInfoToolsFooterLink;;;
 #;;StockProdsFooterLink;Stock Prods;Stock Prods Footer Link;'/';StockProdsFooterLink;StockProdsFooterLink;;;
 ;;AboutUsFooterLink;About Us;About Us Footer Link;'/';AboutUsFooterLink;AboutUsFooterLink;;;
@@ -2353,10 +2459,25 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkname
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
 ;ProductsFooterNodeEntry;;Products Footer Node Entry;ProductsFooterNode;ProductsFooterLink;
+
+;ElectricFencingCAFRFooterNodeEntry;;Electric Fencing Footer CAFR Node Entry;ElectricFencingCAFRFooterNode;ElectricFencingCAFRFooterLink
+;ElectricFencingLATAMFooterNodeEntry;;Electric Fencing LATAM Footer Node Entry;ElectricFencingLATAMFooterNode;ElectricFencingLATAMFooterLink
 ;ElectricFencingFooterNodeEntry;;Electric Fencing Footer Node Entry;ElectricFencingFooterNode;ElectricFencingFooterLink
+
 ;WeighingEIDFooterNodeEntry;;Weighing EID Footer Node Entry;WeighingEIDFooterNode;WeighingEIDFooterLink
+;WeighingEIDAUFooterNodeEntry;;Weighing EID AU Footer Node Entry;WeighingEIDAUFooterNode;WeighingEIDAUFooterLink
+;WeighingEIDCAFRFooterNodeEntry;;Weighing EID CAFR Footer Node Entry;WeighingEIDCAFRFooterNode;WeighingEIDCAFRFooterLink
+;WeighingEIDLATAMFooterNodeEntry;;Weighing EID LATAM Footer Node Entry;WeighingEIDLATAMFooterNode;WeighingEIDLATAMFooterLink
+
 ;WirelessWtaerMonitoringFooterNodeEntry;;Wireless Wtaer Monitoring Footer Node Entry;WirelessWtaerMonitoringFooterNode;WirelessMonitoringFooterLink;
+;WirelessWtaerMonitoringAUFooterNodeEntry;;Wireless Wtaer Monitoring AU Footer Node Entry;WirelessWtaerMonitoringAUFooterNode;WirelessMonitoringAUFooterLink;
+;WirelessWtaerMonitoringUSFooterNodeEntry;;Wireless Wtaer Monitoring Footer US Node Entry;WirelessWtaerMonitoringUSFooterNode;WirelessMonitoringUSFooterLink;
+;WirelessWataerMonitoringCAFooterNodeEntry;;Wireless Wtaer Monitoring Footer Node Entry;WirelessWataerMonitoringCAFooterNode;WirelessMonitoringCAFooterLink;
+;WirelessWtaerMonitoringLATAMFooterNodeEntry;;Wireless Wtaer Monitoring LATAM Footer Node Entry;WirelessWtaerMonitoringLATAMFooterNode;WirelessMonitoringLATAMFooterLink;
+
 ;AppsSoftFooterNodeEntry;;Apps and Software Footer Node Entry;AppsSoftFooterNode;AppsSoftFooterLink;
+;AppsSoftFooterCAFRNodeEntry;;Apps and Software CAFR Footer Node Entry;AppsSoftFooterCAFRNode;AppsSoftCAFRFooterLink;
+
 ;WirelessWataerMonitoringCAFooterNodeEntry;;Automatic Watering Footer Node Entry;WirelessWataerMonitoringCAFooterNode;WirelessMonitoringCAFooterLink;
 #;SteelGatesHardwareFooterNodeEntry;;Steel Gates Hardware Footer Node Entry;SteelGatesHardwareFooterNode;SteelGatesHardwareFooterLink
 #;FarmInformationToolsFooterNodeEntry;;Farm Information Tools Footer Node Entry;FarmInformationToolsFooterNode;FarmInfoToolsFooterLink
@@ -2371,10 +2492,25 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
 ;ProductsFooterNode;;Products Footer Node;SAPCommerceNavNode;;ProductsFooterNode
+
 ;ElectricFencingFooterNode;;Electric Fencing Footer Node;SAPCommerceNavNode;;ElectricFencingFooterNode
+;ElectricFencingCAFRFooterNode;;Electric Fencing CAFR Footer Node;SAPCommerceNavNode;;ElectricFencingCAFRFooterNode
+;ElectricFencingLATAMFooterNode;;Electric Fencing LATAM Footer Node;SAPCommerceNavNode;;ElectricFencingLATAMFooterNode
+
 ;WeighingEIDFooterNode;;Weighing EID Footer Node;SAPCommerceNavNode;;WeighingEIDFooterNode
+;WeighingEIDAUFooterNode;;Weighing EID AU Footer Node;SAPCommerceNavNode;;WeighingEIDAUFooterNode
+;WeighingEIDCAFRFooterNode;;Weighing EID CAFR Footer Node;SAPCommerceNavNode;;WeighingEIDCAFRFooterNode
+;WeighingEIDLATAMFooterNode;;Weighing EID LATAM Footer Node;SAPCommerceNavNode;;WeighingEIDLATAMFooterNode
+
 ;WirelessWtaerMonitoringFooterNode;;Wireless Wtaer Monitoring Footer Node;SAPCommerceNavNode;;WirelessWtaerMonitoringFooterNode
+;WirelessWtaerMonitoringAUFooterNode;;Wireless Wtaer Monitoring AU Footer Node;SAPCommerceNavNode;;WirelessWtaerMonitoringAUFooterNode
+;WirelessWtaerMonitoringUSFooterNode;;Wireless Wtaer Monitoring US Footer Node;SAPCommerceNavNode;;WirelessWtaerMonitoringUSFooterNode
+;WirelessWataerMonitoringCAFooterNode;;Wireless Wtaer Monitoring CAFR Footer Node;SAPCommerceNavNode;;WirelessWataerMonitoringCAFooterNode
+;WirelessWtaerMonitoringLATAMFooterNode;;Wireless Wtaer Monitoring LATAM Footer Node;SAPCommerceNavNode;;WirelessWtaerMonitoringLATAMFooterNode
+
 ;AppsSoftFooterNode;;Apps and Software Footer Node;SAPCommerceNavNode;;AppsSoftFooterNode
+;AppsSoftFooterCAFRNode;;Apps and Software CAFR Footer Node;SAPCommerceNavNode;;AppsSoftFooterCAFRNode
+
 ;WirelessWataerMonitoringCAFooterNode;;Automatic Watering Footer Node;SAPCommerceNavNode;;WirelessWataerMonitoringCAFooterNode
 #;SteelGatesHardwareFooterNode;;Steel Gates Hardware Footer Node;SAPCommerceNavNode;;SteelGatesHardwareFooterNode
 #;FarmInformationToolsFooterNode;;Farm Information Tools Footer Node;SAPCommerceNavNode;;FarmInformationToolsFooterNode
@@ -2393,12 +2529,14 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;pa
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef)
 
+#;SAPCommerceNavNode;;SAP Commerce Cloud Pages;SAPCommerceNavNode; ProductsFooterNode,ElectricFencingFooterNode,ElectricFencingCAFRFooterNode,ElectricFencingLATAMFooterNode,WeighingEIDFooterNode,WeighingEIDAUFooterNode,WeighingEIDCAFRFooterNode,WeighingEIDLATAMFooterNode,WirelessWtaerMonitoringFooterNode,WirelessWtaerMonitoringAUFooterNode,WirelessWtaerMonitoringUSFooterNode,WirelessWataerMonitoringCAFooterNode,WirelessWtaerMonitoringLATAMFooterNode,AppsSoftFooterNode,AppsSoftFooterCAFRNode
 ;SAPCommerceNavNode;;SAP Commerce Cloud Pages;SAPCommerceNavNode; ProductsFooterNode,ElectricFencingFooterNode,WeighingEIDFooterNode,WirelessWtaerMonitoringFooterNode,AppsSoftFooterNode
 
 ;SAPCustomerExperienceNavNode;;SAP Customer Experience Pages; SAPCustomerExperienceNavNode; AboutUsFooterNode,SupportFooterNode,ContactFooterNode,NewsEventsFooterNode,InnovationAwardsFooterNode
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
-;SAPCommerceNavNode;;SAP Commerce Cloud Pages;AMB2CNavNode; ProductsFooterLink,ElectricFencingFooterLink,WeighingEIDFooterLink,WirelessMonitoringFooterLink,WirelessMonitoringCAFooterLink,AppsSoftFooterLink;SAPCommerceNavNode
+#;SAPCommerceNavNode;;SAP Commerce Cloud Pages;AMB2CNavNode; ProductsFooterLink,ElectricFencingFooterLink,ElectricFencingLATAMFooterLink,ElectricFencingCAFRFooterLink,WeighingEIDFooterLink,WeighingEIDAUFooterLink,WeighingEIDCAFRFooterLink,WeighingEIDLATAMFooterLink,WirelessMonitoringFooterLink,WirelessMonitoringAUFooterLink,WirelessMonitoringUSFooterLink,WirelessMonitoringCAFooterLink,WirelessMonitoringLATAMFooterLink,AppsSoftFooterLink,AppsSoftCAFRFooterLink;SAPCommerceNavNode
+;SAPCommerceNavNode;;SAP Commerce Cloud Pages;AMB2CNavNode; ProductsFooterLink,ElectricFencingFooterLink,WeighingEIDFooterLink,WirelessMonitoringFooterLink,AppsSoftFooterLink;SAPCommerceNavNode
 
 ;SAPCustomerExperienceNavNode;;SAP Customer Experience Pages;AMB2CNavNode; AboutUsFooterLink,SupportFooterLink,ContactFooterLink,NewsEventsFooterLink,InnovationAwardsFooterLink;SAPCustomerExperienceNavNode
 
@@ -2939,10 +3077,10 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrict
 ;;PowerEnergisers_link2;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherCARegionRestriction,GallagherUSRegionRestriction
 ;;PowerEnergisers_link3;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherCARegionRestriction,GallagherUSRegionRestriction
 ;;PowerEnergisers_link4;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherCARegionRestriction,GallagherUSRegionRestriction
-;;PowerEnergisers_link5;GallagherNZRegionRestriction,GallagherGlRegionRestriction
+;;PowerEnergisers_link5;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherCARegionRestriction,GallagherUSRegionRestriction
 ;;PowerEnergisers_link6;GallagherAURegionRestriction
 ;;PowerEnergisers_link7;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherCARegionRestriction,GallagherUSRegionRestriction
-;;PowerEnergisers_link8;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction
+;;PowerEnergisers_link8;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherCARegionRestriction,GallagherUSRegionRestriction
 ;;PowerEnergisers_link9;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherLATAMRegionRestriction
 ;;PowerEnergisers_link10;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherLATAMRegionRestriction
 ;;PowerEnergisers_link11;GallagherCARegionRestriction,GallagherUSRegionRestriction
@@ -2961,8 +3099,9 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrict
 ;;PermanentfencingWireandCable_link10;GallagherAURegionRestriction
 ;;PermanentfencingWireandCable_link11;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherUSRegionRestriction,GallagherCARegionRestriction,GallagherLATAMRegionRestriction
 ;;PermanentfencingWireandCable_link12;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
-;;PermanentfencingWireandCable_link13;GallagherAURegionRestriction,GallagherCARegionRestriction
-;;PermanentfencingWireandCable_link14;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherUSRegionRestriction,GallagherCARegionRestriction,GallagherLATAMRegionRestriction
+;;PermanentfencingWireandCable_link13;GallagherUSRegionRestriction,GallagherCARegionRestriction
+;;PermanentfencingWireandCable_link14;GallagherNZRegionRestriction
+;;PermanentfencingWireandCable_link15;GallagherCARegionRestriction,GallagherUSRegionRestriction
 
 ;;PortablefencingTapesWiresBraids_nav_link;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
 ;;PortablefencingTapesWiresBraids_nav_link1;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
@@ -2972,25 +3111,25 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrict
 ;;PortablefencingTapesWiresBraids_nav_link5;GallagherCARegionRestriction,GallagherUSRegionRestriction
 
 ;;PortablefencingTapesWiresBraids_nav_link6;GallagherCARegionRestriction,GallagherUSRegionRestriction
-;;PortablefencingTapesWiresBraids_nav_link7;GallagherCARegionRestriction,GallagherUSRegionRestriction
+#;;PortablefencingTapesWiresBraids_nav_link7;GallagherCARegionRestriction,GallagherUSRegionRestriction
 ;;PortablefencingTapesWiresBraids_nav_link8;GallagherCARegionRestriction,GallagherUSRegionRestriction
 ;;PortablefencingTapesWiresBraids_nav_link9;GallagherCARegionRestriction,GallagherUSRegionRestriction
 
 ;;WeighinEid_link;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherLATAMRegionRestriction
 ;;WeighinEid_link1;GallagherCARegionRestriction,GallagherUSRegionRestriction
-;;WeighinEid_link2;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherLATAMRegionRestriction
-;;WeighinEid_link3;GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;WeighinEid_link2;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherLATAMRegionRestriction,GallagherUSRegionRestriction
+;;WeighinEid_link3;GallagherCARegionRestriction
 ;;WeighinEid_link4;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherLATAMRegionRestriction,GallagherCARegionRestriction,GallagherUSRegionRestriction
 ;;WeighinEid_link5;GallagherAURegionRestriction
 ;;WeighinEid_link6;GallagherNZRegionRestriction,GallagherGlRegionRestriction
 ;;WeighinEid_link7;GallagherAURegionRestriction
-;;WeighinEid_link8;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherLATAMRegionRestriction,GallagherCARegionRestriction,GallagherUSRegionRestriction
+;;WeighinEid_link8;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherLATAMRegionRestriction,GallagherCARegionRestriction,GallagherUSRegionRestriction,GallagherAURegionRestriction
 ;;WeighinEid_link9;GallagherAURegionRestriction
 ;;WeighinEid_link10;GallagherCARegionRestriction,GallagherUSRegionRestriction
 ;;WeighinEid_link11;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction
 ;;WeighinEid_link12;GallagherCARegionRestriction,GallagherUSRegionRestriction
 
-;;WWM_link;GallagherNZRegionRestriction,GallagherGlRegionRestriction
+;;WWM_link;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction
 ;;WWM_link1;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherLATAMRegionRestriction
 ;;WWM_link2;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction
 ;;WWM_link3;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction,GallagherLATAMRegionRestriction
@@ -3004,11 +3143,31 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrict
 ;;WWM_link10;GallagherCARegionRestriction,GallagherUSRegionRestriction
 ;;WWM_link11;GallagherCARegionRestriction,GallagherUSRegionRestriction
 
-;;AppsSoftware_link;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction
+#;;AppsSoftware_link;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction
 ;;AppsSoftware_link1;GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherAURegionRestriction
 
 ;;AllStockProdsMainLink;GallagherNZRegionRestriction,GallagherGlRegionRestriction
 
+
+;;ElectricFencingFooterLink;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherUSRegionRestriction,GallagherCARegionRestriction,GallagherLATAMRegionRestriction
+;;ElectricFencingLATAMFooterLink;GallagherLATAMRegionRestriction
+;;ElectricFencingCAFRFooterLink;GallagherCARegionRestriction
+
+;;WeighingEIDFooterLink;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherUSRegionRestriction,GallagherCARegionRestriction,GallagherLATAMRegionRestriction
+;;WeighingEIDAUFooterLink;GallagherAURegionRestriction
+;;WeighingEIDLATAMFooterLink;GallagherLATAMRegionRestriction
+;;WeighingEIDCAFRFooterLink;GallagherCARegionRestriction
+
+
+;;WirelessMonitoringFooterLink;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherUSRegionRestriction,GallagherCARegionRestriction,GallagherLATAMRegionRestriction
+;;WirelessMonitoringCAFooterLink;GallagherCARegionRestriction
+;;WirelessMonitoringAUFooterLink;GallagherAURegionRestriction,GallagherGlRegionRestriction
+;;WirelessMonitoringUSFooterLink;GallagherUSRegionRestriction,GallagherCARegionRestriction
+;;WirelessMonitoringLATAMFooterLink;GallagherLATAMRegionRestriction
+
+;;AppsSoftCAFRFooterLink;GallagherCARegionRestriction
+
+;;AppsSoftFooterLink;GallagherAURegionRestriction,GallagherNZRegionRestriction,GallagherGlRegionRestriction,GallagherUSRegionRestriction,GallagherCARegionRestriction,GallagherLATAMRegionRestriction
 
 ######All Electric fencing Category page###########
 INSERT_UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved'];previewImage(code, $contentCV)

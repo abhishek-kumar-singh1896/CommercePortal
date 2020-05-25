@@ -14,3 +14,32 @@ $lang=en_NZ
 
 INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=$lang]
 ;;registerProductPopupSubHeading;"If these details do not match your product, please contact our Customer Service Team for assistance. Email:<a href ='mailto:cs@am.gallagher.com' target='_blank'>cs@am.gallagher.com</a> | Toll Free: 0800 731 500"
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
+;;PermanentfencingWireandCable_link14;"Steel Gates"
+
+
+UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
+                       ;;AboutSAPCommerceLink;"About SAP Commerce Cloud"
+                       ;;AgileCommerceBlogLink;"Agile Commerce Blog"
+                       ;;AllBrandsCategoryLink;"Animal Management"
+                       ;;ElectricFencingCategoryLink;"Electric Fencing"
+                       ;;DocumentationLink;"Documentation"
+                       ;;FAQLink;"FAQ"
+                       ;;FacebookLink;"Facebook"
+                       ;;HomepageNavLink;"Home"
+                       ;;TwitterLink;"Twitter"
+                       ;;VisitSAPLink;"Visit SAP"
+                       ;;ProductsFooterLink;"Products"
+                       ;;ElectricFencingFooterLink;"Electric Fencing"
+                       ;;WeighingEIDFooterLink;"Weighing and EID"
+                       ;;WirelessMonitoringFooterLink;"Wireless Water"
+                       ;;AppsSoftFooterLink;"Apps and Software"
+#;;SteelGatesHardwareFooterLink;"Steel Gates and Hardware"
+#;;FarmInfoToolsFooterLink;"Farm Information Tools"
+#;;StockProdsFooterLink;"Stock Prods"
+                       ;;AboutUsFooterLink;"About Us"
+                       ;;SupportFooterLink;"Support"
+                       ;;ContactFooterLink;"Contact Us"
+                       ;;NewsEventsFooterLink;"News & Events"
+                       ;;InnovationAwardsFooterLink;"Innovation & Awards"

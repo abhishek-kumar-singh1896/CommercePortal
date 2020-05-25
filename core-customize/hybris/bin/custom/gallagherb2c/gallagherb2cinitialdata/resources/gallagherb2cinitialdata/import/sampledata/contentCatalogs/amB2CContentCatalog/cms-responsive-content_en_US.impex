@@ -26,3 +26,31 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];title[l
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];title[lang=$lang];&nodeRef
 ;WWMNode_Nav;;"Automatic watering";WWMNode_Nav
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
+;;PermanentfencingWireandCable_link13;"Gates and Gate Accessories"
+
+UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
+                       ;;AboutSAPCommerceLink;"About SAP Commerce Cloud"
+                       ;;AgileCommerceBlogLink;"Agile Commerce Blog"
+                       ;;AllBrandsCategoryLink;"Animal Management"
+                       ;;ElectricFencingCategoryLink;"Electric Fencing"
+                       ;;DocumentationLink;"Documentation"
+                       ;;FAQLink;"FAQ"
+                       ;;FacebookLink;"Facebook"
+                       ;;HomepageNavLink;"Home"
+                       ;;TwitterLink;"Twitter"
+                       ;;VisitSAPLink;"Visit SAP"
+                       ;;ProductsFooterLink;"Products"
+                       ;;ElectricFencingFooterLink;"Electric Fencing"
+                       ;;WeighingEIDFooterLink;"Weighing and EID"
+                       ;;WirelessMonitoringFooterLink;"Automatic Watering"
+                       ;;AppsSoftFooterLink;"Apps and Software"
+#;;SteelGatesHardwareFooterLink;"Steel Gates and Hardware"
+#;;FarmInfoToolsFooterLink;"Farm Information Tools"
+#;;StockProdsFooterLink;"Stock Prods"
+                       ;;AboutUsFooterLink;"About Us"
+                       ;;SupportFooterLink;"Support"
+                       ;;ContactFooterLink;"Contact Us"
+                       ;;NewsEventsFooterLink;"News & Events"
+                       ;;InnovationAwardsFooterLink;"Innovation & Awards"
