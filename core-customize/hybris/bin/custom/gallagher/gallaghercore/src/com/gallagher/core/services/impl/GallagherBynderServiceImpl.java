@@ -90,85 +90,84 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 
 	@Override
 	public boolean updateMedia(final GallagherBynderSyncCronJobModel cronModel,
-			final GallagherBynderResponse gallagherBynderResponse, final List<String> skus, final CatalogVersionModel catalog)
-	{
+							   final GallagherBynderResponse gallagherBynderResponse, final List<String> skus, final CatalogVersionModel catalog) {
+		if (CollectionUtils.isNotEmpty(skus)) {
+			//getting products
+			final List<ProductModel> products = gallagherMediaContainerDao.getProductModeList(skus, catalog.getPk());
+			if (CollectionUtils.isNotEmpty(products)) {
+				//ADDING BASE STORE
+				final List<BaseStoreModel> basestorelist = getBaseStoreModelList(gallagherBynderResponse.getProperty_region(),
+						cronModel.getCatalogId());
 
-		//ADDING BASE STORE
-		final List<BaseStoreModel> basestorelist = getBaseStoreModelList(gallagherBynderResponse.getProperty_region(),
-				cronModel.getCatalogId());
+				if (CollectionUtils.isNotEmpty(basestorelist)) {
 
-		if (CollectionUtils.isNotEmpty(basestorelist))
-		{
+					final List<MediaContainerModel> mediaContainers = gallagherMediaContainerDao
+							.getMediaContainer(gallagherBynderResponse.getId(), catalog.getPk());
 
-			final List<MediaContainerModel> mediaContainers = gallagherMediaContainerDao
-					.getMediaContainer(gallagherBynderResponse.getId(), catalog.getPk());
+					//delete container if exits
+					if (CollectionUtils.isNotEmpty(mediaContainers)) {
+						deleteMedia(cronModel, gallagherBynderResponse, catalog);
+					}
+					LOGGER.info("Creating container for " + gallagherBynderResponse.getId());
+					//create a new container and adding images
 
-			//delete container if exits
-			if (CollectionUtils.isNotEmpty(mediaContainers))
-			{
-				deleteMedia(cronModel, gallagherBynderResponse, catalog);
-			}
-			LOGGER.info("Creating container for " + gallagherBynderResponse.getId());
-			//create a new container and adding images
+					//gallagherBynderResponse.getProperty_skus().add("G98131");
+					if (gallagherBynderResponse.getThumbnails() != null
+							&& StringUtils.isNotEmpty(gallagherBynderResponse.getThumbnails().getGeneralPurpose())) {
+						//setting MediaContainerModel values
+						final LocaleProvider localeProvider = new StubLocaleProvider(Locale.ENGLISH);
+						final MediaContainerModel mediaContainerModel = modelService.create(MediaContainerModel.class);
+						mediaContainerModel.setCatalogVersion(catalog);
+						mediaContainerModel.setQualifier(gallagherBynderResponse.getId());
+						mediaContainerModel.setName(gallagherBynderResponse.getName(), Locale.ENGLISH);
+						mediaContainerModel.setHero((CollectionUtils.isNotEmpty((gallagherBynderResponse.getProperty_Website()))
+								&& gallagherBynderResponse.getProperty_Website().contains(HERO)) ? true : false);
 
-			//gallagherBynderResponse.getProperty_skus().add("G98131");
-			if (gallagherBynderResponse.getThumbnails() != null
-					&& StringUtils.isNotEmpty(gallagherBynderResponse.getThumbnails().getGeneralPurpose()))
-			{
-				//setting MediaContainerModel values
-				final LocaleProvider localeProvider = new StubLocaleProvider(Locale.ENGLISH);
-				final MediaContainerModel mediaContainerModel = modelService.create(MediaContainerModel.class);
-				mediaContainerModel.setCatalogVersion(catalog);
-				mediaContainerModel.setQualifier(gallagherBynderResponse.getId());
-				mediaContainerModel.setName(gallagherBynderResponse.getName(), Locale.ENGLISH);
-				mediaContainerModel.setHero((CollectionUtils.isNotEmpty((gallagherBynderResponse.getProperty_Website()))
-						&& gallagherBynderResponse.getProperty_Website().contains(HERO)) ? true : false);
+						mediaContainerModel.setBaseStores(basestorelist);
 
-				mediaContainerModel.setBaseStores(basestorelist);
+						final BynderMediaModel mediaModel = modelService.create(BynderMediaModel.class);
+						final MediaFolderModel folder = mediaService.getFolder(GallagherCoreConstants.Bynder.IMAGES);
+						final MediaFormatModel format = mediaService.getFormat(GallagherCoreConstants.Bynder.B2BADVANCE_BF);
 
-				final BynderMediaModel mediaModel = modelService.create(BynderMediaModel.class);
-				final MediaFolderModel folder = mediaService.getFolder(GallagherCoreConstants.Bynder.IMAGES);
-				final MediaFormatModel format = mediaService.getFormat(GallagherCoreConstants.Bynder.B2BADVANCE_BF);
+						mediaModel.setCode(gallagherBynderResponse.getId());
+						mediaModel.setCatalogVersion(catalog);
+						mediaModel.setMediaFormat(format);
+						mediaModel.setMediaContainer(mediaContainerModel);
+						mediaModel.setFolder(folder);
+						mediaModel.setRealFileName(gallagherBynderResponse.getName());
+						mediaModel.setDescription(getMediaDescription(gallagherBynderResponse));
+						mediaModel.setAltText(gallagherBynderResponse.getFileSize() / 1000000 + " mb");
 
-				mediaModel.setCode(gallagherBynderResponse.getId());
-				mediaModel.setCatalogVersion(catalog);
-				mediaModel.setMediaFormat(format);
-				mediaModel.setMediaContainer(mediaContainerModel);
-				mediaModel.setFolder(folder);
-				mediaModel.setRealFileName(gallagherBynderResponse.getName());
-				mediaModel.setDescription(getMediaDescription(gallagherBynderResponse));
-				mediaModel.setAltText(gallagherBynderResponse.getFileSize() / 1000000 + " mb");
+						//adding base Stores
+						mediaModel.setBaseStores(basestorelist);
 
-				//adding base Stores
-				mediaModel.setBaseStores(basestorelist);
+						//modelService.save(arg0);
+						modelService.save(mediaModel);
+						mediaService.setStreamForMedia(mediaModel,
+								getImageFromURL(getEncodedUrl(gallagherBynderResponse.getThumbnails().getGeneralPurpose())));
+						LOGGER.info("Media Saved for " + gallagherBynderResponse.getId());
 
-				//modelService.save(arg0);
-				modelService.save(mediaModel);
-				mediaService.setStreamForMedia(mediaModel,
-						getImageFromURL(getEncodedUrl(gallagherBynderResponse.getThumbnails().getGeneralPurpose())));
-				LOGGER.info("Media Saved for " + gallagherBynderResponse.getId());
+						//adding container to that product
 
-				//getting products and adding container to that product
-				if (CollectionUtils.isNotEmpty(skus))
-				{
-					final List<ProductModel> products = gallagherMediaContainerDao.getProductModeList(skus, catalog.getPk());
-					if (CollectionUtils.isNotEmpty(products))
-					{
-						for (final ProductModel product : products)
-						{
+						for (final ProductModel product : products) {
 							final List<MediaContainerModel> existingContainers = new ArrayList<>(product.getGalleryImages());
 							existingContainers.add(mediaContainerModel);
 							product.setGalleryImages(existingContainers);
 							modelService.save(product);
 							LOGGER.info("MediaContainer " + gallagherBynderResponse.getId() + " Saved for " + product.getCode());
 						}
+
+
+					} else {
+						LOGGER.error("Media [" + gallagherBynderResponse.getId()
+								+ "] couldn't saved in Commerce because no general purpose media added for the same.");
 					}
+
+				} else {
+					LOGGER.info("Asset " + gallagherBynderResponse.getId() + " doesn't have any region associated");
 				}
-			}
-			else
-			{
-				LOGGER.error("Media [" + gallagherBynderResponse.getId()
-						+ "] couldn't saved in Commerce because no general purpose media added for the same.");
+			} else {
+				LOGGER.info("Asset " + gallagherBynderResponse.getId() + " doesn't belong to any product in SAP Commerce");
 			}
 		}
 		return true;
