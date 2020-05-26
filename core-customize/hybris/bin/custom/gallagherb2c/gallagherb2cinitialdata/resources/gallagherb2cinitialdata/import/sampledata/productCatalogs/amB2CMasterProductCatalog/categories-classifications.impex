@@ -52,6 +52,7 @@ INSERT_UPDATE ClassificationClass;$classCatalogVersion;code[unique=true];allowed
 ;;platforms
 ;;drafters
 ;;eid-tag-readers
+;;posts-pigtails-and-treadins-fc
 ;;scale-heads-and-data-collectors
 ;;weighing-accessories 
 ;;stock-prods-and-accessories
@@ -128,6 +129,7 @@ INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
 ;platforms;platforms
 ;drafters;drafters
 ;eid-tag-readers;eid-tag-readers
+;posts-pigtails-and-treadins-fc;posts-pigtails-and-treadins-fc
 ;scale-heads-and-data-collectors;scale-heads-and-data-collectors
 ;weighing-accessories;weighing-accessories
 ;stock-prods-and-accessories;stock-prods-and-accessories
@@ -443,6 +445,9 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;insulators;height;13;mm;number
 ;insulators;width-or-length;14;mm;number
 ;insulators;diameter-or-width;15;mm;number
+;insulators;post-height-inch;16;inches;number
+;insulators;product-width-inch;17;inches;number
+;insulators;product-depth-inch;18;inches;number
 
 ;offsets;post-type;1;;
 ;offsets;mount-type;2;;
@@ -476,10 +481,11 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;fence-tools-and-accessories;product-depth;5;mm;number
 ;fence-tools-and-accessories;product-weight;6;kg;number
 ;fence-tools-and-accessories;contents;7;;
-;fence-tools-and-accessories;product-height-inch;3;inches;number
-;fence-tools-and-accessories;product-width-inch;4;inches;number
-;fence-tools-and-accessories;product-depth-inch;5;inches;number
-;fence-tools-and-accessories;product-weight-lbs;8;lbs;number
+;fence-tools-and-accessories;product-height-inch;8;inches;number
+;fence-tools-and-accessories;product-width-inch;9;inches;number
+;fence-tools-and-accessories;product-depth-inch;10;inches;number
+;fence-tools-and-accessories;product-weight-lbs;11;lbs;number
+;fence-tools-and-accessories;pack-quantity;9;;
 
 ;tapes-wires-and-braids-pf;voltage-at-500m;1;kV;number
 ;tapes-wires-and-braids-pf;voltage-at-1km;2;kV;number
@@ -621,6 +627,18 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;eid-tag-readers;product-weight-lbs;8;lbs;number
 ;eid-tag-readers;height;9;mm;number
 ;eid-tag-readers;width-or-length;10;mm;number
+;eid-tag-readers;product-height-inch;11;inches;number
+;eid-tag-readers;product-width-inch;12;inches;number
+;eid-tag-readers;product-depth-inch;13;inches;number
+
+;posts-pigtails-and-treadins-fc;animal-type;1;;
+;posts-pigtails-and-treadins-fc;fence-type;2;;
+;posts-pigtails-and-treadins-fc;wire-amount;3;;
+;posts-pigtails-and-treadins-fc;post-height-inch;4;inches;number
+;posts-pigtails-and-treadins-fc;warranty;5;Years;number
+;posts-pigtails-and-treadins-fc;product-width-inch;6;inches;number
+;posts-pigtails-and-treadins-fc;product-depth-inch;7;inches;number
+;posts-pigtails-and-treadins-fc;product-weight-lbs;8;lbs;number
 
 ;stock-prods;rechargeable;1;;boolean
 ;stock-prods;warranty;2;Years;number
