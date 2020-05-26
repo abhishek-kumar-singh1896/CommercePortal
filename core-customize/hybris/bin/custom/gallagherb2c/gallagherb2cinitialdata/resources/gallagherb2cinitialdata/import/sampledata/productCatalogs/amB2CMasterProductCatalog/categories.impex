@@ -80,7 +80,7 @@ INSERT_UPDATE Category;code[unique=true];allowedPrincipals(uid)[default='custome
 #;strainers
 #;clamps-and-joiners
 #;fence-tools-and-accessories 
-#;gates-and-gate-accessories 
+;gates-and-gate-accessories 
 
 # 1.1.4 Sub Categories for 'fence-conductors'
 ;posts-pigtails-and-treadins-fc

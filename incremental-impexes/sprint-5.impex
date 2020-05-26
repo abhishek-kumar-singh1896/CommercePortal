@@ -1696,4 +1696,72 @@ INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ContentPage1Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;ggB2CNavBar-ContentPage1;ggB2CNavBar;;ggB2CNavBarSlot;true
 
+
+###################################################SAPP-518#########################
+
+$productCatalog=amB2CMasterProductCatalog
+$productCatalogName=Animal Management B2C US Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$classCatalogVersion=catalogversion(catalog(id[default='AMB2CClassification']),version[default='1.0'])[unique=true,default='AMB2CClassification:1.0']
+$classSystemVersion=systemVersion(catalog(id[default='AMB2CClassification']),version[default='1.0'])[unique=true]
+$class=classificationClass(ClassificationClass.code,$classCatalogVersion)[unique=true]
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+$attribute=classificationAttribute(code,$classSystemVersion)[unique=true]
+$unit=unit(code,$classSystemVersion)
+
+
+INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attributeType(code[default=string]);multiValued[default=false];range[default=false];localized[default=true]
+
+;insulators;post-height-inch;16;inches;number
+;insulators;product-width-inch;17;inches;number
+;insulators;product-depth-inch;18;inches;number
+
+;fence-tools-and-accessories;pack-quantity;9;;
+
+;eid-tag-readers;product-height-inch;11;inches;number
+;eid-tag-readers;product-width-inch;12;inches;number
+;eid-tag-readers;product-depth-inch;13;inches;number
+
+;posts-pigtails-and-treadins-fc;animal-type;1;;
+;posts-pigtails-and-treadins-fc;fence-type;2;;
+;posts-pigtails-and-treadins-fc;wire-amount;3;;
+;posts-pigtails-and-treadins-fc;post-height-inch;4;inches;number
+;posts-pigtails-and-treadins-fc;warranty;5;Years;number
+;posts-pigtails-and-treadins-fc;product-width-inch;6;inches;number
+;posts-pigtails-and-treadins-fc;product-depth-inch;7;inches;number
+;posts-pigtails-and-treadins-fc;product-weight-lbs;8;lbs;number
+
+;scale-heads-and-data-collectors;product-height-inch;10;inches;number
+;scale-heads-and-data-collectors;product-width-inch;11;inches;number
+;scale-heads-and-data-collectors;product-depth-inch;12;inches;number
+
+INSERT_UPDATE Category;code[unique=true];allowedPrincipals(uid)[default='customergroup'];$catalogVersion
+;gates-and-gate-accessories 
+
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;gates-and-gate-accessories;gates-and-gate-accessories
+
+INSERT_UPDATE ClassificationClass;$classCatalogVersion;code[unique=true];allowedPrincipals(uid)[default='customergroup']
+;;posts-pigtails-and-treadins-fc
+
+INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+;posts-pigtails-and-treadins-fc;posts-pigtails-and-treadins-fc
+
+################################################################################################################
+
+$productCatalog=amB2CMasterProductCatalog
+$productCatalogName=Animal Management B2C US Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+
+# Language
+$lang=en
+
+
+# Create Categories
+UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
+;gates-and-gate-accessories;;Gates and Gate Accessories
+
+####################################################################################
+
 #########################
