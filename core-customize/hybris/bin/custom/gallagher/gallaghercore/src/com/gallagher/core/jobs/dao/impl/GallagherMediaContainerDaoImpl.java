@@ -42,7 +42,7 @@ public class GallagherMediaContainerDaoImpl extends DefaultMediaContainerDao imp
 		final String query = "select {PK} from {MediaContainer} where {qualifier} IN ('" + containerName
 				+ "') and {catalogversion}= '" + pk + "'";
 		final FlexibleSearchQuery flexibleSearchQuery = new FlexibleSearchQuery(query);
-		LOGGER.info("QUERY " + flexibleSearchQuery.getQuery().toString());
+		LOGGER.debug("QUERY " + flexibleSearchQuery.getQuery().toString());
 		final SearchResult<MediaContainerModel> searchResult = flexibleSearchService.search(flexibleSearchQuery);
 		final SearchResult<ProductModel> result = flexibleSearchService.search(query);
 		return searchResult.getResult();
@@ -63,9 +63,9 @@ public class GallagherMediaContainerDaoImpl extends DefaultMediaContainerDao imp
 		queryParams.put("code", productCodes);
 		final FlexibleSearchQuery flexibleSearchQuery = new FlexibleSearchQuery(query);
 		flexibleSearchQuery.addQueryParameters(queryParams);
-		LOGGER.info("Query " + flexibleSearchQuery.getQuery());
+		LOGGER.debug("Query " + flexibleSearchQuery.getQuery());
 		final SearchResult<ProductModel> searchResult = flexibleSearchService.search(flexibleSearchQuery);
-		LOGGER.info("SearchResult Count " + searchResult.getCount());
+		LOGGER.debug("SearchResult Count " + searchResult.getCount());
 		if (searchResult.getCount() > 0)
 		{
 
