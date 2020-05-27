@@ -50,7 +50,7 @@ $registerProductVersion = v=1
 #*****************************************#
 #*** Registered Product Collection URL ***#
 #*****************************************#
-$registeredProductCollectionUrl = https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com/http/RegisteredProductCollection/QAS/RegisteredProductCollection
+$registeredProductCollectionUrl = https://l200886-iflmap.hcisbp.ap1.hana.ondemand.com/http/RegisteredProductCollection/QAS
                                      
 #****************************#       
 #***  Destination Target  ***#       
@@ -123,6 +123,7 @@ INSERT_UPDATE IntegrationObjectItemAttribute ; integrationObjectItem(integration
                                              ; OutboundC4cCustomer:Customer                                        ; contactEmail                 ; Customer:contactEmail                               ;                                                            ;                         ;                             
                                              ; OutboundC4cCustomer:Customer                                        ; sapContactID                 ; Customer:sapContactID                               ;                                                            ;                         ;                             
                                              ; OutboundC4cCustomer:Customer                                        ; objectID                     ; Customer:objectID                                   ;                                                            ;                         ;                             
+                                             ; OutboundC4cCustomer:Customer                                        ; sapAccountID                 ; Customer:sapAccountID                               ;                                                            ;                         ;                             
                                              ; OutboundC4cCustomer:Customer                                        ; newsLetters                  ; Customer:newsLetters                                ;                                                            ;                         ;                             
                                              ; OutboundC4cCustomer:Customer                                        ; events                       ; Customer:events                                     ;                                                            ;                         ;                             
                                              ; OutboundC4cCustomer:Customer                                        ; productRelease               ; Customer:productRelease                             ;                                                            ;                         ;                             
