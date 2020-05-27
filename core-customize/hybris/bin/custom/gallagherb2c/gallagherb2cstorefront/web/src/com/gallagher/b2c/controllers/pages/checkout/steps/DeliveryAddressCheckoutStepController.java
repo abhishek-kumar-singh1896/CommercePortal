@@ -21,7 +21,6 @@ import de.hybris.platform.commercefacades.user.data.AddressData;
 import de.hybris.platform.commercefacades.user.data.CountryData;
 import de.hybris.platform.commerceservices.address.AddressVerificationDecision;
 import de.hybris.platform.util.Config;
-import com.gallagher.b2c.controllers.ControllerConstants;
 
 import java.util.Set;
 
@@ -37,6 +36,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.gallagher.b2c.controllers.ControllerConstants;
+import com.gallagher.b2c.validators.GallagherAddressValidator;
+
 
 @Controller
 @RequestMapping(value = "/checkout/multi/delivery-address")
@@ -47,6 +49,14 @@ public class DeliveryAddressCheckoutStepController extends AbstractCheckoutStepC
 
 	@Resource(name = "addressDataUtil")
 	private AddressDataUtil addressDataUtil;
+
+	@Resource(name = "gallagherAddressValidator")
+	private GallagherAddressValidator gallagheraddressValidator;
+
+	public GallagherAddressValidator getGallagheraddressValidator()
+	{
+		return gallagheraddressValidator;
+	}
 
 	@Override
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
@@ -70,7 +80,8 @@ public class DeliveryAddressCheckoutStepController extends AbstractCheckoutStepC
 	{
 		final CartData cartData = getCheckoutFacade().getCheckoutCart();
 
-		getAddressValidator().validate(addressForm, bindingResult);
+		/* getAddressValidator().validate(addressForm, bindingResult); */
+		getGallagheraddressValidator().validate(addressForm, bindingResult);
 		populateCommonModelAttributes(model, cartData, addressForm);
 
 		if (bindingResult.hasErrors())
@@ -130,8 +141,8 @@ public class DeliveryAddressCheckoutStepController extends AbstractCheckoutStepC
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	@RequireHardLogIn
-	public String editAddressForm(@RequestParam("editAddressCode") final String editAddressCode, final Model model,
-			final RedirectAttributes redirectAttributes) throws CMSItemNotFoundException
+	public String editAddressForm(@RequestParam("editAddressCode")
+	final String editAddressCode, final Model model, final RedirectAttributes redirectAttributes) throws CMSItemNotFoundException
 	{
 		final ValidationResults validationResults = getCheckoutStep().validate(redirectAttributes);
 		if (getCheckoutStep().checkIfValidationErrors(validationResults))
@@ -231,8 +242,8 @@ public class DeliveryAddressCheckoutStepController extends AbstractCheckoutStepC
 	@RequestMapping(value = "/remove", method =
 	{ RequestMethod.GET, RequestMethod.POST })
 	@RequireHardLogIn
-	public String removeAddress(@RequestParam("addressCode") final String addressCode, final RedirectAttributes redirectModel,
-			final Model model) throws CMSItemNotFoundException
+	public String removeAddress(@RequestParam("addressCode")
+	final String addressCode, final RedirectAttributes redirectModel, final Model model) throws CMSItemNotFoundException
 	{
 		if (getCheckoutFacade().isRemoveAddressEnabledForCart())
 		{
@@ -304,8 +315,8 @@ public class DeliveryAddressCheckoutStepController extends AbstractCheckoutStepC
 	 */
 	@RequestMapping(value = "/select", method = RequestMethod.GET)
 	@RequireHardLogIn
-	public String doSelectDeliveryAddress(@RequestParam("selectedAddressCode") final String selectedAddressCode,
-			final RedirectAttributes redirectAttributes)
+	public String doSelectDeliveryAddress(@RequestParam("selectedAddressCode")
+	final String selectedAddressCode, final RedirectAttributes redirectAttributes)
 	{
 		final ValidationResults validationResults = getCheckoutStep().validate(redirectAttributes);
 		if (getCheckoutStep().checkIfValidationErrors(validationResults))
