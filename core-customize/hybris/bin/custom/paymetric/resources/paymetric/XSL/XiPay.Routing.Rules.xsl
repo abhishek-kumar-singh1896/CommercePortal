@@ -9,10 +9,13 @@
 	    <xsl:param name="xipayMID"/>
 	    <xsl:param name="cardType"/>
 		<xsl:choose>
-			<xsl:when test="contains('VI MC', $cardType)">
+			<xsl:when test="contains('GCA_CAD_GCA', $xipayMID)">
+				<xsl:value-of select="'1.00'"/>
+			</xsl:when>
+			<xsl:when test="contains('VI MC', $cardType) and not(contains('GCA_CAD_GCA', $xipayMID))">
 				<xsl:value-of select="'0.00'"/>
 			</xsl:when>
-			<xsl:when test="contains('AX DI', $cardType)">
+			<xsl:when test="contains('AX DI', $cardType) and not(contains('GCA_CAD_GCA', $xipayMID))">
 				<xsl:value-of select="'1.00'"/>
 			</xsl:when>
 			<xsl:otherwise><xsl:value-of select="'0.00'"/></xsl:otherwise>
@@ -179,6 +182,8 @@
 			<xsl:when test="contains('usd-USD-*', $currency) and contains('VI-MC-AX-DI-*', $cardType)"><xsl:value-of select="'GUS_USD_GUS'"/></xsl:when>
 			<xsl:when test="contains('cad-CAD-*', $currency) and contains('VI-MC-AX-DI-*', $cardType)"><xsl:value-of select="'GCA_CAD_GCA'"/></xsl:when>
 			<xsl:when test="contains('aud-AUD-*', $currency) and contains('VI-MC-AX-DI-*', $cardType)"><xsl:value-of select="'GAU_AUD_GAU'"/></xsl:when>
+			<xsl:when test="contains('nzd-NZD-*', $currency) and contains('VI-MC-AX-DI-*', $cardType)"><xsl:value-of select="'GGL_NZD_GGL'"/></xsl:when>
+			
         </xsl:choose>
 	</xsl:template> 
 
@@ -188,13 +193,16 @@
 	<xsl:template name="SuccessfulAVSCodes">
 	    <xsl:param name="xipayMID"/>
 	    <xsl:param name="cardType"/>
-	    <xsl:when test="contains('GUS_USD_GUS',$xipayMID) and contains('VI', $cardType)"><xsl:value-of select="'A;B;C;P;R;S;U;X;Y;Z'"/></xsl:when>
-	    <xsl:when test="contains('GUS_USD_GUS',$xipayMID) and contains('MC', $cardType)"><xsl:value-of select="'X;Y;A;W;Z;U;R;E;S'"/></xsl:when>
-	    <xsl:when test="contains('GUS_USD_GUS',$xipayMID) and contains('AX', $cardType)"><xsl:value-of select="'Y;A;Z;U;R;S;L;M;O;D;E;F'"/></xsl:when>
-	    <xsl:when test="contains('GUS_USD_GUS',$xipayMID) and contains('DI', $cardType)"><xsl:value-of select="'X;Y;A;W;Z;U;R;S'"/></xsl:when>
-	    <xsl:when test="contains('GCA_CAD_GCA',$xipayMID) and contains('VI-MC-AX-*', $cardType)"><xsl:value-of select="'A;B;C;D;M;P;Y;Z'"/></xsl:when>
-	    <xsl:when test="contains('GCA_CAD_GCA',$xipayMID) and contains('DI', $cardType)"><xsl:value-of select="'X;A;Y;T;Z'"/></xsl:when>
-	    <xsl:when test="contains('GAU_AUD_GAU',$xipayMID)"><xsl:value-of select="'A;B;D;M;F;H;L;O;P;T;V;W;Y;Z;3'"/></xsl:when>
+	    <xsl:choose>
+		    <xsl:when test="contains('GUS_USD_GUS',$xipayMID) and contains('VI', $cardType)"><xsl:value-of select="'A;B;C;P;R;S;U;X;Y;Z'"/></xsl:when>
+		    <xsl:when test="contains('GUS_USD_GUS',$xipayMID) and contains('MC', $cardType)"><xsl:value-of select="'X;Y;A;W;Z;U;R;E;S'"/></xsl:when>
+		    <xsl:when test="contains('GUS_USD_GUS',$xipayMID) and contains('AX', $cardType)"><xsl:value-of select="'Y;A;Z;U;R;S;L;M;O;D;E;F'"/></xsl:when>
+		    <xsl:when test="contains('GUS_USD_GUS',$xipayMID) and contains('DI', $cardType)"><xsl:value-of select="'X;Y;A;W;Z;U;R;S'"/></xsl:when>
+		    <xsl:when test="contains('GCA_CAD_GCA',$xipayMID) and contains('VI-MC-AX-*', $cardType)"><xsl:value-of select="'A;B;C;D;M;P;Y;Z'"/></xsl:when>
+		    <xsl:when test="contains('GCA_CAD_GCA',$xipayMID) and contains('DI', $cardType)"><xsl:value-of select="'X;A;Y;T;Z'"/></xsl:when>
+		    <xsl:when test="contains('GAU_AUD_GAU',$xipayMID)"><xsl:value-of select="'A;B;D;M;F;H;L;O;P;T;V;W;Y;Z;3'"/></xsl:when>
+			<xsl:when test="contains('GGL_NZD_GGL',$xipayMID)"><xsl:value-of select="'A;B;D;M;F;H;L;O;P;T;V;W;Y;Z;3'"/></xsl:when>
+		</xsl:choose>
 	</xsl:template> 
 
 	<!-- ########################################################################################
@@ -203,9 +211,12 @@
 	<xsl:template name="SuccessfulCVVCodes">
 	    <xsl:param name="xipayMID"/>
 	    <xsl:param name="cardType"/>
-	    <xsl:when test="contains('GUS_USD_GUS',$xipayMID)"><xsl:value-of select="'M;P;U;X'"/></xsl:when>
-	    <xsl:when test="contains('GCA_CAD_GCA',$xipayMID)"><xsl:value-of select="'M;P;U'"/></xsl:when>
-	    <xsl:when test="contains('GAU_AUD_GAU',$xipayMID)"><xsl:value-of select="'M'"/></xsl:when>
+	    <xsl:choose>
+		    <xsl:when test="contains('GUS_USD_GUS',$xipayMID)"><xsl:value-of select="'M;P;U;X'"/></xsl:when>
+		    <xsl:when test="contains('GCA_CAD_GCA',$xipayMID)"><xsl:value-of select="'M;P;U;l'"/></xsl:when>
+		    <xsl:when test="contains('GAU_AUD_GAU',$xipayMID)"><xsl:value-of select="'M'"/></xsl:when>
+			<xsl:when test="contains('GGL_NZD_GGL',$xipayMID)"><xsl:value-of select="'M'"/></xsl:when>
+		</xsl:choose>
 	</xsl:template>
 	
 	<!-- ########################################################################################
@@ -216,7 +227,8 @@
 		<xsl:choose>
 			<xsl:when test="contains('GUS_USD_GUS',$packet/merchantID)"><xsl:value-of select="$packet/infoItems/InfoItem[key='TR_CARD_RESPCODE']/value"/></xsl:when>
 			<xsl:when test="contains('GCA_CAD_GCA',$packet/merchantID)"><xsl:value-of select="$packet/ResponseCode"/></xsl:when>
-			<xsl:when test="contains('GAU_AUD_GAU',$packet/merchantID)"><xsl:value-of select="$packet/ResponseCode"/></xsl:when>			
+			<xsl:when test="contains('GAU_AUD_GAU',$packet/merchantID)"><xsl:value-of select="$packet/ResponseCode"/></xsl:when>
+			<xsl:when test="contains('GGL_NZD_GGL',$packet/merchantID)"><xsl:value-of select="$packet/ResponseCode"/></xsl:when>			
 		</xsl:choose>
 	</xsl:template> 
 
