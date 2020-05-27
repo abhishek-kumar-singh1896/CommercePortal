@@ -409,7 +409,7 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;posts;contents;8;;
 ;posts;product-width-inch;9;inches;number
 ;posts;product-depth-inch;10;inches;number
-;posts;product-height-inch;11;inches;number
+;posts;post-height-inch;11;inches;number
 ;posts;product-weight-lbs;12;lbs;number
 ;posts;pack-quantity;13;;number
 ;posts;width-or-length;14;mm;number
@@ -485,7 +485,7 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;fence-tools-and-accessories;product-width-inch;9;inches;number
 ;fence-tools-and-accessories;product-depth-inch;10;inches;number
 ;fence-tools-and-accessories;product-weight-lbs;11;lbs;number
-;fence-tools-and-accessories;pack-quantity;9;;
+;fence-tools-and-accessories;pack-quantity;12;;number
 
 ;tapes-wires-and-braids-pf;voltage-at-500m;1;kV;number
 ;tapes-wires-and-braids-pf;voltage-at-1km;2;kV;number
@@ -746,6 +746,10 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;scale-heads-and-data-collectors;product-width-inch;11;inches;number
 ;scale-heads-and-data-collectors;product-depth-inch;12;inches;number
 ;scale-heads-and-data-collectors;product-weight-lbs;13;lbs;number
+;scale-heads-and-data-collectors;product-height;14;mm;number
+;scale-heads-and-data-collectors;product-width;15;mm;number
+;scale-heads-and-data-collectors;product-depth;16;mm;number
+;scale-heads-and-data-collectors;product-weight;17;kg;number
 
 ;weighing-accessories;warranty;1;Years;number
 ;weighing-accessories;product-height-inch;2;inches;number
