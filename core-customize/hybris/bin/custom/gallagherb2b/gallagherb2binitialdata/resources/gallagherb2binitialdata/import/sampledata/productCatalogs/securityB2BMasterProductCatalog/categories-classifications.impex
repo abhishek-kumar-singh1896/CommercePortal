@@ -88,20 +88,20 @@ INSERT_UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true];;;;;
 INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories;;;;;;
 ;controllers;controllers
 ;readers-and-terminals;readers-and-terminals
-;credentials;credentials
+#;credentials;credentials
 #;starter-kits;starter-kits
 #;insulators;insulators
 ;fence-controllers;fence-controllers
 ;sensors;sensors
 
 
-INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attributeType(code[default=number]);multiValued[default=false];range[default=false];localized[default=false]
+INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attributeType(code[default=string]);multiValued[default=false];range[default=false];localized[default=false]
 									;readers-and-terminals;maximum-read-distance;1;mm;number
 									;readers-and-terminals;environmental-protection;2;ip-rating;number
 									;readers-and-terminals;impact-rating;3;ik-rating;number
 									;readers-and-terminals;voltage;4;Vdc;number
-									;readers-and-terminals;dimensions;5;mm;number
-									;readers-and-terminals;dimensions-inches;6;inches;number
+									;readers-and-terminals;dimensions;5;mm;
+									;readers-and-terminals;dimensions-inches;6;inches;
 									;readers-and-terminals;cable-specifications-cat5e;7
 									;readers-and-terminals;cable-specifications-hbus;8
 									;readers-and-terminals;standards-compliance;9
@@ -109,7 +109,7 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 									;controllers;power;1;V;number
 									;controllers;idle-current;2;Vdc;number
 									;controllers;operating-temperature;3
-									;controllers;dimensions;4;mm;number
+									;controllers;dimensions;4;mm;
 									;controllers;ethernet-network-connection;5
 									;controllers;rs485-device-communications;6
 									;controllers;ports;7
@@ -131,30 +131,30 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 									;fence-controllers;sync-options;9;
 									;fence-controllers;max-contact-rating;10;
 									;fence-controllers;software;11;
-									;fence-controllers;power-supply-voltage;12;V-Hz
-									;fence-controllers;power-consumption;13;W
-									;fence-controllers;aux-dc-output;14;V-Hz
+									;fence-controllers;power-supply-voltage;12;V-Hz;number
+									;fence-controllers;power-consumption;13;W;number
+									;fence-controllers;aux-dc-output;14;V-Hz;number
 									;fence-controllers;internal-backup-battery;15;
 									;fence-controllers;protection-rating;16;ip-rating
-									;fence-controllers;operating-temperature-cel;17;cel
-									;fence-controllers;operating-temperature-fr;18;fah
+									;fence-controllers;operating-temperature-cel;17;cel;number
+									;fence-controllers;operating-temperature-fr;18;fah;number
 									;fence-controllers;communications-transfer-speed;19;
-									;fence-controllers;max-hbus-distance;20;m
+									;fence-controllers;max-hbus-distance;20;m;number
 									;fence-controllers;cable-specification;21;
 									;fence-controllers;encryption-level;22;AES
-									;fence-controllers;max-lv-sync-cable-distance;23;km
+									;fence-controllers;max-lv-sync-cable-distance;23;km;number
 									;fence-controllers;standards-compliance;24;
 
 									;sensors;voltage;1;Vdc
-									;sensors;power-consumption;2;mA
-									;sensors;current;3;mA
-									;sensors;operating-temperature-cel;4;cel
-									;sensors;operating-temperature-fr;5;fah
+									;sensors;power-consumption;2;mA;number
+									;sensors;current;3;mA;number
+									;sensors;operating-temperature-cel;4;cel;number
+									;sensors;operating-temperature-fr;5;fah;number
 									;sensors;number-of-sensors-per-controller;6;
 									;sensors;dimensions;7;mm
 									;sensors;command-centre-version;8;
-									;sensors;environmental-protection-rating;9;ip-rating
-									;sensors;impact-rating;10;ik-rating
+									;sensors;environmental-protection-rating;9;ip-rating;number
+									;sensors;impact-rating;10;ik-rating;number
 
 #									;starter-kits;dimensions;1;mm
 
