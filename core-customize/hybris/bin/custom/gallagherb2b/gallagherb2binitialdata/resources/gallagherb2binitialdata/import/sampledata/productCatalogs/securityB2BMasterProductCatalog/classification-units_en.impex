@@ -19,19 +19,19 @@ $systemVersion=systemVersion(catalog(id[default='SecurityB2BClassification']),ve
 $lang=en
 
 UPDATE ClassificationAttributeUnit;code[unique=true];$systemVersion;name[lang=$lang]
-;mm;;milimeter;
-;Vdc;;Voltage DC;
-;mA;;milliAmpere;
-;m;;meter;
-;ip-rating;;IP rating;
-;ik-rating;;IK rating;
-;inches;;Inches
-;J;;Joules
+;mm;;mm;
+;Vdc;;Vdc;
+;mA;;mA;
+;m;;m;
+;ip-rating;;IP Rating;
+;ik-rating;;IK Rating;
+;inches;;""""
+;J;;J
 ;ohms;;ohms
 ;V-Hz;;V/Hz
-;W;;Watt
-;cel;;Celsius
-;fah;;Fahrenheit
+;W;;W
+;cel;;°C
+;fah;;°F
 ;AES;;AES
-;km;;kilometer
-;V;;Volt
+;km;;km
+;V;;V

@@ -206,10 +206,10 @@
 	  								${featureValue.value}
 	  								<c:choose>
 														<c:when test="${specFeature.range}">
-											${not fvStatus.last ? '-' : specFeature.featureUnit.symbol}
+											&nbsp; ${not fvStatus.last ? '-' : specFeature.featureUnit.name}
 										</c:when>
 														<c:otherwise>
-											${specFeature.featureUnit.symbol}
+											&nbsp; ${specFeature.featureUnit.name}
 											${not fvStatus.last ? '<br/>' : ''}
 										</c:otherwise>
 													</c:choose>
