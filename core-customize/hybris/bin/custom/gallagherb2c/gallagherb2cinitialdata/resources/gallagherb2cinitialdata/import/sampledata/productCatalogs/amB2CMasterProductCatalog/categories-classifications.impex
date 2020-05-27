@@ -746,10 +746,6 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;scale-heads-and-data-collectors;product-width-inch;11;inches;number
 ;scale-heads-and-data-collectors;product-depth-inch;12;inches;number
 ;scale-heads-and-data-collectors;product-weight-lbs;13;lbs;number
-;scale-heads-and-data-collectors;product-height;14;mm;number
-;scale-heads-and-data-collectors;product-width;15;mm;number
-;scale-heads-and-data-collectors;product-depth;16;mm;number
-;scale-heads-and-data-collectors;product-weight;17;kg;number
 
 ;weighing-accessories;warranty;1;Years;number
 ;weighing-accessories;product-height-inch;2;inches;number

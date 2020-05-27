@@ -19,7 +19,10 @@ $productCatalogVersion=catalogversion(catalog(id[default=$productCatalog]),versi
 #
 $lang=en
 
+
 UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true,default=$indexedType];name[unique=true];displayName[lang=$lang]
+ ;;Standards Compliance (Readers);"Standards Compliance"
+ ;;Standards Compliance (Controllers);"Standards Compliance"
  ;;Mobile Connect;"Mobile Connect"
 
 # Redirect page URL (Must use INSERT_UPDATE here)
