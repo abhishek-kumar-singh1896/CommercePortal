@@ -34,7 +34,7 @@
 			<xsl:otherwise><xsl:value-of select="$expMonth"/></xsl:otherwise>
 		</xsl:choose>
 		<xsl:value-of select="'/'"/>
-		<xsl:value-of select="$expYear"/>
+		<xsl:value-of select="number($expYear) - 2000"/>
 	</xsl:template> 
 
 	<!-- ########################################################################################
