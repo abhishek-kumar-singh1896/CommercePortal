@@ -48,15 +48,15 @@ public class GallagherSalesConditionsContributor extends DefaultSalesConditionsC
 				{
 					row.put(SalesConditionCsvColumns.CONDITION_VALUE, taxCodeArray[1].trim());
 				}
-				row.put(SalesConditionCsvColumns.CONDITION_COUNTER, getConditionCounterTax());
+				//row.put(SalesConditionCsvColumns.CONDITION_COUNTER, getConditionCounterTax());
 				row.put(GallagherSalesConditionCsvColumns.CONDITION_TOTAL_AMOUNT, next.getValue());
 
 				if (next.isAbsolute())
 				{
 					row.put(SalesConditionCsvColumns.ABSOLUTE, Boolean.TRUE);
-					row.put(SalesConditionCsvColumns.CONDITION_CURRENCY_ISO_CODE, order.getCurrency().getIsocode());
-					row.put(SalesConditionCsvColumns.CONDITION_UNIT_CODE, entry.getUnit().getCode());
-					row.put(SalesConditionCsvColumns.CONDITION_PRICE_QUANTITY, entry.getProduct().getPriceQuantity());
+					//row.put(SalesConditionCsvColumns.CONDITION_CURRENCY_ISO_CODE, order.getCurrency().getIsocode());
+					//row.put(SalesConditionCsvColumns.CONDITION_UNIT_CODE, entry.getUnit().getCode());
+					//row.put(SalesConditionCsvColumns.CONDITION_PRICE_QUANTITY, entry.getProduct().getPriceQuantity());
 				}
 				else
 				{
@@ -90,6 +90,24 @@ public class GallagherSalesConditionsContributor extends DefaultSalesConditionsC
 		getBatchIdAttributes().forEach(row::putIfAbsent);
 		row.put("dh_batchId", order.getCode());
 		result.add(row);
+	}
+
+	@Override
+	protected void createPaymentCostRow(final OrderModel order, final List<Map<String, Object>> result)
+	{
+		if (order.getPaymentCost() != null && order.getPaymentCost() > 0)
+		{
+			super.createPaymentCostRow(order, result);
+		}
+	}
+
+	@Override
+	protected void createDeliveryCostRow(final OrderModel order, final List<Map<String, Object>> result)
+	{
+		if (order.getDeliveryCost() != null && order.getDeliveryCost() > 0)
+		{
+			super.createDeliveryCostRow(order, result);
+		}
 	}
 
 }

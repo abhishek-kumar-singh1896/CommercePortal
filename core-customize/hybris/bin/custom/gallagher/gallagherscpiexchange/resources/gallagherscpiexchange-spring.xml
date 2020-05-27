@@ -56,6 +56,9 @@
 
 	<alias name="gallagherPartnerContributor" alias="sapPartnerContributor"/>
 	<bean id="gallagherPartnerContributor" class="com.gallagher.sap.orderexchange.outbound.impl.GallagherPartnerContributor" parent="defaultSapPartnerContributor"/>
+	
+	<alias name="gallagherPaymentContributor" alias="sapPaymentContributor"/>
+	<bean id="gallagherPaymentContributor" class="com.gallagher.sap.orderexchange.outbound.impl.GallagherPaymentContributor" parent="defaultSapPaymentContributor"/>
 
 	<bean id="sapCpiOmsStockLevelPersistenceHook"
 		class="com.gallagher.sap.sapcpiorderexchange.inbound.events.GallagherSCPIOmmStockLevelPersistenceHook" />
