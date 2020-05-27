@@ -41,8 +41,10 @@ public interface GallagherC4COutboundServiceFacade
 	 * Returns Registered Product information for an email from C4C via SCPI
 	 *
 	 * @param customerID
+	 * @param accountID
+	 *           Sap account ID
 	 *
 	 * @return List of Registered Product for the customerID provided
 	 */
-	List<GallagherRegisteredProduct> getRegisteredProductFromC4C(final String customerID);
+	List<GallagherRegisteredProduct> getRegisteredProductFromC4C(final String customerID, String accountID);
 }

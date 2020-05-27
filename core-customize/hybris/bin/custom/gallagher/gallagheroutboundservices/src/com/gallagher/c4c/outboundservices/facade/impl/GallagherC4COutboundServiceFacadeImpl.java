@@ -175,22 +175,49 @@ public class GallagherC4COutboundServiceFacadeImpl extends DefaultOutboundServic
 	 * {@inheritDoc}
 	 */
 	@Override
-	public List<GallagherRegisteredProduct> getRegisteredProductFromC4C(final String customerID)
+	public List<GallagherRegisteredProduct> getRegisteredProductFromC4C(final String customerID, final String accountID)
 	{
-		final ConsumedDestinationModel destinationModel = getConsumedDestinationModelById(
-				REGISTERED_PRODUCT_COLLECTION_DESTINATION);
-		final RestOperations restOperations = getIntegrationRestTemplateFactory().create(destinationModel);
-		final UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(destinationModel.getUrl()).queryParam("$filter",
-				"customerID eq '" + customerID + "'");
-		final HttpHeaders headers = new HttpHeaders();
-		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-		final HttpEntity entity = new HttpEntity(headers);
-		final HttpEntity<GallagherRegisteredProductResponse> response = restOperations.exchange(builder.build().encode().toUri(),
-				HttpMethod.GET, entity, GallagherRegisteredProductResponse.class);
-		final List<GallagherRegisteredProduct> registeredProducts = response.getBody().getRegisteredProductCollection()
-				.getRegisteredProduct();
-		Collections.sort(registeredProducts, Collections.reverseOrder());
+		List<GallagherRegisteredProduct> registeredProducts = Collections.EMPTY_LIST;
+		if (StringUtils.isNotEmpty(customerID) || StringUtils.isNotEmpty(accountID))
+		{
+			final ConsumedDestinationModel destinationModel = getConsumedDestinationModelById(
+					REGISTERED_PRODUCT_COLLECTION_DESTINATION);
+			final RestOperations restOperations = getIntegrationRestTemplateFactory().create(destinationModel);
+			final String filterParamValue = getFilterParamValue(customerID, accountID);
+			final UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(destinationModel.getUrl()).queryParam("$filter",
+					filterParamValue);
+			final HttpHeaders headers = new HttpHeaders();
+			headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+			final HttpEntity entity = new HttpEntity(headers);
+			final HttpEntity<GallagherRegisteredProductResponse> response = restOperations.exchange(builder.build().encode().toUri(),
+					HttpMethod.GET, entity, GallagherRegisteredProductResponse.class);
+			registeredProducts = response.getBody().getRegisteredProductCollection().getRegisteredProduct();
+			Collections.sort(registeredProducts, Collections.reverseOrder());
+		}
 		return registeredProducts;
+	}
+
+	/**
+	 * Returns the value of filter parameter
+	 *
+	 * @return filterParam
+	 */
+	private String getFilterParamValue(final String customerID, final String accountID)
+	{
+		final StringBuilder param = new StringBuilder();
+		if (StringUtils.isNotEmpty(customerID))
+		{
+			param.append("customerID eq '").append(customerID).append("'");
+		}
+		if (StringUtils.isNotEmpty(accountID))
+		{
+			if (param.length() > 0)
+			{
+				param.append(" and ");
+			}
+			param.append("sapAccountID eq '").append(accountID).append("'");
+		}
+		return param.toString();
 	}
 
 }

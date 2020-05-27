@@ -9,6 +9,7 @@ import de.hybris.platform.core.model.user.UserModel;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Collections;
 
 import org.apache.commons.codec.binary.Base64;
@@ -27,6 +28,8 @@ import com.gallagher.outboundservices.request.dto.RegisteredProductPartyInformat
  */
 public class GallagherProductRegistrationUtil
 {
+	private static final String SAP_CUSTOMER_ROLE_ID = "60";
+	private static final String SAP_ACCOUNT_ROLE_ID = "Z60";
 	private static final Logger LOGGER = LoggerFactory.getLogger(GallagherProductRegistrationUtil.class);
 
 	/**
@@ -67,10 +70,13 @@ public class GallagherProductRegistrationUtil
 
 			final RegisteredProductPartyInformation customerInfo = new RegisteredProductPartyInformation();
 			customerInfo.setPartyID(customer.getCustomerID());
+			customerInfo.setRoleCode(SAP_CUSTOMER_ROLE_ID);
 
-			customerInfo.setRoleCode("60");
+			final RegisteredProductPartyInformation customerAccountInfo = new RegisteredProductPartyInformation();
+			customerAccountInfo.setPartyID(customer.getSapAccountID());
+			customerAccountInfo.setRoleCode(SAP_ACCOUNT_ROLE_ID);
 
-			request.setRegisteredProductPartyInformation(Collections.singletonList(customerInfo));
+			request.setRegisteredProductPartyInformation(Arrays.asList(customerInfo, customerAccountInfo));
 		}
 
 		final MultipartFile file = registerProductForm.getAttachedFile();

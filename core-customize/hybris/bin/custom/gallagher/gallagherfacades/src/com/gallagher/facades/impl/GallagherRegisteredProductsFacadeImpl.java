@@ -43,8 +43,8 @@ public class GallagherRegisteredProductsFacadeImpl implements GallagherRegistere
 		if (userService.getCurrentUser() instanceof CustomerModel)
 		{
 			final CustomerModel customer = (CustomerModel) userService.getCurrentUser();
-			return getRegisteredProductsConverter()
-					.convertAll(gallagherC4COutboundServiceFacade.getRegisteredProductFromC4C(customer.getCustomerID()));
+			return getRegisteredProductsConverter().convertAll(gallagherC4COutboundServiceFacade
+					.getRegisteredProductFromC4C(customer.getCustomerID(), customer.getSapAccountID()));
 		}
 
 		return Collections.emptyList();
