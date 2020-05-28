@@ -29,7 +29,10 @@ public class GallagherAddressValidator extends AddressValidator
 	protected void validateStandardFields(final AddressForm addressForm, final Errors errors)
 	{
 		super.validateStandardFields(addressForm, errors);
-		validateStringFieldForPostCode(addressForm.getPostcode(), AddressField.POSTCODE, MAX_POSTCODE_LENGTH, errors);
+		if (errors.hasErrors() == false)
+		{
+			validateStringFieldForPostCode(addressForm.getPostcode(), AddressField.POSTCODE, MAX_POSTCODE_LENGTH, errors);
+		}
 	}
 
 	protected static void validateStringFieldForPostCode(final String addressField, final AddressField fieldType,

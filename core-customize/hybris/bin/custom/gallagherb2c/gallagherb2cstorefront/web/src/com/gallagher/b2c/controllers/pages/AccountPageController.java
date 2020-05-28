@@ -15,7 +15,6 @@ import de.hybris.platform.acceleratorstorefrontcommons.forms.AddressForm;
 import de.hybris.platform.acceleratorstorefrontcommons.forms.UpdateEmailForm;
 import de.hybris.platform.acceleratorstorefrontcommons.forms.UpdatePasswordForm;
 import de.hybris.platform.acceleratorstorefrontcommons.forms.UpdateProfileForm;
-import de.hybris.platform.acceleratorstorefrontcommons.forms.validation.AddressValidator;
 import de.hybris.platform.acceleratorstorefrontcommons.forms.validation.PasswordValidator;
 import de.hybris.platform.acceleratorstorefrontcommons.forms.validation.ProfileValidator;
 import de.hybris.platform.acceleratorstorefrontcommons.forms.verification.AddressVerificationResultHandler;
@@ -88,6 +87,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gallagher.b2c.controllers.ControllerConstants;
 import com.gallagher.b2c.form.B2CCustomerPreferenceForm;
+import com.gallagher.b2c.validators.GallagherAddressValidator;
 import com.gallagher.b2c.validators.GallagherEmailValidator;
 import com.gallagher.facades.customer.GallagherCustomerFacade;
 import com.gallagher.keycloak.outboundservices.service.GallagherKeycloakService;
@@ -180,8 +180,8 @@ public class AccountPageController extends AbstractSearchPageController
 	@Resource(name = "passwordValidator")
 	private PasswordValidator passwordValidator;
 
-	@Resource(name = "addressValidator")
-	private AddressValidator addressValidator;
+	@Resource(name = "gallagherAddressValidator")
+	private GallagherAddressValidator gallagherAddressValidator;
 
 	@Resource(name = "profileValidator")
 	private ProfileValidator profileValidator;
@@ -218,9 +218,9 @@ public class AccountPageController extends AbstractSearchPageController
 		return passwordValidator;
 	}
 
-	protected AddressValidator getAddressValidator()
+	protected GallagherAddressValidator getGallagherAddressValidator()
 	{
-		return addressValidator;
+		return gallagherAddressValidator;
 	}
 
 	protected ProfileValidator getProfileValidator()
@@ -743,7 +743,8 @@ public class AccountPageController extends AbstractSearchPageController
 	public String addAddress(final AddressForm addressForm, final BindingResult bindingResult, final Model model,
 			final RedirectAttributes redirectModel) throws CMSItemNotFoundException
 	{
-		getAddressValidator().validate(addressForm, bindingResult);
+		/* getAddressValidator().validate(addressForm, bindingResult); */
+		getGallagherAddressValidator().validate(addressForm, bindingResult);
 		if (bindingResult.hasErrors())
 		{
 			GlobalMessages.addErrorMessage(model, FORM_GLOBAL_ERROR);
@@ -860,7 +861,8 @@ public class AccountPageController extends AbstractSearchPageController
 	public String editAddress(final AddressForm addressForm, final BindingResult bindingResult, final Model model,
 			final RedirectAttributes redirectModel) throws CMSItemNotFoundException
 	{
-		getAddressValidator().validate(addressForm, bindingResult);
+		/* getAddressValidator().validate(addressForm, bindingResult); */
+		getGallagherAddressValidator().validate(addressForm, bindingResult);
 		final ContentPageModel addEditAddressPage = getContentPageForLabelOrId(ADD_EDIT_ADDRESS_CMS_PAGE);
 		if (bindingResult.hasErrors())
 		{
