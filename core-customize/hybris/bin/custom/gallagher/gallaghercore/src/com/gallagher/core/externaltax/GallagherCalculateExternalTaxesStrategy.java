@@ -16,10 +16,13 @@ import de.hybris.platform.core.model.c2l.CurrencyModel;
 import de.hybris.platform.core.model.order.AbstractOrderModel;
 import de.hybris.platform.core.model.user.AddressModel;
 import de.hybris.platform.externaltax.ExternalTaxDocument;
+import de.hybris.platform.ordersplitting.model.WarehouseModel;
 import de.hybris.platform.servicelayer.model.ModelService;
+import de.hybris.platform.storelocator.model.PointOfServiceModel;
 import de.hybris.platform.util.TaxValue;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -104,6 +107,23 @@ public class GallagherCalculateExternalTaxesStrategy implements CalculateExterna
 
 		updateAddressGeoCode(abstractOrder.getDeliveryAddress());
 		updateAddressGeoCode(abstractOrder.getPaymentAddress());
+
+		final List<WarehouseModel> warehouses = abstractOrder.getStore().getWarehouses();
+		if (CollectionUtils.isNotEmpty(warehouses))
+		{
+			final Collection<PointOfServiceModel> pointOfServices = warehouses.get(0).getPointsOfService();
+
+			if (CollectionUtils.isNotEmpty(pointOfServices))
+			{
+				final AddressModel sFAddress = pointOfServices.iterator().next().getAddress();
+
+				if (null != sFAddress)
+				{
+					updateAddressGeoCode(sFAddress);
+				}
+			}
+
+		}
 
 		return externalDocument;
 	}

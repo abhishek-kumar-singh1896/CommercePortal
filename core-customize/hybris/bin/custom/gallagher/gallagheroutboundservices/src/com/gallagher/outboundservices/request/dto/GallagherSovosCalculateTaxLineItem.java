@@ -42,32 +42,12 @@ public class GallagherSovosCalculateTaxLineItem
 	@JsonProperty("dropShipInd")
 	private int dropShipInd;
 
-	@JsonProperty("sFCountry")
-	private String sFCountry;
+	@JsonProperty("sFGeoCd")
+	private int sFGeoCd;
 
-	@JsonProperty("sFCity")
-	private String sFCity;
 
-	@JsonProperty("sFStateProv")
-	private String sFStateProv;
-
-	@JsonProperty("sFPstlCd")
-	private String sFPstlCd;
-
-	@JsonProperty("sTCity")
-	private String sTCity;
-
-	@JsonProperty("sTStateProv")
-	private String sTStateProv;
-
-	@JsonProperty("sTCountry")
-	private String sTCountry;
-
-	@JsonProperty("sTPstlCd")
-	private String sTPstlCd;
-
-	@JsonProperty("sTStNameNum")
-	private String sTStNameNum;
+	@JsonProperty("sTGeoCd")
+	private int sTGeoCd;
 
 	public int getDebCredIndr()
 	{
@@ -159,93 +139,24 @@ public class GallagherSovosCalculateTaxLineItem
 		this.dropShipInd = dropShipInd;
 	}
 
-	public String getsFCountry()
+	public int getsFGeoCd()
 	{
-		return sFCountry;
+		return sFGeoCd;
 	}
 
-	public void setsFCountry(final String sFCountry)
+	public void setsFGeoCd(final int sFGeoCd)
 	{
-		this.sFCountry = sFCountry;
+		this.sFGeoCd = sFGeoCd;
 	}
 
-	public String getsFCity()
+	public int getsTGeoCd()
 	{
-		return sFCity;
+		return sTGeoCd;
 	}
 
-	public void setsFCity(final String sFCity)
+	public void setsTGeoCd(final int sTGeoCd)
 	{
-		this.sFCity = sFCity;
+		this.sTGeoCd = sTGeoCd;
 	}
 
-	public String getsFStateProv()
-	{
-		return sFStateProv;
-	}
-
-	public void setsFStateProv(final String sFStateProv)
-	{
-		this.sFStateProv = sFStateProv;
-	}
-
-	public String getsFPstlCd()
-	{
-		return sFPstlCd;
-	}
-
-	public void setsFPstlCd(final String sFPstlCd)
-	{
-		this.sFPstlCd = sFPstlCd;
-	}
-
-	public String getsTCity()
-	{
-		return sTCity;
-	}
-
-	public void setsTCity(final String sTCity)
-	{
-		this.sTCity = sTCity;
-	}
-
-	public String getsTStateProv()
-	{
-		return sTStateProv;
-	}
-
-	public void setsTStateProv(final String sTStateProv)
-	{
-		this.sTStateProv = sTStateProv;
-	}
-
-	public String getsTCountry()
-	{
-		return sTCountry;
-	}
-
-	public void setsTCountry(final String sTCountry)
-	{
-		this.sTCountry = sTCountry;
-	}
-
-	public String getsTPstlCd()
-	{
-		return sTPstlCd;
-	}
-
-	public void setsTPstlCd(final String sTPstlCd)
-	{
-		this.sTPstlCd = sTPstlCd;
-	}
-
-	public String getsTStNameNum()
-	{
-		return sTStNameNum;
-	}
-
-	public void setsTStNameNum(final String sTStNameNum)
-	{
-		this.sTStNameNum = sTStNameNum;
-	}
 }

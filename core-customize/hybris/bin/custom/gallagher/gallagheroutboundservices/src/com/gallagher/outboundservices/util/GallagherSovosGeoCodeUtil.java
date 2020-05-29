@@ -21,9 +21,16 @@ public class GallagherSovosGeoCodeUtil
 	 */
 	public static void convert(final AddressModel address, final GallagherSovosGeoCodeRequest request)
 	{
+
 		request.setCity(address.getTown());
-		request.setCountry(address.getCountry().getName());
-		request.setStateProv(address.getRegion().getName());
+		if (address.getCountry() != null)
+		{
+			request.setCountry(address.getCountry().getName());
+		}
+		if (address.getRegion() != null)
+		{
+			request.setStateProv(address.getRegion().getName());
+		}
 		request.setPstlCd(address.getPostalcode());
 	}
 }

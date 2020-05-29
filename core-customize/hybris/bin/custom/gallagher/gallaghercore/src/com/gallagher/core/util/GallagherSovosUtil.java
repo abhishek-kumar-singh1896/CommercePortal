@@ -20,6 +20,8 @@ import org.apache.commons.collections4.CollectionUtils;
 import com.gallagher.core.model.GallagherSovosConfigurartionModel;
 import com.gallagher.outboundservices.request.dto.GallagherSovosCalculateTaxLineItem;
 import com.gallagher.outboundservices.request.dto.GallagherSovosCalculateTaxRequest;
+import com.gallagher.sovos.outboundservices.service.GallagherSovosService;
+import com.gallagher.sovos.outboundservices.service.impl.GallagherSovosServiceImpl;
 
 
 /**
@@ -27,6 +29,8 @@ import com.gallagher.outboundservices.request.dto.GallagherSovosCalculateTaxRequ
  */
 public class GallagherSovosUtil
 {
+	//	@Resource(name = "gallagherSovosService")
+	//	private static GallagherSovosService gallagherSovosService;
 
 	/**
 	 * Convert AbstractOrderModel into GallagherSovosCalculateTaxRequest.
@@ -39,6 +43,7 @@ public class GallagherSovosUtil
 		final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		final GallagherSovosConfigurartionModel sovosConfiguration = abstractOrder.getStore().getSovosConfiguration();
 		final long timeStamp = System.currentTimeMillis();
+		final GallagherSovosService gallagherSovosService = new GallagherSovosServiceImpl();
 
 		request.setRsltLvl(sovosConfiguration.getResultLevel());
 		request.setTrnId(abstractOrder.getCode() + "_" + timeStamp);
@@ -76,24 +81,15 @@ public class GallagherSovosUtil
 
 					if (null != address)
 					{
-						lineItem.setsFCountry(address.getCountry().getIsocode());
-						lineItem.setsFCity(address.getTown());
-						lineItem.setsFStateProv(null != address.getRegion() ? address.getRegion().getName() : ""); // Need to check
-						lineItem.setsFPstlCd(address.getPostalcode());
+						lineItem.setsFGeoCd(Integer.valueOf(gallagherSovosService.getGeoCode(address)));
 					}
-
 				}
 
 			}
 
 			final AddressModel deliveryAddress = abstractOrder.getDeliveryAddress();
 
-			lineItem.setsTCountry(deliveryAddress.getCountry().getIsocode());
-			lineItem.setsTCity(deliveryAddress.getTown());
-			lineItem.setsTStateProv(deliveryAddress.getRegion().getName()); // Need to check
-			lineItem.setsTPstlCd(deliveryAddress.getPostalcode());
-			lineItem.setsTStNameNum(deliveryAddress.getStreetnumber().concat(" ").concat(deliveryAddress.getStreetname()));
-
+			lineItem.setsTGeoCd(Integer.valueOf(gallagherSovosService.getGeoCode(deliveryAddress)));
 			lineItems.add(lineItem);
 		}
 
