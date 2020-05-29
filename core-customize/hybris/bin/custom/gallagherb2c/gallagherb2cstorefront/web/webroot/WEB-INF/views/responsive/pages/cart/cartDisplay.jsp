@@ -23,7 +23,7 @@
 		</div>
 		<div class="col-xs-12 col-sm-7">
 
-			<sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
+			<%-- <sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
 				<c:if test="${not empty savedCartCount and savedCartCount ne 0}">
 					<spring:url value="/my-account/saved-carts" var="listSavedCartUrl"
 						htmlEscape="false" />
@@ -42,7 +42,7 @@
 
 				</c:if>
 			</sec:authorize>
-			<cart:saveCart />
+			<cart:saveCart /> --%>
 		</div>
 	</div>
 </div>

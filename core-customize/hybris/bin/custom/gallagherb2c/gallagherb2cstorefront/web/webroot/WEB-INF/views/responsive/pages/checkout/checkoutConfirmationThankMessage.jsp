@@ -21,7 +21,7 @@
 	
 	<order:giftCoupons giftCoupons="${giftCoupons}"/>
 		
-	<c:if test="${not empty guestRegisterForm}">
+<%-- 	<c:if test="${not empty guestRegisterForm}">
 		<div class="checkout__new-account">
 			<div class="checkout__new-account__headline"><spring:theme code="guest.register"/></div>
 			<p><spring:theme code="order.confirmation.guest.register.description"/></p>
@@ -70,7 +70,7 @@
                 </div>
 			</form:form>
 		</div>
-	</c:if>
+	</c:if> --%>
 </div>
 
 <div class="well well-single-headline order-summary-heading">
