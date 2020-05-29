@@ -33,8 +33,12 @@ public class GallagherAddressValidator extends AddressValidator
 		validateStringField(addressForm.getLastName(), AddressField.LASTNAME, MAX_FIELD_LENGTH, errors);
 		validateStringField(addressForm.getLine1(), AddressField.LINE1, MAX_FIELD_LENGTH, errors);
 		validateStringField(addressForm.getTownCity(), AddressField.TOWN, MAX_FIELD_LENGTH, errors);
-		final String postcodeField = addressForm.getPostcode().trim();
-		addressForm.setPostcode(postcodeField);
+		String postcodeField = null;
+		if (addressForm.getPostcode() != null)
+		{
+			postcodeField = addressForm.getPostcode().trim();
+			addressForm.setPostcode(postcodeField);
+		}
 		validateStringFieldForPostCode(postcodeField, AddressField.POSTCODE, MAX_POSTCODE_LENGTH, errors);
 		/*
 		 * super.validateStandardFields(addressForm, errors); if ((errors.hasErrors() == true &&
