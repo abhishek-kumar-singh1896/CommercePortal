@@ -361,6 +361,7 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 		final Collection<MediaModel> normal = product.getNormal();
 		final Collection<MediaModel> thumbnails = product.getThumbnails();
 		final Collection<MediaContainerModel> galleryImages = product.getGalleryImages();
+		final Collection<MediaModel> data_sheet = product.getData_sheet();
 
 		if (null != picture)
 		{
@@ -419,6 +420,23 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 				}
 			}
 			variantProduct.setOthers(mediaSet);
+		}
+		if (!CollectionUtils.isEmpty(data_sheet))
+		{
+			final Set<MediaModel> mediaSet = new HashSet<>();
+			for (final MediaModel media : data_sheet)
+			{
+				try
+				{
+					mediaSet.add(mediaService.getMedia(regionalCatalogVersion, media.getCode()));
+				}
+				catch (final UnknownIdentifierException exception)
+				{
+					LOGGER.info("Media for data sheet with code " + media.getCode() + " and CatalogVersion "
+							+ regionalCatalogVersion.getCatalog().getId() + " not found, Ignoring...");
+				}
+			}
+			variantProduct.setData_sheet(mediaSet);
 		}
 		if (!CollectionUtils.isEmpty(normal))
 		{
