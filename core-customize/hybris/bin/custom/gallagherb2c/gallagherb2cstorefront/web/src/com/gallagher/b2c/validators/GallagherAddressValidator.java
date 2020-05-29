@@ -28,11 +28,20 @@ public class GallagherAddressValidator extends AddressValidator
 	@Override
 	protected void validateStandardFields(final AddressForm addressForm, final Errors errors)
 	{
-		super.validateStandardFields(addressForm, errors);
-		if (errors.hasErrors() == false)
-		{
-			validateStringFieldForPostCode(addressForm.getPostcode(), AddressField.POSTCODE, MAX_POSTCODE_LENGTH, errors);
-		}
+		validateStringField(addressForm.getCountryIso(), AddressField.COUNTRY, MAX_FIELD_LENGTH, errors);
+		validateStringField(addressForm.getFirstName(), AddressField.FIRSTNAME, MAX_FIELD_LENGTH, errors);
+		validateStringField(addressForm.getLastName(), AddressField.LASTNAME, MAX_FIELD_LENGTH, errors);
+		validateStringField(addressForm.getLine1(), AddressField.LINE1, MAX_FIELD_LENGTH, errors);
+		validateStringField(addressForm.getTownCity(), AddressField.TOWN, MAX_FIELD_LENGTH, errors);
+		final String postcodeField = addressForm.getPostcode().trim();
+		addressForm.setPostcode(postcodeField);
+		validateStringFieldForPostCode(postcodeField, AddressField.POSTCODE, MAX_POSTCODE_LENGTH, errors);
+		/*
+		 * super.validateStandardFields(addressForm, errors); if ((errors.hasErrors() == true &&
+		 * addressForm.getPostcode().length() > 10) || errors.hasErrors() == false) { final String postCodeField =
+		 * addressForm.getPostcode().trim(); addressForm.setPostcode(postCodeField);
+		 * validateStringFieldForPostCode(postCodeField, AddressField.POSTCODE, MAX_POSTCODE_LENGTH, errors); }
+		 */
 	}
 
 	protected static void validateStringFieldForPostCode(final String addressField, final AddressField fieldType,
