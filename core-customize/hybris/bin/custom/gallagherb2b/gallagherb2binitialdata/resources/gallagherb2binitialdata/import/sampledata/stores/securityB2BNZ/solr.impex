@@ -36,12 +36,12 @@ INSERT_UPDATE SolrCategoryRedirect;redirectItem(code,$productCatalogVersion)[uni
 #;1360
 
 # Non-facet search query properties
-INSERT_UPDATE SolrSearchQueryProperty;indexedProperty(name, solrIndexedType(identifier))[unique=true];searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType];facet;ftsPhraseQuery[default=false];ftsPhraseQueryBoost;ftsQuery[default=false];ftsQueryBoost;ftsFuzzyQuery[default=false];ftsFuzzyQueryBoost;ftsWildcardQuery[default=false];ftsWildcardQueryType(code)[default=POSTFIX];ftsWildcardQueryBoost;ftsWildcardQueryMinTermLength;includeInResponse[default=true]
-;feature-impact-rating:$solrIndexedType	;	 ;	  ;    ;   ;    ;  ;    ;   ;  ;       ;  ;
+#INSERT_UPDATE SolrSearchQueryProperty;indexedProperty(name, solrIndexedType(identifier))[unique=true];searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType];facet;ftsPhraseQuery[default=false];ftsPhraseQueryBoost;ftsQuery[default=false];ftsQueryBoost;ftsFuzzyQuery[default=false];ftsFuzzyQueryBoost;ftsWildcardQuery[default=false];ftsWildcardQueryType(code)[default=POSTFIX];ftsWildcardQueryBoost;ftsWildcardQueryMinTermLength;includeInResponse[default=true]
+#;feature-impact-rating:$solrIndexedType	;	 ;	  ;    ;   ;    ;  ;    ;   ;  ;       ;  ;
 
 # Facet search query properties
-INSERT_UPDATE SolrSearchQueryProperty;indexedProperty(name, solrIndexedType(identifier))[unique=true];facet[default=true];facetType(code);priority;facetDisplayNameProvider;facetSortProvider;facetTopValuesProvider;includeInResponse[default=true];searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType]
-;Mobile Connect:$solrIndexedType;;MultiSelectOr;1000;;;;;
+#INSERT_UPDATE SolrSearchQueryProperty;indexedProperty(name, solrIndexedType(identifier))[unique=true];facet[default=true];facetType(code);priority;facetDisplayNameProvider;facetSortProvider;facetTopValuesProvider;includeInResponse[default=true];searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType]
+#;Mobile Connect:$solrIndexedType;;MultiSelectOr;1000;;;;;
 
 INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ;name[unique=true] 		 ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=false] ; facetType(code) ; facetSort(code) ; priority ; visible ; fieldValueProvider                          ; customFacetSortProvider ; rangeSets(name) ; $classAttributeAssignment                   
 								; $solrIndexedType                         ;Maximum Read Distance; double                     ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ;1000; true    ; commerceClassificationPropertyValueProvider ;                         ;                 ; readers-and-terminals:::maximum-read-distance:::: 
