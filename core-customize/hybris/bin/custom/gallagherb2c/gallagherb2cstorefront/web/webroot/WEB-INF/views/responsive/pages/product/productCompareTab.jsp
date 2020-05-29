@@ -80,7 +80,7 @@
 	                                    </div>
 						            </c:forEach>
                                     <div class="price-col row-height-padding">
-                                    	<product:productPricePanel product="${firstProduct.productData}" />
+                                    	<product:compareProductPricePanel product="${firstProduct.productData}" />
                                     </div>
                                 </li>
 								<c:forEach items="${comparisonProductList}" var="compareProduct">
@@ -128,7 +128,7 @@
 	                                    </div>
 						            </c:forEach>
                                     <div class="price-col row-height-padding">
-                                    	<product:productPricePanel product="${compareProduct.productData}" />
+                                    	<product:compareProductPricePanel product="${compareProduct.productData}" />
                                     </div>
                                 </li>
 								</c:forEach>
