@@ -97,7 +97,7 @@ public class SilentOrderPostMockController
 		final Map<String, String> params = cloneRequestParameters(request);
 
 		// Remove values that we must not post back to the caller
-		params.remove("card_cvNumber");
+		//params.remove("card_cvNumber");
 
 		getSopPaymentDetailsValidator().validate(form, bindingResult);
 
