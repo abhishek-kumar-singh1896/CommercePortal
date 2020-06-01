@@ -33,7 +33,7 @@
 	<alias name="gallagherSearchResultProductPopulator" alias="commerceSearchResultProductPopulator" />
 	<bean id="gallagherSearchResultProductPopulator"
 		class="com.gallagher.facades.search.converters.poulator.GallagherSearchResultProductPopulator"
-		parent="defaultCommerceSearchResultProductPopulator">
+		parent="variantCommerceSearchResultProductPopulator">
 	</bean>
 
 	<alias name="gallagherProductCategorySearchPagePopulator" alias="productCategorySearchPagePopulator" />

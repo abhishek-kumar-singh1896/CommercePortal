@@ -4,7 +4,7 @@
 package com.gallagher.facades.search.converters.poulator;
 
 import de.hybris.platform.commercefacades.product.data.ProductData;
-import de.hybris.platform.commercefacades.search.converters.populator.SearchResultProductPopulator;
+import de.hybris.platform.commercefacades.search.converters.populator.SearchResultVariantProductPopulator;
 import de.hybris.platform.commerceservices.search.resultdata.SearchResultValueData;
 
 import java.util.Date;
@@ -19,7 +19,7 @@ import org.apache.commons.lang3.StringUtils;
  * @author gauravkamboj
  *
  */
-public class GallagherSearchResultProductPopulator extends SearchResultProductPopulator
+public class GallagherSearchResultProductPopulator extends SearchResultVariantProductPopulator
 {
 
 	@Override
