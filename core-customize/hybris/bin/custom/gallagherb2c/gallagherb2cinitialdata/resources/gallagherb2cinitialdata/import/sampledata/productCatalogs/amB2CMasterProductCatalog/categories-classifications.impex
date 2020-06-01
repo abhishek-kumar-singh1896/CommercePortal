@@ -263,7 +263,7 @@ INSERT_UPDATE ClassAttributeAssignment;$attribute;$class;position;$unit;attribut
 ;product-depth;energizers;9;mm;number
 ;product-weight;energizers;10;kg;number
 ;property-size;energizers;11;hectares;number
-;power-input;energizers;12;;number
+;power-input;energizers;12;;
 ;watts;energizers;13;W;number
 ;warranty;energizers;14;Years;number
 ;typical-fence-distance-gallagher-recommendation;energizers;15;miles;number
@@ -347,6 +347,8 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;power-system-accessories;height;14;mm;number
 ;power-system-accessories;width-or-length;15;mm;number
 
+;gallagher-westonfence;warranty;1;Years;number
+;gallagher-westonfence;pack-size;2;
 ;gallagher-westonfence;primary-usage;3;;
 ;gallagher-westonfence;wires;4;;
 ;gallagher-westonfence;post-height;5;mm;number
@@ -373,6 +375,7 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;wire-and-cable;product-depth;10;mm;number
 ;wire-and-cable;product-weight;11;kg;number
 ;wire-and-cable;contents;12;;
+;wire-and-cable;product-height;13;mm;number
 
 ;gate-hardware;warranty;1;Years;number
 ;gate-hardware;product-type;2;;
