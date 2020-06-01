@@ -78,9 +78,9 @@ INSERT_UPDATE PointOfService ; name[unique=true] ; type(code) ; address(&addrID)
                              ; USKC              ; WAREHOUSE  ; addr1            ; 35,6673  ; 139,75429 ; 29-04-2025                              ;             ; $standardHours        
                              ; CAN1              ; WAREHOUSE  ; addr2            ; 35,6923  ; 139,8201  ; 29-04-2025                              ;             ; $standardHours        ; $storeUidCA                         
                              
-INSERT_UPDATE Address ; &addrID ; streetname       ; streetnumber ; postalcode[unique=true] ; town[unique=true]   ; country(isocode) ; region(isocode) ; phone1        ; owner(PointOfService.name)[unique=true] 
-                      ; addr1   ; 41st Street      ; 5005 NW      ; 64150                   ; Riverside, Missouri ; US               ;                 ; +81 1988 3600 ; USKC                                    
-                      ; addr2   ; 20th Avenue East ; 2090         ; N4K 5R1                 ; Owen Sound, Ontario ; CA               ;                 ; +81 4649 8891 ; CAN1                                    
+INSERT_UPDATE Address ; &addrID ; streetname       ; streetnumber ; postalcode[unique=true] ; town[unique=true] ; country(isocode) ; region(isocode) ; phone1        ; owner(PointOfService.name)[unique=true] 
+                      ; addr1   ; 41st Street      ; 5005 NW      ; 64150                   ; Riverside         ; US               ; Missouri        ; +81 1988 3600 ; USKC                                    
+                      ; addr2   ; 20th Avenue East ; 2090         ; N4K 5R1                 ; Owen Sound        ; CA               ; Ontario         ; +81 4649 8891 ; CAN1                                    
                       
                       
 UPDATE PointOfService ; name[unique=true] ; features(code)                           ;  

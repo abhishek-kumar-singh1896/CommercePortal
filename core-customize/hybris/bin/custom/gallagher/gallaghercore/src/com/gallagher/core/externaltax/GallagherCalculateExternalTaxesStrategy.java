@@ -16,10 +16,13 @@ import de.hybris.platform.core.model.c2l.CurrencyModel;
 import de.hybris.platform.core.model.order.AbstractOrderModel;
 import de.hybris.platform.core.model.user.AddressModel;
 import de.hybris.platform.externaltax.ExternalTaxDocument;
+import de.hybris.platform.ordersplitting.model.WarehouseModel;
 import de.hybris.platform.servicelayer.model.ModelService;
+import de.hybris.platform.storelocator.model.PointOfServiceModel;
 import de.hybris.platform.util.TaxValue;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -63,7 +66,9 @@ public class GallagherCalculateExternalTaxesStrategy implements CalculateExterna
 	public ExternalTaxDocument calculateExternalTaxes(final AbstractOrderModel abstractOrder)
 	{
 		final ExternalTaxDocument externalDocument = new ExternalTaxDocument();
-
+		updateAddressGeoCode(abstractOrder.getDeliveryAddress());
+		updateAddressGeoCode(abstractOrder.getPaymentAddress());
+		updateWarehouseAddressGeoCode(abstractOrder);
 
 		if (abstractOrder == null)
 		{
@@ -101,10 +106,6 @@ public class GallagherCalculateExternalTaxesStrategy implements CalculateExterna
 				externalDocument.setTaxesForOrderEntry(Integer.valueOf(lienItem.getLnId()), taxValues);
 			}
 		}
-
-		updateAddressGeoCode(abstractOrder.getDeliveryAddress());
-		updateAddressGeoCode(abstractOrder.getPaymentAddress());
-
 		return externalDocument;
 	}
 
@@ -144,6 +145,9 @@ public class GallagherCalculateExternalTaxesStrategy implements CalculateExterna
 
 	/**
 	 * Gallagher implementation to update geoCode of address
+	 *
+	 * @param address
+	 *           to get the geo code
 	 */
 	private void updateAddressGeoCode(final AddressModel address)
 	{
@@ -152,6 +156,33 @@ public class GallagherCalculateExternalTaxesStrategy implements CalculateExterna
 			address.setGeoCode(gallagherSovosService.getGeoCode(address));
 			modelService.save(address);
 		}
+	}
+
+	/**
+	 * Updates the geo code for warehouse address i.e. Ship From Address
+	 *
+	 * @param abstractOrder
+	 *           to get the warehouse address
+	 */
+	private void updateWarehouseAddressGeoCode(final AbstractOrderModel abstractOrder)
+	{
+		final List<WarehouseModel> warehouses = abstractOrder.getStore().getWarehouses();
+		if (CollectionUtils.isNotEmpty(warehouses))
+		{
+			final Collection<PointOfServiceModel> pointOfServices = warehouses.get(0).getPointsOfService();
+
+			if (CollectionUtils.isNotEmpty(pointOfServices))
+			{
+				final AddressModel address = pointOfServices.iterator().next().getAddress();
+
+				if (null != address)
+				{
+					updateAddressGeoCode(address);
+				}
+			}
+
+		}
+
 	}
 
 }

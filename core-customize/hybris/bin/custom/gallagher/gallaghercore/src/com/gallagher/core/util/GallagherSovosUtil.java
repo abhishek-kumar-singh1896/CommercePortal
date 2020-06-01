@@ -76,24 +76,15 @@ public class GallagherSovosUtil
 
 					if (null != address)
 					{
-						lineItem.setsFCountry(address.getCountry().getIsocode());
-						lineItem.setsFCity(address.getTown());
-						lineItem.setsFStateProv(null != address.getRegion() ? address.getRegion().getName() : ""); // Need to check
-						lineItem.setsFPstlCd(address.getPostalcode());
+						lineItem.setsFGeoCd(Integer.valueOf(address.getGeoCode()));
 					}
-
 				}
 
 			}
 
 			final AddressModel deliveryAddress = abstractOrder.getDeliveryAddress();
 
-			lineItem.setsTCountry(deliveryAddress.getCountry().getIsocode());
-			lineItem.setsTCity(deliveryAddress.getTown());
-			lineItem.setsTStateProv(deliveryAddress.getRegion().getName()); // Need to check
-			lineItem.setsTPstlCd(deliveryAddress.getPostalcode());
-			lineItem.setsTStNameNum(deliveryAddress.getStreetnumber().concat(" ").concat(deliveryAddress.getStreetname()));
-
+			lineItem.setsTGeoCd(Integer.valueOf(deliveryAddress.getGeoCode()));
 			lineItems.add(lineItem);
 		}
 
