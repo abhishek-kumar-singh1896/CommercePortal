@@ -23,15 +23,15 @@ INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ;na
 
 
 INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetDisplayNameProvider ; facetSortProvider ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType]
-                                      ;Maximum Read Distance:$solrIndexedType							;                     ; MultiSelectOr   ;1000	   ;                          ;                   ;                        ;                                 ;                                                                                                  
-													;Environmental Protection:$solrIndexedType;; MultiSelectOr   ;1000;;;;;
-													;Impact Rating:$solrIndexedType;; MultiSelectOr   ;1000;;;;;
-													;Standards Compliance (Readers):$solrIndexedType;; MultiSelectOr   ;1000;;;;;
-													;Power:$solrIndexedType;; MultiSelectOr   ;1000;;;;;
-													;Standards Compliance (Controllers):$solrIndexedType;; MultiSelectOr   ;1000;;;;;
+                                      ;Maximum Read Distance:$solrIndexedType							;                     ; MultiSelectOr   ;1000	   ;                          ;numericFacetSortProviderAsc;                        ;                                 ;                                                                                                  
+													;Environmental Protection:$solrIndexedType;; MultiSelectOr   ;1000;;numericFacetSortProviderAsc;;;
+													;Impact Rating:$solrIndexedType;; MultiSelectOr   ;1000;;numericFacetSortProviderAsc;;;
+													;Standards Compliance (Readers):$solrIndexedType;; MultiSelectOr   ;1000;;numericFacetSortProviderAsc;;;
+													;Power:$solrIndexedType;; MultiSelectOr   ;1000;;numericFacetSortProviderAsc;;;
+													;Standards Compliance (Controllers):$solrIndexedType;; MultiSelectOr   ;1000;;numericFacetSortProviderAsc;;;
 #													;Material:$solrIndexedType;; MultiSelectOr   ;1000;;;;;
 #													;Tracking distance:$solrIndexedType;; MultiSelectOr   ;1000;;;;;
 #													;Dimensions:$solrIndexedType;; MultiSelectOr   ;1000;;;;;
-													;Fence Circuits:$solrIndexedType;; MultiSelectOr   ;1000;;;;;
-													;Voltage:$solrIndexedType;; MultiSelectOr   ;1000;;;;;
-													;Command Centre version:$solrIndexedType;; MultiSelectOr   ;1000;;;;;
+													;Fence Circuits:$solrIndexedType;; MultiSelectOr   ;1000;;sizeAttributeSortProvider;;;
+													;Voltage:$solrIndexedType;; MultiSelectOr   ;1000;;numericFacetSortProviderAsc;;;
+													;Command Centre version:$solrIndexedType;; MultiSelectOr   ;1000;;sizeAttributeSortProvider;;;
