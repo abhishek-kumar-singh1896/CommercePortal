@@ -15,6 +15,7 @@
 		<%-- Theme CSS files --%>
 		<link rel="stylesheet" type="text/css" media="all" href="${themeResourcePath}/css/style.css"/>
 		<link rel="stylesheet" type="text/css" media="all" href="${themeResourcePath}/css/theme.css"/>
+		<link rel="stylesheet" type="text/css" media="all" href="${themeResourcePath}/css/flexslider.css"/>
 		<%--  AddOn Common CSS files --%>
 		<c:forEach items="${addOnCommonCssPaths}" var="addOnCommonCss">
 			<link rel="stylesheet" type="text/css" media="all" href="${addOnCommonCss}"/>

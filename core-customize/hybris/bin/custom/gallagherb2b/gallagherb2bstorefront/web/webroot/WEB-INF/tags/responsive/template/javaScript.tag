@@ -86,11 +86,15 @@
 		<script type="text/javascript" src="${commonResourcePath}/js/acc.cookienotification.js"></script>
 		<script type="text/javascript" src="${commonResourcePath}/js/acc.closeaccount.js"></script>
 		<script type="text/javascript" src="${commonResourcePath}/js/custom/acc.header.js"></script>
+		<script type="text/javascript" src="${commonResourcePath}/js/jquery.flexslider.js"></script>
+		
+		
 		
 <%-- bootstrap --%>
 		<script type="text/javascript" src="${commonResourcePath}/js/acc.csv-import.js"></script>
 
 		<script type="text/javascript" src="${commonResourcePath}/js/_autoload.js"></script>
+		<script id="bynder-widgets-js" data-account-url="media.gallagher.com" data-language="en" src="https://d8ejoa1fys2rk.cloudfront.net/bynder-embed/latest/bynder-embed.js"></script>
 		
 		<%-- Cms Action JavaScript files --%>
 		<c:forEach items="${cmsActionsJsFiles}" var="actionJsFile">

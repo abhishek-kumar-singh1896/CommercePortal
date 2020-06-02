@@ -91,6 +91,7 @@ UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];title[lang=e
 ;;ProductReviewsTabComponent;Reviews
 ;;ProductSpecsTabComponent;Specs
 ;;ProductDocumentTabComponent;Documents
+;;ProductVideosTabComponent;Videos
 
 
 # CMS Footer Component
