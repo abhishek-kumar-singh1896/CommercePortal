@@ -93,8 +93,7 @@
 										var="dropdownValue">
 
 										<c:if test="${i.index != 0}">
-											<a class="dropdown-item" href="javascript:void(0)">${dropdownValue.item.linkName}</a>
-
+											<a class="dropdown-item" href="${dropdownValue.item.url}">${dropdownValue.item.linkName}</a>
 										</c:if>
 									</c:forEach>
 								</c:forEach>
