@@ -234,9 +234,7 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 
 						for (final LanguageModel language : baseStore.getLanguages())
 						{
-							final Locale locale = LocaleUtils.toLocale(language.getIsocode());
-							existingVariantProduct.setName(product.getName(locale), locale);
-							existingVariantProduct.setDescription(product.getDescription(locale), locale);
+							variantProductProcessing(existingVariantProduct, language, product);
 						}
 
 						existingVariantProduct.setVariantForImage(product.isVariantForImage());
@@ -273,9 +271,7 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 
 						for (final LanguageModel language : baseStore.getLanguages())
 						{
-							final Locale locale = LocaleUtils.toLocale(language.getIsocode());
-							newVariantProduct.setName(product.getName(locale), locale);
-							newVariantProduct.setDescription(product.getDescription(locale), locale);
+							variantProductProcessing(newVariantProduct, language, product);
 						}
 
 						newVariantProduct.setVariantForImage(product.isVariantForImage());
@@ -313,6 +309,31 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 			}
 		}
 		return success;
+	}
+
+	/**
+	 * @param existingVariantProduct
+	 * @param language
+	 * @param product
+	 */
+	private void variantProductProcessing(final GenericVariantProductModel existingVariantProduct, final LanguageModel language,
+			final ProductModel product)
+	{
+		final Locale locale = LocaleUtils.toLocale(language.getIsocode());
+		if (locale != null)
+		{
+			existingVariantProduct.setName(product.getName(locale), locale);
+			existingVariantProduct.setSummary(product.getSummary(locale), locale);
+			existingVariantProduct.setDescription(product.getDescription(locale), locale);
+		}
+		else
+		{
+			final Locale fallbackLocale = LocaleUtils.toLocale(language.getFallbackLanguages().get(0).getIsocode());
+			existingVariantProduct.setName(product.getName(fallbackLocale), fallbackLocale);
+			existingVariantProduct.setSummary(product.getSummary(fallbackLocale), fallbackLocale);
+			existingVariantProduct.setDescription(product.getDescription(fallbackLocale), fallbackLocale);
+		}
+
 	}
 
 	/**
