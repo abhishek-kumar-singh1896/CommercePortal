@@ -418,7 +418,7 @@ public class ProductPageController extends AbstractPageController
 				ProductOption.URL, ProductOption.PRICE, ProductOption.SUMMARY, ProductOption.DESCRIPTION, ProductOption.GALLERY,
 				ProductOption.CATEGORIES, ProductOption.REVIEW, ProductOption.PROMOTIONS, ProductOption.CLASSIFICATION,
 				ProductOption.VARIANT_FULL, ProductOption.STOCK, ProductOption.VOLUME_PRICES, ProductOption.PRICE_RANGE,
-				ProductOption.DELIVERY_MODE_AVAILABILITY, ProductOption.DATA_SHEET));
+				ProductOption.DELIVERY_MODE_AVAILABILITY, ProductOption.DATA_SHEET, ProductOption.VIDEO_DESCRIPTION));
 
 		options.addAll(extraOptions);
 
