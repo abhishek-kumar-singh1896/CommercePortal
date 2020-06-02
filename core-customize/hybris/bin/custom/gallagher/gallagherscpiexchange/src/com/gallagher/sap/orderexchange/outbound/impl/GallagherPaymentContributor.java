@@ -15,11 +15,14 @@ import de.hybris.platform.payment.model.PaymentTransactionModel;
 import de.hybris.platform.sap.orderexchange.constants.OrderCsvColumns;
 import de.hybris.platform.sap.orderexchange.constants.PaymentCsvColumns;
 import de.hybris.platform.sap.orderexchange.outbound.impl.DefaultPaymentContributor;
+import de.hybris.platform.servicelayer.config.ConfigurationService;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Required;
 
 
 /**
@@ -29,6 +32,8 @@ import java.util.Map;
  */
 public class GallagherPaymentContributor extends DefaultPaymentContributor
 {
+
+	private ConfigurationService configurationService;
 
 	@Override
 	public List<Map<String, Object>> createRows(final OrderModel order)
@@ -56,7 +61,8 @@ public class GallagherPaymentContributor extends DefaultPaymentContributor
 				final CreditCardPaymentInfoModel ccPaymentInfo = (CreditCardPaymentInfoModel) paymentInfo;
 				if (ccPaymentInfo.getType() != null)
 				{
-					row.put(PaymentCsvColumns.PAYMENT_PROVIDER, ccPaymentInfo.getType().getCode());
+					row.put(PaymentCsvColumns.PAYMENT_PROVIDER, configurationService.getConfiguration()
+							.getString("gallagher.card.".concat(ccPaymentInfo.getType().getCode()), ccPaymentInfo.getType().getCode()));
 				}
 				row.put(PaymentCsvColumns.CC_OWNER, ccPaymentInfo.getCcOwner());
 				row.put(PaymentCsvColumns.VALID_TO_MONTH, ccPaymentInfo.getValidToMonth());
@@ -72,4 +78,14 @@ public class GallagherPaymentContributor extends DefaultPaymentContributor
 		return result;
 	}
 
+	protected ConfigurationService getConfigurationService()
+	{
+		return configurationService;
+	}
+
+	@Required
+	public void setConfigurationService(final ConfigurationService configurationService)
+	{
+		this.configurationService = configurationService;
+	}
 }
