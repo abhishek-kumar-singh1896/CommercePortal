@@ -1,0 +1,59 @@
+                   
+$indexedType=amB2CGlobalProductType
+
+# Language
+$lang=en
+ UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true,default=$indexedType];name[unique=true];displayName[lang=$lang]
+;;Energy Stored;Energy (Stored) (Joules)
+;;Multiwire Distance (Gallagher Recommendation);Multiwire Distance (Gallagher Recommendation) (km)
+;;i Series Compatible (Energizers);i Series Compatible (True/False)
+;;Outdoors Suitable;Outdoors Suitable (True/False)
+;;Property Size;Property Size (Acres)
+;;Power Input;Power Input
+;;Watts;Watts (W)
+;;Voltage;Voltage (V)
+;;DC Input;DC Input (V)
+;;Capacity;Capacity (Ah)
+;;Current;Current (mA)
+;;Warranty (Remotes);Warranty (Years)
+;;Product Height (Remotes);Product Height (mm)
+;;Product Height (Power);Product Height (mm)
+;; Diameter or Tape Width (Wire); Diameter or Tape Width (mm)
+;;Ohms Per Km (Wire);Ohms Per Km
+;;Warranty (Wire); Warranty (Years)
+;;Animal (Wire);Animal
+;;Product Width (Posts);Product Width (mm)
+;;Product Weight (Posts);Product Weight (kg)
+;;Product Depth (Strainers);Product Depth (mm)
+;;Product Weight (Strainers);Product Weight (kg)
+;;Product Width (Insulators);Product Width (mm)
+;;Product Weight (Insulators);Product Weight (kg)
+;;Product Depth (Insulators);Product Depth (mm)
+;;Post Type;Post Type 
+;;Warranty (Electric Gates);Warranty (Years)
+;;Gate Type;Gate Type
+;;Product Height (Fence);Product Height (mm)
+;;Product Width (Fence);Product Width (mm)
+;;Diameter or Tape Width (Tapes);Diameter or Tape Width (mm)
+;;Product Weight (Tapes);Product Weight (kg)
+;;Pre-wound with;Pre-wound with
+;;Warranty (Reels);Warranty (Years)
+;;Product-Height (Reels);Product-Height (mm)
+;;Wire Amount;Wire Amount
+;;Height (Posts);Height (mm)
+;;Warranty (Posts);Warranty (Years)
+;;Warranty (Portable);Warranty (Years)
+;;Product Width (Portable);Product Width (mm)
+;;Product Depth (Portable);Product Depth (mm)
+;;Product Depth (Gates);Product Depth (mm)
+;; Wifi; Wifi(True/False)
+;;Number of Traits Recorded;Number of Traits Recorded
+;;Product-Height (Scales);Product-Height (mm)
+;;Product-Weight (Loadbars);Product-Weight (kg)
+;;Animal (Platforms);Animal
+;;Weighing Capacity (Platforms);Weighing Capacity (kg)
+;;Product Width (Platforms);Product Width (mm)
+;;Product Weight (Platforms);Product Weight (kg)
+;;Product Type;Product Type
+;; Product Weight (Water); Product Weight (kg)
+;;Warranty (Antenna);Warranty (Years)
