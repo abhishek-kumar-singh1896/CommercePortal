@@ -79,3 +79,4 @@ UPDATE ClassificationAttribute	;code[unique=true];name[lang=$lang];$classSystemV
 								;post-height-inch;Post Height
 								;product-length-inch;Product Length
 								;length-inch;Length
+								;wire-diameter-inch;Wire Diamter
