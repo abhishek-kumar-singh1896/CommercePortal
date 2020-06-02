@@ -74,16 +74,7 @@ ACC.productDetail = {
     },
 
     initPageEvents: function () {
-    	$(document).ready(function () {
-	         // The video slider
-	            $('#productDetailVideoSlider').flexslider({
-	                animation: "slide",
-	                controlNav: false,
-	                animationLoop: false,
-	                slideshow: false,
-	                touch: true
-	            });
-      });
+    	
         $(document).on("click", '.js-qty-selector .js-qty-selector-minus', function () {
             ACC.productDetail.checkQtySelector(this, "minus");
         })

@@ -5,7 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="cms" uri="http://hybris.com/tld/cmstags"%>
 
-<div class="tabhead">
+<div class="tabhead" id="productVideos">
 	<a href="">${fn:escapeXml(title)}</a> <span class="glyphicon"></span>
 </div>
 
@@ -27,7 +27,7 @@
 		  				</ul>
 		              </div>
 		                        
-		               <%-- <div id="productDetailVideoCarousel"
+		                <div id="productDetailVideoCarousel"
 		                   class="flexslider flex-carousel video-carousel">
 		                   <ul class="slides">
 		                   	<c:forEach var="entry" items="${product.videos}">
@@ -36,7 +36,7 @@
 		                   	</li>
 		                   	</c:forEach>
 		                   </ul>
-		               </div>  --%>
+		               </div>  
 		        </div>
 	        </div>
         </div>

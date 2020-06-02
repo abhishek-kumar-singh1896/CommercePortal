@@ -52,6 +52,32 @@ ACC.tabs = {
 			ACC.tabs.showReviewBtn(".all-reviews-btn");
 		});
 		
+		$e.on("click","#productVideos",function(e){
+		
+            $('#productDetailVideoCarousel').flexslider({
+                animation: "slide",
+                controlNav: false,
+                animationLoop: false,
+                slideshow: false,
+                itemWidth: 171,
+                itemMargin: 10,
+                directionNav: false,
+                asNavFor: '#productDetailVideoSlider'
+            });
+
+            $('#productDetailVideoSlider').flexslider({
+                animation: "slide",
+                controlNav: false,
+                animationLoop: false,
+                slideshow: false,
+                touch: true,
+                sync: "#productDetailVideoCarousel"
+            });
+            
+           
+            
+		});
+		
 		$(document).on("click", '.js-writeReviewTab', function(e){
 			e.preventDefault();
 			tabs.showAccessibleTabSelector($(this).attr("href"));
