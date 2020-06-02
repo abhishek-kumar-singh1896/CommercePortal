@@ -326,7 +326,7 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 			existingVariantProduct.setSummary(product.getSummary(locale), locale);
 			existingVariantProduct.setDescription(product.getDescription(locale), locale);
 		}
-		else if (null != language.getFallbackLanguages())
+		if (null != language.getFallbackLanguages())
 		{
 			final Locale fallbackLocale = LocaleUtils.toLocale(language.getFallbackLanguages().get(0).getIsocode());
 			existingVariantProduct.setName(product.getName(fallbackLocale), fallbackLocale);
