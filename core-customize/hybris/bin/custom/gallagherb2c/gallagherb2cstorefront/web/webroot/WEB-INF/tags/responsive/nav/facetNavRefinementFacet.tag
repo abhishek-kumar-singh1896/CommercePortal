@@ -16,7 +16,7 @@
 			<h4 class="sidebar-section-header with-link">
 				<c:choose>
 					<c:when test="${collapseflag eq 'show'}">
-						<a data-toggle="collapse" href="#${fn:replace(facetData.name,' ','_')}" role="button" aria-expanded="true" aria-controls="${facetData.name}">	
+						<a data-toggle="collapse" href="#${fn:replace(fn:replace(fn:replace(fn:replace(facetData.name,' ','_'),'(',''),')',''),'/','_')}" role="button" aria-expanded="true" aria-controls="${facetData.name}">	
 							<spring:theme code="search.nav.facetTitle" arguments="${facetData.name}"/>
 							<span class="down-arrow-icon">
 								<svg>
@@ -26,7 +26,7 @@
 						</a>
 					</c:when>	
 					<c:otherwise>
-						<a data-toggle="collapse" href="#${fn:replace(facetData.name,' ','_')}" role="button" aria-expanded="false" aria-controls="${facetData.name}">	
+						<a data-toggle="collapse" href="#${fn:replace(fn:replace(fn:replace(fn:replace(facetData.name,' ','_'),'(',''),')',''),'/','_')}" role="button" aria-expanded="false" aria-controls="${facetData.name}">	
 							<spring:theme code="search.nav.facetTitle" arguments="${facetData.name}"/>
 							<span class="down-arrow-icon">
 								<svg>
@@ -43,7 +43,7 @@
 			            </svg>
 			        </span> --%>
 			</h4>	
-			<div class="js-facet-form sidebar-section-container collapse ${collapseflag}" id="${fn:replace(facetData.name,' ','_')}">
+			<div class="js-facet-form sidebar-section-container collapse ${collapseflag}" id="${fn:replace(fn:replace(fn:replace(fn:replace(facetData.name,' ','_'),'(',''),')',''),'/','_')}">
 				<div class="sidebar-section-container-inner">
 					<c:if test="${not empty facetData.topValues}">
 						<ul>
