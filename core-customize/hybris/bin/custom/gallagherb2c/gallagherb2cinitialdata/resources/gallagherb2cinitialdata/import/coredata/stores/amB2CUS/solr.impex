@@ -186,3 +186,8 @@ INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(id
                                       ; price:$solrIndexedType                                          ;                     ; MultiSelectOr   ; 4000     ;                                                 ;                               ; defaultTopValuesProvider ;                                 ;                                                                                                   
                                       ; allPromotions:$solrIndexedType                                  ;                     ; MultiSelectOr   ; 0        ; promotionFacetDisplayNameProvider               ;                               ;                          ;                                 ;                                                                                                   
                                       
+INSERT_UPDATE AsSimpleSearchProfile;code[unique=true];name[lang=en];indexType;catalogVersion(catalog(id),version)[unique=true]
+;amB2CUSSearchProfile;AM B2C US Search Profile;amB2CUSProductType;amB2CUSProductCatalog:Staged
+
+INSERT_UPDATE AsSearchProfileActivationSet;indexType[unique=true];catalogVersion(catalog(id),version)[unique=true];searchProfiles(code,catalogVersion(catalog(id),version))
+;amB2CUSProductType;amB2CUSProductCatalog:Staged;amB2CUSSearchProfile:amB2CUSProductCatalog:Staged 

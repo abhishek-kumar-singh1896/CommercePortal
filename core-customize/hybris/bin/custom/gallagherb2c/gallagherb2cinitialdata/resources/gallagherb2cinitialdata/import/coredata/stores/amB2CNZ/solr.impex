@@ -185,4 +185,11 @@ INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(id
 INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetDisplayNameProvider          ; facetSortProvider ; facetTopValuesProvider   ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
                                       ; price:$solrIndexedType                                          ;                     ; MultiSelectOr   ; 4000     ;                                   ;                   ; defaultTopValuesProvider ;                                 ;                                                                                                   
                                       ; allPromotions:$solrIndexedType                                  ;                     ; MultiSelectOr   ; 0        ; promotionFacetDisplayNameProvider ;                   ;                          ;                                 ;                                                                                                   
-                                      
+
+INSERT_UPDATE AsSimpleSearchProfile;code[unique=true];name[lang=en];indexType;catalogVersion(catalog(id),version)[unique=true]
+;amB2CNZSearchProfile;AM B2C NZ Search Profile;amB2CNZProductType;amB2CNZProductCatalog:Staged
+
+
+INSERT_UPDATE AsSearchProfileActivationSet;indexType[unique=true];catalogVersion(catalog(id),version)[unique=true];searchProfiles(code,catalogVersion(catalog(id),version))
+;amB2CNZProductType;amB2CNZProductCatalog:Staged;amB2CNZSearchProfile:amB2CNZProductCatalog:Staged
+
