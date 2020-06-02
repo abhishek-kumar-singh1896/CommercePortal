@@ -250,6 +250,7 @@ INSERT_UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true]
 ;;primary-usage
 ;;wires
 ;;property-size-acres
+;;wire-diameter-inch
 
 INSERT_UPDATE ClassAttributeAssignment;$attribute;$class;position;$unit;attributeType(code[default=string]);multiValued[default=false];range[default=false];localized[default=true]
 ;energy-stored;energizers;1;Joules;number
@@ -451,6 +452,7 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;insulators;post-height-inch;16;inches;number
 ;insulators;product-width-inch;17;inches;number
 ;insulators;product-depth-inch;18;inches;number
+;insulators;wire-diameter-inch;19;inches;number
 
 ;offsets;post-type;1;;
 ;offsets;mount-type;2;;
