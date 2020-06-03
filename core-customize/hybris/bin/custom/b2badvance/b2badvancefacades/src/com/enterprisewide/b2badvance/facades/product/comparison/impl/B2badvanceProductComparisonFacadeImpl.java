@@ -3,19 +3,37 @@
  */
 package com.enterprisewide.b2badvance.facades.product.comparison.impl;
 
+import de.hybris.platform.commercefacades.product.ProductFacade;
+import de.hybris.platform.commercefacades.product.ProductOption;
+import de.hybris.platform.commercefacades.product.data.BaseOptionData;
+import de.hybris.platform.commercefacades.product.data.ClassificationData;
+import de.hybris.platform.commercefacades.product.data.FeatureData;
+import de.hybris.platform.commercefacades.product.data.FeatureValueData;
+import de.hybris.platform.commercefacades.product.data.ProductData;
+import de.hybris.platform.commercefacades.product.data.VariantOptionQualifierData;
+import de.hybris.platform.servicelayer.session.SessionService;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
+import java.util.Set;
+
+import javax.annotation.Resource;
+
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.enterprisewide.b2badvance.facades.product.comparison.B2badvanceProductComparisonFacade;
 import com.enterprisewide.b2badvance.facades.product.comparison.constants.B2badvanceProductcomparisonConstants;
 import com.enterprisewide.b2badvance.facades.product.comparison.data.B2badvanceWrapperQueueProductComparison;
 import com.enterprisewide.b2badvance.facades.product.comparison.data.WrapperMapVariantAttributes;
-import de.hybris.platform.commercefacades.product.ProductFacade;
-import de.hybris.platform.commercefacades.product.ProductOption;
-import de.hybris.platform.commercefacades.product.data.*;
-import de.hybris.platform.servicelayer.session.SessionService;
-import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import javax.annotation.Resource;
-import java.util.*;
 
 
 /**
@@ -96,6 +114,21 @@ public class B2badvanceProductComparisonFacadeImpl implements B2badvanceProductC
 								if (fd.isComparable())
 								{
 									fMap.put(fd.getName(), fd);
+								}
+							}
+							final Set<String> classificationSet = classificationIds.get(classData.getCode());
+							for (final String featureName : classificationSet)
+							{
+								if (!fMap.containsKey(featureName))
+								{
+									final FeatureData featureData = new FeatureData();
+									featureData.setName(featureName);
+									final FeatureValueData valueData = new FeatureValueData();
+									valueData.setValue("-");
+									final Collection<FeatureValueData> featureCollection = new ArrayList<FeatureValueData>();
+									featureCollection.add(valueData);
+									featureData.setFeatureValues(featureCollection);
+									fMap.put(featureName, featureData);
 								}
 							}
 							//							for (final String fData : featureNames)
