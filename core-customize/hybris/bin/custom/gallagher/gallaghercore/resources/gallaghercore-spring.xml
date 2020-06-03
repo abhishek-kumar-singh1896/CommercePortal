@@ -261,4 +261,14 @@
 		<property name="typeCode" value="Item" />
 		<property name="order" value="2147483646"/>
 	</bean>
+	
+	 <!-- UrlResolvers -->
+
+    <alias name="gallagherCategoryModelUrlResolver" alias="categoryModelUrlResolver"/>
+    <bean id="gallagherCategoryModelUrlResolver"
+          class="com.gallagher.core.url.impl.GallagherCategoryModelUrlResolver" parent="defaultCategoryModelUrlResolver" />
+    
+    <alias name="gallagherProductModelUrlResolver" alias="productModelUrlResolver"/>
+    <bean id="gallagherProductModelUrlResolver"
+          class="com.gallagher.core.url.impl.GallagherProductModelUrlResolver" parent="defaultProductModelUrlResolver" />
 </beans>

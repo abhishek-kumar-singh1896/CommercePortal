@@ -266,5 +266,8 @@
     <bean id="gallagherCategoryPopulator"
           class="com.gallagher.facades.commercefacades.product.converters.populator.GallagherCategoryPopulator"
           parent="defaultCategoryPopulator"/>
- 	    
+ 	  
+ 		<!-- Urlencoder -->
+	<alias name="gallagherUrlEncoderFacade" alias="urlEncoderFacade"/>
+	<bean id="gallagherUrlEncoderFacade" class="com.gallagher.facades.urlencoder.impl.GallagherUrlEncoderFacadeImpl" parent="defaultUrlEncoderFacade"/>
 </beans>
