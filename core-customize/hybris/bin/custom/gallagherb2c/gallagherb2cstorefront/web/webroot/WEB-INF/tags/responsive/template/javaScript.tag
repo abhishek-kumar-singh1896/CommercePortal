@@ -12,6 +12,7 @@
 <c:choose>
 	<c:when test="${wro4jEnabled}">
 	  	<script src="${fn:escapeXml(contextPath)}/wro/all_responsive.js"></script>
+	  	<script id="bynder-widgets-js" data-account-url="media.gallagher.com" data-language="en" src="https://d8ejoa1fys2rk.cloudfront.net/bynder-embed/latest/bynder-embed.js"></script>
 	  	<script src="${fn:escapeXml(contextPath)}/wro/addons_responsive.js"></script>
 	</c:when>
 	<c:otherwise>

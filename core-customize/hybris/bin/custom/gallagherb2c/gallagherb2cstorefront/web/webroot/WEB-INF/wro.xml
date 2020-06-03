@@ -5,11 +5,11 @@
 	xsi:schemaLocation="http://www.isdc.ro/wro wro.xsd">
 	
 	<import>classpath:wro_addons.xml</import>
-
 	<group name="amB2C_responsive">
-		<css minimize="false">/_ui/responsive/theme-amB2C/bootstrap/css/bootstrap.min.css</css>
-		<css minimize="false">/_ui/responsive/theme-amB2C/css/select2.min.css</css>
 		<css>/_ui/responsive/theme-amB2C/css/style.css</css>
+		<css minimize="false">/_ui/responsive/theme-amB2C/bootstrap/css/bootstrap.min.css</css>
+		<css>/_ui/responsive/theme-amB2C/css/flexslider.css</css>
+		<css minimize="false">/_ui/responsive/theme-amB2C/css/select2.min.css</css>
 		<css>/_ui/responsive/theme-amB2C/css/theme.css</css>
 	</group>
 	
@@ -80,18 +80,28 @@
 		<js>/_ui/responsive/common/js/acc.savedcarts.js</js>
 		<js>/_ui/responsive/common/js/acc.multidgrid.js</js>
 		<js>/_ui/responsive/common/js/acc.quickorder.js</js>
-		<js>/_ui/responsive/common/js/acc.csv-import.js</js>
-		<js>/_ui/responsive/common/js/_autoload.js</js>
-		<js>/_ui/responsive/common/js/custom/acc.asm.js</js>
 		
+		<js>/_ui/responsive/common/js/acc.quote.js</js>
+		<js>/_ui/responsive/common/js/acc.consent.js</js>
+		<js>/_ui/responsive/common/js/acc.cookienotification.js</js>
+		<js>/_ui/responsive/common/js/acc.closeaccount.js</js>
 		<js minimize="false">/_ui/responsive/common/js/bootstrap.bundle.min.js</js>
+		<js>/_ui/responsive/common/js/acc.csv-import.js</js>
 		<js minimize="false">/_ui/responsive/common/js/select2.min.js</js>
+		<js>/_ui/responsive/common/js/_autoload.js</js>
+		<js>/_ui/responsive/common/js/jquery.flexslider.js</js>
 		<js minimize="false">/_ui/responsive/common/js/jquery-ui-1.12.1.min.js</js>
+		<js>/_ui/responsive/common/js/custom/acc.productList.js</js>
+		<js>/_ui/responsive/common/js/custom/acc.productDetails.js</js>		
+		<js>/_ui/responsive/common/js/custom/acc.asm.js</js>
+		<js>/_ui/responsive/common/js/custom/acc.preferenceOverlay.js</js>
+		<js>/_ui/responsive/common/js/custom/acc.registerProduct.js</js>
 		<js>/_ui/responsive/common/js/custom/acc.header.js</js>
-		<js>/_ui/responsive/common/js/custom/acc.productListNav.js</js>
-		
+	
 		<!-- Cms Action JavaScript files -->
         <js>/_ui/responsive/common/js/cms/*.js</js>
     </group>
+    
+    
    
 </groups>       

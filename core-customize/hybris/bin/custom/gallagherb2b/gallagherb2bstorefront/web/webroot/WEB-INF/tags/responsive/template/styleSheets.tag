@@ -16,6 +16,24 @@
 		<link rel="stylesheet" type="text/css" media="all" href="${themeResourcePath}/css/style.css"/>
 		<link rel="stylesheet" type="text/css" media="all" href="${themeResourcePath}/css/theme.css"/>
 		<link rel="stylesheet" type="text/css" media="all" href="${themeResourcePath}/css/flexslider.css"/>
+		
+		
+	 <%-- custom stylesheet--%>
+	 <link rel="stylesheet" type="text/css" media="all" href="${commonResourcePath}/customResponsiveCss/custom.css"/>
+	 <link rel="stylesheet" type="text/css" media="all" href="${commonResourcePath}/customResponsiveCss/compare.css"/>
+	 
+	  <%-- stylesheet for product comparison --%>
+	 <link rel="stylesheet" type="text/css" media="all" href="${commonResourcePath}/customResponsiveCss/productcomparison.css"/>
+	 
+	 <link rel="stylesheet" type="text/css" media="all" href="${commonResourcePath}/customResponsiveCss/paymentHistory.css"/>
+	 
+	  <%-- stylesheet for bulk order --%>
+	 <link rel="stylesheet" type="text/css" media="all" href="${commonResourcePath}/customResponsiveCss/mobbulkorderform.css"/>
+	  
+	 <!-- styleshet for search result grid -->
+	 <link rel="stylesheet" type="text/css" media="all" href="${commonResourcePath}/customResponsiveCss/searchresultgrid.css"/>
+		
+		
 		<%--  AddOn Common CSS files --%>
 		<c:forEach items="${addOnCommonCssPaths}" var="addOnCommonCss">
 			<link rel="stylesheet" type="text/css" media="all" href="${addOnCommonCss}"/>
@@ -33,20 +51,5 @@
 	@IMPORT url("${commonResourcePath}/blueprint/print.css");
 </style>
  --%>
-
- <%-- custom stylesheet--%>
- <link rel="stylesheet" type="text/css" media="all" href="${commonResourcePath}/customResponsiveCss/custom.css"/>
- <link rel="stylesheet" type="text/css" media="all" href="${commonResourcePath}/customResponsiveCss/compare.css"/>
- 
-  <%-- stylesheet for product comparison --%>
- <link rel="stylesheet" type="text/css" media="all" href="${commonResourcePath}/customResponsiveCss/productcomparison.css"/>
- 
- <link rel="stylesheet" type="text/css" media="all" href="${commonResourcePath}/customResponsiveCss/paymentHistory.css"/>
- 
-  <%-- stylesheet for bulk order --%>
- <link rel="stylesheet" type="text/css" media="all" href="${commonResourcePath}/customResponsiveCss/mobbulkorderform.css"/>
-  
- <!-- styleshet for search result grid -->
- <link rel="stylesheet" type="text/css" media="all" href="${commonResourcePath}/customResponsiveCss/searchresultgrid.css"/>
  
 <cms:previewCSS cmsPageRequestContextData="${cmsPageRequestContextData}" />
