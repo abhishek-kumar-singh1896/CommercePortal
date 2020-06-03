@@ -206,6 +206,7 @@ public class CMSSiteFilter extends OncePerRequestFilter implements CMSFilter
 				// Set the New Site in the session.
 				baseSiteService.setCurrentBaseSite(cmsSiteForCurrentRequest, true);
 				// Update the URLEncoderData
+				getSessionService().setAttribute("urlEncodingData", null);
 				urlEncoderFacade.updateSiteFromUrlEncodingData();
 			}
 		}
