@@ -14,3 +14,5 @@ UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true,default=$inde
 ;;Fence Circuits;Fence Circuits
 ;;Voltage;Voltage (Vdc)
 ;;Command Centre version;Command Centre version
+;;Dimensions;Dimensions (mm)
+;;Tracking distance;Tracking Distance (mm)

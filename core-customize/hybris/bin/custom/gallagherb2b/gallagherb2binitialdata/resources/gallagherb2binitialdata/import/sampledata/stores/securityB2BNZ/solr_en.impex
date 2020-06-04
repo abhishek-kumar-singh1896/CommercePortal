@@ -30,6 +30,8 @@ UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true,default=$inde
 ;;Fence Circuits;Fence Circuits
 ;;Voltage;Voltage (Vdc)
 ;;Command Centre version;Command Centre version
+;;Dimensions;Dimensions (mm)
+;;Tracking distance;Tracking Distance (mm)
 
 # Redirect page URL (Must use INSERT_UPDATE here)
 INSERT_UPDATE SolrURIRedirect;url[unique=true];&redirectRefID

@@ -26,9 +26,9 @@ $unit=unit(code,$classSystemVersion)
 INSERT_UPDATE ClassificationClass;$classCatalogVersion;code[unique=true];allowedPrincipals(uid)[default='customergroup'];;;;;
 ;;controllers
 ;;readers-and-terminals
-#;;credentials
-#;;starter-kits
-#;;insulators
+;;credentials
+;;starter-kits
+;;insulators
 ;;fence-controllers
 ;;sensors
 
@@ -116,9 +116,9 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 									;controllers;tcp/ip-protocol;8
 									;controllers;standards-compliance;9
 									
-#									;insulators;material;1;
-#									;insulators;tracking-distance;2;mm
-#									;insulators;dimensions;3;mm
+									;insulators;material;1;
+									;insulators;tracking-distance;2;mm
+									;insulators;dimensions;3;mm
 
 									;fence-controllers;fence-circuits;1;
 									;fence-controllers;pulse-rate;2;
@@ -156,10 +156,10 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 									;sensors;environmental-protection-rating;9;ip-rating;number
 									;sensors;impact-rating;10;ik-rating;number
 
-#									;starter-kits;dimensions;1;mm
+									;starter-kits;dimensions;1;mm
 
-#									;credentials ;dimensions;1;mm
-#									;credentials ;temperature-operating-cel;2;cel
-#									;credentials ;temperature-operating-fr;3;fah
-#									;credentials ;temperature-storage-cel;4;cel
-#									;credentials ;temperature-storage-fr;5;fah
+									;credentials ;dimensions;1;mm
+									;credentials ;temperature-operating-cel;2;cel
+									;credentials ;temperature-operating-fr;3;fah
+									;credentials ;temperature-storage-cel;4;cel
+									;credentials ;temperature-storage-fr;5;fah
