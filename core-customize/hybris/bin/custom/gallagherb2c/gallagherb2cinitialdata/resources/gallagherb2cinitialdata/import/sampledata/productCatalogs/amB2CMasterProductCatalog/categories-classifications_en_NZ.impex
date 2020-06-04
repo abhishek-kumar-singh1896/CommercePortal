@@ -34,7 +34,7 @@ UPDATE ClassificationAttribute	;code[unique=true];name[lang=$lang];$classSystemV
 								;diameter-or-tape-width;Diameter or Tape Width
 								;ohms-per-km;Ohms Per Km
 								;voltage-at-10km;Voltage (kV) at 10km of fence
-								;animal;Animal
+								#;animal;Animal
 								;product-length;Product Length
 								;contents;Contents
 								;post-height;Post Height
@@ -54,7 +54,7 @@ UPDATE ClassificationAttribute	;code[unique=true];name[lang=$lang];$classSystemV
 								;gear-ratio;Gear Ratio
 								;conductor-capacity;Conductor Capacity
 								;pre-wound-with;Pre-wound with
-								;animal-type;Animal Type
+								#;animal-type;Animal Type
 								;fence-type;Fence Type
 								;wire;Wire
 								;wire-type;Wire Type

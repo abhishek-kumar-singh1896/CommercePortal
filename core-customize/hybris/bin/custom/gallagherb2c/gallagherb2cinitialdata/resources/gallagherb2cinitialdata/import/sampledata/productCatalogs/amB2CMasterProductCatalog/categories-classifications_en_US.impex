@@ -7,8 +7,8 @@ $classSystemVersion=systemVersion(catalog(id[default='AMB2CClassification']),ver
 $lang=en_US
 
 UPDATE ClassificationAttribute	;code[unique=true];name[lang=$lang];$classSystemVersion
-								;animal;Animal
-								;animal-type;Animal Type
+								#;animal;Animal
+								#;animal-type;Animal Type
 								;capacity;Capacity
 								;capacity-l;Capacity (L)
 								;clean-wire-fence-distance;Clean Wire Fence Distance
@@ -79,4 +79,5 @@ UPDATE ClassificationAttribute	;code[unique=true];name[lang=$lang];$classSystemV
 								;post-height-inch;Post Height
 								;product-length-inch;Product Length
 								;length-inch;Length
-								;wire-diameter-inch;Wire Diamter
+								;wire-diameter-inch;Wire Diameter
+								;weighing-capacity-lbs;Weighing Capacity

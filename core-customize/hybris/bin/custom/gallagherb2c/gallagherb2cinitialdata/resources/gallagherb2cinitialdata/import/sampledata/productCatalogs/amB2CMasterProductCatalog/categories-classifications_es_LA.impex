@@ -67,7 +67,7 @@ UPDATE ClassificationAttribute	;code[unique=true];name[lang=$lang];$classSystemV
 								;ohms-per-km;Ohms Per Km
 								;voltage-at-10km;Voltaje (kV) a 10 km del cerco
 								;post-height;Post Height
-								;animal;Animal
+								#;animal;Animal
 								;number-of-wires;Number of Wires
 								;strainer-type;Strainer Type
 								;includes-joint-clamp;Includes Joint Clamp
@@ -83,7 +83,7 @@ UPDATE ClassificationAttribute	;code[unique=true];name[lang=$lang];$classSystemV
 								;mixed-metals;Mixed Metals
 								;gear-ratio;Proporción de Engranaje
 								;pre-wound-with;Pre-wound with
-								;animal-type;Animal Type
+								#;animal-type;Animal Type
 								;fence-type;Fence Type
 								;wire;Wire Amount
 								;wire-type;Wire Type

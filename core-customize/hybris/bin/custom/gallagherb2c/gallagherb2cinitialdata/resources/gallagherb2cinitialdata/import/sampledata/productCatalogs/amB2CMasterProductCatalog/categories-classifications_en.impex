@@ -81,8 +81,8 @@ UPDATE ClassificationClass;code[unique=true];name[lang=$lang];$classCatalogVersi
 ;energizers;Energizers
 
 UPDATE ClassificationAttribute	;code[unique=true];name[lang=$lang];$classSystemVersion
-								;animal;Animal
-								;animal-type;Animal Type
+								#;animal;Animal
+								#;animal-type;Animal Type
 								;capacity;Capacity
 								;livestock-web-mobile-app;Compatible with Gallagher Livestock web/mobile app
 								;conductor-capacity;Conductor Capacity

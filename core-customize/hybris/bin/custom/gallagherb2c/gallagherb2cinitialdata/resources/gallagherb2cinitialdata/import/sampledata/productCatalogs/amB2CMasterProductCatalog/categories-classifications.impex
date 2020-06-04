@@ -175,7 +175,7 @@ INSERT_UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true]
 ;;diameter-or-tape-width
 ;;ohms-per-km
 ;;voltage-at-10km
-;;animal 
+#;;animal 
 ;;product-length 
 ;;contents 
 ;;post-height 
@@ -195,7 +195,7 @@ INSERT_UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true]
 ;;gear-ratio
 ;;conductor-capacity
 ;;pre-wound-with 
-;;animal-type 
+#;;animal-type 
 ;;fence-type
 ;;wire 
 ;;post-height
@@ -251,6 +251,7 @@ INSERT_UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true]
 ;;wires
 ;;property-size-acres
 ;;wire-diameter-inch
+;;weighing-capacity-lbs
 
 INSERT_UPDATE ClassAttributeAssignment;$attribute;$class;position;$unit;attributeType(code[default=string]);multiValued[default=false];range[default=false];localized[default=true]
 ;energy-stored;energizers;1;Joules;number
@@ -370,7 +371,7 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;wire-and-cable;ohms-per-km;4;;
 ;wire-and-cable;voltage-at-10km;5;kV;number
 ;wire-and-cable;warranty;6;Years;number
-;wire-and-cable;animal;7;;
+#;wire-and-cable;animal;7;;
 ;wire-and-cable;product-length;8;mm;number
 ;wire-and-cable;product-width;9;mm;number
 ;wire-and-cable;product-depth;10;mm;number
@@ -404,7 +405,7 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;clamps-and-joiners;product-weight-lbs;13;lbs;number
 
 ;posts;post-height;1;mm;number
-;posts;animal;2;;
+#;posts;animal;2;;
 ;posts;number-of-wires;3;;number
 ;posts;warranty;4;Years;number
 ;posts;product-width;5;mm;number
@@ -437,7 +438,7 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;insulators;post-type;1;;
 ;insulators;insulator-type;2;;
 ;insulators;wire-diameter;3;mm;number
-;insulators;animal;4;;
+#;insulators;animal;4;;
 ;insulators;warranty;5;Years;number
 ;insulators;product-height;6;mm;number
 ;insulators;product-width;7;mm;number
@@ -521,7 +522,7 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;reels-and-accessories-pf;width-or-length;11;mm;number
 ;reels-and-accessories-pf;driver-capacity-long;12;;
 
-;posts-pigtails-and-treadins-pf;animal-type;1;;
+#;posts-pigtails-and-treadins-pf;animal-type;1;;
 ;posts-pigtails-and-treadins-pf;fence-type;2;;
 ;posts-pigtails-and-treadins-pf;wire;3;;
 ;posts-pigtails-and-treadins-pf;post-height;4;mm;number
@@ -550,7 +551,7 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;all-in-one-portable-fences;width-or-length;10;mm;number
 
 ;gates;warranty;1;Years;number
-;gates;animal-type;2;;
+#;gates;animal-type;2;;
 ;gates;strength;3;;
 ;gates;product-height;4;mm;number
 ;gates;product-length;5;mm;number
@@ -585,7 +586,7 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;weigh-scales-and-data-collectors;height;14;mm;number
 ;weigh-scales-and-data-collectors;width-or-length;15;mm;number
 
-;loadbars-and-accessories;animal;1;;
+#;loadbars-and-accessories;animal;1;;
 ;loadbars-and-accessories;use;2;;
 ;loadbars-and-accessories;weighing-capacity;3;kg;number
 ;loadbars-and-accessories;warranty;4;Years;number
@@ -599,8 +600,11 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;loadbars-and-accessories;product-width-inch;12;inches;number
 ;loadbars-and-accessories;product-depth-inch;13;inches;number
 ;loadbars-and-accessories;product-weight-lbs;14;lbs;number
+;loadbars-and-accessories;weighing-capacity-lbs;15;lbs;number
+;loadbars-and-accessories;product-height;16;mm;number
 
-;platforms;animal;1;;
+
+#;platforms;animal;1;;
 ;platforms;weighing-capacity;2;kg;number
 ;platforms;warranty;3;Years;number
 ;platforms;product-length;4;mm;number
@@ -613,6 +617,7 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;platforms;product-weight-lbs;8;lbs;number
 ;platforms;height;9;mm;number
 ;platforms;width-or-length;10;mm;number
+;platforms;weighing-capacity-lbs;11;lbs;number
 
 ;drafters;warranty;1;Years;number
 ;drafters;product-height;2;mm;number
@@ -636,7 +641,7 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;eid-tag-readers;product-width-inch;12;inches;number
 ;eid-tag-readers;product-depth-inch;13;inches;number
 
-;posts-pigtails-and-treadins-fc;animal-type;1;;
+#;posts-pigtails-and-treadins-fc;animal-type;1;;
 ;posts-pigtails-and-treadins-fc;fence-type;2;;
 ;posts-pigtails-and-treadins-fc;wire-amount;3;;
 ;posts-pigtails-and-treadins-fc;post-height-inch;4;inches;number
@@ -706,7 +711,7 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;hi-tensile-wire-and-cable;ohms-per-km;4;;
 ;hi-tensile-wire-and-cable;voltage-at-10km;5;kV;number
 ;hi-tensile-wire-and-cable;warranty;6;Years;number
-;hi-tensile-wire-and-cable;animal;7;;
+#;hi-tensile-wire-and-cable;animal;7;;
 ;hi-tensile-wire-and-cable;product-height-inch;8;inches;number
 ;hi-tensile-wire-and-cable;product-width-inch;9;inches;number
 ;hi-tensile-wire-and-cable;product-depth-inch;10;inches;number
@@ -766,7 +771,7 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;stock-prods-and-accessories;product-weight-lbs;6;lbs;number
 
 ;trough-valves;product-features;1;;
-;trough-valves;animal-type;2;;
+#;trough-valves;animal-type;2;;
 ;trough-valves;capacity-l;3;L;number
 ;trough-valves;warranty;4;Years;number
 ;trough-valves;product-height-inch;5;inches;number
@@ -775,7 +780,7 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;trough-valves;product-weight-lbs;8;lbs;number
 
 ;lil-spring;product-features;1;;
-;lil-spring;animal-type;2;;
+#;lil-spring;animal-type;2;;
 ;lil-spring;capacity-l;3;L;number
 ;lil-spring;warranty;4;Years;number
 ;lil-spring;product-height-inch;5;inches;number
@@ -784,7 +789,7 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;lil-spring;product-weight-lbs;8;lbs;number
 
 ;equi-fount;product-features;1;;
-;equi-fount;animal-type;2;;
+#;equi-fount;animal-type;2;;
 ;equi-fount;capacity-l;3;L;number
 ;equi-fount;warranty;4;Years;number
 ;equi-fount;product-height-inch;5;inches;number
@@ -793,7 +798,7 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;equi-fount;product-weight-lbs;8;lbs ;number
 
 ;mira-fount;product-features;1;;
-;mira-fount;animal-type;2;;
+#;mira-fount;animal-type;2;;
 ;mira-fount;capacity-l;3;L;number
 ;mira-fount;warranty;4;Years;number
 ;mira-fount;product-height-inch;5;inches;number
@@ -802,7 +807,7 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;mira-fount;product-weight-lbs;8;lbs ;number
 
 ;e-fount;product-features;1;;
-;e-fount;animal-type;2;;
+#;e-fount;animal-type;2;;
 ;e-fount;capacity-l;3;L;number
 ;e-fount;warranty;4;Years;number
 ;e-fount;product-height-inch;5;inches;number
@@ -811,7 +816,7 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;e-fount;product-weight-lbs;8;lbs ;number
 
 ;big-spring;product-features;1;;
-;big-spring;animal-type;2;;
+#;big-spring;animal-type;2;;
 ;big-spring;capacity-l;3;L;number
 ;big-spring;warranty;4;Years;number
 ;big-spring;product-height-inch;5;inches;number
@@ -820,7 +825,7 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;big-spring;product-weight-lbs;8;lbs;number
 
 ;pet-tanks;product-features;1;;
-;pet-tanks;animal-type;2;;
+#;pet-tanks;animal-type;2;;
 ;pet-tanks;capacity-l;3;L;number
 ;pet-tanks;warranty;4;Years;number
 ;pet-tanks;product-height-inch;5;inches;number
@@ -829,7 +834,7 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;pet-tanks;product-weight-lbs;8;lbs;number
 
 ;watering-accessories ;product-features;1;;
-;watering-accessories ;animal-type;2;;
+#;watering-accessories ;animal-type;2;;
 ;watering-accessories ;capacity-l;3;L;number
 ;watering-accessories ;warranty;4;Years;number
 ;watering-accessories ;product-height-inch;5;inches;number
