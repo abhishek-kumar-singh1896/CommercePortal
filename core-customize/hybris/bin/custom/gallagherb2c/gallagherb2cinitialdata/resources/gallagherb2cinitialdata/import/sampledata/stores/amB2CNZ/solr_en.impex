@@ -45,11 +45,9 @@ $lang=en
 ;;Gear Ratio ;Gear Ratio 
 ;;Conductor Capacity;Conductor Capacity
 ;;Pre-wound with ;Pre-wound with 
-;;Animal Type (Posts);Animal Type 
 ;;Fence  Type;Fence  Type
 ;;Wire;Wire
 ;;Wire Type;Wire Type 
-;;Animal Type (Gates);Animal Type
 ;;Strength;Strength
 ;;Product Type (Hardware);Product Type 
 ;;Number of Traits Recorded ;Number of Traits Recorded 
@@ -64,12 +62,5 @@ $lang=en
 ;;Product Type (EID);Product Type
 ;;Compatible with Gallagher Livestock (EID);Compatible with Gallagher Livestock (True/False)
 ;;Rechargeable;Rechargeable (True/False)
-
-
-
-
-
-
- 
-        
+;;animalCompatibility;Animal Type    
      

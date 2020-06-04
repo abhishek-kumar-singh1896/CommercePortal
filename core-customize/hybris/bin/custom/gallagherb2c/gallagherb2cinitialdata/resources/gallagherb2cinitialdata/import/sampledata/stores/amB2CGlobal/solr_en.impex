@@ -57,3 +57,4 @@ $lang=en
 ;;Product Type;Product Type
 ;; Product Weight (Water); Product Weight (kg)
 ;;Warranty (Antenna);Warranty (Years)
+;;animalCompatibility;Animal Type

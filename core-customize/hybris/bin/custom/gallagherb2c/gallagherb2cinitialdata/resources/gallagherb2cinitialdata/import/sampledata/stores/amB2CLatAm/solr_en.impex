@@ -37,7 +37,6 @@ UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true,default=$inde
 ;;Proporción de Engranaje ;Proporción de Engranaje 
 ;;Capacidad del conductor (largo);Capacidad del conductor (largo)
 ;;Pre-wound with;Pre-wound with
-;;Animal Type (Cola);Animal Type 
 ;;Fence  Type;Fence  Type
 ;;Wire Amount ;Wire Amount 
 ;;Wire Type ;Wire Type 
@@ -54,6 +53,6 @@ UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true,default=$inde
 ;;Capacidad de pesaje (Plataformas);Capacidad de pesaje (kg)
 ;;Product Type;Product Type
 ;;Compatible with Gallagher Livestock (Lectores);Compatible with Gallagher Livestock (True/False)
-
+;;animalCompatibility;Animal Type
       
      

@@ -157,9 +157,7 @@ INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; n
 INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=false] ; facetType(code) ; facetSort(code) ; priority ; visible ; fieldValueProvider                          ; customFacetSortProvider ; rangeSets(name) ; $classAttributeAssignment              
                                   ; $solrIndexedType                         ; Length (Tapes)          ; double                     ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; true    ; commerceClassificationPropertyValueProvider ;                         ;                 ; tapes-wires-and-braids-fc:::length-inch:::: 
                                   
-INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=false] ; facetType(code) ; facetSort(code) ; priority ; visible ; fieldValueProvider                          ; customFacetSortProvider ; rangeSets(name) ; $classAttributeAssignment                        
-                                  ; $solrIndexedType                         ; Animal Type       ;                            ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; true    ; commerceClassificationPropertyValueProvider ;                         ;                 ; posts-pigtails-and-treadins-pf:::animal-type:::: 
-                                  
+                                 
 INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=false] ; facetType(code) ; facetSort(code) ; priority ; visible ; fieldValueProvider                          ; customFacetSortProvider ; rangeSets(name) ; $classAttributeAssignment                       
                                   ; $solrIndexedType                         ; Fence  Type       ;                            ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; true    ; commerceClassificationPropertyValueProvider ;                         ;                 ; posts-pigtails-and-treadins-pf:::fence-type:::: 
                                   
@@ -223,18 +221,7 @@ INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; n
                                   
 INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=false] ; facetType(code) ; facetSort(code) ; priority ; visible ; fieldValueProvider                          ; customFacetSortProvider ; rangeSets(name) ; $classAttributeAssignment            
                                   ; $solrIndexedType                         ; Product Features (Trough)  ;                            ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; true    ; commerceClassificationPropertyValueProvider ;                         ;                 ; trough-valves:::product-features:::: 
-                                  
-                                  
-                                  
-                                  
-                                  
-INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=false] ; facetType(code) ; facetSort(code) ; priority ; visible ; fieldValueProvider                          ; customFacetSortProvider ; rangeSets(name) ; $classAttributeAssignment       
-                                  ; $solrIndexedType                         ; Animal Type (Trough)       ;                            ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; true    ; commerceClassificationPropertyValueProvider ;                         ;                 ; trough-valves:::animal-type:::: 
-                                  
-                                  
-                                  
-                                  
-                                  
+                                 
 INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=false] ; facetType(code) ; facetSort(code) ; priority ; visible ; fieldValueProvider                          ; customFacetSortProvider ; rangeSets(name) ; $classAttributeAssignment      
                                   ; $solrIndexedType                         ; Capacity(L) (Trough)         ; double                     ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; true    ; commerceClassificationPropertyValueProvider ;                         ;                 ; trough-valves:::capacity-l:::: 
                                   
@@ -244,8 +231,6 @@ INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; n
                                   ; $solrIndexedType                         ; Product Features (Spring)  ;                            ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; true    ; commerceClassificationPropertyValueProvider ;                         ;                 ; lil-spring:::product-features:::: 
                                   
                                
-INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=false] ; facetType(code) ; facetSort(code) ; priority ; visible ; fieldValueProvider                          ; customFacetSortProvider ; rangeSets(name) ; $classAttributeAssignment    
-                                  ; $solrIndexedType                         ; Animal Type (Spring)       ;                            ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; true    ; commerceClassificationPropertyValueProvider ;                         ;                 ; lil-spring:::animal-type:::: 
                                   
                                   
 INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=false] ; facetType(code) ; facetSort(code) ; priority ; visible ; fieldValueProvider                          ; customFacetSortProvider ; rangeSets(name) ; $classAttributeAssignment   
@@ -256,9 +241,7 @@ INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; n
                                   ; $solrIndexedType                         ; Product Features (EQUI)  ;                            ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; true    ; commerceClassificationPropertyValueProvider ;                         ;                 ; equi-fount:::product-features:::: 
                                   
                                  
-INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=false] ; facetType(code) ; facetSort(code) ; priority ; visible ; fieldValueProvider                          ; customFacetSortProvider ; rangeSets(name) ; $classAttributeAssignment    
-                                  ; $solrIndexedType                         ; Animal Type (EQUI)       ;                            ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; true    ; commerceClassificationPropertyValueProvider ;                         ;                 ; equi-fount:::animal-type:::: 
-                                  
+                                 
                                   
 INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=false] ; facetType(code) ; facetSort(code) ; priority ; visible ; fieldValueProvider                          ; customFacetSortProvider ; rangeSets(name) ; $classAttributeAssignment   
                                   ; $solrIndexedType                         ; Capacity(L) (EQUI)         ; double                     ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; true    ; commerceClassificationPropertyValueProvider ;                         ;                 ; equi-fount:::capacity-l:::: 
@@ -268,27 +251,14 @@ INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; n
                                   
                                  
                                   
-INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=false] ; facetType(code) ; facetSort(code) ; priority ; visible ; fieldValueProvider                          ; customFacetSortProvider ; rangeSets(name) ; $classAttributeAssignment    
-                                  ; $solrIndexedType                         ; Animal Type (Mira)       ;                            ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; true    ; commerceClassificationPropertyValueProvider ;                         ;                 ; mira-fount:::animal-type:::: 
-                                  
+                                 
                                   
 INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=false] ; facetType(code) ; facetSort(code) ; priority ; visible ; fieldValueProvider                          ; customFacetSortProvider ; rangeSets(name) ; $classAttributeAssignment   
                                   ; $solrIndexedType                         ; Capacity(L) (Mira)          ; double                     ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; true    ; commerceClassificationPropertyValueProvider ;                         ;                 ; mira-fount:::capacity-l:::: 
                                 
 INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=false] ; facetType(code) ; facetSort(code) ; priority ; visible ; fieldValueProvider                          ; customFacetSortProvider ; rangeSets(name) ; $classAttributeAssignment      
                                   ; $solrIndexedType                         ; Product Features (E)  ;                            ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; true    ; commerceClassificationPropertyValueProvider ;                         ;                 ; e-fount:::product-features:::: 
-                                  
-                                  
-                                  
-                                  
-                                  
-INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=false] ; facetType(code) ; facetSort(code) ; priority ; visible ; fieldValueProvider                          ; customFacetSortProvider ; rangeSets(name) ; $classAttributeAssignment 
-                                  ; $solrIndexedType                         ; Animal Type (E)       ;                            ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; true    ; commerceClassificationPropertyValueProvider ;                         ;                 ; e-fount:::animal-type:::: 
-                                  
-                                  
-                                  
-                                  
-                                  
+                                 
 INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=false] ; facetType(code) ; facetSort(code) ; priority ; visible ; fieldValueProvider                          ; customFacetSortProvider ; rangeSets(name) ; $classAttributeAssignment 
                                   ; $solrIndexedType                         ; Capacity(L) (E)          ; double                     ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; true    ; commerceClassificationPropertyValueProvider ;                         ;                 ; e-fount:::capacity-l::::  
                                   
@@ -297,17 +267,7 @@ INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; n
 INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=false] ; facetType(code) ; facetSort(code) ; priority ; visible ; fieldValueProvider                          ; customFacetSortProvider ; rangeSets(name) ; $classAttributeAssignment         
                                   ; $solrIndexedType                         ; Product Features (BIG)  ;                            ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; true    ; commerceClassificationPropertyValueProvider ;                         ;                 ; big-spring:::product-features:::: 
                                   
-                                  
-                                  
-                                  
-                                  
-INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=false] ; facetType(code) ; facetSort(code) ; priority ; visible ; fieldValueProvider                          ; customFacetSortProvider ; rangeSets(name) ; $classAttributeAssignment    
-                                  ; $solrIndexedType                         ; Animal Type (BIG)       ;                            ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; true    ; commerceClassificationPropertyValueProvider ;                         ;                 ; big-spring:::animal-type:::: 
-                                  
-                                  
-                                  
-                                  
-                                  
+                                
 INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=false] ; facetType(code) ; facetSort(code) ; priority ; visible ; fieldValueProvider                          ; customFacetSortProvider ; rangeSets(name) ; $classAttributeAssignment   
                                   ; $solrIndexedType                         ; Capacity(L) (BIG)         ; double                     ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; true    ; commerceClassificationPropertyValueProvider ;                         ;                 ; big-spring:::capacity-l:::: 
                                   
@@ -318,17 +278,7 @@ INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; n
 INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=false] ; facetType(code) ; facetSort(code) ; priority ; visible ; fieldValueProvider                          ; customFacetSortProvider ; rangeSets(name) ; $classAttributeAssignment        
                                   ; $solrIndexedType                         ; Product Features (PET)  ;                            ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; true    ; commerceClassificationPropertyValueProvider ;                         ;                 ; pet-tanks:::product-features:::: 
                                   
-                                  
-                                  
-                                  
-                                  
-INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=false] ; facetType(code) ; facetSort(code) ; priority ; visible ; fieldValueProvider                          ; customFacetSortProvider ; rangeSets(name) ; $classAttributeAssignment   
-                                  ; $solrIndexedType                         ; Animal Type (PET)       ;                            ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; true    ; commerceClassificationPropertyValueProvider ;                         ;                 ; pet-tanks:::animal-type:::: 
-                                  
-                                  
-                                  
-                                  
-                                  
+                                                                   
 INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=false] ; facetType(code) ; facetSort(code) ; priority ; visible ; fieldValueProvider                          ; customFacetSortProvider ; rangeSets(name) ; $classAttributeAssignment  
                                   ; $solrIndexedType                         ;Capacity(L) (PET)          ; double                     ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; true    ; commerceClassificationPropertyValueProvider ;                         ;                 ; pet-tanks:::capacity-l:::: 
                                   
@@ -340,15 +290,7 @@ INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; n
                                   
 INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=false] ; facetType(code) ; facetSort(code) ; priority ; visible ; fieldValueProvider                          ; customFacetSortProvider ; rangeSets(name) ; $classAttributeAssignment                   
                                   ; $solrIndexedType                         ; Product Features (Watering)  ;                            ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; true    ; commerceClassificationPropertyValueProvider ;                         ;                 ; watering-accessories:::product-features:::: 
-                                  
-                                  
-                                  
-                                  
-                                  
-INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=false] ; facetType(code) ; facetSort(code) ; priority ; visible ; fieldValueProvider                          ; customFacetSortProvider ; rangeSets(name) ; $classAttributeAssignment              
-                                  ; $solrIndexedType                         ; Animal Type (Watering)       ;                            ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; true    ; commerceClassificationPropertyValueProvider ;                         ;                 ; watering-accessories:::animal-type:::: 
-                                  
-                                  
+                                                                  
                                   
                                   
                                   
@@ -574,12 +516,7 @@ INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(id
                                       
 INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetDisplayNameProvider ; facetSortProvider ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
                                       ; Length (Tapes):$solrIndexedType                                 ;                     ; MultiSelectOr   ; 1000     ;                          ;numericFacetSortProviderAsc;                        ;                                 ;                                                                                                   
-                                      
-                                      
-                                      
-INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetDisplayNameProvider ; facetSortProvider ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
-                                      ; Animal Type   :$solrIndexedType                                 ;                     ; MultiSelectOr   ; 1000     ;                          ;sizeAttributeSortProvider;                        ;                                 ;                                                                                                   
-                                      
+                                                                           
 INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetDisplayNameProvider ; facetSortProvider ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
                                       ; Fence  Type  :$solrIndexedType                                  ;                     ; MultiSelectOr   ; 1000     ;                          ;sizeAttributeSortProvider;                        ;                                 ;                                                                                                   
                                       
@@ -651,16 +588,10 @@ INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(id
                                       ;Product Features (Trough)  :$solrIndexedType                     ;                     ; MultiSelectOr   ; 1000     ;                          ;sizeAttributeSortProvider;                        ;                                 ;                                                                                                   
                                       
 INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetDisplayNameProvider ; facetSortProvider ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
-                                      ; Animal Type (Trough)  :$solrIndexedType                         ;                     ; MultiSelectOr   ; 1000     ;                          ;sizeAttributeSortProvider;                        ;                                 ;                                                                                                   
-
-INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetDisplayNameProvider ; facetSortProvider ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
                                       ; Capacity(L) (Trough) :$solrIndexedType                          ;                     ; MultiSelectOr   ; 1000     ;                          ;numericFacetSortProviderAsc;                        ;                                 ;                                                                                                   
 
 INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetDisplayNameProvider ; facetSortProvider ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
                                       ;Product Features (Spring)  :$solrIndexedType                     ;                     ; MultiSelectOr   ; 1000     ;                          ;sizeAttributeSortProvider;                        ;                                 ;                                                                                                   
-
-INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetDisplayNameProvider ; facetSortProvider ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
-                                      ; Animal Type (Spring) :$solrIndexedType                          ;                     ; MultiSelectOr   ; 1000     ;                          ;sizeAttributeSortProvider;                        ;                                 ;                                                                                                   
 
 INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetDisplayNameProvider ; facetSortProvider ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
                                       ; Capacity(L) (Spring)  :$solrIndexedType                         ;                     ; MultiSelectOr   ; 1000     ;                          ;numericFacetSortProviderAsc;                        ;                                 ;                                                                                                   
@@ -669,16 +600,10 @@ INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(id
                                       ; Product Features (EQUI)  :$solrIndexedType                      ;                     ; MultiSelectOr   ; 1000     ;                          ;sizeAttributeSortProvider;                        ;                                 ;                                                                                                   
 
 INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetDisplayNameProvider ; facetSortProvider ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
-                                      ; Animal Type (EQUI)  :$solrIndexedType                           ;                     ; MultiSelectOr   ; 1000     ;                          ;sizeAttributeSortProvider;                        ;                                 ;                                                                                                   
-
-INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetDisplayNameProvider ; facetSortProvider ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
                                       ; Capacity(L) (EQUI)  :$solrIndexedType                           ;                     ; MultiSelectOr   ; 1000     ;                          ;numericFacetSortProviderAsc;                        ;                                 ;                                                                                                   
 
 INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetDisplayNameProvider ; facetSortProvider ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
                                       ; Product Features (Mira)  :$solrIndexedType                      ;                     ; MultiSelectOr   ; 1000     ;                          ;sizeAttributeSortProvider;                        ;                                 ;                                                                                                   
-
-INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetDisplayNameProvider ; facetSortProvider ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
-                                      ; Animal Type (Mira)  :$solrIndexedType                           ;                     ; MultiSelectOr   ; 1000     ;                          ;sizeAttributeSortProvider;                        ;                                 ;                                                                                                   
 
 INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetDisplayNameProvider ; facetSortProvider ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
                                       ; Capacity(L) (Mira) :$solrIndexedType                            ;                     ; MultiSelectOr   ; 1000     ;                          ;numericFacetSortProviderAsc;                        ;                                 ;                                                                                                   
@@ -687,16 +612,10 @@ INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(id
                                       ; Product Features (E)  :$solrIndexedType                         ;                     ; MultiSelectOr   ; 1000     ;                          ;sizeAttributeSortProvider;                        ;                                 ;                                                                                                   
 
 INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetDisplayNameProvider ; facetSortProvider ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
-                                      ; Animal Type (E)  :$solrIndexedType                              ;                     ; MultiSelectOr   ; 1000     ;                          ;sizeAttributeSortProvider;                        ;                                 ;                                                                                                   
-
-INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetDisplayNameProvider ; facetSortProvider ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
                                       ; Capacity(L) (E)  :$solrIndexedType                              ;                     ; MultiSelectOr   ; 1000     ;                          ;numericFacetSortProviderAsc;                        ;                                 ;                                                                                                   
 
 INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetDisplayNameProvider ; facetSortProvider ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
                                       ; Product Features (BIG)  :$solrIndexedType                       ;                     ; MultiSelectOr   ; 1000     ;                          ;sizeAttributeSortProvider;                        ;                                 ;                                                                                                   
- 
- INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetDisplayNameProvider ; facetSortProvider ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
-                                      ; Animal Type (BIG) :$solrIndexedType                              ;                     ; MultiSelectOr   ; 1000     ;                          ;sizeAttributeSortProvider;                        ;                                 ;                                                                                                   
  
  INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetDisplayNameProvider ; facetSortProvider ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
                                       ; Capacity(L) (BIG) :$solrIndexedType                              ;                     ; MultiSelectOr   ; 1000     ;                          ;numericFacetSortProviderAsc;                        ;                                 ;                                                                                                   
@@ -705,17 +624,18 @@ INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(id
                                       ; Product Features (PET) :$solrIndexedType                         ;                     ; MultiSelectOr   ; 1000     ;                          ;sizeAttributeSortProvider;                        ;                                 ;                                                                                                   
  
  INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetDisplayNameProvider ; facetSortProvider ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
-                                      ;   Animal Type (PET):$solrIndexedType                             ;                     ; MultiSelectOr   ; 1000     ;                          ;sizeAttributeSortProvider;                        ;                                 ;                                                                                                   
- 
- INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetDisplayNameProvider ; facetSortProvider ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
                                       ;Capacity(L) (PET)  :$solrIndexedType                              ;                     ; MultiSelectOr   ; 1000     ;                          ;numericFacetSortProviderAsc;                        ;                                 ;                                                                                                   
  
  INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetDisplayNameProvider ; facetSortProvider ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
                                       ; Product Features (Watering)  :$solrIndexedType                   ;                     ; MultiSelectOr   ; 1000     ;                          ;sizeAttributeSortProvider;                        ;                                 ;                                                                                                   
  
- INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetDisplayNameProvider ; facetSortProvider ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
-                                      ; Animal Type (Watering)  :$solrIndexedType                        ;                     ; MultiSelectOr   ; 1000     ;                          ;sizeAttributeSortProvider;                        ;                                 ;                                                                                                   
-
+ 
  INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetDisplayNameProvider ; facetSortProvider ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
                                       ; Capacity(L) (Watering)  :$solrIndexedType                        ;                     ; MultiSelectOr   ; 1000     ;                          ;numericFacetSortProviderAsc;                        ;                                 ;                                                                                                   
+ 
+ 
+INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetDisplayNameProvider ; facetSortProvider ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
+
+                                      ; animalCompatibility:$solrIndexedType                           ;                     ; MultiSelectOr   ; 1000     ;                          ;                   ;                        ;                                 ;                                                                                                   
+
                                       

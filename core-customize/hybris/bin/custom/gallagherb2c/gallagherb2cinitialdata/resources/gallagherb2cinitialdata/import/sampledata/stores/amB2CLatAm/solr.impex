@@ -165,10 +165,7 @@ INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; n
                                   
                                   
                                   
-                                  
-INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=false] ; facetType(code) ; facetSort(code) ; priority ; visible ; fieldValueProvider                          ; customFacetSortProvider ; rangeSets(name) ; $classAttributeAssignment                        
-                                  ; $solrIndexedType                         ; Animal Type (Cola)       ;                            ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; true    ; commerceClassificationPropertyValueProvider ;                         ;                 ; posts-pigtails-and-treadins-pf:::animal-type:::: 
-                                  
+                                 
 INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=false] ; facetType(code) ; facetSort(code) ; priority ; visible ; fieldValueProvider                          ; customFacetSortProvider ; rangeSets(name) ; $classAttributeAssignment                       
                                   ; $solrIndexedType                         ; Fence  Type       ;                            ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; true    ; commerceClassificationPropertyValueProvider ;                         ;                 ; posts-pigtails-and-treadins-pf:::fence-type:::: 
                                   
@@ -353,9 +350,6 @@ INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(id
                                       
                                       
 INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetDisplayNameProvider ; facetSortProvider ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
-                                      ; Animal Type (Cola)   :$solrIndexedType                                 ;                     ; MultiSelectOr   ; 1000     ;                          ;                   ;                        ;                                 ;                                                                                                   
-                                      
-INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetDisplayNameProvider ; facetSortProvider ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
                                       ; Fence  Type  :$solrIndexedType                                  ;                     ; MultiSelectOr   ; 1000     ;                          ;                   ;                        ;                                 ;                                                                                                   
                                       
                                       
@@ -417,4 +411,9 @@ INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(id
                                       
 INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetDisplayNameProvider ; facetSortProvider ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
                                       ; Compatible with Gallagher Livestock (Lectores)  :$solrIndexedType          ;                     ; MultiSelectOr   ; 1000     ;                          ;                   ;                        ;                                 ;                                                                                                   
+ 
+ 
+INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetDisplayNameProvider ; facetSortProvider ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
+
+                                      ; animalCompatibility:$solrIndexedType                           ;                     ; MultiSelectOr   ; 1000     ;                          ;                   ;                        ;                                 ;                                                                                                   
                                       

@@ -386,4 +386,9 @@ INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(id
                                       
 INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetDisplayNameProvider ; facetSortProvider ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
                                       ; Number of Traits Recorded   :$solrIndexedType                   ;                     ; MultiSelectOr   ; 1000     ;                          ;sizeAttributeSortProvider;                        ;                                 ;                                                                                                   
+
+
+INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetDisplayNameProvider ; facetSortProvider ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
+
+                                      ; animalCompatibility:$solrIndexedType                           ;                     ; MultiSelectOr   ; 1000     ;                          ;                   ;                        ;                                 ;                                                                                                   
                                     

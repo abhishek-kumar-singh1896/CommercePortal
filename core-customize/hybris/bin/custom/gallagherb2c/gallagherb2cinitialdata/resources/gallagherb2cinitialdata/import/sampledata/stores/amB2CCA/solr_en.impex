@@ -29,8 +29,7 @@ $lang=en
 ;;Voltage at 1km of fence;Voltage at 1km of fence (kV)
 ;;Mixed Metals;Mixed Metals
 ;;Ohms Per Km (Tapes);Ohms Per Km
-;;Length (Tapes);Length (inches)
-;;Animal Type;Animal Type 
+;;Length (Tapes);Length (inches) 
 ;;Wire Amount;Wire Amount
 ;;Post Height (Posts);Post Height (inches)
 ;;Number of Traits Recorded ;Number of Traits Recorded 
@@ -48,28 +47,20 @@ $lang=en
 ;;Compatible with Gallagher Livestock (EID);Compatible with Gallagher Livestock (True/False)
 ;;Rechargeable;Rechargeable (True/False)
 ;;Product Features (Trough);Product Features
-;;Animal Type (Trough);Animal Type
 ;;Capacity(L) (Trough);Capacity (L)
 ;;Product Features (Spring);Product Features
-;;Animal Type (Spring);Animal Type
 ;;Capacity(L) (Spring);Capacity (L)
 ;;Product Features (EQUI);Product Features
-;;Animal Type (EQUI);Animal Type
 ;;Capacity(L) (EQUI);Capacity (L)
 ;;Product Features (Mira);Product Features
-;;Animal Type (Mira);Animal Type
 ;;Capacity(L) (Mira);Capacity (L)
 ;;Product Features (E);Product Features
-;;Animal Type (E);Animal Type
 ;;Capacity(L) (E);Capacity (L)
 ;;Product Features (BIG);Product Features
-;;Animal Type (BIG);Animal Type
 ;;Capacity(L) (BIG);Capacity (L)
 ;;Product Features (PET);Product Features
-;;Animal Type (PET);Animal Type
 ;;Capacity(L) (PET);Capacity (L)
 ;;Product Features (Watering);Product Features
-;;Animal Type (Watering);Animal Type
 ;;Capacity(L) (Watering);Capacity (L)
 ;;Post Height (Posts);Post Height (inches)
 ;;Animal (Posts);Animal
@@ -83,8 +74,9 @@ $lang=en
 ;;Warranty (Insulators);Warranty (Years)
 ;;Product Weight (Insulators); Product Weight (lbs)
 ;;Post Type (Offsets);Post Type
-;; Product Length (Offsets); Product Length (inches)
+;;Product Length (Offsets); Product Length (inches)
 ;;Mount Type;Mount Type
 ;;Gate Type;Gate Type
 ;;Length (Gates);Length (inches)
 ;;Use (Fence);Use
+;;animalCompatibility;Animal Type
