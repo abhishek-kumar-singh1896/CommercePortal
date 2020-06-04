@@ -10,6 +10,7 @@
  */
 package com.gallagher.b2b.storefront.security;
 
+import de.hybris.platform.acceleratorservices.urlencoder.UrlEncoderService;
 import de.hybris.platform.acceleratorservices.urlresolver.SiteBaseUrlResolutionService;
 import de.hybris.platform.acceleratorstorefrontcommons.security.GUIDCookieStrategy;
 import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
@@ -46,7 +47,20 @@ public class StorefrontLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandle
 	private CMSSiteService cmsSiteService;
 	private GUIDCookieStrategy guidCookieStrategy;
 	private ConfigurationService configurationService;
+	private UrlEncoderService urlEncoderService;
 	private SiteBaseUrlResolutionService siteBaseUrlResolutionService;
+
+	public UrlEncoderService getUrlEncoderService()
+	{
+		return urlEncoderService;
+	}
+
+	public void setUrlEncoderService(final UrlEncoderService urlEncoderService)
+	{
+		this.urlEncoderService = urlEncoderService;
+	}
+
+
 
 	protected ConfigurationService getConfigurationService()
 	{
@@ -152,7 +166,12 @@ public class StorefrontLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandle
 		final CMSSiteModel site = getCMSSiteFromRequest(request);
 		if (Boolean.valueOf(ssoLogout) && null != site)
 		{
-			String redirectURI = getSiteBaseUrlResolutionService().getWebsiteUrlForSite(site, true, "/", "error=true");
+			String redirectURI = getSiteBaseUrlResolutionService().getWebsiteUrlForSite(site, true,
+					StringUtils.isEmpty(getUrlEncoderService().getUrlEncodingPattern())
+							? "/" + site.getRegionCode() + "/" + site.getDefaultLanguage().getIsocode()
+							: null,
+					"error=true");
+
 			try
 			{
 				redirectURI = URLEncoder.encode(redirectURI, StandardCharsets.UTF_8.toString());

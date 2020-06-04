@@ -318,6 +318,7 @@
 		<property name="targetUrlParameter" value="target" />
 		<property name="cmsSiteService" ref="cmsSiteService" />
 		<property name="configurationService" ref="configurationService" />
+		<property name="urlEncoderService" ref="urlEncoderService" />
 		<property name="siteBaseUrlResolutionService" ref="siteBaseUrlResolutionService" />
 	</bean>
 	
