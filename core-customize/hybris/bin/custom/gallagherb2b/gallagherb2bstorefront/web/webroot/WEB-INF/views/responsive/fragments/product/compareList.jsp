@@ -61,29 +61,34 @@
 							<tr class="pic">
 								<th id="brand"></th>
 								<c:forEach items="${productList}" var="product" varStatus="row">
-									<c:set value="${ycommerce:productImage(product, 'thumbnail')}"
-										var="primaryImage" />
-									<td headers="brand"><a
-										href="<c:url value="${product.url}"/>" title="#" alt=""><c:choose>
-												<c:when test="${not empty primaryImage}">
-													<c:choose>
-														<c:when test="${not empty primaryImage.altText}">
-												<%-- 	<img src="${primaryImage.url}"
-																alt="${fn:escapeXml(primaryImage.altText)}"
-																title="${fn:escapeXml(primaryImage.altText)}" /> --%>
-																<product:productPrimaryImage product="${product}" format="product"/>
-														</c:when>
-														<c:otherwise>
-													<img src="${primaryImage.url}"
-																alt="${fn:escapeXml(product.name)}"
-																title="${fn:escapeXml(product.name)}" />
-														</c:otherwise>
-													</c:choose></a> </c:when> <c:otherwise>
+								<c:choose>
+									<c:when test="${not empty product.images}">
+									 <c:set var="count" value="1"/>
+									 			<td headers="brand">
+									 			<c:url value="${product.url}" var="productUrl" />
+		                                       	<c:forEach items="${product.images}" var="medias">
+			                                        <c:if test="${medias.format eq 'product'}">
+			                                        <c:if test="${count lt 2}">
+			                                        <a href="${fn:escapeXml(productUrl)}" title="${fn:escapeXml(product.name)}">
+			                                        	<img src="${medias.url}" alt="${medias.altText}">
+			                                        	<c:set var="count" value="${count+1}"/>
+			                                        </a>
+		                                        	</c:if>
+			                                        </c:if>
+		                                        </c:forEach></td>
+	                                        </c:when>
+	                                        <c:otherwise>
+	                                        <td headers="brand">
+	                                        <c:url value="${product.url}" var="productUrl" />
+	                                        <a href="${fn:escapeXml(productUrl)}" title="${fn:escapeXml(product.name)}">
 											<theme:image code="img.missingProductImage.responsive.thumbnail"
 												alt="${fn:escapeXml(product.name)}"
 												title="${fn:escapeXml(product.name)}" />
-										</c:otherwise> </c:choose>
-									</td>
+												</a>
+												</td>
+										</c:otherwise>
+											</c:choose>
+											
 								</c:forEach>
 							</tr>
 						<tr>
