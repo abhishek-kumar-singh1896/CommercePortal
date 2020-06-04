@@ -32,13 +32,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class HomePageController extends AbstractPageController
 {
 	private static final String LOGOUT = "logout";
+	private static final String ACCOUNT_NOT_CREATED = "account.not.created";
 	private static final String ACCOUNT_CONFIRMATION_SIGNOUT_TITLE = "account.confirmation.signout.title";
 	private static final String ACCOUNT_CONFIRMATION_CLOSE_TITLE = "account.confirmation.close.title";
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String home(@RequestParam(value = WebConstants.CLOSE_ACCOUNT, defaultValue = "false") final boolean closeAcc,
-			@RequestParam(value = LOGOUT, defaultValue = "false") final boolean logout, final Model model,
-			final RedirectAttributes redirectModel) throws CMSItemNotFoundException
+	public String home(@RequestParam(value = WebConstants.CLOSE_ACCOUNT, defaultValue = "false")
+	final boolean closeAcc, @RequestParam(value = LOGOUT, defaultValue = "false")
+	final boolean logout, @RequestParam(value = "error", defaultValue = "false")
+	final boolean error, final Model model, final RedirectAttributes redirectModel) throws CMSItemNotFoundException
 	{
 		if (logout)
 		{
@@ -47,7 +49,20 @@ public class HomePageController extends AbstractPageController
 			{
 				message = ACCOUNT_CONFIRMATION_CLOSE_TITLE;
 			}
-			GlobalMessages.addFlashMessage(redirectModel, GlobalMessages.INFO_MESSAGES_HOLDER, message);
+			if (error)
+			{
+				GlobalMessages.addFlashMessage(redirectModel, GlobalMessages.ERROR_MESSAGES_HOLDER, ACCOUNT_NOT_CREATED);
+			}
+			else
+			{
+				GlobalMessages.addFlashMessage(redirectModel, GlobalMessages.INFO_MESSAGES_HOLDER, message);
+			}
+			return REDIRECT_PREFIX + ROOT;
+		}
+
+		if (error)
+		{
+			GlobalMessages.addFlashMessage(redirectModel, GlobalMessages.ERROR_MESSAGES_HOLDER, ACCOUNT_NOT_CREATED);
 			return REDIRECT_PREFIX + ROOT;
 		}
 

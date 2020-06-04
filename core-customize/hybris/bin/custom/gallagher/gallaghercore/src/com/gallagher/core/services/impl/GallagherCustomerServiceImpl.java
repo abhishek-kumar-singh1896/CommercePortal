@@ -27,6 +27,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.util.Assert;
 
 import com.gallagher.c4c.outboundservices.facade.GallagherC4COutboundServiceFacade;
@@ -110,7 +111,16 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 
 			if (SiteChannel.B2B.equals(channel))
 			{
-				updateCustomerFromC4C(retrieveUser);
+				if (retrieveUser.getClass() == CustomerModel.class)
+				{
+					LOGGER.error("B2C Customer is not allowed to login in B2B website");
+					throw new BadCredentialsException("B2C Customer is not allowed to login in B2B website");
+				}
+				else
+				{
+
+					updateCustomerFromC4C(retrieveUser);
+				}
 			}
 			else
 			{

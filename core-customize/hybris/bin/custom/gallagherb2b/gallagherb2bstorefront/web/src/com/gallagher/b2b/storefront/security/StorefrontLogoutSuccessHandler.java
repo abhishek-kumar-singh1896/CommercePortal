@@ -10,24 +10,63 @@
  */
 package com.gallagher.b2b.storefront.security;
 
+import de.hybris.platform.acceleratorservices.urlresolver.SiteBaseUrlResolutionService;
 import de.hybris.platform.acceleratorstorefrontcommons.security.GUIDCookieStrategy;
+import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
+import de.hybris.platform.cms2.model.site.CMSSiteModel;
+import de.hybris.platform.cms2.servicelayer.services.CMSSiteService;
+import de.hybris.platform.servicelayer.config.ConfigurationService;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.text.MessageFormat;
 import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
 
 
+
 public class StorefrontLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler
 {
-	private GUIDCookieStrategy guidCookieStrategy;
+
+	private static final Logger LOGGER = Logger.getLogger(StorefrontLogoutSuccessHandler.class);
 	private List<String> restrictedPages;
+	private CMSSiteService cmsSiteService;
+	private GUIDCookieStrategy guidCookieStrategy;
+	private ConfigurationService configurationService;
+	private SiteBaseUrlResolutionService siteBaseUrlResolutionService;
+
+	protected ConfigurationService getConfigurationService()
+	{
+		return configurationService;
+	}
+
+	public void setConfigurationService(final ConfigurationService configurationService)
+	{
+		this.configurationService = configurationService;
+	}
+
+	public void setSiteBaseUrlResolutionService(final SiteBaseUrlResolutionService siteBaseUrlResolutionService)
+	{
+		this.siteBaseUrlResolutionService = siteBaseUrlResolutionService;
+	}
+
+	protected SiteBaseUrlResolutionService getSiteBaseUrlResolutionService()
+	{
+		return siteBaseUrlResolutionService;
+	}
 
 	protected GUIDCookieStrategy getGuidCookieStrategy()
 	{
@@ -50,8 +89,21 @@ public class StorefrontLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandle
 		this.restrictedPages = restrictedPages;
 	}
 
+	protected CMSSiteService getCmsSiteService()
+	{
+		return cmsSiteService;
+	}
+
+	@Required
+	public void setCmsSiteService(final CMSSiteService cmsSiteService)
+	{
+		this.cmsSiteService = cmsSiteService;
+	}
+
+
 	@Override
-	public void onLogoutSuccess(final HttpServletRequest request, final HttpServletResponse response, final Authentication authentication) throws IOException, ServletException
+	public void onLogoutSuccess(final HttpServletRequest request, final HttpServletResponse response,
+			final Authentication authentication) throws IOException, ServletException
 	{
 		getGuidCookieStrategy().deleteCookie(request, response);
 
@@ -59,20 +111,75 @@ public class StorefrontLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandle
 		super.onLogoutSuccess(request, response, authentication);
 	}
 
+	/**
+	 * Find CMSSiteModel from HttpServletRequest
+	 *
+	 * @param request
+	 * @return CMS site associated with current URL pattern
+	 */
+	private CMSSiteModel getCMSSiteFromRequest(final HttpServletRequest request)
+	{
+
+		CMSSiteModel cmsSiteModel = null;
+		final String queryString = request.getQueryString();
+		final String currentRequestURL = request.getRequestURL().toString();
+
+		final String absoluteURL = StringUtils.removeEnd(currentRequestURL, "/")
+				+ (StringUtils.isBlank(queryString) ? "" : "?" + queryString);
+		try
+		{
+			final URL currentURL = new URL(absoluteURL);
+			cmsSiteModel = getCmsSiteService().getSiteForURL(currentURL);
+		}
+		catch (final MalformedURLException e)
+		{
+			LOGGER.warn(
+					"Cannot find CMSSite associated with current URL ( " + absoluteURL + " - check whether this is correct URL) !", e);
+		}
+		catch (final CMSItemNotFoundException e)
+		{
+			LOGGER.warn("Cannot find CMSSite associated with current URL (" + absoluteURL + ")!", e);
+		}
+		return cmsSiteModel;
+	}
+
 	@Override
 	protected String determineTargetUrl(final HttpServletRequest request, final HttpServletResponse response)
 	{
-		String targetUrl = super.determineTargetUrl(request, response);
+		final String ssoLogout = request.getParameter("sso");
+		String targetUrl;
 
-		for (final String restrictedPage : getRestrictedPages())
+		final CMSSiteModel site = getCMSSiteFromRequest(request);
+		if (Boolean.valueOf(ssoLogout) && null != site)
 		{
-			// When logging out from a restricted page, return user to homepage.
-			if (targetUrl.contains(restrictedPage))
+			String redirectURI = getSiteBaseUrlResolutionService().getWebsiteUrlForSite(site, true, "/", "error=true");
+			try
 			{
-				targetUrl = super.getDefaultTargetUrl();
+				redirectURI = URLEncoder.encode(redirectURI, StandardCharsets.UTF_8.toString());
+				targetUrl = MessageFormat.format(configurationService.getConfiguration().getString("keycloak.logout.url", ""),
+						redirectURI);
+
+			}
+			catch (final UnsupportedEncodingException uEnEx)
+			{
+				LOGGER.error("Error while creating redirect URL for logout", uEnEx);
+				targetUrl = super.determineTargetUrl(request, response);
 			}
 		}
+		else
+		{
+			targetUrl = super.determineTargetUrl(request, response);
 
+			for (final String restrictedPage : getRestrictedPages())
+			{
+				// When logging out from a restricted page, return user to homepage.
+				if (targetUrl.contains(restrictedPage))
+				{
+					targetUrl = super.getDefaultTargetUrl();
+				}
+			}
+
+		}
 		return targetUrl;
 	}
 }

@@ -23,7 +23,6 @@ import org.keycloak.adapters.spi.AuthOutcome;
 import org.keycloak.adapters.spi.HttpFacade;
 import org.keycloak.adapters.springsecurity.KeycloakAuthenticationException;
 import org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticationEntryPoint;
-import org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticationFailureHandler;
 import org.keycloak.adapters.springsecurity.authentication.RequestAuthenticatorFactory;
 import org.keycloak.adapters.springsecurity.authentication.SpringSecurityRequestAuthenticatorFactory;
 import org.keycloak.adapters.springsecurity.facade.SimpleHttpFacade;
@@ -128,7 +127,7 @@ public class GallagherKeycloakAuthenticationProcessingFilter extends AbstractAut
 		super.setAuthenticationManager(authenticationManager);
 		super.setAllowSessionCreation(false);
 		super.setContinueChainBeforeSuccessfulAuthentication(false);
-		setAuthenticationFailureHandler(new KeycloakAuthenticationFailureHandler());
+		//setAuthenticationFailureHandler(new KeycloakAuthenticationFailureHandler());
 		setAuthenticationSuccessHandler(new GallagherAuthenticationSuccessHandler(
 				new SavedRequestAwareAuthenticationSuccessHandler(), userService, cmsAdminSiteService));
 	}

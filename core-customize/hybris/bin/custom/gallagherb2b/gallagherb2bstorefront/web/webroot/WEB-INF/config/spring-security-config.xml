@@ -152,6 +152,7 @@
         <constructor-arg name="userService" ref="userService" />
         <constructor-arg name="cmsAdminSiteService" ref="cmsAdminSiteService" />
     	<property name="defaultAutoLoginStrategy" ref="defaultAutoLoginStrategy" />
+    	<property name="authenticationFailureHandler" ref="gallagherAuthenticationFailureHandler" />
     </bean>
 
 <!-- 	<bean id="acceleratorAuthenticationProvider" parent="abstractAcceleratorAuthenticationProvider" 
@@ -162,8 +163,7 @@
 <!-- 	<bean id="loginStrategy" parent="defaultAutoLoginStrategy" class="com.gallagher.b2b.storefront.security.impl.GallagharAutoLoginStrategy"/> -->
 	<bean id="coreUserDetailsService" class="de.hybris.platform.spring.security.CoreUserDetailsService"  />
 
-	<bean id="guidCookieStrategy" class="com.gallagher.b2b.storefront.security.impl.DefaultGUIDCookieStrategy"
-	      >
+	<bean id="guidCookieStrategy" class="com.gallagher.b2b.storefront.security.impl.DefaultGUIDCookieStrategy">
 		<property name="cookieGenerator" ref="guidCookieGenerator" />
 	</bean>
 	
@@ -291,6 +291,9 @@
         <property name="bruteForceAttackCounter" ref="bruteForceAttackCounter" />
 		<property name="defaultFailureUrl" value="/login?error=true"/>
 	</bean>
+	<bean id="gallagherAuthenticationFailureHandler" class="com.gallagher.b2b.storefront.security.GallagherAuthenticationFailureHandler" >
+		<property name="defaultFailureUrl" value="/logout?sso=true"/>
+	</bean>
 
 	<bean id="loginCheckoutAuthenticationFailureHandler" class="com.gallagher.b2b.storefront.security.LoginAuthenticationFailureHandler" >
         <property name="bruteForceAttackCounter" ref="bruteForceAttackCounter" />
@@ -307,12 +310,15 @@
 
 
 	<alias name="defaultLogoutSuccessHandler" alias="logoutSuccessHandler"/>
-	<bean id="defaultLogoutSuccessHandler" class="de.hybris.platform.acceleratorstorefrontcommons.security.StorefrontLogoutSuccessHandler" >
+	<bean id="defaultLogoutSuccessHandler" class="com.gallagher.b2b.storefront.security.StorefrontLogoutSuccessHandler">
 		<property name="defaultTargetUrl" value="/?logout=true"/>
 		<property name="guidCookieStrategy" ref="guidCookieStrategy"/>
 		<property name="useReferer" value="true"/>
 		<property name="restrictedPages" ref="logoutRestrictedPages"/>
-		<property name="sessionService" ref="sessionService"/>
+		<property name="targetUrlParameter" value="target" />
+		<property name="cmsSiteService" ref="cmsSiteService" />
+		<property name="configurationService" ref="configurationService" />
+		<property name="siteBaseUrlResolutionService" ref="siteBaseUrlResolutionService" />
 	</bean>
 	
 	<bean id="keycloakLogoutHandler" class="org.keycloak.adapters.springsecurity.authentication.KeycloakLogoutHandler">
@@ -320,7 +326,7 @@
     </bean>
 
     <bean id="logoutFilter" class="org.springframework.security.web.authentication.logout.LogoutFilter">
-        <constructor-arg name="logoutSuccessUrl" value="/" />
+        <constructor-arg name="logoutSuccessHandler" ref="logoutSuccessHandler" />
         <constructor-arg name="handlers">
             <list>
                 <ref bean="keycloakLogoutHandler" />
