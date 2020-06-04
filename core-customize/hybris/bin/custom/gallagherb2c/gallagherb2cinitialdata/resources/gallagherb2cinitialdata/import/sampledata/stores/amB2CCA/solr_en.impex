@@ -38,10 +38,8 @@ $lang=en
 ;;Intergrated EID Reader;Intergrated EID Reader (True/False)
 ;;Compatible with Gallagher Livestock (Scales);Compatible with Gallagher Livestock (True/False)
 ;;View Pedigree Tree;View Pedigree Tree (True/False)
-;;Animal (Loadbars);Animal
 ;;Use (Loadbars);Use
 ;;Weighing Capacity (Loadbars);Weighing Capacity (lbs)
-;;Animal (Platforms);Animal
 ;;Weighing Capacity (Platforms);Weighing Capacity (lbs)
 ;;Product Type;Product Type
 ;;Compatible with Gallagher Livestock (EID);Compatible with Gallagher Livestock (True/False)
@@ -63,10 +61,9 @@ $lang=en
 ;;Product Features (Watering);Product Features
 ;;Capacity(L) (Watering);Capacity (L)
 ;;Post Height (Posts);Post Height (inches)
-;;Animal (Posts);Animal
 ;;Number of Wires ;Number of Wires 
 ;;Strainer Type;Strainer Type
-;;Includes Joint Clamp;Includes Joint Clamp
+;;Includes Joint Clamp;Includes Joint Clamp (True/False)
 ;;Warranty (Strainers);Warranty (Years)
 ;;Post Type (Insulators);Post Type
 ;;Insulator Type;Insulator Type
@@ -80,3 +77,4 @@ $lang=en
 ;;Length (Gates);Length (inches)
 ;;Use (Fence);Use
 ;;animalCompatibility;Animal Type
+;;Post Height (Pigtails);Post Height (inches)

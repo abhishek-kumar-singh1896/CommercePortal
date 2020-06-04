@@ -26,7 +26,6 @@ $lang=en
 ;;Ohms Per Km (Wires);Ohms Per Km
 ;;Voltage at 10km of fence;Voltage at 10km of fence (kV)
 ;;Post Height (Posts);Post Height (mm)
-;;Animal (Posts);Animal 
 ;;Number of Wires;Number of Wires 
 ;;Strainer Type;Strainer Type
 ;;Includes Joint Clamp;Includes Joint Clamp (True/False)
@@ -62,10 +61,8 @@ $lang=en
 ;;Intergrated EID Reader;Intergrated EID Reader (True/False)
 ;;Compatible with Gallagher Livestock (Scales);Compatible with Gallagher Livestock (True/False)
 ;;View Pedigree Tree;View Pedigree Tree (True/False)
-;;Animal (Loadbars);Animal
 ;;Use;Use
 ;;Weighing Capacity (Loadbars);Weighing Capacity (kg)
-;;Animal (Platforms);Animal 
 ;;Weighing Capacity (Platforms);Weighing Capacity (kg)
 ;;Product Type (EID);Product Type
 ;;Compatible with Gallagher Livestock (EID);Compatible with Gallagher Livestock web/mobile app (True/False)

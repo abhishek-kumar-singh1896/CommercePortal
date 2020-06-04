@@ -56,7 +56,6 @@ $lang=en
 ;;Intergrated EID Reader;Intergrated EID Reader (True/False)
 ;;Compatible with Gallagher Livestock (Scales);Compatible with Gallagher Livestock (True/False)
 ;;View Pedigree Tree;View Pedigree Tree (True/False)
-;;Animal;Animal
 ;;Use (Loadbars);Use
 ;;Weighing Capacity;Weighing Capacity (kg)
 ;;Product Type (EID);Product Type

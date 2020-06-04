@@ -18,13 +18,11 @@ UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true,default=$inde
 ;;Voltaje a 5 km del cerco;Voltaje a 5 km del cerco (kV)
 ;;Voltaje a 10 km del cerco;Voltaje a 10 km del cerco (kV)
 ;;Post Height;Post Height (mm)
-;;Animal (Postes);Animal
 ;;Number of Wires;Number of Wires 
 ;;Strainer Type;Strainer Type
 ;;Includes Joint Clamp;Includes Joint Clamp (True/False)
 ;;Post Type (Aisladores);Post Type 
 ;;Insulator Type;Insulator Type
-;;Animal (Aisladores);Animal
 ;;Post Type (Desplazadores);Post Type
 ;;Mount Type;Mount Type
 ;;Product Length;Product Length (mm)
@@ -46,10 +44,8 @@ UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true,default=$inde
 ;;Intergrated EID Reader;Intergrated EID Reader (True/False)
 ;;Compatible with Gallagher Livestock (Datos);Compatible with Gallagher Livestock web/mobile app (True/False)
 ;;View Pedigree Tree;View Pedigree Tree (True/False)
-;;Animal (Barras);Animal
 ;;Use;Use
 ;;Capacidad de pesaje (Barras);Capacidad de pesaje (kg)
-;;Animal (Plataformas);Animal
 ;;Capacidad de pesaje (Plataformas);Capacidad de pesaje (kg)
 ;;Product Type;Product Type
 ;;Compatible with Gallagher Livestock (Lectores);Compatible with Gallagher Livestock (True/False)
