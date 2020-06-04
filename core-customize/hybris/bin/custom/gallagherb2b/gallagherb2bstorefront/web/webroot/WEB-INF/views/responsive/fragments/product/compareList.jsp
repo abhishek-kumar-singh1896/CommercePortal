@@ -76,18 +76,18 @@
 		                                        	</c:if>
 			                                        </c:if>
 		                                        </c:forEach></td>
-	                                        </c:when>
-	                                        <c:otherwise>
-	                                        <td headers="brand">
-	                                        <c:url value="${product.url}" var="productUrl" />
-	                                        <a href="${fn:escapeXml(productUrl)}" title="${fn:escapeXml(product.name)}">
-											<theme:image code="img.missingProductImage.responsive.thumbnail"
-												alt="${fn:escapeXml(product.name)}"
-												title="${fn:escapeXml(product.name)}" />
-												</a>
-												</td>
-										</c:otherwise>
-											</c:choose>
+                                      </c:when>
+                                      <c:otherwise>
+                                      <td headers="brand">
+                                      <c:url value="${product.url}" var="productUrl" />
+                                      <a href="${fn:escapeXml(productUrl)}" title="${fn:escapeXml(product.name)}">
+										<theme:image code="img.missingProductImage.responsive.thumbnail"
+											alt="${fn:escapeXml(product.name)}"
+											title="${fn:escapeXml(product.name)}" />
+											</a>
+											</td>
+									</c:otherwise>
+								</c:choose>
 											
 								</c:forEach>
 							</tr>
