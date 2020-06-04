@@ -305,7 +305,7 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 			catch (final Exception ex)
 			{
 				success = false;
-				LOGGER.error("There is some problem while transforming Product [" + product.getCode() + "]", ex);
+				LOGGER.error("There is some problem while transforming Product [" + product.getCode() + "]" + ex);
 			}
 		}
 		return success;
@@ -326,7 +326,7 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 			existingVariantProduct.setSummary(product.getSummary(locale), locale);
 			existingVariantProduct.setDescription(product.getDescription(locale), locale);
 		}
-		if (null != language.getFallbackLanguages())
+		if (CollectionUtils.isNotEmpty(language.getFallbackLanguages()))
 		{
 			final Locale fallbackLocale = LocaleUtils.toLocale(language.getFallbackLanguages().get(0).getIsocode());
 			existingVariantProduct.setName(product.getName(fallbackLocale), fallbackLocale);

@@ -42,9 +42,9 @@ public class GallagherProductTransformationCronjob extends AbstractJobPerformabl
 		final PerformResult result;
 		cronJob.setLastStartTime(new Date());
 		final boolean success = gallagherProductProcessingService.createAndProcessVariantProduct(catalogId, lastStartTime);
-		modelService.save(cronJob);
 		if (success)
 		{
+			modelService.save(cronJob);
 			result = new PerformResult(CronJobResult.SUCCESS, CronJobStatus.FINISHED);
 			LOGGER.info("Cronjob : GallagherProductTransformationCronjob is not finished successfully.");
 		}
