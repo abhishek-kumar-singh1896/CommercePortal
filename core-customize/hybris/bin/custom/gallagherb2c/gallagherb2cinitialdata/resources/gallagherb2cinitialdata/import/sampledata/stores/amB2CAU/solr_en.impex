@@ -20,7 +20,7 @@ $lang=en
 ;;i Series Compatible (Power);i Series Compatible (True/False)
 ;;Primary Usage;Primary Usage
 ;;Wires;Wires
-;;Post Height (WestOnFence) ;Post Height 
+;;Post Height (WestOnFence) ;Post Height (mm)
 ;;Voltage at 2km of fence;Voltage at 2km of fence (kV)
 ;;Voltage at 5km of fence;Voltage at 5km of fence (kV)
 ;;Ohms Per Km (Wires);Ohms Per Km
@@ -41,10 +41,10 @@ $lang=en
 ;;Product Length (Electric);Product Length (mm)
 ;;Product Width (Fence); Product Width (mm)
 ;;Product Depth (Fence);Product Depth (mm)
-;;Product Weight (Fence);Product Weight (mm)
+;;Product Weight (Fence);Product Weight (kg)
 ;; Product Width (Gate); Product Width (mm)
 ;;Product Depth (Gate);Product Depth (mm)
-;;Product Weight (Gate);Product Weight (mm)
+;;Product Weight (Gate);Product Weight (kg)
 ;;Voltage at 500m of fence;Voltage at 500m of fence (kV)
 ;;Voltage at 1km of fence;Voltage at 1km of fence (kV)
 ;;Mixed Metals;Mixed Metals
