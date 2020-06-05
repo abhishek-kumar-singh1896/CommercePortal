@@ -12,7 +12,7 @@ import com.sap.hybris.sapcustomerb2c.outbound.DefaultCustomerInterceptor;
 
 
 /**
- * Custom interceptor to push customer update for communication preferences
+ * Custom interceptor to push customer update for extra attributes according to the GGL requirement
  *
  * @author Vikram Bishnoi
  */
@@ -28,6 +28,7 @@ public class GallagherSAPCustomerInterceptor extends DefaultCustomerInterceptor
 		monitoredAttributes.add(CustomerModel.PRODUCTRELEASE);
 		monitoredAttributes.add(CustomerModel.PRODUCTUPDATE);
 		monitoredAttributes.add(CustomerModel.PRODUCTPROMO);
+		monitoredAttributes.add(CustomerModel.ADDRESSES);
 		return monitoredAttributes;
 	}
 }
