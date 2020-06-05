@@ -95,7 +95,8 @@ public class SearchPageController extends AbstractSearchPageController
 
 	@RequestMapping(method = RequestMethod.GET, params = "!q")
 	public String textSearch(@RequestParam(value = "text", defaultValue = "")
-	final String searchText, final HttpServletRequest request, final Model model) throws CMSItemNotFoundException
+	final String searchText, @RequestParam(value = "technical-support", defaultValue = "")
+	final String technicalSupport, final HttpServletRequest request, final Model model) throws CMSItemNotFoundException
 	{
 		final String sitecoreSolutionPageURL = MessageFormat.format(getConfigurationPath("sitecore.solution.url"), searchText);
 
@@ -176,7 +177,7 @@ public class SearchPageController extends AbstractSearchPageController
 		{
 			CompareUtil.checkComparedProducts(productComparisonList, model);
 		}
-
+		model.addAttribute("technicalSupport", technicalSupport);
 		return getViewForPage(model);
 	}
 

@@ -5,6 +5,7 @@
 	tagdir="/WEB-INF/tags/responsive/storepickup"%>
 <%@ taglib prefix="product" tagdir="/WEB-INF/tags/responsive/product"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 <template:page pageTitle="${pageTitle}">
@@ -14,13 +15,13 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<ul class="nav nav-tabs" role="tablist">
-						<li role="presentation" class="nav-item active"><a
+						<li role="presentation" class="nav-item <c:if test="${empty technicalSupport}">active</c:if>"><a
 							class="nav-link" href="#products" aria-controls="products"
 							role="tab" data-toggle="tab">
 								<spring:theme code="text.searchTab.product" />
 							</a>
 						</li>
-						<li role="presentation" class="nav-item"><a class="nav-link"
+						<li role="presentation" class="nav-item <c:if test="${not empty technicalSupport}">active</c:if>"><a class="nav-link"
 							href="#technicalSupport" aria-controls="profile" role="tab"
 							data-toggle="tab">
 								<spring:theme code="text.searchTab.technicalSupport" />
@@ -38,7 +39,7 @@
 
 
 		<div class="tab-content" id="searchResultTabContent">
-			<div class="tab-pane active" id="products" role="tabpanel">
+			<div class="tab-pane <c:if test="${empty technicalSupport}">active</c:if>" id="products" role="tabpanel">
 				<div class="row">
 
 					<div class="col-xs-3">
@@ -58,7 +59,7 @@
 				</div>
 			</div>
 
-			<div class="tab-pane" id="technicalSupport">
+			<div class="tab-pane <c:if test="${not empty technicalSupport}">active</c:if>" id="technicalSupport">
 					<script async="async" src="${mindtouchSRC}"></script>
 					<script type="mindtouch/embed" id="${mindtouchID}" data-search-query="${searchPageData.freeTextSearch}"></script>
 			</div>
