@@ -13,12 +13,16 @@
 		<%-- if product is multidimensional with different prices, show range, else, show unique price --%>
 		<c:choose>
 			<c:when test="${product.multidimensional and (product.priceRange.minPrice.value ne product.priceRange.maxPrice.value)}">
-			<div>From</div> 
-			<div class="currency-value">	 <format:price priceData="${product.priceRange.minPrice}"/><%--  - <format:price priceData="${product.priceRange.maxPrice}"/> --%> </div>
+			<c:if test="${not empty product.priceRange.minPrice}">
+				<div>From</div> 
+				<div class="currency-value"><format:price priceData="${product.priceRange.minPrice}"/><%--  - <format:price priceData="${product.priceRange.maxPrice}"/> --%> </div>
+			</c:if>
 			</c:when>
 			<c:otherwise>
-			<div>RRP</div>
-			<div class="currency-value">	<format:fromPrice priceData="${product.price}"/> </div>
+			<c:if test="${not empty product.price}">
+				<div>RRP</div>
+				<div class="currency-value"><format:fromPrice priceData="${product.price}"/></div>
+			</c:if>
 			</c:otherwise>
 		</c:choose>
 
