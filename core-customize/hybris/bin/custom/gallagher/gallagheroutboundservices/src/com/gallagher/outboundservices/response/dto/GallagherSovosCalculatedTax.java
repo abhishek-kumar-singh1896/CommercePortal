@@ -15,10 +15,10 @@ public class GallagherSovosCalculatedTax
 {
 
 	@JsonProperty("txAmt")
-	private String txAmt;
+	private Double txAmt;
 
 	@JsonProperty("txRate")
-	private String txRate;
+	private Double txRate;
 
 	@JsonProperty("txJurUIDJurTp")
 	private String txJurUIDJurTp;
@@ -26,22 +26,22 @@ public class GallagherSovosCalculatedTax
 	@JsonProperty("txJurUIDTxwTJId")
 	private String txJurUIDTxwTJId;
 
-	public void setTxAmt(final String txAmt)
+	public void setTxAmt(final Double txAmt)
 	{
 		this.txAmt = txAmt;
 	}
 
-	public String getTxAmt()
+	public Double getTxAmt()
 	{
 		return this.txAmt;
 	}
 
-	public void setTxRate(final String txRate)
+	public void setTxRate(final Double txRate)
 	{
 		this.txRate = txRate;
 	}
 
-	public String getTxRate()
+	public Double getTxRate()
 	{
 		return this.txRate;
 	}

@@ -11,6 +11,7 @@
 package com.gallagher.core.externaltax;
 
 import de.hybris.platform.acceleratorservices.config.SiteConfigService;
+import de.hybris.platform.cms2.model.site.CMSSiteModel;
 import de.hybris.platform.commerceservices.externaltax.CalculateExternalTaxesStrategy;
 import de.hybris.platform.core.model.c2l.CurrencyModel;
 import de.hybris.platform.core.model.order.AbstractOrderModel;
@@ -23,13 +24,18 @@ import de.hybris.platform.util.TaxValue;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import com.gallagher.core.dtos.GallagherSovosMergedTaxDTO;
+import com.gallagher.core.enums.RegionCode;
 import com.gallagher.core.util.GallagherSovosUtil;
 import com.gallagher.outboundservices.request.dto.GallagherSovosCalculateTaxRequest;
 import com.gallagher.outboundservices.response.dto.GallagherSovosCalculatedTax;
@@ -45,9 +51,8 @@ import com.gallagher.sovos.outboundservices.service.GallagherSovosService;
  */
 public class GallagherCalculateExternalTaxesStrategy implements CalculateExternalTaxesStrategy
 {
-	/**
-	 *
-	 */
+	private static final String CA = "ca";
+
 	private static final String GGL_ITEMTAX_CODE = "ggl.itemtax.code";
 
 	@Resource(name = "gallagherSovosService")
@@ -86,27 +91,88 @@ public class GallagherCalculateExternalTaxesStrategy implements CalculateExterna
 		{
 			for (final GallagherSovosCalculatedTaxLineItem lienItem : response.getLnRslts())
 			{
-				final List<TaxValue> taxValues = new ArrayList<>();
+				List<TaxValue> taxValues = Collections.EMPTY_LIST;
 
 				if (CollectionUtils.isNotEmpty(lienItem.getJurRslts()))
 				{
-					for (final GallagherSovosCalculatedTax calculatedTax : lienItem.getJurRslts())
-					{
-						final String taxCode = siteConfigService.getString(GGL_ITEMTAX_CODE.concat(calculatedTax.getTxJurUIDJurTp()),
-								StringUtils.EMPTY);
-						taxValues.add(getTaxValue(abstractOrder, taxCode, calculatedTax.getTxRate(), calculatedTax.getTxAmt()));
-					}
+					taxValues = getTaxValues(abstractOrder, lienItem);
 				}
 				else if (StringUtils.isNotEmpty(lienItem.getTxAmt()) && Double.valueOf(lienItem.getTxAmt()) == 0.0)
 				{
-					taxValues.add(getTaxValue(abstractOrder, "1", "0", lienItem.getTxAmt()));
+					taxValues = Collections.singletonList(getTaxValue(abstractOrder, "1", 0.0, 0.0));
 
 				}
-
 				externalDocument.setTaxesForOrderEntry(Integer.valueOf(lienItem.getLnId()), taxValues);
 			}
 		}
 		return externalDocument;
+	}
+
+
+	/**
+	 * @param abstractOrder
+	 * @param lienItem
+	 * @param taxValues
+	 */
+	private List<TaxValue> getTaxValues(final AbstractOrderModel abstractOrder, final GallagherSovosCalculatedTaxLineItem lienItem)
+	{
+		final List<TaxValue> taxValues = new ArrayList<>(lienItem.getJurRslts().size());
+		if (RegionCode.valueOf(CA).equals(((CMSSiteModel) abstractOrder.getSite()).getRegionCode()))
+		{
+			populateCATaxes(abstractOrder, lienItem, taxValues);
+		}
+		else
+		{
+			for (final GallagherSovosCalculatedTax calculatedTax : lienItem.getJurRslts())
+			{
+				final String taxCode = siteConfigService.getString(GGL_ITEMTAX_CODE.concat(calculatedTax.getTxJurUIDJurTp()),
+						StringUtils.EMPTY);
+				taxValues.add(getTaxValue(abstractOrder, taxCode, calculatedTax.getTxRate(), calculatedTax.getTxAmt()));
+			}
+		}
+		return taxValues;
+	}
+
+
+	/**
+	 * Populates CA taxes. SAPP-691. Taxes for same jurTp are combined. For example, Sovos retruns following two entries:
+	 *
+	 * JurTp 1:taxRate 0.25:taxAmount 2
+	 *
+	 * JurTp 1:taxRate 0.1:taxAmount 0.8
+	 *
+	 * It will make the tax vale as : JurTp 1:taxRate 0.35:taxAmount 2.8
+	 *
+	 * @param abstractOrder
+	 *           order to get the currency etc.
+	 * @param lienItem
+	 *           to get the retrieved tax values
+	 * @param taxValues
+	 *           to be populated
+	 */
+	private void populateCATaxes(final AbstractOrderModel abstractOrder, final GallagherSovosCalculatedTaxLineItem lienItem,
+			final List<TaxValue> taxValues)
+	{
+		final Map<String, GallagherSovosMergedTaxDTO> taxValueMap = new HashMap<>();
+		for (final GallagherSovosCalculatedTax calculatedTax : lienItem.getJurRslts())
+		{
+			if (!taxValueMap.containsKey(calculatedTax.getTxJurUIDJurTp()))
+			{
+				taxValueMap.put(calculatedTax.getTxJurUIDJurTp(), new GallagherSovosMergedTaxDTO());
+			}
+			final GallagherSovosMergedTaxDTO existingValue = taxValueMap.get(calculatedTax.getTxJurUIDJurTp());
+			existingValue.setTaxRate(existingValue.getTaxRate() == null ? calculatedTax.getTxRate()
+					: calculatedTax.getTxAmt() + existingValue.getTaxRate());
+			existingValue.setTaxAmount(existingValue.getTaxAmount() == null ? calculatedTax.getTxAmt()
+					: calculatedTax.getTxAmt() + existingValue.getTaxAmount());
+		}
+
+		taxValueMap.forEach((jurId, calculatedTax) -> {
+			final String taxCode = siteConfigService.getString(GGL_ITEMTAX_CODE.concat(jurId), StringUtils.EMPTY);
+
+			taxValues.add(getTaxValue(abstractOrder, taxCode, calculatedTax.getTaxRate(), calculatedTax.getTaxAmount()));
+
+		});
 	}
 
 
@@ -125,20 +191,15 @@ public class GallagherCalculateExternalTaxesStrategy implements CalculateExterna
 	 *           total calculated tax for this entry
 	 * @return Tax Value
 	 */
-	private TaxValue getTaxValue(final AbstractOrderModel abstractOrder, final String taxCode, final String taxRate,
-			final String amount)
+	private TaxValue getTaxValue(final AbstractOrderModel abstractOrder, final String taxCode, final Double taxRate,
+			final Double amount)
 	{
 		final CurrencyModel currency = abstractOrder.getCurrency();
 
 		final StringBuilder taxValueString = new StringBuilder();
 		taxValueString.append(taxCode);
-		//		if (StringUtils.isNotEmpty(taxJurisdictionCode))
-		//		{
-		//			taxValueString.append("_").append(taxJurisdictionCode);
-		//		}
-		taxValueString.append(" : ").append(Double.valueOf(taxRate) * 100);
-		final Double taxAmount = Double.valueOf(amount);
-		final TaxValue taxValue = new TaxValue(taxValueString.toString(), taxAmount, true, taxAmount,
+		taxValueString.append(" : ").append(taxRate * 100);
+		final TaxValue taxValue = new TaxValue(taxValueString.toString(), amount, true, amount,
 				currency == null ? "USD" : currency.getIsocode());
 		return taxValue;
 	}
