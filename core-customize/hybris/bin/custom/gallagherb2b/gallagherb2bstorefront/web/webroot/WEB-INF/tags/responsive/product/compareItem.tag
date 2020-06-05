@@ -7,10 +7,28 @@
 <%@ taglib prefix="action" tagdir="/WEB-INF/tags/responsive/action" %>
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="theme" tagdir="/WEB-INF/tags/shared/theme" %>
 <c:url value="${product.url}" var="productUrl"/>
 <div class="comp-item">
 		<a class="thumb" href="${productUrl}" title="${product.name}">
-			<product:productPrimaryImage product="${product}" format="product"/>
+			<c:choose>
+				<c:when test="${not empty product.images}">
+				 	<c:set var="count" value="1"/>
+                   	<c:forEach items="${product.images}" var="medias">
+                      <c:if test="${medias.format eq 'product'}">
+                      <c:if test="${count lt 2}">
+                      	<img src="${medias.url}" alt="${medias.altText}">
+                      	<c:set var="count" value="${count+1}"/>
+                     	</c:if>
+                      </c:if>
+                     </c:forEach>
+                </c:when>
+                <c:otherwise>
+					<theme:image code="img.missingProductImage.responsive.thumbnail"
+						alt="${fn:escapeXml(product.name)}"
+						title="${fn:escapeXml(product.name)}" />
+				</c:otherwise>
+			</c:choose>
 		</a>
 		<div class="prod-desc">
 				<div class="details">
