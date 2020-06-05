@@ -14,6 +14,7 @@
 							<c:if test="${fn:contains(title, '&')}">
 								<c:set var="title" value="${fn:replace(title,'&', '')}"/>
 							</c:if>
+							<c:if test="${component.visible eq true}">
 							<li class="nav-item">
 								<c:if test="${children.index eq 0}">
 									<a class="nav-link d-flex align-content-center flex-wrap" href="#${title}">
@@ -26,6 +27,7 @@
 									</a> 
 								</c:if>
 							</li>
+							</c:if>
 						</c:forEach>
 					</ul>
 				</nav>
