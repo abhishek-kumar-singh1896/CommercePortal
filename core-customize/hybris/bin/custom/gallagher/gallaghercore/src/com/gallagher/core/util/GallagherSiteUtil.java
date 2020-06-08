@@ -5,7 +5,6 @@ package com.gallagher.core.util;
 
 import static de.hybris.platform.servicelayer.util.ServicesUtil.validateParameterNotNullStandardMessage;
 
-import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
@@ -46,17 +45,8 @@ public class GallagherSiteUtil
 		validateParameterNotNullStandardMessage("date", date);
 		validateParameterNotNullStandardMessage("format", format);
 		final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
-		String formattedDate;
-		if (StringUtils.isEmpty(timzezone))
-		{
-			final LocalDate ldate = LocalDate.from(date.toInstant().atZone(ZoneOffset.systemDefault()));
-			formattedDate = formatter.format(ldate);
-		}
-		else
-		{
-			final ZonedDateTime dateWithZone = ZonedDateTime.ofInstant(date.toInstant(), ZoneId.of(timzezone));
-			formattedDate = dateWithZone.format(formatter);
-		}
-		return formattedDate;
+		final ZonedDateTime dateWithZone = ZonedDateTime.ofInstant(date.toInstant(),
+				StringUtils.isEmpty(timzezone) ? ZoneOffset.systemDefault() : ZoneId.of(timzezone));
+		return dateWithZone.format(formatter);
 	}
 }
