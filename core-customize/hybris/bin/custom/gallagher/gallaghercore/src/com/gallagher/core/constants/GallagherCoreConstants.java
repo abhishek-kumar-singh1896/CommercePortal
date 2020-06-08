@@ -24,6 +24,9 @@ public final class GallagherCoreConstants extends GeneratedGallagherCoreConstant
 	public static final String QUOTE_TO_EXPIRE_SOON_EMAIL_PROCESS = "quote-to-expire-soon-email-process";
 	public static final String QUOTE_EXPIRED_EMAIL_PROCESS = "quote-expired-email-process";
 	public static final String QUOTE_POST_CANCELLATION_PROCESS = "quote-post-cancellation-process";
+	public static final String GGL_TIMEZONE = "gallagherTimeZone";
+	public static final String LOCALHOST_IPV6 = "0:0:0:0:0:0:0:1";
+	public static final String LOCALHOST_IPV4 = "127.0.0.1";
 
 	public interface Bynder
 	{

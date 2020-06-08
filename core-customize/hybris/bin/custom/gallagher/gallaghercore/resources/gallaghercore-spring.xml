@@ -271,4 +271,8 @@
     <alias name="gallagherProductModelUrlResolver" alias="productModelUrlResolver"/>
     <bean id="gallagherProductModelUrlResolver"
           class="com.gallagher.core.url.impl.GallagherProductModelUrlResolver" parent="defaultProductModelUrlResolver" />
+	 
+	 <bean id="gallagherLocationUtil" class="com.gallagher.core.url.impl.GallagherLocationUtil"/>
+	
+
 </beans>

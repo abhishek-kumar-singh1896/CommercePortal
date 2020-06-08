@@ -36,6 +36,7 @@ import de.hybris.platform.site.BaseSiteService;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Collection;
+import java.util.TimeZone;
 
 import javax.annotation.Resource;
 import javax.servlet.FilterChain;
@@ -48,7 +49,9 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import com.gallagher.core.constants.GallagherCoreConstants;
 import com.gallagher.core.enums.RegionCode;
+import com.gallagher.core.url.impl.GallagherLocationUtil;
 import com.gallagher.core.util.GallagherSiteUtil;
 import com.gallagher.facades.GallagherRegionDetectionFacade;
 
@@ -73,6 +76,7 @@ public class CMSSiteFilter extends OncePerRequestFilter implements CMSFilter
 	@SuppressWarnings("unused")
 	private static final Logger LOG = Logger.getLogger(CMSSiteFilter.class);
 	private static final String FARWORD_SLASH = "/";
+	private static final String UNKNOWN = "unknown";
 
 	protected static final int MISSING_CMS_SITE_ERROR_STATUS = HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
 	protected static final String MISSING_CMS_SITE_ERROR_MESSAGE = "Cannot find CMSSite associated with current URL";
@@ -102,6 +106,9 @@ public class CMSSiteFilter extends OncePerRequestFilter implements CMSFilter
 
 	@Resource(name = "gallagherRegionDetectionFacade")
 	private GallagherRegionDetectionFacade gallagherRegionDetectionFacade;
+
+	@Resource(name = "gallagherLocationUtil")
+	private GallagherLocationUtil gallagherLocationUtil;
 
 	@Override
 	protected void doFilterInternal(final HttpServletRequest httpRequest, final HttpServletResponse httpResponse,
@@ -195,6 +202,7 @@ public class CMSSiteFilter extends OncePerRequestFilter implements CMSFilter
 		try
 		{
 			LOG.debug("Looking up site for url <" + absoluteURL + ">");
+			updateTimezone(httpRequest);
 			final CMSSiteModel cmsSiteForCurrentRequest = cmsSiteService.getSiteForURL(new URL(absoluteURL));
 			if (cmsSiteForCurrentRequest != null && cmsSiteModel != null
 					&& !cmsSiteForCurrentRequest.getUid().equalsIgnoreCase(cmsSiteModel.getUid()))
@@ -350,6 +358,67 @@ public class CMSSiteFilter extends OncePerRequestFilter implements CMSFilter
 			getSessionService().setAttribute(LocalizableItem.LANGUAGE_FALLBACK_ENABLED, enabled);
 			getSessionService().setAttribute(AbstractItemModel.LANGUAGE_FALLBACK_ENABLED_SERVICE_LAYER, enabled);
 		}
+	}
+
+	private void updateTimezone(final HttpServletRequest request)
+	{
+		if (getSessionService().getAttribute(GallagherCoreConstants.GGL_TIMEZONE) == null)
+		{
+			final String remoteAddr = getClientIPAddress(request);
+			if (isLocalHost(remoteAddr))
+			{
+				getSessionService().setAttribute(GallagherCoreConstants.GGL_TIMEZONE, TimeZone.getDefault());
+			}
+			else
+			{
+				getSessionService().setAttribute(GallagherCoreConstants.GGL_TIMEZONE,
+						gallagherLocationUtil.getTimezoneOfIPAddress(remoteAddr));
+			}
+		}
+	}
+
+	/**
+	 * Returns true if IP is localhost i.e. 127.0.0.1 (IPV4) or 0:0:0:0:0:0:0:1 (IPV6)
+	 *
+	 * @param ipAddress
+	 *           to be verified
+	 * @return whether IP belongs to localhost or not
+	 */
+	private boolean isLocalHost(final String ipAddress)
+	{
+		return GallagherCoreConstants.LOCALHOST_IPV4.equals(ipAddress) || GallagherCoreConstants.LOCALHOST_IPV6.equals(ipAddress);
+	}
+
+	/**
+	 * Returns the IP address of client
+	 *
+	 * @param request
+	 * @return IP address
+	 */
+	private String getClientIPAddress(final HttpServletRequest request)
+	{
+		String remoteAddr = request.getHeader("X-Forwarded-For");
+		if (StringUtils.isEmpty(remoteAddr) || UNKNOWN.equalsIgnoreCase(remoteAddr))
+		{
+			remoteAddr = request.getHeader("Proxy-Client-remoteAddr");
+		}
+		if (StringUtils.isEmpty(remoteAddr) || UNKNOWN.equalsIgnoreCase(remoteAddr))
+		{
+			remoteAddr = request.getHeader("WL-Proxy-Client-remoteAddr");
+		}
+		if (StringUtils.isEmpty(remoteAddr) || UNKNOWN.equalsIgnoreCase(remoteAddr))
+		{
+			remoteAddr = request.getHeader("HTTP_CLIENT_IP");
+		}
+		if (StringUtils.isEmpty(remoteAddr) || UNKNOWN.equalsIgnoreCase(remoteAddr))
+		{
+			remoteAddr = request.getHeader("HTTP_X_FORWARDED_FOR");
+		}
+		if (StringUtils.isEmpty(remoteAddr) || UNKNOWN.equalsIgnoreCase(remoteAddr))
+		{
+			remoteAddr = request.getRemoteAddr();
+		}
+		return remoteAddr;
 	}
 
 	/**

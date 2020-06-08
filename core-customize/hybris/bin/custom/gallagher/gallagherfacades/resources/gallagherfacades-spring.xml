@@ -270,7 +270,7 @@
     <alias name="gallagherOrderHistoryPopulator" alias="orderHistoryPopulator"/>
     <bean id="gallagherOrderHistoryPopulator"
           class="com.gallagher.facades.order.converters.populator.GallagherOrderHistoryPopulator" parent="defaultOrderHistoryPopulator">
-        <property name="i18NService" ref="i18NService"/>
+        <property name="sessionService" ref="sessionService"/>
     </bean>
     
 </beans>

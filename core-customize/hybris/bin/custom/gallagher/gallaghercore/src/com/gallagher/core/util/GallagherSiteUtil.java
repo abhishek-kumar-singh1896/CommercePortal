@@ -5,15 +5,13 @@ package com.gallagher.core.util;
 
 import static de.hybris.platform.servicelayer.util.ServicesUtil.validateParameterNotNullStandardMessage;
 
-import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.TimeZone;
 
 import javax.servlet.ServletRequest;
-
-import org.apache.commons.lang3.StringUtils;
 
 
 /**
@@ -40,13 +38,13 @@ public class GallagherSiteUtil
 		request.setAttribute(SITE_SWITCHED, Boolean.TRUE);
 	}
 
-	public static String getFormattedDateWithTimeZoneForDate(final Date date, final String format, final String timzezone)
+	public static String getFormattedDateWithTimeZoneForDate(final Date date, final String format, final TimeZone timzezone)
 	{
 		validateParameterNotNullStandardMessage("date", date);
 		validateParameterNotNullStandardMessage("format", format);
 		final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
 		final ZonedDateTime dateWithZone = ZonedDateTime.ofInstant(date.toInstant(),
-				StringUtils.isEmpty(timzezone) ? ZoneOffset.systemDefault() : ZoneId.of(timzezone));
+				timzezone == null ? ZoneOffset.systemDefault() : timzezone.toZoneId());
 		return dateWithZone.format(formatter);
 	}
 }

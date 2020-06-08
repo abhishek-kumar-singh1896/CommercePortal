@@ -7,12 +7,10 @@ import de.hybris.platform.acceleratorservices.urlresolver.SiteBaseUrlResolutionS
 import de.hybris.platform.basecommerce.model.site.BaseSiteModel;
 import de.hybris.platform.cms2.model.site.CMSSiteModel;
 import de.hybris.platform.core.model.c2l.CountryModel;
-import de.hybris.platform.servicelayer.config.ConfigurationService;
 import de.hybris.platform.servicelayer.i18n.CommonI18NService;
 import de.hybris.platform.site.BaseSiteService;
 
 import java.io.IOException;
-import java.net.InetAddress;
 
 import javax.annotation.Resource;
 import javax.servlet.FilterChain;
@@ -27,11 +25,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.filter.GenericFilterBean;
 
+import com.gallagher.core.constants.GallagherCoreConstants;
 import com.gallagher.core.enums.RegionCode;
-import com.maxmind.geoip2.WebServiceClient;
-import com.maxmind.geoip2.exception.GeoIp2Exception;
-import com.maxmind.geoip2.model.CountryResponse;
-import com.maxmind.geoip2.record.Country;
+import com.gallagher.core.url.impl.GallagherLocationUtil;
 
 
 /**
@@ -58,10 +54,6 @@ public class GallagherRedirectionFilter extends GenericFilterBean
 
 	private static final String SECURITY_BASE = "securityB2B";
 
-	private static final String LOCALHOST_IPV6 = "0:0:0:0:0:0:0:1";
-
-	private static final String LOCALHOST_IPV4 = "127.0.0.1";
-
 	private static final String IP_SERVICE = "https://ipinfo.io/%s/country";
 
 	private static final Logger LOG = LoggerFactory.getLogger(GallagherRedirectionFilter.class.getName());
@@ -69,11 +61,11 @@ public class GallagherRedirectionFilter extends GenericFilterBean
 	@Resource(name = "baseSiteService")
 	private BaseSiteService baseSiteService;
 
+	@Resource(name = "gallagherLocationUtil")
+	private GallagherLocationUtil gallagherLocationUtil;
+
 	@Resource(name = "commonI18NService")
 	private CommonI18NService commonI18NService;
-
-	@Resource(name = "configurationService")
-	private ConfigurationService configurationService;
 
 	@Resource(name = "siteBaseUrlResolutionService")
 	private SiteBaseUrlResolutionService siteBaseUrlResolutionService;
@@ -102,7 +94,7 @@ public class GallagherRedirectionFilter extends GenericFilterBean
 		final String countryCode;
 		if (StringUtils.isNotEmpty(remoteAddr) && !isLocalHost(remoteAddr))
 		{
-			countryCode = getCountryofIPAddress(remoteAddr.split(",")[0]);
+			countryCode = gallagherLocationUtil.getCountryofIPAddress(remoteAddr.split(",")[0]);
 		}
 		else
 		{
@@ -135,35 +127,6 @@ public class GallagherRedirectionFilter extends GenericFilterBean
 		res.sendRedirect(redirectURL);
 	}
 
-	/**
-	 * Returns the country for the IP address
-	 *
-	 * @param remoteAddr
-	 *           IP address
-	 * @return country ISO code
-	 */
-	private String getCountryofIPAddress(final String remoteAddr)
-	{
-		String countryCode = GLOBAL;
-		final int maxMindAccountID = configurationService.getConfiguration().getInt("maxmind.account.id", 0);
-		final String maxMindKey = configurationService.getConfiguration().getString("maxmind.account.key", DEFAULT_VALUE);
-		if (StringUtils.isNotEmpty(maxMindKey) && maxMindAccountID != 0)
-		{
-			try (WebServiceClient client = new WebServiceClient.Builder(maxMindAccountID, maxMindKey).build())
-			{
-
-				final InetAddress ipAddress = InetAddress.getByName(remoteAddr);
-				final CountryResponse response = client.country(ipAddress);
-				final Country country = response.getCountry();
-				countryCode = country.getIsoCode();
-			}
-			catch (IOException | GeoIp2Exception ex)
-			{
-				LOG.error("Exception occurred while fetching country for redirection", ex);
-			}
-		}
-		return countryCode;
-	}
 
 	/**
 	 * Returns the IP address of client
@@ -206,6 +169,6 @@ public class GallagherRedirectionFilter extends GenericFilterBean
 	 */
 	private boolean isLocalHost(final String ipAddress)
 	{
-		return LOCALHOST_IPV4.equals(ipAddress) || LOCALHOST_IPV6.equals(ipAddress);
+		return GallagherCoreConstants.LOCALHOST_IPV4.equals(ipAddress) || GallagherCoreConstants.LOCALHOST_IPV6.equals(ipAddress);
 	}
 }
