@@ -128,7 +128,7 @@ INSERT_UPDATE SolrFacetSearchKeywordRedirect;facetSearchConfig(name)[unique=true
 ;;Post Height (Pigtails);Post Height (inches)
 ;;Number of Wires ;Number of Wires 
 ;;Strainer Type;Strainer Type
-;;Includes Joint Clamp;Includes Joint Clamp
+;;Includes Joint Clamp;Includes Joint Clamp (True/False)
 ;;Warranty (Strainers);Warranty (Years)
 ;;Post Type (Insulators);Post Type
 ;;Insulator Type;Insulator Type
