@@ -269,12 +269,8 @@
           
     <alias name="gallagherOrderHistoryPopulator" alias="orderHistoryPopulator"/>
     <bean id="gallagherOrderHistoryPopulator"
-          class="com.gallagher.facades.commercefacades.product.converters.populator.GallagherOrderHistoryPopulator" parent="defaultOrderHistoryPopulator">
-        <property name="formatFactory" ref="formatFactory"/>
-        <!-- <property name="i18NService" ref="i18NService" /> -->
+          class="com.gallagher.facades.order.converters.populator.GallagherOrderHistoryPopulator" parent="defaultOrderHistoryPopulator">
+        <property name="i18NService" ref="i18NService"/>
     </bean>
- 	  
- 		<!-- Urlencoder -->
-<!-- 	<alias name="gallagherUrlEncoderFacade" alias="urlEncoderFacade"/> -->
-<!-- 	<bean id="gallagherUrlEncoderFacade" class="com.gallagher.facades.urlencoder.impl.GallagherUrlEncoderFacadeImpl" parent="defaultUrlEncoderFacade"/> -->
+    
 </beans>

@@ -3,7 +3,18 @@
  */
 package com.gallagher.core.util;
 
+import static de.hybris.platform.servicelayer.util.ServicesUtil.validateParameterNotNullStandardMessage;
+
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
 import javax.servlet.ServletRequest;
+
+import org.apache.commons.lang3.StringUtils;
 
 
 /**
@@ -28,5 +39,24 @@ public class GallagherSiteUtil
 	public static void setSiteSwitched(final ServletRequest request)
 	{
 		request.setAttribute(SITE_SWITCHED, Boolean.TRUE);
+	}
+
+	public static String getFormattedDateWithTimeZoneForDate(final Date date, final String format, final String timzezone)
+	{
+		validateParameterNotNullStandardMessage("date", date);
+		validateParameterNotNullStandardMessage("format", format);
+		final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
+		String formattedDate;
+		if (StringUtils.isEmpty(timzezone))
+		{
+			final LocalDate ldate = LocalDate.from(date.toInstant().atZone(ZoneOffset.systemDefault()));
+			formattedDate = formatter.format(ldate);
+		}
+		else
+		{
+			final ZonedDateTime dateWithZone = ZonedDateTime.ofInstant(date.toInstant(), ZoneId.of(timzezone));
+			formattedDate = dateWithZone.format(formatter);
+		}
+		return formattedDate;
 	}
 }
