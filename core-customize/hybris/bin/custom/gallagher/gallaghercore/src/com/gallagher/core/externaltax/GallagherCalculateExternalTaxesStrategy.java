@@ -52,8 +52,11 @@ import com.gallagher.sovos.outboundservices.service.GallagherSovosService;
 public class GallagherCalculateExternalTaxesStrategy implements CalculateExternalTaxesStrategy
 {
 	private static final String CA = "ca";
+	private static final String US = "us";
 
-	private static final String GGL_ITEMTAX_CODE = "ggl.itemtax.code";
+	private static final String GGL_ITEMTAX_CODE = "ggl.itemtax.code%s";
+	private static final String GGL_ITEMTAX_MAX_CODE = "ggl.itemtax.max.code%s";
+	private static final String GGL_ITEMTAX_AGGR_TX_CODE = "ggl.itemtax.aggrTxJurTp1_%s.code%s";
 
 	@Resource(name = "gallagherSovosService")
 	private GallagherSovosService gallagherSovosService;
@@ -121,12 +124,16 @@ public class GallagherCalculateExternalTaxesStrategy implements CalculateExterna
 		{
 			populateCATaxes(abstractOrder, lienItem, taxValues);
 		}
+		else if (RegionCode.valueOf(US).equals(((CMSSiteModel) abstractOrder.getSite()).getRegionCode()))
+		{
+			populateUSTaxes(abstractOrder, lienItem, taxValues);
+		}
 		else
 		{
 			for (final GallagherSovosCalculatedTax calculatedTax : lienItem.getJurRslts())
 			{
 				final String taxCode = siteConfigService.getString(GGL_ITEMTAX_CODE.concat(calculatedTax.getTxJurUIDJurTp()),
-						StringUtils.EMPTY);
+						calculatedTax.getTxJurUIDJurTp());
 				taxValues.add(getTaxValue(abstractOrder, taxCode, calculatedTax.getTxRate(), calculatedTax.getTxAmt()));
 			}
 		}
@@ -168,11 +175,93 @@ public class GallagherCalculateExternalTaxesStrategy implements CalculateExterna
 		}
 
 		taxValueMap.forEach((jurId, calculatedTax) -> {
-			final String taxCode = siteConfigService.getString(GGL_ITEMTAX_CODE.concat(jurId), StringUtils.EMPTY);
+			final String taxCode = siteConfigService.getString(String.format(GGL_ITEMTAX_CODE, jurId), StringUtils.EMPTY);
 
 			taxValues.add(getTaxValue(abstractOrder, taxCode, calculatedTax.getTaxRate(), calculatedTax.getTaxAmount()));
 
 		});
+	}
+
+	/**
+	 * Populates CA taxes. SAPP-691. Taxes for same jurTp are combined. For example, Sovos retruns following two entries:
+	 *
+	 * JurTp 1:taxRate 0.25:taxAmount 2
+	 *
+	 * JurTp 1:taxRate 0.1:taxAmount 0.8
+	 *
+	 * It will make the tax vale as : JurTp 1:taxRate 0.35:taxAmount 2.8
+	 *
+	 * @param abstractOrder
+	 *           order to get the currency etc.
+	 * @param lienItem
+	 *           to get the retrieved tax values
+	 * @param taxValues
+	 *           to be populated
+	 */
+	private void populateUSTaxes(final AbstractOrderModel abstractOrder, final GallagherSovosCalculatedTaxLineItem lienItem,
+			final List<TaxValue> taxValues)
+	{
+		final Map<String, GallagherSovosMergedTaxDTO> taxValueMap = new HashMap<>();
+		for (final GallagherSovosCalculatedTax calculatedTax : lienItem.getJurRslts())
+		{
+			final String taxCode = getUSTaxCode(calculatedTax);
+			if (!taxValueMap.containsKey(taxCode))
+			{
+				taxValueMap.put(taxCode, new GallagherSovosMergedTaxDTO());
+			}
+			final GallagherSovosMergedTaxDTO existingValue = taxValueMap.get(taxCode);
+			existingValue.setTaxRate(existingValue.getTaxRate() == null ? calculatedTax.getTxRate()
+					: calculatedTax.getTxAmt() + existingValue.getTaxRate());
+			existingValue.setTaxAmount(existingValue.getTaxAmount() == null ? calculatedTax.getTxAmt()
+					: calculatedTax.getTxAmt() + existingValue.getTaxAmount());
+		}
+
+		taxValueMap.forEach((taxCode, calculatedTax) -> {
+			taxValues.add(getTaxValue(abstractOrder, taxCode, calculatedTax.getTaxRate(), calculatedTax.getTaxAmount()));
+
+		});
+	}
+
+
+	/**
+	 * Returns the tax code for the US taxes. Logic is:
+	 *
+	 * if tax name contains max and jurTp is 3 then tax code will be ZR4
+	 *
+	 * if tax name contains max and jurTp is 4 then tax code will be ZR5
+	 *
+	 * if tax name contains max and jurTp is 2 then tax code will be ZR6
+	 *
+	 * if tax aggTxTp1 is 7 and jurTp is 5 then tax code will be ZR4
+	 *
+	 * if tax aggTxTp1 is 8 and jurTp is 5 then tax code will be ZR5
+	 *
+	 * otherwise ggl.itemtax.code configuration will be considered
+	 *
+	 * @param calculatedTax
+	 *           the tax row received in response
+	 * @return tax code
+	 */
+	private String getUSTaxCode(final GallagherSovosCalculatedTax calculatedTax)
+	{
+		String taxCode = null;
+		if (calculatedTax.getTxName() != null && calculatedTax.getTxName().toLowerCase().contains("full"))
+		{
+			taxCode = siteConfigService.getString(String.format(GGL_ITEMTAX_MAX_CODE, calculatedTax.getTxJurUIDJurTp()),
+					StringUtils.EMPTY);
+		}
+		if (StringUtils.isEmpty(taxCode))
+		{
+			taxCode = siteConfigService.getString(
+					String.format(GGL_ITEMTAX_AGGR_TX_CODE, calculatedTax.getAggrTxJurTp1(), calculatedTax.getTxJurUIDJurTp()),
+					StringUtils.EMPTY);
+		}
+		if (StringUtils.isEmpty(taxCode))
+		{
+			taxCode = siteConfigService.getString(String.format(GGL_ITEMTAX_CODE, calculatedTax.getTxJurUIDJurTp()),
+					StringUtils.EMPTY);
+		}
+		return taxCode;
 	}
 
 

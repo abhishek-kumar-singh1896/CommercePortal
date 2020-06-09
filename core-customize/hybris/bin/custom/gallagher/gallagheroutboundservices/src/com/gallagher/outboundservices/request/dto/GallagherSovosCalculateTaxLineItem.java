@@ -45,9 +45,21 @@ public class GallagherSovosCalculateTaxLineItem
 	@JsonProperty("sFGeoCd")
 	private int sFGeoCd;
 
+	@JsonProperty("lOAGeoCd")
+	private int iOAGeoCd;
+
+	@JsonProperty("lORGeoCd")
+	private int iORGeoCd;
 
 	@JsonProperty("sTGeoCd")
 	private int sTGeoCd;
+
+	@JsonProperty("lSPGeoCd")
+	private int iSPGeoCd;
+
+	@JsonProperty("lUGeoCd")
+	private int iUGeoCd;
+
 
 	public int getDebCredIndr()
 	{
@@ -157,6 +169,46 @@ public class GallagherSovosCalculateTaxLineItem
 	public void setsTGeoCd(final int sTGeoCd)
 	{
 		this.sTGeoCd = sTGeoCd;
+	}
+
+	public int getiOAGeoCd()
+	{
+		return iOAGeoCd;
+	}
+
+	public void setiOAGeoCd(final int iOAGeoCd)
+	{
+		this.iOAGeoCd = iOAGeoCd;
+	}
+
+	public int getiORGeoCd()
+	{
+		return iORGeoCd;
+	}
+
+	public void setiORGeoCd(final int iORGeoCd)
+	{
+		this.iORGeoCd = iORGeoCd;
+	}
+
+	public int getiSPGeoCd()
+	{
+		return iSPGeoCd;
+	}
+
+	public void setiSPGeoCd(final int iSPGeoCd)
+	{
+		this.iSPGeoCd = iSPGeoCd;
+	}
+
+	public int getiUGeoCd()
+	{
+		return iUGeoCd;
+	}
+
+	public void setiUGeoCd(final int iUGeoCd)
+	{
+		this.iUGeoCd = iUGeoCd;
 	}
 
 }

@@ -14,17 +14,34 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class GallagherSovosCalculatedTax
 {
 
+	@JsonProperty("txName")
+	private String txName;
+
 	@JsonProperty("txAmt")
 	private Double txAmt;
 
 	@JsonProperty("txRate")
 	private Double txRate;
 
+	@JsonProperty("aggrTxJurTp1")
+	private String aggrTxJurTp1;
+
 	@JsonProperty("txJurUIDJurTp")
 	private String txJurUIDJurTp;
 
 	@JsonProperty("txJurUIDTxwTJId")
 	private String txJurUIDTxwTJId;
+
+
+	public String getTxName()
+	{
+		return txName;
+	}
+
+	public void setTxName(final String txName)
+	{
+		this.txName = txName;
+	}
 
 	public void setTxAmt(final Double txAmt)
 	{
@@ -44,6 +61,16 @@ public class GallagherSovosCalculatedTax
 	public Double getTxRate()
 	{
 		return this.txRate;
+	}
+
+	public String getAggrTxJurTp1()
+	{
+		return aggrTxJurTp1;
+	}
+
+	public void setAggrTxJurTp1(final String aggrTxJurTp1)
+	{
+		this.aggrTxJurTp1 = aggrTxJurTp1;
 	}
 
 	public void setTxJurUIDJurTp(final String txJurUIDJurTp)
