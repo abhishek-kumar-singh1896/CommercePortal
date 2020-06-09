@@ -176,7 +176,7 @@ INSERT_UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true]
 ;;ohms-per-km
 ;;voltage-at-10km
 #;;animal 
-;;product-length 
+;;product-length
 ;;contents 
 ;;post-height 
 ;;number-of-wires 
@@ -472,12 +472,12 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 
 ;electric-gates;warranty;1;Years;number
 ;electric-gates;gate-type;2;;
-;electric-gates;product-length;3;mm;number
+;electric-gates;product-length;3;mm
 ;electric-gates;product-width;4;mm;number
 ;electric-gates;product-depth;5;mm;number
 ;electric-gates;product-weight;6;kg;number
 ;electric-gates;contents;7;;
-;electric-gates;length;8;mm;number
+;electric-gates;length;8;mm
 ;electric-gates;width-or-length;9;mm;number
 
 ;fence-tools-and-accessories;use;1;;

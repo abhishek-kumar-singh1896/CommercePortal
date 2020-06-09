@@ -124,7 +124,7 @@ INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; n
                                   
                                   
 INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=false] ; facetType(code) ; facetSort(code) ; priority ; visible ; fieldValueProvider                          ; customFacetSortProvider ; rangeSets(name) ; $classAttributeAssignment   
-                                  ; $solrIndexedType                         ; Length (Portones)          ; double                     ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; true    ; commerceClassificationPropertyValueProvider ;                         ;                 ; electric-gates:::length:::: 
+                                  ; $solrIndexedType                         ; Length (Portones)          ;                      ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; true    ; commerceClassificationPropertyValueProvider ;                         ;                 ; electric-gates:::length:::: 
                                   
                                   
 INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]        ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=false] ; facetType(code) ; facetSort(code) ; priority ; visible ; fieldValueProvider                          ; customFacetSortProvider ; rangeSets(name) ; $classAttributeAssignment                       
@@ -297,7 +297,7 @@ INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(id
                                       
                                       
 INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetDisplayNameProvider ; facetSortProvider ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
-                                      ; Length (Portones)  :$solrIndexedType                            ;                     ; MultiSelectOr   ; 1000     ;                          ;numericFacetSortProviderAsc;                        ;                                 ;                                                                                                   
+                                      ; Length (Portones)  :$solrIndexedType                            ;                     ; MultiSelectOr   ; 1000     ;                          ;sizeAttributeSortProvider;                        ;                                 ;                                                                                                   
                                       
                                       
                                       
