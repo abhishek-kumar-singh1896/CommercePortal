@@ -46,5 +46,7 @@
 	<classpathentry kind="lib" path="web/webroot/WEB-INF/lib/keycloak-spring-security-adapter-8.0.1.jar"/>
 	<classpathentry kind="lib" path="web/webroot/WEB-INF/lib/owasp-java-html-sanitizer-20180219.1.jar"/>
 	<classpathentry kind="lib" path="web/webroot/WEB-INF/lib/rhino-1.7.7.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/gallagherfacades"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/gallaghercore"/>
 	<classpathentry kind="output" path="eclipsebin/notused"/>
 </classpath>

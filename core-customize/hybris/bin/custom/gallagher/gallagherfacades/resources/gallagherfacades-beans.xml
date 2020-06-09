@@ -85,4 +85,8 @@
 	 <bean class="de.hybris.platform.commercefacades.order.data.OrderHistoryData">
 		<property name="formattedOrderDate" type="String"/>
 	</bean>
+	
+	<bean class="de.hybris.platform.commercefacades.product.data.ReviewData">
+		<property name="formattedReviewDate" type="String"/>
+	</bean>
 </beans>

@@ -273,4 +273,16 @@
         <property name="sessionService" ref="sessionService"/>
     </bean>
     
+    <alias name="gallagherOrderPopulator" alias="orderPopulator"/>
+    <bean id="gallagherOrderPopulator" 
+    		 class="com.gallagher.facades.order.converters.populator.GallagherOrderPopulator" parent="defaultOrderPopulator">
+    		<property name="sessionService" ref="sessionService"/>
+    </bean>
+    
+    <alias name="gallagherCustomerReviewPopulator" alias="customerReviewPopulator"/>
+    <bean id="gallagherCustomerReviewPopulator"
+          class="com.gallagher.facades.product.converters.populator.GallagherCustomerReviewPopulator" parent="defaultCustomerReviewPopulator">
+        <property name="sessionService" ref="sessionService"/>
+    </bean>
+    
 </beans>

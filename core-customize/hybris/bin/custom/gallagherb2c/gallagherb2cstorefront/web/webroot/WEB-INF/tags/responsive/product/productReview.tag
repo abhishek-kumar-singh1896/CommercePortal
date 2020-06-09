@@ -11,10 +11,9 @@
 			style="width: ${fn:escapeXml(review.rating)*20}%;"></span>
 		</span> <span class="rating-value"> (${review.rating}) </span>
 		<span class="reviews-text">
-			<c:set var="reviewDate" value="${review.date}" />
 			 ${review.principal.name} /
 			<span class="date">
-				(<fmt:formatDate value="${reviewDate}" pattern="dd/MM/yyyy" />)
+				(${review.formattedReviewDate})
 			</span>
 		</span>
 	</div>

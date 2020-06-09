@@ -1,4 +1,4 @@
-package com.gallagher.core.url.impl;
+package com.gallagher.core.services.impl;
 
 import de.hybris.platform.servicelayer.config.ConfigurationService;
 
@@ -11,6 +11,7 @@ import javax.annotation.Resource;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
+import com.gallagher.core.services.GallagherLocationService;
 import com.maxmind.geoip2.WebServiceClient;
 import com.maxmind.geoip2.exception.GeoIp2Exception;
 import com.maxmind.geoip2.model.CountryResponse;
@@ -18,26 +19,25 @@ import com.maxmind.geoip2.record.Country;
 
 
 /**
- * @author vikram1798
+ * Location service to get location specific details i.e. Country/Timezone for an IP address
+ *
+ * @author Vikram Bishnoi
  *
  */
-public class GallagherLocationUtil
+public class GallagherLocationServiceImpl implements GallagherLocationService
 {
 
 	private static final String GLOBAL = "Global";
 	private static final String DEFAULT_VALUE = "";
-	private static final Logger LOG = Logger.getLogger(GallagherLocationUtil.class);
+	private static final Logger LOG = Logger.getLogger(GallagherLocationServiceImpl.class);
 
 	@Resource(name = "configurationService")
 	private ConfigurationService configurationService;
 
 	/**
-	 * Returns the country for the IP address
-	 *
-	 * @param remoteAddr
-	 *           IP address
-	 * @return country ISO code
+	 * {@inheritDoc}
 	 */
+	@Override
 	public String getCountryofIPAddress(final String remoteAddr)
 	{
 		String countryCode = GLOBAL;
@@ -62,12 +62,9 @@ public class GallagherLocationUtil
 	}
 
 	/**
-	 * Returns the timezone for the IP address
-	 *
-	 * @param remoteAddr
-	 *           IP address
-	 * @return timezone
+	 * {@inheritDoc}
 	 */
+	@Override
 	public TimeZone getTimezoneOfIPAddress(final String remoteAddr)
 	{
 		TimeZone timeZone = TimeZone.getDefault();

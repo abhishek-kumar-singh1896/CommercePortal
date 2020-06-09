@@ -38,8 +38,7 @@
 						<spring:theme code="review.submitted.anonymous" />
 					</c:otherwise>
 				</c:choose>
-				<c:set var="reviewDate" value="${review.date}" />
-				<span class="date"> (<fmt:formatDate value="${reviewDate}" pattern="dd/MM/yyyy" />)</span>
+				<span class="date"> (${review.formattedReviewDate})</span>
 			</div>
 
 		</li>

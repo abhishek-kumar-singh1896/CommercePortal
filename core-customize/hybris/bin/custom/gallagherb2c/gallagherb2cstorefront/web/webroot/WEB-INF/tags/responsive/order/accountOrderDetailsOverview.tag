@@ -33,7 +33,7 @@
             <div class="item-group">
                 <ycommerce:testId code="orderDetail_overviewStatusDate_label">
                     <span class="item-label"><spring:theme code="text.account.orderHistory.datePlaced"/></span>
-                    <span class="item-value"><fmt:formatDate value="${order.created}" dateStyle="medium" timeStyle="short" type="both"/></span>
+                    <span class="item-value">${order.formattedOrderDate}</span>
                 </ycommerce:testId>
             </div>
         </div>

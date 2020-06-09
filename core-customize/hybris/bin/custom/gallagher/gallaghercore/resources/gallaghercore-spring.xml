@@ -272,7 +272,7 @@
     <bean id="gallagherProductModelUrlResolver"
           class="com.gallagher.core.url.impl.GallagherProductModelUrlResolver" parent="defaultProductModelUrlResolver" />
 	 
-	 <bean id="gallagherLocationUtil" class="com.gallagher.core.url.impl.GallagherLocationUtil"/>
+	 <bean id="gallagherLocationService" class="com.gallagher.core.services.impl.GallagherLocationServiceImpl"/>
 	
 
 </beans>

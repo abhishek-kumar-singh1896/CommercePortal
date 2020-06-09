@@ -51,7 +51,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.gallagher.core.constants.GallagherCoreConstants;
 import com.gallagher.core.enums.RegionCode;
-import com.gallagher.core.url.impl.GallagherLocationUtil;
+import com.gallagher.core.services.GallagherLocationService;
 import com.gallagher.core.util.GallagherSiteUtil;
 import com.gallagher.facades.GallagherRegionDetectionFacade;
 
@@ -107,8 +107,8 @@ public class CMSSiteFilter extends OncePerRequestFilter implements CMSFilter
 	@Resource(name = "gallagherRegionDetectionFacade")
 	private GallagherRegionDetectionFacade gallagherRegionDetectionFacade;
 
-	@Resource(name = "gallagherLocationUtil")
-	private GallagherLocationUtil gallagherLocationUtil;
+	@Resource(name = "gallagherLocationService")
+	private GallagherLocationService gallagherLocationService;
 
 	@Override
 	protected void doFilterInternal(final HttpServletRequest httpRequest, final HttpServletResponse httpResponse,
@@ -360,19 +360,25 @@ public class CMSSiteFilter extends OncePerRequestFilter implements CMSFilter
 		}
 	}
 
+	/**
+	 * Updates the timezone in session
+	 *
+	 * @param request
+	 *           to get the IP
+	 */
 	private void updateTimezone(final HttpServletRequest request)
 	{
 		if (getSessionService().getAttribute(GallagherCoreConstants.GGL_TIMEZONE) == null)
 		{
 			final String remoteAddr = getClientIPAddress(request);
-			if (isLocalHost(remoteAddr))
+			if (StringUtils.isEmpty(remoteAddr) || isLocalHost(remoteAddr))
 			{
 				getSessionService().setAttribute(GallagherCoreConstants.GGL_TIMEZONE, TimeZone.getDefault());
 			}
 			else
 			{
 				getSessionService().setAttribute(GallagherCoreConstants.GGL_TIMEZONE,
-						gallagherLocationUtil.getTimezoneOfIPAddress(remoteAddr));
+						gallagherLocationService.getTimezoneOfIPAddress(remoteAddr.split(",")[0]));
 			}
 		}
 	}

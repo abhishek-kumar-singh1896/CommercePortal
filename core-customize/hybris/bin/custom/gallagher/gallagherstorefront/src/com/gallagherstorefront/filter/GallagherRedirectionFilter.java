@@ -27,7 +27,7 @@ import org.springframework.web.filter.GenericFilterBean;
 
 import com.gallagher.core.constants.GallagherCoreConstants;
 import com.gallagher.core.enums.RegionCode;
-import com.gallagher.core.url.impl.GallagherLocationUtil;
+import com.gallagher.core.services.GallagherLocationService;
 
 
 /**
@@ -61,11 +61,11 @@ public class GallagherRedirectionFilter extends GenericFilterBean
 	@Resource(name = "baseSiteService")
 	private BaseSiteService baseSiteService;
 
-	@Resource(name = "gallagherLocationUtil")
-	private GallagherLocationUtil gallagherLocationUtil;
-
 	@Resource(name = "commonI18NService")
 	private CommonI18NService commonI18NService;
+
+	@Resource(name = "gallagherLocationService")
+	private GallagherLocationService gallagherLocationService;
 
 	@Resource(name = "siteBaseUrlResolutionService")
 	private SiteBaseUrlResolutionService siteBaseUrlResolutionService;
@@ -92,13 +92,13 @@ public class GallagherRedirectionFilter extends GenericFilterBean
 		final String remoteAddr = getClientIPAddress(req);
 
 		final String countryCode;
-		if (StringUtils.isNotEmpty(remoteAddr) && !isLocalHost(remoteAddr))
+		if (StringUtils.isEmpty(remoteAddr) || isLocalHost(remoteAddr))
 		{
-			countryCode = gallagherLocationUtil.getCountryofIPAddress(remoteAddr.split(",")[0]);
+			countryCode = "Global";
 		}
 		else
 		{
-			countryCode = "Global";
+			countryCode = gallagherLocationService.getCountryofIPAddress(remoteAddr.split(",")[0]);
 		}
 
 		//final String countryCode = req.getLocale().getCountry();
