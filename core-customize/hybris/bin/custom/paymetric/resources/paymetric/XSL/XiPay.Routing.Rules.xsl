@@ -213,7 +213,7 @@
 	    <xsl:param name="cardType"/>
 	    <xsl:choose>
 		    <xsl:when test="contains('GUS_USD_GUS',$xipayMID)"><xsl:value-of select="'M;P;U;X'"/></xsl:when>
-		    <xsl:when test="contains('GCA_CAD_GCA',$xipayMID)"><xsl:value-of select="'M;P;U;l'"/></xsl:when>
+		    <xsl:when test="contains('GCA_CAD_GCA',$xipayMID)"><xsl:value-of select="'M;P;U;l;Y'"/></xsl:when>
 		    <xsl:when test="contains('GAU_AUD_GAU',$xipayMID)"><xsl:value-of select="'M'"/></xsl:when>
 			<xsl:when test="contains('GGL_NZD_GGL',$xipayMID)"><xsl:value-of select="'M'"/></xsl:when>
 		</xsl:choose>
