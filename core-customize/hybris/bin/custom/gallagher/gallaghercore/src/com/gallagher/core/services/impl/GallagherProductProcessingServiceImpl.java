@@ -221,6 +221,9 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 
 					final ProductModel baseProduct = productService.getProductForCode(regionalCatalogVersion, baseProductCode);
 
+					LOGGER.info("Processing " + variantProductCode + " with base store "
+							+ baseStore.getName() + " ");
+
 					try
 					{
 						final ProductModel existingProduct = productService.getProductForCode(regionalCatalogVersion,
