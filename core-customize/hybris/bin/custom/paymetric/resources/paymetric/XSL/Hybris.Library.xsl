@@ -29,6 +29,7 @@
 			<xsl:when test="$cardType = 'VI'"><xsl:value-of select="'001'"/></xsl:when>
 			<xsl:when test="$cardType = 'MC'"><xsl:value-of select="'002'"/></xsl:when>
 			<xsl:when test="$cardType = 'AX'"><xsl:value-of select="'003'"/></xsl:when>
+			<xsl:when test="$cardType = 'AMEX'"><xsl:value-of select="'003'"/></xsl:when>
 			<xsl:when test="$cardType = 'DI'"><xsl:value-of select="'004'"/></xsl:when>
 			<xsl:when test="$cardType = 'DC'"><xsl:value-of select="'005'"/></xsl:when>
 			<xsl:when test="$cardType = 'JC'"><xsl:value-of select="'007'"/></xsl:when>
