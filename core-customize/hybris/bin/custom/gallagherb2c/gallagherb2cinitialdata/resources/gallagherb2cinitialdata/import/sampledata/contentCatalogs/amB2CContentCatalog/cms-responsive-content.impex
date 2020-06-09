@@ -2777,7 +2777,7 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef;children(uid, $contentCV)[mode=replace]
-;UserDropDownNavigationNode;;Header Link Navigation Node; root;; UserDropDownNavigationNode; RegisterAProductNavNode,MyRegisteredProductNavNode,EditProfileNavNode,EmailAddressNavNode,PaymentDetailNavNode,UpdatePasswordNavNode,OrderHistoryNavNode,AddressBookNavNode,PreferencesNavNode,LogoutNavNode
+;UserDropDownNavigationNode;;Header My Account Links Navigation Node; root;; UserDropDownNavigationNode; RegisterAProductNavNode,MyRegisteredProductNavNode,EditProfileNavNode,EmailAddressNavNode,PaymentDetailNavNode,UpdatePasswordNavNode,OrderHistoryNavNode,AddressBookNavNode,PreferencesNavNode,LogoutNavNode
 
 INSERT_UPDATE NavigationComponent;$contentCV[unique=true];uid[unique=true];name;styleClass;&componentRef;navigationNode(&nodeRef)
 ;;UserDropDownNavigationComponent;User drop down Navigation component;;UserDropDownNavigationComponent;UserDropDownNavigationNode

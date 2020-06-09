@@ -99,7 +99,7 @@ public class SearchPageController extends AbstractSearchPageController
 	final String technicalSupport, final HttpServletRequest request, final Model model) throws CMSItemNotFoundException
 	{
 		final String sitecoreSolutionPageURL = MessageFormat.format(getConfigurationPath("sitecore.solution.url"), searchText);
-
+		final String mindtouchIframeURL = getConfigurationPath("mindtouch.iframe.url");
 		final String mindtouchSRC = getConfigurationPath("mindtouch.src");
 		final String mindtouchID = getConfigurationPath("mindtouch.id");
 
@@ -146,6 +146,7 @@ public class SearchPageController extends AbstractSearchPageController
 				updatePageTitle(encodedSearchText, model);
 			}
 			model.addAttribute("sitecoreSolutionPageData", sitecoreSolutionPageURL);
+			model.addAttribute("mindtouchIframeURL", mindtouchIframeURL);
 			model.addAttribute("mindtouchSRC", mindtouchSRC);
 			model.addAttribute("mindtouchID", mindtouchID);
 			model.addAttribute("userLocation", customerLocationService.getUserLocation());

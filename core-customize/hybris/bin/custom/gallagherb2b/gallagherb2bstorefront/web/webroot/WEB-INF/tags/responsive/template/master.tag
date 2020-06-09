@@ -59,7 +59,9 @@
 
 	<%-- Inject the page body here --%>
 	<jsp:doBody/>
-
+	<c:if test="${cmsPage.uid eq 'searchGrid' || cmsPage.uid eq 'searchEmpty'}">
+		<iframe src="${mindtouchIframeURL}" style="display:none;"></iframe>
+	</c:if>
 
 	<form name="accessiblityForm">
 		<input type="hidden" id="accesibility_refreshScreenReaderBufferField" name="accesibility_refreshScreenReaderBufferField" value=""/>
