@@ -113,9 +113,11 @@ public class GallagherCalculateExternalTaxesStrategy implements CalculateExterna
 
 
 	/**
+	 * Returns the tax values based upon the tax code mapping
+	 *
 	 * @param abstractOrder
 	 * @param lienItem
-	 * @param taxValues
+	 * @return tax values
 	 */
 	private List<TaxValue> getTaxValues(final AbstractOrderModel abstractOrder, final GallagherSovosCalculatedTaxLineItem lienItem)
 	{
