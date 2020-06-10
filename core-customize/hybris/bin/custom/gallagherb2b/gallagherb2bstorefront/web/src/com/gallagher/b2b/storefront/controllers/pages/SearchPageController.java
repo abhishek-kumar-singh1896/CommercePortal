@@ -65,7 +65,7 @@ public class SearchPageController extends AbstractSearchPageController
 	private static final Logger LOG = Logger.getLogger(SearchPageController.class);
 	private static final String SEARCH_META_DESCRIPTION_ON = "search.meta.description.on";
 	private static final String SEARCH_META_DESCRIPTION_RESULTS = "search.meta.description.results";
-
+	private static final String SITECORE_SOLUTION_URL = "sitecore.solution.url";
 
 	private static final String COMPONENT_UID_PATH_VARIABLE_PATTERN = "{componentUid:.*}";
 	private static final String FACET_SEPARATOR = ":";
@@ -93,12 +93,20 @@ public class SearchPageController extends AbstractSearchPageController
 		return getConfigurationService().getConfiguration().getString(path);
 	}
 
+	private String getSiteCoreConfigurationPath(final String path)
+	{
+		return getSiteConfigService().getString(
+				new StringBuilder(path).append(".").append(getStoreSessionFacade().getCurrentLanguage().getIsocode()).toString(),
+				"#");
+	}
+
 	@RequestMapping(method = RequestMethod.GET, params = "!q")
 	public String textSearch(@RequestParam(value = "text", defaultValue = "")
 	final String searchText, @RequestParam(value = "technical-support", defaultValue = "")
 	final String technicalSupport, final HttpServletRequest request, final Model model) throws CMSItemNotFoundException
 	{
-		final String sitecoreSolutionPageURL = MessageFormat.format(getConfigurationPath("sitecore.solution.url"), searchText);
+		final String sitecoreSolutionPageURL = MessageFormat.format(getSiteCoreConfigurationPath(SITECORE_SOLUTION_URL),
+				searchText);
 		final String mindtouchIframeURL = getConfigurationPath("mindtouch.iframe.url");
 		final String mindtouchSRC = getConfigurationPath("mindtouch.src");
 		final String mindtouchID = getConfigurationPath("mindtouch.id");
@@ -197,7 +205,7 @@ public class SearchPageController extends AbstractSearchPageController
 		{
 			searchStr = searchPageData.getFreeTextSearch();
 		}
-		final String sitecoreSolutionPageURL = MessageFormat.format(getConfigurationPath("sitecore.solution.url"), searchStr);
+		final String sitecoreSolutionPageURL = MessageFormat.format(getSiteCoreConfigurationPath(SITECORE_SOLUTION_URL), searchStr);
 
 		final String mindtouchSRC = getConfigurationPath("mindtouch.src");
 		final String mindtouchID = getConfigurationPath("mindtouch.id");
