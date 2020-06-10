@@ -320,7 +320,7 @@
 		</property>
 	</bean>
 
-	<bean id="pageTitleResolver" class="com.gallagher.b2b.seo.GallagherB2BPageTitleResolver" >
+	<bean id="pageTitleResolver" class="com.gallagher.b2b.storefront.seo.GallagherB2BPageTitleResolver" >
 		<property name="cmsSiteService" ref="cmsSiteService"/>
 		<property name="commerceCategoryService" ref="commerceCategoryService"/>
 		<property name="productService" ref="productService"/>
