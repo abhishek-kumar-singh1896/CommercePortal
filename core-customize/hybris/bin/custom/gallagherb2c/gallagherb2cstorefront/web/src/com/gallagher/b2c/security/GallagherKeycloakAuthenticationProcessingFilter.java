@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.keycloak.OAuth2Constants;
 import org.keycloak.adapters.AdapterDeploymentContext;
 import org.keycloak.adapters.AdapterTokenStore;
@@ -23,6 +24,7 @@ import org.keycloak.adapters.springsecurity.KeycloakAuthenticationException;
 import org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticationEntryPoint;
 import org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticationFailureHandler;
 import org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticationSuccessHandler;
+import org.keycloak.adapters.springsecurity.authentication.KeycloakCookieBasedRedirect;
 import org.keycloak.adapters.springsecurity.authentication.RequestAuthenticatorFactory;
 import org.keycloak.adapters.springsecurity.authentication.SpringSecurityRequestAuthenticatorFactory;
 import org.keycloak.adapters.springsecurity.facade.SimpleHttpFacade;
@@ -166,6 +168,12 @@ public class GallagherKeycloakAuthenticationProcessingFilter extends AbstractAut
 
 		if (AuthOutcome.NOT_ATTEMPTED.equals(result))
 		{
+			if ((KeycloakCookieBasedRedirect.getRedirectUrlFromCookie(request) == null
+					|| !(KeycloakCookieBasedRedirect.getRedirectUrlFromCookie(request).equalsIgnoreCase(request.getRequestURI())))
+					&& StringUtils.isNotEmpty(getRedirectUrl(request)))
+			{
+				response.addCookie(KeycloakCookieBasedRedirect.createCookieFromRedirectUrl(getRedirectUrl(request)));
+			}
 			final AuthChallenge challenge = authenticator.getChallenge();
 			if (challenge != null)
 			{
@@ -199,6 +207,28 @@ public class GallagherKeycloakAuthenticationProcessingFilter extends AbstractAut
 			}
 			return null;
 		}
+	}
+
+	/**
+	 * Returns the redirect Url
+	 *
+	 * @param request
+	 *           to get the url
+	 * @return redirect url
+	 */
+	private String getRedirectUrl(final HttpServletRequest request)
+	{
+		String redirectURI = null;
+		if (request.getRequestURI().contains("/login"))
+		{
+
+			redirectURI = request.getHeader("referer");
+		}
+		else
+		{
+			redirectURI = request.getRequestURI();
+		}
+		return redirectURI;
 	}
 
 	@Override
