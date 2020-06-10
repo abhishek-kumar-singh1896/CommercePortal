@@ -1358,7 +1358,8 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;ca-en_CA;Canada English Link;$websiteBaseURL/am/ca/en_ca/?clear=true;Canada (EN);ca-en_CA;ca-en_CA
 ;;ca-fr_CA;Canada French Link;$websiteBaseURL/am/ca/fr_ca/?clear=true;Canada (FR);ca-fr_CA;ca-fr_CA
 ;;latam-es_LA;LatAm Link;$websiteBaseURL/am/latam/es_la/?clear=true;Latin America;latam-es_LA;latam-es_LA
-;;global-en;Global Link;$websiteBaseURL/am/global/en/?clear=true;Global;global-en;global-en
+#;;global-en;Global Link;$websiteBaseURL/am/global/en/?clear=true;Global;global-en;global-en
+;;global-en_NZ;Global Link;$websiteBaseURL/am/global/en_NZ/?clear=true;Global;global-en_NZ;global-en_NZ
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
 ;newZealandNavEty;;New Zealand navigation entry;newZealandNavNod;nz-en_NZ
@@ -1367,8 +1368,8 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 ;canadaEnNavEty;;Canada English navigation entry;canadaEnNavNod;ca-en_CA
 ;canadaFrNavEty;;Canada French navigation entry;canadaFrNavNod;ca-fr_CA
 ;latamNavEty;;LatAm navigation entry;latamNavNod;latam-es_LA
-;globalNavEty;;Global navigation entry;globalNavNod;global-en
-
+#;globalNavEty;;Global navigation entry;globalNavNod;global-en
+;globalNavEty;;Global navigation entry;globalNavNod;global-en_NZ
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef);
 ;newZealandNavNod;;New Zealand navigation node;newZealandNavNod
