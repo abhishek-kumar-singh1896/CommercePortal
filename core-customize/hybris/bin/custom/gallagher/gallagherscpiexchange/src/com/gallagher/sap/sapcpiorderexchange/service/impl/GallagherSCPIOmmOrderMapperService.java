@@ -1,8 +1,10 @@
 package com.gallagher.sap.sapcpiorderexchange.service.impl;
 
+import de.hybris.platform.sap.sapcpiadapter.data.SapCpiCreditCardPayment;
 import de.hybris.platform.sap.sapcpiadapter.data.SapCpiOrderAddress;
 import de.hybris.platform.sap.sapcpiadapter.data.SapCpiOrderPriceComponent;
 import de.hybris.platform.sap.sapcpiadapter.model.SAPCpiOutboundAddressModel;
+import de.hybris.platform.sap.sapcpiadapter.model.SAPCpiOutboundCardPaymentModel;
 import de.hybris.platform.sap.sapcpiadapter.model.SAPCpiOutboundPriceComponentModel;
 import de.hybris.platform.sap.sapcpiorderexchange.service.impl.SapCpiOmmOrderMapperService;
 
@@ -91,4 +93,37 @@ public class GallagherSCPIOmmOrderMapperService extends SapCpiOmmOrderMapperServ
 		return new HashSet<>(sapCpiOutboundAddresses);
 
 	}
+
+	@Override
+	protected Set<SAPCpiOutboundCardPaymentModel> mapCreditCards(final List<SapCpiCreditCardPayment> sapCpiCreditCardPayments)
+	{
+
+		final List<SAPCpiOutboundCardPaymentModel> sapCpiOutboundCardPayments = new ArrayList<>();
+
+		sapCpiCreditCardPayments.forEach(payment -> {
+
+			final SAPCpiOutboundCardPaymentModel sapCpiOutboundCardPayment = new SAPCpiOutboundCardPaymentModel();
+			sapCpiOutboundCardPayment.setOrderId(payment.getOrderId());
+			sapCpiOutboundCardPayment.setRequestId(payment.getRequestId());
+			sapCpiOutboundCardPayment.setCcOwner(payment.getCcOwner());
+			sapCpiOutboundCardPayment.setValidToMonth(payment.getValidToMonth());
+			sapCpiOutboundCardPayment.setValidToYear(payment.getValidToYear());
+			sapCpiOutboundCardPayment.setSubscriptionId(payment.getSubscriptionId());
+			sapCpiOutboundCardPayment.setPaymentProvider(payment.getPaymentProvider());
+
+			sapCpiOutboundCardPayment.setAmount(payment.getAmount());
+			sapCpiOutboundCardPayment.setAuthorizationTime(payment.getAuthorizationTime());
+			sapCpiOutboundCardPayment.setAuthorizationNumber(payment.getAuthorizationNumber());
+			sapCpiOutboundCardPayment.setResultText(payment.getResultText());
+			sapCpiOutboundCardPayment.setMerchantID(payment.getMerchantID());
+			sapCpiOutboundCardPayment.setAvsCode(payment.getAvsCode());
+
+			sapCpiOutboundCardPayments.add(sapCpiOutboundCardPayment);
+
+		});
+
+		return new HashSet<>(sapCpiOutboundCardPayments);
+
+	}
+
 }

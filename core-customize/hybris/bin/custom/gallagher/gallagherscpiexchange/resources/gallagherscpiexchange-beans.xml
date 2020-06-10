@@ -8,9 +8,22 @@
 	<bean class="de.hybris.platform.sap.sapcpiadapter.data.SapCpiOrderPriceComponent">
 		<property name="totalAmt" type="String" />
 	</bean>
-	
-	
+
+
 	<bean class="de.hybris.platform.sap.sapcpiadapter.data.SapCpiOrderAddress">
-        <property name="taxJurCode" type="String"/>
-   </bean>
+		<property name="taxJurCode" type="String" />
+	</bean>
+
+	<!-- SapCpiCreditCardPayment -->
+	<bean class="de.hybris.platform.sap.sapcpiadapter.data.SapCpiCreditCardPayment">
+		<property name="amount" type="String" />
+		<property name="authorizationTime" type="String" />
+		<property name="authorizationNumber" type="String" />
+		<property name="resultText" type="String" />
+		<property name="merchantID" type="String" />
+		<property name="avsCode" type="String" />
+	</bean>
+
+
+
 </beans>

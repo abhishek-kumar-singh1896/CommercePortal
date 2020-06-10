@@ -11,6 +11,7 @@ package com.gallagher.sap.orderexchange.outbound.impl;
 import de.hybris.platform.core.model.order.OrderModel;
 import de.hybris.platform.core.model.order.payment.CreditCardPaymentInfoModel;
 import de.hybris.platform.core.model.order.payment.PaymentInfoModel;
+import de.hybris.platform.payment.model.PaymentTransactionEntryModel;
 import de.hybris.platform.payment.model.PaymentTransactionModel;
 import de.hybris.platform.sap.orderexchange.constants.OrderCsvColumns;
 import de.hybris.platform.sap.orderexchange.constants.PaymentCsvColumns;
@@ -22,7 +23,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Required;
+
+import com.gallagher.constants.GallagherPaymentCsvColumns;
 
 
 /**
@@ -70,6 +74,18 @@ public class GallagherPaymentContributor extends DefaultPaymentContributor
 				row.put(PaymentCsvColumns.SUBSCRIPTION_ID, ccPaymentInfo.getNumber());
 			}
 
+			if (CollectionUtils.isNotEmpty(payment.getEntries()))
+			{
+				for (final PaymentTransactionEntryModel entry : payment.getEntries())
+				{
+					row.put(GallagherPaymentCsvColumns.AMOUNT, entry.getAmount());
+					row.put(GallagherPaymentCsvColumns.AUTHORIZATION_TIME, entry.getTime());
+					row.put(GallagherPaymentCsvColumns.AUTHORIZATION_NUMBER, entry.getRequestId());
+					row.put(GallagherPaymentCsvColumns.RESULT_TEXT, entry.getRTEXT());
+					row.put(GallagherPaymentCsvColumns.MERCHANT_ID, entry.getMERCH());
+					row.put(GallagherPaymentCsvColumns.AVS_CODE, entry.getRCAVR());
+				}
+			}
 			getBatchIdAttributes().forEach(row::putIfAbsent);
 			row.put("dh_batchId", order.getCode());
 			result.add(row);
