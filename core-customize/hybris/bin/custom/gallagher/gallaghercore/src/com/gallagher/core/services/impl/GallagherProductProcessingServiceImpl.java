@@ -221,8 +221,7 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 
 					final ProductModel baseProduct = productService.getProductForCode(regionalCatalogVersion, baseProductCode);
 
-					LOGGER.info("Processing " + variantProductCode + " with base store "
-							+ baseStore.getName() + " ");
+					LOGGER.info("Processing " + variantProductCode + " with base store " + baseStore.getName() + " ");
 
 					try
 					{
@@ -319,6 +318,7 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 	 * @param language
 	 * @param product
 	 */
+
 	private void variantProductProcessing(final GenericVariantProductModel existingVariantProduct, final LanguageModel language,
 			final ProductModel product)
 	{
@@ -328,6 +328,7 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 			existingVariantProduct.setName(product.getName(locale), locale);
 			existingVariantProduct.setSummary(product.getSummary(locale), locale);
 			existingVariantProduct.setDescription(product.getDescription(locale), locale);
+			existingVariantProduct.setMarketingDescription(product.getMarketingDescription(locale), locale);
 		}
 		if (CollectionUtils.isNotEmpty(language.getFallbackLanguages()))
 		{
@@ -335,8 +336,8 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 			existingVariantProduct.setName(product.getName(fallbackLocale), fallbackLocale);
 			existingVariantProduct.setSummary(product.getSummary(fallbackLocale), fallbackLocale);
 			existingVariantProduct.setDescription(product.getDescription(fallbackLocale), fallbackLocale);
+			existingVariantProduct.setMarketingDescription(product.getMarketingDescription(fallbackLocale), fallbackLocale);
 		}
-
 	}
 
 	/**
