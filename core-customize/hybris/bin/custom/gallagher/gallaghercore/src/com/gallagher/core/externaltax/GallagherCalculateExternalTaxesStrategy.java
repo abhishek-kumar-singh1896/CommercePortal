@@ -247,7 +247,7 @@ public class GallagherCalculateExternalTaxesStrategy implements CalculateExterna
 	private String getUSTaxCode(final GallagherSovosCalculatedTax calculatedTax)
 	{
 		String taxCode = null;
-		if (calculatedTax.getTxName() != null && calculatedTax.getTxName().toLowerCase().contains("full"))
+		if (calculatedTax.getTxName() != null && calculatedTax.getTxName().toLowerCase().contains("max"))
 		{
 			taxCode = siteConfigService.getString(String.format(GGL_ITEMTAX_MAX_CODE, calculatedTax.getTxJurUIDJurTp()),
 					StringUtils.EMPTY);
