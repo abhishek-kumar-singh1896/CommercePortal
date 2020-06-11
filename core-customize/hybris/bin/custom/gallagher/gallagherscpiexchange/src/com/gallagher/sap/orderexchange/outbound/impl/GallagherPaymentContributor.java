@@ -80,7 +80,7 @@ public class GallagherPaymentContributor extends DefaultPaymentContributor
 				{
 					row.put(GallagherPaymentCsvColumns.AMOUNT, entry.getAmount());
 					row.put(GallagherPaymentCsvColumns.AUTHORIZATION_TIME, entry.getTime());
-					row.put(GallagherPaymentCsvColumns.AUTHORIZATION_NUMBER, entry.getRequestId());
+					row.put(GallagherPaymentCsvColumns.AUTHORIZATION_NUMBER, entry.getAUTRA());
 					row.put(GallagherPaymentCsvColumns.RESULT_TEXT, entry.getRTEXT());
 					row.put(GallagherPaymentCsvColumns.MERCHANT_ID, entry.getMERCH());
 					row.put(GallagherPaymentCsvColumns.AVS_CODE, entry.getRCAVR());
