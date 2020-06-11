@@ -170,9 +170,9 @@ public class GallagherKeycloakAuthenticationProcessingFilter extends AbstractAut
 		{
 			if ((KeycloakCookieBasedRedirect.getRedirectUrlFromCookie(request) == null
 					|| !(KeycloakCookieBasedRedirect.getRedirectUrlFromCookie(request).equalsIgnoreCase(request.getRequestURI())))
-					&& StringUtils.isNotEmpty(getRedirectUrl(request)))
+					&& StringUtils.isNotEmpty(getRedirectUrl(request, deployment)))
 			{
-				response.addCookie(KeycloakCookieBasedRedirect.createCookieFromRedirectUrl(getRedirectUrl(request)));
+				response.addCookie(KeycloakCookieBasedRedirect.createCookieFromRedirectUrl(getRedirectUrl(request, deployment)));
 			}
 			final AuthChallenge challenge = authenticator.getChallenge();
 			if (challenge != null)
@@ -214,15 +214,20 @@ public class GallagherKeycloakAuthenticationProcessingFilter extends AbstractAut
 	 *
 	 * @param request
 	 *           to get the url
+	 * @param deployment
 	 * @return redirect url
 	 */
-	private String getRedirectUrl(final HttpServletRequest request)
+	private String getRedirectUrl(final HttpServletRequest request, final KeycloakDeployment deployment)
 	{
 		String redirectURI = null;
 		if (request.getRequestURI().contains("/login"))
 		{
 
-			redirectURI = request.getHeader("referer");
+			if (StringUtils.isNotEmpty(request.getHeader("referer"))
+					&& !(request.getHeader("referer").contains(deployment.getAuthUrl().getHost())))
+			{
+				redirectURI = request.getHeader("referer");
+			}
 		}
 		else
 		{
