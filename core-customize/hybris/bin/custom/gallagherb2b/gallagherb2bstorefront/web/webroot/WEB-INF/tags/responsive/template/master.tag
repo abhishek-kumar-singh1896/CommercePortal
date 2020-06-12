@@ -62,11 +62,10 @@
 	<c:if test="${cmsPage.uid eq 'searchGrid' || cmsPage.uid eq 'searchEmpty'}">
 
 		<!-- Begin Sign-In Touchpoint, Type = login -->
-        <!-- Generated on [06/11/2020 18:10:36] by MindTouch, Last Updated [06/11/2020 18:53:35] by MindTouch -->
-        <script async="async" src="${mindtouchSRC}"></script>
+        <script async="async" src="${mindtouchLoginSRC}"></script>
 
         <div style="display:none">
-        <script type="mindtouch/embed" id="${mindtouchID}"></script>
+        <script type="mindtouch/embed" id="${mindtouchLoginID}"></script>
         </div>
 
         <script>

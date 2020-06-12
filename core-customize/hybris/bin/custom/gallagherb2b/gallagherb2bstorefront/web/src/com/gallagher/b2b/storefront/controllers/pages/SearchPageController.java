@@ -107,7 +107,8 @@ public class SearchPageController extends AbstractSearchPageController
 	{
 		final String sitecoreSolutionPageURL = MessageFormat.format(getSiteCoreConfigurationPath(SITECORE_SOLUTION_URL),
 				searchText);
-		final String mindtouchIframeURL = getConfigurationPath("mindtouch.iframe.url");
+		final String mindtouchLoginSRC = getConfigurationPath("mindtouch.login.src");
+		final String mindtouchLoginID = getConfigurationPath("mindtouch.login.id");
 		final String mindtouchSRC = getConfigurationPath("mindtouch.src");
 		final String mindtouchID = getConfigurationPath("mindtouch.id");
 
@@ -154,7 +155,8 @@ public class SearchPageController extends AbstractSearchPageController
 				updatePageTitle(encodedSearchText, model);
 			}
 			model.addAttribute("sitecoreSolutionPageData", sitecoreSolutionPageURL);
-			model.addAttribute("mindtouchIframeURL", mindtouchIframeURL);
+			model.addAttribute("mindtouchLoginSRC", mindtouchLoginSRC);
+			model.addAttribute("mindtouchLoginID", mindtouchLoginID);
 			model.addAttribute("mindtouchSRC", mindtouchSRC);
 			model.addAttribute("mindtouchID", mindtouchID);
 			model.addAttribute("userLocation", customerLocationService.getUserLocation());
