@@ -10,12 +10,10 @@ import de.hybris.platform.sap.sapcpiadapter.data.SapCpiOrderAddress;
 import de.hybris.platform.sap.sapcpiadapter.data.SapCpiOrderPriceComponent;
 import de.hybris.platform.sap.sapcpiorderexchange.service.impl.SapCpiOmmOrderConversionService;
 
-import java.math.BigInteger;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -122,11 +120,7 @@ public class GallagherSCPIOmmOrderConversionService extends SapCpiOmmOrderConver
 				sapCpiCreditCardPayment.setPaymentProvider(mapAttribute(PaymentCsvColumns.PAYMENT_PROVIDER, row));
 				sapCpiCreditCardPayment.setSubscriptionId(mapAttribute(PaymentCsvColumns.SUBSCRIPTION_ID, row));
 
-				String requestId = mapAttribute(PaymentCsvColumns.REQUEST_ID, row);
-				requestId = Pattern.compile("^\\d+$").matcher(requestId).matches()
-						? BigInteger.valueOf(Long.parseLong(requestId)).toString(32).toUpperCase()
-						: requestId;
-				sapCpiCreditCardPayment.setRequestId(requestId);
+				sapCpiCreditCardPayment.setRequestId(mapAttribute(PaymentCsvColumns.REQUEST_ID, row));
 
 				final String month = mapAttribute(PaymentCsvColumns.VALID_TO_MONTH, row);
 				sapCpiCreditCardPayment.setValidToMonth(month);
