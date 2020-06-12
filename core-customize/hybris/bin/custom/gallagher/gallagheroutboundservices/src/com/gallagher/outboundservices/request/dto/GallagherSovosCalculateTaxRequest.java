@@ -27,8 +27,8 @@ public class GallagherSovosCalculateTaxRequest
 	@JsonProperty("rsltLvl")
 	private int rsltLvl;
 
-	@JsonProperty("trnId")
-	private String trnId;
+	@JsonProperty("isAudit")
+	private boolean isAudit;
 
 	@JsonProperty("currn")
 	private String currn;
@@ -81,14 +81,14 @@ public class GallagherSovosCalculateTaxRequest
 		this.rsltLvl = rsltLvl;
 	}
 
-	public String getTrnId()
+	public boolean getIsAudit()
 	{
-		return trnId;
+		return isAudit;
 	}
 
-	public void setTrnId(final String trnId)
+	public void setIsAudit(final boolean isAudit)
 	{
-		this.trnId = trnId;
+		this.isAudit = isAudit;
 	}
 
 	public String getCurrn()

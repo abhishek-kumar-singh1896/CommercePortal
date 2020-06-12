@@ -41,7 +41,7 @@ public class GallagherSovosUtil
 		final long timeStamp = System.currentTimeMillis();
 
 		request.setRsltLvl(sovosConfiguration.getResultLevel());
-		request.setTrnId(abstractOrder.getCode() + "_" + timeStamp);
+		request.setIsAudit(false);
 		request.setCurrn(abstractOrder.getCurrency() == null ? "USD" : abstractOrder.getCurrency().getIsocode());
 		request.setDocDt(dateFormat.format(new Date()));
 		request.setTxCalcTp(sovosConfiguration.getTaxCalculationType());
