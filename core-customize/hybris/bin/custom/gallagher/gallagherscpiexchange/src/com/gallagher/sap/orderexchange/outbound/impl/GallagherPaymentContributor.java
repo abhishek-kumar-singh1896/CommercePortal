@@ -51,14 +51,6 @@ public class GallagherPaymentContributor extends DefaultPaymentContributor
 			final Map<String, Object> row = new HashMap<>();
 			row.put(OrderCsvColumns.ORDER_ID, order.getCode());
 			row.put(PaymentCsvColumns.PAYMENT_PROVIDER, payment.getPaymentProvider());
-			if (payment.getRequestId() == null || payment.getRequestId().isEmpty())
-			{
-				row.put(PaymentCsvColumns.REQUEST_ID, "1");
-			}
-			else
-			{
-				row.put(PaymentCsvColumns.REQUEST_ID, payment.getRequestId());
-			}
 
 			if (paymentInfo instanceof CreditCardPaymentInfoModel)
 			{
@@ -84,6 +76,7 @@ public class GallagherPaymentContributor extends DefaultPaymentContributor
 					row.put(GallagherPaymentCsvColumns.RESULT_TEXT, entry.getRTEXT());
 					row.put(GallagherPaymentCsvColumns.MERCHANT_ID, entry.getMERCH());
 					row.put(GallagherPaymentCsvColumns.AVS_CODE, entry.getRCAVR());
+					row.put(PaymentCsvColumns.REQUEST_ID, entry.getAUNUM());
 				}
 			}
 			getBatchIdAttributes().forEach(row::putIfAbsent);
