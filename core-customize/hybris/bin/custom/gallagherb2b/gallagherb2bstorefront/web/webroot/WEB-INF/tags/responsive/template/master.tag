@@ -60,7 +60,29 @@
 	<%-- Inject the page body here --%>
 	<jsp:doBody/>
 	<c:if test="${cmsPage.uid eq 'searchGrid' || cmsPage.uid eq 'searchEmpty'}">
-		<iframe src="${mindtouchIframeURL}" style="display:none;"></iframe>
+
+		<!-- Begin Sign-In Touchpoint, Type = login -->
+        <!-- Generated on [06/11/2020 18:10:36] by MindTouch, Last Updated [06/11/2020 18:53:35] by MindTouch -->
+        <script async="async" src="${mindtouchSRC}"></script>
+
+        <div style="display:none">
+        <script type="mindtouch/embed" id="${mindtouchID}"></script>
+        </div>
+
+        <script>
+          document.addEventListener('mindtouch-web-widget:search:ready', ({ data }) => {
+            const searchWidget = data.widget;
+
+            document.addEventListener('mindtouch-web-widget:login:auth-changed', ({ data }) => {
+                // rerun search query
+                var q = searchWidget.query;
+                searchWidget.query = "";
+                searchWidget.query = q;
+            });
+          });
+        </script>
+
+
 	</c:if>
 
 	<form name="accessiblityForm">
