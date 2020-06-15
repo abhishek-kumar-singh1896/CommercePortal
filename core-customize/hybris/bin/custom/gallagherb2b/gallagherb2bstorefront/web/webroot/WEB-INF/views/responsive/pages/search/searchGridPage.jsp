@@ -59,9 +59,12 @@
 				</div>
 			</div>
 
-			<div class="tab-pane <c:if test="${not empty technicalSupport}">active</c:if>" id="technicalSupport">
-					<script type="mindtouch/embed" id="${mindtouchLoginID}" data-search-query="${searchPageData.freeTextSearch}"></script>
-			</div>
+			<!-- technical support tab  -->
+            <!-- Begin Sign-In Touchpoint, Type = login -->
+            <script async="async" src="${mindtouchLoginSRC}"></script>
+            <div class="tab-pane" id="technicalSupport" role="tabpanel">
+                <script type="mindtouch/embed" id="${mindtouchLoginID}" data-search-query="${searchPageData.freeTextSearch}"></script>
+            </div>
 			<script>
                                                   document.addEventListener('mindtouch-web-widget:search:ready', ({ data }) => {
                                                     const searchWidget = data.widget;
@@ -73,7 +76,7 @@
                                                         searchWidget.query = q;
                                                     });
                                                   });
-                         </script>
+             </script>
 		</div>
 	</div>
 
