@@ -171,7 +171,7 @@ public class GallagherCalculateExternalTaxesStrategy implements CalculateExterna
 			}
 			final GallagherSovosMergedTaxDTO existingValue = taxValueMap.get(calculatedTax.getTxJurUIDJurTp());
 			existingValue.setTaxRate(existingValue.getTaxRate() == null ? calculatedTax.getTxRate()
-					: calculatedTax.getTxAmt() + existingValue.getTaxRate());
+					: calculatedTax.getTxRate() + existingValue.getTaxRate());
 			existingValue.setTaxAmount(existingValue.getTaxAmount() == null ? calculatedTax.getTxAmt()
 					: calculatedTax.getTxAmt() + existingValue.getTaxAmount());
 		}
@@ -213,7 +213,7 @@ public class GallagherCalculateExternalTaxesStrategy implements CalculateExterna
 			}
 			final GallagherSovosMergedTaxDTO existingValue = taxValueMap.get(taxCode);
 			existingValue.setTaxRate(existingValue.getTaxRate() == null ? calculatedTax.getTxRate()
-					: calculatedTax.getTxAmt() + existingValue.getTaxRate());
+					: calculatedTax.getTxRate() + existingValue.getTaxRate());
 			existingValue.setTaxAmount(existingValue.getTaxAmount() == null ? calculatedTax.getTxAmt()
 					: calculatedTax.getTxAmt() + existingValue.getTaxAmount());
 		}
