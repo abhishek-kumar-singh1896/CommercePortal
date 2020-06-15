@@ -65,10 +65,25 @@
 			</div>
 
 			<!-- technical support tab  -->
+			<!-- Begin Sign-In Touchpoint, Type = login -->
+                                    <script async="async" src="${mindtouchLoginSRC}"></script>
 			<div class="tab-pane" id="technicalSupport" role="tabpanel">
-				<script async="async" src="${mindtouchSRC}"></script>
-				<script type="mindtouch/embed" id="${mindtouchID}" data-search-query="${searchPageData.freeTextSearch}"></script>
+
+                        <script type="mindtouch/embed" id="${mindtouchLoginID}" data-search-query="${searchPageData.freeTextSearch}"></script>
+
 			</div>
+			<script>
+                                      document.addEventListener('mindtouch-web-widget:search:ready', ({ data }) => {
+                                        const searchWidget = data.widget;
+
+                                        document.addEventListener('mindtouch-web-widget:login:auth-changed', ({ data }) => {
+                                            // rerun search query
+                                            var q = searchWidget.query;
+                                            searchWidget.query = "";
+                                            searchWidget.query = q;
+                                        });
+                                      });
+             </script>
 		</div>
 
 	</div>

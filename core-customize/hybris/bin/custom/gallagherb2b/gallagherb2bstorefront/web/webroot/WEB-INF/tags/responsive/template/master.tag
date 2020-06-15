@@ -61,25 +61,8 @@
 	<jsp:doBody/>
 	<c:if test="${cmsPage.uid eq 'searchGrid' || cmsPage.uid eq 'searchEmpty'}">
 
-		<!-- Begin Sign-In Touchpoint, Type = login -->
-        <script async="async" src="${mindtouchLoginSRC}"></script>
-
-        <div style="display:none">
-        <script type="mindtouch/embed" id="${mindtouchLoginID}"></script>
-        </div>
-
-        <script>
-          document.addEventListener('mindtouch-web-widget:search:ready', ({ data }) => {
-            const searchWidget = data.widget;
-
-            document.addEventListener('mindtouch-web-widget:login:auth-changed', ({ data }) => {
-                // rerun search query
-                var q = searchWidget.query;
-                searchWidget.query = "";
-                searchWidget.query = q;
-            });
-          });
-        </script>
+		<script async="async" src="${mindtouchSRC}"></script>
+        				<script type="mindtouch/embed" id="${mindtouchID}" ></script>
 
 
 	</c:if>
