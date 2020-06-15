@@ -133,7 +133,7 @@ INSERT_UPDATE SolrSort ; &sortRefID ; indexedType(identifier)[unique=true] ; cod
                        
 # Define the sort fields
 INSERT_UPDATE SolrSortField ; sort(indexedType(identifier),code)[unique=true] ; fieldName[unique=true] ; ascending[unique=true] 
-                            ; $solrIndexedType:relevance                      ; inStockFlag            ; false                  
+#                            ; $solrIndexedType:relevance                      ; inStockFlag            ; false                  
                             ; $solrIndexedType:relevance                      ; score                  ; false                  
                             ; $solrIndexedType:topRated                       ; inStockFlag            ; false                  
                             ; $solrIndexedType:topRated                       ; reviewAvgRating        ; false                  

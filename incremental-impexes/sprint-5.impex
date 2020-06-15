@@ -2014,7 +2014,153 @@ INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; n
 INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] ; facet ; ftsPhraseQuery[default=false] ; ftsPhraseQueryBoost ; ftsQuery[default=false] ; ftsQueryBoost ; ftsFuzzyQuery[default=false] ; ftsFuzzyQueryFuzziness ; ftsFuzzyQueryBoost ; ftsWildcardQuery[default=false] ; ftsWildcardQueryType(code)[default=POSTFIX] ; ftsWildcardQueryBoost ; ftsWildcardQueryMinTermLength ; includeInResponse[default=true] ; useForHighlighting[default=false] 
                                       ; code:$solrIndexedType                                           ;                                                                                                   ;       ; TRUE                          ; 90                  ;                         ;               ; FALSE                         ;                        ;                   ;TRUE                             ; POSTFIX                                     ; 45                    ; 3                             ;                                 ;                                   
 
-								  
+#### instockflag changes
 
-############################################################################
-###################################################################
+$productCatalog=securityB2BAUProductCatalog
+$catalogVersions=catalogVersions(catalog(id),version); 
+$facetSearchConfigName=securityB2BAUIndex
+$facetSearchConfigDescription=Security B2B AU Solr Index
+$searchIndexNamePrefix=securityB2BAU
+$solrIndexedType=securityB2BAUProductType
+$indexBaseSite=securityB2BAU
+$indexLanguages=en_AU
+$indexCurrencies=AUD									  
+									  
+REMOVE SolrSortField ; sort(indexedType(identifier),code)[unique=true] ; fieldName[unique=true] ; ascending[unique=true] 
+                            ; $solrIndexedType:relevance                      ; inStockFlag            ; false                  
+
+
+$productCatalog=securityB2BGlobalProductCatalog
+$catalogVersions=catalogVersions(catalog(id),version); 
+$facetSearchConfigName=securityB2BGlobalIndex
+$facetSearchConfigDescription=Security B2B Global Solr Index
+$searchIndexNamePrefix=securityB2BGlobal
+$solrIndexedType=securityB2BGlobalProductType
+$indexBaseSite=securityB2BGlobal
+$indexLanguages=en
+$indexCurrencies=USD		
+
+REMOVE SolrSortField ; sort(indexedType(identifier),code)[unique=true] ; fieldName[unique=true] ; ascending[unique=true] 
+                            ; $solrIndexedType:relevance                      ; inStockFlag            ; false                  
+
+$productCatalog=securityB2BNZProductCatalog
+$catalogVersions=catalogVersions(catalog(id),version); 
+$facetSearchConfigName=securityB2BNZIndex
+$facetSearchConfigDescription=Security B2B NZ Solr Index
+$searchIndexNamePrefix=securityB2BNZ
+$solrIndexedType=securityB2BNZProductType
+$indexBaseSite=securityB2BNZ
+$indexLanguages=en,en_NZ
+$indexCurrencies=NZD	
+
+REMOVE SolrSortField ; sort(indexedType(identifier),code)[unique=true] ; fieldName[unique=true] ; ascending[unique=true] 
+                            ; $solrIndexedType:relevance                      ; inStockFlag            ; false                  
+
+############################################################################################################################
+
+
+$productCatalog=amB2CUSProductCatalog
+$catalogVersions=catalogVersions(catalog(id),version); 
+$facetSearchConfigName=amB2CUSIndex
+$facetSearchConfigDescription=Animal Management B2C US Solr Index
+$searchIndexNamePrefix=amB2CUS
+$solrIndexedType=amB2CUSProductType
+$indexBaseSite=amB2CUS
+$indexLanguages=en_US
+$indexCurrencies=USD
+
+REMOVE SolrSortField ; sort(indexedType(identifier),code)[unique=true] ; fieldName[unique=true] ; ascending[unique=true] 
+                            ; $solrIndexedType:relevance                      ; inStockFlag            ; false                  
+
+									  
+$productCatalog=amB2CAUProductCatalog
+$catalogVersions=catalogVersions(catalog(id),version); 
+$facetSearchConfigName=amB2CAUIndex
+$facetSearchConfigDescription=Animal Management B2C CA Solr Index
+$searchIndexNamePrefix=amB2CAU
+$solrIndexedType=amB2CAUProductType
+$indexBaseSite=amB2CAU
+$indexLanguages=en_AU
+$indexCurrencies=AUD
+
+REMOVE SolrSortField ; sort(indexedType(identifier),code)[unique=true] ; fieldName[unique=true] ; ascending[unique=true] 
+                            ; $solrIndexedType:relevance                      ; inStockFlag            ; false                  
+
+$productCatalog=amB2CCAProductCatalog
+$catalogVersions=catalogVersions(catalog(id),version); 
+$facetSearchConfigName=amB2CCAIndex
+$facetSearchConfigDescription=Animal Management B2C CA Solr Index
+$searchIndexNamePrefix=amB2CCA
+$solrIndexedType=amB2CCAProductType
+$indexBaseSite=amB2CCA
+$indexLanguages=en_CA,fr_CA
+$indexCurrencies=CAD									  
+									  
+REMOVE SolrSortField ; sort(indexedType(identifier),code)[unique=true] ; fieldName[unique=true] ; ascending[unique=true] 
+                            ; $solrIndexedType:relevance                      ; inStockFlag            ; false                  
+
+$productCatalog=amB2CGlobalProductCatalog
+$catalogVersions=catalogVersions(catalog(id),version); 
+$facetSearchConfigName=amB2CGlobalIndex
+$facetSearchConfigDescription=Animal Management B2C Global Solr Index
+$searchIndexNamePrefix=amB2CGlobal
+$solrIndexedType=amB2CGlobalProductType
+$indexBaseSite=amB2CGlobal
+$indexLanguages=en
+$indexCurrencies=USD									  
+									  
+REMOVE SolrSortField ; sort(indexedType(identifier),code)[unique=true] ; fieldName[unique=true] ; ascending[unique=true] 
+                            ; $solrIndexedType:relevance                      ; inStockFlag            ; false                  
+
+$productCatalog=amB2CLatAmProductCatalog
+$catalogVersions=catalogVersions(catalog(id),version); 
+$facetSearchConfigName=amB2CLatAmIndex
+$facetSearchConfigDescription=Animal Management B2C LatAm Solr Index
+$searchIndexNamePrefix=amB2CLatAm
+$solrIndexedType=amB2CLatAmProductType
+$indexBaseSite=amB2CLatAm
+$indexLanguages=es_LA
+$indexCurrencies=USD
+									  
+REMOVE SolrSortField ; sort(indexedType(identifier),code)[unique=true] ; fieldName[unique=true] ; ascending[unique=true] 
+                            ; $solrIndexedType:relevance                      ; inStockFlag            ; false                  
+
+$productCatalog=amB2CNZProductCatalog
+$catalogVersions=catalogVersions(catalog(id),version); 
+$facetSearchConfigName=amB2CNZIndex
+$facetSearchConfigDescription=Animal Management B2C NZ Solr Index
+$searchIndexNamePrefix=amB2CNZ
+$solrIndexedType=amB2CNZProductType
+$indexBaseSite=amB2CNZ
+$indexLanguages=en_NZ
+$indexCurrencies=NZD									  
+									  
+REMOVE SolrSortField ; sort(indexedType(identifier),code)[unique=true] ; fieldName[unique=true] ; ascending[unique=true] 
+                            ; $solrIndexedType:relevance                      ; inStockFlag            ; false                  
+
+#### backoffice changes	
+
+$solrValueRanges = solrValueRanges(name);
+$defaultSortOrder = defaultSortOrder;
+$document = document(code);
+$solrSearchConfig = solrSearchConfig(pageSize);
+
+$solrSearchConfig = solrSearchConfig(&Item);
+$solrIndexerQueries = solrIndexerQueries(identifier)[forceWrite = true];
+$solrIndexedTypes = solrIndexedTypes(identifier);
+$solrServerConfig = solrServerConfig(name);
+$solrIndexConfig = solrIndexConfig(name);
+$solrIndexedType = solrIndexedType(identifier)[unique = true, default = 'BackofficeProduct'];
+$backofficeSFCName = Solr Config for Backoffice;
+$ftsWildcardQueryType = ftsWildcardQueryType(code);
+
+$solrValueRangeSets = solrValueRangeSets(name)
+$solrValueRangeSet = solrValueRangeSet(name)
+$solrValueRanges = solrValueRanges(name);
+
+$updateBackofficeIndexCronJob = update-backofficeIndex-CronJob;
+
+INSERT_UPDATE SolrIndexedProperty; name[unique = true]; $solrIndexedType; type(code); localized[default = false]; currency[default = false]; multiValue[default = false]; fieldValueProvider; valueProviderParameter;ftsQuery; ftsQueryBoost; ftsPhraseQuery; ftsPhraseQueryBoost; ftsWildcardQuery; $ftsWildcardQueryType; includeInResponse; useForSpellChecking; useForAutocomplete;
+; name             ; ; text ; true ; ; ; springELValueProvider ;getName(#lang); true ; 1.0 ; true ; 5.0 ; true ; POSTFIX ; false ; true ; true ;
+														  
+###############################################################################################################################################
