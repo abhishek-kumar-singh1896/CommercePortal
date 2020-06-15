@@ -1,10 +1,22 @@
 <%@ tag body-content="empty" trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="cms" uri="http://hybris.com/tld/cmstags" %>
-
+<cms:pageSlot position="ggB2BNavBar" var="feature">
+	<c:if test="${feature.visible}">
+		<c:if test="${not empty feature.navigationNode && feature.navigationNode ne null}">
+			<c:forEach items="${feature.navigationNode.children}" var="l1" varStatus="status">
+				<c:forEach items="${l1.entries}" var="dropdownValue">
+							<c:if test="${dropdownValue.item.linkName eq 'PRODUCTS'}">
+								<c:set var="checkNode" value="xsLevel1Link${status.index+1}Container"/>
+							</c:if>
+				</c:forEach>
+			</c:forEach>
+		</c:if>
+	</c:if>
+</cms:pageSlot>
 <cms:pageSlot position="NavigationBar" var="component">
 	<c:if test="${component.visible}">
-		<div class="modal-content xs-main-menu-l2 xs-mega-menu d-none" id="xsLevel1Link3Container">
+		<div class="modal-content xs-main-menu-l2 xs-mega-menu d-none" id="${checkNode}">
 			<div class="modal-header">
 				<div class="left-title-out">
 					<a href="javascript:void(0)" class="back-to-l1">

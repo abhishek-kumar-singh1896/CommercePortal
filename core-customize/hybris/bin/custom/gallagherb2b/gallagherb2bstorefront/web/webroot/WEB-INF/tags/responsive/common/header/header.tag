@@ -58,6 +58,7 @@
 												<c:url var="L1link" value="${dropdownValue.item.url}"></c:url>
 												<c:choose>
 													<c:when test="${dropdownValue.item.linkName eq 'PRODUCTS'}">
+														<c:set var="checkNavigation" value="mainNavLink${status.index+1}Container"/>
 														<a href="javascript:void(0)" class="with-sublevel-text l1-anchor with-sublevel" id="xsLevel1Link${status.index+1}">
 															${dropdownValue.item.linkName}
 															<span class="right-arrow-icon">
@@ -340,8 +341,8 @@
 		</div>
 							
 	</div>
-		
-	<div class="megamenu-out second-level-menu shadow-sm d-none" id="mainNavLink3Container">
+	
+	<div class="megamenu-out second-level-menu shadow-sm d-none" id="${checkNavigation}">
 		<nav:topNavigation />
 	</div>
 	
