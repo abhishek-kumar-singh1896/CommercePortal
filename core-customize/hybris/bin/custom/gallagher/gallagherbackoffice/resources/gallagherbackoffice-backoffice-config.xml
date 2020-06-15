@@ -206,7 +206,70 @@
             </editorArea:tab>
         </editorArea:editorArea>
     </context>
-    <context merge-by="type" type="BaseStore" component="editor-area">
+
+	<context merge-by="type" parent="GenericItem" type="Product" component="editor-area" module="pcmbackoffice"
+		principal="backofficeproductmanagergroup,backofficeproductadministratorgroup">
+		<editorArea:editorArea name="" xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+
+			<editorArea:tab name="hmc.gallagher" position="3">
+				<editorArea:section name="hmc.section.gallagher">
+					<editorArea:attribute qualifier="marketingDescription" />
+					<editorArea:attribute qualifier="promoSticker" />
+					<editorArea:attribute qualifier="animalCompatibility" />
+					<editorArea:attribute qualifier="baseProductCode" />
+					<editorArea:attribute qualifier="baseStores" />
+					<editorArea:attribute qualifier="variantForImage" />
+					<editorArea:attribute qualifier="eligibleForLatAm" />
+					<editorArea:attribute qualifier="plpProductDescription"
+						editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)" />
+				</editorArea:section>
+				<editorArea:section name="hmc.section.gallagher.ProductReferences.SpareParts">
+					<editorArea:attribute qualifier="sparePartsReferenceHeading" />
+					<editorArea:attribute qualifier="sparePartsReferenceSubHeading" />
+				</editorArea:section>
+				<editorArea:section name="hmc.section.gallagher.ProductReferences.Others">
+					<editorArea:attribute qualifier="othersReferenceHeading" />
+					<editorArea:attribute qualifier="othersReferenceSubHeading" />
+				</editorArea:section>
+
+				<editorArea:section name="hmc.section.gallagher.Component.Image">
+					<editorArea:attribute
+						editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)" qualifier="imageDescription" />
+					<editorArea:attribute qualifier="others" />
+				</editorArea:section>
+				<editorArea:section name="hmc.section.gallagher.Component.Video">
+					<editorArea:attribute
+						editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)" qualifier="videoDescription" />
+					<editorArea:attribute qualifier="videos" />
+				</editorArea:section>
+				<editorArea:section name="hmc.section.gallagher.Component.Simulator">
+					<editorArea:attribute qualifier="simulator" />
+				</editorArea:section>
+			</editorArea:tab>
+			<editorArea:tab name="hmc.tab.product.multimedia" position="18" merge-mode="REPLACE">
+				<editorArea:section name="hmc.section.product.pictures">
+					<editorArea:attribute qualifier="picture" />
+					<editorArea:attribute qualifier="thumbnail" />
+				</editorArea:section>
+				<editorArea:section name="hmc.section.product.additionalmedias">
+					<editorArea:attribute qualifier="data_sheet" />
+					<editorArea:attribute qualifier="detail" />
+					<editorArea:attribute qualifier="logo" />
+					<editorArea:attribute qualifier="normal" />
+					<editorArea:attribute qualifier="thumbnails" />
+					<editorArea:attribute qualifier="galleryImages" />
+				</editorArea:section>
+			</editorArea:tab>
+			<editorArea:tab name="hmc.tab.product.properties" position="2">
+				<editorArea:section name="hmc.product.descriptions">
+					<editorArea:attribute
+						editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)" qualifier="summary" />
+				</editorArea:section>
+			</editorArea:tab>
+		</editorArea:editorArea>
+	</context>
+	
+   <context merge-by="type" type="BaseStore" component="editor-area">
         <editorArea:editorArea name="">
             <editorArea:tab name="hmc.gallagher" position="3">
                 <editorArea:section name="hmc.section.gallagher">
