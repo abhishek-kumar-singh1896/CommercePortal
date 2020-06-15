@@ -60,9 +60,20 @@
 			</div>
 
 			<div class="tab-pane <c:if test="${not empty technicalSupport}">active</c:if>" id="technicalSupport">
-					<script async="async" src="${mindtouchSRC}"></script>
-					<script type="mindtouch/embed" id="${mindtouchID}" data-search-query="${searchPageData.freeTextSearch}"></script>
+					<script type="mindtouch/embed" id="${mindtouchLoginID}" data-search-query="${searchPageData.freeTextSearch}"></script>
 			</div>
+			<script>
+                                                  document.addEventListener('mindtouch-web-widget:search:ready', ({ data }) => {
+                                                    const searchWidget = data.widget;
+
+                                                    document.addEventListener('mindtouch-web-widget:login:auth-changed', ({ data }) => {
+                                                        // rerun search query
+                                                        var q = searchWidget.query;
+                                                        searchWidget.query = "";
+                                                        searchWidget.query = q;
+                                                    });
+                                                  });
+                         </script>
 		</div>
 	</div>
 
