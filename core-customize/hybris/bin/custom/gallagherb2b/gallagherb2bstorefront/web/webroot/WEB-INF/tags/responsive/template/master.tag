@@ -60,10 +60,12 @@
 	<%-- Inject the page body here --%>
 	<jsp:doBody/>
 	<c:if test="${cmsPage.uid eq 'searchGrid' || cmsPage.uid eq 'searchEmpty'}">
-
-		<script async="async" src="${mindtouchSRC}"></script>
-        				<script type="mindtouch/embed" id="${mindtouchID}" ></script>
-
+        <!-- Begin Sign-In Touchpoint, Type = login -->
+        <!-- Generated on [06/11/2020 18:10:36] by MindTouch, Last Updated [06/11/2020 18:53:35] by MindTouch -->
+        <div style="display:none">
+		    <script async="async" src="${mindtouchSRC}"></script>
+            <script type="mindtouch/embed" id="${mindtouchID}" ></script>
+        </div>
 
 	</c:if>
 
