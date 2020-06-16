@@ -9,17 +9,17 @@
 $lang=en
  
 # Languages
-UPDATE Language ; isocode[unique=true] ; name[lang=$lang] 
-                ; de                   ; "German"         
-                ; en                   ; "English"        
-                ; ja                   ; "Japanese"       
-                ; zh                   ; "Chinese" 
-                ; en_US                ; "American English" 
-                ; en_CA                ; "Canadian English"        
-                ; en_AU                ; "Australian English" 
-                ; en_NZ                ; "New Zealand English" 
-                ; fr_CA						; "Canadian french"
-                ; es_LA						; "Latin American spanish"
+UPDATE Language ; isocode[unique=true] ; name[lang=$lang]         ; name[lang=es_LA] ; name[lang=fr_CA] ; name[lang=en_CA] ; name[lang=en_NZ] ; name[lang=en_AU] ; name[lang=en_US] 
+                ; de                   ; "German"                 
+                ; en                   ; "English"                
+                ; ja                   ; "Japanese"               
+                ; zh                   ; "Chinese"                
+                ; en_US                ; "American English"       ; "EN-US"          ; "EN-US"          ; "EN-US"          ; "EN-US"          ; "EN-US"          ; "EN-US"          
+                ; en_CA                ; "Canadian English"       ; "EN-CA"          ; "EN-CA"          ; "EN-CA"          ; "EN-CA"          ; "EN-CA"          ; "EN-CA"          
+                ; en_AU                ; "Australian English"     ; "EN-AU"          ; "EN-AU"          ; "EN-AU"          ; "EN-AU"          ; "EN-AU"          ; "EN-AU"          
+                ; en_NZ                ; "New Zealand English"    ; "EN-NZ"          ; "EN-NZ"          ; "EN-NZ"          ; "EN-NZ"          ; "EN-NZ"          ; "EN-NZ"          
+                ; fr_CA                ; "Canadian french"        ; "FR-CA"          ; "FR-CA"          ; "FR-CA"          ; "FR-CA"          ; "FR-CA"          ; "FR-CA"          
+                ; es_LA                ; "Latin American spanish" ; "ES-LA"          ; "ES-LA"          ; "ES-LA"          ; "ES-LA"          ; "ES-LA"          ; "ES-LA"          
                 
 # Currencies    
 UPDATE Currency ; isocode[unique=true] ; name[lang=$lang]      
@@ -34,8 +34,8 @@ UPDATE Currency ; isocode[unique=true] ; name[lang=$lang]
                 ; NZD                  ; "New Zealand Dollars" 
                 ; ZAR                  ; "South African Rand"  
                 
-         
-             
+                
+                
 # Credit / Debit Cards
 UPDATE CreditCardType ; code[unique=true]   ; name[lang=$lang]      
                       ; amex                ; "American Express"    
@@ -44,8 +44,8 @@ UPDATE CreditCardType ; code[unique=true]   ; name[lang=$lang]
                       ; master              ; "Mastercard"          
                       ; mastercard_eurocard ; "Mastercard/Eurocard" 
                       ; switch              ; "Switch"              
-                      ; visa                ; "Visa" 
-                      ; discover            ; "Discover"                
+                      ; visa                ; "Visa"                
+                      ; discover            ; "Discover"            
                       
 # DistanceUnits for Storelocator
 UPDATE DistanceUnit ; code[unique=true] ; name[lang=$lang] 

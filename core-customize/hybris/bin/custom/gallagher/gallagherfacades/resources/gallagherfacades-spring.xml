@@ -285,4 +285,6 @@
         <property name="sessionService" ref="sessionService"/>
     </bean>
     
+    <alias name="gallagherCmsCatalogModelToDataPopulator" alias="basicCmsCatalogModelToDataPopulator" />
+	 <bean id="gallagherCmsCatalogModelToDataPopulator" class="com.gallagher.facades.catalogs.populator.GallagherCatalogModelToDataPopulator" parent="defaultCmsCatalogModelToDataPopulator" />
 </beans>
