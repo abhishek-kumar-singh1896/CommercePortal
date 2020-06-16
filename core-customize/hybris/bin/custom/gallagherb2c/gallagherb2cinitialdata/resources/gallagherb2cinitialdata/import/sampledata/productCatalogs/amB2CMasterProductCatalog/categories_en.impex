@@ -83,10 +83,10 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
 ;gates-and-gate-accessories;;Gates and Gate Accessories 
 
 # 1.1.5 Sub Categories for 'fence-conductors'
-;reels-and-accessories-fc;;Reels and Accessories 
+;reels-and-accessories-fc;;"DO NOT USE" 
 ;hi-tensile-wire-and-cable;;"Hi-Tensile Wire and Cable"
-;tapes-wires-and-braids-fc;;"Tapes, Wires and Braids"
-;posts-pigtails-and-treadins-fc;;"Posts - Pigtails and Treadins"
+;tapes-wires-and-braids-fc;;"DO NOT USE"
+;posts-pigtails-and-treadins-fc;;"DO NOT USE"
 
 
 # 1.2 Sub Categories for 'weighing-and-eid'

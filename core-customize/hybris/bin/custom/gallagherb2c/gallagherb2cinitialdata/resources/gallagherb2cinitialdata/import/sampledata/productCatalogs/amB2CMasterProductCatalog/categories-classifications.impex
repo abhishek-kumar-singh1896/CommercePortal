@@ -117,8 +117,8 @@ INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
 ;electric-fence-kits;electric-fence-kits
 ;netting;netting
 
-;tapes-wires-and-braids-fc;tapes-wires-and-braids-fc
-;reels-and-accessories-fc;reels-and-accessories-fc
+;tapes-wires-and-braids-pf;tapes-wires-and-braids-fc
+;reels-and-accessories-pf;reels-and-accessories-fc
 
 ;gates-and-gate-accessories;gates-and-gate-accessories
  
@@ -129,7 +129,7 @@ INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
 ;platforms;platforms
 ;drafters;drafters
 ;eid-tag-readers;eid-tag-readers
-;posts-pigtails-and-treadins-fc;posts-pigtails-and-treadins-fc
+;posts-pigtails-and-treadins-pf;posts-pigtails-and-treadins-fc
 ;scale-heads-and-data-collectors;scale-heads-and-data-collectors
 ;weighing-accessories;weighing-accessories
 ;stock-prods-and-accessories;stock-prods-and-accessories
