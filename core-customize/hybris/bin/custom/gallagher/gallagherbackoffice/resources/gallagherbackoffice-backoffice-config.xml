@@ -261,9 +261,16 @@
 				</editorArea:section>
 			</editorArea:tab>
 			<editorArea:tab name="hmc.tab.product.properties" position="2">
-				<editorArea:section name="hmc.product.descriptions">
+				<editorArea:section name="hmc.product.descriptions" merge-mode="REPLACE">
+					<editorArea:attribute
+								editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)"
+								qualifier="description"/>
 					<editorArea:attribute
 						editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)" qualifier="summary" />
+					<editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+						qualifier="shortDescription" />
+					<editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+						qualifier="partNumber" />
 				</editorArea:section>
 			</editorArea:tab>
 		</editorArea:editorArea>
