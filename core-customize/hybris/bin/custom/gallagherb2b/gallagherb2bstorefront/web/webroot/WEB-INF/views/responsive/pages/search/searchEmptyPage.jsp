@@ -67,7 +67,7 @@
 			<!-- technical support tab  -->
 			<!-- Begin Sign-In Touchpoint, Type = login -->
             <script async="async" src="${mindtouchLoginSRC}"></script>
-			<div class="tab-pane" id="technicalSupport" role="tabpanel">
+			<div class="tab-pane" id="technicalSupport" role="tabpanel" style="height: 600px">
                   <script type="mindtouch/embed" id="${mindtouchLoginID}" data-search-query="${searchPageData.freeTextSearch}"></script>
 			</div>
 			<script>
