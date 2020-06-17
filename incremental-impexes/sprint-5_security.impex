@@ -1705,5 +1705,18 @@ REMOVE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$
 ;;FootwearMensCategoryLink;"Men's"
 ;;FootwearWomensCategoryLink;"Women's"
 
-#############3
+
+
+# CMS Navigation Nodes
+REMOVE CMSNavigationNode;$contentCV[unique=true];uid[unique=true];title[lang=en]
+ ;;AngleGrindersNavNode;"Angle Grinders"
+ ;;FootwearLinksNavNode;"Footwear"
+ ;;HandToolsLinksNavNode;"Hand Tools"
+ ;;HandToolsNavNode;"Hand Tools"
+ ;;MeasuringLayoutToolsNavNode;"Measuring & Layout Tools"
+ ;;PowerDrillsNavNode;"Power Drills"
+ ;;SafetyNavNode;"Safety"
+ ;;SandersNavNode;"Sanders"
+
+#############
  
