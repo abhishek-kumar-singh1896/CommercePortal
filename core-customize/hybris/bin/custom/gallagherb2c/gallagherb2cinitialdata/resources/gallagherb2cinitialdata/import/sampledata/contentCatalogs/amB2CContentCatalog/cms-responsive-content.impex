@@ -343,23 +343,23 @@ INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];positi
 
 ###### Animal Management B2C Camera Accessories and Supplies Category Landing Page ######
 
-INSERT_UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved'];previewImage(code, $contentCV)
-;;CamerasAccessoriesAndSuppliesCategoryPage;Cameras Accessories & Supplies Category Page;CategoryPageTemplate;false;;CameraAccessoriesPagePreview
+#INSERT_UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved'];previewImage(code, $contentCV)
+#;;CamerasAccessoriesAndSuppliesCategoryPage;Cameras Accessories & Supplies Category Page;CategoryPageTemplate;false;;CameraAccessoriesPagePreview
 
-INSERT_UPDATE CMSCategoryRestriction;$contentCV[unique=true];uid[unique=true];name;categories(code, $productCV);pages(uid, $contentCV)
+#INSERT_UPDATE CMSCategoryRestriction;$contentCV[unique=true];uid[unique=true];name;categories(code, $productCV);pages(uid, $contentCV)
 #;;CamerasAccessoriesAndSupplies-LandingPageRestriction;Restriction for Cameras Accessories And Supplies;585;CamerasAccessoriesAndSuppliesCategoryPage
 
-INSERT_UPDATE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];name;category(code, $productCV);&componentRef
+#INSERT_UPDATE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];name;category(code, $productCV);&componentRef
 #;;CameraFlashesFeatureComponent;CameraFlashesFeatureComponent;586;CameraFlashesFeatureComponent
 
-INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
-;;BuyOnlineBanner;Buy Online Banner;BuyOnlineBanner
+#INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+#;;BuyOnlineBanner;Buy Online Banner;BuyOnlineBanner
 
-INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
-;;Section2Slot-CameraAccessories;Section2 Slot for Camera Accessories Page;true;BuyOnlineBanner
+#INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+#;;Section2Slot-CameraAccessories;Section2 Slot for Camera Accessories Page;true;BuyOnlineBanner
 
-INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='CamerasAccessoriesAndSuppliesCategoryPage'];contentSlot(uid,$contentCV)[unique=true]
-;;Section2-CameraAccessories;Section2;;Section2Slot-CameraAccessories
+#INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='CamerasAccessoriesAndSuppliesCategoryPage'];contentSlot(uid,$contentCV)[unique=true]
+#;;Section2-CameraAccessories;Section2;;Section2Slot-CameraAccessories
 
 ###### Animal Management B2C Search Results Page ######
 
@@ -825,45 +825,45 @@ INSERT_UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterT
 
 ###### Animal Management B2C SLR Category Landing Page ######
 
-INSERT_UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved'];previewImage(code, $contentCV)
-;;SLRCamerasCategoryPage;SLR Cameras Category Page;CategoryPageTemplate;false;;;
+#INSERT_UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved'];previewImage(code, $contentCV)
+#;;SLRCamerasCategoryPage;SLR Cameras Category Page;CategoryPageTemplate;false;;;
 
-INSERT_UPDATE CMSCategoryRestriction;$contentCV[unique=true];uid[unique=true];name;categories(code, $productCV);pages(uid, $contentCV)
+#INSERT_UPDATE CMSCategoryRestriction;$contentCV[unique=true];uid[unique=true];name;categories(code, $productCV);pages(uid, $contentCV)
 #;;SLRCameras-LandingPageRestriction;Restriction for SLR Cameras;578;SLRCamerasCategoryPage
 
-INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
-;;BuyOnlineBanner;Buy Online Banner;BuyOnlineBanner
+#INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+#;;BuyOnlineBanner;Buy Online Banner;BuyOnlineBanner
 
 ##### Section 1 ######
-INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;&componentRef
-;;AMB2CSLRSplashBannerComponent;Animal Management B2C SLR Camera Splash Banner Component;Open-Catalogue/Cameras/Digital-Cameras/c/575;AMB2CSLRSplashBannerComponent
+#INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;&componentRef
+#;;AMB2CSLRSplashBannerComponent;Animal Management B2C SLR Camera Splash Banner Component;Open-Catalogue/Cameras/Digital-Cameras/c/575;AMB2CSLRSplashBannerComponent
 
-INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];active;cmsComponents(&componentRef)
-;;Section1Slot-SLRCameras;true;AMB2CSLRSplashBannerComponent
+#INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];active;cmsComponents(&componentRef)
+#;;Section1Slot-SLRCameras;true;AMB2CSLRSplashBannerComponent
 
 ##### Section 2 ######
-INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;&componentRef
-;;AMB2CCanon500DBannerComponent;Animal Management B2C Canon 500D Banner Component;Open-Catalogue/Cameras/DigitalCameras/Digital-SLR/EOS-500D-%2B-18-200mm-IS/p/2054947;AMB2CCanon500DBannerComponent
-;;AMB2CCanon450DBannerComponent;Animal Management B2C Canon 450D Banner Component;Open-Catalogue/Cameras/DigitalCameras/Digital-SLR/EOS450D-%2B-18-55-IS-Kit/p/1382080;AMB2CCanon450DBannerComponent
-;;AMB2CSonyA100HBannerComponent;Animal Management B2C Sony A100H Banner Component;Open-Catalogue/Cameras/DigitalCameras/Digital-SLR/DSLR-A100H/p/816780;AMB2CSonyA100HBannerComponent
-;;AMB2CSonyA330BannerComponent;Animal Management B2C Sony A330 Banner Component;Open-Catalogue/Cameras/DigitalCameras/Digital-SLR/DSLR-A330-%2BDT-18---55-mm/p/2934302;AMB2CSonyA330BannerComponent
-;;AMB2CSonyA200BannerComponent;Animal Management B2C Sony A200 Banner Component;Open-Catalogue/Cameras/DigitalCameras/Digital-SLR/Alpha-200/p/1391319;AMB2CSonyA200BannerComponent
-;;AMB2CSonyAlpha350BannerComponent;Animal Management B2C Sony Alpha 350 Banner Component;Open-Catalogue/Cameras/DigitalCameras/Digital-SLR/Alpha-350/p/1446509;AMB2CSonyAlpha350BannerComponent
+#INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;&componentRef
+#;;AMB2CCanon500DBannerComponent;Animal Management B2C Canon 500D Banner Component;Open-Catalogue/Cameras/DigitalCameras/Digital-SLR/EOS-500D-%2B-18-200mm-IS/p/2054947;AMB2CCanon500DBannerComponent
+#;;AMB2CCanon450DBannerComponent;Animal Management B2C Canon 450D Banner Component;Open-Catalogue/Cameras/DigitalCameras/Digital-SLR/EOS450D-%2B-18-55-IS-Kit/p/1382080;AMB2CCanon450DBannerComponent
+#;;AMB2CSonyA100HBannerComponent;Animal Management B2C Sony A100H Banner Component;Open-Catalogue/Cameras/DigitalCameras/Digital-SLR/DSLR-A100H/p/816780;AMB2CSonyA100HBannerComponent
+#;;AMB2CSonyA330BannerComponent;Animal Management B2C Sony A330 Banner Component;Open-Catalogue/Cameras/DigitalCameras/Digital-SLR/DSLR-A330-%2BDT-18---55-mm/p/2934302;AMB2CSonyA330BannerComponent
+#;;AMB2CSonyA200BannerComponent;Animal Management B2C Sony A200 Banner Component;Open-Catalogue/Cameras/DigitalCameras/Digital-SLR/Alpha-200/p/1391319;AMB2CSonyA200BannerComponent
+#;;AMB2CSonyAlpha350BannerComponent;Animal Management B2C Sony Alpha 350 Banner Component;Open-Catalogue/Cameras/DigitalCameras/Digital-SLR/Alpha-350/p/1446509;AMB2CSonyAlpha350BannerComponent
 
-INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];active;cmsComponents(&componentRef)
-;;Section2Slot-SLRCameras;true;AMB2CSonyA100HBannerComponent,AMB2CCanon500DBannerComponent,AMB2CCanon450DBannerComponent,AMB2CSonyA330BannerComponent,AMB2CSonyA200BannerComponent,AMB2CSonyAlpha350BannerComponent
+#INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];active;cmsComponents(&componentRef)
+#;;Section2Slot-SLRCameras;true;AMB2CSonyA100HBannerComponent,AMB2CCanon500DBannerComponent,AMB2CCanon450DBannerComponent,AMB2CSonyA330BannerComponent,AMB2CSonyA200BannerComponent,AMB2CSonyAlpha350BannerComponent
 
 ##### Section 3 #####
-INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;&componentRef
-;;AMB2CSaveBigDLSRBannerComponent;Animal Management B2C Save Big DSLR Banner Component;/Open-Catalogue/Cameras/Camera-Accessories-%26-Supplies/c/585;AMB2CSaveBigDLSRBannerComponent
+#INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;&componentRef
+#;;AMB2CSaveBigDLSRBannerComponent;Animal Management B2C Save Big DSLR Banner Component;/Open-Catalogue/Cameras/Camera-Accessories-%26-Supplies/c/585;AMB2CSaveBigDLSRBannerComponent
 
-INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];active;cmsComponents(&componentRef)
-;;Section3Slot-SLRCameras;true;AMB2CSaveBigDLSRBannerComponent,AMB2CHompageFreeDelBannerComponent
+#INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];active;cmsComponents(&componentRef)
+#;;Section3Slot-SLRCameras;true;AMB2CSaveBigDLSRBannerComponent,AMB2CHompageFreeDelBannerComponent
 
-INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='SLRCamerasCategoryPage'];contentSlot(uid,$contentCV)[unique=true]
-;;Section1-SLRCameras;Section1;;Section1Slot-SLRCameras
-;;Section2-SLRCameras;Section2;;Section2Slot-SLRCameras
-;;Section3-SLRCameras;Section3;;Section3Slot-SLRCameras
+#INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='SLRCamerasCategoryPage'];contentSlot(uid,$contentCV)[unique=true]
+#;;Section1-SLRCameras;Section1;;Section1Slot-SLRCameras
+#;;Section2-SLRCameras;Section2;;Section2Slot-SLRCameras
+#;;Section3-SLRCameras;Section3;;Section3Slot-SLRCameras
 
 ###### End Animal Management B2C SLR Category Landing Page ######
 

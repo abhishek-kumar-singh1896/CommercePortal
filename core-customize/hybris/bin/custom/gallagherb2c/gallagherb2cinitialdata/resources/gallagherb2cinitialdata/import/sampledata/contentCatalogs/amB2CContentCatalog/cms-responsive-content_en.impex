@@ -153,8 +153,8 @@ UPDATE ProductCarouselComponent;$contentCV[unique=true];uid[unique=true];title[l
 
 # Animal Management B2C Camera Accessories and Supplies Category Landing Page
 
-UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
-;;CamerasAccessoriesAndSuppliesCategoryPage;Cameras Accessories & Supplies
+#UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];title[lang=$lang]
+#;;CamerasAccessoriesAndSuppliesCategoryPage;Cameras Accessories & Supplies
 
 # Media Content
 INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];folder(qualifier)[default='images'];altText

@@ -1323,165 +1323,165 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;c
 
 ######  Power Drills Landing Page ######
 
-INSERT_UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;previewImage(code, $contentCV);approvalStatus(code)[default='approved']
-                          ;;PowerDrillsCategoryPage;Power Drills Landing Page;CategoryPageTemplate;false;
+#INSERT_UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;previewImage(code, $contentCV);approvalStatus(code)[default='approved']
+#                          ;;PowerDrillsCategoryPage;Power Drills Landing Page;CategoryPageTemplate;false;
 
 
-INSERT_UPDATE InformationBannerComponent;$contentCV[unique=true];uid[unique=true];name;contentAlignment(code);urlLink;headlineColor;contentColor;linkTextColor;
-                                        ;;PowerDrillsInfoBanner;Power Drills Information Banner;left;/Open-Catalogue/Tools/Power-Drills/c/1360?q=:relevance;#FFFFFF;#FFFFFF;#FFFFFF;
+#INSERT_UPDATE InformationBannerComponent;$contentCV[unique=true];uid[unique=true];name;contentAlignment(code);urlLink;headlineColor;contentColor;linkTextColor;
+#                                        ;;PowerDrillsInfoBanner;Power Drills Information Banner;left;/Open-Catalogue/Tools/Power-Drills/c/1360?q=:relevance;#FFFFFF;#FFFFFF;#FFFFFF;
 
-INSERT_UPDATE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];name;category(code, $productCV);
+#INSERT_UPDATE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];name;category(code, $productCV);
 
-INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV)
-                         ;;Section1Slot-PowerDrillsCategoryPage;Section1 Slot for Power Drills Landing Page;true;
-                         ;;Section2Slot-PowerDrillsCategoryPage;Section2 Slot for Power Drills Landing Page;true;PowerDrillsInfoBanner
-                         ;;Section4Slot-PowerDrillsCategoryPage;Section4 Slot for Power Drills Landing Page;true;RefinementFacetComponent
+#INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV)
+#                         ;;Section1Slot-PowerDrillsCategoryPage;Section1 Slot for Power Drills Landing Page;true;
+#                         ;;Section2Slot-PowerDrillsCategoryPage;Section2 Slot for Power Drills Landing Page;true;PowerDrillsInfoBanner
+#                         ;;Section4Slot-PowerDrillsCategoryPage;Section4 Slot for Power Drills Landing Page;true;RefinementFacetComponent
 
-INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='PowerDrillsCategoryPage'];contentSlot(uid,$contentCV)[unique=true]
-                                ;;Section1-PowerDrillsCategoryPage;Section1;;Section1Slot-PowerDrillsCategoryPage
-                                ;;Section2-PowerDrillsCategoryPage;Section2;;Section2Slot-PowerDrillsCategoryPage
-                                ;;Section3-PowerDrillsCategoryPage;Section3;;Section3Slot-PowerDrillsCategoryPage
-                                ;;Section4-PowerDrillsCategoryPage;Section4;;Section4Slot-PowerDrillsCategoryPage
+#INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='PowerDrillsCategoryPage'];contentSlot(uid,$contentCV)[unique=true]
+#                                ;;Section1-PowerDrillsCategoryPage;Section1;;Section1Slot-PowerDrillsCategoryPage
+#                                ;;Section2-PowerDrillsCategoryPage;Section2;;Section2Slot-PowerDrillsCategoryPage
+#                                ;;Section3-PowerDrillsCategoryPage;Section3;;Section3Slot-PowerDrillsCategoryPage
+#                                ;;Section4-PowerDrillsCategoryPage;Section4;;Section4Slot-PowerDrillsCategoryPage
 
 
-INSERT_UPDATE CMSCategoryRestriction;$contentCV;uid[unique=true];name;categories(code, $productCV);pages(uid, $contentCV)[unique=true]
+#INSERT_UPDATE CMSCategoryRestriction;$contentCV;uid[unique=true];name;categories(code, $productCV);pages(uid, $contentCV)[unique=true]
 
 
 ######## Angle Grinders Landing Page ########
 
-INSERT_UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;previewImage(code, $contentCV);approvalStatus(code)[default='approved']
-                          ;;AngleGrindersCategoryPage;Angle Grinders Landing Page;CategoryPageTemplate;false;
+#INSERT_UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;previewImage(code, $contentCV);approvalStatus(code)[default='approved']
+#                          ;;AngleGrindersCategoryPage;Angle Grinders Landing Page;CategoryPageTemplate;false;
 
-INSERT_UPDATE InformationBannerComponent;$contentCV[unique=true];uid[unique=true];name;contentAlignment(code);urlLink;headlineColor;contentColor;linkTextColor;
-                                        ;;AngleGrindersInfoBanner;Angle Grinders Information Banner;left;/Open-Catalogue/Tools/Angle-Grinders/c/1595?q=:relevance;#FFFFFF;#FFFFFF;#FFFFFF;
+#INSERT_UPDATE InformationBannerComponent;$contentCV[unique=true];uid[unique=true];name;contentAlignment(code);urlLink;headlineColor;contentColor;linkTextColor;
+#                                        ;;AngleGrindersInfoBanner;Angle Grinders Information Banner;left;/Open-Catalogue/Tools/Angle-Grinders/c/1595?q=:relevance;#FFFFFF;#FFFFFF;#FFFFFF;
 
-INSERT_UPDATE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];name;category(code, $productCV);
+#INSERT_UPDATE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];name;category(code, $productCV);
 
-INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV)
-                         ;;Section1Slot-AngleGrindersCategoryPage;Section1 Slot for Angle Grinders Landing Page;true;
-                         ;;Section2Slot-AngleGrindersCategoryPage;Section2 Slot for Angle Grinders Landing Page;true;AngleGrindersInfoBanner
-                         ;;Section4Slot-AngleGrindersCategoryPage;Section4 Slot for Angle Grinders Landing Page;true;RefinementFacetComponent
+#INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV)
+#                         ;;Section1Slot-AngleGrindersCategoryPage;Section1 Slot for Angle Grinders Landing Page;true;
+#                         ;;Section2Slot-AngleGrindersCategoryPage;Section2 Slot for Angle Grinders Landing Page;true;AngleGrindersInfoBanner
+#                         ;;Section4Slot-AngleGrindersCategoryPage;Section4 Slot for Angle Grinders Landing Page;true;RefinementFacetComponent
 
-INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='AngleGrindersCategoryPage'];contentSlot(uid,$contentCV)[unique=true]
-                                ;;Section1-AngleGrindersCategoryPage;Section1;;Section1Slot-AngleGrindersCategoryPage
-                                ;;Section2-AngleGrindersCategoryPage;Section2;;Section2Slot-AngleGrindersCategoryPage
-                                ;;Section3-AngleGrindersCategoryPage;Section3;;Section3Slot-AngleGrindersCategoryPage
-                                ;;Section4-AngleGrindersCategoryPage;Section4;;Section4Slot-AngleGrindersCategoryPage
+#INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='AngleGrindersCategoryPage'];contentSlot(uid,$contentCV)[unique=true]
+#                                ;;Section1-AngleGrindersCategoryPage;Section1;;Section1Slot-AngleGrindersCategoryPage
+#                                ;;Section2-AngleGrindersCategoryPage;Section2;;Section2Slot-AngleGrindersCategoryPage
+#                                ;;Section3-AngleGrindersCategoryPage;Section3;;Section3Slot-AngleGrindersCategoryPage
+#                                ;;Section4-AngleGrindersCategoryPage;Section4;;Section4Slot-AngleGrindersCategoryPage
 
-INSERT_UPDATE CMSCategoryRestriction;$contentCV;uid[unique=true];name;categories(code, $productCV);pages(uid, $contentCV)[unique=true]
+#INSERT_UPDATE CMSCategoryRestriction;$contentCV;uid[unique=true];name;categories(code, $productCV);pages(uid, $contentCV)[unique=true]
 
 
 ######## Screwdrivers Landing Page ########
 
-INSERT_UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;previewImage(code, $contentCV);approvalStatus(code)[default='approved']
-                          ;;ScrewdriversCategoryPage;Screwdrivers Landing Page;CategoryPageTemplate;false;
+#INSERT_UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;previewImage(code, $contentCV);approvalStatus(code)[default='approved']
+#                          ;;ScrewdriversCategoryPage;Screwdrivers Landing Page;CategoryPageTemplate;false;
 
-INSERT_UPDATE InformationBannerComponent;$contentCV[unique=true];uid[unique=true];name;contentAlignment(code);urlLink;headlineColor;contentColor;linkTextColor;
-                                        ;;ScrewdriversInfoBanner;Screwdrivers Information Banner;right;/Open-Catalogue/Tools/Screwdrivers/c/1593?q=:relevance;#FFFFFF;#FFFFFF;#FFFFFF;
+#INSERT_UPDATE InformationBannerComponent;$contentCV[unique=true];uid[unique=true];name;contentAlignment(code);urlLink;headlineColor;contentColor;linkTextColor;
+#                                        ;;ScrewdriversInfoBanner;Screwdrivers Information Banner;right;/Open-Catalogue/Tools/Screwdrivers/c/1593?q=:relevance;#FFFFFF;#FFFFFF;#FFFFFF;
 
-INSERT_UPDATE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];name;category(code, $productCV);
+#INSERT_UPDATE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];name;category(code, $productCV);
 
-INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV)
-                         ;;Section1Slot-ScrewdriversCategoryPage;Section1 Slot for Screwdrivers Landing Page;true;
-                         ;;Section2Slot-ScrewdriversCategoryPage;Section2 Slot for Screwdrivers Landing Page;true;ScrewdriversInfoBanner
-                         ;;Section4Slot-ScrewdriversCategoryPage;Section4 Slot for Screwdrivers Landing Page;true;RefinementFacetComponent
+#INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV)
+#                         ;;Section1Slot-ScrewdriversCategoryPage;Section1 Slot for Screwdrivers Landing Page;true;
+#                         ;;Section2Slot-ScrewdriversCategoryPage;Section2 Slot for Screwdrivers Landing Page;true;ScrewdriversInfoBanner
+#                         ;;Section4Slot-ScrewdriversCategoryPage;Section4 Slot for Screwdrivers Landing Page;true;RefinementFacetComponent
 
-INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='ScrewdriversCategoryPage'];contentSlot(uid,$contentCV)[unique=true]
-                                ;;Section1-ScrewdriversCategoryPage;Section1;;Section1Slot-ScrewdriversCategoryPage
-                                ;;Section2-ScrewdriversCategoryPage;Section2;;Section2Slot-ScrewdriversCategoryPage
-                                ;;Section3-ScrewdriversCategoryPage;Section3;;Section3Slot-ScrewdriversCategoryPage
-                                ;;Section4-ScrewdriversCategoryPage;Section4;;Section4Slot-ScrewdriversCategoryPage
+#INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='ScrewdriversCategoryPage'];contentSlot(uid,$contentCV)[unique=true]
+#                                ;;Section1-ScrewdriversCategoryPage;Section1;;Section1Slot-ScrewdriversCategoryPage
+#                                ;;Section2-ScrewdriversCategoryPage;Section2;;Section2Slot-ScrewdriversCategoryPage
+#                                ;;Section3-ScrewdriversCategoryPage;Section3;;Section3Slot-ScrewdriversCategoryPage
+#                                ;;Section4-ScrewdriversCategoryPage;Section4;;Section4Slot-ScrewdriversCategoryPage
 
-INSERT_UPDATE CMSCategoryRestriction;$contentCV;uid[unique=true];name;categories(code, $productCV);pages(uid, $contentCV)[unique=true]
+#INSERT_UPDATE CMSCategoryRestriction;$contentCV;uid[unique=true];name;categories(code, $productCV);pages(uid, $contentCV)[unique=true]
 
 
 ######## Measuring And Layout Tools ########
 
-INSERT_UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;previewImage(code, $contentCV);approvalStatus(code)[default='approved']
-                          ;;MeasuringAndLayoutToolsCategoryPage;Measuring & Layout Tools Landing Page;CategoryPageTemplate;false;
+#INSERT_UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;previewImage(code, $contentCV);approvalStatus(code)[default='approved']
+#                          ;;MeasuringAndLayoutToolsCategoryPage;Measuring & Layout Tools Landing Page;CategoryPageTemplate;false;
 
-INSERT_UPDATE InformationBannerComponent;$contentCV[unique=true];uid[unique=true];name;contentAlignment(code);urlLink;headlineColor;contentColor;linkTextColor;
-                                        ;;MeasuringAndLayoutToolsInfoBanner;Measuring & Layout Tools Information Banner;left;/Open-Catalogue/Tools/Measuring-%26-Layout-Tools/c/1358?q=:relevance;#FFFFFF;#FFFFFF;#000000;
+#INSERT_UPDATE InformationBannerComponent;$contentCV[unique=true];uid[unique=true];name;contentAlignment(code);urlLink;headlineColor;contentColor;linkTextColor;
+#                                        ;;MeasuringAndLayoutToolsInfoBanner;Measuring & Layout Tools Information Banner;left;/Open-Catalogue/Tools/Measuring-%26-Layout-Tools/c/1358?q=:relevance;#FFFFFF;#FFFFFF;#000000;
 
-INSERT_UPDATE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];name;category(code, $productCV);
+#INSERT_UPDATE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];name;category(code, $productCV);
 
-INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV)
-                         ;;Section1Slot-MeasuringAndLayoutToolsCategoryPage;Section1 Slot for Measuring And Layout Tools Landing Page;true;
-                         ;;Section2Slot-MeasuringAndLayoutToolsCategoryPage;Section2 Slot for Measuring And Layout Tools Landing Page;true;MeasuringAndLayoutToolsInfoBanner
-                         ;;Section4Slot-MeasuringAndLayoutToolsCategoryPage;Section4 Slot for Measuring And Layout Tools Landing Page;true;RefinementFacetComponent
+#INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV)
+#                         ;;Section1Slot-MeasuringAndLayoutToolsCategoryPage;Section1 Slot for Measuring And Layout Tools Landing Page;true;
+#                         ;;Section2Slot-MeasuringAndLayoutToolsCategoryPage;Section2 Slot for Measuring And Layout Tools Landing Page;true;MeasuringAndLayoutToolsInfoBanner
+#                         ;;Section4Slot-MeasuringAndLayoutToolsCategoryPage;Section4 Slot for Measuring And Layout Tools Landing Page;true;RefinementFacetComponent
 
-INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='MeasuringAndLayoutToolsCategoryPage'];contentSlot(uid,$contentCV)[unique=true]
-                                ;;Section1-MeasuringAndLayoutToolsCategoryPage;Section1;;Section1Slot-MeasuringAndLayoutToolsCategoryPage
-                                ;;Section2-MeasuringAndLayoutToolsCategoryPage;Section2;;Section2Slot-MeasuringAndLayoutToolsCategoryPage
-                                ;;Section3-MeasuringAndLayoutToolsCategoryPage;Section3;;Section3Slot-MeasuringAndLayoutToolsCategoryPage
-                                ;;Section4-MeasuringAndLayoutToolsCategoryPage;Section4;;Section4Slot-MeasuringAndLayoutToolsCategoryPage
+#INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='MeasuringAndLayoutToolsCategoryPage'];contentSlot(uid,$contentCV)[unique=true]
+#                                ;;Section1-MeasuringAndLayoutToolsCategoryPage;Section1;;Section1Slot-MeasuringAndLayoutToolsCategoryPage
+#                                ;;Section2-MeasuringAndLayoutToolsCategoryPage;Section2;;Section2Slot-MeasuringAndLayoutToolsCategoryPage
+#                                ;;Section3-MeasuringAndLayoutToolsCategoryPage;Section3;;Section3Slot-MeasuringAndLayoutToolsCategoryPage
+#                                ;;Section4-MeasuringAndLayoutToolsCategoryPage;Section4;;Section4Slot-MeasuringAndLayoutToolsCategoryPage
 
-INSERT_UPDATE CMSCategoryRestriction;$contentCV;uid[unique=true];name;categories(code, $productCV);pages(uid, $contentCV)[unique=true]
+#INSERT_UPDATE CMSCategoryRestriction;$contentCV;uid[unique=true];name;categories(code, $productCV);pages(uid, $contentCV)[unique=true]
 
 
 ######## Sanders  ########
 
-INSERT_UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;previewImage(code, $contentCV);approvalStatus(code)[default='approved']
-                          ;;SandersCategoryPage;Sanders Landing Page;ProductListPageTemplate;false;
+#INSERT_UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;previewImage(code, $contentCV);approvalStatus(code)[default='approved']
+#                          ;;SandersCategoryPage;Sanders Landing Page;ProductListPageTemplate;false;
 
-INSERT_UPDATE InformationBannerComponent;$contentCV[unique=true];uid[unique=true];name;contentAlignment(code);urlLink;headlineColor;contentColor;linkTextColor;
-                                        ;;SandersInfoBanner;Sanders Information Banner;left;/Open-Catalogue/Tools/Sanders/c/1596?q=:relevance;#FFFFFF;#FFFFFF;#000000;
+#INSERT_UPDATE InformationBannerComponent;$contentCV[unique=true];uid[unique=true];name;contentAlignment(code);urlLink;headlineColor;contentColor;linkTextColor;
+#                                        ;;SandersInfoBanner;Sanders Information Banner;left;/Open-Catalogue/Tools/Sanders/c/1596?q=:relevance;#FFFFFF;#FFFFFF;#000000;
 
-INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];name;urlLink
-                                   ;;BlackAndDeckerSandersBanner;Black And Decker Sanders Banner;/Open-Catalogue/Tools/Sanders/c/1596?q=%3AtopRated%3Abrand%3Abrand_980
-                                   ;;BoschSandersBanner;Bosch Sanders Banner;/Open-Catalogue/Tools/Sanders/c/1596?q=%3AtopRated%3Abrand%3Abrand_753
+#INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];name;urlLink
+#                                   ;;BlackAndDeckerSandersBanner;Black And Decker Sanders Banner;/Open-Catalogue/Tools/Sanders/c/1596?q=%3AtopRated%3Abrand%3Abrand_980
+#                                   ;;BoschSandersBanner;Bosch Sanders Banner;/Open-Catalogue/Tools/Sanders/c/1596?q=%3AtopRated%3Abrand%3Abrand_753
 
-INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV)
-                         ;;Section2Slot-SandersCategoryPage;Section2 Slot for Sanders Landing Page;true;SandersInfoBanner
-                         ;;Section5Slot-SandersCategoryPage;Section5 Slot for Sanders Landing Page;true;BlackAndDeckerSandersBanner,BoschSandersBanner
-
-
-INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='SandersCategoryPage'];contentSlot(uid,$contentCV)[unique=true]
-                                ;;Section2-SandersCategoryPage;Section2;;Section2Slot-SandersCategoryPage
-                                ;;Section5-SandersCategoryPage;Section5;;Section5Slot-SandersCategoryPage
+#INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV)
+#                         ;;Section2Slot-SandersCategoryPage;Section2 Slot for Sanders Landing Page;true;SandersInfoBanner
+#                         ;;Section5Slot-SandersCategoryPage;Section5 Slot for Sanders Landing Page;true;BlackAndDeckerSandersBanner,BoschSandersBanner
 
 
-INSERT_UPDATE CMSCategoryRestriction;$contentCV;uid[unique=true];name;categories(code, $productCV);pages(uid, $contentCV)[unique=true]
+#INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='SandersCategoryPage'];contentSlot(uid,$contentCV)[unique=true]
+#                                ;;Section2-SandersCategoryPage;Section2;;Section2Slot-SandersCategoryPage
+#                                ;;Section5-SandersCategoryPage;Section5;;Section5Slot-SandersCategoryPage
+
+
+#INSERT_UPDATE CMSCategoryRestriction;$contentCV;uid[unique=true];name;categories(code, $productCV);pages(uid, $contentCV)[unique=true]
 
 ######## Hand Tools ########
 
-INSERT_UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;previewImage(code, $contentCV);approvalStatus(code)[default='approved']
-                          ;;HandToolsCategoryPage;Hand Tools Landing Page;CategoryPageTemplate;false;
+#INSERT_UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;previewImage(code, $contentCV);approvalStatus(code)[default='approved']
+#                          ;;HandToolsCategoryPage;Hand Tools Landing Page;CategoryPageTemplate;false;
 
-INSERT_UPDATE InformationBannerComponent;$contentCV[unique=true];uid[unique=true];name;contentAlignment(code);urlLink;headlineColor;contentColor;linkTextColor;
-                                        ;;HandToolsInfoBanner;Hand Tools Information Banner;left;/Open-Catalogue/Tools/c/1355?q=:relevance;#0000000;#0000000;#FFFFFF;
-
-
-INSERT_UPDATE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];name;category(code, $productCV);
-
-INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV)
-                         ;;Section2Slot-HandToolsCategoryPage;Section2 Slot for Hand Tools Landing Page;true;HandToolsInfoBanner
-                         ;;Section4Slot-HandToolsCategoryPage;Section4 Slot for Hand Tools Landing Page;true;RefinementFacetComponent
+#INSERT_UPDATE InformationBannerComponent;$contentCV[unique=true];uid[unique=true];name;contentAlignment(code);urlLink;headlineColor;contentColor;linkTextColor;
+#                                        ;;HandToolsInfoBanner;Hand Tools Information Banner;left;/Open-Catalogue/Tools/c/1355?q=:relevance;#0000000;#0000000;#FFFFFF;
 
 
-INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='HandToolsCategoryPage'];contentSlot(uid,$contentCV)[unique=true]
-                                ;;Section2-HandToolsCategoryPage;Section2;;Section2Slot-HandToolsCategoryPage
-                                ;;Section3-HandToolsCategoryPage;Section3;;Section3Slot-HandToolsCategoryPage
-                                ;;Section4-HandToolsCategoryPage;Section4;;Section4Slot-HandToolsCategoryPage
+#INSERT_UPDATE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];name;category(code, $productCV);
 
-INSERT_UPDATE CMSCategoryRestriction;$contentCV;uid[unique=true];name;categories(code, $productCV);pages(uid, $contentCV)[unique=true]
+#INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV)
+#                         ;;Section2Slot-HandToolsCategoryPage;Section2 Slot for Hand Tools Landing Page;true;HandToolsInfoBanner
+#                         ;;Section4Slot-HandToolsCategoryPage;Section4 Slot for Hand Tools Landing Page;true;RefinementFacetComponent
+
+
+#INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='HandToolsCategoryPage'];contentSlot(uid,$contentCV)[unique=true]
+#                                ;;Section2-HandToolsCategoryPage;Section2;;Section2Slot-HandToolsCategoryPage
+#                                ;;Section3-HandToolsCategoryPage;Section3;;Section3Slot-HandToolsCategoryPage
+#                                ;;Section4-HandToolsCategoryPage;Section4;;Section4Slot-HandToolsCategoryPage
+
+#INSERT_UPDATE CMSCategoryRestriction;$contentCV;uid[unique=true];name;categories(code, $productCV);pages(uid, $contentCV)[unique=true]
 
 ######## Brand Landing Page ########
 
-INSERT_UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;previewImage(code, $contentCV);approvalStatus(code)[default='approved']
-                          ;;BrandCategoryPage;All Brands Landing Page;CategoryPageTemplate;false;
+#INSERT_UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;previewImage(code, $contentCV);approvalStatus(code)[default='approved']
+#                          ;;BrandCategoryPage;All Brands Landing Page;CategoryPageTemplate;false;
 
-INSERT_UPDATE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];name;category(code, $productCV);
+#INSERT_UPDATE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];name;category(code, $productCV);
 
-INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV)
-                         ;;Section4Slot-BrandCategoryPage;Section4 Slot for  All Brands Landing Page;true;RefinementFacetComponent
+#INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV)
+#                         ;;Section4Slot-BrandCategoryPage;Section4 Slot for  All Brands Landing Page;true;RefinementFacetComponent
 
-INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='BrandCategoryPage'];contentSlot(uid,$contentCV)[unique=true]
-                                ;;Section3-BrandCategoryPage;Section3;;Section3Slot-BrandCategoryPage
-                                ;;Section4-BrandCategoryPage;Section4;;Section4Slot-BrandCategoryPage
+#INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='BrandCategoryPage'];contentSlot(uid,$contentCV)[unique=true]
+#                                ;;Section3-BrandCategoryPage;Section3;;Section3Slot-BrandCategoryPage
+#                                ;;Section4-BrandCategoryPage;Section4;;Section4Slot-BrandCategoryPage
 
 
-INSERT_UPDATE CMSCategoryRestriction;$contentCV;uid[unique=true];name;categories(code, $productCV);pages(uid, $contentCV)[unique=true]
+#INSERT_UPDATE CMSCategoryRestriction;$contentCV;uid[unique=true];name;categories(code, $productCV);pages(uid, $contentCV)[unique=true]
 
 
 

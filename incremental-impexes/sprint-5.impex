@@ -2162,5 +2162,286 @@ $updateBackofficeIndexCronJob = update-backofficeIndex-CronJob;
 
 INSERT_UPDATE SolrIndexedProperty; name[unique = true]; $solrIndexedType; type(code); localized[default = false]; currency[default = false]; multiValue[default = false]; fieldValueProvider; valueProviderParameter;ftsQuery; ftsQueryBoost; ftsPhraseQuery; ftsPhraseQueryBoost; ftsWildcardQuery; $ftsWildcardQueryType; includeInResponse; useForSpellChecking; useForAutocomplete;
 ; name             ; ; text ; true ; ; ; springELValueProvider ;getName(#lang); true ; 1.0 ; true ; 5.0 ; true ; POSTFIX ; false ; true ; true ;
-														  
+
+##################################SAPP-659##########################################
+
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+
+$contentCatalog=amB2CContentCatalog
+$contentCatalogName=Animal Management B2C Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=amB2CMasterProductCatalog
+$productCatalogName=Animal Management B2C US Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$siteResource=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$medias=medias(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$jarResourceCms=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/cockpits/cmscockpit
+$media=media(code, $contentCV);
+$productResource=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/productCatalogs/$productCatalog
+$picture=media(code, $contentCV);
+$keycloakBaseURL=$config-keycloak.base.url
+$keycloakAuthURL=$config-keycloak.auth.url/$config-keycloak.realm
+$keycloakPasswordURL=$config-keycloak.password.url
+$websiteBaseURL=$config-website.base.url.https
+$lang=en
+
+#############################B2C###################################
+
+#CamerasAccessoriesAndSuppliesCategoryPage
+
+REMOVE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved'];previewImage(code, $contentCV)
+;;CamerasAccessoriesAndSuppliesCategoryPage;Cameras Accessories & Supplies Category Page;CategoryPageTemplate;false;;CameraAccessoriesPagePreview
+
+REMOVE CMSCategoryRestriction;$contentCV[unique=true];uid[unique=true];name;categories(code, $productCV);pages(uid, $contentCV)
+;;CamerasAccessoriesAndSupplies-LandingPageRestriction;Restriction for Cameras Accessories And Supplies;585;CamerasAccessoriesAndSuppliesCategoryPage
+
+REMOVE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];name;category(code, $productCV);&componentRef
+;;CameraFlashesFeatureComponent;CameraFlashesFeatureComponent;586;CameraFlashesFeatureComponent
+
+REMOVE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+;;BuyOnlineBanner;Buy Online Banner;BuyOnlineBanner
+
+REMOVE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;Section2Slot-CameraAccessories;Section2 Slot for Camera Accessories Page;true;BuyOnlineBanner
+
+REMOVE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='CamerasAccessoriesAndSuppliesCategoryPage'];contentSlot(uid,$contentCV)[unique=true]
+;;Section2-CameraAccessories;Section2;;Section2Slot-CameraAccessories
+
+REMOVE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved'];previewImage(code, $contentCV)
+;;CamerasAccessoriesAndSuppliesCategoryPage;Cameras Accessories & Supplies Category Page;ProductListPageTemplate;false;;CameraAccessoriesPagePreview
+
+#SLRCamerasCategoryPage
+
+REMOVE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved'];previewImage(code, $contentCV)
+;;SLRCamerasCategoryPage;SLR Cameras Category Page;CategoryPageTemplate;false;;;
+
+REMOVE CMSCategoryRestriction;$contentCV[unique=true];uid[unique=true];name;categories(code, $productCV);pages(uid, $contentCV)
+;;SLRCameras-LandingPageRestriction;Restriction for SLR Cameras;578;SLRCamerasCategoryPage
+
+REMOVE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+;;BuyOnlineBanner;Buy Online Banner;BuyOnlineBanner
+
+##### Section 1 ######
+REMOVE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;&componentRef
+;;AMB2CSLRSplashBannerComponent;Animal Management B2C SLR Camera Splash Banner Component;Open-Catalogue/Cameras/Digital-Cameras/c/575;AMB2CSLRSplashBannerComponent
+
+REMOVE ContentSlot;$contentCV[unique=true];uid[unique=true];active;cmsComponents(&componentRef)
+;;Section1Slot-SLRCameras;true;AMB2CSLRSplashBannerComponent
+
+##### Section 2 ######
+REMOVE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;&componentRef
+;;AMB2CCanon500DBannerComponent;Animal Management B2C Canon 500D Banner Component;Open-Catalogue/Cameras/DigitalCameras/Digital-SLR/EOS-500D-%2B-18-200mm-IS/p/2054947;AMB2CCanon500DBannerComponent
+;;AMB2CCanon450DBannerComponent;Animal Management B2C Canon 450D Banner Component;Open-Catalogue/Cameras/DigitalCameras/Digital-SLR/EOS450D-%2B-18-55-IS-Kit/p/1382080;AMB2CCanon450DBannerComponent
+;;AMB2CSonyA100HBannerComponent;Animal Management B2C Sony A100H Banner Component;Open-Catalogue/Cameras/DigitalCameras/Digital-SLR/DSLR-A100H/p/816780;AMB2CSonyA100HBannerComponent
+;;AMB2CSonyA330BannerComponent;Animal Management B2C Sony A330 Banner Component;Open-Catalogue/Cameras/DigitalCameras/Digital-SLR/DSLR-A330-%2BDT-18---55-mm/p/2934302;AMB2CSonyA330BannerComponent
+;;AMB2CSonyA200BannerComponent;Animal Management B2C Sony A200 Banner Component;Open-Catalogue/Cameras/DigitalCameras/Digital-SLR/Alpha-200/p/1391319;AMB2CSonyA200BannerComponent
+;;AMB2CSonyAlpha350BannerComponent;Animal Management B2C Sony Alpha 350 Banner Component;Open-Catalogue/Cameras/DigitalCameras/Digital-SLR/Alpha-350/p/1446509;AMB2CSonyAlpha350BannerComponent
+
+REMOVE ContentSlot;$contentCV[unique=true];uid[unique=true];active;cmsComponents(&componentRef)
+;;Section2Slot-SLRCameras;true;AMB2CSonyA100HBannerComponent,AMB2CCanon500DBannerComponent,AMB2CCanon450DBannerComponent,AMB2CSonyA330BannerComponent,AMB2CSonyA200BannerComponent,AMB2CSonyAlpha350BannerComponent
+
+##### Section 3 #####
+REMOVE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;&componentRef
+;;AMB2CSaveBigDLSRBannerComponent;Animal Management B2C Save Big DSLR Banner Component;/Open-Catalogue/Cameras/Camera-Accessories-%26-Supplies/c/585;AMB2CSaveBigDLSRBannerComponent
+
+REMOVE ContentSlot;$contentCV[unique=true];uid[unique=true];active;cmsComponents(&componentRef)
+;;Section3Slot-SLRCameras;true;AMB2CSaveBigDLSRBannerComponent,AMB2CHompageFreeDelBannerComponent
+
+REMOVE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='SLRCamerasCategoryPage'];contentSlot(uid,$contentCV)[unique=true]
+;;Section1-SLRCameras;Section1;;Section1Slot-SLRCameras
+;;Section2-SLRCameras;Section2;;Section2Slot-SLRCameras
+;;Section3-SLRCameras;Section3;;Section3Slot-SLRCameras
+
+############B2B######################
+
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$contentCatalog=securityB2BContentCatalog
+$contentCatalogName=Security B2B Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=securityB2BMasterProductCatalog
+$productCatalogName=Security B2B Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.gallagher.b2b.initialdata.constants.B2badvanceInitialDataConstants&/gallagherb2binitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.gallagher.b2b.initialdata.constants.B2badvanceInitialDataConstants&/gallagherb2binitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.gallagher.b2b.initialdata.constants.B2badvanceInitialDataConstants&/gallagherb2binitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=b2badvanceacceleratoraddon
+$medias=medias(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUidNZ=securityB2BNZ
+$websiteBaseURL=$config-website.base.url.https.b2b
+
+######  Power Drills Landing Page ######
+
+REMOVE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;previewImage(code, $contentCV);approvalStatus(code)[default='approved']
+                          ;;PowerDrillsCategoryPage;Power Drills Landing Page;CategoryPageTemplate;false;
+
+
+REMOVE InformationBannerComponent;$contentCV[unique=true];uid[unique=true];name;contentAlignment(code);urlLink;headlineColor;contentColor;linkTextColor;
+                                        ;;PowerDrillsInfoBanner;Power Drills Information Banner;left;/Open-Catalogue/Tools/Power-Drills/c/1360?q=:relevance;#FFFFFF;#FFFFFF;#FFFFFF;
+
+REMOVE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];name;category(code, $productCV);
+
+REMOVE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV)
+                         ;;Section1Slot-PowerDrillsCategoryPage;Section1 Slot for Power Drills Landing Page;true;
+                         ;;Section2Slot-PowerDrillsCategoryPage;Section2 Slot for Power Drills Landing Page;true;PowerDrillsInfoBanner
+                         ;;Section4Slot-PowerDrillsCategoryPage;Section4 Slot for Power Drills Landing Page;true;RefinementFacetComponent
+
+REMOVE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='PowerDrillsCategoryPage'];contentSlot(uid,$contentCV)[unique=true]
+                                ;;Section1-PowerDrillsCategoryPage;Section1;;Section1Slot-PowerDrillsCategoryPage
+                                ;;Section2-PowerDrillsCategoryPage;Section2;;Section2Slot-PowerDrillsCategoryPage
+                                ;;Section3-PowerDrillsCategoryPage;Section3;;Section3Slot-PowerDrillsCategoryPage
+                                ;;Section4-PowerDrillsCategoryPage;Section4;;Section4Slot-PowerDrillsCategoryPage
+
+
+REMOVE CMSCategoryRestriction;$contentCV;uid[unique=true];name;categories(code, $productCV);pages(uid, $contentCV)[unique=true]
+
+
+######## Angle Grinders Landing Page ########
+
+REMOVE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;previewImage(code, $contentCV);approvalStatus(code)[default='approved']
+                          ;;AngleGrindersCategoryPage;Angle Grinders Landing Page;CategoryPageTemplate;false;
+
+REMOVE InformationBannerComponent;$contentCV[unique=true];uid[unique=true];name;contentAlignment(code);urlLink;headlineColor;contentColor;linkTextColor;
+                                        ;;AngleGrindersInfoBanner;Angle Grinders Information Banner;left;/Open-Catalogue/Tools/Angle-Grinders/c/1595?q=:relevance;#FFFFFF;#FFFFFF;#FFFFFF;
+
+REMOVE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];name;category(code, $productCV);
+
+REMOVE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV)
+                         ;;Section1Slot-AngleGrindersCategoryPage;Section1 Slot for Angle Grinders Landing Page;true;
+                         ;;Section2Slot-AngleGrindersCategoryPage;Section2 Slot for Angle Grinders Landing Page;true;AngleGrindersInfoBanner
+                         ;;Section4Slot-AngleGrindersCategoryPage;Section4 Slot for Angle Grinders Landing Page;true;RefinementFacetComponent
+
+REMOVE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='AngleGrindersCategoryPage'];contentSlot(uid,$contentCV)[unique=true]
+                                ;;Section1-AngleGrindersCategoryPage;Section1;;Section1Slot-AngleGrindersCategoryPage
+                                ;;Section2-AngleGrindersCategoryPage;Section2;;Section2Slot-AngleGrindersCategoryPage
+                                ;;Section3-AngleGrindersCategoryPage;Section3;;Section3Slot-AngleGrindersCategoryPage
+                                ;;Section4-AngleGrindersCategoryPage;Section4;;Section4Slot-AngleGrindersCategoryPage
+
+REMOVE CMSCategoryRestriction;$contentCV;uid[unique=true];name;categories(code, $productCV);pages(uid, $contentCV)[unique=true]
+
+
+######## Screwdrivers Landing Page ########
+
+REMOVE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;previewImage(code, $contentCV);approvalStatus(code)[default='approved']
+                          ;;ScrewdriversCategoryPage;Screwdrivers Landing Page;CategoryPageTemplate;false;
+
+REMOVE InformationBannerComponent;$contentCV[unique=true];uid[unique=true];name;contentAlignment(code);urlLink;headlineColor;contentColor;linkTextColor;
+                                        ;;ScrewdriversInfoBanner;Screwdrivers Information Banner;right;/Open-Catalogue/Tools/Screwdrivers/c/1593?q=:relevance;#FFFFFF;#FFFFFF;#FFFFFF;
+
+REMOVE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];name;category(code, $productCV);
+
+REMOVE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV)
+                         ;;Section1Slot-ScrewdriversCategoryPage;Section1 Slot for Screwdrivers Landing Page;true;
+                         ;;Section2Slot-ScrewdriversCategoryPage;Section2 Slot for Screwdrivers Landing Page;true;ScrewdriversInfoBanner
+                         ;;Section4Slot-ScrewdriversCategoryPage;Section4 Slot for Screwdrivers Landing Page;true;RefinementFacetComponent
+
+REMOVE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='ScrewdriversCategoryPage'];contentSlot(uid,$contentCV)[unique=true]
+                                ;;Section1-ScrewdriversCategoryPage;Section1;;Section1Slot-ScrewdriversCategoryPage
+                                ;;Section2-ScrewdriversCategoryPage;Section2;;Section2Slot-ScrewdriversCategoryPage
+                                ;;Section3-ScrewdriversCategoryPage;Section3;;Section3Slot-ScrewdriversCategoryPage
+                                ;;Section4-ScrewdriversCategoryPage;Section4;;Section4Slot-ScrewdriversCategoryPage
+
+REMOVE CMSCategoryRestriction;$contentCV;uid[unique=true];name;categories(code, $productCV);pages(uid, $contentCV)[unique=true]
+
+
+######## Measuring And Layout Tools ########
+
+REMOVE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;previewImage(code, $contentCV);approvalStatus(code)[default='approved']
+                          ;;MeasuringAndLayoutToolsCategoryPage;Measuring & Layout Tools Landing Page;CategoryPageTemplate;false;
+
+REMOVE InformationBannerComponent;$contentCV[unique=true];uid[unique=true];name;contentAlignment(code);urlLink;headlineColor;contentColor;linkTextColor;
+                                        ;;MeasuringAndLayoutToolsInfoBanner;Measuring & Layout Tools Information Banner;left;/Open-Catalogue/Tools/Measuring-%26-Layout-Tools/c/1358?q=:relevance;#FFFFFF;#FFFFFF;#000000;
+
+REMOVE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];name;category(code, $productCV);
+
+REMOVE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV)
+                         ;;Section1Slot-MeasuringAndLayoutToolsCategoryPage;Section1 Slot for Measuring And Layout Tools Landing Page;true;
+                         ;;Section2Slot-MeasuringAndLayoutToolsCategoryPage;Section2 Slot for Measuring And Layout Tools Landing Page;true;MeasuringAndLayoutToolsInfoBanner
+                         ;;Section4Slot-MeasuringAndLayoutToolsCategoryPage;Section4 Slot for Measuring And Layout Tools Landing Page;true;RefinementFacetComponent
+
+REMOVE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='MeasuringAndLayoutToolsCategoryPage'];contentSlot(uid,$contentCV)[unique=true]
+                                ;;Section1-MeasuringAndLayoutToolsCategoryPage;Section1;;Section1Slot-MeasuringAndLayoutToolsCategoryPage
+                                ;;Section2-MeasuringAndLayoutToolsCategoryPage;Section2;;Section2Slot-MeasuringAndLayoutToolsCategoryPage
+                                ;;Section3-MeasuringAndLayoutToolsCategoryPage;Section3;;Section3Slot-MeasuringAndLayoutToolsCategoryPage
+                                ;;Section4-MeasuringAndLayoutToolsCategoryPage;Section4;;Section4Slot-MeasuringAndLayoutToolsCategoryPage
+
+REMOVE CMSCategoryRestriction;$contentCV;uid[unique=true];name;categories(code, $productCV);pages(uid, $contentCV)[unique=true]
+
+
+######## Sanders  ########
+
+REMOVE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;previewImage(code, $contentCV);approvalStatus(code)[default='approved']
+                          ;;SandersCategoryPage;Sanders Landing Page;ProductListPageTemplate;false;
+
+REMOVE InformationBannerComponent;$contentCV[unique=true];uid[unique=true];name;contentAlignment(code);urlLink;headlineColor;contentColor;linkTextColor;
+                                        ;;SandersInfoBanner;Sanders Information Banner;left;/Open-Catalogue/Tools/Sanders/c/1596?q=:relevance;#FFFFFF;#FFFFFF;#000000;
+
+REMOVE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];name;urlLink
+                                   ;;BlackAndDeckerSandersBanner;Black And Decker Sanders Banner;/Open-Catalogue/Tools/Sanders/c/1596?q=%3AtopRated%3Abrand%3Abrand_980
+                                   ;;BoschSandersBanner;Bosch Sanders Banner;/Open-Catalogue/Tools/Sanders/c/1596?q=%3AtopRated%3Abrand%3Abrand_753
+
+REMOVE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV)
+                         ;;Section2Slot-SandersCategoryPage;Section2 Slot for Sanders Landing Page;true;SandersInfoBanner
+                         ;;Section5Slot-SandersCategoryPage;Section5 Slot for Sanders Landing Page;true;BlackAndDeckerSandersBanner,BoschSandersBanner
+
+
+REMOVE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='SandersCategoryPage'];contentSlot(uid,$contentCV)[unique=true]
+                                ;;Section2-SandersCategoryPage;Section2;;Section2Slot-SandersCategoryPage
+                                ;;Section5-SandersCategoryPage;Section5;;Section5Slot-SandersCategoryPage
+
+
+REMOVE CMSCategoryRestriction;$contentCV;uid[unique=true];name;categories(code, $productCV);pages(uid, $contentCV)[unique=true]
+
+######## Hand Tools ########
+
+REMOVE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;previewImage(code, $contentCV);approvalStatus(code)[default='approved']
+                          ;;HandToolsCategoryPage;Hand Tools Landing Page;CategoryPageTemplate;false;
+
+REMOVE InformationBannerComponent;$contentCV[unique=true];uid[unique=true];name;contentAlignment(code);urlLink;headlineColor;contentColor;linkTextColor;
+                                        ;;HandToolsInfoBanner;Hand Tools Information Banner;left;/Open-Catalogue/Tools/c/1355?q=:relevance;#0000000;#0000000;#FFFFFF;
+
+
+REMOVE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];name;category(code, $productCV);
+
+REMOVE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV)
+                         ;;Section2Slot-HandToolsCategoryPage;Section2 Slot for Hand Tools Landing Page;true;HandToolsInfoBanner
+                         ;;Section4Slot-HandToolsCategoryPage;Section4 Slot for Hand Tools Landing Page;true;RefinementFacetComponent
+
+
+REMOVE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='HandToolsCategoryPage'];contentSlot(uid,$contentCV)[unique=true]
+                                ;;Section2-HandToolsCategoryPage;Section2;;Section2Slot-HandToolsCategoryPage
+                                ;;Section3-HandToolsCategoryPage;Section3;;Section3Slot-HandToolsCategoryPage
+                                ;;Section4-HandToolsCategoryPage;Section4;;Section4Slot-HandToolsCategoryPage
+
+REMOVE CMSCategoryRestriction;$contentCV;uid[unique=true];name;categories(code, $productCV);pages(uid, $contentCV)[unique=true]
+
+######## Brand Landing Page ########
+
+REMOVE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;previewImage(code, $contentCV);approvalStatus(code)[default='approved']
+                          ;;BrandCategoryPage;All Brands Landing Page;CategoryPageTemplate;false;
+
+REMOVE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];name;category(code, $productCV);
+
+REMOVE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(uid,$contentCV)
+                         ;;Section4Slot-BrandCategoryPage;Section4 Slot for  All Brands Landing Page;true;RefinementFacetComponent
+
+REMOVE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='BrandCategoryPage'];contentSlot(uid,$contentCV)[unique=true]
+                                ;;Section3-BrandCategoryPage;Section3;;Section3Slot-BrandCategoryPage
+                                ;;Section4-BrandCategoryPage;Section4;;Section4Slot-BrandCategoryPage
+
+
+REMOVE CMSCategoryRestriction;$contentCV;uid[unique=true];name;categories(code, $productCV);pages(uid, $contentCV)[unique=true]
+
+
+####################################################################################														  
 ###############################################################################################################################################
