@@ -2445,3 +2445,308 @@ REMOVE CMSCategoryRestriction;$contentCV;uid[unique=true];name;categories(code, 
 
 ####################################################################################														  
 ###############################################################################################################################################
+
+
+
+
+
+
+
+
+
+################################################### REMOVE IMPEXES FOR B2C ##########################
+
+
+
+
+
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+
+$contentCatalog=amB2CContentCatalog
+$contentCatalogName=Animal Management B2C Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=amB2CMasterProductCatalog
+$productCatalogName=Animal Management B2C US Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$siteResource=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$medias=medias(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$jarResourceCms=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/cockpits/cmscockpit
+$media=media(code, $contentCV);
+$productResource=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/productCatalogs/$productCatalog
+$picture=media(code, $contentCV);
+$keycloakBaseURL=$config-keycloak.base.url
+$keycloakAuthURL=$config-keycloak.auth.url/$config-keycloak.realm
+$keycloakPasswordURL=$config-keycloak.password.url
+$websiteBaseURL=$config-website.base.url.https
+
+
+
+
+
+
+
+
+
+
+REMOVE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;title[lang=en];&nodeRef
+;PermanentfencingWireandCable_nav1;;Power Navigation PermanentfencingWireandCable_nav;"Permanent Fencing";PermanentfencingWireandCable_nav1
+
+
+
+REMOVE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
+;PermanentfencingWireandCable_navEntry01;;Power Navigation PermanentfencingWireandCable_nav Entry01;PermanentfencingWireandCable_nav1;PermanentfencingWireandCable_link01
+;PermanentfencingWireandCable_navEntry11;;Power Navigation PermanentfencingWireandCable_nav Entry11;PermanentfencingWireandCable_nav1;PermanentfencingWireandCable_link11
+;PermanentfencingWireandCable_navEntry22;;Power Navigation PermanentfencingWireandCable_nav Entry22;PermanentfencingWireandCable_nav1;PermanentfencingWireandCable_link22
+;PermanentfencingWireandCable_navEntry33;;Power Navigation PermanentfencingWireandCable_nav Entry33;PermanentfencingWireandCable_nav1;PermanentfencingWireandCable_link33
+;PermanentfencingWireandCable_navEntry44;;Power Navigation PermanentfencingWireandCable_nav Entry44;PermanentfencingWireandCable_nav1;PermanentfencingWireandCable_link44
+;PermanentfencingWireandCable_navEntry55;;Power Navigation PermanentfencingWireandCable_nav Entry55;PermanentfencingWireandCable_nav1;PermanentfencingWireandCable_link55
+
+
+REMOVE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;PermanentfencingWireandCable_link01;Electric fencing PermanentfencingWireandCable_link01;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
+;;PermanentfencingWireandCable_link11;Electric fencing PermanentfencingWireandCable_link11;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
+;;PermanentfencingWireandCable_link22;Electric fencing PermanentfencingWireandCable_link22;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
+;;PermanentfencingWireandCable_link33;Electric fencing PermanentfencingWireandCable_link33;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
+;;PermanentfencingWireandCable_link44;Electric fencing PermanentfencingWireandCable_link44;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
+;;PermanentfencingWireandCable_link55;Electric fencing PermanentfencingWireandCable_link55;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
+
+
+REMOVE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
+;ElectricfencingPower_Nav3;;Power Navigation Node Menu;PermanentfencingWireandCable_nav1;"Power3";ElectricfencingPower_Nav3
+
+
+REMOVE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
+;ElectricfencingPower_NavEntry3;;Power Navigation Node Entry;ElectricfencingPower_Nav3;PowerEnergisers3
+
+
+REMOVE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;PowerEnergisers3;Electric fencing Energisers Link4;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
+
+
+REMOVE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;title[lang=en];&nodeRef
+;PowerEnergisers_nav1;;Power Navigation PowerEnergisers_nav1;"Power";PowerEnergisers_nav1
+
+
+
+REMOVE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
+;PowerEnergisers_navEntry01;;Power Navigation PowerEnergisers_nav Entry01;PowerEnergisers_nav1;PowerEnergisers_link01
+;PowerEnergisers_navEntry112;;Power Navigation PowerEnergisers_nav Entry112;PowerEnergisers_nav1;PowerEnergisers_link112
+;PowerEnergisers_navEntry22;;Power Navigation PowerEnergisers_nav Entry22;PowerEnergisers_nav1;PowerEnergisers_link22
+
+REMOVE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;PowerEnergisers_link01;Electric fencing PowerEnergisers_link01;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
+;;PowerEnergisers_link112;Electric fencing PowerEnergisers_link112;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
+;;PowerEnergisers_link22;Electric fencing PowerEnergisers_link22;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
+
+
+
+
+REMOVE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
+;ElectricfencingPower_Nav1;;Power Navigation Node Menu;PowerEnergisers_nav1;"Power";ElectricfencingPower_Nav1
+
+REMOVE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
+;ElectricfencingPower_NavEntry1;;Power Navigation Node Entry;ElectricfencingPower_Nav1;PowerEnergisers1
+
+
+
+
+REMOVE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;PowerEnergisers1;Electric fencing Energisers Link2;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
+
+
+REMOVE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;title[lang=en];&nodeRef
+;PortablefencingTapesWiresBraids_nav1;;Power Navigation PortablefencingTapesWiresBraids_nav1;"Portable Fencing";PortablefencingTapesWiresBraids_nav1
+
+
+
+
+REMOVE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
+;PortablefencingTapesWiresBraids_navEntry01;;Power Navigation PortablefencingTapesWiresBraids_nav Entry01;PortablefencingTapesWiresBraids_nav1;PortablefencingTapesWiresBraids_nav_link01
+;PortablefencingTapesWiresBraids_navEntry11;;Power Navigation PortablefencingTapesWiresBraids_nav Entry11;PortablefencingTapesWiresBraids_nav1;PortablefencingTapesWiresBraids_nav_link11
+;PortablefencingTapesWiresBraids_navEntry22;;Power Navigation PortablefencingTapesWiresBraids_nav Entry22;PortablefencingTapesWiresBraids_nav1;PortablefencingTapesWiresBraids_nav_link22
+
+
+REMOVE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;PortablefencingTapesWiresBraids_nav_link01;Electric fencing PortablefencingTapesWiresBraids_nav_link01;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
+;;PortablefencingTapesWiresBraids_nav_link11;Electric fencing PortablefencingTapesWiresBraids_nav_link11;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
+;;PortablefencingTapesWiresBraids_nav_link22;Electric fencing PortablefencingTapesWiresBraids_nav_link22;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
+
+
+
+REMOVE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
+;ElectricfencingPower_Nav2;;Power Navigation Node Menu;PortablefencingTapesWiresBraids_nav1;"Power2";ElectricfencingPower_Nav2
+
+
+REMOVE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
+;ElectricfencingPower_NavEntry2;;Power Navigation Node Entry;ElectricfencingPower_Nav2;PowerEnergisers2
+
+
+REMOVE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;PowerEnergisers2;Electric fencing Energisers Link3;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
+
+
+
+REMOVE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;title[lang=en];&nodeRef
+;PortablefencingTapesWiresBraids_nav1;;Power Navigation PortablefencingTapesWiresBraids_nav1;"Portable Fencing";PortablefencingTapesWiresBraids_nav1
+
+
+
+
+REMOVE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
+;PortablefencingTapesWiresBraids_navEntry01;;Power Navigation PortablefencingTapesWiresBraids_nav Entry01;PortablefencingTapesWiresBraids_nav1;PortablefencingTapesWiresBraids_nav_link01
+;PortablefencingTapesWiresBraids_navEntry11;;Power Navigation PortablefencingTapesWiresBraids_nav Entry11;PortablefencingTapesWiresBraids_nav1;PortablefencingTapesWiresBraids_nav_link11
+;PortablefencingTapesWiresBraids_navEntry22;;Power Navigation PortablefencingTapesWiresBraids_nav Entry22;PortablefencingTapesWiresBraids_nav1;PortablefencingTapesWiresBraids_nav_link22
+
+
+REMOVE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;PortablefencingTapesWiresBraids_nav_link01;Electric fencing PortablefencingTapesWiresBraids_nav_link01;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
+;;PortablefencingTapesWiresBraids_nav_link11;Electric fencing PortablefencingTapesWiresBraids_nav_link11;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
+;;PortablefencingTapesWiresBraids_nav_link22;Electric fencing PortablefencingTapesWiresBraids_nav_link22;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
+
+
+
+REMOVE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
+;ElectricfencingPower_Nav2;;Power Navigation Node Menu;PortablefencingTapesWiresBraids_nav1;"Power2";ElectricfencingPower_Nav2
+
+
+REMOVE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
+;ElectricfencingPower_NavEntry2;;Power Navigation Node Entry;ElectricfencingPower_Nav2;PowerEnergisers2
+
+
+REMOVE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;PowerEnergisers2;Electric fencing Energisers Link3;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
+
+
+
+
+REMOVE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;title[lang=en];&nodeRef
+;PowerEnergisers_nav3;;Power Navigation PowerEnergisers_nav3;"Power";PowerEnergisers_nav3
+
+
+
+
+REMOVE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
+;PowerEnergisers_navEntry0111;;Power Navigation PowerEnergisers_nav Entry0111;PowerEnergisers_nav3;PowerEnergisers_link0111
+;PowerEnergisers_navEntry1111;;Power Navigation PowerEnergisers_nav Entry1111;PowerEnergisers_nav3;PowerEnergisers_link1111
+;PowerEnergisers_navEntry2111;;Power Navigation PowerEnergisers_nav Entry2211;PowerEnergisers_nav3;PowerEnergisers_link2211
+
+
+REMOVE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;PowerEnergisers_link0111;"Energisers"
+;;PowerEnergisers_link1111;"Remotes and Fence Testers"
+;;PowerEnergisers_link2211;"Power system accessories"
+
+REMOVE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;children(uid,$contentCV)[mode=replace];title[lang=en];&nodeRef
+;ElectricfencingPower_Nav5;;Power Navigation Node Menu;PowerEnergisers_nav3;"Power5";ElectricfencingPower_Nav5
+
+
+
+REMOVE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV)
+;ElectricfencingPower_NavEntry5;;Power Navigation Node Entry;ElectricfencingPower_Nav5;PowerEnergisers5
+
+
+
+REMOVE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;category(code, $productCV);target(code)[default='sameWindow'];;
+;;PowerEnergisers5;Electric fencing Energisers Link6;/Animal-Management/Electric-Fencing/c/electric-fencing;;;;
+
+
+
+								
+REMOVE CMSNavigationNode ; uid[unique=true]                     ; $contentCV[unique=true] ; name                                                  ; title[lang=en]      ; &nodeRef                             
+                                ; PowerEnergisers_nav3                  ;                         ; Power Navigation PowerEnergisers_nav                  ; "Power"             ; PowerEnergisers_nav3  
+
+REMOVE CMSNavigationEntry ; uid[unique=true]          ; $contentCV[unique=true] ; name                                        ; navigationNode(&nodeRef) ; item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV) 
+                                 ; PowerEnergisers_navEntry31  ;                         ; Power Navigation PowerEnergisers_nav Entry  ; PowerEnergisers_nav3      ; PowerEnergisers_link31                                   			
+                                 ; PowerEnergisers_navEntry32 ;                         ; Power Navigation PowerEnergisers_nav Entry1 ; PowerEnergisers_nav3      ; PowerEnergisers_link32                                  
+                                 ; PowerEnergisers_navEntry33 ;                         ; Power Navigation PowerEnergisers_nav Entry2 ; PowerEnergisers_nav3      ; PowerEnergisers_link33                                  
+
+
+REMOVE CMSLinkComponent ; $contentCV[unique=true] ; uid[unique=true]      ; name                                   ; url                                                    ; category(code, $productCV) ; target(code)[default='sameWindow'] ;  ;  
+                               ;                         ; PowerEnergisers_link31  ; Electric fencing PowerEnergisers_link  ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ;  
+                               ;                         ; PowerEnergisers_link32 ; Electric fencing PowerEnergisers_link1 ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ;  
+                               ;                         ; PowerEnergisers_link33 ; Electric fencing PowerEnergisers_link2 ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ;  
+
+
+
+
+REMOVE CMSNavigationNode ; uid[unique=true]                    ; $contentCV[unique=true] ; name                                   ; children(uid,$contentCV)[mode=replace] ; title[lang=en]      ; &nodeRef                            
+                                ; ElectricfencingPower_Nav3333           ;                         ; Power Navigation Node Menu             ; PowerEnergisers_nav3                    ; "Power"             ; ElectricfencingPower_Nav3333
+
+
+
+REMOVE CMSNavigationNode ; uid[unique=true]             ; name                          ; $contentCV[unique=true] ; children(uid,$contentCV)[mode=replace]                                                          ; title[lang=en]              ; &nodeRef                    
+                                ; Electricfencing_Nav3         ; Electric fencing Nav          ;                         ; ElectricfencingPower_Nav3333                                                                        ; "Electric Fencing"          ; Electricfencing_Nav3         
+
+
+
+
+REMOVE CMSNavigationEntry ; uid[unique=true]                 ; name                                ; $contentCV[unique=true] ; navigationNode(&nodeRef)    ; item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV) 
+                                 ; Electricfencing_NavEntry3         ; Electric fencing Nav Entry          ;                         ; Electricfencing_Nav3         ; AllElectricFencingLink3                                 								
+
+
+
+
+
+REMOVE CMSLinkComponent ; $contentCV[unique=true] ; uid[unique=true]               ; name                              ; url                     ; category(code, $productCV) ; target(code)[default='sameWindow'] ;  ;  
+                               ;                         ; AllElectricFencingLink3        ; All Electric Fencing Link         ; https://www.google.com/ ;                            ;                                    ;                                  
+
+
+
+#########################################End
+
+
+######################################Localisation REMOVED Impexes##############3
+
+
+$contentCatalog=amB2CContentCatalog
+$contentCatalogName=Animal Management B2C Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=amB2CMasterProductCatalog
+$productCatalogName=Animal Management B2C US Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV)
+$medias=medias(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV)[lang=$lang];
+$siteResource=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/productCatalogs/$productCatalog
+# Language
+$lang=en
+
+
+
+
+REMOVE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;PermanentfencingWireandCable_link01;"Wire and Cable"
+;;PermanentfencingWireandCable_link11;"Wire Strainers"
+;;PermanentfencingWireandCable_link22;"Insulators"
+;;PermanentfencingWireandCable_link33;"Offsets"
+;;PermanentfencingWireandCable_link44;"Gates"
+;;PermanentfencingWireandCable_link55;"Fence tools and accessories"
+;;PowerEnergisers3;"Energisers3"
+;;PowerEnergisers1;"Energisers1"
+;;PowerEnergisers2;"Energisers2"
+;;PowerEnergisers5;"Energisers5"
+;;PowerEnergisers_link31;"Energisers"
+;;PowerEnergisers_link32;"Remotes and Fence Testers"
+;;PowerEnergisers_link33;"Power system accessories"
+
+;                         ;AllElectricFencingLink3;"All Electric Fencing"
+
+
+
+REMOVE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;PortablefencingTapesWiresBraids_nav_link01;"Tapes, Wires, Braids"
+;;PortablefencingTapesWiresBraids_nav_link11;"Reels and Accessories"
+;;PortablefencingTapesWiresBraids_nav_link22;"Posts - Pigtails and Tread-ins"
+
+
+REMOVE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+;;PowerEnergisers_link01;"Energisers"
+;;PowerEnergisers_link112;"Remotes and Fence Testers"
+;;PowerEnergisers_link22;"Power system accessories"
+
+
+#############End

@@ -67,52 +67,52 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;pa
 
 
 
-## level 4. children of NavNode (the order of children is the same as the display order on the site) ## 
-INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef);
-## children of HandToolsNavNode 
-;HandToolsLinksNavNode;;Hand Tools Category Links;HandToolsLinksNavNode;HandSawsCategoryNavNode,JigsawsCategoryNavNode,NutDriversCategoryNavNode,RotaryHammersCategoryNavNode,StrippingToolsCategoryNavNode,PunchesCategoryNavNode
-## children of FootwearLinksNavNode ##
-;FootwearLinksNavNode;;Footwear Category Links;FootwearLinksNavNode;FootwearMensCategoryNavNode,FootwearWomensCategoryNavNode
+### level 4. children of NavNode (the order of children is the same as the display order on the site) ## 
+#INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef);
+### children of HandToolsNavNode 
+#;HandToolsLinksNavNode;;Hand Tools Category Links;HandToolsLinksNavNode;HandSawsCategoryNavNode,JigsawsCategoryNavNode,NutDriversCategoryNavNode,RotaryHammersCategoryNavNode,StrippingToolsCategoryNavNode,PunchesCategoryNavNode
+### children of FootwearLinksNavNode ##
+#;FootwearLinksNavNode;;Footwear Category Links;FootwearLinksNavNode;FootwearMensCategoryNavNode,FootwearWomensCategoryNavNode
 
-## level 5. children of above (level 4) nodes ##
-INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef
-## Hand Tools -- hand tools
-;HandSawsCategoryNavNode;;Hand Saws Category Link;HandSawsCategoryNavNode
-;JigsawsCategoryNavNode;;Jigsaws Category Link;JigsawsCategoryNavNode
-;NutDriversCategoryNavNode;;Nut Drivers Category Link;NutDriversCategoryNavNode
-;RotaryHammersCategoryNavNode;;Rotary Hammers Category Link;RotaryHammersCategoryNavNode
-;StrippingToolsCategoryNavNode;;Stripping Tools Category Link;StrippingToolsCategoryNavNode
-;PunchesCategoryNavNode;;Punches Category Link;PunchesCategoryNavNode
-## Safety -- footwear
-;FootwearMensCategoryNavNode;;Footwear Mens Category Link;FootwearMensCategoryNavNode
-;FootwearWomensCategoryNavNode;;Footwear Womens Category Link;FootwearWomensCategoryNavNode
-
+### level 5. children of above (level 4) nodes ##
+#INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef
+### Hand Tools -- hand tools
+#;HandSawsCategoryNavNode;;Hand Saws Category Link;HandSawsCategoryNavNode
+#;JigsawsCategoryNavNode;;Jigsaws Category Link;JigsawsCategoryNavNode
+#;NutDriversCategoryNavNode;;Nut Drivers Category Link;NutDriversCategoryNavNode
+#;RotaryHammersCategoryNavNode;;Rotary Hammers Category Link;RotaryHammersCategoryNavNode
+#;StrippingToolsCategoryNavNode;;Stripping Tools Category Link;StrippingToolsCategoryNavNode
+#;PunchesCategoryNavNode;;Punches Category Link;PunchesCategoryNavNode
+### Safety -- footwear
+#;FootwearMensCategoryNavNode;;Footwear Mens Category Link;FootwearMensCategoryNavNode
+#;FootwearWomensCategoryNavNode;;Footwear Womens Category Link;FootwearWomensCategoryNavNode
+#
 ## entries of the above navigation nodes ##
-INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
-## Hand Tools -- hand tools
-;HandSawsCategoryNavNodeEntry;;Hand Saws Category Navigation Node Entry;HandSawsCategoryNavNode;HandSawsCategoryLink;
-;JigsawsCategoryNavNodeEntry;;Jigsaws Category Navigation Node Entry;JigsawsCategoryNavNode;JigsawsCategoryLink;
-;NutDriversCategoryNavNodeEntry;;Nut Drivers Category Navigation Node Entry;NutDriversCategoryNavNode;NutDriversCategoryLink;
-;RotaryHammersCategoryNavNodeEntry;;Rotary Hammers Category Navigation Node Entry;RotaryHammersCategoryNavNode;RotaryHammersCategoryLink;
-;StrippingToolsCategoryNavNodeEntry;;Stripping Tools Category Navigation Node Entry;StrippingToolsCategoryNavNode;StrippingToolsCategoryLink;
-;PunchesCategoryNavNodeEntry;;Punches Category Navigation Node Entry;PunchesCategoryNavNode;PunchesCategoryLink;
-## Safety -- footwear
-;FootwearMensCategoryNavNodeEntry;;Footwear Mens Category Navigation Node Entry;FootwearMensCategoryNavNode;FootwearMensCategoryLink;
-;FootwearWomensCategoryNavNodeEntry;;Footwear Womens Category Navigation Node Entry;FootwearWomensCategoryNavNode;FootwearWomensCategoryLink;
+#INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+### Hand Tools -- hand tools
+#;HandSawsCategoryNavNodeEntry;;Hand Saws Category Navigation Node Entry;HandSawsCategoryNavNode;HandSawsCategoryLink;
+#;JigsawsCategoryNavNodeEntry;;Jigsaws Category Navigation Node Entry;JigsawsCategoryNavNode;JigsawsCategoryLink;
+#;NutDriversCategoryNavNodeEntry;;Nut Drivers Category Navigation Node Entry;NutDriversCategoryNavNode;NutDriversCategoryLink;
+#;RotaryHammersCategoryNavNodeEntry;;Rotary Hammers Category Navigation Node Entry;RotaryHammersCategoryNavNode;RotaryHammersCategoryLink;
+#;StrippingToolsCategoryNavNodeEntry;;Stripping Tools Category Navigation Node Entry;StrippingToolsCategoryNavNode;StrippingToolsCategoryLink;
+#;PunchesCategoryNavNodeEntry;;Punches Category Navigation Node Entry;PunchesCategoryNavNode;PunchesCategoryLink;
+### Safety -- footwear
+#;FootwearMensCategoryNavNodeEntry;;Footwear Mens Category Navigation Node Entry;FootwearMensCategoryNavNode;FootwearMensCategoryLink;
+#;FootwearWomensCategoryNavNodeEntry;;Footwear Womens Category Navigation Node Entry;FootwearWomensCategoryNavNode;FootwearWomensCategoryLink;
 
 
 ## links of the above navigation nodes ##
-INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow']
-## Hand Tools -- hand tools
-;;HandSawsCategoryLink;Hand Saws Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Hand-Saws/c/1354;HandSawsCategoryLink;HandSawsCategoryLink
-;;JigsawsCategoryLink;Jigsaws Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Jigsaws/c/1710;JigsawsCategoryLink;JigsawsCategoryLink
-;;NutDriversCategoryLink;Nut Drivers Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Nut-Drivers/c/1641;NutDriversCategoryLink;NutDriversCategoryLink
-;;RotaryHammersCategoryLink;Rotary Hammers Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Rotary-Hammers/c/1711;RotaryHammersCategoryLink;RotaryHammersCategoryLink
-;;StrippingToolsCategoryLink;Stripping Tools Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Stripping-Tools/c/1598;StrippingToolsCategoryLink;StrippingToolsCategoryLink
-;;PunchesCategoryLink;Punches Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Punches-Or-Nail-Sets/c/1597;PunchesCategoryLink;PunchesCategoryLink
-## Safety -- footwear
-;;FootwearMensCategoryLink;Footwear Men's Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Safety/Footwear/Mens/c/1805;FootwearMensCategoryLink;FootwearMensCategoryLink
-;;FootwearWomensCategoryLink;Footwear Women's Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Safety/Footwear/Womens/c/1806;FootwearWomensCategoryLink;FootwearWomensCategoryLink
+#INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow']
+### Hand Tools -- hand tools
+#;;HandSawsCategoryLink;Hand Saws Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Hand-Saws/c/1354;HandSawsCategoryLink;HandSawsCategoryLink
+#;;JigsawsCategoryLink;Jigsaws Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Jigsaws/c/1710;JigsawsCategoryLink;JigsawsCategoryLink
+#;;NutDriversCategoryLink;Nut Drivers Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Nut-Drivers/c/1641;NutDriversCategoryLink;NutDriversCategoryLink
+#;;RotaryHammersCategoryLink;Rotary Hammers Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Rotary-Hammers/c/1711;RotaryHammersCategoryLink;RotaryHammersCategoryLink
+#;;StrippingToolsCategoryLink;Stripping Tools Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Stripping-Tools/c/1598;StrippingToolsCategoryLink;StrippingToolsCategoryLink
+#;;PunchesCategoryLink;Punches Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Punches-Or-Nail-Sets/c/1597;PunchesCategoryLink;PunchesCategoryLink
+### Safety -- footwear
+#;;FootwearMensCategoryLink;Footwear Men's Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Safety/Footwear/Mens/c/1805;FootwearMensCategoryLink;FootwearMensCategoryLink
+#;;FootwearWomensCategoryLink;Footwear Women's Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Safety/Footwear/Womens/c/1806;FootwearWomensCategoryLink;FootwearWomensCategoryLink
 
 
 
@@ -260,52 +260,52 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;pa
 ;FooterNavNode;;Footer Pages;B2badvanceNavNode;;FooterNavNode
 
 
-##----- leve 5. children of HandToolsNavNode -----##
-INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
-;HandToolsLinksNavNode;;Hand Tools Category Links;HandToolsNavNode;;HandToolsLinksNavNode
-
-##------ level 6. children of HandToolsLinksNavNode ------##
-INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
-;HandSawsCategoryNavNode;;Hand Saws Category;HandToolsLinksNavNode;;HandSawsCategoryNavNode
-;JigsawsCategoryNavNode;;Jigsaws Category;HandToolsLinksNavNode;;JigsawsCategoryNavNode
-;NutDriversCategoryNavNode;;Nut Drivers Category;HandToolsLinksNavNode;;NutDriversCategoryNavNode
-;RotaryHammersCategoryNavNode;;Rotary Hammers Category;HandToolsLinksNavNode;;RotaryHammersCategoryNavNode
-;StrippingToolsCategoryNavNode;;Stripping Tools Category;HandToolsLinksNavNode;;StrippingToolsCategoryNavNode
-;PunchesCategoryNavNode;;Punches Category;HandToolsLinksNavNode;;PunchesCategoryNavNode
-## entries of the above navigation nodes ##
-INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
-;HandSawsCategoryNavNodeEntry;;Hand Saws Category Navigation Node Entry;HandSawsCategoryNavNode;HandSawsCategoryLink;
-;JigsawsCategoryNavNodeEntry;;Jigsaws Category Navigation Node Entry;JigsawsCategoryNavNode;JigsawsCategoryLink;
-;NutDriversCategoryNavNodeEntry;;Nut Drivers Category Navigation Node Entry;NutDriversCategoryNavNode;NutDriversCategoryLink;
-;RotaryHammersCategoryNavNodeEntry;;Rotary Hammers Category Navigation Node Entry;RotaryHammersCategoryNavNode;RotaryHammersCategoryLink;
-;StrippingToolsCategoryNavNodeEntry;;Stripping Tools Category Navigation Node Entry;StrippingToolsCategoryNavNode;StrippingToolsCategoryLink;
-;PunchesCategoryNavNodeEntry;;Punches Category Navigation Node Entry;PunchesCategoryNavNode;PunchesCategoryLink;
-## links of the above navigation nodes ##
-INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow']
-;;HandSawsCategoryLink;Hand Saws Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Hand-Saws/c/1354;HandSawsCategoryLink;HandSawsCategoryLink
-;;JigsawsCategoryLink;Jigsaws Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Jigsaws/c/1710;JigsawsCategoryLink;JigsawsCategoryLink
-;;NutDriversCategoryLink;Nut Drivers Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Nut-Drivers/c/1641;NutDriversCategoryLink;NutDriversCategoryLink
-;;RotaryHammersCategoryLink;Rotary Hammers Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Rotary-Hammers/c/1711;RotaryHammersCategoryLink;RotaryHammersCategoryLink
-;;StrippingToolsCategoryLink;Stripping Tools Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Stripping-Tools/c/1598;StrippingToolsCategoryLink;StrippingToolsCategoryLink
-;;PunchesCategoryLink;Punches Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Punches-Or-Nail-Sets/c/1597;PunchesCategoryLink;PunchesCategoryLink
-
-##----- level 5. children of SafetyNavNode -----##
-INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
-;FootwearLinksNavNode;;Footwear Category Links;SafetyNavNode;;FootwearLinksNavNode
-
-##------ level 6. children of FootwearLinksNavNode ------##
-INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
-;FootwearMensCategoryNavNode;;Footwear Mens Category;FootwearLinksNavNode;;FootwearMensCategoryNavNode
-;FootwearWomensCategoryNavNode;;Footwear Womens Category;FootwearLinksNavNode;;FootwearWomensCategoryNavNode
-## entries of the above navigation nodes ##
-INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
-;FootwearMensCategoryNavNodeEntry;;Footwear Mens Category Navigation Node Entry;FootwearMensCategoryNavNode;FootwearMensCategoryLink;
-;FootwearWomensCategoryNavNodeEntry;;Footwear Womens Category Navigation Node Entry;FootwearWomensCategoryNavNode;FootwearWomensCategoryLink;
-## links of the above navigation nodes ##
-INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow']
-;;FootwearMensCategoryLink;Footwear Men's Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Safety/Footwear/Mens/c/1805;FootwearMensCategoryLink;FootwearMensCategoryLink
-;;FootwearWomensCategoryLink;Footwear Women's Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Safety/Footwear/Womens/c/1806;FootwearWomensCategoryLink;FootwearWomensCategoryLink
-
+###----- leve 5. children of HandToolsNavNode -----##
+#INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
+#;HandToolsLinksNavNode;;Hand Tools Category Links;HandToolsNavNode;;HandToolsLinksNavNode
+#
+###------ level 6. children of HandToolsLinksNavNode ------##
+#INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
+#;HandSawsCategoryNavNode;;Hand Saws Category;HandToolsLinksNavNode;;HandSawsCategoryNavNode
+#;JigsawsCategoryNavNode;;Jigsaws Category;HandToolsLinksNavNode;;JigsawsCategoryNavNode
+#;NutDriversCategoryNavNode;;Nut Drivers Category;HandToolsLinksNavNode;;NutDriversCategoryNavNode
+#;RotaryHammersCategoryNavNode;;Rotary Hammers Category;HandToolsLinksNavNode;;RotaryHammersCategoryNavNode
+#;StrippingToolsCategoryNavNode;;Stripping Tools Category;HandToolsLinksNavNode;;StrippingToolsCategoryNavNode
+#;PunchesCategoryNavNode;;Punches Category;HandToolsLinksNavNode;;PunchesCategoryNavNode
+### entries of the above navigation nodes ##
+#INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+#;HandSawsCategoryNavNodeEntry;;Hand Saws Category Navigation Node Entry;HandSawsCategoryNavNode;HandSawsCategoryLink;
+#;JigsawsCategoryNavNodeEntry;;Jigsaws Category Navigation Node Entry;JigsawsCategoryNavNode;JigsawsCategoryLink;
+#;NutDriversCategoryNavNodeEntry;;Nut Drivers Category Navigation Node Entry;NutDriversCategoryNavNode;NutDriversCategoryLink;
+#;RotaryHammersCategoryNavNodeEntry;;Rotary Hammers Category Navigation Node Entry;RotaryHammersCategoryNavNode;RotaryHammersCategoryLink;
+#;StrippingToolsCategoryNavNodeEntry;;Stripping Tools Category Navigation Node Entry;StrippingToolsCategoryNavNode;StrippingToolsCategoryLink;
+#;PunchesCategoryNavNodeEntry;;Punches Category Navigation Node Entry;PunchesCategoryNavNode;PunchesCategoryLink;
+### links of the above navigation nodes ##
+#INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow']
+#;;HandSawsCategoryLink;Hand Saws Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Hand-Saws/c/1354;HandSawsCategoryLink;HandSawsCategoryLink
+#;;JigsawsCategoryLink;Jigsaws Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Jigsaws/c/1710;JigsawsCategoryLink;JigsawsCategoryLink
+#;;NutDriversCategoryLink;Nut Drivers Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Nut-Drivers/c/1641;NutDriversCategoryLink;NutDriversCategoryLink
+#;;RotaryHammersCategoryLink;Rotary Hammers Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Rotary-Hammers/c/1711;RotaryHammersCategoryLink;RotaryHammersCategoryLink
+#;;StrippingToolsCategoryLink;Stripping Tools Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Stripping-Tools/c/1598;StrippingToolsCategoryLink;StrippingToolsCategoryLink
+#;;PunchesCategoryLink;Punches Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Punches-Or-Nail-Sets/c/1597;PunchesCategoryLink;PunchesCategoryLink
+#
+###----- level 5. children of SafetyNavNode -----##
+#INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
+#;FootwearLinksNavNode;;Footwear Category Links;SafetyNavNode;;FootwearLinksNavNode
+#
+###------ level 6. children of FootwearLinksNavNode ------##
+#INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
+#;FootwearMensCategoryNavNode;;Footwear Mens Category;FootwearLinksNavNode;;FootwearMensCategoryNavNode
+#;FootwearWomensCategoryNavNode;;Footwear Womens Category;FootwearLinksNavNode;;FootwearWomensCategoryNavNode
+### entries of the above navigation nodes ##
+#INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
+#;FootwearMensCategoryNavNodeEntry;;Footwear Mens Category Navigation Node Entry;FootwearMensCategoryNavNode;FootwearMensCategoryLink;
+#;FootwearWomensCategoryNavNodeEntry;;Footwear Womens Category Navigation Node Entry;FootwearWomensCategoryNavNode;FootwearWomensCategoryLink;
+### links of the above navigation nodes ##
+#INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow']
+#;;FootwearMensCategoryLink;Footwear Men's Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Safety/Footwear/Mens/c/1805;FootwearMensCategoryLink;FootwearMensCategoryLink
+#;;FootwearWomensCategoryLink;Footwear Women's Category Link;/Open-Catalogue/Office-Equipment%2C-Supplies-%26-Accessories/Hand-Tools/Safety/Footwear/Womens/c/1806;FootwearWomensCategoryLink;FootwearWomensCategoryLink
+#
 
 ##---- level 4. children of FooterNavNode ----##
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef

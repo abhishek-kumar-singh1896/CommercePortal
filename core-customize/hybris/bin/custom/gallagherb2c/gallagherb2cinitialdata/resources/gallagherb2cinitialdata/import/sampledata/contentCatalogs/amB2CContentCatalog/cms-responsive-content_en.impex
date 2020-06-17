@@ -499,23 +499,15 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 
 #############Navigation Nodes start##############
 
-INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
-;;PowerEnergisers_link01;"Energisers"
-;;PowerEnergisers_link112;"Remotes and Fence Testers"
-;;PowerEnergisers_link22;"Power system accessories"
+# INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+#  ;;PowerEnergisers_link01;"Energisers"
+#  ;;PowerEnergisers_link112;"Remotes and Fence Testers"
+#  ;;PowerEnergisers_link22;"Power system accessories"
 
-INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
-;;PortablefencingTapesWiresBraids_nav_link01;"Tapes, Wires, Braids"
-;;PortablefencingTapesWiresBraids_nav_link11;"Reels and Accessories"
-;;PortablefencingTapesWiresBraids_nav_link22;"Posts - Pigtails and Tread-ins"
-
-INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
-;;PermanentfencingWireandCable_link01;"Wire and Cable"
-;;PermanentfencingWireandCable_link11;"Wire Strainers"
-;;PermanentfencingWireandCable_link22;"Insulators"
-;;PermanentfencingWireandCable_link33;"Offsets"
-;;PermanentfencingWireandCable_link44;"Gates"
-;;PermanentfencingWireandCable_link55;"Fence tools and accessories"
+#INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
+#;;PortablefencingTapesWiresBraids_nav_link01;"Tapes, Wires, Braids"
+#;;PortablefencingTapesWiresBraids_nav_link11;"Reels and Accessories"
+#;;PortablefencingTapesWiresBraids_nav_link22;"Posts - Pigtails and Tread-ins"
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
 ;;PowerEnergisers_link011;"Energisers"
@@ -639,11 +631,10 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 ;;NewProductsLink;"New Products"
 ;;PromotionsLink;"Promotions"
 ;;PowerEnergisers;"Energisers"
-;;PowerEnergisers1;"Energisers1"
-;;PowerEnergisers2;"Energisers2"
-;;PowerEnergisers3;"Energisers3"
+#;;PowerEnergisers1;"Energisers1"
+#;;PowerEnergisers2;"Energisers2"
 ;;PowerEnergisers4;"Energisers4"
-;;PowerEnergisers5;"Energisers5"
+#;;PowerEnergisers5;"Energisers5"
 ;;PowerEnergisers6;"Energisers6"
 ;;PowerEnergisers7;"Energisers7"
 
@@ -665,7 +656,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=en]
                              ;                        ;AllElectricFencingLink1;"All Electric Fencing"
 							 ;                         ;AllWeighingEIDLink1;"All Weighing and EID"
-							 ;                         ;AllElectricFencingLink3;"All Electric Fencing"
+#							 ;                         ;AllElectricFencingLink3;"All Electric Fencing"
 							 
 
 
@@ -674,9 +665,9 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 ;;PowerEnergisers_link112;"Energisers"
 ;;PowerEnergisers_link122;"Remotes and Fence Testers"
 ;;PowerEnergisers_link13;"Power system accessories"			
-;;PowerEnergisers_link31;"Energisers"
-;;PowerEnergisers_link32;"Remotes and Fence Testers"
-;;PowerEnergisers_link33;"Power system accessories"
+#;;PowerEnergisers_link31;"Energisers"
+#;;PowerEnergisers_link32;"Remotes and Fence Testers"
+#;;PowerEnergisers_link33;"Power system accessories"
 
 
 
