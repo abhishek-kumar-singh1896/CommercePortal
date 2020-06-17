@@ -20,7 +20,6 @@ import de.hybris.platform.commercefacades.user.data.CustomerData;
 import de.hybris.platform.commerceservices.search.pagedata.PageableData;
 import de.hybris.platform.commerceservices.search.pagedata.SearchPageData;
 import de.hybris.platform.core.model.user.UserModel;
-import de.hybris.platform.search.restriction.SearchRestrictionService;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 import de.hybris.platform.servicelayer.user.impl.DefaultUserService;
 
@@ -73,9 +72,6 @@ public class UserManagementPageController extends MyCompanyPageController
 
 	@Resource(name = "userService")
 	private DefaultUserService userService;
-
-	@Resource(name = "searchRestrictionService")
-	private SearchRestrictionService searchRestrictionService;
 
 	private final GallagherC4COutboundServiceFacade gallagherC4COutboundServiceFacade;
 
@@ -649,10 +645,6 @@ public class UserManagementPageController extends MyCompanyPageController
 		 * "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$",
 		 * emailLowerCase)))
 		 */
-		LOG.error("######################################################");
-		LOG.error("Email received in verify Request " + email);
-		LOG.error("######################################################");
-		searchRestrictionService.disableSearchRestrictions();
 		if (!(Pattern.matches("^[a-z0-9._%+{}|'=!$^&*?/-]+@[0-9a-z.-]+\\.[0-9a-z]+$", emailLowerCase)))
 		{
 			existingCustomer.setEmailError("invalid");
@@ -671,7 +663,6 @@ public class UserManagementPageController extends MyCompanyPageController
 		}
 		else
 		{
-			searchRestrictionService.enableSearchRestrictions();
 			try
 			{
 				final List<GallagherInboundCustomerEntry> existingCustomers = getGallagherC4COutboundServiceFacade()
@@ -694,7 +685,7 @@ public class UserManagementPageController extends MyCompanyPageController
 				existingCustomer.setEmailError("exception");
 			}
 		}
-		searchRestrictionService.enableSearchRestrictions();
+
 		return existingCustomer;
 	}
 
