@@ -7,7 +7,6 @@
 </div>
 
 <c:url var="PLPButton" value="${component.button.url}"></c:url>
-<button type="button" class="btn btn-highlight btn-block" <c:choose><c:when test="${component.button.target eq 'SAMEWINDOW'}">onclick="window.location.href='${PLPButton}'"</c:when>
-<c:otherwise>onclick="window.open('${PLPButton}')"</c:otherwise></c:choose>>
+<button type="button" class="btn btn-highlight btn-block" onclick="window.location.href='${PLPButton}'">
 	${component.button.linkName}
 </button>
