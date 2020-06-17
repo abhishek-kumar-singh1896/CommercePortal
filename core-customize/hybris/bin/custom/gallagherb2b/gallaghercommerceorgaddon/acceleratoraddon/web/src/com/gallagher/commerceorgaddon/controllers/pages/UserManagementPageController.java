@@ -649,9 +649,6 @@ public class UserManagementPageController extends MyCompanyPageController
 		 * "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$",
 		 * emailLowerCase)))
 		 */
-		LOG.error("######################################################");
-		LOG.error("Email received in verify Request " + email);
-		LOG.error("######################################################");
 		searchRestrictionService.disableSearchRestrictions();
 		if (!(Pattern.matches("^[a-z0-9._%+{}|'=!$^&*?/-]+@[0-9a-z.-]+\\.[0-9a-z]+$", emailLowerCase)))
 		{

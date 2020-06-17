@@ -418,10 +418,6 @@ public class MyCompanyPageController extends AbstractSearchPageController
 	protected String createUser(final B2BCustomerForm b2BCustomerForm, final BindingResult bindingResult, final Model model,
 			final RedirectAttributes redirectModel) throws CMSItemNotFoundException
 	{
-		LOG.error("######################################################");
-		LOG.error("Email received in request form" + b2BCustomerForm.getEmail());
-		LOG.error("Uid received in request form" + b2BCustomerForm.getUid());
-		LOG.error("######################################################");
 		if (bindingResult.hasErrors())
 		{
 			GlobalMessages.addErrorMessage(model, "form.global.error");
