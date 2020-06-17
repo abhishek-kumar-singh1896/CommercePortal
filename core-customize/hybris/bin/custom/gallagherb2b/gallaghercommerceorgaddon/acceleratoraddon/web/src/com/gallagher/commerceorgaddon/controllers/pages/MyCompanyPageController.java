@@ -32,6 +32,7 @@ import de.hybris.platform.commercefacades.storesession.StoreSessionFacade;
 import de.hybris.platform.commercefacades.storesession.data.CurrencyData;
 import de.hybris.platform.commercefacades.user.UserFacade;
 import de.hybris.platform.commercefacades.user.data.CustomerData;
+import de.hybris.platform.search.restriction.SearchRestrictionService;
 import de.hybris.platform.servicelayer.exceptions.ModelSavingException;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 import de.hybris.platform.servicelayer.i18n.FormatFactory;
@@ -172,6 +173,9 @@ public class MyCompanyPageController extends AbstractSearchPageController
 
 	@Resource(name = "gallagherB2BUserGroupFacade")
 	private GallagherB2BUserGroupFacade gallagherB2BUserGroupFacade;
+
+	@Resource(name = "searchRestrictionService")
+	private SearchRestrictionService searchRestrictionService;
 
 	public GallagherKeycloakService getGallagherKeycloakService()
 	{
@@ -414,7 +418,10 @@ public class MyCompanyPageController extends AbstractSearchPageController
 	protected String createUser(final B2BCustomerForm b2BCustomerForm, final BindingResult bindingResult, final Model model,
 			final RedirectAttributes redirectModel) throws CMSItemNotFoundException
 	{
-
+		LOG.error("######################################################");
+		LOG.error("Email received in request form" + b2BCustomerForm.getEmail());
+		LOG.error("Uid received in request form" + b2BCustomerForm.getUid());
+		LOG.error("######################################################");
 		if (bindingResult.hasErrors())
 		{
 			GlobalMessages.addErrorMessage(model, "form.global.error");
@@ -435,7 +442,7 @@ public class MyCompanyPageController extends AbstractSearchPageController
 		/* Check if this user is already there in system */
 		try
 		{
-
+			searchRestrictionService.disableSearchRestrictions();
 			if (getCustomerFacade().getUserForUID(b2BCustomerForm.getEmail()) != null)
 			{
 				return handleDuplicateUser(b2BCustomerForm, bindingResult, model);
@@ -444,6 +451,10 @@ public class MyCompanyPageController extends AbstractSearchPageController
 		catch (final UnknownIdentifierException uIdEx)
 		{
 			//No Need To Handle
+		}
+		finally
+		{
+			searchRestrictionService.enableSearchRestrictions();
 		}
 
 		final CustomerData b2bCustomerData = new CustomerData();
