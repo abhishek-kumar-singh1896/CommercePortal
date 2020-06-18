@@ -18,7 +18,8 @@
     <div class = "container">
         <div class="text-right">
             <spring:theme var="textHelpHtml" code="text.help" />
-            <a href="" class="help js-cart-help" data-help="${fn:escapeXml(textHelpHtml)}">${textHelpHtml}
+            <spring:theme var="textHelpTitleHtml" code="cart.help.title" />
+            <a href="" class="help js-cart-help" data-help="${textHelpTitleHtml}">${textHelpHtml}
                 <span class="glyphicon glyphicon-info-sign"></span>
             </a>
             <div class="help-popup-content-holder js-help-popup-content">
