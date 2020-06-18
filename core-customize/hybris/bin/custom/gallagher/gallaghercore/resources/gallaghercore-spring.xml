@@ -273,6 +273,12 @@
           class="com.gallagher.core.url.impl.GallagherProductModelUrlResolver" parent="defaultProductModelUrlResolver" />
 	 
 	 <bean id="gallagherLocationService" class="com.gallagher.core.services.impl.GallagherLocationServiceImpl"/>
-	
+	 
+	 <bean id="laminexVariantCodeValueResolver" class="com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherVariantAttributeValueResolver"
+		parent="abstractValueResolver">
+		<property name="modelService" ref="modelService" />
+		<property name="variantField" value="code" />
+		<property name="qualifierProvider" ref="languageQualifierProvider" />
+	</bean>
 
 </beans>
