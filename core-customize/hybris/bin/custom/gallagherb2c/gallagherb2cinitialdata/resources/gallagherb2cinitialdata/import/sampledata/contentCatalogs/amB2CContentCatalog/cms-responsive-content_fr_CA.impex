@@ -44,7 +44,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 ;;PortablefencingTapesWiresBraids_nav_link4;"Trousses de clôture électrique"
 ;;PortablefencingTapesWiresBraids_nav_link5;"Filet et fil maillé"
 
-;;WeighinEid_link;"Accessoires"
+;;WeighinEid_link;"Balances et outils de collecte de données pour bétail"
 ;;WeighinEid_link1;"Balances et outils de collecte de données pour bétail"
 ;;WeighinEid_link10;"Barres de pesée et accessoires"
 ;;WeighinEid_link4;"Plateformes"

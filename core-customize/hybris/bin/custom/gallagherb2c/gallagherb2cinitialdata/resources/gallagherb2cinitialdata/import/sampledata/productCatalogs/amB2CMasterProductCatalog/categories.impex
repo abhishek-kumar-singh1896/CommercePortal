@@ -165,7 +165,7 @@ INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
 ;portable-fencing;electric-fencing
 #;fence-construction;electric-fencing
 ;fence-conductors;electric-fencing
-;gates;electric-fencing
+;gates;permanent-fencing
 ;gate-hardware-sgh;electric-fencing
 
 ;mains-energizers;power
