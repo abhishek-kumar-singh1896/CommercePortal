@@ -280,5 +280,67 @@
 		<property name="variantField" value="code" />
 		<property name="qualifierProvider" ref="languageQualifierProvider" />
 	</bean>
+	
+	<bean id="gallagherAbstractSiteMapGenerator"
+	      class="com.gallagher.core.sitemap.generator.impl.GallagherAbstractSiteMapGenerator"
+	      abstract="true" parent="abstractSiteMapGenerator" />
+	
+	<alias name="gallagherCategoryPageSiteMapGenerator" alias="categoryPageSiteMapGenerator"/>
+	<bean id="gallagherCategoryPageSiteMapGenerator"
+	      class="com.gallagher.core.sitemap.generator.impl.GallagherCategoryPageSiteMapGenerator"
+	      parent="gallagherAbstractSiteMapGenerator">
+		<property name="siteMapUrlDataConverter" ref="categoryModelToSiteMapUrlDataConverter"/>
+		<property name="siteMapPageEnum" value="CATEGORY"/>
+	</bean>
+
+	<alias name="gallagherProductPageSiteMapGenerator" alias="productPageSiteMapGenerator"/>
+	<bean id="gallagherProductPageSiteMapGenerator"
+	      class="com.gallagher.core.sitemap.generator.impl.GallagherProductPageSiteMapGenerator"
+	      parent="gallagherAbstractSiteMapGenerator">
+		<property name="siteMapUrlDataConverter" ref="productModelToSiteMapUrlDataConverter"/>
+		<property name="siteMapPageEnum" value="PRODUCT"/>
+	</bean>
+
+	<alias name="gallagherPointOfServicePageSiteMapGenerator" alias="pointOfServicePageSiteMapGenerator"/>
+	<bean id="gallagherPointOfServicePageSiteMapGenerator"
+	      class="com.gallagher.core.sitemap.generator.impl.GallagherPointOfServicePageSiteMapGenerator"
+	      parent="gallagherAbstractSiteMapGenerator">
+		<property name="siteMapUrlDataConverter" ref="pointOfServiceModelToSiteMapUrlDataConverter"/>
+		<property name="siteMapPageEnum" value="STORE"/>
+	</bean>
+
+	<alias name="gallagherHomePageSiteMapGenerator" alias="homePageSiteMapGenerator"/>
+	<bean id="gallagherHomePageSiteMapGenerator"
+	      class="com.gallagher.core.sitemap.generator.impl.GallagherHomePageSiteMapGenerator"
+	      parent="gallagherAbstractSiteMapGenerator">
+		<property name="siteMapUrlDataConverter" ref="homepageToSiteMapUrlDataConverter"/>
+		<property name="siteMapPageEnum" value="HOMEPAGE"/>
+		<property name="cmsPageService" ref="cmsPageService"/>
+	</bean>
+
+	<alias name="gallagherContentPageModelSiteMapGenerator" alias="contentPageModelSiteMapGenerator"/>
+	<bean id="gallagherContentPageModelSiteMapGenerator"
+	      class="com.gallagher.core.sitemap.generator.impl.GallagherContentPageModelSiteMapGenerator"
+	      parent="gallagherAbstractSiteMapGenerator">
+		<property name="siteMapUrlDataConverter" ref="contentPageModelToSiteMapUrlDataConverter"/>
+		<property name="siteMapPageEnum" value="CONTENT"/>
+	</bean>
+
+	<alias name="gallagherCategoryLandingPageSiteMapGenerator" alias="categoryLandingPageSiteMapGenerator"/>
+	<bean id="gallagherCategoryLandingPageSiteMapGenerator"
+	      class="com.gallagher.core.sitemap.generator.impl.GallagherCategoryLandingPageSiteMapGenerator"
+	      parent="gallagherAbstractSiteMapGenerator">
+		<property name="siteMapUrlDataConverter" ref="categoryModelToSiteMapUrlDataConverter"/>
+		<property name="siteMapPageEnum" value="CATEGORYLANDING"/>
+
+
+	</bean>
+	<alias name="gallagherCustomPageSiteMapGenerator" alias="customPageSiteMapGenerator"/>
+	<bean id="gallagherCustomPageSiteMapGenerator"
+	      class="com.gallagher.core.sitemap.generator.impl.GallagherCustomPageSiteMapGenerator"
+	      parent="gallagherAbstractSiteMapGenerator">
+		<property name="siteMapUrlDataConverter" ref="customPageToSiteMapUrlDataConverter"/>
+		<property name="siteMapPageEnum" value="CUSTOM"/>
+	</bean>
 
 </beans>
