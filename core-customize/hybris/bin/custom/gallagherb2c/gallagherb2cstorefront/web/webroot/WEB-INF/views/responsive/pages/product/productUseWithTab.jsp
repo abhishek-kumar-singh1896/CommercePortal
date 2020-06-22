@@ -27,9 +27,9 @@
                                 <div class="col-lg-8 col-md-7">
                                     <div class="tile-title"><a href="${fn:escapeXml(productUrl)}">${reference.target.name}</a></div>
                                     <div>
-                                    <c:if test="${not empty reference.target.price}">
+                                    <%-- <c:if test="${not empty reference.target.price}">
 		                                    <span class="currency-text">RRP</span>
-		                                </c:if>
+		                                </c:if> --%>
                                         
 										<product:productListerItemPrice product="${reference.target}" />
                                     </div>

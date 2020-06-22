@@ -92,7 +92,7 @@
 					</div>
 					<ycommerce:testId code="searchPage_price_label_${referenceProduct.code}">
 						<div class="col-7 text-right">
-							<product:productListerItemPriceRRP product="${referenceProduct}" />
+							<%-- <product:productListerItemPriceRRP product="${referenceProduct}" /> --%>
 							<product:productListerItemPrice product="${referenceProduct}" />
 						</div>
 					</ycommerce:testId>

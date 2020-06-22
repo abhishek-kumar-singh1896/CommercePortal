@@ -14,13 +14,13 @@
 		<c:choose>
 			<c:when test="${product.multidimensional and (product.priceRange.minPrice.value ne product.priceRange.maxPrice.value)}">
 			<c:if test="${not empty product.priceRange.minPrice}">
-				<div>From</div> 
+				<span class="currency-text">From</span>
 				<div class="currency-value"><format:price priceData="${product.priceRange.minPrice}"/><%--  - <format:price priceData="${product.priceRange.maxPrice}"/> --%> </div>
 			</c:if>
 			</c:when>
 			<c:otherwise>
 			<c:if test="${not empty product.price}">
-				<div>RRP</div>
+				<span class="currency-text">RRP</span>
 				<div class="currency-value"><format:fromPrice priceData="${product.price}"/></div>
 			</c:if>
 			</c:otherwise>
