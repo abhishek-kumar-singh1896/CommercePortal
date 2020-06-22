@@ -1720,3 +1720,32 @@ REMOVE CMSNavigationNode;$contentCV[unique=true];uid[unique=true];title[lang=en]
 
 #############
  
+##############################SAPP-663#######################
+
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$contentCatalog=securityB2BContentCatalog
+$contentCatalogName=Security B2B Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=securityB2BMasterProductCatalog
+$productCatalogName=Security B2B Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.gallagher.b2b.initialdata.constants.B2badvanceInitialDataConstants&/gallagherb2binitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.gallagher.b2b.initialdata.constants.B2badvanceInitialDataConstants&/gallagherb2binitialdata/import/sampledata/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.gallagher.b2b.initialdata.constants.B2badvanceInitialDataConstants&/gallagherb2binitialdata/import/sampledata/cockpits/cmscockpit
+$addonExtensionName=b2badvanceacceleratoraddon
+$medias=medias(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV);
+$siteUidNZ=securityB2BNZ
+$websiteBaseURL=$config-website.base.url.https.b2b
+
+INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];name;visible
+;;ProductReviewsTabComponent;Product Reviews Tab;false
+
+#############################################################
