@@ -57,6 +57,14 @@
 
 <body class="${pageBodyCssClasses} ${cmsPageRequestContextData.liveEdit ? ' yCmsLiveEdit' : ''} language-${fn:escapeXml(currentLanguage.isocode)}" <c:if test="${cmsPage.uid eq 'productDetails'}">data-spy="scroll" data-target="#productDetailTab"</c:if>>
 
+	<!-- Madwire Google Tag Manager (noscript) -->
+	<c:if test="${not empty gtmId}">	
+		<noscript>
+			<iframe src="https://www.googletagmanager.com/ns.html?id=${gtmId}"
+				height="0" width="0" style="display: none; visibility: hidden"></iframe>
+		</noscript>
+	</c:if>	
+	<!-- End Madwire Google Tag Manager (noscript) -->
 	<%-- Inject the page body here --%>
 	<jsp:doBody/>
 

@@ -4,3 +4,4 @@
 
 <script type="text/javascript" src="${fn:escapeXml(sharedResourcePath)}/js/analyticsmediator.js"></script>
 <analytics:googleAnalytics/>
+<analytics:gtag/>
