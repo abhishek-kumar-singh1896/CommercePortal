@@ -24,7 +24,6 @@ public class GallagherAddressValidator extends AddressValidator
 	private static final int MAX_POSTCODE_LENGTH = 10;
 
 
-
 	@Override
 	protected void validateStandardFields(final AddressForm addressForm, final Errors errors)
 	{
@@ -46,6 +45,25 @@ public class GallagherAddressValidator extends AddressValidator
 		 * addressForm.getPostcode().trim(); addressForm.setPostcode(postCodeField);
 		 * validateStringFieldForPostCode(postCodeField, AddressField.POSTCODE, MAX_POSTCODE_LENGTH, errors); }
 		 */
+		String phoneNumber = null;
+		if (addressForm.getPhone() != null)
+		{
+			phoneNumber = addressForm.getPhone().trim();
+			addressForm.setPhone(phoneNumber);
+		}
+		validateStringFieldForPhoneNumber(phoneNumber, errors);
+	}
+
+	/**
+	 * @param phoneNumber
+	 */
+	private void validateStringFieldForPhoneNumber(final String phoneNumber, final Errors errors)
+	{
+		if (phoneNumber == null || StringUtils.isEmpty(phoneNumber) || phoneNumber.length() < 10)
+		{
+			errors.rejectValue("phone", "address.phone.invalid");
+		}
+
 	}
 
 	protected static void validateStringFieldForPostCode(final String addressField, final AddressField fieldType,
