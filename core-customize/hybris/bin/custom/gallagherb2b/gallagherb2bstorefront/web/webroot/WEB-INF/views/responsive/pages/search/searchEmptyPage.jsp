@@ -12,13 +12,13 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<ul class="nav nav-tabs" role="tablist">
-						<li role="presentation" class="nav-item active"><a
+						<li role="presentation" class="nav-item <c:if test="${empty technicalSupport}">active</c:if>"><a
 							class="nav-link" href="#products" aria-controls="products"
 							role="tab" data-toggle="tab">
 								<spring:theme code="text.searchTab.product" />
 							</a>
 						</li>
-						<li role="presentation" class="nav-item"><a class="nav-link"
+						<li role="presentation" class="nav-item <c:if test="${not empty technicalSupport}">active</c:if>"><a class="nav-link"
 							href="#technicalSupport" aria-controls="profile" role="tab"
 							data-toggle="tab">
 								<spring:theme code="text.searchTab.technicalSupport" />
@@ -38,7 +38,7 @@
 		<div class="tab-content" id="searchResultTabContent">
 		
 			<!-- Products tab  -->
-			<div class="tab-pane active" id="products" role="tabpanel">
+			<div class="tab-pane <c:if test="${empty technicalSupport}">active</c:if>" id="products" role="tabpanel">
 			
 				<c:url value="/" var="homePageUrl" />
 				<cms:pageSlot position="SideContent" var="feature" element="div" class="side-content-slot cms_disp-img_slot searchEmptyPageTop">
@@ -67,7 +67,7 @@
 			<!-- technical support tab  -->
 			<!-- Begin Sign-In Touchpoint, Type = login -->
             <script async="async" src="${mindtouchLoginSRC}"></script>
-			<div class="tab-pane" id="technicalSupport" role="tabpanel" style="height: 600px">
+			<div class="tab-pane <c:if test="${not empty technicalSupport}">active</c:if>" id="technicalSupport" role="tabpanel" style="height: 600px">
                   <script type="mindtouch/embed" id="${mindtouchLoginID}" data-search-query="${searchPageData.freeTextSearch}"></script>
 			</div>
 			<script>
