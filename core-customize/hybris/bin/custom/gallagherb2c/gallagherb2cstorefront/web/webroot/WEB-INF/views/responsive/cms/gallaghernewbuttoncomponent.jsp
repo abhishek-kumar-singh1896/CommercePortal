@@ -8,7 +8,7 @@
 
 <button type="submit" class="btn btn-highlight px-5"
 	onclick="window.location.href = '${searchDealerUrl}'">
-
-	<spring:theme code="text.pdp.dealer.search" text="Search" />
+	${component.linkName}
+	<%-- <spring:theme code="text.pdp.dealer.search" text="Search" /> --%>
 
 </button>
