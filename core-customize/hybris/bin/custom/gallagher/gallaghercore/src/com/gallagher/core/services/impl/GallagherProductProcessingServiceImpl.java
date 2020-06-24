@@ -260,7 +260,7 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 						populateImages(product, existingVariantProduct, regionalCatalogVersion);
 
 						modelService.save(existingVariantProduct);
-
+						approveBaseProduct(existingVariantProduct);
 					}
 					catch (final UnknownIdentifierException exception)
 					{
@@ -294,6 +294,7 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 						}
 
 						newVariantProduct.setBaseProduct(baseProduct);
+						approveBaseProduct(newVariantProduct);
 
 						populateVariantData(product, newVariantProduct);
 
@@ -311,6 +312,22 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 			}
 		}
 		return success;
+	}
+
+	/**
+	 * Approve the base product in regional catalog if it is unapproved.
+	 *
+	 * @param existingVariantProduct
+	 *           to get the base product
+	 */
+	private void approveBaseProduct(final GenericVariantProductModel existingVariantProduct)
+	{
+		if (existingVariantProduct.getBaseProduct() != null
+				&& !ArticleApprovalStatus.APPROVED.equals(existingVariantProduct.getBaseProduct().getApprovalStatus()))
+		{
+			existingVariantProduct.getBaseProduct().setApprovalStatus(ArticleApprovalStatus.APPROVED);
+			modelService.save(existingVariantProduct.getBaseProduct());
+		}
 	}
 
 	/**
@@ -580,8 +597,8 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 
 		for (final CatalogVersionModel catalogVersion : allAvailableCatalogVersionForCode)
 		{
-			if (!catalogVersion.getCatalog().getId().contains("Master") && null != catalogVersion.getActive()
-					&& !catalogVersion.getActive() && !storeCatalogMap.containsKey(catalogVersion)
+			if (!catalogVersion.getCatalog().getId().contains("Master") && !Boolean.TRUE.equals(catalogVersion.getActive())
+					&& !storeCatalogMap.containsValue(catalogVersion)
 					&& (catalogId.contains("B2B") && catalogVersion.getCatalog().getId().contains("B2B")
 							|| catalogId.contains("B2C") && catalogVersion.getCatalog().getId().contains("B2C")))
 			{
