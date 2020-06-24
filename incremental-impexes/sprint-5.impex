@@ -2797,11 +2797,11 @@ INSERT_UPDATE CMSNavigationEntry ; uid[unique=true]     ; $contentCV[unique=true
                                  ; FacebookNavNodeEntry ;                         ; Facebook Navigation Node Entry  ; FacebookNavNode          ; FacebookIconLinkComponent                                                  
                                  
 INSERT_UPDATE GallagherIconLinkComponent ; $contentCV[unique=true] ; uid[unique=true]           ; name                          ; icon(uid, $contentCV) ; url ; &componentRef              
-                                         ;                         ; LinkedInIconLinkComponent  ; LinkedIn Icon Link Component  ; LinkedInIcon          ; "#" ; LinkedInIconLinkComponent  
-                                         ;                         ; TwitterIconLinkComponent  ; Twitter Icon Link Component  ; TwitterIcon          ; "#" ; TwitterIconLinkComponent  
-                                         ;                         ; InstagramIconLinkComponent ; Instagram Icon Link Component ; InstagramIcon         ; "#" ; InstagramIconLinkComponent 
-                                         ;                         ; YoutubeIconLinkComponent   ; Youtube Icon Link Component   ; YoutubeIcon           ; "#" ; YoutubeIconLinkComponent   
-                                         ;                         ; FacebookIconLinkComponent  ; Facebook Icon Link Component  ; FacebookIcon          ; "#" ; FacebookIconLinkComponent  
+                                         ;                         ; LinkedInIconLinkComponent  ; LinkedIn Icon Link Component  ; LinkedInIcon          ; "https://www.linkedin.com/" ; LinkedInIconLinkComponent  
+                                         ;                         ; TwitterIconLinkComponent  ; Twitter Icon Link Component  ; TwitterIcon          ; "https://www.twitter.com/" ; TwitterIconLinkComponent  
+                                         ;                         ; InstagramIconLinkComponent ; Instagram Icon Link Component ; InstagramIcon         ; "https://www.instagram.com/" ; InstagramIconLinkComponent 
+                                         ;                         ; YoutubeIconLinkComponent   ; Youtube Icon Link Component   ; YoutubeIcon           ; "https://www.youtube.com/" ; YoutubeIconLinkComponent   
+                                         ;                         ; FacebookIconLinkComponent  ; Facebook Icon Link Component  ; FacebookIcon          ; "https://www.facebook.com/" ; FacebookIconLinkComponent  
                                          
 INSERT_UPDATE GallagherIconComponent ; $contentCV[unique=true] ; uid[unique=true] ; name           ; styleClass      
                                      ;                         ; LinkedInIcon     ; LinkedIn Icon  ; icon--linkedin  

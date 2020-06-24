@@ -131,7 +131,13 @@
 											</c:forEach>
 										</c:forEach>
 									</li>
-									<li>
+									<c:forEach items="${socialLinkNagivationNode.children}" var="childLevel2">
+										<c:forEach items="${childLevel2.entries}" var="entry">
+														<cms:component component="${entry.item}"
+												evaluateRestriction="true"/>
+										</c:forEach>
+									</c:forEach>
+									<%-- <li>
 										<a title="Main Footer" href="https://www.linkedin.com/showcase/gallagher-security"
 											target="_blank"><img class="svg-icon" src="${siteRootUrl}/theme-securityB2B/images/svg/linkedin.svg"></a>
 									</li>
@@ -146,7 +152,7 @@
 									<li>
 										<a title="Main Footer" href="https://www.youtube.com/user/GallagherSecurityTV"
 											target="_blank"><img class="svg-icon" src="${siteRootUrl}/theme-securityB2B/images/svg/youtube.svg"></a>
-									</li>
+									</li> --%>
 								</ul>
 							</div>
 									
