@@ -1503,14 +1503,14 @@ INSERT_UPDATE CMSLinkComponent ; $contentCV[unique=true] ; uid[unique=true]     
 ## Footer Navigation node end  
                                
 ## Social link Navigation start
-                               
+
 INSERT_UPDATE CMSNavigationNode ; uid[unique=true]  ; $contentCV[unique=true] ; name         ; parent(uid, $contentCV) ; links(&componentRef) ; &nodeRef          ; children(uid, $contentCV)                                                    
-                                ; SocialLinkNavNode ;                         ; Social Links ; root                    ;                      ; SocialLinkNavNode ; LinkedInNavNode,PintrestNavNode,InstagramNode,YoutubeNavNode,FacebookNavNode 
+                                ; SocialLinkNavNode ;                         ; Social Links ; root                    ;                      ; SocialLinkNavNode ; FacebookNavNode,YoutubeNavNode,LinkedInNavNode,TwitterNavNode,InstagramNode 
                                 
 ##---- level 4. children of SocialLinkNavNode ----##
 INSERT_UPDATE CMSNavigationNode ; uid[unique=true] ; $contentCV[unique=true] ; name           ; parent(uid, $contentCV) ; links(&linkRef) ; &nodeRef        
                                 ; LinkedInNavNode  ;                         ; Linked In Page ; SocialLinkNavNode       ;                 ; LinkedInNavNode 
-                                ; PintrestNavNode  ;                         ; Pintrest Page  ; SocialLinkNavNode       ;                 ; PintrestNavNode 
+                                ; TwitterNavNode  ;                         ; Twitter Page  ; SocialLinkNavNode       ;                 ; TwitterNavNode 
                                 ; InstagramNode    ;                         ; Instagram Page ; SocialLinkNavNode       ;                 ; InstagramNode   
                                 ; YoutubeNavNode   ;                         ; Youtube Page   ; SocialLinkNavNode       ;                 ; YoutubeNavNode  
                                 ; FacebookNavNode  ;                         ; Facebook Page  ; SocialLinkNavNode       ;                 ; FacebookNavNode 
@@ -1518,21 +1518,21 @@ INSERT_UPDATE CMSNavigationNode ; uid[unique=true] ; $contentCV[unique=true] ; n
 ## entries of the above navigation nodes ##
 INSERT_UPDATE CMSNavigationEntry ; uid[unique=true]     ; $contentCV[unique=true] ; name                            ; navigationNode(&nodeRef) ; item(GallagherIconLinkComponent.uid,GallagherIconLinkComponent.$contentCV) ;  
                                  ; LinkedInNavNodeEntry ;                         ; Linked In Navigation Node Entry ; LinkedInNavNode          ; LinkedInIconLinkComponent                                                  
-                                 ; PintrestNavNodeEntry ;                         ; Pintrest Navigation Node Entry  ; PintrestNavNode          ; PintrestIconLinkComponent                                                  
+                                 ; TwitterNavNodeEntry ;                         ; Twitter Navigation Node Entry  ; TwitterNavNode          ; TwitterIconLinkComponent                                                  
                                  ; InstagramNodeEntry   ;                         ; Instagram Navigation Node Entry ; InstagramNode            ; InstagramIconLinkComponent                                                 
                                  ; YoutubeNavNodeEntry  ;                         ; Youtube Navigation Node Entry   ; YoutubeNavNode           ; YoutubeIconLinkComponent                                                   
                                  ; FacebookNavNodeEntry ;                         ; Facebook Navigation Node Entry  ; FacebookNavNode          ; FacebookIconLinkComponent                                                  
                                  
 INSERT_UPDATE GallagherIconLinkComponent ; $contentCV[unique=true] ; uid[unique=true]           ; name                          ; icon(uid, $contentCV) ; url ; &componentRef              
                                          ;                         ; LinkedInIconLinkComponent  ; LinkedIn Icon Link Component  ; LinkedInIcon          ; "#" ; LinkedInIconLinkComponent  
-                                         ;                         ; PintrestIconLinkComponent  ; Pintrest Icon Link Component  ; PintrestIcon          ; "#" ; PintrestIconLinkComponent  
+                                         ;                         ; TwitterIconLinkComponent  ; Twitter Icon Link Component  ; TwitterIcon          ; "#" ; TwitterIconLinkComponent  
                                          ;                         ; InstagramIconLinkComponent ; Instagram Icon Link Component ; InstagramIcon         ; "#" ; InstagramIconLinkComponent 
                                          ;                         ; YoutubeIconLinkComponent   ; Youtube Icon Link Component   ; YoutubeIcon           ; "#" ; YoutubeIconLinkComponent   
                                          ;                         ; FacebookIconLinkComponent  ; Facebook Icon Link Component  ; FacebookIcon          ; "#" ; FacebookIconLinkComponent  
                                          
 INSERT_UPDATE GallagherIconComponent ; $contentCV[unique=true] ; uid[unique=true] ; name           ; styleClass      
                                      ;                         ; LinkedInIcon     ; LinkedIn Icon  ; icon--linkedin  
-                                     ;                         ; PintrestIcon     ; Pintrest Icon  ; icon--pintrest  
+                                     ;                         ; TwitterIcon     ; Twitter Icon  ; icon--twitter  
                                      ;                         ; InstagramIcon    ; Instagram Icon ; icon--instagram 
                                      ;                         ; YoutubeIcon      ; Youtube Icon   ; icon--youtube   
                                      ;                         ; FacebookIcon     ; Facebook Icon  ; icon--facebook  

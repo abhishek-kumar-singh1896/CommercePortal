@@ -38,10 +38,25 @@
 							</div>
 						</c:forEach>
 					</c:forEach>
+					
+					<%-- <ul class="footer-social-icons col-xs-12 col-sm-12 col-md-3 col-3">
+						<c:forEach items="${socialLinkNagivationNode.children}" var="childLevel2">
+							<c:forEach items="${childLevel2.entries}" var="entry">
+											<cms:component component="${entry.item}"
+									evaluateRestriction="true"/>
+							</c:forEach>
+						</c:forEach>
+					</ul> --%>
 
 					<div class="col-md-4 col-lg-3">
 						<div class="social-icons">
-							<a href="https://www.facebook.com/" title="Facebook" target="_blank">
+							<c:forEach items="${socialLinkNagivationNode.children}" var="childLevel2">
+							<c:forEach items="${childLevel2.entries}" var="entry">
+											<cms:component component="${entry.item}"
+									evaluateRestriction="true"/>
+							</c:forEach>
+						</c:forEach>
+							<%-- <a href="https://www.facebook.com/" title="Facebook" target="_blank">
 								<img src="${commonResourcePath}/images/facebook.png" alt="Facebook">
 							</a> 
 							<a href="https://www.youtube.com/" title="Youtuebe" target="_blank">
@@ -55,7 +70,7 @@
 							</a>
 							<a href="https://www.instagram.com/" title="Instagram" target="_blank"> 
 								<img src="${commonResourcePath}/images/instagram.png" alt="Instagram">
-							</a>
+							</a> --%>
 						</div>
 					</div>
 				</div>
