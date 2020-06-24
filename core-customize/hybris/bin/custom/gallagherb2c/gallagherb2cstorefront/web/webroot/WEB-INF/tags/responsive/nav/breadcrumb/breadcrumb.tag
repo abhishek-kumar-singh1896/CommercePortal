@@ -6,7 +6,7 @@
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
-<c:url value="/" var="homeUrl" />
+<c:url value="${sitecoreHomePage}" var="homeUrl" />
 
 <ol class="breadcrumb">
 	<li class="breadcrumb-item">
