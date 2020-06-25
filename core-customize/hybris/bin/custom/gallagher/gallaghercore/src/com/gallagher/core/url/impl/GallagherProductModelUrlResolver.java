@@ -37,14 +37,7 @@ public class GallagherProductModelUrlResolver extends DefaultProductModelUrlReso
 
 		if (url.contains("{product-name}"))
 		{
-			if (null != baseProduct.getMarketingDescription())
-			{
-				url = url.replace("{product-name}", urlSafe(baseProduct.getMarketingDescription()));
-			}
-			else
-			{
-				url = url.replace("{product-name}", urlSafe(baseProduct.getName()));
-			}
+			url = url.replace("{product-name}", urlSafe(baseProduct.getName()));
 		}
 		url = url.toLowerCase();
 		if (url.contains("{product-code}"))
