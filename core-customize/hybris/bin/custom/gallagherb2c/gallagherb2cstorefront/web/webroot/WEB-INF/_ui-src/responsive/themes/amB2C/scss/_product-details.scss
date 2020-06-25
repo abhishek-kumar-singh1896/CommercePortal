@@ -704,6 +704,13 @@ h4 {
       padding-bottom: 16px;
       height: 178px;
       border-bottom: 1px dotted $gray-3;
+      position: relative;
+       z-index: 3;
+       
+       a {
+       	color: inherit;
+       	text-decoration:none;
+      }
       .compare-list-top-img {
         margin: 0 auto;
         img {
