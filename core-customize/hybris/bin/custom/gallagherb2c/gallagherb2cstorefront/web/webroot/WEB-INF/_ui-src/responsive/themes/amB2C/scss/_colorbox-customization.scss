@@ -55,3 +55,8 @@ body.page-registerProduct {
 	}
 }
 }
+@media screen and (max-width: 639px) {
+    #cboxLoadedContent .addressEntry ul {
+        margin-top: 0!important;
+    }
+}

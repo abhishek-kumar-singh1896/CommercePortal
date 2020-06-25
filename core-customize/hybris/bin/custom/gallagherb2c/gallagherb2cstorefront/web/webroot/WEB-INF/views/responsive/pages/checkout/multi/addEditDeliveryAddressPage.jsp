@@ -33,7 +33,8 @@
                                         regions="${regions}" cancelUrl="${currentStepUrl}"
                                         country="${country}" />
 
-                                        <div id="addressbook">
+                                        <div id="addressbook"
+										style="overflow-y: auto; position: relative; height: 230px;">
 
                                             <spring:url var="selectDeliveryAddressUrl" value="{contextPath}/checkout/multi/delivery-address/select" htmlEscape="false">
                                                 <spring:param name="contextPath" value="${request.contextPath}" />
