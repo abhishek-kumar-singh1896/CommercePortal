@@ -46,7 +46,7 @@ public class GallagherAddressValidator extends AddressValidator
 		 * validateStringFieldForPostCode(postCodeField, AddressField.POSTCODE, MAX_POSTCODE_LENGTH, errors); }
 		 */
 		String phoneNumber = null;
-		if (addressForm.getPhone() != null)
+		if (StringUtils.isNotEmpty(addressForm.getPhone()))
 		{
 			phoneNumber = addressForm.getPhone().trim();
 			addressForm.setPhone(phoneNumber);
