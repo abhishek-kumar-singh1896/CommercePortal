@@ -17,12 +17,13 @@
 	<classpathentry kind="lib" path="web/webroot/WEB-INF/lib/keycloak-core-8.0.1.jar"/>
 	<classpathentry kind="lib" path="web/webroot/WEB-INF/lib/keycloak-servlet-adapter-spi-8.0.1.jar"/>
 	<classpathentry kind="lib" path="web/webroot/WEB-INF/lib/keycloak-spring-security-adapter-8.0.1.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/smarteditaddon"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/assistedservicestorefront"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/b2badvancefacades"/>
-	<classpathentry kind="src" path="/platform"/>
-	<classpathentry kind="src" path="/acceleratorstorefrontcommons"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/gallagherfacades"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/gallagheroutboundservices"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/gallagherfacades"/>
+	<classpathentry kind="src" path="/acceleratorstorefrontcommons"/>
+	<classpathentry kind="src" path="/platform"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/b2badvancefacades"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/assistedservicestorefront"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/smarteditaddon"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/gallaghercore"/>
 	<classpathentry kind="output" path="eclipsebin/notused"/>
 </classpath>

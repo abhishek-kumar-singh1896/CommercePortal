@@ -23,6 +23,7 @@ import org.springframework.beans.factory.annotation.Required;
 import org.springframework.util.PathMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import com.gallagher.core.util.GallagherSiteUtil;
 import com.gallagher.facades.storesession.GallagherStoreSessionFacade;
 
 
@@ -47,7 +48,7 @@ public class StorefrontFilter extends OncePerRequestFilter
 		final HttpSession session = request.getSession();
 		final String queryString = request.getQueryString();
 
-		if (isSessionNotInitialized(session, queryString))
+		if (isSessionNotInitialized(session, queryString) || GallagherSiteUtil.isSiteSwitched(request))
 		{
 			initDefaults(request);
 			((GallagherStoreSessionFacade) getStoreSessionFacade()).resetEncodingAttributes();
