@@ -54,16 +54,16 @@ public class GallagherAddressValidator extends AddressValidator
 		validateStringFieldForPhoneNumber(phoneNumber, errors);
 	}
 
-	/**
-	 * @param phoneNumber
-	 */
 	private void validateStringFieldForPhoneNumber(final String phoneNumber, final Errors errors)
 	{
-		if (phoneNumber == null || StringUtils.isEmpty(phoneNumber) || phoneNumber.length() < 10)
+		if (StringUtils.isEmpty(phoneNumber))
+		{
+			errors.rejectValue("phone", "address.phone.empty");
+		}
+		else if (phoneNumber.length() < 10)
 		{
 			errors.rejectValue("phone", "address.phone.invalid");
 		}
-
 	}
 
 	protected static void validateStringFieldForPostCode(final String addressField, final AddressField fieldType,
