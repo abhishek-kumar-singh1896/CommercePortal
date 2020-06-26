@@ -25,6 +25,7 @@
 	<form:form method="post" modelAttribute="addressForm">
 		<form:hidden path="addressId" class="add_edit_delivery_address_id"
 			status="${not empty suggestedAddresses ? 'hasSuggestedAddresses' : ''}" />
+			<form:hidden path="editAddress" class="add_edit_delivery_address_id"/>
 		<input type="hidden" name="bill_state" id="address.billstate" />
 	
 		<div id="countrySelector" data-address-code="${fn:escapeXml(addressData.id)}"
