@@ -47,9 +47,7 @@ public class DeliveryAddressCheckoutStepController extends AbstractCheckoutStepC
 {
 	private static final String DELIVERY_ADDRESS = "delivery-address";
 	private static final String SHOW_SAVE_TO_ADDRESS_BOOK_ATTR = "showSaveToAddressBook";
-
 	private static final String REDIRECT_TO_EDIT_ADDRESS_PAGE = REDIRECT_PREFIX + "/my-account/edit-address/";
-
 
 	@Resource(name = "addressDataUtil")
 	private AddressDataUtil addressDataUtil;
@@ -95,8 +93,6 @@ public class DeliveryAddressCheckoutStepController extends AbstractCheckoutStepC
 		}
 
 		final AddressData newAddress = addressDataUtil.convertToAddressData(addressForm);
-
-
 
 		processAddressVisibilityAndDefault(addressForm, newAddress);
 
@@ -299,15 +295,12 @@ public class DeliveryAddressCheckoutStepController extends AbstractCheckoutStepC
 		final AddressData previousSelectedAddress = getCheckoutFacade().getCheckoutCart().getDeliveryAddress();
 		// Set the new address as the selected checkout delivery address
 
-
 		getCheckoutFacade().setDeliveryAddress(selectedAddress);
 
 		if (previousSelectedAddress != null && !previousSelectedAddress.isVisibleInAddressBook())
 		{ // temporary address should be removed
 			getUserFacade().removeAddress(previousSelectedAddress);
 		}
-
-
 
 		GlobalMessages.addFlashMessage(redirectModel, GlobalMessages.CONF_MESSAGES_HOLDER, "checkout.multi.address.added");
 
@@ -366,14 +359,8 @@ public class DeliveryAddressCheckoutStepController extends AbstractCheckoutStepC
 		return getCheckoutStep().nextStep();
 	}
 
-	/**
-	 * @param selectedAddressData
-	 * @return
-	 */
-
 	private AddressForm populateAddressForm(final AddressData selectedAddressData)
 	{
-
 		final AddressForm addressForm = new AddressForm();
 		addressForm.setCountryIso(selectedAddressData.getCountry().getIsocode());
 		addressForm.setTitleCode(selectedAddressData.getTitleCode());
@@ -386,9 +373,7 @@ public class DeliveryAddressCheckoutStepController extends AbstractCheckoutStepC
 		addressForm.setPostcode(selectedAddressData.getPostalCode());
 		addressForm.setPhone(selectedAddressData.getPhone());
 		addressForm.setAddressId(selectedAddressData.getId());
-
 		return addressForm;
-
 	}
 
 	protected void setDeliveryAddress(final AddressData selectedAddressData)
@@ -453,5 +438,4 @@ public class DeliveryAddressCheckoutStepController extends AbstractCheckoutStepC
 		setUpMetaDataForContentPage(model, multiCheckoutSummaryPage);
 		setCheckoutStepLinksForModel(model, getCheckoutStep());
 	}
-
 }
