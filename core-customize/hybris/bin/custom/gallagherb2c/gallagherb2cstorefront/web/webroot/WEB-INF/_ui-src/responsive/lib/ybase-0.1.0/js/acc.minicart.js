@@ -8,18 +8,29 @@ ACC.minicart = {
 
 		$(document).on("click",".js-mini-cart-link", function(e){
 			e.preventDefault();
+			e.stopPropagation();
 			var cartUrl = $(this).data("miniCartUrl");
 			var cartName = ($(this).find(".js-mini-cart-count").html() != 0) ? $(this).data("miniCartName"):$(this).data("miniCartEmptyName");
-			
+			var _this = $(this);
 			var minicart = {
 				url :cartUrl,
 				type:'GET',
 				success:function(data){
 					$('.mini-cart').html(data);
+
+					_this.parent().toggleClass('show');
+					_this.siblings('.mini-cart').toggleClass('show');
 				}
 			};
 			$.ajax(minicart);
 			
+		});
+		$(document).on("click",".main-header-out .header-right-btn-group .dropdown-menu", function(e){
+			e.stopPropagation();
+		});
+		$(document).on("click","body", function(e){
+			$('.main-header-out .dropdown-menu').removeClass('show');
+			$('.main-header-out .btn-group').removeClass('show');
 		});
 
 		$(document).on("click",".js-mini-cart-close-button", function(e){

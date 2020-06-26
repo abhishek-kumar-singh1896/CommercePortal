@@ -24,15 +24,15 @@
 
 
 <button id="btnGroupDrop1" type="button"
-	class="btn right-btn dropdown-toggle" data-toggle="dropdown"
+	class="btn right-btn js-mini-cart-link"
+	data-mini-cart-url="${fn:escapeXml(rolloverPopupUrl)}"
+	data-mini-cart-refresh-url="${fn:escapeXml(refreshMiniCartUrl)}"
+	data-mini-cart-name="<spring:theme code="text.cart"/>"
+	data-mini-cart-empty-name="<spring:theme code="popup.cart.empty"/>"
+	data-mini-cart-items-text="<spring:theme code="basket.items"/>"
 	aria-haspopup="true" aria-expanded="false">
 	<div class="nav-cart">
-		<a href="#" class="mini-cart-link js-mini-cart-link"
-			data-mini-cart-url="${fn:escapeXml(rolloverPopupUrl)}"
-			data-mini-cart-refresh-url="${fn:escapeXml(refreshMiniCartUrl)}"
-			data-mini-cart-name="<spring:theme code="text.cart"/>"
-			data-mini-cart-empty-name="<spring:theme code="popup.cart.empty"/>"
-			data-mini-cart-items-text="<spring:theme code="basket.items"/>">
+		<span class="mini-cart-link">
 			<svg class="cart-icon">
             <use
 					xlink:href="${commonResourcePath}/images/gallagher-icons.svg#cart" />
@@ -47,7 +47,7 @@
 				
 			</c:if>
 			</span>
-		</a>
+		</span>
 	</div>
 	<div class="mini-cart-container js-mini-cart-container"></div>
 </button>
