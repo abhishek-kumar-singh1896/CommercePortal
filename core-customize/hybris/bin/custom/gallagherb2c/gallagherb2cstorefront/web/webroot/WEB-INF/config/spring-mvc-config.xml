@@ -226,14 +226,14 @@
 
 	<!-- Page Breadcrumb Builders -->
 
-	<bean id="productBreadcrumbBuilder" class="de.hybris.platform.acceleratorstorefrontcommons.breadcrumb.impl.ProductBreadcrumbBuilder" >
+	<bean id="productBreadcrumbBuilder" class="com.gallagher.breadcrumb.impl.GallagherProductBreadcrumbBuilder" >
 		<property name="browseHistory" ref="browseHistory" />
 		<property name="productModelUrlResolver" ref="productModelUrlResolver"/>
 		<property name="categoryModelUrlResolver" ref="categoryModelUrlResolver"/>
 		<property name="productService" ref="productService"/>
 		<property name="productAndCategoryHelper" ref="productAndCategoryHelper"/>
 	</bean>
-
+	
 	<bean id="searchBreadcrumbBuilder" class="de.hybris.platform.acceleratorstorefrontcommons.breadcrumb.impl.SearchBreadcrumbBuilder" >
 		<property name="commerceCategoryService" ref="commerceCategoryService"/>
 		<property name="categoryModelUrlResolver" ref="categoryModelUrlResolver"/>
