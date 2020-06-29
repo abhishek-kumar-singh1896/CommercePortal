@@ -35,6 +35,7 @@ public class AnalyticsPropertiesBeforeViewHandler implements BeforeViewHandler
 		// Add config properties for google analytics and GTM
 		modelAndView.addObject("gtmId", siteConfigService.getString("gtm.tracking.id", ""));
 		modelAndView.addObject("gtagId", siteConfigService.getString("gtag.tracking.id", ""));
+		modelAndView.addObject("hotjarId", siteConfigService.getString("hotjar.tracking.id", ""));
 		modelAndView.addObject(ANALYTICS_TRACKING_ID,
 				siteConfigService.getString(ThirdPartyConstants.Google.ANALYTICS_TRACKING_ID, ""));
 	}
