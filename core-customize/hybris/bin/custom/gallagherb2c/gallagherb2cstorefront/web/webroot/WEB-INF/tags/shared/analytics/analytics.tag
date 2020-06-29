@@ -6,5 +6,5 @@
 <analytics:googleAnalytics/>
 <analytics:gtm/>
 <analytics:gtag/>
-
+<analytics:hotjar/>
 
