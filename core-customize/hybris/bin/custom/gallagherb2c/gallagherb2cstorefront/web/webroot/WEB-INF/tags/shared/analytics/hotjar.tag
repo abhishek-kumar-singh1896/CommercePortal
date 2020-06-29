@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- Global site tag (gtag.js) - Google Analytics -->
+<!-- Hotjar ID - Hot Jar Analytics -->
 <c:if test="${not empty hotjarId}">
 <!-- Hotjar Tracking Code for https://products.security.gallagher.com/ -->
 <script>
@@ -13,4 +13,4 @@
     })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
 </script>
 </c:if>
-<!-- End Google Tag Manager -->
+<!-- End Hotjar analysis -->
