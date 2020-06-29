@@ -7,3 +7,5 @@ $lang=en_US
  
 UPDATE Category ; code[unique=true]                ; $catalogVersion ; name[lang=$lang]                
                 ; weigh-scales-and-data-collectors ;                 ; Scale Heads and Data Collectors 
+                ;wire-and-cable;; Hi Tensile Wire and Cable
+                

@@ -62,7 +62,7 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
 ;irrigator-fence-crossing-system;;Irrigator Fence Crossing System 
 ;gallagher-westonfence;; Gallagher Westonfence
 ;gallagher-mega-anchor;; Gallagher Mega Anchor
-;pivot-irrigator-system;;Pivot Irrigator System
+;pivot-irrigator-system;;DO NOT USE Pivot Irrigator System
 ;gate-hardware;; Gate Hardware
 
 # 1.1.3 Sub Categories for 'portable-fencing'
@@ -84,7 +84,7 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
 
 # 1.1.5 Sub Categories for 'fence-conductors'
 ;reels-and-accessories-fc;;"DO NOT USE" 
-;hi-tensile-wire-and-cable;;"Hi-Tensile Wire and Cable"
+;hi-tensile-wire-and-cable;;"DO NOT USE Hi Tensile Wire and Cable"
 ;tapes-wires-and-braids-fc;;"DO NOT USE"
 ;posts-pigtails-and-treadins-fc;;"DO NOT USE"
 
@@ -103,7 +103,7 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
 
 # 1.3 Sub Categories for 'weighing-eid-and-animal-handling'
 ;platforms-and-crates;;Platforms and Crates
-;handlers-and-drafters;;Handlers and Drafters 
+;handlers-and-drafters;;DO NOT USE Handlers and Drafters  
 ;stock-prods;;Stock Prods
 #;weigh-scales-and-data-collectors 
 #;loadbars-and-accessories  

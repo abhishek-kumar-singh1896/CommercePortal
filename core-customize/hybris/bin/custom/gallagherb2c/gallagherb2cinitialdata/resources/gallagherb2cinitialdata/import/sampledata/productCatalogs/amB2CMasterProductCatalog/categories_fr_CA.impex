@@ -7,3 +7,4 @@ $lang=fr_CA
  
 UPDATE Category ; code[unique=true]                ; $catalogVersion ; name[lang=$lang]                
                 ; weigh-scales-and-data-collectors ;                 ; Balances et outils de collecte de données pour bétail 
+                 ;wire-and-cable;; Fils et câbles
