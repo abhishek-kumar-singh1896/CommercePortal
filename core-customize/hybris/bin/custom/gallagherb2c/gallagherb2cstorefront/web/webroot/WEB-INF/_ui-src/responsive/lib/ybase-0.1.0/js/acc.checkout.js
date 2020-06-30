@@ -111,6 +111,20 @@ ACC.checkout = {
 			  }
 			});
 		
+		$(document).on('keypress',function(e) {
+		    if(e.which == 13) {
+		    	var orginalEmail = $(".guestEmail").val();
+				  var confirmationEmail = $(this).val();
+				  if(orginalEmail === confirmationEmail){
+				    $(this).removeClass("has-error");
+				    $('.error-message').hide();
+				  }else{
+				     $(this).addClass("has-error");
+				     $('.error-message').show();
+				  }
+		    }
+		});
+		
 		$('.js-continue-checkout-button').click(function ()
 		{
 			var checkoutUrl = $(this).data("checkoutUrl");
