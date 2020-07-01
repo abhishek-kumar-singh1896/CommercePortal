@@ -138,5 +138,7 @@ $(document).ready(function ()
 	ACC.silentorderpost.bindCreditCardAddressForm();
 
 	// check the checkbox
-	$("#useDeliveryAddress").click();
+	if($('#checkUseDeliveryMethod').val()!='false'){
+		$("#useDeliveryAddress").click();
+	}
 });
