@@ -1,0 +1,22 @@
+#################SAPP-760#######################
+
+$contentCatalog=securityB2BContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+$addonExtensionName=assistedservicestorefront
+
+# Import modulegen config properties into impex macros
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$jarResourceCms=$config-jarResourceCmsValue
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='homepage'];contentSlot(uid,$contentCV)[unique=true]
+;;Section2C-Homepage;Section2C;;Section2CSlot-Homepage
+
+INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;&componentRef
+;;SecurityB2BHompageScrewdriversBannerComponent;SecurityB2B Homepage Screwdrivers Banner Component;/Open-Catalogue/Tools/Screwdrivers/c/1593;SecurityB2BHompageScrewdriversBannerComponent
+;;SecurityB2BHompageSandersBannerComponent;SecurityB2B Homepage Sanders Banner Component;/Open-Catalogue/Tools/Sanders/c/1596;SecurityB2BHompageSandersBannerComponent
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;Section2CSlot-Homepage;Section2C Slot for Homepage;true;SecurityB2BHompageScrewdriversBannerComponent,SecurityB2BHompageSandersBannerComponent
+
+################################################
