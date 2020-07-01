@@ -2105,7 +2105,7 @@ INSERT_UPDATE CMSLinkComponent ; $contentCV[unique=true] ; uid[unique=true]     
                                ;                         ; PowerEnergisers_link9  ; Electric fencing PowerEnergisers_link9  ; /Animal-Management/electric-fencing/power/c/earthing                  ; earthing                   ;                                    ;  ;  
                                ;                         ; PowerEnergisers_link10 ; Electric fencing PowerEnergisers_link10 ; /Animal-Management/electric-fencing/power/c/power-system-accessories  ; power-system-accessories   ;                                    ;  ;  
                                ;                         ; PowerEnergisers_link11 ; Electric fencing PowerEnergisers_link11 ; /Animal-Management/electric-fencing/power/c/grounding                 ; grounding                  ;                                    ;  ;  
-                               ;                         ; PowerEnergisers_link12 ; Electric fencing PowerEnergisers_link12 ; /Animal-Management/electric-fencing/power/c/power-management-tools    ; power-management-tools     ;                                    ;  ;  
+                               ;                         ; PowerEnergisers_link12 ; Electric fencing PowerEnergisers_link12 ; /animal-management/electric-fencing/power/c/power-system-accessories    ; power-system-accessories     ;                                    ;  ;  
                                
                                
 INSERT_UPDATE CMSNavigationEntry ; uid[unique=true]          ; $contentCV[unique=true] ; name                                        ; navigationNode(&nodeRef) ; item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV) 
