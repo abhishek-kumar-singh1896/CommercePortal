@@ -7,6 +7,8 @@ import de.hybris.platform.basecommerce.model.site.BaseSiteModel;
 import de.hybris.platform.commerceservices.url.impl.DefaultProductModelUrlResolver;
 import de.hybris.platform.core.model.product.ProductModel;
 
+import org.apache.commons.lang.StringUtils;
+
 
 /**
  * URL resolver for ProductModel instances. The pattern could be of the form:
@@ -37,7 +39,14 @@ public class GallagherProductModelUrlResolver extends DefaultProductModelUrlReso
 
 		if (url.contains("{product-name}"))
 		{
-			url = url.replace("{product-name}", urlSafe(baseProduct.getName()));
+			if (StringUtils.isEmpty(baseProduct.getMarketingDescription()))
+			{
+				url = url.replace("{product-name}", urlSafe(baseProduct.getName()));
+			}
+			else
+			{
+				url = url.replace("{product-name}", urlSafe(baseProduct.getMarketingDescription()));
+			}
 		}
 		url = url.toLowerCase();
 		if (url.contains("{product-code}"))

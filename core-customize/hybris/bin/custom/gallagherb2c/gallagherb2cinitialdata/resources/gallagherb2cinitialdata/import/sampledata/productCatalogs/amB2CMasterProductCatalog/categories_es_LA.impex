@@ -64,5 +64,6 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
 ;one-tank-systems;;Sistemas de Estanque Único
 ;antennae-and-cables;;Antenas y Cable
 ;additional-system-components;;Componentes Adicionales del Sistema
+;drafters;;Apartadores 
 
 

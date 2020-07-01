@@ -91,9 +91,9 @@ ACC.header = {
 				$(this).tab('show')
 			});
 
-			$('.hamburger-icon').click(function () {
+			$('.hamburger-icon, .check-product').click(function () {
 				$('body').toggleClass('freeze');
-				$(this).toggleClass('active');
+				$('.hamburger-icon').toggleClass('active');
 				$('.xs-main-menu-l1').removeClass('fadeInRightXs');
 				$('#responsiveMegaMenu').toggle().toggleClass('fadeInUp');
 

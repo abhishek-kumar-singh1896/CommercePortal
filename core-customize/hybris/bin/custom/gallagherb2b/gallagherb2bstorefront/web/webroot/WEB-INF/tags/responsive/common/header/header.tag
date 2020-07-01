@@ -49,6 +49,16 @@
 	                 				</cms:pageSlot>
 							</li>
 						</sec:authorize>
+						<cms:pageSlot position="NavigationBar" var="component">
+							<c:choose>
+							<c:when test="${component.visible}">
+								<c:set var="checkSubMenu" value="true"/>
+							</c:when>
+							<c:otherwise>
+								<c:set var="checkSubMenu" value="false"/>
+							</c:otherwise>
+							</c:choose>
+						</cms:pageSlot>
 						<cms:pageSlot position="ggB2BNavBar" var="feature">
 							<c:if test="${feature.visible}">
 								<c:if test="${not empty feature.navigationNode && feature.navigationNode ne null}">
@@ -58,15 +68,25 @@
 												<c:url var="L1link" value="${dropdownValue.item.url}"></c:url>
 												<c:choose>
 													<c:when test="${dropdownValue.item.linkName eq 'PRODUCTS'}">
-														<c:set var="checkNavigation" value="mainNavLink${status.index+1}Container"/>
-														<a href="javascript:void(0)" class="with-sublevel-text l1-anchor with-sublevel" id="xsLevel1Link${status.index+1}">
-															${dropdownValue.item.linkName}
-															<span class="right-arrow-icon">
-																<svg>
-																	<use xlink:href="${siteRootUrl}/theme-securityB2B/images/svg/gallagher-icons.svg#arrow-right" />
-																</svg>
-															</span>
-														</a>
+														<c:choose>
+															<c:when test="${checkSubMenu}">
+																<c:set var="checkNavigation" value="mainNavLink${status.index+1}Container"/>
+																<a href="javascript:void(0)" class="with-sublevel-text l1-anchor with-sublevel" id="xsLevel1Link${status.index+1}">
+																	${dropdownValue.item.linkName}
+																	<span class="right-arrow-icon">
+																		<svg>
+																			<use xlink:href="${siteRootUrl}/theme-securityB2B/images/svg/gallagher-icons.svg#arrow-right" />
+																		</svg>
+																	</span>
+																</a>
+															</c:when>
+															<c:otherwise>
+																<a href="${L1link}" class="with-sublevel-text check-product">
+																    ${dropdownValue.item.linkName}
+																</a>
+															</c:otherwise>
+														</c:choose>
+														
 													</c:when>
 													<c:otherwise>
 														<a href="${L1link}" class="with-sublevel-text">

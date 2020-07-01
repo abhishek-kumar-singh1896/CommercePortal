@@ -98,7 +98,7 @@ INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
 ;earthing;earthing
 ;grounding;grounding
 
-;wire-and-cable;wire-and-cable
+;wire-and-cable;hi-tensile-wire-and-cable
 ;strainers;strainers
 ;insulators;insulators
 ;offsets;offsets
@@ -127,7 +127,7 @@ INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
 ;weigh-scales-and-data-collectors;weigh-scales-and-data-collectors
 ;loadbars-and-accessories;loadbars-and-accessories
 ;platforms;platforms
-;drafters;drafters
+;drafters;handlers-and-drafters
 ;eid-tag-readers;eid-tag-readers
 ;posts-pigtails-and-treadins-pf;posts-pigtails-and-treadins-fc
 ;weigh-scales-and-data-collectors;scale-heads-and-data-collectors

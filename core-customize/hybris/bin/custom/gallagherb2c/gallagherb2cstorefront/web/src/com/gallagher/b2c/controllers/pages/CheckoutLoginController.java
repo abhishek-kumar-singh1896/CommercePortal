@@ -5,14 +5,15 @@ package com.gallagher.b2c.controllers.pages;
 
 import de.hybris.platform.acceleratorfacades.flow.CheckoutFlowFacade;
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.pages.AbstractLoginPageController;
+import de.hybris.platform.acceleratorstorefrontcommons.controllers.util.GlobalMessages;
 import de.hybris.platform.acceleratorstorefrontcommons.forms.GuestForm;
 import de.hybris.platform.acceleratorstorefrontcommons.forms.RegisterForm;
 import de.hybris.platform.acceleratorstorefrontcommons.forms.validation.GuestValidator;
 import de.hybris.platform.acceleratorstorefrontcommons.security.GUIDCookieStrategy;
 import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
 import de.hybris.platform.cms2.model.pages.AbstractPageModel;
+import de.hybris.platform.cms2.model.pages.ContentPageModel;
 import de.hybris.platform.commercefacades.order.data.CartData;
-import com.gallagher.b2c.controllers.ControllerConstants;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +30,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.gallagher.b2c.controllers.ControllerConstants;
+
 
 /**
  * Checkout Login Controller. Handles login and register for the checkout flow.
@@ -37,6 +40,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping(value = "/login/checkout")
 public class CheckoutLoginController extends AbstractLoginPageController
 {
+	private static final String FORM_GLOBAL_ERROR = "form.global.error";
+
 	@Resource(name = "checkoutFlowFacade")
 	private CheckoutFlowFacade checkoutFlowFacade;
 
@@ -73,24 +78,37 @@ public class CheckoutLoginController extends AbstractLoginPageController
 	}
 
 	@RequestMapping(value = "/guest", method = RequestMethod.POST)
-	public String doAnonymousCheckout(@ModelAttribute("guestForm") final GuestForm form, final BindingResult bindingResult, final Model model,
-			final HttpServletRequest request, final HttpServletResponse response) throws CMSItemNotFoundException
+	public String doAnonymousCheckout(@ModelAttribute("guestForm")
+	final GuestForm form, final BindingResult bindingResult, final Model model, final HttpServletRequest request,
+			final HttpServletResponse response) throws CMSItemNotFoundException
 	{
 		getGuestValidator().validate(form, bindingResult);
-		return processAnonymousCheckoutUserRequest(form, bindingResult, model, request, response);
+		if (bindingResult.hasErrors())
+		{
+			model.addAttribute(form);
+			GlobalMessages.addErrorMessage(model, FORM_GLOBAL_ERROR);
+			storeCmsPageInModel(model, getCmsPage());
+			setUpMetaDataForContentPage(model, (ContentPageModel) getCmsPage());
+			return ControllerConstants.Views.Pages.Checkout.CheckoutGuestLoginPage;
+		}
+		else
+		{
+			return processAnonymousCheckoutUserRequest(form, bindingResult, model, request, response);
+		}
 	}
 
-
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public String checkoutRegister(@RequestParam(value = "error", defaultValue = "false") final boolean loginError,
-			final HttpSession session, final Model model, final HttpServletRequest request) throws CMSItemNotFoundException
+	public String checkoutRegister(@RequestParam(value = "error", defaultValue = "false")
+	final boolean loginError, final HttpSession session, final Model model, final HttpServletRequest request)
+			throws CMSItemNotFoundException
 	{
 		return doCheckoutLogin(loginError, session, model, request);
 	}
 
 	@RequestMapping(value = "/guest", method = RequestMethod.GET)
-	public String doAnonymousCheckout(@RequestParam(value = "error", defaultValue = "false") final boolean loginError,
-			final HttpSession session, final Model model, final HttpServletRequest request) throws CMSItemNotFoundException
+	public String doAnonymousCheckout(@RequestParam(value = "error", defaultValue = "false")
+	final boolean loginError, final HttpSession session, final Model model, final HttpServletRequest request)
+			throws CMSItemNotFoundException
 	{
 		return doCheckoutLogin(loginError, session, model, request);
 	}

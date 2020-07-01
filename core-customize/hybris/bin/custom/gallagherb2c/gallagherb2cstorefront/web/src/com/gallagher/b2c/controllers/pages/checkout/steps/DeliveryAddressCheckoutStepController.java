@@ -30,6 +30,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,6 +47,7 @@ public class DeliveryAddressCheckoutStepController extends AbstractCheckoutStepC
 {
 	private static final String DELIVERY_ADDRESS = "delivery-address";
 	private static final String SHOW_SAVE_TO_ADDRESS_BOOK_ATTR = "showSaveToAddressBook";
+	private static final String REDIRECT_TO_EDIT_ADDRESS_PAGE = REDIRECT_PREFIX + "/my-account/edit-address/";
 
 	@Resource(name = "addressDataUtil")
 	private AddressDataUtil addressDataUtil;
@@ -292,7 +294,9 @@ public class DeliveryAddressCheckoutStepController extends AbstractCheckoutStepC
 
 		final AddressData previousSelectedAddress = getCheckoutFacade().getCheckoutCart().getDeliveryAddress();
 		// Set the new address as the selected checkout delivery address
+
 		getCheckoutFacade().setDeliveryAddress(selectedAddress);
+
 		if (previousSelectedAddress != null && !previousSelectedAddress.isVisibleInAddressBook())
 		{ // temporary address should be removed
 			getUserFacade().removeAddress(previousSelectedAddress);
@@ -312,12 +316,17 @@ public class DeliveryAddressCheckoutStepController extends AbstractCheckoutStepC
 	 *           - the id of the delivery address.
 	 *
 	 * @return - a URL to the page to load.
+	 * @throws CMSItemNotFoundException
 	 */
 	@RequestMapping(value = "/select", method = RequestMethod.GET)
 	@RequireHardLogIn
 	public String doSelectDeliveryAddress(@RequestParam("selectedAddressCode")
-	final String selectedAddressCode, final RedirectAttributes redirectAttributes)
+	final String selectedAddressCode, final RedirectAttributes redirectAttributes, final Model model)
+			throws CMSItemNotFoundException
 	{
+		final CartData cartData = getCheckoutFacade().getCheckoutCart();
+		AddressForm addressForm = null;
+		final boolean flag = false;
 		final ValidationResults validationResults = getCheckoutStep().validate(redirectAttributes);
 		if (getCheckoutStep().checkIfValidationErrors(validationResults))
 		{
@@ -326,13 +335,45 @@ public class DeliveryAddressCheckoutStepController extends AbstractCheckoutStepC
 		if (StringUtils.isNotBlank(selectedAddressCode))
 		{
 			final AddressData selectedAddressData = getCheckoutFacade().getDeliveryAddressForCode(selectedAddressCode);
+			if (selectedAddressData.getPhone() == null || StringUtils.isEmpty(selectedAddressData.getPhone()))
+			{
+
+				addressForm = populateAddressForm(selectedAddressData);
+				addressForm.setSaveInAddressBook(selectedAddressData.isVisibleInAddressBook());
+				addressForm.setEditAddress(true);
+				populateCommonModelAttributes(model, cartData, addressForm);
+				final BindingResult errors = new BeanPropertyBindingResult(addressForm, "addressForm");
+				errors.rejectValue("phone", "address.phone.empty");
+				model.addAttribute(BindingResult.MODEL_KEY_PREFIX + "addressForm", errors);
+
+				GlobalMessages.addErrorMessage(model, "address.error.formentry.invalid");
+				return ControllerConstants.Views.Pages.MultiStepCheckout.AddEditDeliveryAddressPage;
+			}
 			final boolean hasSelectedAddressData = selectedAddressData != null;
+
 			if (hasSelectedAddressData)
 			{
 				setDeliveryAddress(selectedAddressData);
 			}
 		}
 		return getCheckoutStep().nextStep();
+	}
+
+	private AddressForm populateAddressForm(final AddressData selectedAddressData)
+	{
+		final AddressForm addressForm = new AddressForm();
+		addressForm.setCountryIso(selectedAddressData.getCountry().getIsocode());
+		addressForm.setTitleCode(selectedAddressData.getTitleCode());
+		addressForm.setFirstName(selectedAddressData.getFirstName());
+		addressForm.setLastName(selectedAddressData.getLastName());
+		addressForm.setLine1(selectedAddressData.getLine1());
+		addressForm.setLine2(selectedAddressData.getLine2());
+		addressForm.setTownCity(selectedAddressData.getTown());
+		addressForm.setRegionIso((selectedAddressData.getRegion().getIsocode()));
+		addressForm.setPostcode(selectedAddressData.getPostalCode());
+		addressForm.setPhone(selectedAddressData.getPhone());
+		addressForm.setAddressId(selectedAddressData.getId());
+		return addressForm;
 	}
 
 	protected void setDeliveryAddress(final AddressData selectedAddressData)
@@ -397,5 +438,4 @@ public class DeliveryAddressCheckoutStepController extends AbstractCheckoutStepC
 		setUpMetaDataForContentPage(model, multiCheckoutSummaryPage);
 		setCheckoutStepLinksForModel(model, getCheckoutStep());
 	}
-
 }

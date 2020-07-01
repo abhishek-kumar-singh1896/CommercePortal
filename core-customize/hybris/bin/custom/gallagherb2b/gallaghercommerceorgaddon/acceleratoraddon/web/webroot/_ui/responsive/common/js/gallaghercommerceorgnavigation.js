@@ -113,7 +113,7 @@ ACC.myCompanyNavigation = {
     /**
      * Expands/Collapses the unit tree.
      */
-    unitCollapse: function(){
+   /* unitCollapse: function(){
     	$('.panel-heading').click(function() {
     		// parent ('.panel-default') has two children: this '.panel-heading' and '.panel-collapse'
     		$parent = $(this).parent();
@@ -121,6 +121,6 @@ ACC.myCompanyNavigation = {
     		// expand/collapse content
     		$content.toggleClass('in');
 		});
-    }
+    }*/
 
 };

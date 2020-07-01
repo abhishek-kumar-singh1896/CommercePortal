@@ -9,5 +9,7 @@ $lang=en_AU
  
 UPDATE Category ; code[unique=true] ; $catalogVersion ; name[lang=$lang]     
                 ; solar-energizers  ;                 ; Solar and Solar Kits 
+                ;irrigator-fence-crossing-system;;Pivot Irrigator System
+                ;drafters;;Handlers and Drafters 
                 
                 

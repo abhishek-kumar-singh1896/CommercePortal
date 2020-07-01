@@ -30,6 +30,9 @@
 				<label class="control-label" for="guest.confirm.email"> <spring:theme
 						code="guest.confirm.email" /></label> <input
 					class="confirmGuestEmail form-control" id="guest.confirm.email" />
+				<div class="error-message" style="display:none;">
+					<spring:theme code="validation.checkEmail.equals"></spring:theme>
+				</div>
 			</div>
 
 			<ycommerce:testId code="guest_Checkout_button">

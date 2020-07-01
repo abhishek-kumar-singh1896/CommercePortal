@@ -41,7 +41,7 @@
 										</div>
 								    </c:if>
                                     <c:set var="count" value="1"/>
-                                    <%-- <c:url value="${firstProduct.productData.url}" var="productUrl" /> --%>
+                                    <c:url value="${firstProduct.productData.url}" var="productUrl" />
                                     <div class="compare-list-top-section">
                                         <div class="compare-list-top-img">
                                         <c:choose>
@@ -49,26 +49,32 @@
 		                                       	<c:forEach items="${firstProduct.productData.images}" var="medias">
 			                                        <c:if test="${medias.format eq 'thumbnail'}">
 			                                        <c:if test="${count lt 2}">
-			                                        <%-- <a href="${fn:escapeXml(productUrl)}" title="${fn:escapeXml(firstProduct.productData.name)}"> --%>
+			                                        <a href="${fn:escapeXml(productUrl)}" title="${fn:escapeXml(firstProduct.productData.name)}">
 			                                        	<img src="${medias.url}" alt="${medias.altText}">
-			                                        	<c:set var="count" value="${count+1}"/>
-			                                        <!-- </a> -->
+
+			                                        </a>
+			                                        <c:set var="count" value="${count+1}"/>
 		                                        	</c:if>
 			                                        </c:if>
 		                                        </c:forEach>
 	                                        </c:when>
 	                                        <c:otherwise>
-												<theme:image code="img.missingProductImage.responsive.thumbnail" alt="check" title="check"/>
+	                                        <a href="${fn:escapeXml(productUrl)}" title="${fn:escapeXml(firstProduct.productData.name)}">
+												<theme:image code="img.missingProductImage.responsive.thumbnail" alt="check" title="check"/></a>
 											</c:otherwise>
                                         </c:choose>
 	                                        
                                         </div>
                                         <div class="compare-list-product-title text-truncate">
+                                        <a href="${fn:escapeXml(productUrl)}" title="${fn:escapeXml(firstProduct.productData.name)}">
                                             ${firstProduct.productData.name}
+                                            </a>
                                         </div>
 
                                         <div class="compare-list-product-id text-truncate">
+                                        
                                             ${firstProduct.productData.code}
+                                           
                                         </div>
 
                                     </div>
@@ -91,7 +97,7 @@
 										</div>
 								    </c:if>
 								    <c:set var="count" value="1"/>
-								    <%-- <c:url value="${compareProduct.productData.url}" var="productUrl" /> --%>
+								    <c:url value="${compareProduct.productData.url}" var="productUrl" />  
                                     <div class="compare-list-top-section">
                                         <div class="compare-list-top-img">
                                         <c:choose>
@@ -99,21 +105,25 @@
                                         	<c:forEach items="${compareProduct.productData.images}" var="medias">
 		                                        <c:if test="${medias.format eq 'thumbnail'}">
 		                                        <c:if test="${count lt 2}">
-		                                        <%-- <a href="${fn:escapeXml(productUrl)}" title="${fn:escapeXml(compareProduct.productData.name)}"> --%>
+		                                          <a href="${fn:escapeXml(productUrl)}" title="${fn:escapeXml(compareProduct.productData.name)}"> 
 		                                        	<img src="${medias.url}" alt="${medias.altText}">
 		                                        	<c:set var="count" value="${count+1}"/>
-		                                        <!-- </a> -->
+		                                         </a> 
 	                                        	</c:if>
 		                                        </c:if>
 	                                        </c:forEach>
                                         </c:when>
                                         <c:otherwise>
-											<theme:image code="img.missingProductImage.responsive.thumbnail" alt="check" title="check"/>
+                               <a href="${fn:escapeXml(productUrl)}" title="${fn:escapeXml(compareProduct.productData.name)}"> 
+											<theme:image code="img.missingProductImage.responsive.thumbnail" alt="check" title="check"/></a>
 										</c:otherwise>
                                         </c:choose>
                                         </div>
+                                                                               
                                         <div class="compare-list-product-title text-truncate">
+                                         <a href="${fn:escapeXml(productUrl)}" title="${fn:escapeXml(firstProduct.productData.name)}">
                                             ${compareProduct.productData.name}
+                                            </a>
                                         </div>
 
                                         <div class="compare-list-product-id text-truncate">
