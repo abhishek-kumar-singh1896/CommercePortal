@@ -51,3 +51,32 @@ INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; n
                                   ; amB2CCAProductType                       ; price             ; gallagherProductPriceValueProvider 
 INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; fieldValueProvider                 
                                   ; amB2CCAProductType                       ; priceValue        ; gallagherProductPriceValueProvider
+								  
+								  
+###################################SAPP-798##################
+
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor] ; pk[unique=true] 
+                                                                                                           
+$contentCatalog=amB2CContentCatalog                                                                        
+$contentCatalogName=Animal Management B2C Content Catalog                                                  
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=amB2CMasterProductCatalog                                                                  
+$productCatalogName=Animal Management B2C US Product Catalog                                               
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$siteResource=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$medias=medias(code, $contentCV)                                                                           ;                 
+$mediaContainer=media(qualifier, $contentCV)                                                               ;                 
+$product=product(code, $productCV)                                                                         
+$category=category(code, $productCV)                                                                       
+$jarResourceCms=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/cockpits/cmscockpit
+$media=media(code, $contentCV)                                                                             ;                 
+$productResource=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/productCatalogs/$productCatalog
+$picture=media(code, $contentCV)                                                                           ;                 
+$keycloakBaseURL=$config-keycloak.base.url                                                                 
+$keycloakAuthURL=$config-keycloak.auth.url/$config-keycloak.realm                                          
+$keycloakPasswordURL=$config-keycloak.password.url                                                         
+$websiteBaseURL=$config-website.base.url.https       
+
+INSERT_UPDATE CartSuggestionComponent ; $contentCV[unique=true] ; uid[unique=true] ; name             ; productReferenceTypes(code) ; maximumNumberProducts ; filterPurchased ; &componentRef   
+                                      ;                         ; CartSuggestions  ; Cart Suggestions ; SIMILAR         ; 20                    ; true            ; CartSuggestions 
+#############################################################
