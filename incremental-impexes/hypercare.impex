@@ -1,7 +1,7 @@
 #################SAPP-760#######################
 
 $contentCatalog=securityB2BContentCatalog
-$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
 $addonExtensionName=assistedservicestorefront
 
 # Import modulegen config properties into impex macros
