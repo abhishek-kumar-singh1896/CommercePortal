@@ -20,3 +20,34 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;c
 ;;Section2CSlot-Homepage;Section2C Slot for Homepage;true;SecurityB2BHompageScrewdriversBannerComponent,SecurityB2BHompageSandersBannerComponent
 
 ################################################
+
+                                           
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; fieldValueProvider                 
+                                  ; amB2CUSProductType                       ; price             ; gallagherProductPriceValueProvider 
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; fieldValueProvider                 
+                                  ; amB2CUSProductType                       ; priceValue        ; gallagherProductPriceValueProvider 
+                                  
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; fieldValueProvider                 
+                                  ; amB2CNZProductType                       ; price             ; gallagherProductPriceValueProvider 
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; fieldValueProvider                 
+                                  ; amB2CNZProductType                       ; priceValue        ; gallagherProductPriceValueProvider 
+                                  
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; fieldValueProvider                 
+                                  ; amB2CAUProductType                       ; price             ; gallagherProductPriceValueProvider 
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; fieldValueProvider                 
+                                  ; amB2CAUProductType                       ; priceValue        ; gallagherProductPriceValueProvider 
+                                  
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; fieldValueProvider                 
+                                  ; amB2CLatAmProductType                    ; price             ; gallagherProductPriceValueProvider 
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; fieldValueProvider                 
+                                  ; amB2CLatAmProductType                    ; priceValue        ; gallagherProductPriceValueProvider 
+                                  
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; fieldValueProvider                 
+                                  ; amB2CGlobalProductType                   ; price             ; gallagherProductPriceValueProvider 
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; fieldValueProvider                 
+                                  ; amB2CGlobalProductType                   ; priceValue        ; gallagherProductPriceValueProvider 
+                                  
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; fieldValueProvider                 
+                                  ; amB2CCAProductType                       ; price             ; gallagherProductPriceValueProvider 
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; fieldValueProvider                 
+                                  ; amB2CCAProductType                       ; priceValue        ; gallagherProductPriceValueProvider
