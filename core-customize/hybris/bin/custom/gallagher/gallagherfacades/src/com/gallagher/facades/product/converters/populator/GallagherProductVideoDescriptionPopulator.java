@@ -49,6 +49,7 @@ public class GallagherProductVideoDescriptionPopulator<SOURCE extends ProductMod
 		{
 			final String regionCode = currentSite.getRegionCode().getCode();
 			final Map<String, String> videos = new HashMap<>(productModel.getVideos().size());
+			productData.setVideos(videos);
 			productModel.getVideos().forEach((key, value) -> {
 				final String[] regionThumbArray = value.split("\\|");
 				if (regionThumbArray.length == 2 && regionThumbArray[0].contains(regionCode))
