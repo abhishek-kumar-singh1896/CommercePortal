@@ -3,6 +3,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="cms" uri="http://hybris.com/tld/cmstags"%>
 
-<a href="${component.url}"> <cms:component
+<li><a href="${component.url}"> <cms:component
 			component="${component.icon}" /> ${component.linkName}
-</a>
+</a></li>
