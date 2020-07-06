@@ -290,4 +290,10 @@
 	 
 	<alias name="gallagherPaymentFacade" alias="paymentFacade"/>
 	<bean id="gallagherPaymentFacade" class="com.gallagher.facades.payment.impl.GallagherPaymentFacadeImpl" parent="defaultPaymentFacade" />
+ 	
+ 	<bean parent="modifyPopulatorList">
+		<property name="list" ref="extendedCartConverter"/>
+		<property name="remove" ref="groupOrderEntryPopulator"/>
+	</bean>
+	
 </beans>
