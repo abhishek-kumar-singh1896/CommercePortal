@@ -50,8 +50,8 @@
 
 					<div class="col-md-4 col-lg-3">
 						<div class="social-icons">
-							<c:forEach items="${socialLinkNagivationNode.links}" var="childLevel2">
-								<cms:component component="${childLevel2}"	evaluateRestriction="true"/>
+							<c:forEach items="${socialLinkNagivationNode.entries}" var="entry">
+								<cms:component component="${entry.item}" evaluateRestriction="true"/>
 							</c:forEach>
 						</div>
 					</div>
