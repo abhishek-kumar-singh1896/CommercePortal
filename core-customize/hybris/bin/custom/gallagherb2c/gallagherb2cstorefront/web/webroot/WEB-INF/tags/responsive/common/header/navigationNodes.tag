@@ -190,7 +190,7 @@
 							<div class="row">
 								<c:forEach items="${l1.children}" var="topLevelChild"
 									varStatus="l3link">
-									<c:if test="${l3link.index eq 0}">
+									<c:if test="${l3link.index eq 0 && regionCodeUpper ne 'GLOBAL'}">
 										<div class="col-md-3">
 											<c:forEach items="${topLevelChild.entries}"
 												var="topLevelLink1">
