@@ -321,18 +321,24 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 
 		if (CollectionUtils.isNotEmpty(skus))
 		{
-			//getting products and adding container to that product
-			final List<ProductModel> products = gallagherMediaContainerDao.getProductModeList(skus, catalog.getPk());
-			if (CollectionUtils.isNotEmpty(products))
+			final String regions = getRegionCodes(gallagherBynderResponse.getProperty_region(), cronModel.getCatalogId());
+			if (StringUtils.isNotEmpty(regions))
 			{
-				for (final ProductModel product : products)
+				//getting products and adding container to that product
+				final List<ProductModel> products = gallagherMediaContainerDao.getProductModeList(skus, catalog.getPk());
+				if (CollectionUtils.isNotEmpty(products))
 				{
-					final Map<String, String> videomap = new HashMap<>();
-					videomap.putAll(product.getVideos());
-					videomap.put(gallagherBynderResponse.getId(), gallagherBynderResponse.getThumbnails().getThul());
-					product.setVideos(videomap);
-					modelService.save(product);
-					LOGGER.info("Video Media " + gallagherBynderResponse.getId() + " Saved for " + product.getCode());
+					for (final ProductModel product : products)
+					{
+						final Map<String, String> videomap = new HashMap<>();
+						videomap.putAll(product.getVideos());
+						final StringBuilder videoRegionThumbBuilder = new StringBuilder(regions);
+						videoRegionThumbBuilder.append("|").append(gallagherBynderResponse.getThumbnails().getThul());
+						videomap.put(gallagherBynderResponse.getId(), videoRegionThumbBuilder.toString());
+						product.setVideos(videomap);
+						modelService.save(product);
+						LOGGER.info("Video Media " + gallagherBynderResponse.getId() + " Saved for " + product.getCode());
+					}
 				}
 			}
 		}
@@ -466,5 +472,37 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 			}
 		}
 		return baseStoreList;
+	}
+
+	/**
+	 * Returns region code list i.e. au,nz,global
+	 *
+	 * @param regionCodeList
+	 *           received from bynder
+	 * @param catalogId
+	 *           am or security
+	 * @return region code list string
+	 */
+	private String getRegionCodes(final List<String> regionCodeList, final String catalogId)
+	{
+		final StringBuilder regionCodes = new StringBuilder();
+		if (CollectionUtils.isNotEmpty(regionCodeList))
+		{
+			for (final String regioncode : regionCodeList)
+			{
+				final String regions = configurationService.getConfiguration()
+						.getString("bynder.region." + catalogId + "." + regioncode);
+
+				if (StringUtils.isNotEmpty(regions))
+				{
+					if (regionCodes.length() > 0)
+					{
+						regionCodes.append(',');
+					}
+					regionCodes.append(regions);
+				}
+			}
+		}
+		return regionCodes.toString();
 	}
 }

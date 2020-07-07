@@ -130,6 +130,7 @@
                                             data-regionisocode="${fn:escapeXml(deliveryAddress.region.isocodeShort)}"
                                             data-address-id="${fn:escapeXml(deliveryAddress.id)}"
                                         ></div>
+                                        <input type="hidden" value="${checkUseDelievryMethod}" class="text" id="checkUseDeliveryMethod">
                                         <formElement:formCheckbox
                                             path="useDeliveryAddress"
                                             idKey="useDeliveryAddress"

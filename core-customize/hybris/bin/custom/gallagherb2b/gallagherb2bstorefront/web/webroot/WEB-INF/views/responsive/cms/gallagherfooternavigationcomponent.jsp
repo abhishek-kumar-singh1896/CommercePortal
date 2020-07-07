@@ -131,22 +131,9 @@
 											</c:forEach>
 										</c:forEach>
 									</li>
-									<li>
-										<a title="Main Footer" href="https://www.linkedin.com/showcase/gallagher-security"
-											target="_blank"><img class="svg-icon" src="${siteRootUrl}/theme-securityB2B/images/svg/linkedin.svg"></a>
-									</li>
-									<li>
-										<a title="Main Footer" href="https://twitter.com/GallagherSecure"
-											target="_blank"><img class="svg-icon" src="${siteRootUrl}/theme-securityB2B/images/svg/twitter.svg"></a>
-									</li>
-									<li>
-										<a title="Main Footer" href="https://www.facebook.com/Gallaghersecure/"
-											target="_blank"><img class="svg-icon" src="${siteRootUrl}/theme-securityB2B/images/svg/facebook.svg"></a>
-									</li>
-									<li>
-										<a title="Main Footer" href="https://www.youtube.com/user/GallagherSecurityTV"
-											target="_blank"><img class="svg-icon" src="${siteRootUrl}/theme-securityB2B/images/svg/youtube.svg"></a>
-									</li>
+									<c:forEach items="${socialLinkNagivationNode.entries}" var="entry">
+										<cms:component component="${entry.item}" evaluateRestriction="true"/>
+									</c:forEach>
 								</ul>
 							</div>
 									

@@ -571,7 +571,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 ;;WeighinEid_link2;"Loadbars and Accessories"
 ;;WeighinEid_link3;"Loadbars"
 ;;WeighinEid_link4;"Platforms"
-;;WeighinEid_link5;"Platforms and Crates"
+;;WeighinEid_link5;"Platforms"
 ;;WeighinEid_link6;"Drafters"
 ;;WeighinEid_link7;"Handlers and Drafters"
 ;;WeighinEid_link8;"EID Tag Readers "

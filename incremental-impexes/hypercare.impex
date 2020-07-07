@@ -1,0 +1,204 @@
+#################SAPP-760#######################
+
+$contentCatalog=securityB2BContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$addonExtensionName=assistedservicestorefront
+
+# Import modulegen config properties into impex macros
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$jarResourceCms=$config-jarResourceCmsValue
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='homepage'];contentSlot(uid,$contentCV)[unique=true]
+;;Section2C-Homepage;Section2C;;Section2CSlot-Homepage
+
+INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;&componentRef
+;;SecurityB2BHompageScrewdriversBannerComponent;SecurityB2B Homepage Screwdrivers Banner Component;/Open-Catalogue/Tools/Screwdrivers/c/1593;SecurityB2BHompageScrewdriversBannerComponent
+;;SecurityB2BHompageSandersBannerComponent;SecurityB2B Homepage Sanders Banner Component;/Open-Catalogue/Tools/Sanders/c/1596;SecurityB2BHompageSandersBannerComponent
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;Section2CSlot-Homepage;Section2C Slot for Homepage;true;SecurityB2BHompageScrewdriversBannerComponent,SecurityB2BHompageSandersBannerComponent
+
+################################################
+
+###################################SAPP-794##################                                   
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; fieldValueProvider                 
+                                  ; amB2CUSProductType                       ; price             ; gallagherProductPriceValueProvider 
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; fieldValueProvider                 
+                                  ; amB2CUSProductType                       ; priceValue        ; gallagherProductPriceValueProvider 
+                                  
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; fieldValueProvider                 
+                                  ; amB2CNZProductType                       ; price             ; gallagherProductPriceValueProvider 
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; fieldValueProvider                 
+                                  ; amB2CNZProductType                       ; priceValue        ; gallagherProductPriceValueProvider 
+                                  
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; fieldValueProvider                 
+                                  ; amB2CAUProductType                       ; price             ; gallagherProductPriceValueProvider 
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; fieldValueProvider                 
+                                  ; amB2CAUProductType                       ; priceValue        ; gallagherProductPriceValueProvider 
+                                  
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; fieldValueProvider                 
+                                  ; amB2CLatAmProductType                    ; price             ; gallagherProductPriceValueProvider 
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; fieldValueProvider                 
+                                  ; amB2CLatAmProductType                    ; priceValue        ; gallagherProductPriceValueProvider 
+                                  
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; fieldValueProvider                 
+                                  ; amB2CGlobalProductType                   ; price             ; gallagherProductPriceValueProvider 
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; fieldValueProvider                 
+                                  ; amB2CGlobalProductType                   ; priceValue        ; gallagherProductPriceValueProvider 
+                                  
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; fieldValueProvider                 
+                                  ; amB2CCAProductType                       ; price             ; gallagherProductPriceValueProvider 
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; fieldValueProvider                 
+                                  ; amB2CCAProductType                       ; priceValue        ; gallagherProductPriceValueProvider
+								  
+								  
+###################################SAPP-798##################
+
+$contentCatalog=amB2CContentCatalog                                                                        
+$contentCatalogName=Animal Management B2C Content Catalog                                                  
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+INSERT_UPDATE CartSuggestionComponent; $contentCV[unique=true] ; uid[unique=true] ; productReferenceTypes(code)
+;                         ; CartSuggestions  ; SIMILAR
+#############################################################
+
+#########################Social Media icons#########################
+                             
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor] ; pk[unique=true] 
+                                                                                                           
+$contentCatalog=amB2CContentCatalog                                                                        
+$contentCatalogName=Animal Management B2C Content Catalog                                                  
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+                                                                                                           
+#########################Social Media icons#########################
+                               
+INSERT_UPDATE GallagherIconComponent ; $contentCV[unique=true] ; uid[unique=true] ; name           ; styleClass      
+                                     ;                         ; LinkedInIcon     ; LinkedIn Icon  ; icon--linkedin  
+                                     ;                         ; TwitterIcon      ; Twitter Icon   ; icon--twitter   
+                                     ;                         ; InstagramIcon    ; Instagram Icon ; icon--instagram 
+                                     ;                         ; YoutubeIcon      ; Youtube Icon   ; icon--youtube   
+                                     ;                         ; FacebookIcon     ; Facebook Icon  ; icon--facebook  
+                                     
+## NZ ##                             
+INSERT_UPDATE GallagherIconLinkComponent ; $contentCV[unique=true] ; uid[unique=true]             ; name                             ; icon(uid, $contentCV) ; url                                                              ; restrictions(uid,$contentCV) 
+                                         ;                         ; LinkedInIconLinkComponentNZ  ; LinkedIn NZ Icon Link Component  ; LinkedInIcon          ; "https://www.linkedin.com/company/gallagherna-animal-management" ; GallagherNZRegionRestriction 
+                                         ;                         ; InstagramIconLinkComponentNZ ; Instagram NZ Icon Link Component ; InstagramIcon         ; "https://www.instagram.com/gallagher_nz/"                        ; GallagherNZRegionRestriction 
+                                         ;                         ; YoutubeIconLinkComponentNZ   ; Youtube NZ Icon Link Component   ; YoutubeIcon           ; "https://www.youtube.com/user/GallagherAMS"                      ; GallagherNZRegionRestriction 
+                                         ;                         ; FacebookIconLinkComponentNZ  ; Facebook NZ Icon Link Component  ; FacebookIcon          ; "https://www.facebook.com/GallagherNZ"                           ; GallagherNZRegionRestriction 
+## AU ##                                 
+INSERT_UPDATE GallagherIconLinkComponent ; $contentCV[unique=true] ; uid[unique=true]             ; name                             ; icon(uid, $contentCV) ; url                                                              ; restrictions(uid,$contentCV) 
+                                         ;                         ; LinkedInIconLinkComponentAU  ; LinkedIn AU Icon Link Component  ; LinkedInIcon          ; "https://www.linkedin.com/company/gallagherna-animal-management" ; GallagherAURegionRestriction 
+                                         ;                         ; InstagramIconLinkComponentAU ; Instagram AU Icon Link Component ; InstagramIcon         ; "https://www.instagram.com/gallagher.australia"                  ; GallagherAURegionRestriction 
+                                         ;                         ; YoutubeIconLinkComponentAU   ; Youtube AU Icon Link Component   ; YoutubeIcon           ; "https://www.youtube.com/user/GallagherAMS"                      ; GallagherAURegionRestriction 
+                                         ;                         ; FacebookIconLinkComponentAU  ; Facebook AU Icon Link Component  ; FacebookIcon          ; "https://www.facebook.com/GallagherAU"                           ; GallagherAURegionRestriction 
+                                         
+## US ##                                 
+INSERT_UPDATE GallagherIconLinkComponent ; $contentCV[unique=true] ; uid[unique=true]             ; name                             ; icon(uid, $contentCV) ; url                                                              ; restrictions(uid,$contentCV) 
+                                         ;                         ; LinkedInIconLinkComponentUS  ; LinkedIn US Icon Link Component  ; LinkedInIcon          ; "https://www.linkedin.com/company/gallagherna-animal-management" ; GallagherUSRegionRestriction 
+                                         ;                         ; InstagramIconLinkComponentUS ; Instagram US Icon Link Component ; InstagramIcon         ; "https://www.instagram.com/gallaghernamer/"                      ; GallagherUSRegionRestriction 
+                                         ;                         ; TwitterIconLinkComponentUS   ; Twitter US Icon Link Component   ; TwitterIcon           ; "https://twitter.com/GallagherNA"                                ; GallagherUSRegionRestriction 
+                                         ;                         ; YoutubeIconLinkComponentUS   ; Youtube US Icon Link Component   ; YoutubeIcon           ; "https://www.youtube.com/user/GallagherAMS"                      ; GallagherUSRegionRestriction 
+                                         ;                         ; FacebookIconLinkComponentUS  ; Facebook US Icon Link Component  ; FacebookIcon          ; "https://www.facebook.com/GallagherNAmer"                        ; GallagherUSRegionRestriction 
+                                         
+## CA EN ##                              
+INSERT_UPDATE GallagherIconLinkComponent ; $contentCV[unique=true] ; uid[unique=true]               ; name                                ; icon(uid, $contentCV) ; url                                                              ; restrictions(uid,$contentCV)     
+                                         ;                         ; LinkedInIconLinkComponentCAEN  ; LinkedIn CA EN Icon Link Component  ; LinkedInIcon          ; "https://www.linkedin.com/company/gallagherna-animal-management" ; GallagherCAENCARegionRestriction 
+                                         ;                         ; InstagramIconLinkComponentCAEN ; Instagram CA EN Icon Link Component ; InstagramIcon         ; "https://www.instagram.com/gallaghernamer/"                      ; GallagherCAENCARegionRestriction 
+                                         ;                         ; TwitterIconLinkComponentCAEN   ; Twitter CA EN Icon Link Component   ; TwitterIcon           ; "https://twitter.com/GallagherNA"                                ; GallagherCAENCARegionRestriction 
+                                         ;                         ; YoutubeIconLinkComponentCAEN   ; Youtube CA EN Icon Link Component   ; YoutubeIcon           ; "https://www.youtube.com/user/GallagherAMS"                      ; GallagherCAENCARegionRestriction 
+                                         ;                         ; FacebookIconLinkComponentCAEN  ; Facebook CA EN Icon Link Component  ; FacebookIcon          ; "https://www.facebook.com/GallagherNAmer"                        ; GallagherCAENCARegionRestriction 
+                                         
+## CA FR##                               
+INSERT_UPDATE GallagherIconLinkComponent ; $contentCV[unique=true] ; uid[unique=true]               ; name                                ; icon(uid, $contentCV) ; url                                                              ; restrictions(uid,$contentCV)     
+                                         ;                         ; LinkedInIconLinkComponentCAFR  ; LinkedIn CA FR Icon Link Component  ; LinkedInIcon          ; "https://www.linkedin.com/company/gallagherna-animal-management" ; GallagherCAFRCARegionRestriction 
+                                         ;                         ; InstagramIconLinkComponentCAFR ; Instagram CA FR Icon Link Component ; InstagramIcon         ; "https://www.instagram.com/gallaghernamer/"                      ; GallagherCAFRCARegionRestriction 
+                                         ;                         ; TwitterIconLinkComponentCAFR   ; Twitter CA FR Icon Link Component   ; TwitterIcon           ; "https://twitter.com/GallagherQuebec"                            ; GallagherCAFRCARegionRestriction 
+                                         ;                         ; YoutubeIconLinkComponentCAFR   ; Youtube CA FR Icon Link Component   ; YoutubeIcon           ; "https://www.youtube.com/user/GallagherAMS"                      ; GallagherCAFRCARegionRestriction 
+                                         ;                         ; FacebookIconLinkComponentCAFR  ; Facebook CA FR Icon Link Component  ; FacebookIcon          ; "https://www.facebook.com/GallagherNAmer"                        ; GallagherCAFRCARegionRestriction 
+                                         
+## LAt AM ##                             
+INSERT_UPDATE GallagherIconLinkComponent ; $contentCV[unique=true] ; uid[unique=true]            ; name                            ; icon(uid, $contentCV) ; url                                                              ; restrictions(uid,$contentCV)    
+                                         ;                         ; LinkedInIconLinkComponentLA ; LinkedIn LA Icon Link Component ; LinkedInIcon          ; "https://www.linkedin.com/company/gallagherna-animal-management" ; GallagherLATAMRegionRestriction 
+                                         ;                         ; YoutubeIconLinkComponentLA  ; Youtube LA Icon Link Component  ; YoutubeIcon           ; "https://www.youtube.com/user/GallagherAMS"                      ; GallagherLATAMRegionRestriction 
+## Global ##                             
+INSERT_UPDATE GallagherIconLinkComponent ; $contentCV[unique=true] ; uid[unique=true]                ; name                                ; icon(uid, $contentCV) ; url                                                              ; restrictions(uid,$contentCV) 
+                                         ;                         ; LinkedInIconLinkComponentGlobal ; LinkedIn Global Icon Link Component ; LinkedInIcon          ; "https://www.linkedin.com/company/gallagherna-animal-management" ; GallagherGlRegionRestriction 
+                                         ;                         ; YoutubeIconLinkComponentGlobal  ; Youtube Global Icon Link Component  ; YoutubeIcon           ; "https://www.youtube.com/user/GallagherAMS"                      ; GallagherGlRegionRestriction 
+                                         
+INSERT_UPDATE CMSNavigationNode ; uid[unique=true]  ; $contentCV[unique=true] ; name         ; parent(uid, $contentCV) ; &nodeRef          
+                                ; SocialLinkNavNode ;                         ; Social Links ; root                    ; SocialLinkNavNode 
+                                
+INSERT_UPDATE CMSNavigationEntry ; uid[unique=true]       ; $contentCV[unique=true] ; item(GallagherIconLinkComponent.uid,GallagherIconLinkComponent.$contentCV) ; name                   ; navigationNode(&nodeRef)[default=SocialLinkNavNode] 
+                                 ; LinkedInNavEntryNZ     ;                         ; LinkedInIconLinkComponentNZ                                                ; LinkedIn NZ Entry      
+                                 ; InstagramNavEntryNZ    ;                         ; InstagramIconLinkComponentNZ                                               ; Instagram NZ Entry     
+                                 ; YoutubeNavEntryNZ      ;                         ; YoutubeIconLinkComponentNZ                                                 ; Youtube NZ Entry       
+                                 ; FacebookNavEntryNZ     ;                         ; FacebookIconLinkComponentNZ                                                ; Facebook NZ Entry      
+                                 ; LinkedInNavEntryAU     ;                         ; LinkedInIconLinkComponentAU                                                ; LinkedIn AU Entry      
+                                 ; InstagramNavEntryAU    ;                         ; InstagramIconLinkComponentAU                                               ; Instagram AU Entry     
+                                 ; YoutubeNavEntryAU      ;                         ; YoutubeIconLinkComponentAU                                                 ; Youtube AU Entry       
+                                 ; FacebookNavEntryAU     ;                         ; FacebookIconLinkComponentAU                                                ; Facebook AU Entry      
+                                 ; LinkedInNavEntryUS     ;                         ; LinkedInIconLinkComponentUS                                                ; LinkedIn US Entry      
+                                 ; InstagramNavEntryUS    ;                         ; InstagramIconLinkComponentUS                                               ; Instagram US Entry     
+                                 ; TwitterNavEntryUS      ;                         ; TwitterIconLinkComponentUS                                                 ; Twitter US Entry       
+                                 ; YoutubeNavEntryUS      ;                         ; YoutubeIconLinkComponentUS                                                 ; Youtube US Entry       
+                                 ; FacebookNavEntryUS     ;                         ; FacebookIconLinkComponentUS                                                ; Facebook US Entry      
+                                 ; LinkedInNavEntryCAEN   ;                         ; LinkedInIconLinkComponentCAEN                                              ; LinkedIn CA Entry      
+                                 ; InstagramNavEntryCAEN  ;                         ; InstagramIconLinkComponentCAEN                                             ; Instagram CA Entry     
+                                 ; TwitterNavEntryCAEN    ;                         ; TwitterIconLinkComponentCAEN                                               ; Twitter CA Entry       
+                                 ; YoutubeNavEntryCAEN    ;                         ; YoutubeIconLinkComponentCAEN                                               ; Youtube CA Entry       
+                                 ; FacebookNavEntryCAEN   ;                         ; FacebookIconLinkComponentCAEN                                              ; Facebook CA Entry      
+                                 ; LinkedInNavEntryCAFR   ;                         ; LinkedInIconLinkComponentCAFR                                              ; LinkedIn CA(FR) Entry  
+                                 ; InstagramNavEntryCAFR  ;                         ; InstagramIconLinkComponentCAFR                                             ; Instagram CA(FR) Entry 
+                                 ; TwitterNavEntryCAFR    ;                         ; TwitterIconLinkComponentCAFR                                               ; Twitter CA (FR) Entry  
+                                 ; YoutubeNavEntryCAFR    ;                         ; YoutubeIconLinkComponentCAFR                                               ; Youtube CA(FR) Entry   
+                                 ; FacebookNavEntryCAFR   ;                         ; FacebookIconLinkComponentCAFR                                              ; Facebook CA(FR) Entry  
+                                 ; LinkedInNavEntryLA     ;                         ; LinkedInIconLinkComponentLA                                                ; LinkedIn LAtAm Entry   
+                                 ; YoutubeNavEntryLA      ;                         ; YoutubeIconLinkComponentLA                                                 ; Youtube LatAm Entry    
+                                 ; LinkedInNavEntryGlobal ;                         ; LinkedInIconLinkComponentGlobal                                            ; LinkedIn Global Entry  
+                                 ; YoutubeNavEntryGlobal  ;                         ; YoutubeIconLinkComponentGlobal                                             ; Youtube Global Entry   
+                                 
+INSERT_UPDATE GallagherFooterNavigationComponent ; $contentCV[unique=true] ; uid[unique=true]                   ; &componentRef                      ; socialLinkNagivationNode(&nodeRef) 
+                                                 ;                         ; GallagherFooterNavigationComponent ; GallagherFooterNavigationComponent ; SocialLinkNavNode                  ;  
+                                                 
+## Social link Navigation end 
+												 
+################# END ##########################
+
+#########################Security Social Media icons#########################                          
+                                                                                                           
+$contentCatalog=securityB2BContentCatalog                                                                        
+$contentCatalogName=Security B2B Content Catalog                                                  
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+                                                                                                           
+INSERT_UPDATE GallagherIconComponent ; $contentCV[unique=true] ; uid[unique=true] ; name           ; styleClass      
+                                     ;                         ; LinkedInIcon     ; LinkedIn Icon  ; icon--linkedin  
+                                     ;                         ; TwitterIcon      ; Twitter Icon   ; icon--twitter   
+                                     ;                         ; InstagramIcon    ; Instagram Icon ; icon--instagram 
+                                     ;                         ; YoutubeIcon      ; Youtube Icon   ; icon--youtube   
+                                     ;                         ; FacebookIcon     ; Facebook Icon  ; icon--facebook  
+                                     
+                                     
+## NZ ##                             
+INSERT_UPDATE GallagherIconLinkComponent ; $contentCV[unique=true] ; uid[unique=true]          ; name                         ; icon(uid, $contentCV) ; url                                                    
+                                         ;                         ; LinkedInIconLinkComponent ; LinkedIn Icon Link Component ; LinkedInIcon          ; "https://www.linkedin.com/showcase/gallagher-security" 
+                                         ;                         ; TwitterIconLinkComponent  ; Twitter Icon Link Component  ; TwitterIcon           ; "https://twitter.com/GallagherSecure"                  
+                                         ;                         ; FacebookIconLinkComponent ; Facebook Icon Link Component ; FacebookIcon          ; "https://www.facebook.com/Gallaghersecure/"            
+                                         ;                         ; YoutubeIconLinkComponent  ; Youtube Icon Link Component  ; YoutubeIcon           ; "https://www.youtube.com/user/GallagherSecurityTV"     
+                                         
+INSERT_UPDATE CMSNavigationEntry ; uid[unique=true] ; $contentCV[unique=true] ; item(GallagherIconLinkComponent.uid,GallagherIconLinkComponent.$contentCV) ; name                    ; navigationNode(&nodeRef)[default=SocialLinkNavNode] 
+                                 ; LinkedInNavEntry ;                         ; LinkedInIconLinkComponent                                                  ; LinkedIn Security Entry 
+                                 ; TwitterNavEntry  ;                         ; TwitterIconLinkComponent                                                   ; Twitter Security Entry  
+                                 ; FacebookNavEntry ;                         ; FacebookIconLinkComponent                                                  ; Facebook Security Entry 
+                                 ; YoutubeNavEntry  ;                         ; YoutubeIconLinkComponent                                                   ; Youtube Security Entry  
+                                 
+INSERT_UPDATE CMSNavigationNode ; uid[unique=true]  ; $contentCV[unique=true] ; name         ; parent(uid, $contentCV) ; entries(uid, $contentCV)                                          ; &nodeRef          
+                                ; SocialLinkNavNode ;                         ; Social Links ; root                    ; LinkedInNavEntry,TwitterNavEntry,FacebookNavEntry,YoutubeNavEntry ; SocialLinkNavNode ;  
+                                
+INSERT_UPDATE GallagherFooterNavigationComponent ; $contentCV[unique=true] ; uid[unique=true]                      ; &componentRef                         ; socialLinkNagivationNode(&nodeRef) 
+                                                 ;                         ; B2BGallagherFooterNavigationComponent ; B2BGallagherFooterNavigationComponent ; SocialLinkNavNode                  ;  
+                                                 
+                                               
+
+                                       
+                                   

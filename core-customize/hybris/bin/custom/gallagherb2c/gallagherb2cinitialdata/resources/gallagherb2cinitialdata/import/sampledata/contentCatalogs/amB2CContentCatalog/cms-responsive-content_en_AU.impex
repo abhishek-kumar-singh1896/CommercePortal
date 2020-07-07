@@ -48,3 +48,4 @@ UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$
 ;;ContactFooterLink;"Contact Us"
 ;;NewsEventsFooterLink;"News & Events"
 ;;InnovationAwardsFooterLink;"Innovation & Awards"
+;;WeighinEid_link5;"Platforms"

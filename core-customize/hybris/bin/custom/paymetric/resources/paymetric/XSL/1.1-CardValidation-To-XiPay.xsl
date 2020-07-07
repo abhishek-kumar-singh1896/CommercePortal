@@ -108,6 +108,9 @@
 			<cardHolderAddress2>
 				<xsl:value-of select="map/entry[string[1]='billTo_street2']/string[2]"/>
 			</cardHolderAddress2>
+			<PONumber>
+				<xsl:value-of select="map/entry[string[1]='billTo_phoneNumber']/string[2]"/>
+			</PONumber>
 			<cardHolderCity>
 				<xsl:value-of select="map/entry[string[1]='billTo_city']/string[2]"/>
 			</cardHolderCity>

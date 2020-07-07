@@ -40,22 +40,46 @@ public class GallagherProductGalleryImagesPopulator<SOURCE extends ProductModel,
 
 					if (galleryImages != null)
 					{
-						for (final MediaContainerModel galleryImage : galleryImages)
-						{
-							if (!list.contains(galleryImage))
-							{
-								list.add(galleryImage);
-							}
-						}
+						collectHeroMediaContainers(galleryImages, list);
 					}
-
 					break;
 				}
 			}
 		}
 		else
 		{
-			super.collectMediaContainers(productModel, list);
+			final List<MediaContainerModel> galleryImages = (List<MediaContainerModel>) getProductAttribute(productModel,
+					ProductModel.GALLERYIMAGES);
+			if (galleryImages != null)
+			{
+				collectHeroMediaContainers(galleryImages, list);
+
+				if (galleryImages.isEmpty() && productModel instanceof VariantProductModel)
+				{
+					collectMediaContainers(((VariantProductModel) productModel).getBaseProduct(), list);
+				}
+			}
 		}
 	}
+
+	protected void collectHeroMediaContainers(final List<MediaContainerModel> galleryImages, final List<MediaContainerModel> list)
+	{
+		for (final MediaContainerModel galleryImage : galleryImages)
+		{
+			if (!list.contains(galleryImage) && Boolean.TRUE.equals(galleryImage.getHero()))
+			{
+				list.add(galleryImage);
+				break;
+			}
+		}
+		for (final MediaContainerModel galleryImage : galleryImages)
+		{
+
+			if (!list.contains(galleryImage) && !Boolean.TRUE.equals(galleryImage.getHero()))
+			{
+				list.add(galleryImage);
+			}
+		}
+	}
+
 }

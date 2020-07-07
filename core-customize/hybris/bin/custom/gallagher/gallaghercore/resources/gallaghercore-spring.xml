@@ -90,6 +90,11 @@
 	<bean id="image30ValueProvider" parent="gallagherImageValueProvider">
 		<property name="mediaFormat" value="30Wx30H" />
 	</bean>
+	
+	 <bean id="gallagherProductPriceValueProvider" class="com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherProductPriceValueProvider"
+          parent="productPriceValueProvider">
+        <property name="productPriceRangeValueProvider" ref="productPriceRangeValueProvider" />
+    </bean>
 
 	<bean id="gallagherBynderSyncCronJob" class="com.gallagher.core.jobs.GallagherBynderSyncJob" parent="abstractJobPerformable" />
 	<alias name="gallagherMediaContainerDao" alias="mediaContainerDao" />

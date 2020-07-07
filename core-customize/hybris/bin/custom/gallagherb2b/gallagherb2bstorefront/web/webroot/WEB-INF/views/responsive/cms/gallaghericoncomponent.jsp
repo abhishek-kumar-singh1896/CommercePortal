@@ -4,17 +4,14 @@
 <%-- <i class="${component.styleClass}"></i> --%>
 
 <c:if test="${component.styleClass eq 'icon--facebook'}">
-<img src="${commonResourcePath}/images/facebook.png" alt="Facebook">
+<img class="svg-icon" src="${siteRootUrl}/theme-securityB2B/images/svg/facebook.svg">
 </c:if>
 <c:if test="${component.styleClass eq 'icon--linkedin'}">
-<img src="${commonResourcePath}/images/linkedin.png" alt="Linkedin">
+<img class="svg-icon" src="${siteRootUrl}/theme-securityB2B/images/svg/linkedin.svg">
 </c:if>
 <c:if test="${component.styleClass eq 'icon--youtube'}">
-<img src="${commonResourcePath}/images/youtube.png" alt="Youtube">
+<img class="svg-icon" src="${siteRootUrl}/theme-securityB2B/images/svg/youtube.svg">
 </c:if>
 <c:if test="${component.styleClass eq 'icon--twitter'}">
-<img src="${commonResourcePath}/images/twitter.png" alt="Twitter">
-</c:if>
-<c:if test="${component.styleClass eq 'icon--instagram'}">
-<img src="${commonResourcePath}/images/instagram.png" alt="Instagram">
+<img class="svg-icon" src="${siteRootUrl}/theme-securityB2B/images/svg/twitter.svg">
 </c:if>

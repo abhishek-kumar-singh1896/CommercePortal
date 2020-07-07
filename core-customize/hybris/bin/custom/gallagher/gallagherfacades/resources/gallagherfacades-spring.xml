@@ -287,4 +287,13 @@
     
     <alias name="gallagherCmsCatalogModelToDataPopulator" alias="basicCmsCatalogModelToDataPopulator" />
 	 <bean id="gallagherCmsCatalogModelToDataPopulator" class="com.gallagher.facades.catalogs.populator.GallagherCatalogModelToDataPopulator" parent="defaultCmsCatalogModelToDataPopulator" />
+	 
+	<alias name="gallagherPaymentFacade" alias="paymentFacade"/>
+	<bean id="gallagherPaymentFacade" class="com.gallagher.facades.payment.impl.GallagherPaymentFacadeImpl" parent="defaultPaymentFacade" />
+ 	
+ 	<bean parent="modifyPopulatorList">
+		<property name="list" ref="extendedCartConverter"/>
+		<property name="remove" ref="groupOrderEntryPopulator"/>
+	</bean>
+	
 </beans>
