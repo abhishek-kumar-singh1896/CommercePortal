@@ -75,7 +75,7 @@ public class GallagherProductGalleryImagesPopulator<SOURCE extends ProductModel,
 		for (final MediaContainerModel galleryImage : galleryImages)
 		{
 
-			if (!list.contains(galleryImage) && Boolean.FALSE.equals(galleryImage.getHero()))
+			if (!list.contains(galleryImage) && !Boolean.TRUE.equals(galleryImage.getHero()))
 			{
 				list.add(galleryImage);
 			}
