@@ -324,17 +324,21 @@
                         <div class="contact-us-container-xs">
                         <c:forEach items="${l1.children}" var="topLevelChild" varStatus="l3link">
                             <c:if test="${l3link.index eq 0}">
-                            <div class="row mb-4">
-                                <div class="col-12">
-                                <c:forEach items="${topLevelChild.entries}" var="topLevelLink1">
-                               	${topLevelLink1.item.linkName}
-                                </c:forEach>
-								<div class="contact-us-description">
-                                    ${topLevelChild.title}
-                                </div>
-                                </div>
-                            </div>
-                            </c:if>
+												<div class="row mb-4 ${l1.uid}">
+													<div class="col-12">
+														<c:forEach items="${topLevelChild.entries}"
+															var="topLevelLink1">
+															<span class="d-none"> <cms:component
+																	component="${topLevelLink1.item}"
+																	evaluateRestriction="true" />
+															</span>
+															${topLevelLink1.item.linkName}
+												</c:forEach>
+														<div class="contact-us-description">
+															${topLevelChild.title}</div>
+													</div>
+												</div>
+											</c:if>
                             <c:if test="${l3link.index ne 0}">
                             <div class="row mb-4">
                                 <div class="col-12">

@@ -190,12 +190,16 @@
 							<div class="row">
 								<c:forEach items="${l1.children}" var="topLevelChild"
 									varStatus="l3link">
-									<c:if test="${l3link.index eq 0 && regionCodeUpper ne 'GLOBAL'}">
-										<div class="col-md-3">
+									<c:if test="${l3link.index eq 0}">
+										<div class="col-md-3 ${l1.uid}">
+											<c:set var="showLink" scope="page" value="false" />
 											<c:forEach items="${topLevelChild.entries}"
 												var="topLevelLink1">
-                       	${topLevelLink1.item.linkName}
-                               <%-- <cms:component component="${topLevelLink1.item}" evaluateRestriction="true" /> --%>
+												<span class="d-none"> <cms:component
+														component="${topLevelLink1.item}"
+														evaluateRestriction="true" />
+												</span>
+												${topLevelLink1.item.linkName} 
 											</c:forEach>
 											<div class="contact-us-description">
 												${topLevelChild.title}</div>
