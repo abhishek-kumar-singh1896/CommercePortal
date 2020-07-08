@@ -1,5 +1,6 @@
 package com.gallagher.facades.storesession.impl;
 
+import de.hybris.platform.acceleratorservices.config.SiteConfigService;
 import de.hybris.platform.basecommerce.model.site.BaseSiteModel;
 import de.hybris.platform.cms2.model.site.CMSSiteModel;
 import de.hybris.platform.commercefacades.storesession.data.LanguageData;
@@ -16,6 +17,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.util.Assert;
 
@@ -31,8 +33,13 @@ public class GallagherStoreSessionFacadeImpl extends DefaultStoreSessionFacade i
 {
 	private static final Logger LOG = Logger.getLogger(GallagherStoreSessionFacadeImpl.class);
 
+	private static final String SITECORE_ROOT_URL = "sitecore.root.url";
+
 	@Resource
 	private UserService userService;
+
+	@Resource(name = "siteConfigService")
+	private SiteConfigService siteConfigService;
 
 	/**
 	 * {@inheritDoc}
@@ -88,4 +95,23 @@ public class GallagherStoreSessionFacadeImpl extends DefaultStoreSessionFacade i
 		return Converters.convertAll(languages, getLanguageConverter());
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getSitecoreRootUrl()
+	{
+		String sitecoreUrl = getSessionService().getAttribute("sitecoreRootUrl");
+		if (StringUtils.isEmpty(sitecoreUrl))
+		{
+			sitecoreUrl = getSiteCoreConfigurationPath(SITECORE_ROOT_URL);
+		}
+		return sitecoreUrl;
+	}
+
+	private String getSiteCoreConfigurationPath(final String path)
+	{
+		return siteConfigService.getString(new StringBuilder(path).append(".").append(getCurrentLanguage().getIsocode()).toString(),
+				"/");
+	}
 }

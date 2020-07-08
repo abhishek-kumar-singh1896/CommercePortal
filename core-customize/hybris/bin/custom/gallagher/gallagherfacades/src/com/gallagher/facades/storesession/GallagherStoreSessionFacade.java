@@ -16,4 +16,11 @@ public interface GallagherStoreSessionFacade extends StoreSessionFacade
 	 */
 	void resetEncodingAttributes();
 
+	/**
+	 * Returns the sotecore root URL
+	 *
+	 * @return sitecore root url
+	 */
+	String getSitecoreRootUrl();
+
 }

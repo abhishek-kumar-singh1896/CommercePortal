@@ -9,7 +9,7 @@
 
 <template:page pageTitle="${pageTitle}">
 	
-	<c:url value="/" var="homePageUrl" />
+	<c:url value="${sitecoreHomePage}" var="homePageUrl" />
 
 
 	<cms:pageSlot position="MiddleContent" var="comp" element="div" class="errorNotFoundPageMiddle">

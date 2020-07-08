@@ -73,6 +73,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gallagher.b2c.controllers.ControllerConstants;
+import com.gallagher.facades.storesession.GallagherStoreSessionFacade;
 
 
 /**
@@ -86,6 +87,7 @@ public class CartPageController extends AbstractCartPageController
 	public static final String ERROR_MSG_TYPE = "errorMsg";
 	public static final String SUCCESSFUL_MODIFICATION_CODE = "success";
 	public static final String VOUCHER_FORM = "voucherForm";
+	private static final String CONTINUE_URL = "continueUrl";
 	public static final String SITE_QUOTES_ENABLED = "site.quotes.enabled.";
 	private static final String CART_CHECKOUT_ERROR = "cart.checkout.error";
 
@@ -123,6 +125,9 @@ public class CartPageController extends AbstractCartPageController
 
 	@Resource(name = "cartEntryActionFacade")
 	private CartEntryActionFacade cartEntryActionFacade;
+
+	@Resource(name = "storeSessionFacade")
+	protected GallagherStoreSessionFacade storeSessionFacade;
 
 	@ModelAttribute("showCheckoutStrategies")
 	public boolean isCheckoutStrategyVisible()
@@ -339,6 +344,14 @@ public class CartPageController extends AbstractCartPageController
 		model.addAttribute("siteQuoteEnabled", Config.getBoolean(siteQuoteProperty, Boolean.FALSE));
 		model.addAttribute(WebConstants.BREADCRUMBS_KEY, resourceBreadcrumbBuilder.getBreadcrumbs("breadcrumb.cart"));
 		model.addAttribute("pageType", PageType.CART.name());
+	}
+
+	@Override
+	protected void continueUrl(final Model model) throws CMSItemNotFoundException
+	{
+		final String continueUrl = (String) getSessionService().getAttribute(WebConstants.CONTINUE_URL);
+		model.addAttribute(CONTINUE_URL,
+				(continueUrl != null && !continueUrl.isEmpty()) ? continueUrl : storeSessionFacade.getSitecoreRootUrl());
 	}
 
 	protected void addFlashMessage(final UpdateQuantityForm form, final HttpServletRequest request,

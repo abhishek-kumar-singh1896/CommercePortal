@@ -211,6 +211,7 @@ public class CMSSiteFilter extends OncePerRequestFilter implements CMSFilter
 				// Remove cart from session, Clone first as a workaround since removing from session will delete cart.
 				cloneCart();
 				sessionService.removeAttribute(DefaultCartService.SESSION_CART_PARAMETER_NAME);
+				getSessionService().removeAttribute("sitecoreRootUrl");
 				// Set the New Site in the session.
 				baseSiteService.setCurrentBaseSite(cmsSiteForCurrentRequest, true);
 				// Update the URLEncoderData

@@ -62,6 +62,7 @@ import org.springframework.web.util.WebUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gallagher.b2c.controllers.ControllerConstants;
+import com.gallagher.facades.storesession.GallagherStoreSessionFacade;
 
 
 
@@ -104,6 +105,9 @@ public class CheckoutController extends AbstractCheckoutController
 
 	@Resource(name = "customerConsentDataStrategy")
 	protected CustomerConsentDataStrategy customerConsentDataStrategy;
+
+	@Resource(name = "storeSessionFacade")
+	protected GallagherStoreSessionFacade storeSessionFacade;
 
 	@ExceptionHandler(ModelNotFoundException.class)
 	public String handleModelNotFoundException(final ModelNotFoundException exception, final HttpServletRequest request)
@@ -279,7 +283,8 @@ public class CheckoutController extends AbstractCheckoutController
 		processEmailAddress(model, orderDetails);
 
 		final String continueUrl = (String) getSessionService().getAttribute(WebConstants.CONTINUE_URL);
-		model.addAttribute(CONTINUE_URL_KEY, (continueUrl != null && !continueUrl.isEmpty()) ? continueUrl : ROOT);
+		model.addAttribute(CONTINUE_URL_KEY,
+				(continueUrl != null && !continueUrl.isEmpty()) ? continueUrl : storeSessionFacade.getSitecoreRootUrl());
 
 		final ContentPageModel checkoutOrderConfirmationPage = getContentPageForLabelOrId(
 				CHECKOUT_ORDER_CONFIRMATION_CMS_PAGE_LABEL);

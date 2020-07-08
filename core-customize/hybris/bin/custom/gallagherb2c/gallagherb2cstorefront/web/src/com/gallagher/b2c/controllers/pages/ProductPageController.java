@@ -72,6 +72,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gallagher.b2c.controllers.ControllerConstants;
+import com.gallagher.facades.storesession.GallagherStoreSessionFacade;
 import com.google.common.collect.Maps;
 
 
@@ -125,6 +126,9 @@ public class ProductPageController extends AbstractPageController
 	@Resource(name = "sessionService")
 	private SessionService sessionService;
 
+	@Resource(name = "storeSessionFacade")
+	protected GallagherStoreSessionFacade storeSessionFacade;
+
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN, method = RequestMethod.GET)
 	public String productDetail(@PathVariable("productCode")
 	final String encodedProductCode, final Model model, final HttpServletRequest request, final HttpServletResponse response)
@@ -167,7 +171,7 @@ public class ProductPageController extends AbstractPageController
 		final Breadcrumb secondLastBreadcrumb = breadcrumbslist.get(breadcrumbslist.size() - 2);
 		model.addAttribute(CONTINUE_URL,
 				(secondLastBreadcrumb.getUrl() != null && !secondLastBreadcrumb.getUrl().isEmpty()) ? secondLastBreadcrumb.getUrl()
-						: ROOT);
+						: storeSessionFacade.getSitecoreRootUrl());
 	}
 
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN + "/orderForm", method = RequestMethod.GET)
