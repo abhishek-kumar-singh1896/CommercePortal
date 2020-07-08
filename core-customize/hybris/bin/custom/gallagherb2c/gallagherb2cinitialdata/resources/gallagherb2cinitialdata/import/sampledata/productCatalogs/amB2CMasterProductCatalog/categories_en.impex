@@ -47,7 +47,7 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
 ;earthing;;Earthing
 ;solar-and-solar-kits;;Solar and Solar Kits 
 ;110-volt-energizers;;110 Volt Energizers 
-;grounding;;Grounding
+;grounding;;DO NOT USE Grounding
 ;power-management-tools;;DO NOT USE Power Management Tools
 
 # 1.1.2 Sub Categories for 'permanent-fencing'

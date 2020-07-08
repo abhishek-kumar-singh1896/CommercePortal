@@ -4,13 +4,14 @@ $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[defa
  
 # Language
 $lang=en_CA
-
-
-
-
+ 
+ 
+ 
+ 
 UPDATE Category ; code[unique=true]                ; $catalogVersion ; name[lang=$lang]                
-                ; weigh-scales-and-data-collectors ;                 ; Scale Heads and Data Collectors
-                 ;wire-and-cable;; Hi Tensile Wire and Cable 
-
- 
- 
+                ; weigh-scales-and-data-collectors ;                 ; Scale Heads and Data Collectors 
+                ; wire-and-cable                   ;                 ; Hi Tensile Wire and Cable       
+                ; earthing                         ;                 ; Grounding                       
+                
+                
+                
