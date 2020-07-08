@@ -27,12 +27,24 @@ ACC.header = {
 					$('.megamenu-out').not('#' + linkId + 'Container').addClass('d-none').removeClass('fadeInUp');
 					$('#' + linkId + 'Container').toggleClass('d-none').toggleClass('fadeInUp');
 					$('.search-out .search-link').removeClass('active');
+					const menu = document.getElementById('product-mega-menu');
+					const menuButton = document.getElementById(linkId).parentElement;
+
+					    event.stopPropagation();
+					    menu.classList.toggle('menu-button-active')
+					    menuButton.classList.toggle('mega-menu-active')
 				} else if ($searchLink.length) {
+//					menu.classList.remove('menu-button-active')
+//			        menuButton.classList.remove('mega-menu-active')
+//					$('.with-dropdown').removeClass('mega-menu-active');
 					$searchLink.toggleClass('active');
 					$('.main-nav-out li.first-level').removeClass('active');
 					$('.megamenu-out').not('.search-link-container').addClass('d-none').removeClass('fadeInUp');
 					$('.search-link-container').toggleClass('d-none').toggleClass('fadeInUp');
 				} else if (!$(e.target).closest('.megamenu-out').length) {
+//					menu.classList.remove('menu-button-active')
+//			        menuButton.classList.remove('mega-menu-active')
+//					$('.with-dropdown').removeClass('mega-menu-active');
 					$('.main-nav-out li.first-level, .search-out .search-link').removeClass('active');
 					$('.megamenu-out').addClass('d-none').removeClass('fadeInUp');
 				}
@@ -106,6 +118,24 @@ ACC.header = {
 			// if($(window).width() >= 1200) {
 			// 	$('body').togleClass('freeze');
 			// }
+			
+			/*const menu = document.getElementById('product-mega-menu');
+			const menuButton = document.getElementById('mainNavLink3').parentElement;
+
+			menuButton.onclick = function (event) {
+				alert("11");
+			    event.stopPropagation();
+			    menu.classList.toggle('menu-button-active')
+			    menuButton.classList.toggle('mega-menu-active')
+			}
+
+			window.onclick = function (event) {
+			    if (!event.target.closest('#product-mega-menu')) {
+			    	alert("22");
+			        menu.classList.remove('menu-button-active')
+			        menuButton.classList.remove('mega-menu-active')
+			    }
+			}*/
 
 		});
 	}
