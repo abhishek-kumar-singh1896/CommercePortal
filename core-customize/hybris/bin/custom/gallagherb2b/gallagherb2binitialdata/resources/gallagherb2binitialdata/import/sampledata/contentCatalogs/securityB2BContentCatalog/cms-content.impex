@@ -576,7 +576,7 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;c
 ;;Section1Slot-Homepage;Section1 Slot for Homepage;true;SecurityB2BHompageSplashBannerComponent,SecurityB2BHompageBrandsBannerComponent
 ;;Section2ASlot-Homepage;Section2A Slot for Homepage;true;SecurityB2BHompagePowerDrillsBannerComponent,SecurityB2BHompageAngleGrindersBannerComponent
 ;;Section2BSlot-Homepage;Section2B Slot for Homepage;true;SecurityB2BHompageScrewdriversBannerComponent,SecurityB2BHompageSandersBannerComponent
-;;Section2CSlot-Homepage;Section2C Slot for Homepage;true;SecurityB2BHompageScrewdriversBannerComponent,SecurityB2BHompageSandersBannerComponent
+;;Section2CSlot-Homepage;Section2C Slot for Homepage;true;
 ;;Section3Slot-Homepage;Section3 Slot for Homepage;true;SecurityB2BHomepageNewProductCarouselComponent,SecurityB2BHomepageProductCarouselComponent
 ;;Section4Slot-Homepage;Section4 Slot for Homepage;true;SecurityB2BHompage25%BannerComponent,SecurityB2BHompage30dayBannerComponent,SecurityB2BHompage6pmBannerComponent,SecurityB2BHompage24/7BannerComponent
 
