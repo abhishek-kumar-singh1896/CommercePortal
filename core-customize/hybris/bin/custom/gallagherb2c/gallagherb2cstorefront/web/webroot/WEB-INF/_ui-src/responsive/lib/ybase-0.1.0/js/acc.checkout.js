@@ -101,7 +101,7 @@ ACC.checkout = {
 		
 		$('.confirmGuestEmail').on('focusout', function() {
 			  var orginalEmail = $(".guestEmail").val();
-			  var confirmationEmail = $(this).val();
+			  var confirmationEmail = $(".confirmGuestEmail").val();
 			  if(orginalEmail === confirmationEmail){
 			    $(this).removeClass("has-error");
 			    $('.error-message').hide();
@@ -114,7 +114,7 @@ ACC.checkout = {
 		$(document).on('keypress',function(e) {
 		    if(e.which == 13) {
 		    	var orginalEmail = $(".guestEmail").val();
-				  var confirmationEmail = $(this).val();
+				  var confirmationEmail = $(".confirmGuestEmail").val();
 				  if(orginalEmail === confirmationEmail){
 				    $(this).removeClass("has-error");
 				    $('.error-message').hide();
