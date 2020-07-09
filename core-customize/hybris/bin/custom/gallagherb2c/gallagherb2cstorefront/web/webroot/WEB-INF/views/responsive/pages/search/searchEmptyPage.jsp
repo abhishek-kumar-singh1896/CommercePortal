@@ -47,7 +47,7 @@
 					<div class="tab-pane fade show active" id="products"
 						role="tabpanel" aria-labelledby="products-tab">
 
-						<c:url value="/" var="homePageUrl" />
+						<c:url value="${sitecoreHomePage}" var="homePageUrl" />
 						<cms:pageSlot position="SideContent" var="feature" element="div" class="side-content-slot cms_disp-img_slot searchEmptyPageTop">
 							<cms:component component="${feature}" element="div" class="no-space yComponentWrapper searchEmptyPageTop-component"/>
 						</cms:pageSlot>
