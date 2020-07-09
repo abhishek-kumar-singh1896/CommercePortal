@@ -34,6 +34,7 @@ import de.hybris.platform.commercefacades.product.data.ProductData;
 import de.hybris.platform.commercefacades.product.data.ProductReferenceData;
 import de.hybris.platform.commercefacades.product.data.ReviewData;
 import de.hybris.platform.commerceservices.url.UrlResolver;
+import de.hybris.platform.core.GenericSearchConstants.LOG;
 import de.hybris.platform.core.model.product.ProductModel;
 import de.hybris.platform.product.ProductService;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
@@ -511,6 +512,10 @@ public class ProductPageController extends AbstractPageController
 						{
 							mapValue = data.getValue();
 						}
+						if (StringUtils.isNotEmpty(mapValue) && null != fd.getFeatureUnit())
+						{
+							mapValue = mapValue + " " + fd.getFeatureUnit().getSymbol();
+						}
 						if (StringUtils.isNotEmpty(fd.getName()) && StringUtils.isNotEmpty(mapValue))
 						{
 							firstProductAttrValueMap.put(fd.getName(), mapValue);
@@ -537,6 +542,14 @@ public class ProductPageController extends AbstractPageController
 				firstComparisonData.setProductAttrValueMap(firstProductAttrValueMapFinal);
 				model.addAttribute("firstProduct", firstComparisonData);
 				model.addAttribute("compareProducts", compareProducts);
+				if (null != productData.getPrice() && !compareProducts.isEmpty())
+				{
+					model.addAttribute("RRP", true);
+				}
+				else
+				{
+					model.addAttribute("RRP", false);
+				}
 			}
 		}
 	}
@@ -594,6 +607,10 @@ public class ProductPageController extends AbstractPageController
 											{
 												mapValue = data.getValue();
 											}
+											if (StringUtils.isNotEmpty(mapValue) && null != fd.getFeatureUnit())
+											{
+												mapValue = mapValue + " " + fd.getFeatureUnit().getSymbol();
+											}
 
 											productAttrValueMap.put(keyValue, mapValue);
 										}
@@ -604,20 +621,23 @@ public class ProductPageController extends AbstractPageController
 						}
 						for (final FeatureData firstFd : classData.getFeatures())
 						{
-							String firstKeyValue = null;
-							if (StringUtils.isNotEmpty(firstFd.getName()))
+							if (firstFd.isComparable())
 							{
-								firstKeyValue = firstFd.getName();
-							}
-							else
-							{
-								firstKeyValue = firstFd.getCode().substring(firstFd.getCode().lastIndexOf('.') + 1,
-										firstFd.getCode().length());
-							}
-							if (!productAttrValueMap.containsKey(firstKeyValue))
-							{
-								classFeatureCodes.add(firstKeyValue);
-								productAttrValueMap.put(firstKeyValue, "-");
+								String firstKeyValue = null;
+								if (StringUtils.isNotEmpty(firstFd.getName()))
+								{
+									firstKeyValue = firstFd.getName();
+								}
+								else
+								{
+									firstKeyValue = firstFd.getCode().substring(firstFd.getCode().lastIndexOf('.') + 1,
+											firstFd.getCode().length());
+								}
+								if (!productAttrValueMap.containsKey(firstKeyValue))
+								{
+									classFeatureCodes.add(firstKeyValue);
+									productAttrValueMap.put(firstKeyValue, "-");
+								}
 							}
 						}
 

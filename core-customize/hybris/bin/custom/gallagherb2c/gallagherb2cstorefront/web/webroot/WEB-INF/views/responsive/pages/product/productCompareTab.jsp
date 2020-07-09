@@ -23,11 +23,13 @@
                                 </div>
                             </li>
                             </c:forEach>
+                            <c:if test="${RRP}">
                             <li class="row-height-padding d-flex align-items-center">
                                 <div class="two-line-ellipses">
                                     RRP
                                 </div>
                             </li>
+                            </c:if>
                         </ul>
                     </div>
                     <div class="right-column-with-carousel">
@@ -85,9 +87,11 @@
 	                                        ${entry.value}
 	                                    </div>
 						            </c:forEach>
-                                    <div class="price-col row-height-padding">
-                                    	<product:compareProductPricePanel product="${firstProduct.productData}" />
-                                    </div>
+						            <c:if test="${RRP}">
+	                                    <div class="price-col row-height-padding">
+	                                    	<product:compareProductPricePanel product="${firstProduct.productData}" />
+	                                    </div>
+                                    </c:if>
                                 </li>
 								<c:forEach items="${comparisonProductList}" var="compareProduct">
                                 <li>
@@ -137,9 +141,11 @@
 	                                        ${entry.value}
 	                                    </div>
 						            </c:forEach>
-                                    <div class="price-col row-height-padding">
-                                    	<product:compareProductPricePanel product="${compareProduct.productData}" />
-                                    </div>
+						            <c:if test="${RRP}">
+	                                    <div class="price-col row-height-padding">
+	                                    	<product:compareProductPricePanel product="${compareProduct.productData}" />
+	                                    </div>
+                                    </c:if>
                                 </li>
 								</c:forEach>
                             </ul>
