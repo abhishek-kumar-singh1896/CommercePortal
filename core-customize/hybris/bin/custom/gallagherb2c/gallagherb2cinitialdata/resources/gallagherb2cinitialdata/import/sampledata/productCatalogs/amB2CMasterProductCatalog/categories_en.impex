@@ -80,7 +80,7 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
 #;strainers
 #;clamps-and-joiners 
 #;fence-tools-and-accessories 
-;gates-and-gate-accessories;;Gates and Gate Accessories 
+;gates-and-gate-accessories;;DO NOT USE Gates and Gate Accessories 
 
 # 1.1.5 Sub Categories for 'fence-conductors'
 ;reels-and-accessories-fc;;"DO NOT USE" 
