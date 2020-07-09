@@ -103,8 +103,9 @@ public class GallagherAfterSaveListener implements AfterSaveListener
 	private EmailAddressModel getFromEmailAddress()
 	{
 		final String fromEmailAddress = getConfigurationService().getConfiguration().getString("gallagher.notification.email.from");
+		final String displayName = getConfigurationService().getConfiguration().getString("gallagher.notification.email.name");
 
-		return getEmailService().getOrCreateEmailAddressForEmail(fromEmailAddress, fromEmailAddress);
+		return getEmailService().getOrCreateEmailAddressForEmail(fromEmailAddress, displayName);
 	}
 
 	/**

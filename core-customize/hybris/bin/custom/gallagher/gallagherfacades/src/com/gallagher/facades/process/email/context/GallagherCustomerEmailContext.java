@@ -19,8 +19,7 @@ public class GallagherCustomerEmailContext extends CustomerEmailContext
 	public void init(final StoreFrontCustomerProcessModel storeFrontCustomerProcessModel, final EmailPageModel emailPageModel)
 	{
 		super.init(storeFrontCustomerProcessModel, emailPageModel);
-
 		put("ISUSEREXIST", getCustomer(storeFrontCustomerProcessModel).getIsUserExist());
-
+		put("firstName", getCustomer().getFirstName());
 	}
 }

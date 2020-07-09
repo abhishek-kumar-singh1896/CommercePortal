@@ -271,8 +271,8 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 ;;BottomContent-QuoteBuyerCancellationEmail;BottomContent;;EmailBottomSlot;true
 
 # Email Pages
-INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
-;;CustomerRegistrationEmail;Customer Registration Email;CustomerRegistrationEmailTemplate;true;
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved'];fromEmail;fromName
+;;CustomerRegistrationEmail;Customer Registration Email;CustomerRegistrationEmailTemplate;true;;marketing@security.gallagher.com;Gallagher online services
 ;;ForgottenPasswordEmail;Forgotten Password Email;ForgottenPasswordEmailTemplate;true;
 ;;OrderConfirmationEmail;Order Confirmation Email;OrderConfirmationEmailTemplate;true;
 ;;DeliverySentEmail;Delivery Sent Email;DeliverySentEmailTemplate;true;
