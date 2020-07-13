@@ -347,5 +347,9 @@
 		<property name="siteMapUrlDataConverter" ref="customPageToSiteMapUrlDataConverter"/>
 		<property name="siteMapPageEnum" value="CUSTOM"/>
 	</bean>
+	
+	<alias alias="emailGenerationService" name="gallagherEmailGenerationService" />
+	<bean id="gallagherEmailGenerationService" class="com.gallagher.core.email.impl.GallagherEmailGenerationServiceImpl" parent="defaultEmailGenerationService" />
+	
 
 </beans>
