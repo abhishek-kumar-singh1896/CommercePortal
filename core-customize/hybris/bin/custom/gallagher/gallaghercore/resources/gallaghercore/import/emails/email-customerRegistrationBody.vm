@@ -32,15 +32,6 @@
 									</td>
 								</tr>
 								<tr>
-									<td height="30" align="center" valign="middle" bgcolor="#FF8400">
-										<font size="2" face="Calibri">
-											<a style="text-decoration:none" href="${ctx.messages.storeFinderPage}">
-												<font color="#000000">${ctx.messages.storeFinder}</font>
-											</a>
-										</font>
-									</td>
-								</tr>
-								<tr>
 									<td>&nbsp;</td>
 								</tr>
 								<tr>

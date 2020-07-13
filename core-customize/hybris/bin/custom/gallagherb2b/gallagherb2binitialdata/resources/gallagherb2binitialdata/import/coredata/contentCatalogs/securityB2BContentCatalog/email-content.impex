@@ -272,7 +272,7 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 
 # Email Pages
 INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved'];fromEmail;fromName
-;;CustomerRegistrationEmail;Customer Registration Email;CustomerRegistrationEmailTemplate;true;;marketing@security.gallagher.com;Gallagher online services
+;;CustomerRegistrationEmail;Customer Registration Email;CustomerRegistrationEmailTemplate;true;;noreply@em90.comms.gallagher.com;Gallagher Security
 ;;ForgottenPasswordEmail;Forgotten Password Email;ForgottenPasswordEmailTemplate;true;
 ;;OrderConfirmationEmail;Order Confirmation Email;OrderConfirmationEmailTemplate;true;
 ;;DeliverySentEmail;Delivery Sent Email;DeliverySentEmailTemplate;true;
