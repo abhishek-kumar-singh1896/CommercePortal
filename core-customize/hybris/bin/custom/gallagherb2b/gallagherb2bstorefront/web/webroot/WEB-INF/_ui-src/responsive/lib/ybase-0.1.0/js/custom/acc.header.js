@@ -15,39 +15,52 @@ ACC.header = {
 				$(this).find('.dropdown-menu-out').addClass('d-none').removeClass('fadeInUp');
 			});
 
-			$(document).click(function (e) {
-				// For desktop mega menu code
-				const $li = $(e.target).closest('li');
-				const clickedEvent = $li.hasClass('with-dropdown');
-				const $searchLink = $(e.target).closest('.search-link');
-
-				if (clickedEvent) {
-					let linkId = $li.find('a').attr('id');
-					$li.toggleClass('active').siblings().removeClass('active');
-					$('.megamenu-out').not('#' + linkId + 'Container').addClass('d-none').removeClass('fadeInUp');
-					$('#' + linkId + 'Container').toggleClass('d-none').toggleClass('fadeInUp');
-					$('.search-out .search-link').removeClass('active');
-					const menu = document.getElementById('product-mega-menu');
-					const menuButton = document.getElementById(linkId).parentElement;
-				    event.stopPropagation();
-				    menu.classList.toggle('menu-button-active')
-				    menuButton.classList.toggle('mega-menu-active')
-				} else if ($searchLink.length) {
-//					menu.classList.remove('menu-button-active')
-//			        menuButton.classList.remove('mega-menu-active')
-//					$('.with-dropdown').removeClass('mega-menu-active');
-					$searchLink.toggleClass('active');
-					$('.main-nav-out li.first-level').removeClass('active');
-					$('.megamenu-out').not('.search-link-container').addClass('d-none').removeClass('fadeInDown');
-					$('.search-link-container').toggleClass('d-none').toggleClass('fadeInDown');
-				} else if (!$(e.target).closest('.megamenu-out').length) {
-//					menu.classList.remove('menu-button-active')
-//			        menuButton.classList.remove('mega-menu-active')
-//					$('.with-dropdown').removeClass('mega-menu-active');
-					$('.main-nav-out li.first-level, .search-out .search-link').removeClass('active');
-					$('.megamenu-out').addClass('d-none').removeClass('fadeInUp');
+			function removeClasses(className) {
+			    var elements = document.getElementsByClassName(className);
+			    while(elements.length > 0){
+			        elements[0].classList.remove(className);
+			    }
 				}
-			});
+				    
+				$(document).click(function (e) {
+					// For desktop mega menu code
+					const $li = $(e.target).closest('li');
+					const clickedEvent = $li.hasClass('with-dropdown');
+					const $searchLink = $(e.target).closest('.search-link');
+					const menu = document.getElementById('product-mega-menu');
+					const searchButton = document.getElementById('searchLink1');
+					const searchLinkContainer = document.getElementById('searchLink1Container');
+					if(null != document.getElementById('dropdownMenuUser'))
+					{
+						const accountButton = document.getElementById('dropdownMenuUser');
+						accountButton.onclick =function() {
+					        menu.classList.remove('menu-button-active');
+					        removeClasses('mega-menu-active');
+					        searchButton.classList.remove('active');
+					        searchLinkContainer.classList.add('d-none');
+						}
+					}
+					if (clickedEvent) {
+						let linkId = $li.find('a').attr('id');
+						$li.toggleClass('active').siblings().removeClass('active');
+						$('.megamenu-out').not('#' + linkId + 'Container').addClass('d-none').removeClass('fadeInUp');
+						$('#' + linkId + 'Container').toggleClass('d-none').toggleClass('fadeInUp');
+						$('.search-out .search-link').removeClass('active');
+						const menuButton = document.getElementById(linkId).parentElement;
+					    menu.classList.toggle('menu-button-active');
+					    menuButton.classList.toggle('mega-menu-active');
+					} else if ($searchLink.length) {
+						menu.classList.remove('menu-button-active');
+						removeClasses('mega-menu-active');
+						$searchLink.toggleClass('active');
+						$('.main-nav-out li.first-level').removeClass('active');
+						$('.megamenu-out').not('.search-link-container').addClass('d-none').removeClass('fadeInDown');
+						$('.search-link-container').toggleClass('d-none').toggleClass('fadeInDown');
+					} else if (!$(e.target).closest('.megamenu-out').length) {
+						$('.main-nav-out li.first-level, .search-out .search-link').removeClass('active');
+						$('.megamenu-out').addClass('d-none').removeClass('fadeInUp');
+					}
+				});
 
 			// For mobile mega menu
 
