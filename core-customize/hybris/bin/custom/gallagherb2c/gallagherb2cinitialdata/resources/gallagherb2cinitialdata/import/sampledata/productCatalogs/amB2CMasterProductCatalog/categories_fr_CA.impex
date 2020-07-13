@@ -10,3 +10,4 @@ UPDATE Category ; code[unique=true]                ; $catalogVersion ; name[lang
                 ; wire-and-cable                   ;                 ; Fils et câbles                                        
                 ; power-system-accessories         ;                 ; Outils de gestion de l’alimentation                   
                 ; earthing                         ;                 ; Mise à la terre                                       
+                ; gate-hardware                    ;                 ; Matériel de barrière                                  

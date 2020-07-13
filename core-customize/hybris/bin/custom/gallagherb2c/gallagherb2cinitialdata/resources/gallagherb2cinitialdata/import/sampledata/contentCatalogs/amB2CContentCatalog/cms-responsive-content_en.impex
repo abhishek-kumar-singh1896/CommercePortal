@@ -540,7 +540,6 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 ;;PermanentfencingWireandCable_link10;"Pivot Irrigator System"
 ;;PermanentfencingWireandCable_link11;"Fence Tools and Accessories"
 ;;PermanentfencingWireandCable_link12;"Gate Hardware"
-;;PermanentfencingWireandCable_link13;"Gates"
 ;;PermanentfencingWireandCable_link14;"Gate Hardware"
 ;;PermanentfencingWireandCable_link15;"Hi-Tensile Wire and Cable"
 
