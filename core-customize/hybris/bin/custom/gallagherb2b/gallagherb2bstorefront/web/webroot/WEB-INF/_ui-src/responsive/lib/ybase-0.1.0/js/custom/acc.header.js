@@ -29,18 +29,17 @@ ACC.header = {
 					$('.search-out .search-link').removeClass('active');
 					const menu = document.getElementById('product-mega-menu');
 					const menuButton = document.getElementById(linkId).parentElement;
-
-					    event.stopPropagation();
-					    menu.classList.toggle('menu-button-active')
-					    menuButton.classList.toggle('mega-menu-active')
+				    event.stopPropagation();
+				    menu.classList.toggle('menu-button-active')
+				    menuButton.classList.toggle('mega-menu-active')
 				} else if ($searchLink.length) {
 //					menu.classList.remove('menu-button-active')
 //			        menuButton.classList.remove('mega-menu-active')
 //					$('.with-dropdown').removeClass('mega-menu-active');
 					$searchLink.toggleClass('active');
 					$('.main-nav-out li.first-level').removeClass('active');
-					$('.megamenu-out').not('.search-link-container').addClass('d-none').removeClass('fadeInUp');
-					$('.search-link-container').toggleClass('d-none').toggleClass('fadeInUp');
+					$('.megamenu-out').not('.search-link-container').addClass('d-none').removeClass('fadeInDown');
+					$('.search-link-container').toggleClass('d-none').toggleClass('fadeInDown');
 				} else if (!$(e.target).closest('.megamenu-out').length) {
 //					menu.classList.remove('menu-button-active')
 //			        menuButton.classList.remove('mega-menu-active')
@@ -103,12 +102,19 @@ ACC.header = {
 				$(this).tab('show')
 			});
 
-			$('.hamburger-icon, .check-product').click(function () {
+			$('.check-product').click(function () {
 				$('body').toggleClass('freeze');
 				$('.hamburger-icon').toggleClass('active');
 				$('.xs-main-menu-l1').removeClass('fadeInRightXs');
 				$('#responsiveMegaMenu').toggle().toggleClass('fadeInUp');
 
+			});
+			
+			$('.hamburger-icon').click(function () {
+				$('body').toggleClass('freeze');
+				$(this).toggleClass('active');
+				$('.xs-main-menu-l1').removeClass('fadeInRightXs');
+				$('#responsiveMegaMenu').toggle().toggleClass('fadeInDown');// Prashant
 			});
 
 			$('#responsiveMegaMenu .modal-header .close').click(function () {
