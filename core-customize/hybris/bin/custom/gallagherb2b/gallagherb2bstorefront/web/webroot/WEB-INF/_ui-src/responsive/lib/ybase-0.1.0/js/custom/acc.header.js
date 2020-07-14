@@ -38,13 +38,14 @@ ACC.header = {
 					        removeClasses('mega-menu-active');
 					        searchButton.classList.remove('active');
 					        searchLinkContainer.classList.add('d-none');
+					        $('.search-link-container').toggleClass('fadeInDown');
 						}
 					}
 					if (clickedEvent) {
 						let linkId = $li.find('a').attr('id');
 						$li.toggleClass('active').siblings().removeClass('active');
-						$('.megamenu-out').not('#' + linkId + 'Container').addClass('d-none').removeClass('fadeInUp');
-						$('#' + linkId + 'Container').toggleClass('d-none').toggleClass('fadeInUp');
+						$('.megamenu-out').not('#' + linkId + 'Container').addClass('d-none').removeClass('fadeInDown');
+						$('#' + linkId + 'Container').toggleClass('d-none').toggleClass('fadeInDown');
 						$('.search-out .search-link').removeClass('active');
 						const menuButton = document.getElementById(linkId).parentElement;
 					    menu.classList.toggle('menu-button-active');
