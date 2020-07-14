@@ -3,9 +3,6 @@
  */
 package com.gallagher.b2b.storefront.controllers.pages;
 
-import com.gallagher.b2b.storefront.controllers.ControllerConstants;
-import com.gallagher.b2b.storefront.forms.BulkOrderForm;
-import com.gallagher.b2b.storefront.forms.BulkOrderFormEntry;
 import de.hybris.platform.acceleratorstorefrontcommons.annotations.RequireHardLogIn;
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.pages.AbstractPageController;
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.util.GlobalMessages;
@@ -15,10 +12,19 @@ import de.hybris.platform.commercefacades.order.data.CartModificationData;
 import de.hybris.platform.commerceservices.order.CommerceCartModificationException;
 import de.hybris.platform.product.ProductService;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -32,11 +38,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import com.gallagher.b2b.storefront.controllers.ControllerConstants;
+import com.gallagher.b2b.storefront.forms.BulkOrderForm;
+import com.gallagher.b2b.storefront.forms.BulkOrderFormEntry;
 
 
 /**
@@ -53,10 +57,10 @@ public class B2badvanceBulkOrderPageController extends AbstractPageController
 	private static final Integer INITIAL_BULK_ORDER_FORM_SIZE = 21;
 
 	@Autowired
-    ProductService productService;
+	ProductService productService;
 
 	@Autowired
-    CartFacade cartFacade;
+	CartFacade cartFacade;
 
 	/**
 	 * Method that initializes the order form page
@@ -84,7 +88,7 @@ public class B2badvanceBulkOrderPageController extends AbstractPageController
 	@RequestMapping(value = "/bulk-order-add-to-cart", method = RequestMethod.POST)
 	@RequireHardLogIn
 	public String addProductsToCart(final Model model, final HttpServletRequest request, final HttpServletResponse response,
-                                    final RedirectAttributes redirectAttributes, final BulkOrderForm bulkOrderForm) throws CMSItemNotFoundException
+			final RedirectAttributes redirectAttributes, final BulkOrderForm bulkOrderForm) throws CMSItemNotFoundException
 	{
 
 		for (final BulkOrderFormEntry entry : bulkOrderForm.getBulkOrderFormEntries())
@@ -125,9 +129,9 @@ public class B2badvanceBulkOrderPageController extends AbstractPageController
 
 	@RequestMapping(value = "/upload-file", method = RequestMethod.POST)
 	@RequireHardLogIn
-	public String uploadFileHandler(@RequestParam("file") final MultipartFile file, final Model model,
-                                    final RedirectAttributes redirectAttributes, final HttpServletRequest request, final HttpServletResponse response)
-			throws CMSItemNotFoundException
+	public String uploadFileHandler(@RequestParam("file")
+	final MultipartFile file, final Model model, final RedirectAttributes redirectAttributes, final HttpServletRequest request,
+			final HttpServletResponse response) throws CMSItemNotFoundException
 	{
 
 		if (!file.isEmpty())
@@ -165,9 +169,9 @@ public class B2badvanceBulkOrderPageController extends AbstractPageController
 
 						final BulkOrderFormEntry entry = new BulkOrderFormEntry();
 						final Cell productCode = cellIterator.next();
-						productCode.setCellType(Cell.CELL_TYPE_STRING);
+						productCode.setCellType(CellType.STRING);
 						final Cell quantity = cellIterator.next();
-						quantity.setCellType(Cell.CELL_TYPE_STRING);
+						quantity.setCellType(CellType.STRING);
 						entry.setProductCode(productCode.getStringCellValue());
 						entry.setQuantity(quantity.getStringCellValue());
 						csvOrderForms.add(entry);

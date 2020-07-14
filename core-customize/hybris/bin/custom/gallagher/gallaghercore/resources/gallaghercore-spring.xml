@@ -351,5 +351,9 @@
 	<alias alias="emailGenerationService" name="gallagherEmailGenerationService" />
 	<bean id="gallagherEmailGenerationService" class="com.gallagher.core.email.impl.GallagherEmailGenerationServiceImpl" parent="defaultEmailGenerationService" />
 	
+	<bean id="solrStandaloneSearchProvider" class="com.gallagher.core.solrfacetsearch.solr.impl.GallagherSolrStandaloneSearchProvider"
+          parent="abstractSolrSearchProvider" />
 
+    <bean id="solrCloudSearchProvider" class="com.gallagher.core.solrfacetsearch.solr.impl.GallagherSolrCloudSearchProvider"
+          parent="abstractSolrSearchProvider" />
 </beans>

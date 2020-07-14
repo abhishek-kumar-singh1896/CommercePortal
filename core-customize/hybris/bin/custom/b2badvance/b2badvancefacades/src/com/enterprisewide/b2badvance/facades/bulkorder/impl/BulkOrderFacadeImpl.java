@@ -26,6 +26,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -326,7 +327,7 @@ public class BulkOrderFacadeImpl implements BulkOrderFacade
 				if (cellIterator.hasNext())
 				{
 					final Cell quantity = cellIterator.next();
-					quantity.setCellType(Cell.CELL_TYPE_STRING);
+					quantity.setCellType(CellType.STRING);
 					try
 					{
 						qty = Integer.parseInt(quantity.getStringCellValue());
@@ -348,7 +349,7 @@ public class BulkOrderFacadeImpl implements BulkOrderFacade
 				if (cellIterator.hasNext())
 				{
 					final Cell productCell = cellIterator.next();
-					productCell.setCellType(Cell.CELL_TYPE_STRING);
+					productCell.setCellType(CellType.STRING);
 					productCode = productCell.getStringCellValue();
 				}
 
