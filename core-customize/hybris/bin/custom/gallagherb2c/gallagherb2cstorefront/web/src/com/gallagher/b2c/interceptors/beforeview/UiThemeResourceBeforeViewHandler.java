@@ -22,6 +22,7 @@ import org.apache.log4j.Logger;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gallagher.b2c.util.UiThemeUtils;
+import com.gallagher.facades.storesession.GallagherStoreSessionFacade;
 
 
 /**
@@ -54,6 +55,9 @@ public class UiThemeResourceBeforeViewHandler implements BeforeViewHandler
 
 	@Resource(name = "configurationService")
 	private ConfigurationService configService;
+
+	@Resource(name = "storeSessionFacade")
+	protected GallagherStoreSessionFacade storeSessionFacade;
 
 	@Override
 	public void beforeView(final HttpServletRequest request, final HttpServletResponse response, final ModelAndView modelAndView)
@@ -108,6 +112,6 @@ public class UiThemeResourceBeforeViewHandler implements BeforeViewHandler
 		modelAndView.addObject("addOnCommonCssPaths", uiThemeUtils.getAddOnCommonCSSPaths(request));
 		modelAndView.addObject("addOnThemeCssPaths", uiThemeUtils.getAddOnThemeCSSPaths(request));
 		modelAndView.addObject("addOnJavaScriptPaths", uiThemeUtils.getAddOnJSPaths(request));
-		modelAndView.addObject("sitecoreHomePage", configService.getConfiguration().getString("sitecore.am.base.url", "/"));
+		modelAndView.addObject("sitecoreHomePage", storeSessionFacade.getSitecoreRootUrl());
 	}
 }

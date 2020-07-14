@@ -1,9 +1,20 @@
 ACC.header = {
 
 	_autoload: [
-	    "clickOnNav"
+	    "clickOnNav",
+		"hideContactUS"
 	],
-
+	
+    hideContactUS:function(){
+    	$(document).ready(function () {
+    		if($('.call-us-support-link').length==0){
+    			$('.SupportNavNode').remove();
+    		}
+    		if($('.call-us-link').length==0){
+    			$('.ContactNavNode').remove();
+    		}
+    	});
+    },
 	clickOnNav: function(){
 			$(document).ready(function () {
 				//navigation menu js start

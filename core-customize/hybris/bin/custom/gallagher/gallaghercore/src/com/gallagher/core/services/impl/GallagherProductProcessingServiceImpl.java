@@ -404,6 +404,7 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 		final Collection<MediaModel> thumbnails = product.getThumbnails();
 		final Collection<MediaContainerModel> galleryImages = product.getGalleryImages();
 		final Collection<MediaModel> data_sheet = product.getData_sheet();
+		final Collection<MediaModel> quickReferences = product.getLogo();
 
 		if (null != picture)
 		{
@@ -429,92 +430,31 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 						+ regionalCatalogVersion.getCatalog().getId() + " not found, Ignoring...");
 			}
 		}
-		if (!CollectionUtils.isEmpty(detail))
+		if (CollectionUtils.isNotEmpty(detail))
 		{
-			final Set<MediaModel> mediaSet = new HashSet<>();
-			for (final MediaModel media : detail)
-			{
-				try
-				{
-					mediaSet.add(mediaService.getMedia(regionalCatalogVersion, media.getCode()));
-				}
-				catch (final UnknownIdentifierException exception)
-				{
-					LOGGER.info("Media for Detail with code " + media.getCode() + " and CatalogVersion "
-							+ regionalCatalogVersion.getCatalog().getId() + " not found, Ignoring...");
-				}
-			}
-			variantProduct.setDetail(mediaSet);
+			variantProduct.setDetail(getRegionalMedias(regionalCatalogVersion, detail));
 		}
-		if (!CollectionUtils.isEmpty(others))
+		if (CollectionUtils.isNotEmpty(quickReferences))
 		{
-			final Set<MediaModel> mediaSet = new HashSet<>();
-			for (final MediaModel media : others)
-			{
-				try
-				{
-					mediaSet.add(mediaService.getMedia(regionalCatalogVersion, media.getCode()));
-				}
-				catch (final UnknownIdentifierException exception)
-				{
-					LOGGER.info("Media for Others with code " + media.getCode() + " and CatalogVersion "
-							+ regionalCatalogVersion.getCatalog().getId() + " not found, Ignoring...");
-				}
-			}
-			variantProduct.setOthers(mediaSet);
+			variantProduct.setLogo(getRegionalMedias(regionalCatalogVersion, quickReferences));
 		}
-		if (!CollectionUtils.isEmpty(data_sheet))
+		if (CollectionUtils.isNotEmpty(others))
 		{
-			final Set<MediaModel> mediaSet = new HashSet<>();
-			for (final MediaModel media : data_sheet)
-			{
-				try
-				{
-					mediaSet.add(mediaService.getMedia(regionalCatalogVersion, media.getCode()));
-				}
-				catch (final UnknownIdentifierException exception)
-				{
-					LOGGER.info("Media for data sheet with code " + media.getCode() + " and CatalogVersion "
-							+ regionalCatalogVersion.getCatalog().getId() + " not found, Ignoring...");
-				}
-			}
-			variantProduct.setData_sheet(mediaSet);
+			variantProduct.setOthers(getRegionalMedias(regionalCatalogVersion, others));
 		}
-		if (!CollectionUtils.isEmpty(normal))
+		if (CollectionUtils.isNotEmpty(data_sheet))
 		{
-			final Set<MediaModel> mediaSet = new HashSet<>();
-			for (final MediaModel media : normal)
-			{
-				try
-				{
-					mediaSet.add(mediaService.getMedia(regionalCatalogVersion, media.getCode()));
-				}
-				catch (final UnknownIdentifierException exception)
-				{
-					LOGGER.info("Media for Normal with code " + media.getCode() + " and CatalogVersion "
-							+ regionalCatalogVersion.getCatalog().getId() + " not found, Ignoring...");
-				}
-			}
-			variantProduct.setNormal(mediaSet);
+			variantProduct.setData_sheet(getRegionalMedias(regionalCatalogVersion, data_sheet));
 		}
-		if (!CollectionUtils.isEmpty(thumbnails))
+		if (CollectionUtils.isNotEmpty(normal))
 		{
-			final Set<MediaModel> mediaSet = new HashSet<>();
-			for (final MediaModel media : thumbnails)
-			{
-				try
-				{
-					mediaSet.add(mediaService.getMedia(regionalCatalogVersion, media.getCode()));
-				}
-				catch (final UnknownIdentifierException exception)
-				{
-					LOGGER.info("Media for Thumbnails with code " + media.getCode() + " and CatalogVersion "
-							+ regionalCatalogVersion.getCatalog().getId() + " not found, Ignoring...");
-				}
-			}
-			variantProduct.setThumbnails(mediaSet);
+			variantProduct.setNormal(getRegionalMedias(regionalCatalogVersion, normal));
 		}
-		if (!CollectionUtils.isEmpty(galleryImages))
+		if (CollectionUtils.isNotEmpty(thumbnails))
+		{
+			variantProduct.setThumbnails(getRegionalMedias(regionalCatalogVersion, thumbnails));
+		}
+		if (CollectionUtils.isNotEmpty(galleryImages))
 		{
 			final List<MediaContainerModel> mediaContainerList = new ArrayList<>();
 			for (final MediaContainerModel mediaContainer : galleryImages)
@@ -534,6 +474,33 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 			variantProduct.setGalleryImages(mediaContainerList);
 		}
 
+	}
+
+	/**
+	 * Returns the regional media
+	 *
+	 * @param regionalCatalogVersion
+	 *           to get the regional catalog
+	 * @param masterMedia
+	 * @return collection of regional media
+	 */
+	private Set<MediaModel> getRegionalMedias(final CatalogVersionModel regionalCatalogVersion,
+			final Collection<MediaModel> masterMedia)
+	{
+		final Set<MediaModel> mediaSet = new HashSet<>(masterMedia.size());
+		for (final MediaModel media : masterMedia)
+		{
+			try
+			{
+				mediaSet.add(mediaService.getMedia(regionalCatalogVersion, media.getCode()));
+			}
+			catch (final UnknownIdentifierException exception)
+			{
+				LOGGER.info("Media for Others with code " + media.getCode() + " and CatalogVersion "
+						+ regionalCatalogVersion.getCatalog().getId() + " not found, Ignoring...");
+			}
+		}
+		return mediaSet;
 	}
 
 	/**

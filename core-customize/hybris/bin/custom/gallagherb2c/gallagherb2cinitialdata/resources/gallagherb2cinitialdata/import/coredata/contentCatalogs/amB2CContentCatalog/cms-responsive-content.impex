@@ -911,6 +911,8 @@ INSERT_UPDATE GallagherRegionRestriction;$contentCV[unique=true];uid[unique=true
 										;						;GallagherCAENCARegionRestriction;Gallagher Canada en_CA Region Restriction	;GallagherCAENCARegionRestriction;ca		;en_CA
 										;						;GallagherCAFRCARegionRestriction;Galagher Canada fr_CA Region restriction	;GallagherCAFRCARegionRestriction;ca	;fr_CA
 
+INSERT_UPDATE CMSInverseRestriction;$contentCV[unique=true];uid[unique=true];originalRestriction(&uid);name
+												;								;AllRegionExceptGlobal;GallagherGlRegionRestriction;AM All Regions except Global
 ############################## above is the desktop data, below is the responsive data ###########################################
 
 # Create PageTemplates

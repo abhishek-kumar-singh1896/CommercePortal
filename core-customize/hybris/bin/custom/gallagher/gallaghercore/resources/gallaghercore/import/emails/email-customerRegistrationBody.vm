@@ -32,15 +32,6 @@
 									</td>
 								</tr>
 								<tr>
-									<td height="30" align="center" valign="middle" bgcolor="#FF8400">
-										<font size="2" face="Calibri">
-											<a style="text-decoration:none" href="${ctx.messages.storeFinderPage}">
-												<font color="#000000">${ctx.messages.storeFinder}</font>
-											</a>
-										</font>
-									</td>
-								</tr>
-								<tr>
 									<td>&nbsp;</td>
 								</tr>
 								<tr>
@@ -52,12 +43,21 @@
 										#set ( $loginInstruction = ${ctx.messages.getMessage('instructionLoginUrl', "#genHtmlLinkStartTag($secureLoginUrl)", "#genHtmlLinkEndTag()")})
 										#else
 										#set ( $registeredUser = ${ctx.messages.getMessage('notRegisteredUser')})
-										                                        #set ( $loginInstruction = ${ctx.messages.getMessage('resetLoginUrl', "#genHtmlLink($mailToUrl '#666666' ${ctx.messages.contactUsEmail})")})
+										#set ( $loginInstruction = ${ctx.messages.getMessage('resetLoginUrl', "#genHtmlLink($mailToUrl '#666666' ${ctx.messages.contactUsEmail})")})
 										#end
 										
-										<p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.getMessage('salutation', ${ctx.title},${ctx.displayName})},</font></p>
-										<p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.thankYouForSubmission}&nbsp;$registeredUser</font></p>
-										<p><font color="#322e2c" size="2" face="Calibri">$loginInstruction</font></p>
+										<p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.getMessage('salutation', ${ctx.firstName})},</font></p>
+										#if(${ctx.ISUSEREXIST} == "true")
+											<p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.thankYouForSubmission}&nbsp;$registeredUser</font></p>
+											<p><font color="#322e2c" size="2" face="Calibri">$loginInstruction</font></p>
+										#else
+											<p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.thankYouForSubmission}</font></p>
+											<p><font color="#322e2c" size="2" face="Calibri">$registeredUser</font></p>
+											<p><font color="#322e2c" size="2" face="Calibri">$loginInstruction</font></p><br>
+											<p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.securityMoreInfoTitle}</font></p>
+											<p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.securityMoreInfo}</font></p>
+											<p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.anyQuestion}</font></p>
+										#end
 										<p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.complimentaryClosing}</font></p>
 										<p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.signature}</font></p>
 									</td>

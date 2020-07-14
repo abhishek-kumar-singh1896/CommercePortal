@@ -11,13 +11,8 @@ $jarResourceCms=$config-jarResourceCmsValue
 INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='homepage'];contentSlot(uid,$contentCV)[unique=true]
 ;;Section2C-Homepage;Section2C;;Section2CSlot-Homepage
 
-INSERT_UPDATE SimpleResponsiveBannerComponent;$contentCV[unique=true];uid[unique=true];name;urlLink;&componentRef
-;;SecurityB2BHompageScrewdriversBannerComponent;SecurityB2B Homepage Screwdrivers Banner Component;/Open-Catalogue/Tools/Screwdrivers/c/1593;SecurityB2BHompageScrewdriversBannerComponent
-;;SecurityB2BHompageSandersBannerComponent;SecurityB2B Homepage Sanders Banner Component;/Open-Catalogue/Tools/Sanders/c/1596;SecurityB2BHompageSandersBannerComponent
-
-
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
-;;Section2CSlot-Homepage;Section2C Slot for Homepage;true;SecurityB2BHompageScrewdriversBannerComponent,SecurityB2BHompageSandersBannerComponent
+;;Section2CSlot-Homepage;Section2C Slot for Homepage;true;
 
 ################################################
 
@@ -199,6 +194,50 @@ INSERT_UPDATE GallagherFooterNavigationComponent ; $contentCV[unique=true] ; uid
                                                  ;                         ; B2BGallagherFooterNavigationComponent ; B2BGallagherFooterNavigationComponent ; SocialLinkNavNode                  ;  
                                                  
                                                
-
+##################### SAPP-810 ############################
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; useForSpellchecking[default=false] ; useForAutocomplete[default=false] ; fieldValueProvider              ; valueProviderParameter ; ftsPhraseQuery[default=false] ; ftsPhraseQueryBoost ; ftsQuery[default=false] ; ftsQueryBoost ; ftsFuzzyQuery[default=false] ; ftsFuzzyQueryBoost ; ftsWildcardQuery[default=false] ; ftsWildcardQueryType(code)[default=POSTFIX] ; ftsWildcardQueryBoost ; ftsWildcardQueryMinTermLength 
+                                  ; amB2CUSProductType                       ; item              ; text       ;                    ;                         ;                          ; true                      ;                                    ;                                   ; laminexVariantCodeValueResolver ;                        ;                               ;                     ; true                    ;               ;                              ;                    ; true                            ;                                             ;                       ;                               
+                                  ; amB2CNZProductType                       ; item              ; text       ;                    ;                         ;                          ; true                      ;                                    ;                                   ; laminexVariantCodeValueResolver ;                        ;                               ;                     ; true                    ;               ;                              ;                    ; true                            ;                                             ;                       ;                               
+                                  ; amB2CAUProductType                       ; item              ; text       ;                    ;                         ;                          ; true                      ;                                    ;                                   ; laminexVariantCodeValueResolver ;                        ;                               ;                     ; true                    ;               ;                              ;                    ; true                            ;                                             ;                       ;                               
+                                  ; amB2CLatAmProductType                    ; item              ; text       ;                    ;                         ;                          ; true                      ;                                    ;                                   ; laminexVariantCodeValueResolver ;                        ;                               ;                     ; true                    ;               ;                              ;                    ; true                            ;                                             ;                       ;                               
+                                  ; amB2CGlobalProductType                   ; item              ; text       ;                    ;                         ;                          ; true                      ;                                    ;                                   ; laminexVariantCodeValueResolver ;                        ;                               ;                     ; true                    ;               ;                              ;                    ; true                            ;                                             ;                       ;                               
+                                  ; amB2CCAProductType                       ; item              ; text       ;                    ;                         ;                          ; true                      ;                                    ;                                   ; laminexVariantCodeValueResolver ;                        ;                               ;                     ; true                    ;               ;                              ;                    ; true                            ;                                             ;                       ;                               
+                                  
+                                  
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; useForSpellchecking[default=false] ; useForAutocomplete[default=false] ; fieldValueProvider              ; valueProviderParameter ; ftsPhraseQuery[default=false] ; ftsPhraseQueryBoost ; ftsQuery[default=false] ; ftsQueryBoost ; ftsFuzzyQuery[default=false] ; ftsFuzzyQueryBoost ; ftsWildcardQuery[default=false] ; ftsWildcardQueryType(code)[default=POSTFIX] ; ftsWildcardQueryBoost ; ftsWildcardQueryMinTermLength 
+                                  ; securityB2BAUProductType                 ; item              ; text       ;                    ;                         ;                          ; true                      ;                                    ;                                   ; laminexVariantCodeValueResolver ;                        ;                               ;                     ; true                    ;               ;                              ;                    ; true                            ;                                             ;                       ;                               
+                                  ; securityB2BNZProductType                 ; item              ; text       ;                    ;                         ;                          ; true                      ;                                    ;                                   ; laminexVariantCodeValueResolver ;                        ;                               ;                     ; true                    ;               ;                              ;                    ; true                            ;                                             ;                       ;                               
+                                  ; securityB2BGlobalProductType             ; item              ; text       ;                    ;                         ;                          ; true                      ;                                    ;                                   ; laminexVariantCodeValueResolver ;                        ;                               ;                     ; true                    ;               ;                              ;                    ; true                            ;                                             ;                       ;                               
+#######################################################################
                                        
-                                   
+############################SAPP-802###################################
+
+$contentCatalog=securityB2BContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$picture=media(code, $contentCV);
+$siteResource=jar:com.gallagher.b2b.initialdata.constants.B2badvanceInitialDataConstants&/gallagherb2binitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$lang=en
+
+# Import modulegen config properties into impex macros
+
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$emailResource=$config-emailResourceValue
+
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved'];fromEmail;fromName
+;;CustomerRegistrationEmail;Customer Registration Email;CustomerRegistrationEmailTemplate;true;;noreply@em90.comms.gallagher.com;Gallagher Security
+
+# CMS components and Email velocity templates
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;securityB2B_Email_Customer_Registration_Body;"Customer Registration Email Body";$emailResource/email-customerRegistrationBody.vm
+;securityB2B_Email_Customer_Registration_Subject;"Customer Registration Email Subject";$emailResource/email-customerRegistrationSubject.vm
+
+
+# Media
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];folder(qualifier)[default='images']
+;;/images/theme/logo-gallagher_email.png;logo-gallagher_email.png;$siteResource/images/theme/logo-gallagher.png;;
+
+# CMS Image Components
+UPDATE CMSImageComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
+;;EmailBannerSiteLogo;/images/theme/logo-gallagher_email.png;
+
+#######################################################################                                   

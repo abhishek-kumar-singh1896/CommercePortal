@@ -5,7 +5,9 @@ $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[defa
 # Language
 $lang=fr_CA
  
-UPDATE Category ; code[unique=true]                ; $catalogVersion ; name[lang=$lang]                
+UPDATE Category ; code[unique=true]                ; $catalogVersion ; name[lang=$lang]                                      
                 ; weigh-scales-and-data-collectors ;                 ; Balances et outils de collecte de données pour bétail 
-                 ;wire-and-cable;; Fils et câbles
-                 ;power-system-accessories;;Outils de gestion de l’alimentation
+                ; wire-and-cable                   ;                 ; Fils et câbles                                        
+                ; power-system-accessories         ;                 ; Outils de gestion de l’alimentation                   
+                ; earthing                         ;                 ; Mise à la terre                                       
+                ; gate-hardware                    ;                 ; Matériel de barrière                                  

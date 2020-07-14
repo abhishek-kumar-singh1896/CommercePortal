@@ -47,7 +47,7 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
 ;earthing;;Earthing
 ;solar-and-solar-kits;;Solar and Solar Kits 
 ;110-volt-energizers;;110 Volt Energizers 
-;grounding;;Grounding
+;grounding;;DO NOT USE Grounding
 ;power-management-tools;;DO NOT USE Power Management Tools
 
 # 1.1.2 Sub Categories for 'permanent-fencing'
@@ -80,7 +80,7 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
 #;strainers
 #;clamps-and-joiners 
 #;fence-tools-and-accessories 
-;gates-and-gate-accessories;;Gates and Gate Accessories 
+;gates-and-gate-accessories;;DO NOT USE Gates and Gate Accessories 
 
 # 1.1.5 Sub Categories for 'fence-conductors'
 ;reels-and-accessories-fc;;"DO NOT USE" 
