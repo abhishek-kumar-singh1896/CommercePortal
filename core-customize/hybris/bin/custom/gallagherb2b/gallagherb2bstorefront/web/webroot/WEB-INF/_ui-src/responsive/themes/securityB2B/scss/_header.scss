@@ -1,3 +1,60 @@
+div#product-mega-menu {
+    background: #e96b04 !important;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 9;
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    margin-right: 40px;
+    display: none;
+}
+
+@media screen and (min-width: 1921px) {
+    div#product-mega-menu {
+        right: 10%;
+    }
+}
+
+div#product-mega-menu .row {
+    margin: 0;
+}
+
+div#product-mega-menu ul li {
+    color: white !important;
+    padding: 5px 0;
+    font-size: 18px;
+    list-style: none;
+    text-align: left;
+}
+
+div#product-mega-menu ul li a {
+    color: white !important;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+#product-mega-menu li:nth-child(1) {
+    font-weight: bold;
+}
+
+.main-nav-out > ul li.mega-menu-active {
+    background-color: #e96b04 !important;
+}
+
+.main-nav-out > ul li.mega-menu-active > a {
+    color: #3c3c3c;
+}
+
+.menu-button-active {
+    display: block !important;
+}
+
+button#dropdownMenuUser[aria-expanded="true"] {
+    color: black;
+}
+
 .main-header-out {
   padding: 0;
   background: $primary-color;
@@ -246,7 +303,8 @@
           border: 1px solid $primary-color;
 
           &:focus {
-            box-shadow: 0 0 0 0.2rem rgba(249, 153, 25, 0.25);
+			-webkit-box-shadow: 0 0 0 0.1rem #ff8400;
+          box-shadow: 0 0 0 0.1rem #ff8400;
           }
         }
       }
