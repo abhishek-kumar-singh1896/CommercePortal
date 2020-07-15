@@ -44,7 +44,9 @@
 
 		<div data-target="#productDetailTab" data-offset="0">
 			<c:forEach var="component" items="${components}">
-				<cms:component component="${component}" />
+				<c:if test="${empty component.actions}">
+					<cms:component component="${component}" />
+				</c:if>
 			</c:forEach>
 		</div>
 	</div>
