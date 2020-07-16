@@ -24,15 +24,19 @@ div#product-mega-menu .row {
 div#product-mega-menu ul li {
     color: white !important;
     padding: 5px 0;
-    font-size: 18px;
+    font-size: 16px;
     list-style: none;
     text-align: left;
 }
 
 div#product-mega-menu ul li a {
     color: white !important;
-    font-size: 18px;
+    font-size: 16px;
     text-decoration: none;
+}
+
+div#product-mega-menu ul li a:hover {
+    color:black !important;
 }
 
 #product-mega-menu li:nth-child(1) {
