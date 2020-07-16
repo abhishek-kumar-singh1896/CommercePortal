@@ -279,7 +279,7 @@
 	 
 	 <bean id="gallagherLocationService" class="com.gallagher.core.services.impl.GallagherLocationServiceImpl"/>
 	 
-	 <bean id="laminexVariantCodeValueResolver" class="com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherVariantAttributeValueResolver"
+	 <bean id="gallagherVariantCodeValueResolver" class="com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherVariantAttributeValueResolver"
 		parent="abstractValueResolver">
 		<property name="modelService" ref="modelService" />
 		<property name="variantField" value="code" />

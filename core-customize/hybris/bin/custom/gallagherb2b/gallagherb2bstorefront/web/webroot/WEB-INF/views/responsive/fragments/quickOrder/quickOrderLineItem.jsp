@@ -6,7 +6,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<spring:message code="laminex.page.contactus.link" var="contactUsLink" />
+<spring:message code="gallagher.page.contactus.link" var="contactUsLink" />
 
 <div class="tr tr-quickOrder">
 	<input type="hidden" value="0" class="entrynumber">
