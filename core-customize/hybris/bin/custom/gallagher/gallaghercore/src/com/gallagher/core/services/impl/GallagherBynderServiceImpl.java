@@ -255,10 +255,18 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 					//setting MediaModel values
 					final LocaleProvider localeProvider = new StubLocaleProvider(Locale.ENGLISH);
 					final BynderMediaModel mediaModel = modelService.create(BynderMediaModel.class);
-					final MediaFolderModel folder = mediaService.getFolder(GallagherCoreConstants.Bynder.DOCUMENTS);
+					if (gallagherBynderResponse.getProperty_assettype().get(0).equals(GallagherCoreConstants.Bynder.DOCUMENTS))
+					{
+						final MediaFolderModel folder = mediaService.getFolder(GallagherCoreConstants.Bynder.DOCUMENTS);
+						mediaModel.setFolder(folder);
+					}
+					if (gallagherBynderResponse.getProperty_assettype().get(0).equals(GallagherCoreConstants.Bynder.SUPPORT))
+					{
+						final MediaFolderModel folder = mediaService.getFolder(GallagherCoreConstants.Bynder.SUPPORT_FOLDER);
+						mediaModel.setFolder(folder);
+					}
 					mediaModel.setCode(gallagherBynderResponse.getId());
 					mediaModel.setCatalogVersion(catalog);
-					mediaModel.setFolder(folder);
 					mediaModel.setRealFileName(gallagherBynderResponse.getName());
 					mediaModel.setDescription(getMediaDescription(gallagherBynderResponse));
 					mediaModel.setAltText(gallagherBynderResponse.getFileSize() / 1000000 + " mb");

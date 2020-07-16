@@ -118,7 +118,8 @@ public class GallagherBynderSyncJob extends AbstractJobPerformable<GallagherBynd
 				{
 					gallagherBynderService.updateMedia(model, gallagherBynderResponse, skus, catalog);
 				}
-				if (gallagherBynderResponse.getProperty_assettype().get(0).equals(GallagherCoreConstants.Bynder.DOCUMENTS))
+				if (gallagherBynderResponse.getProperty_assettype().get(0).equals(GallagherCoreConstants.Bynder.DOCUMENTS)
+						|| gallagherBynderResponse.getProperty_assettype().get(0).equals(GallagherCoreConstants.Bynder.SUPPORT))
 				{
 					gallagherBynderService.updateDocumentMedia(model, gallagherBynderResponse, skus, catalog);
 				}
@@ -134,7 +135,8 @@ public class GallagherBynderSyncJob extends AbstractJobPerformable<GallagherBynd
 				{
 					gallagherBynderService.deleteMedia(model, gallagherBynderResponse, catalog);
 				}
-				if (gallagherBynderResponse.getProperty_assettype().get(0).equals(GallagherCoreConstants.Bynder.DOCUMENTS))
+				if (gallagherBynderResponse.getProperty_assettype().get(0).equals(GallagherCoreConstants.Bynder.DOCUMENTS)
+						|| gallagherBynderResponse.getProperty_assettype().get(0).equals(GallagherCoreConstants.Bynder.SUPPORT))
 				{
 					gallagherBynderService.deleteDocumentMedia(model, gallagherBynderResponse, catalog);
 				}

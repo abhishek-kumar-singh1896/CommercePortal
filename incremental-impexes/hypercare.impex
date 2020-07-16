@@ -280,4 +280,10 @@ INSERT_UPDATE JspIncludeComponent ; $contentCV[unique=true] ; uid[unique=true]  
                                   ;                         ; ProductAskAQuestionTabComponentCAEN ; "Ask A Question"  
                                   ;                         ; ProductAskAQuestionTabComponentUS   ; "Ask A Question"  
 ##################################################################################################
-                                 
+
+############################SAPP-640######################################
+
+INSERT_UPDATE MediaFolder ; qualifier[unique=true] ; path[unique=true] 
+                          ; support				   ; support
+
+##########################################################################                 
