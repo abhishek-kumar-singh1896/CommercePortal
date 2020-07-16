@@ -112,6 +112,20 @@
         height: 80px;
       }
     }
+    
+    .slide {
+    	position: relative;
+    }
+    
+    .overlayText {
+      position: absolute;
+      top: 10px;
+      left: 15px;
+      height:1%;
+      z-index: 1;
+      color: red;
+      font-weight: bold;
+    }
 
     &.with-video {
       margin-top: 0;

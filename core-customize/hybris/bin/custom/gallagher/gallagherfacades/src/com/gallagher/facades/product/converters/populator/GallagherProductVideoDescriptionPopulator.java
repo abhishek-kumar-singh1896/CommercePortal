@@ -7,11 +7,12 @@ import de.hybris.platform.cms2.model.site.CMSSiteModel;
 import de.hybris.platform.cms2.servicelayer.services.CMSSiteService;
 import de.hybris.platform.commercefacades.product.converters.populator.AbstractProductPopulator;
 import de.hybris.platform.commercefacades.product.data.ProductData;
+import de.hybris.platform.commercefacades.product.data.ProductVideoData;
 import de.hybris.platform.core.model.product.ProductModel;
 import de.hybris.platform.servicelayer.dto.converter.ConversionException;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -48,13 +49,20 @@ public class GallagherProductVideoDescriptionPopulator<SOURCE extends ProductMod
 		if (MapUtils.isNotEmpty(productModel.getVideos()) && currentSite != null && currentSite.getRegionCode() != null)
 		{
 			final String regionCode = currentSite.getRegionCode().getCode();
-			final Map<String, String> videos = new HashMap<>(productModel.getVideos().size());
+			final List<ProductVideoData> videos = new ArrayList<>(productModel.getVideos().size());
 			productData.setVideos(videos);
 			productModel.getVideos().forEach((key, value) -> {
 				final String[] regionThumbArray = value.split("\\|");
-				if (regionThumbArray.length == 2 && regionThumbArray[0].contains(regionCode))
+				if (regionThumbArray.length >= 2 && regionThumbArray[0].contains(regionCode))
 				{
-					videos.put(key, regionThumbArray[1]);
+					final ProductVideoData video = new ProductVideoData();
+					video.setId(key);
+					video.setUrl(regionThumbArray[1]);
+					if (regionThumbArray.length > 2)
+					{
+						video.setDescription(regionThumbArray[2]);
+					}
+					videos.add(video);
 				}
 			});
 		}

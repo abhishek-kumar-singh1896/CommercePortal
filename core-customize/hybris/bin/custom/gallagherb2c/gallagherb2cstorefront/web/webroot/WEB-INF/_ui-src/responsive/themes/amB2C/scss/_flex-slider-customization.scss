@@ -100,6 +100,19 @@
     max-width: 500px;
     margin: 0 auto;
     position: relative;
+    
+    .slide {
+    	position: relative;
+    }
+    .overlayText {
+      position: absolute;
+      top: 10px;
+      font-weight:bold;
+      left: 15px;
+      height:1%;
+      z-index: 1;
+      color: red;
+    }
 
     .product-status {
       position: absolute;

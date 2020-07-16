@@ -341,7 +341,8 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 						final Map<String, String> videomap = new HashMap<>();
 						videomap.putAll(product.getVideos());
 						final StringBuilder videoRegionThumbBuilder = new StringBuilder(regions);
-						videoRegionThumbBuilder.append("|").append(gallagherBynderResponse.getThumbnails().getThul());
+						videoRegionThumbBuilder.append("|").append(gallagherBynderResponse.getThumbnails().getThul()).append("|")
+								.append(gallagherBynderResponse.getName());
 						videomap.put(gallagherBynderResponse.getId(), videoRegionThumbBuilder.toString());
 						product.setVideos(videomap);
 						modelService.save(product);

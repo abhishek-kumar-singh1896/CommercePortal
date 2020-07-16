@@ -20,10 +20,13 @@
 		                 class="flexslider slider-big-image with-video"> 
 		                 <ul class="slides">
 			                  <c:forEach var="entry" items="${product.videos}">
-			                  	<li>
-			                     <div data-bynder-widget="video-item" data-media-id="${entry.key}" data-width="" data-autoplay="false"></div>
-			                 	</li>
-			                  </c:forEach>
+										<li class="slide">
+											<div data-bynder-widget="video-item" data-media-id="${entry.id}" data-width="" data-autoplay="false"></div>
+											<div class="overlayText">
+												<p id="topText">${entry.description}</p>
+											</div>
+										</li>
+									</c:forEach>
 		  				</ul>
 		              </div>
 		                        
@@ -32,7 +35,7 @@
 		                   <ul class="slides">
 		                   	<c:forEach var="entry" items="${product.videos}">
 		                   	<li>
-		                   		<img src="${entry.value}" class="carousel-thumb-image" />
+		                   		<img src="${entry.url}" class="carousel-thumb-image" />
 		                   	</li>
 		                   	</c:forEach>
 		                   </ul>
