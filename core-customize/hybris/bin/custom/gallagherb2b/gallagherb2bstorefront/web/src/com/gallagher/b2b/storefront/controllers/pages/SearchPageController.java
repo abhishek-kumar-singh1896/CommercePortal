@@ -211,12 +211,16 @@ public class SearchPageController extends AbstractSearchPageController
 
 		final String mindtouchSRC = getConfigurationPath("mindtouch.src");
 		final String mindtouchID = getConfigurationPath("mindtouch.id");
+		final String mindtouchLoginSRC = getConfigurationPath("mindtouch.login.src");
+		final String mindtouchLoginID = getConfigurationPath("mindtouch.login.id");
 
 		populateModel(model, searchPageData, showMode);
 		model.addAttribute("userLocation", customerLocationService.getUserLocation());
 		model.addAttribute("sitecoreSolutionPageData", sitecoreSolutionPageURL);
 		model.addAttribute("mindtouchSRC", mindtouchSRC);
 		model.addAttribute("mindtouchID", mindtouchID);
+		model.addAttribute("mindtouchLoginSRC", mindtouchLoginSRC);
+		model.addAttribute("mindtouchLoginID", mindtouchLoginID);
 		model.addAttribute("searchPageData", searchPageData);
 
 		if (searchPageData.getPagination().getTotalNumberOfResults() == 0)
