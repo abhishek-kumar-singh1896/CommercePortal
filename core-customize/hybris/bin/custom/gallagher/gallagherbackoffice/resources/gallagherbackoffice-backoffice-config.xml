@@ -126,6 +126,16 @@
 			<list-view:column qualifier="duplicate" label="type.Customer.duplicate" />
 		</list-view:list-view>
 	</context>
+	<context merge-by="type" parent="GenericItem" type="AbstractOrder" component="listview" merge-mode="replace">>
+        <list-view:list-view merge-mode="replace">>
+            <list-view:column qualifier="code"/>
+            <list-view:column qualifier="date"/>
+             <list-view:column qualifier="totalPrice" merge-mode="remove" />
+            <list-view:column qualifier="totalPrice" />
+            <list-view:column qualifier="currency!=null ?currency.getIsocode():null" label="AbstractOrder.currency"/>
+            <list-view:column qualifier="user"/>
+        </list-view:list-view>
+    </context>
 	<context merge-by="type" parent="User" type="Customer" component="editor-area">
         <editorArea:editorArea name="">
             <editorArea:tab name="hmc.gallagher" position="3">
