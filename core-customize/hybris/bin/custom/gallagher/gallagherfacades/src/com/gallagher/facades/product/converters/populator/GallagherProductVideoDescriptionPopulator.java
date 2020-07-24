@@ -17,6 +17,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.commons.collections4.MapUtils;
+import org.apache.commons.lang3.StringUtils;
 
 
 /**
@@ -52,17 +53,20 @@ public class GallagherProductVideoDescriptionPopulator<SOURCE extends ProductMod
 			final List<ProductVideoData> videos = new ArrayList<>(productModel.getVideos().size());
 			productData.setVideos(videos);
 			productModel.getVideos().forEach((key, value) -> {
-				final String[] regionThumbArray = value.split("\\|");
-				if (regionThumbArray.length >= 2 && regionThumbArray[0].contains(regionCode))
+				if (StringUtils.isNotEmpty(value))
 				{
-					final ProductVideoData video = new ProductVideoData();
-					video.setId(key);
-					video.setUrl(regionThumbArray[1]);
-					if (regionThumbArray.length > 2)
+					final String[] regionThumbArray = value.split("\\|");
+					if (regionThumbArray.length >= 2 && regionThumbArray[0].contains(regionCode))
 					{
-						video.setDescription(regionThumbArray[2]);
+						final ProductVideoData video = new ProductVideoData();
+						video.setId(key);
+						video.setUrl(regionThumbArray[1]);
+						if (regionThumbArray.length > 2)
+						{
+							video.setDescription(regionThumbArray[2]);
+						}
+						videos.add(video);
 					}
-					videos.add(video);
 				}
 			});
 		}
