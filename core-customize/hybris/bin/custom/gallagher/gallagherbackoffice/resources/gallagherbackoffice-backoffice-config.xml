@@ -131,8 +131,8 @@
             <list-view:column qualifier="code"/>
             <list-view:column qualifier="date"/>
              <list-view:column qualifier="totalPrice" merge-mode="remove" />
-            <list-view:column qualifier="totalPrice" />
-            <list-view:column qualifier="currency!=null ?currency.getIsocode():null" label="AbstractOrder.currency"/>
+            <list-view:column qualifier="currency!=null AND currency.getSymbol()!=null ?currency.getSymbol()+totalPrice:totalPrice" label="AbstractOrder.totalPrice"/>
+            <list-view:column qualifier="user" merge-mode="remove"/>
             <list-view:column qualifier="user"/>
         </list-view:list-view>
     </context>
