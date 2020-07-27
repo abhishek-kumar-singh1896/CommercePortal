@@ -8,7 +8,7 @@
 <%@ attribute name="productData" required="false" type="de.hybris.platform.commercefacades.product.data.ProductData"%>
 <%@ attribute name="quantity" required="false" type="java.lang.Long"%>
 <%@ attribute name="entryNumber" required="false" type="java.lang.Integer"%>
-<spring:message code="laminex.page.contactus.link" var="contactUsLink" />
+<spring:message code="gallagher.page.contactus.link" var="contactUsLink" />
 
 <div class="tr tr-quickOrder">
 	<input type="hidden" value="${entryNumber}" class="entrynumber">

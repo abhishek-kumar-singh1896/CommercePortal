@@ -36,6 +36,8 @@ public final class GallagherCoreConstants extends GeneratedGallagherCoreConstant
 		public static final String DOCUMENTS = "documents";
 		public static final String VIDEOS = "videos";
 		public static final String IMAGES = "images";
+		public static final String SUPPORT = "supoort";
+		public static final String SUPPORT_FOLDER = "support";
 		public static final String B2BADVANCE_BF = "B2BADVANCE-BF";
 		public static final String DATE_MODIFIED = "dateModified";
 		public static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'";

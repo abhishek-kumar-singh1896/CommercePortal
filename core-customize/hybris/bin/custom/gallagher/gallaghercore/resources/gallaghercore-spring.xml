@@ -279,7 +279,7 @@
 	 
 	 <bean id="gallagherLocationService" class="com.gallagher.core.services.impl.GallagherLocationServiceImpl"/>
 	 
-	 <bean id="laminexVariantCodeValueResolver" class="com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherVariantAttributeValueResolver"
+	 <bean id="gallagherVariantCodeValueResolver" class="com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherVariantAttributeValueResolver"
 		parent="abstractValueResolver">
 		<property name="modelService" ref="modelService" />
 		<property name="variantField" value="code" />
@@ -351,5 +351,9 @@
 	<alias alias="emailGenerationService" name="gallagherEmailGenerationService" />
 	<bean id="gallagherEmailGenerationService" class="com.gallagher.core.email.impl.GallagherEmailGenerationServiceImpl" parent="defaultEmailGenerationService" />
 	
+	<bean id="solrStandaloneSearchProvider" class="com.gallagher.core.solrfacetsearch.solr.impl.GallagherSolrStandaloneSearchProvider"
+          parent="abstractSolrSearchProvider" />
 
+    <bean id="solrCloudSearchProvider" class="com.gallagher.core.solrfacetsearch.solr.impl.GallagherSolrCloudSearchProvider"
+          parent="abstractSolrSearchProvider" />
 </beans>

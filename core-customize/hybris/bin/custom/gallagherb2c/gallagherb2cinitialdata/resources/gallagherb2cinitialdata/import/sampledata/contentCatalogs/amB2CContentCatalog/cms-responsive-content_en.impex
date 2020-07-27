@@ -67,6 +67,13 @@ INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];title
 ;;ProductCompareTabComponent;"Compare"
 ;;ProductUseWithTabComponent;"Use With"
 ;;ProductConatctTabComponent;"Contact"
+;;ProductAskAQuestionTabComponentEN  ; "Ask A Question" 
+;;ProductAskAQuestionTabComponentCAFR; "Ask A Question" 
+;;ProductAskAQuestionTabComponentLAES; "Ask A Question" 
+;;ProductAskAQuestionTabComponentAU  ; "Ask A Question" 
+;;ProductAskAQuestionTabComponentNZ  ; "Ask A Question" 
+;;ProductAskAQuestionTabComponentCAEN; "Ask A Question" 
+;;ProductAskAQuestionTabComponentUS  ; "Ask A Question" 
 
 # CMS ProductReferences Components
 UPDATE ProductReferencesComponent;$contentCV[unique=true];uid[unique=true];title[lang=$lang]

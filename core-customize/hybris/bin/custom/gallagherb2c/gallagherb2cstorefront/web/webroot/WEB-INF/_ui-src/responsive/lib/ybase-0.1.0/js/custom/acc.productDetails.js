@@ -1,9 +1,27 @@
 ACC.productDetails = {
 
 	_autoload: [
-		["clickOnTab",$('.product-detail-tab').length > 0]
+		["clickOnTab",$('.product-detail-tab').length > 0],
+		["bindVideoPlayPause", $(".with-video").length != 0]
 	],
+	
 
+	bindVideoPlayPause : function() {
+		window.onload = function() {
+			setTimeout(function() {
+				$('.slide video').bind('play pause', function(e) {
+					var currentVideo = $(this)[0];
+					if (currentVideo.paused === true) {
+						$(currentVideo.closest('.slide')).find('.overlayText').show();
+					} else {
+						$(currentVideo.closest('.slide')).find('.overlayText').hide();
+					}
+				});
+			}, 1000);
+
+		};
+	},
+    
 	clickOnTab: function(){
 			$(document).ready(function () {
 				/*$('.write-review-link').click(function(){

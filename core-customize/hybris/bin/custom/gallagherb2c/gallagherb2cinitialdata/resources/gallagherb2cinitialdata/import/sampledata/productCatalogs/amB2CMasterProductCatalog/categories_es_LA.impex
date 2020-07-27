@@ -66,5 +66,9 @@ UPDATE Category ; code[unique=true]                ; $catalogVersion ; name[lang
                 ; additional-system-components     ;                 ; Componentes Adicionales del Sistema          
                 ; drafters                         ;                 ; Apartadores                                  
                 ; earthing                         ;                 ; Conexión a tierra                            
-                
-                
+                ; gates                            ;                 ; Puertas de Acero                             
+                ; gate-hardware                    ;                 ; Herrajes para Puertas                        
+                ; irrigator-fence-crossing-system  ;                 ; Paso Pivote                                  
+                ; remotes-and-fence-testers        ;                 ; Controles remotos y Tésters                  
+                ; stock-prods-and-accessories      ;                 ; Picanas                                      
+                ; stock-prods                      ;                 ; Picanas                                      

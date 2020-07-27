@@ -1,6 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<spring:message code="laminex.page.contactus.link" var="contactUsLink"/> 
+<spring:message code="gallagher.page.contactus.link" var="contactUsLink"/> 
 
 <div class="search-info-wrapper out-of-stock-message error-message" style="display: none;">
 	<div class="container">
