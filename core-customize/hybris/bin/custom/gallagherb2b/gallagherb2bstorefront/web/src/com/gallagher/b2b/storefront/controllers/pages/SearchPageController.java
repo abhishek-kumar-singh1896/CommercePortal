@@ -34,6 +34,8 @@ import de.hybris.platform.commerceservices.search.pagedata.PageableData;
 import de.hybris.platform.servicelayer.dto.converter.ConversionException;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.text.MessageFormat;
 import java.util.Collections;
 import java.util.List;
@@ -105,8 +107,9 @@ public class SearchPageController extends AbstractSearchPageController
 	final String searchText, @RequestParam(value = "technical-support", defaultValue = "")
 	final String technicalSupport, final HttpServletRequest request, final Model model) throws CMSItemNotFoundException
 	{
-		final String sitecoreSolutionPageURL = MessageFormat.format(getSiteCoreConfigurationPath(SITECORE_SOLUTION_URL),
-				searchText);
+		final String params = getURLParameters(request);
+		final String sitecoreSolutionPageURL = MessageFormat.format(getSiteCoreConfigurationPath(SITECORE_SOLUTION_URL), searchText,
+				params);
 		final String mindtouchLoginSRC = getConfigurationPath("mindtouch.login.src");
 		final String mindtouchLoginID = getConfigurationPath("mindtouch.login.id");
 		final String mindtouchSRC = getConfigurationPath("mindtouch.src");
@@ -194,12 +197,14 @@ public class SearchPageController extends AbstractSearchPageController
 
 	@RequestMapping(method = RequestMethod.GET, params = "q")
 	public String refineSearch(@RequestParam("q")
-	final String searchQuery, @RequestParam(value = "page", defaultValue = "0")
+	final String searchQuery, @RequestParam(value = "technical-support", defaultValue = "")
+	final String technicalSupport, @RequestParam(value = "page", defaultValue = "0")
 	final int page, @RequestParam(value = "show", defaultValue = "Page")
 	final ShowMode showMode, @RequestParam(value = "sort", required = false)
 	final String sortCode, @RequestParam(value = "text", required = false)
 	final String searchText, final HttpServletRequest request, final Model model) throws CMSItemNotFoundException
 	{
+		final String params = getURLParameters(request);
 		final ProductSearchPageData<SearchStateData, ProductData> searchPageData = performSearch(searchQuery, page, showMode,
 				sortCode, getSearchPageSize());
 		String searchStr = searchText;
@@ -207,7 +212,8 @@ public class SearchPageController extends AbstractSearchPageController
 		{
 			searchStr = searchPageData.getFreeTextSearch();
 		}
-		final String sitecoreSolutionPageURL = MessageFormat.format(getSiteCoreConfigurationPath(SITECORE_SOLUTION_URL), searchStr);
+		final String sitecoreSolutionPageURL = MessageFormat.format(getSiteCoreConfigurationPath(SITECORE_SOLUTION_URL), searchStr,
+				params);
 
 		final String mindtouchSRC = getConfigurationPath("mindtouch.src");
 		final String mindtouchID = getConfigurationPath("mindtouch.id");
@@ -246,8 +252,28 @@ public class SearchPageController extends AbstractSearchPageController
 
 		final String metaKeywords = MetaSanitizerUtil.sanitizeKeywords(searchText);
 		setUpMetaData(model, metaKeywords, metaDescription);
-
+		model.addAttribute("technicalSupport", technicalSupport);
 		return getViewForPage(model);
+	}
+
+	/**
+	 * Returns the encoded URL parameters of the request
+	 *
+	 * @param request
+	 *           the http request
+	 * @return encoded parameter string
+	 */
+	private String getURLParameters(final HttpServletRequest request)
+	{
+		final StringBuilder paramStrBuilder = new StringBuilder();
+		request.getParameterMap().forEach((key, values) -> {
+			for (final String value : values)
+			{
+				paramStrBuilder.append(key).append("=").append(value);
+				paramStrBuilder.append("&");
+			}
+		});
+		return URLEncoder.encode(paramStrBuilder.deleteCharAt(paramStrBuilder.length() - 1).toString(), StandardCharsets.UTF_8);
 	}
 
 	protected ProductSearchPageData<SearchStateData, ProductData> performSearch(final String searchQuery, final int page,
