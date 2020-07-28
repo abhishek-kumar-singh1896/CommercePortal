@@ -35,8 +35,10 @@ ACC.header = {
 						const accountButton = document.getElementById('dropdownMenuUser');
 						accountButton.onclick =function() {
 							$('.main-nav-out li.first-level').removeClass('active');
-					        menu.classList.remove('menu-button-active');
-					        removeClasses('mega-menu-active');
+							if(menu) {
+								menu.classList.remove('menu-button-active');
+								removeClasses('mega-menu-active');
+							}
 					        searchButton.classList.remove('active');
 					        searchLinkContainer.classList.add('d-none');
 					        $('.megamenu-out').not('.search-link-container').addClass('d-none').removeClass('fadeInDown');
@@ -50,11 +52,15 @@ ACC.header = {
 						$('#' + linkId + 'Container').toggleClass('d-none').toggleClass('fadeInDown');
 						$('.search-out .search-link').removeClass('active');
 						const menuButton = document.getElementById(linkId).parentElement;
-					    menu.classList.toggle('menu-button-active');
-					    menuButton.classList.toggle('mega-menu-active');
+						if(menu) {
+							menu.classList.toggle('menu-button-active');
+							menuButton.classList.toggle('mega-menu-active');
+						}
 					} else if ($searchLink.length) {
-						menu.classList.remove('menu-button-active');
-						removeClasses('mega-menu-active');
+						if(menu) {
+							menu.classList.remove('menu-button-active');
+							removeClasses('mega-menu-active');
+						}
 						$searchLink.toggleClass('active');
 						$('.main-nav-out li.first-level').removeClass('active');
 						$('.megamenu-out').not('.search-link-container').addClass('d-none').removeClass('fadeInDown');
@@ -62,8 +68,10 @@ ACC.header = {
 					} else if (!$(e.target).closest('.megamenu-out').length) {
 						$('.main-nav-out li.first-level, .search-out .search-link').removeClass('active');
 						$('.megamenu-out').addClass('d-none').removeClass('fadeInDown');
-						menu.classList.remove('menu-button-active');
-				        removeClasses('mega-menu-active');
+						if(menu) {
+							menu.classList.remove('menu-button-active');
+							removeClasses('mega-menu-active');
+						}
 					}
 				});
 
