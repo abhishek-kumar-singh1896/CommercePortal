@@ -5,5 +5,6 @@
 <script src="${fn:escapeXml(sharedResourcePath)}/js/analyticsmediator.js"></script>
 <analytics:googleAnalytics/>
 <analytics:gtag/>
+<analytics:gtm/>
 <analytics:hotjar/>
 

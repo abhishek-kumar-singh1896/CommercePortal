@@ -25,9 +25,9 @@
 		var dataLayer = [];
 	</script>
 
-	<analytics:gtm />
+	<analytics:commercegtm />
 	<!-- Google Tag Manager -->
-	<c:if test="${not empty gtmId}">	
+	<c:if test="${not empty commerceGTMId}">	
 		<script>
 			(function(w, d, s, l, i) {
 				w[l] = w[l] || [];
@@ -41,7 +41,7 @@
 				j.async = true;
 				j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
 				f.parentNode.insertBefore(j, f);
-			})(window, document, 'script', 'dataLayer', '${gtmId}');
+			})(window, document, 'script', 'dataLayer', '${commerceGTMId}');
 		</script>
 	</c:if>
 	<!-- End Google Tag Manager -->
@@ -88,7 +88,13 @@
 			<iframe src="https://www.googletagmanager.com/ns.html?id=${gtmId}"
 				height="0" width="0" style="display: none; visibility: hidden"></iframe>
 		</noscript>
-	</c:if>	
+	</c:if>
+	<c:if test="${not empty commerceGTMId}">	
+		<noscript>
+			<iframe src="https://www.googletagmanager.com/ns.html?id=${commerceGTMId}"
+				height="0" width="0" style="display: none; visibility: hidden"></iframe>
+		</noscript>
+	</c:if>		
 	<!-- End Madwire Google Tag Manager (noscript) -->
 	<%-- Inject the page body here --%>
 	<jsp:doBody/>
