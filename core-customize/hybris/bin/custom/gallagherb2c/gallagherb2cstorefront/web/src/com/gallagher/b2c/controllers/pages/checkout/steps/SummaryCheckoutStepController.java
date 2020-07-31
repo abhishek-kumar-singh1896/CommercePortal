@@ -22,7 +22,6 @@ import de.hybris.platform.commercefacades.product.data.ProductData;
 import de.hybris.platform.commerceservices.order.CommerceCartModificationException;
 import de.hybris.platform.order.InvalidCartException;
 import de.hybris.platform.payment.AdapterException;
-import com.gallagher.b2c.controllers.ControllerConstants;
 
 import java.util.Arrays;
 
@@ -36,6 +35,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.gallagher.b2c.controllers.ControllerConstants;
 
 
 @Controller
@@ -94,8 +95,9 @@ public class SummaryCheckoutStepController extends AbstractCheckoutStepControlle
 	@RequestMapping(value = "/placeOrder")
 	@PreValidateQuoteCheckoutStep
 	@RequireHardLogIn
-	public String placeOrder(@ModelAttribute("placeOrderForm") final PlaceOrderForm placeOrderForm, final Model model,
-			final HttpServletRequest request, final RedirectAttributes redirectModel) throws CMSItemNotFoundException, // NOSONAR
+	public String placeOrder(@ModelAttribute("placeOrderForm")
+	final PlaceOrderForm placeOrderForm, final Model model, final HttpServletRequest request,
+			final RedirectAttributes redirectModel) throws CMSItemNotFoundException, // NOSONAR
 			InvalidCartException, CommerceCartModificationException
 	{
 		if (validateOrderForm(placeOrderForm, model))
@@ -138,7 +140,7 @@ public class SummaryCheckoutStepController extends AbstractCheckoutStepControlle
 			GlobalMessages.addErrorMessage(model, "checkout.placeOrder.failed");
 			return enterStep(model, redirectModel);
 		}
-
+		redirectModel.addFlashAttribute("newOrder", true);
 		return redirectToOrderConfirmationPage(orderData);
 	}
 
