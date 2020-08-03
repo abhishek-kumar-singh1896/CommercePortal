@@ -1,3 +1,13 @@
 .mt-widget-search-iframe{
 	min-height:200px;
 }
+
+.product__listing.product__grid .details {
+	 text-align: center;
+	 font-size:$font-size-16px;
+	 font-weight:bold;
+}
+
+.product__listing.product__grid .details .partNumber {
+    text-align: center;
+}
