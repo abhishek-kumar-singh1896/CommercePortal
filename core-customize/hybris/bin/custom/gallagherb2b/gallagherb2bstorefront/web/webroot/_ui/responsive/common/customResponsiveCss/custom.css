@@ -1262,7 +1262,6 @@ position: absolute;
 .product__listing.product__grid .details .partNumber {
 	font-weight: 600;
     font-size: 11px;
-    text-align: right;
 }
 
 .item__sno{
