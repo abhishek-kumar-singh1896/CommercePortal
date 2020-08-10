@@ -113,6 +113,7 @@
 	<extension name="sapcpiorderexchange" />
 	<extension name="sapcpiorderexchangeb2b" />
 	<extension name="ysaporderfulfillment" />
+	<extension name="customerticketingc4cb2bintegration" />
 	
 	<extension name="gallagheroutboundservices" />
 	<extension name="gallaghercore" />
