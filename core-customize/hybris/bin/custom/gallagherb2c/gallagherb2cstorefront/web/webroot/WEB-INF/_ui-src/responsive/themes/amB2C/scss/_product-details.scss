@@ -196,7 +196,11 @@ h4 {
   }
 
   .product-detail-tab {
+  
     background-color: $product-detail-tab-background;
+	 position: sticky;
+	 top: 0;
+	 z-index: 9;
 
     .navbar {
       padding: 2px 0;
