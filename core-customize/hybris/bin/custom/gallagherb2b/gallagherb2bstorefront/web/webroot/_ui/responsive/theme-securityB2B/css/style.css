@@ -1105,6 +1105,16 @@ img {
   vertical-align: middle;
   width: 240px;
 }
+
+@media (min-width: 1024px) {
+  .product__listing.product__grid .product-item .details{
+    width: 100%;
+  }
+  .product__listing.product__grid .product-item img{
+    width: 100%;
+  }
+}
+
 .img-responsive,
 .thumbnail > img,
 .thumbnail a > img,
