@@ -222,8 +222,8 @@
 										<c:forEach items="${l1.entries}" var="dropdownValue">
 											<c:url var="L1link" value="${dropdownValue.item.url}"></c:url>
 											<li class="first-level with-dropdown">
-												<a href="${L1link}" id="mainNavLink${status.index+1}">
-												    ${dropdownValue.item.linkName}
+												<a href="${L1link}" id="mainNavLink${status.index+1}" class="${dropdownValue.item.styleAttributes}">
+												    ${dropdownValue.item.linkName} 
 												</a>
 											</li>
 										</c:forEach>
