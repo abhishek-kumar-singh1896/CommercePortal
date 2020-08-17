@@ -83,7 +83,7 @@
                                     
                                     <c:forEach var="entry" items="${firstProduct.productAttrValueMap}">
 						                <%-- <tr><td><c:out value="${entry.key}"/></td> <td><c:out value="${entry.value}"/> </td></tr> --%>
-						                <div class="stored-jules-col row-height-padding">
+						                <div <c:if test="${entry.value.length() > 23}">title=" ${entry.value}"</c:if> class="stored-jules-col row-height-padding">
 	                                        ${entry.value}
 	                                    </div>
 						            </c:forEach>
@@ -137,7 +137,7 @@
                                     </div>
 
                                     <c:forEach var="entry" items="${compareProduct.productAttrValueMap}">
-						                <div class="stored-jules-col row-height-padding">
+						                <div <c:if test="${entry.value.length() > 23}">title=" ${entry.value}"</c:if> class="stored-jules-col row-height-padding">
 	                                        ${entry.value}
 	                                    </div>
 						            </c:forEach>
