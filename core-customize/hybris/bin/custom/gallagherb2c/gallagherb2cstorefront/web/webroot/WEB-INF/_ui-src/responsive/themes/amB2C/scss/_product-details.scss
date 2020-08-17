@@ -679,15 +679,7 @@ h4 {
           }
 
           &.selected {
-            &::after {
-              position: absolute;
-              border: 2px solid $primary-color;
-              content: "";
-              left: 0;
-              top: 0;
-              width: 100%;
-              height: 100%;
-            }
+            box-shadow: 0 0 0 2px #ff8400 inset;
 
             .selcted-text {
               position: absolute;
@@ -744,6 +736,9 @@ h4 {
     padding: 16px;
     height: 53px;
     border-bottom: 1px dotted $gray-3;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   .price-col {
