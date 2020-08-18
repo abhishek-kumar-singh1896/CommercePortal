@@ -71,6 +71,7 @@ public class GallagherSopPaymentDetailsValidator implements Validator
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "billTo_lastName", "address.lastName.invalid");
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "billTo_street1", "address.line1.invalid");
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "billTo_city", "address.city.invalid");
+			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "billTo_state", "address.province.invalid");
 			validateStringFieldForPostCode(form.getBillTo_postalCode(), "billTo_postalCode", MAX_POSTCODE_LENGTH, errors);
 
 			String phoneNumber = null;
