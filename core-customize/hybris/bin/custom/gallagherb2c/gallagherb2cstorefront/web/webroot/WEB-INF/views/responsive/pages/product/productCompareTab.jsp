@@ -15,7 +15,7 @@
                 <div class="d-flex align-items-stretch">
                     <div class="left-column"><span class="d-none totalAttributes">${compareProducts.size()}</span>
                         <ul>
-                            <li class="row-height-padding">Model</li>
+                            <li class="row-height-padding product-model">Model</li>
                             
                             <c:forEach items="${compareProducts}" var="productReference" varStatus="counter">
                             <li class="attribute${counter.count} row-height-padding d-flex align-items-center">
