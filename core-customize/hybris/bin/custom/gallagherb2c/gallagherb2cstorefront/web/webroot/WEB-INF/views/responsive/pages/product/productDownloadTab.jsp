@@ -29,7 +29,7 @@
                             </span>
                             </a>
                             <span>
-                                ${media.altText}
+                                ${media.size}
                             </span>
                         </div>
                     </div>
