@@ -4,6 +4,9 @@
 package com.gallagher.b2c.security;
 
 
+import de.hybris.platform.acceleratorservices.config.SiteConfigService;
+import de.hybris.platform.commercefacades.storesession.StoreSessionFacade;
+
 import java.io.IOException;
 
 import javax.servlet.FilterChain;
@@ -23,7 +26,6 @@ import org.keycloak.adapters.spi.HttpFacade;
 import org.keycloak.adapters.springsecurity.KeycloakAuthenticationException;
 import org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticationEntryPoint;
 import org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticationFailureHandler;
-import org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticationSuccessHandler;
 import org.keycloak.adapters.springsecurity.authentication.KeycloakCookieBasedRedirect;
 import org.keycloak.adapters.springsecurity.authentication.RequestAuthenticatorFactory;
 import org.keycloak.adapters.springsecurity.authentication.SpringSecurityRequestAuthenticatorFactory;
@@ -95,7 +97,7 @@ public class GallagherKeycloakAuthenticationProcessingFilter extends AbstractAut
 	 */
 	public GallagherKeycloakAuthenticationProcessingFilter(final AuthenticationManager authenticationManager)
 	{
-		this(authenticationManager, DEFAULT_REQUEST_MATCHER);
+		this(authenticationManager, DEFAULT_REQUEST_MATCHER, null, null);
 	}
 
 	/**
@@ -116,7 +118,8 @@ public class GallagherKeycloakAuthenticationProcessingFilter extends AbstractAut
 	 *
 	 */
 	public GallagherKeycloakAuthenticationProcessingFilter(final AuthenticationManager authenticationManager,
-			final RequestMatcher requiresAuthenticationRequestMatcher)
+			final RequestMatcher requiresAuthenticationRequestMatcher, final SiteConfigService siteConfigService,
+			final StoreSessionFacade storeSessionFacade)
 	{
 		super(requiresAuthenticationRequestMatcher);
 		Assert.notNull(authenticationManager, "authenticationManager cannot be null");
@@ -125,8 +128,9 @@ public class GallagherKeycloakAuthenticationProcessingFilter extends AbstractAut
 		super.setAllowSessionCreation(false);
 		super.setContinueChainBeforeSuccessfulAuthentication(false);
 		setAuthenticationFailureHandler(new KeycloakAuthenticationFailureHandler());
-		setAuthenticationSuccessHandler(
-				new KeycloakAuthenticationSuccessHandler(new SavedRequestAwareAuthenticationSuccessHandler()));
+
+		setAuthenticationSuccessHandler(new GallagherKeycloakAuthenticationSuccessHandler(
+				new SavedRequestAwareAuthenticationSuccessHandler(), siteConfigService, storeSessionFacade));
 	}
 
 	@Override
