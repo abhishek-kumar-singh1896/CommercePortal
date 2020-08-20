@@ -137,7 +137,7 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 						mediaModel.setFolder(folder);
 						mediaModel.setRealFileName(gallagherBynderResponse.getName());
 						mediaModel.setDescription(getMediaDescription(gallagherBynderResponse));
-						mediaModel.setAltText(gallagherBynderResponse.getFileSize() / 1000000 + " mb");
+						mediaModel.setAltText(gallagherBynderResponse.getName());
 
 						//adding base Stores
 						mediaModel.setBaseStores(basestorelist);
@@ -269,7 +269,7 @@ public class GallagherBynderServiceImpl implements GallagherBynderService
 					mediaModel.setCatalogVersion(catalog);
 					mediaModel.setRealFileName(gallagherBynderResponse.getName());
 					mediaModel.setDescription(getMediaDescription(gallagherBynderResponse));
-					mediaModel.setAltText(gallagherBynderResponse.getFileSize() / 1000000 + " mb");
+					mediaModel.setAltText(gallagherBynderResponse.getName());
 					mediaModel.setBaseStores(basestorelist);
 					modelService.save(mediaModel);
 					mediaService.setStreamForMedia(mediaModel, getImage(gallagherBynderResponse.getId()));

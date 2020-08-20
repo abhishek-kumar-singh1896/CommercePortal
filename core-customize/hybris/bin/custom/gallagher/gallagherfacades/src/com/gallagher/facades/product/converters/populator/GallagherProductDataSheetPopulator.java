@@ -27,13 +27,13 @@ public class GallagherProductDataSheetPopulator<SOURCE extends ProductModel, TAR
 	@Override
 	public void populate(final SOURCE productModel, final TARGET productData) throws ConversionException
 	{
-		final Collection<MediaModel> logos = getPrimaryImageMediaContainer(productModel);
-		if (logos != null)
+		final Collection<MediaModel> dataSheets = getDataSheets(productModel);
+		if (dataSheets != null)
 		{
 			final List<ImageData> imageList = new ArrayList<ImageData>();
 
 			// Use the first container as the primary image
-			addLogos(logos, ImageDataType.DATASHEET, imageList);
+			addDataSheets(dataSheets, ImageDataType.DATASHEET, imageList);
 
 			for (final ImageData imageData : imageList)
 			{
@@ -41,30 +41,35 @@ public class GallagherProductDataSheetPopulator<SOURCE extends ProductModel, TAR
 				{
 					imageData.setAltText(productModel.getName());
 				}
+
 			}
 			productData.setDataSheet(imageList);
 		}
 	}
 
-	protected Collection<MediaModel> getPrimaryImageMediaContainer(final SOURCE productModel)
+	protected Collection<MediaModel> getDataSheets(final SOURCE productModel)
 	{
-		final Collection<MediaModel> logos = (Collection<MediaModel>) getProductAttribute(productModel, ProductModel.DATA_SHEET);
+		final Collection<MediaModel> dataSheets = (Collection<MediaModel>) getProductAttribute(productModel,
+				ProductModel.DATA_SHEET);
 		//this is else part
-		if (CollectionUtils.isNotEmpty(logos))
+		if (CollectionUtils.isNotEmpty(dataSheets))
 		{
-			return logos;
+			return dataSheets;
 		}
 		return null;
+
 	}
 
-	protected void addLogos(final Collection<MediaModel> logos, final ImageDataType imageType, final List<ImageData> list)
+	protected void addDataSheets(final Collection<MediaModel> dataSheets, final ImageDataType imageType,
+			final List<ImageData> list)
 	{
-		for (final MediaModel logo : logos)
+		for (final MediaModel dataSheet : dataSheets)
 		{
-			final ImageData imageData = getImageConverter().convert(logo);
-			imageData.setDescription(logo.getRealFileName());
-			imageData.setMime(logo.getMime());
+			final ImageData imageData = getImageConverter().convert(dataSheet);
+			imageData.setDescription(dataSheet.getRealFileName());
+			imageData.setMime(dataSheet.getMime());
 			imageData.setImageType(imageType);
+			imageData.setSize(dataSheet.getSize() / 1000000.0 + " mb");
 			list.add(imageData);
 		}
 	}

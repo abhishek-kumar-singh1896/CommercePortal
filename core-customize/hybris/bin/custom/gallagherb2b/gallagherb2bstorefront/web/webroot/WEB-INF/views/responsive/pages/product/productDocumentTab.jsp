@@ -32,7 +32,7 @@
 													xlink:href="${siteRootUrl}/theme-securityB2B/images/svg/gallagher-icons.svg#pdf-download" />
                                 </svg>
 									</span>
-									</a> <span> ${media.altText} </span>
+									</a> <span> ${media.size} </span>
 								</div>
 							</div>
 						</li>
