@@ -14,7 +14,11 @@
       padding: 0;
       position: relative;
       flex: auto;
-
+		
+		a.selected {
+            color: $gray-9;
+      }
+      
       a {
         display: block;
         padding: 31px 29px;

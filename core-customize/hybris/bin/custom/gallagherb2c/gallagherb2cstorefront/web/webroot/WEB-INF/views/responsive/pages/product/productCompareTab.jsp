@@ -13,11 +13,12 @@
 
             <div class="compare-inner-container">
                 <div class="d-flex align-items-stretch">
-                    <div class="left-column">
+                    <div class="left-column"><span class="d-none totalAttributes">${compareProducts.size()}</span>
                         <ul>
-                            <li class="row-height-padding">Model</li>
-                            <c:forEach items="${compareProducts}" var="productReference">
-                            <li class="row-height-padding d-flex align-items-center">
+                            <li class="row-height-padding product-model">Model</li>
+                            
+                            <c:forEach items="${compareProducts}" var="productReference" varStatus="counter">
+                            <li class="attribute${counter.count} row-height-padding d-flex align-items-center">
                                 <div class="two-line-ellipses">
                                     ${productReference}
                                 </div>
@@ -81,10 +82,10 @@
 
                                     </div>
                                     
-                                    <c:forEach var="entry" items="${firstProduct.productAttrValueMap}">
+                                    <c:forEach var="entry" items="${firstProduct.productAttrValueMap}" varStatus="counter">
 						                <%-- <tr><td><c:out value="${entry.key}"/></td> <td><c:out value="${entry.value}"/> </td></tr> --%>
-						                <div class="stored-jules-col row-height-padding">
-	                                        ${entry.value}
+						                <div class="attribute${counter.count} stored-jules-col row-height-padding">
+	                                      ${entry.value}
 	                                    </div>
 						            </c:forEach>
 						            <c:if test="${RRP}">
@@ -136,8 +137,8 @@
 
                                     </div>
 
-                                    <c:forEach var="entry" items="${compareProduct.productAttrValueMap}">
-						                <div class="stored-jules-col row-height-padding">
+                                    <c:forEach var="entry" items="${compareProduct.productAttrValueMap}" varStatus="counter">
+						                <div class="attribute${counter.count} stored-jules-col row-height-padding">
 	                                        ${entry.value}
 	                                    </div>
 						            </c:forEach>

@@ -2,7 +2,8 @@ ACC.productDetails = {
 
 	_autoload: [
 		["clickOnTab",$('.product-detail-tab').length > 0],
-		["bindVideoPlayPause", $(".with-video").length != 0]
+		["bindVideoPlayPause", $(".with-video").length != 0],
+		["bindCompareColumnHeight", $(".compare-list-product-title").length != 0]
 	],
 	
 
@@ -19,6 +20,22 @@ ACC.productDetails = {
 				});
 			}, 1000);
 
+		};
+	},
+	
+	bindCompareColumnHeight : function() {
+		window.onload = function() { 
+			setTimeout(function() {
+				for (i = 1; i <= $(".totalAttributes").text(); i++) {//alert($(".attribute"+i).text());
+	            	var height=0;
+	            	$.each($(".attribute"+i), function(index, val) {
+	            	    if($(val).height()>height){
+	            	       height=$(val).height();
+	            	    }
+	            	});
+	            	  $(".attribute"+i).height(height);
+	            	}
+			}, 300);
 		};
 	},
     

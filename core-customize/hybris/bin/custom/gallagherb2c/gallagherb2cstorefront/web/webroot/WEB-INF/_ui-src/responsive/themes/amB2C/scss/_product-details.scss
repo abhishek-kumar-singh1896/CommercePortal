@@ -679,15 +679,7 @@ h4 {
           }
 
           &.selected {
-            &::after {
-              position: absolute;
-              border: 2px solid $primary-color;
-              content: "";
-              left: 0;
-              top: 0;
-              width: 100%;
-              height: 100%;
-            }
+            box-shadow: 0 0 0 2px #ff8400 inset;
 
             .selcted-text {
               position: absolute;
@@ -742,8 +734,11 @@ h4 {
   }
   .row-height-padding {
     padding: 16px;
-    height: 53px;
     border-bottom: 1px dotted $gray-3;
+  }
+  
+  .product-model {
+    height: 53px;
   }
 
   .price-col {
