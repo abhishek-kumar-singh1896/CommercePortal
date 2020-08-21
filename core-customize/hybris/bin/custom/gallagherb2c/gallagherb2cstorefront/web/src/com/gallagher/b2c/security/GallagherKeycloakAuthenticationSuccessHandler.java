@@ -62,13 +62,14 @@ public class GallagherKeycloakAuthenticationSuccessHandler implements Authentica
 		{
 			try
 			{
-				final String siteCoreUrl = new StringBuilder(siteConfigService.getString(new StringBuilder("sitecore.root.url")
-						.append(".").append(storeSessionFacade.getCurrentLanguage().getIsocode()).toString(), "#"))
-								.append("/login?ReturnUrl=").toString();
+				//final String siteCoreUrl = new StringBuilder(siteConfigService.getString(new StringBuilder("sitecore.root.url")
+				//	.append(".").append(storeSessionFacade.getCurrentLanguage().getIsocode()).toString(), "#"))
+				//		.append("/login?ReturnUrl=").toString();
 
 				response.addCookie(KeycloakCookieBasedRedirect.createCookieFromRedirectUrl(null));
 
-				response.sendRedirect(siteCoreUrl + location);
+				//response.sendRedirect(siteCoreUrl + location);
+				response.sendRedirect(location);
 			}
 			catch (final IOException e)
 			{

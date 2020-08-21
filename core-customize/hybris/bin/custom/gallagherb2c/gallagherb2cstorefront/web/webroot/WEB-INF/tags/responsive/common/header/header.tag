@@ -17,7 +17,7 @@
 <cms:pageSlot position="TopHeaderSlot" var="component" element="div">
 	<cms:component component="${component}" />
 </cms:pageSlot>
-
+<input type="hidden" name="showPreferences" id="showPreferences" value="${showPreferences}"/>
 <!-- Modal responsive mega menu -->
 <sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')">
 	<header:megaMenu />
