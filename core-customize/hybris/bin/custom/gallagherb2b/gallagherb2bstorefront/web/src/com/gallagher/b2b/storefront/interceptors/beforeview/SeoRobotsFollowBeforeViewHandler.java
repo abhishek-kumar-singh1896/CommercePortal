@@ -20,7 +20,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -40,20 +39,8 @@ public class SeoRobotsFollowBeforeViewHandler implements BeforeViewHandler
 
 			if (RequestMethod.GET.name().equalsIgnoreCase(request.getMethod()))
 			{
-				if (request.isSecure())
-				{
-					robotsValue = ThirdPartyConstants.SeoRobots.NOINDEX_FOLLOW;
-				}
-				//Since no model attribute metaRobots can be set for JSON response, then configure that servlet path in the xml.
-				//If its a regular response and this setting has to be overriden then set model attribute metaRobots
-				else if (CollectionUtils.contains(getRobotIndexForJSONMapping().keySet().iterator(), request.getServletPath()))
-				{
-					robotsValue = getRobotIndexForJSONMapping().get(request.getServletPath());
-				}
-				else
-				{
-					robotsValue = ThirdPartyConstants.SeoRobots.INDEX_FOLLOW;
-				}
+				robotsValue = ThirdPartyConstants.SeoRobots.INDEX_FOLLOW;
+
 			}
 			else if (RequestMethod.POST.name().equalsIgnoreCase(request.getMethod()))
 			{
