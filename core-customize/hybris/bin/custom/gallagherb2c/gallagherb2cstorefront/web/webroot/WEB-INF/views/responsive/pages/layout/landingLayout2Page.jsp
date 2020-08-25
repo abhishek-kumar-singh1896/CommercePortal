@@ -37,6 +37,4 @@
         <cms:component component="${feature}" element="div" class="yComponentWrapper"/>
     </cms:pageSlot>
     
-   <input type="hidden" name="showPreferences" id="showPreferences" value="${showPreferences}"/>
-
 </template:page>

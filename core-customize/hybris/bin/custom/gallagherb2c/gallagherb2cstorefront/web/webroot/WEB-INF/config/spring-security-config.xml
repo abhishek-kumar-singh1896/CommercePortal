@@ -150,6 +150,8 @@
                 <constructor-arg name="httpMethod" value="GET" />
             </bean>
         </constructor-arg>
+      <constructor-arg name="siteConfigService" ref="siteConfigService" />
+		<constructor-arg name="storeSessionFacade" ref="storeSessionFacade" />
     	<property name="defaultAutoLoginStrategy" ref="defaultAutoLoginStrategy" />
     </bean>
 
