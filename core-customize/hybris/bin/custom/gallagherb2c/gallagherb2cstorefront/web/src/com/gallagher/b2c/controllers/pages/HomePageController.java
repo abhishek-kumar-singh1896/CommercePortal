@@ -48,8 +48,7 @@ public class HomePageController extends AbstractPageController
 	{
 
 		final String siteCoreUrl = new StringBuilder(siteConfigService.getString(new StringBuilder("sitecore.root.url").append(".")
-				.append(storeSessionFacade.getCurrentLanguage().getIsocode()).toString(), "#")).append("/login?ReturnUrl=")
-						.toString();
+				.append(storeSessionFacade.getCurrentLanguage().getIsocode()).toString(), "#")).toString();
 		return REDIRECT_PREFIX + siteCoreUrl;
 	}
 

@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.gallagher.b2c.controllers.ControllerConstants;
 import com.gallagher.b2c.form.B2CCustomerPreferenceForm;
@@ -59,11 +60,11 @@ public class MyPreferencesController extends AbstractPageController
 
 	}
 
-	@RequestMapping(value = "/submitPreferences", method = RequestMethod.POST)
-	public String populateCustomerPreferences(@ModelAttribute("preferences")
+	@RequestMapping(value = "/submitPreferences", method = RequestMethod.POST, produces = "application/json")
+	@ResponseBody
+	public boolean populateCustomerPreferences(@ModelAttribute("preferences")
 	final B2CCustomerPreferenceForm preferences)
 	{
-
 		final CustomerModel currentCustomer = (CustomerModel) userService.getCurrentUser();
 
 		currentCustomer.setNewsLetters(preferences.isNewsLetters());
@@ -75,6 +76,6 @@ public class MyPreferencesController extends AbstractPageController
 
 		modelService.save(currentCustomer);
 
-		return REDIRECT_PREFIX + ROOT;
+		return true;
 	}
 }
