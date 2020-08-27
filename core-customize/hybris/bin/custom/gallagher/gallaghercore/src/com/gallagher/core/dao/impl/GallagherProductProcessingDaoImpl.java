@@ -143,7 +143,7 @@ public class GallagherProductProcessingDaoImpl implements GallagherProductProces
 	 * {@inheritDoc}
 	 */
 	@Override
-	public ProductModel getBaseProductsForProductReferenceSync(final CatalogVersionModel catalogVersion, final Date lastStartTime,
+	public ProductModel getBaseProductForProductReferenceSync(final CatalogVersionModel catalogVersion, final Date lastStartTime,
 			final ProductModel product)
 	{
 		final Map<String, Object> queryParameter = new HashMap<>();

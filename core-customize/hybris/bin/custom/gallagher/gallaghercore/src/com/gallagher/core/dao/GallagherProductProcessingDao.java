@@ -86,6 +86,6 @@ public interface GallagherProductProcessingDao
 	 * @param product
 	 * @return product
 	 */
-	ProductModel getBaseProductsForProductReferenceSync(final CatalogVersionModel catalogVersion, final Date lastStartTime,
+	ProductModel getBaseProductForProductReferenceSync(final CatalogVersionModel catalogVersion, final Date lastStartTime,
 			final ProductModel product);
 }
