@@ -12,7 +12,9 @@ import de.hybris.platform.cms2.servicelayer.services.CMSSiteService;
 import de.hybris.platform.commerceservices.enums.UiExperienceLevel;
 import de.hybris.platform.commerceservices.i18n.CommerceCommonI18NService;
 import de.hybris.platform.core.model.c2l.LanguageModel;
+import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.servicelayer.config.ConfigurationService;
+import de.hybris.platform.servicelayer.user.UserService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -58,6 +60,9 @@ public class UiThemeResourceBeforeViewHandler implements BeforeViewHandler
 
 	@Resource(name = "storeSessionFacade")
 	protected GallagherStoreSessionFacade storeSessionFacade;
+
+	@Resource(name = "userService")
+	private UserService userService;
 
 	@Override
 	public void beforeView(final HttpServletRequest request, final HttpServletResponse response, final ModelAndView modelAndView)
@@ -113,5 +118,18 @@ public class UiThemeResourceBeforeViewHandler implements BeforeViewHandler
 		modelAndView.addObject("addOnThemeCssPaths", uiThemeUtils.getAddOnThemeCSSPaths(request));
 		modelAndView.addObject("addOnJavaScriptPaths", uiThemeUtils.getAddOnJSPaths(request));
 		modelAndView.addObject("sitecoreHomePage", storeSessionFacade.getSitecoreRootUrl());
+
+		final CustomerModel currentUser = (CustomerModel) userService.getCurrentUser();
+		//if customer is not Anonymous and any of preferences for current customer is null
+		if (!userService.isAnonymousUser(userService.getCurrentUser())
+				&& (currentUser.getNewsLetters() == null || currentUser.getEvents() == null || currentUser.getProductPromo() == null
+						|| currentUser.getProductRelease() == null || currentUser.getProductUpdate() == null))
+		{
+			modelAndView.addObject("showPreferences", true);
+		}
+		else
+		{
+			modelAndView.addObject("showPreferences", false);
+		}
 	}
 }

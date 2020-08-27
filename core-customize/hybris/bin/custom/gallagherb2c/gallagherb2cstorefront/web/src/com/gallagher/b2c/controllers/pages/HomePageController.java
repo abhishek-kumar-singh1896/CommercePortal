@@ -3,13 +3,12 @@
  */
 package com.gallagher.b2c.controllers.pages;
 
+import de.hybris.platform.acceleratorservices.config.SiteConfigService;
 import de.hybris.platform.acceleratorstorefrontcommons.constants.WebConstants;
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.pages.AbstractPageController;
-import de.hybris.platform.acceleratorstorefrontcommons.controllers.util.GlobalMessages;
 import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
 import de.hybris.platform.cms2.model.pages.AbstractPageModel;
-import de.hybris.platform.cms2.model.pages.ContentPageModel;
-import de.hybris.platform.core.model.user.CustomerModel;
+import de.hybris.platform.commercefacades.storesession.StoreSessionFacade;
 import de.hybris.platform.servicelayer.user.UserService;
 
 import javax.annotation.Resource;
@@ -36,43 +35,23 @@ public class HomePageController extends AbstractPageController
 	@Resource(name = "userService")
 	private UserService userService;
 
+	@Resource(name = "storeSessionFacade")
+	StoreSessionFacade storeSessionFacade;;
+
+	@Resource(name = "siteConfigService")
+	SiteConfigService siteConfigService;
+
 	@RequestMapping(method = RequestMethod.GET)
-	public String home(@RequestParam(value = WebConstants.CLOSE_ACCOUNT, defaultValue = "false") final boolean closeAcc,
-			@RequestParam(value = LOGOUT, defaultValue = "false") final boolean logout, final Model model,
-			final RedirectAttributes redirectModel) throws CMSItemNotFoundException
+	public String home(@RequestParam(value = WebConstants.CLOSE_ACCOUNT, defaultValue = "false")
+	final boolean closeAcc, @RequestParam(value = LOGOUT, defaultValue = "false")
+	final boolean logout, final Model model, final RedirectAttributes redirectModel) throws CMSItemNotFoundException
 	{
-		if (logout)
-		{
-			String message = ACCOUNT_CONFIRMATION_SIGNOUT_TITLE;
-			if (closeAcc)
-			{
-				message = ACCOUNT_CONFIRMATION_CLOSE_TITLE;
-			}
-			GlobalMessages.addFlashMessage(redirectModel, GlobalMessages.INFO_MESSAGES_HOLDER, message);
-			return REDIRECT_PREFIX + ROOT;
-		}
 
-		final CustomerModel currentUser = (CustomerModel) userService.getCurrentUser();
-
-		final ContentPageModel contentPage = getContentPageForLabelOrId(null);
-		storeCmsPageInModel(model, contentPage);
-		setUpMetaDataForContentPage(model, contentPage);
-		updatePageTitle(model, contentPage);
-
-		//if customer is not Anonymous and any of preferences for current customer is null
-		if (!userService.isAnonymousUser(userService.getCurrentUser())
-				&& (currentUser.getNewsLetters() == null || currentUser.getEvents() == null || currentUser.getProductPromo() == null
-						|| currentUser.getProductRelease() == null || currentUser.getProductUpdate() == null))
-		{
-			model.addAttribute("showPreferences", true);
-		}
-		else
-		{
-			model.addAttribute("showPreferences", false);
-		}
-
-		return getViewForPage(model);
+		final String siteCoreUrl = new StringBuilder(siteConfigService.getString(new StringBuilder("sitecore.root.url").append(".")
+				.append(storeSessionFacade.getCurrentLanguage().getIsocode()).toString(), "#")).toString();
+		return REDIRECT_PREFIX + siteCoreUrl;
 	}
+
 
 	protected void updatePageTitle(final Model model, final AbstractPageModel cmsPage)
 	{

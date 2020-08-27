@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
+import org.keycloak.adapters.springsecurity.authentication.KeycloakCookieBasedRedirect;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -75,7 +76,7 @@ public class RegisterPageController extends AbstractRegisterPageController
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String doRegister(final Model model, @RequestParam(value = "code", required = false)
-	final String code) throws CMSItemNotFoundException
+	final String code, final HttpServletRequest request, final HttpServletResponse response) throws CMSItemNotFoundException
 	{
 
 		final String redirectURL = getSiteBaseUrlResolutionService().getWebsiteUrlForSite(getBaseSiteService().getCurrentBaseSite(),
@@ -83,6 +84,10 @@ public class RegisterPageController extends AbstractRegisterPageController
 		String redirectURI = null;
 		if (StringUtils.isEmpty(code))
 		{
+			if (StringUtils.isNotEmpty(getRedirectUrl(request)))
+			{
+				response.addCookie(KeycloakCookieBasedRedirect.createCookieFromRedirectUrl(getRedirectUrl(request)));
+			}
 			redirectURI = REDIRECT_PREFIX + MessageFormat
 					.format(getConfigurationService().getConfiguration().getString("keycloak.registrations.url"), redirectURL);
 		}
@@ -90,6 +95,25 @@ public class RegisterPageController extends AbstractRegisterPageController
 		{
 			redirectURI = REDIRECT_PREFIX + "/login";
 		}
+		return redirectURI;
+	}
+
+	/**
+	 * Returns the redirect Url
+	 *
+	 * @param request
+	 *           to get the url
+	 * @return redirect url
+	 */
+	private String getRedirectUrl(final HttpServletRequest request)
+	{
+		String redirectURI = null;
+
+		if (StringUtils.isNotEmpty(request.getHeader("referer")))
+		{
+			redirectURI = request.getHeader("referer");
+		}
+
 		return redirectURI;
 	}
 
