@@ -2151,20 +2151,35 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;nzB2BLink;B2B New Zealand Link;$websiteBaseURL/security/nz/en_nz/?clear=true; New Zealand;nzB2BLink;nzB2BLink
 ;;auB2BLink;B2B Australia Link;$websiteBaseURL/security/au/en_au/?clear=true; Australia;auB2BLink;auB2BLink
 ;;globalB2BLink;B2B Global Link;$websiteBaseURL/security/global/en/?clear=true; Global;globalB2BLink;globalB2BLink
+;;usB2BLink;B2B US Link;$websiteBaseURL/security/us/en/?clear=true; United States;usB2BLink;usB2BLink
+;;caB2BLink;B2B CA Link;$websiteBaseURL/security/ca/en/?clear=true; Canada;caB2BLink;caB2BLink
+;;ukB2BLink;B2B UK Link;$websiteBaseURL/security/uk/en/?clear=true; United Kingdom/Europe;ukB2BLink;ukB2BLink
+;;asiaB2BLink;B2B Asia Link;$websiteBaseURL/security/asia/en/?clear=true; Asia;asiaB2BLink;asiaB2BLink
+;;sthAmB2BLink;B2B South America Link;$websiteBaseURL/security/stham/en/?clear=true; South America;sthAmB2BLink;sthAmB2BLink
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
 ;nzB2BNavEntry;;B2B New Zealand navigation entry;nzB2BNavNode;nzB2BLink
 ;auB2BNavEntry;;B2B Australia navigation entry;auB2BNavNode;auB2BLink
 ;globalB2BNavEntry;;B2B Global navigation entry;globalB2BNavNode;globalB2BLink
+;usB2BNavEntry;;B2B US navigation entry;usB2BNavNode;usB2BLink
+;caB2BNavEntry;;B2B CA navigation entry;caB2BNavNode;caB2BLink
+;ukB2BNavEntry;;B2B UK navigation entry;ukB2BNavNode;ukB2BLink
+;asiaB2BNavEntry;;B2B Asia navigation entry;asiaB2BNavNode;asiaB2BLink
+;sthAmB2BNavEntry;;B2B South America navigation entry;sthAmB2BNavNode;sthAmB2BLink
 
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef);
 ;nzB2BNavNode;;New Zealand navigation node;nzB2BNavNode
 ;auB2BNavNode;;Australia navigation node;auB2BNavNode
 ;globalB2BNavNode;;Global navigation node;globalB2BNavNode
+;usB2BNavNode;;US navigation node;usB2BNavNode
+;caB2BNavNode;;CA navigation node;caB2BNavNode
+;ukB2BNavNode;;UK navigation node;ukB2BNavNode
+;asiaB2BNavNode;;Asia navigation node;asiaB2BNavNode
+;sthAmB2BNavNode;;South America navigation node;sthAmB2BNavNode
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&componentRef);&nodeRef;children(uid, $contentCV)
-;B2BcountryDropdownNavNod;;Country drop down;root;;B2BcountryDropdownNavNod;nzB2BNavNode,auB2BNavNode,globalB2BNavNode
+;B2BcountryDropdownNavNod;;Country drop down;root;;B2BcountryDropdownNavNod;nzB2BNavNode,auB2BNavNode,usB2BNavNode,caB2BNavNode,ukB2BNavNode,asiaB2BNavNode,sthAmB2BNavNode,globalB2BNavNode
 
 INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];countryDropdownLinkNagivationNode(&nodeRef);&componentRef
 ;;B2BGallagherFooterNavigationComponent;B2BcountryDropdownNavNod;B2BGallagherFooterNavigationComponent

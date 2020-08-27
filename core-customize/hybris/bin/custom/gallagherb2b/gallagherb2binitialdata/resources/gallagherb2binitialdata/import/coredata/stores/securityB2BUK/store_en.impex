@@ -9,17 +9,14 @@
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
 #
-# Import the Security B2B Content Catalog
+# Import the SecurityB2B BaseStore
 #
-$contentCatalog=securityB2BContentCatalog
-$languages=en,de,en_AU,en_NZ,en_UK,en_ASIA,en_STHAM,en_CA,en_US
-
-# Content catalog for CMS contents
-INSERT_UPDATE ContentCatalog;id[unique=true]
-;$contentCatalog
-
-# Catalog versions for content catalogs
-INSERT_UPDATE CatalogVersion;catalog(id)[unique=true];version[unique=true];active;languages(isoCode)
-;$contentCatalog;Staged;false;$languages
-;$contentCatalog;Online;true;$languages
-
+# Localization en
+#
+ 
+$lang=en
+ 
+$storeUidUK=securityB2BUK
+ 
+UPDATE BaseStore ; uid[unique=true] ; name[lang=$lang]        
+                 ; $storeUidUK      ; "Security B2B UK Store" ;  
