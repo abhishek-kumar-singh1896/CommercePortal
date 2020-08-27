@@ -522,37 +522,9 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 	}
 
 	/**
-	 * @param product
-	 * @param regionalVariantProduct
-	 * @param regionalCatalogVersion
-	 * @param catalogId
-	 * @param lastStartTime
-	 */
-
-	/*
-	 * private void populateVariantProductRefenceData(final ProductModel product, final GenericVariantProductModel
-	 * regionalVariantProduct, final CatalogVersionModel regionalCatalogVersion, final String catalogId, final Date
-	 * lastStartTime) { final Collection<ProductReferenceModel> productReferences = product.getProductReferences(); final
-	 * Collection<ProductReferenceModel> newProductReferences = new ArrayList<ProductReferenceModel>(); final
-	 * Collection<ProductReferenceModel> oldProductReferences = regionalVariantProduct.getProductReferences(); if
-	 * (CollectionUtils.isNotEmpty(oldProductReferences)) { modelService.removeAll(oldProductReferences); } if
-	 * (CollectionUtils.isNotEmpty(productReferences)) { for (final ProductReferenceModel referenceModel :
-	 * productReferences) { final ProductModel refProduct = productService.getProductForCode(regionalCatalogVersion,
-	 * referenceModel.getTarget().getCode()); if (null != refProduct) { final ProductReferenceModel newProductReference =
-	 * modelService.clone(referenceModel); newProductReference.setActive(referenceModel.getActive());
-	 * newProductReference.setSource(regionalVariantProduct);
-	 * newProductReference.setDescription(referenceModel.getDescription());
-	 * newProductReference.setPreselected(referenceModel.getPreselected());
-	 * newProductReference.setQuantity(referenceModel.getQuantity());
-	 * newProductReference.setReferenceType(referenceModel.getReferenceType());
-	 * newProductReference.setTarget(refProduct); newProductReferences.add(newProductReference); } }
-	 * modelService.saveAll(newProductReferences); regionalVariantProduct.setProductReferences(newProductReferences); } }
-	 */
-
-	/**
 	 * Populate the Product References from Master Product or Master Variant Product to Regional Product or Regional
 	 * Variant Product
-	 * 
+	 *
 	 * @param product
 	 * @param regionalProduct
 	 *           or regionalVariantProduct
