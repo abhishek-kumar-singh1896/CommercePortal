@@ -106,9 +106,8 @@
     <c:if test="${order.totalDiscountsWithQuoteDiscounts.value > 0}">
         <ycommerce:testId code="order_totalDiscount_label">
             <div class="order-savings__info text-right">
-            <c:set var="totalDiscountWithQuoteDiscount">
+            <c:set var="totalDiscountWithQuoteDiscount"/>
             	<format:price priceData="${order.totalDiscountsWithQuoteDiscounts}"/>
-				</c:set>
                 <spring:theme code="text.account.order.totalSavings" argumentSeparator=";"
                               arguments="${totalDiscountWithQuoteDiscount}"/>
             </div>
