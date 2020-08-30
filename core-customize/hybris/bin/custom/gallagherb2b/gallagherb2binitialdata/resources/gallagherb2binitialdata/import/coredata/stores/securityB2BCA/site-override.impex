@@ -11,11 +11,11 @@
 #
 # Import the CMS Site configuration for the SecurityB2B store
 #
-$securityB2BUS=securityB2BUS
+$securityB2BCA=securityB2BCA
  
 # Load the storefront context root config param
 $storefrontContextRoot=/yb2bacceleratorstorefront
  
 # CMS Site
 INSERT_UPDATE CMSSite ; uid[unique=true] ; previewURL                                  
-                      ; $securityB2BUS   ; $storefrontContextRoot/?site=$securityB2BUS 
+                      ; $securityB2BCA   ; $storefrontContextRoot/?site=$securityB2BUS 

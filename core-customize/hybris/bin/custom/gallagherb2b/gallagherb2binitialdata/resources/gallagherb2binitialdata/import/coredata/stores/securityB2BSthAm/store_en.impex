@@ -16,7 +16,7 @@
  
 $lang=en
  
-$storeUidAsia=securityB2BSthAm
+$storeUidSthAm=securityB2BSthAm
  
 UPDATE BaseStore ; uid[unique=true] ; name[lang=$lang]          
                  ; $storeUidSthAm    ; "Security B2B South America Store" ;  
