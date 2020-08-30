@@ -131,5 +131,7 @@ public class UiThemeResourceBeforeViewHandler implements BeforeViewHandler
 		{
 			modelAndView.addObject("showPreferences", false);
 		}
+
+		modelAndView.addObject("canonicalURL", request.getRequestURL());
 	}
 }
