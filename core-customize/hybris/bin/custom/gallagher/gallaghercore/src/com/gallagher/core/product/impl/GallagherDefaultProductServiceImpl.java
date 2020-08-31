@@ -57,17 +57,4 @@ public class GallagherDefaultProductServiceImpl implements GallagherProductServi
 		return baseStores;
 	}
 
-	@Override
-	public String getFinalValueString(final StringBuffer requestURL, final String valueString)
-	{
-		final int index1 = requestURL.indexOf("/am/");
-		final String sub1 = requestURL.substring(index1 + 4, requestURL.length());
-		final int index2 = sub1.indexOf("/");
-		final String sub2 = sub1.substring(index2 + 1, sub1.length());
-		final int index3 = sub2.indexOf("/");
-		final int initalIndex = index1;
-		final int endIndex = index1 + index2 + index3 + 6;
-		final String finalValue = requestURL.replace(initalIndex, endIndex, valueString).toString();
-		return finalValue;
-	}
 }
