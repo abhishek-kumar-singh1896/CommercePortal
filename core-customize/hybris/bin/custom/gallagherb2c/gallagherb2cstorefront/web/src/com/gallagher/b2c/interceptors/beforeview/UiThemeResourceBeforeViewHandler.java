@@ -16,6 +16,10 @@ import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.servicelayer.config.ConfigurationService;
 import de.hybris.platform.servicelayer.user.UserService;
 
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,6 +28,7 @@ import org.apache.log4j.Logger;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gallagher.b2c.util.UiThemeUtils;
+import com.gallagher.core.product.impl.GallagherProductService;
 import com.gallagher.facades.storesession.GallagherStoreSessionFacade;
 
 
@@ -63,6 +68,9 @@ public class UiThemeResourceBeforeViewHandler implements BeforeViewHandler
 
 	@Resource(name = "userService")
 	private UserService userService;
+
+	@Resource(name = "gallagherProductService")
+	private GallagherProductService gallagherProductService;
 
 	@Override
 	public void beforeView(final HttpServletRequest request, final HttpServletResponse response, final ModelAndView modelAndView)
@@ -130,6 +138,28 @@ public class UiThemeResourceBeforeViewHandler implements BeforeViewHandler
 		else
 		{
 			modelAndView.addObject("showPreferences", false);
+		}
+
+		final StringBuffer requestURL = request.getRequestURL();
+		if (!(requestURL.toString().contains("/p/")))
+		{
+			final Collection<CMSSiteModel> baseSiteList = cmsSiteService.getSites();
+			final Map<String, String> hreflangMap = new HashMap<>();
+
+			if (requestURL.toString().contains("/am/"))
+			{
+				for (final CMSSiteModel site : baseSiteList)
+				{
+					if (null != site.getRegionCode() && null != site.getDefaultLanguage())
+					{
+						final String valueString = "/am/" + site.getRegionCode().getCode() + "/"
+								+ site.getDefaultLanguage().getIsocode() + "/";
+						final String finalValue = gallagherProductService.getFinalValueString(requestURL, valueString);
+						hreflangMap.put(site.getDefaultLanguage().getIsocode(), finalValue);
+					}
+				}
+			}
+			modelAndView.addObject("hreflangMap", hreflangMap);
 		}
 	}
 }

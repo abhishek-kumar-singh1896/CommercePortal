@@ -356,4 +356,6 @@
 
     <bean id="solrCloudSearchProvider" class="com.gallagher.core.solrfacetsearch.solr.impl.GallagherSolrCloudSearchProvider"
           parent="abstractSolrSearchProvider" />
+          
+    <bean id="gallagherProductService" class="com.gallagher.core.product.impl.GallagherDefaultProductServiceImpl" />
 </beans>

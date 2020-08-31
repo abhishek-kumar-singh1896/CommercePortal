@@ -16,9 +16,11 @@ import de.hybris.platform.acceleratorstorefrontcommons.forms.validation.ReviewVa
 import de.hybris.platform.acceleratorstorefrontcommons.util.MetaSanitizerUtil;
 import de.hybris.platform.acceleratorstorefrontcommons.util.XSSFilterUtil;
 import de.hybris.platform.acceleratorstorefrontcommons.variants.VariantSortStrategy;
+import de.hybris.platform.basecommerce.model.site.BaseSiteModel;
 import de.hybris.platform.catalog.enums.ProductReferenceTypeEnum;
 import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
 import de.hybris.platform.cms2.model.pages.AbstractPageModel;
+import de.hybris.platform.cms2.model.site.CMSSiteModel;
 import de.hybris.platform.cms2.servicelayer.services.CMSPageService;
 import de.hybris.platform.commercefacades.order.data.ConfigurationInfoData;
 import de.hybris.platform.commercefacades.product.ProductFacade;
@@ -34,16 +36,17 @@ import de.hybris.platform.commercefacades.product.data.ProductData;
 import de.hybris.platform.commercefacades.product.data.ProductReferenceData;
 import de.hybris.platform.commercefacades.product.data.ReviewData;
 import de.hybris.platform.commerceservices.url.UrlResolver;
-import de.hybris.platform.core.GenericSearchConstants.LOG;
 import de.hybris.platform.core.model.product.ProductModel;
 import de.hybris.platform.product.ProductService;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 import de.hybris.platform.servicelayer.session.SessionService;
+import de.hybris.platform.store.BaseStoreModel;
 import de.hybris.platform.util.Config;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -73,6 +76,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gallagher.b2c.controllers.ControllerConstants;
+import com.gallagher.core.product.impl.GallagherProductService;
 import com.gallagher.facades.storesession.GallagherStoreSessionFacade;
 import com.google.common.collect.Maps;
 
@@ -108,6 +112,9 @@ public class ProductPageController extends AbstractPageController
 
 	@Resource(name = "productService")
 	private ProductService productService;
+
+	@Resource(name = "gallagherProductService")
+	private GallagherProductService gallagherProductService;
 
 	@Resource(name = "productBreadcrumbBuilder")
 	private ProductBreadcrumbBuilder productBreadcrumbBuilder;
@@ -159,7 +166,46 @@ public class ProductPageController extends AbstractPageController
 		final String metaKeywords = MetaSanitizerUtil.sanitizeKeywords(productData.getKeywords());
 		final String metaDescription = MetaSanitizerUtil.sanitizeDescription(productData.getDescription());
 		setUpMetaData(model, metaKeywords, metaDescription);
+		final ProductModel product = productService.getProductForCode(productCode);
+		final StringBuffer requestURL = request.getRequestURL();
+		Map<String, String> hreflangMap = new HashMap<>();
+		if (StringUtils.isEmpty(productData.getBaseProduct()))
+		{
+			final Collection<BaseStoreModel> stores = product.getBaseStores();
+			hreflangMap = gethreflangURL(stores, requestURL);
+		}
+		else
+		{
+			final ProductModel baseProductModel = productService.getProductForCode(productData.getBaseProduct());
+			final Set<BaseStoreModel> storesSet = gallagherProductService.getBaseStoresForVariant(productCode);
+			hreflangMap = gethreflangURL(storesSet, requestURL);
+		}
+		model.addAttribute("hreflangProductMap", hreflangMap);
 		return getViewForPage(model);
+
+	}
+
+	protected Map<String, String> gethreflangURL(final Collection<BaseStoreModel> stores, final StringBuffer requestURL)
+	{
+		final Map<String, String> hreflangMap = new HashMap<>();
+		for (final BaseStoreModel base : stores)
+		{
+			if (requestURL.toString().contains("/am/"))
+			{
+				for (final BaseSiteModel site : base.getCmsSites())
+				{
+					final CMSSiteModel cmsSite = (CMSSiteModel) site;
+					if (null != cmsSite.getRegionCode() && null != cmsSite.getDefaultLanguage())
+					{
+						final String valueString = "/am/" + cmsSite.getRegionCode().getCode() + "/"
+								+ cmsSite.getDefaultLanguage().getIsocode() + "/";
+						final String finalValue = gallagherProductService.getFinalValueString(requestURL, valueString);
+						hreflangMap.put(cmsSite.getDefaultLanguage().getIsocode(), finalValue);
+					}
+				}
+			}
+		}
+		return hreflangMap;
 	}
 
 	/**

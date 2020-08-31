@@ -48,7 +48,22 @@
 	<title>
 		${not empty pageTitle ? pageTitle : not empty cmsPage.title ? fn:escapeXml(cmsPage.title) : 'Accelerator Title'}
 	</title>
-
+	<c:choose>
+		<c:when test="${productType eq PRODUCT}">
+			<c:if test="${not empty hreflangProductMap}">
+				<c:forEach items="${hreflangProductMap}" var="entry">
+			    	<link rel="alternate" hreflang="${entry.key}" href="${entry.value}" >
+				</c:forEach>
+			</c:if>
+		</c:when>
+		<c:otherwise>
+			<c:if test="${not empty hreflangMap}">
+				<c:forEach items="${hreflangMap}" var="entry">
+			    	<link rel="alternate" hreflang="${entry.key}" href="${entry.value}" >
+				</c:forEach>
+			</c:if>
+		</c:otherwise>
+	</c:choose>
 	<%-- Meta Content --%>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
