@@ -356,4 +356,14 @@
 
     <bean id="solrCloudSearchProvider" class="com.gallagher.core.solrfacetsearch.solr.impl.GallagherSolrCloudSearchProvider"
           parent="abstractSolrSearchProvider" />
+          
+    <bean id="gallagherCustomerDefaultGroupInterceptor"
+	      class="com.gallagher.core.b2b.interceptor.GallagherB2BCustomerInitDefaultsInterceptor" parent="customerDefaultGroupInterceptor">
+	</bean>
+	
+	<bean id="customerDefaultGroupInterceptorMapping"
+	      class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="gallagherCustomerDefaultGroupInterceptor"/>
+		<property name="typeCode" value="B2BCustomer"/>
+	</bean>
 </beans>
