@@ -45,6 +45,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -289,6 +290,24 @@ public class ProductPageController extends AbstractPageController
 		model.addAttribute(new ReviewForm());
 		setUpReviewPage(model, productCode);
 		return ControllerConstants.Views.Pages.Product.WriteReview;
+	}
+
+
+	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN + "/downloadProductDetails", method = RequestMethod.GET)
+	public String printOrderSUmmary(@PathVariable("productCode")
+	final String encodedProductCode, final HttpServletRequest request, final Model model) throws CMSItemNotFoundException
+	{
+		final String productCode = decodeWithScheme(encodedProductCode, UTF_8);
+		final List<ProductOption> extraOptions = Arrays.asList(ProductOption.VARIANT_MATRIX_BASE, ProductOption.VARIANT_MATRIX_URL,
+				ProductOption.VARIANT_MATRIX_MEDIA);
+
+		final ProductData productData = productFacade.getProductForCodeAndOptions(productCode, extraOptions);
+
+		model.addAttribute("todayDate", new Date());
+		model.addAttribute("ProductName", productData.getName());
+		model.addAttribute("productDescription", productData.getDescription());
+		populateProductDetailForDisplay(productCode, model, request, extraOptions);
+		return ControllerConstants.Views.Pages.Product.DownloadProductDetails;
 	}
 
 	protected void setUpReviewPage(final Model model, final String productCode) throws CMSItemNotFoundException

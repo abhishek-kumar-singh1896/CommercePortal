@@ -55,4 +55,9 @@
 		</div>
 
 	</div>
+	<div class="product-detail-download-btn">
+			<button type="button" class="btn btn-primary btn-outline-secondary order-summary-table-print-btn">Download</button>
+	</div>
+	
+	
 </div>

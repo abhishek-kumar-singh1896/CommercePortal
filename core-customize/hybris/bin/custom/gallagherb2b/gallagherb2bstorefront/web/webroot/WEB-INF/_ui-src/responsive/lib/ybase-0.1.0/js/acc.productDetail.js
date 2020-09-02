@@ -3,6 +3,7 @@ ACC.productDetail = {
     _autoload: [
         "initPageEvents",
         "bindVariantOptions",
+        "bindDownloadPDPClick",
         ["bindVideoPlayPause", $(".with-video").length != 0]
     ],
 
@@ -171,5 +172,73 @@ ACC.productDetail = {
         if (currentSize != null) {
             sizeSpan.text(": " + currentSize);
         }
-    }
+    },
+    bindDownloadPDPClick : function(e){
+    	
+    	$(document).on('click', '.order-summary-table-print-btn', function(e){
+    		var orderNumber = "t15-mifare-reader";
+    	ACC.productDetail.printOrder(orderNumber);
+		});	
+    	/*
+    	$(document).on('click', '.printOrderSummary, .printSampleOrderSummary', function(e){
+    		var pathname = window.location.pathname; 
+    		var orderNumber = pathname.substring(pathname.lastIndexOf('/') + 1);
+    		ACC.order.printOrder(orderNumber);
+		});	*/
+	},
+	
+	printOrder : function(orderNumber) {
+		var url = ACC.config.encodedContextPath+'/p/t15-mifare-reader/downloadProductDetails';
+		 		$.ajax({
+        	url: url,
+        	data: {productCode: orderNumber},
+            type: 'GET',
+           async: true,
+            success: function (data) {
+            	alert("data>"+data);
+               $('#print-summary-new').html(data);
+               $('#print-summary-new').css('display','block');
+               var quotes = document.getElementById('print-summary-new');
+               alert("quotes>>"+quotes);
+
+                   html2canvas(quotes).then(function (canvas){
+                       var imgData = canvas.toDataURL('image/png');
+            	      
+             	      var imgWidth = 600; 
+             	      var pageHeight = 840;  
+                      var imgHeight = (canvas.height * imgWidth / canvas.width)+10;
+                      var pageNo=1;
+             	      var heightLeft = imgHeight;
+             	      var numberOfPages= Math.ceil(imgHeight / pageHeight) ;
+
+             	      var doc = new jsPDF('p', 'pt','a4');
+             	      var position = 0;
+
+             	      doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight-10);
+             	      doc.setFontSize(10);
+             	      doc.text(490,820, "Page "+pageNo+" of "+numberOfPages); 
+             	      heightLeft -= pageHeight;
+
+             	      while (heightLeft >= 0) {
+             	    	pageNo=pageNo+1;
+             	        position = heightLeft - imgHeight;
+             	        doc.addPage();
+             	        doc.addImage(imgData, 'PNG', 0, position+5, imgWidth, imgHeight-10);
+             	        heightLeft -= pageHeight;
+             	       doc.text(490,820,  "Page "+pageNo+" of "+numberOfPages); 
+             	      }
+             	      doc.save( 'OrderSummary-'+orderNumber+'.pdf');
+//             	     ACC.common.hideLoader();﻿
+                });
+               $('#print-summary-new').css('display','none');
+               $('.print-summary-new').html("");
+               
+               },
+            error: function (jqXHR, textStatus, errorThrown) {
+                // log the error to the console
+                console.log("The following error occurred: " + textStatus, errorThrown);
+            }
+		
+		 });
+	}
 };
