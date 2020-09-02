@@ -17,4 +17,4 @@ $lang=en
  
 # Create CMS Site
 UPDATE CMSSite ; uid[unique=true] ; name[lang=$lang]         ; locale[lang=$lang] 
-               ; securityB2BSthAm  ; "Security B2B SthAm Site" ; en_STHAM            
+               ; securityB2BSthAm  ; "Security B2B South America Site" ; en_ST            

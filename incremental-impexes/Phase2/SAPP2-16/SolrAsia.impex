@@ -210,3 +210,75 @@ INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(id
                                       ; size:$solrIndexedType                                           ;                     ; Refine          ; 2000     ; categoryFacetDisplayNameProvider ;                   ; defaultTopValuesProvider ;                                 ;                                                                                                   
                                       ; price:$solrIndexedType                                          ;                     ; MultiSelectOr   ; 4000     ;                                  ;                   ; defaultTopValuesProvider ;                                 ;                                                                                                   
 #                                     ; availableInStores:$solrIndexedType                              ;                     ; MultiSelectOr   ; 10000    ; gallagherPointOfServiceFacetDisplayNameProvider; distanceAttributeSortProvider;                          ;                                 ;                                                                                                   
+                                      
+                                      
+$lang=en_ASIA                         
+                                      
+$indexedType=securityB2BAsiaProductType
+                                      
+UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$indexedType] ; name[unique=true] ; displayName[lang=$lang] 
+                           ;                                                               ; allPromotions     ; Promotion               ;  
+                           ;                                                               ; category          ; Category                ;  
+                           ;                                                               ; code              ; Code                    ;  
+                           ;                                                               ; description       ; Description             ;  
+                           ;                                                               ; manufacturerName  ; Manufacturer Name       ;  
+                           ;                                                               ; name              ; Name                    ;  
+                           ;                                                               ; price             ; Price                   ;  
+                           ;                                                               ; summary           ; Summary                 ;  
+                           
+                           
+# Define the available sorts
+UPDATE SolrSort ; indexedType(identifier)[unique=true,default=$indexedType] ; code[unique=true] ; name[lang=$lang]      
+                ;                                                           ; name-asc          ; Name (ascending)      ;  
+                ;                                                           ; name-desc         ; Name (descending)     ;  
+                ;                                                           ; price-asc         ; Price (lowest first)  ;  
+                ;                                                           ; price-desc        ; Price (highest first) ;  
+                ;                                                           ; relevance         ; Relevance             ;  
+                ;                                                           ; topRated          ; Top Rated             ;  
+                
+INSERT_UPDATE Trigger ; cronJob(code)[unique=true]          ; second ; minute ; hour ; day ; month ; year ; relative ; active ; maxAcceptableDelay 
+                      
+# Run the full-securityB2BIndex-cronJob at 3:05 AM every day
+                      ; full-securityB2BAsiaIndex-cronJob   ; 0      ; 5      ; 3    ; -1  ; -1    ; -1   ; false    ; false  ; -1                 
+                      
+# Run the update-securityB2BIndex-cronJob every 1 minutes
+                      ; update-securityB2BAsiaIndex-cronJob ; 0      ; 60     ; -1   ; -1  ; -1    ; -1   ; true     ; false  ; -1                 
+                      
+$classSystemVersion=systemVersion(catalog(id[default='SecurityB2BClassification']),version[default='1.0'])
+$classCatalogVersion=catalogVersion(catalog(id[default='SecurityB2BClassification']),version[default='1.0'])
+$classAttribute=classificationAttribute(code,$classSystemVersion)
+$classClass=classificationClass(code,$classCatalogVersion)
+$classAttributeAssignment=classAttributeAssignment($classClass,$classAttribute,$classSystemVersion)
+$productCatalog=securityB2BAsiaProductCatalog
+$productCatalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$solrIndexedType=securityB2BAsiaProductType
+                      
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]                  ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=false] ; facetType(code) ; facetSort(code) ; priority ; visible ; fieldValueProvider                          ; customFacetSortProvider ; rangeSets(name) ; $classAttributeAssignment                            
+                                  ; $solrIndexedType                         ; Maximum Read Distance              ;                            ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; false   ; commerceClassificationPropertyValueProvider ;                         ;                 ; readers-and-terminals:::maximum-read-distance::::    
+                                  ; $solrIndexedType                         ; Environmental Protection           ;                            ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; false   ; commerceClassificationPropertyValueProvider ;                         ;                 ; readers-and-terminals:::environmental-protection:::: 
+                                  ; $solrIndexedType                         ; Impact Rating                      ;                            ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; false   ; commerceClassificationPropertyValueProvider ;                         ;                 ; readers-and-terminals:::impact-rating::::            
+                                  ; $solrIndexedType                         ; Standards Compliance (Readers)     ;                            ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; false   ; commerceClassificationPropertyValueProvider ;                         ;                 ; readers-and-terminals:::standards-compliance::::     
+                                  ; $solrIndexedType                         ; Power                              ;                            ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; false   ; commerceClassificationPropertyValueProvider ;                         ;                 ; controllers:::power::::                              
+                                  ; $solrIndexedType                         ; Standards Compliance (Controllers) ;                            ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; false   ; commerceClassificationPropertyValueProvider ;                         ;                 ; controllers:::standards-compliance::::               
+                                  ; $solrIndexedType                         ; Material                           ;                            ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; false   ; commerceClassificationPropertyValueProvider ;                         ;                 ; insulators:::material::::                            
+                                  ; $solrIndexedType                         ; Tracking distance                  ;                            ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; false   ; commerceClassificationPropertyValueProvider ;                         ;                 ; insulators:::tracking-distance::::                   
+                                  ; $solrIndexedType                         ; Dimensions                         ;                            ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; false   ; commerceClassificationPropertyValueProvider ;                         ;                 ; insulators:::dimensions::::                          
+                                  ; $solrIndexedType                         ; Fence Circuits                     ;                            ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; false   ; commerceClassificationPropertyValueProvider ;                         ;                 ; fence-controllers:::fence-circuits::::               
+                                  ; $solrIndexedType                         ; Voltage                            ;                            ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; false   ; commerceClassificationPropertyValueProvider ;                         ;                 ; sensors:::voltage::::                                
+                                  ; $solrIndexedType                         ; Command Centre version             ;                            ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; false   ; commerceClassificationPropertyValueProvider ;                         ;                 ; sensors:::command-centre-version::::                 
+                                  
+                                  
+$lang=en                          
+                                  
+UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$indexedType] ; name[unique=true]                  ; displayName[lang=$lang]              
+                           ;                                                               ; Maximum Read Distance              ; Maximum Read Distance (mm)           
+                           ;                                                               ; Environmental Protection           ; Environmental Protection (IP rating) 
+                           ;                                                               ; Impact Rating                      ; Impact Rating (IK rating)            
+                           ;                                                               ; Standards Compliance (Readers)     ; Standards Compliance                 
+                           ;                                                               ; Power                              ; Power (V)                            
+                           ;                                                               ; Standards Compliance (Controllers) ; Standards Compliance                 
+                           ;                                                               ; Fence Circuits                     ; Fence Circuits                       
+                           ;                                                               ; Voltage                            ; Voltage (Vdc)                        
+                           ;                                                               ; Command Centre version             ; Command Centre version               
+                           ;                                                               ; Dimensions                         ; Dimensions (mm)                      
+                           ;                                                               ; Tracking distance                  ; Tracking Distance (mm)               

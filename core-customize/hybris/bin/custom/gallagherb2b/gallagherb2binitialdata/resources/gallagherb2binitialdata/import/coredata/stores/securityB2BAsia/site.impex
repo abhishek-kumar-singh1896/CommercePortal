@@ -14,7 +14,7 @@
 $productCatalogAsia=securityB2BAsiaProductCatalog
 $contentCatalog=securityB2BContentCatalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
-$defaultLanguage=en_ASIA
+$defaultLanguage=en_AS
 $storeUidAsia=securityB2BAsia
 $siteUidAsia=securityB2BAsia
 $webServiceSiteUid=$siteUidAsiaWS

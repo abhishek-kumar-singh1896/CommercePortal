@@ -18,8 +18,8 @@ $currenciesSthAm=USD
 $net=false
 $storeUidSthAm=securityB2BSthAm
 $defaultCurrencySthAm=USD
-$languagesSthAm=en_STHAM
-$defaultLanguageSthAm=en_STHAM
+$languagesSthAm=en_ST
+$defaultLanguageSthAm=en_ST
 $deliveryCountries=US
 $orderProcessCode=order-process
 $pickupInStoreMode=DISABLED
@@ -35,7 +35,7 @@ INSERT_UPDATE PromotionGroup ; Identifier[unique=true] ;
                              
 # Base Store                 
 INSERT_UPDATE BaseStore ; uid[unique=true] ; catalogs(id)                               ; currencies(isocode) ; net  ; taxGroup(code) ; storelocatorDistanceUnit(code) ; defaultCurrency(isocode) ; languages(isocode) ; defaultLanguage(isocode) ; deliveryCountries(isocode) ; submitOrderProcessCode ; paymentProvider  ; pickupInStoreMode(code) ; customerAllowedToIgnoreSuggestions  ; expressCheckoutEnabled  ; maxRadiusForPoSSearch ; checkoutFlowGroup ; createReturnProcessCode ;  
-                        ; $storeUidSthAm    ; $productCatalogSthAm,$classificationCatalog ; $currenciesSthAm     ; $net ; jp-taxes       ; km                             ; $defaultCurrencySthAm     ; $languagesSthAm     ; $defaultLanguageSthAm     ; $deliveryCountries         ; $orderProcessCode      ; $paymentProvider ; $pickupInStoreMode      ; $customerAllowedToIgnoreSuggestions ; $expressCheckoutEnabled ; 300                   ; $checkoutGroup    ; $returnProcessCode      ;  
+                        ; $storeUidSthAm    ; $productCatalogSthAm,$classificationCatalog ; $currenciesSthAm     ; $net ; nz-userTaxGroup       ; km                             ; $defaultCurrencySthAm     ; $languagesSthAm     ; $defaultLanguageSthAm     ; $deliveryCountries         ; $orderProcessCode      ; $paymentProvider ; $pickupInStoreMode      ; $customerAllowedToIgnoreSuggestions ; $expressCheckoutEnabled ; 300                   ; $checkoutGroup    ; $returnProcessCode      ;  
                         
 INSERT_UPDATE BaseStore2DeliveryModeRel ; source(uid)[unique=true] ; target(code)[unique=true] 
                                         ; securityB2BSthAm          ; standard-gross            

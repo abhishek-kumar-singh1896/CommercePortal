@@ -18,8 +18,8 @@ $currenciesAsia=USD
 $net=false
 $storeUidAsia=securityB2BAsia
 $defaultCurrencyAsia=USD
-$languagesAsia=en_ASIA
-$defaultLanguageAsia=en_ASIA
+$languagesAsia=en_AS
+$defaultLanguageAsia=en_AS
 $deliveryCountries=US
 $orderProcessCode=order-process
 $pickupInStoreMode=DISABLED
@@ -35,7 +35,7 @@ INSERT_UPDATE PromotionGroup ; Identifier[unique=true] ;
                              
 # Base Store                 
 INSERT_UPDATE BaseStore ; uid[unique=true] ; catalogs(id)                               ; currencies(isocode) ; net  ; taxGroup(code) ; storelocatorDistanceUnit(code) ; defaultCurrency(isocode) ; languages(isocode) ; defaultLanguage(isocode) ; deliveryCountries(isocode) ; submitOrderProcessCode ; paymentProvider  ; pickupInStoreMode(code) ; customerAllowedToIgnoreSuggestions  ; expressCheckoutEnabled  ; maxRadiusForPoSSearch ; checkoutFlowGroup ; createReturnProcessCode ;  
-                        ; $storeUidAsia    ; $productCatalogAsia,$classificationCatalog ; $currenciesAsia     ; $net ; jp-taxes       ; km                             ; $defaultCurrencyAsia     ; $languagesAsia     ; $defaultLanguageAsia     ; $deliveryCountries         ; $orderProcessCode      ; $paymentProvider ; $pickupInStoreMode      ; $customerAllowedToIgnoreSuggestions ; $expressCheckoutEnabled ; 300                   ; $checkoutGroup    ; $returnProcessCode      ;  
+                        ; $storeUidAsia    ; $productCatalogAsia,$classificationCatalog ; $currenciesAsia     ; $net ; nz-userTaxGroup       ; km                             ; $defaultCurrencyAsia     ; $languagesAsia     ; $defaultLanguageAsia     ; $deliveryCountries         ; $orderProcessCode      ; $paymentProvider ; $pickupInStoreMode      ; $customerAllowedToIgnoreSuggestions ; $expressCheckoutEnabled ; 300                   ; $checkoutGroup    ; $returnProcessCode      ;  
                         
 INSERT_UPDATE BaseStore2DeliveryModeRel ; source(uid)[unique=true] ; target(code)[unique=true] 
                                         ; securityB2BAsia          ; standard-gross            

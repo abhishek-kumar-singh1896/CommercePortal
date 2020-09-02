@@ -15,7 +15,7 @@
 $productCatalog=securityB2BSthAmProductCatalog
 $classificationCatalog=SecurityB2BClassification
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
-$languages=en_STHAM,en
+$languages=en_ST,en
  
 # Product catalog
 INSERT_UPDATE Catalog ; id[unique=true] 

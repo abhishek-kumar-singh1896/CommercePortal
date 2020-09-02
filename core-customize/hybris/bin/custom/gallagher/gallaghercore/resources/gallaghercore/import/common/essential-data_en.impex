@@ -20,9 +20,10 @@ UPDATE Language ; isocode[unique=true] ; name[lang=$lang]         ; name[lang=es
                 ; en_NZ                ; "New Zealand English"    ; "EN-NZ"          ; "EN-NZ"          ; "EN-NZ"          ; "EN-NZ"          ; "EN-NZ"          ; "EN-NZ"          
                 ; fr_CA                ; "Canadian french"        ; "FR-CA"          ; "FR-CA"          ; "FR-CA"          ; "FR-CA"          ; "FR-CA"          ; "FR-CA"          
                 ; es_LA                ; "Latin American spanish" ; "ES-LA"          ; "ES-LA"          ; "ES-LA"          ; "ES-LA"          ; "ES-LA"          ; "ES-LA"          
-                ; es_Asia              ; "Asia English"           ; "EN-ASIA"        ; "EN-ASIA"        ; "EN-ASIA"        ; "EN-ASIA"        ; "EN-ASIA"        ; "EN-ASIA"        
-                ; es_Uk                ; "UK English"             ; "EN-UK"          ; "EN-UK"          ; "EN-UK"          ; "EN-UK"          ; "EN-UK"          ; "EN-UK"          
-                
+                ; en_AS              ; "Asia English"           ; "EN-ASIA"        ; "EN-ASIA"        ; "EN-ASIA"        ; "EN-ASIA"        ; "EN-ASIA"        ; "EN-ASIA"        
+                ; en_UK                ; "UK English"             ; "EN-UK"          ; "EN-UK"          ; "EN-UK"          ; "EN-UK"          ; "EN-UK"          ; "EN-UK"          
+                ; en_ST             ; "South America English"  ; "EN-STHAM"       ; "EN-STHAM"       ; "EN-STHAM"       ; "EN-STHAM"       ; "EN-STHAM"       ; "EN-STHAM"          
+                  
 # Currencies    
 UPDATE Currency ; isocode[unique=true] ; name[lang=$lang]      
                 ; EUR                  ; "Euro"                

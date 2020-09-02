@@ -82,11 +82,11 @@ $productCatalogMaster=securityB2BMasterProductCatalog
 $productCatalogNZ=securityB2BNZProductCatalog
 $productCatalogAU=securityB2BAUProductCatalog
 $productCatalogGlobal=securityB2BGlobalProductCatalog
-$productCatalogGlobal=securityB2BUSProductCatalog
-$productCatalogGlobal=securityB2BCAProductCatalog
-$productCatalogGlobal=securityB2BUKProductCatalog
-$productCatalogGlobal=securityB2BAsiaProductCatalog
-$productCatalogGlobal=securityB2BSthAmProductCatalog
+$productCatalogUS=securityB2BUSProductCatalog
+$productCatalogCA=securityB2BCAProductCatalog
+$productCatalogUK=securityB2BUKProductCatalog
+$productCatalogAsia=securityB2BAsiaProductCatalog
+$productCatalogSthAm=securityB2BSthAmProductCatalog
 
 $sourceProductCV=sourceVersion(catalog(id[default=$productCatalogMaster]),version[default='Staged'])[unique=true,default='$productCatalogMaster:Staged']
 $targetProductCVNZ=targetVersion(catalog(id[default=$productCatalogNZ]),version[default='Staged'])[unique=true,default='$productCatalogNZ:Staged']
@@ -107,19 +107,19 @@ INSERT_UPDATE GallagherCatalogVersionSyncJob;code[unique=true];sessionUser(uid);
 INSERT_UPDATE GallagherCatalogVersionSyncJob;code[unique=true];sessionUser(uid);baseStore(uid);$sourceProductCV;$targetProductCVGlobal;
 ;sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged;syncUser;securityB2BGlobal;;;
 
-INSERT_UPDATE GallagherCatalogVersionSyncJob;code[unique=true];sessionUser(uid);baseStore(uid);$sourceProductCV;$targetProductCVGlobal;
+INSERT_UPDATE GallagherCatalogVersionSyncJob;code[unique=true];sessionUser(uid);baseStore(uid);$sourceProductCV;$targetProductCVUS;
 ;sync securityB2BMasterProductCatalog:Staged->securityB2BUSProductCatalog:Staged;syncUser;securityB2BUS;;;
 
-INSERT_UPDATE GallagherCatalogVersionSyncJob;code[unique=true];sessionUser(uid);baseStore(uid);$sourceProductCV;$targetProductCVGlobal;
+INSERT_UPDATE GallagherCatalogVersionSyncJob;code[unique=true];sessionUser(uid);baseStore(uid);$sourceProductCV;$targetProductCVCA;
 ;sync securityB2BMasterProductCatalog:Staged->securityB2BCAProductCatalog:Staged;syncUser;securityB2BCA;;;
 
-INSERT_UPDATE GallagherCatalogVersionSyncJob;code[unique=true];sessionUser(uid);baseStore(uid);$sourceProductCV;$targetProductCVGlobal;
+INSERT_UPDATE GallagherCatalogVersionSyncJob;code[unique=true];sessionUser(uid);baseStore(uid);$sourceProductCV;$targetProductCVUK;
 ;sync securityB2BMasterProductCatalog:Staged->securityB2BUKProductCatalog:Staged;syncUser;securityB2BUK;;;
 
-INSERT_UPDATE GallagherCatalogVersionSyncJob;code[unique=true];sessionUser(uid);baseStore(uid);$sourceProductCV;$targetProductCVGlobal;
+INSERT_UPDATE GallagherCatalogVersionSyncJob;code[unique=true];sessionUser(uid);baseStore(uid);$sourceProductCV;$targetProductCVAsia;
 ;sync securityB2BMasterProductCatalog:Staged->securityB2BAsiaProductCatalog:Staged;syncUser;securityB2BAsia;;;
 
-INSERT_UPDATE GallagherCatalogVersionSyncJob;code[unique=true];sessionUser(uid);baseStore(uid);$sourceProductCV;$targetProductCVGlobal;
+INSERT_UPDATE GallagherCatalogVersionSyncJob;code[unique=true];sessionUser(uid);baseStore(uid);$sourceProductCV;$targetProductCVSthAm;
 ;sync securityB2BMasterProductCatalog:Staged->securityB2BSthAmProductCatalog:Staged;syncUser;securityB2BSthAm;;;
 
 INSERT_UPDATE Trigger;job(code)[unique=true,path-delimiter=!];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay

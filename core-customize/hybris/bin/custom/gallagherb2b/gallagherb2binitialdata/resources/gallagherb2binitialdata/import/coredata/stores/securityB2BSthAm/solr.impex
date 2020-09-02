@@ -18,7 +18,7 @@ $facetSearchConfigDescription=Security B2B SthAm Solr Index
 $searchIndexNamePrefix=securityB2BSthAm
 $solrIndexedType=securityB2BSthAmProductType
 $indexBaseSite=securityB2BSthAm
-$indexLanguages=en_ASIA
+$indexLanguages=en_ST
 $indexCurrencies=USD
  
  
@@ -57,15 +57,15 @@ UPDATE BaseSite ; uid[unique=true] ; solrFacetSearchConfiguration(name)
                 
 # Define price ranges
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID ; solrValueRangeSet(name)[unique=true] ; name[unique=true]   ; from ; to     
-                             ; rangeRefSthAm1    ; securityB2BPriceRangeSthAm            ; US$0-US$49.99       ; 0    ; 49.99  
-                             ; rangeRefSthAm2    ; securityB2BPriceRangeSthAm            ; US$50-US$199.99     ; 50   ; 199.99 
-                             ; rangeRefSthAm3    ; securityB2BPriceRangeSthAm            ; US$200-US$499.99    ; 200  ; 499.99 
-                             ; rangeRefSthAm4    ; securityB2BPriceRangeSthAm            ; US$500-US$999.99    ; 500  ; 999.99 
-                             ; rangeRefSthAm5    ; securityB2BPriceRangeSthAm            ; US$1,000-US$100,000 ; 1000 ; 100000 
+                             ; rangeRefSthAm1   ; securityB2BPriceRangeSthAm           ; US$0-US$49.99       ; 0    ; 49.99  
+                             ; rangeRefSthAm2   ; securityB2BPriceRangeSthAm           ; US$50-US$199.99     ; 50   ; 199.99 
+                             ; rangeRefSthAm3   ; securityB2BPriceRangeSthAm           ; US$200-US$499.99    ; 200  ; 499.99 
+                             ; rangeRefSthAm4   ; securityB2BPriceRangeSthAm           ; US$500-US$999.99    ; 500  ; 999.99 
+                             ; rangeRefSthAm5   ; securityB2BPriceRangeSthAm           ; US$1,000-US$100,000 ; 1000 ; 100000 
                              
 # Define price range set     
-INSERT_UPDATE SolrValueRangeSet ; name[unique=true]         ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                                     
-                                ; securityB2BPriceRangeSthAm ; SthAm      ; double ; rangeRefSthAm1,rangeRefSthAm2,rangeRefSthAm3,rangeRefSthAm4,rangeRefSthAm5 
+INSERT_UPDATE SolrValueRangeSet ; name[unique=true]          ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                                          
+                                ; securityB2BPriceRangeSthAm ; SthAm     ; double ; rangeRefSthAm1,rangeRefSthAm2,rangeRefSthAm3,rangeRefSthAm4,rangeRefSthAm5 
                                 
 # Non-facet properties          
 INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]      ; type(code) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; useForSpellchecking[default=false] ; useForAutocomplete[default=false] ; fieldValueProvider                         ; valueProviderParameter         ; ftsPhraseQuery[default=false] ; ftsPhraseQueryBoost ; ftsQuery[default=false] ; ftsQueryBoost ; ftsFuzzyQuery[default=false] ; ftsFuzzyQueryBoost ; ftsWildcardQuery[default=false] ; ftsWildcardQueryType(code)[default=POSTFIX] ; ftsWildcardQueryBoost ; ftsWildcardQueryMinTermLength 
@@ -116,7 +116,7 @@ INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; n
                                   ; $solrIndexedType                         ; size              ; string     ;                          ;                     ; Refine          ; Alpha           ; 2000     ; true    ;                             ; securityB2BVariantCategoryCodeValueProvider ; categoryFacetDisplayNameProvider ; defaultTopValuesProvider 
                                   
 # Other facet properties          
-INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=true] ; facetType(code) ; facetSort(code) ; priority ; visible ; useForSpellchecking[default=false] ; useForAutocomplete[default=false] ; fieldValueProvider                   ; facetDisplayNameProvider          ; customFacetSortProvider ; topValuesProvider        ; rangeSets(name)           
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=true] ; facetType(code) ; facetSort(code) ; priority ; visible ; useForSpellchecking[default=false] ; useForAutocomplete[default=false] ; fieldValueProvider                   ; facetDisplayNameProvider          ; customFacetSortProvider ; topValuesProvider        ; rangeSets(name)            
                                   ; $solrIndexedType                         ; price             ; double     ;                    ; true                    ;                          ;                           ;                     ; MultiSelectOr   ; Alpha           ; 4000     ; true    ;                                    ;                                   ; volumeAwareProductPriceValueProvider ;                                   ;                         ; defaultTopValuesProvider ; securityB2BPriceRangeSthAm 
                                   ; $solrIndexedType                         ; allPromotions     ; string     ;                    ;                         ;                          ; true                      ;                     ; MultiSelectOr   ; Alpha           ; 0        ; false   ;                                    ;                                   ; promotionCodeValueProvider           ; promotionFacetDisplayNameProvider ;                         
 #                                 ; $solrIndexedType                         ; availableInStores ; string     ;                    ;                         ;                          ; true                      ;                     ; MultiSelectOr   ; Custom          ; 10000    ; true    ;                                    ;                                   ; productStoreStockValueProvider       ; gallagherPointOfServiceFacetDisplayNameProvider; distanceAttributeSortProvider
