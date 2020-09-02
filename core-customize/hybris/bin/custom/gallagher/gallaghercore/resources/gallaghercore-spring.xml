@@ -366,4 +366,6 @@
 		<property name="interceptor" ref="gallagherCustomerDefaultGroupInterceptor"/>
 		<property name="typeCode" value="B2BCustomer"/>
 	</bean>
+	
+    <bean id="gallagherProductService" class="com.gallagher.core.product.impl.GallagherDefaultProductServiceImpl" />
 </beans>
