@@ -4,6 +4,10 @@
 package com.gallagher.core.product.impl;
 
 import de.hybris.platform.catalog.model.CatalogVersionModel;
+import de.hybris.platform.search.restriction.SearchRestrictionService;
+import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
+import de.hybris.platform.servicelayer.session.SessionExecutionBody;
+import de.hybris.platform.servicelayer.session.SessionService;
 import de.hybris.platform.store.BaseStoreModel;
 
 import java.util.HashSet;
@@ -25,6 +29,12 @@ public class GallagherDefaultProductServiceImpl implements GallagherProductServi
 	@Resource(name = "gallagherProductProcessingDao")
 	public GallagherProductProcessingDao gallagherProductProcessingDao;
 
+	@Resource(name = "searchRestrictionService")
+	private SearchRestrictionService searchRestrictionService;
+
+	@Resource(name = "sessionService")
+	private SessionService sessionService;
+
 	/**
 	 * Returns the Map of BaseStoreModel & CatalogVersionModel and will process the Variant Product for Approval Status
 	 *
@@ -39,9 +49,31 @@ public class GallagherDefaultProductServiceImpl implements GallagherProductServi
 	public Set<BaseStoreModel> getBaseStoresForVariant(final String variantProductCode)
 	{
 		final Set<BaseStoreModel> baseStores = new HashSet<>();
-		final List<CatalogVersionModel> allAvailableCatalogVersionForCode = gallagherProductProcessingDao
-				.getAvailableCatalogVersionForCode(variantProductCode);
 
+		final List<CatalogVersionModel> allAvailableCatalogVersionForCode = sessionService
+				.executeInLocalView(new SessionExecutionBody()
+				{
+					@Override
+					public Object execute()
+					{
+						List<CatalogVersionModel> allAvailableCatalogVersionForCode;
+						try
+						{
+							searchRestrictionService.disableSearchRestrictions();
+							allAvailableCatalogVersionForCode = gallagherProductProcessingDao
+									.getAvailableCatalogVersionForCode(variantProductCode);
+						}
+						catch (final UnknownIdentifierException e)
+						{
+							allAvailableCatalogVersionForCode = null;
+						}
+						finally
+						{
+							searchRestrictionService.enableSearchRestrictions();
+						}
+						return allAvailableCatalogVersionForCode;
+					}
+				});
 
 		for (final CatalogVersionModel catalogVer : allAvailableCatalogVersionForCode)
 		{
