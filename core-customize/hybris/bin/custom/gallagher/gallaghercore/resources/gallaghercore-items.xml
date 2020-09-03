@@ -653,6 +653,9 @@
 					<attribute qualifier="regionCode" type="RegionCode">
 						<persistence type="property" />
 					</attribute>
+					<attribute qualifier="securityRegionCode" type="RegionCode">
+						<persistence type="property" />
+					</attribute>
 				</attributes>
 			</itemtype>
 		</typegroup>
