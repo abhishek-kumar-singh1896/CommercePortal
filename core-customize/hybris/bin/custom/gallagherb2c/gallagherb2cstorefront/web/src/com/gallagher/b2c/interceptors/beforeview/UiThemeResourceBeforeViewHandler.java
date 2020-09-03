@@ -150,6 +150,7 @@ public class UiThemeResourceBeforeViewHandler implements BeforeViewHandler
 		}
 
 		modelAndView.addObject("canonicalURL", request.getRequestURL());
+
 		final StringBuffer requestURL = request.getRequestURL();
 		Map<String, String> hreflangMap = new HashMap<>();
 		if (modelAndView.getModel().containsKey("product"))
@@ -175,12 +176,12 @@ public class UiThemeResourceBeforeViewHandler implements BeforeViewHandler
 			{
 				for (final CMSSiteModel site : baseSiteList)
 				{
-					if (null != site.getRegionCode() && null != site.getDefaultLanguage())
+					if (site.getUid().contains("amB2C") && null != site.getRegionCode() && null != site.getDefaultLanguage())
 					{
 						final String valueString = "/am/" + site.getRegionCode().getCode() + "/"
 								+ site.getDefaultLanguage().getIsocode() + "/";
 						final String finalValue = gethreflangURL(requestURL, valueString);
-						hreflangMap.put(site.getDefaultLanguage().getIsocode(), finalValue);
+						hreflangMap.put(finalValue, site.getDefaultLanguage().getIsocode());
 					}
 				}
 			}

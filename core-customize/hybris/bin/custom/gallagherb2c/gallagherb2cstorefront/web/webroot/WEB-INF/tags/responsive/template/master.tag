@@ -48,9 +48,12 @@
 	<title>
 		${not empty pageTitle ? pageTitle : not empty cmsPage.title ? fn:escapeXml(cmsPage.title) : 'Accelerator Title'}
 	</title>
+	<c:if test="${not empty canonicalURL}">
+		<link rel="canonical" href="${canonicalURL}" >
+	</c:if>
 	<c:if test="${not empty hreflangMap}">
 		<c:forEach items="${hreflangMap}" var="entry">
-	    	<link rel="alternate" hreflang="${entry.key}" href="${entry.value}" >
+	    	<link rel="alternate" hreflang="${entry.value}" href="${entry.key}" >
 		</c:forEach>
 	</c:if>
 	<%-- Meta Content --%>
