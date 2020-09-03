@@ -307,7 +307,10 @@ public class ProductPageController extends AbstractPageController
 		model.addAttribute("ProductName", productData.getName());
 		model.addAttribute("productDescription", productData.getDescription());
 		populateProductDetailForDisplay(productCode, model, request, extraOptions);
+		model.addAttribute("galleryImages1", getGalleryImages(productData));
+		model.addAttribute("product1", productData);
 		return ControllerConstants.Views.Pages.Product.DownloadProductDetails;
+
 	}
 
 	protected void setUpReviewPage(final Model model, final String productCode) throws CMSItemNotFoundException

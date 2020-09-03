@@ -175,35 +175,25 @@ ACC.productDetail = {
     },
     bindDownloadPDPClick : function(e){
     	
-    	$(document).on('click', '.order-summary-table-print-btn', function(e){
-    		var orderNumber = "t15-mifare-reader";
-    	ACC.productDetail.printOrder(orderNumber);
+    	$(document).on('click', '.product-detail-print-btn', function(e){
+    		var productNumber=document.getElementById("downloadPDF").value;
+    	ACC.productDetail.printProduct(productNumber);
 		});	
-    	/*
-    	$(document).on('click', '.printOrderSummary, .printSampleOrderSummary', function(e){
-    		var pathname = window.location.pathname; 
-    		var orderNumber = pathname.substring(pathname.lastIndexOf('/') + 1);
-    		ACC.order.printOrder(orderNumber);
-		});	*/
 	},
 	
-	printOrder : function(orderNumber) {
-		var url = ACC.config.encodedContextPath+'/p/t15-mifare-reader/downloadProductDetails';
+	printProduct : function(productNumber) {
+		var url = ACC.config.encodedContextPath+'/p/'+productNumber+'/downloadProductDetails';
 		 		$.ajax({
         	url: url,
-        	data: {productCode: orderNumber},
             type: 'GET',
            async: true,
             success: function (data) {
-            	alert("data>"+data);
-               $('#print-summary-new').html(data);
-               $('#print-summary-new').css('display','block');
-               var quotes = document.getElementById('print-summary-new');
-               alert("quotes>>"+quotes);
-
+               $('#print-product-new').html(data);
+               $('#print-product-new').css('display','block');
+               var quotes = document.getElementById('print-product-new');
                    html2canvas(quotes).then(function (canvas){
                        var imgData = canvas.toDataURL('image/png');
-            	      
+            	      alert("canvas.height>>"+canvas.height);
              	      var imgWidth = 600; 
              	      var pageHeight = 840;  
                       var imgHeight = (canvas.height * imgWidth / canvas.width)+10;
@@ -213,10 +203,17 @@ ACC.productDetail = {
 
              	      var doc = new jsPDF('p', 'pt','a4');
              	      var position = 0;
+             	     var img1 = document.getElementById('img1');
+                     var img2 = document.getElementById('img2');
+//                     alert("img1>>"+img1);
+//             	    var img = new Image();
+//                     img.src = path.resolve('/web/webroot/_ui/responsive/theme-securityB2B/images/missing-store-65x65.jpg');
+                     
 
-             	      doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight-10);
+             	      doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight-140);
              	      doc.setFontSize(10);
              	      doc.text(490,820, "Page "+pageNo+" of "+numberOfPages); 
+             	     doc.addImage(img2, 'JPEG', 0, 700);
              	      heightLeft -= pageHeight;
 
              	      while (heightLeft >= 0) {
@@ -227,11 +224,10 @@ ACC.productDetail = {
              	        heightLeft -= pageHeight;
              	       doc.text(490,820,  "Page "+pageNo+" of "+numberOfPages); 
              	      }
-             	      doc.save( 'OrderSummary-'+orderNumber+'.pdf');
-//             	     ACC.common.hideLoader();﻿
+             	      doc.save( 'ProductDetails-'+productNumber+'.pdf');
                 });
-               $('#print-summary-new').css('display','none');
-               $('.print-summary-new').html("");
+              /* $('#print-product-new').css('display','none');
+               $('.print-product-new').html("");*/
                
                },
             error: function (jqXHR, textStatus, errorThrown) {
