@@ -41,6 +41,7 @@ import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 import de.hybris.platform.util.Config;
 
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -303,12 +304,8 @@ public class ProductPageController extends AbstractPageController
 
 		final ProductData productData = productFacade.getProductForCodeAndOptions(productCode, extraOptions);
 
-		model.addAttribute("todayDate", new Date());
-		model.addAttribute("ProductName", productData.getName());
-		model.addAttribute("productDescription", productData.getDescription());
+		model.addAttribute("todayDate", new SimpleDateFormat("dd/MM/YYYY").format(new Date()));
 		populateProductDetailForDisplay(productCode, model, request, extraOptions);
-		model.addAttribute("galleryImages1", getGalleryImages(productData));
-		model.addAttribute("product1", productData);
 		return ControllerConstants.Views.Pages.Product.DownloadProductDetails;
 
 	}

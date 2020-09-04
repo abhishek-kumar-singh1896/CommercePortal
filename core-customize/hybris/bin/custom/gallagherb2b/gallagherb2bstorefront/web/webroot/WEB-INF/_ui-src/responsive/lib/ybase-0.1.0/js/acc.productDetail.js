@@ -190,44 +190,53 @@ ACC.productDetail = {
             success: function (data) {
                $('#print-product-new').html(data);
                $('#print-product-new').css('display','block');
-               var quotes = document.getElementById('print-product-new');
+       	     	var pdfFooterDetail = document.getElementById('PDFFooterDetail');
+       	     	var pdfFooter = document.getElementById('PDFFooter');
+       	     	var quotes = document.getElementById('print-product-new');
                    html2canvas(quotes).then(function (canvas){
-                       var imgData = canvas.toDataURL('image/png');
-            	      alert("canvas.height>>"+canvas.height);
-             	      var imgWidth = 600; 
+                      var imgData = canvas.toDataURL('image/png');
+                      var doc = new jsPDF('p', 'pt','a4');
+                      var imgWidth = 600; 
              	      var pageHeight = 840;  
-                      var imgHeight = (canvas.height * imgWidth / canvas.width)+10;
-                      var pageNo=1;
-             	      var heightLeft = imgHeight;
-             	      var numberOfPages= Math.ceil(imgHeight / pageHeight) ;
+//             	      alert("canvas.height>>"+canvas.height);
+//             	     alert("canvas.width>>"+canvas.width);
+                      if(canvas.height<pageHeight){
+                 	      var imgWidth = 600; 
+                 	      var pageHeight = 840;  
+                          var imgHeight = (canvas.height * imgWidth / canvas.width)+10;
+                          var pageNo=1;
+                 	      doc.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+                 	      doc.addImage(pdfFooterDetail, 'JPEG', 0, 640, imgWidth, 140);
+                 	      doc.addImage(pdfFooter, 'JPEG', 0, 780, imgWidth, 60);
+                      }else{
+                 	      var imgWidth = 600; 
+                 	      var pageHeight = 840;  
+                          var imgHeight = (canvas.height * imgWidth / canvas.width)+10;
+                          var pageNo=1;
+                          var heightLeft = imgHeight;
+//                 	      var numberOfPages= Math.ceil(imgHeight / pageHeight) ;
+                 	      var position = 0;
+                 	      doc.addImage(imgData, 'PNG', 0, position, imgWidth, 740);
+                 	      doc.addImage(pdfFooter, 'JPEG', 0, 780, imgWidth, 60);
+                 	      heightLeft -= pageHeight-100;
 
-             	      var doc = new jsPDF('p', 'pt','a4');
-             	      var position = 0;
-             	     var img1 = document.getElementById('img1');
-                     var img2 = document.getElementById('img2');
-//                     alert("img1>>"+img1);
-//             	    var img = new Image();
-//                     img.src = path.resolve('/web/webroot/_ui/responsive/theme-securityB2B/images/missing-store-65x65.jpg');
-                     
-
-             	      doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight-140);
-             	      doc.setFontSize(10);
-             	      doc.text(490,820, "Page "+pageNo+" of "+numberOfPages); 
-             	     doc.addImage(img2, 'JPEG', 0, 700);
-             	      heightLeft -= pageHeight;
-
-             	      while (heightLeft >= 0) {
-             	    	pageNo=pageNo+1;
-             	        position = heightLeft - imgHeight;
-             	        doc.addPage();
-             	        doc.addImage(imgData, 'PNG', 0, position+5, imgWidth, imgHeight-10);
-             	        heightLeft -= pageHeight;
-             	       doc.text(490,820,  "Page "+pageNo+" of "+numberOfPages); 
-             	      }
+                 	      while (heightLeft >= 0) {
+                 	    	pageNo=pageNo+1;
+                 	        position = heightLeft - imgHeight-200;
+                 	        /*alert("position>>"+position);*/
+                 	        doc.addPage();
+                 	        doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight-10);
+                 	        heightLeft -= pageHeight;
+                 	        doc.addImage(pdfFooterDetail, 'JPEG', 0, 640, imgWidth, 140);
+                 	        doc.addImage(pdfFooter, 'JPEG', 0, 780, imgWidth, 60);
+                 	      }
+                    	  
+                      }
+             	      
              	      doc.save( 'ProductDetails-'+productNumber+'.pdf');
                 });
-              /* $('#print-product-new').css('display','none');
-               $('.print-product-new').html("");*/
+              $('#print-product-new').css('display','none');
+               $('.print-product-new').html("");
                
                },
             error: function (jqXHR, textStatus, errorThrown) {
