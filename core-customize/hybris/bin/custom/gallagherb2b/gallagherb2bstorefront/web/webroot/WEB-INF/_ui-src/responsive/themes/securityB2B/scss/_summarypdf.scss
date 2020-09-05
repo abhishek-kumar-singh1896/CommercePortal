@@ -94,3 +94,12 @@ background: linear-gradient(90deg, $primary-shade2 40%, $primary-shade-red 100%)
         text-align: justify;
     }
 }
+.download-classifications .headline {
+  font-size: 4rem;
+  font-weight: bold;
+  padding: 10px;
+}
+.download-classifications table.table td.attrib {
+  font-size: 2.5rem;
+  width: 50%;
+}

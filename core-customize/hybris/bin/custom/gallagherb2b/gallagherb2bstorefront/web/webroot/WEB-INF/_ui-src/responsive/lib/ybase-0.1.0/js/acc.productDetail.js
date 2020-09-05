@@ -198,44 +198,45 @@ ACC.productDetail = {
                       var doc = new jsPDF('p', 'pt','a4');
                       var imgWidth = 600; 
              	      var pageHeight = 840;  
-//             	      alert("canvas.height>>"+canvas.height);
-//             	     alert("canvas.width>>"+canvas.width);
-                      if(canvas.height<pageHeight){
-                 	      var imgWidth = 600; 
-                 	      var pageHeight = 840;  
-                          var imgHeight = (canvas.height * imgWidth / canvas.width)+10;
-                          var pageNo=1;
+             	      var imgHeight = (canvas.height * imgWidth / canvas.width)+10;
+                      if(imgHeight<630){
                  	      doc.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
                  	      doc.addImage(pdfFooterDetail, 'JPEG', 0, 640, imgWidth, 140);
                  	      doc.addImage(pdfFooter, 'JPEG', 0, 780, imgWidth, 60);
                       }else{
-                 	      var imgWidth = 600; 
-                 	      var pageHeight = 840;  
-                          var imgHeight = (canvas.height * imgWidth / canvas.width)+10;
-                          var pageNo=1;
-                          var heightLeft = imgHeight;
-//                 	      var numberOfPages= Math.ceil(imgHeight / pageHeight) ;
-                 	      var position = 0;
-                 	      doc.addImage(imgData, 'PNG', 0, position, imgWidth, 740);
-                 	      doc.addImage(pdfFooter, 'JPEG', 0, 780, imgWidth, 60);
-                 	      heightLeft -= pageHeight-100;
-
-                 	      while (heightLeft >= 0) {
-                 	    	pageNo=pageNo+1;
-                 	        position = heightLeft - imgHeight-200;
-                 	        /*alert("position>>"+position);*/
-                 	        doc.addPage();
-                 	        doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight-10);
-                 	        heightLeft -= pageHeight;
-                 	        doc.addImage(pdfFooterDetail, 'JPEG', 0, 640, imgWidth, 140);
-                 	        doc.addImage(pdfFooter, 'JPEG', 0, 780, imgWidth, 60);
-                 	      }
-                    	  
-                      }
-             	      
+                    	  if(imgHeight<700 && imgHeight>630){
+                    		  doc.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight-70);
+                     	      doc.addImage(pdfFooterDetail, 'JPEG', 0, 640, imgWidth, 140);
+                     	      doc.addImage(pdfFooter, 'JPEG', 0, 780, imgWidth, 60);
+                    	  }else{
+                    		  var heightLeft = imgHeight;
+                     	      var position = 0;
+                     	      doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight-70);
+                     	      doc.addImage(pdfFooter, 'JPEG', 0, 780, imgWidth, 60);
+                     	      heightLeft -= pageHeight;
+                    	      while (heightLeft >= 0) {
+                    	    	if(heightLeft<pageHeight){
+                    	    		pageNo=pageNo+1;
+                        	        position = heightLeft - imgHeight;
+                        	        doc.addPage();
+                        	        doc.addImage(imgData, 'PNG', 0, position+100, imgWidth, imgHeight-210);
+                        	        heightLeft -= pageHeight;
+                        	        doc.addImage(pdfFooterDetail, 'JPEG', 0, 640, imgWidth, 140);
+                         	        doc.addImage(pdfFooter, 'JPEG', 0, 780, imgWidth, 60);
+                    	    	}else{
+                    	    		pageNo=pageNo+1;
+                        	        position = heightLeft - imgHeight;
+                        	        doc.addPage();
+                        	        doc.addImage(imgData, 'PNG', 0, position+100, imgWidth, imgHeight-70);
+                        	        heightLeft -= pageHeight;
+                         	        doc.addImage(pdfFooter, 'JPEG', 0, 780, imgWidth, 60);
+                    	    	}
+                    	      }
+                    	  }
+                    	  }
              	      doc.save( 'ProductDetails-'+productNumber+'.pdf');
                 });
-              $('#print-product-new').css('display','none');
+               $('#print-product-new').css('display','none');
                $('.print-product-new').html("");
                
                },

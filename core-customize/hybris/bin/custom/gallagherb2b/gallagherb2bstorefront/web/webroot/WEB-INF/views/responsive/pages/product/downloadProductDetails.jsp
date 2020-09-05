@@ -7,6 +7,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags"%>
+<%@ taglib prefix="theme" tagdir="/WEB-INF/tags/shared/theme" %>
 
 <template:styleSheets />
 <spring:htmlEscape defaultHtmlEscape="true" />
@@ -22,13 +23,24 @@
 				<div class="row">
 					<div class="col-xs-6">
 						<div class="thumbnails">
-						<c:forEach items="${galleryImages}" var="container" varStatus="status">
-							<c:if test="${status.index <2}">
-								<figure>
-									<img src="${container.productb2b.url}">
-								</figure>
-							</c:if>
-                		</c:forEach>
+							<c:choose>
+								<c:when test="${not empty galleryImages}">
+									<c:forEach items="${galleryImages}" var="container" varStatus="status">
+										<c:if test="${status.index <2}">
+											<figure>
+												<img src="${container.productb2b.url}">
+											</figure>
+										</c:if>
+			                		</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<figure>
+									<theme:image code="img.missingProductImage.responsive.product"
+										alt="${fn:escapeXml(product.name)}"
+										title="${fn:escapeXml(product.name)}" />
+									</figure>
+								</c:otherwise>
+							</c:choose>
 						</div>
 					</div>
 					<div class="col-xs-6">
@@ -44,7 +56,7 @@
 				</div>
 				<div class="row">
 					<div class="col-xs-12 summary">
-						<div class="product-classifications">
+						<div class="download-classifications">
 							<c:if test="${not empty product.classifications}">
 								<c:forEach items="${product.classifications}"
 									var="classification">
