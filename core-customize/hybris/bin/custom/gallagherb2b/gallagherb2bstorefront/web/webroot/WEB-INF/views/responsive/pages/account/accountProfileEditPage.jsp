@@ -6,7 +6,12 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="formElement" tagdir="/WEB-INF/tags/responsive/formElement" %>
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags" %>
-
+<%@ taglib prefix="account" tagdir="/WEB-INF/tags/responsive/account"%>
+<div class="row">
+<div class="col-md-2 col-md-offset-2 hidden-xs">
+	<account:accountLeftNavigation />
+</div>
+<div class="col-md-6">
 <div class="account-section-header">
     <div class="row">
         <div class="container-lg col-md-6">
@@ -48,4 +53,6 @@
             </div>
         </div>
     </div>
+</div>
+</div>
 </div>
