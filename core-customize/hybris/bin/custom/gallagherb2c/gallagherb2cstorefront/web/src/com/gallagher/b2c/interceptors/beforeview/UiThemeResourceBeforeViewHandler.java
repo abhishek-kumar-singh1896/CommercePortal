@@ -165,6 +165,10 @@ public class UiThemeResourceBeforeViewHandler implements BeforeViewHandler
 			{
 				final ProductModel product = productService.getProductForCode(productData.getCode());
 				stores = product.getBaseStores();
+				if (Boolean.TRUE.equals(product.isEligibleForLatAm())
+				{
+					stores.add(baseStoreService.getBaseStoreForUid("amB2CLatAm"));
+				}
 			}
 			else
 			{
