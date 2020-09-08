@@ -22,6 +22,7 @@ import de.hybris.platform.servicelayer.user.UserService;
 import de.hybris.platform.store.BaseStoreModel;
 import de.hybris.platform.store.services.BaseStoreService;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -160,13 +161,14 @@ public class UiThemeResourceBeforeViewHandler implements BeforeViewHandler
 		if (modelAndView.getModel().containsKey("product"))
 		{
 			final ProductData productData = (ProductData) modelAndView.getModel().get("product");
-			final Collection<BaseStoreModel> stores;
+			Collection<BaseStoreModel> stores;
 			if (StringUtils.isEmpty(productData.getBaseProduct()))
 			{
 				final ProductModel product = productService.getProductForCode(productData.getCode());
 				stores = product.getBaseStores();
 				if (Boolean.TRUE.equals(product.isEligibleForLatAm()))
 				{
+					stores = new ArrayList<BaseStoreModel>(stores);
 					stores.add(baseStoreService.getBaseStoreForUid("amB2CLatAm"));
 				}
 			}
