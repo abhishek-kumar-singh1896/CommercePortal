@@ -5,10 +5,10 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="account" tagdir="/WEB-INF/tags/responsive/account"%>
 <div class="row">
-	<div class="col-md-2 col-md-offset-2 hidden-xs">
+	<div class="col-md-2 col-md-offset-1 hidden-xs">
 		<account:accountLeftNavigation />
 	</div>
-	<div class="col-md-6">
+	<div class="col-md-8">
 		<div class="account-section-header">
 			<div class="row">
 				<div class="container-lg col-md-6m">

@@ -5,7 +5,7 @@
     margin:4rem 0;
     .account-section-content{
         .account-section-form{
-            padding: 0 2rem;
+            padding: 0;
             margin: 20px 0;
             .account-cards{
             &.card-select{
@@ -32,7 +32,7 @@
             }
         }
         .nav-content{
-            padding-left: 3rem;
+            padding-left: 1rem;
         }
         .pagination-bar{
             &.top{
@@ -63,11 +63,14 @@
                 }
             }
         }
+	.back-link{
+		padding: 0 2rem 1.5rem;
+	}
     }
 }
 .nav-menu{
     list-style: none;
-    padding: 0;
+    padding: 2.3rem 0 0;
     margin: 0;
     li{
         a, .menu-title{
@@ -85,14 +88,25 @@
             }
         }
         .menu-title{
-            font-size: $font-size-24px;
             font-weight: 700;
             color: $primary-color;
-            padding: 0 2rem 1.5rem;
+            padding: 0 2rem .5rem;
             margin-bottom: 1rem;
             border-bottom: 1px solid $primary-color;
             &.mt-1{
                 margin-top: 1rem;
+            }
+             &.mt-2{
+                margin-top: 2rem;
+            }
+             &.mt-3{
+                margin-top: 3rem;
+            }
+             &.mt-4{
+                margin-top: 4rem;
+            }
+             &.mt-5{
+                margin-top: 5rem;
             }
         }
     }
@@ -119,6 +133,18 @@
         border-color: $primary-color;
     }
 }
+
+/*.left-nav{
+    margin: 4rem 0;
+    .account-section-content {
+        .account-section-header {
+            padding: 0 2rem 1.5rem;
+        }
+        .back-link {
+            padding: 0 2rem 1.5rem;
+        }
+    }
+}*/
 
 /* Order Details Page styles over-riding default theme */
 .well{
@@ -209,14 +235,11 @@
     }
 }
 
-.left-nav{
-	margin: 4rem 0;
-}
-.left-nav .account-section-content .account-section-header {
-    padding: 0 2rem 1.5rem;
-}
 
-.left-nav .account-section-content .back-link {
-    padding: 0 2rem 1.5rem;
+/* Actual site already has icons folder */
+/*@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('/font-icons/glyphicons-halflings-regular.eot');
+  src: url('/font-icons/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/font-icons/glyphicons-halflings-regular.woff2') format('woff2'), url('/font-icons/glyphicons-halflings-regular.woff') format('woff'), url('/font-icons/glyphicons-halflings-regular.ttf') format('truetype'), url('/font-icons/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
-
+*/

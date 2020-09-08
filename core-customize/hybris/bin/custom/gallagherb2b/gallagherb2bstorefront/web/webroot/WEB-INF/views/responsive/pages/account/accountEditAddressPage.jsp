@@ -7,10 +7,10 @@
 
 <spring:url value="/my-account/address-book" var="addressBookUrl" htmlEscape="false" />
 <div class="row">
-	<div class="col-md-2 col-md-offset-2 hidden-xs">
+	<div class="col-md-2 col-md-offset-1 hidden-xs">
 		<account:accountLeftNavigation />
 	</div>
-	<div class="col-md-6">
+	<div class="col-md-8">
 		<c:choose>
 			<c:when test="${edit eq true }">
 		        <c:set var="headline"><spring:theme code="text.account.addressBook.updateAddress" /></c:set>

@@ -77,11 +77,11 @@
                 </table>
             </div>
         </div>
-        <div class="account-orderhistory-pagination">
+        <%-- <div class="account-orderhistory-pagination">
             <nav:pagination top="false" msgKey="${messageKey}" showCurrentPageInfo="true" hideRefineButton="true"
                             supportShowPaged="${isShowPageAllowed}" supportShowAll="${isShowAllAllowed}"
                             searchPageData="${searchPageData}" searchUrl="${searchUrl}"
                             numberPagesShown="${numberPagesShown}"/>
-        </div>
+        </div> --%>
     </div>
 </c:if>

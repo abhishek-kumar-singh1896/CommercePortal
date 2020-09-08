@@ -20,7 +20,7 @@
             <cms:component component="${feature}" />
         </cms:pageSlot>
 
-        <div class="account-section left-nav">
+        <div class="account-section">
             <cms:pageSlot position="BodyContent" var="feature" element="div" class="account-section-content">
                 <cms:component component="${feature}" />
             </cms:pageSlot>

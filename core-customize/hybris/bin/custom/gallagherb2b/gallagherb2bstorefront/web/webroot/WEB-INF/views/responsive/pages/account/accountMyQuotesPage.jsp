@@ -5,10 +5,14 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags" %>
-
+<%@ taglib prefix="account" tagdir="/WEB-INF/tags/responsive/account"%>
 <spring:htmlEscape defaultHtmlEscape="true"/>
 <c:set var="searchUrl" value="/my-account/my-quotes?sort=${ycommerce:encodeUrl(searchPageData.pagination.sort)}"/>
-
+<div class="row">
+	<div class="col-md-2 col-md-offset-1 hidden-xs">
+		<account:accountLeftNavigation />
+	</div>
+	<div class="col-md-8">
 <div class="account-section-header">
     <spring:theme code="text.account.quote.myquotes"/>
 </div>
@@ -93,3 +97,5 @@
         </div>
     </div>
 </c:if>
+</div>
+</div>
