@@ -109,7 +109,7 @@
     "gallagherstorefront",
 	"gallagherscpiexchange",
 	"paymetric",
-	backofficepatchv2
+	"backofficepatchv2"
   ],
   "useConfig": {
     "solr": {
