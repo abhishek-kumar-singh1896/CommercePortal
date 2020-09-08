@@ -20,11 +20,11 @@ import de.hybris.platform.product.ProductService;
 import de.hybris.platform.servicelayer.config.ConfigurationService;
 import de.hybris.platform.servicelayer.user.UserService;
 import de.hybris.platform.store.BaseStoreModel;
+import de.hybris.platform.store.services.BaseStoreService;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -35,6 +35,7 @@ import org.apache.log4j.Logger;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gallagher.b2c.util.UiThemeUtils;
+import com.gallagher.core.enums.RegionCode;
 import com.gallagher.core.product.impl.GallagherProductService;
 import com.gallagher.facades.storesession.GallagherStoreSessionFacade;
 
@@ -54,6 +55,9 @@ public class UiThemeResourceBeforeViewHandler implements BeforeViewHandler
 
 	@Resource(name = "cmsSiteService")
 	private CMSSiteService cmsSiteService;
+
+	@Resource(name = "baseStoreService")
+	private BaseStoreService baseStoreService;
 
 	@Resource(name = "deviceDetectionFacade")
 	private DeviceDetectionFacade deviceDetectionFacade;
@@ -156,36 +160,23 @@ public class UiThemeResourceBeforeViewHandler implements BeforeViewHandler
 		if (modelAndView.getModel().containsKey("product"))
 		{
 			final ProductData productData = (ProductData) modelAndView.getModel().get("product");
-			final ProductModel product = productService.getProductForCode(productData.getCode());
+			final Collection<BaseStoreModel> stores;
 			if (StringUtils.isEmpty(productData.getBaseProduct()))
 			{
-				final Collection<BaseStoreModel> stores = product.getBaseStores();
-				hreflangMap = gethreflangURL(stores, requestURL);
+				final ProductModel product = productService.getProductForCode(productData.getCode());
+				stores = product.getBaseStores();
 			}
 			else
 			{
-				final ProductModel baseProductModel = productService.getProductForCode(productData.getBaseProduct());
-				final Set<BaseStoreModel> storesSet = gallagherProductService.getBaseStoresForVariant(productData.getCode());
-				hreflangMap = gethreflangURL(storesSet, requestURL);
+				stores = gallagherProductService.getBaseStoresForVariant(productData.getCode());
 			}
+			hreflangMap = getHrefLangURL(stores, requestURL);
 		}
 		else
 		{
-			final Collection<CMSSiteModel> baseSiteList = cmsSiteService.getSites();
-			if (requestURL.toString().contains("/am/"))
-			{
-				for (final CMSSiteModel site : baseSiteList)
-				{
-					if (null != site.getRegionCode() && null != site.getDefaultLanguage())
-					{
-						final String valueString = "/am/" + site.getRegionCode().getCode() + "/"
-								+ site.getDefaultLanguage().getIsocode() + "/";
-						final String finalValue = gethreflangURL(requestURL, valueString);
-						hreflangMap.put(site.getDefaultLanguage().getIsocode(), finalValue);
-					}
-				}
-			}
+			hreflangMap = getHrefLangURL(baseStoreService.getAllBaseStores(), requestURL);
 		}
+
 		modelAndView.addObject("hreflangMap", hreflangMap);
 	}
 
@@ -195,22 +186,37 @@ public class UiThemeResourceBeforeViewHandler implements BeforeViewHandler
 	 * @param requestURL
 	 */
 
-	protected Map<String, String> gethreflangURL(final Collection<BaseStoreModel> stores, final StringBuffer requestURL)
+	protected Map<String, String> getHrefLangURL(final Collection<BaseStoreModel> stores, final StringBuffer requestURL)
 	{
 		final Map<String, String> hreflangMap = new HashMap<>();
-		for (final BaseStoreModel base : stores)
+		for (final BaseStoreModel store : stores)
 		{
-			if (requestURL.toString().contains("/am/"))
+
+			if (store.getUid().contains("amB2C"))
 			{
-				for (final BaseSiteModel site : base.getCmsSites())
+				for (final BaseSiteModel site : store.getCmsSites())
 				{
 					final CMSSiteModel cmsSite = (CMSSiteModel) site;
-					if (null != cmsSite.getRegionCode() && null != cmsSite.getDefaultLanguage())
+					if (null != cmsSite.getRegionCode())
 					{
-						final String valueString = "/am/" + cmsSite.getRegionCode().getCode() + "/"
-								+ cmsSite.getDefaultLanguage().getIsocode() + "/";
-						final String finalValue = gethreflangURL(requestURL, valueString);
-						hreflangMap.put(cmsSite.getDefaultLanguage().getIsocode(), finalValue);
+						if (RegionCode.valueOf("global").equals(cmsSite.getRegionCode()))
+						{
+							final String valueString = "/am/" + cmsSite.getRegionCode().getCode() + "/"
+									+ cmsSite.getDefaultLanguage().getIsocode() + "/";
+
+							final String finalValue = gethreflangURL(requestURL, valueString);
+							hreflangMap.put("x-default", finalValue);
+						}
+						else
+						{
+							for (final LanguageModel language : store.getLanguages())
+							{
+								final String valueString = "/am/" + cmsSite.getRegionCode().getCode() + "/" + language.getIsocode() + "/";
+
+								final String finalValue = gethreflangURL(requestURL, valueString);
+								hreflangMap.put(language.getIsocode(), finalValue);
+							}
+						}
 					}
 				}
 			}
