@@ -77,5 +77,5 @@
 </div>
 <c:if test="${fn:contains(buttonType, 'button') 
 	and (not empty product.baseProduct or empty product.variantMatrix)}">
-	<div class="select-variant">${component.outOfStockMessage}</div>
+	<div>${component.outOfStockMessage}</div>
 </c:if>
