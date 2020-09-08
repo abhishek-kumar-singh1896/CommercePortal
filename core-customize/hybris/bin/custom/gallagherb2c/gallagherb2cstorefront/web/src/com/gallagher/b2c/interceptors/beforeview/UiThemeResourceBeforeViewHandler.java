@@ -214,7 +214,7 @@ public class UiThemeResourceBeforeViewHandler implements BeforeViewHandler
 								final String valueString = "/am/" + cmsSite.getRegionCode().getCode() + "/" + language.getIsocode() + "/";
 
 								final String finalValue = gethreflangURL(requestURL, valueString);
-								hreflangMap.put(cmsSite.getDefaultLanguage().getIsocode(), finalValue);
+								hreflangMap.put(language.getIsocode(), finalValue);
 							}
 						}
 					}
