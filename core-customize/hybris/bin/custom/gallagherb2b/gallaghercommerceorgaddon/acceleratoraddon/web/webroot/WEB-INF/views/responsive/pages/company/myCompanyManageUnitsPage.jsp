@@ -4,6 +4,7 @@
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags" %>
 <%@ taglib prefix="company" tagdir="/WEB-INF/tags/addons/gallaghercommerceorgaddon/responsive/company" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="account" tagdir="/WEB-INF/tags/responsive/account"%>
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
@@ -12,19 +13,28 @@
 </spring:url>
 
 <template:page pageTitle="${pageTitle}">
-	<div class="account-section">
-		<div class="account-section-header no-border">
-			<spring:theme code="text.company.manage.units.label"/>
-			<div class="account-section-header-add pull-right">
-				<ycommerce:testId code="unit_createNewUnit_button">
-					<a href="${fn:escapeXml(createUnitUrl)}" class="button add">
-						<spring:theme code="text.company.manage.units.newUnitButton"/>
-					</a>
-				</ycommerce:testId>
+	<div class="content-inner account-section">
+		<div class="row">
+			<div class="col-md-2 col-md-offset-1 hidden-xs">
+				<account:accountLeftNavigation />
 			</div>
-		</div>
-		<div id="unittree" class="panel-group accordion">
-			<company:unitTree node="${rootNode}"/>
+			<div class="col-md-8">
+				<div class="account-section-header no-border">
+					<spring:theme code="text.company.manage.units.label" />
+
+					<div class="account-section-header-add pull-right">
+						<ycommerce:testId code="unit_createNewUnit_button">
+							<a href="${fn:escapeXml(createUnitUrl)}" class="button add">
+								<spring:theme code="text.company.manage.units.newUnitButton" />
+							</a>
+						</ycommerce:testId>
+					</div>
+				</div>
+
+				<div id="col-md-8 unittree" class="panel-group accordion">
+					<company:unitTree node="${rootNode}" />
+				</div>
+			</div>
 		</div>
 	</div>
 </template:page>
