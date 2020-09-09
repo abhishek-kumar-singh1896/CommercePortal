@@ -80,7 +80,7 @@ public final class B2badvanceCoreConstants extends GeneratedB2badvanceCoreConsta
 	public static final String IGNORE = "<ignore>";
 
 
-
+	public static final String B2BTECNICIANGROUP = "b2btechniciangroup";
 
 
 }
