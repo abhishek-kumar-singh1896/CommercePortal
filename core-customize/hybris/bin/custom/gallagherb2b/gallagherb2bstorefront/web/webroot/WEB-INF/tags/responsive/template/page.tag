@@ -46,7 +46,7 @@
 			
 			<a id="skip-to-content"></a>
 		
-			<div class="main__inner-wrapper content-inner">
+			<div class="main__inner-wrapper">
 				<common:globalMessages />
 				<cart:cartRestoration />
 				<jsp:doBody />
