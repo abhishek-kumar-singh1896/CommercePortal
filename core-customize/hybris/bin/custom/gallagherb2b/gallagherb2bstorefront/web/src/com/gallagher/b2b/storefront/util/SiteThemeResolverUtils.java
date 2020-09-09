@@ -15,6 +15,7 @@ import de.hybris.platform.cms2.model.site.CMSSiteModel;
 import de.hybris.platform.cms2.servicelayer.services.CMSSiteService;
 import de.hybris.platform.commerceservices.enums.SiteTheme;
 import de.hybris.platform.commerceservices.enums.UiExperienceLevel;
+
 import org.springframework.beans.factory.annotation.Required;
 
 
@@ -30,7 +31,7 @@ public class SiteThemeResolverUtils
 
 		// Resolve Theme from CMSSiteService
 		final CMSSiteModel currentSite = getCmsSiteService().getCurrentSite();
-		if (currentSite != null)
+		if (currentSite != null && uiExperienceLevel != null)
 		{
 			return combineSiteAndTheme(uiExperienceLevel.getCode(), currentSite.getUid(), getThemeNameForSite(currentSite));
 		}
@@ -65,9 +66,11 @@ public class SiteThemeResolverUtils
 	}
 
 	/**
-	 * @param cmsSiteService the CMSSiteService to set
+	 * @param cmsSiteService
+	 *           the CMSSiteService to set
 	 */
-	@Required public void setCmsSiteService(final CMSSiteService cmsSiteService)
+	@Required
+	public void setCmsSiteService(final CMSSiteService cmsSiteService)
 	{
 		this.cmsSiteService = cmsSiteService;
 	}
@@ -77,7 +80,8 @@ public class SiteThemeResolverUtils
 		return uiExperienceService;
 	}
 
-	@Required public void setUiExperienceService(final UiExperienceService uiExperienceService)
+	@Required
+	public void setUiExperienceService(final UiExperienceService uiExperienceService)
 	{
 		this.uiExperienceService = uiExperienceService;
 	}
@@ -87,7 +91,8 @@ public class SiteThemeResolverUtils
 		return defaultTheme;
 	}
 
-	@Required public void setDefaultTheme(String defaultTheme)
+	@Required
+	public void setDefaultTheme(final String defaultTheme)
 	{
 		this.defaultTheme = defaultTheme;
 	}
