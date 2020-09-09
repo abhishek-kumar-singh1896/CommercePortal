@@ -73,6 +73,12 @@
     padding: 2.3rem 0 0;
     margin: 0;
     li{
+		&.active{
+			a{
+	            font-weight: 700;
+	            color: $black;
+			}
+        }
         a, .menu-title{
             font-size: $font-size-16px;
             font-weight: 500;
@@ -81,12 +87,7 @@
             padding: 5px 20px;
             display: block;
         }
-        a{
-            &.active{
-                font-weight: 700;
-                color: $black;
-            }
-        }
+        
         .menu-title{
             font-weight: 700;
             color: $primary-color;

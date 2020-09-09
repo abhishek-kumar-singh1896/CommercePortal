@@ -7,7 +7,6 @@
 
 <ul class="nav-menu">
     <cms:pageSlot position="B2BMyAccount" var="feature">
-    	
 		<li>
 			<div class="menu-title">
 				${feature.navigationNode.name}
@@ -16,8 +15,16 @@
 		<c:forEach items="${feature.navigationNode.children}"
 			var="childLevel1">
 			<c:forEach items="${childLevel1.entries}" var="entry">
-				<cms:component component="${entry.item}" element="li" 
-			 	evaluateRestriction="true" />
+				<c:choose>
+					<c:when test="${entry.item.styleAttributes == cmsPage.uid}">
+						<cms:component component="${entry.item}" element="li" class="active"
+					 	evaluateRestriction="true" />
+					 </c:when>
+					 <c:otherwise>
+					 	<cms:component component="${entry.item}" element="li" 
+				 		evaluateRestriction="true" />
+					 </c:otherwise>
+				</c:choose>
 			</c:forEach>
 		</c:forEach>
 	</cms:pageSlot>
@@ -30,8 +37,16 @@
 		<c:forEach items="${feature.navigationNode.children}"
 			var="childLevel1">													
 			<c:forEach items="${childLevel1.entries}" var="entry">
-				<cms:component component="${entry.item}" element="li" 
-			 		evaluateRestriction="true" />
+				<c:choose>
+					<c:when test="${entry.item.styleAttributes == cmsPage.uid}">
+						<cms:component component="${entry.item}" element="li" class="active"
+					 	evaluateRestriction="true" />
+					 </c:when>
+					 <c:otherwise>
+					 	<cms:component component="${entry.item}" element="li" 
+				 		evaluateRestriction="true" />
+					 </c:otherwise>
+				</c:choose>
 			</c:forEach>
 		</c:forEach>
 	</cms:pageSlot>

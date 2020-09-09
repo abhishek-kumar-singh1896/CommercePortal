@@ -25,7 +25,7 @@
 				<div class="col-md-2 col-md-offset-1 hidden-xs">
 					<account:accountLeftNavigation />
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-8">
 		            <cms:pageSlot position="BodyContent" var="feature" element="div" class="account-section-content">
 		                <cms:component component="${feature}" />
 		            </cms:pageSlot>
