@@ -6,6 +6,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags" %>
 <%@ taglib prefix="org-common" tagdir="/WEB-INF/tags/addons/gallaghercommerceorgaddon/responsive/common" %>
+<%@ taglib prefix="account" tagdir="/WEB-INF/tags/responsive/account"%>
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
@@ -23,7 +24,12 @@
 <c:set target="${additionalParams}" property="role" value="${param.role}" />
 
 <template:page pageTitle="${pageTitle}">
-    <div class="account-section">
+    <div class="account-section content-inner">
+		<div class="row">
+			<div class="col-md-2 col-md-offset-1 left-nav-menu">
+				<account:accountLeftNavigation />
+			</div>
+			<div class="col-sm-12 col-md-8 right-nav-content">
         <div class="row">
             <div class="col-xs-12 col-sm-7">
                 <org-common:headline url="${cancelUrl}" labelKey="text.company.manage.units.${action}.mainTitle"/>
@@ -131,7 +137,8 @@
                         hideRefineButton="true" searchUrl="${searchUrl}" msgKey="text.company.${action}.page"
                         additionalParams="${additionalParams}" numberPagesShown="${numberPagesShown}"/>
 	</div>
-
+ </div>
+ </div>
 	<c:url value="${baseUrl}/members" var="membersActionLink" />
 	<script id="enableDisableLinksTemplate" type="text/x-jquery-tmpl">
         {{if selected}}

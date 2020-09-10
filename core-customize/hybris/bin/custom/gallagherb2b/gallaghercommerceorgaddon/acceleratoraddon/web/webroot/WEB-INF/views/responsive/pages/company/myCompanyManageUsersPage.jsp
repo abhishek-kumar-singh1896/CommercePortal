@@ -6,6 +6,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags" %>
 <%@ taglib prefix="org-common" tagdir="/WEB-INF/tags/addons/gallaghercommerceorgaddon/responsive/common" %>
+<%@ taglib prefix="account" tagdir="/WEB-INF/tags/responsive/account"%>
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
@@ -16,7 +17,12 @@
 <c:set target="${additionalParams}" property="user" value="${param.user}" />
 
 <template:page pageTitle="${pageTitle}">
-    <div class="account-section">
+    <div class="account-section content-inner">
+    		<div class="row">
+			<div class="col-md-2 col-md-offset-1 left-nav-menu">
+				<account:accountLeftNavigation />
+			</div>
+			<div class="col-sm-12 col-md-8 right-nav-content">
         <org-common:listHeadline url="${manageUsersUrl}" labelKey="text.company.manageusers.label" urlTestId="User_AddUser_button"/>
 
         <c:choose>
@@ -119,5 +125,7 @@
                 </div>
             </c:otherwise>
         </c:choose>
+    </div>
+    </div>
     </div>
 </template:page>

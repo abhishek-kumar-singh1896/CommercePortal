@@ -4,6 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="org-common" tagdir="/WEB-INF/tags/addons/gallaghercommerceorgaddon/responsive/common" %>
 <%@ taglib prefix="company" tagdir="/WEB-INF/tags/addons/gallaghercommerceorgaddon/responsive/company"%>
+<%@ taglib prefix="account" tagdir="/WEB-INF/tags/responsive/account"%>
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
@@ -16,10 +17,19 @@
 </c:if>
 
 <template:page pageTitle="${pageTitle}">
-	<div class="account-section">
-		<div>
-			<org-common:headline url="${cancelUrl}" labelKey="text.company.manage.units.createNewUnit" />
+	<div class="account-section content-inner">
+		<div class="row">
+			<div class="col-md-2 col-md-offset-1 left-nav-menu">
+				<account:accountLeftNavigation />
+			</div>
+			<div class="col-sm-12 col-md-8 right-nav-content">
+				<div>
+					<org-common:headline url="${cancelUrl}"
+						labelKey="text.company.manage.units.createNewUnit" />
+				</div>
+				<company:b2bUnitForm formUrl="${saveUrl}"
+					b2BUnitForm="${b2BUnitForm}" cancelUrl="${cancelUrl}" />
+			</div>
 		</div>
-		<company:b2bUnitForm formUrl="${saveUrl}" b2BUnitForm="${b2BUnitForm}" cancelUrl="${cancelUrl}"/>
 	</div>
 </template:page>

@@ -3,15 +3,13 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-
 <spring:htmlEscape defaultHtmlEscape="true" />
-
 <c:set var="noBorder" value=""/>
 <c:if test="${not empty addressData}">
     <c:set var="noBorder" value="no-border"/>
 </c:if>
 
-<div class="account-section-header ${noBorder}">
+<div class="account-section-header">
     <spring:theme code="text.account.addressBook"/>
 
         <ycommerce:testId code="addressBook_addNewAddress_button">
@@ -22,8 +20,8 @@
             </div>
         </ycommerce:testId>
     </div>
-</div>
 
+<div class="account-section-form">
 <div class="account-addressbook account-list">
     <c:if test="${empty addressData}">
 		<div class="account-section-content content-empty">
@@ -35,7 +33,7 @@
 	    <div class="account-cards card-select">
 			<div class="row">
 				<c:forEach items="${addressData}" var="address">
-					<div class="col-xs-12 col-sm-6 col-md-4 card">
+					<div class="col-xs-12 col-sm-6 col-md-6 card">
 						<ul class="pull-left">
 							<li>
 								<strong>${fn:escapeXml(address.title)}&nbsp;${fn:escapeXml(address.firstName)}&nbsp;${fn:escapeXml(address.lastName)}
@@ -127,4 +125,5 @@
 		    </c:forEach>
 	    </div>
     </c:if>
+</div>
 </div>

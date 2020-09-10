@@ -5,6 +5,8 @@
 <%@ taglib prefix="common" tagdir="/WEB-INF/tags/responsive/common" %>
 <%@ taglib prefix="company" tagdir="/WEB-INF/tags/addons/gallaghercommerceorgaddon/responsive/company" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="account" tagdir="/WEB-INF/tags/responsive/account"%>
+
 <spring:htmlEscape defaultHtmlEscape="true"/>
 
 <c:if test="${empty cancelUrl}">
@@ -18,13 +20,21 @@
     </spring:url>
 </c:if>
 <template:page pageTitle="${pageTitle}">
-    <div class="account-section">
-        <div class="back-link">
-            <a href="${fn:escapeXml(cancelUrl)}">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-            </a>
-            <span class="label"><spring:theme code="text.company.managePermissions.edit.page.title"/></span>
-        </div>
-        <company:b2bPermissionForm cancelUrl="${cancelUrl}" saveUrl="${saveUrl}" b2BPermissionForm="${b2BPermissionForm}"/>
-    </div>
+	<div class="account-section content-inner">
+		<div class="row">
+			<div class="col-md-2 col-md-offset-1 left-nav-menu">
+				<account:accountLeftNavigation />
+			</div>
+			<div class="col-sm-12 col-md-8 right-nav-content">
+				<div class="back-link">
+					<a href="${fn:escapeXml(cancelUrl)}"> <span
+						class="glyphicon glyphicon-chevron-left"></span>
+					</a> <span class="label"><spring:theme
+							code="text.company.managePermissions.edit.page.title" /></span>
+				</div>
+				<company:b2bPermissionForm cancelUrl="${cancelUrl}"
+					saveUrl="${saveUrl}" b2BPermissionForm="${b2BPermissionForm}" />
+			</div>
+		</div>
+	</div>
 </template:page>
