@@ -38,5 +38,6 @@ public class AnalyticsPropertiesBeforeViewHandler implements BeforeViewHandler
 		modelAndView.addObject("hotjarId", siteConfigService.getString("hotjar.tracking.id", ""));
 		modelAndView.addObject(ANALYTICS_TRACKING_ID,
 				siteConfigService.getString(ThirdPartyConstants.Google.ANALYTICS_TRACKING_ID, ""));
+		modelAndView.addObject("siteCoreTagUrl", siteConfigService.getString("security.sitecore.tag.url", ""));
 	}
 }

@@ -8,7 +8,9 @@
 <template:javaScriptVariables/>
 
 <c:set var="commonResourcePathHtml" value="${fn:escapeXml(commonResourcePath)}"/>
-<script src="//qasecuritycms.gallagher.com/bundle/beacon"></script>
+<c:if test="${not empty siteCoreTagUrl}">
+	<script src="${siteCoreTagUrl}"></script>
+</c:if>
 <c:choose>
 	<c:when test="${wro4jEnabled}">
 	  	<script src="${fn:escapeXml(contextPath)}/wro/all_responsive.js"></script>
