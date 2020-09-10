@@ -236,6 +236,26 @@
     }
 }
 
+.content-inner .account-section-header {
+    padding: 0 2rem 1.5rem;
+}
+
+
+@media (min-width: 1024px) {
+  .item__list .item__info {
+    width: 25%;
+  }
+}
+
+@media only screen and (max-width: 1199px){
+.left-nav-menu {
+    display: none;
+    }
+.right-nav-content{
+  width:100%;
+}
+}
+
 
 /* Actual site already has icons folder */
 /*@font-face {
