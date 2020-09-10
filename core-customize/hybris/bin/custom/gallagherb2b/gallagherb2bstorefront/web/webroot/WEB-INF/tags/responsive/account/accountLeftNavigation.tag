@@ -16,7 +16,7 @@
 			var="childLevel1">
 			<c:forEach items="${childLevel1.entries}" var="entry">
 				<c:choose>
-					<c:when test="${entry.item.styleAttributes == cmsPage.uid}">
+					<c:when test="${fn:contains(entry.item.styleAttributes, cmsPage.uid)}">
 						<cms:component component="${entry.item}" element="li" class="active"
 					 	evaluateRestriction="true" />
 					 </c:when>
@@ -38,7 +38,7 @@
 			var="childLevel1">													
 			<c:forEach items="${childLevel1.entries}" var="entry">
 				<c:choose>
-					<c:when test="${entry.item.styleAttributes == cmsPage.uid}">
+					<c:when test="${fn:contains(entry.item.styleAttributes, cmsPage.uid)}">
 						<cms:component component="${entry.item}" element="li" class="active"
 					 	evaluateRestriction="true" />
 					 </c:when>
