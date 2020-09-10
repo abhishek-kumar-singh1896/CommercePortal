@@ -8,10 +8,10 @@
 <%@ taglib prefix="account" tagdir="/WEB-INF/tags/responsive/account"%>
 <template:page pageTitle="${pageTitle}">
 <div class="content-inner row">
-	<div class="col-md-2 col-md-offset-1 hidden-xs">
+	<div class="col-md-2 col-md-offset-1 left-nav-menu">
 		<account:accountLeftNavigation />
 	</div>
-	<div class="col-md-8">
+	<div class="col-sm-12 col-md-8 right-nav-content">
         <cart:cartValidation/>
         <cms:pageSlot position="TopContent" var="feature" element="div" class="accountPageTopContent">
             <cms:component component="${feature}" />

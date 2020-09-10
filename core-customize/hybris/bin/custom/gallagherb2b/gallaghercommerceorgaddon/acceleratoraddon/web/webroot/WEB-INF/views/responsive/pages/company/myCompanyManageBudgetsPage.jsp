@@ -16,10 +16,10 @@
 <template:page pageTitle="${pageTitle}">
 	<div class="account-section content-inner">
 		<div class="row">
-			<div class="col-md-2 col-md-offset-1 hidden-xs">
+			<div class="col-md-2 col-md-offset-1 left-nav-menu">
 				<account:accountLeftNavigation />
 			</div>
-			<div class="col-md-8">
+			<div class="col-sm-12 col-md-8 right-nav-content">
 				<div class="account-section-header">
 					<spring:theme code="text.company.manage.budget.title" />
 					<div class="account-section-header-add pull-right">

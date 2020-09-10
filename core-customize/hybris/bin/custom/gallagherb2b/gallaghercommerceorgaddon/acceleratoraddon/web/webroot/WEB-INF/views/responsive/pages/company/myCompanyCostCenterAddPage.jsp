@@ -31,10 +31,10 @@
 <template:page pageTitle="${pageTitle}">
 	<div class="account-section content-inner">
 		<div class="row">
-			<div class="col-md-2 col-md-offset-1 hidden-xs">
+			<div class="col-md-2 col-md-offset-1 left-nav-menu">
 				<account:accountLeftNavigation />
 			</div>
-			<div class="col-md-8">
+			<div class="col-sm-12 col-md-8 right-nav-content">
 				<div>
 					<c:choose>
 						<c:when test="${edit eq true }">
