@@ -1179,6 +1179,162 @@
                      <filter class="solr.RemoveDuplicatesTokenFilterFactory" />
                </analyzer>
         </fieldType>
+		
+		<!-- Text South American English (en_ST) -->
+
+        <fieldType name="text_en_st" class="solr.TextField" positionIncrementGap="100">
+               <analyzer type="index">
+                     <tokenizer class="solr.StandardTokenizerFactory" />
+                     <filter class="solr.EnglishPossessiveFilterFactory" />
+                     <filter class="solr.ManagedStopFilterFactory" managed="en_st" />
+                     <!-- <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_es_la.txt" /> -->
+                     <filter class="solr.LowerCaseFilterFactory" />
+                     <!-- <filter class="solr.KeywordRepeatFilterFactory" /> -->
+                     <filter class="solr.KeywordMarkerFilterFactory" protected="protwords.txt" />
+                     <filter class="solr.PorterStemFilterFactory" />
+                     <!-- <filter class="solr.SnowballPorterFilterFactory" language="English" /> -->
+                     <!-- <filter class="solr.EnglishMinimalStemFilterFactory" /> -->
+                     <!-- <filter class="solr.ASCIIFoldingFilterFactory" /> -->
+                     <filter class="solr.RemoveDuplicatesTokenFilterFactory" />
+               </analyzer>
+               <analyzer type="query">
+                     <tokenizer class="solr.StandardTokenizerFactory" />
+                     <filter class="solr.EnglishPossessiveFilterFactory" />
+                     <filter class="solr.ManagedSynonymGraphFilterFactory" managed="en_st" />
+                     <filter class="solr.ManagedStopFilterFactory" managed="en_st" />
+                     <!-- <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_es_la.txt" /> -->
+                     <filter class="solr.LowerCaseFilterFactory" />
+                     <!-- <filter class="solr.KeywordRepeatFilterFactory" /> -->
+                     <filter class="solr.KeywordMarkerFilterFactory" protected="protwords.txt" />
+                     <filter class="solr.PorterStemFilterFactory" />
+                     <!-- <filter class="solr.SnowballPorterFilterFactory" language="English" /> -->
+                     <!-- <filter class="solr.EnglishMinimalStemFilterFactory" /> -->
+                     <!-- <filter class="solr.ASCIIFoldingFilterFactory" /> -->
+                     <filter class="solr.RemoveDuplicatesTokenFilterFactory" />
+               </analyzer>
+        </fieldType>
+
+        <fieldType name="text_spell_en_st" class="solr.TextField" positionIncrementGap="100">
+               <analyzer type="index">
+                     <tokenizer class="solr.StandardTokenizerFactory" />
+                     <filter class="solr.ManagedStopFilterFactory" managed="en_st" />
+                     <!-- <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_es_la.txt" /> -->
+                     <filter class="solr.LowerCaseFilterFactory" />
+                     <filter class="solr.RemoveDuplicatesTokenFilterFactory" />
+               </analyzer>
+               <analyzer type="query">
+                     <tokenizer class="solr.StandardTokenizerFactory" />
+                     <filter class="solr.ManagedSynonymGraphFilterFactory" managed="en_st" />
+                     <filter class="solr.ManagedStopFilterFactory" managed="en_st" />
+                     <!-- <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_es_la.txt" /> -->
+                     <filter class="solr.LowerCaseFilterFactory" />
+                     <filter class="solr.RemoveDuplicatesTokenFilterFactory" />
+               </analyzer>
+        </fieldType>
+		
+		<!-- Text UK English (en_UK) -->
+
+        <fieldType name="text_en_uk" class="solr.TextField" positionIncrementGap="100">
+               <analyzer type="index">
+                     <tokenizer class="solr.StandardTokenizerFactory" />
+                     <filter class="solr.EnglishPossessiveFilterFactory" />
+                     <filter class="solr.ManagedStopFilterFactory" managed="en_uk" />
+                     <!-- <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_es_la.txt" /> -->
+                     <filter class="solr.LowerCaseFilterFactory" />
+                     <!-- <filter class="solr.KeywordRepeatFilterFactory" /> -->
+                     <filter class="solr.KeywordMarkerFilterFactory" protected="protwords.txt" />
+                     <filter class="solr.PorterStemFilterFactory" />
+                     <!-- <filter class="solr.SnowballPorterFilterFactory" language="English" /> -->
+                     <!-- <filter class="solr.EnglishMinimalStemFilterFactory" /> -->
+                     <!-- <filter class="solr.ASCIIFoldingFilterFactory" /> -->
+                     <filter class="solr.RemoveDuplicatesTokenFilterFactory" />
+               </analyzer>
+               <analyzer type="query">
+                     <tokenizer class="solr.StandardTokenizerFactory" />
+                     <filter class="solr.EnglishPossessiveFilterFactory" />
+                     <filter class="solr.ManagedSynonymGraphFilterFactory" managed="en_uk" />
+                     <filter class="solr.ManagedStopFilterFactory" managed="en_uk" />
+                     <!-- <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_es_la.txt" /> -->
+                     <filter class="solr.LowerCaseFilterFactory" />
+                     <!-- <filter class="solr.KeywordRepeatFilterFactory" /> -->
+                     <filter class="solr.KeywordMarkerFilterFactory" protected="protwords.txt" />
+                     <filter class="solr.PorterStemFilterFactory" />
+                     <!-- <filter class="solr.SnowballPorterFilterFactory" language="English" /> -->
+                     <!-- <filter class="solr.EnglishMinimalStemFilterFactory" /> -->
+                     <!-- <filter class="solr.ASCIIFoldingFilterFactory" /> -->
+                     <filter class="solr.RemoveDuplicatesTokenFilterFactory" />
+               </analyzer>
+        </fieldType>
+
+        <fieldType name="text_spell_en_uk" class="solr.TextField" positionIncrementGap="100">
+               <analyzer type="index">
+                     <tokenizer class="solr.StandardTokenizerFactory" />
+                     <filter class="solr.ManagedStopFilterFactory" managed="en_uk" />
+                     <!-- <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_es_la.txt" /> -->
+                     <filter class="solr.LowerCaseFilterFactory" />
+                     <filter class="solr.RemoveDuplicatesTokenFilterFactory" />
+               </analyzer>
+               <analyzer type="query">
+                     <tokenizer class="solr.StandardTokenizerFactory" />
+                     <filter class="solr.ManagedSynonymGraphFilterFactory" managed="en_uk" />
+                     <filter class="solr.ManagedStopFilterFactory" managed="en_uk" />
+                     <!-- <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_es_la.txt" /> -->
+                     <filter class="solr.LowerCaseFilterFactory" />
+                     <filter class="solr.RemoveDuplicatesTokenFilterFactory" />
+               </analyzer>
+        </fieldType>
+		
+		<!-- Text UK English (en_AS) -->
+
+        <fieldType name="text_en_as" class="solr.TextField" positionIncrementGap="100">
+               <analyzer type="index">
+                     <tokenizer class="solr.StandardTokenizerFactory" />
+                     <filter class="solr.EnglishPossessiveFilterFactory" />
+                     <filter class="solr.ManagedStopFilterFactory" managed="en_as" />
+                     <!-- <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_es_la.txt" /> -->
+                     <filter class="solr.LowerCaseFilterFactory" />
+                     <!-- <filter class="solr.KeywordRepeatFilterFactory" /> -->
+                     <filter class="solr.KeywordMarkerFilterFactory" protected="protwords.txt" />
+                     <filter class="solr.PorterStemFilterFactory" />
+                     <!-- <filter class="solr.SnowballPorterFilterFactory" language="English" /> -->
+                     <!-- <filter class="solr.EnglishMinimalStemFilterFactory" /> -->
+                     <!-- <filter class="solr.ASCIIFoldingFilterFactory" /> -->
+                     <filter class="solr.RemoveDuplicatesTokenFilterFactory" />
+               </analyzer>
+               <analyzer type="query">
+                     <tokenizer class="solr.StandardTokenizerFactory" />
+                     <filter class="solr.EnglishPossessiveFilterFactory" />
+                     <filter class="solr.ManagedSynonymGraphFilterFactory" managed="en_as" />
+                     <filter class="solr.ManagedStopFilterFactory" managed="en_as" />
+                     <!-- <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_es_la.txt" /> -->
+                     <filter class="solr.LowerCaseFilterFactory" />
+                     <!-- <filter class="solr.KeywordRepeatFilterFactory" /> -->
+                     <filter class="solr.KeywordMarkerFilterFactory" protected="protwords.txt" />
+                     <filter class="solr.PorterStemFilterFactory" />
+                     <!-- <filter class="solr.SnowballPorterFilterFactory" language="English" /> -->
+                     <!-- <filter class="solr.EnglishMinimalStemFilterFactory" /> -->
+                     <!-- <filter class="solr.ASCIIFoldingFilterFactory" /> -->
+                     <filter class="solr.RemoveDuplicatesTokenFilterFactory" />
+               </analyzer>
+        </fieldType>
+
+        <fieldType name="text_spell_en_as" class="solr.TextField" positionIncrementGap="100">
+               <analyzer type="index">
+                     <tokenizer class="solr.StandardTokenizerFactory" />
+                     <filter class="solr.ManagedStopFilterFactory" managed="en_as" />
+                     <!-- <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_es_la.txt" /> -->
+                     <filter class="solr.LowerCaseFilterFactory" />
+                     <filter class="solr.RemoveDuplicatesTokenFilterFactory" />
+               </analyzer>
+               <analyzer type="query">
+                     <tokenizer class="solr.StandardTokenizerFactory" />
+                     <filter class="solr.ManagedSynonymGraphFilterFactory" managed="en_as" />
+                     <filter class="solr.ManagedStopFilterFactory" managed="en_as" />
+                     <!-- <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_es_la.txt" /> -->
+                     <filter class="solr.LowerCaseFilterFactory" />
+                     <filter class="solr.RemoveDuplicatesTokenFilterFactory" />
+               </analyzer>
+        </fieldType>
 
 
 		<!-- Sortable Text -->
@@ -1282,7 +1438,16 @@
 
 		<dynamicField name="*_text_en_au" type="text_en_au" indexed="true" stored="true" />
 		<dynamicField name="*_text_en_au_mv" type="text_en_au" indexed="true" stored="true" multiValued="true" />
+	
+		<dynamicField name="*_text_en_uk" type="text_en_uk" indexed="true" stored="true" />
+		<dynamicField name="*_text_en_uk_mv" type="text_en_uk" indexed="true" stored="true" multiValued="true" />
 		
+		<dynamicField name="*_text_en_st" type="text_en_st" indexed="true" stored="true" />
+		<dynamicField name="*_text_en_st_mv" type="text_en_st" indexed="true" stored="true" multiValued="true" />
+		
+		<dynamicField name="*_text_en_as" type="text_en_as" indexed="true" stored="true" />
+		<dynamicField name="*_text_en_as_mv" type="text_en_as" indexed="true" stored="true" multiValued="true" />
+				
 		<dynamicField name="*_text_fr_ca" type="text_fr_ca" indexed="true" stored="true" />
         <dynamicField name="*_text_fr_ca_mv" type="text_fr_ca" indexed="true" stored="true" multiValued="true" />
 
@@ -1313,6 +1478,9 @@
 		<field name="spellcheck_en_au" type="text_spell_en_au" indexed="true" stored="true" multiValued="true" />
 		<field name="spellcheck_fr_ca" type="text_spell_fr_ca" indexed="true" stored="true" multiValued="true" />
 		<field name="spellcheck_es_la" type="text_spell_es_la" indexed="true" stored="true" multiValued="true" />
+		<field name="spellcheck_en_st" type="text_spell_en_st" indexed="true" stored="true" multiValued="true" />
+		<field name="spellcheck_en_as" type="text_spell_en_as" indexed="true" stored="true" multiValued="true" />
+		<field name="spellcheck_en_uk" type="text_spell_en_uk" indexed="true" stored="true" multiValued="true" />
 
 		<copyField source="spellcheck" dest="spellcheck_en" />
 		<copyField source="spellcheck" dest="spellcheck_cs" />
@@ -1337,6 +1505,9 @@
 		<copyField source="spellcheck" dest="spellcheck_en_au" />
 		<copyField source="spellcheck" dest="spellcheck_fr_ca" />
 		<copyField source="spellcheck" dest="spellcheck_es_la" />
+		<copyField source="spellcheck" dest="spellcheck_en_st" />
+		<copyField source="spellcheck" dest="spellcheck_en_as" />
+		<copyField source="spellcheck" dest="spellcheck_en_uk" />
 
 		<field name="autosuggest" type="text_spell" indexed="true" stored="true" multiValued="true" />
 		<field name="autosuggest_en" type="text_spell_en" indexed="true" stored="true" multiValued="true" />
@@ -1362,6 +1533,9 @@
 		<field name="autosuggest_en_au" type="text_spell_en_au" indexed="true" stored="true" multiValued="true" />
 		<field name="autosuggest_fr_ca" type="text_spell_fr_ca" indexed="true" stored="true" multiValued="true" />
 		<field name="autosuggest_es_la" type="text_spell_es_la" indexed="true" stored="true" multiValued="true" />
+		<field name="autosuggest_en_as" type="text_spell_en_as" indexed="true" stored="true" multiValued="true" />
+		<field name="autosuggest_en_st" type="text_spell_en_st" indexed="true" stored="true" multiValued="true" />
+		<field name="autosuggest_en_uk" type="text_spell_en_uk" indexed="true" stored="true" multiValued="true" />
 
 		<copyField source="autosuggest" dest="autosuggest_en" />
 		<copyField source="autosuggest" dest="autosuggest_cs" />
@@ -1386,6 +1560,9 @@
 		<copyField source="autosuggest" dest="autosuggest_en_au" />
 		<copyField source="autosuggest" dest="autosuggest_fr_ca" />
 		<copyField source="autosuggest" dest="autosuggest_es_la" />
+		<copyField source="autosuggest" dest="autosuggest_en_st" />
+		<copyField source="autosuggest" dest="autosuggest_en_as" />
+		<copyField source="autosuggest" dest="autosuggest_en_uk" />
 		
 		<dynamicField name="*_sortabletext" type="sortabletext" indexed="true" stored="true" />
 		<dynamicField name="*_sortabletext_mv" type="sortabletext" indexed="true" stored="true"
