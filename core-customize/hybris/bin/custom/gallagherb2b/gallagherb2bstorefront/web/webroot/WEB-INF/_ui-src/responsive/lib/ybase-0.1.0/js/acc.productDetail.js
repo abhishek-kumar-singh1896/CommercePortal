@@ -201,13 +201,13 @@ ACC.productDetail = {
              	      var imgHeight = (canvas.height * imgWidth / canvas.width)+10;
                       if(imgHeight<630){
                  	      doc.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-                 	      doc.addImage(pdfFooterDetail, 'JPEG', 0, 642, imgWidth, 140);
-                 	      doc.addImage(pdfFooter, 'JPEG', 0, 782, imgWidth, 60);
+                 	      doc.addImage(pdfFooterDetail, 'JPEG', 0, 642, imgWidth, 200);
+                 	      /*doc.addImage(pdfFooter, 'JPEG', 0, 782, imgWidth, 60);*/
                       }else{
                     	  if(imgHeight<700 && imgHeight>630){
                     		  doc.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight-70);
-                     	      doc.addImage(pdfFooterDetail, 'JPEG', 0, 642, imgWidth, 140);
-                     	      doc.addImage(pdfFooter, 'JPEG', 0, 782, imgWidth, 60);
+                     	      doc.addImage(pdfFooterDetail, 'JPEG', 0, 642, imgWidth, 200);
+                     	      /*doc.addImage(pdfFooter, 'JPEG', 0, 782, imgWidth, 60);*/
                     	  }else{
                     		  var heightLeft = imgHeight;
                      	      var position = 0;
@@ -220,8 +220,8 @@ ACC.productDetail = {
                         	        doc.addPage();
                         	        doc.addImage(imgData, 'PNG', 0, position+6, imgWidth, imgHeight-210);
                         	        heightLeft -= pageHeight;
-                        	        doc.addImage(pdfFooterDetail, 'JPEG', 0, 642, imgWidth, 140);
-                         	        doc.addImage(pdfFooter, 'JPEG', 0, 782, imgWidth, 60);
+                        	        doc.addImage(pdfFooterDetail, 'JPEG', 0, 642, imgWidth, 200);
+                         	        /*doc.addImage(pdfFooter, 'JPEG', 0, 782, imgWidth, 60);*/
                     	    	}else{
                         	        position = heightLeft - imgHeight+70;
                         	        doc.addPage();
