@@ -304,7 +304,7 @@ public class ProductPageController extends AbstractPageController
 
 		final ProductData productData = productFacade.getProductForCodeAndOptions(productCode, extraOptions);
 
-		model.addAttribute("todayDate", new SimpleDateFormat("dd/MM/YYYY").format(new Date()));
+		model.addAttribute("todayDate", new SimpleDateFormat("dd/MM/YYYY HH:mm:ss").format(new Date()));
 		populateProductDetailForDisplay(productCode, model, request, extraOptions);
 		return ControllerConstants.Views.Pages.Product.DownloadProductDetails;
 
