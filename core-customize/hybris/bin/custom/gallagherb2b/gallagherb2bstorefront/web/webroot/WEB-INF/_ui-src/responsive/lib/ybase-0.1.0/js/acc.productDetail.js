@@ -3,6 +3,7 @@ ACC.productDetail = {
     _autoload: [
         "initPageEvents",
         "bindVariantOptions",
+        "bindDownloadPDPClick",
         ["bindVideoPlayPause", $(".with-video").length != 0]
     ],
 
@@ -171,5 +172,77 @@ ACC.productDetail = {
         if (currentSize != null) {
             sizeSpan.text(": " + currentSize);
         }
-    }
+    },
+    bindDownloadPDPClick : function(e){
+    	
+    	$(document).on('click', '.product-detail-print-btn', function(e){
+    		var productNumber=document.getElementById("downloadPDF").value;
+    	ACC.productDetail.printProduct(productNumber);
+		});	
+	},
+	
+	printProduct : function(productNumber) {
+		var url = ACC.config.encodedContextPath+'/p/'+productNumber+'/downloadProductDetails';
+		 		$.ajax({
+        	url: url,
+            type: 'GET',
+           async: true,
+            success: function (data) {
+               $('#print-product-new').html(data);
+               $('#print-product-new').css('display','block');
+       	     	var pdfFooterDetail = document.getElementById('PDFFooterDetail');
+       	     	var pdfFooter = document.getElementById('PDFFooter');
+       	     	var quotes = document.getElementById('print-product-new');
+                   html2canvas(quotes).then(function (canvas){
+                      var imgData = canvas.toDataURL('image/png');
+                      var doc = new jsPDF('p', 'pt','a4');
+                      var imgWidth = 600; 
+             	      var pageHeight = 840;  
+             	      var imgHeight = (canvas.height * imgWidth / canvas.width)+10;
+                      if(imgHeight<630){
+                 	      doc.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+                 	      doc.addImage(pdfFooterDetail, 'JPEG', 0, 642, imgWidth, 200);
+                 	      /*doc.addImage(pdfFooter, 'JPEG', 0, 782, imgWidth, 60);*/
+                      }else{
+                    	  if(imgHeight<700 && imgHeight>630){
+                    		  doc.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight-70);
+                     	      doc.addImage(pdfFooterDetail, 'JPEG', 0, 642, imgWidth, 200);
+                     	      /*doc.addImage(pdfFooter, 'JPEG', 0, 782, imgWidth, 60);*/
+                    	  }else{
+                    		  var heightLeft = imgHeight;
+                     	      var position = 0;
+                     	      doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight-70);
+                     	      doc.addImage(pdfFooter, 'JPEG', 0, 782, imgWidth, 60);
+                     	      heightLeft -= pageHeight;
+                    	      while (heightLeft >= 0) {
+                    	    	if(heightLeft<pageHeight){
+                        	        position = heightLeft - imgHeight+170;
+                        	        doc.addPage();
+                        	        doc.addImage(imgData, 'PNG', 0, position+6, imgWidth, imgHeight-210);
+                        	        heightLeft -= pageHeight;
+                        	        doc.addImage(pdfFooterDetail, 'JPEG', 0, 642, imgWidth, 200);
+                         	        /*doc.addImage(pdfFooter, 'JPEG', 0, 782, imgWidth, 60);*/
+                    	    	}else{
+                        	        position = heightLeft - imgHeight+70;
+                        	        doc.addPage();
+                        	        doc.addImage(imgData, 'PNG', 0, position+5, imgWidth, imgHeight-70);
+                        	        heightLeft -= pageHeight;
+                         	        doc.addImage(pdfFooter, 'JPEG', 0, 782, imgWidth, 60);
+                    	    	}
+                    	      }
+                    	  }
+                    	  }
+             	      doc.save( 'ProductDetails-'+productNumber+'.pdf');
+                });
+               $('#print-product-new').css('display','none');
+               $('.print-product-new').html("");
+               
+               },
+            error: function (jqXHR, textStatus, errorThrown) {
+                // log the error to the console
+                console.log("The following error occurred: " + textStatus, errorThrown);
+            }
+		
+		 });
+	}
 };

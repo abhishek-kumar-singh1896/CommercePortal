@@ -13,6 +13,12 @@
 					<product:productDetailsTab product="${product}" />
 				</div>
 			</div>
+			 <div class="col-12 col-sm-6">
+	             <div class="download-option">
+	               <button class="product-detail-print-btn btn btn-primary">Download</button>
+	               <input id="downloadPDF" name="downloadPDPPDF" type="hidden" value="${product.code}">
+	             </div>
+             </div>
 		</div>
 	</div>
 </div>
