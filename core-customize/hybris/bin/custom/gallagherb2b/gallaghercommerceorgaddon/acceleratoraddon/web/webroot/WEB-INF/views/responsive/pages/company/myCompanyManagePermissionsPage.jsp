@@ -27,106 +27,116 @@
 			</div>
 			<div class="col-sm-12 col-md-8 right-nav-content">
 				<div class="account-section-header">
-					<spring:theme code="text.company.${action}.title" />
-
-					<div class="account-section-header-add pull-right">
-						<a href="${fn:escapeXml(createUrl)}" class="button add"><spring:theme
-								code="text.company.managePermissions.addButton.displayName" /></a>
-					</div>
-				</div>
-
-				<c:if test="${empty searchPageData.results}">
-					<div class="row">
-						<div class="col-md-6 col-md-push-3">
-							<div class="account-section-content	content-empty">
-								<spring:theme code="text.company.noentries" />
+				    <div class="row">
+				        <div class="container-lg col-md-6">
+							<spring:theme code="text.company.${action}.title" />
+							<div class="account-section-header-add pull-right">
+								<a href="${fn:escapeXml(createUrl)}" class="button add"><spring:theme
+										code="text.company.managePermissions.addButton.displayName" /></a>
 							</div>
 						</div>
 					</div>
-				</c:if>
-
-				<c:if test="${not empty searchPageData.results}">
-					<div class="account-section-content">
-						<div class="account-orderhistory-pagination">
-							<nav:pagination top="true"
-								supportShowPaged="${isShowPageAllowed}"
-								supportShowAll="${isShowAllAllowed}"
-								searchPageData="${searchPageData}" searchUrl="${searchUrl}"
-								msgKey="text.company.${action}.page"
-								numberPagesShown="${numberPagesShown}" hideRefineButton="true"
-								additionalParams="${additionalParams}" />
-						</div>
-						<div class="account-overview-table">
-							<table class="responsive-table">
-								<tr
-									class="account-orderhistory-table-head responsive-table-head hidden-xs">
-									<th><spring:theme code="text.company.column.id.name" /></th>
-									<th><spring:theme code="text.company.column.type" /></th>
-									<th><spring:theme
-											code="text.company.column.parentUnit.name" /></th>
-									<th><spring:theme
-											code="text.company.${action}.timespan.label" /></th>
-									<th><spring:theme
-											code="text.company.${action}.value.title" /></th>
-									<th><spring:theme code="text.company.column.status.name" />
-									</th>
-								</tr>
-								<c:forEach items="${searchPageData.results}" var="result">
-									<spring:url
-										value="/my-company/organization-management/manage-permissions/view"
-										var="viewPermissionDetailsUrl" htmlEscape="false">
-										<spring:param name="permissionCode" value="${result.code}" />
-									</spring:url>
-									<tr class="responsive-table-item">
-										<td class="hidden-sm hidden-md hidden-lg"><spring:theme
-												code="text.company.column.id.name" /></td>
-										<td class="responsive-table-cell"><a
-											href="${fn:escapeXml(viewPermissionDetailsUrl)}">${fn:escapeXml(result.code)}</a>
-										</td>
-										<td class="hidden-sm hidden-md hidden-lg"><spring:theme
-												code="text.company.column.type" /></td>
-										<td class="responsive-table-cell">
-											${fn:escapeXml(result.b2BPermissionTypeData.name)}</td>
-										<td class="hidden-sm hidden-md hidden-lg"><spring:theme
-												code="text.company.column.parentUnit.name" /></td>
-										<td class="responsive-table-cell">
-											${fn:escapeXml(result.unit.uid)}</td>
-										<td class="hidden-sm hidden-md hidden-lg"><spring:theme
-												code="text.company.${action}.timespan.label" /></td>
-										<td class="responsive-table-cell"><company:permissionTimespan
-												permission="${result}" /></td>
-										<td class="hidden-sm hidden-md hidden-lg"><spring:theme
-												code="text.company.${action}.value.title" /></td>
-										<td class="responsive-table-cell"><company:permissionAmount
-												permission="${result}" displayBracketsAroundCurrency="false" />
-										</td>
-										<td class="hidden-sm hidden-md hidden-lg"><spring:theme
-												code="text.company.column.status.name" /></td>
-										<td class="status"><c:choose>
-												<c:when test="${result.active}">
-													<spring:theme code="text.company.${action}.status.enabled" />
-												</c:when>
-												<c:otherwise>
-													<span class="account-status-inactive"><spring:theme
-															code="text.company.${action}.status.disabled" /></span>
-												</c:otherwise>
-											</c:choose></td>
-									</tr>
-								</c:forEach>
-								</tbody>
-							</table>
-						</div>
-						<div class="account-orderhistory-pagination">
-							<nav:pagination top="false"
-								supportShowPaged="${isShowPageAllowed}"
-								supportShowAll="${isShowAllAllowed}"
-								searchPageData="${searchPageData}" searchUrl="${searchUrl}"
-								msgKey="text.company.${action}.page"
-								numberPagesShown="${numberPagesShown}" hideRefineButton="true"
-								additionalParams="${additionalParams}" />
+				</div>
+				<div class="row">
+				    <div class="container-lg col-md-12">
+				        <div class="account-section-content">
+				            <div class="account-section-form">
+								<c:if test="${empty searchPageData.results}">
+									<div class="row">
+										<div class="col-md-6 col-md-push-3">
+											<div class="account-section-content	content-empty">
+												<spring:theme code="text.company.noentries" />
+											</div>
+										</div>
+									</div>
+								</c:if>
+				
+								<c:if test="${not empty searchPageData.results}">
+									<div class="account-section-content">
+										<div class="account-orderhistory-pagination">
+											<nav:pagination top="true"
+												supportShowPaged="${isShowPageAllowed}"
+												supportShowAll="${isShowAllAllowed}"
+												searchPageData="${searchPageData}" searchUrl="${searchUrl}"
+												msgKey="text.company.${action}.page"
+												numberPagesShown="${numberPagesShown}" hideRefineButton="true"
+												additionalParams="${additionalParams}" />
+										</div>
+										<div class="account-overview-table">
+											<table class="responsive-table">
+												<tr
+													class="account-orderhistory-table-head responsive-table-head hidden-xs">
+													<th><spring:theme code="text.company.column.id.name" /></th>
+													<th><spring:theme code="text.company.column.type" /></th>
+													<th><spring:theme
+															code="text.company.column.parentUnit.name" /></th>
+													<th><spring:theme
+															code="text.company.${action}.timespan.label" /></th>
+													<th><spring:theme
+															code="text.company.${action}.value.title" /></th>
+													<th><spring:theme code="text.company.column.status.name" />
+													</th>
+												</tr>
+												<c:forEach items="${searchPageData.results}" var="result">
+													<spring:url
+														value="/my-company/organization-management/manage-permissions/view"
+														var="viewPermissionDetailsUrl" htmlEscape="false">
+														<spring:param name="permissionCode" value="${result.code}" />
+													</spring:url>
+													<tr class="responsive-table-item">
+														<td class="hidden-sm hidden-md hidden-lg"><spring:theme
+																code="text.company.column.id.name" /></td>
+														<td class="responsive-table-cell"><a
+															href="${fn:escapeXml(viewPermissionDetailsUrl)}">${fn:escapeXml(result.code)}</a>
+														</td>
+														<td class="hidden-sm hidden-md hidden-lg"><spring:theme
+																code="text.company.column.type" /></td>
+														<td class="responsive-table-cell">
+															${fn:escapeXml(result.b2BPermissionTypeData.name)}</td>
+														<td class="hidden-sm hidden-md hidden-lg"><spring:theme
+																code="text.company.column.parentUnit.name" /></td>
+														<td class="responsive-table-cell">
+															${fn:escapeXml(result.unit.uid)}</td>
+														<td class="hidden-sm hidden-md hidden-lg"><spring:theme
+																code="text.company.${action}.timespan.label" /></td>
+														<td class="responsive-table-cell"><company:permissionTimespan
+																permission="${result}" /></td>
+														<td class="hidden-sm hidden-md hidden-lg"><spring:theme
+																code="text.company.${action}.value.title" /></td>
+														<td class="responsive-table-cell"><company:permissionAmount
+																permission="${result}" displayBracketsAroundCurrency="false" />
+														</td>
+														<td class="hidden-sm hidden-md hidden-lg"><spring:theme
+																code="text.company.column.status.name" /></td>
+														<td class="status"><c:choose>
+																<c:when test="${result.active}">
+																	<spring:theme code="text.company.${action}.status.enabled" />
+																</c:when>
+																<c:otherwise>
+																	<span class="account-status-inactive"><spring:theme
+																			code="text.company.${action}.status.disabled" /></span>
+																</c:otherwise>
+															</c:choose></td>
+													</tr>
+												</c:forEach>
+												</tbody>
+											</table>
+										</div>
+										<div class="account-orderhistory-pagination">
+											<nav:pagination top="false"
+												supportShowPaged="${isShowPageAllowed}"
+												supportShowAll="${isShowAllAllowed}"
+												searchPageData="${searchPageData}" searchUrl="${searchUrl}"
+												msgKey="text.company.${action}.page"
+												numberPagesShown="${numberPagesShown}" hideRefineButton="true"
+												additionalParams="${additionalParams}" />
+										</div>
+									</div>
+								</c:if>
+							</div>
 						</div>
 					</div>
-				</c:if>
+				</div>
 			</div>
 		</div>
 	</div>

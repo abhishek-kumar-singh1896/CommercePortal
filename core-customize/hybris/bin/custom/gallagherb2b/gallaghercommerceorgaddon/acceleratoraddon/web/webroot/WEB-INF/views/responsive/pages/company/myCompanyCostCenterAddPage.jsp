@@ -35,21 +35,32 @@
 				<account:accountLeftNavigation />
 			</div>
 			<div class="col-sm-12 col-md-8 right-nav-content">
-				<div>
-					<c:choose>
-						<c:when test="${edit eq true }">
-							<org-common:headline url="${cancelUrl}"
-								labelKey="text.company.costCenter.edit.label" />
-						</c:when>
-						<c:otherwise>
-							<org-common:headline url="${cancelUrl}"
-								labelKey="text.company.costCenter.add.new.label" />
-						</c:otherwise>
-					</c:choose>
+				<div class="account-section-header">
+				    <div class="row">
+				        <div class="container-lg col-md-6">
+							<c:choose>
+								<c:when test="${edit eq true }">
+									<org-common:headline url="${cancelUrl}"
+										labelKey="text.company.costCenter.edit.label" />
+								</c:when>
+								<c:otherwise>
+									<org-common:headline url="${cancelUrl}"
+										labelKey="text.company.costCenter.add.new.label" />
+								</c:otherwise>
+							</c:choose>
+						</div>
+					</div>
 				</div>
-
-				<company:b2bCostCenterForm cancelUrl="${cancelUrl}"
-					saveUrl="${saveUrl}" b2BCostCenterForm="${b2BCostCenterForm}" />
+				<div class="row">
+				    <div class="container-lg col-md-12">
+				        <div class="account-section-content">
+				            <div class="account-section-form">
+								<company:b2bCostCenterForm cancelUrl="${cancelUrl}"
+									saveUrl="${saveUrl}" b2BCostCenterForm="${b2BCostCenterForm}" />
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

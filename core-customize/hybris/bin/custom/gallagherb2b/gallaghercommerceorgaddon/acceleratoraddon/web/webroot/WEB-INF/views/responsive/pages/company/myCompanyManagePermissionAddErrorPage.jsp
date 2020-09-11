@@ -19,17 +19,27 @@
 				<account:accountLeftNavigation />
 			</div>
 			<div class="col-sm-12 col-md-8 right-nav-content">
-				<div class="back-link">
-					<a href="${fn:escapeXml(cancelUrl)}"> <span
-						class="glyphicon glyphicon-chevron-left"></span>
-					</a> <span class="label"><spring:theme
-							code="text.company.managePermissions.create.permission.title" /></span>
+				<div class="account-section-header">
+				    <div class="row">
+				        <div class="container-lg col-md-6">
+							<a href="${fn:escapeXml(cancelUrl)}"> <span
+								class="glyphicon glyphicon-chevron-left"></span>
+							</a><spring:theme
+									code="text.company.managePermissions.create.permission.title" />
+						</div>
+					</div>
 				</div>
-				<div class="account-section-content">
-					<div id="addNewPermissionForm">
-						<company:b2bPermissionForm cancelUrl="${cancelUrl}"
-							saveUrl="${savePermissionDetailsUrl}"
-							b2BPermissionForm="${b2BPermissionForm}" />
+				<div class="row">
+				    <div class="container-lg col-md-12">
+				        <div class="account-section-content">
+				            <div class="account-section-form">
+								<div id="addNewPermissionForm">
+									<company:b2bPermissionForm cancelUrl="${cancelUrl}"
+										saveUrl="${savePermissionDetailsUrl}"
+										b2BPermissionForm="${b2BPermissionForm}" />
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

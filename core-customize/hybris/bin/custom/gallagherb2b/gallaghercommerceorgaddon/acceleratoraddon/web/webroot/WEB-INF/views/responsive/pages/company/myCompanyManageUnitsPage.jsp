@@ -19,20 +19,30 @@
 				<account:accountLeftNavigation />
 			</div>
 			<div class="col-sm-12 col-md-8 right-nav-content">
-				<div class="account-section-header no-border">
-					<spring:theme code="text.company.manage.units.label" />
-
-					<div class="account-section-header-add pull-right">
-						<ycommerce:testId code="unit_createNewUnit_button">
-							<a href="${fn:escapeXml(createUnitUrl)}" class="button add">
-								<spring:theme code="text.company.manage.units.newUnitButton" />
-							</a>
-						</ycommerce:testId>
+				<div class="account-section-header">
+				    <div class="row">
+				        <div class="container-lg col-md-6">
+							<spring:theme code="text.company.manage.units.label" />
+							<div class="account-section-header-add pull-right">
+								<ycommerce:testId code="unit_createNewUnit_button">
+									<a href="${fn:escapeXml(createUnitUrl)}" class="button add">
+										<spring:theme code="text.company.manage.units.newUnitButton" />
+									</a>
+								</ycommerce:testId>
+							</div>
+						</div>
 					</div>
 				</div>
-
-				<div id="col-md-8 unittree" class="panel-group accordion">
-					<company:unitTree node="${rootNode}" />
+				<div class="row">
+				    <div class="container-lg col-md-12">
+				        <div class="account-section-content">
+				            <div class="account-section-form">
+								<div id="col-md-8 unittree" class="panel-group accordion">
+									<company:unitTree node="${rootNode}" />
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

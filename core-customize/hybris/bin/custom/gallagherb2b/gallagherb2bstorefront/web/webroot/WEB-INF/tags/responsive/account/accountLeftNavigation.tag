@@ -15,16 +15,18 @@
 		<c:forEach items="${feature.navigationNode.children}"
 			var="childLevel1">
 			<c:forEach items="${childLevel1.entries}" var="entry">
-				<c:choose>
-					<c:when test="${fn:contains(entry.item.styleAttributes, cmsPage.uid)}">
+				<c:set var="check" value="false"></c:set>
+				<c:forTokens items="${entry.item.styleAttributes}" delims="," var="item">   
+			       <c:if test="${item == cmsPage.uid}">
+			       		<c:set var="check" value="true"></c:set>
 						<cms:component component="${entry.item}" element="li" class="active"
 					 	evaluateRestriction="true" />
-					 </c:when>
-					 <c:otherwise>
-					 	<cms:component component="${entry.item}" element="li" 
+				 	</c:if>
+				</c:forTokens>
+				<c:if test="${check eq 'false' }">
+					<cms:component component="${entry.item}" element="li" 
 				 		evaluateRestriction="true" />
-					 </c:otherwise>
-				</c:choose>
+				</c:if>
 			</c:forEach>
 		</c:forEach>
 	</cms:pageSlot>
@@ -37,16 +39,18 @@
 		<c:forEach items="${feature.navigationNode.children}"
 			var="childLevel1">													
 			<c:forEach items="${childLevel1.entries}" var="entry">
-				<c:choose>
-					<c:when test="${fn:contains(entry.item.styleAttributes, cmsPage.uid)}">
+				<c:set var="check" value="false"></c:set>
+				<c:forTokens items="${entry.item.styleAttributes}" delims="," var="item">   
+			       <c:if test="${item == cmsPage.uid}">
+			       		<c:set var="check" value="true"></c:set>
 						<cms:component component="${entry.item}" element="li" class="active"
 					 	evaluateRestriction="true" />
-					 </c:when>
-					 <c:otherwise>
-					 	<cms:component component="${entry.item}" element="li" 
+				 	</c:if>
+				</c:forTokens>
+				<c:if test="${check eq 'false' }">
+					<cms:component component="${entry.item}" element="li" 
 				 		evaluateRestriction="true" />
-					 </c:otherwise>
-				</c:choose>
+				</c:if>
 			</c:forEach>
 		</c:forEach>
 	</cms:pageSlot>

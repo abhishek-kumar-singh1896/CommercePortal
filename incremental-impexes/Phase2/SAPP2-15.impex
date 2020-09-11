@@ -38,17 +38,19 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;PersonalDetailsLink;PersonalDetailsLink;/my-account/update-profile;PersonalDetailsLink;update-profile;
 ;;UpdateEmailLink;UpdateEmailLink;/my-account/update-email;UpdateEmailLink;update-email;
 ;;UpdatePasswordLink;UpdatePasswordLink;/my-account/update-password;UpdatePasswordLink;updatePassword;
-;;AddressBookLink;AddressBookLink;/my-account/address-book;AddressBookLink;address-book;
-;;OrderHistoryLink;OrderHistoryLink;/my-account/orders;OrderHistoryLink;orders;
-;;AddressBookLink;AddressBookLink;/my-account/address-book;AddressBookLink;
-;;MyQuotesLink;MyQuotesLink;/my-account/my-quotes;MyQuotesLink;my-quotes;
+;;AddressBookLink;AddressBookLink;/my-account/address-book;AddressBookLink;address-book,add-edit-address;
+;;OrderHistoryLink;OrderHistoryLink;/my-account/orders;OrderHistoryLink;orders,order;
+;;MyQuotesLink;MyQuotesLink;/my-account/my-quotes;MyQuotesLink;my-quotes,quoteEditPage;
 ;;SavedCartsLink;SavedCartsLink;/my-account/saved-carts;SavedCartsLink;saved-carts;
-;;ImportSavedCartLink;Import Saved Cart Link;/import/csv/saved-cart;ImportSavedCartLink;
+;;ImportSavedCartLink;Import Saved Cart Link;/import/csv/saved-cart;ImportSavedCartLink;importCSVSavedCartPage;
 ;;OrderTemplatesLink;OrderTemplatesLink;/my-account/quick-order-templates;OrderTemplatesLink;order-templates;
 ;;QuickOrderLink;Quick Order Link;/quickOrder;QuickOrderLink;
-;;AccountSupportTicketHistoryLink;AccountSupportTicketHistoryLink;/my-account/support-tickets;AccountSupportTicketHistoryLink;support-tickets;
+;;AccountSupportTicketHistoryLink;AccountSupportTicketHistoryLink;/my-account/support-tickets;AccountSupportTicketHistoryLink;support-tickets,add-support,update-support-ticket;
 ;;UnitsLink;Company Manage Units Link;/my-company/organization-management/manage-units/;UnitsLink;manageUnits;
-;;UsersLink;Company Manage Users Link;/my-company/organization-management/manage-users/;UsersLink;my-company;
+;;UsersLink;Company Manage Users Link;/my-company/organization-management/manage-users/;UsersLink;my-company,organizationManagement;
+
+INSERT_UPDATE CMSUserGroupRestriction;$contentCV[unique=true];uid[unique=true];name;userGroups(uid);includeSubgroups;components(uid,$contentCV)
+;;MyAccountLinkCustomerGroupRestriction;My Account Link Customer Group Restriction;b2bcustomergroup;true;AddressBookLink,PaymentDetailsLink,MyQuotesLink,OrderHistoryLink,BillingHistoryLink,PaymentHistoryLink,MyReplenishmentOrdersLink,SavedCartsLink,ImportSavedCartLink,OrderTemplatesLink,QuickOrderLink
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkname;name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];
 ;;B2BMyAccountLinkComponent;My Account;B2B My Account Link Component;/my-account/update-profile;B2BMyAccountLinkComponent;B2BMyAccountLinkComponent;;;		

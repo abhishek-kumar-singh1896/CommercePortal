@@ -42,85 +42,94 @@
 				<account:accountLeftNavigation />
 			</div>
 			<div class="col-sm-12 col-md-8 right-nav-content">
-				<div>
-					<org-common:headline url="${backToManageUsersUrl}"
-						labelKey="text.company.manageUser.userDetails" />
+				<div class="account-section-header">
+				    <div class="row">
+				        <div class="container-lg col-md-6">
+							<org-common:headline url="${backToManageUsersUrl}"
+								labelKey="text.company.manageUser.userDetails" />
+						</div>
+					</div>
 				</div>
-
-				<div class="account-section-content">
-					<div class="well well-lg well-tertiary">
-						<div class="row">
-							<div class="col-sm-10 col-no-padding">
-								<div class="row">
-									<div class="col-sm-4">
-										<div class="item-group">
-											<span class="item-label"> <spring:theme
-													code="text.company.user.email" />
-											</span> <span class="item-value">
-												${fn:escapeXml(customerData.displayUid)} </span>
-										</div>
-										<div class="item-group">
-											<span class="item-label"> <spring:theme
-													code="text.company.manage.units.user.name" />
-											</span> <span class="item-value"> <c:if
-													test="${not empty customerData.titleCode}">
-													<spring:theme
-														code="text.company.user.${customerData.titleCode}.name" />&nbsp;</c:if>
-												${fn:escapeXml(customerData.firstName)}&nbsp;${fn:escapeXml(customerData.lastName)}
-											</span>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<c:if test="${not empty customerData.contactNumber}">
-											<div class="item-group">
-												<span class="item-label"> <spring:theme
-														code="text.company.unit.contactNumber" />
-												</span> <span class="item-value">
-													${fn:escapeXml(customerData.contactNumber)} </span>
+				<div class="row">
+				    <div class="container-lg col-md-12">
+				        <div class="account-section-content">
+				            <div class="account-section-form">
+								<div class="well well-lg well-tertiary">
+									<div class="row">
+										<div class="col-sm-10 col-no-padding">
+											<div class="row">
+												<div class="col-sm-4">
+													<div class="item-group">
+														<span class="item-label"> <spring:theme
+																code="text.company.user.email" />
+														</span> <span class="item-value">
+															${fn:escapeXml(customerData.displayUid)} </span>
+													</div>
+													<div class="item-group">
+														<span class="item-label"> <spring:theme
+																code="text.company.manage.units.user.name" />
+														</span> <span class="item-value"> <c:if
+																test="${not empty customerData.titleCode}">
+																<spring:theme
+																	code="text.company.user.${customerData.titleCode}.name" />&nbsp;</c:if>
+															${fn:escapeXml(customerData.firstName)}&nbsp;${fn:escapeXml(customerData.lastName)}
+														</span>
+													</div>
+												</div>
+												<div class="col-sm-4">
+													<c:if test="${not empty customerData.contactNumber}">
+														<div class="item-group">
+															<span class="item-label"> <spring:theme
+																	code="text.company.unit.contactNumber" />
+															</span> <span class="item-value">
+																${fn:escapeXml(customerData.contactNumber)} </span>
+														</div>
+													</c:if>
+													<div class="item-group">
+														<span class="item-label"> <spring:theme
+																code="text.company.user.parentBusinessUnit" />
+														</span> <span class="item-value"> <a
+															href="${fn:escapeXml(unitDetailsUrl)}">${fn:escapeXml(customerData.unit.name)}</a>
+														</span>
+													</div>
+												</div>
+												<div class="col-sm-4">
+													<div class="item-group">
+														<span class="item-label"> <spring:theme
+																code="text.company.manageUser.roles" />
+														</span> <span class="item-value"> <c:forEach
+																items="${customerData.roles}" var="group">
+																<spring:theme code="b2busergroup.${group}.name" />
+																<br />
+															</c:forEach>
+														</span>
+													</div>
+													<div class="item-group">
+														<span class="item-label"> <spring:theme
+																code="text.company.user.userEnabledStatus" />
+														</span> <span class="item-value"> <c:choose>
+																<c:when test="${customerData.active}">
+																	<spring:theme code="text.company.manage.unit.user.enable" />
+																</c:when>
+																<c:otherwise>
+																	<spring:theme code="text.company.manage.unit.user.disable" />
+																</c:otherwise>
+															</c:choose>
+														</span>
+													</div>
+												</div>
 											</div>
-										</c:if>
-										<div class="item-group">
-											<span class="item-label"> <spring:theme
-													code="text.company.user.parentBusinessUnit" />
-											</span> <span class="item-value"> <a
-												href="${fn:escapeXml(unitDetailsUrl)}">${fn:escapeXml(customerData.unit.name)}</a>
-											</span>
 										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="item-group">
-											<span class="item-label"> <spring:theme
-													code="text.company.manageUser.roles" />
-											</span> <span class="item-value"> <c:forEach
-													items="${customerData.roles}" var="group">
-													<spring:theme code="b2busergroup.${group}.name" />
-													<br />
-												</c:forEach>
-											</span>
-										</div>
-										<div class="item-group">
-											<span class="item-label"> <spring:theme
-													code="text.company.user.userEnabledStatus" />
-											</span> <span class="item-value"> <c:choose>
-													<c:when test="${customerData.active}">
-														<spring:theme code="text.company.manage.unit.user.enable" />
-													</c:when>
-													<c:otherwise>
-														<spring:theme code="text.company.manage.unit.user.disable" />
-													</c:otherwise>
-												</c:choose>
-											</span>
-										</div>
+										<%-- <div class="col-sm-2">
+			                        <div class="item-action">
+			                            <a href="${fn:escapeXml(editUserUrl)}" class="button edit btn btn-block btn-primary">
+			                                <spring:theme code="text.company.manageUser.button.edit" />
+			                            </a>
+			                        </div>
+			                    </div> --%>
 									</div>
 								</div>
 							</div>
-							<%-- <div class="col-sm-2">
-                        <div class="item-action">
-                            <a href="${fn:escapeXml(editUserUrl)}" class="button edit btn btn-block btn-primary">
-                                <spring:theme code="text.company.manageUser.button.edit" />
-                            </a>
-                        </div>
-                    </div> --%>
 						</div>
 					</div>
 					<div class="accountActions-link">
