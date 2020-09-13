@@ -2,8 +2,11 @@
     img{
         width:auto;
     }
-    margin:4rem 0;
+    padding:4rem 0;
     .account-section-content{
+        .container-lg{
+            margin: 0!important;
+        }
         .account-section-form{
             padding: 0;
             margin: 20px 0;
@@ -254,6 +257,35 @@
 .right-nav-content{
   width:100%;
 }
+}
+
+/* Over -riding prev styles as per needs */
+.account-section {
+    .container-lg {
+        .account-section-content{
+            padding-left:20px;
+            padding-right: 20px;
+            @media screen and (min-width: 1400px){
+                .account-section-form{
+                    padding: 0
+                }
+            }
+        }
+    }
+}
+
+.content-inner .account-section-header .container-lg {
+    margin: 0 !important;
+}
+.right-nav-content{
+    >.accordion{
+        padding-left:20px;
+            padding-right: 20px;
+            @media screen and (min-width: 1400px){
+                padding-left:10px;
+            padding-right: 10px;
+            }
+    }
 }
 
 

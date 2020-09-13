@@ -45,114 +45,124 @@
 				<account:accountLeftNavigation />
 			</div>
 			<div class="col-sm-12 col-md-8 right-nav-content">
-				<div>
-					<c:choose>
-						<c:when test="${not empty b2BCustomerForm.uid}">
-							<org-common:headline url="${cancelUrl}"
-								labelKey="text.company.${action}.edit.title"
-								labelArguments="${b2BCustomerForm.parentB2BUnit}" />
-						</c:when>
-						<c:otherwise>
-							<org-common:headline url="${cancelUrl}"
-								labelKey="text.company.${action}.users.new.title"
-								labelArguments="${param.unit}" />
-						</c:otherwise>
-					</c:choose>
+				<div class="account-section-header">
+				    <div class="row">
+				        <div class="container-lg col-md-6">
+							<c:choose>
+								<c:when test="${not empty b2BCustomerForm.uid}">
+									<org-common:headline url="${cancelUrl}"
+										labelKey="text.company.${action}.edit.title"
+										labelArguments="${b2BCustomerForm.parentB2BUnit}" />
+								</c:when>
+								<c:otherwise>
+									<org-common:headline url="${cancelUrl}"
+										labelKey="text.company.${action}.users.new.title"
+										labelArguments="${param.unit}" />
+								</c:otherwise>
+							</c:choose>
+						</div>
+					</div>
 				</div>
-				<div class="account-section-content">
-					<form:form action="${saveUrl}" method="post"
-						modelAttribute="b2BCustomerForm">
-						<div class="row">
-							<div class="col-xs-12 col-sm-6 user-email">
-								<formElement:formInputBox idKey="user.email"
-									labelKey="user.email" path="email" inputCSS="text"
-									mandatory="true" />
-								<div class="help-block email-duplicate-error">
-									<span id="email.errors"><spring:message
-											code="profile.email.duplicate" /></span>
-								</div>
-								<div class="help-block email-invalid-error">
-									<span id="email.errors"><spring:message
-											code="profile.email.invalid" /></span>
-								</div>
-								<div class="help-block email-exception-error">
-									<span id="email.errors"><spring:message
-											code="text.connection.exception.error" /></span>
-								</div>
-								<div class="help-block email-conflict-error">
-									<span id="email.errors"><spring:theme htmlEscape="false"
-											code="profile.email.conflict" /></span>
-								</div>
-
-							</div>
-							<form:input type="hidden" name="uid" path="uid" id="uid" />
-							<form:input type="hidden" name="duplicate" path="duplicate"
-								id="duplicate" />
-							<form:input type="hidden" name="customerId" path="customerId"
-								id="customerId" />
-							<form:input type="hidden" name="objectId" path="objectId"
-								id="objectId" />
-							<div class="col-xs-12 col-sm-6">
-								<formElement:formSelectBoxDefaultEnabled idKey="user.title"
-									labelKey="user.title" path="titleCode" mandatory="true"
-									skipBlank="false" skipBlankMessageKey="form.select.none"
-									selectCSSClass="form-control" items="${titleData}" />
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-xs-12 col-sm-6">
-								<formElement:formInputBox idKey="user.firstName"
-									labelKey="user.firstName" path="firstName" inputCSS="text"
-									mandatory="true" />
-							</div>
-							<div class="col-xs-12 col-sm-6">
-								<formElement:formInputBox idKey="user.lastName"
-									labelKey="user.lastName" path="lastName" inputCSS="text"
-									mandatory="true" />
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-xs-12 col-sm-6">
-								<customFormElement:formCheckboxes
-									idKey="text.company.user.unit.title"
-									labelKey="text.company.user.unit.title" path="parentB2BUnits"
-									items="${b2bUnits}"
-									disabled="${not empty param.unit and not empty param.role}" />
-							</div>
-							<div class="col-xs-12">
-								<customFormElement:formCheckboxes
-									idKey="text.company.user.roles"
-									labelKey="text.company.user.roles" path="roles"
-									items="${roles}"
-									disabled="${not empty param.unit and not empty param.role}" />
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-xs-12">
-								<div class="accountActions-bottom">
-									<div class="row">
-										<div class="col-sm-3 col-sm-push-9">
-											<ycommerce:testId code="User_Save_button">
-												<button type="submit" class="btn btn-block btn-primary save">
-													<spring:theme code="text.company.save.button" />
-												</button>
-											</ycommerce:testId>
+				<div class="row">
+				    <div class="container-lg col-md-12">
+				        <div class="account-section-content">
+				            <div class="account-section-form">
+									<form:form action="${saveUrl}" method="post"
+										modelAttribute="b2BCustomerForm">
+										<div class="row">
+											<div class="col-xs-12 col-sm-6 user-email">
+												<formElement:formInputBox idKey="user.email"
+													labelKey="user.email" path="email" inputCSS="text"
+													mandatory="true" />
+												<div class="help-block email-duplicate-error">
+													<span id="email.errors"><spring:message
+															code="profile.email.duplicate" /></span>
+												</div>
+												<div class="help-block email-invalid-error">
+													<span id="email.errors"><spring:message
+															code="profile.email.invalid" /></span>
+												</div>
+												<div class="help-block email-exception-error">
+													<span id="email.errors"><spring:message
+															code="text.connection.exception.error" /></span>
+												</div>
+												<div class="help-block email-conflict-error">
+													<span id="email.errors"><spring:theme htmlEscape="false"
+															code="profile.email.conflict" /></span>
+												</div>
+				
+											</div>
+											<form:input type="hidden" name="uid" path="uid" id="uid" />
+											<form:input type="hidden" name="duplicate" path="duplicate"
+												id="duplicate" />
+											<form:input type="hidden" name="customerId" path="customerId"
+												id="customerId" />
+											<form:input type="hidden" name="objectId" path="objectId"
+												id="objectId" />
+											<div class="col-xs-12 col-sm-6">
+												<formElement:formSelectBoxDefaultEnabled idKey="user.title"
+													labelKey="user.title" path="titleCode" mandatory="true"
+													skipBlank="false" skipBlankMessageKey="form.select.none"
+													selectCSSClass="form-control" items="${titleData}" />
+											</div>
 										</div>
-										<div class="col-sm-3 col-sm-push-3">
-											<ycommerce:testId code="User_Cancel_button">
-												<a href="${fn:escapeXml(cancelUrl)}" class="cancel">
-													<button type="button" class="btn btn-block btn-default">
-														<spring:theme code="text.company.cancel.button" />
-													</button>
-												</a>
-											</ycommerce:testId>
+										<div class="row">
+											<div class="col-xs-12 col-sm-6">
+												<formElement:formInputBox idKey="user.firstName"
+													labelKey="user.firstName" path="firstName" inputCSS="text"
+													mandatory="true" />
+											</div>
+											<div class="col-xs-12 col-sm-6">
+												<formElement:formInputBox idKey="user.lastName"
+													labelKey="user.lastName" path="lastName" inputCSS="text"
+													mandatory="true" />
+											</div>
 										</div>
-									</div>
+										<div class="row">
+											<div class="col-xs-12 col-sm-6">
+												<customFormElement:formCheckboxes
+													idKey="text.company.user.unit.title"
+													labelKey="text.company.user.unit.title" path="parentB2BUnits"
+													items="${b2bUnits}"
+													disabled="${not empty param.unit and not empty param.role}" />
+											</div>
+											<div class="col-xs-12">
+												<customFormElement:formCheckboxes
+													idKey="text.company.user.roles"
+													labelKey="text.company.user.roles" path="roles"
+													items="${roles}"
+													disabled="${not empty param.unit and not empty param.role}" />
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-xs-12">
+												<div class="accountActions-bottom">
+													<div class="row">
+														<div class="col-sm-3 col-sm-push-9">
+															<ycommerce:testId code="User_Save_button">
+																<button type="submit" class="btn btn-block btn-primary save">
+																	<spring:theme code="text.company.save.button" />
+																</button>
+															</ycommerce:testId>
+														</div>
+														<div class="col-sm-3 col-sm-push-3">
+															<ycommerce:testId code="User_Cancel_button">
+																<a href="${fn:escapeXml(cancelUrl)}" class="cancel">
+																	<button type="button" class="btn btn-block btn-default">
+																		<spring:theme code="text.company.cancel.button" />
+																	</button>
+																</a>
+															</ycommerce:testId>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</form:form>
 								</div>
 							</div>
 						</div>
-					</form:form>
-				</div>
+					</div>
 			</div>
 		</div>
 	</div>

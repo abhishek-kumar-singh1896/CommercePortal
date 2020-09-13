@@ -22,13 +22,25 @@
 				<account:accountLeftNavigation />
 			</div>
 			<div class="col-sm-12 col-md-8 right-nav-content">
-				<div>
-					<org-common:headline url="${cancelUrl}"
-						labelKey="text.company.manage.units.unit.edit.title"
-						labelArguments="${empty b2BUnitForm.name ? b2BUnitForm.uid : b2BUnitForm.name}" />
+				<div class="account-section-header">
+				    <div class="row">
+				        <div class="container-lg col-md-6">
+							<org-common:headline url="${cancelUrl}"
+								labelKey="text.company.manage.units.unit.edit.title"
+								labelArguments="${empty b2BUnitForm.name ? b2BUnitForm.uid : b2BUnitForm.name}" />
+						</div>
+					</div>
 				</div>
-				<company:b2bUnitForm formUrl="${editUnitUrl}"
-					b2BUnitForm="${b2BUnitForm}" cancelUrl="${cancelUrl}" />
+				<div class="row">
+				    <div class="container-lg col-md-12">
+				        <div class="account-section-content">
+				            <div class="account-section-form">
+								<company:b2bUnitForm formUrl="${editUnitUrl}"
+									b2BUnitForm="${b2BUnitForm}" cancelUrl="${cancelUrl}" />
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

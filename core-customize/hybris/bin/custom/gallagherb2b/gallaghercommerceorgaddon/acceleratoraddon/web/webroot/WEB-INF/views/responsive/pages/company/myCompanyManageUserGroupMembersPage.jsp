@@ -30,107 +30,116 @@
 				<account:accountLeftNavigation />
 			</div>
 			<div class="col-sm-12 col-md-8 right-nav-content">
-				<div class="row">
-					<div class="col-xs-12 col-sm-7">
-						<org-common:headline url="${cancelUrl}"
-							labelKey="text.company.usergroups.${action}.title" />
-					</div>
-					<div class="col-xs-12 col-sm-3 col-sm-push-2">
-						<div class="account-header-done-btn">
-							<org-common:done url="${cancelUrl}"
-								labelKey="text.company.done.button" />
+				<div class="account-section-header">
+				    <div class="row">
+				        <div class="container-lg col-md-6">
+							<div class="col-xs-12 col-sm-7">
+								<org-common:headline url="${cancelUrl}"
+									labelKey="text.company.usergroups.${action}.title" />
+							</div>
+							<div class="col-xs-12 col-sm-3 col-sm-push-2">
+								<div class="account-header-done-btn">
+									<org-common:done url="${cancelUrl}"
+										labelKey="text.company.done.button" />
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
-
-				<div class="account-section-content">
-					<nav:pagination top="true" showTopTotals="false"
-						supportShowPaged="${isShowPageAllowed}"
-						supportShowAll="${isShowAllAllowed}"
-						searchPageData="${searchPageData}" hideRefineButton="true"
-						searchUrl="${searchUrl}" msgKey="text.company.${action}.page"
-						additionalParams="${additionalParams}"
-						numberPagesShown="${numberPagesShown}" showCurrentPageInfo="true" />
-
-					<div class="account-list">
-						<c:choose>
-							<c:when test="${not empty searchPageData.results}">
+				<div class="row">
+				    <div class="container-lg col-md-12">
+				        <div class="account-section-content">
+				            <div class="account-section-form">
+								<nav:pagination top="true" showTopTotals="false"
+									supportShowPaged="${isShowPageAllowed}"
+									supportShowAll="${isShowAllAllowed}"
+									searchPageData="${searchPageData}" hideRefineButton="true"
+									searchUrl="${searchUrl}" msgKey="text.company.${action}.page"
+									additionalParams="${additionalParams}"
+									numberPagesShown="${numberPagesShown}" showCurrentPageInfo="true" />
+			
 								<div class="account-list">
-									<div class="account-cards card-select">
-										<div class="row">
-											<c:forEach items="${searchPageData.results}" var="user">
-												<spring:url
-													value="/my-company/organization-management/manage-users/details"
-													var="viewUrl" htmlEscape="false">
-													<spring:param name="user" value="${user.uid}" />
-												</spring:url>
-												<spring:url value="${baseUrl}/{/action}/select/"
-													var="selectUrl" htmlEscape="false">
-													<spring:param name="user" value="${user.uid}" />
-													<spring:param name="usergroup" value="${param.usergroup}" />
-													<spring:param name="action" value="${action}" />
-												</spring:url>
-												<spring:url value="${baseUrl}/{/action}/deselect/"
-													var="deselectUrl" htmlEscape="false">
-													<spring:param name="user" value="${user.uid}" />
-													<spring:param name="usergroup" value="${param.usergroup}" />
-													<spring:param name="action" value="${action}" />
-												</spring:url>
-												<spring:url
-													value="/my-company/organization-management/manage-units/details/"
-													var="unitDetailUrl" htmlEscape="false">
-													<spring:param name="unit" value="${user.unit.uid}" />
-												</spring:url>
-												<div id="row-${fn:escapeXml(user.normalizedUid)}"
-													class="col-xs-12 col-sm-6 col-md-4 card <c:if test='${user.selected}'>selected</c:if>">
-													<ul class="pull-left">
-														<li><ycommerce:testId code="${action}_name_link">
-																<a href="${fn:escapeXml(viewUrl)}">${fn:escapeXml(user.name)}</a>
-															</ycommerce:testId></li>
-														<li><ycommerce:testId code="${action}_b2bunit_label">
-																<a href="${fn:escapeXml(unitDetailUrl)}">${fn:escapeXml(user.unit.name)}</a>
-															</ycommerce:testId></li>
-														<li class="roles-wrapper clearfix"><b><spring:theme
-																	code="text.company.roles.all.label" /></b> <ycommerce:testId
-																code="${action}_roles_label">
-																<ul id="roles-${fn:escapeXml(user.normalizedUid)}">
-																	<c:forEach items="${user.roles}" var="role">
-																		<li><spring:theme
-																				code="b2busergroup.${role}.name" /></li>
-																	</c:forEach>
+									<c:choose>
+										<c:when test="${not empty searchPageData.results}">
+											<div class="account-list">
+												<div class="account-cards card-select">
+													<div class="row">
+														<c:forEach items="${searchPageData.results}" var="user">
+															<spring:url
+																value="/my-company/organization-management/manage-users/details"
+																var="viewUrl" htmlEscape="false">
+																<spring:param name="user" value="${user.uid}" />
+															</spring:url>
+															<spring:url value="${baseUrl}/{/action}/select/"
+																var="selectUrl" htmlEscape="false">
+																<spring:param name="user" value="${user.uid}" />
+																<spring:param name="usergroup" value="${param.usergroup}" />
+																<spring:param name="action" value="${action}" />
+															</spring:url>
+															<spring:url value="${baseUrl}/{/action}/deselect/"
+																var="deselectUrl" htmlEscape="false">
+																<spring:param name="user" value="${user.uid}" />
+																<spring:param name="usergroup" value="${param.usergroup}" />
+																<spring:param name="action" value="${action}" />
+															</spring:url>
+															<spring:url
+																value="/my-company/organization-management/manage-units/details/"
+																var="unitDetailUrl" htmlEscape="false">
+																<spring:param name="unit" value="${user.unit.uid}" />
+															</spring:url>
+															<div id="row-${fn:escapeXml(user.normalizedUid)}"
+																class="col-xs-12 col-sm-6 col-md-4 card <c:if test='${user.selected}'>selected</c:if>">
+																<ul class="pull-left">
+																	<li><ycommerce:testId code="${action}_name_link">
+																			<a href="${fn:escapeXml(viewUrl)}">${fn:escapeXml(user.name)}</a>
+																		</ycommerce:testId></li>
+																	<li><ycommerce:testId code="${action}_b2bunit_label">
+																			<a href="${fn:escapeXml(unitDetailUrl)}">${fn:escapeXml(user.unit.name)}</a>
+																		</ycommerce:testId></li>
+																	<li class="roles-wrapper clearfix"><b><spring:theme
+																				code="text.company.roles.all.label" /></b> <ycommerce:testId
+																			code="${action}_roles_label">
+																			<ul id="roles-${fn:escapeXml(user.normalizedUid)}">
+																				<c:forEach items="${user.roles}" var="role">
+																					<li><spring:theme
+																							code="b2busergroup.${role}.name" /></li>
+																				</c:forEach>
+																			</ul>
+																		</ycommerce:testId></li>
 																</ul>
-															</ycommerce:testId></li>
-													</ul>
-													<ycommerce:testId code="${action}_actions_label">
-														<span id="selection-${fn:escapeXml(user.normalizedUid)}"
-															class="account-cards-actions pull-left"> <c:choose>
-																<c:when test="${user.selected}">
-																	<a href="#" url="${fn:escapeXml(deselectUrl)}"
-																		class="action-links js-deselectUser"> <span
-																		class="glyphicon glyphicon-ok"></span>
-																	</a>
-																</c:when>
-																<c:otherwise>
-																	<a href="#" url="${fn:escapeXml(selectUrl)}"
-																		class="action-links js-selectUser"> <span
-																		class="glyphicon glyphicon-ok"></span>
-																	</a>
-																</c:otherwise>
-															</c:choose>
-														</span>
-													</ycommerce:testId>
+																<ycommerce:testId code="${action}_actions_label">
+																	<span id="selection-${fn:escapeXml(user.normalizedUid)}"
+																		class="account-cards-actions pull-left"> <c:choose>
+																			<c:when test="${user.selected}">
+																				<a href="#" url="${fn:escapeXml(deselectUrl)}"
+																					class="action-links js-deselectUser"> <span
+																					class="glyphicon glyphicon-ok"></span>
+																				</a>
+																			</c:when>
+																			<c:otherwise>
+																				<a href="#" url="${fn:escapeXml(selectUrl)}"
+																					class="action-links js-selectUser"> <span
+																					class="glyphicon glyphicon-ok"></span>
+																				</a>
+																			</c:otherwise>
+																		</c:choose>
+																	</span>
+																</ycommerce:testId>
+															</div>
+														</c:forEach>
+													</div>
 												</div>
-											</c:forEach>
-										</div>
-									</div>
+											</div>
+										</c:when>
+										<c:otherwise>
+											<p>
+												<spring:theme code="text.company.noentries" />
+											</p>
+										</c:otherwise>
+									</c:choose>
 								</div>
-							</c:when>
-							<c:otherwise>
-								<p>
-									<spring:theme code="text.company.noentries" />
-								</p>
-							</c:otherwise>
-						</c:choose>
+							</div>
+						</div>
 					</div>
 				</div>
 

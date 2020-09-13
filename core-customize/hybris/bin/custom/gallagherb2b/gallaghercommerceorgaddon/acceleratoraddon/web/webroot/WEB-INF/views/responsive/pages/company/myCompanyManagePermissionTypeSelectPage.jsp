@@ -19,32 +19,42 @@
 				<account:accountLeftNavigation />
 			</div>
 			<div class="col-sm-12 col-md-8 right-nav-content">
-				<div class="back-link">
-					<a href="${fn:escapeXml(cancelUrl)}"> <span
-						class="glyphicon glyphicon-chevron-left"></span>
-					</a> <span class="label"><spring:theme
-							code="text.company.managePermissions.create.permission.title" /></span>
+				<div class="account-section-header">
+				    <div class="row">
+				        <div class="container-lg col-md-6">
+							<a href="${fn:escapeXml(cancelUrl)}"> <span
+								class="glyphicon glyphicon-chevron-left"></span>
+							</a><spring:theme
+									code="text.company.managePermissions.create.permission.title" />
+						</div>
+					</div>
 				</div>
-				<div class="account-section-content">
-					<div id="addNewPermissionForm">
-						<div class="row">
-							<div class="col-xs-12 col-sm-8 col-md-6">
-								<div class="account-select-form">
-									<label> <spring:theme
-											code="text.company.managePermissions.create.type.label" />
-									</label> <select id="selectNewPermissionType"
-										name="selectNewPermissionType" class="form-control">
-										<option selected="selected"><spring:theme
-												code="text.company.managePermissions.selectBox.permissionType" /></option>
-										<c:forEach items="${b2bPermissionTypes}" var="b2BPermission">
-											<option value="${fn:escapeXml(b2BPermission.code)}">${fn:escapeXml(b2BPermission.name)}</option>
-										</c:forEach>
-									</select>
+				<div class="row">
+				    <div class="container-lg col-md-12">
+				        <div class="account-section-content">
+				            <div class="account-section-form">
+									<div id="addNewPermissionForm">
+										<div class="row">
+											<div class="col-xs-12 col-sm-8 col-md-6">
+												<div class="account-select-form">
+													<label> <spring:theme
+															code="text.company.managePermissions.create.type.label" />
+													</label> <select id="selectNewPermissionType"
+														name="selectNewPermissionType" class="form-control">
+														<option selected="selected"><spring:theme
+																code="text.company.managePermissions.selectBox.permissionType" /></option>
+														<c:forEach items="${b2bPermissionTypes}" var="b2BPermission">
+															<option value="${fn:escapeXml(b2BPermission.code)}">${fn:escapeXml(b2BPermission.name)}</option>
+														</c:forEach>
+													</select>
+												</div>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
 			</div>
 		</div>
 	</div>

@@ -40,12 +40,20 @@
 				<account:accountLeftNavigation />
 			</div>
 			<div class="col-sm-12 col-md-8 right-nav-content">
-				<div>
-					<org-common:headline url="${cancelUrl}"
-						labelKey="text.company.manage.units.unitDetails" />
+				<div class="account-section-header">
+				    <div class="row">
+				        <div class="container-lg col-md-6">
+								<org-common:headline url="${cancelUrl}"
+									labelKey="text.company.manage.units.unitDetails" />
+				        </div>
+				    </div>
 				</div>
+				
 
-				<div class="account-section-content">
+<div class="row">
+    <div class="container-lg col-md-12">
+        <div class="account-section-content">
+            <div class="account-section-form">
 					<div class="well well-lg well-tertiary">
 						<div class="row">
 							<div class="col-sm-10 col-no-padding">
@@ -307,6 +315,9 @@
 							createUrl="${createUserUrl}" />
 					</div>
 				</div>
+			</div>
+			</div>
+			</div>
 			</div>
 		</div>
 	</div>
