@@ -26,9 +26,16 @@
 							<c:choose>
 								<c:when test="${not empty galleryImages}">
 									<c:forEach items="${galleryImages}" var="container" varStatus="status">
-										<c:if test="${status.index <2}">
+										<c:if test="${status.index <2 && not empty container.productb2b.url}">
 											<figure>
 												<img src="${container.productb2b.url}">
+											</figure>
+										</c:if>
+										<c:if test="${status.index <1 && empty container.productb2b.url}">
+											<figure>
+												<theme:image code="img.missingProductImage.responsive.product"
+													alt="${fn:escapeXml(product.name)}"
+													title="${fn:escapeXml(product.name)}" />
 											</figure>
 										</c:if>
 			                		</c:forEach>
