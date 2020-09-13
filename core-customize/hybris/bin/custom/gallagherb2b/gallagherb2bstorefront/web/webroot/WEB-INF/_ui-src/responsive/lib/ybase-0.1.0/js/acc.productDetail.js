@@ -194,48 +194,35 @@ ACC.productDetail = {
        	     	var pdfFooter = document.getElementById('PDFFooter');
        	     	var quotes = document.getElementById('print-product-new');
                    html2canvas(quotes).then(function (canvas){
-                      var imgData = canvas.toDataURL('image/png');
-                      var doc = new jsPDF('p', 'pt','a4');
-                      var imgWidth = 600; 
+                	  var imgData = canvas.toDataURL('image/png');
+            	      
+             	      var imgWidth = 600; 
              	      var pageHeight = 840;  
-             	      var imgHeight = (canvas.height * imgWidth / canvas.width)+10;
-                      if(imgHeight<630){
-                 	      doc.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-                 	      doc.addImage(pdfFooterDetail, 'JPEG', 0, 642, imgWidth, 200);
-                 	      /*doc.addImage(pdfFooter, 'JPEG', 0, 782, imgWidth, 60);*/
-                      }else{
-                    	  if(imgHeight<700 && imgHeight>630){
-                    		  doc.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight-70);
-                     	      doc.addImage(pdfFooterDetail, 'JPEG', 0, 642, imgWidth, 200);
-                     	      /*doc.addImage(pdfFooter, 'JPEG', 0, 782, imgWidth, 60);*/
-                    	  }else{
-                    		  var heightLeft = imgHeight;
-                     	      var position = 0;
-                     	      doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight-70);
-                     	      doc.addImage(pdfFooter, 'JPEG', 0, 782, imgWidth, 60);
-                     	      heightLeft -= pageHeight;
-                    	      while (heightLeft >= 0) {
-                    	    	if(heightLeft<pageHeight){
-                        	        position = heightLeft - imgHeight+170;
-                        	        doc.addPage();
-                        	        doc.addImage(imgData, 'PNG', 0, position+6, imgWidth, imgHeight-210);
-                        	        heightLeft -= pageHeight;
-                        	        doc.addImage(pdfFooterDetail, 'JPEG', 0, 642, imgWidth, 200);
-                         	        /*doc.addImage(pdfFooter, 'JPEG', 0, 782, imgWidth, 60);*/
-                    	    	}else{
-                        	        position = heightLeft - imgHeight+70;
-                        	        doc.addPage();
-                        	        doc.addImage(imgData, 'PNG', 0, position+5, imgWidth, imgHeight-70);
-                        	        heightLeft -= pageHeight;
-                         	        doc.addImage(pdfFooter, 'JPEG', 0, 782, imgWidth, 60);
-                    	    	}
-                    	      }
-                    	  }
-                    	  }
-             	      doc.save( 'ProductDetails-'+productNumber+'.pdf');
+                      var imgHeight = (canvas.height * imgWidth / canvas.width)+10;
+                      var pageNo=1;
+             	      var heightLeft = imgHeight;
+             	      var numberOfPages= Math.ceil(imgHeight / pageHeight) ;
+
+             	      var doc = new jsPDF('p', 'pt','a4');
+             	      var position = 0;
+
+             	      doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight-10);
+             	      doc.setFontSize(10);
+             	      doc.text(490,820, "Page "+pageNo+" of "+numberOfPages); 
+             	      heightLeft -= pageHeight;
+
+             	      while (heightLeft >= 0) {
+             	    	pageNo=pageNo+1;
+             	        position = heightLeft - imgHeight;
+             	        doc.addPage();
+             	        doc.addImage(imgData, 'PNG', 0, position+5, imgWidth, imgHeight-10);
+             	        heightLeft -= pageHeight;
+             	       doc.text(490,820,  "Page "+pageNo+" of "+numberOfPages); 
+             	      }
+             	      doc.save( 'OrderSummary-'+orderNumber+'.pdf');
                 });
-               $('#print-product-new').css('display','none');
-               $('.print-product-new').html("");
+               /*$('#print-product-new').css('display','none');
+               $('.print-product-new').html("");*/
                
                },
             error: function (jqXHR, textStatus, errorThrown) {
