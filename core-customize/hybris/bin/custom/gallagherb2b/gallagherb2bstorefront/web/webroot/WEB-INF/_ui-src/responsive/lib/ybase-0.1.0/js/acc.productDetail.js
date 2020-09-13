@@ -199,7 +199,6 @@ ACC.productDetail = {
                       var imgWidth = 600; 
              	      var pageHeight = 840;  
              	      var imgHeight = (canvas.height * imgWidth / canvas.width)+10;
-             	      alert("imgHeight>>"+imgHeight);
                       if(imgHeight<630){
                  	      doc.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
                  	      doc.addImage(pdfFooterDetail, 'JPEG', 0, 642, imgWidth, 200);
@@ -235,8 +234,8 @@ ACC.productDetail = {
                     	  }
              	      doc.save( 'ProductDetails-'+productNumber+'.pdf');
                 });
-               /*$('#print-product-new').css('display','none');
-               $('.print-product-new').html("");*/
+               $('#print-product-new').css('display','none');
+               $('.print-product-new').html("");
                
                },
             error: function (jqXHR, textStatus, errorThrown) {
