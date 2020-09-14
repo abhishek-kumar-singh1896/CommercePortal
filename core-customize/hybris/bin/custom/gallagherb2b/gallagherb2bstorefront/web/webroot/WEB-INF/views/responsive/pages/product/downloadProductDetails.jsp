@@ -98,6 +98,6 @@
 			</div>
 		</div>
 	</div>
- 	<img id="PDFFooterDetail" src="${siteRootUrl}/theme-securityB2B/images/PDFFooterDetails.jpg" style="display:none;"/></img>
+ 	<img id="PDFFooterDetail" src="${siteRootUrl}/theme-securityB2B/images/PDFFooterDetails.png" style="display:none;"/></img>
 	<img id="PDFFooter" src="${siteRootUrl}/theme-securityB2B/images/PDFFooter.png" style="display:none;"/></img> 
 </div>  
