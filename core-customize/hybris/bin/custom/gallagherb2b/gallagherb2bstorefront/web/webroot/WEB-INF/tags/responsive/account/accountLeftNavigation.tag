@@ -30,6 +30,7 @@
 			</c:forEach>
 		</c:forEach>
 	</cms:pageSlot>
+	<br>
 	<cms:pageSlot position="B2BMyCompany" var="feature">
 		<li>
 			<div class="menu-title">

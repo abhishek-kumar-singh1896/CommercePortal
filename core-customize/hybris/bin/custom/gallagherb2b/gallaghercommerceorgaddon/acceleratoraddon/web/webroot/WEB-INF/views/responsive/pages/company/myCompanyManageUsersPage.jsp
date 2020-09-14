@@ -25,7 +25,7 @@
 			<div class="col-sm-12 col-md-8 right-nav-content">
 	        <div class="account-section-header">
 			    <div class="row">
-			        <div class="container-lg col-md-6">
+			        <div class="container-lg col-md-12">
 						<org-common:listHeadline url="${manageUsersUrl}" labelKey="text.company.manageusers.label" urlTestId="User_AddUser_button"/>
 					</div>
 				</div>
