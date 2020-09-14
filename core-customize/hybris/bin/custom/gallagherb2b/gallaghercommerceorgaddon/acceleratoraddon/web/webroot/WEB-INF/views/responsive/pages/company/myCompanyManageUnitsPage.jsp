@@ -21,7 +21,7 @@
 			<div class="col-sm-12 col-md-8 right-nav-content">
 				<div class="account-section-header">
 				    <div class="row">
-				        <div class="container-lg col-md-6">
+				        <div class="container-lg col-md-12">
 							<spring:theme code="text.company.manage.units.label" />
 							<div class="account-section-header-add pull-right">
 								<ycommerce:testId code="unit_createNewUnit_button">
