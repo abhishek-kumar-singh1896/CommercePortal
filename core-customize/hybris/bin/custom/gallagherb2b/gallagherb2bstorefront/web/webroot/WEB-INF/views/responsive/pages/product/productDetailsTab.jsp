@@ -1,7 +1,7 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="product" tagdir="/WEB-INF/tags/responsive/product"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <div class="tabhead">
 	<a href="">${fn:escapeXml(title)}</a> <span class="glyphicon"></span>
 </div>
@@ -13,6 +13,12 @@
 					<product:productDetailsTab product="${product}" />
 				</div>
 			</div>
+			 <div class="col-12 col-sm-6">
+	             <div class="download-option">
+	               <button class="product-detail-print-btn btn btn-primary"><spring:theme code="download.as.pdf" /></button>
+	               <input id="downloadPDF" name="downloadPDPPDF" type="hidden" value="${product.code}">
+	             </div>
+             </div>
 		</div>
 	</div>
 </div>
