@@ -75,3 +75,7 @@
     </div>
     </c:if>
 </div>
+<c:if test="${fn:contains(buttonType, 'button') 
+	and (not empty product.baseProduct or empty product.variantMatrix)}">
+	<div>${component.outOfStockMessage}</div>
+</c:if>
