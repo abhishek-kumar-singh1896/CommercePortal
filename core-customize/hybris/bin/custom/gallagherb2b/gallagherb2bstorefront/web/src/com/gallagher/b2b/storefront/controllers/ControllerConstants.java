@@ -155,6 +155,7 @@ public interface ControllerConstants
 			{
 				String WriteReview = "pages/product/writeReview"; // NOSONAR
 				String OrderForm = "pages/product/productOrderFormPage"; // NOSONAR
+				String DownloadProductDetails = "pages/product/downloadProductDetails"; // NOSONAR
 			}
 
 			interface QuickOrder // NOSONAR
