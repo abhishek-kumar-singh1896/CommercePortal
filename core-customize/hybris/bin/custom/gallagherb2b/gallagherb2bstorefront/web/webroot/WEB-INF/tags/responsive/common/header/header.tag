@@ -14,7 +14,7 @@
 <cms:pageSlot position="TopHeaderSlot" var="component" element="div" >
 	<cms:component component="${component}" />
 </cms:pageSlot>
-
+<input type="hidden" name="showB2BUnitsPopup" id="showB2BUnitsPopup" value="${showB2BUnitsPopup}"/>
 <div class="modal-updated responsive-mega-menu-modal hidden-lg" id="responsiveMegaMenu" tabindex="-1"
 			role="dialog" aria-labelledby="responsiveMegaMenuTitle" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-scrollable" role="document">

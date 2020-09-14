@@ -17,6 +17,7 @@ import de.hybris.platform.acceleratorservices.config.SiteConfigService;
 import de.hybris.platform.acceleratorservices.uiexperience.UiExperienceService;
 import de.hybris.platform.acceleratorstorefrontcommons.constants.WebConstants;
 import de.hybris.platform.acceleratorstorefrontcommons.interceptors.BeforeViewHandler;
+import de.hybris.platform.cms2.model.pages.ContentPageModel;
 import de.hybris.platform.cms2.model.site.CMSSiteModel;
 import de.hybris.platform.cms2.servicelayer.services.CMSSiteService;
 import de.hybris.platform.commerceservices.enums.SiteTheme;
@@ -143,6 +144,15 @@ public class UiThemeResourceBeforeViewHandler implements BeforeViewHandler
 		modelAndView.addObject("addOnJavaScriptPaths",
 				getAddOnJSPaths(contextPath, siteName, uiExperienceCodeLower, dependantAddOns));
 
+		if (modelAndView.getModel().get("cmsPage") instanceof ContentPageModel)
+		{
+			final ContentPageModel cmsPage = (ContentPageModel) modelAndView.getModel().get("cmsPage");
+			modelAndView.addObject("showB2BUnitsPopup", cmsPage.isHomepage());
+		}
+		else
+		{
+			modelAndView.addObject("showB2BUnitsPopup", false);
+		}
 	}
 
 	protected List getAddOnCommonCSSPaths(final String contextPath, final String uiExperience, final List<String> addOnNames)
