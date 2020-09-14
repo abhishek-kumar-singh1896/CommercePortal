@@ -34,13 +34,4 @@ public interface GallagherProductProcessingService
 	 */
 	boolean createAndProcessVariantProduct(final String catalogId, final Date lastStartTime);
 
-	/**
-	 * It will sync productReferences attribute of base product only.
-	 *
-	 * @param catalogId
-	 * @param lastStartTime
-	 * @return process result
-	 */
-	boolean syncProductReferenceForBaseProduct(final String catalogId, final Date lastStartTime);
-
 }

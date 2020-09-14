@@ -8,11 +8,11 @@
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
-<!-- <div class="account-section-header"> -->
+<div class="account-section-header">
 	<spring:theme code="${labelKey}"/>
 	<div class="account-section-header-add pull-right">
 		<ycommerce:testId code="${urlTestId}">
 			<a href="${fn:escapeXml(url)}" class="button add"><spring:theme code="text.company.addNew.button"/></a>
 		</ycommerce:testId>
 	</div>
-<!-- </div> -->
+</div>

@@ -64,7 +64,7 @@ public class GallagherAuthenticationSuccessHandler implements AuthenticationSucc
 				{
 					if (null != address.getCountry())
 					{
-						final String regionCode = address.getCountry().getSecurityRegionCode().getCode();
+						final String regionCode = address.getCountry().getRegionCode().getCode();
 						String redirectPath;
 						try
 						{

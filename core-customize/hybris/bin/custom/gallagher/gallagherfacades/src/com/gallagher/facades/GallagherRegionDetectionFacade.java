@@ -19,12 +19,9 @@ public interface GallagherRegionDetectionFacade
 	 * Get region based on the request
 	 *
 	 * @param request
-	 *           to determine the region
-	 * @param isSecurity
-	 *           is this request for security website
 	 * @return Detected region. Using global as default
 	 */
-	RegionCode getRegionCode(final HttpServletRequest request, final boolean isSecurity);
+	RegionCode getRegionCode(final HttpServletRequest request);
 
 	/**
 	 * Get region based on the request

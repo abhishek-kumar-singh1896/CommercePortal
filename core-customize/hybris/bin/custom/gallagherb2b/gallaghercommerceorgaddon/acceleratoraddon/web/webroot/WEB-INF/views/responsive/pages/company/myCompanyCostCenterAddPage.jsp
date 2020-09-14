@@ -5,7 +5,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="org-common" tagdir="/WEB-INF/tags/addons/gallaghercommerceorgaddon/responsive/common" %>
 <%@ taglib prefix="company" tagdir="/WEB-INF/tags/addons/gallaghercommerceorgaddon/responsive/company" %>
-<%@ taglib prefix="account" tagdir="/WEB-INF/tags/responsive/account"%>
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
@@ -29,39 +28,18 @@
 </c:if>
 
 <template:page pageTitle="${pageTitle}">
-	<div class="account-section content-inner">
-		<div class="row">
-			<div class="col-md-2 col-md-offset-1 left-nav-menu">
-				<account:accountLeftNavigation />
-			</div>
-			<div class="col-sm-12 col-md-8 right-nav-content">
-				<div class="account-section-header">
-				    <div class="row">
-				        <div class="container-lg col-md-6">
-							<c:choose>
-								<c:when test="${edit eq true }">
-									<org-common:headline url="${cancelUrl}"
-										labelKey="text.company.costCenter.edit.label" />
-								</c:when>
-								<c:otherwise>
-									<org-common:headline url="${cancelUrl}"
-										labelKey="text.company.costCenter.add.new.label" />
-								</c:otherwise>
-							</c:choose>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-				    <div class="container-lg col-md-12">
-				        <div class="account-section-content">
-				            <div class="account-section-form">
-								<company:b2bCostCenterForm cancelUrl="${cancelUrl}"
-									saveUrl="${saveUrl}" b2BCostCenterForm="${b2BCostCenterForm}" />
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+    <div class="account-section">
+		<div>
+			<c:choose>
+				<c:when test="${edit eq true }">
+					<org-common:headline url="${cancelUrl}" labelKey="text.company.costCenter.edit.label" />
+				</c:when>
+				<c:otherwise>
+					<org-common:headline url="${cancelUrl}" labelKey="text.company.costCenter.add.new.label" />
+				</c:otherwise>
+			</c:choose>
 		</div>
-	</div>
+
+		<company:b2bCostCenterForm cancelUrl="${cancelUrl}" saveUrl="${saveUrl}" b2BCostCenterForm="${b2BCostCenterForm}"/>
+    </div>
 </template:page>

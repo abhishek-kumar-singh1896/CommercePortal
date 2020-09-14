@@ -230,7 +230,7 @@ public class CMSSiteFilter extends OncePerRequestFilter implements CMSFilter
 			LOG.debug(e);
 
 			final RegionCode regionCode = cmsSiteModel != null ? cmsSiteModel.getRegionCode()
-					: gallagherRegionDetectionFacade.getRegionCode(httpRequest, true);
+					: gallagherRegionDetectionFacade.getRegionCode(httpRequest);
 
 			final String redirectPath = FARWORD_SLASH
 					+ StringUtils.substringBefore(StringUtils.substringAfter(requestURI, FARWORD_SLASH), FARWORD_SLASH) + FARWORD_SLASH

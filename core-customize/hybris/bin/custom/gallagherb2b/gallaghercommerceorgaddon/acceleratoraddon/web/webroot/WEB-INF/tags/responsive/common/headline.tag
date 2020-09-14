@@ -7,7 +7,11 @@
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
-<a href="${fn:escapeXml(url)}">
-	<span class="glyphicon glyphicon-chevron-left"></span>
-</a>
-	<spring:theme code="${labelKey}" arguments="${labelArguments}"/>
+<div class="back-link">
+	<a href="${fn:escapeXml(url)}">
+		<span class="glyphicon glyphicon-chevron-left"></span>
+	</a>
+	<span class="label">
+		<spring:theme code="${labelKey}" arguments="${labelArguments}"/>
+	</span>
+</div>

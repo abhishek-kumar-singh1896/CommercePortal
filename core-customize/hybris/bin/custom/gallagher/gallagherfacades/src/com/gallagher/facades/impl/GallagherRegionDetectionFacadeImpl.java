@@ -42,11 +42,11 @@ public class GallagherRegionDetectionFacadeImpl implements GallagherRegionDetect
 	 * {@inheritDoc}
 	 */
 	@Override
-	public RegionCode getRegionCode(final HttpServletRequest request, final boolean isSecurity)
+	public RegionCode getRegionCode(final HttpServletRequest request)
 	{
 
 		final CountryData country = getCountry(request);
-		RegionCode regionCode = DEFAULT_REGION_CODE;
+
 		if (null != country)
 		{
 			final String countryIsoCode = country.getIsocode();
@@ -58,14 +58,14 @@ public class GallagherRegionDetectionFacadeImpl implements GallagherRegionDetect
 				{
 					LOGGER.debug("Detected Region Code <" + countryModel.get().getRegionCode() + "> for Country ISO Code <"
 							+ countryIsoCode + ">");
-					regionCode = isSecurity ? countryModel.get().getSecurityRegionCode() : countryModel.get().getRegionCode();
+					return countryModel.get().getRegionCode();
 				}
 			}
 
 			LOGGER.debug(
 					"No Region detected for Country ISO Code <" + countryIsoCode + ">, defaulting to <" + DEFAULT_REGION_CODE + ">");
 		}
-		return regionCode;
+		return DEFAULT_REGION_CODE;
 	}
 
 	@Override

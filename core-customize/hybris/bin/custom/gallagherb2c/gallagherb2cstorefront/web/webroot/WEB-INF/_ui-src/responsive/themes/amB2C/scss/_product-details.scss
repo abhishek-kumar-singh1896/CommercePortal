@@ -799,16 +799,6 @@ h4 {
   }
 }
 
-.select-variant{background: linear-gradient(to bottom, #f0f0f0 0%, #f0f0f0 100%);
-    border: 1px solid #cccecf;
-	font-size:1rem;
-	padding:1rem;
-	display: flex!important;
-	/*margin-top: 10px;*/
-	border-radius:6px;
-	color:#000;
-	}
-
 @media only screen and (max-width: 767px) {
   h1 {
     &.product-detail-title {

@@ -3,7 +3,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="org-common" tagdir="/WEB-INF/tags/addons/gallaghercommerceorgaddon/responsive/common" %>
 <%@ taglib prefix="company" tagdir="/WEB-INF/tags/addons/gallaghercommerceorgaddon/responsive/company"%>
-<%@ taglib prefix="account" tagdir="/WEB-INF/tags/responsive/account"%>
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
@@ -15,31 +14,10 @@
 </spring:url>
 
 <template:page pageTitle="${pageTitle}">
-	<div class="account-section content-inner">
-		<div class="row">
-			<div class="col-md-2 col-md-offset-1 left-nav-menu">
-				<account:accountLeftNavigation />
-			</div>
-			<div class="col-sm-12 col-md-8 right-nav-content">
-				<div class="account-section-header">
-				    <div class="row">
-				        <div class="container-lg col-md-6">
-								<org-common:headline url="${cancelUrl}"
-						labelKey="text.company.budget.edit.title.label" />
-				        </div>
-				    </div>
-				</div>
-				<div class="row">
-				    <div class="container-lg col-md-12">
-				        <div class="account-section-content">
-				            <div class="account-section-form">
-								<company:b2bBudgetForm cancelUrl="${cancelUrl}" saveUrl="${saveUrl}"
-									b2BBudgetForm="${b2BBudgetForm}" />
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+	<div class="account-section">
+		<div>
+			<org-common:headline url="${cancelUrl}" labelKey="text.company.budget.edit.title.label" />
 		</div>
+		<company:b2bBudgetForm cancelUrl="${cancelUrl}" saveUrl="${saveUrl}" b2BBudgetForm="${b2BBudgetForm}"/>
 	</div>
 </template:page>

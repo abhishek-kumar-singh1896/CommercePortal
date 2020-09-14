@@ -12,7 +12,7 @@
 # Import the Security B2B Content Catalog
 #
 $contentCatalog=securityB2BContentCatalog
-$languages=en,de,en_AU,en_NZ,en_UK,en_AS,en_ST,en_CA,en_US
+$languages=en,de,en_AU,en_NZ
 
 # Content catalog for CMS contents
 INSERT_UPDATE ContentCatalog;id[unique=true]

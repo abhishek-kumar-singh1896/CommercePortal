@@ -5,18 +5,13 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="common" tagdir="/WEB-INF/tags/responsive/common" %>
 <%@ taglib prefix="format" tagdir="/WEB-INF/tags/shared/format" %>
-<%@ taglib prefix="account" tagdir="/WEB-INF/tags/responsive/account"%>
+
 <spring:htmlEscape defaultHtmlEscape="true"/>
 
 <spring:url value="/import/csv/saved-cart" var="importCSVSavedCartLink" htmlEscape="false"/>
 <spring:url value="/my-account/saved-carts" var="savedCartsLink" htmlEscape="false"/>
 
 <template:page pageTitle="${pageTitle}">
-	<div class="content-inner row">
-				<div class="col-md-2 col-md-offset-1 left-nav-menu">
-					<account:accountLeftNavigation />
-				</div>
-				<div class="col-sm-12 col-md-8 right-nav-content">
     <div id="import-csv-alerts"></div>
     <div class="account-section">
         <div class="account-section-header no-border">
@@ -74,6 +69,4 @@
         <span id="import-csv-no-file-chosen-error-message"><spring:theme code="import.csv.savedCart.noFile"/></span>
     </div>
     <common:globalMessagesTemplates/>
-    </div>
-    </div>
 </template:page>

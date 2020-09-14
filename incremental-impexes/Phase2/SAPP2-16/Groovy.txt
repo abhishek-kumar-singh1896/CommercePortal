@@ -1,5 +1,0 @@
-setupSolrIndexerService.createSolrIndexerCronJobs(String.format("%sIndex", "securityB2BUK"));
-setupSolrIndexerService.createSolrIndexerCronJobs(String.format("%sIndex", "securityB2BAsia"));
-setupSolrIndexerService.createSolrIndexerCronJobs(String.format("%sIndex", "securityB2BCA"));
-setupSolrIndexerService.createSolrIndexerCronJobs(String.format("%sIndex", "securityB2BUS"));
-setupSolrIndexerService.createSolrIndexerCronJobs(String.format("%sIndex", "securityB2BSthAm"));

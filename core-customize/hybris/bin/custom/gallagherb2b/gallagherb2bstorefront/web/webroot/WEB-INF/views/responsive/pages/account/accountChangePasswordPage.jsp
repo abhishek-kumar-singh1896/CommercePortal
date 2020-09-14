@@ -12,7 +12,7 @@
 	</div>
 </div>
 <div class="row">
-	<div class="container-lg col-md-12">
+	<div class="container-lg col-md-6">
 		<c:choose>
 			<c:when test="${success}">
 				<div class="global-alerts">

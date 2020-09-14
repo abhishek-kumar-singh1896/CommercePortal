@@ -5,7 +5,7 @@
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags" %>
 <%@ taglib prefix="format" tagdir="/WEB-INF/tags/shared/format" %>
 <%@ attribute name="containerCSS" required="false" type="java.lang.String" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"  %>
+
 <spring:htmlEscape defaultHtmlEscape="true" />
 
 <div class="orderTotal">
@@ -106,7 +106,9 @@
     <c:if test="${order.totalDiscountsWithQuoteDiscounts.value > 0}">
         <ycommerce:testId code="order_totalDiscount_label">
             <div class="order-savings__info text-right">
-            <c:set var="totalDiscountWithQuoteDiscount" value="${fn:escapeXml(order.totalDiscountsWithQuoteDiscounts.formattedValue)}"/>
+            <c:set var="totalDiscountWithQuoteDiscount">
+            	<format:price priceData="${order.totalDiscountsWithQuoteDiscounts}"/>
+				</c:set>
                 <spring:theme code="text.account.order.totalSavings" argumentSeparator=";"
                               arguments="${totalDiscountWithQuoteDiscount}"/>
             </div>

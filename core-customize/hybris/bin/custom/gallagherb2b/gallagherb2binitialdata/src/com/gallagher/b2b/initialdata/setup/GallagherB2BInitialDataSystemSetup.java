@@ -57,12 +57,6 @@ public class GallagherB2BInitialDataSystemSetup extends AbstractSystemSetup
 	public static final String SECURITY_B2B_AU = "securityB2BAU";
 	public static final String SECURITY_B2B_GLOBAL = "securityB2BGlobal";
 
-	public static final String SECURITY_B2B_STHAM = "securityB2BSthAm";
-	public static final String SECURITY_B2B_US = "securityB2BUS";
-	public static final String SECURITY_B2B_CA = "securityB2BCA";
-	public static final String SECURITY_B2B_UK = "securityB2BUK";
-	public static final String SECURITY_B2B_ASIA = "securityB2BAsia";
-
 	/**
 	 * Generates the Dropdown and Multi-select boxes for the project data import
 	 */
@@ -150,41 +144,6 @@ public class GallagherB2BInitialDataSystemSetup extends AbstractSystemSetup
 		securityGlobalImportData.setContentCatalogNames(Collections.EMPTY_LIST);
 		securityGlobalImportData.setStoreNames(Arrays.asList(SECURITY_B2B_GLOBAL));
 		importData.add(securityGlobalImportData);
-
-		//import US catalog data
-		final ImportData securityUSImportData = new ImportData();
-		securityUSImportData.setProductCatalogName(SECURITY_B2B_US);
-		securityUSImportData.setContentCatalogNames(Collections.EMPTY_LIST);
-		securityUSImportData.setStoreNames(Arrays.asList(SECURITY_B2B_US));
-		importData.add(securityUSImportData);
-
-		//import UK catalog data
-		final ImportData securityUKImportData = new ImportData();
-		securityUKImportData.setProductCatalogName(SECURITY_B2B_UK);
-		securityUKImportData.setContentCatalogNames(Collections.EMPTY_LIST);
-		securityUKImportData.setStoreNames(Arrays.asList(SECURITY_B2B_UK));
-		importData.add(securityUKImportData);
-
-		//import CA catalog data
-		final ImportData securityCAImportData = new ImportData();
-		securityCAImportData.setProductCatalogName(SECURITY_B2B_CA);
-		securityCAImportData.setContentCatalogNames(Collections.EMPTY_LIST);
-		securityCAImportData.setStoreNames(Arrays.asList(SECURITY_B2B_CA));
-		importData.add(securityCAImportData);
-
-		//import ASIA catalog data
-		final ImportData securityAsiaImportData = new ImportData();
-		securityAsiaImportData.setProductCatalogName(SECURITY_B2B_ASIA);
-		securityAsiaImportData.setContentCatalogNames(Collections.EMPTY_LIST);
-		securityAsiaImportData.setStoreNames(Arrays.asList(SECURITY_B2B_ASIA));
-		importData.add(securityAsiaImportData);
-
-		//import South America catalog data
-		final ImportData securitySthAmImportData = new ImportData();
-		securitySthAmImportData.setProductCatalogName(SECURITY_B2B_STHAM);
-		securitySthAmImportData.setContentCatalogNames(Collections.EMPTY_LIST);
-		securitySthAmImportData.setStoreNames(Arrays.asList(SECURITY_B2B_STHAM));
-		importData.add(securitySthAmImportData);
 
 		getCoreDataImportService().execute(this, context, importData);
 		getEventService().publishEvent(new CoreDataImportedEvent(context, importData));
