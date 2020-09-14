@@ -68,4 +68,24 @@ public interface GallagherProductProcessingDao
 	 */
 	MediaContainerModel getMediaContainerForQualifier(final String qualifier, final CatalogVersionModel catalogVersion);
 
+	/**
+	 * Returns the list of approved base Products for given catalogVersion, If there is any modification in base product
+	 * only.
+	 *
+	 * @param catalogVersion
+	 * @param lastStartTime
+	 * @return products
+	 */
+	List<ProductModel> getBaseProductsForSync(final CatalogVersionModel catalogVersion, final Date lastStartTime);
+
+	/**
+	 * Returns a base Product, if some modification is done in ProductReferences attribute of given product.
+	 *
+	 * @param catalogVersion
+	 * @param lastStartTime
+	 * @param product
+	 * @return product
+	 */
+	ProductModel getBaseProductForProductReferenceSync(final CatalogVersionModel catalogVersion, final Date lastStartTime,
+			final ProductModel product);
 }
