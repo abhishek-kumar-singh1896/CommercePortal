@@ -7,7 +7,7 @@
 <%@ taglib prefix="product" tagdir="/WEB-INF/tags/responsive/product"%>
 
 
-<c:if test="${not empty pageType && not empty commerceGTMId}">
+<c:if test="${not empty pageType && not empty gtmId}">
 	<c:choose>
 
 		<%-- Tracking - Enhanced Ecommerce Transaction --%>
