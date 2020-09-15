@@ -196,10 +196,41 @@ ACC.productDetail = {
                    html2canvas(quotes).then(function (canvas){
                       var imgData = canvas.toDataURL('image/png');
                       var doc = new jsPDF('p', 'pt','a4');
-                      var imgWidth = 600; 
-             	      var pageHeight = 840;  
-             	      var imgHeight = (canvas.height * imgWidth / canvas.width)+10;
-                      if(imgHeight<630){
+                      var imgWidth = 595; 
+             	      var pageHeight = 842;  
+             	      var footerHeight=60;
+             	      var footerDetailHeight=140;
+             	      var imgHeight = (canvas.height * imgWidth / canvas.width);
+             	      var actualPageHeight=pageHeight-footerHeight;
+             	      var actualPageHeight1=actualPageHeight-footerDetailHeight;
+             	      var numberOfPages=Math.floor(imgHeight/actualPageHeight);
+             	      var nummod=imgHeight%actualPageHeight;
+             	      if(nummod>=1  && nummod<=actualPageHeight1){
+             	    	 numberOfPages+=1;
+             	      }else if(nummod>actualPageHeight1) {
+             	    	 numberOfPages+=2;
+             	      }
+             	     var pageNumber=1;
+             	     var heightLeft = imgHeight;
+             	     var position = 0;
+             	     while(pageNumber<=numberOfPages){
+             	    	if(pageNumber>1){
+             	    		doc.addPage();
+             	     	}
+             	    	if(pageNumber==numberOfPages){
+             	    		doc.addImage(imgData, 'PNG', 0, position+7, imgWidth, imgHeight);
+	                   	    doc.addImage(pdfFooterDetail, 'JPEG', 0, 642, imgWidth, footerDetailHeight);
+	                   	    doc.addImage(pdfFooter, 'JPEG', 0, 782, imgWidth, footerHeight);
+             	    	}else{
+	               	        doc.addImage(imgData, 'PNG', 0, position+5, imgWidth, imgHeight);
+	                	    doc.addImage(pdfFooter, 'JPEG', 0, 782, imgWidth, footerHeight);
+             	    	}
+             	    	heightLeft -= actualPageHeight;
+                	    position = heightLeft - imgHeight;
+             	    	pageNumber=pageNumber+1;
+             	     }
+             	     
+/*                      if(imgHeight<630){
                  	      doc.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
                  	      doc.addImage(pdfFooterDetail, 'JPEG', 0, 642, imgWidth, 140);
                  	      doc.addImage(pdfFooter, 'JPEG', 0, 782, imgWidth, 60);
@@ -209,13 +240,22 @@ ACC.productDetail = {
                      	      doc.addImage(pdfFooterDetail, 'JPEG', 0, 642, imgWidth, 140);
                      	      doc.addImage(pdfFooter, 'JPEG', 0, 782, imgWidth, 60);
                     	  }else{
+                    		  alert("2");
                     		  var heightLeft = imgHeight;
                      	      var position = 0;
                      	      doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight-70);
                      	      doc.addImage(pdfFooter, 'JPEG', 0, 782, imgWidth, 60);
                      	      heightLeft -= pageHeight;
+                     	      if(heightLeft < 0){
+                     	    	 position = heightLeft - imgHeight+170;
+                     	        doc.addPage();
+                     	        doc.addImage(imgData, 'PNG', 0, imgHeight-70, imgWidth, imgHeight-210);
+                     	        doc.addImage(pdfFooterDetail, 'JPEG', 0, 642, imgWidth, 140);
+                      	        doc.addImage(pdfFooter, 'JPEG', 0, 782, imgWidth, 60);
+                     	      }
                     	      while (heightLeft >= 0) {
                     	    	if(heightLeft<pageHeight){
+                    	    		alert("3");
                         	        position = heightLeft - imgHeight+170;
                         	        doc.addPage();
                         	        doc.addImage(imgData, 'PNG', 0, position+6, imgWidth, imgHeight-210);
@@ -223,6 +263,7 @@ ACC.productDetail = {
                         	        doc.addImage(pdfFooterDetail, 'JPEG', 0, 642, imgWidth, 140);
                          	        doc.addImage(pdfFooter, 'JPEG', 0, 782, imgWidth, 60);
                     	    	}else{
+                    	    		alert("4");
                         	        position = heightLeft - imgHeight+70;
                         	        doc.addPage();
                         	        doc.addImage(imgData, 'PNG', 0, position+5, imgWidth, imgHeight-70);
@@ -231,7 +272,7 @@ ACC.productDetail = {
                     	    	}
                     	      }
                     	  }
-                    	  }
+                    	  }*/
              	      doc.save( 'ProductDetails-'+productNumber+'.pdf');
                 });
                $('#print-product-new').css('display','none');
