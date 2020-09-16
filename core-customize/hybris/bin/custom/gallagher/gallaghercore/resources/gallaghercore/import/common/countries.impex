@@ -12,6 +12,7 @@ INSERT_UPDATE RegionCode; code[unique = true]
                  			; us
                  			; latam
                  			; global
+                 			; cl
                  		
                  			
 # Import Countries
@@ -26,7 +27,7 @@ INSERT_UPDATE Country;isocode[unique=true];name[lang=en];regionCode(code)[defaul
 ;AM;"Armenia"
 ;AO;"Angola"
 ;AQ;"Antarctica"
-;AR;"Argentina";latam
+;AR;"Argentina";cl
 ;AS;"American Samoa"
 ;AT;"Austria"
 ;AU;"Australia";au
@@ -45,9 +46,9 @@ INSERT_UPDATE Country;isocode[unique=true];name[lang=en];regionCode(code)[defaul
 ;BL;"Saint Barthélemy"
 ;BM;"Bermuda"
 ;BN;"Brunei Darussalam"
-;BO;"Bolivia";latam
+;BO;"Bolivia";cl
 ;BQ;"Bonaire, Saint Eustatius and Saba"
-;BR;"Brazil";latam
+;BR;"Brazil";cl
 ;BS;"Bahamas"
 ;BT;"Bhutan"
 ;BV;"Bouvet Island"
@@ -62,12 +63,12 @@ INSERT_UPDATE Country;isocode[unique=true];name[lang=en];regionCode(code)[defaul
 ;CH;"Switzerland"
 ;CI;"Cote d'Ivoire"
 ;CK;"Cook Islands"
-;CL;"Chile";latam
+;CL;"Chile";cl
 ;CM;"Cameroon"
 ;CN;"China"
-;CO;"Colombia";latam
-;CR;"Costa Rica";latam
-;CU;"Cuba";latam
+;CO;"Colombia";cl
+;CR;"Costa Rica";cl
+;CU;"Cuba";cl
 ;CV;"Cape Verde"
 ;CW;"Curaçao"
 ;CX;"Christmas Island"
@@ -77,9 +78,9 @@ INSERT_UPDATE Country;isocode[unique=true];name[lang=en];regionCode(code)[defaul
 ;DJ;"Djibouti"
 ;DK;"Denmark"
 ;DM;"Dominica"
-;DO;"Dominican Republic";latam
+;DO;"Dominican Republic";cl
 ;DZ;"Algeria"
-;EC;"Ecuador";latam
+;EC;"Ecuador";cl
 ;EE;"Estonia"
 ;EG;"Egypt"
 ;EH;"Western Sahara"
@@ -107,15 +108,15 @@ INSERT_UPDATE Country;isocode[unique=true];name[lang=en];regionCode(code)[defaul
 ;GQ;"Equatorial Guinea"
 ;GR;"Greece"
 ;GS;"South Georgia and the South Sandwich Islands"
-;GT;"Guatemala";latam
+;GT;"Guatemala";cl
 ;GU;"Guam"
 ;GW;"Guinea-Bissau"
 ;GY;"Guyana"
 ;HK;"Hong Kong, China"
 ;HM;"Heard Island and McDonald Islands"
-;HN;"Honduras";latam
+;HN;"Honduras";cl
 ;HR;"Croatia"
-;HT;"Haiti";latam
+;HT;"Haiti";cl
 ;HU;"Hungary"
 ;ID;"Indonesia"
 ;IE;"Ireland"
@@ -173,7 +174,7 @@ INSERT_UPDATE Country;isocode[unique=true];name[lang=en];regionCode(code)[defaul
 ;MU;"Mauritius"
 ;MV;"Maldives"
 ;MW;"Malawi"
-;MX;"Mexico";latam
+;MX;"Mexico";cl
 ;MY;"Malaysia"
 ;MZ;"Mozambique"
 ;NA;"Namibia"
@@ -181,7 +182,7 @@ INSERT_UPDATE Country;isocode[unique=true];name[lang=en];regionCode(code)[defaul
 ;NE;"Niger"
 ;NF;"Norfolk Island"
 ;NG;"Nigeria"
-;NI;"Nicaragua";latam
+;NI;"Nicaragua";cl
 ;NL;"Netherlands"
 ;NO;"Norway"
 ;NP;"Nepal"
@@ -189,8 +190,8 @@ INSERT_UPDATE Country;isocode[unique=true];name[lang=en];regionCode(code)[defaul
 ;NU;"Niue"
 ;NZ;"New Zealand";nz
 ;OM;"Oman"
-;PA;"Panama";latam
-;PE;"Peru";latam
+;PA;"Panama";cl
+;PE;"Peru";cl
 ;PF;"French Polynesia"
 ;PG;"Papua New Guinea"
 ;PH;"Philippines"
@@ -198,11 +199,11 @@ INSERT_UPDATE Country;isocode[unique=true];name[lang=en];regionCode(code)[defaul
 ;PL;"Poland"
 ;PM;"Saint Pierre and Miquelon"
 ;PN;"Pitcairn"
-;PR;"Puerto Rico";latam
+;PR;"Puerto Rico";cl
 ;PS;"Palestinian Territory"
 ;PT;"Portugal"
 ;PW;"Palau"
-;PY;"Paraguay";latam
+;PY;"Paraguay";cl
 ;QA;"Qatar"
 ;RE;"Reunion"
 ;RO;"Romania"
@@ -225,7 +226,7 @@ INSERT_UPDATE Country;isocode[unique=true];name[lang=en];regionCode(code)[defaul
 ;SO;"Somalia"
 ;SR;"Suriname"
 ;ST;"Sao Tome and Principe"
-;SV;"El Salvador";latam
+;SV;"El Salvador";cl
 ;SX;"Sint Maarten (Dutch part)"
 ;SY;"Syrian Arab Republic"
 ;SZ;"Swaziland"
@@ -249,11 +250,11 @@ INSERT_UPDATE Country;isocode[unique=true];name[lang=en];regionCode(code)[defaul
 ;UG;"Uganda"
 ;UM;"United States Minor Outlying Islands"
 ;US;"United States";us
-;UY;"Uruguay";latam
+;UY;"Uruguay";cl
 ;UZ;"Uzbekistan"
 ;VA;"Holy See (Vatican City State)"
 ;VC;"Saint Vincent and the Grenadines"
-;VE;"Venezuela";latam
+;VE;"Venezuela";cl
 ;VG;"Virgin Islands, British"
 ;VI;"Virgin Islands, U.S."
 ;VN;"Viet Nam"

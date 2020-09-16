@@ -3,12 +3,12 @@
  
 # Macros / Replacement Parameter definitions
 $productCatalog=amB2CMasterProductCatalog
-$productCatalogName=Animal Management B2C US Product Catalog
+$productCatalogName=Animal Management B2C Chile Product Catalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
  
  
 # Language
-$lang=es_LA
+$lang=es_CL
  
  
 # Create Categories
