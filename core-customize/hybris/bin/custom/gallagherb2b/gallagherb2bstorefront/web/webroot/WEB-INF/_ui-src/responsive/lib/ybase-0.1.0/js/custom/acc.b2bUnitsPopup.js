@@ -4,8 +4,42 @@ ACC.b2bUnitsPopup = {
 
 	showB2BUnits : function() {
 
-    $(document).ready(function(){   
-    	   $('#myModal').modal('show');
-    	});
+	    $(document).ready(function(){   
+	    	var showPopup = $("#showB2BUnitsPopup").val();
+			if (showPopup == "true") {
+		    	$.ajax({
+					type : "GET",
+					url : ACC.config.encodedContextPath + "/showb2bunits",
+					/*data : formData.serialize(),*/
+					success : function(data) {
+						$('#b2bUnitsModal').append(data);
+						$('#myModal').modal('show');
+					},
+					error : function(data) {
+						console.log('An error occurred.');
+						console.log(data);
+					},
+				});
+				}
+	    	});
+	    
+	    $(document).on("click", ".b2bunit-submit", function(e) {
+			var formData = $("#selectB2BUnirForm");
+			e.preventDefault();
+
+			$.ajax({
+				type : "POST",
+				url : ACC.config.encodedContextPath + "/submitSelectedUnit",
+				data : formData.serialize(),
+				success : function(data) {
+					$('#myModal').modal('hide');
+				},
+				error : function(data) {
+					console.log('An error occurred.');
+					console.log(data);
+				},
+			});
+
+		});
 	}
 };

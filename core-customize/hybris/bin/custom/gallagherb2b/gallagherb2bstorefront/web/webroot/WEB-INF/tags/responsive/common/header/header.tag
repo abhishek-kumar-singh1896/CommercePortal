@@ -536,3 +536,5 @@
 <cms:pageSlot position="BottomHeaderSlot" var="component">
 	<cms:component component="${component}" />
 </cms:pageSlot>
+
+<div id="b2bUnitsModal"></div>
