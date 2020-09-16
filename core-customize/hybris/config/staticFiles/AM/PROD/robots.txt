@@ -9,7 +9,13 @@ Crawl-delay: 10                 # 10 seconds between page requests
 Visit-time: 0400-0845           # only visit between 04:00 and 08:45 UTC
 
 # Allow search crawlers to discover the sitemap
-Sitemap: /sitemap.xml
+Sitemap: /am/us/en_US/sitemap.xml
+Sitemap: /am/ca/en_CA/sitemap.xml
+Sitemap: /am/ca/fr_CA/sitemap.xml
+Sitemap: /am/nz/en_NZ/sitemap.xml
+Sitemap: /am/au/en_AU/sitemap.xml
+Sitemap: /am/latam/es_LA/sitemap.xml
+Sitemap: /am/global/en_NZ/sitemap.xml
 
 
 # Block CazoodleBot as it does not present correct accept content headers
