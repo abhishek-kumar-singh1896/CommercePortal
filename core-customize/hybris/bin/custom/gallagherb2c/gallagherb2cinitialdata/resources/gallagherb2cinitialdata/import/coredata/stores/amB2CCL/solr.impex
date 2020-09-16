@@ -4,14 +4,14 @@
 #
 # Import the Solr configuration for the Animal Management B2C store
 #
-$productCatalog=amB2CLatAmProductCatalog
+$productCatalog=amB2CCLProductCatalog
 $catalogVersions=catalogVersions(catalog(id),version); 
-$facetSearchConfigName=amB2CLatAmIndex
-$facetSearchConfigDescription=Animal Management B2C LatAm Solr Index
-$searchIndexNamePrefix=amB2CLatAm
-$solrIndexedType=amB2CLatAmProductType
-$indexBaseSite=amB2CLatAm
-$indexLanguages=es_LA
+$facetSearchConfigName=amB2CCLIndex
+$facetSearchConfigDescription=Animal Management B2C Chile Solr Index
+$searchIndexNamePrefix=amB2CCL
+$solrIndexedType=amB2CCLProductType
+$indexBaseSite=amB2CCL
+$indexLanguages=es_CL
 $indexCurrencies=USD
  
 # Import config properties into impex macros
@@ -77,7 +77,7 @@ INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; n
                                   ; $solrIndexedType                         ; animalCompatibility    ; string     ;                    ;                         ;                          ; true                      ;                                    ;                                   ; springELValueProvider                    ;                                
                                   ; $solrIndexedType                         ; plpProductDescription  ; string     ;                    ;                         ;                          ;                           ;                                    ;                                   ; springELValueProvider                    ;                                ;                               
                                   ; $solrIndexedType                         ; modifiedtime           ; date       ;                    ;                         ;                          ;                           ;                                    ;                                   ; defaultDateValueResolver                 ;                                
-                                  ; $solrIndexedType                         ; item                   ; text       ;                    ;                         ;                          ; true                      ;                                    ;                                   ; gallagherVariantCodeValueResolver          ;                                ;                               ;                     ; true                    ;               ; true                         ;                    ; true                            ;                                             ;                       ;                               
+                                  ; $solrIndexedType                         ; item                   ; text       ;                    ;                         ;                          ; true                      ;                                    ;                                   ; gallagherVariantCodeValueResolver        ;                                ;                               ;                     ; true                    ;               ; true                         ;                    ; true                            ;                                             ;                       ;                               
                                   
 #hiding animalCompatibility
 INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]      ; visible
@@ -193,9 +193,9 @@ INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(id
                                       ; price:$solrIndexedType                                          ;                     ; MultiSelectOr   ; 4000     ;                                   ;                   ; defaultTopValuesProvider ;                                 ;                                                                                                   
                                       ; allPromotions:$solrIndexedType                                  ;                     ; MultiSelectOr   ; 0        ; promotionFacetDisplayNameProvider ;                   ;                          ;                                 ;                                                                                                   
                                       
-INSERT_UPDATE AsSimpleSearchProfile ; code[unique=true]       ; name[lang=en]               ; indexType             ; catalogVersion(catalog(id),version)[unique=true] 
-                                    ; amB2CLatAmSearchProfile ; AM B2C LatAm Search Profile ; amB2CLatAmProductType ; amB2CLatAmProductCatalog:Staged                  
+INSERT_UPDATE AsSimpleSearchProfile ; code[unique=true]    ; name[lang=en]               ; indexType          ; catalogVersion(catalog(id),version)[unique=true] 
+                                    ; amB2CCLSearchProfile ; AM B2C Chile Search Profile ; amB2CCLProductType ; amB2CCLProductCatalog:Staged                     
                                     
                                     
 INSERT_UPDATE AsSearchProfileActivationSet ; indexType[unique=true] ; catalogVersion(catalog(id),version)[unique=true] ; searchProfiles(code,catalogVersion(catalog(id),version)) 
-                                           ; amB2CLatAmProductType  ; amB2CLatAmProductCatalog:Staged                  ; amB2CLatAmSearchProfile:amB2CLatAmProductCatalog:Staged  
+                                           ; amB2CCLProductType     ; amB2CCLProductCatalog:Staged                     ; amB2CCLSearchProfile:amB2CCLProductCatalog:Staged        

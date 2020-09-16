@@ -5,10 +5,10 @@
 # Import the Product Catalog and Classification Catalog
 #
  
-$productCatalog=amB2CLatAmProductCatalog
+$productCatalog=amB2CCLProductCatalog
 $classificationCatalog=AMB2CClassification
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
-$languages=es_LA,en
+$languages=es_CL,en
  
 # Product catalog
 INSERT_UPDATE Catalog ; id[unique=true] 

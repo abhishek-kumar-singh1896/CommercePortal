@@ -262,6 +262,12 @@
 					<defaultvalue>false</defaultvalue>
 					<description>Flag to identify Product is eligible for LatAm Market.</description>
 				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="eligibleForChile" type="boolean">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<defaultvalue>false</defaultvalue>
+					<description>Flag to identify Product is eligible for Chile.</description>
+				</attribute>
 				<attribute qualifier="videos" type="VideoDataMap">
 					<persistence type="property"></persistence>
 					<modifiers read="true" write="true" optional="true" />

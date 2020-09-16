@@ -15,7 +15,7 @@ INSERT_UPDATE RegionCode ; code[unique = true]
                          ; stham               
                          ; latam               
                          ; global              
-                         
+                 		 ; cl                         
                          
 # Import Countries       
 # Full country list conforming to ISO 3166-1 alpha-2
@@ -29,7 +29,7 @@ INSERT_UPDATE Country ; isocode[unique=true] ; name[lang=en]                    
                       ; AM                   ; "Armenia"                                      ;                                  ; uk                                     
                       ; AO                   ; "Angola"                                       ;                                  
                       ; AQ                   ; "Antarctica"                                   ;                                  
-                      ; AR                   ; "Argentina"                                    ; latam                            ; stham                                    
+                      ; AR                   ; "Argentina"                                    ; cl                            ; stham                                    
                       ; AS                   ; "American Samoa"                               ;                                  
                       ; AT                   ; "Austria"                                      ;                                  ; uk
                       ; AU                   ; "Australia"                                    ; au                               ; au                                       
@@ -48,9 +48,9 @@ INSERT_UPDATE Country ; isocode[unique=true] ; name[lang=en]                    
                       ; BL                   ; "Saint Barthélemy"                             ;                                  
                       ; BM                   ; "Bermuda"                                      ;                                  
                       ; BN                   ; "Brunei Darussalam"                            ;                                  ; asia                                     
-                      ; BO                   ; "Bolivia"                                      ; latam                            ; stham                                    
+                      ; BO                   ; "Bolivia"                                      ; cl                            ; stham                                    
                       ; BQ                   ; "Bonaire, Saint Eustatius and Saba"            ;                                  
-                      ; BR                   ; "Brazil"                                       ; latam                            ; stham                                    
+                      ; BR                   ; "Brazil"                                       ; cl                            ; stham                                    
                       ; BS                   ; "Bahamas"                                      ;                                  
                       ; BT                   ; "Bhutan"                                       ;                                  ; asia                                     
                       ; BV                   ; "Bouvet Island"                                ;                                  ; nz
@@ -65,12 +65,12 @@ INSERT_UPDATE Country ; isocode[unique=true] ; name[lang=en]                    
                       ; CH                   ; "Switzerland"                                  ;                                  ; uk
                       ; CI                   ; "Cote d'Ivoire"                                ;                                  
                       ; CK                   ; "Cook Islands"                                 ;                                  
-                      ; CL                   ; "Chile"                                        ; latam                            ; stham                                    
+                      ; CL                   ; "Chile"                                        ; cl                            ; stham                                    
                       ; CM                   ; "Cameroon"                                     ;                                  
                       ; CN                   ; "China"                                        ;                                  ; asia                                     
-                      ; CO                   ; "Colombia"                                     ; latam                            ; stham                                    
-                      ; CR                   ; "Costa Rica"                                   ; latam                            ; stham                                    
-                      ; CU                   ; "Cuba"                                         ; latam                            ; stham                                    
+                      ; CO                   ; "Colombia"                                     ; cl                            ; stham                                    
+                      ; CR                   ; "Costa Rica"                                   ; cl                            ; stham                                    
+                      ; CU                   ; "Cuba"                                         ; cl                            ; stham                                    
                       ; CV                   ; "Cape Verde"                                   ;                                  
                       ; CW                   ; "Curaçao"                                      ;                                  
                       ; CX                   ; "Christmas Island"                             ;                                  ; asia                                     
@@ -80,9 +80,9 @@ INSERT_UPDATE Country ; isocode[unique=true] ; name[lang=en]                    
                       ; DJ                   ; "Djibouti"                                     ;                                  
                       ; DK                   ; "Denmark"                                      ;                                  ; uk
                       ; DM                   ; "Dominica"                                     ;                                  
-                      ; DO                   ; "Dominican Republic"                           ; latam                            ; stham                                    
+                      ; DO                   ; "Dominican Republic"                           ; cl                            ; stham                                    
                       ; DZ                   ; "Algeria"                                      ;                                  
-                      ; EC                   ; "Ecuador"                                      ; latam                            ; stham                                    
+                      ; EC                   ; "Ecuador"                                      ; cl                            ; stham                                    
                       ; EE                   ; "Estonia"                                      ;                                  ; uk
                       ; EG                   ; "Egypt"                                        ;                                  
                       ; EH                   ; "Western Sahara"                               ;                                  
@@ -110,15 +110,15 @@ INSERT_UPDATE Country ; isocode[unique=true] ; name[lang=en]                    
                       ; GQ                   ; "Equatorial Guinea"                            ;                                  
                       ; GR                   ; "Greece"                                       ;                                  ; uk
                       ; GS                   ; "South Georgia and the South Sandwich Islands" ;                                  ; stham
-                      ; GT                   ; "Guatemala"                                    ; latam                            ; stham                                    
+                      ; GT                   ; "Guatemala"                                    ; cl                            ; stham                                    
                       ; GU                   ; "Guam"                                         ;                                  
                       ; GW                   ; "Guinea-Bissau"                                ;                                  
                       ; GY                   ; "Guyana"                                       ;                                  ; stham
                       ; HK                   ; "Hong Kong, China"                             ;                                  ; asia                                     
                       ; HM                   ; "Heard Island and McDonald Islands"            ;                                  
-                      ; HN                   ; "Honduras"                                     ; latam                            ; stham                                    
+                      ; HN                   ; "Honduras"                                     ; cl                            ; stham                                    
                       ; HR                   ; "Croatia"                                      ;                                  
-                      ; HT                   ; "Haiti"                                        ; latam                            ; stham                                    
+                      ; HT                   ; "Haiti"                                        ; cl                            ; stham                                    
                       ; HU                   ; "Hungary"                                      ;                                  ; uk
                       ; ID                   ; "Indonesia"                                    ;                                  ; asia                                     
                       ; IE                   ; "Ireland"                                      ;                                  ; uk
@@ -176,7 +176,7 @@ INSERT_UPDATE Country ; isocode[unique=true] ; name[lang=en]                    
                       ; MU                   ; "Mauritius"                                    ;                                  
                       ; MV                   ; "Maldives"                                     ;                                  ; asia                                     
                       ; MW                   ; "Malawi"                                       ;                                  
-                      ; MX                   ; "Mexico"                                       ; latam                            ; stham                                    
+                      ; MX                   ; "Mexico"                                       ; cl                            ; stham                                    
                       ; MY                   ; "Malaysia"                                     ;                                  ; asia                                     
                       ; MZ                   ; "Mozambique"                                   ;                                  
                       ; NA                   ; "Namibia"                                      ;                                  
@@ -184,7 +184,7 @@ INSERT_UPDATE Country ; isocode[unique=true] ; name[lang=en]                    
                       ; NE                   ; "Niger"                                        ;                                  
                       ; NF                   ; "Norfolk Island"                               ;                                  
                       ; NG                   ; "Nigeria"                                      ;                                  
-                      ; NI                   ; "Nicaragua"                                    ; latam                            ; stham                                    
+                      ; NI                   ; "Nicaragua"                                    ; cl                            ; stham                                    
                       ; NL                   ; "Netherlands"                                  ;                                  ; uk
                       ; NO                   ; "Norway"                                       ;                                  ; uk
                       ; NP                   ; "Nepal"                                        ;                                  ; asia                                     
@@ -192,8 +192,8 @@ INSERT_UPDATE Country ; isocode[unique=true] ; name[lang=en]                    
                       ; NU                   ; "Niue"                                         ;                                  
                       ; NZ                   ; "New Zealand"                                  ; nz                               ; nz                                       
                       ; OM                   ; "Oman"                                         ;                                  ; asia                                     
-                      ; PA                   ; "Panama"                                       ; latam                            ; stham                                    
-                      ; PE                   ; "Peru"                                         ; latam                            ; stham                                    
+                      ; PA                   ; "Panama"                                       ; cl                            ; stham                                    
+                      ; PE                   ; "Peru"                                         ; cl                            ; stham                                    
                       ; PF                   ; "French Polynesia"                             ;                                  
                       ; PG                   ; "Papua New Guinea"                             ;                                  ; au                                       
                       ; PH                   ; "Philippines"                                  ;                                  ; asia                                     
@@ -201,11 +201,11 @@ INSERT_UPDATE Country ; isocode[unique=true] ; name[lang=en]                    
                       ; PL                   ; "Poland"                                       ;                                  ; uk
                       ; PM                   ; "Saint Pierre and Miquelon"                    ;                                  
                       ; PN                   ; "Pitcairn"                                     ;                                  
-                      ; PR                   ; "Puerto Rico"                                  ; latam                            ; stham                                    
+                      ; PR                   ; "Puerto Rico"                                  ; cl                            ; stham                                    
                       ; PS                   ; "Palestinian Territory"                        ;                                  ; asia                                     
                       ; PT                   ; "Portugal"                                     ;                                  ; uk
                       ; PW                   ; "Palau"                                        ;                                  
-                      ; PY                   ; "Paraguay"                                     ; latam                            ; stham                                    
+                      ; PY                   ; "Paraguay"                                     ; cl                            ; stham                                    
                       ; QA                   ; "Qatar"                                        ;                                  ; asia                                     
                       ; RE                   ; "Reunion"                                      ;                                  
                       ; RO                   ; "Romania"                                      ;                                  ; uk
@@ -228,7 +228,7 @@ INSERT_UPDATE Country ; isocode[unique=true] ; name[lang=en]                    
                       ; SO                   ; "Somalia"                                      ;                                  
                       ; SR                   ; "Suriname"                                     ;                                  
                       ; ST                   ; "Sao Tome and Principe"                        ;                                  
-                      ; SV                   ; "El Salvador"                                  ; latam                            ; stham                                    
+                      ; SV                   ; "El Salvador"                                  ; cl                            ; stham                                    
                       ; SX                   ; "Sint Maarten (Dutch part)"                    ;                                  
                       ; SY                   ; "Syrian Arab Republic"                         ;                                  ; asia                                     
                       ; SZ                   ; "Swaziland"                                    ;                                  
@@ -252,11 +252,11 @@ INSERT_UPDATE Country ; isocode[unique=true] ; name[lang=en]                    
                       ; UG                   ; "Uganda"                                       ;                                  
                       ; UM                   ; "United States Minor Outlying Islands"         ;                                  ; us
                       ; US                   ; "United States"                                ; us                               ; us                                       
-                      ; UY                   ; "Uruguay"                                      ; latam                            ; stham                                    
+                      ; UY                   ; "Uruguay"                                      ; cl                            ; stham                                    
                       ; UZ                   ; "Uzbekistan"                                   ;                                  ; asia                                     
                       ; VA                   ; "Holy See (Vatican City State)"                ;                                  
                       ; VC                   ; "Saint Vincent and the Grenadines"             ;                                  
-                      ; VE                   ; "Venezuela"                                    ; latam                            ; stham                                    
+                      ; VE                   ; "Venezuela"                                    ; cl                            ; stham                                    
                       ; VG                   ; "Virgin Islands, British"                      ;                                  ; us
                       ; VI                   ; "Virgin Islands, U.S."                         ;                                  ; us
                       ; VN                   ; "Viet Nam"                                     ;                                  ; asia                                     
@@ -433,3 +433,4 @@ INSERT_UPDATE Region ; country(isocode) ; isocode[unique=true] ; isocodeShort ; 
                      ; JP               ; JP-06                ; 06           ; "Yamagata"                             
                      ; JP               ; JP-35                ; 35           ; "Yamaguchi"                            
                      ; JP               ; JP-19                ; 19           ; "Yamanashi"                            
+
