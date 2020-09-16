@@ -24,12 +24,12 @@ ACC.b2bUnitsPopup = {
 	    	});
 	    
 	    $(document).on("click", ".b2bunit-submit", function(e) {
-			var formData = $("#selectB2BUnirForm");
+			var formData = $("#selectB2BUnitForm");
 			e.preventDefault();
 
 			$.ajax({
 				type : "POST",
-				url : ACC.config.encodedContextPath + "/submitSelectedUnit",
+				url : ACC.config.encodedContextPath + "/showb2bunits/submitSelectedUnit",
 				data : formData.serialize(),
 				success : function(data) {
 					$('#myModal').modal('hide');

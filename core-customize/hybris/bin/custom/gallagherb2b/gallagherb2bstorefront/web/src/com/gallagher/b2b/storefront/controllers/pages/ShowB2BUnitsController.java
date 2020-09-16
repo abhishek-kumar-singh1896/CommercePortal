@@ -16,6 +16,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -73,8 +74,16 @@ public class ShowB2BUnitsController extends AbstractPageController
 			final BindingResult bindingResult)
 	{
 		final CustomerModel currentCustomer = (CustomerModel) userService.getCurrentUser();
-		getSessionService().setAttribute("selectedB2BUnit", b2bUnitsForm.getSelectedUnit());
+		final List<B2BUnitModel> rootNodes = b2bUnitFacade.getAllB2BUnits(currentCustomer);
+		for (final B2BUnitModel unit : rootNodes)
+		{
+			if (StringUtils.equals(unit.getUid(), b2bUnitsForm.getSelectedUnit()))
+			{
+				getSessionService().setAttribute("selectedB2BUnit", unit);
+			}
+		}
 		model.addAttribute("b2bUnitsForm", new B2BUnitsForm());
+		b2bUnitFacade.updateBranchInSession(getSessionService().getCurrentSession(), currentCustomer);
 		return true;
 	}
 
