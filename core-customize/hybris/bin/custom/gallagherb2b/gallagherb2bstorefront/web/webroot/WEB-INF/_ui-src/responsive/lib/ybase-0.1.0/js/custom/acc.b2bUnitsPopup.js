@@ -10,10 +10,9 @@ ACC.b2bUnitsPopup = {
 		    	$.ajax({
 					type : "GET",
 					url : ACC.config.encodedContextPath + "/showb2bunits",
-					/*data : formData.serialize(),*/
 					success : function(data) {
 						$('#b2bUnitsModal').append(data);
-						$('#myModal').modal('show');
+						$('#b2bUnitOverlay').modal('show');
 					},
 					error : function(data) {
 						console.log('An error occurred.');
@@ -29,10 +28,10 @@ ACC.b2bUnitsPopup = {
 
 			$.ajax({
 				type : "POST",
-				url : ACC.config.encodedContextPath + "/showb2bunits/submitSelectedUnit",
+				url : ACC.config.encodedContextPath + "/showb2bunits/submit",
 				data : formData.serialize(),
 				success : function(data) {
-					$('#myModal').modal('hide');
+					$('#b2bUnitOverlay').modal('hide');
 				},
 				error : function(data) {
 					console.log('An error occurred.');

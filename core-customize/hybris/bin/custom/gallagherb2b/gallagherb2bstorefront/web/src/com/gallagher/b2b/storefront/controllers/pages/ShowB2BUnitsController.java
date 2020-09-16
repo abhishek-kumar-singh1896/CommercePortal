@@ -67,7 +67,7 @@ public class ShowB2BUnitsController extends AbstractPageController
 		return ControllerConstants.Views.Fragments.B2BUnits.B2BUnitsPopup;
 	}
 
-	@RequestMapping(value = "/submitSelectedUnit", method = RequestMethod.POST, produces = "application/json")
+	@RequestMapping(value = "/submit", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
 	public boolean populateCustomerPreferences(@ModelAttribute
 	final B2BUnitsForm b2bUnitsForm, final Model model, final RedirectAttributes redirectAttributes,
@@ -75,15 +75,22 @@ public class ShowB2BUnitsController extends AbstractPageController
 	{
 		final CustomerModel currentCustomer = (CustomerModel) userService.getCurrentUser();
 		final List<B2BUnitModel> rootNodes = b2bUnitFacade.getAllB2BUnits(currentCustomer);
+		B2BUnitModel b2bUnitModel = null;
 		for (final B2BUnitModel unit : rootNodes)
 		{
 			if (StringUtils.equals(unit.getUid(), b2bUnitsForm.getSelectedUnit()))
 			{
 				getSessionService().setAttribute("selectedB2BUnit", unit);
+				b2bUnitModel = unit;
 			}
 		}
 		model.addAttribute("b2bUnitsForm", new B2BUnitsForm());
-		b2bUnitFacade.updateBranchInSession(getSessionService().getCurrentSession(), currentCustomer);
+		if (null != b2bUnitModel)
+		{
+			((B2BCustomerModel) currentCustomer).setDefaultB2BUnit(b2bUnitModel);
+			modelService.save(currentCustomer);
+			b2bUnitFacade.updateBranchInSession(getSessionService().getCurrentSession(), currentCustomer);
+		}
 		return true;
 	}
 
