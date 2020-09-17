@@ -168,7 +168,7 @@
                     <editorArea:attribute qualifier="baseProductCode" />
                     <editorArea:attribute qualifier="baseStores" />
                     <editorArea:attribute qualifier="variantForImage" />
-                    <editorArea:attribute qualifier="eligibleForCL" />
+                    <editorArea:attribute qualifier="eligibleForChile" />
                    <editorArea:attribute qualifier="plpProductDescription" editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)" />
                 </editorArea:section>
                 <editorArea:section name="hmc.section.gallagher.ProductReferences.SpareParts">
@@ -229,7 +229,7 @@
 					<editorArea:attribute qualifier="baseProductCode" />
 					<editorArea:attribute qualifier="baseStores" />
 					<editorArea:attribute qualifier="variantForImage" />
-					<editorArea:attribute qualifier="eligibleForCL" />
+					<editorArea:attribute qualifier="eligibleForChile" />
 					<editorArea:attribute qualifier="plpProductDescription"
 						editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)" />
 				</editorArea:section>
