@@ -105,9 +105,9 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 			final List<BaseStoreModel> baseStores = new ArrayList<>();
 			baseStores.addAll(product.getBaseStores());
 
-			if (product.isEligibleForLatAm() && catalogId.contains("B2C"))
+			if (product.isEligibleForChile() && catalogId.contains("B2C"))
 			{
-				baseStores.add(baseStoreService.getBaseStoreForUid("amB2CLatAm"));
+				baseStores.add(baseStoreService.getBaseStoreForUid("amB2CCL"));
 			}
 
 			try
@@ -211,9 +211,9 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 				final List<BaseStoreModel> baseStores = new ArrayList<>();
 				baseStores.addAll(product.getBaseStores());
 
-				if (product.isEligibleForLatAm() && catalogId.contains("B2C"))
+				if (product.isEligibleForChile() && catalogId.contains("B2C"))
 				{
-					baseStores.add(baseStoreService.getBaseStoreForUid("amB2CLatAm"));
+					baseStores.add(baseStoreService.getBaseStoreForUid("amB2CCL"));
 				}
 
 				final Map<BaseStoreModel, CatalogVersionModel> storeCatalogMap = processVariantProductForCode(variantProductCode,

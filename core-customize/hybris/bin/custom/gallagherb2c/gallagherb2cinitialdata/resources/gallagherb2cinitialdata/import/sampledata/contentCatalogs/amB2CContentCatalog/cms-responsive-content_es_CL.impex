@@ -2,7 +2,7 @@ $contentCatalog=amB2CContentCatalog
 $contentCatalogName=Animal Management B2C Content Catalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
 $productCatalog=amB2CMasterProductCatalog
-$productCatalogName=Animal Management B2C US Product Catalog
+$productCatalogName=Animal Management B2C Chile Product Catalog
 $productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 $picture=media(code, $contentCV)
 $medias=medias(code, $contentCV);
@@ -10,7 +10,7 @@ $mediaContainer=media(qualifier, $contentCV)[lang=$lang];
 $siteResource=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/contentCatalogs/$contentCatalog
 $productResource=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/productCatalogs/$productCatalog
 # Language
-$lang=es_LA
+$lang=es_CL
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
 ;;PowerEnergisers_link;"Energizadores de Cerco"

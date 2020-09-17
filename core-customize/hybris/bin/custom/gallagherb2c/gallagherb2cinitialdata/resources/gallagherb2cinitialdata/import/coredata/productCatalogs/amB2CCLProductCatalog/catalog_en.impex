@@ -4,11 +4,11 @@
 #
 # Import the Product Catalog and Classification Catalog
 #
-
+ 
 # Language
 $lang=en
-
+ 
 # Create Catalog
-UPDATE Catalog;id[unique=true];name[lang=$lang]
- ;AMB2CClassification;"Animal Management B2C Classification"
- ;amB2CLatAmProductCatalog;"Animal Management B2C LatAm Product Catalog"
+UPDATE Catalog ; id[unique=true]       ; name[lang=$lang]                              
+               ; AMB2CClassification   ; "Animal Management B2C Classification"        
+               ; amB2CCLProductCatalog ; "Animal Management B2C Chile Product Catalog" 

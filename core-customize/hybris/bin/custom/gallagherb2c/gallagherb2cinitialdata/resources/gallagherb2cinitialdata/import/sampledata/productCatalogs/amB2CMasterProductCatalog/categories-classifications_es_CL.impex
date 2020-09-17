@@ -2,10 +2,10 @@
 
 # Macros / Replacement Parameter definitions
 $productCatalog=amB2CMasterProductCatalog
-$productCatalogName=Animal Management B2C US Product Catalog
+$productCatalogName=Animal Management B2C Chile Product Catalog
 $classCatalogVersion=catalogversion(catalog(id[default='AMB2CClassification']),version[default='1.0'])[unique=true,default='AMB2CClassification:1.0']
 $classSystemVersion=systemVersion(catalog(id[default='AMB2CClassification']),version[default='1.0'])[unique=true]
-$lang=es_LA
+$lang=es_CL
 
 
 UPDATE ClassificationClass;code[unique=true];name[lang=$lang];$classCatalogVersion

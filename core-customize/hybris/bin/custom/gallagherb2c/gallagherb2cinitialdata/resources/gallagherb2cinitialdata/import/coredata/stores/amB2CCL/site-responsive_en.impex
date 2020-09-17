@@ -7,8 +7,8 @@
  
 # Language
 $lang=en
-$langLA=es_LA
+$langLA=es_CL
  
 # Create CMS Site
 UPDATE CMSSite ; uid[unique=true] ; name[lang=$lang]                   ; name[lang=$langLA]                 ; locale[lang=$lang] 
-               ; amB2CLatAm       ; "Animal Management LatAm B2C Site" ; "Animal Management LatAm B2C Site" ; es_LA              
+               ; amB2CCL          ; "Animal Management Chile B2C Site" ; "Animal Management Chile B2C Site" ; es_CL              
