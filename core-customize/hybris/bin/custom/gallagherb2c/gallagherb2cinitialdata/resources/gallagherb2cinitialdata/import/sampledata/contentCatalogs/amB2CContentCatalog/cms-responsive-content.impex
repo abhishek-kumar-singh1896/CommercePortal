@@ -1855,20 +1855,51 @@ INSERT_UPDATE CMSLinkComponent ; $contentCV[unique=true] ; uid[unique=true]     
                                ;                         ; PortablefencingTapesWiresBraids_nav_link111 ; Electric fencing PortablefencingTapesWiresBraids_nav_link  ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ;  
                                ;                         ; PortablefencingTapesWiresBraids_nav_link112 ; Electric fencing PortablefencingTapesWiresBraids_nav_link2 ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ;  
                                ;                         ; PortablefencingTapesWiresBraids_nav_link113 ; Electric fencing PortablefencingTapesWiresBraids_nav_link3 ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ;  
+
+INSERT_UPDATE CMSNavigationNode ; uid[unique=true]        ; $contentCV[unique=true] ; name                  ; title[lang=en]      ; &nodeRef                              
+                                ; VirtualFencing_nav11    ;                         ; Virtual Fencing nav11  ; "Virtual Fencing" ; VirtualFencing_nav11    
+                                                             
+INSERT_UPDATE CMSLinkComponent ; $contentCV[unique=true] ; uid[unique=true]                     ; name                                                ; url                                                    ; category(code, $productCV) ; target(code)[default='sameWindow'] ;   linkName[lang=en]
+                               ;;VirtualFencingSolutionsAULink;Virtual Fencing Solutions AU Link;"https://www.google.com/";	;;	Virtual Fencing						   
+                               ;;VirtualFencingSolutionsNZLink;Virtual Fencing Solutions NZ Link;"https://www.google.com/";;;Virtual Fencing	
+							          ;;VirtualFencingSolutionsUSLink;Virtual Fencing Solutions US Link;"https://www.google.com/";;;Virtual Fencing	
+                               ;;VirtualFencingSolutionsCAFRLink;Virtual Fencing Solutions CA FR Link;"https://www.google.com/";;;
+                               ;;VirtualFencingSolutionsCAENLink;Virtual Fencing Solutions CA EN Link;"https://www.google.com/";;;Virtual Fencing	   
+							          ;;VirtualFencingSolutionsLATAMLink;Virtual Fencing Solutions LATAM Link;"https://www.google.com/";;;	
+							   
+INSERT_UPDATE CMSLinkComponent ; $contentCV[unique=true] ; uid[unique=true]        ; restrictions(uid,$contentCV)                                    ; onlyOneRestrictionMustApply[default='true'] 
+                              ;;VirtualFencingSolutionsAULink;GallagherAURegionRestriction
+                              ;;VirtualFencingSolutionsNZLink;GallagherNZRegionRestriction,GallagherGlRegionRestriction
+                              ;;VirtualFencingSolutionsUSLink;GallagherUSRegionRestriction
+                              ;;VirtualFencingSolutionsCAFRLink; GallagherCAFRRegionRestriction,GallagherCAFRCARegionRestriction 
+							         ;;VirtualFencingSolutionsCAENLink;GallagherCAENRegionRestriction,GallagherCAENCARegionRestriction 
+                              ;;VirtualFencingSolutionsLATAMLink;GallagherLATAMRegionRestriction
                                
-                               
+INSERT_UPDATE CMSNavigationEntry ; uid[unique=true]            ; $contentCV[unique=true] ; name                                        ; navigationNode(&nodeRef) ; item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV) 
+                                 ;VirtualFencing_AUnavEntry11;;Virtual Fencing AU nav Entry 11;VirtualFencing_nav11;VirtualFencingSolutionsAULink
+								         ;VirtualFencing_NZnavEntry11;;Virtual Fencing NZ nav Entry 11;VirtualFencing_nav11;VirtualFencingSolutionsNZLink
+                                ;VirtualFencing_USnavEntry11;;Virtual Fencing nav US  Entry 11;VirtualFencing_nav11;VirtualFencingSolutionsUSLink
+                                ;VirtualFencing_CAFRnavEntry11;;Virtual Fencing FR nav Entry 11;VirtualFencing_nav11;VirtualFencingSolutionsCAFRLink
+								        ;VirtualFencing_CAENnavEntry11;;Virtual Fencing nav CA Entry 11;VirtualFencing_nav11;VirtualFencingSolutionsCAENLink
+                                ;VirtualFencing_LATAMnavEntry11;;Virtual Fencing nav LATAM Entry 11;VirtualFencing_nav11;VirtualFencingSolutionsLATAMLink
+
                                
                                
 INSERT_UPDATE CMSNavigationNode ; uid[unique=true]                     ; $contentCV[unique=true] ; name                                   ; children(uid,$contentCV)[mode=replace] ; title[lang=en]      ; &nodeRef                             
                                 ; ElectricfencingPower_Nav1111         ;                         ; Power Navigation Node Menu             ; PowerEnergisers_nav11                  ; "Power"             ; ElectricfencingPower_Nav1111         
                                 ; ElectricfencingPermanentfencing_Nav1 ;                         ; Permanent fencing Navigation Node Menu ; PermanentfencingWireandCable_nav11     ; "Permanent fencing" ; ElectricfencingPermanentfencing_Nav1 
                                 ; ElectricfencingPower_Nav11           ;                         ; Portable fencing Navigation Node Menu  ; PortablefencingTapesWiresBraids_nav11  ; "Portable fencing"  ; ElectricfencingPower_Nav11           
-                                
+                                ;VirtualFencing_Nav1                   ;                         ;Virtual fencing Navigation Node Menu    ;VirtualFencing_nav11                     ;"Virtual Fencing"   ; VirtualFencing_Nav1
+
+INSERT_UPDATE CMSLinkComponent ; $contentCV[unique=true] ; uid[unique=true]   ; name                              ; url                                                    ; category(code, $productCV) ; target(code)[default='sameWindow'] ;  ;  
+                               ;                         ;VirtualFencing11     ;Virtual Fencing Link 1            ;  https://www.google.com/                               ;                            ;                                    ;  ;
+
                                 
 INSERT_UPDATE CMSNavigationEntry ; uid[unique=true]                         ; $contentCV[unique=true] ; name                                           ; navigationNode(&nodeRef)             ; item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV) 
                                  ; ElectricfencingPower_NavEntry1111        ;                         ; Power Navigation Node Entry                    ; ElectricfencingPower_Nav1111         ; PowerEnergisers111                                     
                                  ; ElectricfencingPermanentfencing_NavEntry ;                         ; Power ElectricfencingPermanentfencing_NavEntry ; ElectricfencingPermanentfencing_Nav1 ; PowerEnergisers112                                     
                                  ; ElectricfencingPower_NavEntry11          ;                         ; Power Navigation Node Entry                    ; ElectricfencingPower_Nav11           ; PowerEnergisers113                                     
+                                 ;VirtualFencing_NavEntry                   ;                          ; Virtual Fencing Node Entry                     ;VirtualFencing_Nav1                 ;VirtualFencing11
                                  
 INSERT_UPDATE CMSLinkComponent ; $contentCV[unique=true] ; uid[unique=true]   ; name                              ; url                                                    ; category(code, $productCV) ; target(code)[default='sameWindow'] ;  ;  
                                ;                         ; PowerEnergisers111 ; Electric fencing Energisers Link1 ; /Animal-Management/Electric-Fencing/c/electric-fencing ;                            ;                                    ;  ;  
@@ -1878,17 +1909,23 @@ INSERT_UPDATE CMSLinkComponent ; $contentCV[unique=true] ; uid[unique=true]   ; 
 INSERT_UPDATE CMSNavigationNode ; uid[unique=true]             ; name                           ; $contentCV[unique=true] ; children(uid,$contentCV)[mode=replace]                            ; title[lang=en]               ; &nodeRef                     
                                 ; Electricfencing_Nav1         ; Electric fencing Nav1          ;                         ; ElectricfencingPower_Nav1111,ElectricfencingPermanentfencing_Nav1 ; "Electric Fencing1"          ; Electricfencing_Nav1         
                                 ; WeighingEID_Nav1             ; Weighing EID Nav1              ;                         ; ElectricfencingPower_Nav11                                        ; "Weighing and EID1"          ; WeighingEID_Nav1             
+                                ;VirtualFencingSolutions_Nav1  ;Virtual Fencing  Solutions Nav1 ;                         ; VirtualFencing_Nav1                                               ;"Virtual Fencing  Solutions"  ; VirtualFencingSolutions_Nav1
                                 ; WirelessWaterMonitoring_Nav1 ; Wireless Water Monitoring Nav1 ;                         ;                                                                   ; "Wireless Water Monitoring1" ; WirelessWaterMonitoring_Nav1 
                                 ; SteelGatesandHardware_Nav1   ; Steel Gatesand Hardware Nav1   ;                         ;                                                                   ; "Steel Gates and Hardware1"  ; SteelGatesandHardware_Nav1   
                                 ; FarmInformationTools_Nav1    ; Farm Information Tools Nav1    ;                         ;                                                                   ; "Farm information tools1"    ; FarmInformationTools_Nav1    
                                 ; Stockprods_Nav1              ; Stockprods Nav1                ;                         ;                                                                   ; "Stock prods1"               ; Stockprods_Nav1              
                                 ; NewProducts_Nav1             ; New Products Nav1              ;                         ;                                                                   ; "New Products1"              ; NewProducts_Nav1             
                                 ; Promotions_Nav1              ; Promotions Nav1                ;                         ;                                                                   ; "Promotions1"                ; Promotions_Nav1              
+
+INSERT_UPDATE CMSLinkComponent ; $contentCV[unique=true] ; uid[unique=true]                      ; name                      ; url                                ; category(code, $productCV)         ; target(code)[default='sameWindow'] ;linkName[lang=en]  ;  
+                               ;                         ; AllVirtualFencingSolutionLink1     ; All Virtual Fencing  Link    ; "https://www.google.com/"                                ;                                    ;                                    ;All Virtual Fencing Solutions;
+
                                 
 INSERT_UPDATE CMSNavigationEntry ; uid[unique=true]          ; name                       ; $contentCV[unique=true] ; navigationNode(&nodeRef) ; item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV) 
                                  ; Electricfencing_NavEntry1 ; Electric fencing Nav Entry ;                         ; Electricfencing_Nav1     ; AllElectricFencingLink1                                
                                  ; WeighingEID_NavEntry1     ; Weighing EID Nav Entry     ;                         ; WeighingEID_Nav1         ; AllWeighingEIDLink1                                    
-                                 
+                                 ;VirtualFencing_NavEntry1    ;Virtual Fencing Nav Entry  ;                         ;VirtualFencingSolutions_Nav1;AllVirtualFencingSolutionLink1
+
                                  
                                  
 INSERT_UPDATE CMSNavigationNode ; uid[unique=true]             ; name                          ; $contentCV[unique=true] ; children(uid,$contentCV)[mode=replace] ; title[lang=en]              ; &nodeRef                     
@@ -2373,7 +2410,7 @@ INSERT_UPDATE CMSLinkComponent ; $contentCV[unique=true] ; uid[unique=true] ; na
                                ;                         ; ContactLink      ; Contact Us Link ; https://www.google.com/ ;                            ;                                    ;  ;  
                                
 INSERT_UPDATE CMSNavigationNode ; uid[unique=true] ; $contentCV[unique=true] ; name                            ; parent(uid, $contentCV)  ; children(uid,$contentCV)[mode=replace]                                           ; links(uid, $contentCV) ; &nodeRef         ; title[lang=en] 
-                                ; SolutionsNavNode ;                         ; Solutions Navigation Node Menu  ; HeaderLinkNavigationNode ; Electricfencing_Nav1,WeighingEID_Nav1                                            ;                        ; SolutionsNavNode ; "Solutions"    
+                                ; SolutionsNavNode ;                         ; Solutions Navigation Node Menu  ; HeaderLinkNavigationNode ; Electricfencing_Nav1,WeighingEID_Nav1,VirtualFencingSolutions_Nav1                                            ;                        ; SolutionsNavNode ; "Solutions"    
 #                               ; SolutionsNavNode ;                         ; Solutions Navigation Node Menu  ; HeaderLinkNavigationNode ; Electricfencing_Nav1,WeighingEID_Nav1,WirelessWaterMonitoring_Nav1,SteelGatesandHardware_Nav1,FarmInformationTools_Nav1,Stockprods_Nav1,NewProducts_Nav1,Promotions_Nav1;                        ; SolutionsNavNode ; "Solutions"    
 #                               ; ProductsNavNode  ;                         ; Products Navigation Node Menu   ;                          ; Electricfencing_Nav,WeighingEID_Nav,WirelessWaterMonitoring_Nav,SteelGatesandHardware_Nav,FarmInformationTools_Nav,Stockprods_Nav,NewProducts_Nav,Promotions_Nav;                        ; ProductsNavNode  ; "Products"     
 #                               ; ProductsNavNode  ;                         ; Products Navigation Node Menu   ;                          ; Electricfencing_Nav,WeighingEID_Nav,WirelessWaterMonitoring_Nav,AutomaticWatering_Nav,AppsSoftware_Nav,SteelGatesandHardware_Nav,Stockprods_Nav;                        ; ProductsNavNode  ; "Products"     
