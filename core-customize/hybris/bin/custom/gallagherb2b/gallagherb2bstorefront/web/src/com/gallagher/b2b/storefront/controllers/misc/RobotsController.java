@@ -11,13 +11,17 @@
 package com.gallagher.b2b.storefront.controllers.misc;
 
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.AbstractController;
-import com.gallagher.b2b.storefront.controllers.ControllerConstants;
+import de.hybris.platform.servicelayer.config.ConfigurationService;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.gallagher.b2b.storefront.controllers.ControllerConstants;
+
 
 /**
  * Controller for web robots instructions
@@ -28,12 +32,31 @@ public class RobotsController extends AbstractController
 	// Number of seconds in one day
 	private static final String ONE_DAY = String.valueOf(60 * 60 * 24);
 
+	@Resource(name = "configurationService")
+	private ConfigurationService configurationService;
+
 	@RequestMapping(value = "/robots.txt", method = RequestMethod.GET)
 	public String getRobots(final HttpServletResponse response)
 	{
 		// Add cache control header to cache response for a day
 		response.setHeader("Cache-Control", "public, max-age=" + ONE_DAY);
+		if (isAllowRobots())
+		{
+			return ControllerConstants.Views.Pages.Misc.MiscRobotsPage;
+		}
+		else
+		{
+			return ControllerConstants.Views.Pages.Error.ErrorNotFoundPage;
+		}
+	}
 
-		return ControllerConstants.Views.Pages.Misc.MiscRobotsPage;
+	/**
+	 * Checks whether robots are allowed for the current environment.
+	 *
+	 * @return true if they are allowed
+	 */
+	private boolean isAllowRobots()
+	{
+		return configurationService.getConfiguration().getBoolean("allow.regional.robots", Boolean.TRUE);
 	}
 }

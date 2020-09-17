@@ -39,7 +39,7 @@ public class RobotsController extends AbstractController
 		}
 		else
 		{
-			return ControllerConstants.Views.Pages.Misc.NoIndexRobotsPage;
+			return ControllerConstants.Views.Pages.Error.ErrorNotFoundPage;
 		}
 	}
 
