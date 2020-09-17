@@ -96,7 +96,7 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 
 		final List<ProductModel> products = gallagherProductProcessingDao.getProductsForConversion(catalogVersion, lastStartTime);
 
-		final Set<Locale> locales = new HashSet<>();
+
 
 		for (final ProductModel product : products)
 		{
@@ -110,26 +110,12 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 				baseStores.add(baseStoreService.getBaseStoreForUid("amB2CLatAm"));
 			}
 
-			for (final BaseStoreModel baseStore : baseStores)
-			{
-				for (final LanguageModel language : baseStore.getLanguages())
-				{
-					locales.add(LocaleUtils.toLocale(language.getIsocode()));
-				}
-			}
-
 			try
 			{
 				final ProductModel existingProduct = productService.getProductForCode(catalogVersion, baseProductCode);
 
 				LOGGER.info("Base Product with code " + baseProductCode + " and CatalogVersion " + catalogId
 						+ " found, Updating the information.");
-
-				for (final Locale locale : locales)
-				{
-					existingProduct.setName(product.getName(locale), locale);
-					existingProduct.setDescription(product.getDescription(locale), locale);
-				}
 
 				final Collection<BaseStoreModel> combinedBaseStores = CollectionUtils.union(baseStores,
 						existingProduct.getBaseStores());
@@ -140,16 +126,33 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 			}
 			catch (final UnknownIdentifierException exception)
 			{
+
 				LOGGER.info("Base Product with code " + baseProductCode + " and CatalogVersion " + catalogId
 						+ " not found, Creating new one.");
 
-				final ProductModel newProduct = new ProductModel();
+				final ProductModel newProduct = modelService.create(ProductModel.class);
 				newProduct.setCode(baseProductCode);
 
-				for (final Locale locale : locales)
+				for (final BaseStoreModel baseStore : baseStores)
 				{
-					newProduct.setName(product.getName(locale), locale);
-					newProduct.setDescription(product.getDescription(locale), locale);
+					for (final LanguageModel language : baseStore.getLanguages())
+					{
+						final Locale locale = LocaleUtils.toLocale(language.getIsocode());
+
+						newProduct.setName(product.getName(locale), locale);
+						newProduct.setDescription(product.getDescription(locale), locale);
+						if (locale != null)
+						{
+							newProduct.setName(product.getName(locale), locale);
+							newProduct.setDescription(product.getDescription(locale), locale);
+						}
+						if (CollectionUtils.isNotEmpty(language.getFallbackLanguages()))
+						{
+							final Locale fallbackLocale = LocaleUtils.toLocale(language.getFallbackLanguages().get(0).getIsocode());
+							newProduct.setName(product.getName(fallbackLocale), fallbackLocale);
+							newProduct.setDescription(product.getDescription(fallbackLocale), fallbackLocale);
+						}
+					}
 				}
 
 				newProduct.setBaseStores(baseStores);

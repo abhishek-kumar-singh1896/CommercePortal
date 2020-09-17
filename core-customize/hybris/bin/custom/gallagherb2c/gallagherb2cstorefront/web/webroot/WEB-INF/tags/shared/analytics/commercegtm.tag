@@ -7,7 +7,7 @@
 <%@ taglib prefix="product" tagdir="/WEB-INF/tags/responsive/product"%>
 
 
-<c:if test="${not empty pageType && not empty commerceGTMId}">
+<c:if test="${not empty pageType && not empty gtmId}">
 	<c:choose>
 
 		<%-- Tracking - Enhanced Ecommerce Transaction --%>
@@ -15,7 +15,7 @@
 			<c:set var="transactionId" value="${orderData.code}" />
 			<script type="text/javascript">
 				dataLayer.push({
-					
+			    	   		'event': 'purchase',
 					    	   'transactionAffiliation': '${orderData.site}',
 								'transactionId':'${orderData.code}',									
 								'transactionTotal':${orderData.totalPrice.value},                     	

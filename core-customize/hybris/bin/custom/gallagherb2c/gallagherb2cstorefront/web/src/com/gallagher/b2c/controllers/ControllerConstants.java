@@ -135,6 +135,7 @@ public interface ControllerConstants
 			{
 				String MiscRobotsPage = "pages/misc/miscRobotsPage"; // NOSONAR
 				String MiscSiteMapPage = "pages/misc/miscSiteMapPage"; // NOSONAR
+				String NoIndexRobotsPage = "pages/misc/noIndexRobotsPage";// NOSONAR
 			}
 
 			interface Guest // NOSONAR
