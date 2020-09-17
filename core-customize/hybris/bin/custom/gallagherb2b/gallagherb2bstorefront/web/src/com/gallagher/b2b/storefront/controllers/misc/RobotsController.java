@@ -31,7 +31,7 @@ public class RobotsController extends AbstractController
 {
 	// Number of seconds in one day
 	private static final String ONE_DAY = String.valueOf(60 * 60 * 24);
-
+	public static final String FORWARD_PREFIX = "forward:";
 	@Resource(name = "configurationService")
 	private ConfigurationService configurationService;
 
@@ -46,7 +46,7 @@ public class RobotsController extends AbstractController
 		}
 		else
 		{
-			return ControllerConstants.Views.Pages.Error.ErrorNotFoundPage;
+			return FORWARD_PREFIX + "/404";
 		}
 	}
 
