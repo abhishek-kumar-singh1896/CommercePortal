@@ -223,10 +223,15 @@
 			<str name="classname">solr.DirectSolrSpellChecker</str>
 			<str name="field">spellcheck_en_as</str>
 		</lst>
-				<lst name="spellchecker">
+		<lst name="spellchecker">
 			<str name="name">en_ST</str>
 			<str name="classname">solr.DirectSolrSpellChecker</str>
 			<str name="field">spellcheck_en_st</str>
+		</lst>
+		<lst name="spellchecker">
+			<str name="name">es_CL</str>
+			<str name="classname">solr.DirectSolrSpellChecker</str>
+			<str name="field">spellcheck_es_cl</str>
 		</lst>
 
 	</searchComponent>
@@ -449,7 +454,7 @@
 	   	<str name="buildOnOptimize">true</str>
 	   	<str name="accuracy">0.35</str>
 	   </lst>
-	   	   <lst name="spellchecker">
+   	   <lst name="spellchecker">
 	   	<str name="name">en_UK</str>
 	   	<str name="classname">org.apache.solr.spelling.suggest.Suggester</str>
 	   	<str name="lookupImpl">org.apache.solr.spelling.suggest.tst.TSTLookup</str>
@@ -472,6 +477,15 @@
 	   	<str name="classname">org.apache.solr.spelling.suggest.Suggester</str>
 	   	<str name="lookupImpl">org.apache.solr.spelling.suggest.tst.TSTLookup</str>
 	   	<str name="field">autosuggest_en_st</str>
+		<str name="buildOnCommit">true</str>
+	   	<str name="buildOnOptimize">true</str>
+	   	<str name="accuracy">0.35</str>
+	   </lst>
+	   <lst name="spellchecker">
+	   	<str name="name">es_CL</str>
+	   	<str name="classname">org.apache.solr.spelling.suggest.Suggester</str>
+	   	<str name="lookupImpl">org.apache.solr.spelling.suggest.tst.TSTLookup</str>
+	   	<str name="field">autosuggest_es_cl</str>
 	   	<str name="buildOnCommit">true</str>
 	   	<str name="buildOnOptimize">true</str>
 	   	<str name="accuracy">0.35</str>
