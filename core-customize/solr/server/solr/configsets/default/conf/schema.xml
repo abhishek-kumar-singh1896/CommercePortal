@@ -1180,6 +1180,57 @@
                </analyzer>
         </fieldType>
 
+		<!-- Text Latin American spanish (es_CL) -->
+
+        <fieldType name="text_es_cl" class="solr.TextField" positionIncrementGap="100">
+               <analyzer type="index">
+                     <tokenizer class="solr.StandardTokenizerFactory" />
+                     <filter class="solr.EnglishPossessiveFilterFactory" />
+                     <filter class="solr.ManagedStopFilterFactory" managed="es_cl" />
+                     <!-- <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_es_cl.txt" /> -->
+                     <filter class="solr.LowerCaseFilterFactory" />
+                     <!-- <filter class="solr.KeywordRepeatFilterFactory" /> -->
+                     <filter class="solr.KeywordMarkerFilterFactory" protected="protwords.txt" />
+                     <filter class="solr.PorterStemFilterFactory" />
+                     <!-- <filter class="solr.SnowballPorterFilterFactory" language="English" /> -->
+                     <!-- <filter class="solr.EnglishMinimalStemFilterFactory" /> -->
+                     <!-- <filter class="solr.ASCIIFoldingFilterFactory" /> -->
+                     <filter class="solr.RemoveDuplicatesTokenFilterFactory" />
+               </analyzer>
+               <analyzer type="query">
+                     <tokenizer class="solr.StandardTokenizerFactory" />
+                     <filter class="solr.EnglishPossessiveFilterFactory" />
+                     <filter class="solr.ManagedSynonymGraphFilterFactory" managed="es_cl" />
+                     <filter class="solr.ManagedStopFilterFactory" managed="es_cl" />
+                     <!-- <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_es_cl.txt" /> -->
+                     <filter class="solr.LowerCaseFilterFactory" />
+                     <!-- <filter class="solr.KeywordRepeatFilterFactory" /> -->
+                     <filter class="solr.KeywordMarkerFilterFactory" protected="protwords.txt" />
+                     <filter class="solr.PorterStemFilterFactory" />
+                     <!-- <filter class="solr.SnowballPorterFilterFactory" language="English" /> -->
+                     <!-- <filter class="solr.EnglishMinimalStemFilterFactory" /> -->
+                     <!-- <filter class="solr.ASCIIFoldingFilterFactory" /> -->
+                     <filter class="solr.RemoveDuplicatesTokenFilterFactory" />
+               </analyzer>
+        </fieldType>
+
+        <fieldType name="text_spell_es_cl" class="solr.TextField" positionIncrementGap="100">
+               <analyzer type="index">
+                     <tokenizer class="solr.StandardTokenizerFactory" />
+                     <filter class="solr.ManagedStopFilterFactory" managed="es_cl" />
+                     <!-- <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_es_cl.txt" /> -->
+                     <filter class="solr.LowerCaseFilterFactory" />
+                     <filter class="solr.RemoveDuplicatesTokenFilterFactory" />
+               </analyzer>
+               <analyzer type="query">
+                     <tokenizer class="solr.StandardTokenizerFactory" />
+                     <filter class="solr.ManagedSynonymGraphFilterFactory" managed="es_cl" />
+                     <filter class="solr.ManagedStopFilterFactory" managed="es_cl" />
+                     <!-- <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_es_cl.txt" /> -->
+                     <filter class="solr.LowerCaseFilterFactory" />
+                     <filter class="solr.RemoveDuplicatesTokenFilterFactory" />
+               </analyzer>
+        </fieldType>
 
 		<!-- Sortable Text -->
 
@@ -1288,7 +1339,10 @@
 
 		<dynamicField name="*_text_es_la" type="text_es_la" indexed="true" stored="true" />
         <dynamicField name="*_text_es_la_mv" type="text_es_la" indexed="true" stored="true" multiValued="true" />
-             
+		
+		<dynamicField name="*_text_es_cl" type="text_es_cl" indexed="true" stored="true" />
+        <dynamicField name="*_text_es_cl_mv" type="text_es_cl" indexed="true" stored="true" multiValued="true" />
+                       
 		<field name="spellcheck" type="text_spell" indexed="true" stored="true" multiValued="true" />
 		<field name="spellcheck_en" type="text_spell_en" indexed="true" stored="true" multiValued="true" />
 		<field name="spellcheck_cs" type="text_spell_cs" indexed="true" stored="true" multiValued="true" />
@@ -1313,6 +1367,7 @@
 		<field name="spellcheck_en_au" type="text_spell_en_au" indexed="true" stored="true" multiValued="true" />
 		<field name="spellcheck_fr_ca" type="text_spell_fr_ca" indexed="true" stored="true" multiValued="true" />
 		<field name="spellcheck_es_la" type="text_spell_es_la" indexed="true" stored="true" multiValued="true" />
+		<field name="spellcheck_es_cl" type="text_spell_es_cl" indexed="true" stored="true" multiValued="true" />
 
 		<copyField source="spellcheck" dest="spellcheck_en" />
 		<copyField source="spellcheck" dest="spellcheck_cs" />
@@ -1337,6 +1392,7 @@
 		<copyField source="spellcheck" dest="spellcheck_en_au" />
 		<copyField source="spellcheck" dest="spellcheck_fr_ca" />
 		<copyField source="spellcheck" dest="spellcheck_es_la" />
+		<copyField source="spellcheck" dest="spellcheck_es_cl" />
 
 		<field name="autosuggest" type="text_spell" indexed="true" stored="true" multiValued="true" />
 		<field name="autosuggest_en" type="text_spell_en" indexed="true" stored="true" multiValued="true" />
@@ -1362,7 +1418,8 @@
 		<field name="autosuggest_en_au" type="text_spell_en_au" indexed="true" stored="true" multiValued="true" />
 		<field name="autosuggest_fr_ca" type="text_spell_fr_ca" indexed="true" stored="true" multiValued="true" />
 		<field name="autosuggest_es_la" type="text_spell_es_la" indexed="true" stored="true" multiValued="true" />
-
+		<field name="autosuggest_es_cl" type="text_spell_es_cl" indexed="true" stored="true" multiValued="true" />
+		
 		<copyField source="autosuggest" dest="autosuggest_en" />
 		<copyField source="autosuggest" dest="autosuggest_cs" />
 		<copyField source="autosuggest" dest="autosuggest_de" />
@@ -1386,6 +1443,7 @@
 		<copyField source="autosuggest" dest="autosuggest_en_au" />
 		<copyField source="autosuggest" dest="autosuggest_fr_ca" />
 		<copyField source="autosuggest" dest="autosuggest_es_la" />
+		<copyField source="autosuggest" dest="autosuggest_es_cl" />
 		
 		<dynamicField name="*_sortabletext" type="sortabletext" indexed="true" stored="true" />
 		<dynamicField name="*_sortabletext_mv" type="sortabletext" indexed="true" stored="true"

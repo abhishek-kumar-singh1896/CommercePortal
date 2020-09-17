@@ -213,6 +213,11 @@
 			<str name="classname">solr.DirectSolrSpellChecker</str>
 			<str name="field">spellcheck_es_la</str>
 		</lst>
+		<lst name="spellchecker">
+			<str name="name">es_CL</str>
+			<str name="classname">solr.DirectSolrSpellChecker</str>
+			<str name="field">spellcheck_es_cl</str>
+		</lst>
 
 	</searchComponent>
 
@@ -430,6 +435,15 @@
 	   	<str name="classname">org.apache.solr.spelling.suggest.Suggester</str>
 	   	<str name="lookupImpl">org.apache.solr.spelling.suggest.tst.TSTLookup</str>
 	   	<str name="field">autosuggest_es_la</str>
+	   	<str name="buildOnCommit">true</str>
+	   	<str name="buildOnOptimize">true</str>
+	   	<str name="accuracy">0.35</str>
+	   </lst>
+	   <lst name="spellchecker">
+	   	<str name="name">es_CL</str>
+	   	<str name="classname">org.apache.solr.spelling.suggest.Suggester</str>
+	   	<str name="lookupImpl">org.apache.solr.spelling.suggest.tst.TSTLookup</str>
+	   	<str name="field">autosuggest_es_cl</str>
 	   	<str name="buildOnCommit">true</str>
 	   	<str name="buildOnOptimize">true</str>
 	   	<str name="accuracy">0.35</str>
