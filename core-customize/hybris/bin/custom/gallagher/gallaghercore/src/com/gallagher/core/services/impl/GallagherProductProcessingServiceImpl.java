@@ -129,23 +129,30 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 
 				LOGGER.info("Base Product with code " + baseProductCode + " and CatalogVersion " + catalogId
 						+ " not found, Creating new one.");
-				final Set<Locale> locales = new HashSet<>();
+
+				final ProductModel newProduct = modelService.create(ProductModel.class);
+				newProduct.setCode(baseProductCode);
 
 				for (final BaseStoreModel baseStore : baseStores)
 				{
 					for (final LanguageModel language : baseStore.getLanguages())
 					{
-						locales.add(LocaleUtils.toLocale(language.getIsocode()));
+						final Locale locale = LocaleUtils.toLocale(language.getIsocode());
+
+						newProduct.setName(product.getName(locale), locale);
+						newProduct.setDescription(product.getDescription(locale), locale);
+						if (locale != null)
+						{
+							newProduct.setName(product.getName(locale), locale);
+							newProduct.setDescription(product.getDescription(locale), locale);
+						}
+						if (CollectionUtils.isNotEmpty(language.getFallbackLanguages()))
+						{
+							final Locale fallbackLocale = LocaleUtils.toLocale(language.getFallbackLanguages().get(0).getIsocode());
+							newProduct.setName(product.getName(fallbackLocale), fallbackLocale);
+							newProduct.setDescription(product.getDescription(fallbackLocale), fallbackLocale);
+						}
 					}
-				}
-
-				final ProductModel newProduct = new ProductModel();
-				newProduct.setCode(baseProductCode);
-
-				for (final Locale locale : locales)
-				{
-					newProduct.setName(product.getName(locale), locale);
-					newProduct.setDescription(product.getDescription(locale), locale);
 				}
 
 				newProduct.setBaseStores(baseStores);

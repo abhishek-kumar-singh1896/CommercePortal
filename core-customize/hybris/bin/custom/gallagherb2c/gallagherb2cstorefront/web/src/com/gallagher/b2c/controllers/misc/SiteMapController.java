@@ -7,8 +7,10 @@ import de.hybris.platform.acceleratorservices.urlresolver.SiteBaseUrlResolutionS
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.AbstractController;
 import de.hybris.platform.cms2.model.site.CMSSiteModel;
 import de.hybris.platform.cms2.servicelayer.services.CMSSiteService;
+import de.hybris.platform.core.model.c2l.CurrencyModel;
+import de.hybris.platform.core.model.c2l.LanguageModel;
 import de.hybris.platform.core.model.media.MediaModel;
-import com.gallagher.b2c.controllers.ControllerConstants;
+import de.hybris.platform.servicelayer.i18n.CommonI18NService;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -22,12 +24,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.gallagher.b2c.controllers.ControllerConstants;
+
 
 @Controller
 public class SiteMapController extends AbstractController
 {
 	@Resource(name = "cmsSiteService")
 	private CMSSiteService cmsSiteService;
+
+	@Resource(name = "commonI18NService")
+	private CommonI18NService commonI18NService;
+
 
 	@Resource(name = "siteBaseUrlResolutionService")
 	private SiteBaseUrlResolutionService siteBaseUrlResolutionService;
@@ -40,11 +48,21 @@ public class SiteMapController extends AbstractController
 		final String mediaUrlForSite = siteBaseUrlResolutionService.getMediaUrlForSite(currentSite, false, "");
 
 		final List<String> siteMapUrls = new ArrayList<>();
+		final LanguageModel language = commonI18NService.getCurrentLanguage();
+		final CurrencyModel currency = commonI18NService.getCurrentCurrency();
+		String langCurrency = "";
+		if (language != null && currency != null)
+		{
+			langCurrency = language.getIsocode() + "-" + currency.getIsocode();
+		}
 
 		final Collection<MediaModel> siteMaps = currentSite.getSiteMaps();
 		for (final MediaModel siteMap : siteMaps)
 		{
-			siteMapUrls.add(mediaUrlForSite + siteMap.getURL());
+			if (siteMap.getCode().contains(langCurrency))
+			{
+				siteMapUrls.add(mediaUrlForSite + siteMap.getURL());
+			}
 		}
 		model.addAttribute("siteMapUrls", siteMapUrls);
 
