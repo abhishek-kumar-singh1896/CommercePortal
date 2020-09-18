@@ -22,6 +22,7 @@ import de.hybris.platform.acceleratorstorefrontcommons.forms.validation.ReviewVa
 import de.hybris.platform.acceleratorstorefrontcommons.util.MetaSanitizerUtil;
 import de.hybris.platform.acceleratorstorefrontcommons.util.XSSFilterUtil;
 import de.hybris.platform.acceleratorstorefrontcommons.variants.VariantSortStrategy;
+import de.hybris.platform.b2b.model.B2BCustomerModel;
 import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
 import de.hybris.platform.cms2.model.pages.AbstractPageModel;
 import de.hybris.platform.cms2.servicelayer.services.CMSPageService;
@@ -36,8 +37,10 @@ import de.hybris.platform.commercefacades.product.data.ProductData;
 import de.hybris.platform.commercefacades.product.data.ReviewData;
 import de.hybris.platform.commerceservices.url.UrlResolver;
 import de.hybris.platform.core.model.product.ProductModel;
+import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.product.ProductService;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
+import de.hybris.platform.servicelayer.user.UserService;
 import de.hybris.platform.util.Config;
 
 import java.io.UnsupportedEncodingException;
@@ -69,6 +72,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gallagher.b2b.storefront.controllers.ControllerConstants;
+import com.gallagher.facades.GallagherB2BUnitFacade;
 import com.google.common.collect.Maps;
 
 
@@ -118,6 +122,13 @@ public class ProductPageController extends AbstractPageController
 	@Resource(name = "futureStockFacade")
 	private FutureStockFacade futureStockFacade;
 
+	@Resource(name = "b2bUnitFacade")
+	protected GallagherB2BUnitFacade b2bUnitFacade;
+
+	@Resource(name = "userService")
+	private UserService userService;
+
+
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN, method = RequestMethod.GET)
 	public String productDetail(@PathVariable("productCode")
 	final String encodedProductCode, final Model model, final HttpServletRequest request, final HttpServletResponse response)
@@ -147,6 +158,12 @@ public class ProductPageController extends AbstractPageController
 		final String metaKeywords = MetaSanitizerUtil.sanitizeKeywords(productData.getKeywords());
 		final String metaDescription = MetaSanitizerUtil.sanitizeDescription(productData.getDescription());
 		setUpMetaData(model, metaKeywords, metaDescription);
+		final CustomerModel currentCustomer = (CustomerModel) userService.getCurrentUser();
+
+		if (currentCustomer instanceof B2BCustomerModel && null != b2bUnitFacade.getParentUnit())
+		{
+			model.addAttribute("transactional", b2bUnitFacade.getParentUnit().isTransactional());
+		}
 		return getViewForPage(model);
 	}
 
