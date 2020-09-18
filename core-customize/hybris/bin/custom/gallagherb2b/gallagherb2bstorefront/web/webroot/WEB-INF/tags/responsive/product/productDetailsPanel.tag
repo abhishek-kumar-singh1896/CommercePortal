@@ -55,9 +55,4 @@
 		</div>
 
 	</div>
-	<%-- <div class="product-detail-download-btn">
-			<button type="button" class="btn btn-primary btn-outline-secondary product-detail-print-btn">Download</button>
-			<input id="downloadPDF" name="downloadPDPPDF" type="hidden" value="${product.code}"/>
-	</div> --%>
 </div>
-<div id="print-product-new" class="print-product-new" style="display:none;" ></div>
