@@ -44,9 +44,10 @@ public class GallagherSiteTransactionRestrictionEvaluator
 
 		boolean b2bUnitTransactional = true;
 
-		if (currentCustomer instanceof B2BCustomerModel && null != b2BUnitService.getParent((B2BCustomerModel) currentCustomer))
+		if (currentCustomer instanceof B2BCustomerModel)
 		{
-			b2bUnitTransactional = ((B2BUnitModel) b2BUnitService.getParent((B2BCustomerModel) currentCustomer)).getTransactional();
+			b2bUnitTransactional = Boolean.TRUE
+					.equals(((B2BUnitModel) b2BUnitService.getParent((B2BCustomerModel) currentCustomer)).getTransactional());
 		}
 		return (b2bUnitTransactional && siteConfigService.getBoolean(TRANSACTION_ENABLED, true));
 	}
