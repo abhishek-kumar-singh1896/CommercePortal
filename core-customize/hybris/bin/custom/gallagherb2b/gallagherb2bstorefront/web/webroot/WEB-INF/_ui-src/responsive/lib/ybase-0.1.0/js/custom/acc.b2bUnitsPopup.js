@@ -32,6 +32,7 @@ ACC.b2bUnitsPopup = {
 				data : formData.serialize(),
 				success : function(data) {
 					$('#b2bUnitOverlay').modal('hide');
+					location.reload();
 				},
 				error : function(data) {
 					console.log('An error occurred.');
