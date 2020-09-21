@@ -42,7 +42,7 @@ public class GallagherB2BUnitPopulatorImpl extends B2BUnitPopulator implements G
 	{
 		validateParameterNotNull(source, "Parameter source cannot be null.");
 		validateParameterNotNull(target, "Parameter target cannot be null.");
-
+		target.setTransactional(Boolean.TRUE.equals(source.getTransactional()));
 		populateUnit(source, target);
 		populateUnitRelations(source, target);
 		populateParentUnit(source, target);
