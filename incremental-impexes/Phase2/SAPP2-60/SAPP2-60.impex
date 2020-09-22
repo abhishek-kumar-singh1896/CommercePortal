@@ -65,6 +65,13 @@ INSERT_UPDATE GallagherCatalogVersionSyncJob;code[unique=true];sessionUser(uid);
 
 $productQueryCL={baseProductCode} IS NULL AND {approvalStatus} =({{SELECT {pk} from {ArticleApprovalStatus} where {code}='approved'}}) AND (?session.currentJob.baseStore IN ({{SELECT {SOURCE} FROM {BaseStoreProductRelation} where {TARGET} = {item:PK}}}) OR {eligibleForChile} = 1)
 
+$mediaQueryPrefix={code} IS NOT NULL
+$mediaQuery=?session.currentJob.baseStore IN ({{SELECT {SOURCE} FROM {BaseStoreMediaRelation} where {TARGET} = {item:PK}}})
+
+$mediaContainerQueryPrefix={qualifier} IS NOT NULL
+$mediaContainerQuery=?session.currentJob.baseStore IN ({{SELECT {SOURCE} FROM {BaseStoreMediaContainerRelation} where {TARGET} = {item:PK}}})
+
+
 REMOVE JobSearchRestriction;code[unique=true]
 ;B2CMaster->B2CLatAm-SyncJob-Product-Restriction
 ;B2CMaster->B2CLatAm-SyncJob-Media-Restriction
