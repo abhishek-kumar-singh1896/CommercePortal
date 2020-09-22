@@ -82,6 +82,7 @@
 		<script src="${commonResourcePathHtml}/js/acc.quickorder.js"></script>
 		<script src="${commonResourcePathHtml}/js/acc.quote.js"></script>
 		<script src="${commonResourcePathHtml}/js/acc.consent.js"></script>
+		<script src="${commonResourcePathHtml}/js/acc.viewAlternativeProducts.js"></script>
 		<script src="${commonResourcePathHtml}/js/acc.cookienotification.js"></script>
 		<script src="${commonResourcePathHtml}/js/acc.closeaccount.js"></script>
 		<script src="${commonResourcePathHtml}/js/bootstrap.bundle.min.js"></script>
