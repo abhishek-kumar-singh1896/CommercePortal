@@ -139,6 +139,11 @@
 					<persistence type="property" />
 					<description>Indicates customer C4C accountId</description>
 				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="businessUnit" type="SiteChannel">
+					<modifiers optional="true" unique="true" read="true" write="true" />
+					<persistence type="property" />
+					<description>Identifies customer in AM and Security site</description>
+				</attribute>
 			</attributes>
 		</itemtype>
 
