@@ -77,6 +77,12 @@
 				<modifiers read="true" write="true" search="true" optional="true" />
 			</targetElement>
 		</relation>
+		
+		<relation code="RestrictionsForNavigationNodes" generate="true" localized="false" autocreate="true">
+			<deployment table="Restrictions4Nodes" typecode="12068" />
+			<sourceElement qualifier="navigationNodes" type="CMSNavigationNode" cardinality="many" />
+			<targetElement qualifier="restrictions" type="AbstractRestriction" cardinality="many" collectiontype="list" ordered="true" />
+		</relation>
 
 	</relations>
 
