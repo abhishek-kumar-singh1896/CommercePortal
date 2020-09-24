@@ -368,4 +368,6 @@
 	</bean>
 	
     <bean id="gallagherProductService" class="com.gallagher.core.product.impl.GallagherDefaultProductServiceImpl" />
+    
+    <bean id="gallagherMindTouchService" class="com.gallagher.core.services.impl.GallagherMindTouchServiceImpl"/>
 </beans>

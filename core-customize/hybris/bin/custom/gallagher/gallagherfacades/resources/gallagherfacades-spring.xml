@@ -256,6 +256,7 @@
 		<property name="baseSiteService" ref="baseSiteService" />
 		<property name="baseStoreService" ref="baseStoreService" />
 		<property name="commonI18NService" ref="commonI18NService" />
+		<property name="gallagherMindTouchService" ref="gallagherMindTouchService"/>
 	</bean>
 	
 	<alias name="gallagherCmsLinkComponentValidator" alias="cmsLinkComponentValidator"/>
