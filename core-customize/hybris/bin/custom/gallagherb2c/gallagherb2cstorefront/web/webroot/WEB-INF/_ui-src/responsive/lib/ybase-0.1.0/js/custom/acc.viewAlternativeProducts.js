@@ -15,6 +15,28 @@ ACC.viewAlternativeProducts = {
 			     success : function(data)
 			     {
 			    	 $('#viewAlternativeProductPopUp').append(data);
+			    	 var is_iPad = navigator.userAgent.match(/iPad/i) != null;
+			    	 var productLength = $('ul.productsPopUp > li').length;
+			    	 var widthLength = $('ul.productsPopUp > li').width();
+			    	 var width = 210*productLength;
+			    	 
+			    	 if(!is_iPad){
+			    		 if ( $('ul.productsPopUp li').length > 1 ) { 
+					    		$('.popUpTitle').css('width', width + "px");
+					    	 }
+					    	 else {
+					    		 $('.popUpTitle').css('width', '210px');
+					       }
+			    	 }
+			    	 else{
+			    		 if ( $('ul.productsPopUp li').length > 1 ) { 
+					    		$('.popUpTitle').css('width', "auto");
+					    	 }
+					    	 else {
+					    		 $('.popUpTitle').css('width', '210px');
+					       }
+			    	 }
+			    	 
 			    	 $('.flexslider').flexslider({
 			    		    animation: "slide",
 			    		    animationLoop: true,
@@ -25,6 +47,7 @@ ACC.viewAlternativeProducts = {
 			    		  });
 			    	 $('#myProductModal').show();
 			    	 $('.close').click(function(){
+				    	 $('#viewAlternativeProductPopUp').empty();
 			    	        $('.modaldata').hide();
 			    	     });
 			    	 
