@@ -33,6 +33,12 @@
 		</enumtype>
 
 		<enumtype code="RegionCode" dynamic="true" />
+		
+		<enumtype code="ProductReferenceTypeEnum" autocreate="false" generate="false">
+		<description>Show Alternative Products If Stock is out</description>
+			<value code="ALTERNATIVE_PRODUCTS"/>
+  		</enumtype>
+		
 	</enumtypes>
 
 	<maptypes>
@@ -77,6 +83,12 @@
 				<modifiers read="true" write="true" search="true" optional="true" />
 			</targetElement>
 		</relation>
+		
+		<relation code="RestrictionsForNavigationNodes" generate="true" localized="false" autocreate="true">
+			<deployment table="Restrictions4Nodes" typecode="12068" />
+			<sourceElement qualifier="navigationNodes" type="CMSNavigationNode" cardinality="many" />
+			<targetElement qualifier="restrictions" type="AbstractRestriction" cardinality="many" collectiontype="list" ordered="true" />
+		</relation>
 
 	</relations>
 
@@ -84,6 +96,17 @@
 
 		<!-- Add your item definitions here -->
 		<!-- Add your item definitions here -->
+		<itemtype code="B2BUnit" autocreate="false" generate="false">
+			<description>Extending B2BUnit type with an additional attribute.</description>
+			<attributes>
+				<attribute autocreate="true" generate="true" qualifier="transactional" type="java.lang.Boolean">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property" />
+					<defaultvalue>java.lang.Boolean.FALSE</defaultvalue>
+					<description>Attribute to identify the transactional / non transactional B2BUnit </description>
+				</attribute>
+			</attributes>
+		</itemtype>
 		<itemtype code="Customer" autocreate="false" generate="false">
 			<description>Extending Customer type with an additional attribute.</description>
 			<attributes>
@@ -190,6 +213,12 @@
 					<persistence type="property" />
 					<defaultvalue>false</defaultvalue>
 					<description>Flag to identify Product is eligible for LatAm Market.</description>
+				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="eligibleForChile" type="boolean">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<defaultvalue>false</defaultvalue>
+					<description>Flag to identify Product is eligible for Chile.</description>
 				</attribute>
 				<attribute qualifier="videos" type="VideoDataMap">
 					<persistence type="property"></persistence>
@@ -605,8 +634,15 @@
 					</attribute>
 				</attributes>
 			</itemtype>
-
-
+         <itemtype code="ProductAddToCartComponent" autocreate="false"
+             generate="false">
+             <attributes>
+                 <attribute type="localized:java.lang.String" qualifier="outOfStockMessage">
+                     <persistence type="property" />
+                     <description>Used to show the localized message in case product is out of stock.</description>
+                 </attribute>
+             </attributes>
+         </itemtype>
 		</typegroup>
 
 		<typegroup name="jobs">
@@ -651,6 +687,9 @@
 				<description>Extends existing type with additional attributes.</description>
 				<attributes>
 					<attribute qualifier="regionCode" type="RegionCode">
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="securityRegionCode" type="RegionCode">
 						<persistence type="property" />
 					</attribute>
 				</attributes>
@@ -715,13 +754,8 @@
 		</typegroup>
 
 		<typegroup name="button">
-
-
 			<itemtype code="GallagherNewButtonComponent" autocreate="true" generate="true" extends="CMSLinkComponent">
 			</itemtype>
-
 		</typegroup>
-
-
 	</itemtypes>
 </items>

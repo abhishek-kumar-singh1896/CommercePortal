@@ -3,8 +3,13 @@ package com.gallagher.core.restrictions;
 
 
 import de.hybris.platform.acceleratorservices.config.SiteConfigService;
+import de.hybris.platform.b2b.model.B2BCustomerModel;
+import de.hybris.platform.b2b.model.B2BUnitModel;
+import de.hybris.platform.b2b.services.B2BUnitService;
 import de.hybris.platform.cms2.servicelayer.data.RestrictionData;
 import de.hybris.platform.cms2.servicelayer.services.evaluator.CMSRestrictionEvaluator;
+import de.hybris.platform.core.model.user.CustomerModel;
+import de.hybris.platform.servicelayer.user.UserService;
 
 import javax.annotation.Resource;
 
@@ -24,12 +29,27 @@ public class GallagherSiteTransactionRestrictionEvaluator
 	@Resource(name = "siteConfigService")
 	private SiteConfigService siteConfigService;
 
+	@Resource(name = "userService")
+	private UserService userService;
+
+	@Resource(name = "defaultB2BUnitService")
+	private B2BUnitService b2BUnitService;
+
 	private static final String TRANSACTION_ENABLED = "transaction.enabled";
 
 	@Override
 	public boolean evaluate(final GallagherSiteTransactionRestrictionModel arg0, final RestrictionData arg1)
 	{
-		return siteConfigService.getBoolean(TRANSACTION_ENABLED, true);
+		final CustomerModel currentCustomer = (CustomerModel) userService.getCurrentUser();
+
+		boolean b2bUnitTransactional = true;
+
+		if (currentCustomer instanceof B2BCustomerModel)
+		{
+			b2bUnitTransactional = Boolean.TRUE
+					.equals(((B2BUnitModel) b2BUnitService.getParent((B2BCustomerModel) currentCustomer)).getTransactional());
+		}
+		return (b2bUnitTransactional && siteConfigService.getBoolean(TRANSACTION_ENABLED, true));
 	}
 
 }

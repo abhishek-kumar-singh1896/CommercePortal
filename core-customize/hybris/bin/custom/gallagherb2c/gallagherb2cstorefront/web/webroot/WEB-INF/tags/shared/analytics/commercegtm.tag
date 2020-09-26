@@ -15,7 +15,7 @@
 			<c:set var="transactionId" value="${orderData.code}" />
 			<script type="text/javascript">
 				dataLayer.push({
-					
+			    	   		'event': 'purchase',
 					    	   'transactionAffiliation': '${orderData.site}',
 								'transactionId':'${orderData.code}',									
 								'transactionTotal':${orderData.totalPrice.value},                     	

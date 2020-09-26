@@ -534,10 +534,10 @@ public class CartPageController extends AbstractCartPageController
 			}
 			else
 			{
-				voucherFacade.applyVoucher(form.getVoucherCode());
+				voucherFacade.applyVoucher(form.getVoucherCode().toUpperCase());
 				redirectAttributes.addFlashAttribute("successMsg",
 						getMessageSource().getMessage("text.voucher.apply.applied.success", new Object[]
-						{ form.getVoucherCode() }, getI18nService().getCurrentLocale()));
+						{ form.getVoucherCode().toUpperCase() }, getI18nService().getCurrentLocale()));
 			}
 		}
 		catch (final VoucherOperationException e)

@@ -1,0 +1,74 @@
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ImpEx for Importing Categories into Animal Management B2C Store
+ 
+# Macros / Replacement Parameter definitions
+$productCatalog=amB2CMasterProductCatalog
+$productCatalogName=Animal Management B2C Chile Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+ 
+ 
+# Language
+$lang=es_CL
+ 
+ 
+# Create Categories
+UPDATE Category ; code[unique=true]                ; $catalogVersion ; name[lang=$lang]                        
+                ; animal-management                ;                 ; Manejo de animales                      
+                
+# Main Categories
+                ; electric-fencing                 ;                 ; Cercado Eléctrico                       
+                ; weighing-and-eid                 ;                 ; Pesaje e Identificación Electrónica     
+                ; wireless-water-monitoring        ;                 ; Monitoreo Inalámbrico del Agua          
+                
+                
+# 1.1 Sub Categories for 'electric-fencing'
+                ; power                            ;                 ; Energia                                 
+                ; permanent-fencing                ;                 ; Cerco Permanente                        
+                ; portable-fencing                 ;                 ; Cerco Portátil                          
+                
+# 1.1.1 Sub Categories for 'power'
+                ; mains-energizers                 ;                 ; Energizadores de Cerco                  
+                ; earthing                         ;                 ; Conexión a tierra                       
+                ; power-system-accessories         ;                 ; Accesorios para los Sistemas de Energía 
+                
+                
+# 1.2 Sub Categories for 'weighing-and-eid'
+                ; weigh-scales-and-data-collectors ;                 ; Weigh Scales and Data Collectors        
+                ; loadbars-and-accessories         ;                 ; Barras de carga y accesorios            
+                ; platforms                        ;                 ; Plataformas                             
+                ; eid-tag-readers                  ;                 ; Lectores de etiquetas IDE               
+                
+                
+# 1.3 Sub Categories for 'wireless-water-monitoring'
+                ; water-flow-indicator             ;                 ; Water Flow Indicator                    
+                ; one-tank-systems                 ;                 ; Sistemas de Estanque Único              
+                ; additional-system-components     ;                 ; Componentes Adicionales del Sistema     
+                
+                
+UPDATE Category ; code[unique=true]                ; $catalogVersion ; name[lang=$lang]                             
+                ; wire-and-cable                   ;                 ; Alambres y Cables                            
+                ; clamps-and-joiners               ;                 ; Abrazaderas y Conectores                     
+                ; posts                            ;                 ; Postes                                       
+                ; strainers                        ;                 ; Tensores                                     
+                ; insulators                       ;                 ; Aisladores                                   
+                ; offsets                          ;                 ; Desplazadores                                
+                ; electric-gates                   ;                 ; Portones eléctricos                          
+                ; tapes-wires-and-braids-pf        ;                 ; Cintas, Cordones y Alambre                   
+                ; reels-and-accessories-pf         ;                 ; Carretes y Accesorios                        
+                ; posts-pigtails-and-treadins-pf   ;                 ; Postes - Cola de Chancho y Estacas múltiples 
+                ; all-in-one-portable-fences       ;                 ; Cercos portátiles todo en uno                
+                ; weigh-scales-and-data-collectors ;                 ; Colectores de Datos y Pesaje de Ganado       
+                ; loadbars-and-accessories         ;                 ; Barras de carga y accesorios                 
+                ; drafters                         ;                 ; Apartadores                                  
+                ; eid-tag-readers                  ;                 ; Lectores de etiquetas                        
+                ; one-tank-systems                 ;                 ; Sistemas de Estanque Único                   
+                ; antennae-and-cables              ;                 ; Antenas y Cable                              
+                ; additional-system-components     ;                 ; Componentes Adicionales del Sistema          
+                ; drafters                         ;                 ; Apartadores                                  
+                ; earthing                         ;                 ; Conexión a tierra                            
+                ; gates                            ;                 ; Puertas de Acero                             
+                ; gate-hardware                    ;                 ; Herrajes para Puertas                        
+                ; irrigator-fence-crossing-system  ;                 ; Paso Pivote                                  
+                ; remotes-and-fence-testers        ;                 ; Controles remotos y Tésters                  
+                ; stock-prods-and-accessories      ;                 ; Picanas                                      
+                ; stock-prods                      ;                 ; Picanas                                      

@@ -6,6 +6,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="breadcrumb" tagdir="/WEB-INF/tags/responsive/nav/breadcrumb"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="flag" value="false"/>
+ <div id="viewAlternativeProductPopUp"></div>   
  <div class="container">
      <div class="row">
          <div class="col-12">
@@ -62,6 +64,16 @@
                                          <cms:pageSlot position="AddToCart" var="component" element="div" class="page-details-variants-select">
 											<cms:component component="${component}" element="div" class="yComponentWrapper page-details-add-to-cart-component"/>
 										</cms:pageSlot>
+											<c:if test="${product.stock.stockLevelStatus.code eq 'outOfStock'}">
+							 <c:forEach items="${product.productReferences}" var="reference">
+					    <c:if test="${reference.referenceType eq 'ALTERNATIVE_PRODUCTS'}">
+					    <c:if test="${reference.target.stock.stockLevelStatus.code eq 'inStock'}">
+					    <c:set var="flag" value="true"/>
+					    </c:if>
+					    </c:if>
+					    </c:forEach>
+					   </c:if>
+					       
                                     </div>
                                 </div>
                             </div>
@@ -69,6 +81,9 @@
                         <cms:pageSlot position="VariantSelector" var="component" element="div" class="page-details-variants-select">
 							<cms:component component="${component}" element="div" class="yComponentWrapper page-details-variants-select-component"/>
 						</cms:pageSlot>
+						<c:if test="${flag eq true}">
+						   <a class="view-alternative-products" href="#" data-product-code = "${product.code}">View Alternative Products</a>
+						    </c:if>
                     </div>
                 </div>
                 <div class="col-md-6 order-first order-md-last">
