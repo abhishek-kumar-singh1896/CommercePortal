@@ -258,7 +258,7 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 									+ " is not saved due to variant categories are not proper.");
 							continue;
 						}
-
+						existingVariantProduct.setPartNumber(product.getPartNumber());
 						populateVariantData(product, existingVariantProduct);
 
 						populateImages(product, existingVariantProduct, regionalCatalogVersion);
@@ -296,7 +296,7 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 									+ " is not saved due to variant categories are not proper.");
 							continue;
 						}
-
+						newVariantProduct.setPartNumber(product.getPartNumber());
 						newVariantProduct.setBaseProduct(baseProduct);
 						approveBaseProduct(newVariantProduct);
 
