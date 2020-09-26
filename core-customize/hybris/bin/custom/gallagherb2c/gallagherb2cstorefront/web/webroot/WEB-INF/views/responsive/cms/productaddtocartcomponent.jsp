@@ -64,7 +64,7 @@
         <action:actions element="div"  parentComponent="${component}"/>
     </div>
 </div>
-<c:if test="${fn:contains(buttonType, 'button') 
+<%-- <c:if test="${fn:contains(buttonType, 'button') 
 	and (not empty product.baseProduct or empty product.variantMatrix)}">
 	<div>${component.outOfStockMessage}</div>
-</c:if>
+</c:if> --%>
