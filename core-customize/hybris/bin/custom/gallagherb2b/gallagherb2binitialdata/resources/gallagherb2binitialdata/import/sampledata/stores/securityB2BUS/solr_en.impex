@@ -1,0 +1,18 @@
+$indexedType=securityB2BUSProductType
+#
+# Localization en
+#
+$lang=en
+ 
+UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$indexedType] ; name[unique=true]                  ; displayName[lang=$lang]              
+                           ;                                                               ; Maximum Read Distance              ; Maximum Read Distance (mm)           
+                           ;                                                               ; Environmental Protection           ; Environmental Protection (IP rating) 
+                           ;                                                               ; Impact Rating                      ; Impact Rating (IK rating)            
+                           ;                                                               ; Standards Compliance (Readers)     ; Standards Compliance                 
+                           ;                                                               ; Power                              ; Power (V)                            
+                           ;                                                               ; Standards Compliance (Controllers) ; Standards Compliance                 
+                           ;                                                               ; Fence Circuits                     ; Fence Circuits                       
+                           ;                                                               ; Voltage                            ; Voltage (Vdc)                        
+                           ;                                                               ; Command Centre version             ; Command Centre version               
+                           ;                                                               ; Dimensions                         ; Dimensions (mm)                      
+                           ;                                                               ; Tracking distance                  ; Tracking Distance (mm)               

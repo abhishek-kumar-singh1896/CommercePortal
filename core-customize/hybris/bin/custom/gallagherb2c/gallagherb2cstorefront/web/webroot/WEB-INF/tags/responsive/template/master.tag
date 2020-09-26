@@ -26,29 +26,17 @@
 	</script>
 
 	<analytics:commercegtm />
-	<!-- Google Tag Manager -->
-	<c:if test="${not empty commerceGTMId}">	
-		<script>
-			(function(w, d, s, l, i) {
-				w[l] = w[l] || [];
-				w[l].push({
-					'gtm.start' : new Date().getTime(),
-					event : 'gtm.js'
-				});
-				var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l='
-					+ l
-					: '';
-				j.async = true;
-				j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-				f.parentNode.insertBefore(j, f);
-			})(window, document, 'script', 'dataLayer', '${commerceGTMId}');
-		</script>
-	</c:if>
-	<!-- End Google Tag Manager -->
 	<title>
 		${not empty pageTitle ? pageTitle : not empty cmsPage.title ? fn:escapeXml(cmsPage.title) : 'Accelerator Title'}
 	</title>
-
+	<c:if test="${not empty canonicalURL}">
+		<link rel="canonical" href="${canonicalURL}" >
+	</c:if>
+	<c:if test="${not empty hreflangMap}">
+		<c:forEach items="${hreflangMap}" var="entry">
+	    	<link rel="alternate" hreflang="${entry.key}" href="${entry.value}" >
+		</c:forEach>
+	</c:if>
 	<%-- Meta Content --%>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">

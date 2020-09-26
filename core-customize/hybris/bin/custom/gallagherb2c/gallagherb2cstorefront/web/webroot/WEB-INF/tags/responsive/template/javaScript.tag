@@ -8,7 +8,9 @@
 <template:javaScriptVariables/>
 
 <c:set var="commonResourcePathHtml" value="${fn:escapeXml(commonResourcePath)}"/>
-<script src="//qasecuritycms.gallagher.com/bundle/beacon"></script>
+<c:if test="${not empty siteCoreTagUrl}">
+	<script src="${siteCoreTagUrl}"></script>
+</c:if>
 <c:choose>
 	<c:when test="${wro4jEnabled}">
 	  	<script src="${fn:escapeXml(contextPath)}/wro/all_responsive.js"></script>
@@ -95,6 +97,7 @@
 		<script src="${commonResourcePathHtml}/js/custom/acc.preferenceOverlay.js"></script>
 		<script src="${commonResourcePathHtml}/js/custom/acc.registerProduct.js"></script>
 		<script src="${commonResourcePathHtml}/js/custom/acc.header.js"></script>
+	   <script src="${commonResourcePathHtml}/js/custom/acc.viewAlternativeProducts.js"></script>
 		<script id="bynder-widgets-js" data-account-url="media.gallagher.com" data-language="en" src="https://d8ejoa1fys2rk.cloudfront.net/bynder-embed/latest/bynder-embed.js"></script>
 		<%-- Cms Action JavaScript files --%>
 		<c:forEach items="${cmsActionsJsFiles}" var="actionJsFile">

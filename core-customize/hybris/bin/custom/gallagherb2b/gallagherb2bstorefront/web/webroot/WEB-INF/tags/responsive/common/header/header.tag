@@ -14,7 +14,7 @@
 <cms:pageSlot position="TopHeaderSlot" var="component" element="div" >
 	<cms:component component="${component}" />
 </cms:pageSlot>
-
+<input type="hidden" name="showB2BUnitsPopup" id="showB2BUnitsPopup" value="${showB2BUnitsPopup}"/>
 <div class="modal-updated responsive-mega-menu-modal hidden-lg" id="responsiveMegaMenu" tabindex="-1"
 			role="dialog" aria-labelledby="responsiveMegaMenuTitle" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-scrollable" role="document">
@@ -273,7 +273,14 @@
  									<c:set target="${user}" property="firstName"
  										value="${fn:substring(user.firstName, 0, maxNumberChars)}..." /> 
  								</c:if> 
-								<div class="dropdown user-dropdown">
+ 								
+ 								<cms:pageSlot position="B2BAccount" var="accountFeature">
+ 								<c:url value="${accountFeature.url}" var="myAccountURL"/>
+									<a href="${myAccountURL}" class="btn user-btn dropdown-toggle">
+											<spring:theme code="header.welcome" arguments="${user.firstName},${user.lastName}" />
+									</a>
+									</cms:pageSlot>
+								<%-- <div class="dropdown user-dropdown">
 									<button class="btn user-btn dropdown-toggle" type="button" id="dropdownMenuUser"
 										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 										<span class="user-name"><spring:theme code="header.welcome" arguments="${user.firstName},${user.lastName}" /></span>
@@ -320,7 +327,7 @@
 										</li>
 										
 									</ul>
-								</div>
+								</div> --%>
 							</li>
 						</sec:authorize>
 							<%-- <sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
@@ -336,7 +343,7 @@
 									</ycommerce:testId>
 								<!-- </li> -->
 						</sec:authorize> --%>
-						</li>
+						<!-- </li> -->
 					</ul>
 				</div>
 			</div>
@@ -536,3 +543,5 @@
 <cms:pageSlot position="BottomHeaderSlot" var="component">
 	<cms:component component="${component}" />
 </cms:pageSlot>
+
+<div id="b2bUnitsModal"></div>

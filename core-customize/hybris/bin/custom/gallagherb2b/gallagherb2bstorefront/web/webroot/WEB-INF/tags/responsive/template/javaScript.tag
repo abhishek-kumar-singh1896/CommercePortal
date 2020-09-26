@@ -10,7 +10,9 @@
 
 <template:javaScriptVariables/>
 
-<script src="//qasecuritycms.gallagher.com/bundle/beacon"></script>
+<c:if test="${not empty siteCoreTagUrl}">
+	<script src="${siteCoreTagUrl}"></script>
+</c:if>
 <c:choose>
 	<c:when test="${wro4jEnabled}">
 	  	<script type="text/javascript" src="${contextPath}/wro/all_responsive.js"></script>
@@ -86,6 +88,7 @@
 		<script type="text/javascript" src="${commonResourcePath}/js/acc.cookienotification.js"></script>
 		<script type="text/javascript" src="${commonResourcePath}/js/acc.closeaccount.js"></script>
 		<script type="text/javascript" src="${commonResourcePath}/js/custom/acc.header.js"></script>
+		<script type="text/javascript" src="${commonResourcePath}/js/custom/acc.b2bUnitsPopup.js"></script>		
 		<script type="text/javascript" src="${commonResourcePath}/js/jquery.flexslider.js"></script>
 		
 		

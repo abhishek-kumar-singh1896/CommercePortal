@@ -80,9 +80,11 @@ public class GallagherRedirectionFilter extends GenericFilterBean
 
 		final String requestURI = req.getServerName();
 		String base = null;
+		boolean isSecurity = false;
 		if (requestURI.contains(SECURITY))
 		{
 			base = SECURITY_BASE;
+			isSecurity = true;
 		}
 		else
 		{
@@ -108,7 +110,7 @@ public class GallagherRedirectionFilter extends GenericFilterBean
 		if (site == null)
 		{
 			final CountryModel country = commonI18NService.getCountry(countryCode.trim());
-			final RegionCode regionCode = country.getRegionCode();
+			final RegionCode regionCode = isSecurity ? country.getSecurityRegionCode() : country.getRegionCode();
 			if (regionCode != null)
 			{
 				final StringBuilder regionSite = new StringBuilder(base).append(regionCode.getCode().toUpperCase());

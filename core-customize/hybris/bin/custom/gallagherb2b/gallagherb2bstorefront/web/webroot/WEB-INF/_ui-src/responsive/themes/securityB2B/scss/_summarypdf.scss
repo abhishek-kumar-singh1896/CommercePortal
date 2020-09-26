@@ -1,0 +1,105 @@
+.summary-overview{
+    .container{
+        width: auto;
+        margin: 0 auto;
+        padding: 0 4rem;
+    }
+.summary-content{
+    font-size: 1.6rem;
+    line-height: 1.5;
+    padding: 2rem 0 0;
+    color: $black;
+    .date-time{
+        font-size: 2rem;
+    }
+    .product-title{
+        margin-bottom: 2rem;
+        .title{
+        font-size: 4rem;
+        margin: 1rem 0;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid $primary-color;
+    }
+    .art-no{
+        font-size: 2.5rem;
+    }
+    }
+    .product-desc{
+	font-size:1.5em;
+        .thumbnails{
+            padding-right: 2rem;
+        }
+    }
+    figure{
+        margin-bottom: 2rem;
+img{
+        height: auto;
+        width: 100%;
+        max-width: 100%;
+    }
+    }
+    p{
+        margin-bottom: 2rem;
+    }
+}
+.summary-footer{
+        margin-top: 2rem;
+        color: $white;
+        background: rgba(215,122,63,1);
+background: linear-gradient(90deg, $primary-shade2 40%, $primary-shade-red 100%);
+    
+    .footer-details{
+       padding: 4rem 0;
+        div[class*="col-"]{
+            &:first-child{
+                padding-right: 3rem;
+            }
+            &:last-child{
+                padding-left: 3rem;
+            }
+        }
+    }
+    .copyright{
+        background: $primary-color;
+        padding: 2rem 0;
+        color: $black;
+        .site{
+            color: $black;
+            font-size: 2rem;
+            display: inline-block;
+            margin-top: 2rem;
+        }
+    }
+    h4{
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin: 0 0 .5rem;
+    }
+    }
+    .listing{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        li{
+            .country{
+                max-width: 70%;
+                text-overflow: ellipsis;
+                overflow: hidden;
+            }
+        }
+    }
+    .disclaimer{
+        font-size: 1rem;
+        line-height: 1rem;
+        text-align: justify;
+    }
+}
+.download-classifications .headline {
+  font-size: 4rem;
+  font-weight: bold;
+  padding: 10px;
+}
+.download-classifications table.table td.attrib {
+  font-size: 2.5rem;
+  width: 50%;
+}

@@ -303,6 +303,8 @@
 		<value>/my-account</value>
 		<value>/checkout</value>
 		<value>/quote</value>
+		<value>/register-product</value>
+        <value>/products</value>
 	</util:list>
 
 

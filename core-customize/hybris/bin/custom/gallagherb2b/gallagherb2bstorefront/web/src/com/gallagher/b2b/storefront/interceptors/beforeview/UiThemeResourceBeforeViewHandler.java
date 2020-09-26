@@ -23,6 +23,9 @@ import de.hybris.platform.commerceservices.enums.SiteTheme;
 import de.hybris.platform.commerceservices.enums.UiExperienceLevel;
 import de.hybris.platform.commerceservices.i18n.CommerceCommonI18NService;
 import de.hybris.platform.core.model.c2l.LanguageModel;
+import de.hybris.platform.core.model.user.CustomerModel;
+import de.hybris.platform.servicelayer.session.SessionService;
+import de.hybris.platform.servicelayer.user.UserService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +41,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.gallagher.b2b.storefront.web.view.UiExperienceViewResolver;
 import com.gallagher.core.enums.RegionCode;
+import com.gallagher.facades.GallagherB2BUnitFacade;
 
 
 /**
@@ -77,6 +81,15 @@ public class UiThemeResourceBeforeViewHandler implements BeforeViewHandler
 
 	@Resource(name = "viewResolver")
 	private UiExperienceViewResolver uiExperienceViewResolver;
+
+	@Resource(name = "sessionService")
+	private SessionService sessionService;
+
+	@Resource(name = "b2bUnitFacade")
+	protected GallagherB2BUnitFacade b2bUnitFacade;
+
+	@Resource(name = "userService")
+	private UserService userService;
 
 	private String defaultThemeName;
 
@@ -142,7 +155,15 @@ public class UiThemeResourceBeforeViewHandler implements BeforeViewHandler
 				getAddOnThemeCSSPaths(contextPath, themeName, uiExperienceCodeLower, dependantAddOns));
 		modelAndView.addObject("addOnJavaScriptPaths",
 				getAddOnJSPaths(contextPath, siteName, uiExperienceCodeLower, dependantAddOns));
-
+		final CustomerModel currentCustomer = (CustomerModel) userService.getCurrentUser();
+		if (null == sessionService.getAttribute("selectedB2BUnit") && b2bUnitFacade.getAllB2BUnits(currentCustomer).size() > 1)
+		{
+			modelAndView.addObject("showB2BUnitsPopup", true);
+		}
+		else
+		{
+			modelAndView.addObject("showB2BUnitsPopup", false);
+		}
 	}
 
 	protected List getAddOnCommonCSSPaths(final String contextPath, final String uiExperience, final List<String> addOnNames)
