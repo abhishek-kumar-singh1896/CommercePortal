@@ -115,7 +115,7 @@ public class GallagherSaveCustomerHandler implements FlowActionHandler
 			controller.getRenderer().refreshView();
 			final B2BCustomerModel savedCustomer = pushToC4C(adapter, isUserExist);
 			//adapter.custom();
-			pushToMindTouch(savedCustomer);
+			//pushToMindTouch(savedCustomer);
 
 			adapter.done();
 			if (savedCustomer != null)
