@@ -25,6 +25,7 @@ import de.hybris.platform.acceleratorstorefrontcommons.util.XSSFilterUtil;
 import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
 import de.hybris.platform.cms2.model.pages.AbstractPageModel;
 import de.hybris.platform.cms2.model.pages.ContentPageModel;
+import de.hybris.platform.commercefacades.order.CartFacade;
 import de.hybris.platform.commercefacades.order.SaveCartFacade;
 import de.hybris.platform.commercefacades.order.data.CartData;
 import de.hybris.platform.commercefacades.order.data.CartModificationData;
@@ -128,6 +129,9 @@ public class CartPageController extends AbstractCartPageController
 
 	@Resource(name = "storeSessionFacade")
 	protected GallagherStoreSessionFacade storeSessionFacade;
+
+	@Resource(name = "cartFacade")
+	private CartFacade cartFacade;
 
 	@ModelAttribute("showCheckoutStrategies")
 	public boolean isCheckoutStrategyVisible()
@@ -534,10 +538,25 @@ public class CartPageController extends AbstractCartPageController
 			}
 			else
 			{
-				voucherFacade.applyVoucher(form.getVoucherCode());
-				redirectAttributes.addFlashAttribute("successMsg",
-						getMessageSource().getMessage("text.voucher.apply.applied.success", new Object[]
-						{ form.getVoucherCode() }, getI18nService().getCurrentLocale()));
+				voucherFacade.applyVoucher(form.getVoucherCode().toUpperCase());
+				final CartData cartData = cartFacade.getSessionCartWithEntryOrdering(false);
+				final int voucherCount = cartData.getAppliedVouchers().size();
+				final int promotionCount = cartData.getAppliedOrderPromotions().size()
+						+ cartData.getAppliedProductPromotions().size();
+				if (voucherCount == promotionCount)
+				{
+					redirectAttributes.addFlashAttribute("successMsg",
+							getMessageSource().getMessage("text.voucher.apply.applied.success", new Object[]
+							{ form.getVoucherCode() }, getI18nService().getCurrentLocale()));
+				}
+				else
+				{
+					voucherFacade.releaseVoucher(form.getVoucherCode().toUpperCase());
+					redirectAttributes.addFlashAttribute(VOUCHER_FORM, form);
+					redirectAttributes.addFlashAttribute("errorMsg",
+							getMessageSource().getMessage("text.voucher.not.applicable.for.cart", new Object[]
+							{ form.getVoucherCode() }, getI18nService().getCurrentLocale()));
+				}
 			}
 		}
 		catch (final VoucherOperationException e)
