@@ -962,3 +962,12 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 ;;TopHeaderSlot-QuickOrderPage;TopHeaderSlot;;TopHeaderSlot;true
 ;;BottomHeaderSlot-QuickOrderPage;BottomHeaderSlot;;BottomHeaderSlot;true
 ;;PlaceholderContentSlot-QuickOrderPage;PlaceholderContentSlot;;PlaceholderContentSlot;true
+
+
+############Search Restriction impex for SAPP2-59 start
+
+INSERT_UPDATE SearchRestriction ; code[unique=true]               ; name[lang=en]                                                  ; query                                                                                                                                                                                                                                                                                                                                           ; principal(UID) ; restrictedType(code) ; active ; generate
+                                ; navigationNodeRegionsVisibility ; Navigation node visible to only regions with given restriction ; NOT EXISTS ({{ SELECT {pk} from  {RestrictionsForNavigationNodes} WHERE {Source}  = {item:pk} }}) OR  EXISTS ({{ SELECT {pk} from  {RestrictionsForNavigationNodes as rel} WHERE {rel.Source}  = {item:pk}  AND ?session.currentSite.regionCode IN ({{  SELECT {region} FROM {GallagherRegionRestriction}   WHERE {pk} = {rel.target}  }}) }} ) ; customergroup  ; CMSNavigationNode    ; true   ; true    
+
+############Search Restriction impex for SAPP2-59 End
+
