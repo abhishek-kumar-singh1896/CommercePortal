@@ -97,6 +97,14 @@ public class VerifyCustomerHandler implements FlowActionHandler
 				final List<GallagherInboundCustomerEntry> existingCustomers = getGallagherC4COutboundServiceFacade()
 						.getCustomerInfoFromC4C(email, null);
 
+				/*
+				 * SAPP2-86 todo List<GallagherInboundCustomerEntry> existingCustomers = null;
+				 *
+				 * if (isB2B) { existingCustomers = getGallagherC4COutboundServiceFacade().getCustomerInfoFromC4C(email,
+				 * null, BU.SEC.getCode().toLowerCase()); } else { existingCustomers =
+				 * getGallagherC4COutboundServiceFacade().getCustomerInfoFromC4C(email, null, BU.AM.getCode().toLowerCase()); }
+				 */
+
 				if ((CollectionUtils.isNotEmpty(existingCustomers) && existingCustomers.size() > 1))
 				{
 					notificationService.notifyUser((String) null, "duplicateC4CCustomer", NotificationEvent.Level.FAILURE);

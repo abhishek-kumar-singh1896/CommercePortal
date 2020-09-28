@@ -28,6 +28,10 @@ public interface GallagherC4COutboundServiceFacade
 	 * @return List of contact entries for the email/keycloakGUID provided
 	 */
 	List<GallagherInboundCustomerEntry> getCustomerInfoFromC4C(final String email, final String keycloakGUID);
+	/*
+	 * SAPP2-86 List<GallagherInboundCustomerEntry> getCustomerInfoFromC4C(final String email, final String keycloakGUID,
+	 * final BU businessUnit);
+	 */
 
 	/**
 	 * Send Registered Product Information to C4C via SCPI

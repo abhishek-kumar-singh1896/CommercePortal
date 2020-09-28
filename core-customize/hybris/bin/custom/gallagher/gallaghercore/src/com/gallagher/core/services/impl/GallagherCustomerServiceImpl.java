@@ -33,6 +33,7 @@ import org.springframework.util.Assert;
 import com.gallagher.c4c.outboundservices.facade.GallagherC4COutboundServiceFacade;
 import com.gallagher.core.daos.GallagherCustomerDao;
 import com.gallagher.core.dtos.GallagherAccessToken;
+import com.gallagher.core.enums.BU;
 import com.gallagher.core.services.GallagherCustomerService;
 import com.gallagher.keycloak.outboundservices.service.GallagherKeycloakService;
 import com.gallagher.outboundservices.response.dto.GallagherInboundCustomerEntry;
@@ -145,13 +146,20 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 		final CustomerModel newCustomer = modelService.create(CustomerModel.class);
 
 		newCustomer.setName(token.getName());
-		newCustomer.setUid(token.getEmail());
+		newCustomer.setUid(BU.AM.getCode().toLowerCase() + "|" + token.getEmail());
 		newCustomer.setKeycloakGUID(token.getSubjectId());
 		newCustomer.setIsUserExist(false);
+		newCustomer.setBusinessUnit(BU.AM);
+		newCustomer.setEmailID(token.getEmail());
 
 		//check if customer exist in the C4C
 		final List<GallagherInboundCustomerEntry> existingCustomers = gallagherC4COutboundServiceFacade
 				.getCustomerInfoFromC4C(token.getEmail(), token.getSubjectId());
+
+		/*
+		 * SAPP2-86 todo final List<GallagherInboundCustomerEntry> existingCustomers = gallagherC4COutboundServiceFacade
+		 * .getCustomerInfoFromC4C(token.getEmail(), token.getSubjectId(),BU.AM.getCode().toLowerCase());
+		 */
 
 
 		//if customer exist and count > 1 then
@@ -190,6 +198,11 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 		//check if customer exist in the C4C
 		final List<GallagherInboundCustomerEntry> existingCustomers = gallagherC4COutboundServiceFacade
 				.getCustomerInfoFromC4C(customer.getUid(), customer.getKeycloakGUID());
+
+		/*
+		 * SAPP2-86 todo final List<GallagherInboundCustomerEntry> existingCustomers = gallagherC4COutboundServiceFacade
+		 * .getCustomerInfoFromC4C(customer.getUid(), customer.getKeycloakGUID(),BU.SEC.getCode().toLowerCase());
+		 */
 
 		if (CollectionUtils.isNotEmpty(existingCustomers))
 		{

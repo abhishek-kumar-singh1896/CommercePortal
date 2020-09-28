@@ -52,6 +52,7 @@ import com.gallagher.commerceorgaddon.forms.B2BCustomerForm;
 import com.gallagher.commerceorgaddon.forms.B2BPermissionForm;
 import com.gallagher.commerceorgaddon.forms.CustomerResetPasswordForm;
 import com.gallagher.commerceorgaddon.forms.validation.GallagherB2BProfileValidator;
+import com.gallagher.core.enums.BU;
 import com.gallagher.outboundservices.constants.GallagheroutboundservicesConstants;
 import com.gallagher.outboundservices.response.dto.GallagherInboundCustomerEntry;
 
@@ -654,16 +655,15 @@ public class UserManagementPageController extends MyCompanyPageController
 		{
 			existingCustomer.setEmailError("invalid");
 		}
-		else if (userService.isUserExisting(email))
+		else if (userService.isUserExisting(BU.SEC.getCode().toLowerCase() + "|" + email))
 		{
-			if (!(userService.getUserForUID(email) instanceof B2BCustomerModel))
+			if (!(userService.getUserForUID(BU.SEC.getCode().toLowerCase() + "|" + email) instanceof B2BCustomerModel))
 			{
 				existingCustomer.setEmailError("conflict");
 			}
 			else
 			{
 				existingCustomer.setEmailError("duplicate");
-
 			}
 		}
 		else
@@ -673,6 +673,11 @@ public class UserManagementPageController extends MyCompanyPageController
 			{
 				final List<GallagherInboundCustomerEntry> existingCustomers = getGallagherC4COutboundServiceFacade()
 						.getCustomerInfoFromC4C(email, null);
+				/*
+				 * SAPP2-86 final List<GallagherInboundCustomerEntry> existingCustomers =
+				 * getGallagherC4COutboundServiceFacade() .getCustomerInfoFromC4C(email,
+				 * null,BU.AM.getCode().toLowerCase());
+				 */
 				if (CollectionUtils.isNotEmpty(existingCustomers) && existingCustomers.size() > 1)
 				{
 					existingCustomer.setContactID(existingCustomers.get(0).getContactID());

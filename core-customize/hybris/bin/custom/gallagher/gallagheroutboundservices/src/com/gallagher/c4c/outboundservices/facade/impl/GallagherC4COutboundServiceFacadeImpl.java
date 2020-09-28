@@ -61,6 +61,12 @@ public class GallagherC4COutboundServiceFacadeImpl extends DefaultOutboundServic
 	/**
 	 * {@inheritDoc}
 	 */
+	/*
+	 * SAPP2-86
+	 * 
+	 * @Override public List<GallagherInboundCustomerEntry> getCustomerInfoFromC4C(final String email, final String
+	 * keycloakGUID, final BU businessUnit) {
+	 */
 	@Override
 	public List<GallagherInboundCustomerEntry> getCustomerInfoFromC4C(final String email, final String keycloakGUID)
 	{
@@ -91,6 +97,11 @@ public class GallagherC4COutboundServiceFacadeImpl extends DefaultOutboundServic
 			{
 				final UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(baseURL).queryParam("$filter",
 						"KeycloakID_KUT eq '" + keycloakGUID + "'");
+				/*
+				 * SAPP2-86 todo final UriComponentsBuilder builder =
+				 * UriComponentsBuilder.fromHttpUrl(baseURL).queryParam("$filter", "KeycloakID_KUT eq '" + keycloakGUID +
+				 * "'" + "&BusinessUnit eq '" + businessUnit + "' ");
+				 */
 				final HttpEntity<GallagherInboundCustomerInfo> response = restOperations.exchange(builder.build().encode().toUri(),
 						HttpMethod.GET, entity, GallagherInboundCustomerInfo.class);
 				existingCustomerInfo = response.getBody();
@@ -100,6 +111,11 @@ public class GallagherC4COutboundServiceFacadeImpl extends DefaultOutboundServic
 			{
 				final UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(baseURL).queryParam("$filter",
 						"Email eq '" + email + "'");
+				/*
+				 * SAPP2-86 todo final UriComponentsBuilder builder =
+				 * UriComponentsBuilder.fromHttpUrl(baseURL).queryParam("$filter", "Email eq '" + email + "'" +
+				 * "&BusinessUnit eq '" + businessUnit + "' ");
+				 */
 				final HttpEntity<GallagherInboundCustomerInfo> response = restOperations.exchange(builder.build().encode().toUri(),
 						HttpMethod.GET, entity, GallagherInboundCustomerInfo.class);
 				existingCustomerInfo = response.getBody();
