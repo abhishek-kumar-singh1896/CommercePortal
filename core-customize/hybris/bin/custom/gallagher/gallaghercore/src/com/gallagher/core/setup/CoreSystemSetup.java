@@ -25,6 +25,7 @@ import com.gallagher.core.constants.GallagherCoreConstants;
 public class CoreSystemSetup extends AbstractSystemSetup
 {
 	public static final String IMPORT_ACCESS_RIGHTS = "accessRights";
+	public static final String IMPORT_SPRINT_2_IMPEX = "importSprint2Impex";
 
 	/**
 	 * This method will be called by system creator during initialization and system update. Be sure that this method can
@@ -86,6 +87,19 @@ public class CoreSystemSetup extends AbstractSystemSetup
 				"/gallaghercore/import/cockpits/cscockpit/cscockpit-access-rights.impex");
 
 		importImpexFile(context, "/gallaghercore/import/common/essential-data-scpi.impex");
+
+		final boolean importSprint2Impex = getBooleanSystemSetupParameter(context, IMPORT_SPRINT_2_IMPEX);
+
+
+		if (importSprint2Impex)
+		{
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-722_AU.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-722_CA.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-722_Global.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-722_LatAm.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-722_NZ.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-722_US.impex");
+		}
 
 	}
 
