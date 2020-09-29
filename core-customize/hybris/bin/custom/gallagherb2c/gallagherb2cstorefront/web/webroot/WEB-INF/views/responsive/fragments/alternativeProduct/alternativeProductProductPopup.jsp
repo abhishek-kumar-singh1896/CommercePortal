@@ -27,7 +27,7 @@
 						stock.Here are some alternatives:</h3>
 					<div class="flexslider carousel">
 						<ul class="slides productsPopUp">
-							<c:forEach items="${alternativeProducts}" var="reference">
+							<c:forEach items="${alternativeProducts}" var="reference" end="3">
 								<li>
 									<div class="card product-card">
 										<c:url value="${reference.url}" var="productUrl" />
