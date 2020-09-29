@@ -5,6 +5,9 @@ import de.hybris.platform.b2b.model.B2BUnitModel;
 import de.hybris.platform.basecommerce.model.site.BaseSiteModel;
 import de.hybris.platform.commercefacades.storesession.StoreSessionFacade;
 import de.hybris.platform.commercefacades.user.data.CustomerData;
+import de.hybris.platform.core.GenericSearchConstants.LOG;
+import de.hybris.platform.core.model.c2l.CurrencyModel;
+import de.hybris.platform.core.model.c2l.LanguageModel;
 import de.hybris.platform.core.model.user.UserModel;
 import de.hybris.platform.servicelayer.dto.converter.Converter;
 import de.hybris.platform.servicelayer.model.ModelService;
@@ -151,9 +154,11 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 	{
 		final B2BUnitModel defaultB2BUnit = b2bCustomer.getDefaultB2BUnit();
 		BaseSiteModel defaultSite = null;
+		BaseStoreModel defaultBaseStore = null;
 
 		if (CollectionUtils.isEmpty(defaultB2BUnit.getAddresses()))
 		{
+			defaultBaseStore = getBaseStoreService().getBaseStoreForUid("securityB2BGlobal");
 			defaultSite = getBaseSiteService().getBaseSiteForUID(SECURITY_B2B_GLOBAL);
 		}
 		else
@@ -167,6 +172,7 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 				{
 					String securityB2BisoCode = SECURITY_B2B;
 					securityB2BisoCode = securityB2BisoCode.concat(isoCode);
+					defaultBaseStore = getBaseStoreService().getBaseStoreForUid(securityB2BisoCode);
 					defaultSite = getBaseSiteService().getBaseSiteForUID(securityB2BisoCode);
 					flag = true;
 					break;
@@ -177,15 +183,22 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 				defaultSite = getBaseSiteService().getBaseSiteForUID(SECURITY_B2B_GLOBAL);
 			}
 		}
+
 		final BaseSiteModel baseSite = defaultSite;
+
+		final CurrencyModel currency = getCurrency(defaultBaseStore, b2bCustomer.getSessionCurrency());
+		final LanguageModel language = getLanguage(defaultBaseStore, b2bCustomer.getSessionLanguage());
+
+		b2bCustomer.setSessionCurrency(currency);
+		b2bCustomer.setSessionLanguage(language);
 		getSessionService().executeInLocalView(new SessionExecutionBody()
 		{
 			@Override
 			public void executeWithoutResult()
 			{
 				getBaseSiteService().setCurrentBaseSite(baseSite, Boolean.FALSE);
-				getStoreSessionFacade().setCurrentLanguage(b2bCustomer.getSessionLanguage().getIsocode());
-				getStoreSessionFacade().setCurrentCurrency(b2bCustomer.getSessionCurrency().getIsocode());
+				getStoreSessionFacade().setCurrentLanguage(language.getIsocode());
+				getStoreSessionFacade().setCurrentCurrency(currency.getIsocode());
 				try
 				{
 					getObjectFacade().save(b2bCustomer, ctx);
@@ -198,6 +211,55 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 		});
 
 		return b2bCustomer;
+	}
+
+
+	/**
+	 * Returns the currency for this customer. If user selected currency is not in allowed list of currencies then use
+	 * the default currency.
+	 *
+	 * @param baseStore
+	 *           base store
+	 * @param sessionCurrency
+	 *           session currency selected by user
+	 * @return currency to be set
+	 */
+	private CurrencyModel getCurrency(final BaseStoreModel baseStore, final CurrencyModel sessionCurrency)
+	{
+		CurrencyModel currency;
+		if (sessionCurrency == null)
+		{
+			currency = baseStore.getDefaultCurrency();
+		}
+		else
+		{
+			currency = baseStore.getCurrencies().contains(sessionCurrency) ? sessionCurrency : baseStore.getDefaultCurrency();
+		}
+		return currency;
+	}
+
+	/**
+	 * Returns the language for this customer. If user selected language is not in allowed list of languages then use the
+	 * default language.
+	 *
+	 * @param baseStore
+	 *           base store
+	 * @param sessionLanguage
+	 *           session language selected by user
+	 * @return language to be set
+	 */
+	private LanguageModel getLanguage(final BaseStoreModel baseStore, final LanguageModel sessionLanguage)
+	{
+		LanguageModel language;
+		if (sessionLanguage == null)
+		{
+			language = baseStore.getDefaultLanguage();
+		}
+		else
+		{
+			language = baseStore.getLanguages().contains(sessionLanguage) ? sessionLanguage : baseStore.getDefaultLanguage();
+		}
+		return language;
 	}
 
 	/**
