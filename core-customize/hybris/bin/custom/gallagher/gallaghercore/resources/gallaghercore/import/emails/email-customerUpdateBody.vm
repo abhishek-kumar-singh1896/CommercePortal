@@ -1,0 +1,100 @@
+## messageSource=classpath:/gallaghercore/messages/email-customerUpdate_$lang.properties
+#macro(genHtmlLinkStartTag $url)
+<a href="$url"><font color="#333">
+#end
+#macro(genHtmlLinkEndTag)
+</font></a>
+#end
+#macro(genHtmlLink $url $textColor $bodyContent)
+<a href="$url"><font color="$textColor">$bodyContent</font></a>
+#end
+
+<html>
+	<head>
+	</head>
+	<body bgcolor="#ffffff">
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff"
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td align="center" valign="top">
+				<table width="610" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#fff">
+					<tr>
+						<td align="center" valign="top" bgcolor="#FFFFFF">
+							<table width="570" cellpadding="0" cellspacing="0" border="0" align="center">
+								<tr>
+									<td valign="middle">&nbsp;</td>
+								</tr>
+								<tr>
+									<td valign="middle">
+										${ctx.cmsSlotContents.SiteLogo}
+									</td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+								</tr>
+								<tr>
+									<td align="left" valign="top">
+									    #set ($secureLoginUrl = "${ctx.secureBaseUrl}/login")
+                                        #set ($mailToUrl = "mailto:${ctx.messages.contactUsEmail}")
+										#if(${ctx.ISUSEREXIST} == "true")
+										#set ( $registeredUser = ${ctx.messages.getMessage('isRegisteredUser')})
+										#set ( $loginInstruction = ${ctx.messages.getMessage('instructionLoginUrl', "#genHtmlLinkStartTag($secureLoginUrl)", "#genHtmlLinkEndTag()")})
+										#else
+										#set ( $registeredUser = ${ctx.messages.getMessage('notRegisteredUser')})
+										#set ( $loginInstruction = ${ctx.messages.getMessage('resetLoginUrl', "#genHtmlLink($mailToUrl '#666666' ${ctx.messages.contactUsEmail})")})
+										#end
+										
+										<p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.getMessage('salutation', ${ctx.firstName})},</font></p>
+										#if(${ctx.ISUSEREXIST} == "true")
+											<p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.thankYouForSubmission}&nbsp;$registeredUser</font></p>
+											<p><font color="#322e2c" size="2" face="Calibri">$loginInstruction</font></p>
+										#else
+											<p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.thankYouForSubmission}</font></p>
+											<p><font color="#322e2c" size="2" face="Calibri">$registeredUser</font></p>
+											<p><font color="#322e2c" size="2" face="Calibri">$loginInstruction</font></p><br>
+											<p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.securityMoreInfoTitle}</font></p>
+											<p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.securityMoreInfo}</font></p>
+											<p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.anyQuestion}</font></p>
+										#end
+										<p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.complimentaryClosing}</font></p>
+										<p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.signature}</font></p>
+									</td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+								</tr>
+								<tr>
+									<td height="30" align="center" valign="middle" bgcolor="#FF8400">
+										<font size="2" face="Calibri">
+											<a style="text-decoration:none" href="${ctx.messages.websitePage}">
+												<font color="#000000">${ctx.messages.website}</font>
+											</a> 
+											| 
+											<a style="text-decoration:none" href="${ctx.messages.contactUsPage}">
+												<font color="#000000">${ctx.messages.contactUs}</font>
+											</a> 
+											|
+											<a style="text-decoration:none" href="${ctx.messages.privacyStatementPage}">
+												<font color="#000000">${ctx.messages.privacyStatement}</font>
+											</a> 
+											&nbsp;&nbsp;
+										</font>
+									</td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+	</table>
+</body>
+</html>

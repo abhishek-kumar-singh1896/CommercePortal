@@ -381,4 +381,25 @@
 	<bean id="gallagherFacetUnitBooleanDisplayNameProvider"
 		class="com.gallagher.core.solrfacetsearch.solr.impl.GallagherFacetUnitBooleanDisplayNameProvider" />
 	
+	   <bean id="generateCustomerUpdateEmail" parent="abstractGenerateEmailAction">
+	 <property name="frontendTemplateName" value="CustomerUpdateEmailTemplate"/>
+    </bean>
+    
+    <bean id="gallagherB2BCustomerUpdateEventListener"
+		class="com.gallagher.core.events.GallagherB2BCustomerUpdateEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService" />
+		<property name="businessProcessService" ref="businessProcessService" />
+	</bean>
+    
+    <bean id="glCustomerUpdateEmailProcessDefinitionResource"
+		class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+		<property name="resource" value="classpath:/gallaghercore/processes/customerUpdateEmailProcess.xml" />
+	</bean>
+	
+	<bean id="gallagherCustomerUpdateEmailContext"
+	class="com.gallagher.facades.process.email.context.GallagherCustomerUpdateEmailContext"
+	parent="customerEmailContext"
+	scope="prototype" >
+    </bean>
+    
 </beans>

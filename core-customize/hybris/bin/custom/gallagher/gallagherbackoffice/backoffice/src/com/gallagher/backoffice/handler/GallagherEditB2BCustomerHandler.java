@@ -5,8 +5,12 @@ import de.hybris.platform.b2b.model.B2BUnitModel;
 import de.hybris.platform.basecommerce.model.site.BaseSiteModel;
 import de.hybris.platform.commercefacades.storesession.StoreSessionFacade;
 import de.hybris.platform.commercefacades.user.data.CustomerData;
+import de.hybris.platform.core.model.c2l.CurrencyModel;
+import de.hybris.platform.core.model.c2l.LanguageModel;
 import de.hybris.platform.core.model.user.UserModel;
 import de.hybris.platform.servicelayer.dto.converter.Converter;
+import de.hybris.platform.servicelayer.event.EventService;
+import de.hybris.platform.servicelayer.i18n.CommonI18NService;
 import de.hybris.platform.servicelayer.model.ModelService;
 import de.hybris.platform.servicelayer.session.SessionExecutionBody;
 import de.hybris.platform.servicelayer.session.SessionService;
@@ -19,9 +23,11 @@ import java.util.List;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.tuple.Pair;
 import org.apache.log4j.Logger;
 
 import com.gallagher.c4c.outboundservices.facade.GallagherC4COutboundServiceFacade;
+import com.gallagher.core.events.GallagherB2BCustomerUpdateEvent;
 import com.gallagher.keycloak.outboundservices.service.GallagherKeycloakService;
 import com.hybris.backoffice.widgets.notificationarea.event.NotificationEvent.Level;
 import com.hybris.cockpitng.dataaccess.context.Context;
@@ -58,7 +64,9 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 	private BaseStoreService baseStoreService;
 	private BaseSiteService baseSiteService;
 	private SessionService sessionService;
+	private CommonI18NService commonI18NService;
 	private ModelService modelService;
+	private EventService eventService;
 
 	@Override
 	public Object performSave(final WidgetInstanceManager widgetInstanceManager, final Object currentObject)
@@ -82,7 +90,8 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 
 				LOG.debug("Updating user profile in keycloak");
 
-				if (isB2BCustomerModified(widgetInstanceManager, b2bCustomerModel))
+				final Boolean isCustomerModified = isB2BCustomerModified(widgetInstanceManager, b2bCustomerModel);
+				if (isCustomerModified)
 				{
 					getGallagherKeycloakService().updateKeyCloakUserProfile(b2bCustomer);
 				}
@@ -91,6 +100,10 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 				ctx.addAttribute(ObjectFacade.CTX_PARAM_SUPPRESS_EVENT, Boolean.TRUE);
 				widgetInstanceManager.getModel().setValue(INPUT_OBJECT, b2bCustomerModel);
 
+				if (isCustomerModified)
+				{
+					getEventService().publishEvent(initializeEvent(new GallagherB2BCustomerUpdateEvent(), b2bCustomerModel));
+				}
 				return updateStoreInSession(b2bCustomerModel, ctx);
 		}
 		LOG.debug("Customer is not B2B ");
@@ -150,10 +163,115 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 	private B2BCustomerModel updateStoreInSession(final B2BCustomerModel b2bCustomer, final Context ctx)
 	{
 		final B2BUnitModel defaultB2BUnit = b2bCustomer.getDefaultB2BUnit();
+		final Pair<BaseSiteModel, BaseStoreModel> baseSiteAndStore = getBaseSiteAndStore(defaultB2BUnit);
+
+		final LanguageModel language = getLanguage(baseSiteAndStore.getRight(), b2bCustomer.getSessionLanguage());
+		final CurrencyModel currency = getCurrency(baseSiteAndStore.getRight(), b2bCustomer.getSessionCurrency());
+
+		getSessionService().executeInLocalView(new SessionExecutionBody()
+		{
+			@Override
+			public void executeWithoutResult()
+			{
+				getBaseSiteService().setCurrentBaseSite(baseSiteAndStore.getKey(), Boolean.FALSE);
+				getStoreSessionFacade().setCurrentLanguage(language.getIsocode());
+				getStoreSessionFacade().setCurrentCurrency(currency.getIsocode());
+				try
+				{
+					getObjectFacade().save(b2bCustomer, ctx);
+				}
+				catch (final ObjectSavingException e)
+				{
+					LOG.error("Error while saving B2B customer :: " + e.getMessage());
+				}
+			}
+		});
+
+		return b2bCustomer;
+	}
+
+	/**
+	 * Returns the currency for this customer. If user selected currency is not in allowed list of currencies then use
+	 * the default currency.
+	 *
+	 * @param baseStore
+	 *           base store
+	 * @param sessionCurrency
+	 *           session currency selected by user
+	 * @return currency to be set
+	 */
+	private CurrencyModel getCurrency(final BaseStoreModel baseStore, final CurrencyModel sessionCurrency)
+	{
+		CurrencyModel currency;
+		if (sessionCurrency == null)
+		{
+			currency = baseStore.getDefaultCurrency();
+		}
+		else
+		{
+			currency = baseStore.getCurrencies().contains(sessionCurrency) ? sessionCurrency : baseStore.getDefaultCurrency();
+		}
+		return currency;
+	}
+
+	/**
+	 * Returns the language for this customer. If user selected language is not in allowed list of languages then use the
+	 * default language.
+	 *
+	 * @param baseStore
+	 *           base store
+	 * @param sessionLanguage
+	 *           session language selected by user
+	 * @return language to be set
+	 */
+	private LanguageModel getLanguage(final BaseStoreModel baseStore, final LanguageModel sessionLanguage)
+	{
+		LanguageModel language;
+		if (sessionLanguage == null)
+		{
+			language = baseStore.getDefaultLanguage();
+		}
+		else
+		{
+			language = baseStore.getLanguages().contains(sessionLanguage) ? sessionLanguage : baseStore.getDefaultLanguage();
+		}
+		return language;
+	}
+
+	/**
+	 * initializes an {@link GallagherB2BCustomerUpdateEvent}
+	 *
+	 * @param event
+	 * @param customerModel
+	 * @return the event
+	 */
+	private GallagherB2BCustomerUpdateEvent initializeEvent(final GallagherB2BCustomerUpdateEvent event,
+			final B2BCustomerModel b2bCustomerModel)
+	{
+		final B2BUnitModel defaultB2BUnit = b2bCustomerModel.getDefaultB2BUnit();
+		final Pair<BaseSiteModel, BaseStoreModel> baseSite = getBaseSiteAndStore(b2bCustomerModel.getDefaultB2BUnit());
+
+		event.setBaseStore(baseSite.getRight());
+		event.setSite(baseSite.getLeft());
+		event.setCustomer(b2bCustomerModel);
+		event.setLanguage(getCommonI18NService().getCurrentLanguage());
+		event.setCurrency(getCommonI18NService().getCurrentCurrency());
+		return event;
+	}
+
+
+	/**
+	 * @param defaultB2BUnit
+	 * @return
+	 */
+	private Pair<BaseSiteModel, BaseStoreModel> getBaseSiteAndStore(final B2BUnitModel defaultB2BUnit)
+	{
 		BaseSiteModel defaultSite = null;
+		BaseStoreModel defaultBaseStore = null;
 
 		if (CollectionUtils.isEmpty(defaultB2BUnit.getAddresses()))
 		{
+			defaultBaseStore = getBaseStoreService().getBaseStoreForUid(SECURITY_B2B_GLOBAL);
 			defaultSite = getBaseSiteService().getBaseSiteForUID(SECURITY_B2B_GLOBAL);
 		}
 		else
@@ -167,6 +285,7 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 				{
 					String securityB2BisoCode = SECURITY_B2B;
 					securityB2BisoCode = securityB2BisoCode.concat(isoCode);
+					defaultBaseStore = getBaseStoreService().getBaseStoreForUid(securityB2BisoCode);
 					defaultSite = getBaseSiteService().getBaseSiteForUID(securityB2BisoCode);
 					flag = true;
 					break;
@@ -174,30 +293,47 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 			}
 			if (!flag)
 			{
+				defaultBaseStore = baseStoreService.getBaseStoreForUid(SECURITY_B2B_GLOBAL);
 				defaultSite = getBaseSiteService().getBaseSiteForUID(SECURITY_B2B_GLOBAL);
 			}
 		}
-		final BaseSiteModel baseSite = defaultSite;
-		getSessionService().executeInLocalView(new SessionExecutionBody()
-		{
-			@Override
-			public void executeWithoutResult()
-			{
-				getBaseSiteService().setCurrentBaseSite(baseSite, Boolean.FALSE);
-				getStoreSessionFacade().setCurrentLanguage(b2bCustomer.getSessionLanguage().getIsocode());
-				getStoreSessionFacade().setCurrentCurrency(b2bCustomer.getSessionCurrency().getIsocode());
-				try
-				{
-					getObjectFacade().save(b2bCustomer, ctx);
-				}
-				catch (final ObjectSavingException e)
-				{
-					LOG.error("Error while saving B2B customer :: " + e.getMessage());
-				}
-			}
-		});
 
-		return b2bCustomer;
+		return Pair.of(defaultSite, defaultBaseStore);
+	}
+
+
+	/**
+	 * @return the commonI18NService
+	 */
+	public CommonI18NService getCommonI18NService()
+	{
+		return commonI18NService;
+	}
+
+	/**
+	 * @param commonI18NService
+	 *           the commonI18NService to set
+	 */
+	public void setCommonI18NService(final CommonI18NService commonI18NService)
+	{
+		this.commonI18NService = commonI18NService;
+	}
+
+	/**
+	 * @return the eventService
+	 */
+	public EventService getEventService()
+	{
+		return eventService;
+	}
+
+	/**
+	 * @param eventService
+	 *           the eventService to set
+	 */
+	public void setEventService(final EventService eventService)
+	{
+		this.eventService = eventService;
 	}
 
 	/**
