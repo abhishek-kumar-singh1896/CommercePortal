@@ -4,6 +4,7 @@ $productCatalog=amB2CAUProductCatalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='$version'])[unique=true,default=$productCatalog:$version]
  
  
+ 
 INSERT_UPDATE AsCategoryAwareSearchProfile ; code[unique=true]    ; name                     ; indexType[unique=true,default=$solrIndexedType] ; $catalogVersion[unique=true] 
                                            ; amB2CAUSearchProfile ; AM B2C AU Search Profile 
                                            
@@ -152,7 +153,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUMainsEnergizersRechargeableAsFacet                             ; amB2CAUMainsEnergizersSearchConfiguration             ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUMainsEnergizersRechargeableAsFacet                             
                       ; amB2CAUMainsEnergizersDraftingAsFacet                                 ; amB2CAUMainsEnergizersSearchConfiguration             ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUMainsEnergizersDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                             ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                     
+                              ; amB2CAUMainsEnergizersCategoryAsExcludedFacet ; amB2CAUMainsEnergizersSearchConfiguration             ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUMainsEnergizersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                            ; searchProfile(code,$catalogVersion) ; uniqueIdx                                   ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAU110VoltEnergizersSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAU110VoltEnergizersSearchConfiguration ; 110-volt-energizers            ;                              
                                                  
@@ -223,7 +227,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAU110VoltEnergizersRechargeableAsFacet                             ; amB2CAU110VoltEnergizersSearchConfiguration           ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAU110VoltEnergizersRechargeableAsFacet                             
                       ; amB2CAU110VoltEnergizersDraftingAsFacet                                 ; amB2CAU110VoltEnergizersSearchConfiguration           ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAU110VoltEnergizersDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                               ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                       
+                              ; amB2CAU110VoltEnergizersCategoryAsExcludedFacet ; amB2CAU110VoltEnergizersSearchConfiguration           ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAU110VoltEnergizersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                 ; searchProfile(code,$catalogVersion) ; uniqueIdx                                        ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUMultiPoweredEnergizersSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUMultiPoweredEnergizersSearchConfiguration ; multi-powered-energizers       ;                              
                                                  
@@ -294,7 +301,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUMultiPoweredEnergizersRechargeableAsFacet                             ; amB2CAUMultiPoweredEnergizersSearchConfiguration      ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUMultiPoweredEnergizersRechargeableAsFacet                             
                       ; amB2CAUMultiPoweredEnergizersDraftingAsFacet                                 ; amB2CAUMultiPoweredEnergizersSearchConfiguration      ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUMultiPoweredEnergizersDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                    ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                            
+                              ; amB2CAUMultiPoweredEnergizersCategoryAsExcludedFacet ; amB2CAUMultiPoweredEnergizersSearchConfiguration      ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUMultiPoweredEnergizersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                            ; searchProfile(code,$catalogVersion) ; uniqueIdx                                   ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUBatteryEnergizersSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUBatteryEnergizersSearchConfiguration ; battery-energizers             ;                              
                                                  
@@ -365,7 +375,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUBatteryEnergizersRechargeableAsFacet                             ; amB2CAUBatteryEnergizersSearchConfiguration           ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUBatteryEnergizersRechargeableAsFacet                             
                       ; amB2CAUBatteryEnergizersDraftingAsFacet                                 ; amB2CAUBatteryEnergizersSearchConfiguration           ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUBatteryEnergizersDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                               ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                       
+                              ; amB2CAUBatteryEnergizersCategoryAsExcludedFacet ; amB2CAUBatteryEnergizersSearchConfiguration           ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUBatteryEnergizersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                          ; searchProfile(code,$catalogVersion) ; uniqueIdx                                 ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUSolarEnergizersSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUSolarEnergizersSearchConfiguration ; solar-energizers               ;                              
                                                  
@@ -436,7 +449,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUSolarEnergizersRechargeableAsFacet                             ; amB2CAUSolarEnergizersSearchConfiguration             ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUSolarEnergizersRechargeableAsFacet                             
                       ; amB2CAUSolarEnergizersDraftingAsFacet                                 ; amB2CAUSolarEnergizersSearchConfiguration             ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUSolarEnergizersDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                             ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                     
+                              ; amB2CAUSolarEnergizersCategoryAsExcludedFacet ; amB2CAUSolarEnergizersSearchConfiguration             ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUSolarEnergizersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                      ; searchProfile(code,$catalogVersion) ; uniqueIdx                             ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUSolarPanelsSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUSolarPanelsSearchConfiguration ; solar-panels                   ;                              
                                                  
@@ -507,7 +523,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUSolarPanelsRechargeableAsFacet                             ; amB2CAUSolarPanelsSearchConfiguration                 ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUSolarPanelsRechargeableAsFacet                             
                       ; amB2CAUSolarPanelsDraftingAsFacet                                 ; amB2CAUSolarPanelsSearchConfiguration                 ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUSolarPanelsDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                         ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                 
+                              ; amB2CAUSolarPanelsCategoryAsExcludedFacet ; amB2CAUSolarPanelsSearchConfiguration                 ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUSolarPanelsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                            ; searchProfile(code,$catalogVersion) ; uniqueIdx                                   ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUSolarAndSolarKitsSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUSolarAndSolarKitsSearchConfiguration ; solar-and-solar-kits           ;                              
                                                  
@@ -578,7 +597,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUSolarAndSolarKitsRechargeableAsFacet                             ; amB2CAUSolarAndSolarKitsSearchConfiguration           ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUSolarAndSolarKitsRechargeableAsFacet                             
                       ; amB2CAUSolarAndSolarKitsDraftingAsFacet                                 ; amB2CAUSolarAndSolarKitsSearchConfiguration           ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUSolarAndSolarKitsDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                               ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                       
+                              ; amB2CAUSolarAndSolarKitsCategoryAsExcludedFacet ; amB2CAUSolarAndSolarKitsSearchConfiguration           ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUSolarAndSolarKitsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                 ; searchProfile(code,$catalogVersion) ; uniqueIdx                                        ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAURemotesAndFenceTestersSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAURemotesAndFenceTestersSearchConfiguration ; remotes-and-fence-testers      ;                              
                                                  
@@ -649,7 +671,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAURemotesAndFenceTestersRechargeableAsFacet                             ; amB2CAURemotesAndFenceTestersSearchConfiguration      ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAURemotesAndFenceTestersRechargeableAsFacet                             
                       ; amB2CAURemotesAndFenceTestersDraftingAsFacet                                 ; amB2CAURemotesAndFenceTestersSearchConfiguration      ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAURemotesAndFenceTestersDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                    ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                            
+                              ; amB2CAURemotesAndFenceTestersCategoryAsExcludedFacet ; amB2CAURemotesAndFenceTestersSearchConfiguration      ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAURemotesAndFenceTestersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                    ; searchProfile(code,$catalogVersion) ; uniqueIdx                           ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUBatteriesSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUBatteriesSearchConfiguration ; batteries                      ;                              
                                                  
@@ -720,7 +745,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUBatteriesRechargeableAsFacet                             ; amB2CAUBatteriesSearchConfiguration                   ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUBatteriesRechargeableAsFacet                             
                       ; amB2CAUBatteriesDraftingAsFacet                                 ; amB2CAUBatteriesSearchConfiguration                   ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUBatteriesDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                       ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                               
+                              ; amB2CAUBatteriesCategoryAsExcludedFacet ; amB2CAUBatteriesSearchConfiguration                   ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUBatteriesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                   ; searchProfile(code,$catalogVersion) ; uniqueIdx                          ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUEarthingSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUEarthingSearchConfiguration ; earthing                       ;                              
                                                  
@@ -791,7 +819,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUEarthingRechargeableAsFacet                             ; amB2CAUEarthingSearchConfiguration                    ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUEarthingRechargeableAsFacet                             
                       ; amB2CAUEarthingDraftingAsFacet                                 ; amB2CAUEarthingSearchConfiguration                    ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUEarthingDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                      ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                              
+                              ; amB2CAUEarthingCategoryAsExcludedFacet ; amB2CAUEarthingSearchConfiguration                    ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUEarthingCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                 ; searchProfile(code,$catalogVersion) ; uniqueIdx                                        ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUPowerSystemAccessoriesSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUPowerSystemAccessoriesSearchConfiguration ; power-system-accessories       ;                              
                                                  
@@ -862,7 +893,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUPowerSystemAccessoriesRechargeableAsFacet                             ; amB2CAUPowerSystemAccessoriesSearchConfiguration      ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUPowerSystemAccessoriesRechargeableAsFacet                             
                       ; amB2CAUPowerSystemAccessoriesDraftingAsFacet                                 ; amB2CAUPowerSystemAccessoriesSearchConfiguration      ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUPowerSystemAccessoriesDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                    ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                            
+                              ; amB2CAUPowerSystemAccessoriesCategoryAsExcludedFacet ; amB2CAUPowerSystemAccessoriesSearchConfiguration      ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUPowerSystemAccessoriesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                               ; searchProfile(code,$catalogVersion) ; uniqueIdx                                      ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUGallagherWestonfenceSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUGallagherWestonfenceSearchConfiguration ; gallagher-westonfence          ;                              
                                                  
@@ -933,7 +967,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUGallagherWestonfenceRechargeableAsFacet                             ; amB2CAUGallagherWestonfenceSearchConfiguration        ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUGallagherWestonfenceRechargeableAsFacet                             
                       ; amB2CAUGallagherWestonfenceDraftingAsFacet                                 ; amB2CAUGallagherWestonfenceSearchConfiguration        ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUGallagherWestonfenceDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                  ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                          
+                              ; amB2CAUGallagherWestonfenceCategoryAsExcludedFacet ; amB2CAUGallagherWestonfenceSearchConfiguration        ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUGallagherWestonfenceCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                              ; searchProfile(code,$catalogVersion) ; uniqueIdx                                     ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUGallagherMegaAnchorSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUGallagherMegaAnchorSearchConfiguration ; gallagher-mega-anchor          ;                              
                                                  
@@ -1004,7 +1041,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUGallagherMegaAnchorRechargeableAsFacet                             ; amB2CAUGallagherMegaAnchorSearchConfiguration         ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUGallagherMegaAnchorRechargeableAsFacet                             
                       ; amB2CAUGallagherMegaAnchorDraftingAsFacet                                 ; amB2CAUGallagherMegaAnchorSearchConfiguration         ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUGallagherMegaAnchorDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                 ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                         
+                              ; amB2CAUGallagherMegaAnchorCategoryAsExcludedFacet ; amB2CAUGallagherMegaAnchorSearchConfiguration         ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUGallagherMegaAnchorCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                       ; searchProfile(code,$catalogVersion) ; uniqueIdx                              ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUWireAndCableSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUWireAndCableSearchConfiguration ; wire-and-cable                 ;                              
                                                  
@@ -1075,7 +1115,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUWireAndCableRechargeableAsFacet                             ; amB2CAUWireAndCableSearchConfiguration                ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUWireAndCableRechargeableAsFacet                             
                       ; amB2CAUWireAndCableDraftingAsFacet                                 ; amB2CAUWireAndCableSearchConfiguration                ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUWireAndCableDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                          ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                  
+                              ; amB2CAUWireAndCableCategoryAsExcludedFacet ; amB2CAUWireAndCableSearchConfiguration                ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUWireAndCableCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                           ; searchProfile(code,$catalogVersion) ; uniqueIdx                                  ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUClampsAndJoinersSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUClampsAndJoinersSearchConfiguration ; clamps-and-joiners             ;                              
                                                  
@@ -1146,7 +1189,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUClampsAndJoinersRechargeableAsFacet                             ; amB2CAUClampsAndJoinersSearchConfiguration            ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUClampsAndJoinersRechargeableAsFacet                             
                       ; amB2CAUClampsAndJoinersDraftingAsFacet                                 ; amB2CAUClampsAndJoinersSearchConfiguration            ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUClampsAndJoinersDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                              ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                      
+                              ; amB2CAUClampsAndJoinersCategoryAsExcludedFacet ; amB2CAUClampsAndJoinersSearchConfiguration            ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUClampsAndJoinersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                ; searchProfile(code,$catalogVersion) ; uniqueIdx                       ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUPostsSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUPostsSearchConfiguration ; posts                          ;                              
                                                  
@@ -1217,7 +1263,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUPostsRechargeableAsFacet                             ; amB2CAUPostsSearchConfiguration                       ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUPostsRechargeableAsFacet                             
                       ; amB2CAUPostsDraftingAsFacet                                 ; amB2CAUPostsSearchConfiguration                       ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUPostsDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                   ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                           
+                              ; amB2CAUPostsCategoryAsExcludedFacet ; amB2CAUPostsSearchConfiguration                       ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUPostsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                    ; searchProfile(code,$catalogVersion) ; uniqueIdx                           ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUStrainersSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUStrainersSearchConfiguration ; strainers                      ;                              
                                                  
@@ -1288,7 +1337,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUStrainersRechargeableAsFacet                             ; amB2CAUStrainersSearchConfiguration                   ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUStrainersRechargeableAsFacet                             
                       ; amB2CAUStrainersDraftingAsFacet                                 ; amB2CAUStrainersSearchConfiguration                   ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUStrainersDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                       ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                               
+                              ; amB2CAUStrainersCategoryAsExcludedFacet ; amB2CAUStrainersSearchConfiguration                   ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUStrainersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                     ; searchProfile(code,$catalogVersion) ; uniqueIdx                            ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUInsulatorsSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUInsulatorsSearchConfiguration ; insulators                     ;                              
                                                  
@@ -1359,7 +1411,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUInsulatorsRechargeableAsFacet                             ; amB2CAUInsulatorsSearchConfiguration                  ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUInsulatorsRechargeableAsFacet                             
                       ; amB2CAUInsulatorsDraftingAsFacet                                 ; amB2CAUInsulatorsSearchConfiguration                  ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUInsulatorsDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                        ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                
+                              ; amB2CAUInsulatorsCategoryAsExcludedFacet ; amB2CAUInsulatorsSearchConfiguration                  ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUInsulatorsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                  ; searchProfile(code,$catalogVersion) ; uniqueIdx                         ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUOffsetsSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUOffsetsSearchConfiguration ; offsets                        ;                              
                                                  
@@ -1430,7 +1485,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUOffsetsRechargeableAsFacet                             ; amB2CAUOffsetsSearchConfiguration                     ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUOffsetsRechargeableAsFacet                             
                       ; amB2CAUOffsetsDraftingAsFacet                                 ; amB2CAUOffsetsSearchConfiguration                     ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUOffsetsDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                     ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                             
+                              ; amB2CAUOffsetsCategoryAsExcludedFacet ; amB2CAUOffsetsSearchConfiguration                     ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUOffsetsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                        ; searchProfile(code,$catalogVersion) ; uniqueIdx                               ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUElectricGatesSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUElectricGatesSearchConfiguration ; electric-gates                 ;                              
                                                  
@@ -1501,7 +1559,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUElectricGatesRechargeableAsFacet                             ; amB2CAUElectricGatesSearchConfiguration               ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUElectricGatesRechargeableAsFacet                             
                       ; amB2CAUElectricGatesDraftingAsFacet                                 ; amB2CAUElectricGatesSearchConfiguration               ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUElectricGatesDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                           ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                   
+                              ; amB2CAUElectricGatesCategoryAsExcludedFacet ; amB2CAUElectricGatesSearchConfiguration               ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUElectricGatesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                        ; searchProfile(code,$catalogVersion) ; uniqueIdx                                               ; category(code,$catalogVersion)  ; $catalogVersion[unique=true] 
                                                  ; amB2CAUIrrigatorFenceCrossingSystem SearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUIrrigatorFenceCrossingSystem SearchConfiguration ; irrigator-fence-crossing-system ;                              
                                                  
@@ -1572,7 +1633,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUIrrigatorFenceCrossingSystem RechargeableAsFacet                             ; amB2CAUIrrigatorFenceCrossingSystem SearchConfiguration ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUIrrigatorFenceCrossingSystem RechargeableAsFacet                             
                       ; amB2CAUIrrigatorFenceCrossingSystem DraftingAsFacet                                 ; amB2CAUIrrigatorFenceCrossingSystem SearchConfiguration ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUIrrigatorFenceCrossingSystem DraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                           ; searchConfiguration(uid,$catalogVersion)[unique=true]   ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                   
+                              ; amB2CAUIrrigatorFenceCrossingSystem CategoryAsExcludedFacet ; amB2CAUIrrigatorFenceCrossingSystem SearchConfiguration ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUIrrigatorFenceCrossingSystem CategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                   ; searchProfile(code,$catalogVersion) ; uniqueIdx                                          ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUFenceToolsAndAccessoriesSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUFenceToolsAndAccessoriesSearchConfiguration ; fence-tools-and-accessories    ;                              
                                                  
@@ -1643,7 +1707,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUFenceToolsAndAccessoriesRechargeableAsFacet                             ; amB2CAUFenceToolsAndAccessoriesSearchConfiguration    ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUFenceToolsAndAccessoriesRechargeableAsFacet                             
                       ; amB2CAUFenceToolsAndAccessoriesDraftingAsFacet                                 ; amB2CAUFenceToolsAndAccessoriesSearchConfiguration    ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUFenceToolsAndAccessoriesDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                      ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                              
+                              ; amB2CAUFenceToolsAndAccessoriesCategoryAsExcludedFacet ; amB2CAUFenceToolsAndAccessoriesSearchConfiguration    ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUFenceToolsAndAccessoriesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                       ; searchProfile(code,$catalogVersion) ; uniqueIdx                              ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUGateHardwareSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUGateHardwareSearchConfiguration ; gate-hardware                  ;                              
                                                  
@@ -1714,7 +1781,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUGateHardwareRechargeableAsFacet                             ; amB2CAUGateHardwareSearchConfiguration                ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUGateHardwareRechargeableAsFacet                             
                       ; amB2CAUGateHardwareDraftingAsFacet                                 ; amB2CAUGateHardwareSearchConfiguration                ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUGateHardwareDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                          ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                  
+                              ; amB2CAUGateHardwareCategoryAsExcludedFacet ; amB2CAUGateHardwareSearchConfiguration                ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUGateHardwareCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                ; searchProfile(code,$catalogVersion) ; uniqueIdx                                       ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUTapesWiresAndBraidsPfSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUTapesWiresAndBraidsPfSearchConfiguration ; tapes-wires-and-braids-pf      ;                              
                                                  
@@ -1785,7 +1855,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUTapesWiresAndBraidsPfRechargeableAsFacet                             ; amB2CAUTapesWiresAndBraidsPfSearchConfiguration       ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUTapesWiresAndBraidsPfRechargeableAsFacet                             
                       ; amB2CAUTapesWiresAndBraidsPfDraftingAsFacet                                 ; amB2CAUTapesWiresAndBraidsPfSearchConfiguration       ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUTapesWiresAndBraidsPfDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                   ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                           
+                              ; amB2CAUTapesWiresAndBraidsPfCategoryAsExcludedFacet ; amB2CAUTapesWiresAndBraidsPfSearchConfiguration       ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUTapesWiresAndBraidsPfCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                ; searchProfile(code,$catalogVersion) ; uniqueIdx                                       ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUReelsAndAccessoriesPfSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUReelsAndAccessoriesPfSearchConfiguration ; reels-and-accessories-pf       ;                              
                                                  
@@ -1856,7 +1929,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUReelsAndAccessoriesPfRechargeableAsFacet                             ; amB2CAUReelsAndAccessoriesPfSearchConfiguration       ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUReelsAndAccessoriesPfRechargeableAsFacet                             
                       ; amB2CAUReelsAndAccessoriesPfDraftingAsFacet                                 ; amB2CAUReelsAndAccessoriesPfSearchConfiguration       ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUReelsAndAccessoriesPfDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                   ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                           
+                              ; amB2CAUReelsAndAccessoriesPfCategoryAsExcludedFacet ; amB2CAUReelsAndAccessoriesPfSearchConfiguration       ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUReelsAndAccessoriesPfCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                     ; searchProfile(code,$catalogVersion) ; uniqueIdx                                            ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUPostsPigtailsAndTreadinsPfSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUPostsPigtailsAndTreadinsPfSearchConfiguration ; posts-pigtails-and-treadins-pf ;                              
                                                  
@@ -1927,7 +2003,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUPostsPigtailsAndTreadinsPfRechargeableAsFacet                             ; amB2CAUPostsPigtailsAndTreadinsPfSearchConfiguration  ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUPostsPigtailsAndTreadinsPfRechargeableAsFacet                             
                       ; amB2CAUPostsPigtailsAndTreadinsPfDraftingAsFacet                                 ; amB2CAUPostsPigtailsAndTreadinsPfSearchConfiguration  ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUPostsPigtailsAndTreadinsPfDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                        ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                
+                              ; amB2CAUPostsPigtailsAndTreadinsPfCategoryAsExcludedFacet ; amB2CAUPostsPigtailsAndTreadinsPfSearchConfiguration  ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUPostsPigtailsAndTreadinsPfCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                   ; searchProfile(code,$catalogVersion) ; uniqueIdx                                          ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUAllInOnePortableFences  SearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUAllInOnePortableFences  SearchConfiguration ; all-in-one-portable-fences     ;                              
                                                  
@@ -1998,7 +2077,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUAllInOnePortableFences  RechargeableAsFacet                             ; amB2CAUAllInOnePortableFences  SearchConfiguration    ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUAllInOnePortableFences  RechargeableAsFacet                             
                       ; amB2CAUAllInOnePortableFences  DraftingAsFacet                                 ; amB2CAUAllInOnePortableFences  SearchConfiguration    ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUAllInOnePortableFences  DraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                      ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                              
+                              ; amB2CAUAllInOnePortableFences  CategoryAsExcludedFacet ; amB2CAUAllInOnePortableFences  SearchConfiguration    ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUAllInOnePortableFences  CategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                            ; searchProfile(code,$catalogVersion) ; uniqueIdx                                   ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUElectricFenceKitsSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUElectricFenceKitsSearchConfiguration ; electric-fence-kits            ;                              
                                                  
@@ -2069,7 +2151,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUElectricFenceKitsRechargeableAsFacet                             ; amB2CAUElectricFenceKitsSearchConfiguration           ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUElectricFenceKitsRechargeableAsFacet                             
                       ; amB2CAUElectricFenceKitsDraftingAsFacet                                 ; amB2CAUElectricFenceKitsSearchConfiguration           ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUElectricFenceKitsDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                               ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                       
+                              ; amB2CAUElectricFenceKitsCategoryAsExcludedFacet ; amB2CAUElectricFenceKitsSearchConfiguration           ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUElectricFenceKitsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                  ; searchProfile(code,$catalogVersion) ; uniqueIdx                         ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUNettingSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUNettingSearchConfiguration ; netting                        ;                              
                                                  
@@ -2140,7 +2225,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUNettingRechargeableAsFacet                             ; amB2CAUNettingSearchConfiguration                     ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUNettingRechargeableAsFacet                             
                       ; amB2CAUNettingDraftingAsFacet                                 ; amB2CAUNettingSearchConfiguration                     ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUNettingDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                     ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                             
+                              ; amB2CAUNettingCategoryAsExcludedFacet ; amB2CAUNettingSearchConfiguration                     ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUNettingCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                       ; searchProfile(code,$catalogVersion) ; uniqueIdx                                              ; category(code,$catalogVersion)   ; $catalogVersion[unique=true] 
                                                  ; amB2CAUWeighScalesAndDataCollectorsSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUWeighScalesAndDataCollectorsSearchConfiguration ; weigh-scales-and-data-collectors ;                              
                                                  
@@ -2211,7 +2299,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUWeighScalesAndDataCollectorsRechargeableAsFacet                             ; amB2CAUWeighScalesAndDataCollectorsSearchConfiguration ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUWeighScalesAndDataCollectorsRechargeableAsFacet                             
                       ; amB2CAUWeighScalesAndDataCollectorsDraftingAsFacet                                 ; amB2CAUWeighScalesAndDataCollectorsSearchConfiguration ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUWeighScalesAndDataCollectorsDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                          ; searchConfiguration(uid,$catalogVersion)[unique=true]  ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                  
+                              ; amB2CAUWeighScalesAndDataCollectorsCategoryAsExcludedFacet ; amB2CAUWeighScalesAndDataCollectorsSearchConfiguration ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUWeighScalesAndDataCollectorsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                      ; searchProfile(code,$catalogVersion) ; uniqueIdx                                             ; category(code,$catalogVersion)  ; $catalogVersion[unique=true] 
                                                  ; amB2CAUScaleHeadsAndDataCollectorsSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUScaleHeadsAndDataCollectorsSearchConfiguration ; scale-heads-and-data-collectors ;                              
                                                  
@@ -2282,7 +2373,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUScaleHeadsAndDataCollectorsRechargeableAsFacet                             ; amB2CAUScaleHeadsAndDataCollectorsSearchConfiguration ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUScaleHeadsAndDataCollectorsRechargeableAsFacet                             
                       ; amB2CAUScaleHeadsAndDataCollectorsDraftingAsFacet                                 ; amB2CAUScaleHeadsAndDataCollectorsSearchConfiguration ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUScaleHeadsAndDataCollectorsDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                         ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                 
+                              ; amB2CAUScaleHeadsAndDataCollectorsCategoryAsExcludedFacet ; amB2CAUScaleHeadsAndDataCollectorsSearchConfiguration ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUScaleHeadsAndDataCollectorsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                 ; searchProfile(code,$catalogVersion) ; uniqueIdx                                        ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAULoadbarsAndAccessoriesSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAULoadbarsAndAccessoriesSearchConfiguration ; loadbars-and-accessories       ;                              
                                                  
@@ -2353,7 +2447,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAULoadbarsAndAccessoriesRechargeableAsFacet                             ; amB2CAULoadbarsAndAccessoriesSearchConfiguration      ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAULoadbarsAndAccessoriesRechargeableAsFacet                             
                       ; amB2CAULoadbarsAndAccessoriesDraftingAsFacet                                 ; amB2CAULoadbarsAndAccessoriesSearchConfiguration      ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAULoadbarsAndAccessoriesDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                    ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                            
+                              ; amB2CAULoadbarsAndAccessoriesCategoryAsExcludedFacet ; amB2CAULoadbarsAndAccessoriesSearchConfiguration      ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAULoadbarsAndAccessoriesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                   ; searchProfile(code,$catalogVersion) ; uniqueIdx                          ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAULoadbarsSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAULoadbarsSearchConfiguration ; loadbars                       ;                              
                                                  
@@ -2424,7 +2521,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAULoadbarsRechargeableAsFacet                             ; amB2CAULoadbarsSearchConfiguration                    ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAULoadbarsRechargeableAsFacet                             
                       ; amB2CAULoadbarsDraftingAsFacet                                 ; amB2CAULoadbarsSearchConfiguration                    ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAULoadbarsDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                      ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                              
+                              ; amB2CAULoadbarsCategoryAsExcludedFacet ; amB2CAULoadbarsSearchConfiguration                    ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAULoadbarsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                    ; searchProfile(code,$catalogVersion) ; uniqueIdx                           ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUPlatformsSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUPlatformsSearchConfiguration ; platforms                      ;                              
                                                  
@@ -2495,7 +2595,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUPlatformsRechargeableAsFacet                             ; amB2CAUPlatformsSearchConfiguration                   ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUPlatformsRechargeableAsFacet                             
                       ; amB2CAUPlatformsDraftingAsFacet                                 ; amB2CAUPlatformsSearchConfiguration                   ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUPlatformsDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                       ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                               
+                              ; amB2CAUPlatformsCategoryAsExcludedFacet ; amB2CAUPlatformsSearchConfiguration                   ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUPlatformsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                             ; searchProfile(code,$catalogVersion) ; uniqueIdx                                    ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUPlatformsAndCratesSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUPlatformsAndCratesSearchConfiguration ; platforms-and-crates           ;                              
                                                  
@@ -2566,7 +2669,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUPlatformsAndCratesRechargeableAsFacet                             ; amB2CAUPlatformsAndCratesSearchConfiguration          ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUPlatformsAndCratesRechargeableAsFacet                             
                       ; amB2CAUPlatformsAndCratesDraftingAsFacet                                 ; amB2CAUPlatformsAndCratesSearchConfiguration          ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUPlatformsAndCratesDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                        
+                              ; amB2CAUPlatformsAndCratesCategoryAsExcludedFacet ; amB2CAUPlatformsAndCratesSearchConfiguration          ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUPlatformsAndCratesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                   ; searchProfile(code,$catalogVersion) ; uniqueIdx                          ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUDraftersSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUDraftersSearchConfiguration ; drafters                       ;                              
                                                  
@@ -2637,7 +2743,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUDraftersRechargeableAsFacet                             ; amB2CAUDraftersSearchConfiguration                    ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUDraftersRechargeableAsFacet                             
                       ; amB2CAUDraftersDraftingAsFacet                                 ; amB2CAUDraftersSearchConfiguration                    ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUDraftersDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                      ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                              
+                              ; amB2CAUDraftersCategoryAsExcludedFacet ; amB2CAUDraftersSearchConfiguration                    ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUDraftersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                        ; searchProfile(code,$catalogVersion) ; uniqueIdx                               ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUEidTagReadersSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUEidTagReadersSearchConfiguration ; eid-tag-readers                ;                              
                                                  
@@ -2708,7 +2817,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUEidTagReadersRechargeableAsFacet                             ; amB2CAUEidTagReadersSearchConfiguration               ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUEidTagReadersRechargeableAsFacet                             
                       ; amB2CAUEidTagReadersDraftingAsFacet                                 ; amB2CAUEidTagReadersSearchConfiguration               ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUEidTagReadersDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                           ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                   
+                              ; amB2CAUEidTagReadersCategoryAsExcludedFacet ; amB2CAUEidTagReadersSearchConfiguration               ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUEidTagReadersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                             ; searchProfile(code,$catalogVersion) ; uniqueIdx                                                    ; category(code,$catalogVersion)          ; $catalogVersion[unique=true] 
                                                  ; amB2CAUEidTagReadersAndBarcodingEquipmentSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUEidTagReadersAndBarcodingEquipmentSearchConfiguration ; eid-tag-readers-and-barcoding-equipment ;                              
                                                  
@@ -2779,7 +2891,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUEidTagReadersAndBarcodingEquipmentRechargeableAsFacet                             ; amB2CAUEidTagReadersAndBarcodingEquipmentSearchConfiguration ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUEidTagReadersAndBarcodingEquipmentRechargeableAsFacet                             
                       ; amB2CAUEidTagReadersAndBarcodingEquipmentDraftingAsFacet                                 ; amB2CAUEidTagReadersAndBarcodingEquipmentSearchConfiguration ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUEidTagReadersAndBarcodingEquipmentDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                                ; searchConfiguration(uid,$catalogVersion)[unique=true]        ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                        
+                              ; amB2CAUEidTagReadersAndBarcodingEquipmentCategoryAsExcludedFacet ; amB2CAUEidTagReadersAndBarcodingEquipmentSearchConfiguration ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUEidTagReadersAndBarcodingEquipmentCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                              ; searchProfile(code,$catalogVersion) ; uniqueIdx                                     ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUWeighingAccessoriesSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUWeighingAccessoriesSearchConfiguration ; weighing-accessories           ;                              
                                                  
@@ -2850,7 +2965,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUWeighingAccessoriesRechargeableAsFacet                             ; amB2CAUWeighingAccessoriesSearchConfiguration         ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUWeighingAccessoriesRechargeableAsFacet                             
                       ; amB2CAUWeighingAccessoriesDraftingAsFacet                                 ; amB2CAUWeighingAccessoriesSearchConfiguration         ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUWeighingAccessoriesDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                 ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                         
+                              ; amB2CAUWeighingAccessoriesCategoryAsExcludedFacet ; amB2CAUWeighingAccessoriesSearchConfiguration         ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUWeighingAccessoriesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                     ; searchProfile(code,$catalogVersion) ; uniqueIdx                            ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUStockProdsSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUStockProdsSearchConfiguration ; stock-prods                    ;                              
                                                  
@@ -2921,7 +3039,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUStockProdsRechargeableAsFacet                             ; amB2CAUStockProdsSearchConfiguration                  ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUStockProdsRechargeableAsFacet                             
                       ; amB2CAUStockProdsDraftingAsFacet                                 ; amB2CAUStockProdsSearchConfiguration                  ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUStockProdsDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                        ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                
+                              ; amB2CAUStockProdsCategoryAsExcludedFacet ; amB2CAUStockProdsSearchConfiguration                  ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUStockProdsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                   ; searchProfile(code,$catalogVersion) ; uniqueIdx                                          ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUStockProdsAndAccessoriesSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUStockProdsAndAccessoriesSearchConfiguration ; stock-prods-and-accessories    ;                              
                                                  
@@ -2992,7 +3113,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUStockProdsAndAccessoriesRechargeableAsFacet                             ; amB2CAUStockProdsAndAccessoriesSearchConfiguration    ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUStockProdsAndAccessoriesRechargeableAsFacet                             
                       ; amB2CAUStockProdsAndAccessoriesDraftingAsFacet                                 ; amB2CAUStockProdsAndAccessoriesSearchConfiguration    ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUStockProdsAndAccessoriesDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                      ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                              
+                              ; amB2CAUStockProdsAndAccessoriesCategoryAsExcludedFacet ; amB2CAUStockProdsAndAccessoriesSearchConfiguration    ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUStockProdsAndAccessoriesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                             ; searchProfile(code,$catalogVersion) ; uniqueIdx                                    ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUWaterFlowIndicatorSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUWaterFlowIndicatorSearchConfiguration ; water-flow-indicator           ;                              
                                                  
@@ -3063,7 +3187,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUWaterFlowIndicatorRechargeableAsFacet                             ; amB2CAUWaterFlowIndicatorSearchConfiguration          ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUWaterFlowIndicatorRechargeableAsFacet                             
                       ; amB2CAUWaterFlowIndicatorDraftingAsFacet                                 ; amB2CAUWaterFlowIndicatorSearchConfiguration          ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUWaterFlowIndicatorDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                        
+                              ; amB2CAUWaterFlowIndicatorCategoryAsExcludedFacet ; amB2CAUWaterFlowIndicatorSearchConfiguration          ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUWaterFlowIndicatorCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                         ; searchProfile(code,$catalogVersion) ; uniqueIdx                                ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUOneTankSystemsSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUOneTankSystemsSearchConfiguration ; one-tank-systems               ;                              
                                                  
@@ -3134,7 +3261,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUOneTankSystemsRechargeableAsFacet                             ; amB2CAUOneTankSystemsSearchConfiguration              ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUOneTankSystemsRechargeableAsFacet                             
                       ; amB2CAUOneTankSystemsDraftingAsFacet                                 ; amB2CAUOneTankSystemsSearchConfiguration              ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUOneTankSystemsDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                            ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                    
+                              ; amB2CAUOneTankSystemsCategoryAsExcludedFacet ; amB2CAUOneTankSystemsSearchConfiguration              ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUOneTankSystemsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                            ; searchProfile(code,$catalogVersion) ; uniqueIdx                                   ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUAntennaeAndCablesSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUAntennaeAndCablesSearchConfiguration ; antennae-and-cables            ;                              
                                                  
@@ -3205,7 +3335,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUAntennaeAndCablesRechargeableAsFacet                             ; amB2CAUAntennaeAndCablesSearchConfiguration           ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUAntennaeAndCablesRechargeableAsFacet                             
                       ; amB2CAUAntennaeAndCablesDraftingAsFacet                                 ; amB2CAUAntennaeAndCablesSearchConfiguration           ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUAntennaeAndCablesDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                               ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                       
+                              ; amB2CAUAntennaeAndCablesCategoryAsExcludedFacet ; amB2CAUAntennaeAndCablesSearchConfiguration           ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUAntennaeAndCablesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                     ; searchProfile(code,$catalogVersion) ; uniqueIdx                                            ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUAdditionalSystemComponentsSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUAdditionalSystemComponentsSearchConfiguration ; additional-system-components   ;                              
                                                  
@@ -3276,7 +3409,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUAdditionalSystemComponentsRechargeableAsFacet                             ; amB2CAUAdditionalSystemComponentsSearchConfiguration  ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUAdditionalSystemComponentsRechargeableAsFacet                             
                       ; amB2CAUAdditionalSystemComponentsDraftingAsFacet                                 ; amB2CAUAdditionalSystemComponentsSearchConfiguration  ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUAdditionalSystemComponentsDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                        ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                
+                              ; amB2CAUAdditionalSystemComponentsCategoryAsExcludedFacet ; amB2CAUAdditionalSystemComponentsSearchConfiguration  ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUAdditionalSystemComponentsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                       ; searchProfile(code,$catalogVersion) ; uniqueIdx                              ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUTroughValvesSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUTroughValvesSearchConfiguration ; trough-valves                  ;                              
                                                  
@@ -3347,7 +3483,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUTroughValvesRechargeableAsFacet                             ; amB2CAUTroughValvesSearchConfiguration                ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUTroughValvesRechargeableAsFacet                             
                       ; amB2CAUTroughValvesDraftingAsFacet                                 ; amB2CAUTroughValvesSearchConfiguration                ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUTroughValvesDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                          ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                  
+                              ; amB2CAUTroughValvesCategoryAsExcludedFacet ; amB2CAUTroughValvesSearchConfiguration                ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUTroughValvesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                    ; searchProfile(code,$catalogVersion) ; uniqueIdx                           ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAULilSpringSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAULilSpringSearchConfiguration ; lil-spring                     ;                              
                                                  
@@ -3418,7 +3557,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAULilSpringRechargeableAsFacet                             ; amB2CAULilSpringSearchConfiguration                   ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAULilSpringRechargeableAsFacet                             
                       ; amB2CAULilSpringDraftingAsFacet                                 ; amB2CAULilSpringSearchConfiguration                   ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAULilSpringDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                       ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                               
+                              ; amB2CAULilSpringCategoryAsExcludedFacet ; amB2CAULilSpringSearchConfiguration                   ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAULilSpringCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                    ; searchProfile(code,$catalogVersion) ; uniqueIdx                           ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUEquiFountSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUEquiFountSearchConfiguration ; equi-fount                     ;                              
                                                  
@@ -3489,7 +3631,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUEquiFountRechargeableAsFacet                             ; amB2CAUEquiFountSearchConfiguration                   ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUEquiFountRechargeableAsFacet                             
                       ; amB2CAUEquiFountDraftingAsFacet                                 ; amB2CAUEquiFountSearchConfiguration                   ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUEquiFountDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                       ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                               
+                              ; amB2CAUEquiFountCategoryAsExcludedFacet ; amB2CAUEquiFountSearchConfiguration                   ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUEquiFountCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                    ; searchProfile(code,$catalogVersion) ; uniqueIdx                           ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUMiraFountSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUMiraFountSearchConfiguration ; mira-fount                     ;                              
                                                  
@@ -3560,7 +3705,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUMiraFountRechargeableAsFacet                             ; amB2CAUMiraFountSearchConfiguration                   ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUMiraFountRechargeableAsFacet                             
                       ; amB2CAUMiraFountDraftingAsFacet                                 ; amB2CAUMiraFountSearchConfiguration                   ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUMiraFountDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                       ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                               
+                              ; amB2CAUMiraFountCategoryAsExcludedFacet ; amB2CAUMiraFountSearchConfiguration                   ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUMiraFountCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                 ; searchProfile(code,$catalogVersion) ; uniqueIdx                        ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUEFountSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUEFountSearchConfiguration ; e-fount                        ;                              
                                                  
@@ -3631,7 +3779,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUEFountRechargeableAsFacet                             ; amB2CAUEFountSearchConfiguration                      ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUEFountRechargeableAsFacet                             
                       ; amB2CAUEFountDraftingAsFacet                                 ; amB2CAUEFountSearchConfiguration                      ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUEFountDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                    ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                            
+                              ; amB2CAUEFountCategoryAsExcludedFacet ; amB2CAUEFountSearchConfiguration                      ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUEFountCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                    ; searchProfile(code,$catalogVersion) ; uniqueIdx                           ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUBigSpringSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUBigSpringSearchConfiguration ; big-spring                     ;                              
                                                  
@@ -3702,7 +3853,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUBigSpringRechargeableAsFacet                             ; amB2CAUBigSpringSearchConfiguration                   ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUBigSpringRechargeableAsFacet                             
                       ; amB2CAUBigSpringDraftingAsFacet                                 ; amB2CAUBigSpringSearchConfiguration                   ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUBigSpringDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                       ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                               
+                              ; amB2CAUBigSpringCategoryAsExcludedFacet ; amB2CAUBigSpringSearchConfiguration                   ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUBigSpringCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                   ; searchProfile(code,$catalogVersion) ; uniqueIdx                          ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUPetTanksSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUPetTanksSearchConfiguration ; pet-tanks                      ;                              
                                                  
@@ -3773,7 +3927,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUPetTanksRechargeableAsFacet                             ; amB2CAUPetTanksSearchConfiguration                    ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUPetTanksRechargeableAsFacet                             
                       ; amB2CAUPetTanksDraftingAsFacet                                 ; amB2CAUPetTanksSearchConfiguration                    ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUPetTanksDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                      ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                              
+                              ; amB2CAUPetTanksCategoryAsExcludedFacet ; amB2CAUPetTanksSearchConfiguration                    ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUPetTanksCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                              ; searchProfile(code,$catalogVersion) ; uniqueIdx                                     ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUWateringAccessoriesSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUWateringAccessoriesSearchConfiguration ; watering-accessories           ;                              
                                                  
@@ -3844,7 +4001,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUWateringAccessoriesRechargeableAsFacet                             ; amB2CAUWateringAccessoriesSearchConfiguration         ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUWateringAccessoriesRechargeableAsFacet                             
                       ; amB2CAUWateringAccessoriesDraftingAsFacet                                 ; amB2CAUWateringAccessoriesSearchConfiguration         ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUWateringAccessoriesDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                 ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                         
+                              ; amB2CAUWateringAccessoriesCategoryAsExcludedFacet ; amB2CAUWateringAccessoriesSearchConfiguration         ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUWateringAccessoriesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                    ; searchProfile(code,$catalogVersion) ; uniqueIdx                           ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAULivestockSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAULivestockSearchConfiguration ; livestock                      ;                              
                                                  
@@ -3915,7 +4075,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAULivestockRechargeableAsFacet                             ; amB2CAULivestockSearchConfiguration                   ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAULivestockRechargeableAsFacet                             
                       ; amB2CAULivestockDraftingAsFacet                                 ; amB2CAULivestockSearchConfiguration                   ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAULivestockDraftingAsFacet                                 
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                       ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                               
+                              ; amB2CAULivestockCategoryAsExcludedFacet ; amB2CAULivestockSearchConfiguration                   ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAULivestockCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                ; searchProfile(code,$catalogVersion) ; uniqueIdx                       ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUFenceSearchConfiguration ; amB2CAUSearchProfile                ; amB2CAUFenceSearchConfiguration ; fence                          ;                              
                                                  
@@ -3986,3 +4149,5 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CAUFenceRechargeableAsFacet                             ; amB2CAUFenceSearchConfiguration                       ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUFenceRechargeableAsFacet                             
                       ; amB2CAUFenceDraftingAsFacet                                 ; amB2CAUFenceSearchConfiguration                       ; Drafting                                      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CAUFenceDraftingAsFacet                                 
                       
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                   ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                           
+                              ; amB2CAUFenceCategoryAsExcludedFacet ; amB2CAUFenceSearchConfiguration                       ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUFenceCategoryAsExcludedFacet 

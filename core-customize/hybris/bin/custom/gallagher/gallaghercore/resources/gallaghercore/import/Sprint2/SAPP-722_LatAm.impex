@@ -4,6 +4,7 @@ $productCatalog=amB2CLatAmProductCatalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='$version'])[unique=true,default=$productCatalog:$version]
  
  
+ 
 INSERT_UPDATE AsCategoryAwareSearchProfile ; code[unique=true]       ; name                        ; indexType[unique=true,default=$solrIndexedType] ; $catalogVersion[unique=true] 
                                            ; amB2CLatAmSearchProfile ; AM B2C LatAm Search Profile 
                                            
@@ -114,7 +115,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmMainsEnergizersProductTypeAsFacet                                         ; amB2CLatAmMainsEnergizersSearchConfiguration          ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmMainsEnergizersProductTypeAsFacet                                         
                       ; amB2CLatAmMainsEnergizersCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmMainsEnergizersSearchConfiguration          ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmMainsEnergizersCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                        
+                              ; amB2CLatAmMainsEnergizersCategoryAsExcludedFacet ; amB2CLatAmMainsEnergizersSearchConfiguration          ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmMainsEnergizersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                               ; searchProfile(code,$catalogVersion) ; uniqueIdx                                      ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAm110VoltEnergizersSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAm110VoltEnergizersSearchConfiguration ; 110-volt-energizers            ;                              
                                                  
@@ -166,7 +170,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAm110VoltEnergizersProductTypeAsFacet                                         ; amB2CLatAm110VoltEnergizersSearchConfiguration        ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAm110VoltEnergizersProductTypeAsFacet                                         
                       ; amB2CLatAm110VoltEnergizersCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAm110VoltEnergizersSearchConfiguration        ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAm110VoltEnergizersCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                  ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                          
+                              ; amB2CLatAm110VoltEnergizersCategoryAsExcludedFacet ; amB2CLatAm110VoltEnergizersSearchConfiguration        ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAm110VoltEnergizersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                    ; searchProfile(code,$catalogVersion) ; uniqueIdx                                           ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmMultiPoweredEnergizersSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmMultiPoweredEnergizersSearchConfiguration ; multi-powered-energizers       ;                              
                                                  
@@ -218,7 +225,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmMultiPoweredEnergizersProductTypeAsFacet                                         ; amB2CLatAmMultiPoweredEnergizersSearchConfiguration   ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmMultiPoweredEnergizersProductTypeAsFacet                                         
                       ; amB2CLatAmMultiPoweredEnergizersCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmMultiPoweredEnergizersSearchConfiguration   ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmMultiPoweredEnergizersCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                       ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                               
+                              ; amB2CLatAmMultiPoweredEnergizersCategoryAsExcludedFacet ; amB2CLatAmMultiPoweredEnergizersSearchConfiguration   ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmMultiPoweredEnergizersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                               ; searchProfile(code,$catalogVersion) ; uniqueIdx                                      ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmBatteryEnergizersSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmBatteryEnergizersSearchConfiguration ; battery-energizers             ;                              
                                                  
@@ -270,7 +280,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmBatteryEnergizersProductTypeAsFacet                                         ; amB2CLatAmBatteryEnergizersSearchConfiguration        ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmBatteryEnergizersProductTypeAsFacet                                         
                       ; amB2CLatAmBatteryEnergizersCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmBatteryEnergizersSearchConfiguration        ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmBatteryEnergizersCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                  ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                          
+                              ; amB2CLatAmBatteryEnergizersCategoryAsExcludedFacet ; amB2CLatAmBatteryEnergizersSearchConfiguration        ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmBatteryEnergizersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                             ; searchProfile(code,$catalogVersion) ; uniqueIdx                                    ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmSolarEnergizersSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmSolarEnergizersSearchConfiguration ; solar-energizers               ;                              
                                                  
@@ -322,7 +335,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmSolarEnergizersProductTypeAsFacet                                         ; amB2CLatAmSolarEnergizersSearchConfiguration          ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmSolarEnergizersProductTypeAsFacet                                         
                       ; amB2CLatAmSolarEnergizersCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmSolarEnergizersSearchConfiguration          ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmSolarEnergizersCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                        
+                              ; amB2CLatAmSolarEnergizersCategoryAsExcludedFacet ; amB2CLatAmSolarEnergizersSearchConfiguration          ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmSolarEnergizersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                         ; searchProfile(code,$catalogVersion) ; uniqueIdx                                ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmSolarPanelsSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmSolarPanelsSearchConfiguration ; solar-panels                   ;                              
                                                  
@@ -374,7 +390,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmSolarPanelsProductTypeAsFacet                                         ; amB2CLatAmSolarPanelsSearchConfiguration              ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmSolarPanelsProductTypeAsFacet                                         
                       ; amB2CLatAmSolarPanelsCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmSolarPanelsSearchConfiguration              ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmSolarPanelsCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                            ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                    
+                              ; amB2CLatAmSolarPanelsCategoryAsExcludedFacet ; amB2CLatAmSolarPanelsSearchConfiguration              ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmSolarPanelsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                               ; searchProfile(code,$catalogVersion) ; uniqueIdx                                      ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmSolarAndSolarKitsSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmSolarAndSolarKitsSearchConfiguration ; solar-and-solar-kits           ;                              
                                                  
@@ -426,7 +445,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmSolarAndSolarKitsProductTypeAsFacet                                         ; amB2CLatAmSolarAndSolarKitsSearchConfiguration        ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmSolarAndSolarKitsProductTypeAsFacet                                         
                       ; amB2CLatAmSolarAndSolarKitsCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmSolarAndSolarKitsSearchConfiguration        ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmSolarAndSolarKitsCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                  ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                          
+                              ; amB2CLatAmSolarAndSolarKitsCategoryAsExcludedFacet ; amB2CLatAmSolarAndSolarKitsSearchConfiguration        ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmSolarAndSolarKitsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                    ; searchProfile(code,$catalogVersion) ; uniqueIdx                                           ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmRemotesAndFenceTestersSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmRemotesAndFenceTestersSearchConfiguration ; remotes-and-fence-testers      ;                              
                                                  
@@ -478,7 +500,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmRemotesAndFenceTestersProductTypeAsFacet                                         ; amB2CLatAmRemotesAndFenceTestersSearchConfiguration   ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmRemotesAndFenceTestersProductTypeAsFacet                                         
                       ; amB2CLatAmRemotesAndFenceTestersCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmRemotesAndFenceTestersSearchConfiguration   ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmRemotesAndFenceTestersCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                       ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                               
+                              ; amB2CLatAmRemotesAndFenceTestersCategoryAsExcludedFacet ; amB2CLatAmRemotesAndFenceTestersSearchConfiguration   ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmRemotesAndFenceTestersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                       ; searchProfile(code,$catalogVersion) ; uniqueIdx                              ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmBatteriesSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmBatteriesSearchConfiguration ; batteries                      ;                              
                                                  
@@ -530,7 +555,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmBatteriesProductTypeAsFacet                                         ; amB2CLatAmBatteriesSearchConfiguration                ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmBatteriesProductTypeAsFacet                                         
                       ; amB2CLatAmBatteriesCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmBatteriesSearchConfiguration                ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmBatteriesCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                          ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                  
+                              ; amB2CLatAmBatteriesCategoryAsExcludedFacet ; amB2CLatAmBatteriesSearchConfiguration                ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmBatteriesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                      ; searchProfile(code,$catalogVersion) ; uniqueIdx                             ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmEarthingSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmEarthingSearchConfiguration ; earthing                       ;                              
                                                  
@@ -582,7 +610,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmEarthingProductTypeAsFacet                                         ; amB2CLatAmEarthingSearchConfiguration                 ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmEarthingProductTypeAsFacet                                         
                       ; amB2CLatAmEarthingCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmEarthingSearchConfiguration                 ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmEarthingCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                         ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                 
+                              ; amB2CLatAmEarthingCategoryAsExcludedFacet ; amB2CLatAmEarthingSearchConfiguration                 ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmEarthingCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                    ; searchProfile(code,$catalogVersion) ; uniqueIdx                                           ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmPowerSystemAccessoriesSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmPowerSystemAccessoriesSearchConfiguration ; power-system-accessories       ;                              
                                                  
@@ -634,7 +665,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmPowerSystemAccessoriesProductTypeAsFacet                                         ; amB2CLatAmPowerSystemAccessoriesSearchConfiguration   ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmPowerSystemAccessoriesProductTypeAsFacet                                         
                       ; amB2CLatAmPowerSystemAccessoriesCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmPowerSystemAccessoriesSearchConfiguration   ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmPowerSystemAccessoriesCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                       ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                               
+                              ; amB2CLatAmPowerSystemAccessoriesCategoryAsExcludedFacet ; amB2CLatAmPowerSystemAccessoriesSearchConfiguration   ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmPowerSystemAccessoriesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                  ; searchProfile(code,$catalogVersion) ; uniqueIdx                                         ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmGallagherWestonfenceSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmGallagherWestonfenceSearchConfiguration ; gallagher-westonfence          ;                              
                                                  
@@ -686,7 +720,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmGallagherWestonfenceProductTypeAsFacet                                         ; amB2CLatAmGallagherWestonfenceSearchConfiguration     ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmGallagherWestonfenceProductTypeAsFacet                                         
                       ; amB2CLatAmGallagherWestonfenceCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmGallagherWestonfenceSearchConfiguration     ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmGallagherWestonfenceCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                     ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                             
+                              ; amB2CLatAmGallagherWestonfenceCategoryAsExcludedFacet ; amB2CLatAmGallagherWestonfenceSearchConfiguration     ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmGallagherWestonfenceCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                 ; searchProfile(code,$catalogVersion) ; uniqueIdx                                        ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmGallagherMegaAnchorSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmGallagherMegaAnchorSearchConfiguration ; gallagher-mega-anchor          ;                              
                                                  
@@ -738,7 +775,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmGallagherMegaAnchorProductTypeAsFacet                                         ; amB2CLatAmGallagherMegaAnchorSearchConfiguration      ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmGallagherMegaAnchorProductTypeAsFacet                                         
                       ; amB2CLatAmGallagherMegaAnchorCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmGallagherMegaAnchorSearchConfiguration      ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmGallagherMegaAnchorCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                    ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                            
+                              ; amB2CLatAmGallagherMegaAnchorCategoryAsExcludedFacet ; amB2CLatAmGallagherMegaAnchorSearchConfiguration      ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmGallagherMegaAnchorCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                          ; searchProfile(code,$catalogVersion) ; uniqueIdx                                 ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmWireAndCableSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmWireAndCableSearchConfiguration ; wire-and-cable                 ;                              
                                                  
@@ -790,7 +830,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmWireAndCableProductTypeAsFacet                                         ; amB2CLatAmWireAndCableSearchConfiguration             ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmWireAndCableProductTypeAsFacet                                         
                       ; amB2CLatAmWireAndCableCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmWireAndCableSearchConfiguration             ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmWireAndCableCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                             ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                     
+                              ; amB2CLatAmWireAndCableCategoryAsExcludedFacet ; amB2CLatAmWireAndCableSearchConfiguration             ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmWireAndCableCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                              ; searchProfile(code,$catalogVersion) ; uniqueIdx                                     ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmClampsAndJoinersSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmClampsAndJoinersSearchConfiguration ; clamps-and-joiners             ;                              
                                                  
@@ -842,7 +885,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmClampsAndJoinersProductTypeAsFacet                                         ; amB2CLatAmClampsAndJoinersSearchConfiguration         ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmClampsAndJoinersProductTypeAsFacet                                         
                       ; amB2CLatAmClampsAndJoinersCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmClampsAndJoinersSearchConfiguration         ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmClampsAndJoinersCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                 ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                         
+                              ; amB2CLatAmClampsAndJoinersCategoryAsExcludedFacet ; amB2CLatAmClampsAndJoinersSearchConfiguration         ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmClampsAndJoinersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                   ; searchProfile(code,$catalogVersion) ; uniqueIdx                          ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmPostsSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmPostsSearchConfiguration ; posts                          ;                              
                                                  
@@ -894,7 +940,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmPostsProductTypeAsFacet                                         ; amB2CLatAmPostsSearchConfiguration                    ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmPostsProductTypeAsFacet                                         
                       ; amB2CLatAmPostsCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmPostsSearchConfiguration                    ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmPostsCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                      ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                              
+                              ; amB2CLatAmPostsCategoryAsExcludedFacet ; amB2CLatAmPostsSearchConfiguration                    ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmPostsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                       ; searchProfile(code,$catalogVersion) ; uniqueIdx                              ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmStrainersSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmStrainersSearchConfiguration ; strainers                      ;                              
                                                  
@@ -946,7 +995,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmStrainersProductTypeAsFacet                                         ; amB2CLatAmStrainersSearchConfiguration                ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmStrainersProductTypeAsFacet                                         
                       ; amB2CLatAmStrainersCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmStrainersSearchConfiguration                ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmStrainersCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                          ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                  
+                              ; amB2CLatAmStrainersCategoryAsExcludedFacet ; amB2CLatAmStrainersSearchConfiguration                ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmStrainersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                        ; searchProfile(code,$catalogVersion) ; uniqueIdx                               ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmInsulatorsSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmInsulatorsSearchConfiguration ; insulators                     ;                              
                                                  
@@ -998,7 +1050,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmInsulatorsProductTypeAsFacet                                         ; amB2CLatAmInsulatorsSearchConfiguration               ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmInsulatorsProductTypeAsFacet                                         
                       ; amB2CLatAmInsulatorsCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmInsulatorsSearchConfiguration               ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmInsulatorsCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                           ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                   
+                              ; amB2CLatAmInsulatorsCategoryAsExcludedFacet ; amB2CLatAmInsulatorsSearchConfiguration               ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmInsulatorsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                     ; searchProfile(code,$catalogVersion) ; uniqueIdx                            ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmOffsetsSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmOffsetsSearchConfiguration ; offsets                        ;                              
                                                  
@@ -1050,7 +1105,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmOffsetsProductTypeAsFacet                                         ; amB2CLatAmOffsetsSearchConfiguration                  ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmOffsetsProductTypeAsFacet                                         
                       ; amB2CLatAmOffsetsCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmOffsetsSearchConfiguration                  ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmOffsetsCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                        ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                
+                              ; amB2CLatAmOffsetsCategoryAsExcludedFacet ; amB2CLatAmOffsetsSearchConfiguration                  ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmOffsetsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                           ; searchProfile(code,$catalogVersion) ; uniqueIdx                                  ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmElectricGatesSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmElectricGatesSearchConfiguration ; electric-gates                 ;                              
                                                  
@@ -1102,7 +1160,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmElectricGatesProductTypeAsFacet                                         ; amB2CLatAmElectricGatesSearchConfiguration            ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmElectricGatesProductTypeAsFacet                                         
                       ; amB2CLatAmElectricGatesCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmElectricGatesSearchConfiguration            ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmElectricGatesCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                              ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                      
+                              ; amB2CLatAmElectricGatesCategoryAsExcludedFacet ; amB2CLatAmElectricGatesSearchConfiguration            ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmElectricGatesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                           ; searchProfile(code,$catalogVersion) ; uniqueIdx                                                  ; category(code,$catalogVersion)  ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmIrrigatorFenceCrossingSystem SearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmIrrigatorFenceCrossingSystem SearchConfiguration ; irrigator-fence-crossing-system ;                              
                                                  
@@ -1154,7 +1215,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmIrrigatorFenceCrossingSystem ProductTypeAsFacet                                         ; amB2CLatAmIrrigatorFenceCrossingSystem SearchConfiguration ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmIrrigatorFenceCrossingSystem ProductTypeAsFacet                                         
                       ; amB2CLatAmIrrigatorFenceCrossingSystem CompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmIrrigatorFenceCrossingSystem SearchConfiguration ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmIrrigatorFenceCrossingSystem CompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                              ; searchConfiguration(uid,$catalogVersion)[unique=true]      ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                      
+                              ; amB2CLatAmIrrigatorFenceCrossingSystem CategoryAsExcludedFacet ; amB2CLatAmIrrigatorFenceCrossingSystem SearchConfiguration ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmIrrigatorFenceCrossingSystem CategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                      ; searchProfile(code,$catalogVersion) ; uniqueIdx                                             ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmFenceToolsAndAccessoriesSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmFenceToolsAndAccessoriesSearchConfiguration ; fence-tools-and-accessories    ;                              
                                                  
@@ -1206,7 +1270,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmFenceToolsAndAccessoriesProductTypeAsFacet                                         ; amB2CLatAmFenceToolsAndAccessoriesSearchConfiguration ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmFenceToolsAndAccessoriesProductTypeAsFacet                                         
                       ; amB2CLatAmFenceToolsAndAccessoriesCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmFenceToolsAndAccessoriesSearchConfiguration ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmFenceToolsAndAccessoriesCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                         ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                 
+                              ; amB2CLatAmFenceToolsAndAccessoriesCategoryAsExcludedFacet ; amB2CLatAmFenceToolsAndAccessoriesSearchConfiguration ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmFenceToolsAndAccessoriesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                          ; searchProfile(code,$catalogVersion) ; uniqueIdx                                 ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmGateHardwareSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmGateHardwareSearchConfiguration ; gate-hardware                  ;                              
                                                  
@@ -1258,7 +1325,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmGateHardwareProductTypeAsFacet                                         ; amB2CLatAmGateHardwareSearchConfiguration             ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmGateHardwareProductTypeAsFacet                                         
                       ; amB2CLatAmGateHardwareCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmGateHardwareSearchConfiguration             ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmGateHardwareCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                             ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                     
+                              ; amB2CLatAmGateHardwareCategoryAsExcludedFacet ; amB2CLatAmGateHardwareSearchConfiguration             ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmGateHardwareCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                   ; searchProfile(code,$catalogVersion) ; uniqueIdx                                          ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmTapesWiresAndBraidsPfSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmTapesWiresAndBraidsPfSearchConfiguration ; tapes-wires-and-braids-pf      ;                              
                                                  
@@ -1310,7 +1380,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmTapesWiresAndBraidsPfProductTypeAsFacet                                         ; amB2CLatAmTapesWiresAndBraidsPfSearchConfiguration    ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmTapesWiresAndBraidsPfProductTypeAsFacet                                         
                       ; amB2CLatAmTapesWiresAndBraidsPfCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmTapesWiresAndBraidsPfSearchConfiguration    ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmTapesWiresAndBraidsPfCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                      ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                              
+                              ; amB2CLatAmTapesWiresAndBraidsPfCategoryAsExcludedFacet ; amB2CLatAmTapesWiresAndBraidsPfSearchConfiguration    ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmTapesWiresAndBraidsPfCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                   ; searchProfile(code,$catalogVersion) ; uniqueIdx                                          ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmReelsAndAccessoriesPfSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmReelsAndAccessoriesPfSearchConfiguration ; reels-and-accessories-pf       ;                              
                                                  
@@ -1362,7 +1435,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmReelsAndAccessoriesPfProductTypeAsFacet                                         ; amB2CLatAmReelsAndAccessoriesPfSearchConfiguration    ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmReelsAndAccessoriesPfProductTypeAsFacet                                         
                       ; amB2CLatAmReelsAndAccessoriesPfCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmReelsAndAccessoriesPfSearchConfiguration    ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmReelsAndAccessoriesPfCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                      ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                              
+                              ; amB2CLatAmReelsAndAccessoriesPfCategoryAsExcludedFacet ; amB2CLatAmReelsAndAccessoriesPfSearchConfiguration    ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmReelsAndAccessoriesPfCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                        ; searchProfile(code,$catalogVersion) ; uniqueIdx                                               ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmPostsPigtailsAndTreadinsPfSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmPostsPigtailsAndTreadinsPfSearchConfiguration ; posts-pigtails-and-treadins-pf ;                              
                                                  
@@ -1414,7 +1490,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmPostsPigtailsAndTreadinsPfProductTypeAsFacet                                         ; amB2CLatAmPostsPigtailsAndTreadinsPfSearchConfiguration ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmPostsPigtailsAndTreadinsPfProductTypeAsFacet                                         
                       ; amB2CLatAmPostsPigtailsAndTreadinsPfCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmPostsPigtailsAndTreadinsPfSearchConfiguration ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmPostsPigtailsAndTreadinsPfCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                           ; searchConfiguration(uid,$catalogVersion)[unique=true]   ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                   
+                              ; amB2CLatAmPostsPigtailsAndTreadinsPfCategoryAsExcludedFacet ; amB2CLatAmPostsPigtailsAndTreadinsPfSearchConfiguration ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmPostsPigtailsAndTreadinsPfCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                      ; searchProfile(code,$catalogVersion) ; uniqueIdx                                             ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmAllInOnePortableFences  SearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmAllInOnePortableFences  SearchConfiguration ; all-in-one-portable-fences     ;                              
                                                  
@@ -1466,7 +1545,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmAllInOnePortableFences  ProductTypeAsFacet                                         ; amB2CLatAmAllInOnePortableFences  SearchConfiguration ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmAllInOnePortableFences  ProductTypeAsFacet                                         
                       ; amB2CLatAmAllInOnePortableFences  CompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmAllInOnePortableFences  SearchConfiguration ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmAllInOnePortableFences  CompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                         ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                 
+                              ; amB2CLatAmAllInOnePortableFences  CategoryAsExcludedFacet ; amB2CLatAmAllInOnePortableFences  SearchConfiguration ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmAllInOnePortableFences  CategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                               ; searchProfile(code,$catalogVersion) ; uniqueIdx                                      ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmElectricFenceKitsSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmElectricFenceKitsSearchConfiguration ; electric-fence-kits            ;                              
                                                  
@@ -1518,7 +1600,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmElectricFenceKitsProductTypeAsFacet                                         ; amB2CLatAmElectricFenceKitsSearchConfiguration        ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmElectricFenceKitsProductTypeAsFacet                                         
                       ; amB2CLatAmElectricFenceKitsCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmElectricFenceKitsSearchConfiguration        ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmElectricFenceKitsCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                  ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                          
+                              ; amB2CLatAmElectricFenceKitsCategoryAsExcludedFacet ; amB2CLatAmElectricFenceKitsSearchConfiguration        ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmElectricFenceKitsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                     ; searchProfile(code,$catalogVersion) ; uniqueIdx                            ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmNettingSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmNettingSearchConfiguration ; netting                        ;                              
                                                  
@@ -1570,7 +1655,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmNettingProductTypeAsFacet                                         ; amB2CLatAmNettingSearchConfiguration                  ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmNettingProductTypeAsFacet                                         
                       ; amB2CLatAmNettingCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmNettingSearchConfiguration                  ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmNettingCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                        ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                
+                              ; amB2CLatAmNettingCategoryAsExcludedFacet ; amB2CLatAmNettingSearchConfiguration                  ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmNettingCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                          ; searchProfile(code,$catalogVersion) ; uniqueIdx                                                 ; category(code,$catalogVersion)   ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmWeighScalesAndDataCollectorsSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmWeighScalesAndDataCollectorsSearchConfiguration ; weigh-scales-and-data-collectors ;                              
                                                  
@@ -1622,7 +1710,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmWeighScalesAndDataCollectorsProductTypeAsFacet                                         ; amB2CLatAmWeighScalesAndDataCollectorsSearchConfiguration ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmWeighScalesAndDataCollectorsProductTypeAsFacet                                         
                       ; amB2CLatAmWeighScalesAndDataCollectorsCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmWeighScalesAndDataCollectorsSearchConfiguration ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmWeighScalesAndDataCollectorsCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                             ; searchConfiguration(uid,$catalogVersion)[unique=true]     ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                     
+                              ; amB2CLatAmWeighScalesAndDataCollectorsCategoryAsExcludedFacet ; amB2CLatAmWeighScalesAndDataCollectorsSearchConfiguration ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmWeighScalesAndDataCollectorsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                         ; searchProfile(code,$catalogVersion) ; uniqueIdx                                                ; category(code,$catalogVersion)  ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmScaleHeadsAndDataCollectorsSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmScaleHeadsAndDataCollectorsSearchConfiguration ; scale-heads-and-data-collectors ;                              
                                                  
@@ -1674,7 +1765,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmScaleHeadsAndDataCollectorsProductTypeAsFacet                                         ; amB2CLatAmScaleHeadsAndDataCollectorsSearchConfiguration ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmScaleHeadsAndDataCollectorsProductTypeAsFacet                                         
                       ; amB2CLatAmScaleHeadsAndDataCollectorsCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmScaleHeadsAndDataCollectorsSearchConfiguration ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmScaleHeadsAndDataCollectorsCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                            ; searchConfiguration(uid,$catalogVersion)[unique=true]    ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                    
+                              ; amB2CLatAmScaleHeadsAndDataCollectorsCategoryAsExcludedFacet ; amB2CLatAmScaleHeadsAndDataCollectorsSearchConfiguration ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmScaleHeadsAndDataCollectorsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                    ; searchProfile(code,$catalogVersion) ; uniqueIdx                                           ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmLoadbarsAndAccessoriesSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmLoadbarsAndAccessoriesSearchConfiguration ; loadbars-and-accessories       ;                              
                                                  
@@ -1726,7 +1820,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmLoadbarsAndAccessoriesProductTypeAsFacet                                         ; amB2CLatAmLoadbarsAndAccessoriesSearchConfiguration   ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmLoadbarsAndAccessoriesProductTypeAsFacet                                         
                       ; amB2CLatAmLoadbarsAndAccessoriesCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmLoadbarsAndAccessoriesSearchConfiguration   ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmLoadbarsAndAccessoriesCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                       ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                               
+                              ; amB2CLatAmLoadbarsAndAccessoriesCategoryAsExcludedFacet ; amB2CLatAmLoadbarsAndAccessoriesSearchConfiguration   ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmLoadbarsAndAccessoriesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                      ; searchProfile(code,$catalogVersion) ; uniqueIdx                             ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmLoadbarsSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmLoadbarsSearchConfiguration ; loadbars                       ;                              
                                                  
@@ -1778,7 +1875,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmLoadbarsProductTypeAsFacet                                         ; amB2CLatAmLoadbarsSearchConfiguration                 ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmLoadbarsProductTypeAsFacet                                         
                       ; amB2CLatAmLoadbarsCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmLoadbarsSearchConfiguration                 ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmLoadbarsCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                         ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                 
+                              ; amB2CLatAmLoadbarsCategoryAsExcludedFacet ; amB2CLatAmLoadbarsSearchConfiguration                 ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmLoadbarsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                       ; searchProfile(code,$catalogVersion) ; uniqueIdx                              ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmPlatformsSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmPlatformsSearchConfiguration ; platforms                      ;                              
                                                  
@@ -1830,7 +1930,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmPlatformsProductTypeAsFacet                                         ; amB2CLatAmPlatformsSearchConfiguration                ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmPlatformsProductTypeAsFacet                                         
                       ; amB2CLatAmPlatformsCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmPlatformsSearchConfiguration                ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmPlatformsCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                          ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                  
+                              ; amB2CLatAmPlatformsCategoryAsExcludedFacet ; amB2CLatAmPlatformsSearchConfiguration                ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmPlatformsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                ; searchProfile(code,$catalogVersion) ; uniqueIdx                                       ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmPlatformsAndCratesSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmPlatformsAndCratesSearchConfiguration ; platforms-and-crates           ;                              
                                                  
@@ -1882,7 +1985,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmPlatformsAndCratesProductTypeAsFacet                                         ; amB2CLatAmPlatformsAndCratesSearchConfiguration       ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmPlatformsAndCratesProductTypeAsFacet                                         
                       ; amB2CLatAmPlatformsAndCratesCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmPlatformsAndCratesSearchConfiguration       ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmPlatformsAndCratesCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                   ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                           
+                              ; amB2CLatAmPlatformsAndCratesCategoryAsExcludedFacet ; amB2CLatAmPlatformsAndCratesSearchConfiguration       ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmPlatformsAndCratesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                      ; searchProfile(code,$catalogVersion) ; uniqueIdx                             ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmDraftersSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmDraftersSearchConfiguration ; drafters                       ;                              
                                                  
@@ -1934,7 +2040,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmDraftersProductTypeAsFacet                                         ; amB2CLatAmDraftersSearchConfiguration                 ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmDraftersProductTypeAsFacet                                         
                       ; amB2CLatAmDraftersCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmDraftersSearchConfiguration                 ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmDraftersCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                         ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                 
+                              ; amB2CLatAmDraftersCategoryAsExcludedFacet ; amB2CLatAmDraftersSearchConfiguration                 ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmDraftersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                           ; searchProfile(code,$catalogVersion) ; uniqueIdx                                  ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmEidTagReadersSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmEidTagReadersSearchConfiguration ; eid-tag-readers                ;                              
                                                  
@@ -1986,7 +2095,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmEidTagReadersProductTypeAsFacet                                         ; amB2CLatAmEidTagReadersSearchConfiguration            ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmEidTagReadersProductTypeAsFacet                                         
                       ; amB2CLatAmEidTagReadersCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmEidTagReadersSearchConfiguration            ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmEidTagReadersCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                              ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                      
+                              ; amB2CLatAmEidTagReadersCategoryAsExcludedFacet ; amB2CLatAmEidTagReadersSearchConfiguration            ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmEidTagReadersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                                ; searchProfile(code,$catalogVersion) ; uniqueIdx                                                       ; category(code,$catalogVersion)          ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmEidTagReadersAndBarcodingEquipmentSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmEidTagReadersAndBarcodingEquipmentSearchConfiguration ; eid-tag-readers-and-barcoding-equipment ;                              
                                                  
@@ -2038,7 +2150,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmEidTagReadersAndBarcodingEquipmentProductTypeAsFacet                                         ; amB2CLatAmEidTagReadersAndBarcodingEquipmentSearchConfiguration ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmEidTagReadersAndBarcodingEquipmentProductTypeAsFacet                                         
                       ; amB2CLatAmEidTagReadersAndBarcodingEquipmentCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmEidTagReadersAndBarcodingEquipmentSearchConfiguration ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmEidTagReadersAndBarcodingEquipmentCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                                   ; searchConfiguration(uid,$catalogVersion)[unique=true]           ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                           
+                              ; amB2CLatAmEidTagReadersAndBarcodingEquipmentCategoryAsExcludedFacet ; amB2CLatAmEidTagReadersAndBarcodingEquipmentSearchConfiguration ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmEidTagReadersAndBarcodingEquipmentCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                 ; searchProfile(code,$catalogVersion) ; uniqueIdx                                        ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmWeighingAccessoriesSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmWeighingAccessoriesSearchConfiguration ; weighing-accessories           ;                              
                                                  
@@ -2090,7 +2205,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmWeighingAccessoriesProductTypeAsFacet                                         ; amB2CLatAmWeighingAccessoriesSearchConfiguration      ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmWeighingAccessoriesProductTypeAsFacet                                         
                       ; amB2CLatAmWeighingAccessoriesCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmWeighingAccessoriesSearchConfiguration      ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmWeighingAccessoriesCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                    ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                            
+                              ; amB2CLatAmWeighingAccessoriesCategoryAsExcludedFacet ; amB2CLatAmWeighingAccessoriesSearchConfiguration      ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmWeighingAccessoriesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                        ; searchProfile(code,$catalogVersion) ; uniqueIdx                               ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmStockProdsSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmStockProdsSearchConfiguration ; stock-prods                    ;                              
                                                  
@@ -2142,7 +2260,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmStockProdsProductTypeAsFacet                                         ; amB2CLatAmStockProdsSearchConfiguration               ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmStockProdsProductTypeAsFacet                                         
                       ; amB2CLatAmStockProdsCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmStockProdsSearchConfiguration               ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmStockProdsCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                           ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                   
+                              ; amB2CLatAmStockProdsCategoryAsExcludedFacet ; amB2CLatAmStockProdsSearchConfiguration               ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmStockProdsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                      ; searchProfile(code,$catalogVersion) ; uniqueIdx                                             ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmStockProdsAndAccessoriesSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmStockProdsAndAccessoriesSearchConfiguration ; stock-prods-and-accessories    ;                              
                                                  
@@ -2194,7 +2315,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmStockProdsAndAccessoriesProductTypeAsFacet                                         ; amB2CLatAmStockProdsAndAccessoriesSearchConfiguration ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmStockProdsAndAccessoriesProductTypeAsFacet                                         
                       ; amB2CLatAmStockProdsAndAccessoriesCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmStockProdsAndAccessoriesSearchConfiguration ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmStockProdsAndAccessoriesCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                         ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                 
+                              ; amB2CLatAmStockProdsAndAccessoriesCategoryAsExcludedFacet ; amB2CLatAmStockProdsAndAccessoriesSearchConfiguration ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmStockProdsAndAccessoriesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                ; searchProfile(code,$catalogVersion) ; uniqueIdx                                       ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmWaterFlowIndicatorSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmWaterFlowIndicatorSearchConfiguration ; water-flow-indicator           ;                              
                                                  
@@ -2246,7 +2370,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmWaterFlowIndicatorProductTypeAsFacet                                         ; amB2CLatAmWaterFlowIndicatorSearchConfiguration       ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmWaterFlowIndicatorProductTypeAsFacet                                         
                       ; amB2CLatAmWaterFlowIndicatorCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmWaterFlowIndicatorSearchConfiguration       ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmWaterFlowIndicatorCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                   ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                           
+                              ; amB2CLatAmWaterFlowIndicatorCategoryAsExcludedFacet ; amB2CLatAmWaterFlowIndicatorSearchConfiguration       ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmWaterFlowIndicatorCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                            ; searchProfile(code,$catalogVersion) ; uniqueIdx                                   ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmOneTankSystemsSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmOneTankSystemsSearchConfiguration ; one-tank-systems               ;                              
                                                  
@@ -2298,7 +2425,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmOneTankSystemsProductTypeAsFacet                                         ; amB2CLatAmOneTankSystemsSearchConfiguration           ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmOneTankSystemsProductTypeAsFacet                                         
                       ; amB2CLatAmOneTankSystemsCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmOneTankSystemsSearchConfiguration           ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmOneTankSystemsCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                               ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                       
+                              ; amB2CLatAmOneTankSystemsCategoryAsExcludedFacet ; amB2CLatAmOneTankSystemsSearchConfiguration           ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmOneTankSystemsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                               ; searchProfile(code,$catalogVersion) ; uniqueIdx                                      ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmAntennaeAndCablesSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmAntennaeAndCablesSearchConfiguration ; antennae-and-cables            ;                              
                                                  
@@ -2350,7 +2480,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmAntennaeAndCablesProductTypeAsFacet                                         ; amB2CLatAmAntennaeAndCablesSearchConfiguration        ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmAntennaeAndCablesProductTypeAsFacet                                         
                       ; amB2CLatAmAntennaeAndCablesCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmAntennaeAndCablesSearchConfiguration        ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmAntennaeAndCablesCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                  ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                          
+                              ; amB2CLatAmAntennaeAndCablesCategoryAsExcludedFacet ; amB2CLatAmAntennaeAndCablesSearchConfiguration        ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmAntennaeAndCablesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                        ; searchProfile(code,$catalogVersion) ; uniqueIdx                                               ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmAdditionalSystemComponentsSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmAdditionalSystemComponentsSearchConfiguration ; additional-system-components   ;                              
                                                  
@@ -2402,7 +2535,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmAdditionalSystemComponentsProductTypeAsFacet                                         ; amB2CLatAmAdditionalSystemComponentsSearchConfiguration ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmAdditionalSystemComponentsProductTypeAsFacet                                         
                       ; amB2CLatAmAdditionalSystemComponentsCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmAdditionalSystemComponentsSearchConfiguration ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmAdditionalSystemComponentsCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                           ; searchConfiguration(uid,$catalogVersion)[unique=true]   ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                   
+                              ; amB2CLatAmAdditionalSystemComponentsCategoryAsExcludedFacet ; amB2CLatAmAdditionalSystemComponentsSearchConfiguration ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmAdditionalSystemComponentsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                          ; searchProfile(code,$catalogVersion) ; uniqueIdx                                 ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmTroughValvesSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmTroughValvesSearchConfiguration ; trough-valves                  ;                              
                                                  
@@ -2454,7 +2590,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmTroughValvesProductTypeAsFacet                                         ; amB2CLatAmTroughValvesSearchConfiguration             ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmTroughValvesProductTypeAsFacet                                         
                       ; amB2CLatAmTroughValvesCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmTroughValvesSearchConfiguration             ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmTroughValvesCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                             ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                     
+                              ; amB2CLatAmTroughValvesCategoryAsExcludedFacet ; amB2CLatAmTroughValvesSearchConfiguration             ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmTroughValvesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                       ; searchProfile(code,$catalogVersion) ; uniqueIdx                              ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmLilSpringSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmLilSpringSearchConfiguration ; lil-spring                     ;                              
                                                  
@@ -2506,7 +2645,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmLilSpringProductTypeAsFacet                                         ; amB2CLatAmLilSpringSearchConfiguration                ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmLilSpringProductTypeAsFacet                                         
                       ; amB2CLatAmLilSpringCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmLilSpringSearchConfiguration                ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmLilSpringCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                          ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                  
+                              ; amB2CLatAmLilSpringCategoryAsExcludedFacet ; amB2CLatAmLilSpringSearchConfiguration                ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmLilSpringCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                       ; searchProfile(code,$catalogVersion) ; uniqueIdx                              ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmEquiFountSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmEquiFountSearchConfiguration ; equi-fount                     ;                              
                                                  
@@ -2558,7 +2700,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmEquiFountProductTypeAsFacet                                         ; amB2CLatAmEquiFountSearchConfiguration                ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmEquiFountProductTypeAsFacet                                         
                       ; amB2CLatAmEquiFountCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmEquiFountSearchConfiguration                ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmEquiFountCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                          ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                  
+                              ; amB2CLatAmEquiFountCategoryAsExcludedFacet ; amB2CLatAmEquiFountSearchConfiguration                ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmEquiFountCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                       ; searchProfile(code,$catalogVersion) ; uniqueIdx                              ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmMiraFountSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmMiraFountSearchConfiguration ; mira-fount                     ;                              
                                                  
@@ -2610,7 +2755,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmMiraFountProductTypeAsFacet                                         ; amB2CLatAmMiraFountSearchConfiguration                ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmMiraFountProductTypeAsFacet                                         
                       ; amB2CLatAmMiraFountCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmMiraFountSearchConfiguration                ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmMiraFountCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                          ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                  
+                              ; amB2CLatAmMiraFountCategoryAsExcludedFacet ; amB2CLatAmMiraFountSearchConfiguration                ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmMiraFountCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                    ; searchProfile(code,$catalogVersion) ; uniqueIdx                           ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmEFountSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmEFountSearchConfiguration ; e-fount                        ;                              
                                                  
@@ -2662,7 +2810,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmEFountProductTypeAsFacet                                         ; amB2CLatAmEFountSearchConfiguration                   ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmEFountProductTypeAsFacet                                         
                       ; amB2CLatAmEFountCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmEFountSearchConfiguration                   ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmEFountCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                       ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                               
+                              ; amB2CLatAmEFountCategoryAsExcludedFacet ; amB2CLatAmEFountSearchConfiguration                   ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmEFountCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                       ; searchProfile(code,$catalogVersion) ; uniqueIdx                              ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmBigSpringSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmBigSpringSearchConfiguration ; big-spring                     ;                              
                                                  
@@ -2714,7 +2865,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmBigSpringProductTypeAsFacet                                         ; amB2CLatAmBigSpringSearchConfiguration                ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmBigSpringProductTypeAsFacet                                         
                       ; amB2CLatAmBigSpringCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmBigSpringSearchConfiguration                ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmBigSpringCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                          ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                  
+                              ; amB2CLatAmBigSpringCategoryAsExcludedFacet ; amB2CLatAmBigSpringSearchConfiguration                ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmBigSpringCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                      ; searchProfile(code,$catalogVersion) ; uniqueIdx                             ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmPetTanksSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmPetTanksSearchConfiguration ; pet-tanks                      ;                              
                                                  
@@ -2766,7 +2920,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmPetTanksProductTypeAsFacet                                         ; amB2CLatAmPetTanksSearchConfiguration                 ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmPetTanksProductTypeAsFacet                                         
                       ; amB2CLatAmPetTanksCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmPetTanksSearchConfiguration                 ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmPetTanksCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                         ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                 
+                              ; amB2CLatAmPetTanksCategoryAsExcludedFacet ; amB2CLatAmPetTanksSearchConfiguration                 ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmPetTanksCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                 ; searchProfile(code,$catalogVersion) ; uniqueIdx                                        ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmWateringAccessoriesSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmWateringAccessoriesSearchConfiguration ; watering-accessories           ;                              
                                                  
@@ -2818,7 +2975,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmWateringAccessoriesProductTypeAsFacet                                         ; amB2CLatAmWateringAccessoriesSearchConfiguration      ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmWateringAccessoriesProductTypeAsFacet                                         
                       ; amB2CLatAmWateringAccessoriesCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmWateringAccessoriesSearchConfiguration      ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmWateringAccessoriesCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                    ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                            
+                              ; amB2CLatAmWateringAccessoriesCategoryAsExcludedFacet ; amB2CLatAmWateringAccessoriesSearchConfiguration      ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmWateringAccessoriesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                       ; searchProfile(code,$catalogVersion) ; uniqueIdx                              ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmLivestockSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmLivestockSearchConfiguration ; livestock                      ;                              
                                                  
@@ -2870,7 +3030,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmLivestockProductTypeAsFacet                                         ; amB2CLatAmLivestockSearchConfiguration                ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmLivestockProductTypeAsFacet                                         
                       ; amB2CLatAmLivestockCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmLivestockSearchConfiguration                ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmLivestockCompatiblewithGallagherLivestockLectoresAsFacet            
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                          ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                  
+                              ; amB2CLatAmLivestockCategoryAsExcludedFacet ; amB2CLatAmLivestockSearchConfiguration                ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmLivestockCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                   ; searchProfile(code,$catalogVersion) ; uniqueIdx                          ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CLatAmFenceSearchConfiguration ; amB2CLatAmSearchProfile             ; amB2CLatAmFenceSearchConfiguration ; fence                          ;                              
                                                  
@@ -2922,3 +3085,5 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CLatAmFenceProductTypeAsFacet                                         ; amB2CLatAmFenceSearchConfiguration                    ; Product Type                                              ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmFenceProductTypeAsFacet                                         
                       ; amB2CLatAmFenceCompatiblewithGallagherLivestockLectoresAsFacet            ; amB2CLatAmFenceSearchConfiguration                    ; Compatible with Gallagher Livestock (Lectores)            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmFenceCompatiblewithGallagherLivestockLectoresAsFacet            
                       
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                      ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                              
+                              ; amB2CLatAmFenceCategoryAsExcludedFacet ; amB2CLatAmFenceSearchConfiguration                    ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CLatAmFenceCategoryAsExcludedFacet 

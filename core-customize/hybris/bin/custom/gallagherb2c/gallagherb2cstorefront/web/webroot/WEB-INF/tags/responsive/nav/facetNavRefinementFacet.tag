@@ -17,7 +17,7 @@
 				<c:choose>
 					<c:when test="${collapseflag eq 'show'}">
 						<a data-toggle="collapse" href="#${fn:replace(fn:replace(fn:replace(fn:replace(facetData.name,' ','_'),'(',''),')',''),'/','_')}" role="button" aria-expanded="true" aria-controls="${facetData.name}">	
-							<spring:theme code="search.nav.facetTitle" arguments="${facetData.name}"/>
+							${facetData.name}
 							<span class="down-arrow-icon">
 								<svg>
 									<use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-down" />
@@ -27,7 +27,7 @@
 					</c:when>	
 					<c:otherwise>
 						<a data-toggle="collapse" href="#${fn:replace(fn:replace(fn:replace(fn:replace(facetData.name,' ','_'),'(',''),')',''),'/','_')}" role="button" aria-expanded="false" aria-controls="${facetData.name}">	
-							<spring:theme code="search.nav.facetTitle" arguments="${facetData.name}"/>
+							${facetData.name}
 							<span class="down-arrow-icon">
 								<svg>
 									<use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#arrow-down" />
