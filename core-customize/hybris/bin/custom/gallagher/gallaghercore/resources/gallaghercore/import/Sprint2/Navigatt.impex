@@ -1,0 +1,7 @@
+$contentCatalog=amB2CContentCatalog                                                                        
+$contentCatalogName=Animal Management B2C Content Catalog                                                  
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+
+INSERT_UPDATE CMSLinkComponent ; $contentCV[unique=true] ; uid[unique=true]        ; restrictions(uid,$contentCV)                                    ; onlyOneRestrictionMustApply[default='true'] 
+                               ;                         ; CAFRFindStoreLink       ; GallagherCAENCARegionRestriction,GallagherCAFRCARegionRestriction

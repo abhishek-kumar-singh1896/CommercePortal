@@ -95,6 +95,7 @@ public class CoreSystemSetup extends AbstractSystemSetup
 		if (importSprint2Impex)
 		{
 			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP2-59.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/CmsLinkRestriction.impex");
 
 		}
 
