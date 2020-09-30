@@ -114,9 +114,7 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 					B2BCustomerModel.class);
 			final boolean isEmailModified = originalCustomerModel.getUid().equals(b2bCustomerModel.getUid()) ? false : true;
 			final boolean isNameModified = originalCustomerModel.getName().equals(b2bCustomerModel.getName()) ? false : true;
-			final boolean isB2bUnitModified = originalCustomerModel.getDefaultB2BUnit() != b2bCustomerModel.getDefaultB2BUnit();
-
-			return isEmailModified || isNameModified || isB2bUnitModified;
+			return isEmailModified || isNameModified;
 	}
 
 	/**
@@ -157,7 +155,7 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 
 		if (CollectionUtils.isEmpty(defaultB2BUnit.getAddresses()))
 		{
-			defaultBaseStore = getBaseStoreService().getBaseStoreForUid("securityB2BGlobal");
+			defaultBaseStore = getBaseStoreService().getBaseStoreForUid(SECURITY_B2B_GLOBAL);
 			defaultSite = getBaseSiteService().getBaseSiteForUID(SECURITY_B2B_GLOBAL);
 		}
 		else
