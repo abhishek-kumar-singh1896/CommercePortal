@@ -40,6 +40,7 @@ ACC.viewAlternativeProducts = {
 			    	 $('.flexslider').flexslider({
 			    		    animation: "slide",
 			    		    animationLoop: true,
+			    		    slideshow: false,
 			    		    itemWidth: 210,
 			    		    itemMargin: 10,
 			    		    minItems: 1,
