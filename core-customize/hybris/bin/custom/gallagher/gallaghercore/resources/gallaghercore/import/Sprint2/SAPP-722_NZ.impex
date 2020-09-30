@@ -4,6 +4,7 @@ $productCatalog=amB2CNZProductCatalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='$version'])[unique=true,default=$productCatalog:$version]
  
  
+ 
 INSERT_UPDATE AsCategoryAwareSearchProfile ; code[unique=true]    ; name                     ; indexType[unique=true,default=$solrIndexedType] ; $catalogVersion[unique=true] 
                                            ; amB2CNZSearchProfile ; AM B2C NZ Search Profile 
                                            
@@ -138,7 +139,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZMainsEnergizersCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZMainsEnergizersSearchConfiguration             ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZMainsEnergizersCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZMainsEnergizersRechargeableAsFacet                             ; amB2CNZMainsEnergizersSearchConfiguration             ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZMainsEnergizersRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                             ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                     
+                              ; amB2CNZMainsEnergizersCategoryAsExcludedFacet ; amB2CNZMainsEnergizersSearchConfiguration             ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZMainsEnergizersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                            ; searchProfile(code,$catalogVersion) ; uniqueIdx                                   ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZ110VoltEnergizersSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZ110VoltEnergizersSearchConfiguration ; 110-volt-energizers            ;                              
                                                  
@@ -202,7 +206,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZ110VoltEnergizersCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZ110VoltEnergizersSearchConfiguration           ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZ110VoltEnergizersCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZ110VoltEnergizersRechargeableAsFacet                             ; amB2CNZ110VoltEnergizersSearchConfiguration           ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZ110VoltEnergizersRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                               ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                       
+                              ; amB2CNZ110VoltEnergizersCategoryAsExcludedFacet ; amB2CNZ110VoltEnergizersSearchConfiguration           ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZ110VoltEnergizersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                 ; searchProfile(code,$catalogVersion) ; uniqueIdx                                        ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZMultiPoweredEnergizersSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZMultiPoweredEnergizersSearchConfiguration ; multi-powered-energizers       ;                              
                                                  
@@ -266,7 +273,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZMultiPoweredEnergizersCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZMultiPoweredEnergizersSearchConfiguration      ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZMultiPoweredEnergizersCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZMultiPoweredEnergizersRechargeableAsFacet                             ; amB2CNZMultiPoweredEnergizersSearchConfiguration      ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZMultiPoweredEnergizersRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                    ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                            
+                              ; amB2CNZMultiPoweredEnergizersCategoryAsExcludedFacet ; amB2CNZMultiPoweredEnergizersSearchConfiguration      ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZMultiPoweredEnergizersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                            ; searchProfile(code,$catalogVersion) ; uniqueIdx                                   ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZBatteryEnergizersSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZBatteryEnergizersSearchConfiguration ; battery-energizers             ;                              
                                                  
@@ -330,7 +340,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZBatteryEnergizersCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZBatteryEnergizersSearchConfiguration           ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZBatteryEnergizersCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZBatteryEnergizersRechargeableAsFacet                             ; amB2CNZBatteryEnergizersSearchConfiguration           ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZBatteryEnergizersRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                               ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                       
+                              ; amB2CNZBatteryEnergizersCategoryAsExcludedFacet ; amB2CNZBatteryEnergizersSearchConfiguration           ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZBatteryEnergizersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                          ; searchProfile(code,$catalogVersion) ; uniqueIdx                                 ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZSolarEnergizersSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZSolarEnergizersSearchConfiguration ; solar-energizers               ;                              
                                                  
@@ -394,7 +407,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZSolarEnergizersCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZSolarEnergizersSearchConfiguration             ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZSolarEnergizersCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZSolarEnergizersRechargeableAsFacet                             ; amB2CNZSolarEnergizersSearchConfiguration             ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZSolarEnergizersRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                             ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                     
+                              ; amB2CNZSolarEnergizersCategoryAsExcludedFacet ; amB2CNZSolarEnergizersSearchConfiguration             ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZSolarEnergizersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                      ; searchProfile(code,$catalogVersion) ; uniqueIdx                             ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZSolarPanelsSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZSolarPanelsSearchConfiguration ; solar-panels                   ;                              
                                                  
@@ -458,7 +474,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZSolarPanelsCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZSolarPanelsSearchConfiguration                 ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZSolarPanelsCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZSolarPanelsRechargeableAsFacet                             ; amB2CNZSolarPanelsSearchConfiguration                 ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZSolarPanelsRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                         ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                 
+                              ; amB2CNZSolarPanelsCategoryAsExcludedFacet ; amB2CNZSolarPanelsSearchConfiguration                 ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZSolarPanelsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                            ; searchProfile(code,$catalogVersion) ; uniqueIdx                                   ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZSolarAndSolarKitsSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZSolarAndSolarKitsSearchConfiguration ; solar-and-solar-kits           ;                              
                                                  
@@ -522,7 +541,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZSolarAndSolarKitsCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZSolarAndSolarKitsSearchConfiguration           ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZSolarAndSolarKitsCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZSolarAndSolarKitsRechargeableAsFacet                             ; amB2CNZSolarAndSolarKitsSearchConfiguration           ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZSolarAndSolarKitsRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                               ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                       
+                              ; amB2CNZSolarAndSolarKitsCategoryAsExcludedFacet ; amB2CNZSolarAndSolarKitsSearchConfiguration           ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZSolarAndSolarKitsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                 ; searchProfile(code,$catalogVersion) ; uniqueIdx                                        ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZRemotesAndFenceTestersSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZRemotesAndFenceTestersSearchConfiguration ; remotes-and-fence-testers      ;                              
                                                  
@@ -586,7 +608,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZRemotesAndFenceTestersCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZRemotesAndFenceTestersSearchConfiguration      ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZRemotesAndFenceTestersCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZRemotesAndFenceTestersRechargeableAsFacet                             ; amB2CNZRemotesAndFenceTestersSearchConfiguration      ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZRemotesAndFenceTestersRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                    ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                            
+                              ; amB2CNZRemotesAndFenceTestersCategoryAsExcludedFacet ; amB2CNZRemotesAndFenceTestersSearchConfiguration      ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZRemotesAndFenceTestersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                    ; searchProfile(code,$catalogVersion) ; uniqueIdx                           ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZBatteriesSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZBatteriesSearchConfiguration ; batteries                      ;                              
                                                  
@@ -650,7 +675,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZBatteriesCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZBatteriesSearchConfiguration                   ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZBatteriesCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZBatteriesRechargeableAsFacet                             ; amB2CNZBatteriesSearchConfiguration                   ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZBatteriesRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                       ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                               
+                              ; amB2CNZBatteriesCategoryAsExcludedFacet ; amB2CNZBatteriesSearchConfiguration                   ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZBatteriesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                   ; searchProfile(code,$catalogVersion) ; uniqueIdx                          ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZEarthingSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZEarthingSearchConfiguration ; earthing                       ;                              
                                                  
@@ -714,7 +742,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZEarthingCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZEarthingSearchConfiguration                    ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZEarthingCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZEarthingRechargeableAsFacet                             ; amB2CNZEarthingSearchConfiguration                    ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZEarthingRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                      ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                              
+                              ; amB2CNZEarthingCategoryAsExcludedFacet ; amB2CNZEarthingSearchConfiguration                    ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZEarthingCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                 ; searchProfile(code,$catalogVersion) ; uniqueIdx                                        ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZPowerSystemAccessoriesSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZPowerSystemAccessoriesSearchConfiguration ; power-system-accessories       ;                              
                                                  
@@ -778,7 +809,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZPowerSystemAccessoriesCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZPowerSystemAccessoriesSearchConfiguration      ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZPowerSystemAccessoriesCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZPowerSystemAccessoriesRechargeableAsFacet                             ; amB2CNZPowerSystemAccessoriesSearchConfiguration      ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZPowerSystemAccessoriesRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                    ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                            
+                              ; amB2CNZPowerSystemAccessoriesCategoryAsExcludedFacet ; amB2CNZPowerSystemAccessoriesSearchConfiguration      ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZPowerSystemAccessoriesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                               ; searchProfile(code,$catalogVersion) ; uniqueIdx                                      ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZGallagherWestonfenceSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZGallagherWestonfenceSearchConfiguration ; gallagher-westonfence          ;                              
                                                  
@@ -842,7 +876,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZGallagherWestonfenceCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZGallagherWestonfenceSearchConfiguration        ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZGallagherWestonfenceCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZGallagherWestonfenceRechargeableAsFacet                             ; amB2CNZGallagherWestonfenceSearchConfiguration        ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZGallagherWestonfenceRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                  ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                          
+                              ; amB2CNZGallagherWestonfenceCategoryAsExcludedFacet ; amB2CNZGallagherWestonfenceSearchConfiguration        ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZGallagherWestonfenceCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                              ; searchProfile(code,$catalogVersion) ; uniqueIdx                                     ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZGallagherMegaAnchorSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZGallagherMegaAnchorSearchConfiguration ; gallagher-mega-anchor          ;                              
                                                  
@@ -906,7 +943,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZGallagherMegaAnchorCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZGallagherMegaAnchorSearchConfiguration         ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZGallagherMegaAnchorCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZGallagherMegaAnchorRechargeableAsFacet                             ; amB2CNZGallagherMegaAnchorSearchConfiguration         ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZGallagherMegaAnchorRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                 ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                         
+                              ; amB2CNZGallagherMegaAnchorCategoryAsExcludedFacet ; amB2CNZGallagherMegaAnchorSearchConfiguration         ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZGallagherMegaAnchorCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                       ; searchProfile(code,$catalogVersion) ; uniqueIdx                              ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZWireAndCableSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZWireAndCableSearchConfiguration ; wire-and-cable                 ;                              
                                                  
@@ -970,7 +1010,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZWireAndCableCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZWireAndCableSearchConfiguration                ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZWireAndCableCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZWireAndCableRechargeableAsFacet                             ; amB2CNZWireAndCableSearchConfiguration                ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZWireAndCableRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                          ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                  
+                              ; amB2CNZWireAndCableCategoryAsExcludedFacet ; amB2CNZWireAndCableSearchConfiguration                ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZWireAndCableCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                           ; searchProfile(code,$catalogVersion) ; uniqueIdx                                  ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZClampsAndJoinersSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZClampsAndJoinersSearchConfiguration ; clamps-and-joiners             ;                              
                                                  
@@ -1034,7 +1077,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZClampsAndJoinersCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZClampsAndJoinersSearchConfiguration            ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZClampsAndJoinersCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZClampsAndJoinersRechargeableAsFacet                             ; amB2CNZClampsAndJoinersSearchConfiguration            ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZClampsAndJoinersRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                              ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                      
+                              ; amB2CNZClampsAndJoinersCategoryAsExcludedFacet ; amB2CNZClampsAndJoinersSearchConfiguration            ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZClampsAndJoinersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                ; searchProfile(code,$catalogVersion) ; uniqueIdx                       ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZPostsSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZPostsSearchConfiguration ; posts                          ;                              
                                                  
@@ -1098,7 +1144,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZPostsCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZPostsSearchConfiguration                       ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZPostsCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZPostsRechargeableAsFacet                             ; amB2CNZPostsSearchConfiguration                       ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZPostsRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                   ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                           
+                              ; amB2CNZPostsCategoryAsExcludedFacet ; amB2CNZPostsSearchConfiguration                       ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZPostsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                    ; searchProfile(code,$catalogVersion) ; uniqueIdx                           ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZStrainersSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZStrainersSearchConfiguration ; strainers                      ;                              
                                                  
@@ -1162,7 +1211,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZStrainersCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZStrainersSearchConfiguration                   ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZStrainersCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZStrainersRechargeableAsFacet                             ; amB2CNZStrainersSearchConfiguration                   ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZStrainersRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                       ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                               
+                              ; amB2CNZStrainersCategoryAsExcludedFacet ; amB2CNZStrainersSearchConfiguration                   ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZStrainersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                     ; searchProfile(code,$catalogVersion) ; uniqueIdx                            ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZInsulatorsSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZInsulatorsSearchConfiguration ; insulators                     ;                              
                                                  
@@ -1226,7 +1278,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZInsulatorsCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZInsulatorsSearchConfiguration                  ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZInsulatorsCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZInsulatorsRechargeableAsFacet                             ; amB2CNZInsulatorsSearchConfiguration                  ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZInsulatorsRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                        ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                
+                              ; amB2CNZInsulatorsCategoryAsExcludedFacet ; amB2CNZInsulatorsSearchConfiguration                  ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZInsulatorsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                  ; searchProfile(code,$catalogVersion) ; uniqueIdx                         ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZOffsetsSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZOffsetsSearchConfiguration ; offsets                        ;                              
                                                  
@@ -1290,7 +1345,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZOffsetsCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZOffsetsSearchConfiguration                     ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZOffsetsCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZOffsetsRechargeableAsFacet                             ; amB2CNZOffsetsSearchConfiguration                     ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZOffsetsRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                     ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                             
+                              ; amB2CNZOffsetsCategoryAsExcludedFacet ; amB2CNZOffsetsSearchConfiguration                     ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZOffsetsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                        ; searchProfile(code,$catalogVersion) ; uniqueIdx                               ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZElectricGatesSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZElectricGatesSearchConfiguration ; electric-gates                 ;                              
                                                  
@@ -1354,7 +1412,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZElectricGatesCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZElectricGatesSearchConfiguration               ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZElectricGatesCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZElectricGatesRechargeableAsFacet                             ; amB2CNZElectricGatesSearchConfiguration               ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZElectricGatesRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                           ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                   
+                              ; amB2CNZElectricGatesCategoryAsExcludedFacet ; amB2CNZElectricGatesSearchConfiguration               ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZElectricGatesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                        ; searchProfile(code,$catalogVersion) ; uniqueIdx                                               ; category(code,$catalogVersion)  ; $catalogVersion[unique=true] 
                                                  ; amB2CNZIrrigatorFenceCrossingSystem SearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZIrrigatorFenceCrossingSystem SearchConfiguration ; irrigator-fence-crossing-system ;                              
                                                  
@@ -1418,7 +1479,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZIrrigatorFenceCrossingSystem CompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZIrrigatorFenceCrossingSystem SearchConfiguration ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZIrrigatorFenceCrossingSystem CompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZIrrigatorFenceCrossingSystem RechargeableAsFacet                             ; amB2CNZIrrigatorFenceCrossingSystem SearchConfiguration ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZIrrigatorFenceCrossingSystem RechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                           ; searchConfiguration(uid,$catalogVersion)[unique=true]   ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                   
+                              ; amB2CNZIrrigatorFenceCrossingSystem CategoryAsExcludedFacet ; amB2CNZIrrigatorFenceCrossingSystem SearchConfiguration ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZIrrigatorFenceCrossingSystem CategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                   ; searchProfile(code,$catalogVersion) ; uniqueIdx                                          ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZFenceToolsAndAccessoriesSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZFenceToolsAndAccessoriesSearchConfiguration ; fence-tools-and-accessories    ;                              
                                                  
@@ -1482,7 +1546,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZFenceToolsAndAccessoriesCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZFenceToolsAndAccessoriesSearchConfiguration    ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZFenceToolsAndAccessoriesCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZFenceToolsAndAccessoriesRechargeableAsFacet                             ; amB2CNZFenceToolsAndAccessoriesSearchConfiguration    ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZFenceToolsAndAccessoriesRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                      ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                              
+                              ; amB2CNZFenceToolsAndAccessoriesCategoryAsExcludedFacet ; amB2CNZFenceToolsAndAccessoriesSearchConfiguration    ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZFenceToolsAndAccessoriesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                       ; searchProfile(code,$catalogVersion) ; uniqueIdx                              ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZGateHardwareSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZGateHardwareSearchConfiguration ; gate-hardware                  ;                              
                                                  
@@ -1546,7 +1613,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZGateHardwareCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZGateHardwareSearchConfiguration                ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZGateHardwareCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZGateHardwareRechargeableAsFacet                             ; amB2CNZGateHardwareSearchConfiguration                ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZGateHardwareRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                          ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                  
+                              ; amB2CNZGateHardwareCategoryAsExcludedFacet ; amB2CNZGateHardwareSearchConfiguration                ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZGateHardwareCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                ; searchProfile(code,$catalogVersion) ; uniqueIdx                                       ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZTapesWiresAndBraidsPfSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZTapesWiresAndBraidsPfSearchConfiguration ; tapes-wires-and-braids-pf      ;                              
                                                  
@@ -1610,7 +1680,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZTapesWiresAndBraidsPfCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZTapesWiresAndBraidsPfSearchConfiguration       ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZTapesWiresAndBraidsPfCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZTapesWiresAndBraidsPfRechargeableAsFacet                             ; amB2CNZTapesWiresAndBraidsPfSearchConfiguration       ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZTapesWiresAndBraidsPfRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                   ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                           
+                              ; amB2CNZTapesWiresAndBraidsPfCategoryAsExcludedFacet ; amB2CNZTapesWiresAndBraidsPfSearchConfiguration       ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZTapesWiresAndBraidsPfCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                ; searchProfile(code,$catalogVersion) ; uniqueIdx                                       ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZReelsAndAccessoriesPfSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZReelsAndAccessoriesPfSearchConfiguration ; reels-and-accessories-pf       ;                              
                                                  
@@ -1674,7 +1747,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZReelsAndAccessoriesPfCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZReelsAndAccessoriesPfSearchConfiguration       ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZReelsAndAccessoriesPfCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZReelsAndAccessoriesPfRechargeableAsFacet                             ; amB2CNZReelsAndAccessoriesPfSearchConfiguration       ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZReelsAndAccessoriesPfRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                   ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                           
+                              ; amB2CNZReelsAndAccessoriesPfCategoryAsExcludedFacet ; amB2CNZReelsAndAccessoriesPfSearchConfiguration       ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZReelsAndAccessoriesPfCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                     ; searchProfile(code,$catalogVersion) ; uniqueIdx                                            ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZPostsPigtailsAndTreadinsPfSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZPostsPigtailsAndTreadinsPfSearchConfiguration ; posts-pigtails-and-treadins-pf ;                              
                                                  
@@ -1738,7 +1814,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZPostsPigtailsAndTreadinsPfCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZPostsPigtailsAndTreadinsPfSearchConfiguration  ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZPostsPigtailsAndTreadinsPfCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZPostsPigtailsAndTreadinsPfRechargeableAsFacet                             ; amB2CNZPostsPigtailsAndTreadinsPfSearchConfiguration  ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZPostsPigtailsAndTreadinsPfRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                        ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                
+                              ; amB2CNZPostsPigtailsAndTreadinsPfCategoryAsExcludedFacet ; amB2CNZPostsPigtailsAndTreadinsPfSearchConfiguration  ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZPostsPigtailsAndTreadinsPfCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                   ; searchProfile(code,$catalogVersion) ; uniqueIdx                                          ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZAllInOnePortableFences  SearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZAllInOnePortableFences  SearchConfiguration ; all-in-one-portable-fences     ;                              
                                                  
@@ -1802,7 +1881,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZAllInOnePortableFences  CompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZAllInOnePortableFences  SearchConfiguration    ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZAllInOnePortableFences  CompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZAllInOnePortableFences  RechargeableAsFacet                             ; amB2CNZAllInOnePortableFences  SearchConfiguration    ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZAllInOnePortableFences  RechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                      ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                              
+                              ; amB2CNZAllInOnePortableFences  CategoryAsExcludedFacet ; amB2CNZAllInOnePortableFences  SearchConfiguration    ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZAllInOnePortableFences  CategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                            ; searchProfile(code,$catalogVersion) ; uniqueIdx                                   ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZElectricFenceKitsSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZElectricFenceKitsSearchConfiguration ; electric-fence-kits            ;                              
                                                  
@@ -1866,7 +1948,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZElectricFenceKitsCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZElectricFenceKitsSearchConfiguration           ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZElectricFenceKitsCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZElectricFenceKitsRechargeableAsFacet                             ; amB2CNZElectricFenceKitsSearchConfiguration           ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZElectricFenceKitsRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                               ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                       
+                              ; amB2CNZElectricFenceKitsCategoryAsExcludedFacet ; amB2CNZElectricFenceKitsSearchConfiguration           ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZElectricFenceKitsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                  ; searchProfile(code,$catalogVersion) ; uniqueIdx                         ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZNettingSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZNettingSearchConfiguration ; netting                        ;                              
                                                  
@@ -1930,7 +2015,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZNettingCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZNettingSearchConfiguration                     ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZNettingCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZNettingRechargeableAsFacet                             ; amB2CNZNettingSearchConfiguration                     ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZNettingRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                     ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                             
+                              ; amB2CNZNettingCategoryAsExcludedFacet ; amB2CNZNettingSearchConfiguration                     ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZNettingCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                       ; searchProfile(code,$catalogVersion) ; uniqueIdx                                              ; category(code,$catalogVersion)   ; $catalogVersion[unique=true] 
                                                  ; amB2CNZWeighScalesAndDataCollectorsSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZWeighScalesAndDataCollectorsSearchConfiguration ; weigh-scales-and-data-collectors ;                              
                                                  
@@ -1994,7 +2082,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZWeighScalesAndDataCollectorsCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZWeighScalesAndDataCollectorsSearchConfiguration ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZWeighScalesAndDataCollectorsCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZWeighScalesAndDataCollectorsRechargeableAsFacet                             ; amB2CNZWeighScalesAndDataCollectorsSearchConfiguration ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZWeighScalesAndDataCollectorsRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                          ; searchConfiguration(uid,$catalogVersion)[unique=true]  ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                  
+                              ; amB2CNZWeighScalesAndDataCollectorsCategoryAsExcludedFacet ; amB2CNZWeighScalesAndDataCollectorsSearchConfiguration ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZWeighScalesAndDataCollectorsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                      ; searchProfile(code,$catalogVersion) ; uniqueIdx                                             ; category(code,$catalogVersion)  ; $catalogVersion[unique=true] 
                                                  ; amB2CNZScaleHeadsAndDataCollectorsSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZScaleHeadsAndDataCollectorsSearchConfiguration ; scale-heads-and-data-collectors ;                              
                                                  
@@ -2058,7 +2149,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZScaleHeadsAndDataCollectorsCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZScaleHeadsAndDataCollectorsSearchConfiguration ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZScaleHeadsAndDataCollectorsCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZScaleHeadsAndDataCollectorsRechargeableAsFacet                             ; amB2CNZScaleHeadsAndDataCollectorsSearchConfiguration ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZScaleHeadsAndDataCollectorsRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                         ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                 
+                              ; amB2CNZScaleHeadsAndDataCollectorsCategoryAsExcludedFacet ; amB2CNZScaleHeadsAndDataCollectorsSearchConfiguration ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZScaleHeadsAndDataCollectorsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                 ; searchProfile(code,$catalogVersion) ; uniqueIdx                                        ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZLoadbarsAndAccessoriesSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZLoadbarsAndAccessoriesSearchConfiguration ; loadbars-and-accessories       ;                              
                                                  
@@ -2122,7 +2216,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZLoadbarsAndAccessoriesCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZLoadbarsAndAccessoriesSearchConfiguration      ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZLoadbarsAndAccessoriesCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZLoadbarsAndAccessoriesRechargeableAsFacet                             ; amB2CNZLoadbarsAndAccessoriesSearchConfiguration      ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZLoadbarsAndAccessoriesRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                    ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                            
+                              ; amB2CNZLoadbarsAndAccessoriesCategoryAsExcludedFacet ; amB2CNZLoadbarsAndAccessoriesSearchConfiguration      ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZLoadbarsAndAccessoriesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                   ; searchProfile(code,$catalogVersion) ; uniqueIdx                          ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZLoadbarsSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZLoadbarsSearchConfiguration ; loadbars                       ;                              
                                                  
@@ -2186,7 +2283,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZLoadbarsCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZLoadbarsSearchConfiguration                    ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZLoadbarsCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZLoadbarsRechargeableAsFacet                             ; amB2CNZLoadbarsSearchConfiguration                    ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZLoadbarsRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                      ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                              
+                              ; amB2CNZLoadbarsCategoryAsExcludedFacet ; amB2CNZLoadbarsSearchConfiguration                    ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZLoadbarsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                    ; searchProfile(code,$catalogVersion) ; uniqueIdx                           ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZPlatformsSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZPlatformsSearchConfiguration ; platforms                      ;                              
                                                  
@@ -2250,7 +2350,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZPlatformsCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZPlatformsSearchConfiguration                   ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZPlatformsCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZPlatformsRechargeableAsFacet                             ; amB2CNZPlatformsSearchConfiguration                   ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZPlatformsRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                       ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                               
+                              ; amB2CNZPlatformsCategoryAsExcludedFacet ; amB2CNZPlatformsSearchConfiguration                   ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZPlatformsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                             ; searchProfile(code,$catalogVersion) ; uniqueIdx                                    ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZPlatformsAndCratesSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZPlatformsAndCratesSearchConfiguration ; platforms-and-crates           ;                              
                                                  
@@ -2314,7 +2417,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZPlatformsAndCratesCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZPlatformsAndCratesSearchConfiguration          ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZPlatformsAndCratesCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZPlatformsAndCratesRechargeableAsFacet                             ; amB2CNZPlatformsAndCratesSearchConfiguration          ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZPlatformsAndCratesRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                        
+                              ; amB2CNZPlatformsAndCratesCategoryAsExcludedFacet ; amB2CNZPlatformsAndCratesSearchConfiguration          ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZPlatformsAndCratesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                   ; searchProfile(code,$catalogVersion) ; uniqueIdx                          ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZDraftersSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZDraftersSearchConfiguration ; drafters                       ;                              
                                                  
@@ -2378,7 +2484,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZDraftersCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZDraftersSearchConfiguration                    ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZDraftersCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZDraftersRechargeableAsFacet                             ; amB2CNZDraftersSearchConfiguration                    ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZDraftersRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                      ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                              
+                              ; amB2CNZDraftersCategoryAsExcludedFacet ; amB2CNZDraftersSearchConfiguration                    ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZDraftersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                        ; searchProfile(code,$catalogVersion) ; uniqueIdx                               ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZEidTagReadersSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZEidTagReadersSearchConfiguration ; eid-tag-readers                ;                              
                                                  
@@ -2442,7 +2551,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZEidTagReadersCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZEidTagReadersSearchConfiguration               ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZEidTagReadersCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZEidTagReadersRechargeableAsFacet                             ; amB2CNZEidTagReadersSearchConfiguration               ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZEidTagReadersRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                           ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                   
+                              ; amB2CNZEidTagReadersCategoryAsExcludedFacet ; amB2CNZEidTagReadersSearchConfiguration               ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZEidTagReadersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                             ; searchProfile(code,$catalogVersion) ; uniqueIdx                                                    ; category(code,$catalogVersion)          ; $catalogVersion[unique=true] 
                                                  ; amB2CNZEidTagReadersAndBarcodingEquipmentSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZEidTagReadersAndBarcodingEquipmentSearchConfiguration ; eid-tag-readers-and-barcoding-equipment ;                              
                                                  
@@ -2506,7 +2618,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZEidTagReadersAndBarcodingEquipmentCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZEidTagReadersAndBarcodingEquipmentSearchConfiguration ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZEidTagReadersAndBarcodingEquipmentCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZEidTagReadersAndBarcodingEquipmentRechargeableAsFacet                             ; amB2CNZEidTagReadersAndBarcodingEquipmentSearchConfiguration ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZEidTagReadersAndBarcodingEquipmentRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                                ; searchConfiguration(uid,$catalogVersion)[unique=true]        ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                        
+                              ; amB2CNZEidTagReadersAndBarcodingEquipmentCategoryAsExcludedFacet ; amB2CNZEidTagReadersAndBarcodingEquipmentSearchConfiguration ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZEidTagReadersAndBarcodingEquipmentCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                              ; searchProfile(code,$catalogVersion) ; uniqueIdx                                     ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZWeighingAccessoriesSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZWeighingAccessoriesSearchConfiguration ; weighing-accessories           ;                              
                                                  
@@ -2570,7 +2685,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZWeighingAccessoriesCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZWeighingAccessoriesSearchConfiguration         ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZWeighingAccessoriesCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZWeighingAccessoriesRechargeableAsFacet                             ; amB2CNZWeighingAccessoriesSearchConfiguration         ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZWeighingAccessoriesRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                 ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                         
+                              ; amB2CNZWeighingAccessoriesCategoryAsExcludedFacet ; amB2CNZWeighingAccessoriesSearchConfiguration         ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZWeighingAccessoriesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                     ; searchProfile(code,$catalogVersion) ; uniqueIdx                            ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZStockProdsSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZStockProdsSearchConfiguration ; stock-prods                    ;                              
                                                  
@@ -2634,7 +2752,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZStockProdsCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZStockProdsSearchConfiguration                  ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZStockProdsCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZStockProdsRechargeableAsFacet                             ; amB2CNZStockProdsSearchConfiguration                  ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZStockProdsRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                        ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                
+                              ; amB2CNZStockProdsCategoryAsExcludedFacet ; amB2CNZStockProdsSearchConfiguration                  ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZStockProdsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                   ; searchProfile(code,$catalogVersion) ; uniqueIdx                                          ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZStockProdsAndAccessoriesSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZStockProdsAndAccessoriesSearchConfiguration ; stock-prods-and-accessories    ;                              
                                                  
@@ -2698,7 +2819,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZStockProdsAndAccessoriesCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZStockProdsAndAccessoriesSearchConfiguration    ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZStockProdsAndAccessoriesCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZStockProdsAndAccessoriesRechargeableAsFacet                             ; amB2CNZStockProdsAndAccessoriesSearchConfiguration    ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZStockProdsAndAccessoriesRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                      ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                              
+                              ; amB2CNZStockProdsAndAccessoriesCategoryAsExcludedFacet ; amB2CNZStockProdsAndAccessoriesSearchConfiguration    ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZStockProdsAndAccessoriesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                             ; searchProfile(code,$catalogVersion) ; uniqueIdx                                    ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZWaterFlowIndicatorSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZWaterFlowIndicatorSearchConfiguration ; water-flow-indicator           ;                              
                                                  
@@ -2762,7 +2886,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZWaterFlowIndicatorCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZWaterFlowIndicatorSearchConfiguration          ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZWaterFlowIndicatorCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZWaterFlowIndicatorRechargeableAsFacet                             ; amB2CNZWaterFlowIndicatorSearchConfiguration          ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZWaterFlowIndicatorRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                        
+                              ; amB2CNZWaterFlowIndicatorCategoryAsExcludedFacet ; amB2CNZWaterFlowIndicatorSearchConfiguration          ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZWaterFlowIndicatorCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                         ; searchProfile(code,$catalogVersion) ; uniqueIdx                                ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZOneTankSystemsSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZOneTankSystemsSearchConfiguration ; one-tank-systems               ;                              
                                                  
@@ -2826,7 +2953,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZOneTankSystemsCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZOneTankSystemsSearchConfiguration              ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZOneTankSystemsCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZOneTankSystemsRechargeableAsFacet                             ; amB2CNZOneTankSystemsSearchConfiguration              ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZOneTankSystemsRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                            ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                    
+                              ; amB2CNZOneTankSystemsCategoryAsExcludedFacet ; amB2CNZOneTankSystemsSearchConfiguration              ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZOneTankSystemsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                            ; searchProfile(code,$catalogVersion) ; uniqueIdx                                   ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZAntennaeAndCablesSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZAntennaeAndCablesSearchConfiguration ; antennae-and-cables            ;                              
                                                  
@@ -2890,7 +3020,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZAntennaeAndCablesCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZAntennaeAndCablesSearchConfiguration           ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZAntennaeAndCablesCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZAntennaeAndCablesRechargeableAsFacet                             ; amB2CNZAntennaeAndCablesSearchConfiguration           ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZAntennaeAndCablesRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                               ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                       
+                              ; amB2CNZAntennaeAndCablesCategoryAsExcludedFacet ; amB2CNZAntennaeAndCablesSearchConfiguration           ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZAntennaeAndCablesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                     ; searchProfile(code,$catalogVersion) ; uniqueIdx                                            ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZAdditionalSystemComponentsSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZAdditionalSystemComponentsSearchConfiguration ; additional-system-components   ;                              
                                                  
@@ -2954,7 +3087,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZAdditionalSystemComponentsCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZAdditionalSystemComponentsSearchConfiguration  ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZAdditionalSystemComponentsCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZAdditionalSystemComponentsRechargeableAsFacet                             ; amB2CNZAdditionalSystemComponentsSearchConfiguration  ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZAdditionalSystemComponentsRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                        ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                
+                              ; amB2CNZAdditionalSystemComponentsCategoryAsExcludedFacet ; amB2CNZAdditionalSystemComponentsSearchConfiguration  ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZAdditionalSystemComponentsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                       ; searchProfile(code,$catalogVersion) ; uniqueIdx                              ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZTroughValvesSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZTroughValvesSearchConfiguration ; trough-valves                  ;                              
                                                  
@@ -3018,7 +3154,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZTroughValvesCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZTroughValvesSearchConfiguration                ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZTroughValvesCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZTroughValvesRechargeableAsFacet                             ; amB2CNZTroughValvesSearchConfiguration                ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZTroughValvesRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                          ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                  
+                              ; amB2CNZTroughValvesCategoryAsExcludedFacet ; amB2CNZTroughValvesSearchConfiguration                ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZTroughValvesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                    ; searchProfile(code,$catalogVersion) ; uniqueIdx                           ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZLilSpringSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZLilSpringSearchConfiguration ; lil-spring                     ;                              
                                                  
@@ -3082,7 +3221,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZLilSpringCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZLilSpringSearchConfiguration                   ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZLilSpringCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZLilSpringRechargeableAsFacet                             ; amB2CNZLilSpringSearchConfiguration                   ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZLilSpringRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                       ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                               
+                              ; amB2CNZLilSpringCategoryAsExcludedFacet ; amB2CNZLilSpringSearchConfiguration                   ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZLilSpringCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                    ; searchProfile(code,$catalogVersion) ; uniqueIdx                           ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZEquiFountSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZEquiFountSearchConfiguration ; equi-fount                     ;                              
                                                  
@@ -3146,7 +3288,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZEquiFountCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZEquiFountSearchConfiguration                   ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZEquiFountCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZEquiFountRechargeableAsFacet                             ; amB2CNZEquiFountSearchConfiguration                   ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZEquiFountRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                       ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                               
+                              ; amB2CNZEquiFountCategoryAsExcludedFacet ; amB2CNZEquiFountSearchConfiguration                   ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZEquiFountCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                    ; searchProfile(code,$catalogVersion) ; uniqueIdx                           ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZMiraFountSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZMiraFountSearchConfiguration ; mira-fount                     ;                              
                                                  
@@ -3210,7 +3355,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZMiraFountCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZMiraFountSearchConfiguration                   ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZMiraFountCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZMiraFountRechargeableAsFacet                             ; amB2CNZMiraFountSearchConfiguration                   ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZMiraFountRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                       ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                               
+                              ; amB2CNZMiraFountCategoryAsExcludedFacet ; amB2CNZMiraFountSearchConfiguration                   ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZMiraFountCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                 ; searchProfile(code,$catalogVersion) ; uniqueIdx                        ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZEFountSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZEFountSearchConfiguration ; e-fount                        ;                              
                                                  
@@ -3274,7 +3422,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZEFountCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZEFountSearchConfiguration                      ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZEFountCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZEFountRechargeableAsFacet                             ; amB2CNZEFountSearchConfiguration                      ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZEFountRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                    ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                            
+                              ; amB2CNZEFountCategoryAsExcludedFacet ; amB2CNZEFountSearchConfiguration                      ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZEFountCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                    ; searchProfile(code,$catalogVersion) ; uniqueIdx                           ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZBigSpringSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZBigSpringSearchConfiguration ; big-spring                     ;                              
                                                  
@@ -3338,7 +3489,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZBigSpringCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZBigSpringSearchConfiguration                   ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZBigSpringCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZBigSpringRechargeableAsFacet                             ; amB2CNZBigSpringSearchConfiguration                   ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZBigSpringRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                       ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                               
+                              ; amB2CNZBigSpringCategoryAsExcludedFacet ; amB2CNZBigSpringSearchConfiguration                   ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZBigSpringCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                   ; searchProfile(code,$catalogVersion) ; uniqueIdx                          ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZPetTanksSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZPetTanksSearchConfiguration ; pet-tanks                      ;                              
                                                  
@@ -3402,7 +3556,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZPetTanksCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZPetTanksSearchConfiguration                    ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZPetTanksCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZPetTanksRechargeableAsFacet                             ; amB2CNZPetTanksSearchConfiguration                    ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZPetTanksRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                      ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                              
+                              ; amB2CNZPetTanksCategoryAsExcludedFacet ; amB2CNZPetTanksSearchConfiguration                    ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZPetTanksCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                              ; searchProfile(code,$catalogVersion) ; uniqueIdx                                     ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZWateringAccessoriesSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZWateringAccessoriesSearchConfiguration ; watering-accessories           ;                              
                                                  
@@ -3466,7 +3623,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZWateringAccessoriesCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZWateringAccessoriesSearchConfiguration         ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZWateringAccessoriesCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZWateringAccessoriesRechargeableAsFacet                             ; amB2CNZWateringAccessoriesSearchConfiguration         ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZWateringAccessoriesRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                 ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                         
+                              ; amB2CNZWateringAccessoriesCategoryAsExcludedFacet ; amB2CNZWateringAccessoriesSearchConfiguration         ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZWateringAccessoriesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                    ; searchProfile(code,$catalogVersion) ; uniqueIdx                           ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZLivestockSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZLivestockSearchConfiguration ; livestock                      ;                              
                                                  
@@ -3530,7 +3690,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZLivestockCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZLivestockSearchConfiguration                   ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZLivestockCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZLivestockRechargeableAsFacet                             ; amB2CNZLivestockSearchConfiguration                   ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZLivestockRechargeableAsFacet                             
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                       ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                               
+                              ; amB2CNZLivestockCategoryAsExcludedFacet ; amB2CNZLivestockSearchConfiguration                   ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZLivestockCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                ; searchProfile(code,$catalogVersion) ; uniqueIdx                       ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CNZFenceSearchConfiguration ; amB2CNZSearchProfile                ; amB2CNZFenceSearchConfiguration ; fence                          ;                              
                                                  
@@ -3594,3 +3757,6 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CNZFenceCompatiblewithGallagherLivestockEIDAsFacet      ; amB2CNZFenceSearchConfiguration                       ; Compatible with Gallagher Livestock (EID)     ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZFenceCompatiblewithGallagherLivestockEIDAsFacet      
                       ; amB2CNZFenceRechargeableAsFacet                             ; amB2CNZFenceSearchConfiguration                       ; Rechargeable                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZFenceRechargeableAsFacet                             
                       
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                   ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                           
+                              ; amB2CNZFenceCategoryAsExcludedFacet ; amB2CNZFenceSearchConfiguration                       ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZFenceCategoryAsExcludedFacet 
+                              

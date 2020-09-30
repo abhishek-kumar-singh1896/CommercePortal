@@ -18,7 +18,7 @@
 <!-- 		<div class="sidebar-section-header js-facet-name"> -->
 		<h4 class="sidebar-section-header">
 			<span class="glyphicon facet__arrow"></span>
-			<spring:theme code="search.nav.facetTitle" arguments="${facetData.name}"/>
+			${facetData.name}
 		</h4>
 
 		<div class="sidebar-section-container js-facet-values">

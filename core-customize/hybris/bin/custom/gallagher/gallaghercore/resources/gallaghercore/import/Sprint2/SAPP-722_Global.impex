@@ -4,6 +4,7 @@ $productCatalog=amB2CGlobalProductCatalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='$version'])[unique=true,default=$productCatalog:$version]
  
  
+ 
 INSERT_UPDATE AsCategoryAwareSearchProfile ; code[unique=true]        ; name                         ; indexType[unique=true,default=$solrIndexedType] ; $catalogVersion[unique=true] 
                                            ; amB2CGlobalSearchProfile ; AM B2C Global Search Profile 
                                            
@@ -128,7 +129,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalMainsEnergizersProductWeightWaterAsFacet                       ; amB2CGlobalMainsEnergizersSearchConfiguration         ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalMainsEnergizersProductWeightWaterAsFacet                       
                       ; amB2CGlobalMainsEnergizersWarrantyAntennaAsFacet                          ; amB2CGlobalMainsEnergizersSearchConfiguration         ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalMainsEnergizersWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                 ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                         
+                              ; amB2CGlobalMainsEnergizersCategoryAsExcludedFacet ; amB2CGlobalMainsEnergizersSearchConfiguration         ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalMainsEnergizersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                ; searchProfile(code,$catalogVersion) ; uniqueIdx                                       ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobal110VoltEnergizersSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobal110VoltEnergizersSearchConfiguration ; 110-volt-energizers            ;                              
                                                  
@@ -187,7 +191,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobal110VoltEnergizersProductWeightWaterAsFacet                       ; amB2CGlobal110VoltEnergizersSearchConfiguration       ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobal110VoltEnergizersProductWeightWaterAsFacet                       
                       ; amB2CGlobal110VoltEnergizersWarrantyAntennaAsFacet                          ; amB2CGlobal110VoltEnergizersSearchConfiguration       ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobal110VoltEnergizersWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                   ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                           
+                              ; amB2CGlobal110VoltEnergizersCategoryAsExcludedFacet ; amB2CGlobal110VoltEnergizersSearchConfiguration       ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobal110VoltEnergizersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                     ; searchProfile(code,$catalogVersion) ; uniqueIdx                                            ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalMultiPoweredEnergizersSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalMultiPoweredEnergizersSearchConfiguration ; multi-powered-energizers       ;                              
                                                  
@@ -246,7 +253,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalMultiPoweredEnergizersProductWeightWaterAsFacet                       ; amB2CGlobalMultiPoweredEnergizersSearchConfiguration  ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalMultiPoweredEnergizersProductWeightWaterAsFacet                       
                       ; amB2CGlobalMultiPoweredEnergizersWarrantyAntennaAsFacet                          ; amB2CGlobalMultiPoweredEnergizersSearchConfiguration  ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalMultiPoweredEnergizersWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                        ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                
+                              ; amB2CGlobalMultiPoweredEnergizersCategoryAsExcludedFacet ; amB2CGlobalMultiPoweredEnergizersSearchConfiguration  ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalMultiPoweredEnergizersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                ; searchProfile(code,$catalogVersion) ; uniqueIdx                                       ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalBatteryEnergizersSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalBatteryEnergizersSearchConfiguration ; battery-energizers             ;                              
                                                  
@@ -305,7 +315,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalBatteryEnergizersProductWeightWaterAsFacet                       ; amB2CGlobalBatteryEnergizersSearchConfiguration       ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalBatteryEnergizersProductWeightWaterAsFacet                       
                       ; amB2CGlobalBatteryEnergizersWarrantyAntennaAsFacet                          ; amB2CGlobalBatteryEnergizersSearchConfiguration       ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalBatteryEnergizersWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                   ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                           
+                              ; amB2CGlobalBatteryEnergizersCategoryAsExcludedFacet ; amB2CGlobalBatteryEnergizersSearchConfiguration       ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalBatteryEnergizersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                              ; searchProfile(code,$catalogVersion) ; uniqueIdx                                     ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalSolarEnergizersSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalSolarEnergizersSearchConfiguration ; solar-energizers               ;                              
                                                  
@@ -364,7 +377,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalSolarEnergizersProductWeightWaterAsFacet                       ; amB2CGlobalSolarEnergizersSearchConfiguration         ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalSolarEnergizersProductWeightWaterAsFacet                       
                       ; amB2CGlobalSolarEnergizersWarrantyAntennaAsFacet                          ; amB2CGlobalSolarEnergizersSearchConfiguration         ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalSolarEnergizersWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                 ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                         
+                              ; amB2CGlobalSolarEnergizersCategoryAsExcludedFacet ; amB2CGlobalSolarEnergizersSearchConfiguration         ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalSolarEnergizersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                          ; searchProfile(code,$catalogVersion) ; uniqueIdx                                 ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalSolarPanelsSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalSolarPanelsSearchConfiguration ; solar-panels                   ;                              
                                                  
@@ -423,7 +439,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalSolarPanelsProductWeightWaterAsFacet                       ; amB2CGlobalSolarPanelsSearchConfiguration             ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalSolarPanelsProductWeightWaterAsFacet                       
                       ; amB2CGlobalSolarPanelsWarrantyAntennaAsFacet                          ; amB2CGlobalSolarPanelsSearchConfiguration             ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalSolarPanelsWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                             ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                     
+                              ; amB2CGlobalSolarPanelsCategoryAsExcludedFacet ; amB2CGlobalSolarPanelsSearchConfiguration             ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalSolarPanelsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                ; searchProfile(code,$catalogVersion) ; uniqueIdx                                       ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalSolarAndSolarKitsSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalSolarAndSolarKitsSearchConfiguration ; solar-and-solar-kits           ;                              
                                                  
@@ -482,7 +501,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalSolarAndSolarKitsProductWeightWaterAsFacet                       ; amB2CGlobalSolarAndSolarKitsSearchConfiguration       ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalSolarAndSolarKitsProductWeightWaterAsFacet                       
                       ; amB2CGlobalSolarAndSolarKitsWarrantyAntennaAsFacet                          ; amB2CGlobalSolarAndSolarKitsSearchConfiguration       ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalSolarAndSolarKitsWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                   ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                           
+                              ; amB2CGlobalSolarAndSolarKitsCategoryAsExcludedFacet ; amB2CGlobalSolarAndSolarKitsSearchConfiguration       ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalSolarAndSolarKitsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                     ; searchProfile(code,$catalogVersion) ; uniqueIdx                                            ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalRemotesAndFenceTestersSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalRemotesAndFenceTestersSearchConfiguration ; remotes-and-fence-testers      ;                              
                                                  
@@ -541,7 +563,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalRemotesAndFenceTestersProductWeightWaterAsFacet                       ; amB2CGlobalRemotesAndFenceTestersSearchConfiguration  ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalRemotesAndFenceTestersProductWeightWaterAsFacet                       
                       ; amB2CGlobalRemotesAndFenceTestersWarrantyAntennaAsFacet                          ; amB2CGlobalRemotesAndFenceTestersSearchConfiguration  ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalRemotesAndFenceTestersWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                        ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                
+                              ; amB2CGlobalRemotesAndFenceTestersCategoryAsExcludedFacet ; amB2CGlobalRemotesAndFenceTestersSearchConfiguration  ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalRemotesAndFenceTestersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                        ; searchProfile(code,$catalogVersion) ; uniqueIdx                               ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalBatteriesSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalBatteriesSearchConfiguration ; batteries                      ;                              
                                                  
@@ -600,7 +625,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalBatteriesProductWeightWaterAsFacet                       ; amB2CGlobalBatteriesSearchConfiguration               ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalBatteriesProductWeightWaterAsFacet                       
                       ; amB2CGlobalBatteriesWarrantyAntennaAsFacet                          ; amB2CGlobalBatteriesSearchConfiguration               ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalBatteriesWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                           ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                   
+                              ; amB2CGlobalBatteriesCategoryAsExcludedFacet ; amB2CGlobalBatteriesSearchConfiguration               ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalBatteriesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                       ; searchProfile(code,$catalogVersion) ; uniqueIdx                              ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalEarthingSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalEarthingSearchConfiguration ; earthing                       ;                              
                                                  
@@ -659,7 +687,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalEarthingProductWeightWaterAsFacet                       ; amB2CGlobalEarthingSearchConfiguration                ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalEarthingProductWeightWaterAsFacet                       
                       ; amB2CGlobalEarthingWarrantyAntennaAsFacet                          ; amB2CGlobalEarthingSearchConfiguration                ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalEarthingWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                          ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                  
+                              ; amB2CGlobalEarthingCategoryAsExcludedFacet ; amB2CGlobalEarthingSearchConfiguration                ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalEarthingCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                     ; searchProfile(code,$catalogVersion) ; uniqueIdx                                            ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalPowerSystemAccessoriesSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalPowerSystemAccessoriesSearchConfiguration ; power-system-accessories       ;                              
                                                  
@@ -718,7 +749,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalPowerSystemAccessoriesProductWeightWaterAsFacet                       ; amB2CGlobalPowerSystemAccessoriesSearchConfiguration  ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalPowerSystemAccessoriesProductWeightWaterAsFacet                       
                       ; amB2CGlobalPowerSystemAccessoriesWarrantyAntennaAsFacet                          ; amB2CGlobalPowerSystemAccessoriesSearchConfiguration  ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalPowerSystemAccessoriesWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                        ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                
+                              ; amB2CGlobalPowerSystemAccessoriesCategoryAsExcludedFacet ; amB2CGlobalPowerSystemAccessoriesSearchConfiguration  ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalPowerSystemAccessoriesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                   ; searchProfile(code,$catalogVersion) ; uniqueIdx                                          ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalGallagherWestonfenceSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalGallagherWestonfenceSearchConfiguration ; gallagher-westonfence          ;                              
                                                  
@@ -777,7 +811,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalGallagherWestonfenceProductWeightWaterAsFacet                       ; amB2CGlobalGallagherWestonfenceSearchConfiguration    ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalGallagherWestonfenceProductWeightWaterAsFacet                       
                       ; amB2CGlobalGallagherWestonfenceWarrantyAntennaAsFacet                          ; amB2CGlobalGallagherWestonfenceSearchConfiguration    ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalGallagherWestonfenceWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                      ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                              
+                              ; amB2CGlobalGallagherWestonfenceCategoryAsExcludedFacet ; amB2CGlobalGallagherWestonfenceSearchConfiguration    ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalGallagherWestonfenceCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                  ; searchProfile(code,$catalogVersion) ; uniqueIdx                                         ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalGallagherMegaAnchorSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalGallagherMegaAnchorSearchConfiguration ; gallagher-mega-anchor          ;                              
                                                  
@@ -836,7 +873,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalGallagherMegaAnchorProductWeightWaterAsFacet                       ; amB2CGlobalGallagherMegaAnchorSearchConfiguration     ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalGallagherMegaAnchorProductWeightWaterAsFacet                       
                       ; amB2CGlobalGallagherMegaAnchorWarrantyAntennaAsFacet                          ; amB2CGlobalGallagherMegaAnchorSearchConfiguration     ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalGallagherMegaAnchorWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                     ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                             
+                              ; amB2CGlobalGallagherMegaAnchorCategoryAsExcludedFacet ; amB2CGlobalGallagherMegaAnchorSearchConfiguration     ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalGallagherMegaAnchorCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                           ; searchProfile(code,$catalogVersion) ; uniqueIdx                                  ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalWireAndCableSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalWireAndCableSearchConfiguration ; wire-and-cable                 ;                              
                                                  
@@ -895,7 +935,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalWireAndCableProductWeightWaterAsFacet                       ; amB2CGlobalWireAndCableSearchConfiguration            ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalWireAndCableProductWeightWaterAsFacet                       
                       ; amB2CGlobalWireAndCableWarrantyAntennaAsFacet                          ; amB2CGlobalWireAndCableSearchConfiguration            ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalWireAndCableWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                              ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                      
+                              ; amB2CGlobalWireAndCableCategoryAsExcludedFacet ; amB2CGlobalWireAndCableSearchConfiguration            ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalWireAndCableCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                               ; searchProfile(code,$catalogVersion) ; uniqueIdx                                      ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalClampsAndJoinersSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalClampsAndJoinersSearchConfiguration ; clamps-and-joiners             ;                              
                                                  
@@ -954,7 +997,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalClampsAndJoinersProductWeightWaterAsFacet                       ; amB2CGlobalClampsAndJoinersSearchConfiguration        ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalClampsAndJoinersProductWeightWaterAsFacet                       
                       ; amB2CGlobalClampsAndJoinersWarrantyAntennaAsFacet                          ; amB2CGlobalClampsAndJoinersSearchConfiguration        ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalClampsAndJoinersWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                  ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                          
+                              ; amB2CGlobalClampsAndJoinersCategoryAsExcludedFacet ; amB2CGlobalClampsAndJoinersSearchConfiguration        ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalClampsAndJoinersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                    ; searchProfile(code,$catalogVersion) ; uniqueIdx                           ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalPostsSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalPostsSearchConfiguration ; posts                          ;                              
                                                  
@@ -1013,7 +1059,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalPostsProductWeightWaterAsFacet                       ; amB2CGlobalPostsSearchConfiguration                   ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalPostsProductWeightWaterAsFacet                       
                       ; amB2CGlobalPostsWarrantyAntennaAsFacet                          ; amB2CGlobalPostsSearchConfiguration                   ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalPostsWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                       ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                               
+                              ; amB2CGlobalPostsCategoryAsExcludedFacet ; amB2CGlobalPostsSearchConfiguration                   ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalPostsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                        ; searchProfile(code,$catalogVersion) ; uniqueIdx                               ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalStrainersSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalStrainersSearchConfiguration ; strainers                      ;                              
                                                  
@@ -1072,7 +1121,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalStrainersProductWeightWaterAsFacet                       ; amB2CGlobalStrainersSearchConfiguration               ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalStrainersProductWeightWaterAsFacet                       
                       ; amB2CGlobalStrainersWarrantyAntennaAsFacet                          ; amB2CGlobalStrainersSearchConfiguration               ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalStrainersWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                           ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                   
+                              ; amB2CGlobalStrainersCategoryAsExcludedFacet ; amB2CGlobalStrainersSearchConfiguration               ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalStrainersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                         ; searchProfile(code,$catalogVersion) ; uniqueIdx                                ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalInsulatorsSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalInsulatorsSearchConfiguration ; insulators                     ;                              
                                                  
@@ -1131,7 +1183,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalInsulatorsProductWeightWaterAsFacet                       ; amB2CGlobalInsulatorsSearchConfiguration              ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalInsulatorsProductWeightWaterAsFacet                       
                       ; amB2CGlobalInsulatorsWarrantyAntennaAsFacet                          ; amB2CGlobalInsulatorsSearchConfiguration              ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalInsulatorsWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                            ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                    
+                              ; amB2CGlobalInsulatorsCategoryAsExcludedFacet ; amB2CGlobalInsulatorsSearchConfiguration              ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalInsulatorsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                      ; searchProfile(code,$catalogVersion) ; uniqueIdx                             ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalOffsetsSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalOffsetsSearchConfiguration ; offsets                        ;                              
                                                  
@@ -1190,7 +1245,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalOffsetsProductWeightWaterAsFacet                       ; amB2CGlobalOffsetsSearchConfiguration                 ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalOffsetsProductWeightWaterAsFacet                       
                       ; amB2CGlobalOffsetsWarrantyAntennaAsFacet                          ; amB2CGlobalOffsetsSearchConfiguration                 ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalOffsetsWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                         ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                 
+                              ; amB2CGlobalOffsetsCategoryAsExcludedFacet ; amB2CGlobalOffsetsSearchConfiguration                 ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalOffsetsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                            ; searchProfile(code,$catalogVersion) ; uniqueIdx                                   ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalElectricGatesSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalElectricGatesSearchConfiguration ; electric-gates                 ;                              
                                                  
@@ -1249,7 +1307,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalElectricGatesProductWeightWaterAsFacet                       ; amB2CGlobalElectricGatesSearchConfiguration           ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalElectricGatesProductWeightWaterAsFacet                       
                       ; amB2CGlobalElectricGatesWarrantyAntennaAsFacet                          ; amB2CGlobalElectricGatesSearchConfiguration           ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalElectricGatesWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                               ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                       
+                              ; amB2CGlobalElectricGatesCategoryAsExcludedFacet ; amB2CGlobalElectricGatesSearchConfiguration           ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalElectricGatesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                            ; searchProfile(code,$catalogVersion) ; uniqueIdx                                                   ; category(code,$catalogVersion)  ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalIrrigatorFenceCrossingSystem SearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalIrrigatorFenceCrossingSystem SearchConfiguration ; irrigator-fence-crossing-system ;                              
                                                  
@@ -1308,7 +1369,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalIrrigatorFenceCrossingSystem ProductWeightWaterAsFacet                       ; amB2CGlobalIrrigatorFenceCrossingSystem SearchConfiguration ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalIrrigatorFenceCrossingSystem ProductWeightWaterAsFacet                       
                       ; amB2CGlobalIrrigatorFenceCrossingSystem WarrantyAntennaAsFacet                          ; amB2CGlobalIrrigatorFenceCrossingSystem SearchConfiguration ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalIrrigatorFenceCrossingSystem WarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                               ; searchConfiguration(uid,$catalogVersion)[unique=true]       ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                       
+                              ; amB2CGlobalIrrigatorFenceCrossingSystem CategoryAsExcludedFacet ; amB2CGlobalIrrigatorFenceCrossingSystem SearchConfiguration ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalIrrigatorFenceCrossingSystem CategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                       ; searchProfile(code,$catalogVersion) ; uniqueIdx                                              ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalFenceToolsAndAccessoriesSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalFenceToolsAndAccessoriesSearchConfiguration ; fence-tools-and-accessories    ;                              
                                                  
@@ -1367,7 +1431,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalFenceToolsAndAccessoriesProductWeightWaterAsFacet                       ; amB2CGlobalFenceToolsAndAccessoriesSearchConfiguration ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalFenceToolsAndAccessoriesProductWeightWaterAsFacet                       
                       ; amB2CGlobalFenceToolsAndAccessoriesWarrantyAntennaAsFacet                          ; amB2CGlobalFenceToolsAndAccessoriesSearchConfiguration ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalFenceToolsAndAccessoriesWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                          ; searchConfiguration(uid,$catalogVersion)[unique=true]  ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                  
+                              ; amB2CGlobalFenceToolsAndAccessoriesCategoryAsExcludedFacet ; amB2CGlobalFenceToolsAndAccessoriesSearchConfiguration ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalFenceToolsAndAccessoriesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                           ; searchProfile(code,$catalogVersion) ; uniqueIdx                                  ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalGateHardwareSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalGateHardwareSearchConfiguration ; gate-hardware                  ;                              
                                                  
@@ -1426,7 +1493,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalGateHardwareProductWeightWaterAsFacet                       ; amB2CGlobalGateHardwareSearchConfiguration            ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalGateHardwareProductWeightWaterAsFacet                       
                       ; amB2CGlobalGateHardwareWarrantyAntennaAsFacet                          ; amB2CGlobalGateHardwareSearchConfiguration            ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalGateHardwareWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                              ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                      
+                              ; amB2CGlobalGateHardwareCategoryAsExcludedFacet ; amB2CGlobalGateHardwareSearchConfiguration            ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalGateHardwareCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                    ; searchProfile(code,$catalogVersion) ; uniqueIdx                                           ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalTapesWiresAndBraidsPfSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalTapesWiresAndBraidsPfSearchConfiguration ; tapes-wires-and-braids-pf      ;                              
                                                  
@@ -1485,7 +1555,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalTapesWiresAndBraidsPfProductWeightWaterAsFacet                       ; amB2CGlobalTapesWiresAndBraidsPfSearchConfiguration   ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalTapesWiresAndBraidsPfProductWeightWaterAsFacet                       
                       ; amB2CGlobalTapesWiresAndBraidsPfWarrantyAntennaAsFacet                          ; amB2CGlobalTapesWiresAndBraidsPfSearchConfiguration   ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalTapesWiresAndBraidsPfWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                       ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                               
+                              ; amB2CGlobalTapesWiresAndBraidsPfCategoryAsExcludedFacet ; amB2CGlobalTapesWiresAndBraidsPfSearchConfiguration   ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalTapesWiresAndBraidsPfCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                    ; searchProfile(code,$catalogVersion) ; uniqueIdx                                           ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalReelsAndAccessoriesPfSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalReelsAndAccessoriesPfSearchConfiguration ; reels-and-accessories-pf       ;                              
                                                  
@@ -1544,7 +1617,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalReelsAndAccessoriesPfProductWeightWaterAsFacet                       ; amB2CGlobalReelsAndAccessoriesPfSearchConfiguration   ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalReelsAndAccessoriesPfProductWeightWaterAsFacet                       
                       ; amB2CGlobalReelsAndAccessoriesPfWarrantyAntennaAsFacet                          ; amB2CGlobalReelsAndAccessoriesPfSearchConfiguration   ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalReelsAndAccessoriesPfWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                       ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                               
+                              ; amB2CGlobalReelsAndAccessoriesPfCategoryAsExcludedFacet ; amB2CGlobalReelsAndAccessoriesPfSearchConfiguration   ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalReelsAndAccessoriesPfCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                         ; searchProfile(code,$catalogVersion) ; uniqueIdx                                                ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalPostsPigtailsAndTreadinsPfSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalPostsPigtailsAndTreadinsPfSearchConfiguration ; posts-pigtails-and-treadins-pf ;                              
                                                  
@@ -1603,7 +1679,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalPostsPigtailsAndTreadinsPfProductWeightWaterAsFacet                       ; amB2CGlobalPostsPigtailsAndTreadinsPfSearchConfiguration ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalPostsPigtailsAndTreadinsPfProductWeightWaterAsFacet                       
                       ; amB2CGlobalPostsPigtailsAndTreadinsPfWarrantyAntennaAsFacet                          ; amB2CGlobalPostsPigtailsAndTreadinsPfSearchConfiguration ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalPostsPigtailsAndTreadinsPfWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                            ; searchConfiguration(uid,$catalogVersion)[unique=true]    ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                    
+                              ; amB2CGlobalPostsPigtailsAndTreadinsPfCategoryAsExcludedFacet ; amB2CGlobalPostsPigtailsAndTreadinsPfSearchConfiguration ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalPostsPigtailsAndTreadinsPfCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                       ; searchProfile(code,$catalogVersion) ; uniqueIdx                                              ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalAllInOnePortableFences  SearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalAllInOnePortableFences  SearchConfiguration ; all-in-one-portable-fences     ;                              
                                                  
@@ -1662,7 +1741,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalAllInOnePortableFences  ProductWeightWaterAsFacet                       ; amB2CGlobalAllInOnePortableFences  SearchConfiguration ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalAllInOnePortableFences  ProductWeightWaterAsFacet                       
                       ; amB2CGlobalAllInOnePortableFences  WarrantyAntennaAsFacet                          ; amB2CGlobalAllInOnePortableFences  SearchConfiguration ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalAllInOnePortableFences  WarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                          ; searchConfiguration(uid,$catalogVersion)[unique=true]  ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                  
+                              ; amB2CGlobalAllInOnePortableFences  CategoryAsExcludedFacet ; amB2CGlobalAllInOnePortableFences  SearchConfiguration ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalAllInOnePortableFences  CategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                ; searchProfile(code,$catalogVersion) ; uniqueIdx                                       ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalElectricFenceKitsSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalElectricFenceKitsSearchConfiguration ; electric-fence-kits            ;                              
                                                  
@@ -1721,7 +1803,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalElectricFenceKitsProductWeightWaterAsFacet                       ; amB2CGlobalElectricFenceKitsSearchConfiguration       ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalElectricFenceKitsProductWeightWaterAsFacet                       
                       ; amB2CGlobalElectricFenceKitsWarrantyAntennaAsFacet                          ; amB2CGlobalElectricFenceKitsSearchConfiguration       ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalElectricFenceKitsWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                   ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                           
+                              ; amB2CGlobalElectricFenceKitsCategoryAsExcludedFacet ; amB2CGlobalElectricFenceKitsSearchConfiguration       ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalElectricFenceKitsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                      ; searchProfile(code,$catalogVersion) ; uniqueIdx                             ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalNettingSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalNettingSearchConfiguration ; netting                        ;                              
                                                  
@@ -1780,7 +1865,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalNettingProductWeightWaterAsFacet                       ; amB2CGlobalNettingSearchConfiguration                 ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalNettingProductWeightWaterAsFacet                       
                       ; amB2CGlobalNettingWarrantyAntennaAsFacet                          ; amB2CGlobalNettingSearchConfiguration                 ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalNettingWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                         ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                 
+                              ; amB2CGlobalNettingCategoryAsExcludedFacet ; amB2CGlobalNettingSearchConfiguration                 ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalNettingCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                           ; searchProfile(code,$catalogVersion) ; uniqueIdx                                                  ; category(code,$catalogVersion)   ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalWeighScalesAndDataCollectorsSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalWeighScalesAndDataCollectorsSearchConfiguration ; weigh-scales-and-data-collectors ;                              
                                                  
@@ -1839,7 +1927,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalWeighScalesAndDataCollectorsProductWeightWaterAsFacet                       ; amB2CGlobalWeighScalesAndDataCollectorsSearchConfiguration ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalWeighScalesAndDataCollectorsProductWeightWaterAsFacet                       
                       ; amB2CGlobalWeighScalesAndDataCollectorsWarrantyAntennaAsFacet                          ; amB2CGlobalWeighScalesAndDataCollectorsSearchConfiguration ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalWeighScalesAndDataCollectorsWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                              ; searchConfiguration(uid,$catalogVersion)[unique=true]      ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                      
+                              ; amB2CGlobalWeighScalesAndDataCollectorsCategoryAsExcludedFacet ; amB2CGlobalWeighScalesAndDataCollectorsSearchConfiguration ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalWeighScalesAndDataCollectorsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                          ; searchProfile(code,$catalogVersion) ; uniqueIdx                                                 ; category(code,$catalogVersion)  ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalScaleHeadsAndDataCollectorsSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalScaleHeadsAndDataCollectorsSearchConfiguration ; scale-heads-and-data-collectors ;                              
                                                  
@@ -1898,7 +1989,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalScaleHeadsAndDataCollectorsProductWeightWaterAsFacet                       ; amB2CGlobalScaleHeadsAndDataCollectorsSearchConfiguration ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalScaleHeadsAndDataCollectorsProductWeightWaterAsFacet                       
                       ; amB2CGlobalScaleHeadsAndDataCollectorsWarrantyAntennaAsFacet                          ; amB2CGlobalScaleHeadsAndDataCollectorsSearchConfiguration ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalScaleHeadsAndDataCollectorsWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                             ; searchConfiguration(uid,$catalogVersion)[unique=true]     ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                     
+                              ; amB2CGlobalScaleHeadsAndDataCollectorsCategoryAsExcludedFacet ; amB2CGlobalScaleHeadsAndDataCollectorsSearchConfiguration ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalScaleHeadsAndDataCollectorsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                     ; searchProfile(code,$catalogVersion) ; uniqueIdx                                            ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalLoadbarsAndAccessoriesSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalLoadbarsAndAccessoriesSearchConfiguration ; loadbars-and-accessories       ;                              
                                                  
@@ -1957,7 +2051,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalLoadbarsAndAccessoriesProductWeightWaterAsFacet                       ; amB2CGlobalLoadbarsAndAccessoriesSearchConfiguration  ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalLoadbarsAndAccessoriesProductWeightWaterAsFacet                       
                       ; amB2CGlobalLoadbarsAndAccessoriesWarrantyAntennaAsFacet                          ; amB2CGlobalLoadbarsAndAccessoriesSearchConfiguration  ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalLoadbarsAndAccessoriesWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                        ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                
+                              ; amB2CGlobalLoadbarsAndAccessoriesCategoryAsExcludedFacet ; amB2CGlobalLoadbarsAndAccessoriesSearchConfiguration  ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalLoadbarsAndAccessoriesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                       ; searchProfile(code,$catalogVersion) ; uniqueIdx                              ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalLoadbarsSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalLoadbarsSearchConfiguration ; loadbars                       ;                              
                                                  
@@ -2016,7 +2113,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalLoadbarsProductWeightWaterAsFacet                       ; amB2CGlobalLoadbarsSearchConfiguration                ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalLoadbarsProductWeightWaterAsFacet                       
                       ; amB2CGlobalLoadbarsWarrantyAntennaAsFacet                          ; amB2CGlobalLoadbarsSearchConfiguration                ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalLoadbarsWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                          ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                  
+                              ; amB2CGlobalLoadbarsCategoryAsExcludedFacet ; amB2CGlobalLoadbarsSearchConfiguration                ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalLoadbarsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                        ; searchProfile(code,$catalogVersion) ; uniqueIdx                               ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalPlatformsSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalPlatformsSearchConfiguration ; platforms                      ;                              
                                                  
@@ -2075,7 +2175,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalPlatformsProductWeightWaterAsFacet                       ; amB2CGlobalPlatformsSearchConfiguration               ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalPlatformsProductWeightWaterAsFacet                       
                       ; amB2CGlobalPlatformsWarrantyAntennaAsFacet                          ; amB2CGlobalPlatformsSearchConfiguration               ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalPlatformsWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                           ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                   
+                              ; amB2CGlobalPlatformsCategoryAsExcludedFacet ; amB2CGlobalPlatformsSearchConfiguration               ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalPlatformsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                 ; searchProfile(code,$catalogVersion) ; uniqueIdx                                        ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalPlatformsAndCratesSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalPlatformsAndCratesSearchConfiguration ; platforms-and-crates           ;                              
                                                  
@@ -2134,7 +2237,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalPlatformsAndCratesProductWeightWaterAsFacet                       ; amB2CGlobalPlatformsAndCratesSearchConfiguration      ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalPlatformsAndCratesProductWeightWaterAsFacet                       
                       ; amB2CGlobalPlatformsAndCratesWarrantyAntennaAsFacet                          ; amB2CGlobalPlatformsAndCratesSearchConfiguration      ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalPlatformsAndCratesWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                    ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                            
+                              ; amB2CGlobalPlatformsAndCratesCategoryAsExcludedFacet ; amB2CGlobalPlatformsAndCratesSearchConfiguration      ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalPlatformsAndCratesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                       ; searchProfile(code,$catalogVersion) ; uniqueIdx                              ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalDraftersSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalDraftersSearchConfiguration ; drafters                       ;                              
                                                  
@@ -2193,7 +2299,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalDraftersProductWeightWaterAsFacet                       ; amB2CGlobalDraftersSearchConfiguration                ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalDraftersProductWeightWaterAsFacet                       
                       ; amB2CGlobalDraftersWarrantyAntennaAsFacet                          ; amB2CGlobalDraftersSearchConfiguration                ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalDraftersWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                          ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                  
+                              ; amB2CGlobalDraftersCategoryAsExcludedFacet ; amB2CGlobalDraftersSearchConfiguration                ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalDraftersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                            ; searchProfile(code,$catalogVersion) ; uniqueIdx                                   ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalEidTagReadersSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalEidTagReadersSearchConfiguration ; eid-tag-readers                ;                              
                                                  
@@ -2252,7 +2361,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalEidTagReadersProductWeightWaterAsFacet                       ; amB2CGlobalEidTagReadersSearchConfiguration           ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalEidTagReadersProductWeightWaterAsFacet                       
                       ; amB2CGlobalEidTagReadersWarrantyAntennaAsFacet                          ; amB2CGlobalEidTagReadersSearchConfiguration           ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalEidTagReadersWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                               ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                       
+                              ; amB2CGlobalEidTagReadersCategoryAsExcludedFacet ; amB2CGlobalEidTagReadersSearchConfiguration           ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalEidTagReadersCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                                 ; searchProfile(code,$catalogVersion) ; uniqueIdx                                                        ; category(code,$catalogVersion)          ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalEidTagReadersAndBarcodingEquipmentSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalEidTagReadersAndBarcodingEquipmentSearchConfiguration ; eid-tag-readers-and-barcoding-equipment ;                              
                                                  
@@ -2311,7 +2423,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalEidTagReadersAndBarcodingEquipmentProductWeightWaterAsFacet                       ; amB2CGlobalEidTagReadersAndBarcodingEquipmentSearchConfiguration ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalEidTagReadersAndBarcodingEquipmentProductWeightWaterAsFacet                       
                       ; amB2CGlobalEidTagReadersAndBarcodingEquipmentWarrantyAntennaAsFacet                          ; amB2CGlobalEidTagReadersAndBarcodingEquipmentSearchConfiguration ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalEidTagReadersAndBarcodingEquipmentWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                                    ; searchConfiguration(uid,$catalogVersion)[unique=true]            ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                            
+                              ; amB2CGlobalEidTagReadersAndBarcodingEquipmentCategoryAsExcludedFacet ; amB2CGlobalEidTagReadersAndBarcodingEquipmentSearchConfiguration ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalEidTagReadersAndBarcodingEquipmentCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                  ; searchProfile(code,$catalogVersion) ; uniqueIdx                                         ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalWeighingAccessoriesSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalWeighingAccessoriesSearchConfiguration ; weighing-accessories           ;                              
                                                  
@@ -2370,7 +2485,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalWeighingAccessoriesProductWeightWaterAsFacet                       ; amB2CGlobalWeighingAccessoriesSearchConfiguration     ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalWeighingAccessoriesProductWeightWaterAsFacet                       
                       ; amB2CGlobalWeighingAccessoriesWarrantyAntennaAsFacet                          ; amB2CGlobalWeighingAccessoriesSearchConfiguration     ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalWeighingAccessoriesWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                     ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                             
+                              ; amB2CGlobalWeighingAccessoriesCategoryAsExcludedFacet ; amB2CGlobalWeighingAccessoriesSearchConfiguration     ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalWeighingAccessoriesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                         ; searchProfile(code,$catalogVersion) ; uniqueIdx                                ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalStockProdsSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalStockProdsSearchConfiguration ; stock-prods                    ;                              
                                                  
@@ -2429,7 +2547,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalStockProdsProductWeightWaterAsFacet                       ; amB2CGlobalStockProdsSearchConfiguration              ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalStockProdsProductWeightWaterAsFacet                       
                       ; amB2CGlobalStockProdsWarrantyAntennaAsFacet                          ; amB2CGlobalStockProdsSearchConfiguration              ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalStockProdsWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                            ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                    
+                              ; amB2CGlobalStockProdsCategoryAsExcludedFacet ; amB2CGlobalStockProdsSearchConfiguration              ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalStockProdsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                       ; searchProfile(code,$catalogVersion) ; uniqueIdx                                              ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalStockProdsAndAccessoriesSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalStockProdsAndAccessoriesSearchConfiguration ; stock-prods-and-accessories    ;                              
                                                  
@@ -2488,7 +2609,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalStockProdsAndAccessoriesProductWeightWaterAsFacet                       ; amB2CGlobalStockProdsAndAccessoriesSearchConfiguration ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalStockProdsAndAccessoriesProductWeightWaterAsFacet                       
                       ; amB2CGlobalStockProdsAndAccessoriesWarrantyAntennaAsFacet                          ; amB2CGlobalStockProdsAndAccessoriesSearchConfiguration ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalStockProdsAndAccessoriesWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                          ; searchConfiguration(uid,$catalogVersion)[unique=true]  ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                  
+                              ; amB2CGlobalStockProdsAndAccessoriesCategoryAsExcludedFacet ; amB2CGlobalStockProdsAndAccessoriesSearchConfiguration ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalStockProdsAndAccessoriesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                 ; searchProfile(code,$catalogVersion) ; uniqueIdx                                        ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalWaterFlowIndicatorSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalWaterFlowIndicatorSearchConfiguration ; water-flow-indicator           ;                              
                                                  
@@ -2547,7 +2671,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalWaterFlowIndicatorProductWeightWaterAsFacet                       ; amB2CGlobalWaterFlowIndicatorSearchConfiguration      ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalWaterFlowIndicatorProductWeightWaterAsFacet                       
                       ; amB2CGlobalWaterFlowIndicatorWarrantyAntennaAsFacet                          ; amB2CGlobalWaterFlowIndicatorSearchConfiguration      ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalWaterFlowIndicatorWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                    ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                            
+                              ; amB2CGlobalWaterFlowIndicatorCategoryAsExcludedFacet ; amB2CGlobalWaterFlowIndicatorSearchConfiguration      ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalWaterFlowIndicatorCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                             ; searchProfile(code,$catalogVersion) ; uniqueIdx                                    ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalOneTankSystemsSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalOneTankSystemsSearchConfiguration ; one-tank-systems               ;                              
                                                  
@@ -2606,7 +2733,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalOneTankSystemsProductWeightWaterAsFacet                       ; amB2CGlobalOneTankSystemsSearchConfiguration          ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalOneTankSystemsProductWeightWaterAsFacet                       
                       ; amB2CGlobalOneTankSystemsWarrantyAntennaAsFacet                          ; amB2CGlobalOneTankSystemsSearchConfiguration          ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalOneTankSystemsWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                        
+                              ; amB2CGlobalOneTankSystemsCategoryAsExcludedFacet ; amB2CGlobalOneTankSystemsSearchConfiguration          ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalOneTankSystemsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                ; searchProfile(code,$catalogVersion) ; uniqueIdx                                       ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalAntennaeAndCablesSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalAntennaeAndCablesSearchConfiguration ; antennae-and-cables            ;                              
                                                  
@@ -2665,7 +2795,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalAntennaeAndCablesProductWeightWaterAsFacet                       ; amB2CGlobalAntennaeAndCablesSearchConfiguration       ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalAntennaeAndCablesProductWeightWaterAsFacet                       
                       ; amB2CGlobalAntennaeAndCablesWarrantyAntennaAsFacet                          ; amB2CGlobalAntennaeAndCablesSearchConfiguration       ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalAntennaeAndCablesWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                   ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                           
+                              ; amB2CGlobalAntennaeAndCablesCategoryAsExcludedFacet ; amB2CGlobalAntennaeAndCablesSearchConfiguration       ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalAntennaeAndCablesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                         ; searchProfile(code,$catalogVersion) ; uniqueIdx                                                ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalAdditionalSystemComponentsSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalAdditionalSystemComponentsSearchConfiguration ; additional-system-components   ;                              
                                                  
@@ -2724,7 +2857,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalAdditionalSystemComponentsProductWeightWaterAsFacet                       ; amB2CGlobalAdditionalSystemComponentsSearchConfiguration ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalAdditionalSystemComponentsProductWeightWaterAsFacet                       
                       ; amB2CGlobalAdditionalSystemComponentsWarrantyAntennaAsFacet                          ; amB2CGlobalAdditionalSystemComponentsSearchConfiguration ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalAdditionalSystemComponentsWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                            ; searchConfiguration(uid,$catalogVersion)[unique=true]    ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                    
+                              ; amB2CGlobalAdditionalSystemComponentsCategoryAsExcludedFacet ; amB2CGlobalAdditionalSystemComponentsSearchConfiguration ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalAdditionalSystemComponentsCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                           ; searchProfile(code,$catalogVersion) ; uniqueIdx                                  ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalTroughValvesSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalTroughValvesSearchConfiguration ; trough-valves                  ;                              
                                                  
@@ -2783,7 +2919,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalTroughValvesProductWeightWaterAsFacet                       ; amB2CGlobalTroughValvesSearchConfiguration            ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalTroughValvesProductWeightWaterAsFacet                       
                       ; amB2CGlobalTroughValvesWarrantyAntennaAsFacet                          ; amB2CGlobalTroughValvesSearchConfiguration            ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalTroughValvesWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                              ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                      
+                              ; amB2CGlobalTroughValvesCategoryAsExcludedFacet ; amB2CGlobalTroughValvesSearchConfiguration            ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalTroughValvesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                        ; searchProfile(code,$catalogVersion) ; uniqueIdx                               ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalLilSpringSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalLilSpringSearchConfiguration ; lil-spring                     ;                              
                                                  
@@ -2842,7 +2981,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalLilSpringProductWeightWaterAsFacet                       ; amB2CGlobalLilSpringSearchConfiguration               ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalLilSpringProductWeightWaterAsFacet                       
                       ; amB2CGlobalLilSpringWarrantyAntennaAsFacet                          ; amB2CGlobalLilSpringSearchConfiguration               ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalLilSpringWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                           ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                   
+                              ; amB2CGlobalLilSpringCategoryAsExcludedFacet ; amB2CGlobalLilSpringSearchConfiguration               ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalLilSpringCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                        ; searchProfile(code,$catalogVersion) ; uniqueIdx                               ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalEquiFountSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalEquiFountSearchConfiguration ; equi-fount                     ;                              
                                                  
@@ -2901,7 +3043,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalEquiFountProductWeightWaterAsFacet                       ; amB2CGlobalEquiFountSearchConfiguration               ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalEquiFountProductWeightWaterAsFacet                       
                       ; amB2CGlobalEquiFountWarrantyAntennaAsFacet                          ; amB2CGlobalEquiFountSearchConfiguration               ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalEquiFountWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                           ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                   
+                              ; amB2CGlobalEquiFountCategoryAsExcludedFacet ; amB2CGlobalEquiFountSearchConfiguration               ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalEquiFountCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                        ; searchProfile(code,$catalogVersion) ; uniqueIdx                               ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalMiraFountSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalMiraFountSearchConfiguration ; mira-fount                     ;                              
                                                  
@@ -2960,7 +3105,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalMiraFountProductWeightWaterAsFacet                       ; amB2CGlobalMiraFountSearchConfiguration               ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalMiraFountProductWeightWaterAsFacet                       
                       ; amB2CGlobalMiraFountWarrantyAntennaAsFacet                          ; amB2CGlobalMiraFountSearchConfiguration               ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalMiraFountWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                           ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                   
+                              ; amB2CGlobalMiraFountCategoryAsExcludedFacet ; amB2CGlobalMiraFountSearchConfiguration               ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalMiraFountCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                     ; searchProfile(code,$catalogVersion) ; uniqueIdx                            ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalEFountSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalEFountSearchConfiguration ; e-fount                        ;                              
                                                  
@@ -3019,7 +3167,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalEFountProductWeightWaterAsFacet                       ; amB2CGlobalEFountSearchConfiguration                  ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalEFountProductWeightWaterAsFacet                       
                       ; amB2CGlobalEFountWarrantyAntennaAsFacet                          ; amB2CGlobalEFountSearchConfiguration                  ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalEFountWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                        ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                
+                              ; amB2CGlobalEFountCategoryAsExcludedFacet ; amB2CGlobalEFountSearchConfiguration                  ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalEFountCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                        ; searchProfile(code,$catalogVersion) ; uniqueIdx                               ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalBigSpringSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalBigSpringSearchConfiguration ; big-spring                     ;                              
                                                  
@@ -3078,7 +3229,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalBigSpringProductWeightWaterAsFacet                       ; amB2CGlobalBigSpringSearchConfiguration               ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalBigSpringProductWeightWaterAsFacet                       
                       ; amB2CGlobalBigSpringWarrantyAntennaAsFacet                          ; amB2CGlobalBigSpringSearchConfiguration               ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalBigSpringWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                           ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                   
+                              ; amB2CGlobalBigSpringCategoryAsExcludedFacet ; amB2CGlobalBigSpringSearchConfiguration               ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalBigSpringCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                       ; searchProfile(code,$catalogVersion) ; uniqueIdx                              ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalPetTanksSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalPetTanksSearchConfiguration ; pet-tanks                      ;                              
                                                  
@@ -3137,7 +3291,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalPetTanksProductWeightWaterAsFacet                       ; amB2CGlobalPetTanksSearchConfiguration                ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalPetTanksProductWeightWaterAsFacet                       
                       ; amB2CGlobalPetTanksWarrantyAntennaAsFacet                          ; amB2CGlobalPetTanksSearchConfiguration                ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalPetTanksWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                          ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                  
+                              ; amB2CGlobalPetTanksCategoryAsExcludedFacet ; amB2CGlobalPetTanksSearchConfiguration                ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalPetTanksCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                                  ; searchProfile(code,$catalogVersion) ; uniqueIdx                                         ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalWateringAccessoriesSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalWateringAccessoriesSearchConfiguration ; watering-accessories           ;                              
                                                  
@@ -3196,7 +3353,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalWateringAccessoriesProductWeightWaterAsFacet                       ; amB2CGlobalWateringAccessoriesSearchConfiguration     ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalWateringAccessoriesProductWeightWaterAsFacet                       
                       ; amB2CGlobalWateringAccessoriesWarrantyAntennaAsFacet                          ; amB2CGlobalWateringAccessoriesSearchConfiguration     ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalWateringAccessoriesWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                     ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                             
+                              ; amB2CGlobalWateringAccessoriesCategoryAsExcludedFacet ; amB2CGlobalWateringAccessoriesSearchConfiguration     ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalWateringAccessoriesCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                        ; searchProfile(code,$catalogVersion) ; uniqueIdx                               ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalLivestockSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalLivestockSearchConfiguration ; livestock                      ;                              
                                                  
@@ -3255,7 +3415,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalLivestockProductWeightWaterAsFacet                       ; amB2CGlobalLivestockSearchConfiguration               ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalLivestockProductWeightWaterAsFacet                       
                       ; amB2CGlobalLivestockWarrantyAntennaAsFacet                          ; amB2CGlobalLivestockSearchConfiguration               ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalLivestockWarrantyAntennaAsFacet                          
                       
-                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                           ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                   
+                              ; amB2CGlobalLivestockCategoryAsExcludedFacet ; amB2CGlobalLivestockSearchConfiguration               ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalLivestockCategoryAsExcludedFacet 
+                              
+                              
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                    ; searchProfile(code,$catalogVersion) ; uniqueIdx                           ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CGlobalFenceSearchConfiguration ; amB2CGlobalSearchProfile            ; amB2CGlobalFenceSearchConfiguration ; fence                          ;                              
                                                  
@@ -3313,3 +3476,6 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalFenceProductTypeAsFacet                              ; amB2CGlobalFenceSearchConfiguration                   ; Product Type                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalFenceProductTypeAsFacet                              
                       ; amB2CGlobalFenceProductWeightWaterAsFacet                       ; amB2CGlobalFenceSearchConfiguration                   ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalFenceProductWeightWaterAsFacet                       
                       ; amB2CGlobalFenceWarrantyAntennaAsFacet                          ; amB2CGlobalFenceSearchConfiguration                   ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalFenceWarrantyAntennaAsFacet                          
+                      
+INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                       ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                               
+                              ; amB2CGlobalFenceCategoryAsExcludedFacet ; amB2CGlobalFenceSearchConfiguration                   ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalFenceCategoryAsExcludedFacet 

@@ -6,6 +6,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="nav" tagdir="/WEB-INF/tags/responsive/nav"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
+<spring:theme code="search.nav.facetTitle.new"/>
 <c:forEach items="${pageData.facets}" var="facet" varStatus="i">
 	<c:choose>
 		<c:when test="${facet.code eq 'availableInStores'}">
