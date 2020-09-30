@@ -99,6 +99,11 @@ public class CoreSystemSetup extends AbstractSystemSetup
 			//			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-722_LatAm.impex");
 			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-722_NZ.impex");
 			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-722_US.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-723_AU.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-723_CA.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-723_Global.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-723_NZ.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-723_US.impex");
 		}
 
 	}
