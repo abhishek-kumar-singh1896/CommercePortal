@@ -38,7 +38,7 @@
                             <ul class="slides">
                                 <li class="selected">
                                     <div class="selcted-text">Selected</div>
-                                    <c:if test = "${not empty product.promoSticker}">
+                                    <c:if test = "${not empty product.promoSticker and fn:containsIgnoreCase(product.promoSticker, 'NEW')}">
                                      	<div class="product-status">
 											<img src="${commonResourcePath}/images/${fn:toLowerCase(product.promoSticker)}.svg" />
 										</div>
@@ -96,7 +96,7 @@
                                 </li>
 								<c:forEach items="${comparisonProductList}" var="compareProduct">
                                 <li>
-                                    <c:if test = "${not empty compareProduct.productData.promoSticker}">
+                                    <c:if test = "${not empty compareProduct.productData.promoSticker  and fn:containsIgnoreCase(product.promoSticker, 'NEW')}">
                                      	<div class="product-status">
 											<img src="${commonResourcePath}/images/${fn:toLowerCase(product.promoSticker)}.svg" />
 										</div>
