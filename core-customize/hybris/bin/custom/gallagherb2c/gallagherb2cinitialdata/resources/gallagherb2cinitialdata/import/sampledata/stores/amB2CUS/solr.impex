@@ -147,83 +147,8 @@ INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; n
                                   ; $solrIndexedType                         ; Use (Fence)                                  ;                            ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; false   ; commerceClassificationPropertyValueProvider ;                         ; fence-tools-and-accessories:::use::::                               
                                   
                                   
-UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$solrIndexedType] ; name[unique=true]                            ; facetDisplayNameProvider            
-                           ;                                                                   ; Energy Stored                                ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                                   ; Typical Fence Distance                       ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                                   ; Clean Wire Fence Distance                    ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                                   ; i Series Compatible (Energizers)             ; facetUnitBooleanDisplayNameProvider 
-                           ;                                                                   ; Outdoors Suitable                            ; facetUnitBooleanDisplayNameProvider 
-                           ;                                                                   ; Property Size                                ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                                   ; Power Input                                  ;                                     
-                           ;                                                                   ; Watts                                        ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                                   ; Voltage                                      ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                                   ; DC Input                                     ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                                   ; Capacity                                     ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                                   ; Current                                      ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                                   ; Digital Display                              ; facetUnitBooleanDisplayNameProvider 
-                           ;                                                                   ; i Series Compatible (Remotes)                ; facetUnitBooleanDisplayNameProvider 
-                           ;                                                                   ; i Series Compatible (Power)                  ; facetUnitBooleanDisplayNameProvider 
-                           ;                                                                   ; Gear Ratio                                   ;                                     
-                           ;                                                                   ; Conductor Capacity                           ;                                     
-                           ;                                                                   ; Pre-wound with                               ;                                     
-                           ;                                                                   ; Ohms Per Km (Tensile)                        ;                                     
-                           ;                                                                   ; Voltage at 2km of fence                      ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                                   ; Voltage at 5km of fence                      ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                                   ; Voltage at 10km of fence                     ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                                   ; Voltage at 500m of fence                     ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                                   ; Voltage at 1km of fence                      ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                                   ; Mixed Metals                                 ;                                     
-                           ;                                                                   ; Ohms Per Km (Tapes)                          ;                                     
-                           ;                                                                   ; Length (Tapes)                               ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                                   ; Wire Amount                                  ;                                     
-                           ;                                                                   ; Post Height (Posts)                          ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                                   ; Number of Traits Recorded                    ;                                     
-                           ;                                                                   ; EID Compatiable                              ; facetUnitBooleanDisplayNameProvider 
-                           ;                                                                   ; Drafting                                     ; facetUnitBooleanDisplayNameProvider 
-                           ;                                                                   ; Intergrated EID Reader                       ; facetUnitBooleanDisplayNameProvider 
-                           ;                                                                   ; Compatible with Gallagher Livestock (Scales) ; facetUnitBooleanDisplayNameProvider 
-                           ;                                                                   ; View Pedigree Tree                           ; facetUnitBooleanDisplayNameProvider 
-                           ;                                                                   ; Use (Loadbars)                               ;                                     
-                           ;                                                                   ; Weighing Capacity (Loadbars)                 ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                                   ; Weighing Capacity (Platforms)                ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                                   ; Product Type                                 ;                                     
-                           ;                                                                   ; Compatible with Gallagher Livestock (EID)    ; facetUnitBooleanDisplayNameProvider 
-                           ;                                                                   ; Rechargeable                                 ; facetUnitBooleanDisplayNameProvider 
-                           ;                                                                   ; Product Features (Trough)                    ;                                     
-                           ;                                                                   ; Capacity(L) (Trough)                         ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                                   ; Product Features (Spring)                    ;                                     
-                           ;                                                                   ; Capacity(L) (Spring)                         ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                                   ; Product Features (EQUI)                      ;                                     
-                           ;                                                                   ; Capacity(L) (EQUI)                           ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                                   ; Product Features (Mira)                      ;                                     
-                           ;                                                                   ; Capacity(L) (Mira)                           ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                                   ; Product Features (E)                         ;                                     
-                           ;                                                                   ; Capacity(L) (E)                              ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                                   ; Product Features (BIG)                       ;                                     
-                           ;                                                                   ; Capacity(L) (BIG)                            ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                                   ; Product Features (PET)                       ;                                     
-                           ;                                                                   ; Capacity(L) (PET)                            ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                                   ; Product Features (Watering)                  ;                                     
-                           ;                                                                   ; Capacity(L) (Watering)                       ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                                   ; Post Height (Pigtails)                       ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                                   ; Number of Wires                              ;                                     
-                           ;                                                                   ; Strainer Type                                ;                                     
-                           ;                                                                   ; Includes Joint Clamp                         ; facetUnitBooleanDisplayNameProvider 
-                           ;                                                                   ; Warranty (Strainers)                         ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                                   ; Post Type (Insulators)                       ;                                     
-                           ;                                                                   ; Insulator Type                               ;                                     
-                           ;                                                                   ; Wire Diameter                                ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                                   ; Warranty (Insulators)                        ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                                   ; Product Weight (Insulators)                  ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                                   ; Post Type (Offsets)                          ;                                     
-                           ;                                                                   ; Product Length (Offsets)                     ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                                   ; Mount Type                                   ;                                     
-                           ;                                                                   ; Gate Type                                    ;                                     
-                           ;                                                                   ; Length (Gates)                               ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                                   ; Use (Fence)                                  ;                                     
-                           ;                                                                   ; animalCompatibility                          ;                                     
-                           
-                           
+                                  
+                                  
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true]         ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                                                                                                      
                                 ; TypicalFenceDistanceRange ;           ; double ; rangeTypicalFenceDistance1,rangeTypicalFenceDistance2,rangeTypicalFenceDistance3,rangeTypicalFenceDistance4,rangeTypicalFenceDistance5 
                                 
@@ -368,80 +293,158 @@ UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[uni
 UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; rangeSets(name) 
                            
                            
-#INSERT_UPDATE SolrSearchQueryProperty; indexedProperty(name, solrIndexedType(identifier))[unique=true]; facet[default=true]; facetType(code) ; priority; facetDisplayNameProvider; facetSortProvider; facetTopValuesProvider; includeInResponse[default=true]; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType]
-#                          ; Use (Fence) :$solrIndexedType            ;                   ; MultiSelectOr   ; 1000; ; sizeAttributeSortProvider; ; ; 
-#                          ; Post Height (Pigtails):$solrIndexedType  ;                   ; MultiSelectOr   ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Number of Wires :$solrIndexedType        ;                   ; MultiSelectOr   ; 1000; ; sizeAttributeSortProvider; ; ; 
-#                          ; Strainer Type :$solrIndexedType          ;                   ; MultiSelectOr   ; 1000; ; sizeAttributeSortProvider; ; ; 
-#                          ; Includes Joint Clamp:$solrIndexedType    ;                   ; MultiSelectOr   ; 1000; ; ; ; ; 
-#                          ; Warranty (Strainers):$solrIndexedType    ;                   ; MultiSelectOr   ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Post Type (Insulators) :$solrIndexedType ;                   ; MultiSelectOr   ; 1000; ; sizeAttributeSortProvider; ; ; 
-#                          ; Insulator Type:$solrIndexedType          ;                   ; MultiSelectOr   ; 1000; ; sizeAttributeSortProvider; ; ; 
-#                          ; Wire Diameter :$solrIndexedType          ;                   ; MultiSelectOr   ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Warranty (Insulators):$solrIndexedType   ;                   ; MultiSelectOr   ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Product Weight (Insulators):$solrIndexedType;                   ; MultiSelectOr   ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Post Type (Offsets) :$solrIndexedType    ;                   ; MultiSelectOr   ; 1000; ; sizeAttributeSortProvider; ; ; 
-#                          ; Mount Type  :$solrIndexedType            ;                   ; MultiSelectOr   ; 1000; ; sizeAttributeSortProvider; ; ; 
-#                          ; Product Length (Offsets) :$solrIndexedType;                   ; MultiSelectOr   ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Gate Type  :$solrIndexedType             ;                   ; MultiSelectOr   ; 1000; ; sizeAttributeSortProvider; ; ; 
-#                          ; Length (Gates)   :$solrIndexedType       ;                   ; MultiSelectOr   ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Use (Fence) :$solrIndexedType            ;                   ; MultiSelectOr   ; 1000; ; sizeAttributeSortProvider; ; ; 
-#                          ; Energy Stored:$solrIndexedType           ;                   ; MultiSelectOr   ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Typical Fence Distance:$solrIndexedType  ;                   ; MultiSelectOr   ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Clean Wire Fence Distance:$solrIndexedType;                   ; MultiSelectOr   ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; i Series Compatible (Energizers):$solrIndexedType;                   ; MultiSelectOr   ; 1000; ; ; ; ; 
-#                          ; Outdoors Suitable:$solrIndexedType       ;                   ; MultiSelectOr   ; 1000; ; ; ; ; 
-#                          ; Property Size:$solrIndexedType           ;                   ; MultiSelectOr   ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Power Input:$solrIndexedType             ;                   ; MultiSelectOr   ; 1000; ; sizeAttributeSortProvider; ; ; 
-#                          ; Watts:$solrIndexedType                   ;                   ; MultiSelectOr   ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Voltage:$solrIndexedType                 ;                   ; MultiSelectOr   ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; DC Input:$solrIndexedType                ;                   ; MultiSelectOr   ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Capacity:$solrIndexedType                ;                   ; MultiSelectOr   ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Current:$solrIndexedType                 ;                   ; MultiSelectOr   ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Digital Display:$solrIndexedType         ;                   ; MultiSelectOr   ; 1000; ; ; ; ; 
-#                          ; i Series Compatible (Remotes):$solrIndexedType;                   ; MultiSelectOr   ; 1000; ; ; ; ; 
-#                          ; i Series Compatible (Power):$solrIndexedType;                   ; MultiSelectOr   ; 1000; ; ; ; ; 
-#                          ; Gear Ratio :$solrIndexedType             ;                   ; MultiSelectOr   ; 1000; ; sizeAttributeSortProvider; ; ; 
-#                          ; Conductor Capacity :$solrIndexedType     ;                   ; MultiSelectOr   ; 1000; ; sizeAttributeSortProvider; ; ; 
-#                          ; Pre-wound with :$solrIndexedType         ;                   ; MultiSelectOr   ; 1000; ; sizeAttributeSortProvider; ; ; 
-#                          ; Voltage at 2km of fence:$solrIndexedType ;                   ; MultiSelectOr   ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Voltage at 5km of fence:$solrIndexedType ;                   ; MultiSelectOr   ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Ohms Per Km (Tensile):$solrIndexedType   ;                   ; MultiSelectOr   ; 1000; ; sizeAttributeSortProvider; ; ; 
-#                          ; Voltage at 10km of fence:$solrIndexedType;                   ; MultiSelectOr   ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Voltage at 500m of fence  :$solrIndexedType;                   ; MultiSelectOr   ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Voltage at 1km of fence  :$solrIndexedType;                   ; MultiSelectOr   ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Mixed Metals  :$solrIndexedType          ;                   ; MultiSelectOr   ; 1000; ; sizeAttributeSortProvider; ; ; 
-#                          ; Ohms Per Km (Tapes) :$solrIndexedType    ;                   ; MultiSelectOr   ; 1000; ; sizeAttributeSortProvider; ; ; 
-#                          ; Length (Tapes):$solrIndexedType          ;                   ; MultiSelectOr   ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Fence  Type  :$solrIndexedType           ;                   ; MultiSelectOr   ; 1000; ; sizeAttributeSortProvider; ; ; 
-#                          ; Wire Amount  :$solrIndexedType           ;                   ; MultiSelectOr   ; 1000; ; sizeAttributeSortProvider; ; ; 
-#                          ; Post Height (Posts):$solrIndexedType     ;                   ; MultiSelectOr   ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Number of Traits Recorded   :$solrIndexedType;                   ; MultiSelectOr   ; 1000; ; sizeAttributeSortProvider; ; ; 
-#                          ; EID Compatiable   :$solrIndexedType      ;                   ; MultiSelectOr   ; 1000; ; ; ; ; 
-#                          ; Drafting  :$solrIndexedType              ;                   ; MultiSelectOr   ; 1000; ; ; ; ; 
-#                          ; Intergrated EID Reader  :$solrIndexedType;                   ; MultiSelectOr   ; 1000; ; ; ; ; 
-#                          ; Compatible with Gallagher Livestock (Scales)  :$solrIndexedType;                   ; MultiSelectOr   ; 1000; ; ; ; ; 
-#                          ; View Pedigree Tree  :$solrIndexedType    ;                   ; MultiSelectOr   ; 1000; ; ; ; ; 
-#                          ; Use (Loadbars)  :$solrIndexedType        ;                   ; MultiSelectOr   ; 1000; ; sizeAttributeSortProvider; ; ; 
-#                          ; Weighing Capacity (Loadbars)  :$solrIndexedType;                   ; MultiSelectOr   ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Weighing Capacity (Platforms)  :$solrIndexedType;                   ; MultiSelectOr   ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Product Type   :$solrIndexedType         ;                   ; MultiSelectOr   ; 1000; ; sizeAttributeSortProvider; ; ; 
-#                          ; Compatible with Gallagher Livestock (EID)  :$solrIndexedType;                   ; MultiSelectOr   ; 1000; ; ; ; ; 
-#                          ; Rechargeable   :$solrIndexedType         ;                   ; MultiSelectOr   ; 1000; ; ; ; ; 
-#                          ; Product Features (Trough)  :$solrIndexedType;                   ; MultiSelectOr   ; 1000; ; sizeAttributeSortProvider; ; ; 
-#                          ; Capacity(L) (Trough) :$solrIndexedType   ;                   ; MultiSelectOr   ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Product Features (Spring)  :$solrIndexedType;                   ; MultiSelectOr   ; 1000; ; sizeAttributeSortProvider; ; ; 
-#                          ; Capacity(L) (Spring)  :$solrIndexedType  ;                   ; MultiSelectOr   ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Product Features (EQUI)  :$solrIndexedType;                   ; MultiSelectOr   ; 1000; ; sizeAttributeSortProvider; ; ; 
-#                          ; Capacity(L) (EQUI)  :$solrIndexedType    ;                   ; MultiSelectOr   ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Product Features (Mira)  :$solrIndexedType;                   ; MultiSelectOr   ; 1000; ; sizeAttributeSortProvider; ; ; 
-#                          ; Capacity(L) (Mira) :$solrIndexedType     ;                   ; MultiSelectOr   ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Product Features (E)  :$solrIndexedType  ;                   ; MultiSelectOr   ; 1000; ; sizeAttributeSortProvider; ; ; 
-#                          ; Capacity(L) (E)  :$solrIndexedType       ;                   ; MultiSelectOr   ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Product Features (BIG)  :$solrIndexedType;                   ; MultiSelectOr   ; 1000; ; sizeAttributeSortProvider; ; ; 
-#                          ; Capacity(L) (BIG) :$solrIndexedType      ;                   ; MultiSelectOr   ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Product Features (PET) :$solrIndexedType ;                   ; MultiSelectOr   ; 1000; ; sizeAttributeSortProvider; ; ; 
-#                          ; Capacity(L) (PET)  :$solrIndexedType     ;                   ; MultiSelectOr   ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Product Features (Watering)  :$solrIndexedType;                   ; MultiSelectOr   ; 1000; ; sizeAttributeSortProvider; ; ; 
-#                          ; Capacity(L) (Watering)  :$solrIndexedType;                   ; MultiSelectOr   ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; animalCompatibility:$solrIndexedType     ;                   ; MultiSelectOr   ; 1000; ; ; ; ; 
+#INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetSortProvider           ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
+#                                      ; Use (Fence) :$solrIndexedType                                   ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+#                                      ; Post Height (Pigtails):$solrIndexedType                         ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Number of Wires :$solrIndexedType                               ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+#                                      ; Strainer Type :$solrIndexedType                                 ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+#                                      ; Includes Joint Clamp:$solrIndexedType                           ;                     ; MultiSelectOr   ; 1000     ;                             ;                        ;                                 ;                                                                                                   
+#                                      ; Warranty (Strainers):$solrIndexedType                           ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Post Type (Insulators) :$solrIndexedType                        ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+#                                      ; Insulator Type:$solrIndexedType                                 ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+#                                      ; Wire Diameter :$solrIndexedType                                 ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Warranty (Insulators):$solrIndexedType                          ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Product Weight (Insulators):$solrIndexedType                    ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Post Type (Offsets) :$solrIndexedType                           ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+#                                      ; Mount Type  :$solrIndexedType                                   ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+#                                      ; Product Length (Offsets) :$solrIndexedType                      ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Gate Type  :$solrIndexedType                                    ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+#                                      ; Length (Gates)   :$solrIndexedType                              ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Use (Fence) :$solrIndexedType                                   ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+#                                      ; Energy Stored:$solrIndexedType                                  ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Typical Fence Distance:$solrIndexedType                         ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Clean Wire Fence Distance:$solrIndexedType                      ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; i Series Compatible (Energizers):$solrIndexedType               ;                     ; MultiSelectOr   ; 1000     ;                             ;                        ;                                 ;                                                                                                   
+#                                      ; Outdoors Suitable:$solrIndexedType                              ;                     ; MultiSelectOr   ; 1000     ;                             ;                        ;                                 ;                                                                                                   
+#                                      ; Property Size:$solrIndexedType                                  ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Power Input:$solrIndexedType                                    ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+#                                      ; Watts:$solrIndexedType                                          ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Voltage:$solrIndexedType                                        ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; DC Input:$solrIndexedType                                       ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Capacity:$solrIndexedType                                       ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Current:$solrIndexedType                                        ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Digital Display:$solrIndexedType                                ;                     ; MultiSelectOr   ; 1000     ;                             ;                        ;                                 ;                                                                                                   
+#                                      ; i Series Compatible (Remotes):$solrIndexedType                  ;                     ; MultiSelectOr   ; 1000     ;                             ;                        ;                                 ;                                                                                                   
+#                                      ; i Series Compatible (Power):$solrIndexedType                    ;                     ; MultiSelectOr   ; 1000     ;                             ;                        ;                                 ;                                                                                                   
+#                                      ; Gear Ratio :$solrIndexedType                                    ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+#                                      ; Conductor Capacity :$solrIndexedType                            ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+#                                      ; Pre-wound with :$solrIndexedType                                ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+#                                      ; Voltage at 2km of fence:$solrIndexedType                        ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Voltage at 5km of fence:$solrIndexedType                        ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Ohms Per Km (Tensile):$solrIndexedType                          ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+#                                      ; Voltage at 10km of fence:$solrIndexedType                       ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Voltage at 500m of fence  :$solrIndexedType                     ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Voltage at 1km of fence  :$solrIndexedType                      ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Mixed Metals  :$solrIndexedType                                 ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+#                                      ; Ohms Per Km (Tapes) :$solrIndexedType                           ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+#                                      ; Length (Tapes):$solrIndexedType                                 ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Fence  Type  :$solrIndexedType                                  ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+#                                      ; Wire Amount  :$solrIndexedType                                  ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+#                                      ; Post Height (Posts):$solrIndexedType                            ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Number of Traits Recorded   :$solrIndexedType                   ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+#                                      ; EID Compatiable   :$solrIndexedType                             ;                     ; MultiSelectOr   ; 1000     ;                             ;                        ;                                 ;                                                                                                   
+#                                      ; Drafting  :$solrIndexedType                                     ;                     ; MultiSelectOr   ; 1000     ;                             ;                        ;                                 ;                                                                                                   
+#                                      ; Intergrated EID Reader  :$solrIndexedType                       ;                     ; MultiSelectOr   ; 1000     ;                             ;                        ;                                 ;                                                                                                   
+#                                      ; Compatible with Gallagher Livestock (Scales)  :$solrIndexedType ;                     ; MultiSelectOr   ; 1000     ;                             ;                        ;                                 ;                                                                                                   
+#                                      ; View Pedigree Tree  :$solrIndexedType                           ;                     ; MultiSelectOr   ; 1000     ;                             ;                        ;                                 ;                                                                                                   
+#                                      ; Use (Loadbars)  :$solrIndexedType                               ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+#                                      ; Weighing Capacity (Loadbars)  :$solrIndexedType                 ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Weighing Capacity (Platforms)  :$solrIndexedType                ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Product Type   :$solrIndexedType                                ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+#                                      ; Compatible with Gallagher Livestock (EID)  :$solrIndexedType    ;                     ; MultiSelectOr   ; 1000     ;                             ;                        ;                                 ;                                                                                                   
+#                                      ; Rechargeable   :$solrIndexedType                                ;                     ; MultiSelectOr   ; 1000     ;                             ;                        ;                                 ;                                                                                                   
+#                                      ; Product Features (Trough)  :$solrIndexedType                    ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+#                                      ; Capacity(L) (Trough) :$solrIndexedType                          ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Product Features (Spring)  :$solrIndexedType                    ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+#                                      ; Capacity(L) (Spring)  :$solrIndexedType                         ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Product Features (EQUI)  :$solrIndexedType                      ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+#                                      ; Capacity(L) (EQUI)  :$solrIndexedType                           ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Product Features (Mira)  :$solrIndexedType                      ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+#                                      ; Capacity(L) (Mira) :$solrIndexedType                            ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Product Features (E)  :$solrIndexedType                         ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+#                                      ; Capacity(L) (E)  :$solrIndexedType                              ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Product Features (BIG)  :$solrIndexedType                       ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+#                                      ; Capacity(L) (BIG) :$solrIndexedType                             ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Product Features (PET) :$solrIndexedType                        ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+#                                      ; Capacity(L) (PET)  :$solrIndexedType                            ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Product Features (Watering)  :$solrIndexedType                  ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+#                                      ; Capacity(L) (Watering)  :$solrIndexedType                       ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; animalCompatibility:$solrIndexedType                            ;                     ; MultiSelectOr   ; 1000     ;                             ;                        ;                                 ;                                                                                                   
+                                      
+                                      
+#UPDATE  SolrSearchQueryProperty ; indexedProperty(solrIndexedType(identifier),name)[unique=true] ; facetDisplayNameProvider            
+#                                ; $solrIndexedType :Energy Stored                                ; facetUnitSuffixDisplayNameProvider  
+#                                ; $solrIndexedType :Typical Fence Distance                       ; facetUnitSuffixDisplayNameProvider  
+#                                ; $solrIndexedType :Clean Wire Fence Distance                    ; facetUnitSuffixDisplayNameProvider  
+#                                ; $solrIndexedType :i Series Compatible (Energizers)             ; facetUnitBooleanDisplayNameProvider 
+#                                ; $solrIndexedType :Outdoors Suitable                            ; facetUnitBooleanDisplayNameProvider 
+#                                ; $solrIndexedType :Property Size                                ; facetUnitSuffixDisplayNameProvider  
+#                                ; $solrIndexedType :Power Input                                  ;                                     
+#                                ; $solrIndexedType :Watts                                        ; facetUnitSuffixDisplayNameProvider  
+#                                ; $solrIndexedType :Voltage                                      ; facetUnitSuffixDisplayNameProvider  
+#                                ; $solrIndexedType :DC Input                                     ; facetUnitSuffixDisplayNameProvider  
+#                                ; $solrIndexedType :Capacity                                     ; facetUnitSuffixDisplayNameProvider  
+#                                ; $solrIndexedType :Current                                      ; facetUnitSuffixDisplayNameProvider  
+#                                ; $solrIndexedType :Digital Display                              ; facetUnitBooleanDisplayNameProvider 
+#                                ; $solrIndexedType :i Series Compatible (Remotes)                ; facetUnitBooleanDisplayNameProvider 
+#                                ; $solrIndexedType :i Series Compatible (Power)                  ; facetUnitBooleanDisplayNameProvider 
+#                                ; $solrIndexedType :Gear Ratio                                   ;                                     
+#                                ; $solrIndexedType :Conductor Capacity                           ;                                     
+#                                ; $solrIndexedType :Pre-wound with                               ;                                     
+#                                ; $solrIndexedType :Ohms Per Km (Tensile)                        ;                                     
+#                                ; $solrIndexedType :Voltage at 2km of fence                      ; facetUnitSuffixDisplayNameProvider  
+#                                ; $solrIndexedType :Voltage at 5km of fence                      ; facetUnitSuffixDisplayNameProvider  
+#                                ; $solrIndexedType :Voltage at 10km of fence                     ; facetUnitSuffixDisplayNameProvider  
+#                                ; $solrIndexedType :Voltage at 500m of fence                     ; facetUnitSuffixDisplayNameProvider  
+#                                ; $solrIndexedType :Voltage at 1km of fence                      ; facetUnitSuffixDisplayNameProvider  
+#                                ; $solrIndexedType :Mixed Metals                                 ;                                     
+#                                ; $solrIndexedType :Ohms Per Km (Tapes)                          ;                                     
+#                                ; $solrIndexedType :Length (Tapes)                               ; facetUnitSuffixDisplayNameProvider  
+#                                ; $solrIndexedType :Wire Amount                                  ;                                     
+#                                ; $solrIndexedType :Post Height (Posts)                          ; facetUnitSuffixDisplayNameProvider  
+#                                ; $solrIndexedType :Number of Traits Recorded                    ;                                     
+#                                ; $solrIndexedType :EID Compatiable                              ; facetUnitBooleanDisplayNameProvider 
+#                                ; $solrIndexedType :Drafting                                     ; facetUnitBooleanDisplayNameProvider 
+#                                ; $solrIndexedType :Intergrated EID Reader                       ; facetUnitBooleanDisplayNameProvider 
+#                                ; $solrIndexedType :Compatible with Gallagher Livestock (Scales) ; facetUnitBooleanDisplayNameProvider 
+#                                ; $solrIndexedType :View Pedigree Tree                           ; facetUnitBooleanDisplayNameProvider 
+#                                ; $solrIndexedType :Use (Loadbars)                               ;                                     
+#                                ; $solrIndexedType :Weighing Capacity (Loadbars)                 ; facetUnitSuffixDisplayNameProvider  
+#                                ; $solrIndexedType :Weighing Capacity (Platforms)                ; facetUnitSuffixDisplayNameProvider  
+#                                ; $solrIndexedType :Product Type                                 ;                                     
+#                                ; $solrIndexedType :Compatible with Gallagher Livestock (EID)    ; facetUnitBooleanDisplayNameProvider 
+#                                ; $solrIndexedType :Rechargeable                                 ; facetUnitBooleanDisplayNameProvider 
+#                                ; $solrIndexedType :Product Features (Trough)                    ;                                     
+#                                ; $solrIndexedType :Capacity(L) (Trough)                         ; facetUnitSuffixDisplayNameProvider  
+#                                ; $solrIndexedType :Product Features (Spring)                    ;                                     
+#                                ; $solrIndexedType :Capacity(L) (Spring)                         ; facetUnitSuffixDisplayNameProvider  
+#                                ; $solrIndexedType :Product Features (EQUI)                      ;                                     
+#                                ; $solrIndexedType :Capacity(L) (EQUI)                           ; facetUnitSuffixDisplayNameProvider  
+#                                ; $solrIndexedType :Product Features (Mira)                      ;                                     
+#                                ; $solrIndexedType :Capacity(L) (Mira)                           ; facetUnitSuffixDisplayNameProvider  
+#                                ; $solrIndexedType :Product Features (E)                         ;                                     
+#                                ; $solrIndexedType :Capacity(L) (E)                              ; facetUnitSuffixDisplayNameProvider  
+#                                ; $solrIndexedType :Product Features (BIG)                       ;                                     
+#                                ; $solrIndexedType :Capacity(L) (BIG)                            ; facetUnitSuffixDisplayNameProvider  
+#                                ; $solrIndexedType :Product Features (PET)                       ;                                     
+#                                ; $solrIndexedType :Capacity(L) (PET)                            ; facetUnitSuffixDisplayNameProvider  
+#                                ; $solrIndexedType :Product Features (Watering)                  ;                                     
+#                                ; $solrIndexedType :Capacity(L) (Watering)                       ; facetUnitSuffixDisplayNameProvider  
+#                                ; $solrIndexedType :Post Height (Pigtails)                       ; facetUnitSuffixDisplayNameProvider  
+#                                ; $solrIndexedType :Number of Wires                              ;                                     
+#                                ; $solrIndexedType :Strainer Type                                ;                                     
+#                                ; $solrIndexedType :Includes Joint Clamp                         ; facetUnitBooleanDisplayNameProvider 
+#                                ; $solrIndexedType :Warranty (Strainers)                         ; facetUnitSuffixDisplayNameProvider  
+#                                ; $solrIndexedType :Post Type (Insulators)                       ;                                     
+#                                ; $solrIndexedType :Insulator Type                               ;                                     
+#                                ; $solrIndexedType :Wire Diameter                                ; facetUnitSuffixDisplayNameProvider  
+#                                ; $solrIndexedType :Warranty (Insulators)                        ; facetUnitSuffixDisplayNameProvider  
+#                                ; $solrIndexedType :Product Weight (Insulators)                  ; facetUnitSuffixDisplayNameProvider  
+#                                ; $solrIndexedType :Post Type (Offsets)                          ;                                     
+#                                ; $solrIndexedType :Product Length (Offsets)                     ; facetUnitSuffixDisplayNameProvider  
+#                                ; $solrIndexedType :Mount Type                                   ;                                     
+#                                ; $solrIndexedType :Gate Type                                    ;                                     
+#                                ; $solrIndexedType :Length (Gates)                               ; facetUnitSuffixDisplayNameProvider  
+#                                ; $solrIndexedType :Use (Fence)                                  ;                                     
+#                                ; $solrIndexedType :animalCompatibility                          ;                                     
+                                

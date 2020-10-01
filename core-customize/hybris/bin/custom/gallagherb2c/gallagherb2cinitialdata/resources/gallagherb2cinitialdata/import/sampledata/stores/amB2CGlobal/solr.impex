@@ -64,84 +64,30 @@ INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; n
                                   ; $solrIndexedType                         ; Warranty (Antenna)                            ; int                        ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; false   ; commerceClassificationPropertyValueProvider ;                         ;                 ; antennae-and-cables:::warranty::::                               
                                   
                                   
-UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$solrIndexedType] ; name[unique=true]                             ; facetDisplayNameProvider            
-                           ;                                                               ; Energy Stored                                 ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Multiwire Distance (Gallagher Recommendation) ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; i Series Compatible (Energizers)              ; facetUnitBooleanDisplayNameProvider 
-                           ;                                                               ; Outdoors Suitable                             ; facetUnitBooleanDisplayNameProvider 
-                           ;                                                               ; Property Size                                 ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Power Input                                   ;                                     
-                           ;                                                               ; Watts                                         ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Voltage                                       ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; DC Input                                      ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Capacity                                      ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Current                                       ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Warranty (Remotes)                            ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Product Height (Remotes)                      ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Product Height (Power)                        ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Diameter or Tape Width (Wire)                 ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Ohms Per Km (Wire)                            ;                                     
-                           ;                                                               ; Warranty (Wire)                               ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Product Width (Posts)                         ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Product Weight (Posts)                        ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Product Depth (Strainers)                     ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Product Weight (Strainers)                    ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Product Width (Insulators)                    ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Product Weight (Insulators)                   ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Product Depth (Insulators)                    ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Post Type                                     ;                                     
-                           ;                                                               ; Warranty (Electric Gates)                     ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Gate Type                                     ;                                     
-                           ;                                                               ; Product Height (Fence)                        ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Product Width (Fence)                         ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Diameter or Tape Width (Tapes)                ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Product Weight (Tapes)                        ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Pre-wound with                                ;                                     
-                           ;                                                               ; Warranty (Reels)                              ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Product-Height (Reels)                        ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Wire Amount                                   ;                                     
-                           ;                                                               ; Height (Posts)                                ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Warranty (Posts)                              ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Warranty (Portable)                           ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Product Width (Portable)                      ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Product Depth (Portable)                      ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Product Depth (Gates)                         ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Wifi                                          ; facetUnitBooleanDisplayNameProvider 
-                           ;                                                               ; Number of Traits Recorded                     ;                                     
-                           ;                                                               ; Product-Height (Scales)                       ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Product-Weight (Loadbars)                     ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Weighing Capacity (Platforms)                 ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Product Width (Platforms)                     ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Product Weight (Platforms)                    ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Product Type                                  ;                                     
-                           ;                                                               ; Product Weight (Water)                        ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; Warranty (Antenna)                            ; facetUnitSuffixDisplayNameProvider  
-                           ;                                                               ; animalCompatibility                           ;                                     
-                           ;                                                               ; Product Height (Platforms)                    ; facetUnitSuffixDisplayNameProvider  
-
+                                  
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true]      ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                                                                                                               
                                 ; MultiwireDistanceRange ;           ; double ; rangeMultiwireDistance1,rangeMultiwireDistance2,rangeMultiwireDistance3,rangeMultiwireDistance4,rangeMultiwireDistance5,rangeMultiwireDistance6 
                                 
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID        ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to     
-                             ; rangeMultiwireDistance1 ; MultiwireDistanceRange               ; 1 - 5 km       ; 1    ; 4.999  
-                             ; rangeMultiwireDistance2 ; MultiwireDistanceRange               ; 6 - 10 km      ; 6    ; 9.999  
-                             ; rangeMultiwireDistance3 ; MultiwireDistanceRange               ; 11 - 20 km     ; 11   ; 20.999 
-                             ; rangeMultiwireDistance4 ; MultiwireDistanceRange               ; 21 - 30 km     ; 21   ; 30.999 
-                             ; rangeMultiwireDistance5 ; MultiwireDistanceRange               ; 31 - 40 km     ; 31   ; 40.999 
-                             ; rangeMultiwireDistance6 ; MultiwireDistanceRange               ; 41 - 50 km     ; 41   ; 50     
+                             ; rangeMultiwireDistance1 ; MultiwireDistanceRange               ; 1 - 5 km          ; 1    ; 4.999  
+                             ; rangeMultiwireDistance2 ; MultiwireDistanceRange               ; 6 - 10 km         ; 6    ; 9.999  
+                             ; rangeMultiwireDistance3 ; MultiwireDistanceRange               ; 11 - 20 km        ; 11   ; 20.999 
+                             ; rangeMultiwireDistance4 ; MultiwireDistanceRange               ; 21 - 30 km        ; 21   ; 30.999 
+                             ; rangeMultiwireDistance5 ; MultiwireDistanceRange               ; 31 - 40 km        ; 31   ; 40.999 
+                             ; rangeMultiwireDistance6 ; MultiwireDistanceRange               ; 41 - 50 km        ; 41   ; 50     
                              
-                          
+                             
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true]         ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                                                                       
                                 ; PropertySizeHectaresRange ;           ; double ; rangePropertySizeHectare1,rangePropertySizeHectare2,rangePropertySizeHectare3,rangePropertySizeHectare4 
                                 
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID          ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to      
-                             ; rangePropertySizeHectare1 ; PropertySizeHectaresRange            ; 1 - 10 Hectares   ; 1   ; 10.999  
+                             ; rangePropertySizeHectare1 ; PropertySizeHectaresRange            ; 1 - 10 Hectares   ; 1    ; 10.999  
                              ; rangePropertySizeHectare2 ; PropertySizeHectaresRange            ; 11 - 50 Hectares  ; 11   ; 50.999  
                              ; rangePropertySizeHectare3 ; PropertySizeHectaresRange            ; 51 - 100 Hectares ; 51   ; 100.999 
-                             ; rangePropertySizeHectare4 ; PropertySizeHectaresRange            ; 101+ Hectares     ; 101  ; 1000 
+                             ; rangePropertySizeHectare4 ; PropertySizeHectaresRange            ; 101+ Hectares     ; 101  ; 1000    
                              
-
-                           
+                             
+                             
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true] ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                                                              
                                 ; EnergyStoredRange ;           ; double ; rangeEnergyStored1,rangeEnergyStored2,rangeEnergyStored3,rangeEnergyStored4,rangeEnergyStored5 
                                 
@@ -151,9 +97,9 @@ INSERT_UPDATE SolrValueRange ; &rangeValueRefID   ; solrValueRangeSet(name)[uniq
                              ; rangeEnergyStored3 ; EnergyStoredRange                    ; 11 - 20 Joules    ; 11   ; 20.999 
                              ; rangeEnergyStored4 ; EnergyStoredRange                    ; 21 - 50 Joules    ; 21   ; 50.999 
                              ; rangeEnergyStored5 ; EnergyStoredRange                    ; 51 - 100 Joules   ; 51   ; 100    
-                                                      
-
-                           
+                             
+                             
+                             
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true] ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)   
                                 ; Voltage500mRange  ;           ; double ; rangeVoltage500m1,rangeVoltage500m2 
                                 
@@ -161,16 +107,16 @@ INSERT_UPDATE SolrValueRange ; &rangeValueRefID  ; solrValueRangeSet(name)[uniqu
                              ; rangeVoltage500m1 ; Voltage500mRange                     ; 1.5kv - 3.6kv     ; 1.5  ; 3.6999 
                              ; rangeVoltage500m2 ; Voltage500mRange                     ; 3.7kv - 7.6kv     ; 3.7  ; 7.6    
                              
-                        
+                             
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true] ; qualifier ; type   ; solrValueRanges(&rangeValueRefID) 
                                 ; Voltage1kmRange   ;           ; double ; rangeVoltage1km1,rangeVoltage1km2 
                                 
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to     
                              ; rangeVoltage1km1 ; Voltage1kmRange                      ; 0.8kv - 2.4kv     ; 0.8  ; 2.4999 
                              ; rangeVoltage1km2 ; Voltage1kmRange                      ; 2.5kv - 7.2kv     ; 2.5  ; 7.2    
-                                                    
-
-                           
+                             
+                             
+                             
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true] ; qualifier ; type   ; solrValueRanges(&rangeValueRefID) 
                                 ; Voltage2kmRange   ;           ; double ; rangeVoltage2km1,rangeVoltage2km2 
                                 
@@ -178,7 +124,7 @@ INSERT_UPDATE SolrValueRange ; &rangeValueRefID ; solrValueRangeSet(name)[unique
                              ; rangeVoltage2km1 ; Voltage2kmRange                      ; 4.2kv - 6kv       ; 4.2  ; 6.0999 
                              ; rangeVoltage2km2 ; Voltage2kmRange                      ; 6.1kv - 7.5kv     ; 6.1  ; 7.5    
                              
-                           
+                             
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true] ; qualifier ; type   ; solrValueRanges(&rangeValueRefID) 
                                 ; Voltage5kmRange   ;           ; double ; rangeVoltage5km1,rangeVoltage5km2 
                                 
@@ -186,8 +132,8 @@ INSERT_UPDATE SolrValueRange ; &rangeValueRefID ; solrValueRangeSet(name)[unique
                              ; rangeVoltage5km1 ; Voltage5kmRange                      ; 2.4kv - 4.6kv     ; 2.4  ; 4.6999 
                              ; rangeVoltage5km2 ; Voltage5kmRange                      ; 4.7kv - 6.8kv     ; 4.7  ; 6.8    
                              
-
-                           
+                             
+                             
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true] ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)   
                                 ; Voltage10kmRange  ;           ; double ; rangeVoltage10km1,rangeVoltage10km2 
                                 
@@ -195,8 +141,8 @@ INSERT_UPDATE SolrValueRange ; &rangeValueRefID  ; solrValueRangeSet(name)[uniqu
                              ; rangeVoltage10km1 ; Voltage10kmRange                     ; 1.4kv - 3.3kv     ; 1.4  ; 3.3999 
                              ; rangeVoltage10km2 ; Voltage10kmRange                     ; 3.4kv - 6.0kv     ; 3.4  ; 6      
                              
-
-
+                             
+                             
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true]   ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)         
                                 ; OhmsPerKmTapesRange ;           ; double ; rangeOhmsPerKmTapes1,rangeOhmsPerKmTapes2 
                                 
@@ -204,8 +150,8 @@ INSERT_UPDATE SolrValueRange ; &rangeValueRefID     ; solrValueRangeSet(name)[un
                              ; rangeOhmsPerKmTapes1 ; OhmsPerKmTapesRange                  ; 110 - 239         ; 110  ; 239.999 
                              ; rangeOhmsPerKmTapes2 ; OhmsPerKmTapesRange                  ; 240-8500          ; 240  ; 8500    
                              
-
-                           
+                             
+                             
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true]          ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                       
                                 ; OhmsPerKmWireAndCableRange ;           ; double ; rangeOhmsPerKmWireAndCable1,rangeOhmsPerKmWireAndCable2 
                                 
@@ -213,7 +159,7 @@ INSERT_UPDATE SolrValueRange ; &rangeValueRefID            ; solrValueRangeSet(n
                              ; rangeOhmsPerKmWireAndCable1 ; OhmsPerKmWireAndCableRange           ; 2.5-11.5          ; 2.5  ; 11.999 
                              ; rangeOhmsPerKmWireAndCable2 ; OhmsPerKmWireAndCableRange           ; 12-35             ; 12   ; 35     
                              
-                          
+                             
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true]   ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                              
                                 ; NumberOfTraitsRange ;           ; double ; rangeNumberOfTraits1,rangeNumberOfTraits2,rangeNumberOfTraits3 
                                 
@@ -222,74 +168,130 @@ INSERT_UPDATE SolrValueRange ; &rangeValueRefID     ; solrValueRangeSet(name)[un
                              ; rangeNumberOfTraits2 ; NumberOfTraitsRange                  ; 4-6               ; 4    ; 6  
                              ; rangeNumberOfTraits3 ; NumberOfTraitsRange                  ; 7-9               ; 7    ; 9  
                              
-UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]                             ; rangeSets(name)        
-                           ; $solrIndexedType                         ; Multiwire Distance (Gallagher Recommendation) ; MultiwireDistanceRange 
-                           ; $solrIndexedType                         ; Property Size     ; PropertySizeHectaresRange 
-                           ; $solrIndexedType                         ; Energy Stored     ; EnergyStoredRange 
-                           ; $solrIndexedType                         ; Voltage at 500m of fence ; Voltage500mRange 
-                           ; $solrIndexedType                         ; Voltage at 1km of fence ; Voltage1kmRange 
-                           ; $solrIndexedType                         ; Voltage at 2km of fence ; Voltage2kmRange 
-                           ; $solrIndexedType                         ; Voltage at 5km of fence ; Voltage5kmRange 
-                           ; $solrIndexedType                         ; Voltage at 10km of fence ; Voltage10kmRange 
-                           ; $solrIndexedType                         ; Ohms Per Km (Tapes) ; OhmsPerKmTapesRange 
-                           ; $solrIndexedType                         ; Ohms Per Km (Tensile) ; OhmsPerKmWireAndCableRange 
-                           ; $solrIndexedType                         ; Number of Traits Recorded ; NumberOfTraitsRange                    
+UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]                             ; rangeSets(name)            
+                           ; $solrIndexedType                         ; Multiwire Distance (Gallagher Recommendation) ; MultiwireDistanceRange     
+                           ; $solrIndexedType                         ; Property Size                                 ; PropertySizeHectaresRange  
+                           ; $solrIndexedType                         ; Energy Stored                                 ; EnergyStoredRange          
+                           ; $solrIndexedType                         ; Voltage at 500m of fence                      ; Voltage500mRange           
+                           ; $solrIndexedType                         ; Voltage at 1km of fence                       ; Voltage1kmRange            
+                           ; $solrIndexedType                         ; Voltage at 2km of fence                       ; Voltage2kmRange            
+                           ; $solrIndexedType                         ; Voltage at 5km of fence                       ; Voltage5kmRange            
+                           ; $solrIndexedType                         ; Voltage at 10km of fence                      ; Voltage10kmRange           
+                           ; $solrIndexedType                         ; Ohms Per Km (Tapes)                           ; OhmsPerKmTapesRange        
+                           ; $solrIndexedType                         ; Ohms Per Km (Tensile)                         ; OhmsPerKmWireAndCableRange 
+                           ; $solrIndexedType                         ; Number of Traits Recorded                     ; NumberOfTraitsRange        
                            
                            
-#INSERT_UPDATE SolrSearchQueryProperty; indexedProperty(name, solrIndexedType(identifier))[unique=true]; facet[default=true]                           ; facetType(code)                     ; priority; facetDisplayNameProvider; facetSortProvider; facetTopValuesProvider; includeInResponse[default=true]; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType]
-#                          ; Energy Stored:$solrIndexedType                                ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Multiwire Distance (Gallagher Recommendation):$solrIndexedType;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; i Series Compatible (Energizers):$solrIndexedType             ;                                               ; MultiSelectOr                       ; 1000; ; ; ; ; 
-#                          ; Outdoors Suitable:$solrIndexedType                            ;                                               ; MultiSelectOr                       ; 1000; ; ; ; ; 
-#                          ; Property Size:$solrIndexedType                                ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Power Input:$solrIndexedType                                  ;                                               ; MultiSelectOr                       ; 1000; ; sizeAttributeSortProvider; ; ; 
-#                          ; Watts:$solrIndexedType                                        ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Voltage:$solrIndexedType                                      ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; DC Input:$solrIndexedType                                     ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Capacity:$solrIndexedType                                     ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Current:$solrIndexedType                                      ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Warranty (Remotes):$solrIndexedType                           ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Product Height (Remotes) :$solrIndexedType                    ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Product Height (Power) :$solrIndexedType                      ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Diameter or Tape Width (Wire):$solrIndexedType                ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Ohms Per Km (Wire):$solrIndexedType                           ;                                               ; MultiSelectOr                       ; 1000; ; sizeAttributeSortProvider; ; ; 
-#                          ; Warranty (Wire):$solrIndexedType                              ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Product Width (Posts)  :$solrIndexedType                      ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Product Weight (Posts)  :$solrIndexedType                     ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Product Depth (Strainers):$solrIndexedType                    ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Product Weight (Strainers):$solrIndexedType                   ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Product Width (Insulators):$solrIndexedType                   ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Product Weight (Insulators):$solrIndexedType                  ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Product Depth (Insulators):$solrIndexedType                   ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Warranty (Electric Gates):$solrIndexedType                    ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Warranty (Wire) :$solrIndexedType                             ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Product Height (Fence):$solrIndexedType                       ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Product Width (Fence):$solrIndexedType                        ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Diameter or Tape Width (Tapes):$solrIndexedType               ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Product Weight (Tapes):$solrIndexedType                       ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Warranty (Reels):$solrIndexedType                             ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Product-Height (Reels):$solrIndexedType                       ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Height (Posts):$solrIndexedType                               ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Warranty (Posts):$solrIndexedType                             ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Warranty (Portable):$solrIndexedType                          ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Product Width (Portable):$solrIndexedType                     ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Product Depth (Portable):$solrIndexedType                     ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Product Depth (Gates):$solrIndexedType                        ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Product-Height (Scales):$solrIndexedType                      ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Product-Weight (Loadbars):$solrIndexedType                    ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Weighing Capacity (Platforms):$solrIndexedType                ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Warranty (Antenna)   :$solrIndexedType                        ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Product Weight (Water):$solrIndexedType                       ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Product Height (Platforms):$solrIndexedType                   ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Post Type :$solrIndexedType                                   ;                                               ; MultiSelectOr                       ; 1000; ; ; ; ; 
-#                          ; Gate Type:$solrIndexedType                                    ;                                               ; MultiSelectOr                       ; 1000; ; ; ; ; 
-#                          ; Product Height (Remotes) :$solrIndexedType                    ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Pre-wound with   :$solrIndexedType                            ;                                               ; MultiSelectOr                       ; 1000; ; sizeAttributeSortProvider; ; ; 
-#                          ; Wire Amount  :$solrIndexedType                                ;                                               ; MultiSelectOr                       ; 1000; ; sizeAttributeSortProvider; ; ; 
-#                          ; Product Width (Platforms)  :$solrIndexedType                  ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Product Weight (Platforms) :$solrIndexedType                  ;                                               ; MultiSelectOr                       ; 1000; ; numericFacetSortProviderAsc; ; ; 
-#                          ; Product Type :$solrIndexedType                                ;                                               ; MultiSelectOr                       ; 1000; ; sizeAttributeSortProvider; ; ; 
-#                          ; Wifi  :$solrIndexedType                                       ;                                               ; MultiSelectOr                       ; 1000; ; ; ; ; 
-#                          ; Number of Traits Recorded   :$solrIndexedType                 ;                                               ; MultiSelectOr                       ; 1000; ; sizeAttributeSortProvider; ; ; 
-#                          ; animalCompatibility:$solrIndexedType                          ;                                               ; MultiSelectOr                       ; 1000; ; ; ; ; 
-                           
+#INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetSortProvider           ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
+#                                      ; Energy Stored:$solrIndexedType                                  ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Multiwire Distance (Gallagher Recommendation):$solrIndexedType  ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; i Series Compatible (Energizers):$solrIndexedType               ;                     ; MultiSelectOr   ; 1000     ;                             ;                        ;                                 ;                                                                                                   
+#                                      ; Outdoors Suitable:$solrIndexedType                              ;                     ; MultiSelectOr   ; 1000     ;                             ;                        ;                                 ;                                                                                                   
+#                                      ; Property Size:$solrIndexedType                                  ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Power Input:$solrIndexedType                                    ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+#                                      ; Watts:$solrIndexedType                                          ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Voltage:$solrIndexedType                                        ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; DC Input:$solrIndexedType                                       ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Capacity:$solrIndexedType                                       ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Current:$solrIndexedType                                        ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Warranty (Remotes):$solrIndexedType                             ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Product Height (Remotes) :$solrIndexedType                      ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Product Height (Power) :$solrIndexedType                        ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Diameter or Tape Width (Wire):$solrIndexedType                  ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Ohms Per Km (Wire):$solrIndexedType                             ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+#                                      ; Warranty (Wire):$solrIndexedType                                ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Product Width (Posts)  :$solrIndexedType                        ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Product Weight (Posts)  :$solrIndexedType                       ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Product Depth (Strainers):$solrIndexedType                      ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Product Weight (Strainers):$solrIndexedType                     ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Product Width (Insulators):$solrIndexedType                     ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Product Weight (Insulators):$solrIndexedType                    ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Product Depth (Insulators):$solrIndexedType                     ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Warranty (Electric Gates):$solrIndexedType                      ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Warranty (Wire) :$solrIndexedType                               ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Product Height (Fence):$solrIndexedType                         ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Product Width (Fence):$solrIndexedType                          ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Diameter or Tape Width (Tapes):$solrIndexedType                 ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Product Weight (Tapes):$solrIndexedType                         ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Warranty (Reels):$solrIndexedType                               ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Product-Height (Reels):$solrIndexedType                         ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Height (Posts):$solrIndexedType                                 ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Warranty (Posts):$solrIndexedType                               ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Warranty (Portable):$solrIndexedType                            ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Product Width (Portable):$solrIndexedType                       ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Product Depth (Portable):$solrIndexedType                       ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Product Depth (Gates):$solrIndexedType                          ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Product-Height (Scales):$solrIndexedType                        ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Product-Weight (Loadbars):$solrIndexedType                      ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Weighing Capacity (Platforms):$solrIndexedType                  ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Warranty (Antenna)   :$solrIndexedType                          ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Product Weight (Water):$solrIndexedType                         ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Product Height (Platforms):$solrIndexedType                     ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Post Type :$solrIndexedType                                     ;                     ; MultiSelectOr   ; 1000     ;                             ;                        ;                                 ;                                                                                                   
+#                                      ; Gate Type:$solrIndexedType                                      ;                     ; MultiSelectOr   ; 1000     ;                             ;                        ;                                 ;                                                                                                   
+#                                      ; Product Height (Remotes) :$solrIndexedType                      ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Pre-wound with   :$solrIndexedType                              ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+#                                      ; Wire Amount  :$solrIndexedType                                  ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+#                                      ; Product Width (Platforms)  :$solrIndexedType                    ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Product Weight (Platforms) :$solrIndexedType                    ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+#                                      ; Product Type :$solrIndexedType                                  ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+#                                      ; Wifi  :$solrIndexedType                                         ;                     ; MultiSelectOr   ; 1000     ;                             ;                        ;                                 ;                                                                                                   
+#                                      ; Number of Traits Recorded   :$solrIndexedType                   ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+#                                      ; animalCompatibility:$solrIndexedType                            ;                     ; MultiSelectOr   ; 1000     ;                             ;                        ;                                 ;                                                                                                   
+
+                                      
+#UPDATE SolrSearchQueryProperty ; indexedProperty(solrIndexedType(identifier),name)[unique=true]  ; facetDisplayNameProvider            
+#                               ; $solrIndexedType: Energy Stored                                 ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Multiwire Distance (Gallagher Recommendation) ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: i Series Compatible (Energizers)              ; facetUnitBooleanDisplayNameProvider 
+#                               ; $solrIndexedType: Outdoors Suitable                             ; facetUnitBooleanDisplayNameProvider 
+#                               ; $solrIndexedType: Property Size                                 ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Power Input                                   ;                                     
+#                               ; $solrIndexedType: Watts                                         ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Voltage                                       ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: DC Input                                      ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Capacity                                      ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Current                                       ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Warranty (Remotes)                            ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Product Height (Remotes)                      ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Product Height (Power)                        ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Diameter or Tape Width (Wire)                 ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Ohms Per Km (Wire)                            ;                                     
+#                               ; $solrIndexedType: Warranty (Wire)                               ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Product Width (Posts)                         ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Product Weight (Posts)                        ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Product Depth (Strainers)                     ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Product Weight (Strainers)                    ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Product Width (Insulators)                    ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Product Weight (Insulators)                   ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Product Depth (Insulators)                    ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Post Type                                     ;                                     
+#                               ; $solrIndexedType: Warranty (Electric Gates)                     ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Gate Type                                     ;                                     
+#                               ; $solrIndexedType: Product Height (Fence)                        ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Product Width (Fence)                         ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Diameter or Tape Width (Tapes)                ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Product Weight (Tapes)                        ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Pre-wound with                                ;                                     
+#                               ; $solrIndexedType: Warranty (Reels)                              ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Product-Height (Reels)                        ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Wire Amount                                   ;                                     
+#                               ; $solrIndexedType: Height (Posts)                                ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Warranty (Posts)                              ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Warranty (Portable)                           ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Product Width (Portable)                      ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Product Depth (Portable)                      ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Product Depth (Gates)                         ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Wifi                                          ; facetUnitBooleanDisplayNameProvider 
+#                               ; $solrIndexedType: Number of Traits Recorded                     ;                                     
+#                               ; $solrIndexedType: Product-Height (Scales)                       ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Product-Weight (Loadbars)                     ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Weighing Capacity (Platforms)                 ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Product Width (Platforms)                     ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Product Weight (Platforms)                    ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Product Type                                  ;                                     
+#                               ; $solrIndexedType: Product Weight (Water)                        ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: Warranty (Antenna)                            ; facetUnitSuffixDisplayNameProvider  
+#                               ; $solrIndexedType: animalCompatibility                           ;                                     
+#                               ; $solrIndexedType: Product Height (Platforms)                    ; facetUnitSuffixDisplayNameProvider  
+                               
