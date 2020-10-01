@@ -35,6 +35,7 @@ import de.hybris.platform.commercefacades.order.data.OrderEntryData;
 import de.hybris.platform.commercefacades.product.ProductFacade;
 import de.hybris.platform.commercefacades.product.ProductOption;
 import de.hybris.platform.commercefacades.product.data.ProductData;
+import de.hybris.platform.commercefacades.product.data.PromotionResultData;
 import de.hybris.platform.commercefacades.quote.data.QuoteData;
 import de.hybris.platform.commercefacades.voucher.VoucherFacade;
 import de.hybris.platform.commercefacades.voucher.exceptions.VoucherOperationException;
@@ -50,8 +51,10 @@ import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -147,6 +150,21 @@ public class CartPageController extends AbstractCartPageController
 
 	protected String prepareCartUrl(final Model model) throws CMSItemNotFoundException
 	{
+		if (voucherCheck().size() > 0)
+		{
+			for (final String str : voucherCheck())
+			{
+				try
+				{
+					voucherFacade.releaseVoucher(str);
+				}
+				catch (final VoucherOperationException e)
+				{
+					LOG.info("Voucher " + str + " is removed beacause it is no more applicable for cart.", e);
+				}
+			}
+		}
+
 		final Optional<String> quoteEditUrl = getQuoteUrl();
 		if (quoteEditUrl.isPresent())
 		{
@@ -538,22 +556,20 @@ public class CartPageController extends AbstractCartPageController
 			}
 			else
 			{
-				final CartData cartData = cartFacade.getSessionCartWithEntryOrdering(false);
-				final int voucherCount = cartData.getAppliedVouchers().size();
-				final int promotionCount = cartData.getAppliedOrderPromotions().size()
-						+ cartData.getAppliedProductPromotions().size();
-				if (voucherCount == promotionCount)
-				{
-					redirectAttributes.addFlashAttribute("successMsg",
-							getMessageSource().getMessage("text.voucher.apply.applied.success", new Object[]
-							{ form.getVoucherCode() }, getI18nService().getCurrentLocale()));
-				}
-				else
+				voucherFacade.applyVoucher(form.getVoucherCode().toUpperCase());
+
+				if (voucherCheck().contains(form.getVoucherCode().toUpperCase()))
 				{
 					voucherFacade.releaseVoucher(form.getVoucherCode().toUpperCase());
 					redirectAttributes.addFlashAttribute(VOUCHER_FORM, form);
 					redirectAttributes.addFlashAttribute("errorMsg",
 							getMessageSource().getMessage("text.voucher.not.applicable.for.cart", new Object[]
+							{ form.getVoucherCode() }, getI18nService().getCurrentLocale()));
+				}
+				else
+				{
+					redirectAttributes.addFlashAttribute("successMsg",
+							getMessageSource().getMessage("text.voucher.apply.applied.success", new Object[]
 							{ form.getVoucherCode() }, getI18nService().getCurrentLocale()));
 				}
 			}
@@ -573,6 +589,46 @@ public class CartPageController extends AbstractCartPageController
 		}
 
 		return REDIRECT_CART_URL;
+	}
+
+	public Set<String> voucherCheck()
+	{
+		final Set<String> errorVoucherSet = new HashSet<>();
+		final CartData cartData = cartFacade.getSessionCartWithEntryOrdering(false);
+		if (null != cartData && null != cartData.getAppliedVouchers() && null != cartData.getAppliedOrderPromotions()
+				&& null != cartData.getAppliedProductPromotions())
+		{
+			final int voucherCount = cartData.getAppliedVouchers().size();
+			final int promotionCount = cartData.getAppliedOrderPromotions().size() + cartData.getAppliedProductPromotions().size();
+			if (voucherCount > 0)
+			{
+				final Set<String> voucherSet = new HashSet<>();
+				final Set<PromotionResultData> promoSet = new HashSet<>();
+				final Set<String> promotionSet = new HashSet<>();
+				for (String voucher : cartData.getAppliedVouchers())
+				{
+					if (voucher.contains("-"))
+					{
+						voucher = voucher.substring(0, voucher.indexOf("-") - 1);
+					}
+					voucherSet.add(voucher.toUpperCase());
+				}
+				promoSet.addAll(cartData.getAppliedOrderPromotions());
+				promoSet.addAll(cartData.getAppliedProductPromotions());
+				for (final PromotionResultData promo : promoSet)
+				{
+					promotionSet.add(promo.getPromotionData().getCode().toUpperCase());
+				}
+				for (final String str : voucherSet)
+				{
+					if (!promotionSet.contains(str))
+					{
+						errorVoucherSet.add(str);
+					}
+				}
+			}
+		}
+		return errorVoucherSet;
 	}
 
 	@RequestMapping(value = "/voucher/remove", method = RequestMethod.POST)
