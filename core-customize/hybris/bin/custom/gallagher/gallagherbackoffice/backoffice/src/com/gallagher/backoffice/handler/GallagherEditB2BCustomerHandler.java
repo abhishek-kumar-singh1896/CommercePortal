@@ -25,7 +25,6 @@ import org.apache.log4j.Logger;
 
 import com.gallagher.c4c.outboundservices.facade.GallagherC4COutboundServiceFacade;
 import com.gallagher.keycloak.outboundservices.service.GallagherKeycloakService;
-import com.hybris.backoffice.widgets.notificationarea.event.NotificationEvent.Level;
 import com.hybris.cockpitng.dataaccess.context.Context;
 import com.hybris.cockpitng.dataaccess.context.impl.DefaultContext;
 import com.hybris.cockpitng.dataaccess.facades.object.ObjectFacade;
@@ -78,7 +77,7 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 
 				if (BooleanUtils.isFalse(isEmailValid))
 				{
-					getNotificationService().notifyUser(StringUtils.EMPTY, EMAIL_ALREADY_PRESENT, Level.FAILURE, null);
+					/* getNotificationService().notifyUser(StringUtils.EMPTY, EMAIL_ALREADY_PRESENT, Level.FAILURE, null); */
 					throw new ObjectSavingException(email, EMAIL_ALREADY_PRESENT, new Throwable(KEY_CLOAK_ID_EXISTS));
 				}
 
