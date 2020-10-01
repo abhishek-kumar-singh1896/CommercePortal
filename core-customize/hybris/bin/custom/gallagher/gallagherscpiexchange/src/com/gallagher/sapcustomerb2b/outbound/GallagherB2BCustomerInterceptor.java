@@ -8,6 +8,8 @@ import de.hybris.platform.b2b.model.B2BUnitModel;
 import de.hybris.platform.core.model.security.PrincipalGroupModel;
 import de.hybris.platform.servicelayer.interceptor.InterceptorContext;
 import de.hybris.platform.servicelayer.interceptor.InterceptorException;
+import de.hybris.platform.servicelayer.internal.model.impl.ModelValueHistory;
+import de.hybris.platform.servicelayer.model.ItemModelContextImpl;
 import de.hybris.platform.servicelayer.user.UserService;
 
 import java.time.ZoneId;
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 
 import javax.annotation.Resource;
 
@@ -82,7 +85,13 @@ public class GallagherB2BCustomerInterceptor extends DefaultB2BCustomerIntercept
 		{
 			LOGGER.info("Interceptor called!");
 			//getting the groups from the old version
-			final B2BCustomerModel userDBCopy = userService.getUserForUID(customerModel.getUid(), B2BCustomerModel.class);
+			final ItemModelContextImpl context = (ItemModelContextImpl) customerModel.getItemModelContext();
+			final ModelValueHistory history = context.getValueHistory();
+			final boolean isChanged = !Objects.equals(customerModel.getProperty(B2BCustomerModel.UID),
+					history.getOriginalValue(B2BCustomerModel.UID));
+			final String customerUid = isChanged ? (String) history.getOriginalValue(B2BCustomerModel.UID) : customerModel.getUid();
+
+			final B2BCustomerModel userDBCopy = userService.getUserForUID(customerUid, B2BCustomerModel.class);
 
 
 			//getting the groups from the new version
