@@ -174,3 +174,10 @@ INSERT_UPDATE IntegrationObjectItemAttribute ; integrationObjectItem(integration
                                              ; OutboundOMMOrderOMSOrder:SAPCpiOutboundPriceComponent               ; totalAmt                     ; SAPCpiOutboundPriceComponent:totalAmt               ;                                                            ;                         
                                              ; OutboundOMMOrderOMSOrder:SAPCpiOutboundAddress                      ; taxJurCode                   ; SAPCpiOutboundAddress: taxJurCode                   ;                                                            ;                         
                                              
+#************************
+#*** Inbound B2BUnit ****
+#************************
+
+INSERT_UPDATE IntegrationObjectItemAttribute; integrationObjectItem(integrationObject(code), code)[unique = true]; attributeName[unique = true]; attributeDescriptor(enclosingType(code), qualifier); returnIntegrationObjectItem(integrationObject(code), code); unique[default = false]; autoCreate[default = false] 
+; InboundB2BUnit:B2BUnit          	; transactional                	; B2BUnit:transactional                	;                                  	; 	;  
+                                             
