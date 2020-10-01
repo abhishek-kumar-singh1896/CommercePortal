@@ -217,9 +217,10 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 				customer.setUid(c4cCustomer.getEmail());
 				updated = true;
 			}
-			if (customer.isLoginDisabled() != c4cCustomer.getLoginDisabled())
+			if (StringUtils.isNotEmpty(c4cCustomer.getStatusCode()) && c4cCustomer.getStatusCode().equalsIgnoreCase("4")
+					&& !customer.isLoginDisabled())
 			{
-				customer.setLoginDisabled(c4cCustomer.getLoginDisabled());
+				customer.setLoginDisabled(true);
 				updated = true;
 			}
 			if (updated)
@@ -230,7 +231,7 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 				customerData.setKeycloakGUID(customer.getKeycloakGUID());
 				customerData.setFirstName(c4cCustomer.getFirstName());
 				customerData.setLastName(c4cCustomer.getLastName());
-				customerData.setLoginDisabled(c4cCustomer.getLoginDisabled());
+				customerData.setLoginDisabled(customer.isLoginDisabled());
 				/*
 				 * if(customer.getBackOfficeLoginDisabled() == true) { customerData.setBackofficeLoginValue(c4c.get) }
 				 */

@@ -37,10 +37,6 @@ public class GallagherInboundCustomerEntry implements Comparable<GallagherInboun
 	@JsonProperty("AccountID")
 	private String accountID;
 
-	@JsonProperty("DisableAccount")
-	private Boolean loginDisabled;
-
-
 	private boolean duplicate;
 
 	private String emailError;
@@ -154,17 +150,6 @@ public class GallagherInboundCustomerEntry implements Comparable<GallagherInboun
 	{
 		this.accountID = accountID;
 	}
-
-	public Boolean getLoginDisabled()
-	{
-		return loginDisabled;
-	}
-
-	public void setLoginDisabled(final Boolean loginDisabled)
-	{
-		this.loginDisabled = loginDisabled;
-	}
-
 
 	@Override
 	public int compareTo(final GallagherInboundCustomerEntry entry2)
