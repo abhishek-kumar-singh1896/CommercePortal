@@ -41,7 +41,7 @@ ACC.viewAlternativeProducts = {
 			    		    animation: "slide",
 			    		    animationLoop: true,
 			    		    slideshow: false,
-			    		    itemWidth: 210,
+			    		    itemWidth: 250,
 			    		    itemMargin: 10,
 			    		    minItems: 1,
 			    		    maxItems: 4
