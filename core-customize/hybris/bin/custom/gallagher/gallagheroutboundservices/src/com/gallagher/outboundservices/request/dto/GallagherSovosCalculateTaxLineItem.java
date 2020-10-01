@@ -63,7 +63,7 @@ public class GallagherSovosCalculateTaxLineItem
 	private int iUGeoCd;
 
 	@JsonProperty("discnts")
-	private Map<String, String> discnts;
+	private Map<String, Double> discnts;
 
 
 	public int getDebCredIndr()
@@ -216,12 +216,12 @@ public class GallagherSovosCalculateTaxLineItem
 		this.iUGeoCd = iUGeoCd;
 	}
 
-	public Map<String, String> getDiscnts()
+	public Map<String, Double> getDiscnts()
 	{
 		return discnts;
 	}
 
-	public void setDiscnts(final Map<String, String> discnts)
+	public void setDiscnts(final Map<String, Double> discnts)
 	{
 		this.discnts = discnts;
 	}

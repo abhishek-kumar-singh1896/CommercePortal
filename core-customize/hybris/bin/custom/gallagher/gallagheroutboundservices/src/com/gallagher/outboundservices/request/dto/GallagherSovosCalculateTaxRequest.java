@@ -50,7 +50,7 @@ public class GallagherSovosCalculateTaxRequest
 	private double dlvrAmt;
 
 	@JsonProperty("discnts")
-	private Map<String, String> discnts;
+	private Map<String, Double> discnts;
 
 	@JsonProperty("lines")
 	private List<GallagherSovosCalculateTaxLineItem> lines;
@@ -165,13 +165,15 @@ public class GallagherSovosCalculateTaxRequest
 		this.lines = lines;
 	}
 
-	public Map<String, String> getDiscnts()
+	public Map<String, Double> getDiscnts()
 	{
 		return discnts;
 	}
 
-	public void setDiscnts(final Map<String, String> discnts)
+	public void setDiscnts(final Map<String, Double> discnts)
 	{
 		this.discnts = discnts;
 	}
+
+
 }

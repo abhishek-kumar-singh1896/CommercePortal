@@ -53,6 +53,7 @@ public class GallagherSovosUtil
 		request.setDlvrAmt(abstractOrder.getDeliveryCost());
 
 		final List<DiscountValue> globalDiscounts = abstractOrder.getGlobalDiscountValues();
+		final Map<String, Double> globalMap = new HashMap<String, Double>();
 		if (globalDiscounts.size() > 0)
 		{
 			double discounts = 0;
@@ -60,8 +61,12 @@ public class GallagherSovosUtil
 			{
 				discounts += value.getAppliedValue();
 			}
-			final Map<String, String> globalMap = new HashMap<String, String>();
-			globalMap.put("1", Double.toString(discounts));
+			globalMap.put("1", discounts);
+			request.setDiscnts(globalMap);
+		}
+		else
+		{
+			globalMap.put("1", 0.0);
 			request.setDiscnts(globalMap);
 		}
 
@@ -81,6 +86,7 @@ public class GallagherSovosUtil
 			lineItem.setOrgCd(sovosConfiguration.getOrganizationCode());
 			lineItem.setDropShipInd(sovosConfiguration.getDropShipInd());
 			final List<DiscountValue> lineDiscounts = orderEntry.getDiscountValues();
+			final Map<String, Double> lineMap = new HashMap<String, Double>();
 			if (lineDiscounts.size() > 0)
 			{
 				double discounts = 0;
@@ -88,8 +94,12 @@ public class GallagherSovosUtil
 				{
 					discounts += discnt.getAppliedValue();
 				}
-				final Map<String, String> lineMap = new HashMap<String, String>();
-				lineMap.put("1", Double.toString(discounts));
+				lineMap.put("1", discounts);
+				lineItem.setDiscnts(lineMap);
+			}
+			else
+			{
+				lineMap.put("1", 0.0);
 				lineItem.setDiscnts(lineMap);
 			}
 
