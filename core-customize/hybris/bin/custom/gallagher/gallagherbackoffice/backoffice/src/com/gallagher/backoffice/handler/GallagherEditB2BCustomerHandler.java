@@ -9,8 +9,6 @@ import de.hybris.platform.core.model.c2l.CurrencyModel;
 import de.hybris.platform.core.model.c2l.LanguageModel;
 import de.hybris.platform.core.model.user.UserModel;
 import de.hybris.platform.servicelayer.dto.converter.Converter;
-import de.hybris.platform.servicelayer.event.EventService;
-import de.hybris.platform.servicelayer.i18n.CommonI18NService;
 import de.hybris.platform.servicelayer.model.ModelService;
 import de.hybris.platform.servicelayer.session.SessionExecutionBody;
 import de.hybris.platform.servicelayer.session.SessionService;
@@ -23,13 +21,10 @@ import java.util.List;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang3.tuple.Pair;
 import org.apache.log4j.Logger;
 
 import com.gallagher.c4c.outboundservices.facade.GallagherC4COutboundServiceFacade;
-import com.gallagher.core.events.GallagherB2BCustomerUpdateEvent;
 import com.gallagher.keycloak.outboundservices.service.GallagherKeycloakService;
-import com.hybris.backoffice.widgets.notificationarea.event.NotificationEvent.Level;
 import com.hybris.cockpitng.dataaccess.context.Context;
 import com.hybris.cockpitng.dataaccess.context.impl.DefaultContext;
 import com.hybris.cockpitng.dataaccess.facades.object.ObjectFacade;
@@ -64,9 +59,7 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 	private BaseStoreService baseStoreService;
 	private BaseSiteService baseSiteService;
 	private SessionService sessionService;
-	private CommonI18NService commonI18NService;
 	private ModelService modelService;
-	private EventService eventService;
 
 	@Override
 	public Object performSave(final WidgetInstanceManager widgetInstanceManager, final Object currentObject)
@@ -84,14 +77,13 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 
 				if (BooleanUtils.isFalse(isEmailValid))
 				{
-					getNotificationService().notifyUser(StringUtils.EMPTY, EMAIL_ALREADY_PRESENT, Level.FAILURE, null);
+					/* getNotificationService().notifyUser(StringUtils.EMPTY, EMAIL_ALREADY_PRESENT, Level.FAILURE, null); */
 					throw new ObjectSavingException(email, EMAIL_ALREADY_PRESENT, new Throwable(KEY_CLOAK_ID_EXISTS));
 				}
 
 				LOG.debug("Updating user profile in keycloak");
 
-				final Boolean isCustomerModified = isB2BCustomerModified(widgetInstanceManager, b2bCustomerModel);
-				if (isCustomerModified)
+				if (isB2BCustomerModified(widgetInstanceManager, b2bCustomerModel))
 				{
 					getGallagherKeycloakService().updateKeyCloakUserProfile(b2bCustomer);
 				}
@@ -100,10 +92,6 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 				ctx.addAttribute(ObjectFacade.CTX_PARAM_SUPPRESS_EVENT, Boolean.TRUE);
 				widgetInstanceManager.getModel().setValue(INPUT_OBJECT, b2bCustomerModel);
 
-				if (isCustomerModified)
-				{
-					getEventService().publishEvent(initializeEvent(new GallagherB2BCustomerUpdateEvent(), b2bCustomerModel));
-				}
 				return updateStoreInSession(b2bCustomerModel, ctx);
 		}
 		LOG.debug("Customer is not B2B ");
@@ -125,9 +113,7 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 					B2BCustomerModel.class);
 			final boolean isEmailModified = originalCustomerModel.getUid().equals(b2bCustomerModel.getUid()) ? false : true;
 			final boolean isNameModified = originalCustomerModel.getName().equals(b2bCustomerModel.getName()) ? false : true;
-			final boolean isB2bUnitModified = originalCustomerModel.getDefaultB2BUnit() != b2bCustomerModel.getDefaultB2BUnit();
-
-			return isEmailModified || isNameModified || isB2bUnitModified;
+			return isEmailModified || isNameModified;
 	}
 
 	/**
@@ -163,17 +149,50 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 	private B2BCustomerModel updateStoreInSession(final B2BCustomerModel b2bCustomer, final Context ctx)
 	{
 		final B2BUnitModel defaultB2BUnit = b2bCustomer.getDefaultB2BUnit();
-		final Pair<BaseSiteModel, BaseStoreModel> baseSiteAndStore = getBaseSiteAndStore(defaultB2BUnit);
+		BaseSiteModel defaultSite = null;
+		BaseStoreModel defaultBaseStore = null;
 
-		final LanguageModel language = getLanguage(baseSiteAndStore.getRight(), b2bCustomer.getSessionLanguage());
-		final CurrencyModel currency = getCurrency(baseSiteAndStore.getRight(), b2bCustomer.getSessionCurrency());
+		if (CollectionUtils.isEmpty(defaultB2BUnit.getAddresses()))
+		{
+			defaultBaseStore = getBaseStoreService().getBaseStoreForUid(SECURITY_B2B_GLOBAL);
+			defaultSite = getBaseSiteService().getBaseSiteForUID(SECURITY_B2B_GLOBAL);
+		}
+		else
+		{
+			final List<BaseStoreModel> baseStores = getBaseStoreService().getAllBaseStores();
+			final String isoCode = defaultB2BUnit.getAddresses().iterator().next().getCountry().getIsocode();
+			boolean flag = false;
+			for (final BaseStoreModel baseStore : baseStores)
+			{
+				if (baseStore.getUid().startsWith(SECURITY) && baseStore.getUid().contains(isoCode))
+				{
+					String securityB2BisoCode = SECURITY_B2B;
+					securityB2BisoCode = securityB2BisoCode.concat(isoCode);
+					defaultBaseStore = getBaseStoreService().getBaseStoreForUid(securityB2BisoCode);
+					defaultSite = getBaseSiteService().getBaseSiteForUID(securityB2BisoCode);
+					flag = true;
+					break;
+				}
+			}
+			if (!flag)
+			{
+				defaultSite = getBaseSiteService().getBaseSiteForUID(SECURITY_B2B_GLOBAL);
+			}
+		}
 
+		final BaseSiteModel baseSite = defaultSite;
+
+		final CurrencyModel currency = getCurrency(defaultBaseStore, b2bCustomer.getSessionCurrency());
+		final LanguageModel language = getLanguage(defaultBaseStore, b2bCustomer.getSessionLanguage());
+
+		b2bCustomer.setSessionCurrency(currency);
+		b2bCustomer.setSessionLanguage(language);
 		getSessionService().executeInLocalView(new SessionExecutionBody()
 		{
 			@Override
 			public void executeWithoutResult()
 			{
-				getBaseSiteService().setCurrentBaseSite(baseSiteAndStore.getKey(), Boolean.FALSE);
+				getBaseSiteService().setCurrentBaseSite(baseSite, Boolean.FALSE);
 				getStoreSessionFacade().setCurrentLanguage(language.getIsocode());
 				getStoreSessionFacade().setCurrentCurrency(currency.getIsocode());
 				try
@@ -189,6 +208,7 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 
 		return b2bCustomer;
 	}
+
 
 	/**
 	 * Returns the currency for this customer. If user selected currency is not in allowed list of currencies then use
@@ -236,104 +256,6 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 			language = baseStore.getLanguages().contains(sessionLanguage) ? sessionLanguage : baseStore.getDefaultLanguage();
 		}
 		return language;
-	}
-
-	/**
-	 * initializes an {@link GallagherB2BCustomerUpdateEvent}
-	 *
-	 * @param event
-	 * @param customerModel
-	 * @return the event
-	 */
-	private GallagherB2BCustomerUpdateEvent initializeEvent(final GallagherB2BCustomerUpdateEvent event,
-			final B2BCustomerModel b2bCustomerModel)
-	{
-		final B2BUnitModel defaultB2BUnit = b2bCustomerModel.getDefaultB2BUnit();
-		final Pair<BaseSiteModel, BaseStoreModel> baseSite = getBaseSiteAndStore(b2bCustomerModel.getDefaultB2BUnit());
-
-		event.setBaseStore(baseSite.getRight());
-		event.setSite(baseSite.getLeft());
-		event.setCustomer(b2bCustomerModel);
-		event.setLanguage(getCommonI18NService().getCurrentLanguage());
-		event.setCurrency(getCommonI18NService().getCurrentCurrency());
-		return event;
-	}
-
-
-	/**
-	 * @param defaultB2BUnit
-	 * @return
-	 */
-	private Pair<BaseSiteModel, BaseStoreModel> getBaseSiteAndStore(final B2BUnitModel defaultB2BUnit)
-	{
-		BaseSiteModel defaultSite = null;
-		BaseStoreModel defaultBaseStore = null;
-
-		if (CollectionUtils.isEmpty(defaultB2BUnit.getAddresses()))
-		{
-			defaultBaseStore = getBaseStoreService().getBaseStoreForUid(SECURITY_B2B_GLOBAL);
-			defaultSite = getBaseSiteService().getBaseSiteForUID(SECURITY_B2B_GLOBAL);
-		}
-		else
-		{
-			final List<BaseStoreModel> baseStores = getBaseStoreService().getAllBaseStores();
-			final String isoCode = defaultB2BUnit.getAddresses().iterator().next().getCountry().getIsocode();
-			boolean flag = false;
-			for (final BaseStoreModel baseStore : baseStores)
-			{
-				if (baseStore.getUid().startsWith(SECURITY) && baseStore.getUid().contains(isoCode))
-				{
-					String securityB2BisoCode = SECURITY_B2B;
-					securityB2BisoCode = securityB2BisoCode.concat(isoCode);
-					defaultBaseStore = getBaseStoreService().getBaseStoreForUid(securityB2BisoCode);
-					defaultSite = getBaseSiteService().getBaseSiteForUID(securityB2BisoCode);
-					flag = true;
-					break;
-				}
-			}
-			if (!flag)
-			{
-				defaultBaseStore = baseStoreService.getBaseStoreForUid(SECURITY_B2B_GLOBAL);
-				defaultSite = getBaseSiteService().getBaseSiteForUID(SECURITY_B2B_GLOBAL);
-			}
-		}
-
-		return Pair.of(defaultSite, defaultBaseStore);
-	}
-
-
-	/**
-	 * @return the commonI18NService
-	 */
-	public CommonI18NService getCommonI18NService()
-	{
-		return commonI18NService;
-	}
-
-	/**
-	 * @param commonI18NService
-	 *           the commonI18NService to set
-	 */
-	public void setCommonI18NService(final CommonI18NService commonI18NService)
-	{
-		this.commonI18NService = commonI18NService;
-	}
-
-	/**
-	 * @return the eventService
-	 */
-	public EventService getEventService()
-	{
-		return eventService;
-	}
-
-	/**
-	 * @param eventService
-	 *           the eventService to set
-	 */
-	public void setEventService(final EventService eventService)
-	{
-		this.eventService = eventService;
 	}
 
 	/**
