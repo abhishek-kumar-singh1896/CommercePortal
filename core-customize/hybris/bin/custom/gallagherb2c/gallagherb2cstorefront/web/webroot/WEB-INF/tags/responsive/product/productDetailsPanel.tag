@@ -76,14 +76,15 @@
 					       
                                     </div>
                                 </div>
+                           <c:if test="${flag eq true}">
+						   <a class="view-alternative-products" href="#" data-product-code = "${product.code}">View Alternative Products</a>
+						    </c:if>     
                             </div>
                         </div>
                         <cms:pageSlot position="VariantSelector" var="component" element="div" class="page-details-variants-select">
 							<cms:component component="${component}" element="div" class="yComponentWrapper page-details-variants-select-component"/>
 						</cms:pageSlot>
-						<c:if test="${flag eq true}">
-						   <a class="view-alternative-products" href="#" data-product-code = "${product.code}">View Alternative Products</a>
-						    </c:if>
+						
                     </div>
                 </div>
                 <div class="col-md-6 order-first order-md-last">

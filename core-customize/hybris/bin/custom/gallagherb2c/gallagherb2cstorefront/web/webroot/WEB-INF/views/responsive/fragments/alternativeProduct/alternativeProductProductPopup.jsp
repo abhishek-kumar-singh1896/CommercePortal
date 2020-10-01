@@ -23,8 +23,7 @@
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				<div class="modal-body">
-					<h3 class="sub-title popUpTitle">The product you are looking is out of
-						stock.Here are some alternatives:</h3>
+					<h3 class="sub-title popUpTitle">The product you are looking at is currently out of stock. Here are some alternatives:</h3>
 					<div class="flexslider carousel">
 						<ul class="slides productsPopUp">
 							<c:forEach items="${alternativeProducts}" var="reference" end="3">
@@ -36,12 +35,14 @@
 											<c:when test="${not empty reference.images}">
 												<c:forEach items="${reference.images}" var="medias">
 													<c:if test="${tempicon == 0 }">
-														<c:if test="${medias.format eq 'thumbnail'}">
+														<c:if test="${medias.format eq 'product'}">
 															<c:set var="tempicon" value="1" />
+															<div class="imageProduct">
 															<a href="${fn:escapeXml(productUrl)}"
-																title="${fn:escapeXml(reference.name)}"> <img
-																src="${medias.url}" alt="${medias.altText}">
+																title="${fn:escapeXml(reference.name)}"> 
+																<img src="${medias.url}" alt="${medias.altText}">
 															</a>
+															</div>
 														</c:if>
 													</c:if>
 												</c:forEach>
@@ -50,9 +51,11 @@
 												<c:if test="${tempicon == 0 }">
 													<c:set value="${fn:escapeXml(reference.name)}"
 														var="productNameHtml" />
+														<div class="imageProduct">
 													<theme:image
-														code="img.missingProductImage.responsive.thumbnail"
+														code="img.missingProductImage.responsive.product"
 														alt="${productNameHtml}" title="${productNameHtml}" />
+														</div>
 												</c:if>
 											</c:otherwise>
 										</c:choose>
@@ -63,7 +66,7 @@
 											</h4>
 											<div class="card-text product-desc">${reference.plpProductDescription}</div>
 											<p class="product-price">
-												<span class="rrp">RRP</span>${reference.price.formattedValue}</p>
+												<span class="rrp">RRP</span><label><sup class="currency-sign">${reference.price.currencyIso}</sup>${reference.price.formattedValue}</label></p>
 										</div>
 									</div>
 								</li>
