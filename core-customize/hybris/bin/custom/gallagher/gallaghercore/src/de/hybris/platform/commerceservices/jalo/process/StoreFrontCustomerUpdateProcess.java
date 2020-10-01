@@ -15,10 +15,10 @@ import de.hybris.platform.jalo.SessionContext;
 import de.hybris.platform.jalo.type.ComposedType;
 import org.apache.log4j.Logger;
 
-public class CustomerUpdateEmailProcess extends GeneratedCustomerUpdateEmailProcess
+public class StoreFrontCustomerUpdateProcess extends GeneratedStoreFrontCustomerUpdateProcess
 {
 	@SuppressWarnings("unused")
-	private static final Logger LOG = Logger.getLogger( CustomerUpdateEmailProcess.class.getName() );
+	private static final Logger LOG = Logger.getLogger( StoreFrontCustomerUpdateProcess.class.getName() );
 	
 	@Override
 	protected Item createItem(final SessionContext ctx, final ComposedType type, final ItemAttributeMap allAttributes) throws JaloBusinessException

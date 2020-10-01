@@ -44,6 +44,8 @@
 	<maptypes>
 		<maptype code="VideoDataMap" argumenttype="java.lang.String" returntype="java.lang.String" generate="true"
 			autocreate="true" />
+		<maptype code="modifiedAttributesMap" argumenttype="java.lang.String" returntype="java.lang.String" generate="true"
+			autocreate="true" />	
 	</maptypes>
 
 	<relations>
@@ -748,6 +750,19 @@
 						<modifiers read="true" write="true" optional="false" />
 						<description>Stores the catalogId.</description>
 						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+		</typegroup>
+		
+		<typegroup name="Email">
+		 	<itemtype code="StoreFrontCustomerUpdateProcess" extends="StoreFrontCustomerProcess"
+				autocreate="true" generate="true" jaloclass="de.hybris.platform.commerceservices.jalo.process.StoreFrontCustomerUpdateProcess">
+				<description>Represents customer update related store front business process.</description>
+				<attributes>
+					<attribute qualifier="modifiedAttributesMap" type="modifiedAttributesMap">
+						<persistence type="property" />
+						<description>Attribute contains customer's updated attributes that will be used in the process.</description>
 					</attribute>
 				</attributes>
 			</itemtype>

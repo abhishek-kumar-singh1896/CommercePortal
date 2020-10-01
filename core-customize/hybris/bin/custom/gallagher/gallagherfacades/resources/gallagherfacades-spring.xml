@@ -297,4 +297,8 @@
 		<property name="remove" ref="groupOrderEntryPopulator"/>
 	</bean>
 	
+	<bean id="gallagherCustomerUpdateEmailContext"
+	      class="com.gallagher.facades.process.email.context.GallagherCustomerUpdateEmailContext"
+	         parent="customerEmailContext" scope="prototype">
+    </bean>
 </beans>

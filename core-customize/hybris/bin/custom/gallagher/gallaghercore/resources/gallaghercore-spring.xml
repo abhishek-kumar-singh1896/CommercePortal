@@ -396,10 +396,6 @@
 		<property name="resource" value="classpath:/gallaghercore/processes/customerUpdateEmailProcess.xml" />
 	</bean>
 	
-	<bean id="gallagherCustomerUpdateEmailContext"
-	class="com.gallagher.facades.process.email.context.GallagherCustomerUpdateEmailContext"
-	parent="customerEmailContext"
-	scope="prototype" >
-    </bean>
+	<bean id="gallagherB2BUnitService" class="com.gallagher.core.services.impl.GallagherB2BUnitServiceImpl"/>
     
 </beans>
