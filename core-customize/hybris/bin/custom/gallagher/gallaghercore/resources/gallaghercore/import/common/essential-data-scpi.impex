@@ -181,3 +181,10 @@ INSERT_UPDATE IntegrationObjectItemAttribute ; integrationObjectItem(integration
                                              ; OutboundOMMOrderOMSOrder:SAPCpiOutboundCardPayment                  ; merchantID                   ; SAPCpiOutboundCardPayment:merchantID                ;                                                            ;                         
                                              ; OutboundOMMOrderOMSOrder:SAPCpiOutboundCardPayment                  ; avsCode                      ; SAPCpiOutboundCardPayment:avsCode                   ;                                                            ;                         
                                              
+#************************
+#*** Inbound B2BUnit ****
+#************************
+
+INSERT_UPDATE IntegrationObjectItemAttribute; integrationObjectItem(integrationObject(code), code)[unique = true]; attributeName[unique = true]; attributeDescriptor(enclosingType(code), qualifier); returnIntegrationObjectItem(integrationObject(code), code); unique[default = false]; autoCreate[default = false] 
+; InboundB2BUnit:B2BUnit          	; transactional                	; B2BUnit:transactional                	;                                  	; 	;  
+                                             
