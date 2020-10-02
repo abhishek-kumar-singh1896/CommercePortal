@@ -558,7 +558,12 @@ public class CartPageController extends AbstractCartPageController
 			{
 				voucherFacade.applyVoucher(form.getVoucherCode().toUpperCase());
 
-				if (voucherCheck().contains(form.getVoucherCode().toUpperCase()))
+				String appliedVoucher = form.getVoucherCode().toUpperCase();
+				if (appliedVoucher.contains("-"))
+				{
+					appliedVoucher = appliedVoucher.substring(0, appliedVoucher.indexOf("-"));
+				}
+				if (voucherCheck().contains(appliedVoucher))
 				{
 					voucherFacade.releaseVoucher(form.getVoucherCode().toUpperCase());
 					redirectAttributes.addFlashAttribute(VOUCHER_FORM, form);
@@ -609,7 +614,7 @@ public class CartPageController extends AbstractCartPageController
 				{
 					if (voucher.contains("-"))
 					{
-						voucher = voucher.substring(0, voucher.indexOf("-") - 1);
+						voucher = voucher.substring(0, voucher.indexOf("-"));
 					}
 					voucherSet.add(voucher.toUpperCase());
 				}

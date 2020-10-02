@@ -13,6 +13,8 @@ import de.hybris.platform.servicelayer.user.UserService;
 
 import javax.annotation.Resource;
 
+import org.apache.log4j.Logger;
+
 import com.gallagher.core.model.GallagherSiteTransactionRestrictionModel;
 
 
@@ -36,6 +38,7 @@ public class GallagherSiteTransactionRestrictionEvaluator
 	private B2BUnitService b2BUnitService;
 
 	private static final String TRANSACTION_ENABLED = "transaction.enabled";
+	private static final Logger LOG = Logger.getLogger(GallagherSiteTransactionRestrictionEvaluator.class);
 
 	@Override
 	public boolean evaluate(final GallagherSiteTransactionRestrictionModel arg0, final RestrictionData arg1)
@@ -46,8 +49,10 @@ public class GallagherSiteTransactionRestrictionEvaluator
 
 		if (currentCustomer instanceof B2BCustomerModel)
 		{
-			b2bUnitTransactional = Boolean.TRUE
-					.equals(((B2BUnitModel) b2BUnitService.getParent((B2BCustomerModel) currentCustomer)).getTransactional());
+			final B2BUnitModel b2bUnit = (B2BUnitModel) b2BUnitService.getParent((B2BCustomerModel) currentCustomer);
+			LOG.info("Defalt B2B unit for user " + currentCustomer.getUid() + " is " + b2bUnit.getName());
+			b2bUnitTransactional = Boolean.TRUE.equals(b2bUnit.getTransactional());
+			LOG.info("Transactional value: " + " is " + b2bUnit.getTransactional() + " and check value:" + b2bUnitTransactional);
 		}
 		return (b2bUnitTransactional && siteConfigService.getBoolean(TRANSACTION_ENABLED, true));
 	}
