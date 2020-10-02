@@ -94,12 +94,12 @@ public class GallagherSovosUtil
 				{
 					discounts += discnt.getAppliedValue();
 				}
-				lineMap.put("1", discounts);
+				lineMap.put("3", discounts);
 				lineItem.setDiscnts(lineMap);
 			}
 			else
 			{
-				lineMap.put("1", 0.0);
+				lineMap.put("3", 0.0);
 				lineItem.setDiscnts(lineMap);
 			}
 
