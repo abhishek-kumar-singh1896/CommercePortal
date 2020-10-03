@@ -157,10 +157,14 @@ public class CartPageController extends AbstractCartPageController
 				try
 				{
 					voucherFacade.releaseVoucher(str);
+					LOG.info("Voucher " + str + " is removed beacause it is no more applicable for cart.");
 				}
 				catch (final VoucherOperationException e)
 				{
-					LOG.info("Voucher " + str + " is removed beacause it is no more applicable for cart.", e);
+					if (LOG.isDebugEnabled())
+					{
+						LOG.debug(e.getMessage(), e);
+					}
 				}
 			}
 		}
@@ -557,7 +561,6 @@ public class CartPageController extends AbstractCartPageController
 			else
 			{
 				voucherFacade.applyVoucher(form.getVoucherCode().toUpperCase());
-
 				if (voucherCheck().contains(form.getVoucherCode().toUpperCase()))
 				{
 					voucherFacade.releaseVoucher(form.getVoucherCode().toUpperCase());
@@ -602,28 +605,24 @@ public class CartPageController extends AbstractCartPageController
 			final int promotionCount = cartData.getAppliedOrderPromotions().size() + cartData.getAppliedProductPromotions().size();
 			if (voucherCount > 0)
 			{
-				final Set<String> voucherSet = new HashSet<>();
 				final Set<PromotionResultData> promoSet = new HashSet<>();
 				final Set<String> promotionSet = new HashSet<>();
-				for (String voucher : cartData.getAppliedVouchers())
-				{
-					if (voucher.contains("-"))
-					{
-						voucher = voucher.substring(0, voucher.indexOf("-") - 1);
-					}
-					voucherSet.add(voucher.toUpperCase());
-				}
 				promoSet.addAll(cartData.getAppliedOrderPromotions());
 				promoSet.addAll(cartData.getAppliedProductPromotions());
 				for (final PromotionResultData promo : promoSet)
 				{
 					promotionSet.add(promo.getPromotionData().getCode().toUpperCase());
 				}
-				for (final String str : voucherSet)
+				for (final String voucher : cartData.getAppliedVouchers())
 				{
-					if (!promotionSet.contains(str))
+					String voucherCheck = voucher.toUpperCase();
+					if (voucher.contains("-"))
 					{
-						errorVoucherSet.add(str);
+						voucherCheck = voucher.substring(0, voucher.indexOf("-"));
+					}
+					if (!promotionSet.contains(voucherCheck))
+					{
+						errorVoucherSet.add(voucher.toUpperCase());
 					}
 				}
 			}
