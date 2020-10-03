@@ -557,13 +557,7 @@ public class CartPageController extends AbstractCartPageController
 			else
 			{
 				voucherFacade.applyVoucher(form.getVoucherCode().toUpperCase());
-
-				String appliedVoucher = form.getVoucherCode().toUpperCase();
-				if (appliedVoucher.contains("-"))
-				{
-					appliedVoucher = appliedVoucher.substring(0, appliedVoucher.indexOf("-"));
-				}
-				if (voucherCheck().contains(appliedVoucher))
+				if (voucherCheck().contains(form.getVoucherCode().toUpperCase()))
 				{
 					voucherFacade.releaseVoucher(form.getVoucherCode().toUpperCase());
 					redirectAttributes.addFlashAttribute(VOUCHER_FORM, form);
@@ -610,25 +604,22 @@ public class CartPageController extends AbstractCartPageController
 				final Set<String> voucherSet = new HashSet<>();
 				final Set<PromotionResultData> promoSet = new HashSet<>();
 				final Set<String> promotionSet = new HashSet<>();
-				for (String voucher : cartData.getAppliedVouchers())
-				{
-					if (voucher.contains("-"))
-					{
-						voucher = voucher.substring(0, voucher.indexOf("-"));
-					}
-					voucherSet.add(voucher.toUpperCase());
-				}
 				promoSet.addAll(cartData.getAppliedOrderPromotions());
 				promoSet.addAll(cartData.getAppliedProductPromotions());
 				for (final PromotionResultData promo : promoSet)
 				{
 					promotionSet.add(promo.getPromotionData().getCode().toUpperCase());
 				}
-				for (final String str : voucherSet)
+				for (final String voucher : cartData.getAppliedVouchers())
 				{
-					if (!promotionSet.contains(str))
+					String voucherCheck = voucher.toUpperCase();
+					if (voucher.contains("-"))
 					{
-						errorVoucherSet.add(str);
+						voucherCheck = voucher.substring(0, voucher.indexOf("-"));
+					}
+					if (!promotionSet.contains(voucherCheck))
+					{
+						errorVoucherSet.add(voucher.toUpperCase());
 					}
 				}
 			}

@@ -53,8 +53,12 @@ public class GallagherSiteTransactionRestrictionEvaluator
 			LOG.info("Defalt B2B unit for user " + currentCustomer.getUid() + " is " + b2bUnit.getName());
 			b2bUnitTransactional = Boolean.TRUE.equals(b2bUnit.getTransactional());
 			LOG.info("Transactional value: " + " is " + b2bUnit.getTransactional() + " and check value:" + b2bUnitTransactional);
+			LOG.info("Transaction enabled value for : " + currentCustomer.getUid() + " and " + b2bUnit.getName() + " is "
+					+ siteConfigService.getBoolean(TRANSACTION_ENABLED, true));
 		}
-		return (b2bUnitTransactional && siteConfigService.getBoolean(TRANSACTION_ENABLED, true));
+
+		final boolean finalValue = b2bUnitTransactional && siteConfigService.getBoolean(TRANSACTION_ENABLED, true);
+		return finalValue;
 	}
 
 }
