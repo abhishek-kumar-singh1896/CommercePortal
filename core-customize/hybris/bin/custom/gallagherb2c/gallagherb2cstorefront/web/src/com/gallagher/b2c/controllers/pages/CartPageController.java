@@ -157,10 +157,14 @@ public class CartPageController extends AbstractCartPageController
 				try
 				{
 					voucherFacade.releaseVoucher(str);
+					LOG.info("Voucher " + str + " is removed beacause it is no more applicable for cart.");
 				}
 				catch (final VoucherOperationException e)
 				{
-					LOG.info("Voucher " + str + " is removed beacause it is no more applicable for cart.", e);
+					if (LOG.isDebugEnabled())
+					{
+						LOG.debug(e.getMessage(), e);
+					}
 				}
 			}
 		}
@@ -601,7 +605,6 @@ public class CartPageController extends AbstractCartPageController
 			final int promotionCount = cartData.getAppliedOrderPromotions().size() + cartData.getAppliedProductPromotions().size();
 			if (voucherCount > 0)
 			{
-				final Set<String> voucherSet = new HashSet<>();
 				final Set<PromotionResultData> promoSet = new HashSet<>();
 				final Set<String> promotionSet = new HashSet<>();
 				promoSet.addAll(cartData.getAppliedOrderPromotions());
