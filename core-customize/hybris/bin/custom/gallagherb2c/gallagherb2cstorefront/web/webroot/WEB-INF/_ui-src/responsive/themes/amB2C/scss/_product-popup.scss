@@ -173,11 +173,12 @@ top: auto;
 label{
 color: $primary-color;
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: 1.142857em;
  margin:0;
 sup{
     top: -3px;
     right: 5px;
+    font-size: 0.5625em;
 }
 }
            @media screen and (min-width:960px){
