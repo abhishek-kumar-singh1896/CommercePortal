@@ -24,7 +24,7 @@
 					<h4 class="modal-title">Alternative Products</h4>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
-				<div class="modal-body">
+				<div class="modal-body caraousel-body">
 					<h3 class="sub-title popUpTitle"><spring:theme code="text.alternativeProduct.heading"/></h3>
 					<div class="flexslider carousel">
 						<ul class="slides productsPopUp">
