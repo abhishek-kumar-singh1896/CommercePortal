@@ -296,4 +296,8 @@
 		<property name="remove" ref="groupOrderEntryPopulator"/>
 	</bean>
 	
+	<alias name="gallagherSearchResponseFacetsPopulator" alias="commerceSearchResponseFacetsPopulator" />
+	<bean id="gallagherSearchResponseFacetsPopulator"
+		class="com.gallagher.facades.search.solrfacetsearch.populators.GallagherSearchResponseFacetsPopulator" parent="defaultCommerceSearchResponseFacetsPopulator" />
+	
 </beans>
