@@ -22,20 +22,6 @@ import org.springframework.util.Assert;
 public class GallagherProductReferencePopulator extends ProductReferencePopulator
 {
 
-	private Populator<ProductModel, ProductData> productStockPopulator;
-
-
-
-	public Populator<ProductModel, ProductData> getProductStockPopulator()
-	{
-		return productStockPopulator;
-	}
-
-	public void setProductStockPopulator(final Populator<ProductModel, ProductData> productStockPopulator)
-	{
-		this.productStockPopulator = productStockPopulator;
-	}
-
 	private Populator<ProductModel, ProductData> classificationPopulator;
 
 	public Populator<ProductModel, ProductData> getClassificationPopulator()
@@ -59,11 +45,6 @@ public class GallagherProductReferencePopulator extends ProductReferencePopulato
 		if (ProductReferenceTypeEnum.UPSELLING.equals(source.getReferenceType()))
 		{
 			getClassificationPopulator().populate(source.getTarget(), target.getTarget());
-		}
-		else if (ProductReferenceTypeEnum.ALTERNATIVE_PRODUCTS.equals(source.getReferenceType()))
-		{
-			target.getTarget().setPlpProductDescription(source.getTarget().getPlpProductDescription());
-			getProductStockPopulator().populate(source.getTarget(), target.getTarget());
 		}
 	}
 }

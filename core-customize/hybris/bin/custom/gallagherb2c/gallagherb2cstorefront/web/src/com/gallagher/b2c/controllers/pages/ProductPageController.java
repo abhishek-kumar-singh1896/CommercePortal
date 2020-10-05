@@ -16,7 +16,6 @@ import de.hybris.platform.acceleratorstorefrontcommons.forms.validation.ReviewVa
 import de.hybris.platform.acceleratorstorefrontcommons.util.MetaSanitizerUtil;
 import de.hybris.platform.acceleratorstorefrontcommons.util.XSSFilterUtil;
 import de.hybris.platform.acceleratorstorefrontcommons.variants.VariantSortStrategy;
-import de.hybris.platform.basecommerce.enums.StockLevelStatus;
 import de.hybris.platform.catalog.enums.ProductReferenceTypeEnum;
 import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
 import de.hybris.platform.cms2.model.pages.AbstractPageModel;
@@ -104,10 +103,10 @@ public class ProductPageController extends AbstractPageController
 	private UrlResolver<ProductData> productDataUrlResolver;
 
 	@Resource(name = "productVariantFacade")
-	protected ProductFacade productFacade;
+	private ProductFacade productFacade;
 
 	@Resource(name = "productService")
-	protected ProductService productService;
+	private ProductService productService;
 
 	@Resource(name = "productBreadcrumbBuilder")
 	private ProductBreadcrumbBuilder productBreadcrumbBuilder;
@@ -140,6 +139,7 @@ public class ProductPageController extends AbstractPageController
 				ProductOption.VARIANT_MATRIX_MEDIA);
 
 		final ProductData productData = productFacade.getProductForCodeAndOptions(productCode, extraOptions);
+
 		final String redirection = checkRequestUrl(request, response, productDataUrlResolver.resolve(productData));
 		if (StringUtils.isNotEmpty(redirection))
 		{
@@ -151,7 +151,6 @@ public class ProductPageController extends AbstractPageController
 		getContinueUrl(model, productCode);
 
 		populateProductDetailForDisplay(productCode, model, request, extraOptions);
-		//showPopUpForAlternativeProducts(productCode, model, request, extraOptions);
 		model.addAttribute(new ReviewForm());
 		model.addAttribute("pageType", PageType.PRODUCT.name());
 		model.addAttribute("futureStockEnabled", Boolean.valueOf(Config.getBoolean(FUTURE_STOCK_ENABLED, false)));
@@ -452,7 +451,6 @@ public class ProductPageController extends AbstractPageController
 		final List<ProductData> others = new ArrayList<ProductData>();
 		final List<ProductData> upselling = new ArrayList<ProductData>();
 		final List<ProductData> accessories = new ArrayList<ProductData>();
-		final List<ProductData> alternativeProducts = new ArrayList<ProductData>();
 		final ProductData productData = productFacade.getProductForCodeAndOptions(productCode, options);
 		final List<ProductReferenceData> references = productData.getProductReferences();
 
@@ -474,15 +472,10 @@ public class ProductPageController extends AbstractPageController
 			{
 				accessories.add(product.getTarget());
 			}
-			else if (ProductReferenceTypeEnum.ALTERNATIVE_PRODUCTS.equals(product.getReferenceType()))
-			{
-				alternativeProducts.add(product.getTarget());
-			}
 		}
 		model.addAttribute("sparepart", sparepart);
 		model.addAttribute("others", others);
 		model.addAttribute("accessories", accessories);
-		model.addAttribute("alternativeProducts", alternativeProducts);
 		model.addAttribute("sparePartsReferenceHeading", productData.getSparePartsReferenceHeading());
 		model.addAttribute("sparePartsReferenceSubHeading", productData.getSparePartsReferenceSubHeading());
 		model.addAttribute("othersReferenceHeading", productData.getOthersReferenceHeading());
@@ -559,57 +552,6 @@ public class ProductPageController extends AbstractPageController
 			}
 		}
 	}
-
-	/**
-	 * @param alternativeProducts
-	 */
-	@RequestMapping(method = RequestMethod.GET, value = PRODUCT_CODE_PATH_VARIABLE_PATTERN + "/showAlternativeProducts")
-	private String showPopUpForAlternativeProducts(@PathVariable("productCode")
-	final String encodedProductCode, final Model model, final HttpServletRequest request) throws CMSItemNotFoundException
-	{
-
-		final String productCode = decodeWithScheme(encodedProductCode, UTF_8);
-
-		final List<ProductOption> extraOptions = Arrays.asList(ProductOption.VARIANT_MATRIX_BASE, ProductOption.VARIANT_MATRIX_URL,
-				ProductOption.VARIANT_MATRIX_MEDIA);
-
-		final ProductModel productModel = productService.getProductForCode(productCode);
-
-		getRequestContextData(request).setProduct(productModel);
-
-		final List<ProductOption> options = new ArrayList<>(Arrays.asList(ProductOption.VARIANT_FIRST_VARIANT, ProductOption.BASIC,
-				ProductOption.URL, ProductOption.PRICE, ProductOption.SUMMARY, ProductOption.DESCRIPTION,
-				ProductOption.CATEGORIES, ProductOption.REVIEW, ProductOption.PROMOTIONS, ProductOption.CLASSIFICATION,
-				ProductOption.VARIANT_FULL, ProductOption.STOCK, ProductOption.VOLUME_PRICES, ProductOption.PRICE_RANGE,
-				ProductOption.DELIVERY_MODE_AVAILABILITY, ProductOption.REFERENCES, ProductOption.OTHERS));
-
-		options.addAll(extraOptions);
-		final List<ProductData> alternativeProducts = new ArrayList<ProductData>();
-		final ProductData productData = productFacade.getProductForCodeAndOptions(productCode, options);
-		final List<ProductReferenceData> references = productData.getProductReferences();
-
-		for (final ProductReferenceData product : references)
-		{
-			if (ProductReferenceTypeEnum.ALTERNATIVE_PRODUCTS.equals(product.getReferenceType()))
-			{
-				/*
-				 * alternativeProducts.add(product.getTarget());
-				 */
-				if (product.getTarget().getStock().getStockLevelStatus() != null
-						&& product.getTarget().getStock().getStockLevelStatus().equals(StockLevelStatus.INSTOCK))
-				{
-					alternativeProducts.add(product.getTarget());
-
-				}
-			}
-		}
-
-		model.addAttribute("maximumProducts", alternativeProducts.size());
-		model.addAttribute("alternativeProducts", alternativeProducts);
-		return ControllerConstants.Views.Fragments.ViewAlternativeProducts.ViewAlternativeProductPopup;
-
-	}
-
 
 	private List<String> findCommonClassificationAttributes(final ProductData firstProduct1,
 			final List<ProductData> productComparisonList, final Model model)
@@ -827,5 +769,4 @@ public class ProductPageController extends AbstractPageController
 		final ProductModel productModel = productService.getProductForCode(productCode);
 		return cmsPageService.getPageForProduct(productModel, getCmsPreviewService().getPagePreviewCriteria());
 	}
-
 }
