@@ -34,6 +34,14 @@ top: auto;
     .modal-body{
         overflow: hidden;
         padding: 1rem 1rem 0;
+        &.caraousel-body{
+        .carousel{
+        @media (min-width: 640px) {
+        padding-left: 28px;
+        padding-right: 28px; 
+        }
+        }
+        }
     }
     .modal-dialog {
         display: inline-block;
@@ -129,6 +137,8 @@ top: auto;
        overflow : hidden;
         .card-body{
             padding:0;
+            display: flex;
+            flex-direction: column;
         }
 
         .product-name {
@@ -152,10 +162,19 @@ top: auto;
 
          .card-text.product-desc {
           font-size: 0.8rem;
-          max-height: 42px;
+          max-height: 57px;
+         
          overflow: hidden;
          min-height: 0px;
          line-height: unset;
+          @media screen and (max-width: 767px) {
+          max-height: 78px;
+          }
+         li{
+         min-width : auto;
+         margin-left: 1px;
+         
+         }
          
          p{
         	font-size:unset;
@@ -170,19 +189,19 @@ top: auto;
             font-size: 1.2rem;
             text-align: right;
           margin:0;
+          margin-top : auto;
 label{
 color: $primary-color;
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: 1.142857em;
  margin:0;
 sup{
     top: -3px;
     right: 5px;
+    font-size: 0.5625em;
 }
 }
-           @media screen and (min-width:960px){
-             margin-top: 8px;
-        }
+         
             span {
                 display: block;
                 font-size: .8rem;

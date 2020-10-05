@@ -5,6 +5,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="format" tagdir="/WEB-INF/tags/shared/format"%>
 <%@ taglib prefix="theme" tagdir="/WEB-INF/tags/shared/theme"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
 
 <c:if test="${not empty maximumProducts}">
 	<c:choose>
@@ -22,8 +24,8 @@
 					<h4 class="modal-title">Alternative Products</h4>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
-				<div class="modal-body">
-					<h3 class="sub-title popUpTitle">The product you are looking at is currently out of stock. Here are some alternatives:</h3>
+				<div class="modal-body caraousel-body">
+					<h3 class="sub-title popUpTitle"><spring:theme code="text.alternativeProduct.heading"/></h3>
 					<div class="flexslider carousel">
 						<ul class="slides productsPopUp">
 							<c:forEach items="${alternativeProducts}" var="reference" end="3">

@@ -213,7 +213,7 @@ public interface ControllerConstants
 
 			interface ViewAlternativeProducts
 			{
-				String ViewAlternativeProductPopup = "fragments/alternativeProduct/alternativeProductProductPopup";
+				String ViewAlternativeProductPopup = "fragments/alternativeProduct/alternativeProductPopup";
 			}
 		}
 	}
