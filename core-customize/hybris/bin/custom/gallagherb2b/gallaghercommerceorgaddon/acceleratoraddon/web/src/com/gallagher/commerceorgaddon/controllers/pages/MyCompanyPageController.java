@@ -546,14 +546,27 @@ public class MyCompanyPageController extends AbstractSearchPageController
 		if (keycloakGUID != null)
 		{
 			b2bCustomerData.setKeycloakGUID(keycloakGUID);
-			if (getCustomerFacade().getUserForUID(BU.SEC.getCode().toLowerCase() + "|" + b2bCustomerData.getEmail()) != null)
+			try
 			{
-				b2bCustomerData.setIsUserExist(true);
+				searchRestrictionService.disableSearchRestrictions();
+				if (getCustomerFacade().getUserForUID(BU.SEC.getCode().toLowerCase() + "|" + b2bCustomerData.getEmail()) != null)
+				{
+					b2bCustomerData.setIsUserExist(true);
+				}
 			}
-			else
+			catch (final UnknownIdentifierException uIdEx)
 			{
+				//No Need To Handle
 				b2bCustomerData.setIsUserExist(false);
 			}
+			finally
+			{
+				searchRestrictionService.enableSearchRestrictions();
+			}
+			/*
+			 * if (getCustomerFacade().getUserForUID(BU.SEC.getCode().toLowerCase() + "|" + b2bCustomerData.getEmail()) !=
+			 * null) { b2bCustomerData.setIsUserExist(true); } else { b2bCustomerData.setIsUserExist(false); }
+			 */
 		}
 		else
 		{
