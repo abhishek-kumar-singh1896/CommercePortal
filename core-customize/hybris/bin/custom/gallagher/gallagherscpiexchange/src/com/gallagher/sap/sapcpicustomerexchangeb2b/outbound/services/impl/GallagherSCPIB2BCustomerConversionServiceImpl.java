@@ -34,6 +34,7 @@ public class GallagherSCPIB2BCustomerConversionServiceImpl extends SapCpiB2BCust
 		sapCpiOutboundB2BContact.setContactId(b2bCustomer.getSapContactID());
 		sapCpiOutboundB2BContact.setObjectID(b2bCustomer.getObjectID());
 		sapCpiOutboundB2BContact.setUnits(getUnits(b2bCustomer));
+		sapCpiOutboundB2BContact.setUid(b2bCustomer.getEmailID());
 	}
 
 	/**
