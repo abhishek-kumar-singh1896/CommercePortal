@@ -594,6 +594,14 @@ h4 {
     }
   }
 }
+.addtocart-component {
+@media (max-width: 639px) {
+  .qty-selector {
+    margin-left: auto;
+}
+}
+
+}
 
 .addtocart-component .actions .btn {
   margin-bottom: 0;
