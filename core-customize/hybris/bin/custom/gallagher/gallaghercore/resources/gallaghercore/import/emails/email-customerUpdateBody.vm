@@ -1,4 +1,4 @@
-## messageSource=classpath:/gallaghercore/messages/email-customerRegistration.properties
+## messageSource=classpath:/gallaghercore/messages/email-customerUpdate_$lang.properties
 #macro(genHtmlLinkStartTag $url)
 <a href="$url"><font color="#333">
 #end
@@ -36,30 +36,34 @@
 								</tr>
 								<tr>
 									<td align="left" valign="top">
-									    #set ($secureLoginUrl = "${ctx.secureBaseUrl}/login")
-                                        #set ($mailToUrl = "mailto:${ctx.messages.contactUsEmail}")
-										#if(${ctx.ISUSEREXIST} == "true")
-										#set ( $registeredUser = ${ctx.messages.getMessage('isRegisteredUser')})
-										#set ( $loginInstruction = ${ctx.messages.getMessage('instructionLoginUrl', "#genHtmlLinkStartTag($secureLoginUrl)", "#genHtmlLinkEndTag()")})
-										#else
-										#set ( $registeredUser = ${ctx.messages.getMessage('notRegisteredUser')})
-										#set ( $loginInstruction = ${ctx.messages.getMessage('resetLoginUrl', "#genHtmlLink($mailToUrl '#666666' ${ctx.messages.contactUsEmail})")})
-										#end
-										
 										<p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.getMessage('salutation', ${ctx.firstName})},</font></p>
-										#if(${ctx.ISUSEREXIST} == "true")
-											<p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.thankYouForSubmission}&nbsp;$registeredUser</font></p>
-											<p><font color="#322e2c" size="2" face="Calibri">$loginInstruction</font></p>
-										#else
-											<p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.thankYouForSubmission}</font></p>
-											<p><font color="#322e2c" size="2" face="Calibri">$registeredUser</font></p>
-											<p><font color="#322e2c" size="2" face="Calibri">$loginInstruction</font></p><br>
-											<p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.securityMoreInfoTitle}</font></p>
-											<p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.securityMoreInfo}</font></p>
-											<p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.anyQuestion}</font></p>
-										#end
+											<p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.message}</font></p>
+										<ul>	
+                                          #if(${ctx.b2bUnitRemoved})
+                                          <li>
+                                           <p><b><font color="#322e2c" size="2" face="Calibri">${ctx.messages.getMessage('accountRemoved', ${ctx.b2bUnitRemoved})}</font></b></p>
+                                          </li> 
+                                           #end
+                                          #if(${ctx.b2bUnitAdded})
+                                          <li>
+                                            <p><b><font color="#322e2c" size="2" face="Calibri">${ctx.messages.getMessage('accountAdded', ${ctx.b2bUnitAdded})}</font></b></p>
+										  </li>
+										  #end
+										 #if(${ctx.name})
+										  <li>
+                                            <p><b><font color="#322e2c" size="2" face="Calibri">${ctx.messages.getMessage('nameUpdated', ${ctx.name})}</font></b></p>
+										  </li>
+										 #end
+										 #if(${ctx.uid})
+										  <li>
+                                            <p><b><font color="#322e2c" size="2" face="Calibri">${ctx.messages.getMessage('emailUpdated', ${ctx.uid})}</font></b></p>
+										 </li>
+										 #end
+										 
+										<br>
 										<p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.complimentaryClosing}</font></p>
 										<p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.signature}</font></p>
+										</ul>
 									</td>
 								</tr>
 								<tr>

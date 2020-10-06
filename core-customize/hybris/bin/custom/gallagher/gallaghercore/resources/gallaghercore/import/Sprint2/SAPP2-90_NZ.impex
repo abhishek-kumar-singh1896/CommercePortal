@@ -1,0 +1,99 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+#
+# Import the CMS content for the SecurityB2B site emails
+#
+$contentCatalog=securityB2BContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$wideContent=CMSImageComponent,BannerComponent
+$jarEmailResource=jar:com.gallagher.b2b.initialdata.constants.B2badvanceInitialDataConstants&/gallagherb2binitialdata/import/coredata/contentCatalogs/securityB2BContentCatalog/emails
+$lang=en_NZ
+
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor] ; pk[unique=true]
+$emailResource=$config-emailResourceValue                                                                  
+
+# Import modulegen config properties into impex macros                                                     
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor] ; pk[unique=true]
+$jarResourceCms=$config-jarResourceCmsValue                                                                
+$emailPackageName=$config-emailContextPackageName                                                          
+$gallagherEmailPackageName=$config-gallagherEmailContextPackageName                                        
+
+# Email page Template                                                                                      
+INSERT_UPDATE EmailPageTemplate ; $contentCV[unique=true] ; uid[unique=true]            ; name                           ; active ; frontendTemplateName ; subject(code)                             ; htmlTemplate(code)                     ; restrictedPageTypes(code)
+                                ;                         ; CustomerUpdateEmailTemplate ; Customer Update Email Template ; true   ; customerUpdateEmail  ; securityB2B_Email_Customer_Update_Subject ; securityB2B_Email_Customer_Update_Body ; EmailPage                
+
+# Templates for CMS Cockpit Page Edit
+UPDATE EmailPageTemplate ; $contentCV[unique=true] ; uid[unique=true]            ; velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+                         ;                         ; CustomerUpdateEmailTemplate ; $jarResourceCms/structure-view/structure_customerUpdateEmailTemplate.vm                              
+
+INSERT_UPDATE ContentSlotName ; name[unique=true] ; template(uid,$contentCV)[unique=true][default='CustomerUpdateEmailTemplate'] ; validComponentTypes(code);
+                              ; SiteLogo          ;                                                                              ;                          ; 
+                              ; TopContent        ;                                                                              ; $wideContent             ;     
+                              ; BottomContent     ;                                                                              ; $wideContent             ;     
+
+INSERT_UPDATE ContentSlot ; $contentCV[unique=true] ; uid[unique=true]  ; name                      ; active
+                          ;                         ; EmailTopSlot      ; Default Email Top Slot    ; true  
+                          ;                         ; EmailBottomSlot   ; Default Email Bottom Slot ; true  
+                          ;                         ; EmailSiteLogoSlot ; Default Email Site Slot   ; true  
+
+INSERT_UPDATE ContentSlot ; $contentCV[unique=true] ; uid[unique=true]           ; name                                   ; active
+                          ;                         ; CustomerUpdateEmailTopSlot ; Default Update Customer Email Top Slot ; true  
+
+# Bind Content Slots to Email Page Templates
+INSERT_UPDATE ContentSlotForTemplate ; $contentCV[unique=true] ; uid[unique=true]                  ; position[unique=true] ; pageTemplate(uid,$contentCV)[unique=true][default='CustomerUpdateEmailTemplate'] ; contentSlot(uid,$contentCV)[unique=true] ; allowOverwrite
+                                     ;                         ; SiteLogo-CustomerUpdateEmail      ; SiteLogo              ;                                                                                  ; EmailSiteLogoSlot                        ; true          
+                                     ;                         ; TopContent-CustomerUpdateEmail    ; TopContent            ;                                                                                  ; CustomerUpdateEmailTopSlot               ; true          
+                                     ;                         ; BottomContent-CustomerUpdateEmail ; BottomContent         ;                                                                                  ; EmailBottomSlot                          ; true          
+
+# Email Pages                        
+INSERT_UPDATE EmailPage ; $contentCV[unique=true] ; uid[unique=true]    ; name                  ; masterTemplate(uid,$contentCV) ; defaultPage ; approvalStatus(code)[default='approved'] ; fromEmail                        ; fromName          
+                        ;                         ; CustomerUpdateEmail ; Customer Update Email ; CustomerUpdateEmailTemplate    ; true        ;                                          ; noreply@em90.comms.gallagher.com ; Gallagher Security
+
+UPDATE EmailPage ; $contentCV[unique=true] ; uid[unique=true]    ; previewImage(code, $contentCV)
+                 ;                         ; CustomerUpdateEmail ; EmailPageModel_preview        
+
+UPDATE EmailPage ; $contentCV[unique=true] ; uid[unique=true]    ; fromEmail[lang=$lang]              ; fromName[lang=$lang]       
+                 ;                         ; CustomerUpdateEmail ; "marketing@security.gallagher.com" ; "Gallagher online services"
+                 
+# CMS components velocity templates
+INSERT_UPDATE RendererTemplate ; code[unique=true]                                ; contextClass  ; rendererType(code)[default='velocity']
+                               ; securityB2BNZ-CMSImageComponent-template         ; java.util.Map 
+                               ; securityB2BNZ-BannerComponent-template           ; java.util.Map 
+                               ; securityB2BNZ-SimpleBannerComponent-template     ; java.util.Map 
+                               ; securityB2BNZ-CMSLinkComponent-template          ; java.util.Map 
+                               ; securityB2BNZ-CMSParagraphComponent-template     ; java.util.Map 
+                               ; securityB2BAU-CMSImageComponent-template         ; java.util.Map 
+                               ; securityB2BAU-BannerComponent-template           ; java.util.Map 
+                               ; securityB2BAU-SimpleBannerComponent-template     ; java.util.Map 
+                               ; securityB2BAU-CMSLinkComponent-template          ; java.util.Map 
+                               ; securityB2BAU-CMSParagraphComponent-template     ; java.util.Map ;                                       
+                               ; securityB2BGlobal-CMSImageComponent-template     ; java.util.Map 
+                               ; securityB2BGlobal-BannerComponent-template       ; java.util.Map 
+                               ; securityB2BGlobal-SimpleBannerComponent-template ; java.util.Map 
+                               ; securityB2BGlobal-CMSLinkComponent-template      ; java.util.Map 
+                               ; securityB2BGlobal-CMSParagraphComponent-template ; java.util.Map 
+
+# Email velocity templates     
+INSERT_UPDATE RendererTemplate ; code[unique=true]                         ; contextClass                                                  ; rendererType(code)[default='velocity']
+                               ; securityB2B_Email_Customer_Update_Body    ; $gallagherEmailPackageName.GallagherCustomerUpdateEmailContext
+                               ; securityB2B_Email_Customer_Update_Subject ; $gallagherEmailPackageName.GallagherCustomerUpdateEmailContext
+
+UPDATE RendererTemplate ; code[unique=true]                         ; description[lang=$lang]         ; templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+                        ; securityB2B_Email_Customer_Update_Body    ; "Customer Update Email Body"    ; $emailResource/email-customerUpdateBody.vm                                                                    
+                        ; securityB2B_Email_Customer_Update_Subject ; "Customer Update Email Subject" ; $emailResource/email-customerUpdateSubject.vm                                                                 
+                        
+# Preview Image for use in the CMS Cockpit
+INSERT_UPDATE Media ; $contentCV[unique=true] ; code[unique=true]      ; mime     ; realfilename               ; @media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true]
+                    ;                         ; EmailPageModel_preview ; text/gif ; EmailPageModel_preview.gif ; $jarResourceCms/preview-images/EmailPageModel_preview.gif                                  
+
+UPDATE EmailPage ; $contentCV[unique=true] ; uid[unique=true]    ; previewImage(code, $contentCV)
+                 ;                         ; CustomerUpdateEmail ; EmailPageModel_preview        
+# USE CTRL-SPACE for type-ahead support
