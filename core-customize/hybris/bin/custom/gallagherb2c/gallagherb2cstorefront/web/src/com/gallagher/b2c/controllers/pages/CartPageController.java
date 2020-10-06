@@ -25,6 +25,7 @@ import de.hybris.platform.acceleratorstorefrontcommons.util.XSSFilterUtil;
 import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
 import de.hybris.platform.cms2.model.pages.AbstractPageModel;
 import de.hybris.platform.cms2.model.pages.ContentPageModel;
+import de.hybris.platform.commercefacades.order.CartFacade;
 import de.hybris.platform.commercefacades.order.SaveCartFacade;
 import de.hybris.platform.commercefacades.order.data.CartData;
 import de.hybris.platform.commercefacades.order.data.CartModificationData;
@@ -34,6 +35,7 @@ import de.hybris.platform.commercefacades.order.data.OrderEntryData;
 import de.hybris.platform.commercefacades.product.ProductFacade;
 import de.hybris.platform.commercefacades.product.ProductOption;
 import de.hybris.platform.commercefacades.product.data.ProductData;
+import de.hybris.platform.commercefacades.product.data.PromotionResultData;
 import de.hybris.platform.commercefacades.quote.data.QuoteData;
 import de.hybris.platform.commercefacades.voucher.VoucherFacade;
 import de.hybris.platform.commercefacades.voucher.exceptions.VoucherOperationException;
@@ -49,8 +51,10 @@ import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -129,6 +133,9 @@ public class CartPageController extends AbstractCartPageController
 	@Resource(name = "storeSessionFacade")
 	protected GallagherStoreSessionFacade storeSessionFacade;
 
+	@Resource(name = "cartFacade")
+	private CartFacade cartFacade;
+
 	@ModelAttribute("showCheckoutStrategies")
 	public boolean isCheckoutStrategyVisible()
 	{
@@ -143,6 +150,25 @@ public class CartPageController extends AbstractCartPageController
 
 	protected String prepareCartUrl(final Model model) throws CMSItemNotFoundException
 	{
+		if (voucherCheck().size() > 0)
+		{
+			for (final String str : voucherCheck())
+			{
+				try
+				{
+					voucherFacade.releaseVoucher(str);
+					LOG.info("Voucher " + str + " is removed beacause it is no more applicable for cart.");
+				}
+				catch (final VoucherOperationException e)
+				{
+					if (LOG.isDebugEnabled())
+					{
+						LOG.debug(e.getMessage(), e);
+					}
+				}
+			}
+		}
+
 		final Optional<String> quoteEditUrl = getQuoteUrl();
 		if (quoteEditUrl.isPresent())
 		{
@@ -535,9 +561,20 @@ public class CartPageController extends AbstractCartPageController
 			else
 			{
 				voucherFacade.applyVoucher(form.getVoucherCode().toUpperCase());
-				redirectAttributes.addFlashAttribute("successMsg",
-						getMessageSource().getMessage("text.voucher.apply.applied.success", new Object[]
-						{ form.getVoucherCode().toUpperCase() }, getI18nService().getCurrentLocale()));
+				if (voucherCheck().contains(form.getVoucherCode().toUpperCase()))
+				{
+					voucherFacade.releaseVoucher(form.getVoucherCode().toUpperCase());
+					redirectAttributes.addFlashAttribute(VOUCHER_FORM, form);
+					redirectAttributes.addFlashAttribute("errorMsg",
+							getMessageSource().getMessage("text.voucher.not.applicable.for.cart", new Object[]
+							{ form.getVoucherCode() }, getI18nService().getCurrentLocale()));
+				}
+				else
+				{
+					redirectAttributes.addFlashAttribute("successMsg",
+							getMessageSource().getMessage("text.voucher.apply.applied.success", new Object[]
+							{ form.getVoucherCode() }, getI18nService().getCurrentLocale()));
+				}
 			}
 		}
 		catch (final VoucherOperationException e)
@@ -555,6 +592,42 @@ public class CartPageController extends AbstractCartPageController
 		}
 
 		return REDIRECT_CART_URL;
+	}
+
+	public Set<String> voucherCheck()
+	{
+		final Set<String> errorVoucherSet = new HashSet<>();
+		final CartData cartData = cartFacade.getSessionCartWithEntryOrdering(false);
+		if (null != cartData && null != cartData.getAppliedVouchers() && null != cartData.getAppliedOrderPromotions()
+				&& null != cartData.getAppliedProductPromotions())
+		{
+			final int voucherCount = cartData.getAppliedVouchers().size();
+			final int promotionCount = cartData.getAppliedOrderPromotions().size() + cartData.getAppliedProductPromotions().size();
+			if (voucherCount > 0)
+			{
+				final Set<PromotionResultData> promoSet = new HashSet<>();
+				final Set<String> promotionSet = new HashSet<>();
+				promoSet.addAll(cartData.getAppliedOrderPromotions());
+				promoSet.addAll(cartData.getAppliedProductPromotions());
+				for (final PromotionResultData promo : promoSet)
+				{
+					promotionSet.add(promo.getPromotionData().getCode().toUpperCase());
+				}
+				for (final String voucher : cartData.getAppliedVouchers())
+				{
+					String voucherCheck = voucher.toUpperCase();
+					if (voucher.contains("-"))
+					{
+						voucherCheck = voucher.substring(0, voucher.indexOf("-"));
+					}
+					if (!promotionSet.contains(voucherCheck))
+					{
+						errorVoucherSet.add(voucher.toUpperCase());
+					}
+				}
+			}
+		}
+		return errorVoucherSet;
 	}
 
 	@RequestMapping(value = "/voucher/remove", method = RequestMethod.POST)
