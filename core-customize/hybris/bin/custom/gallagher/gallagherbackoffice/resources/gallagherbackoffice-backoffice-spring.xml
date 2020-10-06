@@ -26,14 +26,11 @@
      <bean id="gallagherDefaultEditorAreaLogicHandler" class="com.gallagher.backoffice.handler.GallagherEditB2BCustomerHandler" parent="defaultEditorAreaLogicHandler">
       <property name="gallagherKeycloakService" ref="gallagherKeycloakService"/>
       <property name="customerConverter" ref="customerConverter"/> 
-      <property name="baseStoreService" ref="baseStoreService"/>
       <property name="baseSiteService" ref="baseSiteService"/>
       <property name="notificationService" ref="notificationService"/>
       <property name="sessionService" ref="sessionService"/>
       <property name="storeSessionFacade" ref="storeSessionFacade"/>
-      <property name="modelService" ref="modelService"/>
       <property name="eventService" ref="eventService"/>
-      <property name="commonI18NService" ref="commonI18NService"/>
       <property name="gallagherC4COutboundServiceFacade" ref="gallagherC4COutboundServiceFacade"/>
      </bean>     
 

@@ -1,4 +1,4 @@
-## messageSource=classpath:/gallaghercore/messages/email-customerUpdate.properties
+## messageSource=classpath:/gallaghercore/messages/email-customerUpdate_$lang.properties
 #macro(genHtmlLinkStartTag $url)
 <a href="$url"><font color="#333">
 #end
@@ -38,20 +38,32 @@
 									<td align="left" valign="top">
 										<p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.getMessage('salutation', ${ctx.firstName})},</font></p>
 											<p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.message}</font></p>
-                                        #if(${ctx.b2bUnitRemoved})
-                                            <p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.getMessage('accountRemoved', ${ctx.b2bUnitRemoved})}</font></p>
-                                        #end
-                                        #if(${ctx.b2bUnitRemoved})
-                                            <p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.getMessage('accountAdded', ${ctx.b2bUnitAdded})}</font></p>
-										#end
-										#if(${ctx.NAME})
-                                            <p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.getMessage('nameUpdated', ${ctx.NAME})}</font></p>
-										#end
-										#if(${ctx.EMAIL})
-                                            <p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.getMessage('emailUpdated', ${ctx.EMAIL})}</font></p>
-										#end
+										<ul>	
+                                          #if(${ctx.b2bUnitRemoved})
+                                          <li>
+                                           <p><b><font color="#322e2c" size="2" face="Calibri">${ctx.messages.getMessage('accountRemoved', ${ctx.b2bUnitRemoved})}</font></b></p>
+                                          </li> 
+                                           #end
+                                          #if(${ctx.b2bUnitAdded})
+                                          <li>
+                                            <p><b><font color="#322e2c" size="2" face="Calibri">${ctx.messages.getMessage('accountAdded', ${ctx.b2bUnitAdded})}</font></b></p>
+										  </li>
+										  #end
+										 #if(${ctx.name})
+										  <li>
+                                            <p><b><font color="#322e2c" size="2" face="Calibri">${ctx.messages.getMessage('nameUpdated', ${ctx.name})}</font></b></p>
+										  </li>
+										 #end
+										 #if(${ctx.uid})
+										  <li>
+                                            <p><b><font color="#322e2c" size="2" face="Calibri">${ctx.messages.getMessage('emailUpdated', ${ctx.uid})}</font></b></p>
+										 </li>
+										 #end
+										 
+										<br>
 										<p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.complimentaryClosing}</font></p>
 										<p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.signature}</font></p>
+										</ul>
 									</td>
 								</tr>
 								<tr>

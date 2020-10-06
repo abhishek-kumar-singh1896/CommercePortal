@@ -44,12 +44,13 @@ public class GallagherCustomerUpdateEmailContext extends CustomerEmailContext
 
 			final Map<String, String> modifiedAttributesMap = storeFrontCustomerUpdateProcessModel.getModifiedAttributesMap();
 
-			put("accountRemoved", StringUtils.EMPTY);
-			put("accountAdded", StringUtils.EMPTY);
 			final Set<Entry<String, String>> entrySet = modifiedAttributesMap.entrySet();
 			for (final Entry<String, String> entry : entrySet)
 			{
-				put(entry.getKey(), entry.getValue());
+				if (StringUtils.isNotBlank(entry.getValue()))
+				{
+					put(entry.getKey(), entry.getValue());
+				}
 			}
 		}
 

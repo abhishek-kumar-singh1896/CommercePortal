@@ -7,24 +7,44 @@ import de.hybris.platform.commercefacades.storesession.StoreSessionFacade;
 import de.hybris.platform.commercefacades.user.data.CustomerData;
 import de.hybris.platform.core.model.c2l.CurrencyModel;
 import de.hybris.platform.core.model.c2l.LanguageModel;
+import de.hybris.platform.core.model.security.PrincipalGroupModel;
 import de.hybris.platform.core.model.user.UserModel;
+import de.hybris.platform.servicelayer.config.ConfigurationService;
 import de.hybris.platform.servicelayer.dto.converter.Converter;
-import de.hybris.platform.servicelayer.model.ModelService;
+import de.hybris.platform.servicelayer.event.EventService;
+import de.hybris.platform.servicelayer.internal.model.impl.ModelValueHistory;
+import de.hybris.platform.servicelayer.model.ItemModelContextImpl;
 import de.hybris.platform.servicelayer.session.SessionExecutionBody;
 import de.hybris.platform.servicelayer.session.SessionService;
 import de.hybris.platform.site.BaseSiteService;
 import de.hybris.platform.store.BaseStoreModel;
-import de.hybris.platform.store.services.BaseStoreService;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.annotation.Resource;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.commons.lang3.tuple.Pair;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.gallagher.c4c.outboundservices.facade.GallagherC4COutboundServiceFacade;
+import com.gallagher.core.events.GallagherB2BCustomerUpdateEvent;
+import com.gallagher.core.services.GallagherB2BUnitService;
 import com.gallagher.keycloak.outboundservices.service.GallagherKeycloakService;
+import com.hybris.backoffice.widgets.notificationarea.event.NotificationEvent.Level;
 import com.hybris.cockpitng.dataaccess.context.Context;
 import com.hybris.cockpitng.dataaccess.context.impl.DefaultContext;
 import com.hybris.cockpitng.dataaccess.facades.object.ObjectFacade;
@@ -42,24 +62,26 @@ import com.hybris.cockpitng.widgets.baseeditorarea.DefaultEditorAreaLogicHandler
  */
 public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandler
 {
-	private static final Logger LOG = Logger.getLogger(GallagherEditB2BCustomerHandler.class);
+	private static final Logger LOG = LoggerFactory.getLogger(GallagherEditB2BCustomerHandler.class);
 
-	private static final String KEY_CLOAK_ID_EXISTS = "Key Cloak Id already present";
 	private static final String EMAIL_ALREADY_PRESENT = "duplicateHybrisCustomer";
-	private static final String SECURITY_B2B_GLOBAL = "securityB2BGlobal";
 	private static final String INPUT_OBJECT = "$_inputObject";
-	private static final String SECURITY_B2B = "securityB2B";
-	private static final String SECURITY = "security";
+	private static final String EMAIL_REGEX = "email.regex";
 
 	private GallagherC4COutboundServiceFacade gallagherC4COutboundServiceFacade;
 	private Converter<UserModel, CustomerData> customerConverter;
 	private GallagherKeycloakService gallagherKeycloakService;
 	private NotificationService notificationService;
 	private StoreSessionFacade storeSessionFacade;
-	private BaseStoreService baseStoreService;
 	private BaseSiteService baseSiteService;
 	private SessionService sessionService;
-	private ModelService modelService;
+	private EventService eventService;
+
+	@Resource(name = "gallagherB2BUnitService")
+	protected GallagherB2BUnitService b2bUnitService;
+
+	@Resource(name = "configurationService")
+	private ConfigurationService configurationService;
 
 	@Override
 	public Object performSave(final WidgetInstanceManager widgetInstanceManager, final Object currentObject)
@@ -67,9 +89,9 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 	{
 		if (currentObject instanceof B2BCustomerModel)
 		{
-				final B2BCustomerModel b2bCustomerModel = (B2BCustomerModel) currentObject;
-				final CustomerData b2bCustomer = getCustomerConverter().convert(b2bCustomerModel);
-				b2bCustomer.setKeycloakGUID(b2bCustomerModel.getKeycloakGUID());
+			final B2BCustomerModel currentCustomerModel = (B2BCustomerModel) currentObject;
+			final CustomerData b2bCustomer = getCustomerConverter().convert(currentCustomerModel);
+			b2bCustomer.setKeycloakGUID(currentCustomerModel.getKeycloakGUID());
 				final String email = b2bCustomer.getUid();
 
 				LOG.debug("Checking if the customer is already present in keyCloak and C4C");
@@ -77,24 +99,45 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 
 				if (BooleanUtils.isFalse(isEmailValid))
 				{
-					/* getNotificationService().notifyUser(StringUtils.EMPTY, EMAIL_ALREADY_PRESENT, Level.FAILURE, null); */
-					throw new ObjectSavingException(email, EMAIL_ALREADY_PRESENT, new Throwable(KEY_CLOAK_ID_EXISTS));
+					getNotificationService().notifyUser(StringUtils.EMPTY, EMAIL_ALREADY_PRESENT, Level.FAILURE, null);
+					throw new ObjectSavingException(EMAIL_ALREADY_PRESENT, new Throwable(EMAIL_ALREADY_PRESENT));
 				}
 
-				LOG.debug("Updating user profile in keycloak");
-
-				if (isB2BCustomerModified(widgetInstanceManager, b2bCustomerModel))
+				final Map<String, String> modifiedAttributesMap = getModifiedAttributesMap(currentCustomerModel);
+				if (MapUtils.isNotEmpty(modifiedAttributesMap))
 				{
+					LOG.debug("Updating user profile in keycloak");
 					getGallagherKeycloakService().updateKeyCloakUserProfile(b2bCustomer);
 				}
 
 				final Context ctx = new DefaultContext();
 				ctx.addAttribute(ObjectFacade.CTX_PARAM_SUPPRESS_EVENT, Boolean.TRUE);
-				widgetInstanceManager.getModel().setValue(INPUT_OBJECT, b2bCustomerModel);
 
-				return updateStoreInSession(b2bCustomerModel, ctx);
+				LOG.debug("Updating user profile in C4C");
+				final B2BCustomerModel updatedCustomerModel = pushToC4C(currentCustomerModel, ctx);
+
+				final B2BCustomerModel originalCustomerModel = widgetInstanceManager.getModel().getValue(INPUT_OBJECT,
+						B2BCustomerModel.class);
+
+				final Map<String, String> modifiedMap = addModifiedUnits(
+						originalCustomerModel,
+						updatedCustomerModel,
+						modifiedAttributesMap);
+
+				if (MapUtils.isNotEmpty(modifiedMap))
+				{
+					getEventService().publishEvent(
+							initializeEvent(new GallagherB2BCustomerUpdateEvent(), updatedCustomerModel,
+									modifiedMap));
+				}
+
+				LOG.debug("Updating widget instance manager with updated B2B customer");
+				widgetInstanceManager.getModel().setValue(INPUT_OBJECT, currentCustomerModel);
+
+				return updatedCustomerModel;
 		}
-		LOG.debug("Customer is not B2B ");
+
+		LOG.debug("Customer is not B2B, executing OOTB flow ");
 		return super.performSave(widgetInstanceManager, currentObject);
 
 	}
@@ -102,19 +145,66 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 	/**
 	 * This method returns if any of email, name or b2bUnit is modified
 	 *
-	 * @param widgetInstanceManager
-	 * @param currentObject
+	 * @param currentCustomerModel
 	 * @return
 	 */
-	private boolean isB2BCustomerModified(final WidgetInstanceManager widgetInstanceManager,
-			final B2BCustomerModel b2bCustomerModel)
+	private Map<String, String> getModifiedAttributesMap(final B2BCustomerModel currentCustomerModel)
 	{
-			final B2BCustomerModel originalCustomerModel = widgetInstanceManager.getModel().getValue(INPUT_OBJECT,
-					B2BCustomerModel.class);
-			final boolean isEmailModified = originalCustomerModel.getUid().equals(b2bCustomerModel.getUid()) ? false : true;
-			final boolean isNameModified = originalCustomerModel.getName().equals(b2bCustomerModel.getName()) ? false : true;
-			return isEmailModified || isNameModified;
+		final Set<String> monitoredAttributes = getMonitoredAttributes();
+		final Set<String> attributeSet = currentCustomerModel.getItemModelContext().getDirtyAttributes();
+
+		final Map<String, String> modifiedAttributesMap = new HashMap<>();
+
+		for (final String attribute : attributeSet)
+		{
+			if (monitoredAttributes.contains(attribute))
+			{
+				modifiedAttributeMap(currentCustomerModel, attribute, modifiedAttributesMap);
+			}
+		}
+		return modifiedAttributesMap;
+
 	}
+
+	/**
+	 * @param modifiedAttributesMap
+	 * @param originalCustomerModel
+	 * @param attribute
+	 * @return
+	 */
+	private Map<String, String> modifiedAttributeMap(final B2BCustomerModel itemModel,
+			final String itemProperty,
+			final Map<String, String> modifiedAttributesMap)
+	{
+
+		final ItemModelContextImpl context = (ItemModelContextImpl) itemModel.getItemModelContext();
+		final ModelValueHistory history = context.getValueHistory();
+		final boolean isChanged = !Objects.equals(itemModel.getProperty(itemProperty), history.getOriginalValue(itemProperty));
+
+		if (isChanged)
+		{
+			LOG.debug("The [{}] attribute [{}], has been updated from [{}] to [{}]!", itemModel.getItemtype(), itemProperty,
+					history.getOriginalValue(itemProperty), itemModel.getProperty(itemProperty));
+			modifiedAttributesMap.put(itemProperty, itemModel.getProperty(itemProperty));
+		}
+		return modifiedAttributesMap;
+
+	}
+
+
+	/**
+	 * @return
+	 */
+	private Set<String> getMonitoredAttributes()
+	{
+
+		final Set<String> monitoredAttributes = new HashSet<>();
+		monitoredAttributes.add(B2BCustomerModel.UID);
+		monitoredAttributes.add(B2BCustomerModel.NAME);
+		return monitoredAttributes;
+
+	}
+
 
 	/**
 	 * This method checks, if the email is changed from commerce and already present in keycloak and C4C
@@ -126,73 +216,61 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 	private Boolean isCustomerEmailValid(final WidgetInstanceManager widgetInstanceManager, final String email)
 	{
 		Boolean isCustomerEmailValid = Boolean.TRUE;
-		if (BooleanUtils.isFalse(widgetInstanceManager.getTitle().contains(email)))
+
+		if (StringUtils.isEmpty(email) || StringUtils.length(email) > 255 || !validateEmailAddress(email))
+		{
+			isCustomerEmailValid = Boolean.FALSE;
+		}
+
+		else if (BooleanUtils.isFalse(widgetInstanceManager.getTitle().contains(email)))
 		{
 			final String existingKeyCloakId = getGallagherKeycloakService().getKeycloakUserFromEmail(email);
 
 			if (StringUtils.isNotBlank(existingKeyCloakId))
 			{
-				LOG.debug("Customer with same email already exists in keycloak::" + existingKeyCloakId);
+				LOG.debug("Customer with same email [{}] already exists in keycloak::", email);
 				isCustomerEmailValid = Boolean.FALSE;
 			}
 
 			else if (CollectionUtils
 					.isNotEmpty(getGallagherC4COutboundServiceFacade().getCustomerInfoFromC4C(email, StringUtils.EMPTY)))
 			{
-				LOG.debug("Customer with same email already exists in C4C::" + email);
+				LOG.debug("Customer with same email [{}] already exists in C4C::", email);
 				isCustomerEmailValid = Boolean.FALSE;
 			}
 		}
+
 		return isCustomerEmailValid;
 	}
 
-	private B2BCustomerModel updateStoreInSession(final B2BCustomerModel b2bCustomer, final Context ctx)
+	protected boolean validateEmailAddress(final String email)
+	{
+		final Matcher matcher = Pattern.compile(configurationService.getConfiguration().getString(EMAIL_REGEX)).matcher(email);
+		return matcher.matches();
+	}
+
+	/**
+	 * @param currentCustomerModel
+	 * @param ctx
+	 * @return
+	 */
+	private B2BCustomerModel pushToC4C(final B2BCustomerModel b2bCustomer, final Context ctx)
 	{
 		final B2BUnitModel defaultB2BUnit = b2bCustomer.getDefaultB2BUnit();
-		BaseSiteModel defaultSite = null;
-		BaseStoreModel defaultBaseStore = null;
+		final Pair<BaseSiteModel, BaseStoreModel> baseSiteAndStore = getB2bUnitService().getBaseSiteAndStoreForUnit(defaultB2BUnit);
 
-		if (CollectionUtils.isEmpty(defaultB2BUnit.getAddresses()))
-		{
-			defaultBaseStore = getBaseStoreService().getBaseStoreForUid(SECURITY_B2B_GLOBAL);
-			defaultSite = getBaseSiteService().getBaseSiteForUID(SECURITY_B2B_GLOBAL);
-		}
-		else
-		{
-			final List<BaseStoreModel> baseStores = getBaseStoreService().getAllBaseStores();
-			final String isoCode = defaultB2BUnit.getAddresses().iterator().next().getCountry().getIsocode();
-			boolean flag = false;
-			for (final BaseStoreModel baseStore : baseStores)
-			{
-				if (baseStore.getUid().startsWith(SECURITY) && baseStore.getUid().contains(isoCode))
-				{
-					String securityB2BisoCode = SECURITY_B2B;
-					securityB2BisoCode = securityB2BisoCode.concat(isoCode);
-					defaultBaseStore = getBaseStoreService().getBaseStoreForUid(securityB2BisoCode);
-					defaultSite = getBaseSiteService().getBaseSiteForUID(securityB2BisoCode);
-					flag = true;
-					break;
-				}
-			}
-			if (!flag)
-			{
-				defaultSite = getBaseSiteService().getBaseSiteForUID(SECURITY_B2B_GLOBAL);
-			}
-		}
-
-		final BaseSiteModel baseSite = defaultSite;
-
-		final CurrencyModel currency = getCurrency(defaultBaseStore, b2bCustomer.getSessionCurrency());
-		final LanguageModel language = getLanguage(defaultBaseStore, b2bCustomer.getSessionLanguage());
+		final LanguageModel language = getLanguage(baseSiteAndStore.getRight(), b2bCustomer.getSessionLanguage());
+		final CurrencyModel currency = getCurrency(baseSiteAndStore.getRight(), b2bCustomer.getSessionCurrency());
 
 		b2bCustomer.setSessionCurrency(currency);
 		b2bCustomer.setSessionLanguage(language);
+
 		getSessionService().executeInLocalView(new SessionExecutionBody()
 		{
 			@Override
 			public void executeWithoutResult()
 			{
-				getBaseSiteService().setCurrentBaseSite(baseSite, Boolean.FALSE);
+				getBaseSiteService().setCurrentBaseSite(baseSiteAndStore.getLeft(), Boolean.FALSE);
 				getStoreSessionFacade().setCurrentLanguage(language.getIsocode());
 				getStoreSessionFacade().setCurrentCurrency(currency.getIsocode());
 				try
@@ -201,14 +279,13 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 				}
 				catch (final ObjectSavingException e)
 				{
-					LOG.error("Error while saving B2B customer :: " + e.getMessage());
+					LOG.error("Error while saving B2B customer :: [{}] ", e.getMessage());
 				}
 			}
 		});
 
 		return b2bCustomer;
 	}
-
 
 	/**
 	 * Returns the currency for this customer. If user selected currency is not in allowed list of currencies then use
@@ -256,6 +333,85 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 			language = baseStore.getLanguages().contains(sessionLanguage) ? sessionLanguage : baseStore.getDefaultLanguage();
 		}
 		return language;
+	}
+
+	/**
+	 * initializes an {@link GallagherB2BCustomerUpdateEvent}
+	 *
+	 * @param event
+	 * @param updatedCustomerModel
+	 * @param modifiedAttributesMap
+	 * @param modifiedAttributesMap
+	 * @param customerModel
+	 * @return the event
+	 */
+	private GallagherB2BCustomerUpdateEvent initializeEvent(final GallagherB2BCustomerUpdateEvent event,
+			final B2BCustomerModel originalCustomerModel,
+			final Map<String, String> modifiedAttributesMap)
+	{
+		final B2BUnitModel defaultB2BUnit = originalCustomerModel.getDefaultB2BUnit();
+		final Pair<BaseSiteModel, BaseStoreModel> baseSite = getB2bUnitService().getBaseSiteAndStoreForUnit((defaultB2BUnit));
+
+		event.setBaseStore(baseSite.getRight());
+		event.setSite(baseSite.getLeft());
+		event.setCustomer(originalCustomerModel);
+		event.setLanguage(originalCustomerModel.getSessionLanguage());
+		event.setCurrency(originalCustomerModel.getSessionCurrency());
+		event.setModifiedAttributesMap(modifiedAttributesMap);
+
+		return event;
+	}
+
+
+
+	/**
+	 * @param originalCustomerModel
+	 * @param updatedCustomerModel
+	 * @param modifiedAttributesMap
+	 * @return
+	 */
+	private Map<String, String> addModifiedUnits(
+			final B2BCustomerModel originalCustomerModel,
+			final B2BCustomerModel updatedCustomerModel, final Map<String, String> modifiedAttributesMap)
+	{
+		//getting the groups from the new version
+
+		final Collection<PrincipalGroupModel> oldGroups = new HashSet<>(originalCustomerModel.getGroups());
+		final Collection<PrincipalGroupModel> deletedGroups = new HashSet<>(originalCustomerModel.getGroups());
+		final Collection<PrincipalGroupModel> newGroups = new HashSet<>(updatedCustomerModel.getGroups());
+
+		deletedGroups.removeAll(newGroups);
+		newGroups.removeAll(oldGroups);
+
+		final List<String> addedUnits = getUnits(newGroups);
+		final List<String> deletedUnits = getUnits(deletedGroups);
+
+		if (CollectionUtils.isNotEmpty(deletedUnits))
+		{
+			modifiedAttributesMap.put("b2bUnitRemoved", String.join(",", deletedUnits));
+		}
+		if (CollectionUtils.isNotEmpty(addedUnits))
+		{
+			modifiedAttributesMap.put("b2bUnitAdded", String.join(",", addedUnits));
+		}
+
+		return modifiedAttributesMap;
+	}
+	/**
+	 * Returns the uids of all B2B Units
+	 *
+	 * @return b2bunit Ids
+	 */
+	private List<String> getUnits(final Collection<PrincipalGroupModel> groups)
+	{
+		final List<String> units = new ArrayList<>();
+		groups.forEach(group -> {
+			if (group instanceof B2BUnitModel)
+			{
+				units.add(group.getLocName());
+			}
+		});
+		return units;
 	}
 
 	/**
@@ -310,23 +466,6 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 	}
 
 	/**
-	 * @return the baseStoreService
-	 */
-	public BaseStoreService getBaseStoreService()
-	{
-		return baseStoreService;
-	}
-
-	/**
-	 * @param baseStoreService
-	 *           the baseStoreService to set
-	 */
-	public void setBaseStoreService(final BaseStoreService baseStoreService)
-	{
-		this.baseStoreService = baseStoreService;
-	}
-
-	/**
 	 * @return the baseSiteService
 	 */
 	public BaseSiteService getBaseSiteService()
@@ -378,23 +517,6 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 	}
 
 	/**
-	 * @return the modelService
-	 */
-	public ModelService getModelService()
-	{
-		return modelService;
-	}
-
-	/**
-	 * @param modelService
-	 *           the modelService to set
-	 */
-	public void setModelService(final ModelService modelService)
-	{
-		this.modelService = modelService;
-	}
-
-	/**
 	 * @return the gallagherC4COutboundServiceFacade
 	 */
 	public GallagherC4COutboundServiceFacade getGallagherC4COutboundServiceFacade()
@@ -410,4 +532,58 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 	{
 		this.gallagherC4COutboundServiceFacade = gallagherC4COutboundServiceFacade;
 	}
+
+	/**
+	 * @return the eventService
+	 */
+	public EventService getEventService()
+	{
+		return eventService;
+	}
+
+	/**
+	 * @param eventService
+	 *           the eventService to set
+	 */
+	public void setEventService(final EventService eventService)
+	{
+		this.eventService = eventService;
+	}
+
+	/**
+	 * @return the b2bUnitService
+	 */
+	public GallagherB2BUnitService getB2bUnitService()
+	{
+		return b2bUnitService;
+	}
+
+	/**
+	 * @param b2bUnitService
+	 *           the b2bUnitService to set
+	 */
+	public void setB2bUnitService(final GallagherB2BUnitService b2bUnitService)
+	{
+		this.b2bUnitService = b2bUnitService;
+	}
+
+	/**
+	 * @return the configurationService
+	 */
+	public ConfigurationService getConfigurationService()
+	{
+		return configurationService;
+	}
+
+	/**
+	 * @param configurationService
+	 *           the configurationService to set
+	 */
+	public void setConfigurationService(final ConfigurationService configurationService)
+	{
+		this.configurationService = configurationService;
+	}
+
+
+
 }

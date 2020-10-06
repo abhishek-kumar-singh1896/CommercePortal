@@ -102,6 +102,9 @@ public class CoreSystemSetup extends AbstractSystemSetup
 			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-722_LatAm.impex");
 			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-722_NZ.impex");
 			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-722_US.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP2-90_AU.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP2-90_NZ.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP2-90_Global.impex");
 		}
 
 	}
