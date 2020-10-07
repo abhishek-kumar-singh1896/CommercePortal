@@ -33,6 +33,8 @@
 		</enumtype>
 
 		<enumtype code="RegionCode" dynamic="true" />
+		
+		<enumtype code="ConditionType" dynamic="true" />
 	</enumtypes>
 
 	<maptypes>
@@ -84,6 +86,21 @@
 
 		<!-- Add your item definitions here -->
 		<!-- Add your item definitions here -->
+		<itemtype code="B2BUnit" autocreate="false" generate="false">
+			<description>Extending B2BUnit type with an additional attribute.</description>
+			<attributes>
+				<attribute autocreate="true" generate="true" qualifier="salesArea" type="java.lang.String">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property" />
+					<description>Attribute to identify the Sales Area of B2BUnit </description>
+				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="currency" type="Currency">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property" />
+					<description>Attribute to identify the currency associated with the B2BUnit </description>
+				</attribute>
+			</attributes>
+		</itemtype>
 		<itemtype code="Customer" autocreate="false" generate="false">
 			<description>Extending Customer type with an additional attribute.</description>
 			<attributes>
@@ -720,6 +737,40 @@
 			<itemtype code="GallagherNewButtonComponent" autocreate="true" generate="true" extends="CMSLinkComponent">
 			</itemtype>
 
+		</typegroup>
+		
+		<typegroup name="price">
+			<itemtype code="PriceRow" autocreate="false" generate="false">
+				<description>Extending PriceRow type with an additional attribute.</description>
+				<attributes>
+					<attribute autocreate="true" generate="true" qualifier="salesArea" type="java.lang.String">
+						<modifiers read="true" write="true" search="true" optional="true" />
+						<persistence type="property" />
+						<description>Attribute to identify the Sales Area associated with the PriceRow </description>
+					</attribute>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="DiscountRow" autocreate="false" generate="false">
+				<description>Extending DiscountRow type with an additional attribute.</description>
+				<attributes>
+					<attribute autocreate="true" generate="true" qualifier="salesArea" type="java.lang.String">
+						<modifiers read="true" write="true" search="true" optional="true" />
+						<persistence type="property" />
+						<description>Attribute to identify the Sales Area associated with the DiscountRow </description>
+					</attribute>
+					<attribute autocreate="true" generate="true" qualifier="quantity" type="java.lang.Integer">
+						<modifiers read="true" write="true" search="true" optional="true" />
+						<persistence type="property" />
+						<description>Attribute to identify the quantity for DiscountRow </description>
+					</attribute>
+					<attribute autocreate="true" generate="true" qualifier="conditionType" type="ConditionType">
+						<modifiers read="true" write="true" search="true" optional="true" />
+						<persistence type="property" />
+						<description>Attribute to identify the Condition Type for DiscountRow </description>
+					</attribute>
+				</attributes>
+			</itemtype>
 		</typegroup>
 
 
