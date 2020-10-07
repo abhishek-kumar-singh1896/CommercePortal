@@ -19,6 +19,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -79,8 +80,10 @@ public class GallagherB2BCustomerInterceptor extends DefaultB2BCustomerIntercept
 			sendB2BCustomerToSapBackend(customerModel);
 			return;
 		}
+		Set<String> monitoredAttributes = getMonitoredAttributes();
+		monitoredAttributes.remove(B2BCustomerModel.GROUPS);
 
-		if (getCustomerAddressReplicationUtilityService().isCustomerReplicationRequired(customerModel, getMonitoredAttributes(),
+		if (getCustomerAddressReplicationUtilityService().isCustomerReplicationRequired(customerModel, monitoredAttributes,
 				ctx))
 		{
 			LOGGER.info("Interceptor called!");
