@@ -50,7 +50,16 @@
                                         <spring:theme code="text.company.user.email" />
                                     </span>
                                     <span class="item-value">
-                                            ${fn:escapeXml(customerData.displayUid)}
+                                        <c:set var="displayEmail" value="${fn:escapeXml(customerData.displayUid)}"/>
+                                   		<c:set var="length" value="${fn:length(customerData.displayUid)}"/>
+                                   		<c:choose>
+                                    		<c:when test="${fn:startsWith(displayEmail, 'sec|')}">
+                                    			${fn:substring(displayEmail, 4, length)}
+                                    		</c:when>
+                                    		<c:otherwise>
+                                    			${fn:escapeXml(customerData.displayUid)}
+                                    		</c:otherwise>
+                                   		</c:choose>
                                     </span>
                                 </div>
                                 <div class="item-group">

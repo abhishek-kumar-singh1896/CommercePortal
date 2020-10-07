@@ -671,13 +671,13 @@ public class UserManagementPageController extends MyCompanyPageController
 			searchRestrictionService.enableSearchRestrictions();
 			try
 			{
-				final List<GallagherInboundCustomerEntry> existingCustomers = getGallagherC4COutboundServiceFacade()
-						.getCustomerInfoFromC4C(email, null);
 				/*
-				 * SAPP2-86 final List<GallagherInboundCustomerEntry> existingCustomers =
-				 * getGallagherC4COutboundServiceFacade() .getCustomerInfoFromC4C(email,
-				 * null,BU.AM.getCode().toLowerCase());
+				 * final List<GallagherInboundCustomerEntry> existingCustomers = getGallagherC4COutboundServiceFacade()
+				 * .getCustomerInfoFromC4C(email, null);
 				 */
+				final List<GallagherInboundCustomerEntry> existingCustomers = getGallagherC4COutboundServiceFacade()
+						.getCustomerInfoFromC4C(email, null, BU.SEC.getCode());
+
 				if (CollectionUtils.isNotEmpty(existingCustomers) && existingCustomers.size() > 1)
 				{
 					existingCustomer.setContactID(existingCustomers.get(0).getContactID());

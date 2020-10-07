@@ -3,6 +3,7 @@
  */
 package com.gallagher.core.services.impl;
 
+import de.hybris.platform.b2b.model.B2BCustomerModel;
 import de.hybris.platform.commercefacades.user.data.CustomerData;
 import de.hybris.platform.commerceservices.customer.CustomerAccountService;
 import de.hybris.platform.commerceservices.customer.DuplicateUidException;
@@ -108,32 +109,83 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 		else
 		{
 
-			final CustomerModel retrieveUser = retrieveUserBySubjectId.get(0);
 
-			if (SiteChannel.B2B.equals(channel))
+			if (retrieveUserBySubjectId.size() == 1)
 			{
-				if (retrieveUser.getClass() == CustomerModel.class)
-				{
-					LOGGER.error("B2C Customer is not allowed to login in B2B website");
-					throw new BadCredentialsException("B2C Customer is not allowed to login in B2B website");
-				}
-				else
-				{
 
-					updateCustomerFromC4C(retrieveUser);
+				final CustomerModel retrieveUser = retrieveUserBySubjectId.get(0);
+				if (SiteChannel.B2C.equals(channel))
+				{
+					if (retrieveUser.getClass() == B2BCustomerModel.class)
+					{
+						try
+						{
+							success = createCommerceCustomer(token);
+						}
+						catch (final DuplicateUidException dupUidEx)
+						{
+							LOGGER.error("Exception while creating new customer", dupUidEx);
+						}
+					}
+					else
+					{
+						/* Update name and email only if updated to avoid sending data to SCPI */
+						if (!retrieveUser.getName().equals(token.getName()) || !retrieveUser.getUid().equals(token.getEmail()))
+						{
+							retrieveUser.setName(token.getName());
+							retrieveUser.setUid(token.getEmail());
+						}
+						retrieveUser.setIsUserExist(true);
+						modelService.save(retrieveUser);
+					}
+				}
+				else if (SiteChannel.B2B.equals(channel))
+				{
+					if (retrieveUser.getClass() == CustomerModel.class)
+					{
+						LOGGER.error("B2C Customer is not allowed to login in B2B website");
+						throw new BadCredentialsException("B2C Customer is not allowed to login in B2B website");
+					}
+					else
+					{
+
+						updateCustomerFromC4C(retrieveUser);
+					}
 				}
 			}
 			else
 			{
-				/* Update name and email only if updated to avoid sending data to SCPI */
-				if (!retrieveUser.getName().equals(token.getName()) || !retrieveUser.getUid().equals(token.getEmail()))
+				for (final CustomerModel retrieveUser : retrieveUserBySubjectId)
 				{
-					retrieveUser.setName(token.getName());
-					retrieveUser.setUid(token.getEmail());
+					if (SiteChannel.B2C.equals(channel) && retrieveUser.getClass() == CustomerModel.class)
+					{
+						/* Update name and email only if updated to avoid sending data to SCPI */
+						if (!retrieveUser.getName().equals(token.getName()) || !retrieveUser.getUid().equals(token.getEmail()))
+						{
+							retrieveUser.setName(token.getName());
+							retrieveUser.setUid(token.getEmail());
+						}
+						retrieveUser.setIsUserExist(true);
+						modelService.save(retrieveUser);
+					}
+					/*
+					 * else if (SiteChannel.B2C.equals(channel) && retrieveUser.getClass() == B2BCustomerModel.class) { try {
+					 * success = createCommerceCustomer(token); } catch (final DuplicateUidException dupUidEx) {
+					 * LOGGER.error("Exception while creating new customer", dupUidEx); } } else if
+					 * (SiteChannel.B2B.equals(channel) && retrieveUser.getClass() == CustomerModel.class) {
+					 * LOGGER.error("B2C Customer is not allowed to login in B2B website"); throw new
+					 * BadCredentialsException("B2C Customer is not allowed to login in B2B website"); }
+					 */
+					else if (SiteChannel.B2B.equals(channel) && retrieveUser.getClass() == B2BCustomerModel.class)
+					{
+						updateCustomerFromC4C(retrieveUser);
+					}
+
+
 				}
-				retrieveUser.setIsUserExist(true);
-				modelService.save(retrieveUser);
+
 			}
+
 			success = true;
 		}
 
@@ -153,13 +205,14 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 		newCustomer.setEmailID(token.getEmail());
 
 		//check if customer exist in the C4C
-		final List<GallagherInboundCustomerEntry> existingCustomers = gallagherC4COutboundServiceFacade
-				.getCustomerInfoFromC4C(token.getEmail(), token.getSubjectId());
-
 		/*
-		 * SAPP2-86 todo final List<GallagherInboundCustomerEntry> existingCustomers = gallagherC4COutboundServiceFacade
-		 * .getCustomerInfoFromC4C(token.getEmail(), token.getSubjectId(),BU.AM.getCode().toLowerCase());
+		 * final List<GallagherInboundCustomerEntry> existingCustomers = gallagherC4COutboundServiceFacade
+		 * .getCustomerInfoFromC4C(token.getEmail(), token.getSubjectId());
 		 */
+
+
+		final List<GallagherInboundCustomerEntry> existingCustomers = gallagherC4COutboundServiceFacade
+				.getCustomerInfoFromC4C(token.getEmail(), token.getSubjectId(), BU.AM.getCode());
 
 
 		//if customer exist and count > 1 then
@@ -196,13 +249,14 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 	{
 
 		//check if customer exist in the C4C
-		final List<GallagherInboundCustomerEntry> existingCustomers = gallagherC4COutboundServiceFacade
-				.getCustomerInfoFromC4C(customer.getUid(), customer.getKeycloakGUID());
-
 		/*
-		 * SAPP2-86 todo final List<GallagherInboundCustomerEntry> existingCustomers = gallagherC4COutboundServiceFacade
-		 * .getCustomerInfoFromC4C(customer.getUid(), customer.getKeycloakGUID(),BU.SEC.getCode().toLowerCase());
+		 * final List<GallagherInboundCustomerEntry> existingCustomers = gallagherC4COutboundServiceFacade
+		 * .getCustomerInfoFromC4C(customer.getUid(), customer.getKeycloakGUID());
 		 */
+
+
+		final List<GallagherInboundCustomerEntry> existingCustomers = gallagherC4COutboundServiceFacade
+				.getCustomerInfoFromC4C(customer.getUid(), customer.getKeycloakGUID(), BU.SEC.getCode());
 
 		if (CollectionUtils.isNotEmpty(existingCustomers))
 		{
@@ -216,9 +270,9 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 				updated = true;
 			}
 			if (StringUtils.isNotEmpty(c4cCustomer.getEmail())
-					&& (customer.getUid() == null || !customer.getUid().equals(c4cCustomer.getEmail())))
+					&& (customer.getUid() == null || !customer.getEmailID().equals(c4cCustomer.getEmail())))
 			{
-				customer.setUid(c4cCustomer.getEmail());
+				customer.setUid("sec|" + c4cCustomer.getEmail());
 				updated = true;
 			}
 			if (updated)

@@ -13,6 +13,8 @@ import de.hybris.platform.sap.sapcpicustomerexchangeb2b.outbound.services.impl.S
 import java.util.ArrayList;
 import java.util.List;
 
+import com.gallagher.core.enums.BU;
+
 
 /**
  * Gallagher class to convert Hybris B2B Customer to SCPI B2B Customer.
@@ -35,6 +37,7 @@ public class GallagherSCPIB2BCustomerConversionServiceImpl extends SapCpiB2BCust
 		sapCpiOutboundB2BContact.setObjectID(b2bCustomer.getObjectID());
 		sapCpiOutboundB2BContact.setUnits(getUnits(b2bCustomer));
 		sapCpiOutboundB2BContact.setUid(b2bCustomer.getEmailID());
+		sapCpiOutboundB2BContact.setBusinessUnit(BU.SEC.getCode());
 	}
 
 	/**
