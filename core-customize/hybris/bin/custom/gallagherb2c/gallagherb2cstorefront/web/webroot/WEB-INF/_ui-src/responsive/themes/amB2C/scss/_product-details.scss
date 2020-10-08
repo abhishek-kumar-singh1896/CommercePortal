@@ -598,9 +598,9 @@ h4 {
 @media (max-width: 639px) {
   .qty-selector {
     margin-left: auto;
+    margin-right:unset !important;
 }
 }
-
 }
 
 .addtocart-component .actions .btn {
