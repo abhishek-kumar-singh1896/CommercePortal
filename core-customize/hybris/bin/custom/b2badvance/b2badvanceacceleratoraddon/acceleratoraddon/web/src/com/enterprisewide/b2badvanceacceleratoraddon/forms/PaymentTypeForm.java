@@ -13,12 +13,18 @@ package com.enterprisewide.b2badvanceacceleratoraddon.forms;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.beans.factory.annotation.Required;
+
+import java.util.Date;
+
 
 public class PaymentTypeForm
 {
 	private String paymentType;
 	private String costCenterId;
 	private String purchaseOrderNumber;
+	private Date requiredDeliveryDate;
+	private String userComments;
 
 	@NotNull(message = "{general.required}")
 	@Size(min = 1, max = 255, message = "{general.required}")
@@ -42,6 +48,7 @@ public class PaymentTypeForm
 		this.costCenterId = costCenterId;
 	}
 
+	@NotNull(message = "{general.required}")
 	public String getPurchaseOrderNumber()
 	{
 		return purchaseOrderNumber;
@@ -51,4 +58,26 @@ public class PaymentTypeForm
 	{
 		this.purchaseOrderNumber = purchaseOrderNumber;
 	}
+	
+	public Date getRequiredDeliveryDate()
+	{
+		return requiredDeliveryDate;
+	}
+
+	public void setRequiredDeliveryDate(final Date requiredDeliveryDate)
+	{
+		this.requiredDeliveryDate = requiredDeliveryDate;
+	}
+	
+	public String getUserComments()
+	{
+		return userComments;
+	}
+
+	public void setUserComments(final String userComments)
+	{
+		this.userComments = userComments;
+	}
+	
+	
 }

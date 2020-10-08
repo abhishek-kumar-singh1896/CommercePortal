@@ -17,6 +17,17 @@
         <div id="costCenter">
             <formElement:formSelectBox idKey="costCenterSelect" labelKey="checkout.multi.costCenter.label" path="costCenterId" skipBlank="false" skipBlankMessageKey="checkout.multi.costCenter.title.pleaseSelect" itemValue="code" itemLabel="name" items="${costCenters}" mandatory="true" selectCSSClass="form-control"/>
         </div>
+        
+        <div>
+        	Delivery Date
+        	<input type="date" path="deliveryDate" name = "deliveryDate" value = "<%=new java.util.Date()%>" label = "Delivery Date"/>
+        </div>        
+        <br>               	
+        <div>
+        	 Comments 
+        	<input type="text" path="userComments" name = "userComments" value = "Enter your Comments" label = "Comments"/>
+        </div>
+        
     </div>
 
 	<button id="choosePaymentType_continue_button" type="submit" class="btn btn-primary btn-block checkout-next">
