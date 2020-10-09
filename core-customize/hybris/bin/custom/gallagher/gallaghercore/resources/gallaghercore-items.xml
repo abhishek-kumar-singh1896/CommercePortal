@@ -34,6 +34,12 @@
 		</enumtype>
 
 		<enumtype code="RegionCode" dynamic="true" />
+		
+		<enumtype code="ProductReferenceTypeEnum" autocreate="false" generate="false">
+		<description>Show Alternative Products If Stock is out</description>
+			<value code="ALTERNATIVE_PRODUCTS"/>
+  		</enumtype>
+		
 	</enumtypes>
 
 	<maptypes>
