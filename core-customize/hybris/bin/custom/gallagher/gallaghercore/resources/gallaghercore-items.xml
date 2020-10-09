@@ -642,8 +642,15 @@
 					</attribute>
 				</attributes>
 			</itemtype>
-
-
+         <itemtype code="ProductAddToCartComponent" autocreate="false"
+             generate="false">
+             <attributes>
+                 <attribute type="localized:java.lang.String" qualifier="outOfStockMessage">
+                     <persistence type="property" />
+                     <description>Used to show the localized message in case product is out of stock.</description>
+                 </attribute>
+             </attributes>
+         </itemtype>
 		</typegroup>
 
 		<typegroup name="jobs">
@@ -752,13 +759,8 @@
 		</typegroup>
 
 		<typegroup name="button">
-
-
 			<itemtype code="GallagherNewButtonComponent" autocreate="true" generate="true" extends="CMSLinkComponent">
 			</itemtype>
-
 		</typegroup>
-
-
 	</itemtypes>
 </items>
