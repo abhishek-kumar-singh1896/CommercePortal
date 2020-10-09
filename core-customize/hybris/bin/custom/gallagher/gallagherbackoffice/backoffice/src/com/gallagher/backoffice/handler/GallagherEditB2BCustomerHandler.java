@@ -113,11 +113,11 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 				final Context ctx = new DefaultContext();
 				ctx.addAttribute(ObjectFacade.CTX_PARAM_SUPPRESS_EVENT, Boolean.TRUE);
 
-				LOG.debug("Updating user profile in C4C");
-				final B2BCustomerModel updatedCustomerModel = pushToC4C(currentCustomerModel, ctx);
-
 				final B2BCustomerModel originalCustomerModel = widgetInstanceManager.getModel().getValue(INPUT_OBJECT,
 						B2BCustomerModel.class);
+
+				LOG.debug("Updating user profile in C4C");
+				final B2BCustomerModel updatedCustomerModel = pushToC4C(currentCustomerModel, ctx);
 
 				final Map<String, String> modifiedMap = addModifiedUnits(
 						originalCustomerModel,
@@ -212,14 +212,16 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 	 * @param widgetInstanceManager
 	 * @param uid
 	 * @return
+	 * @throws ObjectSavingException
 	 */
 	private Boolean isCustomerEmailValid(final WidgetInstanceManager widgetInstanceManager, final String email)
+			throws ObjectSavingException
 	{
 		Boolean isCustomerEmailValid = Boolean.TRUE;
 
 		if (StringUtils.isEmpty(email) || StringUtils.length(email) > 255 || !validateEmailAddress(email))
 		{
-			isCustomerEmailValid = Boolean.FALSE;
+			throw new ObjectSavingException(EMAIL_ALREADY_PRESENT, new Throwable(EMAIL_ALREADY_PRESENT));
 		}
 
 		else if (BooleanUtils.isFalse(widgetInstanceManager.getTitle().contains(email)))
