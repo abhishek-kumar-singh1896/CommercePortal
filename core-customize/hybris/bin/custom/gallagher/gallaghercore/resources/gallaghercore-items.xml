@@ -13,6 +13,7 @@
 		<enumtype code="Sticker" autocreate="true" generate="true">
 			<description>Enum to show product status in PLP</description>
 			<value code="NEW" />
+			<value code="Featured"/>
 		</enumtype>
 		<enumtype code="Animal" autocreate="true" generate="true">
 			<description>Different animals for which the products are available</description>
