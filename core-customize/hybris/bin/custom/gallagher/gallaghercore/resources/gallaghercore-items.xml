@@ -740,13 +740,18 @@
 		</typegroup>
 		
 		<typegroup name="price">
-			<itemtype code="PriceRow" autocreate="false" generate="false">
-				<description>Extending PriceRow type with an additional attribute.</description>
+			<itemtype code="PDTRow" autocreate="false" generate="false">
+				<description>Extending PDTRow type with an additional attribute.</description>
 				<attributes>
 					<attribute autocreate="true" generate="true" qualifier="salesArea" type="java.lang.String">
 						<modifiers read="true" write="true" search="true" optional="true" />
 						<persistence type="property" />
-						<description>Attribute to identify the Sales Area associated with the PriceRow </description>
+						<description>Attribute to identify the Sales Area associated with the PDTRow </description>
+					</attribute>
+					<attribute qualifier="salesAreaMatchQualifier" type="java.lang.String" autocreate="true">
+						<persistence type="property" />
+						<modifiers read="true" write="true" search="true" optional="true" removable="false" />
+						<description>Internal attribute holding either value of Sales Area or Empty String for easier matching </description>
 					</attribute>
 				</attributes>
 			</itemtype>
@@ -754,11 +759,6 @@
 			<itemtype code="DiscountRow" autocreate="false" generate="false">
 				<description>Extending DiscountRow type with an additional attribute.</description>
 				<attributes>
-					<attribute autocreate="true" generate="true" qualifier="salesArea" type="java.lang.String">
-						<modifiers read="true" write="true" search="true" optional="true" />
-						<persistence type="property" />
-						<description>Attribute to identify the Sales Area associated with the DiscountRow </description>
-					</attribute>
 					<attribute autocreate="true" generate="true" qualifier="quantity" type="java.lang.Integer">
 						<modifiers read="true" write="true" search="true" optional="true" />
 						<persistence type="property" />
