@@ -108,8 +108,6 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 		}
 		else
 		{
-
-
 			if (retrieveUserBySubjectId.size() == 1)
 			{
 
@@ -130,7 +128,7 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 					else
 					{
 						/* Update name and email only if updated to avoid sending data to SCPI */
-						if (!retrieveUser.getName().equals(token.getName()) || !retrieveUser.getUid().equals(token.getEmail()))
+						if (!retrieveUser.getName().equals(token.getName()) || !retrieveUser.getEmailID().equals(token.getEmail()))
 						{
 							retrieveUser.setName(token.getName());
 							retrieveUser.setUid(token.getEmail());
@@ -168,27 +166,14 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 						retrieveUser.setIsUserExist(true);
 						modelService.save(retrieveUser);
 					}
-					/*
-					 * else if (SiteChannel.B2C.equals(channel) && retrieveUser.getClass() == B2BCustomerModel.class) { try {
-					 * success = createCommerceCustomer(token); } catch (final DuplicateUidException dupUidEx) {
-					 * LOGGER.error("Exception while creating new customer", dupUidEx); } } else if
-					 * (SiteChannel.B2B.equals(channel) && retrieveUser.getClass() == CustomerModel.class) {
-					 * LOGGER.error("B2C Customer is not allowed to login in B2B website"); throw new
-					 * BadCredentialsException("B2C Customer is not allowed to login in B2B website"); }
-					 */
 					else if (SiteChannel.B2B.equals(channel) && retrieveUser.getClass() == B2BCustomerModel.class)
 					{
 						updateCustomerFromC4C(retrieveUser);
 					}
-
-
 				}
-
 			}
-
 			success = true;
 		}
-
 		return success;
 	}
 
@@ -256,7 +241,7 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 
 
 		final List<GallagherInboundCustomerEntry> existingCustomers = gallagherC4COutboundServiceFacade
-				.getCustomerInfoFromC4C(customer.getUid(), customer.getKeycloakGUID(), BU.SEC.getCode());
+				.getCustomerInfoFromC4C(customer.getEmailID(), customer.getKeycloakGUID(), BU.SEC.getCode());
 
 		if (CollectionUtils.isNotEmpty(existingCustomers))
 		{

@@ -155,30 +155,9 @@
 					<persistence type="property" />
 					<description>Indicates email address of a Customer</description>
 				</attribute>
-				<!-- <attribute qualifier="email" type="java.lang.String">
-					<modifiers read="true" write="true" search="true"
-					optional="false" />
-					<persistence type="property" />
-				</attribute> -->
 			</attributes>
-			<!-- <indexes>
-				<index name="uid" unique="true">
-		            <key attribute="uid" />
-		            <key attribute="businessUnit" />
-		        </index>
-			</indexes> -->
 		</itemtype>
 		
-		<!-- <itemtype code="B2BCustomer" generate="false" autocreate="false">
-			<attributes>
-				<attribute qualifier="email" type="java.lang.String" redeclare="true" generate="false">
-					<modifiers read="true" write="true" search="true"
-					optional="false" />
-					<persistence type="property" />
-				</attribute>
-			</attributes>
-		</itemtype> -->
-
 		<itemtype code="Product" autocreate="false" generate="false">
 			<description>Extending Product type with additional attributes of status and animals.</description>
 			<attributes>

@@ -138,6 +138,11 @@
     </context>
 	<context merge-by="type" parent="User" type="Customer" component="editor-area">
         <editorArea:editorArea name="">
+        	<editorArea:essentials>
+                <editorArea:essentialSection name="hmc.essential">
+                    <editorArea:attribute qualifier="emailID" position="5"/>
+                </editorArea:essentialSection>
+           	</editorArea:essentials>
             <editorArea:tab name="hmc.gallagher" position="3">
                 <editorArea:section name="hmc.section.gallagher">
                     <editorArea:attribute qualifier="newsLetters" />

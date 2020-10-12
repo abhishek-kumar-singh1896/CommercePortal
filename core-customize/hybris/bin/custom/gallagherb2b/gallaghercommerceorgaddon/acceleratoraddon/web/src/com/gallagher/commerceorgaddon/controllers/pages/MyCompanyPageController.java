@@ -497,7 +497,7 @@ public class MyCompanyPageController extends AbstractSearchPageController
 		{
 			b2bUserFacade.updateCustomer(b2bCustomerData);
 			b2bCustomerData.setUid(BU.SEC.getCode().toLowerCase() + "|" + b2BCustomerForm.getEmail().toLowerCase());
-			b2BCustomerForm.setUid(BU.SEC.getCode().toLowerCase() + "|" + b2bCustomerData.getUid());
+			b2BCustomerForm.setUid(b2bCustomerData.getUid());
 			GlobalMessages.addFlashMessage(redirectModel, GlobalMessages.CONF_MESSAGES_HOLDER, "text.confirmation.user.added");
 		}
 		catch (final ModelSavingException e) //NOSONAR
