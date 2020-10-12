@@ -16,6 +16,7 @@ import de.hybris.platform.servicelayer.internal.model.impl.ModelValueHistory;
 import de.hybris.platform.servicelayer.model.ItemModelContextImpl;
 import de.hybris.platform.servicelayer.session.SessionExecutionBody;
 import de.hybris.platform.servicelayer.session.SessionService;
+import de.hybris.platform.servicelayer.user.UserService;
 import de.hybris.platform.site.BaseSiteService;
 import de.hybris.platform.store.BaseStoreModel;
 
@@ -83,6 +84,9 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 	@Resource(name = "configurationService")
 	private ConfigurationService configurationService;
 
+	@Resource(name = "userService")
+	private UserService userService;
+
 	@Override
 	public Object performSave(final WidgetInstanceManager widgetInstanceManager, final Object currentObject)
 			throws ObjectSavingException
@@ -113,14 +117,10 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 				final Context ctx = new DefaultContext();
 				ctx.addAttribute(ObjectFacade.CTX_PARAM_SUPPRESS_EVENT, Boolean.TRUE);
 
-				final B2BCustomerModel originalCustomerModel = widgetInstanceManager.getModel().getValue(INPUT_OBJECT,
-						B2BCustomerModel.class);
-
 				LOG.debug("Updating user profile in C4C");
 				final B2BCustomerModel updatedCustomerModel = pushToC4C(currentCustomerModel, ctx);
 
-				final Map<String, String> modifiedMap = addModifiedUnits(
-						originalCustomerModel,
+				final Map<String, String> modifiedMap = addModifiedUnitsAndAccess(
 						updatedCustomerModel,
 						modifiedAttributesMap);
 
@@ -372,15 +372,24 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 	 * @param modifiedAttributesMap
 	 * @return
 	 */
-	private Map<String, String> addModifiedUnits(
-			final B2BCustomerModel originalCustomerModel,
-			final B2BCustomerModel updatedCustomerModel, final Map<String, String> modifiedAttributesMap)
+	private Map<String, String> addModifiedUnitsAndAccess(final B2BCustomerModel updatedCustomerModel,
+			final Map<String, String> modifiedAttributesMap)
 	{
-		//getting the groups from the new version
 
-		final Collection<PrincipalGroupModel> oldGroups = new HashSet<>(originalCustomerModel.getGroups());
-		final Collection<PrincipalGroupModel> deletedGroups = new HashSet<>(originalCustomerModel.getGroups());
-		final Collection<PrincipalGroupModel> newGroups = new HashSet<>(updatedCustomerModel.getGroups());
+		final ItemModelContextImpl context = (ItemModelContextImpl) updatedCustomerModel.getItemModelContext();
+		final ModelValueHistory history = context.getValueHistory();
+
+		final boolean isChanged = !Objects.equals(updatedCustomerModel.getProperty(B2BCustomerModel.UID),
+				history.getOriginalValue(B2BCustomerModel.UID));
+
+		final String customerUid = isChanged ? (String) history.getOriginalValue(B2BCustomerModel.UID)
+				: updatedCustomerModel.getUid();
+
+		final B2BCustomerModel userDBCopy = userService.getUserForUID(customerUid, B2BCustomerModel.class);
+
+		final Collection oldGroups = new HashSet(userDBCopy.getGroups());
+		final Collection deletedGroups = new HashSet(userDBCopy.getGroups());
+		final Collection newGroups = new HashSet(updatedCustomerModel.getGroups());
 
 		deletedGroups.removeAll(newGroups);
 		newGroups.removeAll(oldGroups);
@@ -395,6 +404,12 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 		if (CollectionUtils.isNotEmpty(addedUnits))
 		{
 			modifiedAttributesMap.put("b2bUnitAdded", String.join(",", addedUnits));
+		}
+
+		if (Objects.equals(userDBCopy.isLoginDisabled(), updatedCustomerModel.isLoginDisabled()))
+		{
+			final String access = updatedCustomerModel.isLoginDisabled() ? "Disabled" : "Enabled";
+			modifiedAttributesMap.put(B2BCustomerModel.LOGINDISABLED, access);
 		}
 
 		return modifiedAttributesMap;
@@ -586,6 +601,21 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 		this.configurationService = configurationService;
 	}
 
+	/**
+	 * @return the userService
+	 */
+	public UserService getUserService()
+	{
+		return userService;
+	}
 
+	/**
+	 * @param userService
+	 *           the userService to set
+	 */
+	public void setUserService(final UserService userService)
+	{
+		this.userService = userService;
+	}
 
 }
