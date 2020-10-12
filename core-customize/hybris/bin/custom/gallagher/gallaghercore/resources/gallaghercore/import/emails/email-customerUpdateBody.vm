@@ -59,6 +59,11 @@
                                             <p><b><font color="#322e2c" size="2" face="Calibri">${ctx.messages.getMessage('emailUpdated', ${ctx.uid})}</font></b></p>
 										 </li>
 										 #end
+										 #if(${ctx.loginDisabled})
+										  <li>
+                                            <p><b><font color="#322e2c" size="2" face="Calibri">${ctx.messages.getMessage('access', ${ctx.loginDisabled})}</font></b></p>
+										 </li>
+										 #end
 										 
 										<br>
 										<p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.complimentaryClosing}</font></p>
