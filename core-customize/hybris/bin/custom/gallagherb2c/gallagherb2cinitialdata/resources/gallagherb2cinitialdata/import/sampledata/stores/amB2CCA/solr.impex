@@ -91,61 +91,61 @@ INSERT_UPDATE SolrValueRangeSet ; name[unique=true]           ; qualifier ; type
                                 ; TypicalFenceDistanceRangeCA ;           ; double ; rangeTypicalFenceDistance1,rangeTypicalFenceDistance2,rangeTypicalFenceDistance3,rangeTypicalFenceDistance4,rangeTypicalFenceDistance5CA 
                                 
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID             ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to      
-                             ; rangeTypicalFenceDistance1   ; TypicalFenceDistanceRangeCA          ; 0.5 - 10 Miles    ; 0    ; 10.999  
-                             ; rangeTypicalFenceDistance2   ; TypicalFenceDistanceRangeCA          ; 11 - 20 Miles     ; 11   ; 20.999  
-                             ; rangeTypicalFenceDistance3   ; TypicalFenceDistanceRangeCA          ; 21 - 50 Miles     ; 21   ; 50.999  
-                             ; rangeTypicalFenceDistance4   ; TypicalFenceDistanceRangeCA          ; 51 - 100 Miles    ; 51   ; 100.999 
-                             ; rangeTypicalFenceDistance5CA ; TypicalFenceDistanceRangeCA          ; 101 - 125 Miles   ; 101  ; 125     
+                             ; rangeTypicalFenceDistance1   ; TypicalFenceDistanceRangeCA          ; 0.5 - 10    ; 0    ; 10.999  
+                             ; rangeTypicalFenceDistance2   ; TypicalFenceDistanceRangeCA          ; 11 - 20     ; 11   ; 20.999  
+                             ; rangeTypicalFenceDistance3   ; TypicalFenceDistanceRangeCA          ; 21 - 50     ; 21   ; 50.999  
+                             ; rangeTypicalFenceDistance4   ; TypicalFenceDistanceRangeCA          ; 51 - 100    ; 51   ; 100.999 
+                             ; rangeTypicalFenceDistance5CA ; TypicalFenceDistanceRangeCA          ; 101 - 125   ; 101  ; 125     
                              
                              
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true]           ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                                                                                                                
                                 ; CleanWireFenceDistanceRange ;           ; double ; rangeCleanWireFenceDistance1,rangeCleanWireFenceDistance2,rangeCleanWireFenceDistance3,rangeCleanWireFenceDistance4,rangeCleanWireFenceDistance5 
                                 
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID             ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to      
-                             ; rangeCleanWireFenceDistance1 ; CleanWireFenceDistanceRange          ; 3 - 10 Miles      ; 3    ; 10.999  
-                             ; rangeCleanWireFenceDistance2 ; CleanWireFenceDistanceRange          ; 11 - 50 Miles     ; 11   ; 50.999  
-                             ; rangeCleanWireFenceDistance3 ; CleanWireFenceDistanceRange          ; 51 - 100 Miles    ; 51   ; 100.999 
-                             ; rangeCleanWireFenceDistance4 ; CleanWireFenceDistanceRange          ; 101 - 500 Miles   ; 101  ; 500.999 
-                             ; rangeCleanWireFenceDistance5 ; CleanWireFenceDistanceRange          ; 501 - 1000 Miles  ; 501  ; 1000    
+                             ; rangeCleanWireFenceDistance1 ; CleanWireFenceDistanceRange          ; 3 - 10      ; 3    ; 10.999  
+                             ; rangeCleanWireFenceDistance2 ; CleanWireFenceDistanceRange          ; 11 - 50     ; 11   ; 50.999  
+                             ; rangeCleanWireFenceDistance3 ; CleanWireFenceDistanceRange          ; 51 - 100    ; 51   ; 100.999 
+                             ; rangeCleanWireFenceDistance4 ; CleanWireFenceDistanceRange          ; 101 - 500   ; 101  ; 500.999 
+                             ; rangeCleanWireFenceDistance5 ; CleanWireFenceDistanceRange          ; 501 - 1000  ; 501  ; 1000    
                              
                              
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true]  ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                                                                       
                                 ; PropertySizeRaneCA ;           ; double ; raneProperySize1,raneProperySize2,raneProperySize3,raneProperySize4,raneProperySize5,raneProperySize6CA 
                                 
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID   ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to       
-                             ; raneProperySize1   ; PropertySizeRaneCA                   ; 15 - 25 Acres     ; 15   ; 25.999   
-                             ; raneProperySize2   ; PropertySizeRaneCA                   ; 26 - 50 Acres     ; 26   ; 50.999   
-                             ; raneProperySize3   ; PropertySizeRaneCA                   ; 51 - 100 Acres    ; 51   ; 100.999  
-                             ; raneProperySize4   ; PropertySizeRaneCA                   ; 101 - 500 Acres   ; 100  ; 500.999  
-                             ; raneProperySize5   ; PropertySizeRaneCA                   ; 501 - 2500 Acres  ; 501  ; 2500.999 
-                             ; raneProperySize6CA ; PropertySizeRaneCA                   ; 2501 - 6000 Acres ; 2501 ; 6000     
+                             ; raneProperySize1   ; PropertySizeRaneCA                   ; 15 - 25     ; 15   ; 25.999   
+                             ; raneProperySize2   ; PropertySizeRaneCA                   ; 26 - 50     ; 26   ; 50.999   
+                             ; raneProperySize3   ; PropertySizeRaneCA                   ; 51 - 100    ; 51   ; 100.999  
+                             ; raneProperySize4   ; PropertySizeRaneCA                   ; 101 - 500   ; 100  ; 500.999  
+                             ; raneProperySize5   ; PropertySizeRaneCA                   ; 501 - 2500  ; 501  ; 2500.999 
+                             ; raneProperySize6CA ; PropertySizeRaneCA                   ; 2501 - 6000 ; 2501 ; 6000     
                              
                              
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true] ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                                                              
                                 ; EnergyStoredRange ;           ; double ; rangeEnergyStored1,rangeEnergyStored2,rangeEnergyStored3,rangeEnergyStored4,rangeEnergyStored5 
                                 
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID   ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to     
-                             ; rangeEnergyStored1 ; EnergyStoredRange                    ; 0.1 - 5 Joules    ; 0    ; 5.999  
-                             ; rangeEnergyStored2 ; EnergyStoredRange                    ; 6 - 10 Joules     ; 6    ; 10.999 
-                             ; rangeEnergyStored3 ; EnergyStoredRange                    ; 11 - 20 Joules    ; 11   ; 20.999 
-                             ; rangeEnergyStored4 ; EnergyStoredRange                    ; 21 - 50 Joules    ; 21   ; 50.999 
-                             ; rangeEnergyStored5 ; EnergyStoredRange                    ; 51 - 100 Joules   ; 51   ; 100    
+                             ; rangeEnergyStored1 ; EnergyStoredRange                    ; 0.1 - 5    ; 0    ; 5.999  
+                             ; rangeEnergyStored2 ; EnergyStoredRange                    ; 6 - 10     ; 6    ; 10.999 
+                             ; rangeEnergyStored3 ; EnergyStoredRange                    ; 11 - 20    ; 11   ; 20.999 
+                             ; rangeEnergyStored4 ; EnergyStoredRange                    ; 21 - 50    ; 21   ; 50.999 
+                             ; rangeEnergyStored5 ; EnergyStoredRange                    ; 51 - 100   ; 51   ; 100    
                              
                              
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true] ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)   
                                 ; Voltage500mRange  ;           ; double ; rangeVoltage500m1,rangeVoltage500m2 
                                 
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID  ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to     
-                             ; rangeVoltage500m1 ; Voltage500mRange                     ; 1.5kv - 3.6kv     ; 1.5  ; 3.6999 
-                             ; rangeVoltage500m2 ; Voltage500mRange                     ; 3.7kv - 7.6kv     ; 3.7  ; 7.6    
+                             ; rangeVoltage500m1 ; Voltage500mRange                     ; 1.5 - 3.6     ; 1.5  ; 3.6999 
+                             ; rangeVoltage500m2 ; Voltage500mRange                     ; 3.7 - 7.6     ; 3.7  ; 7.6    
                              
                              
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true] ; qualifier ; type   ; solrValueRanges(&rangeValueRefID) 
                                 ; Voltage1kmRange   ;           ; double ; rangeVoltage1km1,rangeVoltage1km2 
                                 
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to     
-                             ; rangeVoltage1km1 ; Voltage1kmRange                      ; 0.8kv - 2.4kv     ; 0.8  ; 2.4999 
-                             ; rangeVoltage1km2 ; Voltage1kmRange                      ; 2.5kv - 7.2kv     ; 2.5  ; 7.2    
+                             ; rangeVoltage1km1 ; Voltage1kmRange                      ; 0.8 - 2.4     ; 0.8  ; 2.4999 
+                             ; rangeVoltage1km2 ; Voltage1kmRange                      ; 2.5 - 7.2     ; 2.5  ; 7.2    
                              
                              
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true]   ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)         
@@ -153,31 +153,31 @@ INSERT_UPDATE SolrValueRangeSet ; name[unique=true]   ; qualifier ; type   ; sol
                                 
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID     ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to      
                              ; rangeOhmsPerKmTapes1 ; OhmsPerKmTapesRange                  ; 110 - 239         ; 110  ; 239.999 
-                             ; rangeOhmsPerKmTapes2 ; OhmsPerKmTapesRange                  ; 240-8500          ; 240  ; 8500    
+                             ; rangeOhmsPerKmTapes2 ; OhmsPerKmTapesRange                  ; 240 - 8500          ; 240  ; 8500    
                              
                              
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true] ; qualifier ; type   ; solrValueRanges(&rangeValueRefID) 
                                 ; Voltage2kmRange   ;           ; double ; rangeVoltage2km1,rangeVoltage2km2 
                                 
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to     
-                             ; rangeVoltage2km1 ; Voltage2kmRange                      ; 4.2kv - 6kv       ; 4.2  ; 6.0999 
-                             ; rangeVoltage2km2 ; Voltage2kmRange                      ; 6.1kv - 7.5kv     ; 6.1  ; 7.5    
+                             ; rangeVoltage2km1 ; Voltage2kmRange                      ; 4.2 - 6       ; 4.2  ; 6.0999 
+                             ; rangeVoltage2km2 ; Voltage2kmRange                      ; 6.1 - 7.5     ; 6.1  ; 7.5    
                              
                              
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true] ; qualifier ; type   ; solrValueRanges(&rangeValueRefID) 
                                 ; Voltage5kmRange   ;           ; double ; rangeVoltage5km1,rangeVoltage5km2 
                                 
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to     
-                             ; rangeVoltage5km1 ; Voltage5kmRange                      ; 2.4kv - 4.6kv     ; 2.4  ; 4.6999 
-                             ; rangeVoltage5km2 ; Voltage5kmRange                      ; 4.7kv - 6.8kv     ; 4.7  ; 6.8    
+                             ; rangeVoltage5km1 ; Voltage5kmRange                      ; 2.4 - 4.6     ; 2.4  ; 4.6999 
+                             ; rangeVoltage5km2 ; Voltage5kmRange                      ; 4.7 - 6.8     ; 4.7  ; 6.8    
                              
                              
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true] ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)   
                                 ; Voltage10kmRange  ;           ; double ; rangeVoltage10km1,rangeVoltage10km2 
                                 
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID  ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to     
-                             ; rangeVoltage10km1 ; Voltage10kmRange                     ; 1.4kv - 3.3kv     ; 1.4  ; 3.3999 
-                             ; rangeVoltage10km2 ; Voltage10kmRange                     ; 3.4kv - 6.0kv     ; 3.4  ; 6      
+                             ; rangeVoltage10km1 ; Voltage10kmRange                     ; 1.4 - 3.3     ; 1.4  ; 3.3999 
+                             ; rangeVoltage10km2 ; Voltage10kmRange                     ; 3.4 - 6.0     ; 3.4  ; 6      
                              
                              
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true]          ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                       
@@ -201,10 +201,10 @@ INSERT_UPDATE SolrValueRangeSet ; name[unique=true]              ; qualifier ; t
                                 ; AutomaticWateringCapacityRange ;           ; double ; rangeAutomaticWatering1,rangeAutomaticWatering2,rangeAutomaticWatering3,rangeAutomaticWatering4 
                                 
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID        ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to     
-                             ; rangeAutomaticWatering1 ; AutomaticWateringCapacityRange       ; 0 - 20 L          ; 0    ; 19.999 
-                             ; rangeAutomaticWatering2 ; AutomaticWateringCapacityRange       ; 20 - 40 L         ; 20   ; 39.999 
-                             ; rangeAutomaticWatering3 ; AutomaticWateringCapacityRange       ; 40 - 60 L         ; 40   ; 999    
-                             ; rangeAutomaticWatering4 ; AutomaticWateringCapacityRange       ; 60+ L             ; 60   ; 999    
+                             ; rangeAutomaticWatering1 ; AutomaticWateringCapacityRange       ; 0 - 20          ; 0    ; 19.999 
+                             ; rangeAutomaticWatering2 ; AutomaticWateringCapacityRange       ; 20 - 40         ; 20   ; 39.999 
+                             ; rangeAutomaticWatering3 ; AutomaticWateringCapacityRange       ; 40 - 60         ; 40   ; 999    
+                             ; rangeAutomaticWatering4 ; AutomaticWateringCapacityRange       ; 60+             ; 60   ; 999    
                              
                              
 UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]         ; rangeSets(name)                
@@ -319,81 +319,81 @@ UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[uni
 
                                       
 #UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facetDisplayNameProvider           
-#                                      ; $solrIndexedType: Energy Stored                                 ; facetUnitSuffixDisplayNameProvider 
-#                                      ; $solrIndexedType: Typical Fence Distance                        ; facetUnitSuffixDisplayNameProvider 
-#                                      ; $solrIndexedType: Clean Wire Fence Distance                     ; facetUnitSuffixDisplayNameProvider 
-#                                      ; $solrIndexedType: i Series Compatible (Energizers)              ;                                    
-#                                      ; $solrIndexedType: Outdoors Suitable                             ;                                    
-#                                      ; $solrIndexedType: Property Size                                 ; facetUnitSuffixDisplayNameProvider 
-#                                      ; $solrIndexedType: Power Input                                   ;                                    
-#                                      ; $solrIndexedType: Watts                                         ; facetUnitSuffixDisplayNameProvider 
-#                                      ; $solrIndexedType: Voltage                                       ; facetUnitSuffixDisplayNameProvider 
-#                                      ; $solrIndexedType: DC Input                                      ; facetUnitSuffixDisplayNameProvider 
-#                                      ; $solrIndexedType: Drafting                                      ;                                    
-#                                      ; $solrIndexedType: Capacity                                      ; facetUnitSuffixDisplayNameProvider 
-#                                      ; $solrIndexedType: Current                                       ; facetUnitSuffixDisplayNameProvider 
-#                                      ; $solrIndexedType: Digital Display                               ;                                    
-#                                      ; $solrIndexedType: i Series Compatible (Remotes)                 ;                                    
-#                                      ; $solrIndexedType: i Series Compatible (Power)                   ;                                    
-#                                      ; $solrIndexedType: Gear Ratio                                    ;                                    
-#                                      ; $solrIndexedType: Conductor Capacity                            ;                                    
-#                                      ; $solrIndexedType: Pre-wound with                                ;                                    
-#                                      ; $solrIndexedType: Voltage at 5km of fence                       ; facetUnitSuffixDisplayNameProvider 
-#                                      ; $solrIndexedType: Voltage at 2km of fence                       ; facetUnitSuffixDisplayNameProvider 
-#                                      ; $solrIndexedType: Ohms Per Km (Tensile)                         ;                                    
-#                                      ; $solrIndexedType: Voltage at 10km of fence                      ; facetUnitSuffixDisplayNameProvider 
-#                                      ; $solrIndexedType: Voltage at 500m of fence                      ; facetUnitSuffixDisplayNameProvider 
-#                                      ; $solrIndexedType: Voltage at 1km of fence                       ; facetUnitSuffixDisplayNameProvider 
-#                                      ; $solrIndexedType: Mixed Metals                                  ;                                    
-#                                      ; $solrIndexedType: Ohms Per Km (Tapes)                           ;                                    
-#                                      ; $solrIndexedType: Length (Tapes)                                ; facetUnitSuffixDisplayNameProvider 
-#                                      ; $solrIndexedType: Fence  Type                                   ;                                    
-#                                      ; $solrIndexedType: Wire Amount                                   ;                                    
-#                                      ; $solrIndexedType: Post Height (Pigtails)                        ; facetUnitSuffixDisplayNameProvider 
-#                                      ; $solrIndexedType: Number of Traits Recorded                     ;                                    
-#                                      ; $solrIndexedType: EID Compatiable                               ;                                    
-#                                      ; $solrIndexedType: Internal rechargeable battery                 ;                                    
-#                                      ; $solrIndexedType: Intergrated EID Reader                        ;                                    
-#                                      ; $solrIndexedType: Compatible with Gallagher Livestock (Scales)  ;                                    
-#                                      ; $solrIndexedType: View Pedigree Tree                            ;                                    
-#                                      ; $solrIndexedType: Use (Loadbars)                                ;                                    
-#                                      ; $solrIndexedType: Weighing Capacity (Loadbars)                  ; facetUnitSuffixDisplayNameProvider 
-#                                      ; $solrIndexedType: Weighing Capacity (Platforms)                 ; facetUnitSuffixDisplayNameProvider 
-#                                      ; $solrIndexedType: Product Type                                  ;                                    
-#                                      ; $solrIndexedType: Compatible with Gallagher Livestock (EID)     ;                                    
-#                                      ; $solrIndexedType: Rechargeable                                  ;                                    
-#                                      ; $solrIndexedType: Product Features (Trough)                     ;                                    
-#                                      ; $solrIndexedType: Capacity(L) (Trough)                          ; facetUnitSuffixDisplayNameProvider 
-#                                      ; $solrIndexedType: Product Features (Spring)                     ;                                    
-#                                      ; $solrIndexedType: Capacity(L) (Spring)                          ; facetUnitSuffixDisplayNameProvider 
-#                                      ; $solrIndexedType: Product Features (EQUI)                       ;                                    
-#                                      ; $solrIndexedType: Capacity(L) (EQUI)                            ; facetUnitSuffixDisplayNameProvider 
-#                                      ; $solrIndexedType: Product Features (Mira)                       ;                                    
-#                                      ; $solrIndexedType: Capacity(L) (Mira)                            ; facetUnitSuffixDisplayNameProvider 
-#                                      ; $solrIndexedType: Product Features (E)                          ;                                    
-#                                      ; $solrIndexedType: Capacity(L) (E)                               ; facetUnitSuffixDisplayNameProvider 
-#                                      ; $solrIndexedType: Product Features (BIG)                        ;                                    
-#                                      ; $solrIndexedType: Capacity(L) (BIG)                             ; facetUnitSuffixDisplayNameProvider 
-#                                      ; $solrIndexedType: Product Features (PET)                        ;                                    
-#                                      ; $solrIndexedType: Capacity(L) (PET)                             ; facetUnitSuffixDisplayNameProvider 
-#                                      ; $solrIndexedType: Product Features (Watering)                   ;                                    
-#                                      ; $solrIndexedType: Capacity(L) (Watering)                        ; facetUnitSuffixDisplayNameProvider 
-#                                      ; $solrIndexedType: Post Height (Posts)                           ; facetUnitSuffixDisplayNameProvider 
-#                                      ; $solrIndexedType: Number of Wires                               ;                                    
-#                                      ; $solrIndexedType: Strainer Type                                 ;                                    
-#                                      ; $solrIndexedType: Includes Joint Clamp                          ;                                    
-#                                      ; $solrIndexedType: Warranty (Strainers)                          ; facetUnitSuffixDisplayNameProvider 
-#                                      ; $solrIndexedType: Post Type (Insulators)                        ;                                    
-#                                      ; $solrIndexedType: Insulator Type                                ;                                    
-#                                      ; $solrIndexedType: Wire Diameter                                 ; facetUnitSuffixDisplayNameProvider 
-#                                      ; $solrIndexedType: Warranty (Insulators)                         ; facetUnitSuffixDisplayNameProvider 
-#                                      ; $solrIndexedType: Product Weight (Insulators)                   ; facetUnitSuffixDisplayNameProvider 
-#                                      ; $solrIndexedType: Post Type (Offsets)                           ;                                    
-#                                      ; $solrIndexedType: Mount Type                                    ;                                    
-#                                      ; $solrIndexedType: Product Length (Offsets)                      ; facetUnitSuffixDisplayNameProvider 
-#                                      ; $solrIndexedType: Gate Type                                     ;                                    
-#                                      ; $solrIndexedType: Length (Gates)                                ; facetUnitSuffixDisplayNameProvider 
-#                                      ; $solrIndexedType: Use (Fence)                                   ;                                    
+#                                      ; $solrIndexedType: Energy Stored                                 ; facetUnitSuffixDisplayNameProvider  
+#                                      ; $solrIndexedType: Typical Fence Distance                        ; facetUnitSuffixDisplayNameProvider  
+#                                      ; $solrIndexedType: Clean Wire Fence Distance                     ; facetUnitSuffixDisplayNameProvider  
+#                                      ; $solrIndexedType: i Series Compatible (Energizers)              ; facetUnitBooleanDisplayNameProvider 
+#                                      ; $solrIndexedType: Outdoors Suitable                             ; facetUnitBooleanDisplayNameProvider 
+#                                      ; $solrIndexedType: Property Size                                 ; facetUnitSuffixDisplayNameProvider  
+#                                      ; $solrIndexedType: Power Input                                   ;                                     
+#                                      ; $solrIndexedType: Watts                                         ; facetUnitSuffixDisplayNameProvider  
+#                                      ; $solrIndexedType: Voltage                                       ; facetUnitSuffixDisplayNameProvider  
+#                                      ; $solrIndexedType: DC Input                                      ; facetUnitSuffixDisplayNameProvider  
+#                                      ; $solrIndexedType: Drafting                                      ;                                     
+#                                      ; $solrIndexedType: Capacity                                      ; facetUnitSuffixDisplayNameProvider  
+#                                      ; $solrIndexedType: Current                                       ; facetUnitSuffixDisplayNameProvider  
+#                                      ; $solrIndexedType: Digital Display                               ; facetUnitBooleanDisplayNameProvider 
+#                                      ; $solrIndexedType: i Series Compatible (Remotes)                 ; facetUnitBooleanDisplayNameProvider 
+#                                      ; $solrIndexedType: i Series Compatible (Power)                   ; facetUnitBooleanDisplayNameProvider 
+#                                      ; $solrIndexedType: Gear Ratio                                    ;                                     
+#                                      ; $solrIndexedType: Conductor Capacity                            ;                                     
+#                                      ; $solrIndexedType: Pre-wound with                                ;                                     
+#                                      ; $solrIndexedType: Voltage at 5km of fence                       ; facetUnitSuffixDisplayNameProvider  
+#                                      ; $solrIndexedType: Voltage at 2km of fence                       ; facetUnitSuffixDisplayNameProvider  
+#                                      ; $solrIndexedType: Ohms Per Km (Tensile)                         ;                                     
+#                                      ; $solrIndexedType: Voltage at 10km of fence                      ; facetUnitSuffixDisplayNameProvider  
+#                                      ; $solrIndexedType: Voltage at 500m of fence                      ; facetUnitSuffixDisplayNameProvider  
+#                                      ; $solrIndexedType: Voltage at 1km of fence                       ; facetUnitSuffixDisplayNameProvider  
+#                                      ; $solrIndexedType: Mixed Metals                                  ;                                     
+#                                      ; $solrIndexedType: Ohms Per Km (Tapes)                           ;                                     
+#                                      ; $solrIndexedType: Length (Tapes)                                ; facetUnitSuffixDisplayNameProvider  
+#                                      ; $solrIndexedType: Fence  Type                                   ;                                     
+#                                      ; $solrIndexedType: Wire Amount                                   ;                                     
+#                                      ; $solrIndexedType: Post Height (Pigtails)                        ; facetUnitSuffixDisplayNameProvider  
+#                                      ; $solrIndexedType: Number of Traits Recorded                     ;                                     
+#                                      ; $solrIndexedType: EID Compatiable                               ; facetUnitBooleanDisplayNameProvider 
+#                                      ; $solrIndexedType: Internal rechargeable battery                 ;                                     
+#                                      ; $solrIndexedType: Intergrated EID Reader                        ; facetUnitBooleanDisplayNameProvider 
+#                                      ; $solrIndexedType: Compatible with Gallagher Livestock (Scales)  ; facetUnitBooleanDisplayNameProvider 
+#                                      ; $solrIndexedType: View Pedigree Tree                            ; facetUnitBooleanDisplayNameProvider 
+#                                      ; $solrIndexedType: Use (Loadbars)                                ;                                     
+#                                      ; $solrIndexedType: Weighing Capacity (Loadbars)                  ; facetUnitSuffixDisplayNameProvider  
+#                                      ; $solrIndexedType: Weighing Capacity (Platforms)                 ; facetUnitSuffixDisplayNameProvider  
+#                                      ; $solrIndexedType: Product Type                                  ;                                     
+#                                      ; $solrIndexedType: Compatible with Gallagher Livestock (EID)     ; facetUnitBooleanDisplayNameProvider 
+#                                      ; $solrIndexedType: Rechargeable                                  ; facetUnitBooleanDisplayNameProvider 
+#                                      ; $solrIndexedType: Product Features (Trough)                     ;                                     
+#                                      ; $solrIndexedType: Capacity(L) (Trough)                          ; facetUnitSuffixDisplayNameProvider  
+#                                      ; $solrIndexedType: Product Features (Spring)                     ;                                     
+#                                      ; $solrIndexedType: Capacity(L) (Spring)                          ; facetUnitSuffixDisplayNameProvider  
+#                                      ; $solrIndexedType: Product Features (EQUI)                       ;                                     
+#                                      ; $solrIndexedType: Capacity(L) (EQUI)                            ; facetUnitSuffixDisplayNameProvider  
+#                                      ; $solrIndexedType: Product Features (Mira)                       ;                                     
+#                                      ; $solrIndexedType: Capacity(L) (Mira)                            ; facetUnitSuffixDisplayNameProvider  
+#                                      ; $solrIndexedType: Product Features (E)                          ;                                     
+#                                      ; $solrIndexedType: Capacity(L) (E)                               ; facetUnitSuffixDisplayNameProvider  
+#                                      ; $solrIndexedType: Product Features (BIG)                        ;                                     
+#                                      ; $solrIndexedType: Capacity(L) (BIG)                             ; facetUnitSuffixDisplayNameProvider  
+#                                      ; $solrIndexedType: Product Features (PET)                        ;                                     
+#                                      ; $solrIndexedType: Capacity(L) (PET)                             ; facetUnitSuffixDisplayNameProvider  
+#                                      ; $solrIndexedType: Product Features (Watering)                   ;                                     
+#                                      ; $solrIndexedType: Capacity(L) (Watering)                        ; facetUnitSuffixDisplayNameProvider  
+#                                      ; $solrIndexedType: Post Height (Posts)                           ; facetUnitSuffixDisplayNameProvider  
+#                                      ; $solrIndexedType: Number of Wires                               ;                                     
+#                                      ; $solrIndexedType: Strainer Type                                 ;                                     
+#                                      ; $solrIndexedType: Includes Joint Clamp                          ;                                     
+#                                      ; $solrIndexedType: Warranty (Strainers)                          ; facetUnitSuffixDisplayNameProvider  
+#                                      ; $solrIndexedType: Post Type (Insulators)                        ;                                     
+#                                      ; $solrIndexedType: Insulator Type                                ;                                     
+#                                      ; $solrIndexedType: Wire Diameter                                 ; facetUnitSuffixDisplayNameProvider  
+#                                      ; $solrIndexedType: Warranty (Insulators)                         ; facetUnitSuffixDisplayNameProvider  
+#                                      ; $solrIndexedType: Product Weight (Insulators)                   ; facetUnitSuffixDisplayNameProvider  
+#                                      ; $solrIndexedType: Post Type (Offsets)                           ;                                     
+#                                      ; $solrIndexedType: Mount Type                                    ;                                     
+#                                      ; $solrIndexedType: Product Length (Offsets)                      ; facetUnitSuffixDisplayNameProvider  
+#                                      ; $solrIndexedType: Gate Type                                     ;                                     
+#                                      ; $solrIndexedType: Length (Gates)                                ; facetUnitSuffixDisplayNameProvider  
+#                                      ; $solrIndexedType: Use (Fence)                                   ;                                     
 
 INSERT_UPDATE AsCategoryAwareSearchProfile ; code[unique=true]    ; name                     ; indexType[unique=true,default=$solrIndexedType] ; $catalogVersion[unique=true] 
                                            ; amB2CCASearchProfile ; AM B2C CA Search Profile 

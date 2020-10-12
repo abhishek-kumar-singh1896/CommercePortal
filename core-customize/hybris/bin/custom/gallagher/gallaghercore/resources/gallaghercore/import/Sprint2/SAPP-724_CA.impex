@@ -94,8 +94,8 @@ UPDATE SolrSearchQueryProperty ; indexedProperty(solrIndexedType(identifier),nam
                                       ; $solrIndexedType: Energy Stored                                 ; facetUnitSuffixDisplayNameProvider 
                                       ; $solrIndexedType: Typical Fence Distance                        ; facetUnitSuffixDisplayNameProvider 
                                       ; $solrIndexedType: Clean Wire Fence Distance                     ; facetUnitSuffixDisplayNameProvider 
-                                      ; $solrIndexedType: i Series Compatible (Energizers)              ;                                    
-                                      ; $solrIndexedType: Outdoors Suitable                             ;                                    
+                                      ; $solrIndexedType: i Series Compatible (Energizers)              ; facetUnitBooleanDisplayNameProvider                                   
+                                      ; $solrIndexedType: Outdoors Suitable                             ; facetUnitBooleanDisplayNameProvider
                                       ; $solrIndexedType: Property Size                                 ; facetUnitSuffixDisplayNameProvider 
                                       ; $solrIndexedType: Power Input                                   ;                                    
                                       ; $solrIndexedType: Watts                                         ; facetUnitSuffixDisplayNameProvider 
@@ -104,9 +104,9 @@ UPDATE SolrSearchQueryProperty ; indexedProperty(solrIndexedType(identifier),nam
                                       ; $solrIndexedType: Drafting                                      ;                                    
                                       ; $solrIndexedType: Capacity                                      ; facetUnitSuffixDisplayNameProvider 
                                       ; $solrIndexedType: Current                                       ; facetUnitSuffixDisplayNameProvider 
-                                      ; $solrIndexedType: Digital Display                               ;                                    
-                                      ; $solrIndexedType: i Series Compatible (Remotes)                 ;                                    
-                                      ; $solrIndexedType: i Series Compatible (Power)                   ;                                    
+                                      ; $solrIndexedType: Digital Display                               ; facetUnitBooleanDisplayNameProvider                                   
+                                      ; $solrIndexedType: i Series Compatible (Remotes)                 ; facetUnitBooleanDisplayNameProvider                                   
+                                      ; $solrIndexedType: i Series Compatible (Power)                   ; facetUnitBooleanDisplayNameProvider                                   
                                       ; $solrIndexedType: Gear Ratio                                    ;                                    
                                       ; $solrIndexedType: Conductor Capacity                            ;                                    
                                       ; $solrIndexedType: Pre-wound with                                ;                                    
@@ -123,17 +123,17 @@ UPDATE SolrSearchQueryProperty ; indexedProperty(solrIndexedType(identifier),nam
                                       ; $solrIndexedType: Wire Amount                                   ;                                    
                                       ; $solrIndexedType: Post Height (Pigtails)                        ; facetUnitSuffixDisplayNameProvider 
                                       ; $solrIndexedType: Number of Traits Recorded                     ;                                    
-                                      ; $solrIndexedType: EID Compatiable                               ;                                    
+                                      ; $solrIndexedType: EID Compatiable                               ; facetUnitBooleanDisplayNameProvider                                   
                                       ; $solrIndexedType: Internal rechargeable battery                 ;                                    
-                                      ; $solrIndexedType: Intergrated EID Reader                        ;                                    
-                                      ; $solrIndexedType: Compatible with Gallagher Livestock (Scales)  ;                                    
-                                      ; $solrIndexedType: View Pedigree Tree                            ;                                    
+                                      ; $solrIndexedType: Intergrated EID Reader                        ; facetUnitBooleanDisplayNameProvider                                   
+                                      ; $solrIndexedType: Compatible with Gallagher Livestock (Scales)  ; facetUnitBooleanDisplayNameProvider                                   
+                                      ; $solrIndexedType: View Pedigree Tree                            ; facetUnitBooleanDisplayNameProvider                                   
                                       ; $solrIndexedType: Use (Loadbars)                                ;                                    
                                       ; $solrIndexedType: Weighing Capacity (Loadbars)                  ; facetUnitSuffixDisplayNameProvider 
                                       ; $solrIndexedType: Weighing Capacity (Platforms)                 ; facetUnitSuffixDisplayNameProvider 
                                       ; $solrIndexedType: Product Type                                  ;                                    
-                                      ; $solrIndexedType: Compatible with Gallagher Livestock (EID)     ;                                    
-                                      ; $solrIndexedType: Rechargeable                                  ;                                    
+                                      ; $solrIndexedType: Compatible with Gallagher Livestock (EID)     ; facetUnitBooleanDisplayNameProvider                                   
+                                      ; $solrIndexedType: Rechargeable                                  ; facetUnitBooleanDisplayNameProvider                                   
                                       ; $solrIndexedType: Product Features (Trough)                     ;                                    
                                       ; $solrIndexedType: Capacity(L) (Trough)                          ; facetUnitSuffixDisplayNameProvider 
                                       ; $solrIndexedType: Product Features (Spring)                     ;                                    
