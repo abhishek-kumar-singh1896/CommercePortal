@@ -384,4 +384,8 @@
 	<!-- interceptor to modify the uid (BU+UID) -->
 	<bean id="gallagherCustomerInterceptor" class="com.gallagher.core.customer.interceptor.GallagherCustomerInitDefaultInterceptor" autowire="byName">
 	</bean>
+	
+	<alias alias="customerEmailResolutionService" name="gallagherCustomerEmailResolutionService"/>
+	<bean id="gallagherCustomerEmailResolutionService" class="com.gallagher.core.customer.impl.GallagherCustomerEmailResolutionServiceImpl" >
+	</bean>
 </beans>
