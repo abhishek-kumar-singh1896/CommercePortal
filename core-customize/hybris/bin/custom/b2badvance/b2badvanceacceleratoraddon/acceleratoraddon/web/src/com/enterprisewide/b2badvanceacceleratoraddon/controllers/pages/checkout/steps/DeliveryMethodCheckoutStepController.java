@@ -94,10 +94,11 @@ public class DeliveryMethodCheckoutStepController extends AbstractCheckoutStepCo
 			final RedirectAttributes redirectModel)
 					throws CMSItemNotFoundException, InvalidCartException, CommerceCartModificationException
 	{
-		if (StringUtils.isNotEmpty(deliveryMethodForm.getDeliveryMethod()))
-		{
-			getCheckoutFacade().setDeliveryMode(deliveryMethodForm.getDeliveryMethod());
-		}
+		/*
+		 * if (StringUtils.isNotEmpty(deliveryMethodForm.getDeliveryMethod())) {
+		 * getCheckoutFacade().setDeliveryMode(deliveryMethodForm.getDeliveryMethod()); }
+		 */
+		getCheckoutFacade().setDeliveryMode("free-standard-shipping");
 		getCheckoutFlowFacade().setDeliveryInstructions(deliveryMethodForm.getDeliveryInstructions());
 		return getCheckoutStep().nextStep();
 	}
