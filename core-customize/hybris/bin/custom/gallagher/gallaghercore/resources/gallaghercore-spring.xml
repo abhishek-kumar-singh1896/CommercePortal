@@ -368,6 +368,7 @@
 	</bean>
 	
     <bean id="gallagherProductService" class="com.gallagher.core.product.impl.GallagherDefaultProductServiceImpl" />
+<<<<<<< HEAD
     
    <alias alias="facetUnitSuffixDisplayNameProvider" name="gallagherFacetUnitSuffixDisplayNameProvider" />
 	<bean id="gallagherFacetUnitSuffixDisplayNameProvider"
@@ -431,4 +432,26 @@
 	
 	 <!-- SAPP2-147 -->
 	
+	
+	<bean id="europe1.manager" class="com.gallagher.core.pricefactory.GallagherEurope1PriceFactory" init-method="init" destroy-method="destroy">
+		<property name="retrieveChannelStrategy" ref="retrieveChannelStrategy" />
+	</bean>
+
+	<!-- Custom Jalo Class for PriceRow -->
+	<bean id="de.hybris.platform.europe1.jalo.PriceRow" class="com.gallagher.core.jalo.GallagherPriceRow" scope="prototype" />
+
+	<!-- Custom Price Row Interceptor -->
+	<alias name="gallagherPriceRowPrepareInterceptor" alias="priceRowPrepareInterceptor" />
+	<bean id="gallagherPriceRowPrepareInterceptor" class="com.gallagher.core.pdt.interceptor.GallagherPriceRowPrepareInterceptor"
+		parent="gallagherPdtRowPrepareInterceptor">
+	</bean>
+
+	<bean id="gallagherPdtRowPrepareInterceptor" class="com.gallagher.core.pdt.interceptor.GallagherPDTRowPrepareInterceptor"
+		abstract="true" parent="pdtRowPrepareInterceptor">
+	</bean>
+
+	<bean id="priceRowPrepareInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="priceRowPrepareInterceptor" />
+		<property name="typeCode" value="PriceRow" />
+	</bean>
 </beans>
