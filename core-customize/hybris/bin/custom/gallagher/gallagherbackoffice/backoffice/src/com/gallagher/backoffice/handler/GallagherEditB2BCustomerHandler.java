@@ -16,7 +16,6 @@ import de.hybris.platform.servicelayer.internal.model.impl.ModelValueHistory;
 import de.hybris.platform.servicelayer.model.ItemModelContextImpl;
 import de.hybris.platform.servicelayer.session.SessionExecutionBody;
 import de.hybris.platform.servicelayer.session.SessionService;
-import de.hybris.platform.servicelayer.user.UserService;
 import de.hybris.platform.site.BaseSiteService;
 import de.hybris.platform.store.BaseStoreModel;
 
@@ -84,9 +83,6 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 	@Resource(name = "configurationService")
 	private ConfigurationService configurationService;
 
-	@Resource(name = "userService")
-	private UserService userService;
-
 	@Override
 	public Object performSave(final WidgetInstanceManager widgetInstanceManager, final Object currentObject)
 			throws ObjectSavingException
@@ -117,12 +113,10 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 				final Context ctx = new DefaultContext();
 				ctx.addAttribute(ObjectFacade.CTX_PARAM_SUPPRESS_EVENT, Boolean.TRUE);
 
+				final Map<String, String> modifiedMap = addModifiedUnitsAndAccess(currentCustomerModel, modifiedAttributesMap);
+
 				LOG.debug("Updating user profile in C4C");
 				final B2BCustomerModel updatedCustomerModel = pushToC4C(currentCustomerModel, ctx);
-
-				final Map<String, String> modifiedMap = addModifiedUnitsAndAccess(
-						updatedCustomerModel,
-						modifiedAttributesMap);
 
 				if (MapUtils.isNotEmpty(modifiedMap))
 				{
@@ -379,16 +373,10 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 		final ItemModelContextImpl context = (ItemModelContextImpl) updatedCustomerModel.getItemModelContext();
 		final ModelValueHistory history = context.getValueHistory();
 
-		final boolean isChanged = !Objects.equals(updatedCustomerModel.getProperty(B2BCustomerModel.UID),
-				history.getOriginalValue(B2BCustomerModel.UID));
+		final Collection origialGroups = (Collection) history.getOriginalValue(B2BCustomerModel.GROUPS);
 
-		final String customerUid = isChanged ? (String) history.getOriginalValue(B2BCustomerModel.UID)
-				: updatedCustomerModel.getUid();
-
-		final B2BCustomerModel userDBCopy = userService.getUserForUID(customerUid, B2BCustomerModel.class);
-
-		final Collection oldGroups = new HashSet(userDBCopy.getGroups());
-		final Collection deletedGroups = new HashSet(userDBCopy.getGroups());
+		final Collection oldGroups = new HashSet(origialGroups);
+		final Collection deletedGroups = new HashSet(origialGroups);
 		final Collection newGroups = new HashSet(updatedCustomerModel.getGroups());
 
 		deletedGroups.removeAll(newGroups);
@@ -406,7 +394,10 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 			modifiedAttributesMap.put("b2bUnitAdded", String.join(",", addedUnits));
 		}
 
-		if (Objects.equals(userDBCopy.isLoginDisabled(), updatedCustomerModel.isLoginDisabled()))
+		final boolean isChanged = !Objects.equals(updatedCustomerModel.getProperty(B2BCustomerModel.LOGINDISABLED),
+				history.getOriginalValue(B2BCustomerModel.LOGINDISABLED));
+
+		if (isChanged)
 		{
 			final String access = updatedCustomerModel.isLoginDisabled() ? "Disabled" : "Enabled";
 			modifiedAttributesMap.put(B2BCustomerModel.LOGINDISABLED, access);
@@ -599,23 +590,6 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 	public void setConfigurationService(final ConfigurationService configurationService)
 	{
 		this.configurationService = configurationService;
-	}
-
-	/**
-	 * @return the userService
-	 */
-	public UserService getUserService()
-	{
-		return userService;
-	}
-
-	/**
-	 * @param userService
-	 *           the userService to set
-	 */
-	public void setUserService(final UserService userService)
-	{
-		this.userService = userService;
 	}
 
 }
