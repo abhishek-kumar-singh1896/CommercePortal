@@ -96,4 +96,9 @@
 	<bean class="de.hybris.platform.commercefacades.product.data.ReviewData">
 		<property name="formattedReviewDate" type="String"/>
 	</bean>
+	
+	<bean class="de.hybris.platform.solrfacetsearch.config.IndexedProperty">
+		<property name="salesArea" type="boolean"/>
+		<property name="userPriceGroup" type="boolean"/>
+	</bean>
 </beans>

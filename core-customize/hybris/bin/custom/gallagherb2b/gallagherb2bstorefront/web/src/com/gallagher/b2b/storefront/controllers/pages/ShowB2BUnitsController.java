@@ -43,6 +43,8 @@ public class ShowB2BUnitsController extends AbstractPageController
 	@SuppressWarnings("unused")
 	private static final Logger LOGGER = Logger.getLogger(ShowB2BUnitsController.class);
 
+	private static final String CURRENT_SESSION_SALES_AREA = "currentSessionSalesArea";
+
 	@Resource(name = "userService")
 	private UserService userService;
 
@@ -90,6 +92,7 @@ public class ShowB2BUnitsController extends AbstractPageController
 			((B2BCustomerModel) currentCustomer).setDefaultB2BUnit(b2bUnitModel);
 			modelService.save(currentCustomer);
 			b2bUnitFacade.updateBranchInSession(getSessionService().getCurrentSession(), currentCustomer);
+			getSessionService().setAttribute(CURRENT_SESSION_SALES_AREA, b2bUnitModel.getSalesArea());
 		}
 		return true;
 	}

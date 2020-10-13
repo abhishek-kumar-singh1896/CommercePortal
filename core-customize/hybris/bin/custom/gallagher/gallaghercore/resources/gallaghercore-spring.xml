@@ -390,4 +390,40 @@
 		<property name="interceptor" ref="priceRowPrepareInterceptor" />
 		<property name="typeCode" value="PriceRow" />
 	</bean>
+
+	<bean id="gallagherB2BUnitService" class="com.gallagher.core.services.impl.GallagherB2BUnitServiceImpl"/>
+    
+    <!-- SAPP2-147 -->
+    <bean id="gallagherProductPricesValueResolver" class="com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherProductPricesValueResolver"
+		parent="productPricesValueResolver">
+		<property name="salesAreaQualifierProvider" ref="salesAreaQualifierProvider" />
+		<property name="userPriceGroupQualifierProvider" ref="userPriceGroupQualifierProvider" />
+	</bean>
+
+	<bean id="salesAreaQualifierProvider" class="com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherSalesAreaQualifierProvider">
+		<property name="salesAreaService" ref="gallagherSalesAreaService" />
+		<property name="sessionService" ref="sessionService" />
+	</bean>
+	
+	<bean id="userPriceGroupQualifierProvider" class="com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherUserPriceGroupQualifierProvider">
+		<property name="sessionService" ref="sessionService" />
+		<property name="enumerationService" ref="enumerationService" />
+	</bean>
+	
+	<bean id="gallagherSalesAreaService" class="com.gallagher.core.services.impl.GallagherSalesAreaServiceImpl">
+		<property name="sessionService" ref="sessionService" />
+		<property name="salesAreaDao" ref="gallagherSalesAreaDao"/>
+	</bean>
+	
+	<bean id="fieldNameTranslator" class="com.gallagher.core.search.solrfacetsearch.translator.GallagherFieldNameTranslator">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider" />
+		<property name="valueProviderSelectionStrategy" ref="valueProviderSelectionStrategy" />
+		<property name="salesAreaService" ref="gallagherSalesAreaService" />
+		<property name="userService" ref="userService"/>
+	</bean>
+	
+	<bean id="gallagherSalesAreaDao" class="com.gallagher.core.dao.impl.GallagherSalesAreaDaoImpl" parent="abstractItemDao"/> 
+	
+	 <!-- SAPP2-147 -->
+	
 </beans>
