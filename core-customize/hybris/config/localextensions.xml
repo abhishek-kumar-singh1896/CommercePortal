@@ -126,7 +126,5 @@
 	<extension name="gallagherstorefront" />
 	<extension name="gallagherscpiexchange" />
 	<extension name="paymetric" />
-	<extension name="samlssobackoffice" />
-	<extension name="samlsinglesignon" />
   </extensions>
 </hybrisconfig>
