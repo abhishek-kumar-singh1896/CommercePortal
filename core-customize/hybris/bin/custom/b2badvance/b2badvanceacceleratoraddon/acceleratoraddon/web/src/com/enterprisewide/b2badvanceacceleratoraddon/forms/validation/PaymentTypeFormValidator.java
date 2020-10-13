@@ -10,13 +10,14 @@
  */
 package com.enterprisewide.b2badvanceacceleratoraddon.forms.validation;
 
-import com.enterprisewide.b2badvanceacceleratoraddon.forms.PaymentTypeForm;
 import de.hybris.platform.b2bacceleratorservices.enums.CheckoutPaymentType;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
+
+import com.enterprisewide.b2badvanceacceleratoraddon.forms.PaymentTypeForm;
 
 
 /**
@@ -40,7 +41,7 @@ public class PaymentTypeFormValidator implements Validator
 			final PaymentTypeForm paymentTypeForm = (PaymentTypeForm) object;
 
 			if (CheckoutPaymentType.ACCOUNT.getCode().equals(paymentTypeForm.getPaymentType())
-					&& StringUtils.isBlank(paymentTypeForm.getCostCenterId()))
+					&& StringUtils.isBlank(paymentTypeForm.getB2bUnit()))
 			{
 				errors.rejectValue("costCenterId", "general.required");
 			}

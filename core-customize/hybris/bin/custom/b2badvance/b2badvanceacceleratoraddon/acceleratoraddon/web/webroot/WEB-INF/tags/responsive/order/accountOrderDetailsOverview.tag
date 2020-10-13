@@ -53,7 +53,7 @@
                     <c:if test="${orderData.paymentType.code=='ACCOUNT'}">
                         <ycommerce:testId code="orderDetail_overviewParentBusinessUnit_label">
                             <span class="item-label"><spring:theme code="text.account.order.orderDetails.ParentBusinessUnit"/></span>
-                            <span class="item-value">${fn:escapeXml(orderData.costCenter.unit.name)}</span>
+                            <span class="item-value">${fn:escapeXml(orderData.b2bUnit.unit.name)}</span>
                         </ycommerce:testId>
                     </c:if>
                 </div>
@@ -63,7 +63,7 @@
                     <c:if test="${orderData.paymentType.code=='ACCOUNT'}">
                         <ycommerce:testId code="orderDetail_overviewCostCenter_label">
                             <span class="item-label"><spring:theme code="text.account.order.orderDetails.CostCenter"/></span>
-                            <span class="item-value">${fn:escapeXml(orderData.costCenter.name)}</span>
+                            <span class="item-value">${fn:escapeXml(orderData.b2bUnit.name)}</span>
                         </ycommerce:testId>
                     </c:if>
                 </div>
