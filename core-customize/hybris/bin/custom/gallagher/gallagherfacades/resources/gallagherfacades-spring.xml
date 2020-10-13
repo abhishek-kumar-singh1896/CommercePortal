@@ -305,4 +305,8 @@
 	      class="com.gallagher.facades.process.email.context.GallagherCustomerUpdateEmailContext"
 	         parent="customerEmailContext" scope="prototype">
     </bean>
+    
+    	<alias name="gallagherIndexedPropertyPopulator" alias="indexedPropertyPopulator" />
+	<bean id="gallagherIndexedPropertyPopulator" class="com.gallagher.facades.search.solrfacetsearch.populators.GallagherIndexedPropertyPopulator"
+		parent="defaultIndexedPropertyPopulator" />
 </beans>

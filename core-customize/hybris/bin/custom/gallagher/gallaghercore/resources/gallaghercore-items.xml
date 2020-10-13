@@ -818,6 +818,21 @@
 				</attributes>
 			</itemtype>
 		</typegroup>
+		
+		<typegroup name="Search">
+		  		<itemtype code="SolrIndexedProperty" autocreate="false" generate="false">
+			<attributes>
+				<attribute qualifier="salesArea" type="boolean">
+					<defaultvalue>java.lang.Boolean.TRUE</defaultvalue>
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="userpriceGroup" type="boolean">
+					<defaultvalue>java.lang.Boolean.FALSE</defaultvalue>
+					<persistence type="property" />
+				</attribute>	
+			</attributes>
+		</itemtype>
+		</typegroup>
 
 
 	</itemtypes>

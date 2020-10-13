@@ -19,7 +19,7 @@
 				priceData="${product.priceRange.maxPrice}" />
 		</c:when>
 		<c:when
-			test="${(product.priceRange.minPrice.value eq product.priceRange.maxPrice.value)}">
+			test="${product.priceRange.minPrice ne null && (product.priceRange.minPrice.value eq product.priceRange.maxPrice.value)}">
 			<format:price priceData="${product.priceRange.minPrice}" />
 		</c:when>
 		<c:otherwise>
