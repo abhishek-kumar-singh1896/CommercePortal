@@ -6,16 +6,20 @@
 <form:form id="selectPaymentTypeForm" modelAttribute="paymentTypeForm" action="${request.contextPath}/checkout/multi/payment-type/choose" method="post">
     <div class="step-body-form">
         <div class="radiobuttons_paymentselection">
-            <c:forEach items="${paymentTypes}" var="paymentType">
-                <form:radiobutton path="paymentType" id="PaymentTypeSelection_${paymentType.code}" value="${paymentType.code}" label="${paymentType.displayName}" />
+        <c:forEach items="${paymentTypes}" var="paymentType">
+              <c:if test="${paymentType.displayName ne 'Card Payment'}">
+                <form:radiobutton path="paymentType" id="PaymentTypeSelection_${paymentType.code}" value="${paymentType.code}" label="${paymentType.displayName}" checked="${paymentType.displayName == 'Account' ? 'checked' : '' }" />
                 <br>
-            </c:forEach>
+    </c:if>
+    </c:forEach>
         </div>
+        
 
         <formElement:formInputBox idKey="PurchaseOrderNumber" labelKey="checkout.multi.purchaseOrderNumber.label" path="purchaseOrderNumber" inputCSS="text" />
 
         <div id="costCenter">
-            <formElement:formSelectBox idKey="costCenterSelect" labelKey="checkout.multi.costCenter.label" path="costCenterId" skipBlank="false" skipBlankMessageKey="checkout.multi.costCenter.title.pleaseSelect" itemValue="code" itemLabel="name" items="${costCenters}" mandatory="true" selectCSSClass="form-control"/>
+        
+            <formElement:formSelectBox idKey="costCenterSelect" labelKey="checkout.multi.costCenter.label" path="b2bUnit" skipBlank="false" skipBlankMessageKey="checkout.multi.costCenter.title.pleaseSelect" itemValue="code" itemLabel="name" items="${b2bUnits}" mandatory="true" selectCSSClass="form-control"/>
         </div>
     </div>
 

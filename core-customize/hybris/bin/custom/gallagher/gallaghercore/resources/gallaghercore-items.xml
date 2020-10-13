@@ -721,7 +721,16 @@
 			</itemtype>
 
 		</typegroup>
-
-
+<typegroup name="order">
+    <itemtype code="AbstractOrderEntry" autocreate="false"
+			generate="false">
+			<attributes>
+				<attribute qualifier="b2bUnit" type="B2BUnit">
+					<modifiers read="true" write="true" search="true" />
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+		</itemtype>
+</typegroup>
 	</itemtypes>
 </items>

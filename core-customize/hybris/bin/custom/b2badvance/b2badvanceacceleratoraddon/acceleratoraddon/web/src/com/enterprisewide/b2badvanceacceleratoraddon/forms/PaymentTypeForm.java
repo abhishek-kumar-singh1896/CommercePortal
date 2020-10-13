@@ -19,6 +19,8 @@ public class PaymentTypeForm
 	private String paymentType;
 	private String costCenterId;
 	private String purchaseOrderNumber;
+	private String b2bUnit;
+
 
 	@NotNull(message = "{general.required}")
 	@Size(min = 1, max = 255, message = "{general.required}")
@@ -50,5 +52,15 @@ public class PaymentTypeForm
 	public void setPurchaseOrderNumber(final String purchaseOrderNumber)
 	{
 		this.purchaseOrderNumber = purchaseOrderNumber;
+	}
+
+	public String getB2bUnit()
+	{
+		return b2bUnit;
+	}
+
+	public void setB2bUnit(final String b2bUnit)
+	{
+		this.b2bUnit = b2bUnit;
 	}
 }
