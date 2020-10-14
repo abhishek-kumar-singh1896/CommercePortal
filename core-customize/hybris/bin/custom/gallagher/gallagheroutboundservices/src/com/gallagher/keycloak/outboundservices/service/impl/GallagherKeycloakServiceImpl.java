@@ -121,7 +121,7 @@ public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 
 		final ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.PUT, entity, String.class);
 
-		if (HttpStatus.OK.equals(response.getStatusCode()))
+		if (HttpStatus.OK.equals(response.getStatusCode()) || HttpStatus.NO_CONTENT.equals(response.getStatusCode()))
 		{
 			status = true;
 		}
