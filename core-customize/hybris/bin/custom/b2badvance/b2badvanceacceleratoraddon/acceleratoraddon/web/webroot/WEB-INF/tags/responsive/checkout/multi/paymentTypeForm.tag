@@ -29,8 +29,10 @@
         <br>               	
         <div>
         	 Comments 
-        	<input type="text" path="userComments" name = "userComments" value = "Enter your Comments" label = "Comments"/>
+        	<input type="text" path="deliveryInstructions" name = "deliveryInstructions" value = "Enter your Comments" label = "Comments"/>
         </div>
+        
+        
         
     </div>
 

@@ -10,8 +10,6 @@
  */
 package com.enterprisewide.b2badvanceacceleratoraddon.forms;
 
-import java.util.Date;
-
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -21,13 +19,9 @@ public class PaymentTypeForm
 	private String paymentType;
 	private String costCenterId;
 	private String purchaseOrderNumber;
-
 	private String b2bUnit;
-
-
-	private Date requiredDeliveryDate;
-	private String userComments;
-
+	private String requiredDeliveryDate;
+	private String deliveryInstructions;
 
 	@NotNull(message = "{general.required}")
 	@Size(min = 1, max = 255, message = "{general.required}")
@@ -73,25 +67,27 @@ public class PaymentTypeForm
 		this.b2bUnit = b2bUnit;
 	}
 
-
-	public Date getRequiredDeliveryDate()
+	public String getDeliveryInstructions()
 	{
-		return requiredDeliveryDate;
+		return deliveryInstructions;
 	}
 
-	public void setRequiredDeliveryDate(final Date requiredDeliveryDate)
+	/**
+	 * @param deliveryInstructions
+	 *           the deliveryInstructions to set
+	 */
+	public void setDeliveryInstructions(final String deliveryInstructions)
+	{
+		this.deliveryInstructions = deliveryInstructions;
+	}
+
+	public void setRequiredDeliveryDate(final String requiredDeliveryDate)
 	{
 		this.requiredDeliveryDate = requiredDeliveryDate;
 	}
 
-	public String getUserComments()
+	public String getRequiredDeliveryDate()
 	{
-		return userComments;
+		return requiredDeliveryDate;
 	}
-
-	public void setUserComments(final String userComments)
-	{
-		this.userComments = userComments;
-	}
-
 }

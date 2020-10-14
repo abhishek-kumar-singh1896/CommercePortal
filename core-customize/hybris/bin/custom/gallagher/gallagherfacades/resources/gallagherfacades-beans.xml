@@ -114,10 +114,10 @@
 	<bean class="de.hybris.platform.commercefacades.order.data.OrderData"
 		extends="de.hybris.platform.commercefacades.order.data.AbstractOrderData">
 		<property name="b2bUnit" type="de.hybris.platform.b2bcommercefacades.company.data.B2BUnitData" />
+		<property name="requiredDeliveryDate" type="String" />
 	</bean>
 
 	<bean class="de.hybris.platform.commercefacades.order.data.CartData">
-		<property name="requiredDeliveryDate" type="java.util.Date" />
-		<property name="userComments" type="String" />
+		<property name="requiredDeliveryDate" type="String" />
 	</bean>
 </beans>

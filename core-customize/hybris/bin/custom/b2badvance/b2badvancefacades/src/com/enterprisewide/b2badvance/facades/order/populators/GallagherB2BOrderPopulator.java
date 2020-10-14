@@ -45,7 +45,6 @@ public class GallagherB2BOrderPopulator extends B2BOrderPopulator
 	@Override
 	public void populate(final OrderModel orderModel, final OrderData orderData) throws ConversionException
 	{
-
 		for (final AbstractOrderEntryModel entry : orderModel.getEntries())
 		{
 			if (entry.getB2bUnit() != null)
@@ -55,6 +54,12 @@ public class GallagherB2BOrderPopulator extends B2BOrderPopulator
 			}
 		}
 
+		if (orderModel.getDeliveryInstructions() != null)
+		{
+			orderData.setDeliveryInstructions(orderModel.getDeliveryInstructions());
+		}
+
+		orderData.setRequiredDeliveryDate(orderModel.getRequiredDeliveryDate());
 		orderData.setPurchaseOrderNumber(orderModel.getPurchaseOrderNumber());
 		orderData.setPaymentType(getB2bPaymentTypeConverter().convert(orderModel.getPaymentType()));
 		if (CollectionUtils.isNotEmpty(orderModel.getB2bcomments()))

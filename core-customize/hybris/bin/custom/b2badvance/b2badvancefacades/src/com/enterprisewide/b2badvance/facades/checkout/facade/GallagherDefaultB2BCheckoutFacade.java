@@ -72,6 +72,12 @@ public class GallagherDefaultB2BCheckoutFacade extends DefaultB2BCheckoutFacade
 			setDeliveryAddress(cartData.getDeliveryAddress());
 		}
 
+		if (cartData.getRequiredDeliveryDate() != null)
+		{
+			setRequiredDeliveryDate(cartData.getRequiredDeliveryDate(), cartModel);
+		}
+
+
 		// set quote request description
 		if (cartData.getB2BComment() != null)
 		{
@@ -84,6 +90,11 @@ public class GallagherDefaultB2BCheckoutFacade extends DefaultB2BCheckoutFacade
 		return getCheckoutCart();
 
 	}
+
+
+	/**
+	 * @param userComments
+	 */
 
 
 	protected void setB2bUnitForCart(final String b2bUnitDataCode, final CartModel cartModel)
@@ -111,6 +122,13 @@ public class GallagherDefaultB2BCheckoutFacade extends DefaultB2BCheckoutFacade
 
 		removeDeliveryAddress();
 		removeDeliveryMode();
+	}
+
+	protected void setRequiredDeliveryDate(final String requiredDate, final CartModel cartModel)
+	{
+		cartModel.setRequiredDeliveryDate(requiredDate);
+		getModelService().save(cartModel);
+		getModelService().refresh(cartModel);
 	}
 
 

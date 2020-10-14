@@ -29,7 +29,9 @@ import de.hybris.platform.commerceservices.order.CommerceCartModificationExcepti
 import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.servicelayer.user.UserService;
 
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -43,6 +45,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.enterprisewide.b2badvance.facades.checkout.flow.B2badvanceCheckoutFacade;
 import com.enterprisewide.b2badvanceacceleratoraddon.controllers.B2badvanceacceleratoraddonControllerConstants;
 import com.enterprisewide.b2badvanceacceleratoraddon.forms.PaymentTypeForm;
 import com.enterprisewide.b2badvanceacceleratoraddon.forms.validation.PaymentTypeFormValidator;
@@ -52,6 +55,9 @@ import com.gallagher.facades.GallagherB2BUnitFacade;;
 public class PaymentTypeCheckoutStepController extends AbstractCheckoutStepController
 {
 	private final static String PAYMENT_TYPE = "payment-type";
+
+	@Resource(name = "checkoutFlowFacade")
+	private B2badvanceCheckoutFacade checkoutFlowFacade;
 
 	@Resource(name = "userService")
 	private UserService userService;
@@ -70,6 +76,8 @@ public class PaymentTypeCheckoutStepController extends AbstractCheckoutStepContr
 
 	@Resource(name = "b2bUnitFacade")
 	private GallagherB2BUnitFacade b2bUnitFacade;
+
+
 
 
 	@ModelAttribute("b2bUnits")
@@ -161,6 +169,13 @@ public class PaymentTypeCheckoutStepController extends AbstractCheckoutStepContr
 			cartData.setPurchaseOrderNumber(paymentTypeForm.getPurchaseOrderNumber());
 		}
 
+		//set Date in Model
+		cartData.setRequiredDeliveryDate(paymentTypeForm.getRequiredDeliveryDate());
+
+		//set Comment in CartModel if Entered
+		getCheckoutFlowFacade().setDeliveryInstructions(paymentTypeForm.getDeliveryInstructions());
+
+
 		b2bCheckoutFacade.updateCheckoutCart(cartData);
 	}
 
@@ -182,6 +197,10 @@ public class PaymentTypeCheckoutStepController extends AbstractCheckoutStepContr
 
 	protected PaymentTypeForm preparePaymentTypeForm(final CartData cartData)
 	{
+		final SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		final Date date = new Date();
+
+		final String dateToString = formatter.format(date);
 		final PaymentTypeForm paymentTypeForm = new PaymentTypeForm();
 
 		if (cartData.getPaymentType() != null)
@@ -199,9 +218,13 @@ public class PaymentTypeCheckoutStepController extends AbstractCheckoutStepContr
 			paymentTypeForm.setB2bUnit(getAllB2BUnitData().get(0).getCode());
 		}
 
+		//set Current Date
+		paymentTypeForm.setRequiredDeliveryDate(dateToString);
 
 		// set purchase order number
 		paymentTypeForm.setPurchaseOrderNumber(cartData.getPurchaseOrderNumber());
+
+
 		return paymentTypeForm;
 	}
 
@@ -224,6 +247,12 @@ public class PaymentTypeCheckoutStepController extends AbstractCheckoutStepContr
 	protected CheckoutStep getCheckoutStep()
 	{
 		return getCheckoutStep(PAYMENT_TYPE);
+	}
+
+	@Override
+	protected B2badvanceCheckoutFacade getCheckoutFlowFacade()
+	{
+		return checkoutFlowFacade;
 	}
 
 }

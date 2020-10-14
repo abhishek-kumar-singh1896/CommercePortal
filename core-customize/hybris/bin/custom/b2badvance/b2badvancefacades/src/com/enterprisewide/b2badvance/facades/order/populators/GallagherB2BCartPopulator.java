@@ -43,6 +43,7 @@ public class GallagherB2BCartPopulator<T extends CartData> extends B2BCartPopula
 			}
 		}
 
+		target.setRequiredDeliveryDate(source.getRequiredDeliveryDate());
 		target.setPurchaseOrderNumber(source.getPurchaseOrderNumber());
 		final CheckoutPaymentType paymentType = (source.getPaymentType() != null ? source.getPaymentType()
 				: CheckoutPaymentType.ACCOUNT);

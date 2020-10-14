@@ -148,7 +148,6 @@
 				<attribute autocreate="true" generate="true" qualifier="promoSticker" type="Sticker">
 					<modifiers optional="true" />
 					<persistence type="property" />
-					<description>Indicates status of product</description>
 				</attribute>
 				<attribute autocreate="true" generate="true" qualifier="animalCompatibility" type="Animals">
 					<modifiers optional="true" />
@@ -609,31 +608,7 @@
 
 		</typegroup>
 		
-		<typegroup name="Cart">
-            <itemtype code="Cart" autocreate="false" generate="false">
-                <description>Extending Cart type with additional attributes for saved cart functionality</description>
-                <attributes>
-                    <attribute qualifier="requiredDeliveryDate" type="java.util.Date">
-                        <description>The date/time when the cart was saved.</description>
-                        <persistence type="property" />
-                    </attribute>
-                    <attribute autocreate="true" qualifier="userComments" type="localized:java.lang.String">
-                    <modifiers read="true" write="true" search="true" optional="true" />
-                    <persistence type="property">
-                        <columntype database="oracle">
-                            <value>CLOB</value>
-                        </columntype>
-                        <columntype database="sap">
-                            <value>NCLOB</value>
-                        </columntype>
-                        <columntype>
-                            <value>HYBRIS.LONG_STRING</value>
-                        </columntype>
-                    </persistence>
-                    </attribute>
-                </attributes>
-            </itemtype>
-        </typegroup>
+		
 
 		<typegroup name="jobs">
 			<itemtype code="GallagherCatalogVersionSyncJob" autocreate="true" generate="true" extends="CatalogVersionSyncJob"
@@ -757,6 +732,17 @@
 				</attribute>
 			</attributes>
 		</itemtype>
+
+    <itemtype code="AbstractOrder" autocreate="false"
+			generate="false">
+			<attributes>
+				<attribute qualifier="requiredDeliveryDate" type="java.lang.String">
+					<modifiers read="true" write="true" search="true" />
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+		</itemtype>
 </typegroup>
+
 	</itemtypes>
 </items>
