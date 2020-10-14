@@ -120,7 +120,7 @@ public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 				getConfigurationService().getConfiguration().getString("keycloak.reset.password.url"), keycloakGUID, redirectURI);
 
 		final ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.PUT, entity, String.class);
-
+		LOGGER.error("Response status code for update password from Keycloak : " + response.getStatusCode());
 		if (HttpStatus.OK.equals(response.getStatusCode()) || HttpStatus.NO_CONTENT.equals(response.getStatusCode()))
 		{
 			status = true;
