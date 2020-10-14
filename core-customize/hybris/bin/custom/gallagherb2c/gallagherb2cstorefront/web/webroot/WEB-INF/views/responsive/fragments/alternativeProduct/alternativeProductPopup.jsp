@@ -29,9 +29,9 @@
 					<div class="flexslider carousel">
 						<ul class="slides productsPopUp">
 							<c:forEach items="${alternativeProducts}" var="reference" end="3">
-								<li>
+							<c:url value="${reference.url}" var="productUrl" />
+								<li onclick="window.location='${productUrl}'">
 									<div class="card product-card">
-										<c:url value="${reference.url}" var="productUrl" />
 										<c:set var="tempicon" value="0" />
 										<c:choose>
 											<c:when test="${not empty reference.images}">
@@ -40,10 +40,7 @@
 														<c:if test="${medias.format eq 'product'}">
 															<c:set var="tempicon" value="1" />
 															<div class="imageProduct">
-															<a href="${fn:escapeXml(productUrl)}"
-																title="${fn:escapeXml(reference.name)}"> 
 																<img src="${medias.url}" alt="${medias.altText}">
-															</a>
 															</div>
 														</c:if>
 													</c:if>
