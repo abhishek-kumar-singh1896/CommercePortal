@@ -76,6 +76,7 @@ import com.gallagher.commerceorgaddon.forms.B2BCustomerForm;
 import com.gallagher.commerceorgaddon.forms.B2BPermissionForm;
 import com.gallagher.commerceorgaddon.forms.validation.B2BBudgetFormValidator;
 import com.gallagher.commerceorgaddon.forms.validation.B2BPermissionFormValidator;
+import com.gallagher.core.enums.BU;
 import com.gallagher.facades.GallagherB2BUnitFacade;
 import com.gallagher.facades.usergroups.GallagherB2BUserGroupFacade;
 import com.gallagher.keycloak.outboundservices.service.GallagherKeycloakService;
@@ -439,7 +440,7 @@ public class MyCompanyPageController extends AbstractSearchPageController
 		try
 		{
 			searchRestrictionService.disableSearchRestrictions();
-			if (getCustomerFacade().getUserForUID(b2BCustomerForm.getEmail()) != null)
+			if (getCustomerFacade().getUserForUID(BU.SEC.getCode().toLowerCase() + "|" + b2BCustomerForm.getEmail()) != null)
 			{
 				return handleDuplicateUser(b2BCustomerForm, bindingResult, model);
 			}
@@ -495,7 +496,7 @@ public class MyCompanyPageController extends AbstractSearchPageController
 		try
 		{
 			b2bUserFacade.updateCustomer(b2bCustomerData);
-			b2bCustomerData.setUid(b2BCustomerForm.getEmail().toLowerCase());
+			b2bCustomerData.setUid(BU.SEC.getCode().toLowerCase() + "|" + b2BCustomerForm.getEmail().toLowerCase());
 			b2BCustomerForm.setUid(b2bCustomerData.getUid());
 			GlobalMessages.addFlashMessage(redirectModel, GlobalMessages.CONF_MESSAGES_HOLDER, "text.confirmation.user.added");
 		}
@@ -545,7 +546,27 @@ public class MyCompanyPageController extends AbstractSearchPageController
 		if (keycloakGUID != null)
 		{
 			b2bCustomerData.setKeycloakGUID(keycloakGUID);
-			b2bCustomerData.setIsUserExist(true);
+			try
+			{
+				searchRestrictionService.disableSearchRestrictions();
+				if (getCustomerFacade().getUserForUID(BU.SEC.getCode().toLowerCase() + "|" + b2bCustomerData.getEmail()) != null)
+				{
+					b2bCustomerData.setIsUserExist(true);
+				}
+			}
+			catch (final UnknownIdentifierException uIdEx)
+			{
+				//No Need To Handle
+				b2bCustomerData.setIsUserExist(false);
+			}
+			finally
+			{
+				searchRestrictionService.enableSearchRestrictions();
+			}
+			/*
+			 * if (getCustomerFacade().getUserForUID(BU.SEC.getCode().toLowerCase() + "|" + b2bCustomerData.getEmail()) !=
+			 * null) { b2bCustomerData.setIsUserExist(true); } else { b2bCustomerData.setIsUserExist(false); }
+			 */
 		}
 		else
 		{

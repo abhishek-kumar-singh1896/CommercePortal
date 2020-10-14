@@ -17,6 +17,9 @@ import java.util.Set;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
+
+import com.gallagher.core.enums.BU;
 import com.gallagher.core.usergroups.strategy.GallagherB2BUserGroupsStrategy;
 
 
@@ -40,9 +43,44 @@ public class GallagherB2BCustomerReversePopulator extends B2BCustomerReversePopu
 		target.setKeycloakGUID(source.getKeycloakGUID());
 		target.setObjectID(source.getObjectID());
 		target.setIsUserExist(source.isIsUserExist());
+		target.setBusinessUnit(BU.SEC);
+		target.setEmailID(source.getEmail());
 
 		getB2BCommerceB2BUserGroupService().updateUserGroups(gallagherB2BUserGroupsStrategy.getUserGroups(), source.getRoles(),
 				target);
+	}
+
+	@Override
+	protected void populateUid(final CustomerData source, final B2BCustomerModel target)
+	{
+		String updateUid = null;
+		if (StringUtils.isNotBlank(source.getDisplayUid()))
+		{
+			updateUid = source.getDisplayUid();
+		}
+		else if (source.getEmail() != null)
+		{
+			updateUid = source.getEmail();
+		}
+
+		if (updateUid == null)
+		{
+			return;
+		}
+
+		if (StringUtils.isBlank(target.getUid()) || !updateUid.equalsIgnoreCase(target.getUid()))
+		{
+			if (null != target.getUid())
+			{
+				target.setOriginalUid(target.getUid() + updateUid);
+				target.setUid(target.getUid() + updateUid.toLowerCase());
+			}
+			else
+			{
+				target.setOriginalUid(updateUid);
+				target.setUid(updateUid.toLowerCase());
+			}
+		}
 	}
 
 	@Override

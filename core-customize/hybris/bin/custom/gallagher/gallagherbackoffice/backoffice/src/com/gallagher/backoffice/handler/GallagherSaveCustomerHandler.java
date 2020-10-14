@@ -28,6 +28,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
 import org.springframework.web.client.RestClientException;
 
+import com.gallagher.core.enums.BU;
 import com.gallagher.core.events.GallagherB2BRegistrationEvent;
 import com.gallagher.keycloak.outboundservices.service.GallagherKeycloakService;
 import com.hybris.cockpitng.config.jaxb.wizard.CustomType;
@@ -105,7 +106,9 @@ public class GallagherSaveCustomerHandler implements FlowActionHandler
 
 			widget.setValue("newCust.keycloakGUID", keycloakGUID);
 
-			widget.setValue("newCust.uid", email);
+			widget.setValue("newCust.uid", "sec|" + email);
+			widget.setValue("newCust.emailID", email);
+			widget.setValue("newCust.businessUnit", BU.SEC);
 			controller.getRenderer().refreshView();
 			final B2BCustomerModel savedCustomer = pushToC4C(adapter, isUserExist);
 			//adapter.custom();

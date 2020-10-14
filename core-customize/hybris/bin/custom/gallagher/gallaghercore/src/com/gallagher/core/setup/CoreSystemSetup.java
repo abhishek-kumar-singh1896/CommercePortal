@@ -26,6 +26,7 @@ public class CoreSystemSetup extends AbstractSystemSetup
 {
 	public static final String IMPORT_ACCESS_RIGHTS = "accessRights";
 	public static final String IMPORT_SPRINT_2_IMPEX = "importSprint2Impex";
+	public static final String IMPORT_SPRINT_3_IMPEX = "importSprint3Impex";
 	public static final String IMPORT_ESSENTIAL_DATA_SCPI = "importEssentialDataSCPIImpex";
 
 	/**
@@ -58,6 +59,7 @@ public class CoreSystemSetup extends AbstractSystemSetup
 
 		params.add(createBooleanSystemSetupParameter(IMPORT_ACCESS_RIGHTS, "Import Users & Groups", true));
 		params.add(createBooleanSystemSetupParameter(IMPORT_SPRINT_2_IMPEX, "Import Phase 2 - Sprint 2 Impexes", true));
+		params.add(createBooleanSystemSetupParameter(IMPORT_SPRINT_3_IMPEX, "Import Phase 2 - Sprint 3 Impexes", true));
 		params.add(createBooleanSystemSetupParameter(IMPORT_ESSENTIAL_DATA_SCPI, "Essential data SCPI", true));
 
 		return params;
@@ -122,6 +124,13 @@ public class CoreSystemSetup extends AbstractSystemSetup
 			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP2-90_AU.impex");
 			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP2-90_NZ.impex");
 			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP2-90_Global.impex");
+		}
+		final boolean importSprint3Impex = getBooleanSystemSetupParameter(context, IMPORT_SPRINT_3_IMPEX);
+
+
+		if (importSprint3Impex)
+		{
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP2-86.impex");
 		}
 
 	}

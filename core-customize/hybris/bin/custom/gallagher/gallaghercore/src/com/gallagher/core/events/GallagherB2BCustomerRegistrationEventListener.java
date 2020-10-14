@@ -84,9 +84,8 @@ public class GallagherB2BCustomerRegistrationEventListener
 	{
 		LOGGER.info("B2B Customer logger start...");
 		final StoreFrontCustomerProcessModel storeFrontCustomerProcessModel = (StoreFrontCustomerProcessModel) getBusinessProcessService()
-				.createProcess(
-						"customerRegistrationEmailProcess-" + registerEvent.getCustomer().getUid() + "-" + System.currentTimeMillis(),
-						"customerRegistrationEmailProcess");
+				.createProcess("customerRegistrationEmailProcess-" + registerEvent.getCustomer().getEmailID() + "-"
+						+ System.currentTimeMillis(), "customerRegistrationEmailProcess");
 		storeFrontCustomerProcessModel.setSite(registerEvent.getSite());
 		storeFrontCustomerProcessModel.setCustomer(registerEvent.getCustomer());
 		storeFrontCustomerProcessModel.setLanguage(registerEvent.getLanguage());

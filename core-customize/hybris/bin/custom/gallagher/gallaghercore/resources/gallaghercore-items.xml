@@ -40,6 +40,11 @@
 			<value code="ALTERNATIVE_PRODUCTS"/>
   		</enumtype>
 		
+		<enumtype code="BU" autocreate="true" generate="true">
+			<description>Enum to identify user in AM and security </description>
+			<value code="AM"></value>
+			<value code="SEC"></value>
+		</enumtype>
 	</enumtypes>
 
 	<maptypes>
@@ -165,9 +170,19 @@
 					<persistence type="property" />
 					<description>Indicates customer C4C accountId</description>
 				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="businessUnit" type="BU">
+					<modifiers optional="false" unique="true" read="true" write="true" search="true"/>
+					<persistence type="property" />
+					<description>Identifies customer in AM and Security site</description>
+				</attribute>
+				<attribute autocreate="true" qualifier="emailID" type="java.lang.String">
+					<modifiers optional="true" unique="false" read="true" write="true" />
+					<persistence type="property" />
+					<description>Indicates email address of a Customer</description>
+				</attribute>
 			</attributes>
 		</itemtype>
-
+		
 		<itemtype code="Product" autocreate="false" generate="false">
 			<description>Extending Product type with additional attributes of status and animals.</description>
 			<attributes>

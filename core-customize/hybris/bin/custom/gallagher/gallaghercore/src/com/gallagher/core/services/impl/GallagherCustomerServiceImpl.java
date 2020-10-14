@@ -3,6 +3,7 @@
  */
 package com.gallagher.core.services.impl;
 
+import de.hybris.platform.b2b.model.B2BCustomerModel;
 import de.hybris.platform.commercefacades.user.data.CustomerData;
 import de.hybris.platform.commerceservices.customer.CustomerAccountService;
 import de.hybris.platform.commerceservices.customer.DuplicateUidException;
@@ -34,6 +35,7 @@ import org.springframework.util.Assert;
 import com.gallagher.c4c.outboundservices.facade.GallagherC4COutboundServiceFacade;
 import com.gallagher.core.daos.GallagherCustomerDao;
 import com.gallagher.core.dtos.GallagherAccessToken;
+import com.gallagher.core.enums.BU;
 import com.gallagher.core.services.GallagherCustomerService;
 import com.gallagher.keycloak.outboundservices.service.GallagherKeycloakService;
 import com.gallagher.outboundservices.response.dto.GallagherInboundCustomerEntry;
@@ -107,44 +109,87 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 		}
 		else
 		{
-			final CustomerModel retrieveUser = retrieveUserBySubjectId.get(0);
-
-			Boolean loginValue = null;
-			loginValue = retrieveUser.isLoginDisabled();
-
-			if (SiteChannel.B2B.equals(channel))
+			if (retrieveUserBySubjectId.size() == 1)
 			{
-				if (retrieveUser.getClass() == CustomerModel.class)
+				final CustomerModel retrieveUser = retrieveUserBySubjectId.get(0);
+				Boolean loginValue = null;
+				loginValue = retrieveUser.isLoginDisabled();
+				if (SiteChannel.B2C.equals(channel))
 				{
-					LOGGER.error("B2C Customer is not allowed to login in B2B website");
-					throw new BadCredentialsException("B2C Customer is not allowed to login in B2B website");
+					if (retrieveUser.getClass() == B2BCustomerModel.class)
+					{
+						try
+						{
+							success = createCommerceCustomer(token);
+						}
+						catch (final DuplicateUidException dupUidEx)
+						{
+							LOGGER.error("Exception while creating new customer", dupUidEx);
+						}
+					}
+					else
+					{
+						/* Update name and email only if updated to avoid sending data to SCPI */
+						if (!retrieveUser.getName().equals(token.getName()) || !retrieveUser.getEmailID().equals(token.getEmail()))
+						{
+							retrieveUser.setName(token.getName());
+							retrieveUser.setUid(token.getEmail());
+						}
+						retrieveUser.setIsUserExist(true);
+						modelService.save(retrieveUser);
+					}
 				}
-				/* check if user is disabled or not */
-				else if (loginValue != null && loginValue == true)
+				else if (SiteChannel.B2B.equals(channel))
 				{
-					LOGGER.error("B2B Customer is Disabled");
-					throw new DisabledException("B2B Customer is Disabled");
-				}
-				else
-				{
-					updateCustomerFromC4C(retrieveUser);
+					if (retrieveUser.getClass() == CustomerModel.class)
+					{
+						LOGGER.error("B2C Customer is not allowed to login in B2B website");
+						throw new BadCredentialsException("B2C Customer is not allowed to login in B2B website");
+					}
+					else if (loginValue != null && loginValue == true)
+					{
+						LOGGER.error("B2B Customer is Disabled");
+						throw new DisabledException("B2B Customer is Disabled");
+					}
+					else
+					{
+						updateCustomerFromC4C(retrieveUser);
+					}
 				}
 			}
-
 			else
 			{
-				/* Update name and email only if updated to avoid sending data to SCPI */
-				if (!retrieveUser.getName().equals(token.getName()) || !retrieveUser.getUid().equals(token.getEmail()))
+				for (final CustomerModel retrieveUser : retrieveUserBySubjectId)
 				{
-					retrieveUser.setName(token.getName());
-					retrieveUser.setUid(token.getEmail());
+					if (SiteChannel.B2C.equals(channel) && retrieveUser.getClass() == CustomerModel.class)
+					{
+						/* Update name and email only if updated to avoid sending data to SCPI */
+						if (!retrieveUser.getName().equals(token.getName()) || !retrieveUser.getUid().equals(token.getEmail()))
+						{
+							retrieveUser.setName(token.getName());
+							retrieveUser.setUid(token.getEmail());
+						}
+						retrieveUser.setIsUserExist(true);
+						modelService.save(retrieveUser);
+					}
+					else if (SiteChannel.B2B.equals(channel) && retrieveUser.getClass() == B2BCustomerModel.class)
+					{
+						Boolean loginValue = null;
+						loginValue = retrieveUser.isLoginDisabled();
+						if (loginValue != null && loginValue == true)
+						{
+							LOGGER.error("B2B Customer is Disabled");
+							throw new DisabledException("B2B Customer is Disabled");
+						}
+						else
+						{
+							updateCustomerFromC4C(retrieveUser);
+						}
+					}
 				}
-				retrieveUser.setIsUserExist(true);
-				modelService.save(retrieveUser);
 			}
 			success = true;
 		}
-
 		return success;
 	}
 
@@ -154,13 +199,21 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 		final CustomerModel newCustomer = modelService.create(CustomerModel.class);
 
 		newCustomer.setName(token.getName());
-		newCustomer.setUid(token.getEmail());
+		newCustomer.setUid(BU.AM.getCode().toLowerCase() + "|" + token.getEmail());
 		newCustomer.setKeycloakGUID(token.getSubjectId());
 		newCustomer.setIsUserExist(false);
+		newCustomer.setBusinessUnit(BU.AM);
+		newCustomer.setEmailID(token.getEmail());
 
 		//check if customer exist in the C4C
+		/*
+		 * final List<GallagherInboundCustomerEntry> existingCustomers = gallagherC4COutboundServiceFacade
+		 * .getCustomerInfoFromC4C(token.getEmail(), token.getSubjectId());
+		 */
+
+
 		final List<GallagherInboundCustomerEntry> existingCustomers = gallagherC4COutboundServiceFacade
-				.getCustomerInfoFromC4C(token.getEmail(), token.getSubjectId());
+				.getCustomerInfoFromC4C(token.getEmail(), token.getSubjectId(), BU.AM.getCode());
 
 
 		//if customer exist and count > 1 then
@@ -197,8 +250,14 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 	{
 
 		//check if customer exist in the C4C
+		/*
+		 * final List<GallagherInboundCustomerEntry> existingCustomers = gallagherC4COutboundServiceFacade
+		 * .getCustomerInfoFromC4C(customer.getUid(), customer.getKeycloakGUID());
+		 */
+
+
 		final List<GallagherInboundCustomerEntry> existingCustomers = gallagherC4COutboundServiceFacade
-				.getCustomerInfoFromC4C(customer.getUid(), customer.getKeycloakGUID());
+				.getCustomerInfoFromC4C(customer.getEmailID(), customer.getKeycloakGUID(), BU.SEC.getCode());
 
 		if (CollectionUtils.isNotEmpty(existingCustomers))
 		{
@@ -212,9 +271,9 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 				updated = true;
 			}
 			if (StringUtils.isNotEmpty(c4cCustomer.getEmail())
-					&& (customer.getUid() == null || !customer.getUid().equals(c4cCustomer.getEmail())))
+					&& (customer.getUid() == null || !customer.getEmailID().equals(c4cCustomer.getEmail())))
 			{
-				customer.setUid(c4cCustomer.getEmail());
+				customer.setUid("sec|" + c4cCustomer.getEmail());
 				updated = true;
 			}
 			if (customer.isLoginDisabled() != c4cCustomer.getLoginDisabled())
