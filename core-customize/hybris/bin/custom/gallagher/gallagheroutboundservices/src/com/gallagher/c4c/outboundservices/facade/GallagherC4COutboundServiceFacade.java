@@ -29,8 +29,10 @@ public interface GallagherC4COutboundServiceFacade
 	 */
 	/* List<GallagherInboundCustomerEntry> getCustomerInfoFromC4C(final String email, final String keycloakGUID); */
 
+
 	List<GallagherInboundCustomerEntry> getCustomerInfoFromC4C(final String email, final String keycloakGUID,
 			final String businessUnit);
+
 
 	/**
 	 * Send Registered Product Information to C4C via SCPI
