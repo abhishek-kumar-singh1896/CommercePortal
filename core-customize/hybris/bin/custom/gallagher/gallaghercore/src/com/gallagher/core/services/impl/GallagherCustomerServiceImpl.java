@@ -315,6 +315,14 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 		{
 			checkUidUniqueness(newUidLower);
 			currentUser.setUid(newUidLower);
+			if (newUidLower.startsWith("am|"))
+			{
+				currentUser.setEmailID(newUidLower.substring(3, newUidLower.length()));
+			}
+			else
+			{
+				currentUser.setEmailID(newUidLower);
+			}
 		}
 		//adjustPassword(currentUser, newUidLower, currentPassword);
 		modelService.save(currentUser);
