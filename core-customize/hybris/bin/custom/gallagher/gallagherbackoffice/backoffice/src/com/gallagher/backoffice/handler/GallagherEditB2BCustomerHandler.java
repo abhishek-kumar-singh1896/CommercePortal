@@ -41,6 +41,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.gallagher.c4c.outboundservices.facade.GallagherC4COutboundServiceFacade;
+import com.gallagher.core.enums.BU;
 import com.gallagher.core.events.GallagherB2BCustomerUpdateEvent;
 import com.gallagher.core.services.GallagherB2BUnitService;
 import com.gallagher.keycloak.outboundservices.service.GallagherKeycloakService;
@@ -92,43 +93,42 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 			final B2BCustomerModel currentCustomerModel = (B2BCustomerModel) currentObject;
 			final CustomerData b2bCustomer = getCustomerConverter().convert(currentCustomerModel);
 			b2bCustomer.setKeycloakGUID(currentCustomerModel.getKeycloakGUID());
-				final String email = b2bCustomer.getUid();
+			final String email = b2bCustomer.getEmail();
 
-				LOG.debug("Checking if the customer is already present in keyCloak and C4C");
-				final Boolean isEmailValid = isCustomerEmailValid(widgetInstanceManager, email);
+			LOG.debug("Checking if the customer is already present in keyCloak and C4C");
+			final Boolean isEmailValid = isCustomerEmailValid(widgetInstanceManager, email);
 
-				if (BooleanUtils.isFalse(isEmailValid))
-				{
-					getNotificationService().notifyUser(StringUtils.EMPTY, EMAIL_ALREADY_PRESENT, Level.FAILURE, null);
-					throw new ObjectSavingException(EMAIL_ALREADY_PRESENT, new Throwable(EMAIL_ALREADY_PRESENT));
-				}
+			if (BooleanUtils.isFalse(isEmailValid))
+			{
+				getNotificationService().notifyUser(StringUtils.EMPTY, EMAIL_ALREADY_PRESENT, Level.FAILURE, null);
+				throw new ObjectSavingException(EMAIL_ALREADY_PRESENT, new Throwable(EMAIL_ALREADY_PRESENT));
+			}
 
-				final Map<String, String> modifiedAttributesMap = getModifiedAttributesMap(currentCustomerModel);
-				if (MapUtils.isNotEmpty(modifiedAttributesMap))
-				{
-					LOG.debug("Updating user profile in keycloak");
-					getGallagherKeycloakService().updateKeyCloakUserProfile(b2bCustomer);
-				}
+			final Map<String, String> modifiedAttributesMap = getModifiedAttributesMap(currentCustomerModel);
+			if (MapUtils.isNotEmpty(modifiedAttributesMap))
+			{
+				LOG.debug("Updating user profile in keycloak");
+				getGallagherKeycloakService().updateKeyCloakUserProfile(b2bCustomer);
+			}
 
-				final Context ctx = new DefaultContext();
-				ctx.addAttribute(ObjectFacade.CTX_PARAM_SUPPRESS_EVENT, Boolean.TRUE);
+			final Context ctx = new DefaultContext();
+			ctx.addAttribute(ObjectFacade.CTX_PARAM_SUPPRESS_EVENT, Boolean.TRUE);
 
-				final Map<String, String> modifiedMap = addModifiedUnitsAndAccess(currentCustomerModel, modifiedAttributesMap);
+			final Map<String, String> modifiedMap = addModifiedUnitsAndAccess(currentCustomerModel, modifiedAttributesMap);
 
-				LOG.debug("Updating user profile in C4C");
-				final B2BCustomerModel updatedCustomerModel = pushToC4C(currentCustomerModel, ctx);
+			LOG.debug("Updating user profile in C4C");
+			final B2BCustomerModel updatedCustomerModel = pushToC4C(currentCustomerModel, ctx);
 
-				if (MapUtils.isNotEmpty(modifiedMap))
-				{
-					getEventService().publishEvent(
-							initializeEvent(new GallagherB2BCustomerUpdateEvent(), updatedCustomerModel,
-									modifiedMap));
-				}
+			if (MapUtils.isNotEmpty(modifiedMap))
+			{
+				getEventService()
+						.publishEvent(initializeEvent(new GallagherB2BCustomerUpdateEvent(), updatedCustomerModel, modifiedMap));
+			}
 
-				LOG.debug("Updating widget instance manager with updated B2B customer");
-				widgetInstanceManager.getModel().setValue(INPUT_OBJECT, currentCustomerModel);
+			LOG.debug("Updating widget instance manager with updated B2B customer");
+			widgetInstanceManager.getModel().setValue(INPUT_OBJECT, currentCustomerModel);
 
-				return updatedCustomerModel;
+			return updatedCustomerModel;
 		}
 
 		LOG.debug("Customer is not B2B, executing OOTB flow ");
@@ -166,8 +166,7 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 	 * @param attribute
 	 * @return
 	 */
-	private Map<String, String> modifiedAttributeMap(final B2BCustomerModel itemModel,
-			final String itemProperty,
+	private Map<String, String> modifiedAttributeMap(final B2BCustomerModel itemModel, final String itemProperty,
 			final Map<String, String> modifiedAttributesMap)
 	{
 
@@ -228,8 +227,8 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 				isCustomerEmailValid = Boolean.FALSE;
 			}
 
-			else if (CollectionUtils
-					.isNotEmpty(getGallagherC4COutboundServiceFacade().getCustomerInfoFromC4C(email, StringUtils.EMPTY)))
+			else if (CollectionUtils.isNotEmpty(
+					getGallagherC4COutboundServiceFacade().getCustomerInfoFromC4C(email, StringUtils.EMPTY, BU.SEC.getCode())))
 			{
 				LOG.debug("Customer with same email [{}] already exists in C4C::", email);
 				isCustomerEmailValid = Boolean.FALSE;
@@ -342,8 +341,7 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 	 * @return the event
 	 */
 	private GallagherB2BCustomerUpdateEvent initializeEvent(final GallagherB2BCustomerUpdateEvent event,
-			final B2BCustomerModel originalCustomerModel,
-			final Map<String, String> modifiedAttributesMap)
+			final B2BCustomerModel originalCustomerModel, final Map<String, String> modifiedAttributesMap)
 	{
 		final B2BUnitModel defaultB2BUnit = originalCustomerModel.getDefaultB2BUnit();
 		final Pair<BaseSiteModel, BaseStoreModel> baseSite = getB2bUnitService().getBaseSiteAndStoreForUnit((defaultB2BUnit));
@@ -405,6 +403,7 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 
 		return modifiedAttributesMap;
 	}
+
 	/**
 	 * Returns the uids of all B2B Units
 	 *
