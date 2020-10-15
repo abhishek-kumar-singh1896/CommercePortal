@@ -1,0 +1,36 @@
+import de.hybris.platform.servicelayer.search.FlexibleSearchQuery;
+import de.hybris.platform.b2b.model.B2BCustomerModel;
+import com.gallagher.core.enums.BU;
+FlexibleSearchQuery searchQuery = new FlexibleSearchQuery("select {pk} from {Customer}");
+searchQuery.setCount(2000);
+def search = flexibleSearchService.search(searchQuery);
+
+search.result.each {
+	if(!(it.getUid().equals("anonymous"))){
+		if(it instanceof B2BCustomerModel){
+		  if(it.getUid().startsWith("sec|")){
+			  System.out.println("New B2B customer >>>"+it.getUid());
+		  }else if(it.getUid().contains("|")){
+			  System.out.println("Guest B2B customer >>>"+it.getUid());
+		  }else{
+			  System.out.println("Old B2B customer >>>"+it.getUid());
+			  it.setEmailID(it.getUid())
+			  it.setUid("sec|"+it.getUid());
+			  it.setBusinessUnit(BU.SEC);
+			  modelService.save(it);
+		  }
+		}else{
+		  if(it.getUid().startsWith("am|")){
+			  System.out.println("New B2C customer >>>"+it.getUid());
+		  }else if(it.getUid().contains("|")){
+			  System.out.println("Guest B2C customer >>>"+it.getUid());
+		  }else{
+			  System.out.println("Old B2C customer >>>"+it.getUid());
+			  it.setEmailID(it.getUid())
+			  it.setUid("am|"+it.getUid());
+			  it.setBusinessUnit(BU.AM);
+			  modelService.save(it);
+		  }
+		}
+	}
+}
