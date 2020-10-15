@@ -826,7 +826,7 @@
 					<defaultvalue>java.lang.Boolean.TRUE</defaultvalue>
 					<persistence type="property" />
 				</attribute>
-				<attribute qualifier="userpriceGroup" type="boolean">
+				<attribute qualifier="userPriceGroup" type="boolean">
 					<defaultvalue>java.lang.Boolean.FALSE</defaultvalue>
 					<persistence type="property" />
 				</attribute>	

@@ -368,7 +368,6 @@
 	</bean>
 	
     <bean id="gallagherProductService" class="com.gallagher.core.product.impl.GallagherDefaultProductServiceImpl" />
-<<<<<<< HEAD
     
    <alias alias="facetUnitSuffixDisplayNameProvider" name="gallagherFacetUnitSuffixDisplayNameProvider" />
 	<bean id="gallagherFacetUnitSuffixDisplayNameProvider"

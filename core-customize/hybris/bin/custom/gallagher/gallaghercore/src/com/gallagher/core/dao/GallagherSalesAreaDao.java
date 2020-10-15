@@ -15,5 +15,5 @@ import java.util.List;
 public interface GallagherSalesAreaDao
 {
 
-	List<B2BUnitModel> getAllSalesAreas();
+	List<B2BUnitModel> getAllB2BUnits();
 }

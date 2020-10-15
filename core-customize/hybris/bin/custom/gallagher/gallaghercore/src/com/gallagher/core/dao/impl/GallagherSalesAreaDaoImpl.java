@@ -20,12 +20,12 @@ import com.gallagher.core.dao.GallagherSalesAreaDao;
 public class GallagherSalesAreaDaoImpl extends AbstractItemDao implements GallagherSalesAreaDao
 {
 
-	private static final String GET_ALL_SALES_AREA = "SELECT DISTINCT {PK} FROM {B2BUNIT} ";
+	private static final String GET_ALL_B2BUNITS = "SELECT DISTINCT {PK} FROM {B2BUNIT} ";
 
 	@Override
-	public List<B2BUnitModel> getAllSalesAreas()
+	public List<B2BUnitModel> getAllB2BUnits()
 	{
-		final SearchResult<B2BUnitModel> result = search(new FlexibleSearchQuery(GET_ALL_SALES_AREA));
+		final SearchResult<B2BUnitModel> result = search(new FlexibleSearchQuery(GET_ALL_B2BUNITS));
 		return result.getResult().isEmpty() ? null : result.getResult();
 	}
 
