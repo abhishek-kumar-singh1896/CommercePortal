@@ -140,7 +140,7 @@
         <editorArea:editorArea name="">
         	<editorArea:essentials>
                 <editorArea:essentialSection name="hmc.essential">
-                    <editorArea:attribute qualifier="emailID" position="5"/>
+                    <editorArea:attribute qualifier="emailID" readonly="true" position="5"/>
                 </editorArea:essentialSection>
            	</editorArea:essentials>
             <editorArea:tab name="hmc.gallagher" position="3">
