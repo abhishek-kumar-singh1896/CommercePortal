@@ -46,7 +46,7 @@ public class GallagherUserPriceGroupQualifierProvider implements GallagherQualif
 
 		for (final UserPriceGroup upg : userPriceGroups)
 		{
-			final GallagherUserPriceGroupQualifierProvider.FSUPGQualifier qualifier = new GallagherUserPriceGroupQualifierProvider.FSUPGQualifier(
+			final GallagherUserPriceGroupQualifierProvider.GallagherUPGQualifier qualifier = new GallagherUserPriceGroupQualifierProvider.GallagherUPGQualifier(
 					upg);
 			qualifiers.add(qualifier);
 		}
@@ -71,14 +71,14 @@ public class GallagherUserPriceGroupQualifierProvider implements GallagherQualif
 	public void applyQualifier(final Qualifier qualifier)
 	{
 		Objects.requireNonNull(qualifier, "qualifier is null");
-		if (!(qualifier instanceof GallagherUserPriceGroupQualifierProvider.FSUPGQualifier))
+		if (!(qualifier instanceof GallagherUserPriceGroupQualifierProvider.GallagherUPGQualifier))
 		{
 			throw new IllegalArgumentException("provided qualifier is not of expected type");
 		}
 		else
 		{
 			sessionService.setAttribute(Europe1Constants.PARAMS.UPG,
-					((GallagherUserPriceGroupQualifierProvider.FSUPGQualifier) qualifier).getUpg());
+					((GallagherUserPriceGroupQualifierProvider.GallagherUPGQualifier) qualifier).getUpg());
 		}
 	}
 
@@ -95,17 +95,17 @@ public class GallagherUserPriceGroupQualifierProvider implements GallagherQualif
 	public Qualifier getCurrentQualifier()
 	{
 		final UserPriceGroup upg = sessionService.getAttribute(Europe1Constants.PARAMS.UPG);
-		return upg == null ? null : new GallagherUserPriceGroupQualifierProvider.FSUPGQualifier(upg);
+		return upg == null ? null : new GallagherUserPriceGroupQualifierProvider.GallagherUPGQualifier(upg);
 	}
 
 	/**
-	 * The static inner class FSUPGQualifier. Holds the current UPG.
+	 * The static inner class GallagherUPGQualifier. Holds the current UPG.
 	 */
-	protected static class FSUPGQualifier implements Qualifier
+	protected static class GallagherUPGQualifier implements Qualifier
 	{
 		private final UserPriceGroup upg;
 
-		public FSUPGQualifier(final UserPriceGroup upg)
+		public GallagherUPGQualifier(final UserPriceGroup upg)
 		{
 			Objects.requireNonNull(upg, "User price group is null");
 			this.upg = upg;
@@ -143,13 +143,13 @@ public class GallagherUserPriceGroupQualifierProvider implements GallagherQualif
 			{
 				return true;
 			}
-			else if (!(obj instanceof GallagherUserPriceGroupQualifierProvider.FSUPGQualifier))
+			else if (!(obj instanceof GallagherUserPriceGroupQualifierProvider.GallagherUPGQualifier))
 			{
 				return false;
 			}
 			else
 			{
-				final GallagherUserPriceGroupQualifierProvider.FSUPGQualifier otherQualifier = (GallagherUserPriceGroupQualifierProvider.FSUPGQualifier) obj;
+				final GallagherUserPriceGroupQualifierProvider.GallagherUPGQualifier otherQualifier = (GallagherUserPriceGroupQualifierProvider.GallagherUPGQualifier) obj;
 				return this.upg.equals(otherQualifier.upg);
 			}
 		}

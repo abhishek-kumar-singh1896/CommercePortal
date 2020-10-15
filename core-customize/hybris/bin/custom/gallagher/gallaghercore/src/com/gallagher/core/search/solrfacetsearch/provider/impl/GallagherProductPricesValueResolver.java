@@ -15,9 +15,7 @@ import de.hybris.platform.solrfacetsearch.indexer.IndexerBatchContext;
 import de.hybris.platform.solrfacetsearch.indexer.spi.InputDocument;
 import de.hybris.platform.solrfacetsearch.provider.Qualifier;
 import de.hybris.platform.solrfacetsearch.provider.QualifierProvider;
-import de.hybris.platform.util.PriceValue;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -102,42 +100,6 @@ public class GallagherProductPricesValueResolver extends ProductPricesValueResol
 	 * @param batchContext
 	 *           the batch context
 	 * @param indexedProperties
-	 *           the indexed properties collection
-	 * @param model
-	 *           the product mode
-	 * @param resolverContext
-	 *           the resolver context
-	 * @param qualifierProvider
-	 *           the qualifier provider
-	 * @param qualifier
-	 *           the qualifier
-	 * @param fieldQualifier
-	 *           the field qualifier
-	 * @return the new field qualifier string
-	 * @throws FieldValueProviderException
-	 *            the field value provider exception
-	 */
-	private String indexQualifierData(final InputDocument document, final IndexerBatchContext batchContext,
-			final Collection<IndexedProperty> indexedProperties, final ProductModel model,
-			final ValueResolverContext resolverContext, final QualifierProvider qualifierProvider, final Qualifier qualifier,
-			final String fieldQualifier) throws FieldValueProviderException
-	{
-		applyQualifier(qualifierProvider, qualifier);
-		final Object qualifierData = loadQualifierData(batchContext, indexedProperties, model, qualifier);
-		final String newFieldQualifier = getFieldQualifierName(qualifier, fieldQualifier);
-		setValueResolverContext(resolverContext, qualifier, newFieldQualifier, qualifierData);
-		processQualifierforIndex(document, indexedProperties, resolverContext, qualifierProvider);
-		return newFieldQualifier;
-	}
-
-	/**
-	 * Method to process the additional price condition qualifiers.
-	 *
-	 * @param document
-	 *           the input document
-	 * @param batchContext
-	 *           the batch context
-	 * @param indexedProperties
 	 *           the indexed properties
 	 * @param model
 	 *           the product mode
@@ -179,6 +141,42 @@ public class GallagherProductPricesValueResolver extends ProductPricesValueResol
 	}
 
 	/**
+	 * Method to process the additional price condition qualifiers.
+	 *
+	 * @param document
+	 *           the input document
+	 * @param batchContext
+	 *           the batch context
+	 * @param indexedProperties
+	 *           the indexed properties collection
+	 * @param model
+	 *           the product mode
+	 * @param resolverContext
+	 *           the resolver context
+	 * @param qualifierProvider
+	 *           the qualifier provider
+	 * @param qualifier
+	 *           the qualifier
+	 * @param fieldQualifier
+	 *           the field qualifier
+	 * @return the new field qualifier string
+	 * @throws FieldValueProviderException
+	 *            the field value provider exception
+	 */
+	private String indexQualifierData(final InputDocument document, final IndexerBatchContext batchContext,
+			final Collection<IndexedProperty> indexedProperties, final ProductModel model,
+			final ValueResolverContext resolverContext, final QualifierProvider qualifierProvider, final Qualifier qualifier,
+			final String fieldQualifier) throws FieldValueProviderException
+	{
+		applyQualifier(qualifierProvider, qualifier);
+		final Object qualifierData = loadQualifierData(batchContext, indexedProperties, model, qualifier);
+		final String newFieldQualifier = getFieldQualifierName(qualifier, fieldQualifier);
+		setValueResolverContext(resolverContext, qualifier, newFieldQualifier, qualifierData);
+		processQualifierforIndex(document, indexedProperties, resolverContext, qualifierProvider);
+		return newFieldQualifier;
+	}
+
+	/**
 	 * Method to get field qualifier name
 	 *
 	 * @param qualifier
@@ -209,34 +207,6 @@ public class GallagherProductPricesValueResolver extends ProductPricesValueResol
 	private void applyQualifier(final QualifierProvider qualifierProvider, final Qualifier qualifier)
 	{
 		qualifierProvider.applyQualifier(qualifier);
-	}
-
-	@Override
-	protected List<PriceInformation> loadQualifierData(final IndexerBatchContext batchContext,
-			final Collection<IndexedProperty> indexedProperties, final ProductModel product, final Qualifier qualifier)
-	{
-		if (qualifier.toFieldQualifier().equals("US"))
-		{
-			final PriceInformation priceInformation = new PriceInformation(new PriceValue("USD", 50.0, true));
-			final List<PriceInformation> p = new ArrayList<>();
-			p.add(priceInformation);
-			return p;
-		}
-		else if (qualifier.toFieldQualifier().equals("AU"))
-		{
-			final PriceInformation priceInformation = new PriceInformation(new PriceValue("AUD", 120.0, true));
-			final List<PriceInformation> p = new ArrayList<>();
-			p.add(priceInformation);
-			return p;
-		}
-		else if (qualifier.toFieldQualifier().equals("NZ"))
-		{
-			final PriceInformation priceInformation = new PriceInformation(new PriceValue("NZD", 100.0, true));
-			final List<PriceInformation> p = new ArrayList<>();
-			p.add(priceInformation);
-			return p;
-		}
-		return loadPriceInformations(indexedProperties, product);
 	}
 
 	/**

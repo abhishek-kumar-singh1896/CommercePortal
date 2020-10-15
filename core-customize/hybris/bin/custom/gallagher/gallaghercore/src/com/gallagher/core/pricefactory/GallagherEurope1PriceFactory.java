@@ -3,9 +3,6 @@
  */
 package com.gallagher.core.pricefactory;
 
-import de.hybris.platform.b2b.constants.B2BConstants;
-import de.hybris.platform.b2b.jalo.B2BUnit;
-import de.hybris.platform.b2b.model.B2BUnitModel;
 import de.hybris.platform.catalog.jalo.CatalogAwareEurope1PriceFactory;
 import de.hybris.platform.core.PK;
 import de.hybris.platform.europe1.constants.GeneratedEurope1Constants.TC;
@@ -36,6 +33,8 @@ import com.gallagher.core.pdt.query.builder.GallagherPDTRowsQueryBuilder;
  */
 public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactory
 {
+	private static final String CURRENT_SESSION_SALES_AREA = "currentSessionSalesArea";
+
 	@Resource(name = "modelService")
 	private ModelService modelService;
 
@@ -83,8 +82,6 @@ public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactor
 	 */
 	public String getSalesArea(final SessionContext ctx)
 	{
-		final B2BUnit currentB2BUnit = (B2BUnit) ctx.getAttributes().get(B2BConstants.CTX_ATTRIBUTE_UNIT);
-		return currentB2BUnit == null ? null
-				: ((B2BUnitModel) modelService.get((B2BUnit) currentB2BUnit.getCacheBoundItem())).getSalesArea();
+		return (String) ctx.getAttributes().get(CURRENT_SESSION_SALES_AREA);
 	}
 }

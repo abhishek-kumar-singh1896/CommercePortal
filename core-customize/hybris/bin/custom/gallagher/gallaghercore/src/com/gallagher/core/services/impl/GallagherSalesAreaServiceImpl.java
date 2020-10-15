@@ -37,7 +37,7 @@ public class GallagherSalesAreaServiceImpl implements GallagherSalesAreaService
 	@Override
 	public Set<String> getAllSalesAreas()
 	{
-		final List<B2BUnitModel> b2bUnits = salesAreaDao.getAllSalesAreas();
+		final List<B2BUnitModel> b2bUnits = salesAreaDao.getAllB2BUnits();
 		final Set<String> salesAreas = new HashSet<>();
 		if (CollectionUtils.isNotEmpty(b2bUnits))
 		{

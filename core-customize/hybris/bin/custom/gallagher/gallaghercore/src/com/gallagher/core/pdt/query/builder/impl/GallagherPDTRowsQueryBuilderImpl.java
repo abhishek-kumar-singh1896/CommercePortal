@@ -10,6 +10,8 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.gallagher.core.pdt.query.builder.GallagherPDTRowsQueryBuilder;
 import com.google.common.base.Joiner;
 import com.google.common.collect.ImmutableMap;
@@ -253,7 +255,7 @@ public class GallagherPDTRowsQueryBuilderImpl implements GallagherPDTRowsQueryBu
 
 		if (this.anySalesArea)
 		{
-			params.put("anySalesArea", String.valueOf(Europe1PriceFactory.MATCH_ANY));
+			params.put("anySalesArea", StringUtils.EMPTY);
 		}
 		if (this.salesArea != null)
 		{
