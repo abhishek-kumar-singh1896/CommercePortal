@@ -391,8 +391,6 @@
 		<property name="typeCode" value="PriceRow" />
 	</bean>
 
-	<bean id="gallagherB2BUnitService" class="com.gallagher.core.services.impl.GallagherB2BUnitServiceImpl"/>
-    
     <!-- SAPP2-147 -->
     <bean id="gallagherProductPricesValueResolver" class="com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherProductPricesValueResolver"
 		parent="productPricesValueResolver">
