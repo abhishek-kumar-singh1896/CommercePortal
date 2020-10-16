@@ -8,29 +8,31 @@
         <div class="radiobuttons_paymentselection">
         <c:forEach items="${paymentTypes}" var="paymentType">
               <c:if test="${paymentType.displayName ne 'Card Payment'}">
-                <form:radiobutton path="paymentType" id="PaymentTypeSelection_${paymentType.code}" value="${paymentType.code}" label="${paymentType.displayName}" checked="${paymentType.displayName == 'Account' ? 'checked' : '' }" />
+                <form:radiobutton path="paymentType" id="PaymentTypeSelection_${paymentType.code}" value="${paymentType.code}" label="${paymentType.displayName}" 
+                checked="${paymentType.displayName == 'Account' ? 'checked' : '' }" />
                 <br>
-    </c:if>
-    </c:forEach>
-        </div>
-        
-
+             </c:if>
+        </c:forEach>
+     </div>
+     
         <formElement:formInputBox idKey="PurchaseOrderNumber" labelKey="checkout.multi.purchaseOrderNumber.label" path="purchaseOrderNumber" inputCSS="text" />
 
         <div id="costCenter">
-        
-            <formElement:formSelectBox idKey="costCenterSelect" labelKey="checkout.multi.costCenter.label" path="b2bUnit" skipBlank="false" skipBlankMessageKey="checkout.multi.costCenter.title.pleaseSelect" itemValue="code" itemLabel="name" items="${b2bUnits}" mandatory="true" selectCSSClass="form-control"/>
+            <formElement:formSelectBox idKey="costCenterSelect" labelKey="checkout.multi.costCenter.label" path="b2bUnit" skipBlank="false" 
+            skipBlankMessageKey="checkout.multi.costCenter.title.pleaseSelect" itemValue="code" itemLabel="name" items="${b2bUnits}" mandatory="true" selectCSSClass="form-control"/>
         </div>
         
-        <div>
-        	Delivery Date
-        	<input type="date" path="deliveryDate" name = "deliveryDate" value = "<%=new java.util.Date()%>" label = "Delivery Date"/>
-        </div>        
-        <br>               	
-        <div>
-        	 Comments 
-        	<input type="text" path="deliveryInstructions" name = "deliveryInstructions" value = "Enter your Comments" label = "Comments"/>
-        </div>
+       <div>
+       <label class="control-label " for="DeliveryDate"><spring:theme code="checkout.multi.requiredDate.label"/></label>
+      <form:input idKey="DeliveryDate" path="requiredDeliveryDate" id="datePurchased" class="form-control" />
+     </div>
+            
+     <br> 
+      
+      <label class="control-label " for="DeliveryDate"><spring:theme code="checkout.multi.comments.label"/></label>             	
+      <div>
+       <textarea rows=14  idKey="Comments" path="deliveryInstructions" name = "deliveryInstructions"  label = "Comments" class="form-control"  > </textarea>
+     </div>
         
         
         

@@ -22,6 +22,9 @@ public class PaymentTypeForm
 	private String b2bUnit;
 	private String requiredDeliveryDate;
 	private String deliveryInstructions;
+	private boolean indicator;
+
+
 
 	@NotNull(message = "{general.required}")
 	@Size(min = 1, max = 255, message = "{general.required}")
@@ -89,5 +92,15 @@ public class PaymentTypeForm
 	public String getRequiredDeliveryDate()
 	{
 		return requiredDeliveryDate;
+	}
+
+	public boolean isIndicator()
+	{
+		return indicator;
+	}
+
+	public void setIndicator(final boolean indicator)
+	{
+		this.indicator = indicator;
 	}
 }

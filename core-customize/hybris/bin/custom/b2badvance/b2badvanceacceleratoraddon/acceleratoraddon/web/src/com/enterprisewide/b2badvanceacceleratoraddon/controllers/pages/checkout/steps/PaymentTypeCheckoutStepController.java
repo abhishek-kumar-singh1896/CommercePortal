@@ -114,13 +114,21 @@ public class PaymentTypeCheckoutStepController extends AbstractCheckoutStepContr
 	@RequestMapping(value = "/choose", method = RequestMethod.POST)
 	@RequireHardLogIn
 	public String choose(@ModelAttribute final PaymentTypeForm paymentTypeForm, final BindingResult bindingResult,
-			final Model model) throws CMSItemNotFoundException, CommerceCartModificationException
+			final Model model)
+			throws CMSItemNotFoundException, CommerceCartModificationException
 	{
 		paymentTypeFormValidator.validate(paymentTypeForm, bindingResult);
 
 		if (bindingResult.hasErrors())
 		{
+			if (paymentTypeForm.isIndicator() == true)
+			{
+				GlobalMessages.addErrorMessage(model, "checkout.error.requiredDelivery.Date");
+			}
+			else
+			{
 			GlobalMessages.addErrorMessage(model, "checkout.error.paymenttype.formentry.invalid");
+			}
 			model.addAttribute("paymentTypeForm", paymentTypeForm);
 			prepareDataForPage(model);
 			storeCmsPageInModel(model, getContentPageForLabelOrId(MULTI_CHECKOUT_SUMMARY_CMS_PAGE_LABEL));
@@ -222,8 +230,9 @@ public class PaymentTypeCheckoutStepController extends AbstractCheckoutStepContr
 		paymentTypeForm.setRequiredDeliveryDate(dateToString);
 
 		// set purchase order number
-		paymentTypeForm.setPurchaseOrderNumber(cartData.getPurchaseOrderNumber());
-
+		/*
+		 * paymentTypeForm.setPurchaseOrderNumber(cartData.getPurchaseOrderNumber());
+		 */
 
 		return paymentTypeForm;
 	}
