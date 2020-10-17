@@ -604,8 +604,15 @@
 					</attribute>
 				</attributes>
 			</itemtype>
-
-
+         <itemtype code="ProductAddToCartComponent" autocreate="false"
+             generate="false">
+             <attributes>
+                 <attribute type="localized:java.lang.String" qualifier="outOfStockMessage">
+                     <persistence type="property" />
+                     <description>Used to show the localized message in case product is out of stock.</description>
+                 </attribute>
+             </attributes>
+         </itemtype>
 		</typegroup>
 		
 		
@@ -716,33 +723,29 @@
 		</typegroup>
 
 		<typegroup name="button">
-
-
 			<itemtype code="GallagherNewButtonComponent" autocreate="true" generate="true" extends="CMSLinkComponent">
 			</itemtype>
-
 		</typegroup>
-<typegroup name="order">
-    <itemtype code="AbstractOrderEntry" autocreate="false"
-			generate="false">
-			<attributes>
-				<attribute qualifier="b2bUnit" type="B2BUnit">
-					<modifiers read="true" write="true" search="true" />
-					<persistence type="property" />
-				</attribute>
-			</attributes>
-		</itemtype>
-
-    <itemtype code="AbstractOrder" autocreate="false"
-			generate="false">
-			<attributes>
-				<attribute qualifier="requiredDeliveryDate" type="java.lang.String">
-					<modifiers read="true" write="true" search="true" />
-					<persistence type="property" />
-				</attribute>
-			</attributes>
-		</itemtype>
-</typegroup>
-
+		<typegroup name="order">
+		    <itemtype code="AbstractOrderEntry" autocreate="false"
+					generate="false">
+					<attributes>
+						<attribute qualifier="b2bUnit" type="B2BUnit">
+							<modifiers read="true" write="true" search="true" />
+							<persistence type="property" />
+						</attribute>
+					</attributes>
+				</itemtype>
+		
+		    <itemtype code="AbstractOrder" autocreate="false"
+					generate="false">
+					<attributes>
+						<attribute qualifier="requiredDeliveryDate" type="java.lang.String">
+							<modifiers read="true" write="true" search="true" />
+							<persistence type="property" />
+						</attribute>
+					</attributes>
+				</itemtype>
+		</typegroup>
 	</itemtypes>
 </items>
