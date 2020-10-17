@@ -422,6 +422,9 @@
 	
 	<bean id="gallagherSalesAreaDao" class="com.gallagher.core.dao.impl.GallagherSalesAreaDaoImpl" parent="abstractItemDao"/> 
 	
+	<alias alias="b2bUnitService" name="gallagherB2BUnitService"/>
+    <bean id="gallagherB2BUnitService" class="com.gallagher.core.services.impl.GallagherB2BUnitServiceImpl" parent="defaultB2BUnitService"/>
+	
 	 <!-- SAPP2-147 -->
 	
 </beans>
