@@ -3018,7 +3018,7 @@ INSERT_UPDATE CMSLinkComponent ; $contentCV[unique=true] ; uid[unique=true]     
                                ;                         ; CAENFindStoreLink       ; GallagherCAENRegionRestriction,GallagherCAENCARegionRestriction 
                                ;                         ; CAENFindManagerLink     ; GallagherCAENRegionRestriction,GallagherCAENCARegionRestriction 
                                ;                         ; CAENSendMessageLink     ; GallagherCAENRegionRestriction,GallagherCAENCARegionRestriction 
-                               ;                         ; CAFRFindStoreLink       ; GallagherCAFRRegionRestriction,GallagherCAENCARegionRestriction 
+                               ;                         ; CAFRFindStoreLink       ; GallagherCAENCARegionRestriction,GallagherCAFRCARegionRestriction 
                                ;                         ; CAFRFindManagerLink     ; GallagherCAFRRegionRestriction,GallagherCAFRCARegionRestriction 
                                ;                         ; CAFRSendMessageLink     ; GallagherCAFRRegionRestriction,GallagherCAFRCARegionRestriction 
                                ;                         ; LATAMENFindStoreLink    ; GallagherLATAMRegionRestriction                                 
