@@ -108,7 +108,7 @@ public class GallagherC4COutboundServiceFacadeImpl extends DefaultOutboundServic
 
 
 				final UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(baseURL).queryParam("$filter",
-						"KeycloakID_KUT eq '" + keycloakGUID + "'" + "&BusinessUnit eq '" + businessUnit + "' ");
+						"KeycloakID_KUT eq '" + keycloakGUID + "'" + "and BusinessUnit eq '" + businessUnit + "' ");
 
 				final HttpEntity<GallagherInboundCustomerInfo> response = restOperations.exchange(builder.build().encode().toUri(),
 						HttpMethod.GET, entity, GallagherInboundCustomerInfo.class);
@@ -125,7 +125,7 @@ public class GallagherC4COutboundServiceFacadeImpl extends DefaultOutboundServic
 
 
 				final UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(baseURL).queryParam("$filter",
-						"Email eq '" + email + "'" + "&BusinessUnit eq '" + businessUnit + "' ");
+						"Email eq '" + email + "'" + "and BusinessUnit eq '" + businessUnit + "' ");
 
 				final HttpEntity<GallagherInboundCustomerInfo> response = restOperations.exchange(builder.build().encode().toUri(),
 						HttpMethod.GET, entity, GallagherInboundCustomerInfo.class);
