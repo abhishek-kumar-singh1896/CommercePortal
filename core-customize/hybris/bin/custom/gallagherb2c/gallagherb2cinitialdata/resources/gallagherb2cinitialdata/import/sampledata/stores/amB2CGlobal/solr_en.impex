@@ -55,5 +55,5 @@ UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$in
                            ;                                                               ; Product Type                                  ; Product Type                                       
                            ;                                                               ; Product Weight (Water)                        ; Product Weight                                
                            ;                                                               ; Warranty (Antenna)                            ; Warranty                                  
-                           ;                                                               ; animalCompatibility                           ; Animal Type                                        
+                           ;                                                               ; animalCompatibility                           ; Animal Compatibility                                        
                            ;                                                               ; Product Height (Platforms)                    ; Product Height                               

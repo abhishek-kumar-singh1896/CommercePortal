@@ -76,5 +76,5 @@ UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$in
                            ;                                                               ; Gate Type                                    ; Gate Type                                                 
                            ;                                                               ; Length (Gates)                               ; Length
                            ;                                                               ; Use (Fence)                                  ; Use                                                       
-                           ;                                                               ; animalCompatibility                          ; Animal Type                                               
+                           ;                                                               ; animalCompatibility                          ; Animal Compatibility                                               
                            ;                                                               ; Post Height (Pigtails)                       ; Post Height

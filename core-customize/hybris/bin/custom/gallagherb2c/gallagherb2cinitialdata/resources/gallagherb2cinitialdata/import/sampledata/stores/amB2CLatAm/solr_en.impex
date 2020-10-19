@@ -49,6 +49,6 @@ UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$in
                            ;                                                               ; Capacidad de pesaje (Plataformas)                         ; Capacidad de pesaje                                         
                            ;                                                               ; Product Type                                              ; Product Type                                                    
                            ;                                                               ; Compatible with Gallagher Livestock (Lectores)            ; Compatible with Gallagher Livestock                 
-                           ;                                                               ; animalCompatibility                                       ; Animal Type                                                     
+                           ;                                                               ; animalCompatibility                                       ; Animal Compatibility                                                     
                            
                            

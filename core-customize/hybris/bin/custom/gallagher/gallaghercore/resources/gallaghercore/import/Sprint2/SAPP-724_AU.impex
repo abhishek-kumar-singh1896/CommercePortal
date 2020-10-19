@@ -208,5 +208,5 @@ UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$so
                            ;                                                                   ; Product Type (EID)                            ; Product Type                                       
                            ;                                                                   ; Compatible with Gallagher Livestock (EID)     ; Compatible with Gallagher Livestock web/mobile app 
                            ;                                                                   ; Rechargeable                                  ; Rechargeable                                       
-                           ;                                                                   ; animalCompatibility                           ; Animal Type                                        
+                           ;                                                                   ; animalCompatibility                           ; Animal Compatibility                                        
                            
