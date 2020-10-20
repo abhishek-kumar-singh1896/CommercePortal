@@ -92,7 +92,7 @@
         </c:choose>
     </div>
 </div>
-
+<spring:theme code="text.account.order.tax.instruction"/>
 <div class="account-orderdetail-orderTotalDiscount-section">
     <c:if test="${not order.net}">
         <div class="order-total__taxes">

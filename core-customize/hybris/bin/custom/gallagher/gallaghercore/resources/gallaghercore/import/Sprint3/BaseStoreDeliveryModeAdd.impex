@@ -1,0 +1,27 @@
+##### Base Store Delivery Mode - free-standard-shipping #####
+
+INSERT_UPDATE BaseStore2DeliveryModeRel;source(uid)[unique=true];target(code)[unique=true]
+;securityB2BSthAm;free-standard-shipping
+
+INSERT_UPDATE BaseStore2DeliveryModeRel;source(uid)[unique=true];target(code)[unique=true]
+;securityB2BAsia;free-standard-shipping
+
+INSERT_UPDATE BaseStore2DeliveryModeRel;source(uid)[unique=true];target(code)[unique=true]
+;securityB2BCA;free-standard-shipping
+
+INSERT_UPDATE BaseStore2DeliveryModeRel;source(uid)[unique=true];target(code)[unique=true]
+;securityB2BUK;free-standard-shipping
+
+INSERT_UPDATE BaseStore2DeliveryModeRel;source(uid)[unique=true];target(code)[unique=true]
+;securityB2BUS;free-standard-shipping
+
+INSERT_UPDATE BaseStore2DeliveryModeRel;source(uid)[unique=true];target(code)[unique=true]
+;securityB2BGlobal;free-standard-shipping
+
+INSERT_UPDATE BaseStore2DeliveryModeRel;source(uid)[unique=true];target(code)[unique=true]
+;securityB2BAU;free-standard-shipping
+
+INSERT_UPDATE BaseStore2DeliveryModeRel;source(uid)[unique=true];target(code)[unique=true]
+;securityB2BNZ;free-standard-shipping
+
+##### Base Store Delivery Mode - free-standard-shipping #####

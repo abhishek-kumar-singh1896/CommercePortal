@@ -61,7 +61,6 @@ public class CoreSystemSetup extends AbstractSystemSetup
 		params.add(createBooleanSystemSetupParameter(IMPORT_SPRINT_2_IMPEX, "Import Phase 2 - Sprint 2 Impexes", true));
 		params.add(createBooleanSystemSetupParameter(IMPORT_SPRINT_3_IMPEX, "Import Phase 2 - Sprint 3 Impexes", true));
 		params.add(createBooleanSystemSetupParameter(IMPORT_ESSENTIAL_DATA_SCPI, "Essential data SCPI", true));
-
 		return params;
 	}
 
@@ -131,6 +130,8 @@ public class CoreSystemSetup extends AbstractSystemSetup
 		if (importSprint3Impex)
 		{
 			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP2-86.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint3/BaseStoreDeliveryModeAdd.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint3/SAPP2-151.impex");
 		}
 
 	}

@@ -417,4 +417,11 @@
 	<alias alias="customerEmailResolutionService" name="gallagherCustomerEmailResolutionService"/>
 	<bean id="gallagherCustomerEmailResolutionService" class="com.gallagher.core.customer.impl.GallagherCustomerEmailResolutionServiceImpl" >
 	</bean>
+
+	<alias alias="b2bDeliveryAddressesLookupStrategy" name="gallagherSAPB2BDeliveryAddressesLookupStrategy" />
+	<bean name="gallagherSAPB2BDeliveryAddressesLookupStrategy" class="com.gallagher.core.strategies.GallagherSAPB2BDeliveryAddressesLookupStrategy"
+		parent="defaultSAPB2BDeliveryAddressesLookupStrategy">
+		<property name="b2bUnitService" ref="defaultSAPB2BUnitService" />
+	</bean>
+	
 </beans>

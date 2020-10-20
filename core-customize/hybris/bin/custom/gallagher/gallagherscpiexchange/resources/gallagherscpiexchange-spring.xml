@@ -84,7 +84,9 @@
 	<alias name="gallagherSCPIOmmOrderConversionService" alias="sapCpiOrderConversionService" />
 	<bean id="gallagherSCPIOmmOrderConversionService"
 		class="com.gallagher.sap.sapcpiorderexchange.service.impl.GallagherSCPIOmmOrderConversionService"
-		parent="sapCpiOmmOrderConversionService" />
+		parent="sapCpiOmmOrderConversionService" >
+		<property name="sapOrderContributor" ref="sapOrderContributor"/>
+	</bean>
 
 	<!-- OMM Order Mapper -->
 	<alias name="gallagherSCPIOmmOrderMapperService" alias="sapCpiOrderMapperService" />

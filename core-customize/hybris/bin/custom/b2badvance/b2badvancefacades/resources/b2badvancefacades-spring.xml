@@ -422,4 +422,33 @@
 		<property name="list" ref="cartConverter"/>
 		<property name="remove" ref="groupOrderEntryPopulator"/>
 	</bean>
+	
+	    <alias name="gallagherDefaultB2BCheckoutFacade" alias="b2bCheckoutFacade" />
+	<bean id="gallagherDefaultB2BCheckoutFacade" parent="defaultB2BCheckoutFacade"
+		class="com.enterprisewide.b2badvance.facades.checkout.facade.GallagherDefaultB2BCheckoutFacade">
+		<property name="b2BUnitService" ref="b2bUnitService"/>
+	</bean>
+	
+	 
+	  <bean id="gallagherB2BOrderPopulator" parent="b2bOrderPopulator"
+		class="com.enterprisewide.b2badvance.facades.order.populators.GallagherB2BOrderPopulator">
+		<property name="b2BUnitConverter" ref="b2bUnitConverter" />
+		<property name="b2bCustomerConverter" ref="customerConverter"/>
+	</bean> 
+	  	
+	<bean id="gallagherB2BCartPopulator" class="com.enterprisewide.b2badvance.facades.order.populators.GallagherB2BCartPopulator" parent="b2bCartPopulator">
+     <property name="b2BUnitConverter" ref="b2bUnitConverter" />		
+      </bean>
+      
+      <bean parent="modifyPopulatorList">
+		<property name="list" ref="cartConverter"/>
+		<property name="add" ref="gallagherB2BCartPopulator"/>
+	</bean>	
+	
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="orderConverter"/>
+		<property name="add" ref="gallagherB2BOrderPopulator"/>
+	</bean>
+	
 </beans>
+

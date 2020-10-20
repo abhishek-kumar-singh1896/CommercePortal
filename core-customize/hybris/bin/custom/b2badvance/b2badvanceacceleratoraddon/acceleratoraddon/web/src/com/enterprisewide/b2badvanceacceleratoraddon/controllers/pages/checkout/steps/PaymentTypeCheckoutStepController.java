@@ -18,21 +18,20 @@ import de.hybris.platform.acceleratorstorefrontcommons.constants.WebConstants;
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.ThirdPartyConstants;
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.pages.checkout.steps.AbstractCheckoutStepController;
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.util.GlobalMessages;
-import com.enterprisewide.b2badvanceacceleratoraddon.controllers.B2badvanceacceleratoraddonControllerConstants;
-import com.enterprisewide.b2badvanceacceleratoraddon.forms.PaymentTypeForm;
-import com.enterprisewide.b2badvanceacceleratoraddon.forms.validation.PaymentTypeFormValidator;
 import de.hybris.platform.b2bacceleratorfacades.api.cart.CheckoutFacade;
 import de.hybris.platform.b2bacceleratorfacades.order.data.B2BPaymentTypeData;
-import de.hybris.platform.b2bacceleratorservices.enums.CheckoutPaymentType;
-import de.hybris.platform.b2bcommercefacades.company.B2BCostCenterFacade;
-import de.hybris.platform.b2bcommercefacades.company.data.B2BCostCenterData;
+import de.hybris.platform.b2bacceleratorservices.constants.GeneratedB2BAcceleratorServicesConstants.Enumerations.CheckoutPaymentType;
+import de.hybris.platform.b2bcommercefacades.company.data.B2BUnitData;
 import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
 import de.hybris.platform.commercefacades.order.data.CartData;
 import de.hybris.platform.commercefacades.user.data.AddressData;
 import de.hybris.platform.commerceservices.order.CommerceCartModificationException;
+import de.hybris.platform.core.model.user.CustomerModel;
+import de.hybris.platform.servicelayer.user.UserService;
 
+import java.text.SimpleDateFormat;
 import java.util.Collection;
-import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -40,25 +39,31 @@ import javax.annotation.Resource;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.CollectionUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
+import com.enterprisewide.b2badvance.facades.checkout.flow.B2badvanceCheckoutFacade;
+import com.enterprisewide.b2badvanceacceleratoraddon.controllers.B2badvanceacceleratoraddonControllerConstants;
+import com.enterprisewide.b2badvanceacceleratoraddon.forms.PaymentTypeForm;
+import com.enterprisewide.b2badvanceacceleratoraddon.forms.validation.PaymentTypeFormValidator;
+import com.gallagher.facades.GallagherB2BUnitFacade;;
 @Controller
 @RequestMapping(value = "/checkout/multi/payment-type")
 public class PaymentTypeCheckoutStepController extends AbstractCheckoutStepController
 {
 	private final static String PAYMENT_TYPE = "payment-type";
 
-	@Resource(name = "b2bCheckoutFacade")
-	private CheckoutFacade b2bCheckoutFacade;
+	@Resource(name = "checkoutFlowFacade")
+	private B2badvanceCheckoutFacade checkoutFlowFacade;
 
-	@Resource(name = "costCenterFacade")
-	private B2BCostCenterFacade costCenterFacade;
+	@Resource(name = "userService")
+	private UserService userService;
+
+	@Resource(name = "gallagherDefaultB2BCheckoutFacade")
+	private CheckoutFacade b2bCheckoutFacade;
 
 	@Resource(name = "paymentTypeFormValidator")
 	private PaymentTypeFormValidator paymentTypeFormValidator;
@@ -69,11 +74,19 @@ public class PaymentTypeCheckoutStepController extends AbstractCheckoutStepContr
 		return b2bCheckoutFacade.getPaymentTypes();
 	}
 
-	@ModelAttribute("costCenters")
-	public List<? extends B2BCostCenterData> getVisibleActiveCostCenters()
+	@Resource(name = "b2bUnitFacade")
+	private GallagherB2BUnitFacade b2bUnitFacade;
+
+
+
+
+	@ModelAttribute("b2bUnits")
+	public List<B2BUnitData> getAllB2BUnitData()
 	{
-		final List<? extends B2BCostCenterData> costCenterData = costCenterFacade.getActiveCostCenters();
-		return costCenterData == null ? Collections.<B2BCostCenterData> emptyList() : costCenterData;
+
+		final CustomerModel currentCustomer = (CustomerModel) userService.getCurrentUser();
+		final List<B2BUnitData> b2bUnitData = b2bUnitFacade.getAllB2BData(currentCustomer);
+		return b2bUnitData;
 	}
 
 	@Override
@@ -101,13 +114,21 @@ public class PaymentTypeCheckoutStepController extends AbstractCheckoutStepContr
 	@RequestMapping(value = "/choose", method = RequestMethod.POST)
 	@RequireHardLogIn
 	public String choose(@ModelAttribute final PaymentTypeForm paymentTypeForm, final BindingResult bindingResult,
-			final Model model) throws CMSItemNotFoundException, CommerceCartModificationException
+			final Model model)
+			throws CMSItemNotFoundException, CommerceCartModificationException
 	{
 		paymentTypeFormValidator.validate(paymentTypeForm, bindingResult);
 
 		if (bindingResult.hasErrors())
 		{
+			if (paymentTypeForm.isIndicator() == true)
+			{
+				GlobalMessages.addErrorMessage(model, "checkout.error.requiredDelivery.Date");
+			}
+			else
+			{
 			GlobalMessages.addErrorMessage(model, "checkout.error.paymenttype.formentry.invalid");
+			}
 			model.addAttribute("paymentTypeForm", paymentTypeForm);
 			prepareDataForPage(model);
 			storeCmsPageInModel(model, getContentPageForLabelOrId(MULTI_CHECKOUT_SUMMARY_CMS_PAGE_LABEL));
@@ -136,17 +157,32 @@ public class PaymentTypeCheckoutStepController extends AbstractCheckoutStepContr
 
 		cartData.setPaymentType(paymentTypeData);
 
-		// set cost center
-		if (CheckoutPaymentType.ACCOUNT.getCode().equals(cartData.getPaymentType().getCode()))
+		// set B2B Unit
+		if (CheckoutPaymentType.ACCOUNT.equals(cartData.getPaymentType().getCode()))
 		{
-			final B2BCostCenterData costCenter = new B2BCostCenterData();
-			costCenter.setCode(paymentTypeForm.getCostCenterId());
+			final B2BUnitData unitData = new B2BUnitData();
+			unitData.setCode(paymentTypeForm.getB2bUnit());
 
-			cartData.setCostCenter(costCenter);
+			cartData.setB2bUnit(unitData);
+
 		}
 
 		// set purchase order number
-		cartData.setPurchaseOrderNumber(paymentTypeForm.getPurchaseOrderNumber());
+		if (paymentTypeForm.getPurchaseOrderNumber() == null || paymentTypeForm.getPurchaseOrderNumber().length() == 0)
+		{
+			cartData.setPurchaseOrderNumber(null);
+		}
+		else
+		{
+			cartData.setPurchaseOrderNumber(paymentTypeForm.getPurchaseOrderNumber());
+		}
+
+		//set Date in Model
+		cartData.setRequiredDeliveryDate(paymentTypeForm.getRequiredDeliveryDate());
+
+		//set Comment in CartModel if Entered
+		getCheckoutFlowFacade().setDeliveryInstructions(paymentTypeForm.getDeliveryInstructions());
+
 
 		b2bCheckoutFacade.updateCheckoutCart(cartData);
 	}
@@ -169,36 +205,43 @@ public class PaymentTypeCheckoutStepController extends AbstractCheckoutStepContr
 
 	protected PaymentTypeForm preparePaymentTypeForm(final CartData cartData)
 	{
+		final SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		final Date date = new Date();
+
+		final String dateToString = formatter.format(date);
 		final PaymentTypeForm paymentTypeForm = new PaymentTypeForm();
 
-		// set payment type
-		if (cartData.getPaymentType() != null && StringUtils.isNotBlank(cartData.getPaymentType().getCode()))
+		if (cartData.getPaymentType() != null)
 		{
-			paymentTypeForm.setPaymentType(cartData.getPaymentType().getCode());
-		}
-		else
-		{
-			paymentTypeForm.setPaymentType(CheckoutPaymentType.ACCOUNT.getCode());
+			paymentTypeForm.setPaymentType(CheckoutPaymentType.ACCOUNT);
 		}
 
-		// set cost center
-		if (cartData.getCostCenter() != null && StringUtils.isNotBlank(cartData.getCostCenter().getCode()))
+
+		if (cartData.getB2bUnit() != null && StringUtils.isNotBlank(cartData.getB2bUnit().getCode()))
 		{
-			paymentTypeForm.setCostCenterId(cartData.getCostCenter().getCode());
+			paymentTypeForm.setB2bUnit(cartData.getB2bUnit().getCode());
 		}
-		else if (!CollectionUtils.isEmpty(getVisibleActiveCostCenters()) && getVisibleActiveCostCenters().size() == 1)
+		else if (getAllB2BUnitData() != null)
 		{
-			paymentTypeForm.setCostCenterId(getVisibleActiveCostCenters().get(0).getCode());
+			paymentTypeForm.setB2bUnit(getAllB2BUnitData().get(0).getCode());
 		}
+
+		//set Current Date
+		paymentTypeForm.setRequiredDeliveryDate(dateToString);
 
 		// set purchase order number
-		paymentTypeForm.setPurchaseOrderNumber(cartData.getPurchaseOrderNumber());
+		/*
+		 * paymentTypeForm.setPurchaseOrderNumber(cartData.getPurchaseOrderNumber());
+		 */
+
 		return paymentTypeForm;
 	}
 
+
+
 	protected void checkAndSelectDeliveryAddress(final PaymentTypeForm paymentTypeForm)
 	{
-		if (CheckoutPaymentType.ACCOUNT.getCode().equals(paymentTypeForm.getPaymentType()))
+		if (CheckoutPaymentType.ACCOUNT.equals(paymentTypeForm.getPaymentType()))
 		{
 			final List<? extends AddressData> deliveryAddresses = getCheckoutFacade().getSupportedDeliveryAddresses(true);
 			if (deliveryAddresses.size() == 1)
@@ -208,9 +251,17 @@ public class PaymentTypeCheckoutStepController extends AbstractCheckoutStepContr
 		}
 	}
 
+
+
 	protected CheckoutStep getCheckoutStep()
 	{
 		return getCheckoutStep(PAYMENT_TYPE);
+	}
+
+	@Override
+	protected B2badvanceCheckoutFacade getCheckoutFlowFacade()
+	{
+		return checkoutFlowFacade;
 	}
 
 }
