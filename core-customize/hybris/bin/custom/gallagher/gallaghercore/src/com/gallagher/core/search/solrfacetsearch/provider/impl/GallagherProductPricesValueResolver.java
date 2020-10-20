@@ -3,6 +3,7 @@
  */
 package com.gallagher.core.search.solrfacetsearch.provider.impl;
 
+import de.hybris.platform.commerceservices.price.CommercePriceService;
 import de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.ProductPricesValueResolver;
 import de.hybris.platform.core.model.product.ProductModel;
 import de.hybris.platform.jalo.order.price.PriceInformation;
@@ -16,10 +17,12 @@ import de.hybris.platform.solrfacetsearch.indexer.spi.InputDocument;
 import de.hybris.platform.solrfacetsearch.provider.Qualifier;
 import de.hybris.platform.solrfacetsearch.provider.QualifierProvider;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
 import com.gallagher.core.search.solrfacetsearch.provider.GallagherQualifierProvider;
@@ -37,6 +40,8 @@ public class GallagherProductPricesValueResolver extends ProductPricesValueResol
 	private GallagherQualifierProvider salesAreaQualifierProvider;
 
 	private GallagherQualifierProvider userPriceGroupQualifierProvider;
+
+	private CommercePriceService commercePriceService;
 
 	/**
 	 * {@inheritDoc}
@@ -218,10 +223,22 @@ public class GallagherProductPricesValueResolver extends ProductPricesValueResol
 	 *           the product model
 	 * @return the price information list
 	 */
-	protected List<PriceInformation> loadQualifierData(final Collection<IndexedProperty> indexedProperties,
-			final ProductModel product)
+	@Override
+	protected List<PriceInformation> loadQualifierData(final IndexerBatchContext batchContext,
+			final Collection<IndexedProperty> indexedProperties, final ProductModel product, final Qualifier qualifier)
 	{
-		return loadPriceInformations(indexedProperties, product);
+		if (CollectionUtils.isEmpty(product.getVariants()))
+		{
+			return loadPriceInformations(indexedProperties, product);
+		}
+
+		List<PriceInformation> priceInfoList = new ArrayList<>();
+		final PriceInformation priceInfo = getCommercePriceService().getFromPriceForProduct(product);
+		if (priceInfo != null)
+		{
+			priceInfoList.add(priceInfo);
+		}
+		return CollectionUtils.isNotEmpty(priceInfoList) ? priceInfoList : loadPriceInformations(indexedProperties, product);
 	}
 
 
@@ -393,4 +410,20 @@ public class GallagherProductPricesValueResolver extends ProductPricesValueResol
 		this.userPriceGroupQualifierProvider = userPriceGroupQualifierProvider;
 	}
 
+	/**
+	 * @return the commercePriceService
+	 */
+	public CommercePriceService getCommercePriceService()
+	{
+		return commercePriceService;
+	}
+
+	/**
+	 * @param commercePriceService
+	 *           the commercePriceService to set
+	 */
+	public void setCommercePriceService(final CommercePriceService commercePriceService)
+	{
+		this.commercePriceService = commercePriceService;
+	}
 }
