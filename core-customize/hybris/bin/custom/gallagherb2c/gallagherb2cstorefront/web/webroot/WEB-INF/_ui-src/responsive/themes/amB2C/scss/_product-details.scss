@@ -594,6 +594,14 @@ h4 {
     }
   }
 }
+.addtocart-component {
+@media (max-width: 639px) {
+  .qty-selector {
+    margin-left: auto;
+    margin-right:unset !important;
+}
+}
+}
 
 .addtocart-component .actions .btn {
   margin-bottom: 0;
@@ -608,7 +616,7 @@ h4 {
   overflow-x: hidden;
 
   .left-column {
-    width: 123px;
+    width: 212px;
     background-color: $gray-7;
     min-height: 284px;
     border-top-left-radius: 6px;
@@ -643,7 +651,7 @@ h4 {
     }
   }
   .right-column-with-carousel {
-    width: calc(100% - 123px);
+    width: calc(100% - 212px);
     background-color: $white;
     text-align: center;
 

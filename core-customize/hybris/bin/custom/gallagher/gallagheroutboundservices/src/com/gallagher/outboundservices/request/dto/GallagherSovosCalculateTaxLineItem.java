@@ -3,6 +3,8 @@
  */
 package com.gallagher.outboundservices.request.dto;
 
+import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -59,6 +61,9 @@ public class GallagherSovosCalculateTaxLineItem
 
 	@JsonProperty("lUGeoCd")
 	private int iUGeoCd;
+
+	@JsonProperty("discnts")
+	private Map<String, Double> discnts;
 
 
 	public int getDebCredIndr()
@@ -211,4 +216,13 @@ public class GallagherSovosCalculateTaxLineItem
 		this.iUGeoCd = iUGeoCd;
 	}
 
+	public Map<String, Double> getDiscnts()
+	{
+		return discnts;
+	}
+
+	public void setDiscnts(final Map<String, Double> discnts)
+	{
+		this.discnts = discnts;
+	}
 }

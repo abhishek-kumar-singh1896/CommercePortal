@@ -4,6 +4,7 @@
 package com.gallagher.outboundservices.request.dto;
 
 import java.util.List;
+import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -47,6 +48,9 @@ public class GallagherSovosCalculateTaxRequest
 
 	@JsonProperty("dlvrAmt")
 	private double dlvrAmt;
+
+	@JsonProperty("discnts")
+	private Map<String, Double> discnts;
 
 	@JsonProperty("lines")
 	private List<GallagherSovosCalculateTaxLineItem> lines;
@@ -160,5 +164,16 @@ public class GallagherSovosCalculateTaxRequest
 	{
 		this.lines = lines;
 	}
+
+	public Map<String, Double> getDiscnts()
+	{
+		return discnts;
+	}
+
+	public void setDiscnts(final Map<String, Double> discnts)
+	{
+		this.discnts = discnts;
+	}
+
 
 }

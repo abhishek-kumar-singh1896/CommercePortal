@@ -34,6 +34,14 @@ top: auto;
     .modal-body{
         overflow: hidden;
         padding: 1rem 1rem 0;
+        &.caraousel-body{
+        .carousel{
+        @media (min-width: 640px) {
+        padding-left: 28px;
+        padding-right: 28px; 
+        }
+        }
+        }
     }
     .modal-dialog {
         display: inline-block;
@@ -48,7 +56,7 @@ top: auto;
        
         @media screen and (min-width:960px){
              
-        max-width: 910px;
+        max-width: 1120px;
         }
     }
 
@@ -89,6 +97,7 @@ top: auto;
             .slides{
                 li{
                     min-width: 200px;
+                  cursor:pointer;
                 }
             }
         
@@ -115,17 +124,30 @@ top: auto;
         border: 1px solid $gray-2;
         transition: all 0.3s ease-in-out;
        height:415px;
+   .imageProduct{
+   display: flex;
+    align-items: center;
+    justify-content: center;
+     img {
+    height: auto;
+    height: 135px;
+    width: 135px;
+    -moz-user-select: none;
+}
+}
        overflow : hidden;
         .card-body{
             padding:0;
+            display: flex;
+            flex-direction: column;
         }
 
         .product-name {
-            font-weight: 700;
+            font-weight: 500;
             color: $black;
             margin-top: 1rem;
             line-height: 1.3;
-            font-size: 1.2rem;
+            font-size: 1.142857em;
             a{
             color: $black;
             }
@@ -135,16 +157,25 @@ top: auto;
         .sku {
             display: block;
             color: $gray-7;
-            font-size: 1rem;
             font-weight: normal;
+          font-size: 0.85714em;
         }
 
          .card-text.product-desc {
           font-size: 0.8rem;
-          max-height: 42px;
+          max-height: 57px;
+         
          overflow: hidden;
          min-height: 0px;
          line-height: unset;
+          @media screen and (max-width: 767px) {
+          max-height: 78px;
+          }
+         li{
+         min-width : auto;
+         margin-left: 1px;
+         
+         }
          
          p{
         	font-size:unset;
@@ -159,9 +190,19 @@ top: auto;
             font-size: 1.2rem;
             text-align: right;
           margin:0;
-           @media screen and (min-width:960px){
-             margin-top: 8px;
-        }
+          margin-top : auto;
+label{
+color: $primary-color;
+            font-weight: 700;
+            font-size: 1.142857em;
+ margin:0;
+sup{
+    top: -3px;
+    right: 5px;
+    font-size: 0.5625em;
+}
+}
+         
             span {
                 display: block;
                 font-size: .8rem;
@@ -194,3 +235,12 @@ top: auto;
            } 
         }
     }
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) { 
+#myProductModal .modal-dialog.product-popup{
+ width:78% !important;
+ }
+}
