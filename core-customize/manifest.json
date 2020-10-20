@@ -108,7 +108,9 @@
     "gallagherb2cstorefront",
     "gallagherstorefront",
 	"gallagherscpiexchange",
-	"paymetric"
+	"paymetric",
+	"samlssobackoffice",
+	"samlsinglesignon"
   ],
   "useConfig": {
     "solr": {
