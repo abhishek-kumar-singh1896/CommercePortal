@@ -75,12 +75,14 @@
                         </ycommerce:testId>
                     </c:if>
                 </div>
+                <c:if test="${orderData.deliveryInstructions ne null}">
                 <div class="item-group">
                     <ycommerce:testId code="orderDetail_overviewOrderTotal_label">
                         <span class="item-label"><spring:theme code="text.account.order.comments"/></span>
                         <span class="item-value">${fn:escapeXml(orderData.deliveryInstructions)}</span>
                     </ycommerce:testId>
                 </div>
+                </c:if>
                 <div class="item-group">
                     <ycommerce:testId code="orderDetail_overviewOrderTotal_label">
                         <span class="item-label"><spring:theme code="text.account.order.total"/></span>
