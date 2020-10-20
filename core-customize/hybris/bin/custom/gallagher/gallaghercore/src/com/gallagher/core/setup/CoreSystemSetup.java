@@ -94,8 +94,8 @@ public class CoreSystemSetup extends AbstractSystemSetup
 		if (importSprint3Impex)
 		{
 			importImpexFile(context, "/gallaghercore/import/Sprint3/BaseStoreDeliveryModeAdd.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint3/SAPP2-151.impex");
 		}
-
 	}
 
 	protected void processCockpit(final SystemSetupContext context, final boolean importAccessRights,

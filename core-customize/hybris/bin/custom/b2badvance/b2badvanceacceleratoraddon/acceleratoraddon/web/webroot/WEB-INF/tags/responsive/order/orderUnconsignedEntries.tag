@@ -27,10 +27,10 @@
             </div>
         </div>
     </div>
-     <div class="well-content col-md-4 order-shipping-method">
+     <%-- <div class="well-content col-md-4 order-shipping-method">
      	<div class="label-order"><spring:theme code="text.deliveryInstructions" /></div>
          	<div class="value-order">${orderData.deliveryInstructions}</div>
-      </div>
+      </div> --%>
     
 </div>
 
