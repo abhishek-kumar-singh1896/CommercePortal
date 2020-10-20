@@ -3,48 +3,33 @@
  */
 package com.gallagher.core.services.impl;
 
-import de.hybris.platform.core.model.c2l.RegionModel;
-import de.hybris.platform.core.model.user.AddressModel;
-import de.hybris.platform.core.model.user.CustomerModel;
-import de.hybris.platform.core.model.user.UserGroupModel;
+import de.hybris.platform.b2b.model.B2BCustomerModel;
 import de.hybris.platform.servicelayer.config.ConfigurationService;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 
-import org.apache.commons.collections.CollectionUtils;
+import javax.annotation.PostConstruct;
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.lang.StringUtils;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.auth.AuthScope;
-import org.apache.http.auth.UsernamePasswordCredentials;
-import org.apache.http.client.CredentialsProvider;
-import org.apache.http.client.config.RequestConfig;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.protocol.HttpClientContext;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.BasicCredentialsProvider;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
-import org.dom4j.Attribute;
-import org.dom4j.Document;
 import org.dom4j.DocumentException;
-import org.dom4j.DocumentHelper;
-import org.dom4j.Element;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 
 import com.gallagher.core.services.GallagherMindTouchService;
-import com.google.common.base.Splitter;
 
 
 /**
@@ -56,194 +41,168 @@ public class GallagherMindTouchServiceImpl implements GallagherMindTouchService
 	private static final Logger LOG = Logger.getLogger(GallagherMindTouchServiceImpl.class);
 
 	private static final String ENTER = "\r\n";
-	private static final String ID = "id";
-	private static final String B2B = "B2B";
 	private static final String AUTHENTICATION_URL = "gallagher.mindtouch.authenticate.url";
 	private static final String AUTHENTICATION_URL_USERNAME = "gallagher.mindtouch.authenticate.username";
 	private static final String AUTHENTICATION_URL_PASSWORD = "gallagher.mindtouch.authenticate.password";
 	private static final String END_POINT_URL = "gallagher.mindtouch.endpoint.url";
-	private static final String ROLE_MAPPING = "gallagher.mindtouch.role.mapping";
+	private static final String MINDTOUCH_KEY = "gallagher.mindtouch.key";
+	private static final String MIND_TOUCH_SECRET = "gallagher.mindtouch.secret";
+
+
+	private static final String SECURITY_B2B_GLOBAL = "securityB2BGlobal";
+	private static final String SECURITY_B2B = "securityB2B";
+	private static final String SECURITY = "security";
+	private static final String HIMAC_SHA_256 = "HmacSHA256";
+	private static final String SEPARATOR = "_";
+	private static final String TOKEN_TYPE = "X-Deki-Token";
+
+	private String authUrl;
+	private String userName;
+	private String password;
+	private String endPointUrl;
+	private String key;
+	private String secret;
+
 
 	@Autowired
 	private ConfigurationService configurationService;
 
+	@PostConstruct
+	private void init()
+	{
+		authUrl = getConfigurationService().getConfiguration().getString(AUTHENTICATION_URL);
+		userName = getConfigurationService().getConfiguration().getString(AUTHENTICATION_URL_USERNAME);
+		password = getConfigurationService().getConfiguration().getString(AUTHENTICATION_URL_PASSWORD);
+		endPointUrl = getConfigurationService().getConfiguration().getString(END_POINT_URL);
+		key = getConfigurationService().getConfiguration().getString(MINDTOUCH_KEY);
+		secret = getConfigurationService().getConfiguration().getString(MIND_TOUCH_SECRET);
+	}
+
 	@Override
-	public void pushCustomerToMindTouch(final CustomerModel customer) throws IOException, DocumentException
+	public void pushCustomerToMindTouch(final B2BCustomerModel customer) throws IOException, DocumentException
 	{
-		LOG.debug("Processing the user ");
-		final CloseableHttpClient httpClient = HttpClients.createDefault();
-		getAuthentication(httpClient);
-		createUserInMindTouch(httpClient, customer);
+		LOG.debug("Processing the user for Mindtouch");
+		final String token = getAuthentication();
+		createUserInMindTouch(token, customer);
 
 	}
 
 
 	/**
-	 * @param httpClient
-	 */
-	private void getAuthentication(final CloseableHttpClient httpClient) throws IOException
-	{
-
-		LOG.debug("Begin Aughentication!");
-		final String url = getConfigurationService().getConfiguration().getString(AUTHENTICATION_URL);
-		final String userName = getConfigurationService().getConfiguration().getString(AUTHENTICATION_URL_USERNAME);
-		final String password = getConfigurationService().getConfiguration().getString(AUTHENTICATION_URL_PASSWORD);
-		final HttpGet get = new HttpGet(url);
-
-		final HttpClientContext context = new HttpClientContext();
-		final CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
-
-		credentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials(userName, password));
-		context.setCredentialsProvider(credentialsProvider);
-
-		final CloseableHttpResponse execute = httpClient.execute(get, context);
-		final HttpEntity entity = execute.getEntity();
-		final InputStream in = entity.getContent();
-		final StringBuilder builder = new StringBuilder();
-		final BufferedReader bufreader = new BufferedReader(new InputStreamReader(in));
-
-		for (String temp = bufreader.readLine(); temp != null; temp = bufreader.readLine())
-		{
-			builder.append(temp);
-		}
-		LOG.debug(builder.toString());
-	}
-
-
-	/**
-	 * @param httpClient
-	 * @param user
-	 */
-	private void createUserInMindTouch(final CloseableHttpClient httpClient,
-			final CustomerModel customer)
-			throws IOException, DocumentException
-	{
-
-		LOG.debug("Begin Creating User!");
-		final String url = getConfigurationService().getConfiguration().getString(END_POINT_URL);
-		final HttpPost httpPost = new HttpPost(url);
-		final RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(10000).setConnectionRequestTimeout(10000)
-				.setSocketTimeout(10000).setRedirectsEnabled(true).build();
-
-		httpPost.setHeader("Content-Type", "application/xml;charset=utf8");
-
-		httpPost.setConfig(requestConfig);
-
-		/*
-		 * final Collection<AddressModel> addressList = customer.getAddresses(); if (CollectionUtils.isEmpty(addressList))
-		 * { LOG.debug("no regions"); return; }
-		 */
-		final String username = customer.getName(); // Need to check for username
-		final String email = customer.getContactEmail();
-		final String fullname = customer.getName();
-		final UserGroupModel group = getUserGroupForUser(customer);
-
-		final String userXml = getUserXml(username, email, fullname, group);
-		final StringEntity entityParams = new StringEntity(userXml, "utf-8");
-		httpPost.setEntity(entityParams);
-
-		LOG.debug("Executing the httpPost");
-		final HttpResponse httpResponse = httpClient.execute(httpPost);
-
-		final int statusCode = httpResponse.getStatusLine().getStatusCode();
-		LOG.debug("Status Code：" + statusCode);
-		final HttpEntity resEntity = httpResponse.getEntity();
-		final String result = EntityUtils.toString(resEntity);
-
-		if (statusCode == 200)
-		{
-			final String userID = customer.getName();/* getUserID(result); */
-			customer.setUid(userID);
-			assignGroupForUser(httpClient, customer);
-		}
-		else
-		{
-			LOG.debug(username + " is error creation!");
-			httpClient.close();
-		}
-	}
-
-	protected UserGroupModel getUserGroupForUser(final CustomerModel userModel)
-	{
-		final Optional<UserGroupModel> userGroupOptional = userModel.getGroups().stream().filter(
-				group -> group instanceof UserGroupModel
-						&& group.getLocName().startsWith(B2B))
-				.map(UserGroupModel.class::cast).findFirst();
-		return userGroupOptional.isPresent() ? userGroupOptional.get() : null;
-	}
-
-	/**
-	 * @param result
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
-	private String getUserID(final String result) throws DocumentException
+	private String getAuthentication() throws IOException
 	{
-		String userID = StringUtils.EMPTY;
-		final Document document = DocumentHelper.parseText(result);
-		final Element root = document.getRootElement();
-		final List<Attribute> attributeList = root.attributes();
-		for (final Attribute attr : attributeList)
+		LOG.info("Authenticating the request to Mindtouch");
+
+		//user string for authentication
+		final String user = '=' + userName;
+
+		final String epoch = Long.toString(new Date().getTime() / 1000L);
+		String hash = StringUtils.EMPTY;
+
+		//Get the hash value using sha256 and epoch
+		try
 		{
-			if (ID.equals(attr.getName()))
-			{
-				userID = attr.getValue();
-				break;
-			}
+			final Mac sha256_HMAC = Mac.getInstance(HIMAC_SHA_256);
+			final SecretKeySpec secret_key = new SecretKeySpec(secret.getBytes(), HIMAC_SHA_256);
+			sha256_HMAC.init(secret_key);
+			final String message = key + SEPARATOR + epoch + SEPARATOR + user;
+			hash = Hex.encodeHexString(sha256_HMAC.doFinal(message.getBytes()));
 		}
-		return userID;
+		catch (NoSuchAlgorithmException | InvalidKeyException e)
+		{
+
+			LOG.debug("Error while authentication :: " + e.getMessage());
+		}
+
+		//Preparing the token for authentication
+		final String token = String.join(SEPARATOR, "tkn", key, epoch, user, hash);
+		LOG.debug(token);
+
+		//Get the auth URL
+		final URL url = new URL(authUrl);
+
+		//open the connection for url and get the response code
+		final HttpURLConnection con = (HttpURLConnection) url.openConnection();
+		con.setRequestMethod("GET");
+		con.setRequestProperty(TOKEN_TYPE, token);
+		final int code = con.getResponseCode();
+
+		LOG.info("Authentication status :: " + code);
+		if (code != 200)
+		{
+			throw new IOException("Exception while authenticting " + code);
+		}
+		return token;
 	}
 
+
 	/**
-	 * @param httpClient
-	 * @param customer
+	 * @param token
+	 * @param user
+	 * @throws DocumentException
 	 */
-	private void assignGroupForUser(final CloseableHttpClient httpClient, final CustomerModel customer)
-			throws IOException
+	private void createUserInMindTouch(final String token, final B2BCustomerModel customer) throws IOException, DocumentException
 	{
-		final String userID = customer.getUid();
-		LOG.debug("Assgining group for " + userID);
 
-		final Collection<AddressModel> addressList = customer.getAddresses();
-		final AddressModel address = CollectionUtils.isNotEmpty(addressList) ? addressList.iterator().next() : null;
-		final RegionModel regionModel = address != null ? address.getRegion() : null;
-		final String region = regionModel != null ? regionModel.getIsocode() : StringUtils.EMPTY;
-		final StringBuilder url = new StringBuilder();
+		LOG.info("Begin Creating User in Mindtouch!");
 
-		//String url="https://supporthub.security.gallagher.com/@api/deki/groups/1/users";
-		url.append("https://supporthub.security.gallagher.com/@api/deki/groups/");
-		url.append(region);
-		url.append("/users");
+		//Get the end point url
+		final URL url = new URL(endPointUrl);
 
+		final String auth = userName + ":" + password;
+		final byte[] encodedAuth = Base64.encodeBase64(auth.getBytes(StandardCharsets.UTF_8));
+		//Auth header value
+		final String authHeaderValue = "Basic " + new String(encodedAuth);
 
-		final HttpPost httpPut = new HttpPost(url.toString());
-		final RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(10000).setConnectionRequestTimeout(10000)
-				.setSocketTimeout(10000).setRedirectsEnabled(true).build();
+		//Creating the connection for url
+		final HttpURLConnection con = (HttpURLConnection) url.openConnection();
+		con.setRequestMethod("POST");
 
-		httpPut.setHeader("Content-Type", "application/xml;charset=utf8");
-		httpPut.setConfig(requestConfig);
+		//Setting request proeprty and header values
+		con.setRequestProperty(TOKEN_TYPE, token);
+		con.setRequestProperty("Content-Type", MediaType.TEXT_XML_VALUE);
+		con.setRequestProperty("Authorization", authHeaderValue);
+		con.setDoOutput(true);
 
-		final String xml = "<users><user id=\"" + userID + "\"/></users>";
-		final StringEntity entityParams = new StringEntity(xml, "utf-8");
-
-		httpPut.setEntity(entityParams);
-
-		final HttpResponse httpResponse = httpClient.execute(httpPut);
-		final int statusCode = httpResponse.getStatusLine().getStatusCode();
-		LOG.debug("Status Code：" + statusCode);
-
-		if (statusCode != 200)
+		try (final OutputStream outputStream = con.getOutputStream())
 		{
-			LOG.debug(customer.getName() + " error assigning groups!");
+			final String userXml = getUserXml(customer);
+			LOG.debug(userXml);
+			outputStream.write(userXml.getBytes());
+		}
+
+		//Get the response code.
+		final int responseCode = con.getResponseCode();
+
+		//if status is 200 OK log the response
+		if (responseCode == HttpURLConnection.HTTP_OK)
+		{
+			LOG.info("User created sucessfully in mindtouch ");
+			try (final BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream())))
+			{
+				String input = StringUtils.EMPTY;
+				final StringBuffer response = new StringBuffer();
+
+				while ((input = in.readLine()) != null)
+				{
+					response.append(input);
+				}
+				LOG.debug(response.toString());
+			}
 		}
 		else
 		{
-			LOG.debug(customer.getName() + " assgined group successfully!");
+			throw new IOException("Error while creating user in mindtouch :: " + responseCode);
 		}
-		httpClient.close();
+
 	}
 
+
 	/**
+	 * This method is to prepare the xml for posting at the endpoint
+	 *
 	 * @param username
 	 * @param email
 	 * @param fullname
@@ -251,21 +210,16 @@ public class GallagherMindTouchServiceImpl implements GallagherMindTouchService
 	 * @return
 	 */
 	@SuppressWarnings("unused")
-	private String getUserXml(final String username, final String email, final String fullname,
-			final UserGroupModel group)
+	private String getUserXml(final B2BCustomerModel b2bCustomer)
 	{
-		String role = StringUtils.EMPTY;
-		final String roleGroupMap = getConfigurationService().getConfiguration().getString(ROLE_MAPPING);
-		if (StringUtils.isNotBlank(roleGroupMap) && group != null)
-		{
-			final Map<String, String> rolesMapping = getRolesMapping(roleGroupMap);
-			role = rolesMapping.get(group.getUid());
-		}
+		final String userName = b2bCustomer.getKeycloakGUID();
+		final String email = b2bCustomer.getUid();
+		final String fullName = b2bCustomer.getName();
 
 		final StringBuilder sb = new StringBuilder("<user>");
 		sb.append(ENTER);
 		sb.append("<username>");
-		sb.append(username);
+		sb.append(userName);
 		sb.append("</username>");
 		sb.append(ENTER);
 		sb.append("<email>");
@@ -273,13 +227,13 @@ public class GallagherMindTouchServiceImpl implements GallagherMindTouchService
 		sb.append("</email>");
 		sb.append(ENTER);
 		sb.append("<fullname>");
-		sb.append(fullname);
+		sb.append(fullName);
 		sb.append("</fullname>");
 		sb.append(ENTER);
 		sb.append("<permissions.user>");
 		sb.append(ENTER);
 		sb.append("<role>");
-		sb.append(role);
+		sb.append("Viewer");
 		sb.append("</role>");
 		sb.append(ENTER);
 		sb.append("</permissions.user>");
@@ -290,19 +244,6 @@ public class GallagherMindTouchServiceImpl implements GallagherMindTouchService
 		return sb.toString();
 	}
 
-
-	/**
-	 * @param roles
-	 * @return
-	 */
-	private Map<String, String> getRolesMapping(final String property)
-	{
-		final Map<String, String> roleGroupMap = Splitter.on(",").omitEmptyStrings().trimResults().withKeyValueSeparator("=")
-				.split(property);
-		return roleGroupMap;
-	}
-
-
 	/**
 	 * @return the configurationService
 	 */
@@ -310,7 +251,6 @@ public class GallagherMindTouchServiceImpl implements GallagherMindTouchService
 	{
 		return configurationService;
 	}
-
 
 	/**
 	 * @param configurationService

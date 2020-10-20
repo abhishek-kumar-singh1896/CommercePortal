@@ -3,7 +3,7 @@
  */
 package com.gallagher.core.services;
 
-import de.hybris.platform.core.model.user.CustomerModel;
+import de.hybris.platform.b2b.model.B2BCustomerModel;
 
 import java.io.IOException;
 
@@ -17,5 +17,5 @@ import org.dom4j.DocumentException;
 public interface GallagherMindTouchService
 {
 
-	void pushCustomerToMindTouch(final CustomerModel customer) throws IOException, DocumentException;
+	void pushCustomerToMindTouch(final B2BCustomerModel customer) throws IOException, DocumentException;
 }

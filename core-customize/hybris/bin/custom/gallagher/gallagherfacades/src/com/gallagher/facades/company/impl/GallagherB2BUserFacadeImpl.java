@@ -43,11 +43,14 @@ public class GallagherB2BUserFacadeImpl extends DefaultB2BUserFacade
 		super.updateCustomer(customerData);
 		publishCustomerRegistrationEvent(customerData);
 
-		/*
-		 * if (StringUtils.isNotBlank(customerData.getDisplayUid())) { final B2BCustomerModel customerModel =
-		 * getUserService().getUserForUID(customerData.getDisplayUid(), B2BCustomerModel.class);
-		 * pushToMindTouch(customerModel); }
-		 */
+
+		if (StringUtils.isNotBlank(customerData.getDisplayUid()))
+		{
+			final B2BCustomerModel customerModel = getUserService().getUserForUID(customerData.getDisplayUid(),
+					B2BCustomerModel.class);
+			pushToMindTouch(customerModel);
+		}
+
 	}
 
 	/**
