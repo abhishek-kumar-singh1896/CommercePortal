@@ -26,6 +26,12 @@
 		class="com.gallagher.sap.sapcpicustomerexchange.service.impl.GallagherSCPICustomerOutboundService"
 		parent="sapCpiCustomerOutboundService" />
 
+	    <!-- Send Outbound B2BCustomer Service -->
+	<alias name="gallagherSCPIB2BCustomerOutboundService" alias="b2bCustomerExportService" />
+	<bean id="gallagherSCPIB2BCustomerOutboundService"
+		class="com.gallagher.sap.sapcpicustomerexchangeb2b.outbound.services.impl.GallagherSCPIB2BCustomerOutboundServiceImpl"
+		parent="sapCpiB2BCustomerOutboundService" />
+          
 	<!-- Outbound B2BCustomer Conversion Service -->
 	<alias name="gallagherSCPIB2BCustomerConversionService" alias="sapCpiB2BCustomerConversionService" />
 	<bean id="gallagherSCPIB2BCustomerConversionService"
@@ -88,10 +94,21 @@
 
 	<!-- register the customer interceptor -->
 	<bean id="sapB2BCustomerInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
-		<property name="interceptor" ref="defaultB2BCustomerInterceptor" />
+		<property name="interceptor" ref="gallagherB2BCustomerInterceptor" />
 		<property name="typeCode" value="B2BCustomer" />
 		<property name="order" value="2147483647" />
 	</bean>
+	
+	
+	<!-- customer interceptor (onValidate of interceptor is called for every save of B2B CustomerModel) -->
+	<bean id="gallagherB2BCustomerInterceptor" class="com.gallagher.sapcustomerb2b.outbound.GallagherB2BCustomerInterceptor"
+		  autowire="byName">
+		<property name="b2bCustomerExportService" ref="b2bCustomerExportService" />
+		<property name="storeSessionFacade" ref="storeSessionFacade" />
+		<property name="customerAddressReplicationUtilityService" ref="customerAddressReplicationUtilityService" />
+		<property name="sapContactIdGenerator" ref="sapb2bContactIdGenerator"/>
+	</bean>
+		
 	
 	<!-- register the customer interceptor to trigger the sap consumer export -->
 	<bean id="gallagherSAPCustomerInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">

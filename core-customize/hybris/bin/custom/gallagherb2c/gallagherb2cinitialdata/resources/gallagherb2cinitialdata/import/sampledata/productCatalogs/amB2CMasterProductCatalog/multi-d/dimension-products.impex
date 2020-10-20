@@ -22,7 +22,7 @@ INSERT_UPDATE VariantValueCategory ; code[unique=true] ; name       ; $supercate
 
 
 #Updating product information
-INSERT_UPDATE Product;code[unique=true];baseProductCode;$supercategories;unit(code);variantForImage;eligibleForLatAm;baseStores(uid);$catalogVersion;ean;$approved
+INSERT_UPDATE Product;code[unique=true];baseProductCode;$supercategories;unit(code);variantForImage;eligibleForCL;baseStores(uid);$catalogVersion;ean;$approved
 ;heavy-duty-leadout-cable-12.5-gauge-65-foot;heavy-duty-leadout-cable-12.5-gauge;B2C_65Foot;EA;TRUE;TRUE;amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA
 ;heavy-duty-leadout-cable-12.5-gauge-330-foot;heavy-duty-leadout-cable-12.5-gauge;B2C_330Foot;EA;;TRUE;amB2CGlobal,amB2CNZ,amB2CAU,amB2CUS,amB2CCA
 

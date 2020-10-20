@@ -23,6 +23,12 @@
 				<attribute qualifier="units" type="StringCollection">
 					<persistence type="property" />
 				</attribute>
+				<attribute qualifier="addedUnits" type="StringCollection">
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="deletedUnits" type="StringCollection">
+					<persistence type="property" />
+				</attribute>
 			</attributes>
 		</itemtype>
 

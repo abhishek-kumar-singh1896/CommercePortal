@@ -168,7 +168,7 @@
                     <editorArea:attribute qualifier="baseProductCode" />
                     <editorArea:attribute qualifier="baseStores" />
                     <editorArea:attribute qualifier="variantForImage" />
-                    <editorArea:attribute qualifier="eligibleForLatAm" />
+                    <editorArea:attribute qualifier="eligibleForChile" />
                    <editorArea:attribute qualifier="plpProductDescription" editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)" />
                 </editorArea:section>
                 <editorArea:section name="hmc.section.gallagher.ProductReferences.SpareParts">
@@ -229,7 +229,7 @@
 					<editorArea:attribute qualifier="baseProductCode" />
 					<editorArea:attribute qualifier="baseStores" />
 					<editorArea:attribute qualifier="variantForImage" />
-					<editorArea:attribute qualifier="eligibleForLatAm" />
+					<editorArea:attribute qualifier="eligibleForChile" />
 					<editorArea:attribute qualifier="plpProductDescription"
 						editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)" />
 				</editorArea:section>
@@ -419,5 +419,25 @@
             </advanced-search:field-list>
         </advanced-search:advanced-search>
     </context>
+    
+    <context merge-by="type" parent="CMSItem" type="CMSNavigationNode" component="editor-area">
+		<editorArea:editorArea>
+			<editorArea:tab name="hmc.tab.cms.restrictions">
+				<editorArea:section name="hmc.section.cms.restrictions">
+					<editorArea:attribute qualifier="restrictions" />
+				</editorArea:section>
+			</editorArea:tab>
+		</editorArea:editorArea>
+	</context>
+	
+	<context merge-by="type" parent="CMSItem" type="AbstractRestriction" component="editor-area">
+		<editorArea:editorArea>
+			<editorArea:tab name="hmc.properties">
+				<editorArea:section name="hmc.restriction.navigation.nodes">
+					<editorArea:attribute qualifier="navigationNodes" />
+				</editorArea:section>
+			</editorArea:tab>
+		</editorArea:editorArea>
+	</context>
     
 </config>

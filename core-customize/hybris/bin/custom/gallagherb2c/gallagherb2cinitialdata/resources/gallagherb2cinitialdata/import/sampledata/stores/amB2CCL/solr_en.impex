@@ -1,0 +1,54 @@
+$indexedType=amB2CCLProductType
+ 
+# Language
+$lang=en
+ 
+UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$indexedType] ; name[unique=true]                                         ; displayName[lang=$lang]                                         
+                           ;                                                               ; Energía Almacenada                                        ; Energía Almacenada (Joules)                                     
+                           ;                                                               ; Distancia de alambres múltiples recomendada por Gallagher ; Distancia de alambres múltiples recomendada por Gallagher) (km) 
+                           ;                                                               ; Condiciones ideales de distancia de alambres múltiples    ; Condiciones ideales de distancia de alambres múltiples (km)     
+                           ;                                                               ; i Series Compatible (Energizers)                          ; i Series Compatible (True/False)                                
+                           ;                                                               ; Outdoors Suitable                                         ; Outdoors Suitable (True/False)                                  
+                           ;                                                               ; Power Input                                               ; Power Input                                                     
+                           ;                                                               ; Tamaño de la propiedad                                    ; Tamaño de la propiedad (Hectares)                               
+                           ;                                                               ; Digital Display                                           ; Digital Display (True/False)                                    
+                           ;                                                               ; i Series Compatible (Accesorios)                          ; i-series Compatiable (True/False)                               
+                           ;                                                               ; Ohms Per Km (Alambres)                                    ; Ohms Per Km                                                     
+                           ;                                                               ; Voltaje a 2 km del cerco                                  ; Voltaje a 2 km del cerco (kV)                                   
+                           ;                                                               ; Voltaje a 5 km del cerco                                  ; Voltaje a 5 km del cerco (kV)                                   
+                           ;                                                               ; Voltaje a 10 km del cerco                                 ; Voltaje a 10 km del cerco (kV)                                  
+                           ;                                                               ; Post Height                                               ; Post Height (mm)                                                
+                           ;                                                               ; Number of Wires                                           ; Number of Wires                                                 
+                           ;                                                               ; Strainer Type                                             ; Strainer Type                                                   
+                           ;                                                               ; Includes Joint Clamp                                      ; Includes Joint Clamp (True/False)                               
+                           ;                                                               ; Post Type (Aisladores)                                    ; Post Type                                                       
+                           ;                                                               ; Insulator Type                                            ; Insulator Type                                                  
+                           ;                                                               ; Post Type (Desplazadores)                                 ; Post Type                                                       
+                           ;                                                               ; Mount Type                                                ; Mount Type                                                      
+                           ;                                                               ; Product Length                                            ; Product Length (mm)                                             
+                           ;                                                               ; Gate Type                                                 ; Gate Type                                                       
+                           ;                                                               ; Length (Portones)                                         ; Length (mm)                                                     
+                           ;                                                               ; Voltaje a 500m del cerco                                  ; Voltaje a 500m del cerco (kV)                                   
+                           ;                                                               ; Voltaje a 1km del cerco                                   ; Voltaje a 1km del cerco (kV)                                    
+                           ;                                                               ; Mixed Metals                                              ; Mixed Metals                                                    
+                           ;                                                               ; Ohms Per Km (Cintas)                                      ; Ohms Per Km                                                     
+                           ;                                                               ; Proporción de Engranaje                                   ; Proporción de Engranaje                                         
+                           ;                                                               ; Capacidad del conductor (largo)                           ; Capacidad del conductor (largo)                                 
+                           ;                                                               ; Pre-wound with                                            ; Pre-wound with                                                  
+                           ;                                                               ; Fence  Type                                               ; Fence  Type                                                     
+                           ;                                                               ; Wire Amount                                               ; Wire Amount                                                     
+                           ;                                                               ; Wire Type                                                 ; Wire Type                                                       
+                           ;                                                               ; Number of Traits Recorded                                 ; Number of Traits Recorded                                       
+                           ;                                                               ; EID Compatiable                                           ; EID Compatiable (True/False)                                    
+                           ;                                                               ; Drafting                                                  ; Drafting (True/False)                                           
+                           ;                                                               ; Intergrated EID Reader                                    ; Intergrated EID Reader (True/False)                             
+                           ;                                                               ; Compatible with Gallagher Livestock (Datos)               ; Compatible with Gallagher Livestock web/mobile app (True/False) 
+                           ;                                                               ; View Pedigree Tree                                        ; View Pedigree Tree (True/False)                                 
+                           ;                                                               ; Use                                                       ; Use                                                             
+                           ;                                                               ; Capacidad de pesaje (Barras)                              ; Capacidad de pesaje (kg)                                        
+                           ;                                                               ; Capacidad de pesaje (Plataformas)                         ; Capacidad de pesaje (kg)                                        
+                           ;                                                               ; Product Type                                              ; Product Type                                                    
+                           ;                                                               ; Compatible with Gallagher Livestock (Lectores)            ; Compatible with Gallagher Livestock (True/False)                
+                           ;                                                               ; animalCompatibility                                       ; Animal Type                                                     
+                           
+                           
