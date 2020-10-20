@@ -312,6 +312,11 @@
 						</property>
 					</custom-properties>
 				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="priceOnApplication" type="java.lang.Boolean">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<description>Attribute for product POA</description>
+				</attribute>
 			</attributes>
 
 		</itemtype>

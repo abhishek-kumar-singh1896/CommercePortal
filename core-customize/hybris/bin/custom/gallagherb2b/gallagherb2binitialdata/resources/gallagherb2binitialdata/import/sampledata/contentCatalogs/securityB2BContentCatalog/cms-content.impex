@@ -2583,7 +2583,21 @@ INSERT_UPDATE BaseStore2DeliveryModeRel;source(uid)[unique=true];target(code)[un
 ;securityB2BNZ;free-standard-shipping
 
 ##### Base Store Delivery Mode - free-standard-shipping #####
+#### Price on Application Component for Product Details Page ####
 
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;linkname;&componentRef
+;;priceOnApplicationLinkComponent;priceOnApplicationLinkComponent;"/";"Price on Application";priceOnApplicationLinkComponent
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;POA;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;priceOnAppSlot-productDetailsPage;Price on Application Slot for Product Details Page;true;priceOnApplicationLinkComponent
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;POA-ProductDetailsPageTemplate;POA;;priceOnAppSlot-productDetailsPage;true
+
+#### Price on Application Component for Product Details Page ####
 
 
 
