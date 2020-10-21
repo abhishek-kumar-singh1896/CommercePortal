@@ -4,6 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags"%>
 <%@ taglib prefix="cart" tagdir="/WEB-INF/tags/responsive/cart" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:set var="productName" value="${fn:escapeXml(product.name)}" />
 
 {"quickOrderErrorData": [
@@ -54,6 +55,12 @@
                     <cart:popupCartItems entry="${entry}" product="${product}" quantity="${quantity}"/>
                 </c:otherwise>
             </c:choose>
+            
+            <input type="hidden" id="entryID" value="${entry.entryNumber}" name="entryNumber" />
+             <c:if test="${not empty product.productSpecificDetailsHeading}">
+            	${product.productSpecificDetailsHeading} <br>
+            	<textarea name="deliveryInstructionEntry" id="deliveryInstructionEntry" rows="5" cols="30" placeholder="80 character limit" />
+            </c:if>
 
             <ycommerce:testId code="checkoutLinkInPopup">
                 <a href="${cartUrl}" class="btn btn-primary btn-block add-to-cart-button">

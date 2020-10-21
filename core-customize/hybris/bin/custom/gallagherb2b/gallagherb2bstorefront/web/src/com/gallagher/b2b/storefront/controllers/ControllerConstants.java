@@ -218,6 +218,11 @@ public interface ControllerConstants
 				String QuickOrderLineItem = "fragments/quickOrder/quickOrderLineItem"; // NOSONAR
 				String TemplateRestorePopup = "fragments/quickOrder/templateRestorePopup"; // NOSONAR
 			}
+
+			interface DeliveryComments // NOSONAR
+			{
+				String DeliveryInstructionPopup = "fragments/deliveryComments/deliveryCommentsPopup"; // NOSONAR
+			}
 		}
 	}
 }

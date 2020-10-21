@@ -12,9 +12,10 @@ import de.hybris.platform.core.model.order.AbstractOrderEntryModel;
 import de.hybris.platform.jalo.JaloSession;
 import de.hybris.platform.product.UnitService;
 import de.hybris.platform.servicelayer.i18n.CommonI18NService;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
@@ -29,6 +30,13 @@ public class B2badvanceOrderEntryPopulator extends OrderEntryPopulator {
 
 	@Autowired
 	private CommonI18NService commonI18NService;
+
+	@Override
+	public void populate(final AbstractOrderEntryModel source, final OrderEntryData target)
+	{
+		super.populate(source,target);
+		target.setDeliveryinstruction(source.getDeliveryInstruction());
+	}
 
 	@Override
 	protected void addTotals(final AbstractOrderEntryModel orderEntry, final OrderEntryData entry) {

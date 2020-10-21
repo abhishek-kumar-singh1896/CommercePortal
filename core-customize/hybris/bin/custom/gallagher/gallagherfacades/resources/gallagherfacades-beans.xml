@@ -64,6 +64,8 @@
 		<property name="plpProductDescription" type="String" />
 		<property name="categoryPaths" type="java.util.List&lt;String&gt;" />
 		<property name="modifiedTime" type="java.util.Date" />
+		<property name="commentPlaceHolder" type="String" />
+		<property name="productSpecificDetailsHeading" type="String" />
 <!-- 		<property name="marketingDescription" type="String"/> -->
 	</bean>
 
@@ -96,4 +98,19 @@
 	<bean class="de.hybris.platform.commercefacades.product.data.ReviewData">
 		<property name="formattedReviewDate" type="String"/>
 	</bean>
+	
+	<bean class="de.hybris.platform.commercefacades.order.data.DeliveryInstructionData">
+		<property name="deliveryinstruction" type="String" />
+		<property name="commentPlaceHolder" type="String" />
+		<property name="entryNumber" type="Integer" />
+	</bean>
+	
+	<bean class="de.hybris.platform.commercefacades.order.data.OrderEntryData">
+		<property name="deliveryinstruction" type="String" />
+	</bean>
+	
+	<bean class="de.hybris.platform.commercefacades.order.data.AbstractOrderData">
+		<property name="deliveryInstruction" type="String" />
+	</bean>
+	
 </beans>

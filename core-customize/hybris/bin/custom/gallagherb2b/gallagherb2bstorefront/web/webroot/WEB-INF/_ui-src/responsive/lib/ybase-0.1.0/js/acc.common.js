@@ -1,4 +1,5 @@
 ACC.common = {
+		_autoload : ["bindDeliveryInstructionsLink"],
 	currentCurrency: $("main").data('currencyIsoCode') || "USD",
 	processingMessage: $("<img src='" + ACC.config.commonResourcePath + "/images/spinner.gif'/>"),
 
@@ -39,11 +40,91 @@ ACC.common = {
 	    
 	hideLoader : function () {
 	       $('.loader').hide();
-	    } 
+	    },
+	    
+	    bindDeliveryInstructionsLink : function() {
+			$(document).on("click",".delivery-instructions-popup",
+							function(e) {e.preventDefault();
+								ACC.colorbox
+										.open($(this).data("cboxTitle"),{
+													href : $(this).data("link"),
+													width : "400px",
+													fixed : true,
+													top : 50,
+													initialWidth: "0px",
+													initialHeight: "0px",
+													reposition: false,
+													onComplete: function() {
+														$.colorbox.resize();
+														ACC.common.refreshScreenReaderBuffer();
+														if($(".page-orderTemplatePage").length >0){
+															$("#deliveryInstructionEntry").val("");
+															}
+													},
+													fixed: true
+												});
+								
+							});
+			
+			$(window).resize(function(){
+			    $.colorbox.resize({
+			      width: "400px"
+			    });
+			});
+		},
+	    
+	    submitInstruction : function() {
+			var isValid = false;
+			var entryNumber = $("#entryID").val();
+			var deliveryInstruction = $("#deliveryInstructionEntry").val().trim();
+			var regex = /^[A-Za-z0-9\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,\-.\/:;<=>?@\[\]^_`{|}~+\s.+]+$/;
+			if(deliveryInstruction.length==0 || regex.test(deliveryInstruction))
+			{
+				$(".textareaCharactersErrorbox").hide();
+			$.ajax({
+				type : "POST",
+				url : ACC.config.encodedContextPath + "/checkout/setdeliveryinstruction",
+				async: false,
+				data : {
+					"entryNumber" : entryNumber,
+					"deliveryInstruction" : deliveryInstruction
+				},
+				success : function(data) {
+					var response = JSON.stringify(data);
+					response=response.replace(/\"/g, '')
+					
+					if(response === "valid")
+					{
+						$(".textareaErrorbox").hide();
+						isValid = true;
+					}
+					else
+					{
+						$(".textareaErrorbox").show();
+						isValid = false;
+					}
+					
+				},
+				error:function(data) {
+					isValid = false;
+				},
+			});
+			}
+			else
+				{
+					$("#cboxContent").height("+=40");
+					$("#cboxLoadedContent").height("+=20");
+					$(".textareaCharactersErrorbox").show();
+					isValid = false;
+				}
+			return isValid;
+		}
 };
 
 
-
+$(document).on("change", ".add-to-cart #deliveryInstructionEntry", function() {
+	var returnVal = ACC.common.submitInstruction();
+});
 
 
 /* Extend jquery with a postJSON method */
