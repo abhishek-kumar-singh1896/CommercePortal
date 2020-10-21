@@ -66,6 +66,7 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 	private static final Logger LOG = LoggerFactory.getLogger(GallagherEditB2BCustomerHandler.class);
 
 	private static final String EMAIL_ALREADY_PRESENT = "duplicateHybrisCustomer";
+	private static final String UID_FORMAT_NOT_CORRECT = "customerUIDFormatNotCorrect";
 	private static final String INPUT_OBJECT = "$_inputObject";
 	private static final String EMAIL_REGEX = "email.regex";
 
@@ -93,7 +94,16 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 			final B2BCustomerModel currentCustomerModel = (B2BCustomerModel) currentObject;
 			final CustomerData b2bCustomer = getCustomerConverter().convert(currentCustomerModel);
 			b2bCustomer.setKeycloakGUID(currentCustomerModel.getKeycloakGUID());
-			final String email = b2bCustomer.getEmail();
+			String email = null;
+			if (b2bCustomer.getUid().startsWith("sec|"))
+			{
+				email = b2bCustomer.getUid().substring(4, b2bCustomer.getUid().length());
+			}
+			else
+			{
+				getNotificationService().notifyUser(StringUtils.EMPTY, UID_FORMAT_NOT_CORRECT, Level.FAILURE, null);
+				throw new ObjectSavingException(UID_FORMAT_NOT_CORRECT, new Throwable(UID_FORMAT_NOT_CORRECT));
+			}
 
 			LOG.debug("Checking if the customer is already present in keyCloak and C4C");
 			final Boolean isEmailValid = isCustomerEmailValid(widgetInstanceManager, email);

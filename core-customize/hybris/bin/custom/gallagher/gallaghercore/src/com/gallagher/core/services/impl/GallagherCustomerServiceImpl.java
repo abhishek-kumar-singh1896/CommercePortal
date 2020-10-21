@@ -276,7 +276,8 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 				customer.setUid("sec|" + c4cCustomer.getEmail());
 				updated = true;
 			}
-			if (customer.isLoginDisabled() != c4cCustomer.getLoginDisabled())
+			if (customer.isLoginDisabled() && null != c4cCustomer.getLoginDisabled()
+					&& (customer.isLoginDisabled() != c4cCustomer.getLoginDisabled()))
 			{
 				customer.setLoginDisabled(c4cCustomer.getLoginDisabled());
 				updated = true;
