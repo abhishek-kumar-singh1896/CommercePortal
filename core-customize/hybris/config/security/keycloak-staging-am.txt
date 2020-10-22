@@ -1,6 +1,6 @@
 {
   "realm": "gallagher",
-  "auth-server-url": "https://integration-auth.security.gallagher.io/auth",
+  "auth-server-url": "https://integration-auth.security.gallagher.cloud/auth",
   "ssl-required": "external",
   "resource": "am-commerce",
   "public-client": true,

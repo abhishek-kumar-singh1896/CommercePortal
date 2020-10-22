@@ -159,6 +159,7 @@
 		class="com.gallagher.facades.product.converters.populator.GallagherProductReferencePopulator">
 		<property name="productConverter" ref="productConverter"></property>
 		<property name="classificationPopulator" ref="productClassificationPopulator"></property>
+		<property name="productStockPopulator" ref="productStockPopulator"/>
 	</bean>
 
 	<alias name="gallagherProductPopulator" alias="productPopulator" />

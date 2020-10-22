@@ -210,6 +210,11 @@ public interface ControllerConstants
 			{
 				String RegisterProductPopup = "fragments/registerProduct/registerProductPopup";
 			}
+
+			interface ViewAlternativeProducts
+			{
+				String ViewAlternativeProductPopup = "fragments/alternativeProduct/alternativeProductPopup";
+			}
 		}
 	}
 }
