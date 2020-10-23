@@ -14,7 +14,6 @@ import de.hybris.platform.commercefacades.product.data.ProductData;
 import de.hybris.platform.commerceservices.enums.UiExperienceLevel;
 import de.hybris.platform.commerceservices.i18n.CommerceCommonI18NService;
 import de.hybris.platform.core.model.c2l.LanguageModel;
-import de.hybris.platform.core.model.product.ProductModel;
 import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.product.ProductService;
 import de.hybris.platform.servicelayer.config.ConfigurationService;
@@ -22,7 +21,6 @@ import de.hybris.platform.servicelayer.user.UserService;
 import de.hybris.platform.store.BaseStoreModel;
 import de.hybris.platform.store.services.BaseStoreService;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -164,13 +162,7 @@ public class UiThemeResourceBeforeViewHandler implements BeforeViewHandler
 			Collection<BaseStoreModel> stores;
 			if (StringUtils.isEmpty(productData.getBaseProduct()))
 			{
-				final ProductModel product = productService.getProductForCode(productData.getCode());
-				stores = product.getBaseStores();
-				if (Boolean.TRUE.equals(product.isEligibleForLatAm()))
-				{
-					stores = new ArrayList<BaseStoreModel>(stores);
-					stores.add(baseStoreService.getBaseStoreForUid("amB2CLatAm"));
-				}
+				stores = gallagherProductService.getBaseStoresForBaseProduct(productData.getCode());
 			}
 			else
 			{

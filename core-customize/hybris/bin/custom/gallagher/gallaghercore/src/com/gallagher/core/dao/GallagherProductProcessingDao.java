@@ -88,4 +88,20 @@ public interface GallagherProductProcessingDao
 	 */
 	ProductModel getBaseProductForProductReferenceSync(final CatalogVersionModel catalogVersion, final Date lastStartTime,
 			final ProductModel product);
+
+	/**
+	 * Returns the list of available approved Catalog Versions for given code of Variant Product.
+	 *
+	 * @param variantProductCode
+	 * @return availableCatalogVersions
+	 */
+	List<CatalogVersionModel> getAvailableApprovedCatalogVersionForCode(final String variantProductCode);
+
+	/**
+	 * Returns the list of available approved Catalog Versions for given code of Base Product.
+	 *
+	 * @param variantProductCode
+	 * @return availableCatalogVersions
+	 */
+	List<CatalogVersionModel> getApprovedCatalogVersionForBaseProduct(final String baseProductCode);
 }

@@ -16,4 +16,6 @@ public interface GallagherProductService
 {
 	public Set<BaseStoreModel> getBaseStoresForVariant(final String variantProductCode);
 
+	public Set<BaseStoreModel> getBaseStoresForBaseProduct(final String baseProductCode);
+
 }
