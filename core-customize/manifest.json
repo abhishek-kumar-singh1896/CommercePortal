@@ -2,6 +2,7 @@
   "commerceSuiteVersion": "1905",
   "useCloudExtensionPack": true,
   "enableImageProcessingService": true,
+  "disableImageReuse": true,
   "extensions": [
     "adaptivesearchsolr",
     "adaptivesearchbackoffice",
