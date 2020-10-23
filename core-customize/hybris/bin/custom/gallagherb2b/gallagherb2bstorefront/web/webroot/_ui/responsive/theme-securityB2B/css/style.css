@@ -10729,6 +10729,7 @@ fieldset[disabled] .btn-primary.active {
 .add-to-cart .add-to-cart-item .thumb {
   float: left;
   margin-right: 10px;
+  width: 35%;
 }
 .add-to-cart .add-to-cart-item .thumb img {
   max-width: 65px;
@@ -10743,7 +10744,7 @@ fieldset[disabled] .btn-primary.active {
 }
 .add-to-cart .add-to-cart-item .price {
   font-size: 22px;
-  text-align: right;
+  /* text-align: center; */
   font-weight: bold;
 }
 .owl-carousel {
@@ -15536,10 +15537,10 @@ fieldset#startDate .form-group .control-label {
   width: 14px;
 }
 #cboxMiddleLeft {
-  width: 14px;
+  /* width: 14px; */
 }
 #cboxMiddleRight {
-  width: 14px;
+  /* width: 14px; */
 }
 #cboxContent {
   background: #fff;
@@ -17104,8 +17105,14 @@ fieldset > div:last-of-type label {
   margin-bottom: 20px;
 }
 textarea {
-  min-height: 245px;
+  /* min-height: 245px; */
+  width: 100%;
 }
+
+.shoppingHeading {
+    font-weight: bold;
+}
+
 textarea + .help-block {
   font-size: 12px;
   margin-bottom: 25px;

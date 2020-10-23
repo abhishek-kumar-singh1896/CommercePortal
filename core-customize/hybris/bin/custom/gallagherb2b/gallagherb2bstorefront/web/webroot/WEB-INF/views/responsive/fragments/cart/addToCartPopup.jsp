@@ -57,9 +57,10 @@
             </c:choose>
             
             <input type="hidden" id="entryID" value="${entry.entryNumber}" name="entryNumber" />
-             <c:if test="${not empty product.productSpecificDetailsHeading}">
-            	${product.productSpecificDetailsHeading} <br>
-            	<textarea name="deliveryInstructionEntry" id="deliveryInstructionEntry" rows="5" cols="30" placeholder="80 character limit" />
+            
+            <c:if test="${not empty product.productSpecificDetailsHeading}">
+            	<div class="shoppingHeading">${product.productSpecificDetailsHeading}</div>
+            	<textarea name="deliveryInstructionEntry" id="deliveryInstructionEntry" rows="3" cols="30" placeholder="80 character limit" />
             </c:if>
 
             <ycommerce:testId code="checkoutLinkInPopup">

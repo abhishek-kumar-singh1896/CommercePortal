@@ -10,16 +10,23 @@
 <c:url value="/checkout/setdeliveryInstruction"
 	var="deliveryInstructionUrl" />
 
-<form:form method="post" commandName="deliveryInstrutionsform"
-	id="deliveryInstrutionsform" >
+<form:form method="post" modelAttribute="deliveryInstrutionsform"
+	id="deliveryInstrutionsform">
 	<input type="hidden" id="refreshUrl" name="refreshUrl" />
 	<br>
-	<input type="hidden" id="entryID" value="${deliveryInstrutionsform.entryNumber}"
-		name="entryNumber" />
-		<textarea spellcheck="false" class="form-control add-comment-text-area"  name="deliveryInstructionEntry" placeholder="<c:choose><c:when test="${not empty deliveryInstrutionsform.commentPlaceHolder}">${deliveryInstrutionsform.commentPlaceHolder}</c:when><c:otherwise>80 character limit</c:otherwise></c:choose>" id="deliveryInstructionEntry"  maxlength="<spring:theme code="checkout.instruction.length.limit" />">${deliveryInstrutionsform.deliveryInstruction}</textarea>
-		<div class="help-block textareaErrorbox">
-					<span ><spring:theme code="checkout.instruction.length.invalid" /></span>
-					</div>
+	<input type="hidden" id="entryID"
+		value="${deliveryInstrutionsform.entryNumber}" name="entryNumber" />
+		<%-- <textarea spellcheck="false" class="form-control add-comment-text-area"  name="deliveryInstructionEntry" id="deliveryInstructionEntry">
+        ${deliveryInstrutionsform.deliveryInstruction}
+        </textarea> --%>
+	<textarea spellcheck="false" class="form-control add-comment-text-area"
+		name="deliveryInstructionEntry"
+		placeholder="<c:choose><c:when test="${not empty deliveryInstrutionsform.commentPlaceHolder}">${deliveryInstrutionsform.commentPlaceHolder}</c:when><c:otherwise>80 character limit</c:otherwise></c:choose>"
+		id="deliveryInstructionEntry"
+		maxlength="<spring:theme code="checkout.instruction.length.limit" />">${deliveryInstrutionsform.deliveryInstruction}</textarea>
+	<div class="help-block textareaErrorbox">
+		<span><spring:theme code="checkout.instruction.length.invalid" /></span>
+	</div>
 	<button class="btn btn-primary btn-block" id="instruction_add_button"
 		type="submit">
 		<spring:theme code="deliveryinstruction.add" />

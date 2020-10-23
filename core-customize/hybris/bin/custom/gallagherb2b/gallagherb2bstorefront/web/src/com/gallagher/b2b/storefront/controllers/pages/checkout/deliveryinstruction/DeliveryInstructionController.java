@@ -63,17 +63,42 @@ public class DeliveryInstructionController
 	{
 		System.out.println("Inside Controller");
 
-		final String result = VALID;
+		String result = VALID;
 
-		/*
-		 * if (validateDeliveryInstruction(deliveryInstrutionsform)) { result = INVALID; } else {
-		 */
+
+		if (validateDeliveryInstruction(deliveryInstrutionsform))
+		{
+			result = INVALID;
+		}
+		else
+		{
+
 			final String deliveryInstruction = deliveryInstrutionsform.getDeliveryInstruction();
 			final Integer entryNumber = deliveryInstrutionsform.getEntryNumber();
-		getGallagherCheckoutDeliveryInstructionFacade().setDeliveryInstructions(deliveryInstruction, entryNumber);
+			getGallagherCheckoutDeliveryInstructionFacade().setDeliveryInstructions(deliveryInstruction, entryNumber);
 
-		//}
+		}
 		return result;
+
+	}
+
+	/**
+	 * Validates Delivery Instruction Length
+	 *
+	 * @param deliveryInstrutionsform
+	 *           Delivery instruction form
+	 * @return true if delivery instruction Length is Invalid
+	 */
+	private boolean validateDeliveryInstruction(final DeliveryInstrutionsform deliveryInstrutionsform)
+	{
+		boolean invalid = false;
+
+		if (StringUtils.isNotEmpty(deliveryInstrutionsform.getDeliveryInstruction())
+				&& StringUtils.length(deliveryInstrutionsform.getDeliveryInstruction()) > VALID_INSTRUCTION_LENGTH)
+		{
+			invalid = true;
+		}
+		return invalid;
 
 	}
 

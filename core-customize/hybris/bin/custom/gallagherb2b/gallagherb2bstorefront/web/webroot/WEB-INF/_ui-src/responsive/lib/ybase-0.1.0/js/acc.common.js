@@ -1,5 +1,5 @@
 ACC.common = {
-		_autoload : ["bindDeliveryInstructionsLink"],
+		_autoload : ["bindDeliveryInstructionsLink","deliveryInstructionbutton"],
 	currentCurrency: $("main").data('currencyIsoCode') || "USD",
 	processingMessage: $("<img src='" + ACC.config.commonResourcePath + "/images/spinner.gif'/>"),
 
@@ -72,6 +72,28 @@ ACC.common = {
 			    });
 			});
 		},
+		
+		deliveryInstructionbutton : function() {
+			$(document).on("click", "#instruction_add_button", function(event) {
+				event.preventDefault();
+				var returnVal;
+				if($(".page-orderTemplatePage").length >0)
+				{
+					 returnVal =ACC.common.validateInstruction();
+				}
+				else {
+					returnVal = ACC.common.submitInstruction();
+				}
+				if (returnVal) {
+					var $ele = $("div[comment-id='"+$("#entryID").val()+"']");
+					$ele.find("input").val($("#deliveryInstructionEntry").val());
+					$ele.find("a").html("<div class='glyphicon glyphicon-minus-sign'></div>&nbsp;<div class='deleveryinstructiontext'>"+$("#deliveryInstructionEntry").val()+"</div></a>");
+					if($("#deliveryInstructionEntry").val() == "")
+						$ele.find("a").html("<span class='glyphicon glyphicon-plus-sign'></span>&nbsp;<span class='addcommenttext'>"+"add comment"+"</span></a>");
+					$.colorbox.close();
+				}
+			});
+		},
 	    
 	    submitInstruction : function() {
 			var isValid = false;
@@ -125,7 +147,6 @@ ACC.common = {
 $(document).on("change", ".add-to-cart #deliveryInstructionEntry", function() {
 	var returnVal = ACC.common.submitInstruction();
 });
-
 
 /* Extend jquery with a postJSON method */
 jQuery.extend({
