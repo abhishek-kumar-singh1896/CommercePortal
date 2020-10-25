@@ -109,7 +109,6 @@ INSERT_UPDATE IntegrationObjectItem ; integrationObject(code)[unique=true] ; cod
                                     ; OutboundC4cCustomer                  ; Customer            ; Customer   ; true                  
                                     ; OutboundC4cCustomer                  ; Country             ; Country    ;                       
                                     ; OutboundC4cCustomer                  ; Address             ; Address    ;                       
-                                    ; OutboundC4cCustomer                  ; BU                  ; BU         ;                       
                                     
 INSERT_UPDATE IntegrationObjectItemAttribute ; integrationObjectItem(integrationObject(code), code)[unique = true] ; attributeName[unique = true] ; attributeDescriptor(enclosingType(code), qualifier) ; returnIntegrationObjectItem(integrationObject(code), code) ; unique[default = false] ; autoCreate[default = false] 
                                              ; OutboundC4cCustomer:Customer                                        ; uid                          ; Customer:emailID                                    ;                                                            ; true                    ;                             
@@ -144,8 +143,6 @@ INSERT_UPDATE IntegrationObjectItemAttribute ; integrationObjectItem(integration
                                              ; OutboundC4cCustomer:Country                                         ; isocode                      ; Country:isocode                                     ;                                                            ; true                    ;                             
                                              ; OutboundC4cCustomer:Address                                         ; owner                        ; Address:owner                                       ; OutboundC4cCustomer:Customer                               ;                         ;                             
                                              ; OutboundC4cCustomer:Country                                         ; owner                        ; Country:owner                                       ; OutboundC4cCustomer:Customer                               ;                         ;                             
-                                             ; OutboundC4cCustomer:Customer                                        ; businessUnit                 ; Customer:businessUnit                               ; OutboundC4cCustomer:BU                                     
-                                             ; OutboundC4cCustomer:BU                                              ; code                         ; BU:code                                             
                                              
                                              
 ##########################################################################
@@ -158,7 +155,6 @@ INSERT_UPDATE IntegrationObjectItemAttribute ; integrationObjectItem(integration
                                              ; OutboundB2BCustomer:SAPCpiOutboundB2BContact                        ; addedUnits                   ; SAPCpiOutboundB2BContact:addedUnits                 ;                                                            ;                         
                                              ; OutboundB2BCustomer:SAPCpiOutboundB2BContact                        ; deletedUnits                 ; SAPCpiOutboundB2BContact:deletedUnits               ;                                                            ;                         
                                              ; OutboundB2BCustomer:SAPCpiOutboundB2BContact                        ; uid                          ; SAPCpiOutboundB2BContact:emailID                    ;                                                            ; true                    
-                                             ; OutboundB2BCustomer:SAPCpiOutboundB2BContact                        ; businessUnit                 ; SAPCpiOutboundB2BContact:businessUnit               ;                                                            ; true                    
                                              
 INSERT_UPDATE SAPHTTPDestination ; httpDestinationName[unique=true] ; targetURL                            ; userid            
                                  ; GGLSCPI                          ; https://www.gmail.com?sap-client=007 ; CommerceCloud_Dev 
