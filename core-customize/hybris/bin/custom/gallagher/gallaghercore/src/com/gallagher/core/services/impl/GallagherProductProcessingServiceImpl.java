@@ -550,8 +550,16 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 		{
 			for (final ProductReferenceModel referenceModel : productReferences)
 			{
-				final ProductModel refProduct = productService.getProductForCode(regionalCatalogVersion,
-						referenceModel.getTarget().getCode());
+				ProductModel refProduct = null;
+				try
+				{
+					refProduct = productService.getProductForCode(regionalCatalogVersion, referenceModel.getTarget().getCode());
+				}
+				catch (final UnknownIdentifierException exception)
+				{
+					LOGGER.info("Base Product with code " + referenceModel.getTarget().getCode() + " and CatalogVersion "
+							+ regionalCatalogVersion.getCatalog().getId() + " not found");
+				}
 				if (null != refProduct)
 				{
 					final ProductReferenceModel newProductReference = modelService.clone(referenceModel);
