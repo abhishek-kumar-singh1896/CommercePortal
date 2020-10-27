@@ -167,6 +167,7 @@
 		parent="defaultProductPopulator">
 		<property name="productPricePopulator" ref="productPricePopulator" />
 		<property name="productGalleryImagesPopulator" ref="productGalleryImagesPopulator" />
+		<property name="productDiscountPopulator" ref="gallagherProductDiscountPopulator"/>
 	</bean>
 
 	<alias name="gallagherCustomerFacade" alias="customerFacade" />
@@ -301,4 +302,8 @@
 	<bean id="gallagherIndexedPropertyPopulator" class="com.gallagher.facades.search.solrfacetsearch.populators.GallagherIndexedPropertyPopulator"
 		parent="defaultIndexedPropertyPopulator" />
 
+    <bean id="gallagherProductDiscountPopulator" class="com.gallagher.facades.product.converters.populator.GallagherProductDiscountPopulator">
+     <property name="discountService" ref="discountService"/>
+     <property name="sessionService" ref="sessionService"/>
+    </bean>
 </beans>

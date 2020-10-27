@@ -42,6 +42,7 @@ public class GallagherB2BUnitServiceImpl extends DefaultB2BUnitService implement
 	private static final String SECURITY_B2B = "securityB2B";
 	private static final String SECURITY = "security";
 	private static final String CURRENT_SESSION_SALES_AREA = "currentSessionSalesArea";
+	public static final String CURRENCY_SESSION_ATTR_KEY = "currency".intern();
 
 	@Autowired
 	private BaseStoreService baseStoreService;
@@ -146,7 +147,17 @@ public class GallagherB2BUnitServiceImpl extends DefaultB2BUnitService implement
 			getSessionService().setAttribute(CURRENT_SESSION_SALES_AREA, b2bUnit.getSalesArea());
 			getSessionService().setAttribute(Europe1Constants.PARAMS.UPG, branchInfo[3]);
 
-
+			final B2BCustomerModel currentCustomer = (B2BCustomerModel) currentUser;
+			final B2BUnitModel defaultUnit = currentCustomer.getDefaultB2BUnit();
+			if (defaultUnit != null && defaultUnit.getCurrency() != null)
+			{
+				getSessionService().setAttribute(CURRENCY_SESSION_ATTR_KEY, defaultUnit.getCurrency());
+			}
+			else
+			{
+				final BaseStoreModel store = getBaseStoreService().getCurrentBaseStore();
+				getSessionService().setAttribute(CURRENCY_SESSION_ATTR_KEY, store.getDefaultCurrency());
+			}
 		}
 	}
 

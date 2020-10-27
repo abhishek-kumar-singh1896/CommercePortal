@@ -5,9 +5,8 @@ package com.gallagher.core.pdt.interceptor;
 
 import de.hybris.platform.catalog.model.CatalogVersionModel;
 import de.hybris.platform.core.model.product.ProductModel;
-import de.hybris.platform.core.model.product.UnitModel;
+import de.hybris.platform.europe1.model.DiscountRowModel;
 import de.hybris.platform.europe1.model.PDTRowModel;
-import de.hybris.platform.europe1.model.PriceRowModel;
 import de.hybris.platform.servicelayer.interceptor.InterceptorContext;
 import de.hybris.platform.servicelayer.interceptor.InterceptorException;
 
@@ -15,59 +14,48 @@ import org.apache.commons.lang.StringUtils;
 
 
 /**
- * The GallagherPriceRowPrepareInterceptor class. Handles the Sales Area based Pricing functionalities.
- *
- * @author Nagarro-Dev
+ * @author ankituniyal
  *
  */
-public class GallagherPriceRowPrepareInterceptor extends GallagherPDTRowPrepareInterceptor
+public class GallagherDiscountRowPrepareInterceptor extends GallagherPDTRowPrepareInterceptor
 {
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public void onPrepare(final Object model, final InterceptorContext ctx) throws InterceptorException
 	{
-		if (model instanceof PriceRowModel)
+		if (model instanceof DiscountRowModel)
 		{
-			final PriceRowModel prModel = (PriceRowModel) model;
+			final DiscountRowModel dModel = (DiscountRowModel) model;
+			super.onPrepare(dModel, ctx);
 
-			if (prModel.getUnit() == null)
+			if (ctx.isNew(model) || ctx.isModified(model, DiscountRowModel.PRODUCT) || ctx.isModified(model, DiscountRowModel.PG)
+					|| ctx.isModified(model, DiscountRowModel.USER) || ctx.isModified(model, DiscountRowModel.UG)
+					|| ctx.isModified(model, DiscountRowModel.PRODUCTID) || ctx.isModified(model, DiscountRowModel.SALESAREA))
 			{
-				final UnitModel fallbackUnit = (prModel.getProduct() == null) ? null : prModel.getProduct().getUnit();
-				if (fallbackUnit == null)
-				{
-					throw new InterceptorException("missing unit for price row ");
-				}
-				else
-				{
-					prModel.setUnit(fallbackUnit);
-				}
-			}
-
-			super.onPrepare(prModel, ctx);
-
-			if (ctx.isNew(model) || ctx.isModified(model, PriceRowModel.PRODUCT) || ctx.isModified(model, PriceRowModel.PG)
-					|| ctx.isModified(model, PriceRowModel.USER) || ctx.isModified(model, PriceRowModel.UG)
-					|| ctx.isModified(model, PriceRowModel.PRODUCTID) || ctx.isModified(model, PriceRowModel.SALESAREA))
-			{
-				updateMatchValue(prModel);
+				updateMatchValue(dModel);
 			}
 		}
 	}
 
 	/**
+	 * @param dModel
+	 */
+	private void updateMatchValue(final DiscountRowModel prModel)
+	{
+		prModel.setMatchValue(Integer.valueOf(calculateMatchValue(prModel)));
+	}
+
+	/**
 	 * Calculates the match value as per the priority level
 	 */
-	protected int calculateMatchValue(final PriceRowModel price)
+	protected int calculateMatchValue(final DiscountRowModel discount)
 	{
-		final boolean _product = price.getProduct() != null || price.getProductId() != null;
-		final boolean _productGroup = price.getPg() != null;
-		final boolean _user = price.getUser() != null;
-		final boolean _userGroup = price.getUg() != null;
-		final boolean _salesArea = StringUtils.isNotBlank(price.getSalesArea())
-				&& !price.getSalesArea().equalsIgnoreCase(String.valueOf(0));
+		final boolean _product = discount.getProduct() != null || discount.getProductId() != null;
+		final boolean _productGroup = discount.getPg() != null;
+		final boolean _user = discount.getUser() != null;
+		final boolean _userGroup = discount.getUg() != null;
+		final boolean _salesArea = StringUtils.isNotBlank(discount.getSalesArea())
+				&& !discount.getSalesArea().equalsIgnoreCase(String.valueOf(0));
 
 		int value = 0;
 		if (_product)
@@ -182,37 +170,22 @@ public class GallagherPriceRowPrepareInterceptor extends GallagherPDTRowPrepareI
 	}
 
 
-	/**
-	 * Method to update the match value
-	 *
-	 * @param prModel
-	 *           the price row model
-	 */
-	private void updateMatchValue(final PriceRowModel prModel)
-	{
-		prModel.setMatchValue(Integer.valueOf(calculateMatchValue(prModel)));
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected void updateCatalogVersion(final PDTRowModel pdtModel)
 	{
-		CatalogVersionModel catver = ((PriceRowModel) pdtModel).getCatalogVersion();
+		CatalogVersionModel catver = ((DiscountRowModel) pdtModel).getCatalogVersion();
 		if (catver == null)
 		{
 			final ProductModel prod = pdtModel.getProduct();
 			if (prod != null)
 			{
 				catver = getCatalogTypeService().getCatalogVersionForCatalogVersionAwareModel(prod);
-
+				//
 				if (catver != null)
 				{
-					((PriceRowModel) pdtModel).setCatalogVersion(catver);
+					((DiscountRowModel) pdtModel).setCatalogVersion(catver);
 				}
 			}
 		}
-
 	}
 }

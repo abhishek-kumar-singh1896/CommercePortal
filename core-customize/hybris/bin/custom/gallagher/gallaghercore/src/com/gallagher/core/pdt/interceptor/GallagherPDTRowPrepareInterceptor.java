@@ -28,12 +28,12 @@ public abstract class GallagherPDTRowPrepareInterceptor extends PDTRowPrepareInt
 	@Override
 	public void onPrepare(final Object model, final InterceptorContext ctx) throws InterceptorException
 	{
+		super.onPrepare(model, ctx);
 		if (model instanceof PDTRowModel)
 		{
 			final PDTRowModel pdtModel = (PDTRowModel) model;
 			updateSalesAreaMatchQualifier(pdtModel, ctx);
 		}
-		super.onPrepare(model, ctx);
 	}
 
 	/**
@@ -58,6 +58,7 @@ public abstract class GallagherPDTRowPrepareInterceptor extends PDTRowPrepareInt
 			}
 			else
 			{
+				prModel.setSalesArea(String.valueOf(0));
 				prModel.setSalesAreaMatchQualifier(String.valueOf(0));
 			}
 		}

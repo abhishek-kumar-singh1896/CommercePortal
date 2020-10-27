@@ -779,6 +779,10 @@
 						<persistence type="property" />
 						<description>Attribute to identify the Condition Type for DiscountRow </description>
 					</attribute>
+				<attribute qualifier="matchValue" type="java.lang.Integer" autocreate="true">
+					<persistence type="property"/>
+					<modifiers read="true" write="true" search="true" optional="true" removable="false"/>
+				</attribute>
 				</attributes>
 			</itemtype>
 		</typegroup>

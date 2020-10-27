@@ -14,6 +14,8 @@ import de.hybris.platform.solrfacetsearch.search.impl.DefaultFieldNameTranslator
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherProductDiscountValueResolver;
+import com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherProductPriceRangeValueResolver;
 import com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherProductPricesValueResolver;
 import com.gallagher.core.services.GallagherSalesAreaService;
 
@@ -46,13 +48,34 @@ public class GallagherFieldNameTranslator extends DefaultFieldNameTranslator
 		final QualifierProvider qualifierProvider = valueProvider instanceof QualifierProviderAware
 				? ((QualifierProviderAware) valueProvider).getQualifierProvider() : null;
 
-		final QualifierProvider salesAreaQualifierProvider = valueProvider instanceof GallagherProductPricesValueResolver
+		QualifierProvider salesAreaQualifierProvider = valueProvider instanceof GallagherProductPricesValueResolver
 				? ((GallagherProductPricesValueResolver) valueProvider).getSalesAreaQualifierProvider()
 				: null;
 
-		final QualifierProvider userPriceGroupQualifierProvider = valueProvider instanceof GallagherProductPricesValueResolver
+		if (salesAreaQualifierProvider == null)
+		{
+			salesAreaQualifierProvider = valueProvider instanceof GallagherProductPriceRangeValueResolver
+					? ((GallagherProductPriceRangeValueResolver) valueProvider).getSalesAreaQualifierProvider()
+					: null;
+		}
+
+		if (salesAreaQualifierProvider == null)
+		{
+			salesAreaQualifierProvider = valueProvider instanceof GallagherProductDiscountValueResolver
+					? ((GallagherProductDiscountValueResolver) valueProvider).getSalesAreaQualifierProvider()
+					: null;
+		}
+
+		QualifierProvider userPriceGroupQualifierProvider = valueProvider instanceof GallagherProductPricesValueResolver
 				? ((GallagherProductPricesValueResolver) valueProvider).getUserPriceGroupQualifierProvider()
 				: null;
+
+		if (userPriceGroupQualifierProvider == null)
+		{
+			userPriceGroupQualifierProvider = valueProvider instanceof GallagherProductPriceRangeValueResolver
+					? ((GallagherProductPriceRangeValueResolver) valueProvider).getUserPriceGroupQualifierProvider()
+					: null;
+		}
 
 		if (qualifierProvider != null && qualifierProvider.canApply(indexedProperty))
 		{

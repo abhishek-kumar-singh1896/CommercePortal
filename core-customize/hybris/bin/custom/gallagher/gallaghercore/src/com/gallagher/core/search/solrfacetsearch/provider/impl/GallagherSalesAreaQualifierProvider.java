@@ -39,8 +39,6 @@ public class GallagherSalesAreaQualifierProvider implements GallagherQualifierPr
 	@Override
 	public Collection<Qualifier> getAvailableQualifiers(final FacetSearchConfig facetSearchConfig, final IndexedType indexedType)
 	{
-		Objects.requireNonNull(facetSearchConfig, "facetSearchConfig is null");
-		Objects.requireNonNull(indexedType, "indexedType is null");
 		final ArrayList qualifiers = new ArrayList();
 		final Set<String> salesAreaSet = salesAreaService.getAllSalesAreas();
 

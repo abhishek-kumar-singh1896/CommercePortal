@@ -375,9 +375,10 @@
 
 	<!-- Custom Jalo Class for PriceRow -->
 	<bean id="de.hybris.platform.europe1.jalo.PriceRow" class="com.gallagher.core.jalo.GallagherPriceRow" scope="prototype" />
+	
+	<bean id="de.hybris.platform.europe1.jalo.DiscountRow" class="com.gallagher.core.jalo.GallagherDiscountRow" scope="prototype" />
 
 	<!-- Custom Price Row Interceptor -->
-	<alias name="gallagherPriceRowPrepareInterceptor" alias="priceRowPrepareInterceptor" />
 	<bean id="gallagherPriceRowPrepareInterceptor" class="com.gallagher.core.pdt.interceptor.GallagherPriceRowPrepareInterceptor"
 		parent="gallagherPdtRowPrepareInterceptor">
 	</bean>
@@ -387,15 +388,28 @@
 	</bean>
 
 	<bean id="priceRowPrepareInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
-		<property name="interceptor" ref="priceRowPrepareInterceptor" />
+		<property name="interceptor" ref="gallagherPriceRowPrepareInterceptor" />
 		<property name="typeCode" value="PriceRow" />
 	</bean>
+	
+	
+	<bean id="gallagherDiscountRowPrepareInterceptor" class="com.gallagher.core.pdt.interceptor.GallagherDiscountRowPrepareInterceptor"
+            parent="gallagherPdtRowPrepareInterceptor">
+    </bean>
+
+
+    <bean id="discountRowPrepareInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+        <property name="interceptor" ref="gallagherDiscountRowPrepareInterceptor"/>
+        <property name="typeCode" value="DiscountRow"/>
+    </bean>
+    
 
     <!-- SAPP2-147 -->
     <bean id="gallagherProductPricesValueResolver" class="com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherProductPricesValueResolver"
 		parent="productPricesValueResolver">
 		<property name="salesAreaQualifierProvider" ref="salesAreaQualifierProvider" />
 		<property name="userPriceGroupQualifierProvider" ref="userPriceGroupQualifierProvider" />
+		<property name="commercePriceService" ref="commercePriceService"/>
 	</bean>
 
 	<bean id="salesAreaQualifierProvider" class="com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherSalesAreaQualifierProvider">
@@ -424,6 +438,20 @@
 	
 	<alias alias="b2bUnitService" name="gallagherB2BUnitService"/>
     <bean id="gallagherB2BUnitService" class="com.gallagher.core.services.impl.GallagherB2BUnitServiceImpl" parent="defaultB2BUnitService"/>
+    
+    <bean id="gallagherProductDiscountValueResolver" class="com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherProductDiscountValueResolver" parent="productPricesValueResolver">
+    <property name="salesAreaQualifierProvider" ref="salesAreaQualifierProvider" />
+    <property name="discountService" ref="discountService" />
+    <property name="commonI18NService" ref="commonI18NService" />
+    </bean>
+    
+    
+	 <bean id="gallagherProductPriceRangeValueResolver" class="com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherProductPriceRangeValueResolver"
+		parent="productPricesValueResolver">
+		<property name="salesAreaQualifierProvider" ref="salesAreaQualifierProvider" />
+		<property name="userPriceGroupQualifierProvider" ref="userPriceGroupQualifierProvider" />
+		<property name="commercePriceService" ref="commercePriceService"/>
+	</bean>
 	
 	 <!-- SAPP2-147 -->
 	
