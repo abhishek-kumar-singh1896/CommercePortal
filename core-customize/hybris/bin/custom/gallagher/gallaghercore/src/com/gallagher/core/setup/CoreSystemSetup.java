@@ -26,6 +26,8 @@ public class CoreSystemSetup extends AbstractSystemSetup
 {
 	public static final String IMPORT_ACCESS_RIGHTS = "accessRights";
 	public static final String IMPORT_ESSENTIAL_DATA_SCPI = "importEssentialDataSCPIImpex";
+	public static final String IMPORT_ASYNC_PRICING = "importAsyncPricingImpex";
+
 
 	/**
 	 * This method will be called by system creator during initialization and system update. Be sure that this method can
@@ -57,6 +59,7 @@ public class CoreSystemSetup extends AbstractSystemSetup
 
 		params.add(createBooleanSystemSetupParameter(IMPORT_ACCESS_RIGHTS, "Import Users & Groups", true));
 		params.add(createBooleanSystemSetupParameter(IMPORT_ESSENTIAL_DATA_SCPI, "Essential data SCPI", true));
+		params.add(createBooleanSystemSetupParameter(IMPORT_ASYNC_PRICING, "Import Async Pricing Impex", true));
 
 		return params;
 	}
@@ -91,6 +94,14 @@ public class CoreSystemSetup extends AbstractSystemSetup
 		if (importEssentialDataSCPI)
 		{
 			importImpexFile(context, "/gallaghercore/import/common/essential-data-scpi.impex");
+		}
+
+		final boolean importAsyncPricing = getBooleanSystemSetupParameter(context, IMPORT_ASYNC_PRICING);
+		if (importAsyncPricing)
+		{
+			importImpexFile(context, "/gallaghercore/import/AsyncPrice/asyncPrice-AU.impex");
+			importImpexFile(context, "/gallaghercore/import/AsyncPrice/asyncPrice-NZ.impex");
+			importImpexFile(context, "/gallaghercore/import/AsyncPrice/asyncPrice-GLOBAL.impex");
 		}
 
 	}
