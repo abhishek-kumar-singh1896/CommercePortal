@@ -12,7 +12,8 @@ import de.hybris.platform.commercefacades.order.data.DeliveryInstructionData;
 public interface GallagherCheckoutDeliveryInstructionFacade
 {
 
-	void setDeliveryInstructions(final String deliveryInstructions, final Integer entryNumber);
+	void setDeliveryInstructions(final String deliveryInstructions, final String productSpecificDetailsHeading,
+			final Integer entryNumber);
 
 	void populateDeliveryInstruction(final DeliveryInstructionData deliveryInstructionData);
 

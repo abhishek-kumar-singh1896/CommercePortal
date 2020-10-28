@@ -105,6 +105,15 @@
                     </div>
                 </div>
                 
+                <input type="hidden" id="entryID" value="${entry.entryNumber}" name="entryNumber" />
+                
+                <div class="cart-product-comment">
+                <div comment-id="minusSign${entry.entryNumber}">
+                <a href="#" id="instruction_remove_button">						
+						<c:if test="${not empty entry.deliveryinstruction}"><div class="glyphicon glyphicon-minus-sign"></div></c:if>
+				</a>
+				</div>
+                
                 <div class="popuplink" comment-id="${entry.entryNumber}">
                 <a href="#"
 						data-link="<c:url value='/checkout/deliveryinstruction?getEntryNumber=${entry.entryNumber}'/>"
@@ -113,8 +122,9 @@
 						
 						<c:if
 							test="${empty entry.deliveryinstruction}"><div class="glyphicon glyphicon-plus-sign"></div>&nbsp;<span class="addcommenttext"><spring:theme code="deliveryinstruction.addcomment"/></span></c:if>
-							<c:if test="${not empty entry.deliveryinstruction}"><div class="glyphicon glyphicon-minus-sign"></div>&nbsp;<div class="deleveryinstructiontext">${entry.deliveryinstruction}</div></c:if>
+							<c:if test="${not empty entry.deliveryinstruction}"><div class="deleveryinstructiontext">${entry.deliveryinstruction}</div></c:if>
 				</a>
+				</div>
 				</div>
 
                 <c:if test="${ycommerce:doesPotentialPromotionExistForOrderEntry(cartData, entry.entryNumber)}">

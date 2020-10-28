@@ -51,20 +51,34 @@ public class DeliveryInstructionController
 		{
 			deliveryInstrutionsform.setCommentPlaceHolder(deliveryInstrutionsData.getCommentPlaceHolder());
 		}
+
+		if (StringUtils.isNotEmpty(deliveryInstrutionsData.getProductSpecificDetailsHeading()))
+		{
+			deliveryInstrutionsform.setProductSpecificDetailsHeading(deliveryInstrutionsData.getProductSpecificDetailsHeading());
+		}
+
 		deliveryInstrutionsform.setEntryNumber(entryNumber);
 		model.addAttribute(deliveryInstrutionsform);
 		return ControllerConstants.Views.Fragments.DeliveryComments.DeliveryInstructionPopup;
 	}
+
+	@RequestMapping(value = "/removeinstruction", method = RequestMethod.POST)
+	public void removeSpecificInstruction(@RequestParam("getEntryNumber")
+	final Integer entryNumber) throws CMSItemNotFoundException
+	{
+		final DeliveryInstrutionsform deliveryInstrutionsform = new DeliveryInstrutionsform();
+		getGallagherCheckoutDeliveryInstructionFacade().setDeliveryInstructions("",
+				deliveryInstrutionsform.getProductSpecificDetailsHeading(),
+				entryNumber);
+	}
+
 
 	@ResponseBody
 	@RequestMapping(value = "/setdeliveryinstruction", method = RequestMethod.POST)
 	public String deliveryInstructionPopup(@ModelAttribute("deliveryInstrutionsform")
 	final DeliveryInstrutionsform deliveryInstrutionsform) throws CMSItemNotFoundException
 	{
-		System.out.println("Inside Controller");
-
 		String result = VALID;
-
 
 		if (validateDeliveryInstruction(deliveryInstrutionsform))
 		{
@@ -75,7 +89,9 @@ public class DeliveryInstructionController
 
 			final String deliveryInstruction = deliveryInstrutionsform.getDeliveryInstruction();
 			final Integer entryNumber = deliveryInstrutionsform.getEntryNumber();
-			getGallagherCheckoutDeliveryInstructionFacade().setDeliveryInstructions(deliveryInstruction, entryNumber);
+			final String productSpecificDetailsHeading = deliveryInstrutionsform.getProductSpecificDetailsHeading();
+			getGallagherCheckoutDeliveryInstructionFacade().setDeliveryInstructions(deliveryInstruction,
+					productSpecificDetailsHeading, entryNumber);
 
 		}
 		return result;

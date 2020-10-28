@@ -15,12 +15,31 @@ public class DeliveryInstrutionsform
 
 	private String commentPlaceHolder;
 
+	private String productSpecificDetailsHeading;
+
 	/**
 	 * @return the commentPlaceHolder
 	 */
 	public String getCommentPlaceHolder()
 	{
 		return commentPlaceHolder;
+	}
+
+	/**
+	 * @return the productSpecificDetailsHeading
+	 */
+	public String getProductSpecificDetailsHeading()
+	{
+		return productSpecificDetailsHeading;
+	}
+
+	/**
+	 * @param productSpecificDetailsHeading
+	 *           the productSpecificDetailsHeading to set
+	 */
+	public void setProductSpecificDetailsHeading(final String productSpecificDetailsHeading)
+	{
+		this.productSpecificDetailsHeading = productSpecificDetailsHeading;
 	}
 
 	/**

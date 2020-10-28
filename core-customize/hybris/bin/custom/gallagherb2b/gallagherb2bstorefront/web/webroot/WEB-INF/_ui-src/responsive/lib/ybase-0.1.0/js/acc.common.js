@@ -1,5 +1,5 @@
 ACC.common = {
-		_autoload : ["bindDeliveryInstructionsLink","deliveryInstructionbutton"],
+		_autoload : ["bindDeliveryInstructionsLink","deliveryInstructionbutton","deliveryInstructionRemovebutton"],
 	currentCurrency: $("main").data('currencyIsoCode') || "USD",
 	processingMessage: $("<img src='" + ACC.config.commonResourcePath + "/images/spinner.gif'/>"),
 
@@ -61,7 +61,13 @@ ACC.common = {
 															$("#deliveryInstructionEntry").val("");
 															}
 													},
-													fixed: true
+													fixed: true,
+													onLoad : function() {
+														$('html, body').css('overflow', 'hidden');
+													},
+													onClosed:function() {
+												        $('html, body').css('overflow', '');
+												    }
 												});
 								
 							});
@@ -85,20 +91,43 @@ ACC.common = {
 					returnVal = ACC.common.submitInstruction();
 				}
 				if (returnVal) {
-					var $ele = $("div[comment-id='"+$("#entryID").val()+"']");
-					$ele.find("input").val($("#deliveryInstructionEntry").val());
-					$ele.find("a").html("<div class='glyphicon glyphicon-minus-sign'></div>&nbsp;<div class='deleveryinstructiontext'>"+$("#deliveryInstructionEntry").val()+"</div></a>");
-					if($("#deliveryInstructionEntry").val() == "")
-						$ele.find("a").html("<span class='glyphicon glyphicon-plus-sign'></span>&nbsp;<span class='addcommenttext'>"+"add comment"+"</span></a>");
-					$.colorbox.close();
+					ACC.common.displayInstruction("add");
 				}
 			});
 		},
-	    
-	    submitInstruction : function() {
+		
+		deliveryInstructionRemovebutton : function() {
+			$(document).on("click", "#instruction_remove_button", function(event) {
+				event.preventDefault();
+				var returnVal;
+					returnVal = ACC.common.removeInstruction();
+				if (returnVal) {
+					ACC.common.displayInstruction("remove");
+				}
+			});
+		},
+		
+		displayInstruction : function(operation) {
+			if(operation == 'remove') {
+				var $ele = $("div[comment-id='"+$("#entryID").val()+"']");
+				$ele.find("a").html("<span class='glyphicon glyphicon-plus-sign'></span>&nbsp;<span class='addcommenttext'>"+"add comment"+"</span></a>");
+				var $el = $("div[comment-id='minusSign"+$("#entryID").val()+"']");
+				$el.find("a").html("<div style='display: none' class='glyphicon glyphicon-minus-sign'></div></a>");
+			} else {
+				var $el = $("div[comment-id='minusSign"+$("#entryID").val()+"']");
+				$el.find("a").html("<div class='cart-product-comment'><div class='glyphicon glyphicon-minus-sign'></div></a>");
+				var $ele = $("div[comment-id='"+$("#entryID").val()+"']");
+				$ele.find("input").val($("#deliveryInstructionEntry").val());
+				$ele.find("a").html("<div class='deleveryinstructiontext'>"+$("#deliveryInstructionEntry").val()+"</div></div></a>");
+				$.colorbox.close();	
+			}				
+		},
+		
+		removeInstruction : function() {
 			var isValid = false;
 			var entryNumber = $("#entryID").val();
-			var deliveryInstruction = $("#deliveryInstructionEntry").val().trim();
+			var deliveryInstruction = "";
+			var productSpecificDetailsHeading = $("#productSpecificDetailsHeading").val();
 			var regex = /^[A-Za-z0-9\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,\-.\/:;<=>?@\[\]^_`{|}~+\s.+]+$/;
 			if(deliveryInstruction.length==0 || regex.test(deliveryInstruction))
 			{
@@ -109,7 +138,57 @@ ACC.common = {
 				async: false,
 				data : {
 					"entryNumber" : entryNumber,
-					"deliveryInstruction" : deliveryInstruction
+					"deliveryInstruction" : deliveryInstruction,
+					"productSpecificDetailsHeading" : productSpecificDetailsHeading
+				},
+				success : function(data) {
+					var response = JSON.stringify(data);
+					response=response.replace(/\"/g, '')
+					
+					if(response === "valid")
+					{
+						$(".textareaErrorbox").hide();
+						isValid = true;
+					}
+					else
+					{
+						$(".textareaErrorbox").show();
+						isValid = false;
+					}
+					
+				},
+				error:function(data) {
+					isValid = false;
+				},
+			});
+			}
+			else
+				{
+					$("#cboxContent").height("+=40");
+					$("#cboxLoadedContent").height("+=20");
+					$(".textareaCharactersErrorbox").show();
+					isValid = false;
+				}
+			return isValid;
+		},
+	    
+	    submitInstruction : function() {
+			var isValid = false;
+			var entryNumber = $("#entryID").val();
+			var deliveryInstruction = $("#deliveryInstructionEntry").val().trim();
+			var productSpecificDetailsHeading = $("#productSpecificDetailsHeading").val().trim();
+			var regex = /^[A-Za-z0-9\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,\-.\/:;<=>?@\[\]^_`{|}~+\s.+]+$/;
+			if(deliveryInstruction.length==0 || regex.test(deliveryInstruction))
+			{
+				$(".textareaCharactersErrorbox").hide();
+			$.ajax({
+				type : "POST",
+				url : ACC.config.encodedContextPath + "/checkout/setdeliveryinstruction",
+				async: false,
+				data : {
+					"entryNumber" : entryNumber,
+					"deliveryInstruction" : deliveryInstruction,
+					"productSpecificDetailsHeading" : productSpecificDetailsHeading
 				},
 				success : function(data) {
 					var response = JSON.stringify(data);

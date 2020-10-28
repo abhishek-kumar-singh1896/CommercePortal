@@ -103,6 +103,7 @@
 		<property name="deliveryinstruction" type="String" />
 		<property name="commentPlaceHolder" type="String" />
 		<property name="entryNumber" type="Integer" />
+		<property name="productSpecificDetailsHeading" type="String" />
 	</bean>
 	
 	<bean class="de.hybris.platform.commercefacades.order.data.OrderEntryData">

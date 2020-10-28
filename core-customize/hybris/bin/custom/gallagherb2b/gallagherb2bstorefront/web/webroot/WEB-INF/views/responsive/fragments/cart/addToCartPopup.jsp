@@ -57,6 +57,7 @@
             </c:choose>
             
             <input type="hidden" id="entryID" value="${entry.entryNumber}" name="entryNumber" />
+            <input type="hidden" id="productSpecificDetailsHeading" value="${product.productSpecificDetailsHeading}" name="productSpecificDetailsHeading" />
             
             <c:if test="${not empty product.productSpecificDetailsHeading}">
             	<div class="shoppingHeading">${product.productSpecificDetailsHeading}</div>
