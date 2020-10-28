@@ -420,4 +420,81 @@
         </advanced-search:advanced-search>
     </context>
     
+    <context merge-by="type" parent="PDTRow" type="PriceRow" component="editor-area">
+        <editorArea:editorArea name="">
+            <editorArea:essentials>
+                <editorArea:essentialSection name="hmc.essential">
+                    <editorArea:attribute qualifier="catalogVersion"/>
+                    <editorArea:attribute qualifier="product"/>
+                    <editorArea:attribute qualifier="pg"/>
+                    <editorArea:attribute qualifier="user"/>
+                    <editorArea:attribute qualifier="ug"/>
+                    <editorArea:attribute qualifier="salesArea"/>
+                </editorArea:essentialSection>
+            </editorArea:essentials>
+            <editorArea:tab name="hmc.properties">
+                <editorArea:section name="hmc.properties">
+                    <editorArea:attribute qualifier="minqtd"/>
+                    <editorArea:attribute qualifier="unit"/>
+                    <editorArea:attribute qualifier="price"/>
+                    <editorArea:attribute qualifier="currency"/>
+                    <editorArea:attribute qualifier="unitFactor"/>
+                    <editorArea:attribute qualifier="salesAreaMatchQualifier"/>
+                    <editorArea:attribute qualifier="net">
+                        <editorArea:editor-parameter>
+                            <editorArea:name>trueLabel</editorArea:name>
+                            <editorArea:value>netTrue</editorArea:value>
+                        </editorArea:editor-parameter>
+                        <editorArea:editor-parameter>
+                            <editorArea:name>falseLabel</editorArea:name>
+                            <editorArea:value>netFalse</editorArea:value>
+                        </editorArea:editor-parameter>
+                    </editorArea:attribute>
+                    <editorArea:attribute qualifier="channel"/>
+                    <editorArea:attribute qualifier="dateRange"/>
+                </editorArea:section>
+                <editorArea:section name="hmc.section.giveaway">
+                    <editorArea:attribute qualifier="giveAwayPrice" description="hmc.text.pricerow.giveaway"/>
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+    
+    <context merge-by="type" parent="AbstractDiscountRow" type="DiscountRow" component="editor-area">
+        <editorArea:editorArea name="">
+            <editorArea:essentials>
+                <editorArea:essentialSection name="hmc.essential">
+                    <editorArea:attribute qualifier="user"/>
+                    <editorArea:attribute qualifier="ug"/>
+                    <editorArea:attribute qualifier="product"/>
+                    <editorArea:attribute qualifier="pg"/>
+                    <editorArea:attribute qualifier="salesArea"/>
+                </editorArea:essentialSection>
+            </editorArea:essentials>
+            <editorArea:tab name="hmc.common">
+                <editorArea:section name="hmc.properties">
+                    <editorArea:attribute qualifier="discount"/>
+                    <editorArea:attribute qualifier="dateRange"/>
+                    <editorArea:attribute qualifier="discountString"/>
+                    <editorArea:attribute qualifier="salesAreaMatchQualifier"/>
+                </editorArea:section>
+                <editorArea:section name="hmc.section.abstractdiscountrow.differingvalues">
+                    <editorArea:attribute qualifier="value"/>
+                    <editorArea:attribute qualifier="currency"/>
+                    <editorArea:attribute qualifier="absolute">
+                        <editorArea:editor-parameter>
+                            <editorArea:name>trueLabel</editorArea:name>
+                            <editorArea:value>absoluteTrue</editorArea:value>
+                        </editorArea:editor-parameter>
+                        <editorArea:editor-parameter>
+                            <editorArea:name>falseLabel</editorArea:name>
+                            <editorArea:value>absoluteFalse</editorArea:value>
+                        </editorArea:editor-parameter>
+                    </editorArea:attribute>
+                    <editorArea:attribute qualifier="asTargetPrice"/>
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+    
 </config>
