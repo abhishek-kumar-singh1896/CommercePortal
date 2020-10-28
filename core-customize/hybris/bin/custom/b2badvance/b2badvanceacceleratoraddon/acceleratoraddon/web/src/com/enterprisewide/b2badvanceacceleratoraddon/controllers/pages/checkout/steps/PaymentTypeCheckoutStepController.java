@@ -180,6 +180,11 @@ public class PaymentTypeCheckoutStepController extends AbstractCheckoutStepContr
 		//set Date in Model
 		cartData.setRequiredDeliveryDate(paymentTypeForm.getRequiredDeliveryDate());
 
+		if (paymentTypeForm.getDeliveryInstructions() != null || paymentTypeForm.getDeliveryInstructions().length() != 0)
+		{
+			cartData.setDeliveryInstructions(paymentTypeForm.getDeliveryInstructions());
+		}
+
 		//set Comment in CartModel if Entered
 		getCheckoutFlowFacade().setDeliveryInstructions(paymentTypeForm.getDeliveryInstructions());
 
@@ -233,6 +238,16 @@ public class PaymentTypeCheckoutStepController extends AbstractCheckoutStepContr
 		/*
 		 * paymentTypeForm.setPurchaseOrderNumber(cartData.getPurchaseOrderNumber());
 		 */
+
+		if (cartData.getPurchaseOrderNumber() != null && cartData.getPurchaseOrderNumber().length() != 0)
+		{
+			paymentTypeForm.setPurchaseOrderNumber(cartData.getPurchaseOrderNumber());
+		}
+
+		if (cartData.getDeliveryInstructions() != null && cartData.getDeliveryInstructions().length() != 0)
+		{
+			paymentTypeForm.setDeliveryInstructions(cartData.getDeliveryInstructions());
+		}
 
 		return paymentTypeForm;
 	}
