@@ -3,11 +3,18 @@
  */
 package com.gallagher.core.services.impl;
 
+import de.hybris.platform.b2b.constants.B2BConstants;
+import de.hybris.platform.b2b.model.B2BCustomerModel;
 import de.hybris.platform.b2b.model.B2BUnitModel;
 import de.hybris.platform.b2b.services.impl.DefaultB2BUnitService;
 import de.hybris.platform.basecommerce.model.site.BaseSiteModel;
+import de.hybris.platform.core.model.enumeration.EnumerationValueModel;
 import de.hybris.platform.core.model.security.PrincipalGroupModel;
 import de.hybris.platform.core.model.user.CustomerModel;
+import de.hybris.platform.core.model.user.UserModel;
+import de.hybris.platform.europe1.constants.Europe1Constants;
+import de.hybris.platform.servicelayer.session.Session;
+import de.hybris.platform.servicelayer.session.SessionExecutionBody;
 import de.hybris.platform.site.BaseSiteService;
 import de.hybris.platform.store.BaseStoreModel;
 import de.hybris.platform.store.services.BaseStoreService;
@@ -23,6 +30,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.gallagher.core.services.GallagherB2BUnitService;
 
+
 /**
  * @author ankituniyal
  *
@@ -33,6 +41,8 @@ public class GallagherB2BUnitServiceImpl extends DefaultB2BUnitService implement
 	private static final String SECURITY_B2B_GLOBAL = "securityB2BGlobal";
 	private static final String SECURITY_B2B = "securityB2B";
 	private static final String SECURITY = "security";
+	private static final String CURRENT_SESSION_SALES_AREA = "currentSessionSalesArea";
+	public static final String CURRENCY_SESSION_ATTR_KEY = "currency".intern();
 
 	@Autowired
 	private BaseStoreService baseStoreService;
@@ -101,6 +111,58 @@ public class GallagherB2BUnitServiceImpl extends DefaultB2BUnitService implement
 
 		return Pair.of(defaultSite, defaultBaseStore);
 	}
+
+
+	@Override
+	public void updateBranchInSession(final Session session, final UserModel currentUser)
+	{
+		if (currentUser instanceof B2BCustomerModel)
+		{
+			final Object[] branchInfo = (Object[]) getSessionService().executeInLocalView(new SessionExecutionBody()
+			{
+				@Override
+				public Object[] execute()
+				{
+					getSearchRestrictionService().disableSearchRestrictions();
+					final B2BCustomerModel currentCustomer = (B2BCustomerModel) currentUser;
+					final B2BUnitModel unitOfCustomer = getParent(currentCustomer);
+
+
+					/**
+					 * Europe1PriceFactory does not allow a user to belong to multiple price groups with themselves have
+					 * different UPGs assigned see https://jira.hybris.com/browse/BTOB-488 get the upg assigned to the parent
+					 * unit and set it in the context if none is assigned default to 'B2B_DEFAULT_PRICE_GROUP'
+					 */
+					final EnumerationValueModel userPriceGroup = (unitOfCustomer.getUserPriceGroup() != null
+							? getTypeService().getEnumerationValue(unitOfCustomer.getUserPriceGroup())
+							: lookupPriceGroupFromClosestParent(unitOfCustomer));
+					return new Object[]
+					{ getRootUnit(unitOfCustomer), getBranch(unitOfCustomer), unitOfCustomer, userPriceGroup };
+				}
+			});
+
+			getSessionService().setAttribute(B2BConstants.CTX_ATTRIBUTE_ROOTUNIT, branchInfo[0]);
+			getSessionService().setAttribute(B2BConstants.CTX_ATTRIBUTE_BRANCH, branchInfo[1]);
+			getSessionService().setAttribute(B2BConstants.CTX_ATTRIBUTE_UNIT, branchInfo[2]);
+			final B2BUnitModel b2bUnit = (B2BUnitModel) branchInfo[2];
+			getSessionService().setAttribute(CURRENT_SESSION_SALES_AREA, b2bUnit.getSalesArea());
+			getSessionService().setAttribute(Europe1Constants.PARAMS.UPG, branchInfo[3]);
+
+			final B2BCustomerModel currentCustomer = (B2BCustomerModel) currentUser;
+			final B2BUnitModel defaultUnit = currentCustomer.getDefaultB2BUnit();
+			if (defaultUnit != null && defaultUnit.getCurrency() != null)
+			{
+				getSessionService().setAttribute(CURRENCY_SESSION_ATTR_KEY, defaultUnit.getCurrency());
+			}
+			else
+			{
+				final BaseStoreModel store = getBaseStoreService().getCurrentBaseStore();
+				getSessionService().setAttribute(CURRENCY_SESSION_ATTR_KEY, store.getDefaultCurrency());
+			}
+		}
+	}
+
+
 
 	/**
 	 * @return the baseStoreService
