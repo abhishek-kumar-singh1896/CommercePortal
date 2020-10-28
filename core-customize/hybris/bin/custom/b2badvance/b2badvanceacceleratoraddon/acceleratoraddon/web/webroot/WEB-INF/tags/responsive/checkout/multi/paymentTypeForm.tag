@@ -31,7 +31,7 @@
       
       <label class="control-label " for="DeliveryDate"><spring:theme code="checkout.multi.comments.label"/></label>             	
       <div>
-       <textarea rows=14  idKey="Comments" path="deliveryInstructions" name = "deliveryInstructions"  label = "Comments" class="form-control"  > </textarea>
+       <form:textarea  rows="14"  idKey="Comments" path="deliveryInstructions" name = "deliveryInstructions"  label = "Comments" class="form-control" /> 
      </div>
         
         

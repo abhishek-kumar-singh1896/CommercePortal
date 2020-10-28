@@ -47,6 +47,7 @@ public class PaymentTypeFormValidator implements Validator
 			if (CheckoutPaymentType.ACCOUNT.getCode().equals(paymentTypeForm.getPaymentType())
 					&& paymentTypeForm.getPurchaseOrderNumber().length() == 0)
 			{
+
 				errors.rejectValue("purchaseOrderNumber", "general.required");
 				return;
 			}
@@ -89,6 +90,10 @@ public class PaymentTypeFormValidator implements Validator
 						errors.rejectValue("requiredDeliveryDate", "requiredDate.invalid");
 					}
 				}
+					else
+					{
+						paymentTypeForm.setIndicator(true);
+					}
 			}
 			}
 		}

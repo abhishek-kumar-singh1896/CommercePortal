@@ -13,23 +13,41 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <spring:htmlEscape defaultHtmlEscape="true" />
-
-<c:if test="${not empty deliveryAddresses}">
-	<button type="button" class="btn btn-default btn-block js-address-book">
-		<spring:theme code="checkout.checkout.multi.deliveryAddress.viewAddressBook" />
+ <c:if test="${not empty deliveryAddresses}">
+ 	<button type="button" class="btn btn-default btn-block js-address-book">
+ 		<spring:theme code="checkout.checkout.multi.deliveryAddress.viewAddressBook" />
 	</button>
 	<br>
-</c:if>
+</c:if> 
 
+
+
+   
+
+<input type="checkbox" id="myCheck" onclick="checkBoxFunction()"/>
+<spring:theme code="checkout.address.comments.label"/>
+ 
+<script>
+function checkBoxFunction() {
+  var checkBox = document.getElementById("myCheck");
+  var text = document.getElementById("text");
+  if (checkBox.checked == true){
+    text.style.display = "block";
+  } else {
+     text.style.display = "none";
+  }
+} 
+</script>
 <c:if test="${empty addressFormEnabled or addressFormEnabled}">
-	<form:form method="post" modelAttribute="addressForm">
+ 	<form:form method="post" modelAttribute="addressForm">
 		<form:hidden path="addressId" class="add_edit_delivery_address_id"
 			status="${not empty suggestedAddresses ? 'hasSuggestedAddresses' : ''}" />
 		<input type="hidden" name="bill_state" id="address.billstate" />
-	
-		<div id="countrySelector" data-address-code="${fn:escapeXml(addressData.id)}"
+ 		<div id="text" style="display:none">
+ 	<div id="countrySelector" data-address-code="${fn:escapeXml(addressData.id)}"
 			data-country-iso-code="${fn:escapeXml(addressData.country.isocode)}"
 			class="form-group">
+			
 			<formElement:formSelectBox idKey="address.country"
 				labelKey="address.country" path="countryIso" mandatory="true"
 				skipBlank="false" skipBlankMessageKey="address.country"
@@ -98,5 +116,7 @@
 				</c:when>
 			</c:choose>
 		</div>
-	</form:form>
+		</div>
+ 	</form:form>
 </c:if>
+ 

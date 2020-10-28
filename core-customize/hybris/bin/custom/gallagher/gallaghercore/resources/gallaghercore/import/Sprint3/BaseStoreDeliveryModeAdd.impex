@@ -24,4 +24,7 @@ INSERT_UPDATE BaseStore2DeliveryModeRel;source(uid)[unique=true];target(code)[un
 INSERT_UPDATE BaseStore2DeliveryModeRel;source(uid)[unique=true];target(code)[unique=true]
 ;securityB2BNZ;free-standard-shipping
 
+INSERT_UPDATE ZoneDeliveryMode ; code[unique=true] ; net   ; active[default=true] 
+                               ;free-standard-shipping;false;
+
 ##### Base Store Delivery Mode - free-standard-shipping #####
