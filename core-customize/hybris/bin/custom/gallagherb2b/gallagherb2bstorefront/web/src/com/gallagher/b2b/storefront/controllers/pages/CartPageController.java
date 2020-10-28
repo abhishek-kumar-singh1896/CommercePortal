@@ -38,6 +38,7 @@ import de.hybris.platform.commercefacades.order.data.CommerceSaveCartResultData;
 import de.hybris.platform.commercefacades.order.data.OrderEntryData;
 import de.hybris.platform.commercefacades.product.ProductFacade;
 import de.hybris.platform.commercefacades.product.ProductOption;
+import de.hybris.platform.commercefacades.product.data.CategoryData;
 import de.hybris.platform.commercefacades.product.data.ProductData;
 import de.hybris.platform.commercefacades.quote.data.QuoteData;
 import de.hybris.platform.commercefacades.voucher.VoucherFacade;
@@ -54,8 +55,10 @@ import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -653,6 +656,35 @@ public class CartPageController extends AbstractCartPageController
 			}
 			return getCartPageRedirectUrl();
 		}
+	}
+	
+
+	@RequestMapping(value = "/getRecommendedProducts", method = RequestMethod.GET)
+	public String getProductRecommendations(final Model model)
+	{
+		final Set<ProductData> recommendedProducts = new HashSet<ProductData>();
+		final Set<CategoryData> recommendedCategories = new HashSet<CategoryData>();
+		final CartData cartData = getCartFacade().getSessionCartWithEntryOrdering(false);
+
+		if (cartData.getEntries() != null && !cartData.getEntries().isEmpty())
+		{
+			for (final OrderEntryData entry : cartData.getEntries())
+			{
+				if (null != entry.getProduct().getRecommendedCategories() && !entry.getProduct().getRecommendedCategories().isEmpty())
+				{
+					recommendedCategories.addAll(entry.getProduct().getRecommendedCategories());
+				}
+				if (null != entry.getProduct().getRecommendedProducts() && !entry.getProduct().getRecommendedProducts().isEmpty())
+				{
+					recommendedProducts.addAll(entry.getProduct().getRecommendedProducts());
+				}
+			}
+
+			model.addAttribute("recommendedProducts", recommendedProducts);
+			model.addAttribute("recommendedCategories", recommendedCategories);
+		}
+
+		return ControllerConstants.Views.Fragments.Cart.ProductRecommendationsPopup;
 	}
 
 	protected String getCartPageRedirectUrl()

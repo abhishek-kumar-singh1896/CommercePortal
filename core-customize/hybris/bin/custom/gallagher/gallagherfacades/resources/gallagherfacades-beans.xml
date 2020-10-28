@@ -64,6 +64,8 @@
 		<property name="plpProductDescription" type="String" />
 		<property name="categoryPaths" type="java.util.List&lt;String&gt;" />
 		<property name="modifiedTime" type="java.util.Date" />
+		<property name="recommendedProducts" type="java.util.List&lt;de.hybris.platform.commercefacades.product.data.ProductData>" />
+		<property name="recommendedCategories" type="java.util.List&lt;de.hybris.platform.commercefacades.product.data.CategoryData>" />
 <!-- 		<property name="marketingDescription" type="String"/> -->
 	</bean>
 

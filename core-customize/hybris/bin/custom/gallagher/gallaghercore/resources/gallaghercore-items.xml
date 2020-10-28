@@ -7,6 +7,10 @@
 		<collectiontype code="Animals" elementtype="Animal" autocreate="true" generate="true" />
 		<collectiontype code="gallagherNavigationBarComponentList" elementtype="GallagherNavigationBarComponent"
 			autocreate="true" generate="true" type="list" />
+		<collectiontype code="ProductsList" elementtype="Product"
+			autocreate="true" generate="true" type="list" />
+		<collectiontype code="CategoriesList" elementtype="Category"
+			autocreate="true" generate="true" type="list" />
 	</collectiontypes>
 
 	<enumtypes>
@@ -265,6 +269,16 @@
 							<value>"thefield"</value>
 						</property>
 					</custom-properties>
+				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="recommendedProducts" type="ProductsList">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<description>Attribute for recommended products for the product</description>
+				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="recommendedCategories" type="CategoriesList">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<description>Attribute for recommended categories for the product</description>
 				</attribute>
 			</attributes>
 
