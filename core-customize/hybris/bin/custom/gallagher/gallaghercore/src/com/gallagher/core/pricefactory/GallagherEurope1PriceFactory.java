@@ -101,6 +101,13 @@ public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactor
 
 		final String salesArea = getSalesArea(ctx);
 
+		if (StringUtils.isBlank(salesArea))
+		{
+			final Collection<? extends AbstractDiscountRow> result = super.queryDiscounts4Price(ctx, product, productGroup, user,
+					userGroup);
+			return result;
+		}
+
 		final GallagherPDTRowsQueryBuilder builder = this.getPDTRowsQueryBuilderFor(discountRowTypeCode);
 		final QueryWithParams queryAndParams = builder.withAnyProduct().withAnyUser().withAnySalesArea().withProduct(productPk)
 				.withProductId(productId).withProductGroup(productGroupPk).withUser(userPk).withUserGroup(userGroupPk)

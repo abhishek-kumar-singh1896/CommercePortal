@@ -15,6 +15,7 @@ import org.apache.commons.collections.CollectionUtils;
 import com.gallagher.core.dao.GallagherSalesAreaDao;
 import com.gallagher.core.services.GallagherSalesAreaService;
 
+
 /**
  * @author ankituniyal
  *
@@ -41,7 +42,12 @@ public class GallagherSalesAreaServiceImpl implements GallagherSalesAreaService
 		final Set<String> salesAreas = new HashSet<>();
 		if (CollectionUtils.isNotEmpty(b2bUnits))
 		{
-			b2bUnits.stream().forEach(unit -> salesAreas.add(unit.getSalesArea()));
+			b2bUnits.stream().forEach(unit -> {
+				if (null != unit.getSalesArea())
+				{
+					salesAreas.add(unit.getSalesArea());
+				}
+			});
 		}
 		return salesAreas;
 	}
