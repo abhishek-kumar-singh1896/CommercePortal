@@ -13,7 +13,6 @@ import de.hybris.platform.jalo.c2l.Language;
 import de.hybris.platform.jalo.enumeration.EnumerationValue;
 import de.hybris.platform.jalo.order.price.JaloPriceFactoryException;
 import de.hybris.platform.jalo.product.Product;
-import de.hybris.platform.jalo.product.Unit;
 import de.hybris.platform.jalo.type.ComposedType;
 import de.hybris.platform.jalo.user.User;
 import de.hybris.platform.persistence.GenericItemEJBImpl;
@@ -71,75 +70,60 @@ public class GallagherDiscountRow extends DiscountRow
 	 * @throws JaloBusinessException
 	 *            the jalo business exception
 	 */
-	protected Item createDiscountRowItem(final SessionContext ctx, final ComposedType type,
-			final ItemAttributeMap allAttributes)
+	protected Item createDiscountRowItem(final SessionContext ctx, final ComposedType type, final ItemAttributeMap allAttributes)
 			throws JaloBusinessException
 	{
 		final HashSet missing = new HashSet();
 
-		checkMandatoryAttribute("currency", allAttributes, missing);
+		/*
+		 * checkMandatoryAttribute("currency", allAttributes, missing);
+		 *
+		 * if (!missing.isEmpty()) {
+		 *
+		 * throw new JaloInvalidParameterException("missing price row attributes " + missing, 0);
+		 *
+		 * } else {
+		 */
+		/*
+		 * if (allAttributes.get("minqtd") == null) {
+		 *
+		 * allAttributes.put("minqtd", Long.valueOf(1L)); } if (allAttributes.get("net") == null) {
+		 *
+		 * allAttributes.put("net", Boolean.FALSE); } if (allAttributes.get("unitFactor") == null) {
+		 *
+		 * allAttributes.put("unitFactor", Integer.valueOf(1)); }
+		 */
+		/*
+		 * if (allAttributes.get("unit") == null) {
+		 *
+		 * final Product product = (Product) allAttributes.get("product"); final Unit fallbackUnit = product != null ?
+		 * product.getUnit() : null;
+		 *
+		 * if (fallbackUnit == null) { throw new JaloInvalidParameterException("missing unit for price row ", 0); } else {
+		 * allAttributes.put("unit", fallbackUnit); } }
+		 */
 
-		if (!missing.isEmpty())
-		{
+		/*
+		 * allAttributes.setAttributeMode("minqtd", AttributeMode.INITIAL); allAttributes.setAttributeMode("currency",
+		 * AttributeMode.INITIAL); allAttributes.setAttributeMode("net", AttributeMode.INITIAL);
+		 * allAttributes.setAttributeMode("price", AttributeMode.INITIAL); // allAttributes.setAttributeMode("unit",
+		 * AttributeMode.INITIAL); allAttributes.setAttributeMode("unitFactor", AttributeMode.INITIAL);
+		 * allAttributes.setAttributeMode("giveAwayPrice", AttributeMode.INITIAL);
+		 */
 
-			throw new JaloInvalidParameterException("missing price row attributes " + missing, 0);
-
-		}
-		else
-		{
-			if (allAttributes.get("minqtd") == null)
-			{
-
-				allAttributes.put("minqtd", Long.valueOf(1L));
-			}
-			if (allAttributes.get("net") == null)
-			{
-
-				allAttributes.put("net", Boolean.FALSE);
-			}
-			if (allAttributes.get("unitFactor") == null)
-			{
-
-				allAttributes.put("unitFactor", Integer.valueOf(1));
-			}
-			if (allAttributes.get("unit") == null)
-			{
-
-				final Product product = (Product) allAttributes.get("product");
-				final Unit fallbackUnit = product != null ? product.getUnit() : null;
-
-				if (fallbackUnit == null)
-				{
-					throw new JaloInvalidParameterException("missing unit for price row ", 0);
-				}
-				else
-				{
-					allAttributes.put("unit", fallbackUnit);
-				}
-			}
-
-			allAttributes.setAttributeMode("minqtd", AttributeMode.INITIAL);
-			allAttributes.setAttributeMode("currency", AttributeMode.INITIAL);
-			allAttributes.setAttributeMode("net", AttributeMode.INITIAL);
-			allAttributes.setAttributeMode("price", AttributeMode.INITIAL);
-			allAttributes.setAttributeMode("unit", AttributeMode.INITIAL);
-			allAttributes.setAttributeMode("unitFactor", AttributeMode.INITIAL);
-			allAttributes.setAttributeMode("giveAwayPrice", AttributeMode.INITIAL);
-
-			allAttributes.put("matchValue",
-					Integer
-							.valueOf(calculateMatchValue((Product) allAttributes.get("product"), (String) allAttributes.get("productId"),
-									(EnumerationValue) allAttributes.get("pg"), (User) allAttributes.get("user"),
-									(EnumerationValue) allAttributes.get("ug"), (String) allAttributes.get(SALES_AREA))));
+		allAttributes.put("matchValue",
+				Integer.valueOf(calculateMatchValue((Product) allAttributes.get("product"), (String) allAttributes.get("productId"),
+						(EnumerationValue) allAttributes.get("pg"), (User) allAttributes.get("user"),
+						(EnumerationValue) allAttributes.get("ug"), (String) allAttributes.get(SALES_AREA))));
 
 
-			allAttributes.setAttributeMode("matchValue", AttributeMode.INITIAL);
+		allAttributes.setAttributeMode("matchValue", AttributeMode.INITIAL);
 
-			PRODUCTHANDLER.newInstance(ctx, allAttributes);
+		PRODUCTHANDLER.newInstance(ctx, allAttributes);
 
-			final DiscountRow ret1 = (DiscountRow) createPDTItem(ctx, type, allAttributes);
-			return ret1;
-		}
+		final DiscountRow ret1 = (DiscountRow) createPDTItem(ctx, type, allAttributes);
+		return ret1;
+		//		}
 	}
 
 	/**
