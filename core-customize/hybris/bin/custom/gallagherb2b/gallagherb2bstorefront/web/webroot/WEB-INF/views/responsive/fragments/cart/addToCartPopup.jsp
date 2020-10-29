@@ -61,7 +61,15 @@
             
             <c:if test="${not empty product.productSpecificDetailsHeading}">
             	<div class="shoppingHeading">${product.productSpecificDetailsHeading}</div>
+            </c:if>
+            
+            <div><strong><p>Please enter details<p></strong></div>
+            
+            <c:if test="${not empty product.productSpecificDetailsHeading}">
             	<textarea name="deliveryInstructionEntry" id="deliveryInstructionEntry" rows="3" cols="30" placeholder="80 character limit" />
+            	<div class="help-block textareaErrorbox">
+					<span ><spring:theme code="checkout.instruction.length.invalid" /></span>
+				</div>
             </c:if>
 
             <ycommerce:testId code="checkoutLinkInPopup">
@@ -76,7 +84,6 @@
                 	</c:choose>
                 </a>
             </ycommerce:testId>
-
 
             <a href="" class="btn btn-default btn-block js-mini-cart-close-button">
                 <spring:theme code="cart.page.continue"/>

@@ -17115,7 +17115,7 @@ textarea {
 	align-items: center;
 }
 
-.cart-product-comment .a:hover {
+.cart-product-comment a:hover {
 	color:#ff8400;
 }
 
@@ -17123,6 +17123,16 @@ textarea {
 	/* display: flex; */
 	/* padding-left: 0; */
 	padding: 0 0 0 4px;
+}
+
+.textareaErrorbox, .textareaCharactersErrorbox
+{	
+	display: none;
+   color: #c53131;
+	font-weight: 600;
+   font-size: 14px !important;
+   text-align: left !important;
+   margin-bottom: 0px !important;
 }
 
 .delivery-instructions-popup:hover {

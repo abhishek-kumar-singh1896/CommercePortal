@@ -62,17 +62,6 @@ public class DeliveryInstructionController
 		return ControllerConstants.Views.Fragments.DeliveryComments.DeliveryInstructionPopup;
 	}
 
-	@RequestMapping(value = "/removeinstruction", method = RequestMethod.POST)
-	public void removeSpecificInstruction(@RequestParam("getEntryNumber")
-	final Integer entryNumber) throws CMSItemNotFoundException
-	{
-		final DeliveryInstrutionsform deliveryInstrutionsform = new DeliveryInstrutionsform();
-		getGallagherCheckoutDeliveryInstructionFacade().setDeliveryInstructions("",
-				deliveryInstrutionsform.getProductSpecificDetailsHeading(),
-				entryNumber);
-	}
-
-
 	@ResponseBody
 	@RequestMapping(value = "/setdeliveryinstruction", method = RequestMethod.POST)
 	public String deliveryInstructionPopup(@ModelAttribute("deliveryInstrutionsform")

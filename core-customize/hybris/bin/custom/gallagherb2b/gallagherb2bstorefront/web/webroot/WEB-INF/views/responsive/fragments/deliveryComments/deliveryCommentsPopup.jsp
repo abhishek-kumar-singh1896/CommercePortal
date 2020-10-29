@@ -18,6 +18,7 @@
 		value="${deliveryInstrutionsform.entryNumber}" name="entryNumber" />
 	<input type="hidden" id="productSpecificDetailsHeading" value="${deliveryInstrutionsform.productSpecificDetailsHeading}" name="productSpecificDetailsHeading" />
 	<div><strong>${deliveryInstrutionsform.productSpecificDetailsHeading}</strong></div>
+	<div><strong><p>Please enter details<p></strong></div>
 	<textarea spellcheck="false" class="form-control add-comment-text-area"
 		name="deliveryInstructionEntry"
 		placeholder="<c:choose><c:when test="${not empty deliveryInstrutionsform.commentPlaceHolder}">${deliveryInstrutionsform.commentPlaceHolder}</c:when><c:otherwise>80 character limit</c:otherwise></c:choose>"
