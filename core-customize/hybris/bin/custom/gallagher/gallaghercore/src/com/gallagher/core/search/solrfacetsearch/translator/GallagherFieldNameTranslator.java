@@ -77,6 +77,13 @@ public class GallagherFieldNameTranslator extends DefaultFieldNameTranslator
 					: null;
 		}
 
+		if (userPriceGroupQualifierProvider == null)
+		{
+			userPriceGroupQualifierProvider = valueProvider instanceof GallagherProductDiscountValueResolver
+					? ((GallagherProductDiscountValueResolver) valueProvider).getUserPriceGroupQualifierProvider()
+					: null;
+		}
+
 		if (qualifierProvider != null && qualifierProvider.canApply(indexedProperty))
 		{
 			final Qualifier qualifier = qualifierProvider.getCurrentQualifier();

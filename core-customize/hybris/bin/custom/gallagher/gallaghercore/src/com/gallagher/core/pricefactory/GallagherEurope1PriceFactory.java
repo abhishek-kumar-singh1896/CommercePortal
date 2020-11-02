@@ -5,19 +5,24 @@ package com.gallagher.core.pricefactory;
 
 import de.hybris.platform.catalog.jalo.CatalogAwareEurope1PriceFactory;
 import de.hybris.platform.core.PK;
+import de.hybris.platform.europe1.constants.Europe1Tools;
 import de.hybris.platform.europe1.constants.GeneratedEurope1Constants.TC;
 import de.hybris.platform.europe1.jalo.AbstractDiscountRow;
 import de.hybris.platform.europe1.jalo.DiscountRow;
 import de.hybris.platform.europe1.jalo.PDTRowsQueryBuilder.QueryWithParams;
 import de.hybris.platform.europe1.jalo.PriceRow;
 import de.hybris.platform.jalo.SessionContext;
+import de.hybris.platform.jalo.c2l.C2LManager;
 import de.hybris.platform.jalo.c2l.Currency;
 import de.hybris.platform.jalo.enumeration.EnumerationValue;
 import de.hybris.platform.jalo.flexiblesearch.FlexibleSearch;
+import de.hybris.platform.jalo.order.AbstractOrder;
+import de.hybris.platform.jalo.order.AbstractOrderEntry;
 import de.hybris.platform.jalo.order.price.JaloPriceFactoryException;
 import de.hybris.platform.jalo.product.Product;
 import de.hybris.platform.jalo.user.User;
 import de.hybris.platform.servicelayer.model.ModelService;
+import de.hybris.platform.util.DateRange;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -25,6 +30,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.ListIterator;
 
 import javax.annotation.Resource;
 
@@ -113,17 +119,27 @@ public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactor
 				.withProductId(productId).withProductGroup(productGroupPk).withUser(userPk).withUserGroup(userGroupPk)
 				.withSalesArea(salesArea).build();
 
-		return FlexibleSearch.getInstance()
-				.search(ctx, queryAndParams.getQuery(), queryAndParams.getParams(), DiscountRow.class)
+		return FlexibleSearch.getInstance().search(ctx, queryAndParams.getQuery(), queryAndParams.getParams(),
+				DiscountRow.class)
 				.getResult();
 
 
 	}
 
 	@Override
+	public List getDiscountValues(final AbstractOrderEntry entry) throws JaloPriceFactoryException
+	{
+		final SessionContext ctx = this.getSession().getSessionContext();
+		final AbstractOrder order = entry.getOrder(ctx);
+		return Europe1Tools.createDiscountValueList(this.matchDiscountRows(entry.getProduct(ctx), this.getPDG(ctx, entry),
+				order.getUser(ctx), this.getUDG(ctx, entry), order.getCurrency(ctx), order.getDate(ctx), -1, entry.getQuantity(ctx),
+				order.getCurrency(ctx)));
+	}
+
+
 	public List matchDiscountRows(final Product product, final EnumerationValue productGroup, final User user,
-			final EnumerationValue userGroup, final Currency curr, final Date date, final int maxCount)
-			throws JaloPriceFactoryException
+			final EnumerationValue userGroup, final Currency curr, final Date date, final int maxCount, final Long qtd,
+			final Currency currency) throws JaloPriceFactoryException
 	{
 		if (user == null && userGroup == null)
 		{
@@ -144,7 +160,8 @@ public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactor
 					product, productGroup, user, userGroup);
 			if (!rows.isEmpty())
 			{
-				final List<GallagherDiscountRow> ret = (List<GallagherDiscountRow>) filterDiscountRows4Price(rows, date);
+				final List<GallagherDiscountRow> ret = (List<GallagherDiscountRow>) filterDiscountRows4Price(rows, qtd, currency,
+						date);
 				if (ret.size() > 1)
 				{
 					ret.sort(new GallagherEurope1PriceFactory.DiscountRowMatchComparator());
@@ -162,6 +179,52 @@ public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactor
 		}
 	}
 
+
+	protected List<? extends AbstractDiscountRow> filterDiscountRows4Price(final Collection<? extends AbstractDiscountRow> rows,
+			final Long _quantity, final Currency curr, final Date date)
+	{
+		if (rows.isEmpty())
+		{
+			return Collections.EMPTY_LIST;
+		}
+		else
+		{
+			final Currency base = curr.isBase() ? null : C2LManager.getInstance().getBaseCurrency();
+			final List<? extends AbstractDiscountRow> ret = new ArrayList(rows);
+			final ListIterator it = ret.listIterator();
+			final long quantity = _quantity == 0L ? 1L : _quantity;
+
+			while (true)
+			{
+				GallagherDiscountRow discRow;
+				while (it.hasNext())
+				{
+					discRow = (GallagherDiscountRow) it.next();
+					if (quantity < discRow.getQuantityAsPrimitive().longValue())
+					{
+						it.remove();
+					}
+					else
+					{
+						final Currency currency = discRow.getCurrency();
+						if (!curr.equals(currency) && (base == null || !base.equals(currency)))
+						{
+							it.remove();
+						}
+						else
+						{
+							final DateRange dataRange = discRow.getDateRange();
+							if (dataRange != null && !dataRange.encloses(date))
+							{
+								it.remove();
+							}
+						}
+					}
+				}
+				return ret;
+			}
+		}
+	}
 
 	protected class DiscountRowMatchComparator implements Comparator<GallagherDiscountRow>
 	{
