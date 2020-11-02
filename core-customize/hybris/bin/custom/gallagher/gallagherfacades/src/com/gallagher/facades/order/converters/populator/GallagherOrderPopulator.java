@@ -32,6 +32,7 @@ public class GallagherOrderPopulator extends OrderPopulator
 		super.addDetails(source, target);
 		target.setFormattedOrderDate(GallagherSiteUtil.getFormattedDateWithTimeZoneForDate(source.getDate(),
 				GallagherCoreConstants.GGL_ORDER_DATE_FORMAT, sessionService.getAttribute(GallagherCoreConstants.GGL_TIMEZONE)));
+		target.setDeliveryInstruction(source.getDeliveryInstruction());
 	}
 
 	protected SessionService getSessionService()
