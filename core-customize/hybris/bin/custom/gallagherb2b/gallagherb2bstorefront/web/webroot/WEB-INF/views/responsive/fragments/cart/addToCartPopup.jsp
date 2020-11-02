@@ -61,9 +61,10 @@
             
             <c:if test="${not empty product.productSpecificDetailsHeading}">
             	<div class="shoppingHeading">${product.productSpecificDetailsHeading}</div>
+            	<div><strong><p>Please enter details<p></strong></div>
             </c:if>
             
-            <div><strong><p>Please enter details<p></strong></div>
+            
             
             <c:if test="${not empty product.productSpecificDetailsHeading}">
             	<textarea name="deliveryInstructionEntry" id="deliveryInstructionEntry" rows="3" cols="30" placeholder="80 character limit" />
@@ -73,7 +74,7 @@
             </c:if>
 
             <ycommerce:testId code="checkoutLinkInPopup">
-                <a href="${cartUrl}" class="btn btn-primary btn-block add-to-cart-button">
+                <a href="${cartUrl}" id = "checkoutButton" class="btn btn-primary btn-block add-to-cart-button">
 	                <c:choose>
 		                <c:when test="${isQuote}">
 		                	<spring:theme code="quote.view" />

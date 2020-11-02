@@ -1,5 +1,5 @@
 ACC.common = {
-		_autoload : ["bindDeliveryInstructionsLink","deliveryInstructionbutton","deliveryInstructionRemovebutton"],
+		_autoload : ["bindDeliveryInstructionsLink","deliveryInstructionbutton","deliveryInstructionRemovebutton","deliveryInstructionCheckoutButton"],
 	currentCurrency: $("main").data('currencyIsoCode') || "USD",
 	processingMessage: $("<img src='" + ACC.config.commonResourcePath + "/images/spinner.gif'/>"),
 
@@ -81,6 +81,7 @@ ACC.common = {
 		
 		deliveryInstructionbutton : function() {
 			$(document).on("click", "#instruction_add_button", function(event) {
+				var fired_button = $(this).attr("value");
 				event.preventDefault();
 				var returnVal;
 				if($(".page-orderTemplatePage").length >0)
@@ -91,41 +92,42 @@ ACC.common = {
 					returnVal = ACC.common.submitInstruction();
 				}
 				if (returnVal) {
-					ACC.common.displayInstruction("add");
+					ACC.common.displayInstruction("add",fired_button);
 				}
 			});
 		},
 		
 		deliveryInstructionRemovebutton : function() {
 			$(document).on("click", "#instruction_remove_button", function(event) {
+				var fired_button = $(this).attr("value");
 				event.preventDefault();
 				var returnVal;
-					returnVal = ACC.common.removeInstruction();
+					returnVal = ACC.common.removeInstruction(fired_button);
 				if (returnVal) {
-					ACC.common.displayInstruction("remove");
+					ACC.common.displayInstruction("remove",fired_button);
 				}
 			});
 		},
 		
-		displayInstruction : function(operation) {
+		displayInstruction : function(operation, entrySelected) {
 			if(operation == 'remove') {
-				var $ele = $("div[comment-id='"+$("#entryID").val()+"']");
+				var $ele = $("div[comment-id='"+entrySelected+"']");
 				$ele.find("a").html("<span class='glyphicon glyphicon-plus-sign'></span>&nbsp;<span class='addcommenttext'>"+"add comment"+"</span></a>");
-				var $el = $("div[comment-id='minusSign"+$("#entryID").val()+"']");
+				var $el = $("div[comment-id='minusSign"+entrySelected+"']");
 				$el.find("a").html("<div style='display: none' class='glyphicon glyphicon-minus-sign'></div></a>");
 			} else {
-				var $el = $("div[comment-id='minusSign"+$("#entryID").val()+"']");
+				var $el = $("div[comment-id='minusSign"+entrySelected+"']");
 				$el.find("a").html("<div class='cart-product-comment'><div class='glyphicon glyphicon-minus-sign'></div></a>");
-				var $ele = $("div[comment-id='"+$("#entryID").val()+"']");
+				var $ele = $("div[comment-id='"+entrySelected+"']");
 				$ele.find("input").val($("#deliveryInstructionEntry").val());
 				$ele.find("a").html("<div class='deleveryinstructiontext'>"+$("#deliveryInstructionEntry").val()+"</div></div></a>");
 				$.colorbox.close();	
 			}				
 		},
 		
-		removeInstruction : function() {
+		removeInstruction : function(entrySelected) {
 			var isValid = false;
-			var entryNumber = $("#entryID").val();
+			var entryNumber = entrySelected;
 			var deliveryInstruction = "";
 			var productSpecificDetailsHeading = $("#productSpecificDetailsHeading").val();
 			var regex = /^[A-Za-z0-9\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,\-.\/:;<=>?@\[\]^_`{|}~+\s.+]+$/;
@@ -170,6 +172,12 @@ ACC.common = {
 					isValid = false;
 				}
 			return isValid;
+		},
+		
+		deliveryInstructionCheckoutButton : function() {
+			$(document).on("click", "#checkoutButton", function(event) {
+				var returnVal = ACC.common.submitInstruction();
+			});
 		},
 	    
 	    submitInstruction : function() {
@@ -223,9 +231,9 @@ ACC.common = {
 };
 
 
-$(document).on("change", ".add-to-cart #deliveryInstructionEntry", function() {
+/*$(document).on("click", ".add-to-cart #deliveryInstructionEntry", function() {
 	var returnVal = ACC.common.submitInstruction();
-});
+});*/
 
 /* Extend jquery with a postJSON method */
 jQuery.extend({

@@ -30,7 +30,7 @@
 	</div>
 
 	<button class="btn btn-primary btn-block" id="instruction_add_button"
-		type="submit">
+		type="submit" value="${deliveryInstrutionsform.entryNumber}">
 		<spring:theme code="deliveryinstruction.add" />
 	</button>
 
