@@ -74,56 +74,59 @@ public class GallagherDiscountRow extends DiscountRow
 			throws JaloBusinessException
 	{
 		final HashSet missing = new HashSet();
+		checkMandatoryAttribute("currency", allAttributes, missing);
 
-		/*
-		 * checkMandatoryAttribute("currency", allAttributes, missing);
-		 *
-		 * if (!missing.isEmpty()) {
-		 *
-		 * throw new JaloInvalidParameterException("missing price row attributes " + missing, 0);
-		 *
-		 * } else {
-		 */
-		/*
-		 * if (allAttributes.get("minqtd") == null) {
-		 *
-		 * allAttributes.put("minqtd", Long.valueOf(1L)); } if (allAttributes.get("net") == null) {
-		 *
-		 * allAttributes.put("net", Boolean.FALSE); } if (allAttributes.get("unitFactor") == null) {
-		 *
-		 * allAttributes.put("unitFactor", Integer.valueOf(1)); }
-		 */
-		/*
-		 * if (allAttributes.get("unit") == null) {
-		 *
-		 * final Product product = (Product) allAttributes.get("product"); final Unit fallbackUnit = product != null ?
-		 * product.getUnit() : null;
-		 *
-		 * if (fallbackUnit == null) { throw new JaloInvalidParameterException("missing unit for price row ", 0); } else {
-		 * allAttributes.put("unit", fallbackUnit); } }
-		 */
+		if (!missing.isEmpty())
+		{
+			throw new JaloInvalidParameterException("missing price row attributes " + missing, 0);
+		}
+		else
+		{
+			if (allAttributes.get("quantity") == null)
+			{
 
-		/*
-		 * allAttributes.setAttributeMode("minqtd", AttributeMode.INITIAL); allAttributes.setAttributeMode("currency",
-		 * AttributeMode.INITIAL); allAttributes.setAttributeMode("net", AttributeMode.INITIAL);
-		 * allAttributes.setAttributeMode("price", AttributeMode.INITIAL); // allAttributes.setAttributeMode("unit",
-		 * AttributeMode.INITIAL); allAttributes.setAttributeMode("unitFactor", AttributeMode.INITIAL);
-		 * allAttributes.setAttributeMode("giveAwayPrice", AttributeMode.INITIAL);
-		 */
+				allAttributes.put("quantity", 1);
+			}
 
-		allAttributes.put("matchValue",
-				Integer.valueOf(calculateMatchValue((Product) allAttributes.get("product"), (String) allAttributes.get("productId"),
-						(EnumerationValue) allAttributes.get("pg"), (User) allAttributes.get("user"),
-						(EnumerationValue) allAttributes.get("ug"), (String) allAttributes.get(SALES_AREA))));
+			allAttributes.setAttributeMode("quantity", AttributeMode.INITIAL);
+			allAttributes.put("matchValue",
+					Integer.valueOf(calculateMatchValue((Product) allAttributes.get("product"), (String) allAttributes.get(
+							"productId"),
+									(EnumerationValue) allAttributes.get("pg"), (User) allAttributes.get("user"),
+									(EnumerationValue) allAttributes.get("ug"), (String) allAttributes.get(SALES_AREA))));
+			allAttributes.setAttributeMode("matchValue", AttributeMode.INITIAL);
 
+			PRODUCTHANDLER.newInstance(ctx, allAttributes);
 
-		allAttributes.setAttributeMode("matchValue", AttributeMode.INITIAL);
+			final DiscountRow ret1 = (DiscountRow) createPDTItem(ctx, type, allAttributes);
+			return ret1;
+		}
+	}
 
-		PRODUCTHANDLER.newInstance(ctx, allAttributes);
+	public Integer getMinQuantity()
+	{
+		return getQuantityAsPrimitive();
+	}
 
-		final DiscountRow ret1 = (DiscountRow) createPDTItem(ctx, type, allAttributes);
-		return ret1;
-		//		}
+	public Integer getQuantityAsPrimitive()
+	{
+		return this.getQuantityAsPrimitive(this.getSession().getSessionContext());
+	}
+
+	public Integer getQuantityAsPrimitive(final SessionContext ctx)
+	{
+		final Integer value = this.getQuantity(ctx);
+		return value != null ? value : 0;
+	}
+
+	public Integer getQuantity(final SessionContext ctx)
+	{
+		return (Integer) this.getProperty(ctx, "quantity");
+	}
+
+	public Integer getQuantity()
+	{
+		return this.getQuantity(this.getSession().getSessionContext());
 	}
 
 	/**
@@ -329,6 +332,7 @@ public class GallagherDiscountRow extends DiscountRow
 		return referenceCounter > 1;
 	}
 
+
 	/**
 	 * Method to set the initial salesArea match field.
 	 *
@@ -397,14 +401,14 @@ public class GallagherDiscountRow extends DiscountRow
 			}
 			else
 			{
-				if (_salesArea)
-				{
-					value = 10;
-				}
-				else
-				{
-					value = 8;
-				}
+		if (_salesArea)
+		{
+			value = 10;
+		}
+		else
+		{
+			value = 8;
+		}
 			}
 		}
 		else if (_productGroup)
