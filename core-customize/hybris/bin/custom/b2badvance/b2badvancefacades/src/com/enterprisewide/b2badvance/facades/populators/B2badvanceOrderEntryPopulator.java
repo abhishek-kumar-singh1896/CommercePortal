@@ -36,6 +36,7 @@ public class B2badvanceOrderEntryPopulator extends OrderEntryPopulator {
 	{
 		super.populate(source,target);
 		target.setDeliveryinstruction(source.getDeliveryInstruction());
+		target.setProductSpecificDetailsHeading(source.getProductSpecificDetailsHeading());
 	}
 
 	@Override
