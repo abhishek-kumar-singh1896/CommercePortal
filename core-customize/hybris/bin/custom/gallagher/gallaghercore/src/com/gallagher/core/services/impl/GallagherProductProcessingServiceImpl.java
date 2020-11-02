@@ -227,6 +227,17 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 
 					LOGGER.info("Processing " + variantProductCode + " with base store " + baseStore.getName() + " ");
 
+					final List<ProductModel> recommendedProducts = new ArrayList<ProductModel>();
+					for (final ProductModel recommendedProduct : product.getRecommendedProducts())
+					{
+						recommendedProducts.add(productService.getProductForCode(regionalCatalogVersion, recommendedProduct.getCode()));
+					}
+					final List<CategoryModel> recommendedCategories = new ArrayList<CategoryModel>();
+					for (final CategoryModel recommendedCategory : product.getRecommendedCategories())
+					{
+						recommendedCategories.add(categoryService.getCategory(regionalCatalogVersion, recommendedCategory.getCode()));
+					}
+
 					try
 					{
 						final ProductModel existingProduct = productService.getProductForCode(regionalCatalogVersion,
@@ -260,6 +271,9 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 						}
 						existingVariantProduct.setPartNumber(product.getPartNumber());
 						existingVariantProduct.setPriceOnApplication(product.getPriceOnApplication());
+
+						existingVariantProduct.setRecommendedCategories(recommendedCategories);
+						existingVariantProduct.setRecommendedProducts(recommendedProducts);
 						populateVariantData(product, existingVariantProduct);
 
 						populateImages(product, existingVariantProduct, regionalCatalogVersion);
@@ -305,6 +319,9 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 						populateVariantData(product, newVariantProduct);
 
 						populateImages(product, newVariantProduct, regionalCatalogVersion);
+
+						newVariantProduct.setRecommendedCategories(recommendedCategories);
+						newVariantProduct.setRecommendedProducts(recommendedProducts);
 
 						modelService.save(newVariantProduct);
 

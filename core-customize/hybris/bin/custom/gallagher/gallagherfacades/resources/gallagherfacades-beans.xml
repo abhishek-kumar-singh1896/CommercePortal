@@ -68,6 +68,8 @@
 		<!-- <property name="marketingDescription" type="String"/> -->
 		<property name="commentPlaceHolder" type="String" />
 		<property name="productSpecificDetailsHeading" type="String" />
+		<property name="recommendedProducts" type="java.util.List&lt;de.hybris.platform.commercefacades.product.data.ProductData>" />
+		<property name="recommendedCategories" type="java.util.List&lt;de.hybris.platform.commercefacades.product.data.CategoryData>" />
 	</bean>
 
 	<bean class="de.hybris.platform.commerceservices.search.facetdata.ProductCategorySearchPageData&lt;STATE, RESULT, CATEGORY>">
