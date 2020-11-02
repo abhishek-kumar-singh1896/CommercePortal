@@ -66,6 +66,10 @@
 		<property name="categoryPaths" type="java.util.List&lt;String&gt;" />
 		<property name="modifiedTime" type="java.util.Date" />
 		<!-- <property name="marketingDescription" type="String"/> -->
+		<property name="commentPlaceHolder" type="String" />
+		<property name="productSpecificDetailsHeading" type="String" />
+		<property name="recommendedProducts" type="java.util.List&lt;de.hybris.platform.commercefacades.product.data.ProductData>" />
+		<property name="recommendedCategories" type="java.util.List&lt;de.hybris.platform.commercefacades.product.data.CategoryData>" />
 	</bean>
 
 	<bean class="de.hybris.platform.commerceservices.search.facetdata.ProductCategorySearchPageData&lt;STATE, RESULT, CATEGORY>">
@@ -126,4 +130,19 @@
 		<property name="salesArea" type="boolean"/>
 		<property name="userPriceGroup" type="boolean"/>
 	</bean>
+	<bean class="de.hybris.platform.commercefacades.order.data.DeliveryInstructionData">
+		<property name="deliveryinstruction" type="String" />
+		<property name="commentPlaceHolder" type="String" />
+		<property name="entryNumber" type="Integer" />
+		<property name="productSpecificDetailsHeading" type="String" />
+	</bean>
+	
+	<bean class="de.hybris.platform.commercefacades.order.data.OrderEntryData">
+		<property name="deliveryinstruction" type="String" />
+	</bean>
+	
+	<bean class="de.hybris.platform.commercefacades.order.data.AbstractOrderData">
+		<property name="deliveryInstruction" type="String" />
+	</bean>
+	
 </beans>

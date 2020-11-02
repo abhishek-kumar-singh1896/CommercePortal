@@ -9,6 +9,7 @@
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
+<input type="hidden" id="showRecommendationsForProducts" value="${hasRecommendations}"/>
 <template:page pageTitle="${pageTitle}">
 
 	<cart:cartValidation/>
@@ -72,5 +73,7 @@
                 <cms:component component="${feature}" element="div" class="yComponentWrapper content__empty"/>
             </cms:pageSlot>
 		</c:if>
+	</div>
+	<div class="recommendations-modal" id="recommendationsModal">
 	</div>
 </template:page>

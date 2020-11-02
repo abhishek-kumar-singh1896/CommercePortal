@@ -314,4 +314,20 @@
      <property name="discountService" ref="discountService"/>
      <property name="sessionService" ref="sessionService"/>
     </bean>
+	<bean id="gallagherCheckoutDeliveryInstructionFacadeImpl" class="com.gallagher.facades.checkout.flow.impl.GallagherCheckoutDeliveryInstructionFacadeImpl"
+		parent="defaultCheckoutFacade">
+	</bean>
+
+	<alias name="gallagherProductRecommendationsPopulator" alias="productRecommendationsPopulator" />
+	<bean id="gallagherProductRecommendationsPopulator"
+		class="com.gallagher.facades.product.converters.populator.GallagherProductRecommendationsPopulator">
+		<property name="productConverter" ref="productConverter"/>
+		<property name="categoryConverter" ref="categoryConverter"/>
+	</bean>
+	
+    <bean parent="modifyPopulatorList">
+        <property name="list" ref="orderEntryProductConverter"/>
+        <property name="add" ref="productRecommendationsPopulator"/>
+    </bean>
+	
 </beans>
