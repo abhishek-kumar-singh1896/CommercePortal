@@ -98,7 +98,6 @@ public class CategoryPageController extends AbstractCategoryPageController
 		model.addAttribute("url", "");
 		if (null != media && media.getMime().startsWith("image"))
 		{
-			System.out.println(category.getPicture().getURL());
 			model.addAttribute("url", category.getPicture().getURL());
 			final String mime = media.getMime();
 		}
