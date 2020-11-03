@@ -135,8 +135,13 @@ public class GallagherB2BUnitServiceImpl extends DefaultB2BUnitService implement
 					final EnumerationValueModel userPriceGroup = (unitOfCustomer.getUserPriceGroup() != null
 							? getTypeService().getEnumerationValue(unitOfCustomer.getUserPriceGroup())
 							: lookupPriceGroupFromClosestParent(unitOfCustomer));
+
+					final EnumerationValueModel userDiscountGroup = (unitOfCustomer.getUserDiscountGroup() != null
+							? getTypeService().getEnumerationValue(unitOfCustomer.getUserDiscountGroup())
+							: lookupDiscountGroupFromClosestParent(unitOfCustomer));
+
 					return new Object[]
-					{ getRootUnit(unitOfCustomer), getBranch(unitOfCustomer), unitOfCustomer, userPriceGroup };
+					{ getRootUnit(unitOfCustomer), getBranch(unitOfCustomer), unitOfCustomer, userPriceGroup, userDiscountGroup };
 				}
 			});
 
@@ -146,6 +151,7 @@ public class GallagherB2BUnitServiceImpl extends DefaultB2BUnitService implement
 			final B2BUnitModel b2bUnit = (B2BUnitModel) branchInfo[2];
 			getSessionService().setAttribute(CURRENT_SESSION_SALES_AREA, b2bUnit.getSalesArea());
 			getSessionService().setAttribute(Europe1Constants.PARAMS.UPG, branchInfo[3]);
+			getSessionService().setAttribute(Europe1Constants.PARAMS.UDG, branchInfo[4]);
 
 			final B2BCustomerModel currentCustomer = (B2BCustomerModel) currentUser;
 			final B2BUnitModel defaultUnit = currentCustomer.getDefaultB2BUnit();
@@ -161,6 +167,17 @@ public class GallagherB2BUnitServiceImpl extends DefaultB2BUnitService implement
 		}
 	}
 
+	protected EnumerationValueModel lookupDiscountGroupFromClosestParent(final B2BUnitModel unitOfCustomer)
+	{
+		for (final B2BUnitModel unitModel : getAllParents(unitOfCustomer))
+		{
+			if (unitModel.getUserDiscountGroup() != null)
+			{
+				return getTypeService().getEnumerationValue(unitModel.getUserDiscountGroup());
+			}
+		}
+		return null;
+	}
 
 	/**
 	 * @return the baseStoreService

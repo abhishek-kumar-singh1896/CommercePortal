@@ -17,6 +17,7 @@ import de.hybris.platform.order.strategies.calculation.pdt.criteria.impl.Default
 import de.hybris.platform.product.BaseCriteria;
 import de.hybris.platform.servicelayer.dto.converter.ConversionException;
 import de.hybris.platform.servicelayer.session.SessionService;
+import de.hybris.platform.util.DiscountValue;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -84,7 +85,15 @@ public class GallagherProductDiscountPopulator<SOURCE extends ProductModel, TARG
 			discountData.setSameCurrency(isSameCurrency);
 
 			double netPrice;
-			if (info.getDiscountValue().isAbsolute())
+			final DiscountValue discountValue = info.getDiscountValue();
+			final boolean isAbsolute = discountValue.isAbsolute();
+			final boolean asTargetPrice = isAbsolute && Boolean.TRUE.equals(discountValue.isAsTargetPrice());
+
+			if (asTargetPrice)
+			{
+				netPrice = discountValue.getValue();
+			}
+			else if (info.getDiscountValue().isAbsolute())
 			{
 
 				netPrice = priceData.getValue().doubleValue() - info.getDiscountValue().getValue();

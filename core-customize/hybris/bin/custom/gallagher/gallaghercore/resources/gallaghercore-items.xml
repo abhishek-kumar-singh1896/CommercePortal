@@ -769,7 +769,7 @@
 			<itemtype code="DiscountRow" autocreate="false" generate="false">
 				<description>Extending DiscountRow type with an additional attribute.</description>
 				<attributes>
-					<attribute autocreate="true" generate="true" qualifier="quantity" type="java.lang.Integer">
+					<attribute autocreate="true" generate="true" qualifier="quantity" type="java.lang.Long">
 						<modifiers read="true" write="true" search="true" optional="true" />
 						<persistence type="property" />
 						<description>Attribute to identify the quantity for DiscountRow </description>

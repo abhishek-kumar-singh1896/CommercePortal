@@ -23,6 +23,7 @@ import de.hybris.platform.solrfacetsearch.indexer.IndexerBatchContext;
 import de.hybris.platform.solrfacetsearch.indexer.spi.InputDocument;
 import de.hybris.platform.solrfacetsearch.provider.Qualifier;
 import de.hybris.platform.solrfacetsearch.provider.QualifierProvider;
+import de.hybris.platform.util.DiscountValue;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -50,7 +51,7 @@ public class GallagherProductDiscountValueResolver extends ProductPricesValueRes
 
 	private GallagherQualifierProvider salesAreaQualifierProvider;
 
-	private GallagherQualifierProvider userPriceGroupQualifierProvider;
+	private GallagherQualifierProvider userDiscountGroupQualifierProvider;
 
 	private DiscountService discountService;
 
@@ -87,8 +88,7 @@ public class GallagherProductDiscountValueResolver extends ProductPricesValueRes
 			final FacetSearchConfig facetSearchConfig1 = batchContext.getFacetSearchConfig();
 			final IndexedType indexedType1 = batchContext.getIndexedType();
 
-			final Collection<Qualifier> qualifiers = getQualifierProvider().getAvailableQualifiers(facetSearchConfig1,
-					indexedType1);
+			final Collection<Qualifier> qualifiers = getQualifierProvider().getAvailableQualifiers(facetSearchConfig1, indexedType1);
 
 			for (final Qualifier qualifier : qualifiers)
 			{
@@ -149,17 +149,18 @@ public class GallagherProductDiscountValueResolver extends ProductPricesValueRes
 					model,
 					resolverContext, salesAreaQualifierProvider, salesAreaQualifier, fieldQualifier);
 
-			final Collection<Qualifier> upgQualifiers = userPriceGroupQualifierProvider.getAvailableQualifiers(facetSearchConfig1,
+			final Collection<Qualifier> upgQualifiers = userDiscountGroupQualifierProvider.getAvailableQualifiers(
+					facetSearchConfig1,
 					indexedType1);
 
 			for (final Qualifier upgQualifier : upgQualifiers)
 			{
 
-				indexQualifierData(document, batchContext, indexedProperties, model, resolverContext, userPriceGroupQualifierProvider,
-						upgQualifier, salesAreaFieldQualifier);
+				indexQualifierData(document, batchContext, indexedProperties, model, resolverContext,
+						userDiscountGroupQualifierProvider, upgQualifier, salesAreaFieldQualifier);
 
 			}
-			userPriceGroupQualifierProvider.removeQualifier();
+			userDiscountGroupQualifierProvider.removeQualifier();
 		}
 	}
 
@@ -273,8 +274,7 @@ public class GallagherProductDiscountValueResolver extends ProductPricesValueRes
 	 */
 	protected void addFieldValues(final InputDocument document, final IndexedProperty indexedProperty,
 			final ValueResolverContext<Object, List<DiscountInformation>> resolverContext, final ProductModel product,
-			final Collection<IndexedProperty> indexedProperties)
-			throws FieldValueProviderException
+			final Collection<IndexedProperty> indexedProperties) throws FieldValueProviderException
 	{
 		final List<DiscountInformation> discountInformations = resolverContext.getQualifierData();
 		if (CollectionUtils.isNotEmpty(discountInformations))
@@ -384,8 +384,16 @@ public class GallagherProductDiscountValueResolver extends ProductPricesValueRes
 	 */
 	private double getNetPrice(final DiscountInformation discInfo, final PriceInformation priceInfo)
 	{
+		final DiscountValue discountValue = discInfo.getDiscountValue();
+		final boolean isAbsolute = discountValue.isAbsolute();
+		final boolean asTargetPrice = isAbsolute && Boolean.TRUE.equals(discountValue.isAsTargetPrice());
 		double netPrice;
-		if (discInfo.getDiscountValue().isAbsolute())
+
+		if (asTargetPrice)
+		{
+			netPrice = discountValue.getValue();
+		}
+		else if (discInfo.getDiscountValue().isAbsolute())
 		{
 
 			netPrice = priceInfo.getPriceValue().getValue() - discInfo.getDiscountValue().getValue();
@@ -506,20 +514,19 @@ public class GallagherProductDiscountValueResolver extends ProductPricesValueRes
 	}
 
 	/**
-	 * @return the userPriceGroupQualifierProvider
+	 * @return the userDiscountGroupQualifierProvider
 	 */
-	public GallagherQualifierProvider getUserPriceGroupQualifierProvider()
+	public GallagherQualifierProvider getUserDiscountGroupQualifierProvider()
 	{
-		return userPriceGroupQualifierProvider;
+		return userDiscountGroupQualifierProvider;
 	}
 
 	/**
-	 * @param userPriceGroupQualifierProvider
-	 *           the userPriceGroupQualifierProvider to set
+	 * @param userDiscountGroupQualifierProvider
+	 *           the userDiscountGroupQualifierProvider to set
 	 */
-	public void setUserPriceGroupQualifierProvider(final GallagherQualifierProvider userPriceGroupQualifierProvider)
+	public void setUserDiscountGroupQualifierProvider(final GallagherQualifierProvider userDiscountGroupQualifierProvider)
 	{
-		this.userPriceGroupQualifierProvider = userPriceGroupQualifierProvider;
+		this.userDiscountGroupQualifierProvider = userDiscountGroupQualifierProvider;
 	}
-
 }

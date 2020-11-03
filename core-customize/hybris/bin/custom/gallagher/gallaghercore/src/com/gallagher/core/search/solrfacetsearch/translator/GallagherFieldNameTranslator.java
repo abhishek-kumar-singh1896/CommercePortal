@@ -80,7 +80,7 @@ public class GallagherFieldNameTranslator extends DefaultFieldNameTranslator
 		if (userPriceGroupQualifierProvider == null)
 		{
 			userPriceGroupQualifierProvider = valueProvider instanceof GallagherProductDiscountValueResolver
-					? ((GallagherProductDiscountValueResolver) valueProvider).getUserPriceGroupQualifierProvider()
+					? ((GallagherProductDiscountValueResolver) valueProvider).getUserDiscountGroupQualifierProvider()
 					: null;
 		}
 
