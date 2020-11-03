@@ -314,4 +314,8 @@
      <property name="discountService" ref="discountService"/>
      <property name="sessionService" ref="sessionService"/>
     </bean>
+	<bean id="gallagherCheckoutDeliveryInstructionFacadeImpl" class="com.gallagher.facades.checkout.flow.impl.GallagherCheckoutDeliveryInstructionFacadeImpl"
+		parent="defaultCheckoutFacade">
+	</bean>
+	
 </beans>
