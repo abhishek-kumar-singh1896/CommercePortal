@@ -260,6 +260,28 @@
 		<property name="type" value="${keygen.order.code.type}" />
 		<property name="template" value="${keygen.order.code.template}" />
 	</bean>
+	
+	<bean id="gglB2BOrderCodeGenerator" class="de.hybris.platform.servicelayer.keygenerator.impl.PersistentKeyGenerator">
+		<property name="key" value="${keygen.ggl.b2b.order.code.name}" />
+		<property name="digits" value="${keygen.order.code.digits}" />
+		<property name="start" value="${keygen.ggl.b2b.order.code.start}" />
+		<property name="type" value="${keygen.order.code.type}" />
+		<property name="template" value="${keygen.order.code.template}" />
+	</bean>
+	
+	<alias name="gglB2BCreateOrderFromCartStrategy" alias="defaultB2BCreateOrderFromCartStrategy" />
+	<bean id="gglB2BCreateOrderFromCartStrategy"
+	      class="de.hybris.platform.b2b.strategies.impl.DefaultB2BCreateOrderFromCartStrategy"
+	      parent="createOrderFromCartStrategy">
+		<property name="businessProcessStrategies">
+			<list>
+				<ref bean="b2bApprovalBusinessProcessStrategy"/>
+				<ref bean="b2bQuoteBusinessProcessStrategy"/>
+				<ref bean="b2bQuoteApprovalBusinessProcessStrategy"/>
+			</list>
+		</property>
+		<property name="keyGenerator" ref="gglB2BOrderCodeGenerator"></property>
+	</bean> 
 
 	<bean id="itemUniqueAttributesValidatorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
 		<property name="interceptor" ref="UniqueAttributesValidator" />
