@@ -108,7 +108,12 @@
     "gallagherb2cstorefront",
     "gallagherstorefront",
 	"gallagherscpiexchange",
-	"paymetric"
+	"paymetric",
+    "subscriptionbackoffice",
+    "subscriptionfacades",
+    "subscriptionservices",
+    "commerceorgaddon",
+    "commerceorgsamplesaddon"
   ],
   "useConfig": {
     "solr": {
@@ -150,6 +155,26 @@
     }
   ],
   "storefrontAddons": [
+    {
+      "addon": "commerceorgaddon",
+      "storefront": "gallagherb2cstorefront",
+      "template": "yacceleratorstorefront"
+    },
+    {
+      "addon": "commerceorgaddon",
+      "storefront": "gallagherb2cstorefront",
+      "template": "yacceleratorstorefront"
+    },
+    {
+      "addon": "commerceorgsamplesaddon",
+      "storefront": "gallagherb2bstorefront",
+      "template": "yacceleratorstorefront"
+    },
+    {
+      "addon": "commerceorgsamplesaddon",
+      "storefront": "gallagherb2bstorefront",
+      "template": "yacceleratorstorefront"
+    },
     {
       "addon": "customerticketingaddon",
       "storefront": "gallagherb2bstorefront",

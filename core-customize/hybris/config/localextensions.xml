@@ -126,5 +126,12 @@
 	<extension name="gallagherstorefront" />
 	<extension name="gallagherscpiexchange" />
 	<extension name="paymetric" />
+
+	<extension name='subscriptionbackoffice' />
+	<extension name='subscriptionfacades' />
+	<extension name='subscriptionservices' />
+	<extension name='commerceorgaddon' />
+	<extension name='commerceorgsamplesaddon' />
+
   </extensions>
 </hybrisconfig>
