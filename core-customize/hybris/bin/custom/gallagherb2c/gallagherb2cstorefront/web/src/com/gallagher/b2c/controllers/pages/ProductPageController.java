@@ -596,7 +596,8 @@ public class ProductPageController extends AbstractPageController
 				 * alternativeProducts.add(product.getTarget());
 				 */
 				if (product.getTarget().getStock().getStockLevelStatus() != null
-						&& product.getTarget().getStock().getStockLevelStatus().equals(StockLevelStatus.INSTOCK))
+						&& (product.getTarget().getStock().getStockLevelStatus().equals(StockLevelStatus.INSTOCK))
+						|| (product.getTarget().getStock().getStockLevelStatus().equals(StockLevelStatus.LOWSTOCK)))
 				{
 					alternativeProducts.add(product.getTarget());
 
