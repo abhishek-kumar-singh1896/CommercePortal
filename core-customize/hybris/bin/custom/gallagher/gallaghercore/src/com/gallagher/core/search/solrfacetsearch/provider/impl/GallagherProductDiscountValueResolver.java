@@ -50,6 +50,8 @@ public class GallagherProductDiscountValueResolver extends ProductPricesValueRes
 
 	private GallagherQualifierProvider salesAreaQualifierProvider;
 
+	private GallagherQualifierProvider userPriceGroupQualifierProvider;
+
 	private DiscountService discountService;
 
 	private CommonI18NService commonI18NService;
@@ -143,9 +145,21 @@ public class GallagherProductDiscountValueResolver extends ProductPricesValueRes
 
 		for (final Qualifier salesAreaQualifier : salesAreaQualifiers)
 		{
-			indexQualifierData(document, batchContext, indexedProperties,
+			final String salesAreaFieldQualifier = indexQualifierData(document, batchContext, indexedProperties,
 					model,
 					resolverContext, salesAreaQualifierProvider, salesAreaQualifier, fieldQualifier);
+
+			final Collection<Qualifier> upgQualifiers = userPriceGroupQualifierProvider.getAvailableQualifiers(facetSearchConfig1,
+					indexedType1);
+
+			for (final Qualifier upgQualifier : upgQualifiers)
+			{
+
+				indexQualifierData(document, batchContext, indexedProperties, model, resolverContext, userPriceGroupQualifierProvider,
+						upgQualifier, salesAreaFieldQualifier);
+
+			}
+			userPriceGroupQualifierProvider.removeQualifier();
 		}
 	}
 
@@ -489,6 +503,23 @@ public class GallagherProductDiscountValueResolver extends ProductPricesValueRes
 	public void setCommonI18NService(final CommonI18NService commonI18NService)
 	{
 		this.commonI18NService = commonI18NService;
+	}
+
+	/**
+	 * @return the userPriceGroupQualifierProvider
+	 */
+	public GallagherQualifierProvider getUserPriceGroupQualifierProvider()
+	{
+		return userPriceGroupQualifierProvider;
+	}
+
+	/**
+	 * @param userPriceGroupQualifierProvider
+	 *           the userPriceGroupQualifierProvider to set
+	 */
+	public void setUserPriceGroupQualifierProvider(final GallagherQualifierProvider userPriceGroupQualifierProvider)
+	{
+		this.userPriceGroupQualifierProvider = userPriceGroupQualifierProvider;
 	}
 
 }

@@ -402,10 +402,10 @@ INSERT_UPDATE Warehouse ; code[unique=true] ; default ; vendor(code) ; name[lang
 
 
 # Importing Condition Type
-INSERT_UPDATE ConditionType	; code[unique = true]
-                 			; PR00
-                 			; PREX
-                 			; K031
-                 			; Z004
-                 			; ZD00
+#INSERT_UPDATE ConditionType	; code[unique = true]
+#                 			; PR00
+#                 			; PREX
+#                 			; K031
+#                 			; Z004
+#                 			; ZD00
                  			
