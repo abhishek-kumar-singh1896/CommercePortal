@@ -67,7 +67,7 @@
 											<c:if test="${product.stock.stockLevelStatus.code eq 'outOfStock'}">
 							 <c:forEach items="${product.productReferences}" var="reference">
 					    <c:if test="${reference.referenceType eq 'ALTERNATIVE_PRODUCTS'}">
-					    <c:if test="${reference.target.stock.stockLevelStatus.code eq 'inStock'}">
+					    <c:if test="${reference.target.stock.stockLevelStatus.code eq 'inStock' || reference.target.stock.stockLevelStatus.code eq 'lowStock'}">
 					    <c:set var="flag" value="true"/>
 					    </c:if>
 					    </c:if>
