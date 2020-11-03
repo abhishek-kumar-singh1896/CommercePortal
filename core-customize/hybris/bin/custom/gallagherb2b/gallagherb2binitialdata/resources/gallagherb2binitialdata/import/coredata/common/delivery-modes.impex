@@ -24,7 +24,7 @@ INSERT_UPDATE Zone ; code[unique=true] ; countries(isocode)
 INSERT_UPDATE ZoneDeliveryMode ; code[unique=true]      ; net   ; active[default=true] 
                                ; premium-gross          ; false 
                                ; standard-gross         ; false 
-                               ; free-standard-shipping ; true  ; true                ;  
+                               ; free-standard-shipping ; true  ; false                ;  
                                
 $numberFormat="numberformat=#.###,##"
                    
