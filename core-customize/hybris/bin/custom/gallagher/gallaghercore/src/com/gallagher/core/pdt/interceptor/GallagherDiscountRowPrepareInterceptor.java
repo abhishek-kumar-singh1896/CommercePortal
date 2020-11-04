@@ -28,11 +28,6 @@ public class GallagherDiscountRowPrepareInterceptor extends GallagherPDTRowPrepa
 			final DiscountRowModel dModel = (DiscountRowModel) model;
 			super.onPrepare(dModel, ctx);
 
-			if (dModel.getCurrency() == null)
-			{
-				throw new InterceptorException("Currency cannot be null for discount row ");
-			}
-
 			if (ctx.isNew(model) || ctx.isModified(model, DiscountRowModel.PRODUCT) || ctx.isModified(model, DiscountRowModel.PG)
 					|| ctx.isModified(model, DiscountRowModel.USER) || ctx.isModified(model, DiscountRowModel.UG)
 					|| ctx.isModified(model, DiscountRowModel.PRODUCTID) || ctx.isModified(model, DiscountRowModel.SALESAREA))
