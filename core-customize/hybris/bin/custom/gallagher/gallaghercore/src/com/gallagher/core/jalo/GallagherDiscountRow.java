@@ -21,7 +21,6 @@ import de.hybris.platform.util.JaloPropertyContainer;
 import de.hybris.platform.util.StandardDateRange;
 
 import java.util.Date;
-import java.util.HashSet;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -73,60 +72,23 @@ public class GallagherDiscountRow extends DiscountRow
 	protected Item createDiscountRowItem(final SessionContext ctx, final ComposedType type, final ItemAttributeMap allAttributes)
 			throws JaloBusinessException
 	{
-		final HashSet missing = new HashSet();
-		checkMandatoryAttribute("currency", allAttributes, missing);
-
-		if (!missing.isEmpty())
+		if (allAttributes.get("quantity") == null)
 		{
-			throw new JaloInvalidParameterException("missing price row attributes " + missing, 0);
+
+			allAttributes.put("quantity", Long.valueOf(1));
 		}
-		else
-		{
-			if (allAttributes.get("quantity") == null)
-			{
 
-				allAttributes.put("quantity", 1);
-			}
+		allAttributes.setAttributeMode("quantity", AttributeMode.INITIAL);
+		allAttributes.put("matchValue", Integer
+				.valueOf(calculateMatchValue((Product) allAttributes.get("product"), (String) allAttributes.get("productId"),
+						(EnumerationValue) allAttributes.get("pg"), (User) allAttributes.get("user"),
+						(EnumerationValue) allAttributes.get("ug"), (String) allAttributes.get(SALES_AREA))));
+		allAttributes.setAttributeMode("matchValue", AttributeMode.INITIAL);
 
-			allAttributes.setAttributeMode("quantity", AttributeMode.INITIAL);
-			allAttributes.put("matchValue",
-					Integer.valueOf(calculateMatchValue((Product) allAttributes.get("product"), (String) allAttributes.get(
-							"productId"),
-									(EnumerationValue) allAttributes.get("pg"), (User) allAttributes.get("user"),
-									(EnumerationValue) allAttributes.get("ug"), (String) allAttributes.get(SALES_AREA))));
-			allAttributes.setAttributeMode("matchValue", AttributeMode.INITIAL);
+		PRODUCTHANDLER.newInstance(ctx, allAttributes);
 
-			PRODUCTHANDLER.newInstance(ctx, allAttributes);
-
-			final DiscountRow ret1 = (DiscountRow) createPDTItem(ctx, type, allAttributes);
-			return ret1;
-		}
-	}
-
-	public Integer getMinQuantity()
-	{
-		return getQuantityAsPrimitive();
-	}
-
-	public Integer getQuantityAsPrimitive()
-	{
-		return this.getQuantityAsPrimitive(this.getSession().getSessionContext());
-	}
-
-	public Integer getQuantityAsPrimitive(final SessionContext ctx)
-	{
-		final Integer value = this.getQuantity(ctx);
-		return value != null ? value : 0;
-	}
-
-	public Integer getQuantity(final SessionContext ctx)
-	{
-		return (Integer) this.getProperty(ctx, "quantity");
-	}
-
-	public Integer getQuantity()
-	{
-		return this.getQuantity(this.getSession().getSessionContext());
+		final DiscountRow ret1 = (DiscountRow) createPDTItem(ctx, type, allAttributes);
+		return ret1;
 	}
 
 	/**
@@ -290,6 +252,32 @@ public class GallagherDiscountRow extends DiscountRow
 
 	}
 
+	public long getMinQuantity()
+	{
+		return getQuantityAsPrimitive();
+	}
+
+	public long getQuantityAsPrimitive()
+	{
+		return this.getQuantityAsPrimitive(this.getSession().getSessionContext());
+	}
+
+	public long getQuantityAsPrimitive(final SessionContext ctx)
+	{
+		final Long value = this.getQuantity(ctx);
+		return value != null ? value : 0;
+	}
+
+	public Long getQuantity(final SessionContext ctx)
+	{
+		return (Long) this.getProperty(ctx, "quantity");
+	}
+
+	public Long getQuantity()
+	{
+		return this.getQuantity(this.getSession().getSessionContext());
+	}
+
 	/**
 	 * Method to mark the product as modified.
 	 *
@@ -351,6 +339,9 @@ public class GallagherDiscountRow extends DiscountRow
 	/**
 	 * Method to calculate the match value
 	 *
+	 * @param string
+	 * @param product
+	 *
 	 * @param product
 	 *           the product
 	 * @param productCode
@@ -361,6 +352,8 @@ public class GallagherDiscountRow extends DiscountRow
 	 *           the user
 	 * @param userGroup
 	 *           the user group
+	 * @param enumerationValue
+	 * @param user
 	 * @param salesArea
 	 *           the Sales Area
 	 * @return the match value
@@ -372,7 +365,7 @@ public class GallagherDiscountRow extends DiscountRow
 		final boolean _productGroup = productGroup != null;
 		final boolean _user = user != null;
 		final boolean _userGroup = userGroup != null;
-		final boolean _salesArea = salesArea != null;
+		final boolean _salesArea = StringUtils.isNotBlank(salesArea) && !salesArea.equalsIgnoreCase(String.valueOf(0));
 
 		int value = 0;
 		if (_product)
@@ -401,14 +394,14 @@ public class GallagherDiscountRow extends DiscountRow
 			}
 			else
 			{
-		if (_salesArea)
-		{
-			value = 10;
-		}
-		else
-		{
-			value = 8;
-		}
+				if (_salesArea)
+				{
+					value = 10;
+				}
+				else
+				{
+					value = 8;
+				}
 			}
 		}
 		else if (_productGroup)
@@ -488,16 +481,6 @@ public class GallagherDiscountRow extends DiscountRow
 	}
 
 	/**
-	 * {@inheritDoc}
-	 */
-	protected int calculateMatchValue(final Product product, final String productCode, final EnumerationValue productGroup,
-			final User user, final EnumerationValue userGroup)
-	{
-		final SessionContext sessionContext = getSession().getSessionContext();
-		return calculateMatchValue(product, productCode, productGroup, user, userGroup, getSalesArea(sessionContext));
-	}
-
-	/**
 	 * Method to get the salesArea from the session context
 	 *
 	 * @return the salesArea
@@ -528,8 +511,8 @@ public class GallagherDiscountRow extends DiscountRow
 
 	protected void updateMatchValue()
 	{
-		this.setMatchValue(
-				this.calculateMatchValue(this.getProduct(), this.getProductId(), this.getPg(), this.getUser(), this.getUg()));
+		this.setMatchValue(this.calculateMatchValue(this.getProduct(), this.getProductId(), this.getProductGroup(), this.getUser(),
+				this.getUg(), this.getSalesArea()));
 	}
 
 	public void setMatchValue(final SessionContext ctx, final Integer value)

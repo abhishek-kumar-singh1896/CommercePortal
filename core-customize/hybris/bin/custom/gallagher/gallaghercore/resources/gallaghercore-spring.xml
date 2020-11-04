@@ -506,6 +506,11 @@
 		<property name="enumerationService" ref="enumerationService" />
 	</bean>
 	
+	<bean id="userDiscountGroupQualifierProvider" class="com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherUserDiscountGroupQualifierProvider">
+		<property name="sessionService" ref="sessionService" />
+		<property name="enumerationService" ref="enumerationService" />
+	</bean>
+	
 	<bean id="gallagherSalesAreaService" class="com.gallagher.core.services.impl.GallagherSalesAreaServiceImpl">
 		<property name="sessionService" ref="sessionService" />
 		<property name="salesAreaDao" ref="gallagherSalesAreaDao"/>
@@ -525,7 +530,7 @@
     
     <bean id="gallagherProductDiscountValueResolver" class="com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherProductDiscountValueResolver" parent="productPricesValueResolver">
     <property name="salesAreaQualifierProvider" ref="salesAreaQualifierProvider" />
-    <property name="userPriceGroupQualifierProvider" ref="userPriceGroupQualifierProvider" />
+    <property name="userDiscountGroupQualifierProvider" ref="userDiscountGroupQualifierProvider" />
     <property name="discountService" ref="discountService" />
     <property name="commonI18NService" ref="commonI18NService" />
     </bean>

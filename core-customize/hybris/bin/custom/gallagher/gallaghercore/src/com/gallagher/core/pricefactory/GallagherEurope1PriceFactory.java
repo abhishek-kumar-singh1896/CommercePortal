@@ -31,6 +31,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Optional;
 
 import javax.annotation.Resource;
 
@@ -131,9 +132,9 @@ public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactor
 	{
 		final SessionContext ctx = this.getSession().getSessionContext();
 		final AbstractOrder order = entry.getOrder(ctx);
-		return Europe1Tools.createDiscountValueList(this.matchDiscountRows(entry.getProduct(ctx), this.getPDG(ctx, entry),
-				order.getUser(ctx), this.getUDG(ctx, entry), order.getCurrency(ctx), order.getDate(ctx), -1, entry.getQuantity(ctx),
-				order.getCurrency(ctx)));
+		return Europe1Tools.createDiscountValueList(
+				this.matchDiscountRows(entry.getProduct(ctx), this.getPDG(ctx, entry), order.getUser(ctx), this.getUDG(ctx, entry),
+						order.getCurrency(ctx), order.getDate(ctx), -1, entry.getQuantity(ctx), order.getCurrency(ctx)));
 	}
 
 
@@ -200,7 +201,7 @@ public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactor
 				while (it.hasNext())
 				{
 					discRow = (GallagherDiscountRow) it.next();
-					if (quantity < discRow.getQuantityAsPrimitive().longValue())
+					if (quantity < Long.valueOf(discRow.getQuantityAsPrimitive()))
 					{
 						it.remove();
 					}
@@ -224,6 +225,59 @@ public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactor
 				return ret;
 			}
 		}
+	}
+
+	@Override
+	public List matchDiscountRows(final Product product, final EnumerationValue productGroup, final User user,
+			final EnumerationValue userGroup, final Currency curr, final Date date, final int maxCount)
+			throws JaloPriceFactoryException
+	{
+		if (user == null && userGroup == null)
+		{
+			throw new JaloPriceFactoryException("cannot match discounts without user and user group - at least one must be present",
+					0);
+		}
+		else if (curr == null)
+		{
+			throw new JaloPriceFactoryException("cannot match price without currency", 0);
+		}
+		else if (date == null)
+		{
+			throw new JaloPriceFactoryException("cannot match price without date", 0);
+		}
+		else
+		{
+			final Collection<? extends AbstractDiscountRow> rows = this.queryDiscounts4Price(this.getSession().getSessionContext(),
+					product, productGroup, user, userGroup);
+			if (!rows.isEmpty())
+			{
+				final List<GallagherDiscountRow> ret = (List<GallagherDiscountRow>) filterDiscountRows4Price(rows, date);
+				if (ret.size() > 1)
+				{
+					ret.sort(new GallagherEurope1PriceFactory.DiscountRowMatchComparator());
+					return getDiscountRows(ret);
+				}
+
+				return getDiscountRows(ret);
+			}
+			else
+			{
+				return Collections.EMPTY_LIST;
+			}
+		}
+	}
+
+	private List<GallagherDiscountRow> getDiscountRows(final List<GallagherDiscountRow> ret)
+	{
+		final List<GallagherDiscountRow> discList = new ArrayList<>();
+		final Optional<GallagherDiscountRow> rowOptional = ret.stream().filter(r -> r.getMinQuantity() <= 1).findFirst();
+		final GallagherDiscountRow row = rowOptional.isPresent() ? rowOptional.get() : null;
+		if (row == null)
+		{
+			return Collections.EMPTY_LIST;
+		}
+		discList.add(row);
+		return discList;
 	}
 
 	protected class DiscountRowMatchComparator implements Comparator<GallagherDiscountRow>

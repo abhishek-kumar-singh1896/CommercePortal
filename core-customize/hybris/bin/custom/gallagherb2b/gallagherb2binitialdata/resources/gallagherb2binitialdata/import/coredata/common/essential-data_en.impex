@@ -76,9 +76,9 @@ UPDATE ConsignmentStatus ; code[unique=true] ; name[lang=$lang]
                          ; WAITING           ; "Waiting"          
                          
 # Condition Type
-UPDATE ConditionType	; code[unique = true]	;	name[lang=en]
-                 		; PR00					;	RRP for domestic customers
-                 		; PREX					;	RRP for export customers
-                 		; K031					;	Customer specific discount
-                 		; Z004					;	Volume dependent discount
-                 		; ZD00					;	Special discount
+#UPDATE ConditionType	; code[unique = true]	;	name[lang=en]
+#                 		; PR00					;	RRP for domestic customers
+#                 		; PREX					;	RRP for export customers
+#                 		; K031					;	Customer specific discount
+#                 		; Z004					;	Volume dependent discount
+#                 		; ZD00					;	Special discount

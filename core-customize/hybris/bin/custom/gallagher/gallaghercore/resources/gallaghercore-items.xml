@@ -39,7 +39,7 @@
 
 		<enumtype code="RegionCode" dynamic="true" />
 		
-		<enumtype code="ConditionType" dynamic="true" />
+		<!-- <enumtype code="ConditionType" dynamic="true" /> -->
 		<enumtype code="ProductReferenceTypeEnum" autocreate="false" generate="false">
 		<description>Show Alternative Products If Stock is out</description>
 			<value code="ALTERNATIVE_PRODUCTS"/>
@@ -893,12 +893,12 @@
 			<itemtype code="DiscountRow" autocreate="false" generate="false">
 				<description>Extending DiscountRow type with an additional attribute.</description>
 				<attributes>
-					<attribute autocreate="true" generate="true" qualifier="quantity" type="java.lang.Integer">
+					<attribute autocreate="true" generate="true" qualifier="quantity" type="java.lang.Long">
 						<modifiers read="true" write="true" search="true" optional="true" />
 						<persistence type="property" />
 						<description>Attribute to identify the quantity for DiscountRow </description>
 					</attribute>
-					<attribute autocreate="true" generate="true" qualifier="conditionType" type="ConditionType">
+					<attribute autocreate="true" generate="true" qualifier="conditionType" type="java.lang.String">
 						<modifiers read="true" write="true" search="true" optional="true" />
 						<persistence type="property" />
 						<description>Attribute to identify the Condition Type for DiscountRow </description>
