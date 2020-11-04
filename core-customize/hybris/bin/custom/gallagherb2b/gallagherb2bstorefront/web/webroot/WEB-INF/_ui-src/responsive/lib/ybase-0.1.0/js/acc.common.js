@@ -89,7 +89,7 @@ ACC.common = {
 					 returnVal =ACC.common.validateInstruction();
 				}
 				else {
-					returnVal = ACC.common.submitInstruction();
+					returnVal = ACC.common.submitInstruction(fired_button);
 				}
 				if (returnVal) {
 					ACC.common.displayInstruction("add",fired_button);
@@ -180,9 +180,15 @@ ACC.common = {
 			});
 		},
 	    
-	    submitInstruction : function() {
+	    submitInstruction : function(entrySelected) {
 			var isValid = false;
-			var entryNumber = $("#entryID").val();
+			var entryNumber;
+			if (entrySelected) {
+				entryNumber = entrySelected;
+			}
+			else {
+				entryNumber = $("#entryID").val();
+			}
 			var deliveryInstruction = $("#deliveryInstructionEntry").val().trim();
 			var productSpecificDetailsHeading = $("#productSpecificDetailsHeading").val().trim();
 			var regex = /^[A-Za-z0-9\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,\-.\/:;<=>?@\[\]^_`{|}~+\s.+]+$/;
