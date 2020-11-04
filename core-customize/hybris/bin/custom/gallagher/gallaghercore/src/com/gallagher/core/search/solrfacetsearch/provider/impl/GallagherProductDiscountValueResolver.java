@@ -53,6 +53,8 @@ public class GallagherProductDiscountValueResolver extends ProductPricesValueRes
 
 	private GallagherQualifierProvider userDiscountGroupQualifierProvider;
 
+	private GallagherQualifierProvider userPriceGroupQualifierProvider;
+
 	private DiscountService discountService;
 
 	private CommonI18NService commonI18NService;
@@ -81,7 +83,7 @@ public class GallagherProductDiscountValueResolver extends ProductPricesValueRes
 				final IndexedProperty facetSearchConfig = (IndexedProperty) indexedType.next();
 				if (!getQualifierProvider().canApply(facetSearchConfig))
 				{
-					addFieldValues(document, facetSearchConfig, resolverContext, model, indexedProperties);
+					addFieldValues(document, facetSearchConfig, resolverContext, model, indexedProperties, batchContext);
 				}
 			}
 
@@ -131,6 +133,8 @@ public class GallagherProductDiscountValueResolver extends ProductPricesValueRes
 	 *           the resolver context
 	 * @param fieldQualifier
 	 *           the field qualifier
+	 * @param indexedType
+	 * @param facetSearchConfig
 	 * @throws FieldValueProviderException
 	 *            the field value provider exception
 	 */
@@ -183,6 +187,8 @@ public class GallagherProductDiscountValueResolver extends ProductPricesValueRes
 	 *           the qualifier
 	 * @param fieldQualifier
 	 *           the field qualifier
+	 * @param indexedType
+	 * @param facetSearchConfig
 	 * @return the new field qualifier string
 	 * @throws FieldValueProviderException
 	 *            the field value provider exception
@@ -197,7 +203,7 @@ public class GallagherProductDiscountValueResolver extends ProductPricesValueRes
 				qualifier);
 		final String newFieldQualifier = getFieldQualifierName(qualifier, fieldQualifier);
 		setValueResolverContext(resolverContext, qualifier, newFieldQualifier, qualifierData);
-		processQualifierforIndex(document, indexedProperties, resolverContext, qualifierProvider, model);
+		processQualifierforIndex(document, indexedProperties, resolverContext, qualifierProvider, model, batchContext);
 		return newFieldQualifier;
 	}
 
@@ -243,18 +249,19 @@ public class GallagherProductDiscountValueResolver extends ProductPricesValueRes
 	 * @param qualifierProvider
 	 *           the qualifier provider
 	 * @param product
+	 * @param batchContext
 	 * @throws FieldValueProviderException
 	 *            the field value provider exception
 	 */
 	private void processQualifierforIndex(final InputDocument document, final Collection<IndexedProperty> indexedProperties,
-			final ValueResolverContext resolverContext, final QualifierProvider qualifierProvider, final ProductModel product)
-			throws FieldValueProviderException
+			final ValueResolverContext resolverContext, final QualifierProvider qualifierProvider, final ProductModel product,
+			final IndexerBatchContext batchContext) throws FieldValueProviderException
 	{
 		for (final IndexedProperty indexedProperty : indexedProperties)
 		{
 			if (qualifierProvider.canApply(indexedProperty))
 			{
-				addFieldValues(document, indexedProperty, resolverContext, product, indexedProperties);
+				addFieldValues(document, indexedProperty, resolverContext, product, indexedProperties, batchContext);
 			}
 		}
 	}
@@ -269,20 +276,39 @@ public class GallagherProductDiscountValueResolver extends ProductPricesValueRes
 	 * @param resolverContext
 	 *           the value resolver context
 	 * @param product
+	 * @param batchContext
 	 * @throws FieldValueProviderException
 	 *            the field value provider exception
 	 */
 	protected void addFieldValues(final InputDocument document, final IndexedProperty indexedProperty,
 			final ValueResolverContext<Object, List<DiscountInformation>> resolverContext, final ProductModel product,
-			final Collection<IndexedProperty> indexedProperties) throws FieldValueProviderException
+			final Collection<IndexedProperty> indexedProperties, final IndexerBatchContext batchContext)
+			throws FieldValueProviderException
 	{
 		final List<DiscountInformation> discountInformations = resolverContext.getQualifierData();
 		if (CollectionUtils.isNotEmpty(discountInformations))
 		{
-			final String discountValue = getDiscountValue(indexedProperty, discountInformations, product, indexedProperties);
-			if (StringUtils.isNotBlank(discountValue))
+			final FacetSearchConfig facetConfig = batchContext.getFacetSearchConfig();
+			final IndexedType indexType = batchContext.getIndexedType();
+
+			final Collection<Qualifier> upgQualifiers = userPriceGroupQualifierProvider
+					.getAvailableQualifiers(facetConfig,
+					indexType);
+
+			if (CollectionUtils.isNotEmpty(upgQualifiers))
 			{
-				document.addField(indexedProperty, discountValue, resolverContext.getFieldQualifier());
+				for (final Qualifier qualifier : upgQualifiers)
+				{
+					applyQualifier(userPriceGroupQualifierProvider, qualifier);
+					final String discountValue = getDiscountValue(indexedProperty, discountInformations, product, indexedProperties);
+
+					if (StringUtils.isNotBlank(discountValue))
+					{
+						document.addField(indexedProperty, discountValue, resolverContext.getFieldQualifier());
+					}
+					userPriceGroupQualifierProvider.removeQualifier();
+				}
+
 			}
 		}
 	}
@@ -309,7 +335,7 @@ public class GallagherProductDiscountValueResolver extends ProductPricesValueRes
 
 			final DiscountData discountData = new DiscountData();
 			final String priceCurrencyIso = priceInfo.getValue().getCurrencyIso();
-			final boolean isSameCurrency = priceCurrencyIso != discCurrencyIso ? false : true;
+			final boolean isSameCurrency = !priceCurrencyIso.equalsIgnoreCase(discCurrencyIso) ? false : true;
 
 			discountData.setSameCurrency(isSameCurrency);
 			final CurrencyModel currencyModel = commonI18NService.getCurrency(priceCurrencyIso);
@@ -529,4 +555,22 @@ public class GallagherProductDiscountValueResolver extends ProductPricesValueRes
 	{
 		this.userDiscountGroupQualifierProvider = userDiscountGroupQualifierProvider;
 	}
+
+	/**
+	 * @return the userPriceGroupQualifierProvider
+	 */
+	public GallagherQualifierProvider getUserPriceGroupQualifierProvider()
+	{
+		return userPriceGroupQualifierProvider;
+	}
+
+	/**
+	 * @param userPriceGroupQualifierProvider
+	 *           the userPriceGroupQualifierProvider to set
+	 */
+	public void setUserPriceGroupQualifierProvider(final GallagherQualifierProvider userPriceGroupQualifierProvider)
+	{
+		this.userPriceGroupQualifierProvider = userPriceGroupQualifierProvider;
+	}
+
 }

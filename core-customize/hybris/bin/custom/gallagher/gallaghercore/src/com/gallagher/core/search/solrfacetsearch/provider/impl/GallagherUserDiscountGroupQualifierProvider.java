@@ -3,7 +3,6 @@ package com.gallagher.core.search.solrfacetsearch.provider.impl;
 import de.hybris.platform.enumeration.EnumerationService;
 import de.hybris.platform.europe1.constants.Europe1Constants;
 import de.hybris.platform.europe1.enums.UserDiscountGroup;
-import de.hybris.platform.europe1.enums.UserPriceGroup;
 import de.hybris.platform.servicelayer.session.SessionService;
 import de.hybris.platform.solrfacetsearch.config.FacetSearchConfig;
 import de.hybris.platform.solrfacetsearch.config.IndexedProperty;
@@ -80,10 +79,6 @@ public class GallagherUserDiscountGroupQualifierProvider implements GallagherQua
 		{
 			sessionService.setAttribute(Europe1Constants.PARAMS.UDG,
 					((GallagherUserDiscountGroupQualifierProvider.GallagherUDGQualifier) qualifier).getUdg());
-			sessionService.setAttribute(Europe1Constants.PARAMS.UPG,
-					UserPriceGroup.valueOf(
-							((GallagherUserDiscountGroupQualifierProvider.GallagherUDGQualifier) qualifier).getUdg().getCode()));
-
 		}
 	}
 
@@ -91,7 +86,6 @@ public class GallagherUserDiscountGroupQualifierProvider implements GallagherQua
 	public void removeQualifier()
 	{
 		sessionService.setAttribute(Europe1Constants.PARAMS.UDG, null);
-		sessionService.setAttribute(Europe1Constants.PARAMS.UPG, null);
 	}
 
 	/**
