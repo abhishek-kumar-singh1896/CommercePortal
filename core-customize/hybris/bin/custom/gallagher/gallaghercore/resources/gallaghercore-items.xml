@@ -40,6 +40,12 @@
 			<value code="ALTERNATIVE_PRODUCTS"/>
   		</enumtype>
 		
+		<enumtype code="OrderEntryItemStatus" autocreate="true" generate="true">
+			<value code="OPEN" />
+			<value code="COMPLETED" />
+			<value code="IN_PROCESS" />
+		</enumtype>
+		
 	</enumtypes>
 
 	<maptypes>
@@ -738,6 +744,14 @@
 					generate="false">
 					<attributes>
 						<attribute qualifier="b2bUnit" type="B2BUnit">
+							<modifiers read="true" write="true" search="true" />
+							<persistence type="property" />
+						</attribute>
+						<attribute qualifier="status" type="OrderEntryItemStatus">
+							<modifiers read="true" write="true" search="true" />
+							<persistence type="property" />
+						</attribute>
+						<attribute qualifier="deliveredQuantity" type="java.lang.Long">
 							<modifiers read="true" write="true" search="true" />
 							<persistence type="property" />
 						</attribute>

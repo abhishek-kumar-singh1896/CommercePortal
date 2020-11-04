@@ -116,6 +116,11 @@
 		<property name="b2bUnit" type="de.hybris.platform.b2bcommercefacades.company.data.B2BUnitData" />
 		<property name="requiredDeliveryDate" type="String" />
 	</bean>
+	
+	<bean class="de.hybris.platform.commercefacades.order.data.OrderEntryData">
+		<property name="deliveredQuantity" type="Long" />
+		<property name="status" type="com.gallagher.core.enums.OrderEntryItemStatus" />
+	</bean>
 
 	<bean class="de.hybris.platform.commercefacades.order.data.CartData">
 		<property name="requiredDeliveryDate" type="String" />
