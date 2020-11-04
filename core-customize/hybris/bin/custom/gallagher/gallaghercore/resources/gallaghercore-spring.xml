@@ -531,6 +531,7 @@
     <bean id="gallagherProductDiscountValueResolver" class="com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherProductDiscountValueResolver" parent="productPricesValueResolver">
     <property name="salesAreaQualifierProvider" ref="salesAreaQualifierProvider" />
     <property name="userDiscountGroupQualifierProvider" ref="userDiscountGroupQualifierProvider" />
+    <property name="userPriceGroupQualifierProvider" ref="userPriceGroupQualifierProvider" />
     <property name="discountService" ref="discountService" />
     <property name="commonI18NService" ref="commonI18NService" />
     </bean>

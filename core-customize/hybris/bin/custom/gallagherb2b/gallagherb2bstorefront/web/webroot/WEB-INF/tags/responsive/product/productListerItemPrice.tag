@@ -39,7 +39,9 @@
 				</c:when>
 				<c:otherwise>
 					<span class="bold">
+					<c:if test="${product.price.value gt 0}">
 						<format:fromPrice priceData="${product.price}" />
+					</c:if>
 					</span>
 				</c:otherwise>
 			</c:choose>
