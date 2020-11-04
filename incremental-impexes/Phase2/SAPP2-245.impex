@@ -1,0 +1,6 @@
+$contentCatalog=securityB2BContentCatalog
+$contentCatalogName=Security B2B Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];visible
+;;AddMessageButtonComponent;false
