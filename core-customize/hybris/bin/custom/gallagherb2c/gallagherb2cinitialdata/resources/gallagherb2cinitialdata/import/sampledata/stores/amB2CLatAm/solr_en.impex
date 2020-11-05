@@ -1,7 +1,7 @@
 $indexedType=amB2CLatAmProductType
  
 # Language
-$lang=es
+$lang=en
  
 UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$indexedType] ; name[unique=true]                                         ; displayName[lang=$lang]                                         
                            ;                                                               ; Energía Almacenada                                        ; Energía Almacenada                                      

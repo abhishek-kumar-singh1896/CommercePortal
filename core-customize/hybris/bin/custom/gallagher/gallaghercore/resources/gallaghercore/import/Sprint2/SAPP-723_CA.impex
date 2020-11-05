@@ -172,7 +172,7 @@ INSERT_UPDATE SolrValueRangeSet ; name[unique=true]              ; qualifier ; t
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID        ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to     
                              ; rangeAutomaticWatering1 ; AutomaticWateringCapacityRange       ; 0 - 20            ; 0    ; 19.999 
                              ; rangeAutomaticWatering2 ; AutomaticWateringCapacityRange       ; 20 - 40           ; 20   ; 39.999 
-                             ; rangeAutomaticWatering3 ; AutomaticWateringCapacityRange       ; 40 - 60           ; 40   ; 999    
+                             ; rangeAutomaticWatering3 ; AutomaticWateringCapacityRange       ; 40 - 60           ; 40   ; 59.999    
                              ; rangeAutomaticWatering4 ; AutomaticWateringCapacityRange       ; 60+               ; 60   ; 999    
                              
 UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]      ; rangeSets(name)                

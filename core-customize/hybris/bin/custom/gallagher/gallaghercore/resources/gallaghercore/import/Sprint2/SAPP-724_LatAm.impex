@@ -8,7 +8,7 @@ $solrIndexedType=amB2CLatAmProductType
 $contentCatalogVersion=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalogName]),CatalogVersion.version[default=Staged])[default=$contentCatalogName:Staged]
 $productCatalog=amB2CLatAmProductCatalog
 $productCatalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
-$lang=es
+$lang=en
 
 INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true]            ; facet[default=true] ; facetType(code) ; priority ; facetSortProvider           ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
                                       ; Energía Almacenada:$solrIndexedType                                        ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
@@ -106,7 +106,8 @@ UPDATE SolrSearchQueryProperty ; indexedProperty(solrIndexedType(identifier), na
                                ; $solrIndexedType: Product Type                                              ;                                     
                                ; $solrIndexedType: Compatible with Gallagher Livestock (Lectores)            ; facetUnitBooleanDisplayNameProvider 
                                ; $solrIndexedType: animalCompatibility                                       ;                                     
-UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$indexedType] ; name[unique=true]                                         ; displayName[lang=$lang]                                         
+
+UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$solrIndexedType] ; name[unique=true]                                         ; displayName[lang=$lang]                                         
                            ;                                                               ; Energía Almacenada                                        ; Energía Almacenada                                      
                            ;                                                               ; Distancia de alambres múltiples recomendada por Gallagher ; Distancia de alambres múltiples recomendada por Gallagher  
                            ;                                                               ; Condiciones ideales de distancia de alambres múltiples    ; Condiciones ideales de distancia de alambres múltiples      

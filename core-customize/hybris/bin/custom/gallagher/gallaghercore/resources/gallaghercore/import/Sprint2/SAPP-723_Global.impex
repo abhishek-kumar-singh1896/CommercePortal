@@ -9,7 +9,7 @@ INSERT_UPDATE SolrValueRangeSet ; name[unique=true]      ; qualifier ; type   ; 
                                 ; MultiwireDistanceRange ;           ; double ; rangeMultiwireDistance1,rangeMultiwireDistance2,rangeMultiwireDistance3,rangeMultiwireDistance4,rangeMultiwireDistance5,rangeMultiwireDistance6 
                                 
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID        ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to     
-                             ; rangeMultiwireDistance1 ; MultiwireDistanceRange               ; 1 - 5      ; 1    ; 4.999  
+                             ; rangeMultiwireDistance1 ; MultiwireDistanceRange               ; 1 - 5      ; 1    ; 5.999  
                              ; rangeMultiwireDistance2 ; MultiwireDistanceRange               ; 6 - 10     ; 6    ; 9.999  
                              ; rangeMultiwireDistance3 ; MultiwireDistanceRange               ; 11 - 20    ; 11   ; 20.999 
                              ; rangeMultiwireDistance4 ; MultiwireDistanceRange               ; 21 - 30    ; 21   ; 30.999 
