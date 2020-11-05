@@ -1,0 +1,9 @@
+INSERT_UPDATE BaseStore;uid[unique=true];ticketSales;ticketTechnicalSupport
+;securityB2BNZ;true;true
+;securityB2BAU;true;true
+;securityB2BGlobal;true;true
+;securityB2BUS;false;true
+;securityB2BCA;false;true
+;securityB2BSthAm;false;true
+;securityB2BAsia;false;true
+;securityB2BUK;false;true
