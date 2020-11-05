@@ -33,10 +33,10 @@
                    onLoad: 'check-sso',
                    silentCheckSsoRedirectUri:window.location.origin + '/silent-check-sso.html' // this is hosted by the Client Application
                    }).then(function(authenticated) {
-            alert(authenticated ? 'authenticated' : 'not authenticated');
-            alert("window.location.origin>>"+window.location.origin);
+            //alert(authenticated ? 'authenticated' : 'not authenticated');
+            //alert("window.location.origin>>"+window.location.origin);
         }).catch(function() {
-            alert('failed to initialize');
+            //alert('failed to initialize');
            // alert("window.location.origin>>"+${commonResourcePathHtml}+"/silent-check-sso.html");
         });
     	}
