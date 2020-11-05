@@ -9,7 +9,7 @@ INSERT_UPDATE SolrValueRangeSet ; name[unique=true]      ; qualifier ; type   ; 
                                 ; MultiwireDistanceRange ;           ; double ; rangeMultiwireDistance1,rangeMultiwireDistance2,rangeMultiwireDistance3,rangeMultiwireDistance4,rangeMultiwireDistance5,rangeMultiwireDistance6 
                                 
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID        ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to     
-                             ; rangeMultiwireDistance1 ; MultiwireDistanceRange               ; 1 - 5             ; 1    ; 4.999  
+                             ; rangeMultiwireDistance1 ; MultiwireDistanceRange               ; 1 - 5             ; 1    ; 5.999  
                              ; rangeMultiwireDistance2 ; MultiwireDistanceRange               ; 6 - 10            ; 6    ; 9.999  
                              ; rangeMultiwireDistance3 ; MultiwireDistanceRange               ; 11 - 20           ; 11   ; 20.999 
                              ; rangeMultiwireDistance4 ; MultiwireDistanceRange               ; 21 - 30           ; 21   ; 30.999 
@@ -122,7 +122,7 @@ INSERT_UPDATE SolrValueRange ; &rangeValueRefID     ; solrValueRangeSet(name)[un
                              ; rangeOhmsPerKmTapes2 ; OhmsPerKmTapesRange                  ; 240 - 8500        ; 240  ; 8500    
                              
 UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; rangeSets(name)     
-                           ; $solrIndexedType                         ; Ohms Per (Tapes)  ; OhmsPerKmTapesRange 
+                           ; $solrIndexedType                         ; Ohms Per Km (Tapes)  ; OhmsPerKmTapesRange 
                            
                            
 #####################################################################################################################################
@@ -135,7 +135,7 @@ INSERT_UPDATE SolrValueRange ; &rangeValueRefID            ; solrValueRangeSet(n
                              ; rangeOhmsPerKmWireAndCable2 ; OhmsPerKmWireAndCableRange           ; 12 - 35           ; 12   ; 35     
                              
 UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]  ; rangeSets(name)            
-                           ; $solrIndexedType                         ; Ohms Per (Tensile) ; OhmsPerKmWireAndCableRange 
+                           ; $solrIndexedType                         ; Ohms Per Km (Tapes) ; OhmsPerKmWireAndCableRange 
                            
 #####################################################################################################################################
                            
