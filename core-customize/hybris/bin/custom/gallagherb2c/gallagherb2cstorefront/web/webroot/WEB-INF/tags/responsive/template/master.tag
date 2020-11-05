@@ -20,6 +20,48 @@
 <!DOCTYPE html>
 <html lang="${fn:escapeXml(currentLanguage.isocode)}">
 <head>
+	<script src="https://integration-auth.security.gallagher.cloud/auth/js/keycloak.js"></script>
+    <script>
+    	window.onload = function CheckSSO() {
+    		//alert("url>>"+window.location.origin + '/silent-check-sso.html');
+        var keycloak = new Keycloak({
+        url: 'https://integration-auth.security.gallagher.cloud/auth',
+        realm: 'gallagher',
+        clientId: 'am-commerce'
+    });
+               keycloak.init({
+                   onLoad: 'check-sso',
+                   silentCheckSsoRedirectUri:window.location.origin + '/silent-check-sso.html' // this is hosted by the Client Application
+                   }).then(function(authenticated) {
+            //alert(authenticated ? 'authenticated' : 'not authenticated');
+            //alert("window.location.origin>>"+window.location.origin);
+        }).catch(function() {
+            //alert('failed to initialize');
+           // alert("window.location.origin>>"+${commonResourcePathHtml}+"/silent-check-sso.html");
+        });
+    	}
+    </script>
+    
+    <!-- <script src="https://integration-auth.security.gallagher.cloud/auth/js/keycloak.js"></script>
+    <script>
+    	window.onload = function CheckSSO() {
+        var keycloak = new Keycloak({
+        url: 'https://integration-auth.security.gallagher.cloud/auth',
+        realm: 'gallagher',
+        clientId: 'am-commerce'
+    });
+               keycloak.init({
+                   onLoad: 'check-sso',
+                   silentCheckSsoRedirectUri:"https://amb2cca.local:9002/am/_ui/silent-check-sso.html" // this is hosted by the Client Application
+                   }).then(function(authenticated) {
+            alert(authenticated ? 'authenticated' : 'not authenticated');
+            alert("window.location.origin>>"+window.location.origin);
+        }).catch(function() {
+            alert('failed to initialize');
+           // alert("window.location.origin>>"+${commonResourcePathHtml}+"/silent-check-sso.html");
+        });
+    	}
+    </script> -->
 
 	<script type="text/javascript">
 		var dataLayer = [];
