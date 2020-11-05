@@ -3,6 +3,9 @@ package com.gallagher.core.search.solrfacetsearch.translator;
 import de.hybris.platform.b2b.model.B2BCustomerModel;
 import de.hybris.platform.basecommerce.model.site.BaseSiteModel;
 import de.hybris.platform.core.model.user.UserModel;
+import de.hybris.platform.europe1.constants.Europe1Constants;
+import de.hybris.platform.europe1.enums.UserPriceGroup;
+import de.hybris.platform.servicelayer.session.SessionService;
 import de.hybris.platform.servicelayer.user.UserService;
 import de.hybris.platform.site.BaseSiteService;
 import de.hybris.platform.solrfacetsearch.config.IndexedProperty;
@@ -20,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherProductDiscountValueResolver;
 import com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherProductPriceRangeValueResolver;
 import com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherProductPricesValueResolver;
+import com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherUserDiscountGroupQualifierProvider;
 import com.gallagher.core.services.GallagherSalesAreaService;
 
 
@@ -36,6 +40,8 @@ public class GallagherFieldNameTranslator extends DefaultFieldNameTranslator
 	private UserService userService;
 	@Autowired
 	private BaseSiteService baseSiteService;
+	@Autowired
+	private SessionService sessionService;
 
 	/**
 	 * {@inheritDoc}
@@ -107,23 +113,26 @@ public class GallagherFieldNameTranslator extends DefaultFieldNameTranslator
 					{
 
 						final B2BCustomerModel currentUser = (B2BCustomerModel) user;
+
+						String upgSuffix = StringUtils.EMPTY;
+						if (userPriceGroupQualifierProvider instanceof GallagherUserDiscountGroupQualifierProvider)
+						{
+							final UserPriceGroup userPriceGroup = (UserPriceGroup) getSessionService().getAttribute(Europe1Constants.PARAMS.UPG);
+							if(userPriceGroup != null) {
+								upgSuffix = FIELDNAME_SEPARATOR + userPriceGroup.getCode();
+							}
+						}
+
 						if (salesAreaQualifierProvider != null && salesAreaQualifierProvider.canApply(indexedProperty))
 						{
 							final Qualifier salesAreaQualifier = salesAreaQualifierProvider.getCurrentQualifier();
-							fieldQualifier = salesAreaQualifier != null
-									? fieldQualifier + FIELDNAME_SEPARATOR + salesAreaQualifier.toFieldQualifier()
-									: (currentUser != null
-											? fieldQualifier + FIELDNAME_SEPARATOR + currentUser.getEurope1PriceFactory_UPG()
-											: fieldQualifier);
+							fieldQualifier = fieldQualifier + FIELDNAME_SEPARATOR + salesAreaQualifier.toFieldQualifier();
 
 						}
 						if (userPriceGroupQualifierProvider != null && userPriceGroupQualifierProvider.canApply(indexedProperty))
 						{
 							final Qualifier upgQualifier = userPriceGroupQualifierProvider.getCurrentQualifier();
-							fieldQualifier = upgQualifier != null
-									? fieldQualifier + FIELDNAME_SEPARATOR + upgQualifier.toFieldQualifier()
-									: (currentUser.getEurope1PriceFactory_UPG() == null ? fieldQualifier
-											: fieldQualifier + FIELDNAME_SEPARATOR + currentUser.getEurope1PriceFactory_UPG());
+							fieldQualifier = fieldQualifier + FIELDNAME_SEPARATOR + upgQualifier.toFieldQualifier() + upgSuffix;
 
 						}
 					}
@@ -205,6 +214,23 @@ public class GallagherFieldNameTranslator extends DefaultFieldNameTranslator
 	public void setBaseSiteService(final BaseSiteService baseSiteService)
 	{
 		this.baseSiteService = baseSiteService;
+	}
+
+	/**
+	 * @return the sessionService
+	 */
+	public SessionService getSessionService()
+	{
+		return sessionService;
+	}
+
+	/**
+	 * @param sessionService
+	 *           the sessionService to set
+	 */
+	public void setSessionService(final SessionService sessionService)
+	{
+		this.sessionService = sessionService;
 	}
 
 }
