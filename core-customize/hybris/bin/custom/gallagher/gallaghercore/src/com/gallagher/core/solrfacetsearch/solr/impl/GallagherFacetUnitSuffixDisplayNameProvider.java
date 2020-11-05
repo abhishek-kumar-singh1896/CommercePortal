@@ -12,6 +12,8 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 
 /**
  * Facet display name provider to add unit to the value
@@ -20,14 +22,15 @@ import java.util.Map;
  */
 public class GallagherFacetUnitSuffixDisplayNameProvider implements FacetDisplayNameProvider, FacetValueDisplayNameProvider
 {
-
+	private static final Logger LOG = Logger.getLogger(GallagherFacetUnitSuffixDisplayNameProvider.class);
 	private final Map<String, Locale> localeCache = new HashMap<>();
 
 	@Override
 	public String getDisplayName(final SearchQuery query, final IndexedProperty property, final String facetValue)
 	{
 		final Locale locale = getLocale(query.getLanguage());
-		final String unit = property.getClassAttributeAssignment().getUnit().getName(locale);
+		final String unit = property.getClassAttributeAssignment().getUnit().getSymbol();
+		LOG.info("unit>>" + unit + "- name value>>" + property.getClassAttributeAssignment().getUnit().getName(locale));
 		return facetValue + " " + unit;
 	}
 

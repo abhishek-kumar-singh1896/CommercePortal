@@ -8,6 +8,8 @@ import de.hybris.platform.solrfacetsearch.provider.FacetDisplayNameProvider;
 import de.hybris.platform.solrfacetsearch.provider.FacetValueDisplayNameProvider;
 import de.hybris.platform.solrfacetsearch.search.SearchQuery;
 
+import org.apache.log4j.Logger;
+
 
 /**
  * Facet display name provider for boolean units
@@ -16,9 +18,12 @@ import de.hybris.platform.solrfacetsearch.search.SearchQuery;
  */
 public class GallagherFacetUnitBooleanDisplayNameProvider implements FacetDisplayNameProvider, FacetValueDisplayNameProvider
 {
+	private static final Logger LOG = Logger.getLogger(GallagherFacetUnitBooleanDisplayNameProvider.class);
+
 	@Override
 	public String getDisplayName(final SearchQuery query, final IndexedProperty property, final String facetValue)
 	{
+		LOG.info("facetValue>>" + facetValue);
 		if (Boolean.valueOf(facetValue))
 		{
 			return "Yes";
