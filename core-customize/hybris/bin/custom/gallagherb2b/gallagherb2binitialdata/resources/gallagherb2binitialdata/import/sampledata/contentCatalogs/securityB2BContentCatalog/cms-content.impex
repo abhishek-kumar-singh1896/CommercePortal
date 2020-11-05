@@ -1623,8 +1623,8 @@ INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];name;
 ;;AccountAddSupportTicketComponent;Account AddSupport Ticket Component;/WEB-INF/views/addons/$addonExtensionName/responsive/pages/account/accountAddSupportTicketPage.jsp;AccountAddSupportTicketComponent
 ;;AccountUpdateSupportTicketComponent;Account Update Support Ticket Component;/WEB-INF/views/addons/$addonExtensionName/responsive/pages/account/accountUpdateSupportTicketPage.jsp;AccountUpdateSupportTicketComponent
 
-INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];name;page;&componentRef;
-;;AddMessageButtonComponent;Add Message Button Component;/WEB-INF/views/addons/$addonExtensionName/responsive/parts/addMessageButton.jsp;AddMessageButtonComponent;
+INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];name;page;&componentRef;visible
+;;AddMessageButtonComponent;Add Message Button Component;/WEB-INF/views/addons/$addonExtensionName/responsive/parts/addMessageButton.jsp;AddMessageButtonComponent;false
 
 # CMS Navigation Nodes (children of my account)
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
