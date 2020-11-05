@@ -314,7 +314,18 @@ public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactor
 					}
 					else
 					{
-						return row1.getPK().compareTo(row2.getPK());
+						// quantity value
+						final long qty1 = row1.getMinQuantity();
+						final long qty2 = row2.getMinQuantity();
+						if (qty2 != qty1)
+						{
+							// DESC -> row is better if qty value is greater !
+							return (int) (qty2 - qty1);
+						}
+						else
+						{
+							return row1.getPK().compareTo(row2.getPK());
+						}
 					}
 				}
 			}
