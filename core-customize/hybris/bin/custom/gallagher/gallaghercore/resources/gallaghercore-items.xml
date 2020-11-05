@@ -39,6 +39,12 @@
 		<description>Show Alternative Products If Stock is out</description>
 			<value code="ALTERNATIVE_PRODUCTS"/>
   		</enumtype>
+  		
+  		<!-- Add custom categories to ticket -->
+		<enumtype code="CsTicketCategory" autocreate="false" generate="false">
+			<value code="SECURITY_TECHNICAL_SUPPORT" />
+			<value code="SECURITY_SALES" />
+		</enumtype>  		
 		
 	</enumtypes>
 
@@ -678,6 +684,18 @@
 					<attribute qualifier="sovosConfiguration" type="GallagherSovosConfigurartion">
 						<persistence type="property" />
 					</attribute>
+					<attribute qualifier="ticketSales" type="java.lang.Boolean">
+					  	<persistence type="property" />
+					  	<modifiers optional="true" />
+					  	<defaultvalue>java.lang.Boolean.FALSE</defaultvalue>
+					  	<description>Flag to allow security sales category in customer ticket.</description>
+					</attribute>
+					<attribute qualifier="ticketTechnicalSupport" type="java.lang.Boolean">
+					  	<persistence type="property" />
+					  	<modifiers optional="true" />
+					  	<defaultvalue>java.lang.Boolean.FALSE</defaultvalue>
+					  	<description>Flag to allow security technical support category in customer ticket.</description>						
+					</attribute>		
 				</attributes>
 			</itemtype>
 		</typegroup>
