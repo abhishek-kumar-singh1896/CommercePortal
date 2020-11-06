@@ -18,6 +18,7 @@ import java.util.Collection;
 
 import javax.annotation.Resource;
 
+
 /**
  *
  */
@@ -35,7 +36,7 @@ public class GallagherSearchResponseFacetsPopulator<FACET_SEARCH_CONFIG_TYPE, IN
 			final Facet facet, final FacetValue facetValue, final SearchResult searchResult,
 			final SolrSearchQueryData searchQueryData)
 	{
-		if (facetData.isCategory())
+		if (facetData.isCategory() && null != searchQueryData.getCategoryCode())
 		{
 			final CategoryModel currentCategory = getCategoryModelInstance(
 					categoryService.getCategoriesForCode(searchQueryData.getCategoryCode()));
