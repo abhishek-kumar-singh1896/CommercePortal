@@ -66,7 +66,6 @@ public class GallagherCheckoutDeliveryInstructionFacadeImpl extends DefaultCheck
 					deliveryInstrutionsData.setProductSpecificDetailsHeading(cartEntry.getProductSpecificDetailsHeading());
 				}
 
-				deliveryInstrutionsData.setCommentPlaceHolder(cartEntry.getProduct().getCommentPlaceHolder());
 			}
 		}
 	}

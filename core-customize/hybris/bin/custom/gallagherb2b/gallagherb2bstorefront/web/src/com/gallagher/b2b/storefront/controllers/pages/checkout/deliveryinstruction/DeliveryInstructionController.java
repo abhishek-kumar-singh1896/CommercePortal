@@ -47,10 +47,6 @@ public class DeliveryInstructionController
 		{
 			deliveryInstrutionsform.setDeliveryInstruction(deliveryInstrutionsData.getDeliveryinstruction());
 		}
-		if (StringUtils.isNotEmpty(deliveryInstrutionsData.getCommentPlaceHolder()))
-		{
-			deliveryInstrutionsform.setCommentPlaceHolder(deliveryInstrutionsData.getCommentPlaceHolder());
-		}
 
 		if (StringUtils.isNotEmpty(deliveryInstrutionsData.getProductSpecificDetailsHeading()))
 		{

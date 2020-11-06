@@ -26,9 +26,6 @@ public class GallagherProductBasicPopulator<SOURCE extends ProductModel, TARGET 
 			productData.setName(productMarktingDescription);
 		}
 		productData.setPartNumber((String) getProductAttribute(productModel, ProductModel.PARTNUMBER));
-		if(!StringUtils.isEmpty((String) getProductAttribute(productModel, ProductModel.COMMENTPLACEHOLDER))) {
-			productData.setCommentPlaceHolder((String) getProductAttribute(productModel, ProductModel.COMMENTPLACEHOLDER));
-		}
 
 		if (!StringUtils.isEmpty((String) getProductAttribute(productModel, ProductModel.PRODUCTSPECIFICDETAILSHEADING)))
 		{
