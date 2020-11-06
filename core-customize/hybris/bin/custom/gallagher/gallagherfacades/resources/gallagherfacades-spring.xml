@@ -297,8 +297,4 @@
 		<property name="remove" ref="groupOrderEntryPopulator"/>
 	</bean>
 	
-	<alias name="gallagherB2badvanceOrderEntryPopulator" alias="orderEntryPopulator"/>
-	<bean id="gallagherB2badvanceOrderEntryPopulator" class="com.gallagher.facades.customer.converters.populator.GallagherB2badvanceOrderEntryPopulator" parent="b2badvanceOrderEntryPopulator" />
- 	
-	
 </beans>

@@ -12,9 +12,10 @@ import de.hybris.platform.core.model.order.AbstractOrderEntryModel;
 import de.hybris.platform.jalo.JaloSession;
 import de.hybris.platform.product.UnitService;
 import de.hybris.platform.servicelayer.i18n.CommonI18NService;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
@@ -31,6 +32,14 @@ public class B2badvanceOrderEntryPopulator extends OrderEntryPopulator {
 	private CommonI18NService commonI18NService;
 
 	@Override
+	public void populate(final AbstractOrderEntryModel source, final OrderEntryData target)
+	{
+		target.setDeliveredQuantity(source.getDeliveredQuantity());
+		target.setStatus(source.getStatus());
+		super.populate(source, target);
+	}
+
+	@Override
 	protected void addTotals(final AbstractOrderEntryModel orderEntry, final OrderEntryData entry) {
 		if (orderEntry != null && orderEntry.getTotalPrice() != null && orderEntry.getQuantity() != null
 				&& orderEntry.getBasePrice() != null && orderEntry.getQuantity() != 0) {
@@ -43,4 +52,5 @@ public class B2badvanceOrderEntryPopulator extends OrderEntryPopulator {
 		return priceDataFactory.create(PriceDataType.BUY, BigDecimal.valueOf(amount), commonI18NService
 				.getCurrency(JaloSession.getCurrentSession().getSessionContext().getCurrency().getIsocode()));
 	}
+
 }
