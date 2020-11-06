@@ -18,7 +18,7 @@ UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$in
                            ;                                                               ; Digital Display                               ; Digital Display                        
                            ;                                                               ; i Series Compatible (Remotes)                 ; i Series Compatible                    
                            ;                                                               ; i Series Compatible (Power)                   ; i Series Compatible                    
-                           ;                                                               ; Ohms Per Km (Wire)                            ; Ohms Per Km                                        
+                           ;                                                               ; Ohms Per Km (Wire)                            ; Resistance (Ohms / km)                                        
                            ;                                                               ; Voltage at 2km of fence                       ; Voltage at 2km of fence                        
                            ;                                                               ; Voltage at 5km of fence                       ; Voltage at 5km of fence                        
                            ;                                                               ; Voltage at 10km of fence                      ; Voltage at 10km of fence                       
@@ -40,7 +40,7 @@ UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$in
                            ;                                                               ; Voltage at 500m of fence                      ; Voltage at 500m of fence                       
                            ;                                                               ; Voltage at 1km of fence                       ; Voltage at 1km of fence                        
                            ;                                                               ; Mixed Metals                                  ; Mixed Metals                                       
-                           ;                                                               ; Ohms Per Km (Tapes)                           ; Ohms Per Km                                        
+                           ;                                                               ; Ohms Per Km (Tapes)                           ; Resistance (Ohms / km)                                        
                            ;                                                               ; Length                                        ; Length                                         
                            ;                                                               ; Gear Ratio                                    ; Gear Ratio                                         
                            ;                                                               ; Conductor Capacity                            ; Conductor Capacity                                 
