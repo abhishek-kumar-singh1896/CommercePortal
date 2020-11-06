@@ -306,4 +306,10 @@
      <property name="discountService" ref="discountService"/>
      <property name="sessionService" ref="sessionService"/>
     </bean>
+    
+    <bean id="gallagherB2BCartPopulator" class="com.gallagher.facades.order.converters.populator.GallagherB2BCartPopulator"/>
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="cartConverter"/>
+		<property name="add" ref="gallagherB2BCartPopulator"/>
+	</bean>
 </beans>

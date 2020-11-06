@@ -101,4 +101,8 @@
 		<property name="salesArea" type="boolean"/>
 		<property name="userPriceGroup" type="boolean"/>
 	</bean>
+	
+	<bean class="de.hybris.platform.commercefacades.order.data.CartData">
+	    <property name="salesArea" type="String"/>
+	</bean>
 </beans>

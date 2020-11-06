@@ -460,6 +460,17 @@
 		<property name="commercePriceService" ref="commercePriceService"/>
 	</bean>
 	
+	<alias name="gallagherCartFactory" alias="cartFactory"/>
+    <bean id="gallagherCartFactory" class="com.gallagher.core.services.impl.GallagherCartFactory">
+        <property name="netGrossStrategy" ref="netGrossStrategy"/>
+        <property name="keyGenerator" ref="orderCodeGenerator"/>
+        <property name="modelService" ref="modelService"/>
+        <property name="userService" ref="userService"/>
+        <property name="commonI18NService" ref="commonI18NService"/>
+        <property name="baseSiteService" ref="baseSiteService"/>
+        <property name="baseStoreService" ref="baseStoreService"/>
+        <property name="guidKeyGenerator" ref="guidKeyGenerator"/>
+     </bean> 
 	 <!-- SAPP2-147 -->
 	
 </beans>
