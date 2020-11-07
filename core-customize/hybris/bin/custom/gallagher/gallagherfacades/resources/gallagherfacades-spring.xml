@@ -297,6 +297,11 @@
 		<property name="list" ref="extendedCartConverter"/>
 		<property name="remove" ref="groupOrderEntryPopulator"/>
 	</bean>
+		
+	<alias name="gallagherCustomerTicketingFacade" alias="defaultTicketFacade"/>
+	<bean id="gallagherCustomerTicketingFacade" class="com.gallagher.facades.customerticket.impl.GallagherCustomerTicketingFacadeImpl" parent="defaultCustomerTicketingFacade">
+		<property name="baseStoreService" ref="baseStoreService" />
+	</bean>    	
 	
 	<alias name="gallagherSearchResponseFacetsPopulator" alias="commerceSearchResponseFacetsPopulator" />
 	<bean id="gallagherSearchResponseFacetsPopulator"

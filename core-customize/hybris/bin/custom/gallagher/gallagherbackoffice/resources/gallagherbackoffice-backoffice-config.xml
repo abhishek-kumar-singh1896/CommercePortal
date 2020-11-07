@@ -304,6 +304,8 @@
             <editorArea:tab name="hmc.gallagher" position="3">
                 <editorArea:section name="hmc.section.gallagher">
                     <editorArea:attribute qualifier="sovosConfiguration" />
+                    <editorArea:attribute qualifier="ticketSales" />
+                    <editorArea:attribute qualifier="ticketTechnicalSupport" />
                 </editorArea:section>
             </editorArea:tab>
         </editorArea:editorArea>
