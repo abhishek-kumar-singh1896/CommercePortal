@@ -128,7 +128,7 @@ UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$so
                            ;                                                               ; i Series Compatible (Energizers)              ; i Series Compatible                    
                            ;                                                               ; Outdoors Suitable                             ; Outdoors Suitable                      
                            ;                                                               ; Property Size                                 ; Property Size                              
-                           ;                                                               ; Power Input                                   ; Power Input                                        
+                           ;                                                               ; Power Input                                   ; Power Source                                        
                            ;                                                               ; Watts                                         ; Watts                                           
                            ;                                                               ; Voltage                                       ; Voltage                                       
                            ;                                                               ; DC Input                                      ; DC Input                                      
@@ -138,7 +138,7 @@ UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$so
                            ;                                                               ; Product Height (Remotes)                      ; Product Height                               
                            ;                                                               ; Product Height (Power)                        ; Product Height                               
                            ;                                                               ; Diameter or Tape Width (Wire)                 ; Diameter or Tape Width                       
-                           ;                                                               ; Ohms Per Km (Wire)                            ; Ohms Per Km                                        
+                           ;                                                               ; Ohms Per Km (Wire)                            ; Resistance (Ohms / km)                                         
                            ;                                                               ; Warranty (Wire)                               ; Warranty                                  
                            ;                                                               ; Product Width (Posts)                         ; Product Width                                
                            ;                                                               ; Product Weight (Posts)                        ; Product Weight                                

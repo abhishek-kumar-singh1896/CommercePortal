@@ -9,7 +9,7 @@ UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$in
                            ;                                                               ; i Series Compatible (Energizers)              ; i Series Compatible                    
                            ;                                                               ; Outdoors Suitable                             ; Outdoors Suitable                      
                            ;                                                               ; Property Size                                 ; Property Size                            
-                           ;                                                               ; Power Input                                   ; Power Input                                        
+                           ;                                                               ; Power Input                                   ; Power Source                                        
                            ;                                                               ; Watts                                         ; Watts                                           
                            ;                                                               ; Voltage                                       ; Voltage                                         
                            ;                                                               ; DC Input                                      ; DC Input                                        

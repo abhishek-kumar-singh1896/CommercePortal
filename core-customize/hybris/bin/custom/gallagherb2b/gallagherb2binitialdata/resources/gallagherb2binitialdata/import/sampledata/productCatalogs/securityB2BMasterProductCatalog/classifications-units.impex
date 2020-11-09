@@ -9,25 +9,26 @@
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
 # ImpEx for Importing Units into SecurityB2B Store
-
+ 
 # Macros / Replacement Parameter definitions
 $systemVersion=systemVersion(catalog(id[default='SecurityB2BClassification']),version[default='1.0'])
-
-INSERT_UPDATE ClassificationAttributeUnit;code[unique=true];symbol;unitType;name[lang=en];;;$systemVersion[unique=true]
-;mm;mm;millimetre;mm;
-;Vdc;Vdc;Voltage DC;Vdc;
-;mA;mA;mA;mA;
-;m;m;m;meter;
-;ip-rating;IP Rating;IP Rating;IP rating;
-;ik-rating;IK Rating;ik-rating;IK Rating;
-;inches;inches;inches;"""";
-
-;J;J;Joules;J
-;ohms;ohms;ohms;ohms
-;V-Hz;V/Hz;V/Hz;V/Hz
-;W;W;Watts;W
-;cel;°C;Celsius;°C
-;fah;°F;Fahrenheit;°F
-;AES;AES;AES;AES
-;km;km;kilometre;km
-;V;V;Volts;V
+ 
+INSERT_UPDATE ClassificationAttributeUnit ; code[unique=true] ; symbol    ; unitType   ; name[lang=en] ; $systemVersion[unique=true] 
+                                          ; mm                ; mm        ; millimetre ; mm            ;  
+                                          ; Vdc               ; Vdc       ; Voltage DC ; Vdc           ;  
+                                          ; mA                ; mA        ; mA         ; mA            ;  
+                                          ; m                 ; m         ; m          ; meter         ;  
+                                          ; ip-rating         ; IP Rating ; IP Rating  ; IP rating     ;  
+                                          ; ik-rating         ; IK Rating ; ik-rating  ; IK Rating     ;  
+                                          ; inches            ; inches    ; inches     ; """"          ;  
+                                          
+                                          ; J                 ; J         ; Joules     ; J             
+                                          ; ohms              ; ohms      ; ohms       ; ohms          
+                                          ; V-Hz              ; V/Hz      ; V/Hz       ; V/Hz          
+                                          ; W                 ; W         ; Watts      ; W             
+                                          ; cel               ; °C        ; Celsius    ; °C            
+                                          ; fah               ; °F        ; Fahrenheit ; °F            
+                                          ; AES               ; AES       ; AES        ; AES           
+                                          ; km                ; km        ; kilometre  ; km            
+                                          ; V                 ; V         ; Volts      ; V             
+                                          ; Hectares          ; Hectares  ; Hectares   ; Hectares      

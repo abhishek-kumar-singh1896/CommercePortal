@@ -252,11 +252,13 @@ INSERT_UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true]
 ;;property-size-acres
 ;;wire-diameter-inch
 ;;weighing-capacity-lbs
+;;multiwire-distance-gallagher-recommendation-acres
 
 INSERT_UPDATE ClassAttributeAssignment;$attribute;$class;position;$unit;attributeType(code[default=string]);multiValued[default=false];range[default=false];localized[default=true]
 ;energy-stored;energizers;1;Joules;number
 ;energy-output;energizers;2;Joules;number
 ;multiwire-distance-gallagher-recommendation;energizers;3;km;number
+;multiwire-distance-gallagher-recommendation-acres;energizers;3;acres;number
 ;multiwire-distance-ideal-conditions;energizers;4;km;number
 ;i-series-compatible;energizers;5;;boolean
 ;outdoors-suitable;energizers;6;;boolean
