@@ -105,6 +105,11 @@
 					<persistence type="property" />
 					<description>Attribute to identify the currency associated with the B2BUnit </description>
 				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="customerGroup" type="java.lang.String">
+						<modifiers read="true" write="true" search="true" optional="true" />
+						<persistence type="property" />
+						<description>Attribute to identify the Customer Group associated with the B2BUnit </description>
+				</attribute>
 			</attributes>
 		</itemtype>
 		<itemtype code="Customer" autocreate="false" generate="false">
@@ -762,6 +767,16 @@
 						<persistence type="property" />
 						<modifiers read="true" write="true" search="true" optional="true" removable="false" />
 						<description>Internal attribute holding either value of Sales Area or Empty String for easier matching </description>
+					</attribute>
+					<attribute qualifier="customerGroup" type="java.lang.String" autocreate="true" generate="true" >
+						<modifiers read="true" write="true" search="true" optional="true" />
+						<persistence type="property" />
+						<description>Attribute to identify the Customer Group associated with the PDTRow </description>
+					</attribute>
+					<attribute qualifier="customerGroupMatchQualifier" type="java.lang.String" autocreate="true">
+						<persistence type="property" />
+						<modifiers read="true" write="true" search="true" optional="true" removable="false" />
+						<description>Internal attribute holding either value of Customer group or Empty String for easier matching </description>
 					</attribute>
 				</attributes>
 			</itemtype>

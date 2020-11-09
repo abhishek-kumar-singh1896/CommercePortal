@@ -39,6 +39,8 @@ public class GallagherPriceRow extends PriceRow
 	public static final String SALES_AREA = "salesArea";
 	public static final String SALES_AREA_MATCHQUALIFIER = "salesAreaMatchQualifier";
 
+	public static final String CUSTOMER_GROUP = "customerGroup";
+	public static final String CUSTOMER_GROUP_MATCHQUALIFIER = "customerGroupMatchQualifier";
 	/**
 	 * {@inheritDoc}
 	 */
@@ -50,6 +52,11 @@ public class GallagherPriceRow extends PriceRow
 
 		allAttributes.setAttributeMode(SALES_AREA, AttributeMode.INITIAL);
 		allAttributes.setAttributeMode(SALES_AREA_MATCHQUALIFIER, AttributeMode.INITIAL);
+
+		allAttributes.put(CUSTOMER_GROUP_MATCHQUALIFIER, getInitialCustomerGroupMatchField(allAttributes));
+
+		allAttributes.setAttributeMode(CUSTOMER_GROUP, AttributeMode.INITIAL);
+		allAttributes.setAttributeMode(CUSTOMER_GROUP_MATCHQUALIFIER, AttributeMode.INITIAL);
 
 
 		final GallagherPriceRow ret1 = (GallagherPriceRow) createPriceRowItem(ctx, type, allAttributes);
@@ -131,7 +138,8 @@ public class GallagherPriceRow extends PriceRow
 					Integer
 							.valueOf(calculateMatchValue((Product) allAttributes.get("product"), (String) allAttributes.get("productId"),
 									(EnumerationValue) allAttributes.get("pg"), (User) allAttributes.get("user"),
-									(EnumerationValue) allAttributes.get("ug"), (String) allAttributes.get(SALES_AREA))));
+									(EnumerationValue) allAttributes.get("ug"), (String) allAttributes.get(SALES_AREA),
+									(String) allAttributes.get(CUSTOMER_GROUP))));
 
 
 			allAttributes.setAttributeMode("matchValue", AttributeMode.INITIAL);
@@ -357,9 +365,22 @@ public class GallagherPriceRow extends PriceRow
 	{
 		final String salesArea = (String) allAttributes.get(SALES_AREA);
 
-		return salesArea != null ? salesArea : StringUtils.EMPTY;
+		return StringUtils.isNotBlank(salesArea) ? salesArea : StringUtils.EMPTY;
 	}
 
+	/**
+	 * Method to set the initial customer group match field.
+	 *
+	 * @param allAttributes
+	 *           the item attribute map
+	 * @return the salesArea match field
+	 */
+	protected String getInitialCustomerGroupMatchField(final ItemAttributeMap allAttributes)
+	{
+		final String customerGroup = (String) allAttributes.get(CUSTOMER_GROUP);
+
+		return StringUtils.isNotBlank(customerGroup) ? customerGroup : StringUtils.EMPTY;
+	}
 
 	/**
 	 * Method to calculate the match value
@@ -379,13 +400,14 @@ public class GallagherPriceRow extends PriceRow
 	 * @return the match value
 	 */
 	protected int calculateMatchValue(final Product product, final String productCode, final EnumerationValue productGroup,
-			final User user, final EnumerationValue userGroup, final String salesArea)
+			final User user, final EnumerationValue userGroup, final String salesArea, final String customerGroup)
 	{
 		final boolean _product = product != null || productCode != null;
 		final boolean _productGroup = productGroup != null;
 		final boolean _user = user != null;
 		final boolean _userGroup = userGroup != null;
-		final boolean _salesArea = salesArea != null;
+		final boolean _salesArea = StringUtils.isNotBlank(salesArea) && !salesArea.equalsIgnoreCase(String.valueOf(0));
+		final boolean _customerGroup = StringUtils.isNotBlank(customerGroup) && !customerGroup.equalsIgnoreCase(String.valueOf(0));
 
 		int value = 0;
 		if (_product)
@@ -394,33 +416,75 @@ public class GallagherPriceRow extends PriceRow
 			{
 				if (_salesArea)
 				{
-					value = 18;
+					if (_customerGroup)
+					{
+						value = 36;
+					}
+					else
+					{
+						value = 34;
+					}
 				}
 				else
 				{
-					value = 14;
+					if (_customerGroup)
+					{
+						value = 32;
+					}
+					else
+					{
+						value = 30;
+					}
 				}
 			}
 			else if (_userGroup)
 			{
 				if (_salesArea)
 				{
-					value = 16;
+					if (_customerGroup)
+					{
+						value = 28;
+					}
+					else
+					{
+						value = 26;
+					}
 				}
 				else
 				{
-					value = 12;
+					if (_customerGroup)
+					{
+						value = 24;
+					}
+					else
+					{
+						value = 22;
+					}
 				}
 			}
 			else
 			{
 				if (_salesArea)
 				{
-					value = 10;
+					if (_customerGroup)
+					{
+						value = 20;
+					}
+					else
+					{
+						value = 18;
+					}
 				}
 				else
 				{
-					value = 8;
+					if (_customerGroup)
+					{
+						value = 16;
+					}
+					else
+					{
+						value = 14;
+					}
 				}
 			}
 		}
@@ -430,33 +494,75 @@ public class GallagherPriceRow extends PriceRow
 			{
 				if (_salesArea)
 				{
-					value = 17;
+					if (_customerGroup)
+					{
+						value = 35;
+					}
+					else
+					{
+						value = 33;
+					}
 				}
 				else
 				{
-					value = 13;
+					if (_customerGroup)
+					{
+						value = 31;
+					}
+					else
+					{
+						value = 29;
+					}
 				}
 			}
 			else if (_userGroup)
 			{
 				if (_salesArea)
 				{
-					value = 15;
+					if (_customerGroup)
+					{
+						value = 27;
+					}
+					else
+					{
+						value = 25;
+					}
 				}
 				else
 				{
-					value = 11;
+					if (_customerGroup)
+					{
+						value = 23;
+					}
+					else
+					{
+						value = 21;
+					}
 				}
 			}
 			else
 			{
 				if (_salesArea)
 				{
-					value = 9;
+					if (_customerGroup)
+					{
+						value = 19;
+					}
+					else
+					{
+						value = 17;
+					}
 				}
 				else
 				{
-					value = 7;
+					if (_customerGroup)
+					{
+						value = 15;
+					}
+					else
+					{
+						value = 13;
+					}
 				}
 			}
 		}
@@ -466,37 +572,78 @@ public class GallagherPriceRow extends PriceRow
 			{
 				if (_salesArea)
 				{
-					value = 6;
+					if (_customerGroup)
+					{
+						value = 12;
+					}
+					else
+					{
+						value = 11;
+					}
 				}
 				else
 				{
-					value = 4;
+					if (_customerGroup)
+					{
+						value = 10;
+					}
+					else
+					{
+						value = 9;
+					}
 				}
 			}
 			else if (_userGroup)
 			{
 				if (_salesArea)
 				{
-					value = 5;
+					if (_customerGroup)
+					{
+						value = 8;
+					}
+					else
+					{
+						value = 7;
+					}
 				}
 				else
 				{
-					value = 3;
+					if (_customerGroup)
+					{
+						value = 6;
+					}
+					else
+					{
+						value = 5;
+					}
 				}
 			}
 			else
 			{
 				if (_salesArea)
 				{
-					value = 2;
+					if (_customerGroup)
+					{
+						value = 4;
+					}
+					else
+					{
+						value = 3;
+					}
 				}
 				else
 				{
-					value = 1;
+					if (_customerGroup)
+					{
+						value = 2;
+					}
+					else
+					{
+						value = 1;
+					}
 				}
 			}
 		}
-
 		return value;
 	}
 
@@ -508,7 +655,8 @@ public class GallagherPriceRow extends PriceRow
 			final User user, final EnumerationValue userGroup)
 	{
 		final SessionContext sessionContext = getSession().getSessionContext();
-		return calculateMatchValue(product, productCode, productGroup, user, userGroup, getSalesArea(sessionContext));
+		return calculateMatchValue(product, productCode, productGroup, user, userGroup, getSalesArea(sessionContext),
+				getCustomersGroup(sessionContext));
 	}
 
 	/**
@@ -523,4 +671,15 @@ public class GallagherPriceRow extends PriceRow
 		return (String) getProperty(sessionContext, SALES_AREA);
 	}
 
+	/**
+	 * Method to get the customer Group from the session context
+	 *
+	 * @param sessionContext
+	 *           the session context
+	 * @return the customerGroup
+	 */
+	protected String getCustomersGroup(final SessionContext sessionContext)
+	{
+		return (String) getProperty(sessionContext, CUSTOMER_GROUP);
+	}
 }

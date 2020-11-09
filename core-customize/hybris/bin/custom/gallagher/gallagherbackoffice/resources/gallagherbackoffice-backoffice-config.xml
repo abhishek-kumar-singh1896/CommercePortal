@@ -469,6 +469,7 @@
                     <editorArea:attribute qualifier="product"/>
                     <editorArea:attribute qualifier="pg"/>
                     <editorArea:attribute qualifier="salesArea"/>
+                    <editorArea:attribute qualifier="customerGroup"/>
                 </editorArea:essentialSection>
             </editorArea:essentials>
             <editorArea:tab name="hmc.common">
@@ -477,6 +478,7 @@
                     <editorArea:attribute qualifier="dateRange"/>
                     <editorArea:attribute qualifier="discountString"/>
                     <editorArea:attribute qualifier="salesAreaMatchQualifier"/>
+                    <editorArea:attribute qualifier="customerGroupMatchQualifier"/>
                 </editorArea:section>
                 <editorArea:section name="hmc.section.abstractdiscountrow.differingvalues">
                     <editorArea:attribute qualifier="value"/>

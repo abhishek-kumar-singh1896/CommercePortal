@@ -51,6 +51,7 @@ import com.gallagher.core.pdt.query.builder.GallagherPDTRowsQueryBuilder;
 public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactory
 {
 	private static final String CURRENT_SESSION_SALES_AREA = "currentSessionSalesArea";
+	private static final String CURRENT_SESSION_CUSTOMER_GROUP = "currentSessionCustomerGroup";
 
 	@Resource(name = "modelService")
 	private ModelService modelService;
@@ -70,6 +71,7 @@ public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactor
 		final String productId = this.extractProductId(ctx, product);
 
 		final String salesArea = getSalesArea(ctx);
+		final String customerGroup = getCustomerGroup(ctx);
 
 		if (StringUtils.isBlank(salesArea))
 		{
@@ -80,9 +82,11 @@ public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactor
 		else
 		{
 			final GallagherPDTRowsQueryBuilder builder = this.getPDTRowsQueryBuilderFor(TC.PRICEROW);
-			final QueryWithParams queryAndParams = builder.withAnyProduct().withAnyUser().withAnySalesArea().withProduct(productPk)
+			final QueryWithParams queryAndParams = builder.withAnyProduct().withAnyUser().withAnySalesArea().withAnyCustomerGroup()
+					.withProduct(
+							productPk)
 					.withProductId(productId).withProductGroup(productGroupPk).withUser(userPk).withUserGroup(userGroupPk)
-					.withSalesArea(salesArea).build();
+					.withSalesArea(salesArea).withCustomerGroup(customerGroup).build();
 
 
 
@@ -107,6 +111,7 @@ public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactor
 		final String productId = this.extractProductId(ctx, product);
 
 		final String salesArea = getSalesArea(ctx);
+		final String customerGroup = getCustomerGroup(ctx);
 
 		if (StringUtils.isBlank(salesArea))
 		{
@@ -116,9 +121,11 @@ public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactor
 		}
 
 		final GallagherPDTRowsQueryBuilder builder = this.getPDTRowsQueryBuilderFor(discountRowTypeCode);
-		final QueryWithParams queryAndParams = builder.withAnyProduct().withAnyUser().withAnySalesArea().withProduct(productPk)
+		final QueryWithParams queryAndParams = builder.withAnyProduct().withAnyUser().withAnySalesArea().withAnyCustomerGroup()
+				.withProduct(
+						productPk)
 				.withProductId(productId).withProductGroup(productGroupPk).withUser(userPk).withUserGroup(userGroupPk)
-				.withSalesArea(salesArea).build();
+				.withSalesArea(salesArea).withCustomerGroup(customerGroup).build();
 
 		return FlexibleSearch.getInstance().search(ctx, queryAndParams.getQuery(), queryAndParams.getParams(),
 				DiscountRow.class)
@@ -352,5 +359,17 @@ public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactor
 	public String getSalesArea(final SessionContext ctx)
 	{
 		return (String) ctx.getAttributes().get(CURRENT_SESSION_SALES_AREA);
+	}
+
+	/**
+	 * Method to get store from session context
+	 *
+	 * @param ctx
+	 *           the session context
+	 * @return Customer Group
+	 */
+	public String getCustomerGroup(final SessionContext ctx)
+	{
+		return (String) ctx.getAttributes().get(CURRENT_SESSION_CUSTOMER_GROUP);
 	}
 }
