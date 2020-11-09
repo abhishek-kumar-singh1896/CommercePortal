@@ -297,10 +297,20 @@
 		<property name="list" ref="extendedCartConverter"/>
 		<property name="remove" ref="groupOrderEntryPopulator"/>
 	</bean>
-		
+	
+    <bean id="gallagherTicketQuotesAssociationStrategy" class="com.gallagher.facades.customerticket.strategies.GallagherTicketQuotesAssociationStrategy">
+    	<property name="ticketAssociationCoverter" ref="ticketAssociationCoverter"/>
+    </bean>    
+    
 	<alias name="gallagherCustomerTicketingFacade" alias="defaultTicketFacade"/>
 	<bean id="gallagherCustomerTicketingFacade" class="com.gallagher.facades.customerticket.impl.GallagherCustomerTicketingFacadeImpl" parent="defaultCustomerTicketingFacade">
 		<property name="baseStoreService" ref="baseStoreService" />
+		<property name="gallagherAssociationStrategies">
+			<list>
+				<ref bean="ticketOrdersAssociationStrategy"/>
+				<ref bean="gallagherTicketQuotesAssociationStrategy"/>
+			</list>
+		</property>			
 	</bean>    	
 	
 	<alias name="gallagherSearchResponseFacetsPopulator" alias="commerceSearchResponseFacetsPopulator" />
