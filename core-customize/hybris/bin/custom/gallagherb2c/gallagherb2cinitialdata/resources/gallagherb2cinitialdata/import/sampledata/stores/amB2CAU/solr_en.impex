@@ -23,7 +23,7 @@ UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$in
                            ;                                                               ; Post Height (WestOnFence)                     ; Post Height                                                 
                            ;                                                               ; Voltage at 2km of fence                       ; Voltage at 2km of fence                                     
                            ;                                                               ; Voltage at 5km of fence                       ; Voltage at 5km of fence                                     
-                           ;                                                               ; Ohms Per Km (Wires)                           ; Ohms Per Km                                                     
+                           ;                                                               ; Ohms Per Km (Wires)                           ; Resistance (Ohms / km)                                                     
                            ;                                                               ; Voltage at 10km of fence                      ; Voltage at 10km of fence                                    
                            ;                                                               ; Post Height (Posts)                           ; Post Height                                                 
                            ;                                                               ; Number of Wires                               ; Number of Wires                                                 
@@ -48,7 +48,7 @@ UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$in
                            ;                                                               ; Voltage at 500m of fence                      ; Voltage at 500m of fence                                    
                            ;                                                               ; Voltage at 1km of fence                       ; Voltage at 1km of fence                                     
                            ;                                                               ; Mixed Metals                                  ; Mixed Metals                                                    
-                           ;                                                               ; Ohms Per Km                                   ; Ohms Per Km                                                     
+                           ;                                                               ; Ohms Per Km                                   ; Resistance (Ohms / km)                                                     
                            ;                                                               ; Gear Ratio                                    ; Gear Ratio                                                      
                            ;                                                               ; Conductor Capacity                            ; Conductor Capacity                                              
                            ;                                                               ; Pre-wound with                                ; Pre-wound with                                                  
