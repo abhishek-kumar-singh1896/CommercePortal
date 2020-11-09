@@ -397,7 +397,7 @@ INSERT_UPDATE NavigationComponent;$contentCV[unique=true];uid[unique=true];name;
 ;;OrderToolsComponent;Order Tools Component;nav-order-tools;OrderToolsComponent;OrderToolsNavNode;GallagherSiteTransactionRestriction
 
 INSERT_UPDATE MiniCartComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;totalDisplay(code);shownProductCount;lightboxBannerComponent(&componentRef);restrictions(uid,$contentCV)
-;;MiniCart;Mini Cart;MiniCart;SUBTOTAL;3;LightboxHomeDeliveryBannerComponent;GallagherSiteTransactionRestriction
+;;MiniCart;Mini Cart;MiniCart;SUBTOTAL;3;;GallagherSiteTransactionRestriction
 
 INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink
 ;;LightboxHomeDeliveryBannerComponent;Lightbox Home Delivery Banner Component;LightboxHomeDeliveryBannerComponent;
@@ -654,7 +654,7 @@ INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];positi
 ;;BottomContentSlotForCartPage;BottomContentSlot;;BottomContentSlot-cartPage
 
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
-;;TopContent-cartPage;Top Slot for Cart Page;true;NextDayDeliveryBanner120,CartComponent
+;;TopContent-cartPage;Top Slot for Cart Page;true;CartComponent
 ;;EmptyCartMiddleContent-cartPage;Empty Cart Middle Slot for Cart Page;true;EmptyCartParagraphComponent
 ;;CenterLeftContentSlot-cartPage;Center Left Content Slot for Cart Page;true;PromotionsComponent,PotentialPromotionsComponent
 ;;CenterRightContentSlot-cartPage;Center Right Content Slot for Cart Page;true;CartTotalsComponent

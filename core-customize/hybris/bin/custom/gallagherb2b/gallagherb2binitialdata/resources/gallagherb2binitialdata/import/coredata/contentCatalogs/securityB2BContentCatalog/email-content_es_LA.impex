@@ -24,5 +24,5 @@ $lang=es_LA
 
 # CMS components and Email velocity templates
 UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
- ;securityB2B_Email_Customer_Registration_Body;"Customer Registration Email Body";$emailResource/email-customerRegistrationBody.vm
+ ;securityB2B_Email_Customer_Registration_Body;"Customer Registration Email Body";$emailResource/email-customerregistrationbody.vm
  ;securityB2B_Email_Customer_Registration_Subject;"Customer Registration Email Subject";$emailResource/email-customerRegistrationSubject.vm

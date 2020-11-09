@@ -297,4 +297,10 @@
 		<property name="remove" ref="groupOrderEntryPopulator"/>
 	</bean>
 	
+	<bean id="gallagherOrderNotificationEmailContext" 
+	class="com.gallagher.facades.process.email.context.GallagherOrderNotificationEmailContext"
+		parent="orderNotificationEmailContext" >
+	<property name="orderConverter" ref="orderConverter"/>
+	</bean>
+	
 </beans>

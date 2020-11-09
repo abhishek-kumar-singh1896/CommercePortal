@@ -27,7 +27,7 @@
 								<%-- <div class="form-group">
 									<multi-checkout:deliveryMethodSelector deliveryMethods="${deliveryMethods}" selectedDeliveryMethodId="${cartData.deliveryMode.code}"/>
 								</div> --%>
-								<p><spring:theme code="checkout.multi.deliveryMethod.message" text="Items will ship as soon as they are available. <br> See Order Summary for more information. <br> *No taxes or freight costs are included in the total" /></p>
+								<p><spring:theme code="checkout.multi.deliveryMethod.message" text="Items will ship as soon as they are available. <br> See Order Summary for more information. <br><b> *No taxes or freight costs are included in the total"></b></spring:theme></p>
 								 <%-- <div class="deliveryInstructions">
                                   	<label>Delivery Instructions:</label>
                                  	 <textarea name="deliveryInstructions" id="deliveryInstructions">${cartData.deliveryInstructions}
