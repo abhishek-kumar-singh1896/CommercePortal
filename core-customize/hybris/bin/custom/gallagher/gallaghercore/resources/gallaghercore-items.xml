@@ -338,11 +338,6 @@
 					<persistence type="property" />
 					<description>Attribute for product POA</description>
 				</attribute>
-				<attribute autocreate="true" generate="true" qualifier="commentPlaceHolder" type="localized:java.lang.String">
-					<modifiers optional="true" />
-					<persistence type="property" />
-					<description>Attribute to allow user to enter product specific details</description>
-				</attribute>
 				<attribute autocreate="true" generate="true" qualifier="productSpecificDetailsHeading" type="localized:java.lang.String">
 					<modifiers optional="true" />
 					<persistence type="property" />

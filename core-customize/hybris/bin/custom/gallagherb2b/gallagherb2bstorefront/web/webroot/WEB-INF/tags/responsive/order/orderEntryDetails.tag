@@ -81,6 +81,11 @@
             	</ycommerce:testId>
         	</div>
         </c:if>
+        
+        <c:if test="${not empty orderEntry.productSpecificDetailsHeading && not empty orderEntry.deliveryinstruction}">
+        	<%-- <div><strong>${orderEntry.productSpecificDetailsHeading}</strong></div> --%>
+        	<div><strong>${orderEntry.deliveryinstruction}</strong></div>
+        </c:if>
 
        	<c:if test="${not empty order.appliedProductPromotions}">
            	<div class="promo">
