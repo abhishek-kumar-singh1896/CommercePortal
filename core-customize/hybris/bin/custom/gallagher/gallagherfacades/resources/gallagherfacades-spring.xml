@@ -300,5 +300,9 @@
 	<alias name="gallagherSearchResponseFacetsPopulator" alias="commerceSearchResponseFacetsPopulator" />
 	<bean id="gallagherSearchResponseFacetsPopulator"
 		class="com.gallagher.facades.search.solrfacetsearch.populators.GallagherSearchResponseFacetsPopulator" parent="defaultCommerceSearchResponseFacetsPopulator" />
+
+	<alias name="gallagherCartFacade" alias="gglCartFacade" />
+	<bean id="gallagherCartFacade" class="com.gallagher.facades.order.impl.GallagherCartFacade"
+		parent="cartFacade" />
 	
 </beans>
