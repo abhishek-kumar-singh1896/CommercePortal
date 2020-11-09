@@ -556,4 +556,14 @@
         <property name="guidKeyGenerator" ref="guidKeyGenerator"/>
      </bean> 
 	 <!-- SAPP2-147 -->
+	<alias alias="CustomerAccountService" name="gallagherCustomerAccountService" />
+	<bean name="gallagherCustomerAccountService" class="com.gallagher.core.services.impl.GallagherCustomerAccountServiceImpl"
+		parent="defaultCustomerAccountService">
+	</bean>
+	
+	<alias alias="CustomerAccountDao" name="gallagherCustomerAccountDao" />
+	<bean name="gallagherCustomerAccountDao" class="com.gallagher.core.dao.impl.GallagherCustomerAccountDaoImpl"
+		parent="defaultCustomerAccountDao">
+	</bean>
+	
 </beans>

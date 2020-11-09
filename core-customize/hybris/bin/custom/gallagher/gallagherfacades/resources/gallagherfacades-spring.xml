@@ -351,4 +351,7 @@
 		<property name="list" ref="cartConverter"/>
 		<property name="add" ref="gallagherB2BCartPopulator"/>
 	</bean>
+	<alias name="gallagherOrderFacade" alias="orderFacade"/>
+	<bean id="gallagherOrderFacade" class="com.gallagher.facades.order.impl.GallagherOrderFacadeImpl" parent="defaultOrderFacade" />
+ 	
 </beans>
