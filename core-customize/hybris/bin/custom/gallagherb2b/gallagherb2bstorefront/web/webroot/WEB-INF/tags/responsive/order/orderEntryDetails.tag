@@ -122,7 +122,7 @@
         </ycommerce:testId>
     </div>
 
-    <%-- quantity --%>
+    <%-- total quantity --%>
     <div class="item__quantity hidden-xs hidden-sm">
         <c:forEach items="${orderEntry.product.baseOptions}" var="option">
             <c:if test="${not empty option.selected and option.selected.url eq orderEntry.product.url}">
@@ -153,6 +153,20 @@
         </ycommerce:testId>
     </div>
 
+	<!-- 	  delivered quanity -->
+	 <div class="item__quantity hidden-xs hidden-sm">
+		<span class="qtyValue">
+          <c:choose>
+              <c:when test="${consignmentEntry ne null }">
+                  ${consignmentEntry.deliveredQuantity}
+              </c:when>
+              <c:otherwise>
+                  ${orderEntry.deliveredQuantity}
+              </c:otherwise>
+          </c:choose>
+      </span>
+	 </div>
+
      <%-- total --%>
     <div class="item__total hidden-xs hidden-sm">
         <ycommerce:testId code="orderDetails_productTotalPrice_label">
@@ -160,6 +174,14 @@
         </ycommerce:testId>
     </div>
 
+	<%-- status --%>
+    <div class="item__status hidden-xs hidden-sm">
+		<span class="item__shortDescription">
+			<c:if test="${not empty orderEntry.status}">
+				<spring:theme code="text.orderEntry.status.${orderEntry.status.code}"/>
+			</c:if>
+		</span>
+    </div>
 
     <div class="item__quantity__total visible-xs visible-sm">
         <c:set var="showEditableGridClass" value=""/>

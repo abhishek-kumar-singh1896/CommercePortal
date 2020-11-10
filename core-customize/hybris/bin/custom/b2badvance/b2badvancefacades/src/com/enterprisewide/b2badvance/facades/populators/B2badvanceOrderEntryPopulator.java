@@ -17,11 +17,13 @@ import java.math.BigDecimal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+
 /**
  *
  *
  */
-public class B2badvanceOrderEntryPopulator extends OrderEntryPopulator {
+public class B2badvanceOrderEntryPopulator extends OrderEntryPopulator
+{
 	@Autowired
 	private UnitService unitService;
 
@@ -34,22 +36,28 @@ public class B2badvanceOrderEntryPopulator extends OrderEntryPopulator {
 	@Override
 	public void populate(final AbstractOrderEntryModel source, final OrderEntryData target)
 	{
-		super.populate(source,target);
+		super.populate(source, target);
 		target.setDeliveryinstruction(source.getDeliveryInstruction());
 		target.setProductSpecificDetailsHeading(source.getProductSpecificDetailsHeading());
+		target.setDeliveredQuantity(source.getDeliveredQuantity());
+		target.setStatus(source.getStatus());
 	}
 
 	@Override
-	protected void addTotals(final AbstractOrderEntryModel orderEntry, final OrderEntryData entry) {
+	protected void addTotals(final AbstractOrderEntryModel orderEntry, final OrderEntryData entry)
+	{
 		if (orderEntry != null && orderEntry.getTotalPrice() != null && orderEntry.getQuantity() != null
-				&& orderEntry.getBasePrice() != null && orderEntry.getQuantity() != 0) {
+				&& orderEntry.getBasePrice() != null && orderEntry.getQuantity() != 0)
+		{
 			entry.setSellingPrice(buildPrice(orderEntry.getTotalPrice() / orderEntry.getQuantity()));
 		}
 		super.addTotals(orderEntry, entry);
 	}
 
-	protected PriceData buildPrice(final double amount) {
-		return priceDataFactory.create(PriceDataType.BUY, BigDecimal.valueOf(amount), commonI18NService
-				.getCurrency(JaloSession.getCurrentSession().getSessionContext().getCurrency().getIsocode()));
+	protected PriceData buildPrice(final double amount)
+	{
+		return priceDataFactory.create(PriceDataType.BUY, BigDecimal.valueOf(amount),
+				commonI18NService.getCurrency(JaloSession.getCurrentSession().getSessionContext().getCurrency().getIsocode()));
 	}
+
 }

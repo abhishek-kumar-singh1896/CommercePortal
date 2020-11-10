@@ -9,6 +9,8 @@ import java.util.Map;
 
 import org.springframework.util.CollectionUtils;
 
+import com.gallagher.core.enums.OrderEntryItemStatus;
+
 
 /**
  * Group Entry populator to set selling price
@@ -52,6 +54,8 @@ public class B2BAdvanceGroupOrderConsignmentEntryPopulator extends GroupOrderCon
 				parentEntry.setQuantity(getTotalQuantity(parentEntry));
 				parentEntry.setProductSpecificDetailsHeading(getProductSpecificDetailsHeading(parentEntry));
 				parentEntry.setDeliveryinstruction(getDeliveryInstruction(parentEntry));
+				parentEntry.setDeliveredQuantity(getDeliveredQuantity(parentEntry));
+				parentEntry.setStatus(getOrderEntryStatus(parentEntry));
 			}
 		}
 	}
@@ -80,4 +84,24 @@ public class B2BAdvanceGroupOrderConsignmentEntryPopulator extends GroupOrderCon
 		return deliveryInstruction;
 	}
 
+	protected Long getDeliveredQuantity(final OrderEntryData parentEntry)
+	{
+		long deliveredQuantity = 0;
+		if (!CollectionUtils.isEmpty(parentEntry.getEntries()))
+		{
+			deliveredQuantity = (parentEntry.getEntries().get(0).getDeliveredQuantity() != null
+					? parentEntry.getEntries().get(0).getDeliveredQuantity().longValue()
+					: 0);
+		}
+		return Long.valueOf(deliveredQuantity);
+	}
+
+	protected OrderEntryItemStatus getOrderEntryStatus(final OrderEntryData parentEntry)
+	{
+		if (!CollectionUtils.isEmpty(parentEntry.getEntries()))
+		{
+			return parentEntry.getEntries().get(0).getStatus() != null ? parentEntry.getEntries().get(0).getStatus() : null;
+		}
+		return null;
+	}
 }
