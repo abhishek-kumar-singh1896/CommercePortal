@@ -692,5 +692,37 @@ public class CartPageController extends AbstractCartPageController
 		final QuoteData quoteData = getCartFacade().getSessionCart().getQuoteData();
 		return quoteData != null ? String.format(REDIRECT_QUOTE_EDIT_URL, urlEncode(quoteData.getCode())) : REDIRECT_CART_URL;
 	}
+	
+	@Override
+	protected void createProductEntryList(final Model model, final CartData cartData)
+	{
+		boolean hasPickUpCartEntries = false;
+		boolean hasRecommendations = false;
+		if (cartData.getEntries() != null && !cartData.getEntries().isEmpty())
+		{
+			for (final OrderEntryData entry : cartData.getEntries())
+			{
+				if (!hasRecommendations
+						&& (null != entry.getProduct().getRecommendedProducts()
+								&& !entry.getProduct().getRecommendedProducts().isEmpty())
+						|| (null != entry.getProduct().getRecommendedCategories()
+								&& !entry.getProduct().getRecommendedCategories().isEmpty()))
+				{
+					hasRecommendations = true;
+				}
+				if (!hasPickUpCartEntries && entry.getDeliveryPointOfService() != null)
+				{
+					hasPickUpCartEntries = true;
+				}
+				final UpdateQuantityForm uqf = new UpdateQuantityForm();
+				uqf.setQuantity(entry.getQuantity());
+				model.addAttribute("updateQuantityForm" + entry.getEntryNumber(), uqf);
+				model.addAttribute("hasRecommendations", hasRecommendations);
+			}
+		}
+
+		model.addAttribute("cartData", cartData);
+		model.addAttribute("hasPickUpCartEntries", Boolean.valueOf(hasPickUpCartEntries));
+	}
 
 }
