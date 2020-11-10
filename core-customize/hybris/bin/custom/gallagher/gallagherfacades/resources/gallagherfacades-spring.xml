@@ -302,5 +302,8 @@
 		parent="orderNotificationEmailContext" >
 	<property name="orderConverter" ref="orderConverter"/>
 	</bean>
+	<bean id="gallagherCheckoutDeliveryInstructionFacadeImpl" class="com.gallagher.facades.checkout.flow.impl.GallagherCheckoutDeliveryInstructionFacadeImpl"
+		parent="defaultCheckoutFacade">
+	</bean>
 	
 </beans>

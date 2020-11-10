@@ -272,6 +272,11 @@
 						</property>
 					</custom-properties>
 				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="productSpecificDetailsHeading" type="localized:java.lang.String">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<description>Attribute for product specific details Heading</description>
+				</attribute>
 			</attributes>
 
 		</itemtype>
@@ -689,6 +694,29 @@
 				<attributes>
 					<attribute qualifier="taxTransactionDocId" type="java.lang.String">
 						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="deliveryInstruction" type="java.lang.String">
+						<persistence type="property" />
+						<modifiers optional="true" />
+					</attribute>
+					<attribute autocreate="true" generate="true" qualifier="productSpecificDetailsHeading" type="localized:java.lang.String">
+						<modifiers optional="true" />
+						<persistence type="property" />
+						<description>Attribute for product specific details Heading</description>
+					</attribute>
+				</attributes>
+			</itemtype>
+			<itemtype code="AbstractOrderEntry" autocreate="false" generate="false">
+				<description>Extends existing type with additional attributes.</description>
+				<attributes>
+					<attribute qualifier="deliveryInstruction" type="java.lang.String">
+						<persistence type="property" />
+						<modifiers optional="true" />
+					</attribute>
+					<attribute autocreate="true" generate="true" qualifier="productSpecificDetailsHeading" type="localized:java.lang.String">
+						<modifiers optional="true" />
+						<persistence type="property" />
+						<description>Attribute for product specific details Heading</description>
 					</attribute>
 				</attributes>
 			</itemtype>
