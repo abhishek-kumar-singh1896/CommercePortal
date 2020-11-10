@@ -35,4 +35,3 @@ UPDATE ClassificationAttributeUnit ; code[unique=true] ; $systemVersion ; name[l
                                    ; AES               ;                ; AES              
                                    ; km                ;                ; km               
                                    ; V                 ;                ; V                
-											  ; Hectares			 ;						; Hectares

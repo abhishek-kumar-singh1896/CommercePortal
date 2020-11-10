@@ -31,4 +31,3 @@ INSERT_UPDATE ClassificationAttributeUnit ; code[unique=true] ; symbol    ; unit
                                           ; AES               ; AES       ; AES        ; AES           
                                           ; km                ; km        ; kilometre  ; km            
                                           ; V                 ; V         ; Volts      ; V             
-                                          ; Hectares          ; Hectares  ; Hectares   ; Hectares      
