@@ -142,4 +142,7 @@
 		<property name="deliveryInstruction" type="String" />
 	</bean>
 	
+	<bean class="de.hybris.platform.commercefacades.product.data.CategoryData">
+		<property name="commentsQuestion" type="String" />
+	</bean>
 </beans>
