@@ -1,8 +1,8 @@
 {
-    "commerceSuiteVersion": "2005.0",
+    "commerceSuiteVersion": "1905",
     "extensionPacks": [{
 		"name": "hybris-b2ctelco-suite",
-        "version": "2007.0"
+        "version": "2003.0"
 	 }],
 	"useConfig": {
         "properties": [
