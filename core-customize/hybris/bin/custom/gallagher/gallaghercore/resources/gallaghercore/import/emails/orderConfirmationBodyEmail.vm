@@ -276,7 +276,7 @@
 														<img src="${ctx.mediaBaseUrl}$image.url" alt="ew" title="$entry.product.name"/>
 													#end #end
 													#else
-													<img src="${ctx.mediaBaseUrl}/security/_ui/responsive/theme-securityB2B/images/missing_product_EN_300x300.jpg" alt="Not Found" title="$entry.product.name"/>
+													<img src="${ctx.mediaBaseUrl}/security/_ui/responsive/theme-securityB2B/images/missing_product_EN_300x300.jpg" alt="Not Found" title="$entry.product.name" width="60" height="60"/>
 													#end
 												</a>
 												&nbsp;

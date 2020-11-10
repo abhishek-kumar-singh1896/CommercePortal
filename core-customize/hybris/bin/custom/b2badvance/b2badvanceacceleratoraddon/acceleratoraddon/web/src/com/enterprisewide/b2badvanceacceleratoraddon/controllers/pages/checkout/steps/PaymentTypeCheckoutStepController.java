@@ -26,11 +26,10 @@ import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
 import de.hybris.platform.commercefacades.order.data.CartData;
 import de.hybris.platform.commercefacades.order.data.OrderEntryData;
 import de.hybris.platform.commercefacades.product.data.CategoryData;
-import de.hybris.platform.commercefacades.user.data.AddressData;
 import de.hybris.platform.commerceservices.order.CommerceCartModificationException;
 import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.servicelayer.user.UserService;
-
+import de.hybris.platform.commercefacades.user.data.AddressData;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
@@ -100,13 +99,13 @@ public class PaymentTypeCheckoutStepController extends AbstractCheckoutStepContr
 			throws CMSItemNotFoundException, CommerceCartModificationException
 	{
 		final CartData cartData = getCheckoutFacade().getCheckoutCart();
-		for (OrderEntryData cartEntry : cartData.getEntries()) {
-			for (CategoryData categoryData : cartEntry.getProduct().getCategories()) {
+		for (final OrderEntryData cartEntry : cartData.getEntries()) {
+			for (final CategoryData categoryData : cartEntry.getProduct().getCategories()) {
 				if (categoryData.getCode().equalsIgnoreCase("Software") && StringUtils.isNotEmpty(categoryData.getCommentsQuestion())) {
 					model.addAttribute("commentsQuestion", categoryData.getCommentsQuestion());
 				}
 			}
-		}		
+		}
 		model.addAttribute("cartData", cartData);
 		model.addAttribute("paymentTypeForm", preparePaymentTypeForm(cartData));
 		prepareDataForPage(model);
@@ -151,7 +150,7 @@ public class PaymentTypeCheckoutStepController extends AbstractCheckoutStepContr
 
 		updateCheckoutCart(paymentTypeForm);
 
-		checkAndSelectDeliveryAddress(paymentTypeForm);
+		//checkAndSelectDeliveryAddress(paymentTypeForm);
 
 		return getCheckoutStep().nextStep();
 	}

@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.enterprisewide.b2badvance.facades.checkout.facade;
+package com.gallagher.facades.checkout.flow.impl;
 
 import de.hybris.platform.b2b.model.B2BCommentModel;
 import de.hybris.platform.b2b.model.B2BUnitModel;
