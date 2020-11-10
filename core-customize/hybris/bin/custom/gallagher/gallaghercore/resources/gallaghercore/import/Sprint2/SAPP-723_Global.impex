@@ -112,7 +112,7 @@ INSERT_UPDATE SolrValueRange ; &rangeValueRefID     ; solrValueRangeSet(name)[un
                              ; rangeOhmsPerKmTapes2 ; OhmsPerKmTapesRange                  ; 240+        ; 240  ; 9999    
                              
 UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]   ; rangeSets(name)     
-                           ; $solrIndexedType                         ; Ohms Per Km (Cintas) ; OhmsPerKmTapesRange 
+                           ; $solrIndexedType                         ; Ohms Per Km ; OhmsPerKmTapesRange 
 
                            
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true]          ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                       
@@ -123,7 +123,7 @@ INSERT_UPDATE SolrValueRange ; &rangeValueRefID            ; solrValueRangeSet(n
                              ; rangeOhmsPerKmWireAndCable2 ; OhmsPerKmWireAndCableRange           ; 13+           ; 13 ; 999     
                              
 UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]     ; rangeSets(name)            
-                           ; $solrIndexedType                         ; Ohms Per Km (Alambres) ; OhmsPerKmWireAndCableRange 
+                           ; $solrIndexedType                         ; Ohms Per Km (Wire) ; OhmsPerKmWireAndCableRange 
 
                            
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true]   ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                              
