@@ -1,2 +1,0 @@
-## messageSource=classpath:/gallagherb2binitialdata/messages/email-orderPendingApprovalSubject_$lang.properties
-${ctx.messages.getMessage('emailSubject', ${ctx.order.code})}

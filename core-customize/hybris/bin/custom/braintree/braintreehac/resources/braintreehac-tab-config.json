@@ -1,9 +1,0 @@
-[ {
-  "basePath" : "/braintreehac",
-  "mainTabLabel" : "PayPal Settings",
-  "subTabs" : [ {
-    "path" : "/button/config/",
-    "label" : "Smart Button Configuration",
-    "skipPrefix" : false
-  } ]
-} ]

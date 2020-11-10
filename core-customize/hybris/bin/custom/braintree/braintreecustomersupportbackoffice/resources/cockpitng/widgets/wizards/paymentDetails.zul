@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?script src="https://js.braintreegateway.com/web/3.38.0/js/hosted-fields.min.js"?>
-
-<zk xmlns="http://www.zkoss.org/2005/zul">
-    <widgetslot slotID="wizardNotificationarea" sclass="yw-notification"/>
-</zk>

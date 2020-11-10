@@ -1,2 +1,0 @@
-## messageSource=classpath:/b2badvanceinitialdata/messages/email-replenishmentOrderPlacedSubject_$lang.properties
-${ctx.messages.emailSubject}

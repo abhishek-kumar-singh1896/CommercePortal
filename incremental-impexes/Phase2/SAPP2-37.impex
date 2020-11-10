@@ -1,8 +1,0 @@
-$contentCatalog=amB2CContentCatalog
-$contentCatalogName=Animal Management B2C Content Catalog
-$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
-$lang=en
-
-
-INSERT_UPDATE ProductAddToCartComponent ; $contentCV[unique=true] ; uid[unique=true] ; outOfStockMessage[lang=$lang]             
-                                        ;                         ; AddToCart        ; "<a href=""https:\\www.google.com"">Notify me when this product is available</a>"

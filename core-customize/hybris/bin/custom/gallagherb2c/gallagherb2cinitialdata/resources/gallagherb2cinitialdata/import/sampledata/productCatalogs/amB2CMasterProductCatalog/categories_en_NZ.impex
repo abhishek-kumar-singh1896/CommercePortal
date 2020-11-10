@@ -1,9 +1,0 @@
-$productCatalog=amB2CMasterProductCatalog
-$productCatalogName=Animal Management B2C US Product Catalog
-$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
- 
-# Language
-$lang=en_NZ
- 
-UPDATE Category ; code[unique=true] ; $catalogVersion ; name[lang=$lang] 
-                ; gates             ;                 ; Steel Gates      

@@ -1,2 +1,0 @@
-## messageSource=classpath:/b2badvanceinitialdata/messages/email-orderPendingApprovalSubject_$lang.properties
-${ctx.messages.getMessage('emailSubject', ${ctx.order.code})}

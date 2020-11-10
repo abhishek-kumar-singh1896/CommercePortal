@@ -1,2 +1,0 @@
-The files in this folder are to be uploaded to each of the environments as static files. For more information: https://help.sap.com/viewer/0fa6bcf4736c46f78c248512391eb467/SHIP/en-US/d1055b92a3d140a28fcf3f4879f35ae2.html
-Each site (AM and Security) has its own folder due to some differences in some of the files, i.e.: sitemaps. The zip file needs to be created grouping all files from the root of the environment's folder, i.e.: AM/ Do not zip AM folder as this will change the structure in which the files are dropped in the environment.
