@@ -274,7 +274,7 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved'];fromEmail;fromName
 ;;CustomerRegistrationEmail;Customer Registration Email;CustomerRegistrationEmailTemplate;true;;noreply@em90.comms.gallagher.com;Gallagher Security
 ;;ForgottenPasswordEmail;Forgotten Password Email;ForgottenPasswordEmailTemplate;true;
-;;OrderConfirmationEmail;Order Confirmation Email;OrderConfirmationEmailTemplate;true;
+;;OrderConfirmationEmail;Order Confirmation Email;OrderConfirmationEmailTemplate;true;;
 ;;DeliverySentEmail;Delivery Sent Email;DeliverySentEmailTemplate;true;
 ;;ReadyForPickupEmail;Ready For Pickup Email;ReadyForPickupEmailTemplate;true;
 ;;OrderCancelledEmail;Order Cancelled Email;OrderCancelledEmailTemplate;true;
@@ -316,7 +316,8 @@ INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)
 ;securityB2B_Email_Customer_Registration_Body;$gallagherEmailPackageName.GallagherCustomerEmailContext
 ;securityB2B_Email_Customer_Registration_Subject;$gallagherEmailPackageName.GallagherCustomerEmailContext
 ;securityB2B_Email_Forgotten_Password_Body;$emailPackageName.ForgottenPasswordEmailContext
-;securityB2B_Email_Order_Confirmation_Body;$emailPackageName.OrderNotificationEmailContext
+;securityB2B_Email_Order_Confirmation_Body;$gallagherEmailPackageName.GallagherOrderNotificationEmailContext
+;securityB2B_Email_Order_Confirmation_Subject;$gallagherEmailPackageName.GallagherOrderNotificationEmailContext
 ;securityB2B_Email_Delivery_Sent_Body;$emailPackageName.DeliverySentEmailContext
 ;securityB2B_Email_Ready_For_Pickup_Body;$emailPackageName.ReadyForPickupEmailContext
 ;securityB2B_Email_Order_Cancelled_Body;$emailPackageName.OrderCancelledEmailContext
@@ -327,7 +328,6 @@ INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)
 ;securityB2B_Email_Order_Partially_Refunded_Body;$emailPackageName.OrderPartiallyRefundedEmailContext
 ;securityB2B_Email_NotPickedUpConsignment_Canceled_Body;$emailPackageName.NotPickedUpConsignmentCanceledEmailContext
 ;securityB2B_Email_Forgotten_Password_Subject;$emailPackageName.ForgottenPasswordEmailContext
-;securityB2B_Email_Order_Confirmation_Subject;$emailPackageName.OrderNotificationEmailContext
 ;securityB2B_Email_Delivery_Sent_Subject;$emailPackageName.DeliverySentEmailContext
 ;securityB2B_Email_Ready_For_Pickup_Subject;$emailPackageName.ReadyForPickupEmailContext
 ;securityB2B_Email_Order_Cancelled_Subject;$emailPackageName.OrderCancelledEmailContext

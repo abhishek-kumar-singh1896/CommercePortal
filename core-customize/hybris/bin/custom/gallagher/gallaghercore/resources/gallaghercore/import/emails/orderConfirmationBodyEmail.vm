@@ -1,0 +1,444 @@
+## messageSource=classpath:/gallaghercore/messages/orderConfirmation_email_$lang.properties
+#macro( genHtmlBoldFont $text )
+<font color="#414a4f" size="2" face="Arial, Helvetica, sans-serif"><b>$text</b></font>
+#end
+#macro(genHtmlLinkStartTag $url)
+<a href="$url"><font color="#666666">
+#end
+#macro(genHtmlLinkEndTag)
+</font></a>
+#end
+#macro(genHtmlLink $url $textColor $bodyContent)
+<a href="$url"><font color="$textColor">$bodyContent</font></a>
+#end
+#macro(displayNegationForDiscount $priceData)
+	#if (${priceData.value} > 0)
+    -
+	#end
+	${priceData.formattedValue}
+#end
+
+<html>
+<head>
+</head>
+<body bgcolor="#ffffff"
+	#set ($accountUrl = "${ctx.baseUrl}/my-account/orders")
+	#if ( $ctx.order.guestCustomer )
+		#set ($orderInfoUrl = "${ctx.baseUrl}/guest/order/${ctx.order.guid}")
+	#else
+		#set ($orderInfoUrl = "${ctx.baseUrl}/my-account/order/${ctx.order.code}")
+	#end
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff"
+<tr>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+<td align="center" valign="top">
+<table width="610" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#fff">
+<tr>
+<td align="center" valign="top" bgcolor="#FFFFFF">
+<table width="570" cellpadding="0" cellspacing="0" border="0" align="center">
+<tr>
+	<td valign="middle">&nbsp;</td>
+</tr>
+<tr>
+	<td valign="middle">
+		${ctx.cmsSlotContents.SiteLogo}
+		
+	</td>
+</tr>
+<tr>
+	<td height="30" align="middle" valign="middle" bgcolor="#ff8400">
+		 <a href="${ctx.baseUrl}/store-finder"><font color="#FFFFFF">${ctx.messages.storeFinder}</font></a> &nbsp;&nbsp;</font>
+	</td>
+</tr>
+
+<tr>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+<td align="left" valign="top">
+<p style="margin:2px 0"><font color="#666666" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.getMessage('salutation', ${ctx.title},${ctx.displayName})}</b>,</font></p>
+
+<p style="margin:2px 0"><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('thankYouForOrder', "#genHtmlLinkStartTag($orderInfoUrl)", "#genHtmlBoldFont(${ctx.order.code})", "#genHtmlLinkEndTag()", "#genHtmlBoldFont(${ctx.order.totalPriceWithTax.formattedValue})")}</font></p>
+<br/>
+<p style="margin:2px 0"><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('heading')}</font></p>
+<br/>
+<p style="margin:2px 0"><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('disclaimer')}</font></p>
+
+#if(${ctx.coupons.size()} > 0 )
+    <br/>
+    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="border:1px solid #51585c">
+        <tr>
+            <td style="color: #000000; font-family: Helvetica,sans-serif; font-size: 13px; padding-top: 5px; padding-left:15px; padding-right:15px; padding-bottom: 2px;" align="center">
+				#if(${ctx.coupons.size()} == 1 )
+                	${ctx.messages.getMessage('getGiftCoupon')}
+				#else
+					${ctx.messages.getMessage('getGiftCoupons')}
+				#end
+            </td>
+        </tr>
+		#foreach( $coupon in ${ctx.coupons} )
+			<tr>
+				<td style="color: #000000; font-family: Helvetica,sans-serif; font-size: 13px; padding-left:15px;padding-right:15px; padding-bottom: 2px;" align="center">
+					<b>${coupon.name}<b>
+				</td>
+			</tr>
+			<tr>
+				<td style="color: #000000; font-family: Helvetica,sans-serif; font-size: 13px; padding-left:15px;padding-right:15px; padding-bottom: 5px;" align="center">
+					${ctx.messages.getMessage('giftCouponCode', ${coupon.couponCode})}
+				</td>
+			</tr>
+			#if(${coupon.startDate} && !${coupon.endDate})
+			#set ($formattedCouponStartDate = $ctx.dateTool.format('MM/dd/yy', $coupon.startDate))
+			<tr>
+				<td style="color: #000000; font-family: Helvetica,sans-serif; font-size: 13px; padding-left:15px;padding-right:15px; padding-bottom: 5px;" align="center">
+					${ctx.messages.getMessage('giftCouponValidFrom', ${formattedCouponStartDate})}
+				</td>
+			</tr>
+			#end
+			#if(!${coupon.startDate} && ${coupon.endDate})
+			#set ($formattedCouponEndDate = $ctx.dateTool.format('MM/dd/yy', $coupon.endDate))
+			<tr>
+				<td style="color: #000000; font-family: Helvetica,sans-serif; font-size: 13px; padding-left:15px;padding-right:15px; padding-bottom: 5px;" align="center">
+					${ctx.messages.getMessage('giftCouponValidUntil', ${formattedCouponEndDate})}
+				</td>
+			</tr>
+			#end
+			#if(${coupon.startDate} && ${coupon.endDate})
+			#set ($formattedCouponStartDate = $ctx.dateTool.format('MM/dd/yy', $coupon.startDate))
+			#set ($formattedCouponEndDate = $ctx.dateTool.format('MM/dd/yy', $coupon.endDate))
+			<tr>
+				<td style="color: #000000; font-family: Helvetica,sans-serif; font-size: 13px; padding-left:15px;padding-right:15px; padding-bottom: 5px;" align="center">
+					${ctx.messages.getMessage('giftCouponValidRange', ${formattedCouponStartDate}, ${formattedCouponEndDate})}
+				</td>
+			</tr>
+			#end
+		#end
+    </table>
+    <br/>
+#end
+
+<br/>
+	#if(${ctx.order.pickupItemsQuantity} > 0)
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#51585c" style="border: 1px solid #51585c;">
+		<tr>
+			<td>
+				<p style="padding: 5px; margin: 0"><font color="#bc0000" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('pickUpWarning')}</font></p>
+			</td>
+		</tr>
+	</table>
+	<br/>
+	#end
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#51585c" class="products" style="border: 1px solid #51585c;">
+	<tr>
+	<td>
+	<table>
+	<tr>
+	<td width="33%" valign="top" rowspan="2">
+	<font color="#333" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.purchaseOrderNumber} </b></font>
+	#if ($!ctx.order.purchaseOrderNumber)
+	<p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.order.purchaseOrderNumber}</b></font></p>
+	 #end
+  </tr>
+  </td>
+  <tr>
+  <td width="34%" valign="top">
+  			<font color="#333" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.requiredDeliveryDate} </b></font>
+			#if ($!ctx.order.requiredDeliveryDate)
+			<p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.order.requiredDeliveryDate}</b></font></p>
+			#end
+			</td>
+			</tr>
+			<tr>
+  <td>
+  											<font color="#333" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.deliveryInstructions}</b></font>
+			#if ($!ctx.order.deliveryInstructions)
+										
+											<p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.order.deliveryInstructions}</b></font></p>
+										
+			          #end
+								</td>
+								</tr>
+								<tr>
+								<td width="34%" valign="top">
+							<font color="#333" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.Account} </b></font>
+		  #if ($!ctx.order.b2bUnit)
+									
+										<p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.order.b2bUnit.name}</b></font></p>
+									
+										
+			#end
+			</td>
+			</tr>
+			</table>
+			</td>
+			</tr>
+			</table>
+			<br/>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#51585c" class="products" style="border: 1px solid #51585c;">
+	<tr>
+		<td>
+			<table>
+				<tr>
+					<td width="33%" valign="top" rowspan="2">
+						<font color="#333" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.deliveryAddress}</b></font>
+						#if(${ctx.order.deliveryItemsQuantity} > 0)
+							<p style="margin:3px 0">
+								<font color="#666666" size="2" face="Arial, Helvetica, sans-serif">
+									#if($ctx.order.deliveryAddress.title.title && $ctx.order.deliveryAddress.title != '')
+									${ctx.order.deliveryAddress.title}<br/>
+									#end 
+									${ctx.order.deliveryAddress.firstName} ${ctx.order.deliveryAddress.lastName}<br/>
+									${ctx.order.deliveryAddress.line1}<br/>
+									#if($ctx.order.deliveryAddress.line2.line2 && $ctx.order.deliveryAddress.line2 != '')
+									${ctx.order.deliveryAddress.line2}<br/>
+									#end
+									${ctx.order.deliveryAddress.town}<br/>
+									${ctx.order.deliveryAddress.postalCode}<br/>
+									${ctx.order.deliveryAddress.country.name}
+								</font>
+							</p>
+						#else
+							<p style="margin:3px 0"><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.noDelivery}</font></p>
+						#end
+					</td>
+					<td width="34%" valign="top">
+						<font color="#333" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.deliveryOptions}</b></font>
+						#if(${ctx.order.deliveryItemsQuantity} > 0)
+							<p style="margin:3px 0"><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">${ctx.order.deliveryMode.name}</font></p>
+
+							<p style="margin:3px 0"><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('deliveryETA', ${ctx.order.deliveryMode.description})}</font></p>
+						#else
+							<p style="margin:3px 0"><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.noDelivery}</font></p>
+						#end
+					</td>
+					
+				</tr>
+				<tr>
+					<td width="34%" valign="top">
+						<p style="margin:10px 0 5px 0;">
+							<font color="#333" size="2" face="Arial, Helvetica, sans-serif">
+								#if(${ctx.order.pickupItemsQuantity} > 0)
+									<b>${ctx.messages.pickupInStore}</b>
+								#end
+							</font>
+						</p>
+
+						
+					</td>
+					<td width="33%" valign="top">
+						#if(${ctx.order.paymentInfo})
+							<p style="margin:10px 0 0 0"><font color="#333" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.billingAddress}</b></font></p>
+
+							<p style="margin:2px 0 0 0"><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">
+								${ctx.order.paymentInfo.billingAddress.firstName} ${ctx.order.paymentInfo.billingAddress.lastName}<br/>
+								${ctx.order.paymentInfo.billingAddress.line1} <br/>
+								#if($ctx.order.paymentInfo.billingAddress.line2 && $ctx.order.paymentInfo.billingAddress.line2 != '') ${ctx.order.paymentInfo.billingAddress.line2}<br/>#end
+								${ctx.order.paymentInfo.billingAddress.town}<br/>
+								${ctx.order.paymentInfo.billingAddress.postalCode}<br/>
+								${ctx.order.paymentInfo.billingAddress.country.name}
+							</font></p>
+						#end
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<br/>
+
+           <br/>
+	#if ($ctx.order.deliveryOrderGroups.size() > 0)
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#51585c" class="products" style="border: 1px solid #51585c;">
+		<tr>
+			<td>
+				#foreach( $orderGroup in ${ctx.order.deliveryOrderGroups} )
+					<table width="100%" cellpadding="0" cellspacing="0">
+						<tr>
+							<td width="100%" colspan="4" height="30" align="left" bgcolor="#000000"><font color="#FFFFFF" size="2" face="Arial, Helvetica, sans-serif" style="padding-left:5px"><b style="text-transform:uppercase;">${ctx.messages.yourDeliveryItems}</b></font></td>
+						</tr>
+						<tr>
+							<td width="50%"><font color="#333" size="2" face="Arial, Helvetica, sans-serif"><b>&nbsp;</b></font></td>
+							<td width="17%" height="40px"><font color="#333" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.quantity}</b></font></td>
+							<td width="17%" height="40px"><font color="#333" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.itemPrice}</b></font></td>
+							<td width="16%" height="40px"><font color="#333" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.total}</b></font></td>
+						</tr>
+						#foreach( $entry in ${orderGroup.entries} )
+							<tr>
+								<td>
+									<table width="100%" border="0" cellpadding="0" cellspacing="0">
+										<tr>
+											<td valign="top" width="110px" style="width:110px;padding-left:10px;padding-right:10px">
+												<a href="${ctx.baseUrl}$entry.product.url" style="text-decoration:none">
+												#if($entry.product.images.size() >0)
+													#foreach($image in $entry.product.images) #if($image.imageType == "GALLERY" && $image.format == "thumbnail" )
+														<img src="${ctx.mediaBaseUrl}$image.url" alt="ew" title="$entry.product.name"/>
+													#end #end
+													#else
+													<img src="${ctx.mediaBaseUrl}/security/_ui/responsive/theme-securityB2B/images/missing_product_EN_300x300.jpg" alt="Not Found" title="$entry.product.name"/>
+													#end
+												</a>
+												&nbsp;
+											</td>
+											<td valign="top">
+												<p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">
+													<a href="${ctx.baseUrl}$entry.product.url"><font color="#666666"><b>$entry.product.name</b></font></a>
+												</p>
+												#if (!$entry.product.baseOptions.isEmpty())
+													#foreach ($option in $entry.product.baseOptions)
+														#if ($option.selected && ($option.selected.url == $entry.product.url))
+															<table width="100%" cellpadding="0" cellspacing="0">
+																#foreach ($selectedOption in $option.selected.variantOptionQualifiers)
+																	<tr>
+																		<td width="30%" valign="top"><p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">$selectedOption.name:</font></p></td>
+																		<td width="70%" valign="top"><p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">$selectedOption.value</font></p></td>
+																	</tr>
+																#end
+															</table>
+														#end
+													#end
+												#end
+												#if (!$ctx.order.appliedProductPromotions.isEmpty())
+													#foreach( $promotion in $ctx.order.appliedProductPromotions)
+														#set ($displayed = false)
+														#foreach ($consumedEntry in $promotion.consumedEntries)
+															#if (!$displayed && ($consumedEntry.orderEntryNumber == $entry.entryNumber))
+																#set ($displayed = true)
+																<p><font color="#414a4f" size="2" face="Arial, Helvetica, sans-serif"><b>${promotion.description}</b></font></p>
+															#end
+														#end
+													#end
+												#end
+											</td>
+										</tr>
+									</table>
+								</td>
+								<td valign="top"><p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">$entry.quantity</font></p></td>
+								<td valign="top"><p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">$entry.basePrice.formattedValue</font></p></td>
+								<td valign="top"><p><font color="#414a4f" size="3" face="Arial, Helvetica, sans-serif"><b>#if($entry.totalPrice.value > 0) $entry.totalPrice.formattedValue #else ${ctx.messages.free} #end</b></font></p></td>
+							</tr>
+						#end
+					</table>
+				#end
+			</td>
+		</tr>
+	</table>
+	#end
+	#if ($ctx.order.pickupOrderGroups.size() > 0)
+	<br/>
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="products">
+		<tr>
+			<td>
+				#foreach( $orderGroup in ${ctx.order.pickupOrderGroups} )
+					#set ($location = ${orderGroup.entries.get(0).deliveryPointOfService})
+
+					<table width="100%" cellpadding="0" cellspacing="0" style="border: 1px solid #51585c;">
+						<tr>
+							<td width="100%" colspan="4" height="30" align="left" bgcolor="#000000" style="padding-left:5px"><font color="#FFFFFF" size="2" face="Arial, Helvetica, sans-serif"><b style="text-transform:uppercase;">
+								${ctx.messages.pickupFrom}</b> - ${location.name}, ${location.address.line1}
+								#if( ${location.address.line2} )${location.address.line2}#end, ${location.address.town}</font>
+							</td>
+						</tr>
+						<tr>
+							<td width="50%"><font color="#333" size="2" face="Arial, Helvetica, sans-serif"><b>&nbsp;</b></font></td>
+							<td width="17%" height="40px"><font color="#333" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.quantity}</b></font></td>
+							<td width="17%" height="40px"><font color="#333" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.itemPrice}</b></font></td>
+							<td width="16%" height="40px"><font color="#333" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.total}</b></font></td>
+						</tr>
+						#foreach( $entry in ${orderGroup.entries} )
+							<tr>
+								<td>
+									<table width="100%" border="0" cellpadding="0" cellspacing="0">
+										<tr>
+											<td valign="top" width="110px" style="width:110px;padding-left:10px;padding-right:10px;padding-bottom:5px">
+												<a href="${ctx.baseUrl}$entry.product.url" style="text-decoration:none">
+													#foreach($image in $entry.product.images) 
+														<img src="${ctx.mediaBaseUrl}$image.url" alt="" title="$entry.product.name"/>
+													#end 
+												</a>
+												&nbsp;
+											</td>
+											<td valign="top">
+												<p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">
+													<a href="${ctx.baseUrl}$entry.product.url"><font color="#666666"><b>$entry.product.name</b></font></a>
+												</p>
+												#if (!$entry.product.baseOptions.isEmpty())
+													#foreach ($option in $entry.product.baseOptions)
+														#if ($option.selected && ($option.selected.url == $entry.product.url))
+															<table width="100%" cellpadding="0" cellspacing="0">
+																#foreach ($selectedOption in $option.selected.variantOptionQualifiers)
+																	<tr>
+																		<td width="30%" valign="top"><p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">$selectedOption.name:</font></p></td>
+																		<td width="70%" valign="top"><p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">$selectedOption.value</font></p></td>
+																	</tr>
+																#end
+															</table>
+														#end
+													#end
+												#end
+												#if (!$ctx.order.appliedProductPromotions.isEmpty())
+													#foreach( $promotion in $ctx.order.appliedProductPromotions)
+														#set ($displayed = false)
+														#foreach ($consumedEntry in $promotion.consumedEntries)
+															#if (!$displayed && ($consumedEntry.orderEntryNumber == $entry.entryNumber))
+																#set ($displayed = true)
+																<p><font color="#414a4f" size="2" face="Arial, Helvetica, sans-serif"><b>${promotion.description}</b></font></p>
+															#end
+														#end
+													#end
+												#end
+											</td>
+										</tr>
+									</table>
+								</td>
+								<td valign="top"><p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">$entry.quantity</font></p></td>
+								<td valign="top"><p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">$entry.basePrice.formattedValue</font></p></td>
+								<td valign="top"><p><font color="#414a4f" size="3" face="Arial, Helvetica, sans-serif"><b>#if($entry.totalPrice.value > 0) $entry.totalPrice.formattedValue #else ${ctx.messages.free} #end</b></font></p></td>
+							</tr>
+							<tr>
+								<td colspan="4"></td>
+							</tr>
+						#end
+					</table>
+					<br/>
+				#end
+			</td>
+		</tr>
+	</table>
+	#end
+<br/>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#51585c" class="products" style="border: 1px solid #51585c;">
+	<tr>
+		<td valign="top">
+			<table width="100%">
+				<tr>
+								<td valign="top"><p><font color="#333" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.total}:</b></font></p></td>
+								<td valign="top">&nbsp;</td>
+								<td valign="top"><p><font color="#333" size="3" face="Arial, Helvetica, sans-serif"><b>${ctx.order.totalPriceWithTax.formattedValue}</b></font></p></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+	
+<p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.complimentaryClosing}</font></p>
+
+<p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.signature}</font></p>
+</td>
+</tr>
+
+
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+</tr>
+</table>
+</body>
+</html>
+

@@ -13,17 +13,7 @@ public class DeliveryInstrutionsform
 
 	private Integer entryNumber;
 
-	private String commentPlaceHolder;
-
 	private String productSpecificDetailsHeading;
-
-	/**
-	 * @return the commentPlaceHolder
-	 */
-	public String getCommentPlaceHolder()
-	{
-		return commentPlaceHolder;
-	}
 
 	/**
 	 * @return the productSpecificDetailsHeading
@@ -40,15 +30,6 @@ public class DeliveryInstrutionsform
 	public void setProductSpecificDetailsHeading(final String productSpecificDetailsHeading)
 	{
 		this.productSpecificDetailsHeading = productSpecificDetailsHeading;
-	}
-
-	/**
-	 * @param commentPlaceHolder
-	 *           the commentPlaceHolder to set
-	 */
-	public void setCommentPlaceHolder(final String commentPlaceHolder)
-	{
-		this.commentPlaceHolder = commentPlaceHolder;
 	}
 
 	/**

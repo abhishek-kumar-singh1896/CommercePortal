@@ -452,6 +452,17 @@
 		parent="defaultSAPB2BDeliveryAddressesLookupStrategy">
 		<property name="b2bUnitService" ref="defaultSAPB2BUnitService" />
 	</bean>
+			<bean id="gallagherB2BOrderConfirmationEventListener"
+		class="com.gallagher.core.events.GallagherB2BOrderConfirmationEventListener" parent="abstractAcceleratorSiteEventListener">
+			<property name="modelService" ref="modelService" />
+	      <property name="businessProcessService" ref="businessProcessService" />
+	</bean>
+	
+	<bean id="glOrderNotificationEmailProcessDefinitionResource"
+		class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+		<property name="resource" value="classpath:/gallaghercore/processes/orderConfirmationEmailProcess.xml" />
+	</bean>
+	
 	
 	<bean id="europe1.manager" class="com.gallagher.core.pricefactory.GallagherEurope1PriceFactory" init-method="init" destroy-method="destroy">
 		<property name="retrieveChannelStrategy" ref="retrieveChannelStrategy" />

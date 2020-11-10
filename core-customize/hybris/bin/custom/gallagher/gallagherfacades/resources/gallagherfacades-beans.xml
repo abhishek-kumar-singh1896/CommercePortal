@@ -71,11 +71,10 @@
 		<property name="plpProductDescription" type="String" />
 		<property name="categoryPaths" type="java.util.List&lt;String&gt;" />
 		<property name="modifiedTime" type="java.util.Date" />
-		<!-- <property name="marketingDescription" type="String"/> -->
-		<property name="commentPlaceHolder" type="String" />
-		<property name="productSpecificDetailsHeading" type="String" />
 		<property name="recommendedProducts" type="java.util.List&lt;de.hybris.platform.commercefacades.product.data.ProductData>" />
 		<property name="recommendedCategories" type="java.util.List&lt;de.hybris.platform.commercefacades.product.data.CategoryData>" />
+		<property name="productSpecificDetailsHeading" type="String" />
+<!-- 		<property name="marketingDescription" type="String"/> -->
 	</bean>
 
 	<bean class="de.hybris.platform.commerceservices.search.facetdata.ProductCategorySearchPageData&lt;STATE, RESULT, CATEGORY>">
@@ -127,6 +126,11 @@
 		<property name="b2bUnit" type="de.hybris.platform.b2bcommercefacades.company.data.B2BUnitData" />
 		<property name="requiredDeliveryDate" type="String" />
 	</bean>
+	
+	<bean class="de.hybris.platform.commercefacades.order.data.OrderEntryData">
+		<property name="deliveredQuantity" type="Long" />
+		<property name="status" type="com.gallagher.core.enums.OrderEntryItemStatus" />
+	</bean>
 
 	<bean class="de.hybris.platform.commercefacades.order.data.CartData">
 		<property name="requiredDeliveryDate" type="String" />
@@ -138,7 +142,6 @@
 	</bean>
 	<bean class="de.hybris.platform.commercefacades.order.data.DeliveryInstructionData">
 		<property name="deliveryinstruction" type="String" />
-		<property name="commentPlaceHolder" type="String" />
 		<property name="entryNumber" type="Integer" />
 		<property name="productSpecificDetailsHeading" type="String" />
 	</bean>
@@ -152,4 +155,7 @@
 		<property name="deliveryInstruction" type="String" />
 	</bean>
 	
+	<bean class="de.hybris.platform.commercefacades.product.data.CategoryData">
+		<property name="commentsQuestion" type="String" />
+	</bean>
 </beans>

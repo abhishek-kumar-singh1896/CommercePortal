@@ -56,6 +56,12 @@
 			<value code="AM"></value>
 			<value code="SEC"></value>
 		</enumtype>
+		<enumtype code="OrderEntryItemStatus" autocreate="true" generate="true">
+			<value code="OPEN" />
+			<value code="COMPLETED" />
+			<value code="IN_PROCESS" />
+		</enumtype>
+		
 	</enumtypes>
 
 	<maptypes>
@@ -337,11 +343,6 @@
 					<modifiers optional="true" />
 					<persistence type="property" />
 					<description>Attribute for product POA</description>
-				</attribute>
-				<attribute autocreate="true" generate="true" qualifier="commentPlaceHolder" type="localized:java.lang.String">
-					<modifiers optional="true" />
-					<persistence type="property" />
-					<description>Attribute to allow user to enter product specific details</description>
 				</attribute>
 				<attribute autocreate="true" generate="true" qualifier="productSpecificDetailsHeading" type="localized:java.lang.String">
 					<modifiers optional="true" />
@@ -708,7 +709,26 @@
          </itemtype>
 		</typegroup>
 		
-		
+		<typegroup name="Catalog">
+            <itemtype code="Category" autocreate="false" generate="false">
+                <attributes>
+                    <attribute autocreate="true" qualifier="commentsQuestion" type="localized:java.lang.String">
+                    <modifiers read="true" write="true" search="true" optional="true" />
+                    <persistence type="property">
+                        <columntype database="oracle">
+                            <value>CLOB</value>
+                        </columntype>
+                        <columntype database="sap">
+                            <value>NCLOB</value>
+                        </columntype>
+                        <columntype>
+                            <value>HYBRIS.LONG_STRING</value>
+                        </columntype>
+                    </persistence>
+                	</attribute>
+                </attributes>
+            </itemtype>
+        </typegroup>
 
 		<typegroup name="jobs">
 			<itemtype code="GallagherCatalogVersionSyncJob" autocreate="true" generate="true" extends="CatalogVersionSyncJob"
@@ -878,6 +898,14 @@
 							<modifiers read="true" write="true" search="true" />
 							<persistence type="property" />
 						</attribute>
+						<attribute qualifier="status" type="OrderEntryItemStatus">
+							<modifiers read="true" write="true" search="true" />
+							<persistence type="property" />
+						</attribute>
+						<attribute qualifier="deliveredQuantity" type="java.lang.Long">
+							<modifiers read="true" write="true" search="true" />
+							<persistence type="property" />
+						</attribute>
 					</attributes>
 				</itemtype>
 		
@@ -943,5 +971,16 @@
 			</attributes>
 		</itemtype>
 		</typegroup>
+	<typegroup name="Email">
+		<itemtype code="OrderProcess" autocreate="false" generate="false">
+    <attributes>
+	<attribute type="Order" qualifier="orderEntry" >				 
+            <description>Contains the Entries During Checkout</description>
+	    <persistence type="property" />
+        </attribute>
+    </attributes>
+     </itemtype>
+</typegroup>
+		
 	</itemtypes>
 </items>

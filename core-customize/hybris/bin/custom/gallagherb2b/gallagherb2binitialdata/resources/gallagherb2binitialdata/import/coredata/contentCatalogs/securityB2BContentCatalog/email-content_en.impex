@@ -51,7 +51,7 @@ UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript
  ;securityB2B_Email_Order_Cancelled_Subject;"Order Cancelled Email Subject";$emailResource/email-orderCancelledSubject.vm
  ;securityB2B_Email_Order_Collection_Reminder_Body;"Order Collection Reminder Body";$emailResource/email-orderCollectionReminderBody.vm
  ;securityB2B_Email_Order_Collection_Reminder_Subject;"Order Collection Reminder Subject";$emailResource/email-orderCollectionReminderSubject.vm
- ;securityB2B_Email_Order_Confirmation_Body;"Order Confirmation Email Body";$emailResource/email-orderConfirmationBody.vm
+ ;securityB2B_Email_Order_Confirmation_Body;"Order Confirmation Email Body";$emailResource/orderConfirmationBodyEmail.vm
  ;securityB2B_Email_Order_Confirmation_Subject;"Order Confirmation Email Subject";$emailResource/email-orderConfirmationSubject.vm
  ;securityB2B_Email_Order_Move_To_CS_Body;"Order Move To CS Body";$emailResource/email-orderMoveToCsBody.vm
  ;securityB2B_Email_Order_Move_To_CS_Subject;"Order Move To CS Subject";$emailResource/email-orderMoveToCsSubject.vm

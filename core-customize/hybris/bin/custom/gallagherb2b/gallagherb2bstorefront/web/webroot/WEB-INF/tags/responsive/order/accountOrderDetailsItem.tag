@@ -85,7 +85,9 @@
             <li class="item__info"><spring:theme code="basket.page.item"/></li>
             <li class="item__price"><spring:theme code="basket.page.price"/></li>
             <li class="item__quantity"><spring:theme code="basket.page.qty"/></li>
+            <li class="item__quantity"><spring:theme code="basket.page.delQty"/></li>
             <li class="item__total--column"><spring:theme code="basket.page.total"/></li>
+            <li class="item__status--column"><spring:theme code="basket.page.status"/></li>
         </ul>
     </li>
 	<ycommerce:testId code="orderDetail_itemBody_section">
