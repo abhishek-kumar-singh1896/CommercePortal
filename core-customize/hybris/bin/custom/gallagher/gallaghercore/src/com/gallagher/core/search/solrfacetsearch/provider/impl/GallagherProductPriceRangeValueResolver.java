@@ -41,6 +41,8 @@ public class GallagherProductPriceRangeValueResolver extends ProductPricesValueR
 
 	private GallagherQualifierProvider userPriceGroupQualifierProvider;
 
+	private GallagherQualifierProvider customerGroupQualifierProvider;
+
 	private CommercePriceService commercePriceService;
 
 	/**
@@ -133,9 +135,20 @@ public class GallagherProductPriceRangeValueResolver extends ProductPricesValueR
 			for (final Qualifier upgQualifier : upgQualifiers)
 			{
 
-				indexQualifierData(document, batchContext, indexedProperties, model, resolverContext, userPriceGroupQualifierProvider,
+				final String upgFieldQualifier = indexQualifierData(document, batchContext, indexedProperties, model, resolverContext,
+						userPriceGroupQualifierProvider,
 						upgQualifier, salesAreaFieldQualifier);
 
+				final Collection<Qualifier> customerGroupQualifiers = customerGroupQualifierProvider
+						.getAvailableQualifiers(facetSearchConfig1, indexedType1);
+
+				for (final Qualifier customerGroupQualifier : customerGroupQualifiers)
+				{
+
+					indexQualifierData(document, batchContext, indexedProperties, model, resolverContext,
+							customerGroupQualifierProvider, customerGroupQualifier, upgFieldQualifier);
+				}
+				customerGroupQualifierProvider.removeQualifier();
 			}
 			userPriceGroupQualifierProvider.removeQualifier();
 		}
@@ -419,5 +432,22 @@ public class GallagherProductPriceRangeValueResolver extends ProductPricesValueR
 	public void setCommercePriceService(final CommercePriceService commercePriceService)
 	{
 		this.commercePriceService = commercePriceService;
+	}
+
+	/**
+	 * @return the customerGroupQualifierProvider
+	 */
+	public GallagherQualifierProvider getCustomerGroupQualifierProvider()
+	{
+		return customerGroupQualifierProvider;
+	}
+
+	/**
+	 * @param customerGroupQualifierProvider
+	 *           the customerGroupQualifierProvider to set
+	 */
+	public void setCustomerGroupQualifierProvider(final GallagherQualifierProvider customerGroupQualifierProvider)
+	{
+		this.customerGroupQualifierProvider = customerGroupQualifierProvider;
 	}
 }

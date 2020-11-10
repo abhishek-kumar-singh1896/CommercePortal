@@ -41,6 +41,8 @@ public class GallagherProductPricesValueResolver extends ProductPricesValueResol
 
 	private GallagherQualifierProvider userPriceGroupQualifierProvider;
 
+	private GallagherQualifierProvider customerGroupQualifierProvider;
+
 	private CommercePriceService commercePriceService;
 
 	/**
@@ -137,9 +139,20 @@ public class GallagherProductPricesValueResolver extends ProductPricesValueResol
 			for (final Qualifier upgQualifier : upgQualifiers)
 			{
 
-				indexQualifierData(document, batchContext, indexedProperties, model, resolverContext, userPriceGroupQualifierProvider,
+				final String upgFieldQualifier = indexQualifierData(document, batchContext, indexedProperties, model, resolverContext,
+						userPriceGroupQualifierProvider,
 						upgQualifier, salesAreaFieldQualifier);
 
+				final Collection<Qualifier> customerGroupQualifiers = customerGroupQualifierProvider
+						.getAvailableQualifiers(facetSearchConfig1, indexedType1);
+
+				for (final Qualifier customerGroupQualifier : customerGroupQualifiers)
+				{
+
+					indexQualifierData(document, batchContext, indexedProperties, model, resolverContext,
+							customerGroupQualifierProvider, customerGroupQualifier, upgFieldQualifier);
+				}
+				customerGroupQualifierProvider.removeQualifier();
 			}
 			userPriceGroupQualifierProvider.removeQualifier();
 		}
@@ -232,7 +245,7 @@ public class GallagherProductPricesValueResolver extends ProductPricesValueResol
 			return loadPriceInformations(indexedProperties, product);
 		}
 
-		List<PriceInformation> priceInfoList = new ArrayList<>();
+		final List<PriceInformation> priceInfoList = new ArrayList<>();
 		final PriceInformation priceInfo = getCommercePriceService().getFromPriceForProduct(product);
 		if (priceInfo != null)
 		{
@@ -426,4 +439,23 @@ public class GallagherProductPricesValueResolver extends ProductPricesValueResol
 	{
 		this.commercePriceService = commercePriceService;
 	}
+
+	/**
+	 * @return the customerGroupQualifierProvider
+	 */
+	public GallagherQualifierProvider getCustomerGroupQualifierProvider()
+	{
+		return customerGroupQualifierProvider;
+	}
+
+	/**
+	 * @param customerGroupQualifierProvider
+	 *           the customerGroupQualifierProvider to set
+	 */
+	public void setCustomerGroupQualifierProvider(final GallagherQualifierProvider customerGroupQualifierProvider)
+	{
+		this.customerGroupQualifierProvider = customerGroupQualifierProvider;
+	}
+
+
 }

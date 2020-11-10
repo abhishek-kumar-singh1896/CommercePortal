@@ -23,6 +23,7 @@ public class GallagherIndexedPropertyPopulator extends DefaultIndexedPropertyPop
 	{
 		super.populate(source, target);
 		target.setSalesArea(source.isSalesArea());
+		target.setCustomerGroup(source.isCustomerGroup());
 		target.setUserPriceGroup(source.isUserPriceGroup());
 	}
 }

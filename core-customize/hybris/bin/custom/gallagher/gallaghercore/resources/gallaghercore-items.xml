@@ -809,6 +809,10 @@
 					<defaultvalue>java.lang.Boolean.TRUE</defaultvalue>
 					<persistence type="property" />
 				</attribute>
+				<attribute qualifier="customerGroup" type="boolean">
+					<defaultvalue>java.lang.Boolean.TRUE</defaultvalue>
+					<persistence type="property" />
+				</attribute>
 				<attribute qualifier="userPriceGroup" type="boolean">
 					<defaultvalue>java.lang.Boolean.FALSE</defaultvalue>
 					<persistence type="property" />

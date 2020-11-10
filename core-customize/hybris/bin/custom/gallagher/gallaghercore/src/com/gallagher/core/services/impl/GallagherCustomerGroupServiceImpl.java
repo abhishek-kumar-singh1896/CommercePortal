@@ -11,41 +11,42 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.gallagher.core.dao.GallagherB2BUnitDao;
-import com.gallagher.core.services.GallagherSalesAreaService;
+import com.gallagher.core.services.GallagherCustomerGroupService;
 
 
 /**
  * @author ankituniyal
  *
  */
-public class GallagherSalesAreaServiceImpl implements GallagherSalesAreaService
+public class GallagherCustomerGroupServiceImpl implements GallagherCustomerGroupService
 {
 
-	private static final String CURRENT_SESSION_SALES_AREA = "currentSessionSalesArea";
+	private static final String CURRENT_SESSION_CUSTOMER_GROUP = "currentSessionCustomerGroup";
 
 	private SessionService sessionService;
 
 	private GallagherB2BUnitDao b2bUnitDao;
 
 	@Override
-	public String getCurrentSalesArea()
+	public String getCurrentCustomerGroup()
 	{
-		return getSessionService().getAttribute(CURRENT_SESSION_SALES_AREA);
+		return getSessionService().getAttribute(CURRENT_SESSION_CUSTOMER_GROUP);
 	}
 
 	@Override
-	public Set<String> getAllSalesAreas()
+	public Set<String> getAllCustomerGroups()
 	{
 		final List<B2BUnitModel> b2bUnits = getB2bUnitDao().getAllB2BUnits();
 		final Set<String> salesAreas = new HashSet<>();
 		if (CollectionUtils.isNotEmpty(b2bUnits))
 		{
 			b2bUnits.stream().forEach(unit -> {
-				if (null != unit.getSalesArea())
+				if (StringUtils.isNotBlank(unit.getCustomerGroup()))
 				{
-					salesAreas.add(unit.getSalesArea());
+					salesAreas.add(unit.getCustomerGroup());
 				}
 			});
 		}
@@ -53,9 +54,9 @@ public class GallagherSalesAreaServiceImpl implements GallagherSalesAreaService
 	}
 
 	@Override
-	public void setCurrentSalesAreaInSession(final String salesArea)
+	public void setCurrentCustomerGroupInSession(final String salesArea)
 	{
-		getSessionService().setAttribute(CURRENT_SESSION_SALES_AREA, salesArea);
+		getSessionService().setAttribute(CURRENT_SESSION_CUSTOMER_GROUP, salesArea);
 	}
 
 	/**
