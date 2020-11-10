@@ -162,10 +162,10 @@ UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$so
                            ;                                                                   ; Primary Usage                                 ; Primary Usage                                      
                            ;                                                                   ; Wires                                         ; Wires                                              
                            ;                                                                   ; Post Height (WestOnFence)                     ; Post Height                                        
-                           ;                                                                   ; Voltage at 2km of fence                       ; Voltage at 2km of fence                            
-                           ;                                                                   ; Voltage at 5km of fence                       ; Voltage at 5km of fence                            
+                           ;                                                                   ; Voltage at 2km of fence                       ; Voltage (kV) over 2km                              
+                           ;                                                                   ; Voltage at 5km of fence                       ; Voltage (kV) over 5km                              
                            ;                                                                   ; Ohms Per Km (Wires)                           ; Resistance (Ohms / km)                                        
-                           ;                                                                   ; Voltage at 10km of fence                      ; Voltage at 10km of fence                           
+                           ;                                                                   ; Voltage at 10km of fence                      ; Voltage (kV) over 10km                              
                            ;                                                                   ; Post Height (Posts)                           ; Post Height                                        
                            ;                                                                   ; Number of Wires                               ; Number of Wires                                    
                            ;                                                                   ; Strainer Type                                 ; Strainer Type                                      
@@ -186,8 +186,8 @@ UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$so
                            ;                                                                   ; Product Width (Gate)                          ; Product Width                                      
                            ;                                                                   ; Product Depth (Gate)                          ; Product Depth                                      
                            ;                                                                   ; Product Weight (Gate)                         ; Product Weight                                     
-                           ;                                                                   ; Voltage at 500m of fence                      ; Voltage at 500m of fence                           
-                           ;                                                                   ; Voltage at 1km of fence                       ; Voltage at 1km of fence                            
+                           ;                                                                   ; Voltage at 500m of fence                      ; Voltage (kV) over 500m                              
+                           ;                                                                   ; Voltage at 1km of fence                       ; Voltage (kV) over 1km                              
                            ;                                                                   ; Mixed Metals                                  ; Mixed Metals                                       
                            ;                                                                   ; Ohms Per Km                                   ; Resistance (Ohms / km)                                        
                            ;                                                                   ; Gear Ratio                                    ; Gear Ratio                                         
