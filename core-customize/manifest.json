@@ -81,8 +81,7 @@
 		"upilbackoffice",
 		"adaptivesearchsolr",
 		"integrationmonitoringbackoffice",
-		"odata2webservices",
-		"b2ctelcocommercewebservicescommons"
+		"odata2webservices"
 	],
 	"properties": [{
 			"key": "impex.import.workers",
