@@ -63,9 +63,9 @@
 
                     <c:if test="${not empty siteQuoteEnabled and siteQuoteEnabled eq 'true'}">
                         <div class="col-sm-4 col-md-3 col-md-offset-3 pull-right">
-                            <button class="btn btn-default btn-block btn-create-quote js-create-quote-button" data-create-quote-url="${fn:escapeXml(createQuoteUrl)}">
+                            <%-- <button class="btn btn-default btn-block btn-create-quote js-create-quote-button" data-create-quote-url="${fn:escapeXml(createQuoteUrl)}">
                                 <spring:theme code="quote.create"/>
-                            </button>
+                            </button> --%>
                         </div>
                     </c:if>
 
