@@ -1,7 +1,4 @@
-$version=Staged
 $solrIndexedType=amB2CGlobalProductType
-$productCatalog=amB2CGlobalProductCatalog
-$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='$version'])[unique=true,default=$productCatalog:$version]
  
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true]      ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                                                                                                               
                                 ; MultiwireDistanceRange ;           ; double ; rangeMultiwireDistance1,rangeMultiwireDistance2,rangeMultiwireDistance3,rangeMultiwireDistance4,rangeMultiwireDistance5,rangeMultiwireDistance6 
@@ -12,25 +9,20 @@ INSERT_UPDATE SolrValueRange ; &rangeValueRefID        ; solrValueRangeSet(name)
                              ; rangeMultiwireDistance3 ; MultiwireDistanceRange               ; 11 - 20           ; 11   ; 20.999 
                              ; rangeMultiwireDistance4 ; MultiwireDistanceRange               ; 21 - 30           ; 21   ; 30.999 
                              ; rangeMultiwireDistance5 ; MultiwireDistanceRange               ; 31 - 40           ; 31   ; 40.999 
-                             ; rangeMultiwireDistance6 ; MultiwireDistanceRange               ; 41+	              ; 41   ; 9999         
+                             ; rangeMultiwireDistance6 ; MultiwireDistanceRange               ; 41+	              ; 41   ; 9999
                              
-UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]                             ; rangeSets(name)        
-                           ; $solrIndexedType                         ; Distancia de alambres múltiples recomendada por Gallagher ; MultiwireDistanceRange 
-                           
-                           
+                             
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true]         ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                                                                       
-                                ; PropertySizeHectaresRange ;           ; double ; rangePropertySizeHectare1,rangePropertySizeHectare2,rangePropertySizeHectare3,rangePropertySizeHectare4 
+                                ; PropertySizeHectaresRange ;           ; double ; rangePropertySizeHectare1,rangePropertySizeHectare2,rangePropertySizeHectare3,rangePropertySizeHectare4,rangePropertySizeHectare5
                                 
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID          ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to      
-                             ; rangePropertySizeHectare1 ; PropertySizeHectaresRange            ; 0 - 10            ; 0    ; 10.999  
-                             ; rangePropertySizeHectare2 ; PropertySizeHectaresRange            ; 11 - 50           ; 11   ; 50.999  
-                             ; rangePropertySizeHectare3 ; PropertySizeHectaresRange            ; 51 - 100          ; 51   ; 100.999 
-                             ; rangePropertySizeHectare4 ; PropertySizeHectaresRange            ; 101+              ; 101  ; 9999  
+                             ; rangePropertySizeHectare1 ; PropertySizeHectaresRange            ; 0 - 4            ; 0    ; 4.999  
+							 ; rangePropertySizeHectare2 ; PropertySizeHectaresRange            ; 5 - 10            ; 5    ; 10.999  
+                             ; rangePropertySizeHectare3 ; PropertySizeHectaresRange            ; 11 - 49           ; 11   ; 49.999  
+                             ; rangePropertySizeHectare4 ; PropertySizeHectaresRange            ; 50 - 100          ; 50   ; 100.999 
+                             ; rangePropertySizeHectare5 ; PropertySizeHectaresRange            ; 101+              ; 101  ; 9999
                              
-UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; rangeSets(name)           
-                           ; $solrIndexedType                         ; Tamaño de la propiedad     ; PropertySizeHectaresRange 
-                           
-                           
+                             
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true] ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                                                              
                                 ; EnergyStoredRange ;           ; double ; rangeEnergyStored1,rangeEnergyStored2,rangeEnergyStored3,rangeEnergyStored4,rangeEnergyStored5 
                                 
@@ -39,24 +31,17 @@ INSERT_UPDATE SolrValueRange ; &rangeValueRefID   ; solrValueRangeSet(name)[uniq
                              ; rangeEnergyStored2 ; EnergyStoredRange                    ; 6 - 10            ; 6    ; 10.999 
                              ; rangeEnergyStored3 ; EnergyStoredRange                    ; 11 - 20           ; 11   ; 20.999 
                              ; rangeEnergyStored4 ; EnergyStoredRange                    ; 21 - 50           ; 21   ; 50.999 
-                             ; rangeEnergyStored5 ; EnergyStoredRange                    ; 51+	             ; 51   ; 9999     
+                             ; rangeEnergyStored5 ; EnergyStoredRange                    ; 51+	             ; 51   ; 9999   
+							 
                              
-UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; rangeSets(name)   
-                           ; $solrIndexedType                         ; Energía Almacenada     ; EnergyStoredRange 
-                           
-                           
+                             
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true] ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)   
                                 ; Voltage500mRange  ;           ; double ; rangeVoltage500m1,rangeVoltage500m2 
                                 
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID  ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to     
                              ; rangeVoltage500m1 ; Voltage500mRange                     ; 0 - 3.6         ; 0  ; 3.6999 
                              ; rangeVoltage500m2 ; Voltage500mRange                     ; 3.7+         ; 3.7  ; 999    
-                              
-UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]        ; rangeSets(name)  
-                           ; $solrIndexedType                         ; Voltaje a 500m del cerco ; Voltage500mRange 
-                           
-
-                           
+                             
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true] ; qualifier ; type   ; solrValueRanges(&rangeValueRefID) 
                                 ; Voltage1kmRange   ;           ; double ; rangeVoltage1km1,rangeVoltage1km2 
                                 
@@ -64,11 +49,8 @@ INSERT_UPDATE SolrValueRange ; &rangeValueRefID ; solrValueRangeSet(name)[unique
                              ; rangeVoltage1km1 ; Voltage1kmRange                      ; 0 - 2.4         ; 0  ; 2.4999 
                              ; rangeVoltage1km2 ; Voltage1kmRange                      ; 2.5+         ; 2.5  ; 999    
                              
-UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]       ; rangeSets(name) 
-                           ; $solrIndexedType                         ; Voltaje a 1km del cerco ; Voltage1kmRange 
-                           
-
-                           
+                             
+                             
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true] ; qualifier ; type   ; solrValueRanges(&rangeValueRefID) 
                                 ; Voltage2kmRange   ;           ; double ; rangeVoltage2km1,rangeVoltage2km2 
                                 
@@ -76,22 +58,15 @@ INSERT_UPDATE SolrValueRange ; &rangeValueRefID ; solrValueRangeSet(name)[unique
                              ; rangeVoltage2km1 ; Voltage2kmRange                      ; 0 - 6           ; 0  ; 6.0999 
                              ; rangeVoltage2km2 ; Voltage2kmRange                      ; 6.1+         ; 6.1  ; 999    
                              
-UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]       ; rangeSets(name) 
-                           ; $solrIndexedType                         ; Voltaje a 2 km del cerco ; Voltage2kmRange 
-
-                           
+                             
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true] ; qualifier ; type   ; solrValueRanges(&rangeValueRefID) 
                                 ; Voltage5kmRange   ;           ; double ; rangeVoltage5km1,rangeVoltage5km2 
                                 
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to     
                              ; rangeVoltage5km1 ; Voltage5kmRange                      ; 0 - 4.6         ; 0  ; 4.6999 
-                             ; rangeVoltage5km2 ; Voltage5kmRange                      ; 4.7+         ; 4.7  ; 999    
+                             ; rangeVoltage5km2 ; Voltage5kmRange                      ; 4.7+         ; 4.7  ; 999
                              
-UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]       ; rangeSets(name) 
-                           ; $solrIndexedType                         ; Voltaje a 5 km del cerco ; Voltage5kmRange 
-                           
-
-                           
+                             
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true] ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)   
                                 ; Voltage10kmRange  ;           ; double ; rangeVoltage10km1,rangeVoltage10km2 
                                 
@@ -99,42 +74,43 @@ INSERT_UPDATE SolrValueRange ; &rangeValueRefID  ; solrValueRangeSet(name)[uniqu
                              ; rangeVoltage10km1 ; Voltage10kmRange                     ; 0 - 3.3         ; 0  ; 3.3999 
                              ; rangeVoltage10km2 ; Voltage10kmRange                     ; 3.4+         ; 3.4  ; 999      
                              
-UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]        ; rangeSets(name)  
-                           ; $solrIndexedType                         ; Voltaje a 10 km del cerco ; Voltage10kmRange 
-                           
-
-
+                             
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true]   ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)         
                                 ; OhmsPerKmTapesRange ;           ; double ; rangeOhmsPerKmTapes1,rangeOhmsPerKmTapes2 
                                 
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID     ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to      
                              ; rangeOhmsPerKmTapes1 ; OhmsPerKmTapesRange                  ; 0 - 239         ; 0  ; 239.999 
-                             ; rangeOhmsPerKmTapes2 ; OhmsPerKmTapesRange                  ; 240+        ; 240  ; 9999    
+                             ; rangeOhmsPerKmTapes2 ; OhmsPerKmTapesRange                  ; 240+        ; 240  ; 9999     
                              
-UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]   ; rangeSets(name)     
-                           ; $solrIndexedType                         ; Ohms Per Km ; OhmsPerKmTapesRange 
-
-                           
-INSERT_UPDATE SolrValueRangeSet ; name[unique=true]          ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                       
-                                ; OhmsPerKmWireAndCableRange ;           ; double ; rangeOhmsPerKmWireAndCable1,rangeOhmsPerKmWireAndCable2 
+                             
+                             
+#INSERT_UPDATE SolrValueRangeSet ; name[unique=true]          ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                       
+#                                ; OhmsPerKmWireAndCableRange ;           ; double ; rangeOhmsPerKmWireAndCable1,rangeOhmsPerKmWireAndCable2 
                                 
-INSERT_UPDATE SolrValueRange ; &rangeValueRefID            ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to     
-                             ; rangeOhmsPerKmWireAndCable1 ; OhmsPerKmWireAndCableRange           ; 0 - 12        ; 0  ; 12.999 
-                             ; rangeOhmsPerKmWireAndCable2 ; OhmsPerKmWireAndCableRange           ; 13+           ; 13 ; 999     
+#INSERT_UPDATE SolrValueRange ; &rangeValueRefID            ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to     
+#                             ; rangeOhmsPerKmWireAndCable1 ; OhmsPerKmWireAndCableRange           ; 0 - 12        ; 0  ; 12.999 
+#                             ; rangeOhmsPerKmWireAndCable2 ; OhmsPerKmWireAndCableRange           ; 13+           ; 13 ; 999    
                              
-UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]     ; rangeSets(name)            
-                           ; $solrIndexedType                         ; Ohms Per Km (Wire) ; OhmsPerKmWireAndCableRange 
-
-                           
-INSERT_UPDATE SolrValueRangeSet ; name[unique=true]   ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                              
-                                ; NumberOfTraitsRange ;           ; double ; rangeNumberOfTraits1,rangeNumberOfTraits2,rangeNumberOfTraits3,rangeNumberOfTraits4 
+                             
+#INSERT_UPDATE SolrValueRangeSet ; name[unique=true]   ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                              
+#                                ; NumberOfTraitsRange ;           ; double ; rangeNumberOfTraits1,rangeNumberOfTraits2,rangeNumberOfTraits3,rangeNumberOfTraits4 
                                 
-INSERT_UPDATE SolrValueRange ; &rangeValueRefID     ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to 
-                             ; rangeNumberOfTraits1 ; NumberOfTraitsRange                  ; 0 - 3             ; 0    ; 3  
-                             ; rangeNumberOfTraits2 ; NumberOfTraitsRange                  ; 4 - 6             ; 4    ; 6  
-                             ; rangeNumberOfTraits3 ; NumberOfTraitsRange                  ; 7 - 9             ; 7    ; 9 
-							 ; rangeNumberOfTraits4 ; NumberOfTraitsRange                  ; 10+               ; 10   ; 999 
+#INSERT_UPDATE SolrValueRange ; &rangeValueRefID     ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to 
+#                             ; rangeNumberOfTraits1 ; NumberOfTraitsRange                  ; 0 - 3             ; 0    ; 3  
+#                             ; rangeNumberOfTraits2 ; NumberOfTraitsRange                  ; 4 - 6             ; 4    ; 6  
+#                             ; rangeNumberOfTraits3 ; NumberOfTraitsRange                  ; 7 - 9             ; 7    ; 9 
+#							 ; rangeNumberOfTraits4 ; NumberOfTraitsRange                  ; 10+               ; 10   ; 999   
                              
-UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]         ; rangeSets(name)     
-                           ; $solrIndexedType                         ; Number of Traits Recorded ; NumberOfTraitsRange 
+UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]                             ; rangeSets(name)            
+                           ; $solrIndexedType                         ; Multiwire Distance (Gallagher Recommendation) ; MultiwireDistanceRange     
+                           ; $solrIndexedType                         ; Property Size                                 ; PropertySizeHectaresRange  
+                           ; $solrIndexedType                         ; Energy Stored                                 ; EnergyStoredRange          
+                           ; $solrIndexedType                         ; Voltage at 500m of fence                      ; Voltage500mRange           
+                           ; $solrIndexedType                         ; Voltage at 1km of fence                       ; Voltage1kmRange            
+                           ; $solrIndexedType                         ; Voltage at 2km of fence                       ; Voltage2kmRange            
+                           ; $solrIndexedType                         ; Voltage at 5km of fence                       ; Voltage5kmRange            
+                           ; $solrIndexedType                         ; Voltage at 10km of fence                      ; Voltage10kmRange           
+                           ; $solrIndexedType                         ; Ohms Per Km (Wire)                           ; OhmsPerKmTapesRange        
+#                           ; $solrIndexedType                         ; Ohms Per Km                         ; OhmsPerKmWireAndCableRange 
+#                           ; $solrIndexedType                         ; Number of Traits Recorded                     ; NumberOfTraitsRange  
  

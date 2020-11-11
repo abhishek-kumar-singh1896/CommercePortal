@@ -23,13 +23,15 @@ UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[uni
 #####################################################################################################################################
                            
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true]         ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                                                                       
-                                ; PropertySizeHectaresRange ;           ; double ; rangePropertySizeHectare1,rangePropertySizeHectare2,rangePropertySizeHectare3,rangePropertySizeHectare4 
+                                ; PropertySizeHectaresRange ;           ; double ; rangePropertySizeHectare1,rangePropertySizeHectare2,rangePropertySizeHectare3,rangePropertySizeHectare4,rangePropertySizeHectare5
                                 
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID          ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to      
-                             ; rangePropertySizeHectare1 ; PropertySizeHectaresRange            ; 0 - 10            ; 0    ; 10.999  
-                             ; rangePropertySizeHectare2 ; PropertySizeHectaresRange            ; 11 - 50           ; 11   ; 50.999  
-                             ; rangePropertySizeHectare3 ; PropertySizeHectaresRange            ; 51 - 100          ; 51   ; 100.999 
-                             ; rangePropertySizeHectare4 ; PropertySizeHectaresRange            ; 101+              ; 101  ; 9999    
+                             ; rangePropertySizeHectare1 ; PropertySizeHectaresRange            ; 0 - 4            ; 0    ; 4.999  
+							 ; rangePropertySizeHectare2 ; PropertySizeHectaresRange            ; 5 - 10            ; 5    ; 10.999  
+                             ; rangePropertySizeHectare3 ; PropertySizeHectaresRange            ; 11 - 49           ; 11   ; 49.999  
+                             ; rangePropertySizeHectare4 ; PropertySizeHectaresRange            ; 50 - 100          ; 50   ; 100.999 
+                             ; rangePropertySizeHectare5 ; PropertySizeHectaresRange            ; 101+              ; 101  ; 9999
+                              
                              
 UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; rangeSets(name)           
                            ; $solrIndexedType                         ; Property Size     ; PropertySizeHectaresRange 
@@ -127,29 +129,29 @@ UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[uni
                            
 #####################################################################################################################################
                            
-INSERT_UPDATE SolrValueRangeSet ; name[unique=true]          ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                       
-                                ; OhmsPerKmWireAndCableRange ;           ; double ; rangeOhmsPerKmWireAndCable1,rangeOhmsPerKmWireAndCable2 
+#INSERT_UPDATE SolrValueRangeSet ; name[unique=true]          ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                       
+#                                ; OhmsPerKmWireAndCableRange ;           ; double ; rangeOhmsPerKmWireAndCable1,rangeOhmsPerKmWireAndCable2 
                                 
-INSERT_UPDATE SolrValueRange ; &rangeValueRefID            ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to     
-                             ; rangeOhmsPerKmWireAndCable1 ; OhmsPerKmWireAndCableRange           ; 0 - 12        ; 0  ; 12.999 
-                             ; rangeOhmsPerKmWireAndCable2 ; OhmsPerKmWireAndCableRange           ; 13+           ; 13 ; 999     
+#INSERT_UPDATE SolrValueRange ; &rangeValueRefID            ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to     
+#                             ; rangeOhmsPerKmWireAndCable1 ; OhmsPerKmWireAndCableRange           ; 0 - 12        ; 0  ; 12.999 
+#                             ; rangeOhmsPerKmWireAndCable2 ; OhmsPerKmWireAndCableRange           ; 13+           ; 13 ; 999     
                              
-UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]  ; rangeSets(name)            
-                           ; $solrIndexedType                         ; Ohms Per Km (Wires) ; OhmsPerKmWireAndCableRange 
+#UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]  ; rangeSets(name)            
+#                           ; $solrIndexedType                         ; Ohms Per Km (Wires) ; OhmsPerKmWireAndCableRange 
                            
 #####################################################################################################################################
                            
-INSERT_UPDATE SolrValueRangeSet ; name[unique=true]   ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                              
-                                ; NumberOfTraitsRange ;           ; double ; rangeNumberOfTraits1,rangeNumberOfTraits2,rangeNumberOfTraits3,rangeNumberOfTraits4 
+#INSERT_UPDATE SolrValueRangeSet ; name[unique=true]   ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                              
+#                                ; NumberOfTraitsRange ;           ; double ; rangeNumberOfTraits1,rangeNumberOfTraits2,rangeNumberOfTraits3,rangeNumberOfTraits4 
                                 
-INSERT_UPDATE SolrValueRange ; &rangeValueRefID     ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to 
-                             ; rangeNumberOfTraits1 ; NumberOfTraitsRange                  ; 0 - 3             ; 0    ; 3  
-                             ; rangeNumberOfTraits2 ; NumberOfTraitsRange                  ; 4 - 6             ; 4    ; 6  
-                             ; rangeNumberOfTraits3 ; NumberOfTraitsRange                  ; 7 - 9             ; 7    ; 9 
-							 ; rangeNumberOfTraits4 ; NumberOfTraitsRange                  ; 10+               ; 10   ; 999 
+#INSERT_UPDATE SolrValueRange ; &rangeValueRefID     ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to 
+#                             ; rangeNumberOfTraits1 ; NumberOfTraitsRange                  ; 0 - 3             ; 0    ; 3  
+#                             ; rangeNumberOfTraits2 ; NumberOfTraitsRange                  ; 4 - 6             ; 4    ; 6  
+#                             ; rangeNumberOfTraits3 ; NumberOfTraitsRange                  ; 7 - 9             ; 7    ; 9 
+#							 ; rangeNumberOfTraits4 ; NumberOfTraitsRange                  ; 10+               ; 10   ; 999 
                              
-UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]         ; rangeSets(name)     
-                           ; $solrIndexedType                         ; Number of Traits Recorded ; NumberOfTraitsRange 
+#UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]         ; rangeSets(name)     
+#                           ; $solrIndexedType                         ; Number of Traits Recorded ; NumberOfTraitsRange 
                            
 #####################################################################################################################################
                            
