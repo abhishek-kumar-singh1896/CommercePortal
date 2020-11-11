@@ -313,7 +313,7 @@
 				{
 
 					"key": "storefrontContextRoot",
-					"value": "/yacceleratorstorefront"
+					"value": ""
 
 				}
 			],
@@ -323,7 +323,7 @@
 				},
 				{
 					"name": "yacceleratorstorefront",
-					"contextPath": "/yacceleratorstorefront"
+					"contextPath": ""
 				},
 				{
 					"name": "b2ctelcowebservices",
