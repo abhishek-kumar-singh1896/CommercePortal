@@ -10,6 +10,7 @@ UPDATE ClassificationAttribute	;code[unique=true];name[lang=$lang];$classSystemV
 								;energy-stored;Energy (stored)
 								;energy-output;Energy (output)
 								;multiwire-distance-gallagher-recommendation;Multiwire Distance (Gallagher Recommendation)
+								;multiwire-distance-gallagher-recommendation-acres;Multiwire Distance (Gallagher Recommendation)
 								;multiwire-distance-ideal-conditions;Multiwire Distance (ideal conditions)
 								;i-series-compatible;i Series Compatible
 								;outdoors-suitable;Outdoors Suitable

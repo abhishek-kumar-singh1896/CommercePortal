@@ -22,7 +22,7 @@ INSERT_UPDATE ClassificationAttributeUnit;code[unique=true];symbol;unitType;name
 ;Hectares;Hectares;Hectares;Hectares
 ;lbs;lbs;lbs;lbs
 ;L;L;L;L
-;miles;miles;miles;miles
+;miles;Miles;Miles;Miles
 ;hectares;hectares;hectares;hectares
 ;km;km;km;km
 ;inches;"""";inches;"""";

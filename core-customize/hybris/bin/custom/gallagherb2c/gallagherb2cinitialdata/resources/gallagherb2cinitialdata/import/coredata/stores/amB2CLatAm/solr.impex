@@ -79,6 +79,10 @@ INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; n
                                   ; $solrIndexedType                         ; modifiedtime           ; date       ;                    ;                         ;                          ;                           ;                                    ;                                   ; defaultDateValueResolver                 ;                                
                                   ; $solrIndexedType                         ; item                   ; text       ;                    ;                         ;                          ; true                      ;                                    ;                                   ; gallagherVariantCodeValueResolver          ;                                ;                               ;                     ; true                    ;               ; true                         ;                    ; true                            ;                                             ;                       ;                               
                                   
+#hiding animalCompatibility
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]      ; visible
+											 ; $solrIndexedType								  ; animalCompatibility    ; false
+
                                   
 # Category fields                 
 INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code) ; localized[default=false] ; multiValue[default=true] ; categoryField[default=true] ; useForSpellchecking[default=false] ; useForAutocomplete[default=false] ; fieldValueProvider             ; ftsPhraseQuery[default=false] ; ftsPhraseQueryBoost ; ftsQuery[default=false] ; ftsQueryBoost ; ftsFuzzyQuery[default=false] ; ftsFuzzyQueryBoost 

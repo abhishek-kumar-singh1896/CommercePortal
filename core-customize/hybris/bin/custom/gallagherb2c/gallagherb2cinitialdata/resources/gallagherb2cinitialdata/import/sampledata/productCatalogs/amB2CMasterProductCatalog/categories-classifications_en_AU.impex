@@ -40,6 +40,7 @@ UPDATE ClassificationAttribute	;code[unique=true];name[lang=$lang];$classSystemV
 								;mixed-metals;Mixed Metals
 								;mount-type;Mount Type
 								;multiwire-distance-gallagher-recommendation;Multiwire Distance (Gallagher Recommendation)
+								;multiwire-distance-gallagher-recommendation-acres;Multiwire Distance (Gallagher Recommendation)
 								;multiwire-distance-ideal-conditions;Multiwire Distance (ideal conditions)
 								;number-of-traits-recorded;Number of Traits Recorded
 								;number-of-wires;Number of Wires

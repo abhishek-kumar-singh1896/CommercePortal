@@ -43,12 +43,13 @@ UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$in
                            ;                                                               ; Drafting                                                  ; Drafting                                            
                            ;                                                               ; Intergrated EID Reader                                    ; Intergrated EID Reader                              
                            ;                                                               ; Compatible with Gallagher Livestock (Datos)               ; Compatible with Gallagher Livestock web/mobile app  
-                           ;                                                               ; View Pedigree Tree                                        ; View Pedigree Tree                                  
+                           ;                                                               ; View Pedigree Tree                                        ; Pedigree Tree                                  
                            ;                                                               ; Use                                                       ; Use                                                             
                            ;                                                               ; Capacidad de pesaje (Barras)                              ; Capacidad de pesaje                                         
                            ;                                                               ; Capacidad de pesaje (Plataformas)                         ; Capacidad de pesaje                                         
                            ;                                                               ; Product Type                                              ; Product Type                                                    
                            ;                                                               ; Compatible with Gallagher Livestock (Lectores)            ; Compatible with Gallagher Livestock                 
                            ;                                                               ; animalCompatibility                                       ; Animal Compatibility                                                     
+                           ;                                                               ; Conductor Type		                                        ; Tipo de conductor                                                     
                            
                            
