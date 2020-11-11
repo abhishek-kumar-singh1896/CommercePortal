@@ -283,6 +283,11 @@
 					<persistence type="property" />
 					<description>Attribute for product specific details Heading</description>
 				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="productSpecificDetailsSubHeading" type="localized:java.lang.String">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<description>Attribute for product specific details sub Heading</description>
+				</attribute>
 			</attributes>
 
 		</itemtype>
@@ -729,6 +734,11 @@
 						<persistence type="property" />
 						<description>Attribute for product specific details Heading</description>
 					</attribute>
+					<attribute autocreate="true" generate="true" qualifier="productSpecificDetailsSubHeading" type="localized:java.lang.String">
+						<modifiers optional="true" />
+						<persistence type="property" />
+						<description>Attribute for product specific details sub Heading</description>
+					</attribute>
 				</attributes>
 			</itemtype>
 			<itemtype code="AbstractOrderEntry" autocreate="false" generate="false">
@@ -742,6 +752,11 @@
 						<modifiers optional="true" />
 						<persistence type="property" />
 						<description>Attribute for product specific details Heading</description>
+					</attribute>
+					<attribute autocreate="true" generate="true" qualifier="productSpecificDetailsSubHeading" type="localized:java.lang.String">
+						<modifiers optional="true" />
+						<persistence type="property" />
+						<description>Attribute for product specific details sub Heading</description>
 					</attribute>
 				</attributes>
 			</itemtype>

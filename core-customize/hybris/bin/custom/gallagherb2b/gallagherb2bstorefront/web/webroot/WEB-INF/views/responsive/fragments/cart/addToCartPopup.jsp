@@ -58,13 +58,15 @@
             
             <input type="hidden" id="entryID" value="${entry.entryNumber}" name="entryNumber" />
             <input type="hidden" id="productSpecificDetailsHeading" value="${product.productSpecificDetailsHeading}" name="productSpecificDetailsHeading" />
+            <input type="hidden" id="productSpecificDetailsSubHeading" value="${product.productSpecificDetailsSubHeading}" name="productSpecificDetailsSubHeading" />
             
             <c:if test="${not empty product.productSpecificDetailsHeading}">
             	<div class="shoppingHeading">${product.productSpecificDetailsHeading}</div>
-            	<div><strong><p>Please enter details<p></strong></div>
             </c:if>
             
-            
+            <c:if test="${not empty product.productSpecificDetailsSubHeading}">
+            	<div class="shoppingHeading">${product.productSpecificDetailsSubHeading}</div>
+            </c:if>
             
             <c:if test="${not empty product.productSpecificDetailsHeading}">
             	<textarea name="deliveryInstructionEntry" id="deliveryInstructionEntry" rows="3" cols="30" placeholder="80 character limit" />

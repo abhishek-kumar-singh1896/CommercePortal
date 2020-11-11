@@ -53,6 +53,7 @@ public class B2BAdvanceGroupOrderConsignmentEntryPopulator extends GroupOrderCon
 				}
 				parentEntry.setQuantity(getTotalQuantity(parentEntry));
 				parentEntry.setProductSpecificDetailsHeading(getProductSpecificDetailsHeading(parentEntry));
+				parentEntry.setProductSpecificDetailsSubHeading(getProductSpecificDetailsSubHeading(parentEntry));
 				parentEntry.setDeliveryinstruction(getDeliveryInstruction(parentEntry));
 				parentEntry.setDeliveredQuantity(getDeliveredQuantity(parentEntry));
 				parentEntry.setStatus(getOrderEntryStatus(parentEntry));
@@ -70,6 +71,18 @@ public class B2BAdvanceGroupOrderConsignmentEntryPopulator extends GroupOrderCon
 					: "");
 		}
 		return productSpecificDetailsHeading;
+	}
+
+	protected String getProductSpecificDetailsSubHeading(final OrderEntryData parentEntry)
+	{
+		String productSpecificDetailsSubHeading = null;
+		if (!CollectionUtils.isEmpty(parentEntry.getEntries()))
+		{
+			productSpecificDetailsSubHeading = (parentEntry.getEntries().get(0).getProductSpecificDetailsSubHeading() != null
+					? parentEntry.getEntries().get(0).getProductSpecificDetailsSubHeading().toString()
+					: "");
+		}
+		return productSpecificDetailsSubHeading;
 	}
 
 	protected String getDeliveryInstruction(final OrderEntryData parentEntry)

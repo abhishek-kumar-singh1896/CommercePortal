@@ -65,6 +65,7 @@
 		<property name="categoryPaths" type="java.util.List&lt;String&gt;" />
 		<property name="modifiedTime" type="java.util.Date" />
 		<property name="productSpecificDetailsHeading" type="String" />
+		<property name="productSpecificDetailsSubHeading" type="String" />
 <!-- 		<property name="marketingDescription" type="String"/> -->
 	</bean>
 
@@ -131,11 +132,13 @@
 		<property name="deliveryinstruction" type="String" />
 		<property name="entryNumber" type="Integer" />
 		<property name="productSpecificDetailsHeading" type="String" />
+		<property name="productSpecificDetailsSubHeading" type="String" />
 	</bean>
 	
 	<bean class="de.hybris.platform.commercefacades.order.data.OrderEntryData">
 		<property name="deliveryinstruction" type="String" />
 		<property name="productSpecificDetailsHeading" type="String" />
+		<property name="productSpecificDetailsSubHeading" type="String" />
 	</bean>
 	
 	<bean class="de.hybris.platform.commercefacades.order.data.AbstractOrderData">

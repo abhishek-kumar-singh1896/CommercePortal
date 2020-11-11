@@ -31,5 +31,11 @@ public class GallagherProductBasicPopulator<SOURCE extends ProductModel, TARGET 
 		{
 			productData.setProductSpecificDetailsHeading((String) getProductAttribute(productModel, ProductModel.PRODUCTSPECIFICDETAILSHEADING));
 		}
+
+		if (!StringUtils.isEmpty((String) getProductAttribute(productModel, ProductModel.PRODUCTSPECIFICDETAILSSUBHEADING)))
+		{
+			productData.setProductSpecificDetailsSubHeading(
+					(String) getProductAttribute(productModel, ProductModel.PRODUCTSPECIFICDETAILSSUBHEADING));
+		}
 	}
 }

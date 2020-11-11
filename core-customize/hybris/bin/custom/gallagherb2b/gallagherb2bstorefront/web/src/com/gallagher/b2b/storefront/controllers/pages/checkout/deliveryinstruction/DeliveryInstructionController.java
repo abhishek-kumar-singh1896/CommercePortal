@@ -53,6 +53,12 @@ public class DeliveryInstructionController
 			deliveryInstrutionsform.setProductSpecificDetailsHeading(deliveryInstrutionsData.getProductSpecificDetailsHeading());
 		}
 
+		if (StringUtils.isNotEmpty(deliveryInstrutionsData.getProductSpecificDetailsSubHeading()))
+		{
+			deliveryInstrutionsform
+					.setProductSpecificDetailsSubHeading(deliveryInstrutionsData.getProductSpecificDetailsSubHeading());
+		}
+
 		deliveryInstrutionsform.setEntryNumber(entryNumber);
 		model.addAttribute(deliveryInstrutionsform);
 		return ControllerConstants.Views.Fragments.DeliveryComments.DeliveryInstructionPopup;
@@ -75,8 +81,9 @@ public class DeliveryInstructionController
 			final String deliveryInstruction = deliveryInstrutionsform.getDeliveryInstruction();
 			final Integer entryNumber = deliveryInstrutionsform.getEntryNumber();
 			final String productSpecificDetailsHeading = deliveryInstrutionsform.getProductSpecificDetailsHeading();
+			final String productSpecificDetailsSubHeading = deliveryInstrutionsform.getProductSpecificDetailsSubHeading();
 			getGallagherCheckoutDeliveryInstructionFacade().setDeliveryInstructions(deliveryInstruction,
-					productSpecificDetailsHeading, entryNumber);
+					productSpecificDetailsHeading, entryNumber, productSpecificDetailsSubHeading);
 
 		}
 		return result;

@@ -407,5 +407,13 @@
 		<property name="resource" value="classpath:/gallaghercore/processes/orderConfirmationEmailProcess.xml" />
 	</bean>
 	
-	
+	<bean id="gallagherB2BProductValidateInterceptor" class="com.gallagher.core.b2b.interceptor.GallagherB2BProductValidateInterceptor">
+		<property name="l10NService" ref="l10nService"/>
+	</bean>
+
+	<bean id="gallagherB2BProductValidateInterceptorMapping"
+	      class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="gallagherB2BProductValidateInterceptor"/>
+		<property name="typeCode" value="Product"/>
+	</bean>
 </beans>

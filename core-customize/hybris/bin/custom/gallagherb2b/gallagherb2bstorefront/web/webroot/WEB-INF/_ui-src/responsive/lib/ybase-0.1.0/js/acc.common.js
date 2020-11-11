@@ -120,7 +120,7 @@ ACC.common = {
 				$el.find("a").html("<div class='cart-product-comment'><div class='glyphicon glyphicon-minus-sign'></div></a>");
 				var $ele = $("div[comment-id='"+entrySelected+"']");
 				$ele.find("input").val($("#deliveryInstructionEntry").val());
-				$ele.find("a").html("<div class='deleveryinstructiontext'>"+$("#deliveryInstructionEntry").val()+"</div></div></a>");
+				$ele.find("a").html("<div class='deleveryinstructiontext'>"+$("#productSpecificDetailsSubHeading").val()+" : "+$("#deliveryInstructionEntry").val()+"</div></div></a>");
 				$.colorbox.close();	
 			}				
 		},
@@ -130,6 +130,7 @@ ACC.common = {
 			var entryNumber = entrySelected;
 			var deliveryInstruction = "";
 			var productSpecificDetailsHeading = $("#productSpecificDetailsHeading").val();
+			var productSpecificDetailsSubHeading = $("#productSpecificDetailsSubHeading").val();
 			var regex = /^[A-Za-z0-9\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,\-.\/:;<=>?@\[\]^_`{|}~+\s.+]+$/;
 			if(deliveryInstruction.length==0 || regex.test(deliveryInstruction))
 			{
@@ -141,7 +142,8 @@ ACC.common = {
 				data : {
 					"entryNumber" : entryNumber,
 					"deliveryInstruction" : deliveryInstruction,
-					"productSpecificDetailsHeading" : productSpecificDetailsHeading
+					"productSpecificDetailsHeading" : productSpecificDetailsHeading,
+					"productSpecificDetailsSubHeading" : productSpecificDetailsSubHeading
 				},
 				success : function(data) {
 					var response = JSON.stringify(data);
@@ -191,6 +193,7 @@ ACC.common = {
 			}
 			var deliveryInstruction = $("#deliveryInstructionEntry").val().trim();
 			var productSpecificDetailsHeading = $("#productSpecificDetailsHeading").val().trim();
+			var productSpecificDetailsSubHeading = $("#productSpecificDetailsSubHeading").val().trim();
 			var regex = /^[A-Za-z0-9\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,\-.\/:;<=>?@\[\]^_`{|}~+\s.+]+$/;
 			if(deliveryInstruction.length==0 || regex.test(deliveryInstruction))
 			{
@@ -202,7 +205,8 @@ ACC.common = {
 				data : {
 					"entryNumber" : entryNumber,
 					"deliveryInstruction" : deliveryInstruction,
-					"productSpecificDetailsHeading" : productSpecificDetailsHeading
+					"productSpecificDetailsHeading" : productSpecificDetailsHeading,
+					"productSpecificDetailsSubHeading" : productSpecificDetailsSubHeading
 				},
 				success : function(data) {
 					var response = JSON.stringify(data);

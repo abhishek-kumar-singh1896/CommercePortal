@@ -121,8 +121,8 @@
 						data-cbox-title="<spring:theme code="deliverycomments.title"/>">
 						
 						<c:if
-							test="${empty entry.deliveryinstruction && not empty entry.productSpecificDetailsHeading}"><div class="glyphicon glyphicon-plus-sign"></div>&nbsp;<span class="addcommenttext"><spring:theme code="deliveryinstruction.addcomment"/></span></c:if>
-							<c:if test="${not empty entry.deliveryinstruction}"><div class="deleveryinstructiontext">${entry.deliveryinstruction}</div></c:if>
+							test="${empty entry.deliveryinstruction && not empty entry.productSpecificDetailsSubHeading}"><div class="glyphicon glyphicon-plus-sign"></div>&nbsp;<span class="addcommenttext"><spring:theme code="deliveryinstruction.addcomment"/></span></c:if>
+							<c:if test="${not empty entry.deliveryinstruction}"><div class="deleveryinstructiontext">${entry.productSpecificDetailsSubHeading} : ${entry.deliveryinstruction}</div></c:if>
 				</a>
 				</div>
 				</div>

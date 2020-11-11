@@ -15,6 +15,8 @@ public class DeliveryInstrutionsform
 
 	private String productSpecificDetailsHeading;
 
+	private String productSpecificDetailsSubHeading;
+
 	/**
 	 * @return the productSpecificDetailsHeading
 	 */
@@ -65,5 +67,24 @@ public class DeliveryInstrutionsform
 	{
 		this.entryNumber = entryNumber;
 	}
+
+	/**
+	 * @return the productSpecificDetailsSubHeading
+	 */
+	public String getProductSpecificDetailsSubHeading()
+	{
+		return productSpecificDetailsSubHeading;
+	}
+
+	/**
+	 * @param productSpecificDetailsSubHeading
+	 *           the productSpecificDetailsSubHeading to set
+	 */
+	public void setProductSpecificDetailsSubHeading(final String productSpecificDetailsSubHeading)
+	{
+		this.productSpecificDetailsSubHeading = productSpecificDetailsSubHeading;
+	}
+
+
 
 }
