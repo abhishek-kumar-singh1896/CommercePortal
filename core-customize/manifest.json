@@ -46,11 +46,6 @@
       "template": "yacceleratorstorefront"
     },
     {
-      "addon": "textfieldconfiguratortemplateaddon",
-      "storefront": "yacceleratorstorefront",
-      "template": "yacceleratorstorefront"
-    },
-    {
       "addon": "assistedservicestorefront",
       "storefront": "yacceleratorstorefront",
       "template": "yacceleratorstorefront"
@@ -157,11 +152,6 @@
     },
     {
       "addon": "smarteditaddon",
-      "storefront": "yb2bacceleratorstorefront",
-      "template": "yacceleratorstorefront"
-    },
-    {
-      "addon": "textfieldconfiguratortemplateaddon",
       "storefront": "yb2bacceleratorstorefront",
       "template": "yacceleratorstorefront"
     },
