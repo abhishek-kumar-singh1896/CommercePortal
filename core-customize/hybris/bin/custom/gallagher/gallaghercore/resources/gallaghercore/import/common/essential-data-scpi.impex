@@ -185,7 +185,8 @@ INSERT_UPDATE IntegrationObjectItemAttribute ; integrationObjectItem(integration
                                              ; OutboundOMMOrderOMSOrder:SAPCpiOutboundCardPayment                  ; avsCode                      ; SAPCpiOutboundCardPayment:avsCode                   ;                                                            ;                         
                                              ; OutboundOMMOrderOMSOrder:SAPCpiOutboundOrder                        ; requiredDeliveryDate         ; SAPCpiOutboundOrder:requiredDeliveryDate            ;                                                            ;                         
                                              ; OutboundOMMOrderOMSOrder:SAPCpiOutboundOrder                        ; comment                      ; SAPCpiOutboundOrder:comment                         ;                                                            ;                         
-                                   
+                                             ; OutboundOMMOrderOMSOrder:SAPCpiOutboundOrder                        ; additionalProductDetails     ; SAPCpiOutboundOrder:additionalProductDetails        ;                                                            ;                         
+                                             
 #************************                    
 #*** Inbound B2BUnit ****                    
 #************************                    
@@ -196,7 +197,7 @@ INSERT_UPDATE IntegrationObjectItem ; integrationObject(code)[unique = true] ; c
 INSERT_UPDATE IntegrationObjectItemAttribute ; integrationObjectItem(integrationObject(code), code)[unique = true] ; attributeName[unique = true] ; attributeDescriptor(enclosingType(code), qualifier) ; returnIntegrationObjectItem(integrationObject(code), code) ; unique[default = false] ; autoCreate[default = false] 
                                              ; InboundB2BUnit:B2BUnit                                              ; transactional                ; B2BUnit:transactional                               ;                                                            ;                         ;                             
                                              ; InboundB2BUnit:B2BUnit                                              ; salesArea                    ; B2BUnit:salesArea                                   ;                                                            ;                         ;                             
-
+                                             
 #*************************                   
 #*** Inbound Price Row ***                   
 #*************************                   
@@ -219,8 +220,8 @@ INSERT_UPDATE IntegrationObjectItemAttribute ; integrationObjectItem(integration
                                              ; InboundDiscountRow:DiscountRow                                      ; salesArea                    ; DiscountRow:salesArea                               ;                                                            ;                         ;                             
                                              ; InboundDiscountRow:DiscountRow                                      ; quantity                     ; DiscountRow:quantity                                ;                                                            ;                         ;                             
                                              ; InboundDiscountRow:DiscountRow                                      ; conditionType                ; DiscountRow:conditionType                           ;                                                            ;                         ;                             
-
-INSERT_UPDATE IntegrationObjectItemAttribute ; integrationObjectItem(integrationObject(code), code)[unique = true] ; attributeName[unique = true] ; attributeDescriptor(enclosingType(code), qualifier) ; returnIntegrationObjectItem(integrationObject(code), code) ; unique[default = false]
-                                             ; InboundOMMOrderEntry:OrderEntry                                     ; deliveredQuantity            ; OrderEntry:deliveredQuantity                        ;                                                            ; 
-                                             ; InboundOMMOrderEntry:OrderEntry                                     ; status           			     ; OrderEntry:status                            		  ;                                                            ; 
+                                             
+INSERT_UPDATE IntegrationObjectItemAttribute ; integrationObjectItem(integrationObject(code), code)[unique = true] ; attributeName[unique = true] ; attributeDescriptor(enclosingType(code), qualifier) ; returnIntegrationObjectItem(integrationObject(code), code) ; unique[default = false] 
+                                             ; InboundOMMOrderEntry:OrderEntry                                     ; deliveredQuantity            ; OrderEntry:deliveredQuantity                        ;                                                            ;                         
+                                             ; InboundOMMOrderEntry:OrderEntry                                     ; status                       ; OrderEntry:status                                   ;                                                            ;                         
                                              

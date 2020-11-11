@@ -25,7 +25,7 @@ public class GallagherCheckoutDeliveryInstructionFacadeImpl extends DefaultCheck
 
 	@Override
 	public void setDeliveryInstructions(final String deliveryInstruction, final String productSpecificDetailsHeading,
-			final Integer entryNumber)
+			final Integer entryNumber, final String productSpecificDetailsSubHeading)
 	{
 		final CartModel cartModel = getCart();
 		final List<AbstractOrderEntryModel> cartEntries = cartModel.getEntries();
@@ -37,6 +37,10 @@ public class GallagherCheckoutDeliveryInstructionFacadeImpl extends DefaultCheck
 				if (null != productSpecificDetailsHeading)
 				{
 					cartEntry.setProductSpecificDetailsHeading(productSpecificDetailsHeading);
+				}
+				if (null != productSpecificDetailsSubHeading)
+				{
+					cartEntry.setProductSpecificDetailsSubHeading(productSpecificDetailsSubHeading);
 				}
 				break;
 			}
@@ -64,6 +68,11 @@ public class GallagherCheckoutDeliveryInstructionFacadeImpl extends DefaultCheck
 				if (StringUtils.isNotEmpty(cartEntry.getProductSpecificDetailsHeading()))
 				{
 					deliveryInstrutionsData.setProductSpecificDetailsHeading(cartEntry.getProductSpecificDetailsHeading());
+				}
+
+				if (StringUtils.isNotEmpty(cartEntry.getProductSpecificDetailsSubHeading()))
+				{
+					deliveryInstrutionsData.setProductSpecificDetailsSubHeading(cartEntry.getProductSpecificDetailsSubHeading());
 				}
 
 			}

@@ -49,6 +49,9 @@
 				<attribute qualifier="comment" type="java.lang.String">
 					<persistence type="property" />
 				</attribute>
+				<attribute qualifier="additionalProductDetails" type="java.lang.String">
+					<persistence type="property" />
+				</attribute>
 			</attributes>
 		</itemtype>
 	</itemtypes>

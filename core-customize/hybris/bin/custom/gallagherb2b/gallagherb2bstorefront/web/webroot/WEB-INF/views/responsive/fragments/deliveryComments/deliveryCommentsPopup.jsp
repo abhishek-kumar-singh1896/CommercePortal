@@ -17,8 +17,9 @@
 	<input type="hidden" id="entryID"
 		value="${deliveryInstrutionsform.entryNumber}" name="entryNumber" />
 	<input type="hidden" id="productSpecificDetailsHeading" value="${deliveryInstrutionsform.productSpecificDetailsHeading}" name="productSpecificDetailsHeading" />
+	<input type="hidden" id="productSpecificDetailsSubHeading" value="${deliveryInstrutionsform.productSpecificDetailsSubHeading}" name="productSpecificDetailsSubHeading" />
 	<div><strong>${deliveryInstrutionsform.productSpecificDetailsHeading}</strong></div>
-	<div><strong><p>Please enter details<p></strong></div>
+	<div><strong>${deliveryInstrutionsform.productSpecificDetailsSubHeading}</strong></div>
 	<textarea spellcheck="false" class="form-control add-comment-text-area"
 		name="deliveryInstructionEntry"
 		placeholder="80 character limit"
