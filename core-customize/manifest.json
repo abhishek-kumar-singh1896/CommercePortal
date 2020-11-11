@@ -251,12 +251,10 @@
 			"b2ctelcostore",
 			"utilitiesstore",
 			"mediastore",
-			"b2ctelcoocc",
 			"b2ctelcotmfwebservices",
 			"b2ctelcowebservices",
 			"upilbackoffice",
-			"upilintegrationservices",
-			"b2ctelcocommercewebservicescommons"
+			"upilintegrationservices"
 		],
 		"annotations": [
 			"UnitTests",
