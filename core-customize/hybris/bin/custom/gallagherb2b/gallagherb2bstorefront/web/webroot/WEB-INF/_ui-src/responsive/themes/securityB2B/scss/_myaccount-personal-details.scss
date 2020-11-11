@@ -19,8 +19,10 @@
                 }
         }
         }
+      
+        
         .account-section-header{
-            padding: 0 2rem 1.5rem;
+           padding: 0 2rem 1.5rem;
             &.account-section-header-secondary{
                 padding-top: 1.5rem;
             }
@@ -124,7 +126,7 @@
 }
 .glyphicon{
     &[class*="glyphicon"]{
-    color: $primary-color!important;
+    color: $gray-5!important;
         &:hover{
             color: $dropdown-bg-color!important;
         }
@@ -243,6 +245,31 @@
     padding: 0 2rem 1.5rem;
 }
 
+.content-inner{  
+&.account-section {
+            
+            .acc-technician{
+        
+              .account-section-header{
+            padding: 0 0rem .3rem 0rem;
+            }
+        
+         .account-header-done-btn {
+     margin-top: 0px;
+    padding-right: 1px;
+}
+.icon-center
+{
+a{
+    position: relative;
+    top: 2px;
+}
+
+}        }
+            
+           }
+}
+
 
 @media (min-width: 1024px) {
   .item__list .item__info {
@@ -287,6 +314,7 @@
             }
     }
 }
+
 
 
 /* Actual site already has icons folder */
