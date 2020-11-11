@@ -193,6 +193,10 @@
                 <editorArea:section name="hmc.section.gallagher.Component.Simulator">
                     <editorArea:attribute qualifier="simulator"/>
                 </editorArea:section>
+                <editorArea:section name="hmc.section.gallagher.Component.SEOFields">
+                    <editorArea:attribute qualifier="pageTitleField"/>
+                    <editorArea:attribute qualifier="metaDescriptionField"/>
+                </editorArea:section>
             </editorArea:tab>
             <editorArea:tab name="hmc.tab.product.multimedia" position="18" merge-mode="REPLACE">
                 <editorArea:section name="hmc.section.product.pictures">
