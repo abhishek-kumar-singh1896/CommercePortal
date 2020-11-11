@@ -25,19 +25,19 @@
 
 <template:page pageTitle="${pageTitle}">
     <div class="account-section content-inner">
-		<div class="row">
+		<div class="row acc-technician">
 			<div class="col-md-2 col-md-offset-1 left-nav-menu">
 				<account:accountLeftNavigation />
 			</div>
 			<div class="col-sm-12 col-md-8 right-nav-content">
 	        <div class="account-section-header">
 				    <div class="row">
-				        <div class="container-lg col-md-6">
-							<div class="col-xs-12 col-sm-7">
+				        <div class="container-lg">
+							<div class="col-xs-12 col-sm-10 icon-center">
 				                <org-common:headline url="${cancelUrl}" labelKey="text.company.manage.units.${action}.mainTitle"/>
 				            </div>
-				            <div class="col-xs-12 col-sm-3 col-sm-push-2">
-				                <div class="account-header-done-btn">
+				            <div class="col-xs-12 col-sm-2">
+				                <div class="account-header-done-btn technicians">
 				                    <org-common:done url="${cancelUrl}" labelKey="text.company.done.button"/>
 				                </div>
 				            </div>
