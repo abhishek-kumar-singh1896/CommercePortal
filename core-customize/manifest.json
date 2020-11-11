@@ -157,11 +157,11 @@
 		},
 		{
 			"key": "website.b2ctelco.http",
-			"value": "<website_b2ctelco_http_URL>"
+			"value": "http://accstorefront.cj6th-gallagher1-d2-public.model-t.cc.commerce.ondemand.com/"
 		},
 		{
 			"key": "website.b2ctelco.https",
-			"value": "<website_b2ctelco_https_URL>"
+			"value": "https://accstorefront.cj6th-gallagher1-d2-public.model-t.cc.commerce.ondemand.com/"
 		},
 		{
 			"key": "website.media.http",
