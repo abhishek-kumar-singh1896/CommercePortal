@@ -61,6 +61,7 @@ public class GallagherB2BCartPopulator<T extends CartData> extends B2BCartPopula
 		}
 		target.setB2bCustomerData(getB2bCustomerConverter().convert(source.getUser()));
 		target.setQuoteAllowed(Boolean.valueOf(getB2bOrderService().isQuoteAllowed(source)));
+		target.setSalesArea(StringUtils.isNotBlank(source.getSalesArea()) ? source.getSalesArea() : StringUtils.EMPTY);
 	}
 
 
@@ -73,4 +74,5 @@ public class GallagherB2BCartPopulator<T extends CartData> extends B2BCartPopula
 	{
 		b2BUnitConverter = b2bUnitConverter;
 	}
+
 }

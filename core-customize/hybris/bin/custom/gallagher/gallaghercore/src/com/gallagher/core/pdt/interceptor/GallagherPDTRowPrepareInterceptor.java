@@ -8,6 +8,7 @@ import de.hybris.platform.product.impl.PDTRowPrepareInterceptor;
 import de.hybris.platform.servicelayer.interceptor.InterceptorContext;
 import de.hybris.platform.servicelayer.interceptor.InterceptorException;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
 
@@ -33,6 +34,30 @@ public abstract class GallagherPDTRowPrepareInterceptor extends PDTRowPrepareInt
 		{
 			final PDTRowModel pdtModel = (PDTRowModel) model;
 			updateSalesAreaMatchQualifier(pdtModel, ctx);
+			updateCustomerGorup(pdtModel, ctx);
+		}
+	}
+
+	/**
+	 * @param pdtModel
+	 * @param ctx
+	 */
+	private void updateCustomerGorup(final PDTRowModel pdtModel, final InterceptorContext ctx) throws InterceptorException
+	{
+
+		if (ctx.isNew(pdtModel) || ctx.isModified(pdtModel, PDTRowModel.CUSTOMERGROUP))
+		{
+
+			final String customerGroup = pdtModel.getCustomerGroup();
+			if (StringUtils.isNotBlank(customerGroup))
+			{
+				pdtModel.setCustomerGroupMatchQualifier(customerGroup);
+			}
+			else
+			{
+				pdtModel.setCustomerGroup(String.valueOf(0));
+				pdtModel.setCustomerGroupMatchQualifier(String.valueOf(0));
+			}
 		}
 	}
 

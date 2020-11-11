@@ -101,19 +101,37 @@ public class GallagherFieldNameTranslator extends DefaultFieldNameTranslator
 						: null;
 			}
 
+			QualifierProvider customerGroupQualifierProvider = valueProvider instanceof GallagherProductPricesValueResolver
+					? ((GallagherProductPricesValueResolver) valueProvider).getCustomerGroupQualifierProvider()
+					: null;
+
+			if (customerGroupQualifierProvider == null)
+			{
+				customerGroupQualifierProvider = valueProvider instanceof GallagherProductPriceRangeValueResolver
+						? ((GallagherProductPriceRangeValueResolver) valueProvider).getCustomerGroupQualifierProvider()
+						: null;
+			}
+
+			if (customerGroupQualifierProvider == null)
+			{
+				customerGroupQualifierProvider = valueProvider instanceof GallagherProductDiscountValueResolver
+						? ((GallagherProductDiscountValueResolver) valueProvider).getCustomerGroupQualifierProvider()
+						: null;
+			}
+
+
+
 			if (qualifierProvider != null && qualifierProvider.canApply(indexedProperty))
 			{
 				final Qualifier qualifier = qualifierProvider.getCurrentQualifier();
 				fieldQualifier = qualifier != null ? qualifier.toFieldQualifier() : null;
 				if ((salesAreaQualifierProvider != null && salesAreaQualifierProvider.canApply(indexedProperty))
-						|| (userPriceGroupQualifierProvider != null && userPriceGroupQualifierProvider.canApply(indexedProperty)))
+						|| (userPriceGroupQualifierProvider != null && userPriceGroupQualifierProvider.canApply(indexedProperty))
+						|| (customerGroupQualifierProvider != null && customerGroupQualifierProvider.canApply(indexedProperty)))
 				{
 					final UserModel user = userService.getCurrentUser();
 					if (user instanceof B2BCustomerModel)
 					{
-
-						final B2BCustomerModel currentUser = (B2BCustomerModel) user;
-
 						String upgSuffix = StringUtils.EMPTY;
 						if (userPriceGroupQualifierProvider instanceof GallagherUserDiscountGroupQualifierProvider)
 						{
@@ -135,26 +153,13 @@ public class GallagherFieldNameTranslator extends DefaultFieldNameTranslator
 							fieldQualifier = fieldQualifier + FIELDNAME_SEPARATOR + upgQualifier.toFieldQualifier() + upgSuffix;
 
 						}
-					}
-				}
-			}
-			else if (indexedProperty.isLocalized())
-			{
-				fieldQualifier = searchQuery.getLanguage();
-			}
-			else if (indexedProperty.isCurrency())
-			{
-				fieldQualifier = searchQuery.getCurrency();
-				final String currentSalesArea = salesAreaService.getCurrentSalesArea();
-				final UserModel currentUser = userService.getCurrentUser();
-				if (indexedProperty.isSalesArea() && StringUtils.isNotBlank(currentSalesArea))
-				{
-					fieldQualifier = fieldQualifier + FIELDNAME_SEPARATOR + currentSalesArea;
-				}
+						if (customerGroupQualifierProvider != null && customerGroupQualifierProvider.canApply(indexedProperty))
+						{
+							final Qualifier customerGroupQualifier = customerGroupQualifierProvider.getCurrentQualifier();
+							fieldQualifier = fieldQualifier + FIELDNAME_SEPARATOR + customerGroupQualifier.toFieldQualifier();
 
-				if (indexedProperty.isUserPriceGroup() && currentUser != null && currentUser.getEurope1PriceFactory_UPG() != null)
-				{
-					fieldQualifier = fieldQualifier + FIELDNAME_SEPARATOR + currentUser.getEurope1PriceFactory_UPG();
+						}
+					}
 				}
 			}
 			return getFieldNameProvider().getFieldName(indexedProperty, fieldQualifier, fieldType);

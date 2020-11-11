@@ -30,7 +30,8 @@ public class GallagherDiscountRowPrepareInterceptor extends GallagherPDTRowPrepa
 
 			if (ctx.isNew(model) || ctx.isModified(model, DiscountRowModel.PRODUCT) || ctx.isModified(model, DiscountRowModel.PG)
 					|| ctx.isModified(model, DiscountRowModel.USER) || ctx.isModified(model, DiscountRowModel.UG)
-					|| ctx.isModified(model, DiscountRowModel.PRODUCTID) || ctx.isModified(model, DiscountRowModel.SALESAREA))
+					|| ctx.isModified(model, DiscountRowModel.PRODUCTID) || ctx.isModified(model, DiscountRowModel.SALESAREA)
+					|| ctx.isModified(model, DiscountRowModel.CUSTOMERGROUP))
 			{
 				updateMatchValue(dModel);
 			}
@@ -56,6 +57,8 @@ public class GallagherDiscountRowPrepareInterceptor extends GallagherPDTRowPrepa
 		final boolean _userGroup = discount.getUg() != null;
 		final boolean _salesArea = StringUtils.isNotBlank(discount.getSalesArea())
 				&& !discount.getSalesArea().equalsIgnoreCase(String.valueOf(0));
+		final boolean _customerGroup = StringUtils.isNotBlank(discount.getCustomerGroup())
+				&& !discount.getCustomerGroup().equalsIgnoreCase(String.valueOf(0));
 
 		int value = 0;
 		if (_product)
@@ -64,33 +67,75 @@ public class GallagherDiscountRowPrepareInterceptor extends GallagherPDTRowPrepa
 			{
 				if (_salesArea)
 				{
-					value = 18;
+					if (_customerGroup)
+					{
+						value = 36;
+					}
+					else
+					{
+						value = 34;
+					}
 				}
 				else
 				{
-					value = 14;
+					if (_customerGroup)
+					{
+						value = 32;
+					}
+					else
+					{
+						value = 30;
+					}
 				}
 			}
 			else if (_userGroup)
 			{
 				if (_salesArea)
 				{
-					value = 16;
+					if (_customerGroup)
+					{
+						value = 28;
+					}
+					else
+					{
+						value = 26;
+					}
 				}
 				else
 				{
-					value = 12;
+					if (_customerGroup)
+					{
+						value = 24;
+					}
+					else
+					{
+						value = 22;
+					}
 				}
 			}
 			else
 			{
 				if (_salesArea)
 				{
-					value = 10;
+					if (_customerGroup)
+					{
+						value = 20;
+					}
+					else
+					{
+						value = 18;
+					}
 				}
 				else
 				{
-					value = 8;
+					if (_customerGroup)
+					{
+						value = 16;
+					}
+					else
+					{
+						value = 14;
+					}
 				}
 			}
 		}
@@ -100,33 +145,75 @@ public class GallagherDiscountRowPrepareInterceptor extends GallagherPDTRowPrepa
 			{
 				if (_salesArea)
 				{
-					value = 17;
+					if (_customerGroup)
+					{
+						value = 35;
+					}
+					else
+					{
+						value = 33;
+					}
 				}
 				else
 				{
-					value = 13;
+					if (_customerGroup)
+					{
+						value = 31;
+					}
+					else
+					{
+						value = 29;
+					}
 				}
 			}
 			else if (_userGroup)
 			{
 				if (_salesArea)
 				{
-					value = 15;
+					if (_customerGroup)
+					{
+						value = 27;
+					}
+					else
+					{
+						value = 25;
+					}
 				}
 				else
 				{
-					value = 11;
+					if (_customerGroup)
+					{
+						value = 23;
+					}
+					else
+					{
+						value = 21;
+					}
 				}
 			}
 			else
 			{
 				if (_salesArea)
 				{
-					value = 9;
+					if (_customerGroup)
+					{
+						value = 19;
+					}
+					else
+					{
+						value = 17;
+					}
 				}
 				else
 				{
-					value = 7;
+					if (_customerGroup)
+					{
+						value = 15;
+					}
+					else
+					{
+						value = 13;
+					}
 				}
 			}
 		}
@@ -136,39 +223,80 @@ public class GallagherDiscountRowPrepareInterceptor extends GallagherPDTRowPrepa
 			{
 				if (_salesArea)
 				{
-					value = 6;
+					if (_customerGroup)
+					{
+						value = 12;
+					}
+					else
+					{
+						value = 11;
+					}
 				}
 				else
 				{
-					value = 4;
+					if (_customerGroup)
+					{
+						value = 10;
+					}
+					else
+					{
+						value = 9;
+					}
 				}
 			}
 			else if (_userGroup)
 			{
 				if (_salesArea)
 				{
-					value = 5;
+					if (_customerGroup)
+					{
+						value = 8;
+					}
+					else
+					{
+						value = 7;
+					}
 				}
 				else
 				{
-					value = 3;
+					if (_customerGroup)
+					{
+						value = 6;
+					}
+					else
+					{
+						value = 5;
+					}
 				}
 			}
 			else
 			{
 				if (_salesArea)
 				{
-					value = 2;
+					if (_customerGroup)
+					{
+						value = 4;
+					}
+					else
+					{
+						value = 3;
+					}
 				}
 				else
 				{
-					value = 1;
+					if (_customerGroup)
+					{
+						value = 2;
+					}
+					else
+					{
+						value = 1;
+					}
 				}
 			}
 		}
 		return value;
 	}
-
 
 	@Override
 	protected void updateCatalogVersion(final PDTRowModel pdtModel)

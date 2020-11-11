@@ -314,6 +314,7 @@
      <property name="discountService" ref="discountService"/>
      <property name="sessionService" ref="sessionService"/>
     </bean>
+    
 	<bean id="gallagherOrderNotificationEmailContext" 
 	class="com.gallagher.facades.process.email.context.GallagherOrderNotificationEmailContext"
 		parent="orderNotificationEmailContext" >

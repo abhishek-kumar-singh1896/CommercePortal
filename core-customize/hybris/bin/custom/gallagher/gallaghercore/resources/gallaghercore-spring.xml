@@ -502,6 +502,7 @@
     <!-- SAPP2-147 -->
     <bean id="gallagherProductPricesValueResolver" class="com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherProductPricesValueResolver"
 		parent="productPricesValueResolver">
+		<property name="customerGroupQualifierProvider" ref="customerGroupQualifierProvider"/>
 		<property name="salesAreaQualifierProvider" ref="salesAreaQualifierProvider" />
 		<property name="userPriceGroupQualifierProvider" ref="userPriceGroupQualifierProvider" />
 		<property name="commercePriceService" ref="commercePriceService"/>
@@ -509,6 +510,11 @@
 
 	<bean id="salesAreaQualifierProvider" class="com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherSalesAreaQualifierProvider">
 		<property name="salesAreaService" ref="gallagherSalesAreaService" />
+		<property name="sessionService" ref="sessionService" />
+	</bean>
+	
+	<bean id="customerGroupQualifierProvider" class="com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherCustomerGroupQualifierProvider">
+		<property name="customerGroupService" ref="gallagherCustomerGroupService" />
 		<property name="sessionService" ref="sessionService" />
 	</bean>
 	
@@ -524,7 +530,12 @@
 	
 	<bean id="gallagherSalesAreaService" class="com.gallagher.core.services.impl.GallagherSalesAreaServiceImpl">
 		<property name="sessionService" ref="sessionService" />
-		<property name="salesAreaDao" ref="gallagherSalesAreaDao"/>
+		<property name="b2bUnitDao" ref="gallagherB2BUnitDao"/>
+	</bean>
+	
+		<bean id="gallagherCustomerGroupService" class="com.gallagher.core.services.impl.GallagherCustomerGroupServiceImpl">
+		<property name="sessionService" ref="sessionService" />
+		<property name="b2bUnitDao" ref="gallagherB2BUnitDao"/>
 	</bean>
 	
 	<bean id="fieldNameTranslator" class="com.gallagher.core.search.solrfacetsearch.translator.GallagherFieldNameTranslator">
@@ -534,13 +545,14 @@
 		<property name="userService" ref="userService"/>
 	</bean>
 	
-	<bean id="gallagherSalesAreaDao" class="com.gallagher.core.dao.impl.GallagherSalesAreaDaoImpl" parent="abstractItemDao"/> 
+	<bean id="gallagherB2BUnitDao" class="com.gallagher.core.dao.impl.GallagherB2BUnitDaoImpl"/> 
 	
 	<alias alias="b2bUnitService" name="gallagherB2BUnitService"/>
     <bean id="gallagherB2BUnitService" class="com.gallagher.core.services.impl.GallagherB2BUnitServiceImpl" parent="defaultB2BUnitService"/>
     
     <bean id="gallagherProductDiscountValueResolver" class="com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherProductDiscountValueResolver" parent="productPricesValueResolver">
     <property name="salesAreaQualifierProvider" ref="salesAreaQualifierProvider" />
+    <property name="customerGroupQualifierProvider" ref="customerGroupQualifierProvider"/>
     <property name="userDiscountGroupQualifierProvider" ref="userDiscountGroupQualifierProvider" />
     <property name="userPriceGroupQualifierProvider" ref="userPriceGroupQualifierProvider" />
     <property name="discountService" ref="discountService" />
@@ -550,10 +562,13 @@
     
 	 <bean id="gallagherProductPriceRangeValueResolver" class="com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherProductPriceRangeValueResolver"
 		parent="productPricesValueResolver">
+		<property name="customerGroupQualifierProvider" ref="customerGroupQualifierProvider"/>
 		<property name="salesAreaQualifierProvider" ref="salesAreaQualifierProvider" />
 		<property name="userPriceGroupQualifierProvider" ref="userPriceGroupQualifierProvider" />
 		<property name="commercePriceService" ref="commercePriceService"/>
 	</bean>
 	
+	<alias name="gallagherCartFactory" alias="cartFactory"/>
+    <bean id="gallagherCartFactory" class="com.gallagher.core.services.impl.GallagherCartFactory" parent="commerceCartFactory"/>
 	 <!-- SAPP2-147 -->
 </beans>

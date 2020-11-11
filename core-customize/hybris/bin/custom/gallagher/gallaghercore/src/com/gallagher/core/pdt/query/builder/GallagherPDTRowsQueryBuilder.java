@@ -27,6 +27,10 @@ public interface GallagherPDTRowsQueryBuilder extends PDTRowsQueryBuilder
 
 	GallagherPDTRowsQueryBuilder withSalesArea(final String arg0);
 
+	GallagherPDTRowsQueryBuilder withAnyCustomerGroup();
+
+	GallagherPDTRowsQueryBuilder withCustomerGroup(final String arg0);
+
 	@Override
 	GallagherPDTRowsQueryBuilder withAnyProduct();
 

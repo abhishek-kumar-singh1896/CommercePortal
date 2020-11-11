@@ -48,6 +48,8 @@ public class CartRestorationFilter extends OncePerRequestFilter
 {
 	private static final Logger LOG = Logger.getLogger(CartRestorationFilter.class);
 
+	private static final String CURRENT_SESSION_SALES_AREA = "currentSessionSalesArea";
+
 	private CartRestoreCookieGenerator cartRestoreCookieGenerator;
 	private CartService cartService;
 	private CartFacade cartFacade;
@@ -165,7 +167,11 @@ public class CartRestorationFilter extends OncePerRequestFilter
 
 	private boolean needsRestoration(final HttpServletRequest request)
 	{
-		return GallagherSiteUtil.isSiteSwitched(request) || (cartService.hasSessionCart() && !hasSessionCartMatchingBaseSite());
+		final CartData cartData = cartFacade.getCartsForCurrentUser().stream()
+				.filter(cart -> getCurrentBaseSiteUid().equals(cart.getSite())).findAny().orElse(null);
+
+		return GallagherSiteUtil.isSiteSwitched(request)
+				|| (cartService.hasSessionCart() && !hasSessionCartMatchingBaseSite() || !isValidSalesArea(cartData));
 	}
 
 	private void restoreAuthorizedUserCart(final HttpServletRequest request)
@@ -176,8 +182,20 @@ public class CartRestorationFilter extends OncePerRequestFilter
 		try
 		{
 			final CartData cartData = cartFacade.getCartsForCurrentUser().stream()
-					.filter(cart -> currentBaseSiteUid.equals(cart.getSite())).findAny().orElse(null);
-			if (cartData != null)
+					.filter(cart -> currentBaseSiteUid.equals(cart.getSite()) && isValidSalesArea(cart)).findAny().orElse(null);
+
+			if (StringUtils.isNotBlank(sessionService.getAttribute(CURRENT_SESSION_SALES_AREA)))
+			{
+				if (cartData != null)
+				{
+					sessionService.setAttribute(WebConstants.CART_RESTORATION, cartFacade.restoreSavedCart(cartData.getGuid()));
+				}
+				else
+				{
+					sessionService.removeAttribute(DefaultCartService.SESSION_CART_PARAMETER_NAME);
+				}
+			}
+			else if (cartData != null)
 			{
 				// Setting a new cart in session deletes the old one from DB, so it has to be cloned.
 				cloneCart();
@@ -200,6 +218,29 @@ public class CartRestorationFilter extends OncePerRequestFilter
 		}
 	}
 
+
+	/**
+	 * @param cart
+	 * @return
+	 */
+	private boolean isValidSalesArea(final CartData cart)
+	{
+		if (cart != null)
+		{
+			final String salesAreaInCart = cart.getSalesArea();
+			final String salesAreaInSession = sessionService.getAttribute(CURRENT_SESSION_SALES_AREA);
+
+			if (StringUtils.isNotBlank(salesAreaInSession))
+			{
+				return StringUtils.equalsIgnoreCase(salesAreaInCart, salesAreaInSession);
+			}
+			else
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 
 	private String getCurrentBaseSiteUid()
 	{

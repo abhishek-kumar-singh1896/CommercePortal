@@ -35,6 +35,8 @@ public class GallagherPDTRowsQueryBuilderImpl implements GallagherPDTRowsQueryBu
 	private PK userGroupPk;
 	private boolean anySalesArea;
 	private String salesArea;
+	private boolean anyCustomerGroup;
+	private String customerGroup;
 
 	public GallagherPDTRowsQueryBuilderImpl(final String type)
 	{
@@ -104,6 +106,20 @@ public class GallagherPDTRowsQueryBuilderImpl implements GallagherPDTRowsQueryBu
 		return this;
 	}
 
+	@Override
+	public GallagherPDTRowsQueryBuilder withAnyCustomerGroup()
+	{
+		this.anyCustomerGroup = true;
+		return this;
+	}
+
+	@Override
+	public GallagherPDTRowsQueryBuilder withCustomerGroup(final String customerGroup)
+	{
+		this.customerGroup = customerGroup;
+		return this;
+	}
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -115,19 +131,21 @@ public class GallagherPDTRowsQueryBuilderImpl implements GallagherPDTRowsQueryBu
 		final Map productParams = this.getProductRelatedParameters();
 		final Map userParams = this.getUserRelatedParameters();
 		final Map salesAreaParams = this.getSalesAreaRelatedParameters();
+		final Map customerGroupParams = this.getCustomerGroupRelatedParameters();
 		final boolean addPricesByProductId = this.productId != null;
 		boolean isUnion = false;
 		final boolean matchByProduct = !productParams.isEmpty();
 		final boolean matchByUser = !userParams.isEmpty();
 		final boolean matchBySalesArea = !salesAreaParams.isEmpty();
+		final boolean matchByCustomerGroup = !customerGroupParams.isEmpty();
 
-		if (!matchByProduct && !matchByUser && !addPricesByProductId && !matchBySalesArea)
+		if (!matchByProduct && !matchByUser && !addPricesByProductId && !matchBySalesArea && !matchByCustomerGroup)
 		{
 			return new QueryWithParams("select {PK} from {" + this.type + "}", Collections.emptyMap(), Collections.emptyList());
 		}
 		else
 		{
-			if (matchByProduct || matchByUser || matchBySalesArea)
+			if (matchByProduct || matchByUser || matchBySalesArea || matchByCustomerGroup)
 			{
 
 				query.append("select {PK} from {").append(this.type).append("} where ");
@@ -161,13 +179,25 @@ public class GallagherPDTRowsQueryBuilderImpl implements GallagherPDTRowsQueryBu
 					query.append("{").append("salesAreaMatchQualifier").append("} in (?");
 					query.append(Joiner.on(", ?").join(salesAreaParams.keySet())).append(")");
 					params.putAll(salesAreaParams);
+					if (matchByCustomerGroup)
+					{
+						query.append(" and ");
+					}
+				}
+
+				if (matchByCustomerGroup)
+				{
+
+					query.append("{").append("customerGroupMatchQualifier").append("} in (?");
+					query.append(Joiner.on(", ?").join(customerGroupParams.keySet())).append(")");
+					params.putAll(customerGroupParams);
 				}
 			}
 
 			if (addPricesByProductId)
 			{
 
-				if (matchByProduct || matchByUser || matchBySalesArea)
+				if (matchByProduct || matchByUser || matchBySalesArea || matchByCustomerGroup)
 				{
 
 					query.append("}} UNION {{");
@@ -189,6 +219,12 @@ public class GallagherPDTRowsQueryBuilderImpl implements GallagherPDTRowsQueryBu
 
 					query.append(" and {").append("salesAreaMatchQualifier").append("} in (?");
 					query.append(Joiner.on(", ?").join(salesAreaParams.keySet())).append(")");
+				}
+				if (matchByCustomerGroup)
+				{
+
+					query.append(" and {").append("customerGroupMatchQualifier").append("} in (?");
+					query.append(Joiner.on(", ?").join(customerGroupParams.keySet())).append(")");
 				}
 			}
 
@@ -258,6 +294,23 @@ public class GallagherPDTRowsQueryBuilderImpl implements GallagherPDTRowsQueryBu
 		if (this.salesArea != null)
 		{
 			params.put("salesArea", this.salesArea);
+		}
+
+		return params.build();
+	}
+
+
+	private Map<String, Object> getCustomerGroupRelatedParameters()
+	{
+		final Builder params = ImmutableMap.builder();
+
+		if (this.anyCustomerGroup)
+		{
+			params.put("anyCustomerGroup", String.valueOf(0));
+		}
+		if (this.customerGroup != null)
+		{
+			params.put("customerGroup", this.customerGroup);
 		}
 
 		return params.build();
