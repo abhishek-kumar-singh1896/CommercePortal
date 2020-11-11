@@ -63,6 +63,8 @@ public class GallagherSCPIOmmOrderConversionService extends SapCpiOmmOrderConver
 			sapCpiOrder.setDivision(orderModel.getStore().getSAPConfiguration().getSapcommon_division());
 			sapCpiOrder.setRequiredDeliveryDate(orderModel.getRequiredDeliveryDate());
 			sapCpiOrder.setComment(orderModel.getDeliveryInstructions());
+			sapCpiOrder.setAdditionalProductDetails(
+					orderModel.getProductSpecificDetailsSubHeading() + orderModel.getDeliveryInstruction());
 			orderModel.getStore().getSAPConfiguration().getSapDeliveryModes().stream()
 					.filter(entry -> entry.getDeliveryMode().getCode().contentEquals(orderModel.getDeliveryMode().getCode()))
 					.findFirst().ifPresent(entry -> sapCpiOrder.setShippingCondition(entry.getDeliveryValue()));

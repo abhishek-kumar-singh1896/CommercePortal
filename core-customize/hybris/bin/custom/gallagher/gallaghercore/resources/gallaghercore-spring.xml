@@ -408,7 +408,6 @@
 	</bean>
 	
 	<bean id="gallagherB2BProductValidateInterceptor" class="com.gallagher.core.b2b.interceptor.GallagherB2BProductValidateInterceptor">
-		<property name="l10NService" ref="l10nService"/>
 	</bean>
 
 	<bean id="gallagherB2BProductValidateInterceptorMapping"

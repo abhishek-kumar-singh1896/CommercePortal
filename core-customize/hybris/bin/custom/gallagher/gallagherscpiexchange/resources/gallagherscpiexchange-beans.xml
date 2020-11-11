@@ -27,6 +27,7 @@
 	<bean class="de.hybris.platform.sap.sapcpiadapter.data.SapCpiOrder">
 		<property name="requiredDeliveryDate" type="String" />
 		<property name="comment" type="String" />
+		<property name="additionalProductDetails" type="String" />
 	</bean>
 
 

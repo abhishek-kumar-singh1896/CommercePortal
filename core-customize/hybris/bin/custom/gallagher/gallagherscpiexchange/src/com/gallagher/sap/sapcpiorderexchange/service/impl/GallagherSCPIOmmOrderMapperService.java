@@ -54,6 +54,7 @@ public class GallagherSCPIOmmOrderMapperService extends SapCpiOmmOrderMapperServ
 		sapCpiOutboundOrder.setShippingCondition(sapCpiOrder.getShippingCondition());
 		sapCpiOutboundOrder.setRequiredDeliveryDate(sapCpiOrder.getRequiredDeliveryDate());
 		sapCpiOutboundOrder.setComment(sapCpiOrder.getComment());
+		sapCpiOutboundOrder.setAdditionalProductDetails(sapCpiOrder.getAdditionalProductDetails());
 		sapCpiOutboundOrder.setSapCpiConfig(mapOrderConfigInfo(sapCpiOrder.getSapCpiConfig()));
 		sapCpiOutboundOrder.setSapCpiOutboundOrderItems(mapOrderItems(sapCpiOrder.getSapCpiOrderItems()));
 		sapCpiOutboundOrder.setSapCpiOutboundPartnerRoles(mapOrderPartners(sapCpiOrder.getSapCpiPartnerRoles()));
