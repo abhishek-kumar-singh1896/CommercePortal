@@ -142,3 +142,4 @@ UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$in
                            ;                                                               ; Length (Gates)                               ; Length                                            
                            ;                                                               ; Use (Fence)                                  ; Use                                                       
                            ;                                                               ; animalCompatibility                          ; Animal Compatibility                                               
+                           ;                                                               ; Conductor Type		                           ; Conductor Type                                               

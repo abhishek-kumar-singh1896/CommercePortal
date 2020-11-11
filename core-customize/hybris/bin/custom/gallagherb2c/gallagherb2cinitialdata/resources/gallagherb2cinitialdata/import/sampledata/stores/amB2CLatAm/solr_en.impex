@@ -50,5 +50,6 @@ UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$in
                            ;                                                               ; Product Type                                              ; Product Type                                                    
                            ;                                                               ; Compatible with Gallagher Livestock (Lectores)            ; Compatible with Gallagher Livestock                 
                            ;                                                               ; animalCompatibility                                       ; Animal Compatibility                                                     
+                           ;                                                               ; Conductor Type		                                        ; Tipo de conductor                                                     
                            
                            

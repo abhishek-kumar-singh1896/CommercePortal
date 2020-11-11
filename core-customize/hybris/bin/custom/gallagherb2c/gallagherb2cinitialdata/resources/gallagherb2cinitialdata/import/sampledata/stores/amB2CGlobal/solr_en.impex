@@ -56,9 +56,10 @@ UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$in
                            ;                                                               ; Product Weight (Water)                        ; Product Weight                                
                            ;                                                               ; Warranty (Antenna)                            ; Warranty                                  
                            ;                                                               ; animalCompatibility                           ; Animal Compatibility                                        
+                           ;                                                               ; Conductor Type                                ; Conductor Type                                        
                            ;                                                               ; Product Height (Platforms)                    ; Product Height                               
-						   ;                                                               ; Voltage at 2km of fence                       ; Voltage (kV) over 2km 							
-						   ;                                                               ; Voltage at 5km of fence                       ; Voltage (kV) over 5km 							
-						   ;                                                               ; Voltage at 10km of fence                      ; Voltage (kV) over 10km							
-						   ;                                                               ; Voltage at 500m of fence                      ; Voltage (kV) over 500m							
-						   ;                                                               ; Voltage at 1km of fence                       ; Voltage (kV) over 1km 							
+								   ;                                                               ; Voltage at 2km of fence                       ; Voltage (kV) over 2km 							
+								   ;                                                               ; Voltage at 5km of fence                       ; Voltage (kV) over 5km 							
+								   ;                                                               ; Voltage at 10km of fence                      ; Voltage (kV) over 10km							
+								   ;                                                               ; Voltage at 500m of fence                      ; Voltage (kV) over 500m							
+						   		;                                                               ; Voltage at 1km of fence                       ; Voltage (kV) over 1km 							

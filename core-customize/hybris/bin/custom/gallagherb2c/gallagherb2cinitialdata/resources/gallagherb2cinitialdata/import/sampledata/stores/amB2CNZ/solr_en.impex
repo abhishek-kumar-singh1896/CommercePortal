@@ -62,4 +62,5 @@ UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$in
                            ;                                                               ; Compatible with Gallagher Livestock (EID)     ; Compatible with Gallagher Livestock    
                            ;                                                               ; Rechargeable                                  ; Rechargeable                           
                            ;                                                               ; animalCompatibility                           ; Animal Compatibility                                        
+                           ;                                                               ; Conductor Type		                            ; Conductor Type                                        
                            
