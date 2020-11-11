@@ -46,10 +46,10 @@
         <sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
             <c:if test="${not empty siteQuoteEnabled and siteQuoteEnabled eq 'true'}">
                 <div class="col-sm-4 col-md-3 col-md-offset-3 pull-right">
-                    <button class="btn btn-default btn-block btn--continue-shopping js-continue-shopping-button"    data-continue-shopping-url="${fn:escapeXml(createQuoteUrl)}">
+                    <%-- <button class="btn btn-default btn-block btn--continue-shopping js-continue-shopping-button"    data-continue-shopping-url="${fn:escapeXml(createQuoteUrl)}">
                         <spring:theme code="quote.create"/>
-                    </button>
-                </div>
+                    </button> --%>
+                </div> 
             </c:if>
         </sec:authorize>
 
