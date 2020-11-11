@@ -136,6 +136,7 @@ public class CoreSystemSetup extends AbstractSystemSetup
 			importImpexFile(context, "/gallaghercore/import/Sprint3/BaseStoreDeliveryModeAdd.impex");
 			importImpexFile(context, "/gallaghercore/import/Sprint3/SAPP2-151.impex");
 			importImpexFile(context, "/gallaghercore/import/Sprint3/SAPP2-86.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint3/SAPP2-166.impex");
 		}
 		final boolean importAsyncPricing = getBooleanSystemSetupParameter(context, IMPORT_ASYNC_PRICING);
 		if (importAsyncPricing)
@@ -149,7 +150,6 @@ public class CoreSystemSetup extends AbstractSystemSetup
 			importImpexFile(context, "/gallaghercore/import/AsyncPrice/asyncPrice-UK.impex");
 			importImpexFile(context, "/gallaghercore/import/AsyncPrice/asyncPrice-US.impex");
 			importImpexFile(context, "/gallaghercore/import/AsyncPrice/asyncPrice_SCPI_Integration.impex");
-
 		}
 
 	}
