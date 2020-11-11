@@ -2,7 +2,7 @@
     "commerceSuiteVersion": "1905",
     "extensionPacks": [{
 		"name": "hybris-b2ctelco-suite",
-        "version": "2003.2"
+        "version": "2003.0"
 	 }],
 	"useConfig": {
         "properties": [
@@ -36,7 +36,6 @@
 		"b2ctelcostore",
 		"utilitiesstore",
 		"mediastore",
-		"b2ctelcoocc",
 		"b2ctelcoaddon",
 		"b2ctelcooccaddon",
 		"b2ctelcotmfwebservices",
