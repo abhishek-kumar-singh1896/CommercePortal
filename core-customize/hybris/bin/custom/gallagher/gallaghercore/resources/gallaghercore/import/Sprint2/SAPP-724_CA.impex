@@ -202,7 +202,7 @@ UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$so
                            ;                                                               ; Drafting                                     ; Drafting
                            ;                                                               ; Intergrated EID Reader                       ; Intergrated EID Reader
                            ;                                                               ; Compatible with Gallagher Livestock (Scales) ; Compatible with Gallagher Livestock
-                           ;                                                               ; View Pedigree Tree                           ; View Pedigree Tree
+                           ;                                                               ; View Pedigree Tree                           ; Pedigree Tree
                            ;                                                               ; Use (Loadbars)                               ; Use                                                       
                            ;                                                               ; Weighing Capacity (Loadbars)                 ; Weighing Capacity
                            ;                                                               ; Weighing Capacity (Platforms)                ; Weighing Capacity

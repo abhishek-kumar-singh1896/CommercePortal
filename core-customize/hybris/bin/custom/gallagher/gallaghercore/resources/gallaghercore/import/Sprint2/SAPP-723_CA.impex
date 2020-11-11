@@ -94,8 +94,8 @@ INSERT_UPDATE SolrValueRangeSet ; name[unique=true]   ; qualifier ; type   ; sol
                                 ; OhmsPerKmTapesRange ;           ; double ; rangeOhmsPerKmTapes1,rangeOhmsPerKmTapes2 
                                 
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID     ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to      
-                             ; rangeOhmsPerKmTapes1 ; OhmsPerKmTapesRange                  ; 0 - 239         ; 0  ; 239.999 
-                             ; rangeOhmsPerKmTapes2 ; OhmsPerKmTapesRange                  ; 240+          ; 240  ; 8500    
+                             ; rangeOhmsPerKmTapes1 ; OhmsPerKmTapesRange                  ; 0 - 239         ; 0  ; 250.999 
+                             ; rangeOhmsPerKmTapes2 ; OhmsPerKmTapesRange                  ; 240+          ; 251  ; 9999    
                              
 UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]   ; rangeSets(name)     
                            ; $solrIndexedType                         ; Ohms Per Km (Tapes) ; OhmsPerKmTapesRange 
