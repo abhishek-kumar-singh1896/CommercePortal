@@ -68,7 +68,7 @@
             	<div class="shoppingHeading">${product.productSpecificDetailsSubHeading}</div>
             </c:if>
             
-            <c:if test="${not empty product.productSpecificDetailsHeading}">
+            <c:if test="${not empty product.productSpecificDetailsSubHeading}">
             	<textarea name="deliveryInstructionEntry" id="deliveryInstructionEntry" rows="3" cols="30" placeholder="80 character limit" />
             	<div class="help-block textareaErrorbox">
 					<span ><spring:theme code="checkout.instruction.length.invalid" /></span>
