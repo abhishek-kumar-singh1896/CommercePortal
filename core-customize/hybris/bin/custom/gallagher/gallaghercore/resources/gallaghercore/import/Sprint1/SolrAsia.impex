@@ -212,7 +212,7 @@ INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(id
 #                                     ; availableInStores:$solrIndexedType                              ;                     ; MultiSelectOr   ; 10000    ; gallagherPointOfServiceFacetDisplayNameProvider; distanceAttributeSortProvider;                          ;                                 ;                                                                                                   
                                       
                                       
-$lang=en_ASIA                         
+$lang=en_AS                         
                                       
 $indexedType=securityB2BAsiaProductType
                                       
