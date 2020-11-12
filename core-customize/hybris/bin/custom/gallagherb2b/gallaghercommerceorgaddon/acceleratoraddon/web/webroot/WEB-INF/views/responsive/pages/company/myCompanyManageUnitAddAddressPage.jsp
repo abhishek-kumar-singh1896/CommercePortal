@@ -7,6 +7,7 @@
 <%@ taglib prefix="org-common" tagdir="/WEB-INF/tags/addons/gallaghercommerceorgaddon/responsive/common" %>
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="account" tagdir="/WEB-INF/tags/responsive/account"%>
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
@@ -29,70 +30,101 @@
 </c:choose>
 
 <template:page pageTitle="${pageTitle}">
-	<div class="account-section">
-        <div>
-            <org-common:headline url="${cancelUrl}" labelKey="text.company.manage.units.addressForm.${empty addressData.id?'create':'edit'}.title" />
-        </div>
-        <div class="account-section-content">
-            <form:form action="${actionUrl}" method="post" modelAttribute="addressForm">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6">
-                        <formElement:formSelectBox idKey="address.country" labelKey="address.country" path="countryIso"
-                                                   mandatory="true" skipBlank="false" selectCSSClass="form-control"
-                                                   skipBlankMessageKey="address.selectCountry" items="${countryData}"
-                                                   itemValue="isocode" selectedValue="${addressForm.countryIso}"/>
-                    </div>
-                    <div class="col-xs-12 col-sm-6">
-                        <formElement:formSelectBoxDefaultEnabled idKey="address.title" labelKey="address.title" path="titleCode"
-                                                   mandatory="true" skipBlank="false" selectCSSClass="form-control"
-                                                   skipBlankMessageKey="address.title.none" items="${titleData}"
-                                                   selectedValue="${addressForm.titleCode}"/>
-                    </div>
-                    <div class="col-xs-12 col-sm-6">
-                        <formElement:formInputBox idKey="address.firstName" labelKey="address.firstName" path="firstName"
-                                                  inputCSS="text" mandatory="true"/>
-                    </div>
-                    <div class="col-xs-12 col-sm-6">
-                        <formElement:formInputBox idKey="address.surname" labelKey="address.surname" path="lastName"
-                                                  inputCSS="text" mandatory="true"/>
-                    </div>
-                    <div class="col-xs-12 col-sm-6">
-                        <formElement:formInputBox idKey="address.line1" labelKey="address.line1" path="line1"
-                                                  inputCSS="text" mandatory="true"/>
-                    </div>
-                    <div class="col-xs-12 col-sm-6">
-                        <formElement:formInputBox idKey="address.line2" labelKey="address.line2" path="line2"
-                                                  inputCSS="text" mandatory="false"/>
-                    </div>
-                    <div class="col-xs-12 col-sm-6">
-                        <formElement:formInputBox idKey="address.townCity" labelKey="address.townCity" path="townCity"
-                                                  inputCSS="text" mandatory="true"/>
-                    </div>
-                    <div class="col-xs-12 col-sm-6">
-                        <formElement:formInputBox idKey="address.postcode" labelKey="address.postcode" path="postcode"
-                                                  inputCSS="text" mandatory="true"/>
-                    </div>
-
-                    <div class="accountActions-bottom">
-                        <div class="row">
-                            <div class="col-sm-3 col-sm-push-9">
-                                <ycommerce:testId code="unitAddress_saveAddress_button">
-                                    <button type="submit" class="save btn btn-primary btn-block"><spring:theme code="text.company.save.button"/></button>
-                                </ycommerce:testId>
-                            </div>
-                            <div class="col-sm-3 col-sm-push-3">
-                                <ycommerce:testId code="unitAddress_cancelAddress_button">
-                                    <a href="${fn:escapeXml(cancelUrl)}" class="button cancel">
-                                        <button type="button" class="btn btn-default btn-block">
-                                            <spring:theme code="text.company.manage.unit.address.cancelButton"/>
-                                        </button>
-                                    </a>
-                                </ycommerce:testId>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form:form>
-        </div>
+	<div class="account-section content-inner">
+		<div class="row">
+			<div class="col-md-2 col-md-offset-1 left-nav-menu">
+				<account:accountLeftNavigation />
+			</div>
+			<div class="col-sm-12 col-md-8 right-nav-content">
+				<div class="account-section-header">
+				    <div class="row">
+				        <div class="container-lg col-md-6">
+							<org-common:headline url="${cancelUrl}"
+						labelKey="text.company.manage.units.addressForm.${empty addressData.id?'create':'edit'}.title" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+				    <div class="container-lg col-md-12">
+				        <div class="account-section-content">
+				            <div class="account-section-form">
+								<form:form action="${actionUrl}" method="post"
+									modelAttribute="addressForm">
+									<div class="row">
+										<div class="col-xs-12 col-sm-6">
+											<formElement:formSelectBox idKey="address.country"
+												labelKey="address.country" path="countryIso" mandatory="true"
+												skipBlank="false" selectCSSClass="form-control"
+												skipBlankMessageKey="address.selectCountry"
+												items="${countryData}" itemValue="isocode"
+												selectedValue="${addressForm.countryIso}" />
+										</div>
+										<div class="col-xs-12 col-sm-6">
+											<formElement:formSelectBoxDefaultEnabled idKey="address.title"
+												labelKey="address.title" path="titleCode" mandatory="true"
+												skipBlank="false" selectCSSClass="form-control"
+												skipBlankMessageKey="address.title.none" items="${titleData}"
+												selectedValue="${addressForm.titleCode}" />
+										</div>
+										<div class="col-xs-12 col-sm-6">
+											<formElement:formInputBox idKey="address.firstName"
+												labelKey="address.firstName" path="firstName" inputCSS="text"
+												mandatory="true" />
+										</div>
+										<div class="col-xs-12 col-sm-6">
+											<formElement:formInputBox idKey="address.surname"
+												labelKey="address.surname" path="lastName" inputCSS="text"
+												mandatory="true" />
+										</div>
+										<div class="col-xs-12 col-sm-6">
+											<formElement:formInputBox idKey="address.line1"
+												labelKey="address.line1" path="line1" inputCSS="text"
+												mandatory="true" />
+										</div>
+										<div class="col-xs-12 col-sm-6">
+											<formElement:formInputBox idKey="address.line2"
+												labelKey="address.line2" path="line2" inputCSS="text"
+												mandatory="false" />
+										</div>
+										<div class="col-xs-12 col-sm-6">
+											<formElement:formInputBox idKey="address.townCity"
+												labelKey="address.townCity" path="townCity" inputCSS="text"
+												mandatory="true" />
+										</div>
+										<div class="col-xs-12 col-sm-6">
+											<formElement:formInputBox idKey="address.postcode"
+												labelKey="address.postcode" path="postcode" inputCSS="text"
+												mandatory="true" />
+										</div>
+			
+										<div class="accountActions-bottom">
+											<div class="row">
+												<div class="col-sm-3 col-sm-push-9">
+													<ycommerce:testId code="unitAddress_saveAddress_button">
+														<button type="submit" class="save btn btn-primary btn-block">
+															<spring:theme code="text.company.save.button" />
+														</button>
+													</ycommerce:testId>
+												</div>
+												<div class="col-sm-3 col-sm-push-3">
+													<ycommerce:testId code="unitAddress_cancelAddress_button">
+														<a href="${fn:escapeXml(cancelUrl)}" class="button cancel">
+															<button type="button" class="btn btn-default btn-block">
+																<spring:theme
+																	code="text.company.manage.unit.address.cancelButton" />
+															</button>
+														</a>
+													</ycommerce:testId>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form:form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </template:page>

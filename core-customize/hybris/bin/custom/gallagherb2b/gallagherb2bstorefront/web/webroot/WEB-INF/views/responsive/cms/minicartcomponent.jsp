@@ -29,15 +29,23 @@
 		</svg>
 		<ycommerce:testId code="miniCart_items_label">
 			<div class="js-mini-cart-count">
+			<c:if test="${totalItems eq 0}">
+			<c:set var = "zeroCartItems" value="0"/>
+			</c:if>
 				<span class="info-number">
+				${zeroCartItems}
+				<c:if test="${totalItems gt 0}">
 					<span class="info-text">
 						${totalItems lt 100 ? totalItems : "99+"}
-<%-- 						&nbsp;<spring:theme code="basket.items"/> --%>
+						<%-- &nbsp;<spring:theme code="basket.items"/>  --%>
 					</span>
+					</c:if>
 				</span>
 			</div>
 		</ycommerce:testId>
 </span>
 	</a>
+	
+        
 <!-- </div> -->
 <div class="mini-cart-container js-mini-cart-container"></div>

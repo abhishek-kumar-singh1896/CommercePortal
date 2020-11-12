@@ -27,6 +27,7 @@ public class CoreSystemSetup extends AbstractSystemSetup
 	public static final String IMPORT_ACCESS_RIGHTS = "accessRights";
 	public static final String IMPORT_SPRINT_2_IMPEX = "importSprint2Impex";
 	public static final String IMPORT_ESSENTIAL_DATA_SCPI = "importEssentialDataSCPIImpex";
+	public static final String IMPORT_SPRINT_1_IMPEX = "importSprint1Impex";
 
 	/**
 	 * This method will be called by system creator during initialization and system update. Be sure that this method can
@@ -59,6 +60,7 @@ public class CoreSystemSetup extends AbstractSystemSetup
 		params.add(createBooleanSystemSetupParameter(IMPORT_ACCESS_RIGHTS, "Import Users & Groups", true));
 		params.add(createBooleanSystemSetupParameter(IMPORT_SPRINT_2_IMPEX, "Import Phase 2 - Sprint 2 Impexes", true));
 		params.add(createBooleanSystemSetupParameter(IMPORT_ESSENTIAL_DATA_SCPI, "Essential data SCPI", true));
+		params.add(createBooleanSystemSetupParameter(IMPORT_SPRINT_1_IMPEX, "Import Phase 2 - Sprint 1 Impexes", true));
 
 		return params;
 	}
@@ -122,6 +124,12 @@ public class CoreSystemSetup extends AbstractSystemSetup
 			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-724_US.impex");
 		}
 
+		final boolean importSprint1Impex = getBooleanSystemSetupParameter(context, IMPORT_SPRINT_1_IMPEX);
+
+		if (importSprint1Impex)
+		{
+			importImpexFile(context, "/gallaghercore/import/Sprint1/SAPP2-15.impex");
+		}
 	}
 
 	protected void processCockpit(final SystemSetupContext context, final boolean importAccessRights,

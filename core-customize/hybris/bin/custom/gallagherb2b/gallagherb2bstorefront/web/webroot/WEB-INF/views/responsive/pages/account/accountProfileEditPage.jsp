@@ -6,7 +6,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="formElement" tagdir="/WEB-INF/tags/responsive/formElement" %>
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags" %>
-
+<c:url var="homeUrl" value="/"></c:url>
+                          
 <div class="account-section-header">
     <div class="row">
         <div class="container-lg col-md-6">
@@ -20,11 +21,11 @@
             <div class="account-section-form">
                 <form:form action="update-profile" method="post" modelAttribute="updateProfileForm">
 
-                    <formElement:formSelectBox idKey="profile.title" labelKey="profile.title" path="titleCode" mandatory="true" skipBlank="false" skipBlankMessageKey="form.select.empty" items="${titleData}" selectCSSClass="form-control" disabled="true"/>
-                    <formElement:formInputBox idKey="profile.firstName" labelKey="profile.firstName" path="firstName" inputCSS="text" mandatory="true" disabled="true"/>
-                    <formElement:formInputBox idKey="profile.lastName" labelKey="profile.lastName" path="lastName" inputCSS="text" mandatory="true" disabled="true"/>
+                    <formElement:formSelectBox idKey="profile.title" labelKey="profile.title" path="titleCode" mandatory="true" skipBlank="false" skipBlankMessageKey="form.select.empty" items="${titleData}" selectCSSClass="form-control"/>
+                    <formElement:formInputBox idKey="profile.firstName" labelKey="profile.firstName" path="firstName" inputCSS="text" mandatory="true"/>
+                    <formElement:formInputBox idKey="profile.lastName" labelKey="profile.lastName" path="lastName" inputCSS="text" mandatory="true"/>
 
-                    <%-- <div class="row">
+                    <div class="row">
                         <div class="col-sm-6 col-sm-push-6">
                             <div class="accountActions">
                                 <ycommerce:testId code="personalDetails_savePersonalDetails_button">
@@ -37,13 +38,14 @@
                         <div class="col-sm-6 col-sm-pull-6">
                             <div class="accountActions">
                                 <ycommerce:testId code="personalDetails_cancelPersonalDetails_button">
-                                    <button type="button" class="btn btn-default btn-block backToHome">
+                                    <button type="button" class="btn btn-default btn-block backToHome" onclick="window.location.href='${homeUrl}'">
                                         <spring:theme code="text.account.profile.cancel" text="Cancel"/>
                                     </button>
+          
                                 </ycommerce:testId>
                             </div>
                         </div>
-                    </div> --%>
+                    </div>
                 </form:form>
             </div>
         </div>

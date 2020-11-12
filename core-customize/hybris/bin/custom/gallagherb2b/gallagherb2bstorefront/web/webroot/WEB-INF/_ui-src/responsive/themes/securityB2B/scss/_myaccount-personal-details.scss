@@ -1,0 +1,326 @@
+.content-inner{
+    img{
+        width:auto;
+    }
+    padding:4rem 0;
+    .account-section-content{
+        .container-lg{
+            margin: 0!important;
+        }
+        .account-section-form{
+            padding: 0;
+            margin: 20px 0;
+            .account-cards{
+            &.card-select{
+                border:none;
+            }
+                .card{
+                    border: 1px solid $gray-10;
+                }
+        }
+        }
+      
+        
+        .account-section-header{
+           padding: 0 2rem 1.5rem;
+            &.account-section-header-secondary{
+                padding-top: 1.5rem;
+            }
+            &.back-link{
+                .glyphicon{
+                    font-size: 1.4rem;
+                margin-right: 1rem;
+                }
+            }
+            .save__cart--link, .new__cart--link, .cart__quotes--link{
+                margin-top: 0;
+            }
+        }
+        .nav-content{
+            padding-left: 1rem;
+        }
+        .pagination-bar{
+            &.top{
+                margin: 0;
+                .pagination-toolbar{
+                    padding-top: 0;
+                }
+            }
+        }
+        .accountActions-link{
+            padding-top: 0;
+        }
+        .checkout-steps {
+            form{
+                padding:0;
+            }
+        }
+        &.quick-order-container{
+            .quick-order-table-header{
+                background-color: $white;
+            border-top: 1px solid $primary-color;
+            border-bottom: 1px solid $primary-color;
+            color: $black;
+                .thead{
+                    .th{
+                        color: $black;
+                    }
+                }
+            }
+        }
+	.back-link{
+		padding: 0 2rem 1.5rem;
+	}
+    }
+}
+.nav-menu{
+    list-style: none;
+    padding: 2.3rem 0 0;
+    margin: 0;
+    li{
+		&.active{
+			a{
+	            font-weight: 700;
+	            color: $black;
+			}
+        }
+        a, .menu-title{
+            font-size: $font-size-16px;
+            font-weight: 500;
+            text-transform: inherit;
+            line-height: 1.42857;
+            padding: 5px 20px;
+            display: block;
+        }
+        
+        .menu-title{
+            font-weight: 700;
+            color: $primary-color;
+            padding: 0 2rem .5rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid $primary-color;
+            &.mt-1{
+                margin-top: 1rem;
+            }
+             &.mt-2{
+                margin-top: 2rem;
+            }
+             &.mt-3{
+                margin-top: 3rem;
+            }
+             &.mt-4{
+                margin-top: 4rem;
+            }
+             &.mt-5{
+                margin-top: 5rem;
+            }
+        }
+    }
+}
+
+.sub-heading{
+    font-size: $font-size-24px;
+    font-weight: 700;
+    padding:0 2rem 2rem;
+    border-bottom: 1px solid $gray-10;
+}
+.glyphicon{
+    &[class*="glyphicon"]{
+    color: $gray-5!important;
+        &:hover{
+            color: $dropdown-bg-color!important;
+        }
+    }
+}
+.btn{
+    &.btn-create-quote{
+        background: $white;
+        color: $primary-color;
+        border-color: $primary-color;
+    }
+}
+
+/*.left-nav{
+    margin: 4rem 0;
+    .account-section-content {
+        .account-section-header {
+            padding: 0 2rem 1.5rem;
+        }
+        .back-link {
+            padding: 0 2rem 1.5rem;
+        }
+    }
+}*/
+
+/* Order Details Page styles over-riding default theme */
+.well{
+    &.well-quinary {
+        .well-headline{
+            background: $gray-11;
+            color: $black;
+            border-color: $black;
+        }
+    }
+    &.well-tertiary{
+        color: $black;
+        .item-label, .item-value{
+            color: $black;
+        }
+    }
+    .well-headline{
+            border-color: $black;
+        }
+}
+.item__list {
+    .item__list--header{
+        li{
+            background-color: $white;
+            border-top: 1px solid $primary-color;
+            border-bottom: 1px solid $primary-color;
+            color: $black;
+        }
+    }
+}
+.item__list{
+    .item__name{
+        color: $primary-color;
+        &:hover{
+            color: $black;
+        }
+    }
+}
+
+
+/* My Quotes details page */
+.save__cart--link, .new__cart--link, .cart__quotes--link{
+    font-size: initial;
+    
+}
+.cart__quote__edit {
+    .quote__head{
+         background-color: $white;
+            border-top: 1px solid $primary-color;
+            border-bottom: 1px solid $primary-color;
+            color: $black;
+        .quote__head--label{
+            color: $black;
+        }
+    }
+}
+.import-cart{
+    margin-top: 4rem;
+    font-weight: 700;
+    display: inline-block;
+}
+
+/* Pagination over-riding styles */
+.pagination {
+    > li {
+        > a, > span{
+            color: $primary-color;
+        }
+        >a:hover, >span:hover, >a:focus, >span:focus{
+            color: $gray-9;
+        }
+        
+        &[class^="pagination"]{
+            > a, > span{
+                background-color: $white;
+            }
+            >a:hover, >span:hover, >a:focus, >span:focus{
+            color: $white!important;
+            background-color: $dropdown-bg-color;
+        }
+        }
+        &.disabled{
+            > a, > span, >a:hover, >span:hover, >a:focus, >span:focus{
+               color: $gray-12!important;
+                background: $white;
+            }
+        }
+    }
+}
+
+.content-inner .account-section-header {
+    padding: 0 2rem 1.5rem;
+}
+
+.content-inner{  
+&.account-section {
+            
+            .acc-technician{
+        
+              .account-section-header{
+            padding: 0 0rem .3rem 0rem;
+            }
+        
+         .account-header-done-btn {
+     margin-top: 0px;
+    padding-right: 1px;
+}
+.icon-center
+{
+a{
+    position: relative;
+    top: 2px;
+}
+
+}        }
+            
+           }
+}
+
+
+@media (min-width: 1024px) {
+  .item__list .item__info {
+    width: 25%;
+  }
+}
+
+@media only screen and (max-width: 1199px){
+.left-nav-menu {
+    display: none;
+    }
+.right-nav-content{
+  width:100%;
+}
+}
+
+/* Over -riding prev styles as per needs */
+.account-section {
+    .container-lg {
+        .account-section-content{
+            padding-left:20px;
+            padding-right: 20px;
+            @media screen and (min-width: 1400px){
+                .account-section-form{
+                    padding: 0
+                }
+            }
+        }
+    }
+}
+
+.content-inner .account-section-header .container-lg {
+    margin: 0 !important;
+}
+.right-nav-content{
+    >.accordion{
+        padding-left:20px;
+            padding-right: 20px;
+            @media screen and (min-width: 1400px){
+                padding-left:10px;
+            padding-right: 10px;
+            }
+    }
+}
+
+
+
+/* Actual site already has icons folder */
+/*@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('/font-icons/glyphicons-halflings-regular.eot');
+  src: url('/font-icons/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/font-icons/glyphicons-halflings-regular.woff2') format('woff2'), url('/font-icons/glyphicons-halflings-regular.woff') format('woff'), url('/font-icons/glyphicons-halflings-regular.ttf') format('truetype'), url('/font-icons/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+*/
