@@ -23,10 +23,10 @@
 
 
    
-
+<c:if test="${not empty deliveryAddresses}">
 <input type="checkbox" id="myCheck" onclick="checkBoxFunction()"/>
 <spring:theme code="checkout.address.comments.label"/>
- 
+ </c:if>
 <script>
 function checkBoxFunction() {
   var checkBox = document.getElementById("myCheck");
@@ -43,7 +43,9 @@ function checkBoxFunction() {
 		<form:hidden path="addressId" class="add_edit_delivery_address_id"
 			status="${not empty suggestedAddresses ? 'hasSuggestedAddresses' : ''}" />
 		<input type="hidden" name="bill_state" id="address.billstate" />
+		<c:if test="${not empty deliveryAddresses}">
  		<div id="text" style="display:none">
+ 		</c:if>
  	<div id="countrySelector" data-address-code="${fn:escapeXml(addressData.id)}"
 			data-country-iso-code="${fn:escapeXml(addressData.country.isocode)}"
 			class="form-group">
@@ -116,7 +118,9 @@ function checkBoxFunction() {
 				</c:when>
 			</c:choose>
 		</div>
+				<c:if test="${not empty deliveryAddresses}">
 		</div>
+		</c:if>
  	</form:form>
 </c:if>
  

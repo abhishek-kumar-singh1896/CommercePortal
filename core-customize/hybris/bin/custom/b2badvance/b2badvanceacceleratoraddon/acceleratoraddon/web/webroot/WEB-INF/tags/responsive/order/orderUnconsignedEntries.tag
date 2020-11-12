@@ -23,8 +23,12 @@
         <div class="row">
             <div class="col-md-4 order-shipping-method">
                 <div class="label-order"><spring:theme code="text.shippingMethod" /></div>
-                <div class="value-order">${orderData.deliveryMode.name}<br>${orderData.deliveryMode.description}</div>
-            </div>
+                <div class="value-order">${orderData.deliveryMode.name}
+                <c:if test="${orderData.deliveryMode.name ne orderData.deliveryMode.description}">
+                <br>
+                ${orderData.deliveryMode.description}
+                </c:if>
+                </div>            </div>
         </div>
     </div>
      <%-- <div class="well-content col-md-4 order-shipping-method">
