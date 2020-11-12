@@ -35,12 +35,15 @@ public class HomePageController extends AbstractPageController
 	private static final String ACCOUNT_NOT_CREATED = "account.not.created";
 	private static final String ACCOUNT_CONFIRMATION_SIGNOUT_TITLE = "account.confirmation.signout.title";
 	private static final String ACCOUNT_CONFIRMATION_CLOSE_TITLE = "account.confirmation.close.title";
+	private static final String ACCOUNT_DISABLED = "account.login.disable";
+
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String home(@RequestParam(value = WebConstants.CLOSE_ACCOUNT, defaultValue = "false")
 	final boolean closeAcc, @RequestParam(value = LOGOUT, defaultValue = "false")
 	final boolean logout, @RequestParam(value = "error", defaultValue = "false")
-	final boolean error, final Model model, final RedirectAttributes redirectModel) throws CMSItemNotFoundException
+	final boolean error, @RequestParam(value = "disable", defaultValue = "false")
+	final boolean disable, final Model model, final RedirectAttributes redirectModel) throws CMSItemNotFoundException
 	{
 		if (logout)
 		{
@@ -60,9 +63,15 @@ public class HomePageController extends AbstractPageController
 			return REDIRECT_PREFIX + ROOT;
 		}
 
-		if (error)
+	 	if (error)
 		{
 			GlobalMessages.addFlashMessage(redirectModel, GlobalMessages.ERROR_MESSAGES_HOLDER, ACCOUNT_NOT_CREATED);
+			return REDIRECT_PREFIX + ROOT;
+		}
+	 	
+		if (disable)
+		{
+			GlobalMessages.addFlashMessage(redirectModel, GlobalMessages.ERROR_MESSAGES_HOLDER, ACCOUNT_DISABLED);
 			return REDIRECT_PREFIX + ROOT;
 		}
 

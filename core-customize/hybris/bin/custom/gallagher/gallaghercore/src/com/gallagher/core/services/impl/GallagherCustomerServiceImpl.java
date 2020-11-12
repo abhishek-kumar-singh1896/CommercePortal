@@ -28,6 +28,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.util.Assert;
 
 import com.gallagher.c4c.outboundservices.facade.GallagherC4COutboundServiceFacade;
@@ -106,8 +107,10 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 		}
 		else
 		{
-
 			final CustomerModel retrieveUser = retrieveUserBySubjectId.get(0);
+
+			Boolean loginValue = null;
+			loginValue = retrieveUser.isLoginDisabled();
 
 			if (SiteChannel.B2B.equals(channel))
 			{
@@ -116,12 +119,18 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 					LOGGER.error("B2C Customer is not allowed to login in B2B website");
 					throw new BadCredentialsException("B2C Customer is not allowed to login in B2B website");
 				}
+				/* check if user is disabled or not */
+				else if (loginValue != null && loginValue == true)
+				{
+					LOGGER.error("B2B Customer is Disabled");
+					throw new DisabledException("B2B Customer is Disabled");
+				}
 				else
 				{
-
 					updateCustomerFromC4C(retrieveUser);
 				}
 			}
+
 			else
 			{
 				/* Update name and email only if updated to avoid sending data to SCPI */
@@ -212,6 +221,12 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 				customer.setUid(c4cCustomer.getEmail());
 				updated = true;
 			}
+			if (StringUtils.isNotEmpty(c4cCustomer.getStatusCode()) && c4cCustomer.getStatusCode().equalsIgnoreCase("4")
+					&& !customer.isLoginDisabled())
+			{
+				customer.setLoginDisabled(true);
+				updated = true;
+			}
 			if (updated)
 			{
 				modelService.save(customer);
@@ -220,6 +235,10 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 				customerData.setKeycloakGUID(customer.getKeycloakGUID());
 				customerData.setFirstName(c4cCustomer.getFirstName());
 				customerData.setLastName(c4cCustomer.getLastName());
+				customerData.setLoginDisabled(customer.isLoginDisabled());
+				/*
+				 * if(customer.getBackOfficeLoginDisabled() == true) { customerData.setBackofficeLoginValue(c4c.get) }
+				 */
 				keycloakService.updateKeyCloakUserProfile(customerData);
 			}
 		}

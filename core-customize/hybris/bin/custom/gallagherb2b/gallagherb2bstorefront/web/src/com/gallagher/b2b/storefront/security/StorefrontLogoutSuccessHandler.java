@@ -160,17 +160,31 @@ public class StorefrontLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandle
 	@Override
 	protected String determineTargetUrl(final HttpServletRequest request, final HttpServletResponse response)
 	{
+		final String disableLogout = request.getParameter("disabled");
+		String redirectURI;
+
 		final String ssoLogout = request.getParameter("sso");
 		String targetUrl;
 
 		final CMSSiteModel site = getCMSSiteFromRequest(request);
-		if (Boolean.valueOf(ssoLogout) && null != site)
+		 if ((Boolean.valueOf(ssoLogout) && null != site) || Boolean.valueOf(disableLogout))
 		{
-			String redirectURI = getSiteBaseUrlResolutionService().getWebsiteUrlForSite(site, true,
+			if (Boolean.valueOf(disableLogout))
+			{
+				redirectURI = getSiteBaseUrlResolutionService().getWebsiteUrlForSite(site, true,
+						StringUtils.isEmpty(getUrlEncoderService().getUrlEncodingPattern())
+								? "/" + site.getRegionCode() + "/" + site.getDefaultLanguage().getIsocode()
+								: null,
+						"disable=true");
+			}
+			else
+			{
+				redirectURI = getSiteBaseUrlResolutionService().getWebsiteUrlForSite(site, true,
 					StringUtils.isEmpty(getUrlEncoderService().getUrlEncodingPattern())
 							? "/" + site.getRegionCode() + "/" + site.getDefaultLanguage().getIsocode()
 							: null,
 					"error=true");
+			}
 
 			try
 			{
