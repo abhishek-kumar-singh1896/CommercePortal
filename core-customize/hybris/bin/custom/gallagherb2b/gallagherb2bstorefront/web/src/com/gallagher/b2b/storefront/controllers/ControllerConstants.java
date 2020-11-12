@@ -224,6 +224,11 @@ public interface ControllerConstants
 			{
 				String B2BUnitsPopup = "fragments/b2bunits/b2bUnitsOverlay";
 			}
+
+			interface DeliveryComments // NOSONAR
+			{
+				String DeliveryInstructionPopup = "fragments/deliveryComments/deliveryCommentsPopup"; // NOSONAR
+			}
 		}
 	}
 }

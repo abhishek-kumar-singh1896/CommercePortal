@@ -19,6 +19,12 @@ public class PaymentTypeForm
 	private String paymentType;
 	private String costCenterId;
 	private String purchaseOrderNumber;
+	private String b2bUnit;
+	private String requiredDeliveryDate;
+	private String deliveryInstructions;
+	private boolean indicator;
+
+
 
 	@NotNull(message = "{general.required}")
 	@Size(min = 1, max = 255, message = "{general.required}")
@@ -42,6 +48,7 @@ public class PaymentTypeForm
 		this.costCenterId = costCenterId;
 	}
 
+	@NotNull(message = "{general.required}")
 	public String getPurchaseOrderNumber()
 	{
 		return purchaseOrderNumber;
@@ -50,5 +57,50 @@ public class PaymentTypeForm
 	public void setPurchaseOrderNumber(final String purchaseOrderNumber)
 	{
 		this.purchaseOrderNumber = purchaseOrderNumber;
+	}
+
+
+	public String getB2bUnit()
+	{
+		return b2bUnit;
+	}
+
+	public void setB2bUnit(final String b2bUnit)
+	{
+		this.b2bUnit = b2bUnit;
+	}
+
+	public String getDeliveryInstructions()
+	{
+		return deliveryInstructions;
+	}
+
+	/**
+	 * @param deliveryInstructions
+	 *           the deliveryInstructions to set
+	 */
+	public void setDeliveryInstructions(final String deliveryInstructions)
+	{
+		this.deliveryInstructions = deliveryInstructions;
+	}
+
+	public void setRequiredDeliveryDate(final String requiredDeliveryDate)
+	{
+		this.requiredDeliveryDate = requiredDeliveryDate;
+	}
+
+	public String getRequiredDeliveryDate()
+	{
+		return requiredDeliveryDate;
+	}
+
+	public boolean isIndicator()
+	{
+		return indicator;
+	}
+
+	public void setIndicator(final boolean indicator)
+	{
+		this.indicator = indicator;
 	}
 }

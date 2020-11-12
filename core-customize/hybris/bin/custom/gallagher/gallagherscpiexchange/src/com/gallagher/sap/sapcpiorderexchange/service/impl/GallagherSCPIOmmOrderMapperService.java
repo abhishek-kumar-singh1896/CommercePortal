@@ -1,10 +1,13 @@
 package com.gallagher.sap.sapcpiorderexchange.service.impl;
 
+import de.hybris.platform.core.model.order.OrderModel;
 import de.hybris.platform.sap.sapcpiadapter.data.SapCpiCreditCardPayment;
+import de.hybris.platform.sap.sapcpiadapter.data.SapCpiOrder;
 import de.hybris.platform.sap.sapcpiadapter.data.SapCpiOrderAddress;
 import de.hybris.platform.sap.sapcpiadapter.data.SapCpiOrderPriceComponent;
 import de.hybris.platform.sap.sapcpiadapter.model.SAPCpiOutboundAddressModel;
 import de.hybris.platform.sap.sapcpiadapter.model.SAPCpiOutboundCardPaymentModel;
+import de.hybris.platform.sap.sapcpiadapter.model.SAPCpiOutboundOrderModel;
 import de.hybris.platform.sap.sapcpiadapter.model.SAPCpiOutboundPriceComponentModel;
 import de.hybris.platform.sap.sapcpiorderexchange.service.impl.SapCpiOmmOrderMapperService;
 
@@ -21,6 +24,45 @@ import java.util.Set;
  */
 public class GallagherSCPIOmmOrderMapperService extends SapCpiOmmOrderMapperService
 {
+
+	@Override
+	public void map(final OrderModel orderModel, final SAPCpiOutboundOrderModel sapCpiOutboundOrderModel)
+	{
+
+		mapSapCpiOrderToSAPCpiOrderOutbound(getSapCpiOrderConversionService().convertOrderToSapCpiOrder(orderModel),
+				sapCpiOutboundOrderModel);
+
+	}
+
+	@Override
+	protected void mapSapCpiOrderToSAPCpiOrderOutbound(final SapCpiOrder sapCpiOrder,
+			final SAPCpiOutboundOrderModel sapCpiOutboundOrder)
+	{
+
+		sapCpiOutboundOrder.setOrderId(sapCpiOrder.getOrderId());
+		sapCpiOutboundOrder.setBaseStoreUid(sapCpiOrder.getBaseStoreUid());
+		sapCpiOutboundOrder.setCreationDate(sapCpiOrder.getCreationDate());
+		sapCpiOutboundOrder.setCurrencyIsoCode(sapCpiOrder.getCurrencyIsoCode());
+		sapCpiOutboundOrder.setPaymentMode(sapCpiOrder.getPaymentMode());
+		sapCpiOutboundOrder.setDeliveryMode(sapCpiOrder.getDeliveryMode());
+		sapCpiOutboundOrder.setChannel(sapCpiOrder.getChannel());
+		sapCpiOutboundOrder.setPurchaseOrderNumber(sapCpiOrder.getPurchaseOrderNumber());
+		sapCpiOutboundOrder.setTransactionType(sapCpiOrder.getTransactionType());
+		sapCpiOutboundOrder.setSalesOrganization(sapCpiOrder.getSalesOrganization());
+		sapCpiOutboundOrder.setDistributionChannel(sapCpiOrder.getDistributionChannel());
+		sapCpiOutboundOrder.setDivision(sapCpiOrder.getDivision());
+		sapCpiOutboundOrder.setShippingCondition(sapCpiOrder.getShippingCondition());
+		sapCpiOutboundOrder.setRequiredDeliveryDate(sapCpiOrder.getRequiredDeliveryDate());
+		sapCpiOutboundOrder.setComment(sapCpiOrder.getComment());
+		sapCpiOutboundOrder.setAdditionalProductDetails(sapCpiOrder.getAdditionalProductDetails());
+		sapCpiOutboundOrder.setSapCpiConfig(mapOrderConfigInfo(sapCpiOrder.getSapCpiConfig()));
+		sapCpiOutboundOrder.setSapCpiOutboundOrderItems(mapOrderItems(sapCpiOrder.getSapCpiOrderItems()));
+		sapCpiOutboundOrder.setSapCpiOutboundPartnerRoles(mapOrderPartners(sapCpiOrder.getSapCpiPartnerRoles()));
+		sapCpiOutboundOrder.setSapCpiOutboundAddresses(mapOrderAddresses(sapCpiOrder.getSapCpiOrderAddresses()));
+		sapCpiOutboundOrder.setSapCpiOutboundPriceComponents(mapOrderPrices(sapCpiOrder.getSapCpiOrderPriceComponents()));
+		sapCpiOutboundOrder.setSapCpiOutboundCardPayments(mapCreditCards(sapCpiOrder.getSapCpiCreditCardPayments()));
+
+	}
 
 	/**
 	 * {@inheritDoc}

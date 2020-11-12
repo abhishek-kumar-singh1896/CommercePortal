@@ -20,6 +20,11 @@ ACC.b2bUnitsPopup = {
 					},
 				});
 				}
+			
+				$('#datePurchased').datepicker({
+	                dateFormat: 'dd/mm/yy',
+	                autoclose: true
+				});
 	    	});
 	    
 	    $(document).on("click", ".b2bunit-submit", function(e) {

@@ -12,15 +12,18 @@ import de.hybris.platform.core.model.order.AbstractOrderEntryModel;
 import de.hybris.platform.jalo.JaloSession;
 import de.hybris.platform.product.UnitService;
 import de.hybris.platform.servicelayer.i18n.CommonI18NService;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 
 /**
  *
  *
  */
-public class B2badvanceOrderEntryPopulator extends OrderEntryPopulator {
+public class B2badvanceOrderEntryPopulator extends OrderEntryPopulator
+{
 	@Autowired
 	private UnitService unitService;
 
@@ -31,16 +34,31 @@ public class B2badvanceOrderEntryPopulator extends OrderEntryPopulator {
 	private CommonI18NService commonI18NService;
 
 	@Override
-	protected void addTotals(final AbstractOrderEntryModel orderEntry, final OrderEntryData entry) {
+	public void populate(final AbstractOrderEntryModel source, final OrderEntryData target)
+	{
+		super.populate(source, target);
+		target.setDeliveryinstruction(source.getDeliveryInstruction());
+		target.setProductSpecificDetailsHeading(source.getProductSpecificDetailsHeading());
+		target.setProductSpecificDetailsSubHeading(source.getProductSpecificDetailsSubHeading());
+		target.setDeliveredQuantity(source.getDeliveredQuantity());
+		target.setStatus(source.getStatus());
+	}
+
+	@Override
+	protected void addTotals(final AbstractOrderEntryModel orderEntry, final OrderEntryData entry)
+	{
 		if (orderEntry != null && orderEntry.getTotalPrice() != null && orderEntry.getQuantity() != null
-				&& orderEntry.getBasePrice() != null && orderEntry.getQuantity() != 0) {
+				&& orderEntry.getBasePrice() != null && orderEntry.getQuantity() != 0)
+		{
 			entry.setSellingPrice(buildPrice(orderEntry.getTotalPrice() / orderEntry.getQuantity()));
 		}
 		super.addTotals(orderEntry, entry);
 	}
 
-	protected PriceData buildPrice(final double amount) {
-		return priceDataFactory.create(PriceDataType.BUY, BigDecimal.valueOf(amount), commonI18NService
-				.getCurrency(JaloSession.getCurrentSession().getSessionContext().getCurrency().getIsocode()));
+	protected PriceData buildPrice(final double amount)
+	{
+		return priceDataFactory.create(PriceDataType.BUY, BigDecimal.valueOf(amount),
+				commonI18NService.getCurrency(JaloSession.getCurrentSession().getSessionContext().getCurrency().getIsocode()));
 	}
+
 }

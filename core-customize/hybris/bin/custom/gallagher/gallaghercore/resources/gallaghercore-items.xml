@@ -40,6 +40,12 @@
 			<value code="ALTERNATIVE_PRODUCTS"/>
   		</enumtype>
 		
+		<enumtype code="OrderEntryItemStatus" autocreate="true" generate="true">
+			<value code="OPEN" />
+			<value code="COMPLETED" />
+			<value code="IN_PROCESS" />
+		</enumtype>
+		
 	</enumtypes>
 
 	<maptypes>
@@ -172,7 +178,6 @@
 				<attribute autocreate="true" generate="true" qualifier="promoSticker" type="Sticker">
 					<modifiers optional="true" />
 					<persistence type="property" />
-					<description>Indicates status of product</description>
 				</attribute>
 				<attribute autocreate="true" generate="true" qualifier="animalCompatibility" type="Animals">
 					<modifiers optional="true" />
@@ -322,6 +327,16 @@
 					<modifiers optional="true" />
 					<persistence type="property" />
 					<description>Attribute for product POA</description>
+				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="productSpecificDetailsHeading" type="localized:java.lang.String">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<description>Attribute for product specific details Heading</description>
+				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="productSpecificDetailsSubHeading" type="localized:java.lang.String">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<description>Attribute for product specific details sub Heading</description>
 				</attribute>
 			</attributes>
 
@@ -672,7 +687,7 @@
              </attributes>
          </itemtype>
 		</typegroup>
-
+		
 		<typegroup name="jobs">
 			<itemtype code="GallagherCatalogVersionSyncJob" autocreate="true" generate="true" extends="CatalogVersionSyncJob"
 				jaloclass="com.gallagher.core.jalo.synchronization.GallagherCatalogVersionSyncJob">
@@ -742,6 +757,39 @@
 					<attribute qualifier="taxTransactionDocId" type="java.lang.String">
 						<persistence type="property" />
 					</attribute>
+					<attribute qualifier="deliveryInstruction" type="java.lang.String">
+						<persistence type="property" />
+						<modifiers optional="true" />
+					</attribute>
+					<attribute autocreate="true" generate="true" qualifier="productSpecificDetailsHeading" type="localized:java.lang.String">
+						<modifiers optional="true" />
+						<persistence type="property" />
+						<description>Attribute for product specific details Heading</description>
+					</attribute>
+					<attribute autocreate="true" generate="true" qualifier="productSpecificDetailsSubHeading" type="localized:java.lang.String">
+						<modifiers optional="true" />
+						<persistence type="property" />
+						<description>Attribute for product specific details sub Heading</description>
+					</attribute>
+				</attributes>
+			</itemtype>
+			<itemtype code="AbstractOrderEntry" autocreate="false" generate="false">
+				<description>Extends existing type with additional attributes.</description>
+				<attributes>
+					<attribute qualifier="deliveryInstruction" type="java.lang.String">
+						<persistence type="property" />
+						<modifiers optional="true" />
+					</attribute>
+					<attribute autocreate="true" generate="true" qualifier="productSpecificDetailsHeading" type="localized:java.lang.String">
+						<modifiers optional="true" />
+						<persistence type="property" />
+						<description>Attribute for product specific details Heading</description>
+					</attribute>
+					<attribute autocreate="true" generate="true" qualifier="productSpecificDetailsSubHeading" type="localized:java.lang.String">
+						<modifiers optional="true" />
+						<persistence type="property" />
+						<description>Attribute for product specific details sub Heading</description>
+					</attribute>
 				</attributes>
 			</itemtype>
 		</typegroup>
@@ -803,8 +851,64 @@
 							</columntype>
 						</persistence>
 					</attribute>
+					<attribute autocreate="true" qualifier="commentsQuestion" type="localized:java.lang.String">
+                    <modifiers read="true" write="true" search="true" optional="true" />
+                    <persistence type="property">
+                        <columntype database="oracle">
+                            <value>CLOB</value>
+                        </columntype>
+                        <columntype database="sap">
+                            <value>NCLOB</value>
+                        </columntype>
+                        <columntype>
+                            <value>HYBRIS.LONG_STRING</value>
+                        </columntype>
+                    </persistence>
+                	</attribute>
 	            </attributes>
 	        </itemtype>
         </typegroup>
+        
+		<typegroup name="order">
+		    <itemtype code="AbstractOrderEntry" autocreate="false"
+					generate="false">
+					<attributes>
+						<attribute qualifier="b2bUnit" type="B2BUnit">
+							<modifiers read="true" write="true" search="true" />
+							<persistence type="property" />
+						</attribute>
+						<attribute qualifier="status" type="OrderEntryItemStatus">
+							<modifiers read="true" write="true" search="true" />
+							<persistence type="property" />
+						</attribute>
+						<attribute qualifier="deliveredQuantity" type="java.lang.Long">
+							<modifiers read="true" write="true" search="true" />
+							<persistence type="property" />
+						</attribute>
+					</attributes>
+				</itemtype>
+		
+		    <itemtype code="AbstractOrder" autocreate="false"
+					generate="false">
+					<attributes>
+						<attribute qualifier="requiredDeliveryDate" type="java.lang.String">
+							<modifiers read="true" write="true" search="true" />
+							<persistence type="property" />
+						</attribute>
+					</attributes>
+				</itemtype>
+		</typegroup>
+	<typegroup name="Email">
+		<itemtype code="OrderProcess" autocreate="false" generate="false">
+    <attributes>
+	<attribute type="Order" qualifier="orderEntry" >				 
+            <description>Contains the Entries During Checkout</description>
+	    <persistence type="property" />
+        </attribute>
+    </attributes>
+     </itemtype>
+</typegroup>
+		
+		
 	</itemtypes>
 </items>

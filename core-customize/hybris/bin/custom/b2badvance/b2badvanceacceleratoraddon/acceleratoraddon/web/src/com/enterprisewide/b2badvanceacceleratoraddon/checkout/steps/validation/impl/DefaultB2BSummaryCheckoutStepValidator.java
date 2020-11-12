@@ -12,12 +12,13 @@ package com.enterprisewide.b2badvanceacceleratoraddon.checkout.steps.validation.
 
 import de.hybris.platform.acceleratorstorefrontcommons.checkout.steps.validation.ValidationResults;
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.util.GlobalMessages;
-import com.enterprisewide.b2badvanceacceleratoraddon.checkout.steps.validation.AbstractB2BCheckoutStepValidator;
 import de.hybris.platform.b2bacceleratorfacades.order.data.B2BPaymentTypeData;
 import de.hybris.platform.b2bacceleratorservices.enums.CheckoutPaymentType;
 import de.hybris.platform.commercefacades.order.data.CartData;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.enterprisewide.b2badvanceacceleratoraddon.checkout.steps.validation.AbstractB2BCheckoutStepValidator;
 
 
 public class DefaultB2BSummaryCheckoutStepValidator extends AbstractB2BCheckoutStepValidator
@@ -34,9 +35,17 @@ public class DefaultB2BSummaryCheckoutStepValidator extends AbstractB2BCheckoutS
 					"checkout.multi.paymentType.notprovided");
 			return ValidationResults.REDIRECT_TO_PAYMENT_TYPE;
 		}
+		if (CheckoutPaymentType.ACCOUNT.getCode().equals(checkoutPaymentType.getCode())
+				&& checkoutCart.getPurchaseOrderNumber() == null)
+		{
+			GlobalMessages.addFlashMessage(redirectAttributes, GlobalMessages.INFO_MESSAGES_HOLDER,
+					"checkout.multi.purchaseorder.notprovided");
+			return ValidationResults.REDIRECT_TO_PAYMENT_TYPE;
+		}
+
 
 		if (CheckoutPaymentType.ACCOUNT.getCode().equals(checkoutPaymentType.getCode())
-				&& checkoutCart.getCostCenter() == null)
+				&& checkoutCart.getB2bUnit() == null)
 		{
 			GlobalMessages.addFlashMessage(redirectAttributes, GlobalMessages.INFO_MESSAGES_HOLDER,
 					"checkout.multi.costCenter.notprovided");

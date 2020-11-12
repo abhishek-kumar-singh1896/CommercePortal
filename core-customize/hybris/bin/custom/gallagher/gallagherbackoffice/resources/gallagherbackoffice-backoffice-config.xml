@@ -220,6 +220,8 @@
             </editorArea:tab>
         </editorArea:editorArea>
     </context>
+    
+    
 
 	<context merge-by="type" parent="GenericItem" type="Product" component="editor-area" module="pcmbackoffice"
 		principal="backofficeproductmanagergroup,backofficeproductadministratorgroup">
@@ -304,6 +306,17 @@
             <editorArea:tab name="hmc.gallagher" position="3">
                 <editorArea:section name="hmc.section.gallagher">
                     <editorArea:attribute qualifier="taxTransactionDocId" />
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+    
+    <context merge-by="type" type="AbstractOrderEntry" component="editor-area">
+        <editorArea:editorArea name="">
+            <editorArea:tab name="hmc.gallagher" position="3">
+                <editorArea:section name="hmc.section.gallagher">
+                    <editorArea:attribute qualifier="status" />
+                    <editorArea:attribute qualifier="deliveredQuantity" />
                 </editorArea:section>
             </editorArea:tab>
         </editorArea:editorArea>

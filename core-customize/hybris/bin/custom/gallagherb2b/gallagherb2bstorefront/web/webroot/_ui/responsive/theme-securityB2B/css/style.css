@@ -1086,7 +1086,7 @@ textarea {
   line-height: inherit;
 }
 a {
-  color: #0068b3;
+  /* color: #0068b3; */
   text-decoration: none;
 }
 a:hover,
@@ -3030,7 +3030,7 @@ select[multiple].input-lg {
 .btn:hover,
 .btn:focus,
 .btn.focus {
-  color: #ffffff;
+  /* color: #ffffff; */
   text-decoration: none;
 }
 .btn:active,
@@ -10729,6 +10729,7 @@ fieldset[disabled] .btn-primary.active {
 .add-to-cart .add-to-cart-item .thumb {
   float: left;
   margin-right: 10px;
+  width: 35%;
 }
 .add-to-cart .add-to-cart-item .thumb img {
   max-width: 65px;
@@ -10743,7 +10744,7 @@ fieldset[disabled] .btn-primary.active {
 }
 .add-to-cart .add-to-cart-item .price {
   font-size: 22px;
-  text-align: right;
+  /* text-align: center; */
   font-weight: bold;
 }
 .owl-carousel {
@@ -15462,7 +15463,7 @@ fieldset#startDate .form-group .control-label {
   position: relative;
 }
 #cboxLoadedContent {
-  overflow: auto;
+  overflow: hidden !important;
   -webkit-overflow-scrolling: touch;
 }
 #cboxTitle {
@@ -15536,10 +15537,10 @@ fieldset#startDate .form-group .control-label {
   width: 14px;
 }
 #cboxMiddleLeft {
-  width: 14px;
+  /* width: 14px; */
 }
 #cboxMiddleRight {
-  width: 14px;
+  /* width: 14px; */
 }
 #cboxContent {
   background: #fff;
@@ -17104,8 +17105,44 @@ fieldset > div:last-of-type label {
   margin-bottom: 20px;
 }
 textarea {
-  min-height: 245px;
+  /* min-height: 245px; */
+  width: 100%;
+  margin-bottom: 15px;
 }
+
+.cart-product-comment {
+	display: flex;
+	align-items: center;
+}
+
+.cart-product-comment a:hover {
+	color:#ff8400;
+}
+
+.delivery-instructions-popup {
+	/* display: flex; */
+	/* padding-left: 0; */
+	padding: 0 0 0 4px;
+}
+
+.textareaErrorbox, .textareaCharactersErrorbox
+{	
+	display: none;
+   color: #c53131;
+	font-weight: 600;
+   font-size: 14px !important;
+   text-align: left !important;
+   margin-bottom: 0px !important;
+}
+
+.delivery-instructions-popup:hover {
+	color: #ff8400;
+ }
+
+.shoppingHeading {
+    font-weight: bold;
+}
+
 textarea + .help-block {
   font-size: 12px;
   margin-bottom: 25px;

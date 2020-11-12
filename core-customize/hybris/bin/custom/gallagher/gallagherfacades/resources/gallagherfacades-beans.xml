@@ -36,27 +36,27 @@
 		<property name="mime" type="java.lang.String" />
 		<property name="size" type="java.lang.String" />
 	</bean>
-	
+
 	<bean class="de.hybris.platform.commercefacades.product.data.PDPSimulatorData">
-		<property name="simulatorDescription" type="java.lang.String"/>
-		<property name="simulatorURL" type="java.lang.String"/>
+		<property name="simulatorDescription" type="java.lang.String" />
+		<property name="simulatorURL" type="java.lang.String" />
 	</bean>
-	
+
 	<bean class="de.hybris.platform.commercefacades.product.data.ProductVideoData">
-		<property name="description" type="java.lang.String"/>
-		<property name="url" type="java.lang.String"/>
-		<property name="id" type="java.lang.String"/>
+		<property name="description" type="java.lang.String" />
+		<property name="url" type="java.lang.String" />
+		<property name="id" type="java.lang.String" />
 	</bean>
-	
+
 	<bean class="de.hybris.platform.commercefacades.product.data.ProductData">
-		<property name="promoSticker" type="String"/>
-		<property name="videoDescription" type="String"/>
-		<property name="simulator" type="de.hybris.platform.commercefacades.product.data.PDPSimulatorData"/>
-		<property name="imageDescription" type="String"/>
-		<property name="videos" type="java.util.List&lt;de.hybris.platform.commercefacades.product.data.ProductVideoData&gt;"/>
-		<property name="logo" type="java.util.Collection&lt;de.hybris.platform.commercefacades.product.data.ImageData>"/>
-		<property name="dataSheet" type="java.util.Collection&lt;de.hybris.platform.commercefacades.product.data.ImageData>"/>
-		<property name="others" type="java.util.Collection&lt;de.hybris.platform.commercefacades.product.data.ImageData>"/>
+		<property name="promoSticker" type="String" />
+		<property name="videoDescription" type="String" />
+		<property name="simulator" type="de.hybris.platform.commercefacades.product.data.PDPSimulatorData" />
+		<property name="imageDescription" type="String" />
+		<property name="videos" type="java.util.List&lt;de.hybris.platform.commercefacades.product.data.ProductVideoData&gt;" />
+		<property name="logo" type="java.util.Collection&lt;de.hybris.platform.commercefacades.product.data.ImageData>" />
+		<property name="dataSheet" type="java.util.Collection&lt;de.hybris.platform.commercefacades.product.data.ImageData>" />
+		<property name="others" type="java.util.Collection&lt;de.hybris.platform.commercefacades.product.data.ImageData>" />
 		<property name="animalCompatibility" type="java.util.List&lt;String&gt;" />
 		<property name="sparePartsReferenceHeading" type="String" />
 		<property name="sparePartsReferenceSubHeading" type="String" />
@@ -65,6 +65,8 @@
 		<property name="plpProductDescription" type="String" />
 		<property name="categoryPaths" type="java.util.List&lt;String&gt;" />
 		<property name="modifiedTime" type="java.util.Date" />
+		<property name="productSpecificDetailsHeading" type="String" />
+		<property name="productSpecificDetailsSubHeading" type="String" />
 <!-- 		<property name="marketingDescription" type="String"/> -->
 	</bean>
 
@@ -85,7 +87,13 @@
     <bean class="de.hybris.platform.b2bcommercefacades.company.data.B2BUnitData" extends="de.hybris.platform.commercefacades.user.data.CompanyData">
         <property name="technicians" type="java.util.List&lt;de.hybris.platform.commercefacades.user.data.CustomerData>"/>
         <property name="transactional" type="boolean"/>
+        <property name="code" type="String" />
     </bean>
+    
+    <!-- <bean class="de.hybris.platform.b2bcommercefacades.company.data.B2BUnitData"
+		extends="de.hybris.platform.commercefacades.user.data.CompanyData">
+		<property name="code" type="String" />
+	</bean> -->
     
     <bean class="de.hybris.platform.commercefacades.order.data.OrderData">
 		<property name="formattedOrderDate" type="String"/>
@@ -94,8 +102,65 @@
 	 <bean class="de.hybris.platform.commercefacades.order.data.OrderHistoryData">
 		<property name="formattedOrderDate" type="String"/>
 	</bean>
-	
+	<!-- <bean class="de.hybris.platform.b2bcommercefacades.company.data.B2BUnitData"
+		extends="de.hybris.platform.commercefacades.user.data.CompanyData">
+		<property name="technicians" type="java.util.List&lt;de.hybris.platform.commercefacades.user.data.CustomerData>" />
+	</bean> -->
+
+	<!-- <bean class="de.hybris.platform.commercefacades.order.data.OrderData">
+		<property name="formattedOrderDate" type="String" />
+	</bean> -->
+
+	<!-- <bean class="de.hybris.platform.commercefacades.order.data.OrderHistoryData">
+		<property name="formattedOrderDate" type="String" />
+	</bean> -->
+
 	<bean class="de.hybris.platform.commercefacades.product.data.ReviewData">
-		<property name="formattedReviewDate" type="String"/>
+		<property name="formattedReviewDate" type="String" />
+	</bean>
+
+
+	<bean class="de.hybris.platform.commercefacades.order.data.CartData"
+		extends="de.hybris.platform.commercefacades.order.data.AbstractOrderData">
+
+		<property name="b2bUnit" type="de.hybris.platform.b2bcommercefacades.company.data.B2BUnitData" />
+
+	</bean>
+
+
+	<bean class="de.hybris.platform.commercefacades.order.data.OrderData"
+		extends="de.hybris.platform.commercefacades.order.data.AbstractOrderData">
+		<property name="b2bUnit" type="de.hybris.platform.b2bcommercefacades.company.data.B2BUnitData" />
+		<property name="requiredDeliveryDate" type="String" />
+	</bean>
+	
+	<bean class="de.hybris.platform.commercefacades.order.data.OrderEntryData">
+		<property name="deliveredQuantity" type="Long" />
+		<property name="status" type="com.gallagher.core.enums.OrderEntryItemStatus" />
+	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.order.data.CartData">
+		<property name="requiredDeliveryDate" type="String" />
+	</bean>
+	
+	<bean class="de.hybris.platform.commercefacades.order.data.DeliveryInstructionData">
+		<property name="deliveryinstruction" type="String" />
+		<property name="entryNumber" type="Integer" />
+		<property name="productSpecificDetailsHeading" type="String" />
+		<property name="productSpecificDetailsSubHeading" type="String" />
+	</bean>
+	
+	<bean class="de.hybris.platform.commercefacades.order.data.OrderEntryData">
+		<property name="deliveryinstruction" type="String" />
+		<property name="productSpecificDetailsHeading" type="String" />
+		<property name="productSpecificDetailsSubHeading" type="String" />
+	</bean>
+	
+	<bean class="de.hybris.platform.commercefacades.order.data.AbstractOrderData">
+		<property name="deliveryInstruction" type="String" />
+	</bean>
+	
+	<bean class="de.hybris.platform.commercefacades.product.data.CategoryData">
+		<property name="commentsQuestion" type="String" />
 	</bean>
 </beans>

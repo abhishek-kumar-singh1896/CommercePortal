@@ -22,17 +22,17 @@
 					<div class="checkout-shipping">
 						<multi-checkout:shipmentItems cartData="${cartData}" showDeliveryAddress="true" />
 						<div class="checkout-indent">
-							<div class="headline"><spring:theme code="checkout.summary.deliveryMode.selectDeliveryMethodForOrder" text="Shipping Method"></spring:theme></div>
+							<%-- <div class="headline"><spring:theme code="checkout.summary.deliveryMode.selectDeliveryMethodForOrder" text="Shipping Method"></spring:theme></div> --%>
 							<form:form id="selectDeliveryMethodForm" action="${request.contextPath}/checkout/multi/delivery-method/select" modelAttribute="deliveryMethod">
-								<div class="form-group">
+								<%-- <div class="form-group">
 									<multi-checkout:deliveryMethodSelector deliveryMethods="${deliveryMethods}" selectedDeliveryMethodId="${cartData.deliveryMode.code}"/>
-								</div>
-								<p><spring:theme code="checkout.multi.deliveryMethod.message" text="Items will ship as soon as they are available. <br> See Order Summary for more information." /></p>
-								 <div class="deliveryInstructions">
+								</div> --%>
+								<p><spring:theme code="checkout.multi.deliveryMethod.message" text="Items will ship as soon as they are available. <br> See Order Summary for more information. <br><b> *No taxes or freight costs are included in the total"></b></spring:theme></p>
+								 <%-- <div class="deliveryInstructions">
                                   	<label>Delivery Instructions:</label>
                                  	 <textarea name="deliveryInstructions" id="deliveryInstructions">${cartData.deliveryInstructions}
                                                        </textarea>
-                          		</div>
+                          		</div> --%>
 								<button id="deliveryMethodSubmit" type="submit" class="btn btn-primary btn-block checkout-next"><spring:theme code="checkout.multi.deliveryMethod.continue" text="Next"/></button>
 							</form:form>
 						</div>
