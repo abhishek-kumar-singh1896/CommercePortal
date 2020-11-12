@@ -25,6 +25,7 @@ import com.gallagher.core.constants.GallagherCoreConstants;
 public class CoreSystemSetup extends AbstractSystemSetup
 {
 	public static final String IMPORT_ACCESS_RIGHTS = "accessRights";
+	public static final String IMPORT_SPRINT_1_IMPEX = "importSprint1Impex";
 
 	/**
 	 * This method will be called by system creator during initialization and system update. Be sure that this method can
@@ -55,6 +56,7 @@ public class CoreSystemSetup extends AbstractSystemSetup
 		final List<SystemSetupParameter> params = new ArrayList<>();
 
 		params.add(createBooleanSystemSetupParameter(IMPORT_ACCESS_RIGHTS, "Import Users & Groups", true));
+		params.add(createBooleanSystemSetupParameter(IMPORT_SPRINT_1_IMPEX, "Import Phase 2 - Sprint 1 Impexes", true));
 
 		return params;
 	}
@@ -87,6 +89,21 @@ public class CoreSystemSetup extends AbstractSystemSetup
 
 		importImpexFile(context, "/gallaghercore/import/common/essential-data-scpi.impex");
 
+		final boolean importSprint1Impex = getBooleanSystemSetupParameter(context, IMPORT_SPRINT_1_IMPEX);
+
+		if (importSprint1Impex)
+		{
+			importImpexFile(context, "/gallaghercore/import/Sprint1/Countries.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint1/Store.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint1/Sites.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint1/email_content.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint1/ProductCatalog.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint1/SolrAsia.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint1/SolrCA.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint1/SolrSTHAM.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint1/SolrUK.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint1/SolrUS.impex");
+		}
 	}
 
 	protected void processCockpit(final SystemSetupContext context, final boolean importAccessRights,
