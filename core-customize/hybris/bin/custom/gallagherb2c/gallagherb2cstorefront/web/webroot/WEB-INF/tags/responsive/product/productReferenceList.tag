@@ -29,7 +29,7 @@
 				<div class="col-md-12 pr-xs-0">
 				
 					<div class="product-status">
-						<c:if test = "${not empty referenceProduct.promoSticker}">
+						<c:if test = "${not empty referenceProduct.promoSticker and fn:containsIgnoreCase(product.promoSticker, 'NEW')}">
 							<img
 								src="${commonResourcePath}/images/${fn:toLowerCase(referenceProduct.promoSticker)}.svg" />
 							</c:if>

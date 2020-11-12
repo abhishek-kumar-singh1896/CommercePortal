@@ -7,6 +7,7 @@ import de.hybris.platform.catalog.CatalogVersionService;
 import de.hybris.platform.catalog.enums.ArticleApprovalStatus;
 import de.hybris.platform.catalog.model.CatalogVersionModel;
 import de.hybris.platform.catalog.model.ProductFeatureModel;
+import de.hybris.platform.catalog.model.ProductReferenceModel;
 import de.hybris.platform.category.CategoryService;
 import de.hybris.platform.category.model.CategoryModel;
 import de.hybris.platform.core.model.c2l.LanguageModel;
@@ -257,13 +258,13 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 									+ " is not saved due to variant categories are not proper.");
 							continue;
 						}
-
+						existingVariantProduct.setPartNumber(product.getPartNumber());
 						populateVariantData(product, existingVariantProduct);
 
 						populateImages(product, existingVariantProduct, regionalCatalogVersion);
 
-						modelService.save(existingVariantProduct);
 						approveBaseProduct(existingVariantProduct);
+						modelService.save(existingVariantProduct);
 					}
 					catch (final UnknownIdentifierException exception)
 					{
@@ -295,7 +296,7 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 									+ " is not saved due to variant categories are not proper.");
 							continue;
 						}
-
+						newVariantProduct.setPartNumber(product.getPartNumber());
 						newVariantProduct.setBaseProduct(baseProduct);
 						approveBaseProduct(newVariantProduct);
 
@@ -304,6 +305,7 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 						populateImages(product, newVariantProduct, regionalCatalogVersion);
 
 						modelService.save(newVariantProduct);
+
 					}
 
 				}
@@ -312,6 +314,139 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 			{
 				success = false;
 				LOGGER.error("There is some problem while transforming Product [" + product.getCode() + "]" + ex);
+			}
+		}
+
+		// Populate product references for variant product
+		for (final ProductModel product : products)
+		{
+			if (CollectionUtils.isNotEmpty(product.getProductReferences()))
+			{
+				success = populateVariantProductReference(product, catalogId, lastStartTime);
+			}
+		}
+		return success;
+	}
+
+	private boolean populateVariantProductReference(final ProductModel product, final String catalogId, final Date lastStartTime)
+	{
+		boolean success = true;
+		try
+		{
+			final String variantProductCode = product.getCode();
+			final String baseProductCode = product.getBaseProductCode();
+
+			final List<BaseStoreModel> baseStores = new ArrayList<>();
+			baseStores.addAll(product.getBaseStores());
+
+			if (product.isEligibleForLatAm() && catalogId.contains("B2C"))
+			{
+				baseStores.add(baseStoreService.getBaseStoreForUid("amB2CLatAm"));
+			}
+
+			final Map<BaseStoreModel, CatalogVersionModel> storeCatalogMap = processVariantProductForCode(variantProductCode,
+					baseProductCode, baseStores, catalogId);
+
+			for (final BaseStoreModel baseStore : baseStores)
+			{
+				final CatalogVersionModel regionalCatalogVersion = storeCatalogMap.get(baseStore);
+
+				final ProductModel baseProduct = productService.getProductForCode(regionalCatalogVersion, baseProductCode);
+
+				LOGGER.info("Processing " + variantProductCode + " with base store " + baseStore.getName()
+						+ " For Populating Product References");
+
+				try
+				{
+					final ProductModel existingProduct = productService.getProductForCode(regionalCatalogVersion, variantProductCode);
+
+					LOGGER.info("Variant Product with code " + variantProductCode + " and CatalogVersion "
+							+ regionalCatalogVersion.getCatalog().getId() + " found, Updating Product References.");
+
+					final GenericVariantProductModel existingVariantProduct = (GenericVariantProductModel) existingProduct;
+
+					if (CollectionUtils.isNotEmpty(product.getProductReferences()))
+					{
+						populateBaseProductRefenceData(product, existingVariantProduct, regionalCatalogVersion, catalogId,
+								lastStartTime);
+						modelService.save(existingVariantProduct);
+					}
+				}
+				catch (final UnknownIdentifierException exception)
+				{
+					LOGGER.info("Variant Product with code " + variantProductCode + " and CatalogVersion "
+							+ regionalCatalogVersion.getCatalog().getId() + " not found, While Populating the Product References");
+				}
+			}
+		}
+		catch (final Exception ex)
+		{
+			success = false;
+			LOGGER.error(
+					"There is some problem while Populating Product References for variant Product [" + product.getCode() + "]" + ex);
+		}
+		return success;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean syncProductReferenceForBaseProduct(final String catalogId, final Date lastStartTime)
+	{
+		final CatalogVersionModel catalogVersion = catalogVersionService.getCatalogVersion(catalogId, STAGED);
+
+		final List<ProductModel> products = gallagherProductProcessingDao.getBaseProductsForSync(catalogVersion, lastStartTime);
+		boolean success = true;
+		for (final ProductModel product : products)
+		{
+			// checking if there is some change related to product reference
+			final ProductModel syncProduct = gallagherProductProcessingDao.getBaseProductForProductReferenceSync(catalogVersion,
+					lastStartTime, product);
+			if (null != syncProduct)
+			{
+				try
+				{
+					final String baseProductCode = product.getCode();
+					final List<BaseStoreModel> baseStores = new ArrayList<>();
+					baseStores.addAll(product.getBaseStores());
+
+					if (product.isEligibleForLatAm() && catalogId.contains("B2C"))
+					{
+						baseStores.add(baseStoreService.getBaseStoreForUid("amB2CLatAm"));
+					}
+
+					final Map<BaseStoreModel, CatalogVersionModel> storeCatalogMap = processVariantProductForCode(baseProductCode,
+							baseProductCode, baseStores, catalogId);
+
+					for (final BaseStoreModel baseStore : baseStores)
+					{
+						final CatalogVersionModel regionalCatalogVersion = storeCatalogMap.get(baseStore);
+
+						final ProductModel baseProduct = productService.getProductForCode(regionalCatalogVersion, baseProductCode);
+
+						LOGGER.info("Processing " + baseProduct + " with base store " + baseStore.getName()
+								+ " for populating product references in base product");
+
+						try
+						{
+							populateBaseProductRefenceData(product, baseProduct, regionalCatalogVersion, catalogId, lastStartTime);
+
+							modelService.save(baseProduct);
+						}
+						catch (final UnknownIdentifierException exception)
+						{
+							LOGGER.info("Base Product with code " + baseProductCode + " and CatalogVersion "
+									+ regionalCatalogVersion.getCatalog().getId() + " not found");
+						}
+					}
+				}
+				catch (final Exception ex)
+				{
+					success = false;
+					LOGGER.error(
+							"There is some problem while populating prduct reference in base Product [" + product.getCode() + "]" + ex);
+				}
 			}
 		}
 		return success;
@@ -387,6 +522,60 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 			modelService.saveAll(newProductFeatures);
 		}
 
+	}
+
+	/**
+	 * Populate the Product References from Master Product or Master Variant Product to Regional Product or Regional
+	 * Variant Product
+	 *
+	 * @param product
+	 * @param regionalProduct
+	 *           or regionalVariantProduct
+	 * @param regionalCatalogVersion
+	 * @param catalogId
+	 * @param lastStartTime
+	 */
+
+	private void populateBaseProductRefenceData(final ProductModel product, final ProductModel regionalProduct,
+			final CatalogVersionModel regionalCatalogVersion, final String catalogId, final Date lastStartTime)
+	{
+		final Collection<ProductReferenceModel> productReferences = product.getProductReferences();
+		final Collection<ProductReferenceModel> newProductReferences = new ArrayList<ProductReferenceModel>();
+		final Collection<ProductReferenceModel> oldProductReferences = regionalProduct.getProductReferences();
+		if (CollectionUtils.isNotEmpty(oldProductReferences))
+		{
+			modelService.removeAll(oldProductReferences);
+		}
+		if (CollectionUtils.isNotEmpty(productReferences))
+		{
+			for (final ProductReferenceModel referenceModel : productReferences)
+			{
+				ProductModel refProduct = null;
+				try
+				{
+					refProduct = productService.getProductForCode(regionalCatalogVersion, referenceModel.getTarget().getCode());
+				}
+				catch (final UnknownIdentifierException exception)
+				{
+					LOGGER.info("Base Product with code " + referenceModel.getTarget().getCode() + " and CatalogVersion "
+							+ regionalCatalogVersion.getCatalog().getId() + " not found");
+				}
+				if (null != refProduct)
+				{
+					final ProductReferenceModel newProductReference = modelService.clone(referenceModel);
+					newProductReference.setActive(referenceModel.getActive());
+					newProductReference.setSource(regionalProduct);
+					newProductReference.setDescription(referenceModel.getDescription());
+					newProductReference.setPreselected(referenceModel.getPreselected());
+					newProductReference.setQuantity(referenceModel.getQuantity());
+					newProductReference.setReferenceType(referenceModel.getReferenceType());
+					newProductReference.setTarget(refProduct);
+					newProductReferences.add(newProductReference);
+				}
+			}
+			modelService.saveAll(newProductReferences);
+			regionalProduct.setProductReferences(newProductReferences);
+		}
 	}
 
 	/**

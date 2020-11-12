@@ -296,4 +296,8 @@
 		<property name="remove" ref="groupOrderEntryPopulator"/>
 	</bean>
 	
+	<alias name="gallagherCartFacade" alias="gglCartFacade" />
+	<bean id="gallagherCartFacade" class="com.gallagher.facades.order.impl.GallagherCartFacade"
+		parent="cartFacade" />
+	
 </beans>

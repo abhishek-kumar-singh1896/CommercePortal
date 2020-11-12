@@ -159,6 +159,10 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 		newCustomer.setIsUserExist(false);
 
 		//check if customer exist in the C4C
+
+		System.out.println(newCustomer.getUid());
+		System.out.println(newCustomer.getKeycloakGUID());
+
 		final List<GallagherInboundCustomerEntry> existingCustomers = gallagherC4COutboundServiceFacade
 				.getCustomerInfoFromC4C(token.getEmail(), token.getSubjectId());
 

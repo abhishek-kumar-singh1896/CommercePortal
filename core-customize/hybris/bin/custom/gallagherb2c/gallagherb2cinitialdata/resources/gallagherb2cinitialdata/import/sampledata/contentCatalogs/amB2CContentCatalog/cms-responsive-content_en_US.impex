@@ -27,6 +27,9 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];title[l
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];title[lang=$lang];&nodeRef
 ;WWMNode_Nav;;"Automatic watering";WWMNode_Nav
 
+INSERT_UPDATE ProductAddToCartComponent ; $contentCV[unique=true] ; uid[unique=true] ; outOfStockMessage[lang=$lang]             
+                                        ;                         ; AddToCart        ; <b>TESTT TESTTT</b> 
+                                        
 UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
                        ;;AboutSAPCommerceLink;"About SAP Commerce Cloud"
                        ;;AgileCommerceBlogLink;"Agile Commerce Blog"
@@ -52,3 +55,4 @@ UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$
                        ;;NewsEventsFooterLink;"News & Events"
                        ;;InnovationAwardsFooterLink;"Innovation & Awards"
                        ;;WeighinEid_link;"Scale Heads and Data Collectors"
+                       ;;WeighinEid_link2;"Loadbars and Accessories"

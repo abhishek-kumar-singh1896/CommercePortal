@@ -6,8 +6,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <div class="banner-out"
-	style="background: url(${media.url}) left top no-repeat; background-size: cover;">
-	<div class="orange-shade"></div>
+	style="background: url(${url == '' ? media.url:url }) left top no-repeat; background-size: cover;">
+	<div class="orange-shade" style="background-color: rgba(255, 132, 0, 0.80);"></div>
 	<div class="container">
 		<div class="banner-inner">
 			<div class="breadcrumb-out">

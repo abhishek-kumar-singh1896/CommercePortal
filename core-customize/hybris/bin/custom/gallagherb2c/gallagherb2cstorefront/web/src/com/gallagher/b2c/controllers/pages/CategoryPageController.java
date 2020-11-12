@@ -24,6 +24,7 @@ import de.hybris.platform.commerceservices.category.CommerceCategoryService;
 import de.hybris.platform.commerceservices.search.facetdata.FacetRefinement;
 import de.hybris.platform.commerceservices.search.facetdata.ProductCategorySearchPageData;
 import de.hybris.platform.commerceservices.url.UrlResolver;
+import de.hybris.platform.core.model.media.MediaModel;
 import de.hybris.platform.servicelayer.dto.converter.ConversionException;
 
 import java.io.UnsupportedEncodingException;
@@ -33,6 +34,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,6 +54,7 @@ public class CategoryPageController extends AbstractCategoryPageController
 
 
 	public static final String PRODUCT_CUSTOM_PAGE = "category/searchListSimple";
+	public static final String CMS_PAGE_TITLE = "pageTitle";
 
 	@Resource(name = "cmsPageService")
 	private CMSPageService cmsPageService;
@@ -85,7 +88,32 @@ public class CategoryPageController extends AbstractCategoryPageController
 			final String sortCode, final Model model, final HttpServletRequest request, final HttpServletResponse response)
 			throws UnsupportedEncodingException
 	{
-		return performSearchAndGetResultsPage(categoryCode, searchQuery, page, showMode, sortCode, model, request, response);
+		final CategoryModel category = getCommerceCategoryService().getCategoryForCode(categoryCode);
+		final String redirection = checkRequestUrl(request, response, getCategoryModelUrlResolver().resolve(category));
+		if (StringUtils.isNotEmpty(redirection))
+		{
+			return redirection;
+		}
+		final MediaModel media = category.getPicture();
+
+		model.addAttribute("url", "");
+		if (null != media && media.getMime().startsWith("image"))
+		{
+			model.addAttribute("url", category.getPicture().getURL());
+			final String mime = media.getMime();
+		}
+
+		final String resultPage = performSearchAndGetResultsPage(categoryCode, searchQuery, page, showMode, sortCode, model,
+				request, response);
+		if (null != category.getPageTitleField())
+		{
+			model.addAttribute(CMS_PAGE_TITLE, category.getPageTitleField());
+		}
+		else
+		{
+			updatePageTitle(category, model);
+		}
+		return resultPage;
 	}
 
 	@ResponseBody

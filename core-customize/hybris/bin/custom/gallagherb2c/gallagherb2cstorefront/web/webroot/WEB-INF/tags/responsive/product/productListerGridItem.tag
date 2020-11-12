@@ -28,7 +28,7 @@
 			<div class="col-4 col-md-12 pr-xs-0">
 			
 				<div class="product-status">
-				<c:if test = "${not empty product.promoSticker}">
+				<c:if test = "${not empty product.promoSticker and fn:containsIgnoreCase(product.promoSticker, 'new')}">
 					<img
 						src="${commonResourcePath}/images/${fn:escapeXml(product.promoSticker)}.svg" />
 					<%-- 	<spring:theme code="text.productStatus.new" /> --%>

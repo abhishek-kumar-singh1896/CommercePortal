@@ -62,13 +62,27 @@
                                          <cms:pageSlot position="AddToCart" var="component" element="div" class="page-details-variants-select">
 											<cms:component component="${component}" element="div" class="yComponentWrapper page-details-add-to-cart-component"/>
 										</cms:pageSlot>
+											<c:if test="${product.stock.stockLevelStatus.code eq 'outOfStock'}">
+							 <c:forEach items="${product.productReferences}" var="reference">
+					    <c:if test="${reference.referenceType eq 'ALTERNATIVE_PRODUCTS'}">
+					    <c:if test="${reference.target.stock.stockLevelStatus.code eq 'inStock' || reference.target.stock.stockLevelStatus.code eq 'lowStock'}">
+					    <c:set var="flag" value="true"/>
+					    </c:if>
+					    </c:if>
+					    </c:forEach>
+					   </c:if>
+					       
                                     </div>
                                 </div>
+                           <c:if test="${flag eq true}">
+						   <a class="view-alternative-products" href="#" data-product-code = "${product.code}">View Alternative Products</a>
+						    </c:if>     
                             </div>
                         </div>
                         <cms:pageSlot position="VariantSelector" var="component" element="div" class="page-details-variants-select">
 							<cms:component component="${component}" element="div" class="yComponentWrapper page-details-variants-select-component"/>
 						</cms:pageSlot>
+
                     </div>
                 </div>
                 <div class="col-md-6 order-first order-md-last">

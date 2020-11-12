@@ -135,6 +135,7 @@ public interface ControllerConstants
 			{
 				String MiscRobotsPage = "pages/misc/miscRobotsPage"; // NOSONAR
 				String MiscSiteMapPage = "pages/misc/miscSiteMapPage"; // NOSONAR
+				String NoIndexRobotsPage = "pages/misc/noIndexRobotsPage";// NOSONAR
 			}
 
 			interface Guest // NOSONAR
@@ -208,6 +209,11 @@ public interface ControllerConstants
 			interface RegisterProduct
 			{
 				String RegisterProductPopup = "fragments/registerProduct/registerProductPopup";
+			}
+
+			interface ViewAlternativeProducts
+			{
+				String ViewAlternativeProductPopup = "fragments/alternativeProduct/alternativeProductPopup";
 			}
 		}
 	}
