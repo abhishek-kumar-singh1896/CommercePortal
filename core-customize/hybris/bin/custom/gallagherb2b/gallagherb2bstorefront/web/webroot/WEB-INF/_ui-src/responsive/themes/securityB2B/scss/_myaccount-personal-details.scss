@@ -1,90 +1,109 @@
-.content-inner{
-    img{
-        width:auto;
+.content-inner {
+    img {
+        width: auto;
     }
+
     padding:4rem 0;
-    .account-section-content{
-        .container-lg{
-            margin: 0!important;
+
+    .account-section-content {
+        .container-lg {
+            margin: 0 !important;
         }
-        .account-section-form{
+
+        .account-section-form {
             padding: 0;
             margin: 20px 0;
-            .account-cards{
-            &.card-select{
-                border:none;
-            }
-                .card{
+
+            .account-cards {
+                &.card-select {
+                    border: none;
+                }
+
+                .card {
                     border: 1px solid $gray-10;
                 }
+            }
         }
-        }
-      
-        
-        .account-section-header{
-           padding: 0 2rem 1.5rem;
-            &.account-section-header-secondary{
+
+        .account-section-header {
+            padding: 0 2rem 1.5rem;
+
+            &.account-section-header-secondary {
                 padding-top: 1.5rem;
             }
-            &.back-link{
-                .glyphicon{
+
+            &.back-link {
+                .glyphicon {
                     font-size: 1.4rem;
-                margin-right: 1rem;
+                    margin-right: 1rem;
                 }
             }
-            .save__cart--link, .new__cart--link, .cart__quotes--link{
+
+            .save__cart--link,
+            .new__cart--link,
+            .cart__quotes--link {
                 margin-top: 0;
             }
         }
-        .nav-content{
+
+        .nav-content {
             padding-left: 1rem;
         }
-        .pagination-bar{
-            &.top{
+
+        .pagination-bar {
+            &.top {
                 margin: 0;
-                .pagination-toolbar{
+
+                .pagination-toolbar {
                     padding-top: 0;
                 }
             }
         }
-        .accountActions-link{
+        .accountActions-link {
             padding-top: 0;
         }
+
         .checkout-steps {
-            form{
-                padding:0;
+            form {
+                padding: 0;
             }
         }
-        &.quick-order-container{
-            .quick-order-table-header{
+
+        &.quick-order-container {
+            .quick-order-table-header {
                 background-color: $white;
-            border-top: 1px solid $primary-color;
-            border-bottom: 1px solid $primary-color;
-            color: $black;
-                .thead{
-                    .th{
+                border-top: 1px solid $primary-color;
+                border-bottom: 1px solid $primary-color;
+                color: $black;
+
+                .thead {
+                    .th {
                         color: $black;
                     }
                 }
             }
         }
-	.back-link{
-		padding: 0 2rem 1.5rem;
-	}
+        .back-link {
+            padding: 0 2rem 1.5rem;
+        }
     }
 }
-.nav-menu{
+
+.nav-menu {
     list-style: none;
     padding: 2.3rem 0 0;
     margin: 0;
-    li{
-		&.active{
-			a{
-	            font-weight: 700;
-	            color: $black;
-			}
+
+    li {
+        &.active {
+            a {
+                font-weight: 700;
+                color: $black;
+            }
         }
-        a, .menu-title{
+
+        a,
+        .menu-title {
             font-size: $font-size-16px;
             font-weight: 500;
             text-transform: inherit;
@@ -92,48 +111,54 @@
             padding: 5px 20px;
             display: block;
         }
-        
-        .menu-title{
+        .menu-title {
             font-weight: 700;
             color: $primary-color;
             padding: 0 2rem .5rem;
             margin-bottom: 1rem;
             border-bottom: 1px solid $primary-color;
-            &.mt-1{
+            &.mt-1 {
                 margin-top: 1rem;
             }
-             &.mt-2{
+
+            &.mt-2 {
                 margin-top: 2rem;
             }
-             &.mt-3{
+
+            &.mt-3 {
                 margin-top: 3rem;
             }
-             &.mt-4{
+
+            &.mt-4 {
                 margin-top: 4rem;
             }
-             &.mt-5{
+
+            &.mt-5 {
                 margin-top: 5rem;
             }
         }
     }
 }
 
-.sub-heading{
+.sub-heading {
     font-size: $font-size-24px;
     font-weight: 700;
-    padding:0 2rem 2rem;
+    padding: 0 2rem 2rem;
     border-bottom: 1px solid $gray-10;
 }
-.glyphicon{
-    &[class*="glyphicon"]{
-    color: $gray-5!important;
-        &:hover{
-            color: $dropdown-bg-color!important;
+
+.glyphicon {
+    &[class*="glyphicon"] {
+        color: $primary-color !important;
+
+        &:hover {
+            color: $dropdown-bg-color !important;
         }
     }
 }
-.btn{
-    &.btn-create-quote{
+
+.btn {
+    &.btn-create-quote {
         background: $white;
         color: $primary-color;
         border-color: $primary-color;
@@ -153,27 +178,31 @@
 }*/
 
 /* Order Details Page styles over-riding default theme */
-.well{
+.well {
     &.well-quinary {
-        .well-headline{
+        .well-headline {
             background: $gray-11;
             color: $black;
             border-color: $black;
         }
     }
-    &.well-tertiary{
+    &.well-tertiary {
         color: $black;
-        .item-label, .item-value{
+
+        .item-label,
+        .item-value {
             color: $black;
         }
     }
-    .well-headline{
-            border-color: $black;
-        }
+
+    .well-headline {
+        border-color: $black;
+    }
 }
+
 .item__list {
-    .item__list--header{
-        li{
+    .item__list--header {
+        li {
             background-color: $white;
             border-top: 1px solid $primary-color;
             border-bottom: 1px solid $primary-color;
@@ -181,10 +210,11 @@
         }
     }
 }
-.item__list{
-    .item__name{
+.item__list {
+    .item__name {
         color: $primary-color;
-        &:hover{
+
+        &:hover {
             color: $black;
         }
     }
@@ -192,22 +222,26 @@
 
 
 /* My Quotes details page */
-.save__cart--link, .new__cart--link, .cart__quotes--link{
+.save__cart--link,
+.new__cart--link,
+.cart__quotes--link {
     font-size: initial;
-    
+
 }
+
 .cart__quote__edit {
-    .quote__head{
-         background-color: $white;
-            border-top: 1px solid $primary-color;
-            border-bottom: 1px solid $primary-color;
-            color: $black;
-        .quote__head--label{
+    .quote__head {
+        background-color: $white;
+        border-top: 1px solid $primary-color;
+        border-bottom: 1px solid $primary-color;
+        color: $black;
+
+        .quote__head--label {
             color: $black;
         }
     }
 }
-.import-cart{
+.import-cart {
     margin-top: 4rem;
     font-weight: 700;
     display: inline-block;
@@ -216,25 +250,43 @@
 /* Pagination over-riding styles */
 .pagination {
     > li {
-        > a, > span{
+        > a,
+        > span {
             color: $primary-color;
         }
-        >a:hover, >span:hover, >a:focus, >span:focus{
+
+        > a:hover,
+        > span:hover,
+        > a:focus,
+        > span:focus {
             color: $gray-9;
         }
-        
-        &[class^="pagination"]{
-            > a, > span{
+
+        &[class^="pagination"] {
+
+            > a,
+            > span {
                 background-color: $white;
             }
-            >a:hover, >span:hover, >a:focus, >span:focus{
-            color: $white!important;
-            background-color: $dropdown-bg-color;
+
+            > a:hover,
+            > span:hover,
+            > a:focus,
+            > span:focus {
+                color: $white !important;
+                background-color: $dropdown-bg-color;
+            }
         }
-        }
-        &.disabled{
-            > a, > span, >a:hover, >span:hover, >a:focus, >span:focus{
-               color: $gray-12!important;
+
+        &.disabled {
+
+            > a,
+            > span,
+            > a:hover,
+            > span:hover,
+            > a:focus,
+            > span:focus {
+                color: $gray-12 !important;
                 background: $white;
             }
         }
@@ -289,11 +341,12 @@ a{
 /* Over -riding prev styles as per needs */
 .account-section {
     .container-lg {
-        .account-section-content{
-            padding-left:20px;
+        .account-section-content {
+            padding-left: 20px;
             padding-right: 20px;
-            @media screen and (min-width: 1400px){
-                .account-section-form{
+
+            @media screen and (min-width: 1400px) {
+                .account-section-form {
                     padding: 0
                 }
             }
@@ -304,18 +357,79 @@ a{
 .content-inner .account-section-header .container-lg {
     margin: 0 !important;
 }
-.right-nav-content{
-    >.accordion{
-        padding-left:20px;
-            padding-right: 20px;
-            @media screen and (min-width: 1400px){
-                padding-left:10px;
+.right-nav-content {
+    > .accordion {
+        padding-left: 20px;
+        padding-right: 20px;
+
+        @media screen and (min-width: 1400px) {
+            padding-left: 10px;
             padding-right: 10px;
-            }
+        }
     }
 }
 
+/* Styles added on 14 sep */
+.listing {
+    padding: 0;
+    margin: 0;
+    list-style: none;
 
+    li {
+        padding: 0.25rem 0;
+    }
+}
+
+.input-opt[type="radio"],
+.input-opt[type="checkbox"] {
+    vertical-align: middle;
+    margin: 0 5px 0 0;
+}
+
+/* Modal Styles */
+.modal {
+    text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+    .modal:before {
+        display: inline-block;
+        vertical-align: middle;
+        content: " ";
+        height: 100%;
+    }
+}
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+.product-popup{
+    @media screen and (min-width: 640px){
+        width:800px;
+    }
+    .product-card{
+        padding:1rem;
+        border-radius:4px;
+        border: 1px solid $gray-2;
+    .product-name{
+         font-weight: 700;
+    color: $black;
+    }
+    .sku{
+        display:block;
+        color: $gray-7;
+    }
+    .product-price{
+        font-size: $primary-color;
+        font-weight: 700;
+        font-size: 2rem;
+    }
+}
+}
+
+/* Styles added on 14 sep */
 
 /* Actual site already has icons folder */
 /*@font-face {
@@ -324,3 +438,4 @@ a{
   src: url('/font-icons/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/font-icons/glyphicons-halflings-regular.woff2') format('woff2'), url('/font-icons/glyphicons-halflings-regular.woff') format('woff'), url('/font-icons/glyphicons-halflings-regular.ttf') format('truetype'), url('/font-icons/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 */
+

@@ -97,6 +97,17 @@
 
 		<!-- Add your item definitions here -->
 		<!-- Add your item definitions here -->
+		<itemtype code="B2BUnit" autocreate="false" generate="false">
+			<description>Extending B2BUnit type with an additional attribute.</description>
+			<attributes>
+				<attribute autocreate="true" generate="true" qualifier="transactional" type="java.lang.Boolean">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property" />
+					<defaultvalue>java.lang.Boolean.FALSE</defaultvalue>
+					<description>Attribute to identify the transactional / non transactional B2BUnit </description>
+				</attribute>
+			</attributes>
+		</itemtype>
 		<itemtype code="Customer" autocreate="false" generate="false">
 			<description>Extending Customer type with an additional attribute.</description>
 			<attributes>
