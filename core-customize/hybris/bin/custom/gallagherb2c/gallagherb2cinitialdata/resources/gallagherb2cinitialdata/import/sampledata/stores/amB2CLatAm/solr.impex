@@ -62,15 +62,15 @@ INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; n
    
    
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true]      ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                                                                                                               
-                                ; MultiwireDistanceRange ;           ; double ; rangeMultiwireDistance1,rangeMultiwireDistance2,rangeMultiwireDistance3,rangeMultiwireDistance4,rangeMultiwireDistance5,rangeMultiwireDistance6 
+                                ; MultiwireDistanceRange ;           ; double ; rangeMultiwireDistance1,rangeMultiwireDistance2,rangeMultiwireDistance3,rangeMultiwireDistance4,rangeMultiwireDistance5 
                                 
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID        ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to     
-                             ; rangeMultiwireDistance1 ; MultiwireDistanceRange               ; 0 - 5             ; 0    ; 5.999  
-                             ; rangeMultiwireDistance2 ; MultiwireDistanceRange               ; 6 - 10            ; 6    ; 10.999  
-                             ; rangeMultiwireDistance3 ; MultiwireDistanceRange               ; 11 - 20           ; 11   ; 20.999 
-                             ; rangeMultiwireDistance4 ; MultiwireDistanceRange               ; 21 - 30           ; 21   ; 30.999 
-                             ; rangeMultiwireDistance5 ; MultiwireDistanceRange               ; 31 - 40           ; 31   ; 40.999 
-                             ; rangeMultiwireDistance6 ; MultiwireDistanceRange               ; 41+	              ; 41   ; 9999         
+                             ; rangeMultiwireDistance1 ; MultiwireDistanceRange               ; 0 - 3             ; 0    ; 3.999  
+                             ; rangeMultiwireDistance2 ; MultiwireDistanceRange               ; 4 - 6            ; 4    ; 6.999  
+                             ; rangeMultiwireDistance3 ; MultiwireDistanceRange               ; 7 - 12           ; 7   ; 12.999 
+                             ; rangeMultiwireDistance4 ; MultiwireDistanceRange               ; 13 - 19           ; 13   ; 19.999 
+                             ; rangeMultiwireDistance5 ; MultiwireDistanceRange               ; 20+           ; 20   ; 9999
+        
                              
 UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]                             ; rangeSets(name)        
                            ; $solrIndexedType                         ; Distancia de alambres múltiples recomendada por Gallagher ; MultiwireDistanceRange 
