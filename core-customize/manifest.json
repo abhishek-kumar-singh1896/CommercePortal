@@ -6,11 +6,9 @@
     "mediaconversionbackoffice"
   ],
   "useConfig": {
-    "properties": [
-      {
-        "location": "/hybris/config/environments/common.properties"
-      }
-    ],
+    "properties": [{
+      "location": "/hybris/config/environments/common.properties"
+    }],
     "extensions": {
       "location": "/hybris/config/localextensions.xml"
     }
@@ -78,6 +76,71 @@
     {
       "addon": "xyformsstorefrontcommons",
       "storefront": "yacceleratorstorefront",
+      "template": "yacceleratorstorefront"
+    },
+    {
+      "addon": "commerceorgsamplesaddon",
+      "storefront": "yb2bacceleratorstorefront",
+      "template": "yacceleratorstorefront"
+    },
+    {
+      "addon": "promotionenginesamplesaddon",
+      "storefront": "yb2bacceleratorstorefront",
+      "template": "yacceleratorstorefront"
+    },
+    {
+      "addon": "smarteditaddon",
+      "storefront": "yb2bacceleratorstorefront",
+      "template": "yacceleratorstorefront"
+    },
+    {
+      "addon": "assistedservicestorefront",
+      "storefront": "yb2bacceleratorstorefront",
+      "template": "yacceleratorstorefront"
+    },
+    {
+      "addon": "customerticketingaddon",
+      "storefront": "yb2bacceleratorstorefront",
+      "template": "yacceleratorstorefront"
+    },
+    {
+      "addon": "orderselfserviceaddon",
+      "storefront": "yb2bacceleratorstorefront",
+      "template": "yacceleratorstorefront"
+    },
+    {
+      "addon": "consignmenttrackingaddon",
+      "storefront": "yb2bacceleratorstorefront",
+      "template": "yacceleratorstorefront"
+    },
+    {
+      "addon": "adaptivesearchsamplesaddon",
+      "storefront": "yb2bacceleratorstorefront",
+      "template": "yacceleratorstorefront"
+    },
+    {
+      "addon": "multicountrysampledataaddon",
+      "storefront": "yb2bacceleratorstorefront",
+      "template": "yacceleratorstorefront"
+    },
+    {
+      "addon": "pcmbackofficesamplesaddon",
+      "storefront": "yb2bacceleratorstorefront",
+      "template": "yacceleratorstorefront"
+    },
+    {
+      "addon": "ordermanagementaddon",
+      "storefront": "yb2bacceleratorstorefront",
+      "template": "yacceleratorstorefront"
+    },
+    {
+      "addon": "xyformssamples",
+      "storefront": "yb2bacceleratorstorefront",
+      "template": "yacceleratorstorefront"
+    },
+    {
+      "addon": "xyformsstorefrontcommons",
+      "storefront": "yb2bacceleratorstorefront",
       "template": "yacceleratorstorefront"
     },
     {
