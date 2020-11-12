@@ -6,15 +6,15 @@ $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[defa
 ##################################################################################################################################
  
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true]      ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                                                                                                               
-                                ; MultiwireDistanceRange ;           ; double ; rangeMultiwireDistance1,rangeMultiwireDistance2,rangeMultiwireDistance3,rangeMultiwireDistance4,rangeMultiwireDistance5,rangeMultiwireDistance6 
+                                ; MultiwireDistanceRange ;           ; double ; rangeMultiwireDistance1,rangeMultiwireDistance2,rangeMultiwireDistance3,rangeMultiwireDistance4,rangeMultiwireDistance5 
                                 
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID        ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to     
-                             ; rangeMultiwireDistance1 ; MultiwireDistanceRange               ; 1 - 5      ; 1    ; 4.999  
-                             ; rangeMultiwireDistance2 ; MultiwireDistanceRange               ; 6 - 10     ; 6    ; 9.999  
-                             ; rangeMultiwireDistance3 ; MultiwireDistanceRange               ; 11 - 20    ; 11   ; 20.999 
-                             ; rangeMultiwireDistance4 ; MultiwireDistanceRange               ; 21 - 30    ; 21   ; 30.999 
-                             ; rangeMultiwireDistance5 ; MultiwireDistanceRange               ; 31 - 40    ; 31   ; 40.999 
-                             ; rangeMultiwireDistance6 ; MultiwireDistanceRange               ; 41 - 50    ; 41   ; 50     
+                             ; rangeMultiwireDistance1 ; MultiwireDistanceRange               ; 0 - 3             ; 0    ; 3.999  
+                             ; rangeMultiwireDistance2 ; MultiwireDistanceRange               ; 4 - 6            ; 4    ; 6.999  
+                             ; rangeMultiwireDistance3 ; MultiwireDistanceRange               ; 7 - 12           ; 7   ; 12.999 
+                             ; rangeMultiwireDistance4 ; MultiwireDistanceRange               ; 13 - 19           ; 13   ; 19.999 
+                             ; rangeMultiwireDistance5 ; MultiwireDistanceRange               ; 20+           ; 20   ; 9999
+ 
                              
 UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]                             ; rangeSets(name)        
                            ; $solrIndexedType                         ; Distancia de alambres múltiples recomendada por Gallagher ; MultiwireDistanceRange 
@@ -41,11 +41,11 @@ INSERT_UPDATE SolrValueRangeSet ; name[unique=true] ; qualifier ; type   ; solrV
                                 ; EnergyStoredRange ;           ; double ; rangeEnergyStored1,rangeEnergyStored2,rangeEnergyStored3,rangeEnergyStored4,rangeEnergyStored5 
                                 
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID   ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to     
-                             ; rangeEnergyStored1 ; EnergyStoredRange                    ; 0.1 - 5    ; 0    ; 5.999  
-                             ; rangeEnergyStored2 ; EnergyStoredRange                    ; 6 - 10     ; 6    ; 10.999 
-                             ; rangeEnergyStored3 ; EnergyStoredRange                    ; 11 - 20    ; 11   ; 20.999 
-                             ; rangeEnergyStored4 ; EnergyStoredRange                    ; 21 - 50    ; 21   ; 50.999 
-                             ; rangeEnergyStored5 ; EnergyStoredRange                    ; 51 - 100   ; 51   ; 100    
+                             ; rangeEnergyStored1 ; EnergyStoredRange                    ; 0.1 - 5           ; 0    ; 5.999  
+                             ; rangeEnergyStored2 ; EnergyStoredRange                    ; 6 - 10            ; 6    ; 10.999 
+                             ; rangeEnergyStored3 ; EnergyStoredRange                    ; 11 - 20           ; 11   ; 20.999 
+                             ; rangeEnergyStored4 ; EnergyStoredRange                    ; 21 - 50           ; 21   ; 50.999 
+                             ; rangeEnergyStored5 ; EnergyStoredRange                    ; 51+	             ; 51   ; 9999   
                              
 UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; rangeSets(name)   
                            ; $solrIndexedType                         ; Energía Almacenada     ; EnergyStoredRange 
@@ -56,8 +56,8 @@ INSERT_UPDATE SolrValueRangeSet ; name[unique=true] ; qualifier ; type   ; solrV
                                 ; Voltage500mRange  ;           ; double ; rangeVoltage500m1,rangeVoltage500m2 
                                 
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID  ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to     
-                             ; rangeVoltage500m1 ; Voltage500mRange                     ; 1.5 - 3.6     ; 1.5  ; 3.6999 
-                             ; rangeVoltage500m2 ; Voltage500mRange                     ; 3.7 - 7.6     ; 3.7  ; 7.6    
+                             ; rangeVoltage500m1 ; Voltage500mRange                     ; 0 - 3.6         ; 0  ; 3.6999 
+                             ; rangeVoltage500m2 ; Voltage500mRange                     ; 3.7+         ; 3.7  ; 999
                              
 UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]        ; rangeSets(name)  
                            ; $solrIndexedType                         ; Voltaje a 500m del cerco ; Voltage500mRange 
@@ -68,9 +68,9 @@ INSERT_UPDATE SolrValueRangeSet ; name[unique=true] ; qualifier ; type   ; solrV
                                 ; Voltage1kmRange   ;           ; double ; rangeVoltage1km1,rangeVoltage1km2 
                                 
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to     
-                             ; rangeVoltage1km1 ; Voltage1kmRange                      ; 0.8 - 2.4     ; 0.8  ; 2.4999 
-                             ; rangeVoltage1km2 ; Voltage1kmRange                      ; 2.5 - 7.2     ; 2.5  ; 7.2    
-                             
+                             ; rangeVoltage1km1 ; Voltage1kmRange                      ; 0 - 2.4         ; 0  ; 2.4999 
+                             ; rangeVoltage1km2 ; Voltage1kmRange                      ; 2.5+         ; 2.5  ; 999   
+                              
 UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]       ; rangeSets(name) 
                            ; $solrIndexedType                         ; Voltaje a 1km del cerco ; Voltage1kmRange 
                            
@@ -82,9 +82,9 @@ INSERT_UPDATE SolrValueRangeSet ; name[unique=true] ; qualifier ; type   ; solrV
                                 ; Voltage2kmRange   ;           ; double ; rangeVoltage2km1,rangeVoltage2km2 
                                 
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to     
-                             ; rangeVoltage2km1 ; Voltage2kmRange                      ; 4.2 - 6       ; 4.2  ; 6.0999 
-                             ; rangeVoltage2km2 ; Voltage2kmRange                      ; 6.1 - 7.5     ; 6.1  ; 7.5    
-                             
+                             ; rangeVoltage2km1 ; Voltage2kmRange                      ; 0 - 6           ; 0  ; 6.0999 
+                             ; rangeVoltage2km2 ; Voltage2kmRange                      ; 6.1+         ; 6.1  ; 999  
+                            
 UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]       ; rangeSets(name) 
                            ; $solrIndexedType                         ; Voltaje a 2 km del cerco ; Voltage2kmRange 
                            
@@ -95,8 +95,8 @@ INSERT_UPDATE SolrValueRangeSet ; name[unique=true] ; qualifier ; type   ; solrV
                                 ; Voltage5kmRange   ;           ; double ; rangeVoltage5km1,rangeVoltage5km2 
                                 
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to     
-                             ; rangeVoltage5km1 ; Voltage5kmRange                      ; 2.4 - 4.6     ; 2.4  ; 4.6999 
-                             ; rangeVoltage5km2 ; Voltage5kmRange                      ; 4.7 - 6.8     ; 4.7  ; 6.8    
+                             ; rangeVoltage5km1 ; Voltage5kmRange                      ; 0 - 4.6         ; 0  ; 4.6999 
+                             ; rangeVoltage5km2 ; Voltage5kmRange                      ; 4.7+         ; 4.7  ; 999
                              
 UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]       ; rangeSets(name) 
                            ; $solrIndexedType                         ; Voltaje a 5 km del cerco ; Voltage5kmRange 
@@ -107,8 +107,8 @@ INSERT_UPDATE SolrValueRangeSet ; name[unique=true] ; qualifier ; type   ; solrV
                                 ; Voltage10kmRange  ;           ; double ; rangeVoltage10km1,rangeVoltage10km2 
                                 
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID  ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to     
-                             ; rangeVoltage10km1 ; Voltage10kmRange                     ; 1.4 - 3.3     ; 1.4  ; 3.3999 
-                             ; rangeVoltage10km2 ; Voltage10kmRange                     ; 3.4 - 6.0     ; 3.4  ; 6      
+                             ; rangeVoltage10km1 ; Voltage10kmRange                     ; 0 - 3.3         ; 0  ; 3.3999 
+                             ; rangeVoltage10km2 ; Voltage10kmRange                     ; 3.4+         ; 3.4  ; 999        
                              
 UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]        ; rangeSets(name)  
                            ; $solrIndexedType                         ; Voltaje a 10 km del cerco ; Voltage10kmRange 
