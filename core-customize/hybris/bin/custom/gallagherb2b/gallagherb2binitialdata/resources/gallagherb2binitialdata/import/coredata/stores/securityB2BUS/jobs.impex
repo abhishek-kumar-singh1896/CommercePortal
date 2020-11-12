@@ -1,0 +1,9 @@
+# ImpEx for Importing cronjobs
+$productCatalog=securityB2BUSProductCatalog
+$stagedVersion=Staged
+$onlineVersion=Online
+$productCVStaged=catalogVersion(catalog(id[default=$productCatalog]),version[default=$stagedVersion])[unique=true,default=$productCatalog:$stagedVersion]
+$productCVOnline=catalogVersion(catalog(id[default=$productCatalog]),version[default=$onlineVersion])[unique=true,default=$productCatalog:$onlineVersion]
+$includedFormats=300Wx300H,30Wx30H,365Wx246H,515Wx515H,65Wx65H,96Wx96H,1200Wx1200H
+
+##### Nothing to Import

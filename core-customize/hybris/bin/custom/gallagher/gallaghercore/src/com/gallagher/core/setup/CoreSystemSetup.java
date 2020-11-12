@@ -129,6 +129,16 @@ public class CoreSystemSetup extends AbstractSystemSetup
 		if (importSprint1Impex)
 		{
 			importImpexFile(context, "/gallaghercore/import/Sprint1/SAPP2-15.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint1/Countries.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint1/Store.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint1/Sites.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint1/email_content.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint1/ProductCatalog.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint1/SolrAsia.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint1/SolrCA.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint1/SolrSTHAM.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint1/SolrUK.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint1/SolrUS.impex");
 		}
 	}
 
