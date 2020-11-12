@@ -1,16 +1,25 @@
 <hybrisconfig xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:noNamespaceSchemaLocation='../bin/platform/resources/schemas/extensions.xsd'>
   <extensions>
-    <path dir='${HYBRIS_BIN_DIR}/ext-integration/sap/digitalPayments' autoload='false' />
     <path dir='${HYBRIS_BIN_DIR}' autoload='false' />
+    <extension name='ordermanagementaddon' />
+    <extension name='orderselfserviceaddon' />
+    <extension name='ordermanagementwebservices' />
+    <extension name='b2bordermanagementwebservices' />
+    <extension name='warehousing' />
+    <extension name='warehousingbackoffice' />
+    <extension name='warehousingwebservices' />
     <extension name='adaptivesearchsolr' />
     <extension name='adaptivesearchbackoffice' />
     <extension name='adaptivesearchsamplesaddon' />
     <extension name='b2bcommercebackoffice' />
+    <extension name='commerceservicesbackoffice' />
     <extension name='solrfacetsearchbackoffice' />
     <extension name='yacceleratorbackoffice' />
     <extension name='yacceleratorinitialdata' />
     <extension name='yacceleratorordermanagement' />
     <extension name='yacceleratorstorefront' />
+    <extension name='yb2bacceleratorstorefront' />
+    <extension name='yaddon' />
     <extension name='ycommercewebservices' />
     <extension name='apparelstore' />
     <extension name='electronicsstore' />
@@ -20,65 +29,52 @@
     <extension name='b2bacceleratoraddon' />
     <extension name='commerceorgaddon' />
     <extension name='commerceorgsamplesaddon' />
-    <extension name='orderselfserviceaddon' />
-    <extension name='rulebuilderbackoffice' />
-    <extension name='couponbackoffice' />
-    <extension name='droolsruleengineservices' />
-    <extension name='couponfacades' />
-    <extension name='couponservices' />
-    <extension name='promotionenginesamplesaddon' />
-    <extension name='textfieldconfiguratortemplatebackoffice' />
-    <extension name='textfieldconfiguratortemplateaddon' />
-    <extension name='cmswebservices' />
-    <extension name='smarteditwebservices' />
-    <extension name='permissionswebservices' />
-    <extension name='smarteditaddon' />
-    <extension name='cmssmartedit' />
-    <extension name='previewwebservices' />
-    <extension name='cmssmarteditwebservices' />
-    <extension name='cmsoccaddon' />
-    <extension name='previewpersonalizationweb' />
-    <extension name='personalizationcmsweb' />
-    <extension name='personalizationsmartedit' />
-    <extension name='personalizationsampledataaddon' />
-    <extension name='personalizationpromotionssampledataaddon' />
-    <extension name='personalizationpromotions' />
-    <extension name='personalizationpromotionsweb' />
-    <extension name='personalizationservicesbackoffice' />
-    <extension name='personalizationpromotionsbackoffice' />
-    <extension name='personalizationcmsbackoffice' />
-    <extension name='pcmbackofficesamplesaddon' />
     <extension name='assistedservicestorefront' />
     <extension name='assistedservicewebservices' />
     <extension name='customerticketingaddon' />
     <extension name='customersupportbackoffice' />
     <extension name='ticketsystembackoffice' />
     <extension name='consignmenttrackingbackoffice' />
-    <extension name='ordermanagementaddon' />
+    <extension name='rulebuilderbackoffice' />
+    <extension name='couponbackoffice' />
+    <extension name='droolsruleengineservices' />
+    <extension name='couponfacades' />
+    <extension name='promotionenginesamplesaddon' />
     <extension name='consignmenttrackingaddon' />
-    <extension name='warehousing' />
-    <extension name='warehousingbackoffice' />
-    <extension name='cisclient' />
-    <extension name='cispayment' />
-    <extension name='cissapdigitalpayment' />
-    <extension name='ysapdpordermanagement' />
-    <extension name='sapdigitalpaymentaddon' />
-    <extension name='sapdigitalpaymentb2baddon' />
-    <extension name='sapdigitalpaymentbackoffice' />
+    <extension name='pcmbackofficesamplesaddon' />
     <extension name='consignmenttrackingoccaddon' />
     <extension name='outboundservices' />
+    <extension name='outboundsync' />
     <extension name='odata2webservices' />
     <extension name='odata2webservicesfeaturetests' />
+    <extension name='integrationbackoffice' />
+    <extension name='integrationmonitoringbackoffice' />
+    <extension name='outboundsyncbackoffice' />
     <extension name='kymaintegrationbackoffice' />
-    <extension name='yb2bacceleratorstorefront' />
-	
-	
-	 <extension name='subscriptionservices' />
-    <extension name='subscriptionfacades' />
+    <extension name='xyformsbackoffice' />
+    <extension name='xyformsstorefrontcommons' />
+    <extension name='xyformssamples' />
+    <extension name='xyformsweb' />
+    <extension name='orbeonweb' />
+    <extension name='entitlementfacades' />
+    <extension name='entitlementbackoffice' />
+    <extension name='cmswebservices' />
+    <extension name='smarteditwebservices' />
+    <extension name='cmssmarteditwebservices' />
+    <extension name='permissionswebservices' />
+    <extension name='previewwebservices' />
+    <extension name='smarteditaddon' />
+    <extension name='cmssmartedit' />
+    <extension name='cmsbackoffice' />
+    <extension name='cmsoccaddon' />
+    <extension name='multicountrysampledataaddon' />
+
     <extension name='subscriptionbackoffice' />
-    
+    <extension name='subscriptionservices' />
+    <extension name='subscriptionfacades' />
+
     <extension name='entitlementfacades' />
     <extension name='entitlementservices' />
-    <extension name='entitlementbackoffice' />
+    <extension name='entitlementbackoffice' />    
   </extensions>
 </hybrisconfig>

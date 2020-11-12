@@ -18,6 +18,12 @@
       "storefront": "yacceleratorstorefront",
       "template": "yacceleratorstorefront"
     },
+	
+    {
+      "addon": "commerceorgaddon",
+      "storefront": "yacceleratorstorefront",
+      "template": "yacceleratorstorefront"
+    },
     {
       "addon": "promotionenginesamplesaddon",
       "storefront": "yacceleratorstorefront",
