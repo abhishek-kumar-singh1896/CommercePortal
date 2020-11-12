@@ -30,7 +30,7 @@ INSERT_UPDATE ZoneDeliveryMode      ; code[unique=true]               ; net     
                                     ; standard-net                    ; true
                                     ; premium-gross                   ; false
                                     ; standard-gross                  ; false
-                                    ; free-standard-shipping          ; true                                                                                                                                            ; false                          ;
+                                    ; free-standard-shipping          ; true                                                                                                                                            ;                           ;
 
 
 # Australia

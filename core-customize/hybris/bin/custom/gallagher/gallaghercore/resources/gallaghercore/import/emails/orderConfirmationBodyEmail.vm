@@ -64,6 +64,7 @@
 <br/>
 <p style="margin:2px 0"><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('heading')}</font></p>
 <br/>
+
 <p style="margin:2px 0"><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.getMessage('disclaimer')}</font></p>
 
 #if(${ctx.coupons.size()} > 0 )
@@ -130,51 +131,57 @@
 	</table>
 	<br/>
 	#end
-	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#51585c" class="products" style="border: 1px solid #51585c;">
-	<tr>
-	<td>
-	<table>
-	<tr>
-	<td width="33%" valign="top" rowspan="2">
-	<font color="#333" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.purchaseOrderNumber} </b></font>
-	#if ($!ctx.order.purchaseOrderNumber)
-	<p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.order.purchaseOrderNumber}</b></font></p>
-	 #end
-  </tr>
-  </td>
+	<table style="font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  background:#f4f4f4;">
+<tr>
+<td colspan="3" style="font-weight:bold; border-bottom:1px solid #ccc;line-height:50px;font-weight:bold;padding: 8px;text-align: left;">Order Summary</td>
+</tr>
+<tr>
+<td colspan="3" style="line-height:20px;font-weight:bold;padding: 8px;text-align: left;">&nbsp;</td>
+</tr>
+  
   <tr>
-  <td width="34%" valign="top">
-  			<font color="#333" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.requiredDeliveryDate} </b></font>
-			#if ($!ctx.order.requiredDeliveryDate)
-			<p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.order.requiredDeliveryDate}</b></font></p>
-			#end
-			</td>
-			</tr>
-			<tr>
-  <td>
-  											<font color="#333" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.deliveryInstructions}</b></font>
-			#if ($!ctx.order.deliveryInstructions)
-										
-											<p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.order.deliveryInstructions}</b></font></p>
-										
-			          #end
-								</td>
-								</tr>
-								<tr>
-								<td width="34%" valign="top">
-							<font color="#333" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.Account} </b></font>
-		  #if ($!ctx.order.b2bUnit)
-									
-										<p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.order.b2bUnit.name}</b></font></p>
-									
-										
-			#end
-			</td>
-			</tr>
-			</table>
-			</td>
-			</tr>
-			</table>
+    <td style=" padding: 8px;text-align: left;">ORDER NUMBER</td>
+    <td style=" padding: 8px;text-align: left;">DATE PLACED</td>
+    <td style=" padding: 8px;text-align: left;">${ctx.messages.Account}</td>
+  </tr>
+  <tr>
+    <td style="font-weight:bold;padding: 8px;text-align: left;">${ctx.order.code}</td>
+    <td style="font-weight:bold;padding: 8px;text-align: left;">${ctx.order.created}</td>
+    <td style="font-weight:bold;padding: 8px;text-align: left;">${ctx.order.b2bUnit.name}</td>
+  </tr>
+  <tr>
+    <td colspan="3" style=" padding: 8px;text-align: left;"></td>
+    </tr>
+  <tr>
+    <td style=" padding: 8px;text-align: left;">${ctx.messages.purchaseOrderNumber}</td>
+    <td style=" padding: 8px;text-align: left;">ORDER PLACED BY</td>
+    <td style=" padding: 8px;text-align: left;">${ctx.messages.deliveryInstructions}</td>
+  </tr>
+  <tr>
+    <td style="font-weight:bold;padding: 8px;text-align: left;">${ctx.order.purchaseOrderNumber}</td>
+    <td style="font-weight:bold;padding: 8px;text-align: left;">${ctx.order.b2bCustomerData.firstName}&nbsp;${ctx.order.b2bCustomerData.lastName}</td>
+    <td style="font-weight:bold;padding: 8px;text-align: left;">${ctx.order.deliveryInstructions}</td>
+  </tr>
+   <tr>
+    <td colspan="3"></td>
+    </tr>
+  
+   <tr>
+    <td style=" padding: 8px;text-align: left;">ORDER STATUS</td>
+	    <td style=" padding: 8px;text-align: left;">${ctx.messages.requiredDeliveryDate}</td>
+  </tr>
+  <tr>
+    <td style="font-weight:bold;padding: 8px;text-align: left;">${ctx.order.statusDisplay}</td>
+   
+	    <td style="font-weight:bold;padding: 8px;text-align: left;">${ctx.order.requiredDeliveryDate}</td>
+  </tr>
+  <tr>
+<td colspan="3" style="line-height:20px;font-weight:bold;padding: 8px;text-align: left;">&nbsp;</td>
+</tr>
+  </table>
 			<br/>
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#51585c" class="products" style="border: 1px solid #51585c;">
 	<tr>
@@ -265,6 +272,8 @@
 							<td width="16%" height="40px"><font color="#333" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.total}</b></font></td>
 						</tr>
 						#foreach( $entry in ${orderGroup.entries} )
+						
+						
 							<tr>
 								<td>
 									<table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -284,6 +293,10 @@
 											<td valign="top">
 												<p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">
 													<a href="${ctx.baseUrl}$entry.product.url"><font color="#666666"><b>$entry.product.name</b></font></a>
+													<br>
+													#if($entry.productSpecificDetailsSubHeading !='')
+												<font color="#e96b04">	<b>${entry.productSpecificDetailsSubHeading}</b></font>:${entry.deliveryinstruction}
+													#end
 												</p>
 												#if (!$entry.product.baseOptions.isEmpty())
 													#foreach ($option in $entry.product.baseOptions)
