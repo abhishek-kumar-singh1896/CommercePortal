@@ -82,7 +82,7 @@
         	</div>
         </c:if>
         
-        <c:if test="${not empty orderEntry.productSpecificDetailsHeading && not empty orderEntry.deliveryinstruction}">
+        <c:if test="${not empty orderEntry.productSpecificDetailsSubHeading && not empty orderEntry.deliveryinstruction}">
         	<%-- <div><strong>${orderEntry.productSpecificDetailsHeading}</strong></div> --%>
         	<div><strong>${orderEntry.productSpecificDetailsSubHeading} : ${orderEntry.deliveryinstruction}</strong></div>
         </c:if>
