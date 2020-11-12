@@ -4,6 +4,9 @@
 package com.gallagher.core.services.impl;
 
 import de.hybris.platform.b2b.model.B2BCustomerModel;
+import de.hybris.platform.b2b.model.B2BUnitModel;
+import de.hybris.platform.core.model.security.PrincipalGroupModel;
+import de.hybris.platform.core.model.user.UserGroupModel;
 import de.hybris.platform.servicelayer.config.ConfigurationService;
 
 import java.io.BufferedReader;
@@ -16,8 +19,10 @@ import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
-import javax.annotation.PostConstruct;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
@@ -25,7 +30,11 @@ import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
+import org.dom4j.Attribute;
+import org.dom4j.Document;
 import org.dom4j.DocumentException;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 
@@ -47,36 +56,16 @@ public class GallagherMindTouchServiceImpl implements GallagherMindTouchService
 	private static final String END_POINT_URL = "gallagher.mindtouch.endpoint.url";
 	private static final String MINDTOUCH_KEY = "gallagher.mindtouch.key";
 	private static final String MIND_TOUCH_SECRET = "gallagher.mindtouch.secret";
+	private static final String WHITE_SPACE = "\\s";
 
-
-	private static final String SECURITY_B2B_GLOBAL = "securityB2BGlobal";
-	private static final String SECURITY_B2B = "securityB2B";
-	private static final String SECURITY = "security";
 	private static final String HIMAC_SHA_256 = "HmacSHA256";
 	private static final String SEPARATOR = "_";
 	private static final String TOKEN_TYPE = "X-Deki-Token";
 
-	private String authUrl;
-	private String userName;
-	private String password;
-	private String endPointUrl;
-	private String key;
-	private String secret;
-
+	private Map<String, String> mindTouchRoleMapping;
 
 	@Autowired
 	private ConfigurationService configurationService;
-
-	@PostConstruct
-	private void init()
-	{
-		authUrl = getConfigurationService().getConfiguration().getString(AUTHENTICATION_URL);
-		userName = getConfigurationService().getConfiguration().getString(AUTHENTICATION_URL_USERNAME);
-		password = getConfigurationService().getConfiguration().getString(AUTHENTICATION_URL_PASSWORD);
-		endPointUrl = getConfigurationService().getConfiguration().getString(END_POINT_URL);
-		key = getConfigurationService().getConfiguration().getString(MINDTOUCH_KEY);
-		secret = getConfigurationService().getConfiguration().getString(MIND_TOUCH_SECRET);
-	}
 
 	@Override
 	public void pushCustomerToMindTouch(final B2BCustomerModel customer) throws IOException, DocumentException
@@ -89,11 +78,17 @@ public class GallagherMindTouchServiceImpl implements GallagherMindTouchService
 
 
 	/**
+	 * This method authenticates the request
+	 *
 	 * @return
 	 */
 	private String getAuthentication() throws IOException
 	{
 		LOG.info("Authenticating the request to Mindtouch");
+		final String key = getConfigurationService().getConfiguration().getString(MINDTOUCH_KEY);
+		final String authUrl = getConfigurationService().getConfiguration().getString(AUTHENTICATION_URL);
+		final String userName = getConfigurationService().getConfiguration().getString(AUTHENTICATION_URL_USERNAME);
+		final String secret = getConfigurationService().getConfiguration().getString(MIND_TOUCH_SECRET);
 
 		//user string for authentication
 		final String user = '=' + userName;
@@ -139,12 +134,19 @@ public class GallagherMindTouchServiceImpl implements GallagherMindTouchService
 
 
 	/**
+	 * This method creates the user at mindtouch end
+	 *
 	 * @param token
 	 * @param user
 	 * @throws DocumentException
 	 */
 	private void createUserInMindTouch(final String token, final B2BCustomerModel customer) throws IOException, DocumentException
 	{
+		final String userName = getConfigurationService().getConfiguration().getString(AUTHENTICATION_URL_USERNAME);
+		final String password = getConfigurationService().getConfiguration().getString(AUTHENTICATION_URL_PASSWORD);
+		final String endPoint = getConfigurationService().getConfiguration().getString(END_POINT_URL);
+
+		final String endPointUrl = endPoint + "/users";
 
 		LOG.info("Begin Creating User in Mindtouch!");
 
@@ -177,20 +179,26 @@ public class GallagherMindTouchServiceImpl implements GallagherMindTouchService
 		final int responseCode = con.getResponseCode();
 
 		//if status is 200 OK log the response
+		String responseString = StringUtils.EMPTY;
+
 		if (responseCode == HttpURLConnection.HTTP_OK)
 		{
 			LOG.info("User created sucessfully in mindtouch ");
 			try (final BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream())))
 			{
 				String input = StringUtils.EMPTY;
-				final StringBuffer response = new StringBuffer();
+				final StringBuilder response = new StringBuilder();
 
 				while ((input = in.readLine()) != null)
 				{
 					response.append(input);
 				}
-				LOG.debug(response.toString());
+				LOG.info(response.toString());
+				responseString = response.toString();
 			}
+
+			final String uid = getUserID(responseString);
+			assignGroupForUser(uid, token, customer);
 		}
 		else
 		{
@@ -230,19 +238,110 @@ public class GallagherMindTouchServiceImpl implements GallagherMindTouchService
 		sb.append(fullName);
 		sb.append("</fullname>");
 		sb.append(ENTER);
-		sb.append("<permissions.user>");
-		sb.append(ENTER);
-		sb.append("<role>");
-		sb.append("Viewer");
-		sb.append("</role>");
-		sb.append(ENTER);
-		sb.append("</permissions.user>");
-		sb.append(ENTER);
 		sb.append("<service.authentication id=\"" + 2 + "\" />");
 		sb.append(ENTER);
 		sb.append("</user >");
 		return sb.toString();
 	}
+
+	/**
+	 * This method get the userid from mindtouch response xml
+	 *
+	 * @param return
+	 *
+	 * @return
+	 */
+	private String getUserID(final String result) throws DocumentException
+	{
+		String userID = StringUtils.EMPTY;
+		final Document document = DocumentHelper.parseText(result);
+		final Element root = document.getRootElement();
+		final List<Attribute> attributeList = root.attributes();
+		for (final Attribute attr : attributeList)
+		{
+			if (attr.getName().equals("id"))
+			{
+				userID = attr.getValue();
+				break;
+			}
+		}
+		return userID;
+	}
+
+
+	/**
+	 * This method assign group to the user.
+	 *
+	 * @param uid
+	 * @param token
+	 * @param customer
+	 *
+	 */
+	private void assignGroupForUser(final String uid, final String token, final B2BCustomerModel customer) throws IOException
+	{
+		final String userName = getConfigurationService().getConfiguration().getString(AUTHENTICATION_URL_USERNAME);
+		final String password = getConfigurationService().getConfiguration().getString(AUTHENTICATION_URL_PASSWORD);
+
+		final Optional<PrincipalGroupModel> groupOptional = customer.getGroups().stream().filter(group -> isUserGroup(group))
+				.findFirst();
+
+		final String userGroup = groupOptional.isPresent() ? groupOptional.get().getUid() : StringUtils.EMPTY;
+
+		final String group = StringUtils.isNotBlank(userGroup)
+				? mindTouchRoleMapping.get(userGroup).replaceAll(WHITE_SPACE, "").toLowerCase()
+				: StringUtils.EMPTY;
+
+		final String groupId = getConfigurationService().getConfiguration().getString("mindtouch.group." + group);
+
+		if(StringUtils.isBlank(groupId)) {
+			throw new IOException("Group Id is blank, cannot be assigned");
+		}
+
+		final String endPoint = getConfigurationService().getConfiguration().getString(END_POINT_URL);
+		final String endPointUrl = endPoint + "/groups/" + groupId + "/users";
+
+		final URL obj = new URL(endPointUrl);
+
+		final String auth = userName + ":" + password;
+		final byte[] encodedAuth = Base64.encodeBase64(auth.getBytes(StandardCharsets.UTF_8));
+		final String authHeaderValue = "Basic " + new String(encodedAuth);
+
+
+		final HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+		con.setRequestMethod("POST");
+		con.setRequestProperty("X-Deki-Token", token);
+		con.setRequestProperty("Content-Type", "text/xml;utf-8");
+		con.setRequestProperty("Authorization", authHeaderValue);
+
+		LOG.debug("authheader " + authHeaderValue);
+		// For POST only - START
+		con.setDoOutput(true);
+
+		try (final OutputStream os = con.getOutputStream())
+		{
+			final String userXml = "<users><user id=\"" + uid + "\"/></users>";
+			LOG.debug(userXml);
+			os.write(userXml.getBytes());
+		}
+		// For POST only - END
+
+		final int responseCode = con.getResponseCode();
+		if (responseCode != HttpURLConnection.HTTP_OK)
+		{
+			throw new IOException("Error while assigning user group in mindtouch :: " + responseCode);
+		}
+		LOG.debug("POST Response Code :: " + responseCode);
+	}
+
+	/**
+	 * @param group
+	 * @return
+	 */
+	private Boolean isUserGroup(final PrincipalGroupModel group)
+	{
+		return group instanceof UserGroupModel && !(group instanceof B2BUnitModel);
+	}
+
 
 	/**
 	 * @return the configurationService
@@ -261,4 +360,22 @@ public class GallagherMindTouchServiceImpl implements GallagherMindTouchService
 		this.configurationService = configurationService;
 	}
 
+
+	/**
+	 * @return the mindTouchRoleMapping
+	 */
+	public Map<String, String> getMindTouchRoleMapping()
+	{
+		return mindTouchRoleMapping;
+	}
+
+
+	/**
+	 * @param mindTouchRoleMapping
+	 *           the mindTouchRoleMapping to set
+	 */
+	public void setMindTouchRoleMapping(final Map<String, String> mindTouchRoleMapping)
+	{
+		this.mindTouchRoleMapping = mindTouchRoleMapping;
+	}
 }
