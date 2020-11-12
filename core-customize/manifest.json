@@ -186,6 +186,10 @@
           "contextPath": "/backoffice"
         },
         {
+          "name": "smartedit",
+          "contextPath": "/smartedit"
+        },
+        {
           "name": "orbeonweb",
           "contextPath": "/web-orbeon"
         },
