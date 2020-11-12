@@ -28,6 +28,7 @@ public class CoreSystemSetup extends AbstractSystemSetup
 	public static final String IMPORT_SPRINT_2_IMPEX = "importSprint2Impex";
 	public static final String IMPORT_ESSENTIAL_DATA_SCPI = "importEssentialDataSCPIImpex";
 	public static final String IMPORT_SPRINT_1_IMPEX = "importSprint1Impex";
+	public static final String IMPORT_SPRINT_3_IMPEX = "importSprint3Impex";
 
 	/**
 	 * This method will be called by system creator during initialization and system update. Be sure that this method can
@@ -58,9 +59,10 @@ public class CoreSystemSetup extends AbstractSystemSetup
 		final List<SystemSetupParameter> params = new ArrayList<>();
 
 		params.add(createBooleanSystemSetupParameter(IMPORT_ACCESS_RIGHTS, "Import Users & Groups", true));
-		params.add(createBooleanSystemSetupParameter(IMPORT_SPRINT_2_IMPEX, "Import Phase 2 - Sprint 2 Impexes", true));
 		params.add(createBooleanSystemSetupParameter(IMPORT_ESSENTIAL_DATA_SCPI, "Essential data SCPI", true));
 		params.add(createBooleanSystemSetupParameter(IMPORT_SPRINT_1_IMPEX, "Import Phase 2 - Sprint 1 Impexes", true));
+		params.add(createBooleanSystemSetupParameter(IMPORT_SPRINT_2_IMPEX, "Import Phase 2 - Sprint 2 Impexes", true));
+		params.add(createBooleanSystemSetupParameter(IMPORT_SPRINT_3_IMPEX, "Import Phase 2 - Sprint 3 Impexes", true));
 
 		return params;
 	}
@@ -141,6 +143,7 @@ public class CoreSystemSetup extends AbstractSystemSetup
 			importImpexFile(context, "/gallaghercore/import/Sprint1/SolrUK.impex");
 			importImpexFile(context, "/gallaghercore/import/Sprint1/SolrUS.impex");
 		}
+
 	}
 
 	protected void processCockpit(final SystemSetupContext context, final boolean importAccessRights,

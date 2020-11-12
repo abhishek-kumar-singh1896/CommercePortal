@@ -149,6 +149,8 @@ public class ProductPageController extends AbstractPageController
 		final String metaKeywords = MetaSanitizerUtil.sanitizeKeywords(productData.getKeywords());
 		final String metaDescription = MetaSanitizerUtil.sanitizeDescription(productData.getDescription());
 		setUpMetaData(model, metaKeywords, metaDescription);
+		final ProductModel productModel = productService.getProductForCode(productCode);
+		model.addAttribute("priceOnApplication", productModel.getPriceOnApplication());
 		return getViewForPage(model);
 	}
 
