@@ -143,6 +143,11 @@ public class CoreSystemSetup extends AbstractSystemSetup
 			importImpexFile(context, "/gallaghercore/import/Sprint1/SolrUK.impex");
 			importImpexFile(context, "/gallaghercore/import/Sprint1/SolrUS.impex");
 		}
+		final boolean importSprint3Impex = getBooleanSystemSetupParameter(context, IMPORT_SPRINT_3_IMPEX);
+		if (importSprint3Impex)
+		{
+			importImpexFile(context, "/gallaghercore/import/Sprint3/SAPP2-162.impex");
+		}
 
 	}
 
