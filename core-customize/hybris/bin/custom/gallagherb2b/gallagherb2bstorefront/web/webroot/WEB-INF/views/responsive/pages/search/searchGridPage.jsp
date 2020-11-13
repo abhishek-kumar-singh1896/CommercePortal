@@ -61,18 +61,18 @@
 
 			<!-- technical support tab  -->
             <!-- Begin Sign-In Touchpoint, Type = login -->
-            <sec:authorize access="hasAnyRole('ROLE_MINDTOUCHDOCGROUP')">
+            <%-- <sec:authorize access="hasAnyRole('ROLE_MINDTOUCHDOCGROUP')"> --%>
            	<script async="async" src="${mindtouchLoginSRC}"></script>
             <div class="tab-pane <c:if test="${not empty technicalSupport}">active</c:if>" id="technicalSupport" role="tabpanel" style="height: 600px">
                 <script type="mindtouch/embed" id="${mindtouchLoginID}" data-search-query="${searchPageData.freeTextSearch}"></script>
             </div>
-            </sec:authorize>
+            <%-- </sec:authorize> --%>
             
-            <sec:authorize access="!hasAnyRole('ROLE_MINDTOUCHDOCGROUP')">           	
+            <%-- <sec:authorize access="!hasAnyRole('ROLE_MINDTOUCHDOCGROUP')"> --%>           	
             <div class="tab-pane <c:if test="${not empty technicalSupport}">active</c:if>" id="technicalSupport" role="tabpanel" style="height: 600px">
                 <h2>Sorry, you don't have access to the files</h2>
             </div>
-            </sec:authorize>
+            <%-- </sec:authorize> --%>
 			<script>
                                                   document.addEventListener('mindtouch-web-widget:search:ready', ({ data }) => {
                                                     const searchWidget = data.widget;
