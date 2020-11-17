@@ -163,6 +163,20 @@ UPDATE Catalog ; id[unique=true]        ; name[lang=$lang]
                ; $productCatalog        ; "Security B2B US Product Catalog" ;  
                
                
+$productCatalog=securityB2BMasterProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$languages=en,en_AU,en_NZ,en_UK,en_AS,en_ST,en_CA,en_US
+ 
+# Product catalog
+INSERT_UPDATE Catalog ; id[unique=true] 
+                      ; $productCatalog 
+                      
+# Product versions for product catalogs
+INSERT_UPDATE CatalogVersion ; catalog(id)[unique=true] ; version[unique=true] ; active ; languages(isoCode) ; readPrincipals(uid)                         ; writePrincipals(uid)          
+                             ; $productCatalog          ; Staged               ; false  ; $languages         ; employeegroup,backofficeproductmanagergroup ; backofficeproductmanagergroup 
+                             ; $productCatalog          ; Online               ; false  ; $languages         ; employeegroup,backofficeproductmanagergroup ; backofficeproductmanagergroup 
+
+               
 UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor] ; pk[unique=true] 
                                                                                                            
 $contentCatalog=securityB2BContentCatalog                                                                  
@@ -366,34 +380,41 @@ INSERT_UPDATE JobSearchRestriction ; code[unique=true]                          
                                    ; B2BMaster->B2BSthAm-SyncJob-MediaContainer-Restriction ; sync securityB2BMasterProductCatalog:Staged->securityB2BSthAmProductCatalog:Staged ; MediaContainer ; $mediaContainerQuery       
                                    
                                    
-INSERT_UPDATE SyncAttributeDescriptorConfig ; syncJob(code)[unique=true,path-delimiter=!]                                        ; attributeDescriptor(enclosingType(code),qualifier)[unique=true] ; includedInSync ; copyByValue 
-                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BUSProductCatalog:Staged    ; Product:europe1Prices                                           ; false          ; false       
-                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BCAProductCatalog:Staged    ; Product:europe1Prices                                           ; false          ; false       
-                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BUKProductCatalog:Staged    ; Product:europe1Prices                                           ; false          ; false       
-                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BAsiaProductCatalog:Staged  ; Product:europe1Prices                                           ; false          ; false       
-                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BSthAmProductCatalog:Staged ; Product:europe1Prices                                           ; false          ; false       
-                                            
+INSERT_UPDATE SyncAttributeDescriptorConfig ; syncJob(code)[unique=true,path-delimiter=!]                                         ; attributeDescriptor(enclosingType(code),qualifier)[unique=true] ; includedInSync ; copyByValue 
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BUSProductCatalog:Staged     ; Product:europe1Prices                                           ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BCAProductCatalog:Staged     ; Product:europe1Prices                                           ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BUKProductCatalog:Staged     ; Product:europe1Prices                                           ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BAsiaProductCatalog:Staged   ; Product:europe1Prices                                           ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BSthAmProductCatalog:Staged  ; Product:europe1Prices                                           ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged     ; Product:ownEurope1Prices                                        ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged     ; Product:ownEurope1Prices                                        ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged ; Product:ownEurope1Prices                                        ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BUSProductCatalog:Staged     ; Product:ownEurope1Prices                                        ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BCAProductCatalog:Staged     ; Product:ownEurope1Prices                                        ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BUKProductCatalog:Staged     ; Product:ownEurope1Prices                                        ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BAsiaProductCatalog:Staged   ; Product:ownEurope1Prices                                        ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BSthAmProductCatalog:Staged  ; Product:ownEurope1Prices                                        ; false          ; false       
 #############################################################################################
-
-
-INSERT_UPDATE CompositeEntry;code[unique=true];compositeCronjob(code);compositeCronJobPOS[unique=true];executableCronJob(code)[unique=true];triggerableJob(code)[path-delimiter=!]
-;securityProductCompositeJobEntry1;securityProductCompositeJob;1;securityB2BBynderSyncCronJob;
-;securityProductCompositeJobEntry2;securityProductCompositeJob;2;SecurityMediaConversionMaster;
-;securityProductCompositeJobEntry3;securityProductCompositeJob;3;;sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged
-;securityProductCompositeJobEntry4;securityProductCompositeJob;4;;sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged
-;securityProductCompositeJobEntry5;securityProductCompositeJob;5;;sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged
-;securityProductCompositeJobEntry6;securityProductCompositeJob;6;;sync securityB2BMasterProductCatalog:Staged->securityB2BUSProductCatalog:Staged
-;securityProductCompositeJobEntry7;securityProductCompositeJob;7;;sync securityB2BMasterProductCatalog:Staged->securityB2BCAProductCatalog:Staged
-;securityProductCompositeJobEntry8;securityProductCompositeJob;8;;sync securityB2BMasterProductCatalog:Staged->securityB2BAsiaProductCatalog:Staged
-;securityProductCompositeJobEntry9;securityProductCompositeJob;9;;sync securityB2BMasterProductCatalog:Staged->securityB2BSthAmProductCatalog:Staged
-;securityProductCompositeJobEntry10;securityProductCompositeJob;10;;sync securityB2BMasterProductCatalog:Staged->securityB2BUKProductCatalog:Staged
-;securityProductCompositeJobEntry11;securityProductCompositeJob;11;securityB2BProductTransformationCronjob
-;securityProductCompositeJobEntry12;securityProductCompositeJob;12;;sync securityB2BNZProductCatalog:Staged->Online
-;securityProductCompositeJobEntry13;securityProductCompositeJob;13;;sync securityB2BAUProductCatalog:Staged->Online
-;securityProductCompositeJobEntry14;securityProductCompositeJob;14;;sync securityB2BGlobalProductCatalog:Staged->Online
-;securityProductCompositeJobEntry15;securityProductCompositeJob;15;;sync securityB2BUSProductCatalog:Staged->Online
-;securityProductCompositeJobEntry16;securityProductCompositeJob;16;;sync securityB2BCAProductCatalog:Staged->Online
-;securityProductCompositeJobEntry17;securityProductCompositeJob;17;;sync securityB2BAsiaProductCatalog:Staged->Online
-;securityProductCompositeJobEntry18;securityProductCompositeJob;18;;sync securityB2BSthAmProductCatalog:Staged->Online
-;securityProductCompositeJobEntry19;securityProductCompositeJob;19;;sync securityB2BUKProductCatalog:Staged->Online
-
+                                            
+                                            
+INSERT_UPDATE CompositeEntry ; code[unique=true]                  ; compositeCronjob(code)      ; compositeCronJobPOS[unique=true] ; executableCronJob(code)[unique=true]    ; triggerableJob(code)[path-delimiter=!]                                              
+                             ; securityProductCompositeJobEntry1  ; securityProductCompositeJob ; 1                                ; securityB2BBynderSyncCronJob            ;                                                                                     
+                             ; securityProductCompositeJobEntry2  ; securityProductCompositeJob ; 2                                ; SecurityMediaConversionMaster           ;                                                                                     
+                             ; securityProductCompositeJobEntry3  ; securityProductCompositeJob ; 3                                ;                                         ; sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged     
+                             ; securityProductCompositeJobEntry4  ; securityProductCompositeJob ; 4                                ;                                         ; sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged     
+                             ; securityProductCompositeJobEntry5  ; securityProductCompositeJob ; 5                                ;                                         ; sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged 
+                             ; securityProductCompositeJobEntry6  ; securityProductCompositeJob ; 6                                ;                                         ; sync securityB2BMasterProductCatalog:Staged->securityB2BUSProductCatalog:Staged     
+                             ; securityProductCompositeJobEntry7  ; securityProductCompositeJob ; 7                                ;                                         ; sync securityB2BMasterProductCatalog:Staged->securityB2BCAProductCatalog:Staged     
+                             ; securityProductCompositeJobEntry8  ; securityProductCompositeJob ; 8                                ;                                         ; sync securityB2BMasterProductCatalog:Staged->securityB2BAsiaProductCatalog:Staged   
+                             ; securityProductCompositeJobEntry9  ; securityProductCompositeJob ; 9                                ;                                         ; sync securityB2BMasterProductCatalog:Staged->securityB2BSthAmProductCatalog:Staged  
+                             ; securityProductCompositeJobEntry10 ; securityProductCompositeJob ; 10                               ;                                         ; sync securityB2BMasterProductCatalog:Staged->securityB2BUKProductCatalog:Staged     
+                             ; securityProductCompositeJobEntry11 ; securityProductCompositeJob ; 11                               ; securityB2BProductTransformationCronjob 
+                             ; securityProductCompositeJobEntry12 ; securityProductCompositeJob ; 12                               ;                                         ; sync securityB2BNZProductCatalog:Staged->Online                                     
+                             ; securityProductCompositeJobEntry13 ; securityProductCompositeJob ; 13                               ;                                         ; sync securityB2BAUProductCatalog:Staged->Online                                     
+                             ; securityProductCompositeJobEntry14 ; securityProductCompositeJob ; 14                               ;                                         ; sync securityB2BGlobalProductCatalog:Staged->Online                                 
+                             ; securityProductCompositeJobEntry15 ; securityProductCompositeJob ; 15                               ;                                         ; sync securityB2BUSProductCatalog:Staged->Online                                     
+                             ; securityProductCompositeJobEntry16 ; securityProductCompositeJob ; 16                               ;                                         ; sync securityB2BCAProductCatalog:Staged->Online                                     
+                             ; securityProductCompositeJobEntry17 ; securityProductCompositeJob ; 17                               ;                                         ; sync securityB2BAsiaProductCatalog:Staged->Online                                   
+                             ; securityProductCompositeJobEntry18 ; securityProductCompositeJob ; 18                               ;                                         ; sync securityB2BSthAmProductCatalog:Staged->Online                                  
+                             ; securityProductCompositeJobEntry19 ; securityProductCompositeJob ; 19                               ;                                         ; sync securityB2BUKProductCatalog:Staged->Online                                     
+                             

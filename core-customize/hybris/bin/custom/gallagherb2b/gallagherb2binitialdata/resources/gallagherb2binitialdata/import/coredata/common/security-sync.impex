@@ -226,3 +226,11 @@ INSERT_UPDATE SyncAttributeDescriptorConfig;syncJob(code)[unique=true,path-delim
 ;sync securityB2BMasterProductCatalog:Staged->securityB2BUKProductCatalog:Staged;Product:europe1Prices;false;false
 ;sync securityB2BMasterProductCatalog:Staged->securityB2BAsiaProductCatalog:Staged;Product:europe1Prices;false;false
 ;sync securityB2BMasterProductCatalog:Staged->securityB2BSthAmProductCatalog:Staged;Product:europe1Prices;false;false
+;sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged;Product:ownEurope1Prices;false;false
+;sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged;Product:ownEurope1Prices;false;false
+;sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged;Product:ownEurope1Prices;false;false
+;sync securityB2BMasterProductCatalog:Staged->securityB2BUSProductCatalog:Staged;Product:ownEurope1Prices;false;false
+;sync securityB2BMasterProductCatalog:Staged->securityB2BCAProductCatalog:Staged;Product:ownEurope1Prices;false;false
+;sync securityB2BMasterProductCatalog:Staged->securityB2BUKProductCatalog:Staged;Product:ownEurope1Prices;false;false
+;sync securityB2BMasterProductCatalog:Staged->securityB2BAsiaProductCatalog:Staged;Product:ownEurope1Prices;false;false
+;sync securityB2BMasterProductCatalog:Staged->securityB2BSthAmProductCatalog:Staged;Product:ownEurope1Prices;false;false
