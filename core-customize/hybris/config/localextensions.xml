@@ -80,7 +80,7 @@
     <extension name='sapsubscriptionaddon' />
     <extension name='playpenbackoffice' /> 
     
-     <!--  SAP
+     <!--  SAP  SCPI -->
     <extension name='saprevenuecloudproduct' />
     <extension name='saprevenuecloudbackoffice' />
     
@@ -109,6 +109,6 @@
     <extension name="sapmodel" />
     <extension name="sapcpiorderexchange" />
     <extension name="sapcpiorderexchangeb2b" />
-    <extension name="ysaporderfulfillment" /> -->
+    <extension name="ysaporderfulfillment" />
   </extensions>
 </hybrisconfig>
