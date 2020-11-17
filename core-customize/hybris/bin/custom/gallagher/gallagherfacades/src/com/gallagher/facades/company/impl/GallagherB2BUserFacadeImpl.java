@@ -8,11 +8,16 @@ import de.hybris.platform.servicelayer.i18n.CommonI18NService;
 import de.hybris.platform.site.BaseSiteService;
 import de.hybris.platform.store.services.BaseStoreService;
 
+import java.io.IOException;
+
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
+import org.dom4j.DocumentException;
 import org.springframework.beans.factory.annotation.Required;
 
 import com.gallagher.core.enums.BU;
 import com.gallagher.core.events.GallagherB2BRegistrationEvent;
+import com.gallagher.core.services.GallagherMindTouchService;
 
 
 /**
@@ -22,12 +27,13 @@ import com.gallagher.core.events.GallagherB2BRegistrationEvent;
  */
 public class GallagherB2BUserFacadeImpl extends DefaultB2BUserFacade
 {
+	private static final Logger LOG = Logger.getLogger(GallagherB2BUserFacadeImpl.class);
 
 	private EventService eventService;
 	private BaseSiteService baseSiteService;
 	private BaseStoreService baseStoreService;
 	private CommonI18NService commonI18NService;
-
+	private GallagherMindTouchService gallagherMindTouchService;
 
 	/**
 	 * {@inheritDoc} Adds the registration listener to send emails
@@ -37,6 +43,36 @@ public class GallagherB2BUserFacadeImpl extends DefaultB2BUserFacade
 	{
 		super.updateCustomer(customerData);
 		publishCustomerRegistrationEvent(customerData);
+
+
+		if (StringUtils.isNotBlank(customerData.getDisplayUid()))
+		{
+			final B2BCustomerModel customerModel = getUserService().getUserForUID(customerData.getDisplayUid(),
+					B2BCustomerModel.class);
+			pushToMindTouch(customerModel);
+		}
+
+	}
+
+	/**
+	 * This method calls the mindtouch service to push cusstomer to mindtouch
+	 *
+	 * @param savedCustomer
+	 */
+	private void pushToMindTouch(final B2BCustomerModel savedCustomer)
+	{
+		try
+		{
+			getGallagherMindTouchService().pushCustomerToMindTouch(savedCustomer);
+		}
+		catch (final IOException e)
+		{
+			LOG.error("IOException while creating pushing user in mindTouch :: " + e.getMessage());
+		}
+		catch (final DocumentException e)
+		{
+			LOG.error("Document Exception while creating pushing user in mindTouch :: " + e.getMessage());
+		}
 	}
 
 	private void publishCustomerRegistrationEvent(final CustomerData customerData)
@@ -121,4 +157,22 @@ public class GallagherB2BUserFacadeImpl extends DefaultB2BUserFacade
 	{
 		this.baseStoreService = baseStoreService;
 	}
+
+	/**
+	 * @return the gallagherMindTouchService
+	 */
+	public GallagherMindTouchService getGallagherMindTouchService()
+	{
+		return gallagherMindTouchService;
+	}
+
+	/**
+	 * @param gallagherMindTouchService
+	 *           the gallagherMindTouchService to set
+	 */
+	public void setGallagherMindTouchService(final GallagherMindTouchService gallagherMindTouchService)
+	{
+		this.gallagherMindTouchService = gallagherMindTouchService;
+	}
+
 }
