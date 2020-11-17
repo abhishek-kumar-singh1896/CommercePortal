@@ -679,7 +679,8 @@ public class CartPageController extends AbstractCartPageController
 					recommendedProducts.addAll(entry.getProduct().getRecommendedProducts());
 				}
 			}
-
+			LOG.debug("Number of recommended products - "+recommendedProducts.size());
+			LOG.debug("Number of recommended categories - "+recommendedCategories.size());
 			model.addAttribute("recommendedProducts", recommendedProducts);
 			model.addAttribute("recommendedCategories", recommendedCategories);
 		}
