@@ -80,6 +80,7 @@
     <extension name='sapsubscriptionaddon' />
     <extension name='playpenbackoffice' /> 
     
+    <extension name='saprevenuecloudproduct' />
      <!--  SAP -->
     <extension name="outboundservices" />
     <extension name="outboundsync" />
