@@ -178,6 +178,11 @@
       "addon": "sapsubscriptionaddon",
       "storefront": "yacceleratorstorefront",
       "template": "yacceleratorstorefront"
+    },
+	 {
+      "addon": "sapsubscriptionaddon",
+      "storefront": "yb2bacceleratorstorefront",
+      "template": "yacceleratorstorefront"
     }
   ],
   "properties": [],
