@@ -160,10 +160,9 @@ $classificationCatalog=SecurityB2BClassification
                                           
 UPDATE Catalog ; id[unique=true]        ; name[lang=$lang]                  
                ; $classificationCatalog ; "Security B2B Classification"     ;  
-               ; $productCatalog        ; "Security B2B US Product Catalog" ;
-
+               ; $productCatalog        ; "Security B2B US Product Catalog" ;  
                
-$classificationCatalog=SecurityB2BClassification
+               
 $productCatalog=securityB2BMasterProductCatalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 $languages=en,en_AU,en_NZ,en_UK,en_AS,en_ST,en_CA,en_US
@@ -177,23 +176,6 @@ INSERT_UPDATE CatalogVersion ; catalog(id)[unique=true] ; version[unique=true] ;
                              ; $productCatalog          ; Staged               ; false  ; $languages         ; employeegroup,backofficeproductmanagergroup ; backofficeproductmanagergroup 
                              ; $productCatalog          ; Online               ; false  ; $languages         ; employeegroup,backofficeproductmanagergroup ; backofficeproductmanagergroup 
 
- # SecurityB2B Classification catalog
-INSERT_UPDATE ClassificationSystem ; id[unique=true]        
-                                   ; $classificationCatalog 
-                                   
-# Insert Classifications System Version
-INSERT_UPDATE ClassificationSystemVersion ; catalog(id)[unique=true] ; version[unique=true] ; active ; inclPacking[virtual=true,default=true] ; inclDuty[virtual=true,default=true] ; inclFreight[virtual=true,default=true] ; inclAssurance[virtual=true,default=true] 
-                                          ; $classificationCatalog   ; 1.0                  ; true   
-
-$lang=en                                  
-                                          
-$productCatalog=securityB2BMasterProductCatalog
-$classificationCatalog=SecurityB2BClassification
-                                          
-UPDATE Catalog ; id[unique=true]        ; name[lang=$lang]                  
-               ; $classificationCatalog ; "Security B2B Classification"     ;  
-               ; $productCatalog        ; "Security B2B Master Product Catalog" ;                
-               
                
 UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor] ; pk[unique=true] 
                                                                                                            
