@@ -6,12 +6,14 @@ package com.gallagher.b2b.storefront.controllers.pages;
 import de.hybris.platform.acceleratorstorefrontcommons.annotations.RequireHardLogIn;
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.pages.AbstractPageController;
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.util.GlobalMessages;
+import de.hybris.platform.catalog.CatalogService;
 import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
 import de.hybris.platform.commercefacades.order.CartFacade;
 import de.hybris.platform.commercefacades.order.data.CartModificationData;
 import de.hybris.platform.commerceservices.order.CommerceCartModificationException;
 import de.hybris.platform.product.ProductService;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
+import de.hybris.platform.servicelayer.media.MediaService;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -29,7 +31,6 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,7 +49,6 @@ import com.gallagher.b2b.storefront.forms.BulkOrderFormEntry;
  *
  */
 @Controller
-@Scope("tenant")
 public class B2badvanceBulkOrderPageController extends AbstractPageController
 {
 	private static final Logger LOG = Logger.getLogger(B2badvanceBulkOrderPageController.class);
@@ -61,6 +61,12 @@ public class B2badvanceBulkOrderPageController extends AbstractPageController
 
 	@Autowired
 	CartFacade cartFacade;
+
+	@Autowired
+	MediaService mediaService;
+
+	@Autowired
+	CatalogService catalogService;
 
 	/**
 	 * Method that initializes the order form page
@@ -80,6 +86,9 @@ public class B2badvanceBulkOrderPageController extends AbstractPageController
 		storeCmsPageInModel(model, getContentPageForLabelOrId(BULK_ORDER_FORM_PAGE));
 		setUpMetaDataForContentPage(model, getContentPageForLabelOrId(BULK_ORDER_FORM_PAGE));
 		initializeBulkOrderForm(model);
+		model.addAttribute("bulkOrderTemplateDownloadURL", mediaService
+				.getMedia(catalogService.getCatalogForId("securityB2BContentCatalog").getActiveCatalogVersion(), "bulkOrderTemplate")
+				.getDownloadURL());
 		model.addAttribute("metaRobots", "no-index,no-follow");
 		return ControllerConstants.Views.Pages.Order.BulkOrderForm;
 	}
