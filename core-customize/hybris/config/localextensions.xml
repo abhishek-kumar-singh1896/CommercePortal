@@ -114,6 +114,9 @@
 	<extension name="sapcpiorderexchangeb2b" />
 	<extension name="ysaporderfulfillment" />
 	
+ 	<extension name="gallaghersamlsso" /> 
+	<extension name="samlssobackoffice" />	
+	
 	<extension name="gallagheroutboundservices" />
 	<extension name="gallaghercore" />
 	<extension name="gallagherfacades" />
