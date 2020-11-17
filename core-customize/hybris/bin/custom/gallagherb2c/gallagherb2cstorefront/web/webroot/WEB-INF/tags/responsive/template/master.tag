@@ -39,15 +39,12 @@
                    onLoad: 'check-sso',
                    silentCheckSsoRedirectUri:window.location.origin + '/silent-check-sso.html' // this is hosted by the Client Application
                    }).then(function(authenticated) {
-            alert("authenticated Value (commerce logged out)>>"+authenticated);
-            alert("window.location.origin>>"+window.location.origin);
             if(authenticated){
             	var baseURLLogin = $("#baseLoginURL").val();
             	window.location.href=baseURLLogin+'/login';
             }
         }).catch(function() {
             alert('failed to initialize');
-            alert("window.location.origin>>"+window.location.origin);
         });
     	}
     </script>
@@ -69,15 +66,12 @@
                    onLoad: 'check-sso',
                    silentCheckSsoRedirectUri:window.location.origin + '/silent-check-sso.html' // this is hosted by the Client Application
                    }).then(function(authenticated) {
-    	   	alert("authenticated Value (commerce logged in)>>"+authenticated);
-           	alert("window.location.origin>>"+window.location.origin);
             if(!authenticated){
             	var baseURLLogout = $("#baseLogoutURL").val();
             	window.location.href=baseURLLogout+'/logout';
             }
         }).catch(function() {
             alert('failed to initialize');
-            alert("window.location.origin>>"+window.location.origin);
         });
     	}
     </script>
