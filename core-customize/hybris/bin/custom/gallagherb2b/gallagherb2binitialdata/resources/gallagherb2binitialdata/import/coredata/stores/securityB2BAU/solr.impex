@@ -78,8 +78,8 @@ INSERT_UPDATE SolrValueRange ; &rangeValueRefID ; solrValueRangeSet(name)[unique
 # Define price range set     
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true]           ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                                
                                 ; securityB2BPriceRangeAUD    ; NZD       ; double ; rangeRefAUD1, rangeRefAUD2, rangeRefAUD3, rangeRefAUD4, rangeRefAUD5 
-                                ; securityB2BPriceRangeAUDNZD ; AUD       ; double ; rangeRefNZDAUD1, rangeRefNZDAUD2, rangeRefNZDAUD3, rangeRefNZDAUD4, rangeRefNZDAUD5 
-                                ; securityB2BPriceRangeUSDNZD ; USD       ; double ; rangeRefUSDAUD1, rangeRefUSDAUD2, rangeRefUSDAUD3, rangeRefUSDAUD4, rangeRefUSDAUD5 
+                                ; securityB2BPriceRangeNZDAUD ; AUD       ; double ; rangeRefNZDAUD1, rangeRefNZDAUD2, rangeRefNZDAUD3, rangeRefNZDAUD4, rangeRefNZDAUD5 
+                                ; securityB2BPriceRangeUSDAUD ; USD       ; double ; rangeRefUSDAUD1, rangeRefUSDAUD2, rangeRefUSDAUD3, rangeRefUSDAUD4, rangeRefUSDAUD5 
                                 
 # Non-facet properties          
 INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]      ; type(code) ; sortableType(code) ; customerGroup[default=false]; salesArea[default=false]; userPriceGroup[default=false] ;currency[default=false] ; localized[default=false] ; multiValue[default=false] ; useForSpellchecking[default=false] ; useForAutocomplete[default=false] ; fieldValueProvider                         ; valueProviderParameter         ; ftsPhraseQuery[default=false] ; ftsPhraseQueryBoost ; ftsQuery[default=false] ; ftsQueryBoost ; ftsFuzzyQuery[default=false] ; ftsFuzzyQueryBoost ; ftsWildcardQuery[default=false] ; ftsWildcardQueryType(code)[default=POSTFIX] ; ftsWildcardQueryBoost ; ftsWildcardQueryMinTermLength 
