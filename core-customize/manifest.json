@@ -173,6 +173,11 @@
       "addon": "commerceorgaddon",
       "storefront": "yb2bacceleratorstorefront",
       "template": "yacceleratorstorefront"
+    },
+	 {
+      "addon": "sapsubscriptionaddon",
+      "storefront": "yacceleratorstorefront",
+      "template": "yacceleratorstorefront"
     }
   ],
   "properties": [],

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<config xmlns="http://www.hybris.com/cockpit/config">
+
+	<!-- playpenbackoffice UI configuration should be provided here -->
+
+	<!--<context component="component-code" module="playpenbackoffice">-->
+		<!--Please check documentation for code snippets for specific components-->
+	<!--</context>-->
+    
+    <context component="explorer-tree" parent="auto" merge-by="module">
+        <explorer-tree:explorer-tree xmlns:explorer-tree="http://www.hybris.com/cockpitng/config/explorertree">
+            <explorer-tree:navigation-node id="hmc_treenode_subscription">
+                <explorer-tree:type-node code="BillingPlan" id="hmc_typenode_billingplan" />
+                <explorer-tree:type-node code="SubscriptionTerm" id="hmc_typenode_subscriptionterm" />
+            </explorer-tree:navigation-node>
+        </explorer-tree:explorer-tree>
+    </context>
+    
+  <context type="SubscriptionTerm" component="listview" merge-by="type" parent="GenericItem">
+        <list-view:list-view xmlns:list-view="http://www.hybris.com/cockpitng/component/listView">
+            <list-view:column qualifier="id" />
+            <list-view:column qualifier="termOfServiceFrequency" />
+            <list-view:column qualifier="termOfServiceNumber" />
+            <list-view:column qualifier="termOfServiceRenewal" />
+            <list-view:column qualifier="billingPlan" />
+            <list-view:column qualifier="cancellable" />
+        </list-view:list-view>
+    </context>
+    <context type="SubscriptionTerm" component="simple-search" merge-by="type" parent="GenericItem">
+        <simple-search:simple-search xmlns:simple-search="http://www.hybris.com/cockpitng/config/simplesearch">
+            <simple-search:field xmlns="http://www.hybris.com/cockpitng/config/simplesearch" name="id" />
+            <simple-search:field xmlns="http://www.hybris.com/cockpitng/config/simplesearch" name="termOfServiceFrequency" />
+            <simple-search:field xmlns="http://www.hybris.com/cockpitng/config/simplesearch" name="termOfServiceNumber" />
+            <simple-search:field xmlns="http://www.hybris.com/cockpitng/config/simplesearch" name="termOfServiceRenewal" />
+            <simple-search:field xmlns="http://www.hybris.com/cockpitng/config/simplesearch" name="billingPlan" />
+            <simple-search:field xmlns="http://www.hybris.com/cockpitng/config/simplesearch" name="cancellable" />
+        </simple-search:simple-search>
+    </context>
+    <context type="SubscriptionTerm" component="editor-area" merge-by="type" parent="GenericItem">
+        <editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+            <editorArea:essentials xmlns="http://www.hybris.com/cockpitng/component/editorArea">
+                <editorArea:essentialSection name="hmc.essential">
+                    <attribute qualifier="id" />
+                    <attribute qualifier="termOfServiceFrequency" />
+                    <attribute qualifier="termOfServiceNumber" />
+                    <attribute qualifier="termOfServiceRenewal" />
+                    <attribute qualifier="billingPlan" />
+                    <attribute qualifier="cancellable" />
+                </editorArea:essentialSection>
+            </editorArea:essentials>
+        </editorArea:editorArea>
+    </context>    
+    
+    
+    
+    <context type="BillingPlan" component="listview" merge-by="type" parent="GenericItem">
+        <list-view:list-view xmlns:list-view="http://www.hybris.com/cockpitng/component/listView">
+            <list-view:column qualifier="id" />
+            <list-view:column qualifier="name" />
+            <list-view:column qualifier="billingCycleDay" />
+            <list-view:column qualifier="billingCycleType" />
+            <list-view:column qualifier="billingFrequency" />
+        </list-view:list-view>
+    </context>
+    <context type="BillingPlan" component="simple-search" merge-by="type" parent="GenericItem">
+        <simple-search:simple-search xmlns:simple-search="http://www.hybris.com/cockpitng/config/simplesearch">
+            <simple-search:field xmlns="http://www.hybris.com/cockpitng/config/simplesearch" name="id" />
+            <simple-search:field xmlns="http://www.hybris.com/cockpitng/config/simplesearch" name="name" />
+            <simple-search:field xmlns="http://www.hybris.com/cockpitng/config/simplesearch" name="billingCycleDay" />
+            <simple-search:field xmlns="http://www.hybris.com/cockpitng/config/simplesearch" name="billingCycleType" />
+            <simple-search:field xmlns="http://www.hybris.com/cockpitng/config/simplesearch" name="billingFrequency" />
+        </simple-search:simple-search>
+    </context>
+    <context type="BillingPlan" component="editor-area" merge-by="type" parent="GenericItem">
+        <editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+            <editorArea:essentials xmlns="http://www.hybris.com/cockpitng/component/editorArea">
+                <editorArea:essentialSection name="hmc.essential">
+                    <attribute qualifier="id" />
+                    <attribute qualifier="name" />
+                    <attribute qualifier="billingCycleDay" />
+                    <attribute qualifier="billingCycleType" />
+                    <attribute qualifier="billingFrequency" />
+                </editorArea:essentialSection>
+            </editorArea:essentials>
+        </editorArea:editorArea>
+    </context>
+
+</config>
