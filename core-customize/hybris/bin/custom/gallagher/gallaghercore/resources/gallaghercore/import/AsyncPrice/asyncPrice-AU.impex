@@ -31,7 +31,7 @@ INSERT_UPDATE SolrValueRange ; &rangeValueRefID ; solrValueRangeSet(name)[unique
                                                           
 # Define price range set     
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true]           ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                                
-                                ; securityB2BPriceRangeNZD    ; NZD       ; double ; rangeRefAUD1, rangeRefAUD2, rangeRefAUD3, rangeRefAUD4, rangeRefAUD5 
+                                ; securityB2BPriceRangeAUD    ; NZD       ; double ; rangeRefAUD1, rangeRefAUD2, rangeRefAUD3, rangeRefAUD4, rangeRefAUD5 
                                 ; securityB2BPriceRangeAUDNZD ; AUD       ; double ; rangeRefNZDAUD1, rangeRefNZDAUD2, rangeRefNZDAUD3, rangeRefNZDAUD4, rangeRefNZDAUD5 
                                 ; securityB2BPriceRangeUSDNZD ; USD       ; double ; rangeRefUSDAUD1, rangeRefUSDAUD2, rangeRefUSDAUD3, rangeRefUSDAUD4, rangeRefUSDAUD5 
 
