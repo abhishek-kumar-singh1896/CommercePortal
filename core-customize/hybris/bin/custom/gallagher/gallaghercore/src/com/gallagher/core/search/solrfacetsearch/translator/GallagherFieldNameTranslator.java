@@ -144,19 +144,28 @@ public class GallagherFieldNameTranslator extends DefaultFieldNameTranslator
 						if (salesAreaQualifierProvider != null && salesAreaQualifierProvider.canApply(indexedProperty))
 						{
 							final Qualifier salesAreaQualifier = salesAreaQualifierProvider.getCurrentQualifier();
-							fieldQualifier = fieldQualifier + FIELDNAME_SEPARATOR + salesAreaQualifier.toFieldQualifier();
+							final String salesAreaFieldQualifier = salesAreaQualifier != null
+									? salesAreaQualifier.toFieldQualifier()
+									: StringUtils.EMPTY;
+							fieldQualifier = fieldQualifier + FIELDNAME_SEPARATOR + salesAreaFieldQualifier;
 
 						}
 						if (userPriceGroupQualifierProvider != null && userPriceGroupQualifierProvider.canApply(indexedProperty))
 						{
 							final Qualifier upgQualifier = userPriceGroupQualifierProvider.getCurrentQualifier();
-							fieldQualifier = fieldQualifier + FIELDNAME_SEPARATOR + upgQualifier.toFieldQualifier() + upgSuffix;
+							final String upgFieldQualifier = upgQualifier != null ? upgQualifier.toFieldQualifier() : StringUtils.EMPTY;
+
+							fieldQualifier = fieldQualifier + FIELDNAME_SEPARATOR + upgFieldQualifier + upgSuffix;
 
 						}
 						if (customerGroupQualifierProvider != null && customerGroupQualifierProvider.canApply(indexedProperty))
 						{
 							final Qualifier customerGroupQualifier = customerGroupQualifierProvider.getCurrentQualifier();
-							fieldQualifier = fieldQualifier + FIELDNAME_SEPARATOR + customerGroupQualifier.toFieldQualifier();
+							final String customerGroupFieldQualifier = customerGroupQualifier != null
+									? customerGroupQualifier.toFieldQualifier()
+									: StringUtils.EMPTY;
+
+							fieldQualifier = fieldQualifier + FIELDNAME_SEPARATOR + customerGroupFieldQualifier;
 
 						}
 					}

@@ -52,6 +52,7 @@ public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactor
 {
 	private static final String CURRENT_SESSION_SALES_AREA = "currentSessionSalesArea";
 	private static final String CURRENT_SESSION_CUSTOMER_GROUP = "currentSessionCustomerGroup";
+	private static final String SEPARATOR = "_";
 
 	@Resource(name = "modelService")
 	private ModelService modelService;
@@ -120,12 +121,15 @@ public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactor
 			return result;
 		}
 
+		final int index = salesArea.lastIndexOf(SEPARATOR);
+		final String salesAreaSubString = salesArea.substring(0, index);
+
 		final GallagherPDTRowsQueryBuilder builder = this.getPDTRowsQueryBuilderFor(discountRowTypeCode);
 		final QueryWithParams queryAndParams = builder.withAnyProduct().withAnyUser().withAnySalesArea().withAnyCustomerGroup()
 				.withProduct(
 						productPk)
 				.withProductId(productId).withProductGroup(productGroupPk).withUser(userPk).withUserGroup(userGroupPk)
-				.withSalesArea(salesArea).withCustomerGroup(customerGroup).build();
+				.withSalesArea(salesAreaSubString).withCustomerGroup(customerGroup).build();
 
 		return FlexibleSearch.getInstance().search(ctx, queryAndParams.getQuery(), queryAndParams.getParams(),
 				DiscountRow.class)

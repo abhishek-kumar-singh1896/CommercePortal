@@ -8,7 +8,10 @@ import de.hybris.platform.b2b.model.B2BCustomerModel;
 import de.hybris.platform.b2b.model.B2BUnitModel;
 import de.hybris.platform.b2b.services.impl.DefaultB2BUnitService;
 import de.hybris.platform.basecommerce.model.site.BaseSiteModel;
+import de.hybris.platform.commerceservices.order.CommerceCartService;
+import de.hybris.platform.core.model.c2l.CurrencyModel;
 import de.hybris.platform.core.model.enumeration.EnumerationValueModel;
+import de.hybris.platform.core.model.order.CartModel;
 import de.hybris.platform.core.model.security.PrincipalGroupModel;
 import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.core.model.user.UserModel;
@@ -44,11 +47,15 @@ public class GallagherB2BUnitServiceImpl extends DefaultB2BUnitService implement
 	private static final String CURRENT_SESSION_SALES_AREA = "currentSessionSalesArea";
 	private static final String CURRENT_SESSION_CUSTOMER_GROUP = "currentSessionCustomerGroup";
 	public static final String CURRENCY_SESSION_ATTR_KEY = "currency".intern();
+	private static final String SESSION_CART_PARAMETER_NAME = "cart";
 
 	@Autowired
 	private BaseStoreService baseStoreService;
 	@Autowired
 	private BaseSiteService baseSiteService;
+
+	@Autowired
+	private CommerceCartService commerceCartService;
 
 	@Override
 	public List<B2BUnitModel> getAllB2BUnits(final CustomerModel customer)
@@ -157,15 +164,29 @@ public class GallagherB2BUnitServiceImpl extends DefaultB2BUnitService implement
 
 			final B2BCustomerModel currentCustomer = (B2BCustomerModel) currentUser;
 			final B2BUnitModel defaultUnit = currentCustomer.getDefaultB2BUnit();
+			final CurrencyModel sessionCurrency;
 			if (defaultUnit != null && defaultUnit.getCurrency() != null)
 			{
-				getSessionService().setAttribute(CURRENCY_SESSION_ATTR_KEY, defaultUnit.getCurrency());
+				sessionCurrency = defaultUnit.getCurrency();
 			}
 			else
 			{
 				final BaseStoreModel store = getBaseStoreService().getCurrentBaseStore();
-				getSessionService().setAttribute(CURRENCY_SESSION_ATTR_KEY, store.getDefaultCurrency());
+				sessionCurrency = store.getDefaultCurrency();
 			}
+
+			final List<CartModel> cartModels = commerceCartService.getCartsForSiteAndUser(baseSiteService.getCurrentBaseSite(),
+					currentCustomer);
+
+			if (CollectionUtils.isNotEmpty(cartModels))
+			{
+				final CartModel cartModel = cartModels.stream().filter(cart -> cart.getCurrency() == sessionCurrency).findFirst()
+						.orElse(null);
+				getSessionService().setAttribute(SESSION_CART_PARAMETER_NAME, cartModel);
+
+			}
+
+			getSessionService().setAttribute(CURRENCY_SESSION_ATTR_KEY, sessionCurrency);
 		}
 	}
 
