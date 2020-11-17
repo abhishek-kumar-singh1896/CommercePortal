@@ -80,9 +80,10 @@
     <extension name='sapsubscriptionaddon' />
     <extension name='playpenbackoffice' /> 
     
+     <!--  SAP
     <extension name='saprevenuecloudproduct' />
     <extension name='saprevenuecloudbackoffice' />
-     <!--  SAP -->
+    
     <extension name="outboundservices" />
     <extension name="outboundsync" />
     <extension name="odata2webservices" />
@@ -108,6 +109,6 @@
     <extension name="sapmodel" />
     <extension name="sapcpiorderexchange" />
     <extension name="sapcpiorderexchangeb2b" />
-    <extension name="ysaporderfulfillment" />
+    <extension name="ysaporderfulfillment" /> -->
   </extensions>
 </hybrisconfig>
