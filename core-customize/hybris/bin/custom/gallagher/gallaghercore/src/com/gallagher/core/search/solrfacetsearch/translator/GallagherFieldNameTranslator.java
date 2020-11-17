@@ -141,31 +141,25 @@ public class GallagherFieldNameTranslator extends DefaultFieldNameTranslator
 							}
 						}
 
-						if (salesAreaQualifierProvider != null && salesAreaQualifierProvider.canApply(indexedProperty))
+						if (salesAreaQualifierProvider != null && salesAreaQualifierProvider.canApply(indexedProperty)
+								&& salesAreaQualifierProvider.getCurrentQualifier() != null)
 						{
 							final Qualifier salesAreaQualifier = salesAreaQualifierProvider.getCurrentQualifier();
-							final String salesAreaFieldQualifier = salesAreaQualifier != null
-									? salesAreaQualifier.toFieldQualifier()
-									: StringUtils.EMPTY;
-							fieldQualifier = fieldQualifier + FIELDNAME_SEPARATOR + salesAreaFieldQualifier;
+							fieldQualifier = fieldQualifier + FIELDNAME_SEPARATOR + salesAreaQualifier.toFieldQualifier();
 
 						}
-						if (userPriceGroupQualifierProvider != null && userPriceGroupQualifierProvider.canApply(indexedProperty))
+						if (userPriceGroupQualifierProvider != null && userPriceGroupQualifierProvider.canApply(indexedProperty)
+								&& userPriceGroupQualifierProvider.getCurrentQualifier() != null)
 						{
 							final Qualifier upgQualifier = userPriceGroupQualifierProvider.getCurrentQualifier();
-							final String upgFieldQualifier = upgQualifier != null ? upgQualifier.toFieldQualifier() : StringUtils.EMPTY;
-
-							fieldQualifier = fieldQualifier + FIELDNAME_SEPARATOR + upgFieldQualifier + upgSuffix;
+							fieldQualifier = fieldQualifier + FIELDNAME_SEPARATOR + upgQualifier.toFieldQualifier() + upgSuffix;
 
 						}
-						if (customerGroupQualifierProvider != null && customerGroupQualifierProvider.canApply(indexedProperty))
+						if (customerGroupQualifierProvider != null && customerGroupQualifierProvider.canApply(indexedProperty)
+								&& customerGroupQualifierProvider.getCurrentQualifier() != null)
 						{
 							final Qualifier customerGroupQualifier = customerGroupQualifierProvider.getCurrentQualifier();
-							final String customerGroupFieldQualifier = customerGroupQualifier != null
-									? customerGroupQualifier.toFieldQualifier()
-									: StringUtils.EMPTY;
-
-							fieldQualifier = fieldQualifier + FIELDNAME_SEPARATOR + customerGroupFieldQualifier;
+							fieldQualifier = fieldQualifier + FIELDNAME_SEPARATOR + customerGroupQualifier.toFieldQualifier();
 
 						}
 					}
