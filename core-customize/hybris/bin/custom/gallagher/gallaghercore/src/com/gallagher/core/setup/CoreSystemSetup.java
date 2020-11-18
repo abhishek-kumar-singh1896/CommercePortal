@@ -100,7 +100,6 @@ public class CoreSystemSetup extends AbstractSystemSetup
 
 		final boolean importSprint2Impex = getBooleanSystemSetupParameter(context, IMPORT_SPRINT_2_IMPEX);
 
-
 		if (importSprint2Impex)
 		{
 			importImpexFile(context, "/laminexcore/import/Sprint2/SAPP2-67.impex");
@@ -153,6 +152,7 @@ public class CoreSystemSetup extends AbstractSystemSetup
 			importImpexFile(context, "/gallaghercore/import/Sprint3/SAPP2-162.impex");
 			importImpexFile(context, "/gallaghercore/import/Sprint3/BaseStoreDeliveryModeAdd.impex");
 			importImpexFile(context, "/gallaghercore/import/Sprint3/SAPP2-151.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint3/SAPP2-86.impex");
 		}
 	}
 
