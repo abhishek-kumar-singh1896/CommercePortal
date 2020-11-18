@@ -80,8 +80,7 @@ public class GallagherB2BCustomerInterceptor extends DefaultB2BCustomerIntercept
 			return;
 		}
 
-		if (getCustomerAddressReplicationUtilityService().isCustomerReplicationRequired(customerModel,
-				getMonitoredAttributes(),
+		if (getCustomerAddressReplicationUtilityService().isCustomerReplicationRequired(customerModel, getMonitoredAttributes(),
 				ctx))
 		{
 			LOGGER.info("Interceptor called!");
@@ -91,7 +90,10 @@ public class GallagherB2BCustomerInterceptor extends DefaultB2BCustomerIntercept
 			final boolean isChanged = !Objects.equals(customerModel.getProperty(B2BCustomerModel.UID),
 					history.getOriginalValue(B2BCustomerModel.UID));
 			final String customerUid = isChanged ? (String) history.getOriginalValue(B2BCustomerModel.UID) : customerModel.getUid();
-
+			if (isChanged)
+			{
+				customerModel.setEmailID(customerModel.getUid().substring(4, customerModel.getUid().length()));
+			}
 			final B2BCustomerModel userDBCopy = userService.getUserForUID(customerUid, B2BCustomerModel.class);
 
 
@@ -135,7 +137,6 @@ public class GallagherB2BCustomerInterceptor extends DefaultB2BCustomerIntercept
 		});
 		return units;
 	}
-
 
 	protected UserService getUserService()
 	{

@@ -32,9 +32,6 @@
 				<attribute qualifier="emailID" type="java.lang.String">
                     <persistence type="property"/>
                 </attribute>
-                <attribute qualifier="businessUnit" type="java.lang.String">
-                    <persistence type="property"/>
-                </attribute>
 			</attributes>
 		</itemtype>
 

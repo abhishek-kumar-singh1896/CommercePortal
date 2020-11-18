@@ -64,11 +64,8 @@ public class GallagherB2BCustomerPopulator extends B2BCustomerPopulator
 
 			populateRoles(customer, target);
 			populatePermissionGroups(customer, target);
-
-			if (customer.getEmailID() != null)
-			{
-				target.setDisplayUid(customer.getEmailID());
-			}
+			target.setDisplayUid(customer.getUid().substring(4, customer.getUid().length()));
+			target.setEmail(customer.getUid().substring(4, customer.getUid().length()));
 		}
 	}
 
