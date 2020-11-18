@@ -93,7 +93,7 @@
 								</button>
 							</ycommerce:testId>
 							<ycommerce:testId code="header_Login_link">
-								<c:url value="/login" var="loginUrl" />
+								<c:url value="/login?ui_locales=${uiLocales}" var="loginUrl" />
 								<button type="button" class="btn"
 									onclick="window.location.href = '${fn:escapeXml(loginUrl)}'">
 									<spring:theme code="header.link.login" />

@@ -88,8 +88,19 @@ public class RegisterPageController extends AbstractRegisterPageController
 			{
 				response.addCookie(KeycloakCookieBasedRedirect.createCookieFromRedirectUrl(getRedirectUrl(request)));
 			}
+			String language = "en";
+			if (redirectURL.contains("LATAM"))
+			{
+				language = "es";
+			}
+
+			if (redirectURL.contains("fr_CA"))
+			{
+				language = "ca";
+			}
 			redirectURI = REDIRECT_PREFIX + MessageFormat
-					.format(getConfigurationService().getConfiguration().getString("keycloak.registrations.url"), redirectURL);
+					.format(getConfigurationService().getConfiguration().getString("keycloak.registrations.url"), redirectURL,
+							language);
 		}
 		else
 		{
