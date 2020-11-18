@@ -69,7 +69,7 @@ public class GallagherAuthenticationProvider extends AbstractAcceleratorAuthenti
 		customerFacade.updateCommerceCustomer(galToken, SiteChannel.B2B);
 		try
 		{
-			userDetails = retrieveUser(username);
+			userDetails = retrieveUser("sec|" + username);
 		}
 		catch (final UsernameNotFoundException arg5)
 		{

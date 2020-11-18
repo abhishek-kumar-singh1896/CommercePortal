@@ -61,9 +61,19 @@ public class GallagherC4COutboundServiceFacadeImpl extends DefaultOutboundServic
 	/**
 	 * {@inheritDoc}
 	 */
+
+
 	@Override
-	public List<GallagherInboundCustomerEntry> getCustomerInfoFromC4C(final String email, final String keycloakGUID)
+	public List<GallagherInboundCustomerEntry> getCustomerInfoFromC4C(final String email, final String keycloakGUID,
+			final String businessUnit)
 	{
+
+
+		/*
+		 * @Override public List<GallagherInboundCustomerEntry> getCustomerInfoFromC4C(final String email, final String
+		 * keycloakGUID) {
+		 */
+
 		final GallagherInboundCustomerEntry existingCustomer = new GallagherInboundCustomerEntry();
 		List<GallagherInboundCustomerEntry> existingCustomers = new ArrayList<>();
 		final EmailValidator eValidator = EmailValidator.getInstance();
@@ -89,18 +99,35 @@ public class GallagherC4COutboundServiceFacadeImpl extends DefaultOutboundServic
 			GallagherInboundCustomerInfo existingCustomerInfo = null;
 			if (StringUtils.isNotEmpty(keycloakGUID))
 			{
+
+				/*
+				 * final UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(baseURL).queryParam("$filter",
+				 * "KeycloakID_KUT eq '" + keycloakGUID + "'");
+				 */
+
+
+
 				final UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(baseURL).queryParam("$filter",
-						"KeycloakID_KUT eq '" + keycloakGUID + "'");
-				final HttpEntity<GallagherInboundCustomerInfo> response = restOperations.exchange(builder.build().encode().toUri(),
+						"KeycloakID_KUT eq '" + keycloakGUID + "'" + "&amp;BusinessUnit eq '" + businessUnit + "' ");
+
+				final HttpEntity<GallagherInboundCustomerInfo> response = restOperations.exchange(builder.build().toUri(),
 						HttpMethod.GET, entity, GallagherInboundCustomerInfo.class);
 				existingCustomerInfo = response.getBody();
 			}
 			if (null == existingCustomerInfo || null == existingCustomerInfo.getCustomerInfo()
 					|| CollectionUtils.isEmpty(existingCustomerInfo.getCustomerInfo().getCustomerEntries()))
 			{
+
+				/*
+				 * final UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(baseURL).queryParam("$filter",
+				 * "Email eq '" + email + "'");
+				 */
+
+
 				final UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(baseURL).queryParam("$filter",
-						"Email eq '" + email + "'");
-				final HttpEntity<GallagherInboundCustomerInfo> response = restOperations.exchange(builder.build().encode().toUri(),
+						"Email eq '" + email + "'" + "&amp;BusinessUnit eq '" + businessUnit + "' ");
+
+				final HttpEntity<GallagherInboundCustomerInfo> response = restOperations.exchange(builder.build().toUri(),
 						HttpMethod.GET, entity, GallagherInboundCustomerInfo.class);
 				existingCustomerInfo = response.getBody();
 			}

@@ -15,6 +15,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.gallagher.core.enums.BU;
 import com.gallagher.sap.sapcpicustomerexchangeb2b.outbound.services.GallagherSCPIB2BCustomerConversionService;
 
 
@@ -41,6 +42,8 @@ public class GallagherSCPIB2BCustomerConversionServiceImpl extends SapCpiB2BCust
 		sapCpiOutboundB2BContact.setUnits(getUnits(b2bCustomer));
 		sapCpiOutboundB2BContact.setAddedUnits(addedUnits);
 		sapCpiOutboundB2BContact.setDeletedUnits(deletedUnits);
+		sapCpiOutboundB2BContact.setUid(b2bCustomer.getEmailID());
+		sapCpiOutboundB2BContact.setBusinessUnit(BU.SEC.getCode());
 	}
 
 	/**
