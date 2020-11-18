@@ -11,6 +11,7 @@ import de.hybris.platform.store.services.BaseStoreService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Required;
 
+import com.gallagher.core.enums.BU;
 import com.gallagher.core.events.GallagherB2BRegistrationEvent;
 
 
@@ -51,7 +52,8 @@ public class GallagherB2BUserFacadeImpl extends DefaultB2BUserFacade
 			{
 				updateUid = customerData.getEmail();
 			}
-			final B2BCustomerModel customerModel = getUserService().getUserForUID(updateUid, B2BCustomerModel.class);
+			final B2BCustomerModel customerModel = getUserService().getUserForUID(BU.SEC.getCode().toLowerCase() + "|" + updateUid,
+					B2BCustomerModel.class);
 			eventService.publishEvent(initializeEvent(new GallagherB2BRegistrationEvent(), customerModel));
 		}
 	}

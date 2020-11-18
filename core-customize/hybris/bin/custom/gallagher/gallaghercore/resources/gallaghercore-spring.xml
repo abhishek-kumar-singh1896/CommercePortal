@@ -427,4 +427,41 @@
 		<property name="interceptor" ref="gallagherB2BProductValidateInterceptor"/>
 		<property name="typeCode" value="Product"/>
 	</bean>
+   	
+   	<bean id="generateCustomerUpdateEmail" parent="abstractGenerateEmailAction">
+	 <property name="frontendTemplateName" value="CustomerUpdateEmailTemplate"/>
+    </bean>
+    
+    <bean id="gallagherB2BCustomerUpdateEventListener"
+		class="com.gallagher.core.events.GallagherB2BCustomerUpdateEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService" />
+		<property name="businessProcessService" ref="businessProcessService" />
+	</bean>
+    
+    <bean id="glCustomerUpdateEmailProcessDefinitionResource"
+		class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+		<property name="resource" value="classpath:/gallaghercore/processes/customerUpdateEmailProcess.xml" />
+	</bean>
+	
+	<bean id="gallagherB2BUnitService" class="com.gallagher.core.services.impl.GallagherB2BUnitServiceImpl"/>
+    
+    <!-- <alias alias="userService" name="gallagherUserService" />
+	<bean id="gallagherUserService" parent="defaultUserService" class="com.gallagher.core.user.service.impl.GallagherUserServiceImpl" />
+	
+	<alias name="gallagherUserDao" alias="userDao"/>
+	<bean id="gallagherUserDao" class="com.gallagher.core.user.daos.impl.GallagherUserDaoImpl"/> -->
+	
+	<!-- register the customer interceptor to modify the UID -->
+	<bean id="gallagherCustomerInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="gallagherCustomerInterceptor" />
+		<property name="typeCode" value="Customer" />
+	</bean>
+
+	<!-- interceptor to modify the uid (BU+UID) -->
+	<bean id="gallagherCustomerInterceptor" class="com.gallagher.core.customer.interceptor.GallagherCustomerInitDefaultInterceptor" autowire="byName">
+	</bean>
+	
+	<alias alias="customerEmailResolutionService" name="gallagherCustomerEmailResolutionService"/>
+	<bean id="gallagherCustomerEmailResolutionService" class="com.gallagher.core.customer.impl.GallagherCustomerEmailResolutionServiceImpl" >
+	</bean>
 </beans>

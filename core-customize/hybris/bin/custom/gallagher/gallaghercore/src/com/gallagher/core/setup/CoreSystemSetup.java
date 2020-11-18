@@ -63,7 +63,6 @@ public class CoreSystemSetup extends AbstractSystemSetup
 		params.add(createBooleanSystemSetupParameter(IMPORT_SPRINT_1_IMPEX, "Import Phase 2 - Sprint 1 Impexes", true));
 		params.add(createBooleanSystemSetupParameter(IMPORT_SPRINT_2_IMPEX, "Import Phase 2 - Sprint 2 Impexes", true));
 		params.add(createBooleanSystemSetupParameter(IMPORT_SPRINT_3_IMPEX, "Import Phase 2 - Sprint 3 Impexes", true));
-
 		return params;
 	}
 
@@ -104,9 +103,8 @@ public class CoreSystemSetup extends AbstractSystemSetup
 
 		if (importSprint2Impex)
 		{
+			importImpexFile(context, "/laminexcore/import/Sprint2/SAPP2-67.impex");
 			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP2-59.impex");
-			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP2-67.impex");
-			//			importImpexFile(context, "/gallaghercore/import/Sprint2/CmsLinkRestriction.impex");
 			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-722_AU.impex");
 			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-722_CA.impex");
 			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-722_Global.impex");
@@ -125,6 +123,10 @@ public class CoreSystemSetup extends AbstractSystemSetup
 			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-724_LatAm.impex");
 			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-724_NZ.impex");
 			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-724_US.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP2-90_AU.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP2-90_NZ.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP2-90_Global.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP2-86.impex");
 		}
 
 		final boolean importSprint1Impex = getBooleanSystemSetupParameter(context, IMPORT_SPRINT_1_IMPEX);

@@ -89,6 +89,7 @@ import com.gallagher.b2c.controllers.ControllerConstants;
 import com.gallagher.b2c.form.B2CCustomerPreferenceForm;
 import com.gallagher.b2c.validators.GallagherAddressValidator;
 import com.gallagher.b2c.validators.GallagherEmailValidator;
+import com.gallagher.core.enums.BU;
 import com.gallagher.facades.customer.GallagherCustomerFacade;
 import com.gallagher.keycloak.outboundservices.service.GallagherKeycloakService;
 
@@ -477,11 +478,12 @@ public class AccountPageController extends AbstractSearchPageController
 				final CustomerModel currentCustomerData = (CustomerModel) userService.getCurrentUser();
 
 				final CustomerData customerData = new CustomerData();
-				customerData.setUid(updateEmailForm.getEmail());
+				customerData.setUid(BU.AM.getCode().toLowerCase() + "|" + updateEmailForm.getEmail());
+				customerData.setEmail(updateEmailForm.getEmail());
 				customerData.setKeycloakGUID(currentCustomerData.getKeycloakGUID());
 				try
 				{
-					if (userService.getUserForUID(updateEmailForm.getEmail()) != null)
+					if (userService.getUserForUID(BU.AM.getCode().toLowerCase() + "|" + updateEmailForm.getEmail()) != null)
 					{
 						throw new DuplicateUidException("User with email " + updateEmailForm.getEmail() + " already exists.");
 					}
@@ -493,7 +495,7 @@ public class AccountPageController extends AbstractSearchPageController
 				getKeycloakService().updateKeycloakUserEmail(customerData);
 
 				// Replace the spring security authentication with the new UID
-				customerFacade.changeUid(updateEmailForm.getEmail());
+				customerFacade.changeUid(customerData.getUid());
 				GlobalMessages.addFlashMessage(redirectAttributes, GlobalMessages.CONF_MESSAGES_HOLDER,
 						"text.account.profile.confirmationUpdated", null);
 				final String newUid = customerFacade.getCurrentCustomer().getUid().toLowerCase();

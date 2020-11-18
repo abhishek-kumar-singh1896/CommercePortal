@@ -3,6 +3,8 @@
  */
 package com.gallagher.facades.company.converters.populators;
 
+import static de.hybris.platform.servicelayer.util.ServicesUtil.validateParameterNotNull;
+
 import de.hybris.platform.b2b.model.B2BCostCenterModel;
 import de.hybris.platform.b2b.model.B2BCustomerModel;
 import de.hybris.platform.b2b.model.B2BUnitModel;
@@ -12,6 +14,8 @@ import de.hybris.platform.b2bcommercefacades.company.data.B2BCostCenterData;
 import de.hybris.platform.b2bcommercefacades.company.data.B2BUnitData;
 import de.hybris.platform.commercefacades.user.data.CustomerData;
 import de.hybris.platform.core.model.security.PrincipalGroupModel;
+import de.hybris.platform.core.model.user.CustomerModel;
+import de.hybris.platform.servicelayer.dto.converter.ConversionException;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -35,6 +39,35 @@ public class GallagherB2BCustomerPopulator extends B2BCustomerPopulator
 {
 	@Resource(name = "gallagherB2BUserGroupsStrategy")
 	private GallagherB2BUserGroupsStrategy gallagherB2BUserGroupsStrategy;
+
+	@Override
+	public void populate(final CustomerModel source, final CustomerData target) throws ConversionException
+	{
+
+		validateParameterNotNull(source, "Parameter source cannot be null.");
+		validateParameterNotNull(target, "Parameter target cannot be null.");
+
+		if (source instanceof B2BCustomerModel)
+		{
+			final B2BCustomerModel customer = (B2BCustomerModel) source;
+
+			if (customer.getTitle() != null)
+			{
+				target.setTitleCode(customer.getTitle().getCode());
+			}
+			target.setUid(customer.getUid());
+			target.setName(customer.getName());
+			target.setActive(Boolean.TRUE.equals(customer.getActive()));
+			target.setCurrency(getCurrencyConverter().convert(getCommonI18NService().getCurrentCurrency()));
+
+			populateUnit(customer, target);
+
+			populateRoles(customer, target);
+			populatePermissionGroups(customer, target);
+			target.setDisplayUid(customer.getUid().substring(4, customer.getUid().length()));
+			target.setEmail(customer.getUid().substring(4, customer.getUid().length()));
+		}
+	}
 
 	@Override
 	public void populateRoles(final B2BCustomerModel source, final CustomerData target)
