@@ -171,7 +171,8 @@ public class GallagherFieldNameTranslator extends DefaultFieldNameTranslator
 					}
 				}
 			}
-			LOG.debug("indexedProperty, fieldQualifier, fieldType during translating property " + indexedProperty + " "
+			LOG.debug("indexedProperty, fieldQualifier, fieldType during translating property " + indexedProperty.getName()
+					+ " "
 					+ fieldQualifier + " " + fieldType);
 			return getFieldNameProvider().getFieldName(indexedProperty, fieldQualifier, fieldType);
 		}
