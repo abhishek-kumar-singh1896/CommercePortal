@@ -7,7 +7,7 @@ def search = flexibleSearchService.search(searchQuery);
 
 search.result.each {
 	if(!(it.getUid().equals("anonymous"))){
-		if(it instanceof B2BCustomerModel){
+		if(it instanceof B2BCustomerModel && it.getDefaultB2BUnit() != null){
 		  if(it.getUid().startsWith("sec|")){
 			  System.out.println("New B2B customer >>>"+it.getUid());
 		  }else if(it.getUid().contains("|")){

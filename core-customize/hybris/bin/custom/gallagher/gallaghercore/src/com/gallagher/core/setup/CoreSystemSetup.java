@@ -102,7 +102,7 @@ public class CoreSystemSetup extends AbstractSystemSetup
 
 		if (importSprint3Impex)
 		{
-			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP2-86.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint3/SAPP2-86.impex");
 		}
 
 		final boolean importSprint2Impex = getBooleanSystemSetupParameter(context, IMPORT_SPRINT_2_IMPEX);
