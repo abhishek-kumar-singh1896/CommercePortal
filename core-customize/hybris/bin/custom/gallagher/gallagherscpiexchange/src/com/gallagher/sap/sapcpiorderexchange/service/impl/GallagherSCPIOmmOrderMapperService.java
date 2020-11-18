@@ -4,9 +4,11 @@ import de.hybris.platform.core.model.order.OrderModel;
 import de.hybris.platform.sap.sapcpiadapter.data.SapCpiCreditCardPayment;
 import de.hybris.platform.sap.sapcpiadapter.data.SapCpiOrder;
 import de.hybris.platform.sap.sapcpiadapter.data.SapCpiOrderAddress;
+import de.hybris.platform.sap.sapcpiadapter.data.SapCpiOrderItem;
 import de.hybris.platform.sap.sapcpiadapter.data.SapCpiOrderPriceComponent;
 import de.hybris.platform.sap.sapcpiadapter.model.SAPCpiOutboundAddressModel;
 import de.hybris.platform.sap.sapcpiadapter.model.SAPCpiOutboundCardPaymentModel;
+import de.hybris.platform.sap.sapcpiadapter.model.SAPCpiOutboundOrderItemModel;
 import de.hybris.platform.sap.sapcpiadapter.model.SAPCpiOutboundOrderModel;
 import de.hybris.platform.sap.sapcpiadapter.model.SAPCpiOutboundPriceComponentModel;
 import de.hybris.platform.sap.sapcpiorderexchange.service.impl.SapCpiOmmOrderMapperService;
@@ -54,7 +56,6 @@ public class GallagherSCPIOmmOrderMapperService extends SapCpiOmmOrderMapperServ
 		sapCpiOutboundOrder.setShippingCondition(sapCpiOrder.getShippingCondition());
 		sapCpiOutboundOrder.setRequiredDeliveryDate(sapCpiOrder.getRequiredDeliveryDate());
 		sapCpiOutboundOrder.setComment(sapCpiOrder.getComment());
-		sapCpiOutboundOrder.setAdditionalProductDetails(sapCpiOrder.getAdditionalProductDetails());
 		sapCpiOutboundOrder.setSapCpiConfig(mapOrderConfigInfo(sapCpiOrder.getSapCpiConfig()));
 		sapCpiOutboundOrder.setSapCpiOutboundOrderItems(mapOrderItems(sapCpiOrder.getSapCpiOrderItems()));
 		sapCpiOutboundOrder.setSapCpiOutboundPartnerRoles(mapOrderPartners(sapCpiOrder.getSapCpiPartnerRoles()));
@@ -93,6 +94,34 @@ public class GallagherSCPIOmmOrderMapperService extends SapCpiOmmOrderMapperServ
 		});
 
 		return new HashSet<>(sapCpiOutboundPriceComponents);
+
+	}
+
+	@Override
+	protected Set<SAPCpiOutboundOrderItemModel> mapOrderItems(final List<SapCpiOrderItem> sapCpiOrderItems)
+	{
+
+		final List<SAPCpiOutboundOrderItemModel> sapCpiOutboundOrderItems = new ArrayList<>();
+
+		sapCpiOrderItems.forEach(item -> {
+
+			final SAPCpiOutboundOrderItemModel sapCpiOutboundOrderItem = new SAPCpiOutboundOrderItemModel();
+			sapCpiOutboundOrderItem.setOrderId(item.getOrderId());
+			sapCpiOutboundOrderItem.setEntryNumber(item.getEntryNumber());
+			sapCpiOutboundOrderItem.setQuantity(item.getQuantity());
+			sapCpiOutboundOrderItem.setCurrencyIsoCode(item.getCurrencyIsoCode());
+			sapCpiOutboundOrderItem.setUnit(item.getUnit());
+			sapCpiOutboundOrderItem.setProductCode(item.getProductCode());
+			sapCpiOutboundOrderItem.setProductName(item.getProductName());
+			sapCpiOutboundOrderItem.setPlant(item.getPlant());
+			sapCpiOutboundOrderItem.setNamedDeliveryDate(item.getNamedDeliveryDate());
+			sapCpiOutboundOrderItem.setItemCategory(item.getItemCategory());
+			sapCpiOutboundOrderItem.setAdditionalProductDetail(item.getAdditionalProductDetail());
+			sapCpiOutboundOrderItems.add(sapCpiOutboundOrderItem);
+
+		});
+
+		return new HashSet<>(sapCpiOutboundOrderItems);
 
 	}
 

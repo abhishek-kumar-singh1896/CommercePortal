@@ -31,7 +31,7 @@ $lang=en
 INSERT_UPDATE IntegrationObjectItemAttribute ; integrationObjectItem(integrationObject(code), code)[unique = true] ; attributeName[unique = true] ; attributeDescriptor(enclosingType(code), qualifier) ; returnIntegrationObjectItem(integrationObject(code), code) ; unique[default = false] 
                                              ; OutboundOMMOrderOMSOrder:SAPCpiOutboundOrder                        ; requiredDeliveryDate         ; SAPCpiOutboundOrder:requiredDeliveryDate            ;                                                            ;                         
                                              ; OutboundOMMOrderOMSOrder:SAPCpiOutboundOrder                        ; comment                      ; SAPCpiOutboundOrder:comment                         ;                                                            ;                         
-                                             ; OutboundOMMOrderOMSOrder:SAPCpiOutboundOrder                        ; additionalProductDetails     ; SAPCpiOutboundOrder:additionalProductDetails        ;                                                            ;                         
+                                             ; OutboundOMMOrderOMSOrder:SAPCpiOutboundOrderItem                    ; additionalProductDetail      ; SAPCpiOutboundOrderItem:additionalProductDetail     ;                                                            ;                         
 
 
 
