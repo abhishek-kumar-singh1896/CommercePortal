@@ -18,6 +18,7 @@ import de.hybris.platform.solrfacetsearch.search.SearchQuery;
 import de.hybris.platform.solrfacetsearch.search.impl.DefaultFieldNameTranslator;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherProductDiscountValueResolver;
@@ -34,6 +35,8 @@ import com.gallagher.core.services.GallagherSalesAreaService;
  */
 public class GallagherFieldNameTranslator extends DefaultFieldNameTranslator
 {
+	private static final Logger LOG = Logger.getLogger(GallagherFieldNameTranslator.class);
+
 	public static final String FIELDNAME_SEPARATOR = "_";
 
 	private GallagherSalesAreaService salesAreaService;
@@ -53,6 +56,7 @@ public class GallagherFieldNameTranslator extends DefaultFieldNameTranslator
 		final BaseSiteModel cmssite = getBaseSiteService().getCurrentBaseSite();
 		if (cmssite != null && cmssite.getUid().contains("B2B"))
 		{
+			LOG.debug("Translating property for B2B");
 			final IndexedType indexedType = searchQuery.getIndexedType();
 			String fieldQualifier = null;
 			final String valueProviderId = getValueProviderSelectionStrategy().resolveValueProvider(indexedType, indexedProperty);
@@ -119,8 +123,6 @@ public class GallagherFieldNameTranslator extends DefaultFieldNameTranslator
 						: null;
 			}
 
-
-
 			if (qualifierProvider != null && qualifierProvider.canApply(indexedProperty))
 			{
 				final Qualifier qualifier = qualifierProvider.getCurrentQualifier();
@@ -138,6 +140,7 @@ public class GallagherFieldNameTranslator extends DefaultFieldNameTranslator
 							final UserPriceGroup userPriceGroup = (UserPriceGroup) getSessionService().getAttribute(Europe1Constants.PARAMS.UPG);
 							if(userPriceGroup != null) {
 								upgSuffix = FIELDNAME_SEPARATOR + userPriceGroup.getCode();
+								LOG.debug("userPriceGroup during translation " + userPriceGroup);
 							}
 						}
 
@@ -145,6 +148,7 @@ public class GallagherFieldNameTranslator extends DefaultFieldNameTranslator
 								&& salesAreaQualifierProvider.getCurrentQualifier() != null)
 						{
 							final Qualifier salesAreaQualifier = salesAreaQualifierProvider.getCurrentQualifier();
+							LOG.debug("salesAreaQualifier during translation " + salesAreaQualifier);
 							fieldQualifier = fieldQualifier + FIELDNAME_SEPARATOR + salesAreaQualifier.toFieldQualifier();
 
 						}
@@ -152,6 +156,7 @@ public class GallagherFieldNameTranslator extends DefaultFieldNameTranslator
 								&& userPriceGroupQualifierProvider.getCurrentQualifier() != null)
 						{
 							final Qualifier upgQualifier = userPriceGroupQualifierProvider.getCurrentQualifier();
+							LOG.debug("upgQualifier during translation " + upgQualifier);
 							fieldQualifier = fieldQualifier + FIELDNAME_SEPARATOR + upgQualifier.toFieldQualifier() + upgSuffix;
 
 						}
@@ -159,12 +164,15 @@ public class GallagherFieldNameTranslator extends DefaultFieldNameTranslator
 								&& customerGroupQualifierProvider.getCurrentQualifier() != null)
 						{
 							final Qualifier customerGroupQualifier = customerGroupQualifierProvider.getCurrentQualifier();
+							LOG.debug("customerGroupQualifier during translation " + customerGroupQualifier);
 							fieldQualifier = fieldQualifier + FIELDNAME_SEPARATOR + customerGroupQualifier.toFieldQualifier();
 
 						}
 					}
 				}
 			}
+			LOG.debug("indexedProperty, fieldQualifier, fieldType during translating property " + indexedProperty + " "
+					+ fieldQualifier + " " + fieldType);
 			return getFieldNameProvider().getFieldName(indexedProperty, fieldQualifier, fieldType);
 		}
 		else
