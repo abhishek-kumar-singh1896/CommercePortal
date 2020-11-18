@@ -32,7 +32,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 ;;PermanentfencingWireandCable_link2;"Alambres y Cables"
 ;;PermanentfencingWireandCable_link3;"Abrazaderas y Conectores"
 ;;PermanentfencingWireandCable_link4;"Postes"
-;;PermanentfencingWireandCable_link5;"Tensores"
+;;PermanentfencingWireandCable_link5;"Tensioners"
 ;;PermanentfencingWireandCable_link6;"Aisladores"
 ;;PermanentfencingWireandCable_link7;"Desplazadores"
 ;;PermanentfencingWireandCable_link8;"Portones eléctricos"

@@ -54,6 +54,7 @@ public class CategoryPageController extends AbstractCategoryPageController
 
 
 	public static final String PRODUCT_CUSTOM_PAGE = "category/searchListSimple";
+	public static final String CMS_PAGE_TITLE = "pageTitle";
 
 	@Resource(name = "cmsPageService")
 	private CMSPageService cmsPageService;
@@ -104,6 +105,14 @@ public class CategoryPageController extends AbstractCategoryPageController
 
 		final String resultPage = performSearchAndGetResultsPage(categoryCode, searchQuery, page, showMode, sortCode, model,
 				request, response);
+		if (null != category.getPageTitleField())
+		{
+			model.addAttribute(CMS_PAGE_TITLE, category.getPageTitleField());
+		}
+		else
+		{
+			updatePageTitle(category, model);
+		}
 		return resultPage;
 	}
 

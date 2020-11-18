@@ -5,6 +5,7 @@ package com.gallagher.b2c.controllers.pages;
 
 import de.hybris.platform.acceleratorfacades.futurestock.FutureStockFacade;
 import de.hybris.platform.acceleratorservices.controllers.page.PageType;
+import de.hybris.platform.acceleratorservices.storefront.data.MetaElementData;
 import de.hybris.platform.acceleratorstorefrontcommons.breadcrumb.Breadcrumb;
 import de.hybris.platform.acceleratorstorefrontcommons.breadcrumb.impl.ProductBreadcrumbBuilder;
 import de.hybris.platform.acceleratorstorefrontcommons.constants.WebConstants;
@@ -48,6 +49,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -86,7 +88,7 @@ public class ProductPageController extends AbstractPageController
 {
 	@SuppressWarnings("unused")
 	private static final Logger LOG = Logger.getLogger(ProductPageController.class);
-
+	public static final String CMS_PAGE_TITLE = "pageTitle";
 	/**
 	 * We use this suffix pattern because of an issue with Spring 3.1 where a Uri value is incorrectly extracted if it
 	 * contains one or more '.' characters. Please see https://jira.springsource.org/browse/SPR-6164 for a discussion on
@@ -158,7 +160,20 @@ public class ProductPageController extends AbstractPageController
 
 		final String metaKeywords = MetaSanitizerUtil.sanitizeKeywords(productData.getKeywords());
 		final String metaDescription = MetaSanitizerUtil.sanitizeDescription(productData.getDescription());
-		setUpMetaData(model, metaKeywords, metaDescription);
+		//				setUpMetaData(model, metaKeywords, metaDescription);
+		final ProductModel productModel = productService.getProductForCode(productCode);
+		final List<MetaElementData> metadata = new LinkedList<>();
+		metadata.add(createMetaElement("keywords", metaKeywords));
+		if (null != productModel.getMetaDescriptionField())
+		{
+			metadata.add(createMetaElement("description", productModel.getMetaDescriptionField()));
+		}
+		else
+		{
+			metadata.add(createMetaElement("description", metaDescription));
+		}
+
+		model.addAttribute("metatags", metadata);
 		return getViewForPage(model);
 	}
 
@@ -429,7 +444,15 @@ public class ProductPageController extends AbstractPageController
 
 	protected void updatePageTitle(final String productCode, final Model model)
 	{
-		storeContentPageTitleInModel(model, getPageTitleResolver().resolveProductPageTitle(productCode));
+		final ProductModel productModel = productService.getProductForCode(productCode);
+		if (null != productModel.getPageTitleField())
+		{
+			model.addAttribute(CMS_PAGE_TITLE, productModel.getPageTitleField());
+		}
+		else
+		{
+			storeContentPageTitleInModel(model, getPageTitleResolver().resolveProductPageTitle(productCode));
+		}
 	}
 
 	protected void populateProductDetailForDisplay(final String productCode, final Model model, final HttpServletRequest request,
@@ -596,7 +619,8 @@ public class ProductPageController extends AbstractPageController
 				 * alternativeProducts.add(product.getTarget());
 				 */
 				if (product.getTarget().getStock().getStockLevelStatus() != null
-						&& product.getTarget().getStock().getStockLevelStatus().equals(StockLevelStatus.INSTOCK))
+						&& (product.getTarget().getStock().getStockLevelStatus().equals(StockLevelStatus.INSTOCK))
+						|| (product.getTarget().getStock().getStockLevelStatus().equals(StockLevelStatus.LOWSTOCK)))
 				{
 					alternativeProducts.add(product.getTarget());
 

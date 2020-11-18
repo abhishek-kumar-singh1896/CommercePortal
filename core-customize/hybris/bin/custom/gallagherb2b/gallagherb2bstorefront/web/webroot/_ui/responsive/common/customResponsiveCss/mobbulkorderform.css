@@ -57,6 +57,12 @@
 }
 .bulkOrderDiv ul.ui-autocomplete {
 	background: #ffffff;
+	width: 200px !important;
+}
+
+
+.bulkOrderDiv u.ui-widget.ui-widget-content{
+	    padding: 16px 0px;
 }
 .bulkOrderDiv .ui-menu-item{
 border-top: 1px solid #e5e5e5;

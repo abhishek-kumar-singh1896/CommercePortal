@@ -381,4 +381,8 @@
 	<alias name="gallagherOrderFacade" alias="orderFacade"/>
 	<bean id="gallagherOrderFacade" class="com.gallagher.facades.order.impl.GallagherOrderFacadeImpl" parent="defaultOrderFacade" />
  	
+	<alias name="gallagherCartFacade" alias="gglCartFacade" />
+	<bean id="gallagherCartFacade" class="com.gallagher.facades.order.impl.GallagherCartFacade"
+		parent="cartFacade" />
+	
 </beans>

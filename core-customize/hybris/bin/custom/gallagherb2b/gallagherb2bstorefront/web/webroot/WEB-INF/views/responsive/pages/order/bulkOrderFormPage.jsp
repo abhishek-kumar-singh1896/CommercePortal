@@ -12,11 +12,13 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <template:page pageTitle="${pageTitle}">
-	
+
 	<div id="globalMessages">
 		<common:globalMessages />
 	</div>
 	<div class="container">
-		<cms:component uid="BulkOrderFormPageComponent" />
+		<div class="bulkOrderNavDiv">
+			<cms:component uid="HomePageBulkOrderComponent" />
+		</div>
 	</div>
 </template:page>

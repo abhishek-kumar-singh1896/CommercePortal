@@ -369,6 +369,34 @@
 					<persistence type="property" />
 					<description>Attribute for product specific details sub Heading</description>
 				</attribute>
+				<attribute autocreate="true" qualifier="metaDescriptionField" type="localized:java.lang.String">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property">
+						<columntype database="oracle">
+							<value>CLOB</value>
+						</columntype>
+						<columntype database="sap">
+							<value>NCLOB</value>
+						</columntype>
+						<columntype>
+							<value>HYBRIS.LONG_STRING</value>
+						</columntype>
+					</persistence>
+				</attribute>
+				<attribute autocreate="true" qualifier="pageTitleField" type="localized:java.lang.String">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property">
+						<columntype database="oracle">
+							<value>CLOB</value>
+						</columntype>
+						<columntype database="sap">
+							<value>NCLOB</value>
+						</columntype>
+						<columntype>
+							<value>HYBRIS.LONG_STRING</value>
+						</columntype>
+					</persistence>
+				</attribute>
 			</attributes>
 
 		</itemtype>
@@ -736,6 +764,20 @@
                         </columntype>
                     </persistence>
                 	</attribute>
+                	<attribute autocreate="true" qualifier="pageTitleField" type="localized:java.lang.String">
+						<modifiers read="true" write="true" search="true" optional="true" />
+						<persistence type="property">
+							<columntype database="oracle">
+								<value>CLOB</value>
+							</columntype>
+							<columntype database="sap">
+								<value>NCLOB</value>
+							</columntype>
+							<columntype>
+								<value>HYBRIS.LONG_STRING</value>
+							</columntype>
+						</persistence>
+					</attribute>
                 </attributes>
             </itemtype>
         </typegroup>
@@ -1028,6 +1070,7 @@
 				</attributes>
 			</itemtype>		
 		</typegroup>
+
 
 	</itemtypes>
 </items>

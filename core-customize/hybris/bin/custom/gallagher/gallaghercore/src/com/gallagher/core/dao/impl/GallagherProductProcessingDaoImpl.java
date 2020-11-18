@@ -206,6 +206,65 @@ public class GallagherProductProcessingDaoImpl implements GallagherProductProces
 	 * {@inheritDoc}
 	 */
 	@Override
+	public List<CatalogVersionModel> getAvailableApprovedCatalogVersionForCode(final String variantProductCode)
+	{
+		final Map<String, Object> queryParameter = new HashMap<>();
+		final StringBuilder stringBuilder = new StringBuilder();
+
+		stringBuilder.append("Select {").append(GenericVariantProductModel.CATALOGVERSION);
+		stringBuilder.append("} from {").append(GenericVariantProductModel._TYPECODE);
+		stringBuilder.append("} where {").append(GenericVariantProductModel.CODE);
+		stringBuilder.append("} = ?").append(GenericVariantProductModel.CODE);
+		stringBuilder.append(" AND {").append(GenericVariantProductModel.APPROVALSTATUS);
+		stringBuilder.append("} = ({{SELECT {PK} from {ArticleApprovalStatus} where {code} = ?")
+				.append(GenericVariantProductModel.APPROVALSTATUS);
+		stringBuilder.append("}})");
+
+		queryParameter.put(GenericVariantProductModel.CODE, variantProductCode);
+		queryParameter.put(GenericVariantProductModel.APPROVALSTATUS, ArticleApprovalStatus.APPROVED.getCode());
+
+		final FlexibleSearchQuery fQuery = new FlexibleSearchQuery(stringBuilder.toString());
+		fQuery.addQueryParameters(queryParameter);
+		final SearchResult<CatalogVersionModel> searchResult = flexibleSearchService.search(fQuery);
+
+		return searchResult.getResult();
+	}
+
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<CatalogVersionModel> getApprovedCatalogVersionForBaseProduct(final String baseProductCode)
+	{
+		final Map<String, Object> queryParameter = new HashMap<>();
+		final StringBuilder stringBuilder = new StringBuilder();
+
+		stringBuilder.append("Select {").append(ProductModel.CATALOGVERSION);
+		stringBuilder.append("} from {").append(ProductModel._TYPECODE);
+		stringBuilder.append("} where {").append(ProductModel.CODE);
+		stringBuilder.append("} = ?").append(ProductModel.CODE);
+		stringBuilder.append(" AND {").append(ProductModel.APPROVALSTATUS);
+		stringBuilder.append("} = ({{SELECT {PK} from {ArticleApprovalStatus} where {code} = ?")
+				.append(GenericVariantProductModel.APPROVALSTATUS);
+		stringBuilder.append("}})");
+
+		queryParameter.put(ProductModel.CODE, baseProductCode);
+		queryParameter.put(ProductModel.APPROVALSTATUS, ArticleApprovalStatus.APPROVED.getCode());
+
+		final FlexibleSearchQuery fQuery = new FlexibleSearchQuery(stringBuilder.toString());
+		fQuery.addQueryParameters(queryParameter);
+		final SearchResult<CatalogVersionModel> searchResult = flexibleSearchService.search(fQuery);
+
+		return searchResult.getResult();
+	}
+
+
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public List<GenericVariantProductModel> getApprovedVariantProductsForBaseProduct(final ProductModel baseProduct,
 			final CatalogVersionModel unapprovedForCatalogVersion)
 	{

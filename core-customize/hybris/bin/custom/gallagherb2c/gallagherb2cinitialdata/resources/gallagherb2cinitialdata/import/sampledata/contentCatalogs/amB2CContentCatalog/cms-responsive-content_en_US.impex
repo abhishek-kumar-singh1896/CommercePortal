@@ -55,3 +55,4 @@ UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$
                        ;;NewsEventsFooterLink;"News & Events"
                        ;;InnovationAwardsFooterLink;"Innovation & Awards"
                        ;;WeighinEid_link;"Scale Heads and Data Collectors"
+                       ;;WeighinEid_link2;"Loadbars and Accessories"

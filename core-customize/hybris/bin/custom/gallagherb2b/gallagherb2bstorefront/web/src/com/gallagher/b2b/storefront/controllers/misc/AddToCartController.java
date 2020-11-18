@@ -26,7 +26,6 @@ import de.hybris.platform.commercefacades.product.data.ProductData;
 import de.hybris.platform.commerceservices.order.CommerceCartModificationException;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 import de.hybris.platform.util.Config;
-import com.gallagher.b2b.storefront.controllers.ControllerConstants;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -51,6 +50,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.gallagher.b2b.storefront.controllers.ControllerConstants;
+import com.gallagher.facades.order.impl.GallagherCartFacade;
+
 
 /**
  * Controller for Add to Cart functionality which is not specific to a certain page.
@@ -65,6 +67,9 @@ public class AddToCartController extends AbstractController
 	private static final String SHOWN_PRODUCT_COUNT = "gallagherb2bstorefront.storefront.minicart.shownProductCount";
 
 	private static final Logger LOG = Logger.getLogger(AddToCartController.class);
+
+	@Resource(name = "gglCartFacade")
+	private GallagherCartFacade gglCartFacade;
 
 	@Resource(name = "cartFacade")
 	private CartFacade cartFacade;
@@ -95,7 +100,8 @@ public class AddToCartController extends AbstractController
 		{
 			try
 			{
-				final CartModificationData cartModification = cartFacade.addToCart(code, qty);
+				//final CartModificationData cartModification = cartFacade.addToCart(code, qty);
+				final CartModificationData cartModification = gglCartFacade.addToCart(code, qty);
 				model.addAttribute(QUANTITY_ATTR, Long.valueOf(cartModification.getQuantityAdded()));
 				model.addAttribute("entry", cartModification.getEntry());
 				model.addAttribute("cartCode", cartModification.getCartCode());

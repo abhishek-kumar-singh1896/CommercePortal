@@ -318,6 +318,10 @@ public class BulkOrderFacadeImpl implements BulkOrderFacade
 			while (rowIterator.hasNext())
 			{
 				row = rowIterator.next();
+				if (row.getRowNum() == 0)
+				{
+					continue;
+				}
 
 				// For each row, iterate through each columns
 				final Iterator<Cell> cellIterator = row.cellIterator();
