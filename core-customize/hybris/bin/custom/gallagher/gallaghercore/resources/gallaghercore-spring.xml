@@ -593,12 +593,12 @@
 		parent="defaultCustomerAccountDao">
 	</bean>
 	
-	<bean id="gallagherB2BProductValidateInterceptor" class="com.gallagher.core.b2b.interceptor.GallagherB2BProductValidateInterceptor">
+	<!-- <bean id="gallagherB2BProductValidateInterceptor" class="com.gallagher.core.b2b.interceptor.GallagherB2BProductValidateInterceptor">
 	</bean>
 
 	<bean id="gallagherB2BProductValidateInterceptorMapping"
 	      class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
 		<property name="interceptor" ref="gallagherB2BProductValidateInterceptor"/>
 		<property name="typeCode" value="Product"/>
-	</bean>
+	</bean> -->
 </beans>

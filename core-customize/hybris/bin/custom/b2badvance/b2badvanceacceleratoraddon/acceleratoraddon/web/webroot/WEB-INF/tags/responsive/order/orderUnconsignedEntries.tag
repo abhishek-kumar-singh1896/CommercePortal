@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    <div class="well-content">
+    <%-- <div class="well-content">
         <div class="row">
             <div class="col-md-4 order-shipping-method">
                 <div class="label-order"><spring:theme code="text.shippingMethod" /></div>
@@ -30,7 +30,7 @@
                 </c:if>
                 </div>            </div>
         </div>
-    </div>
+    </div> --%>
      <%-- <div class="well-content col-md-4 order-shipping-method">
      	<div class="label-order"><spring:theme code="text.deliveryInstructions" /></div>
          	<div class="value-order">${orderData.deliveryInstructions}</div>

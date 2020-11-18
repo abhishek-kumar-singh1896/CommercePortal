@@ -185,7 +185,7 @@ INSERT_UPDATE IntegrationObjectItemAttribute ; integrationObjectItem(integration
                                              ; OutboundOMMOrderOMSOrder:SAPCpiOutboundCardPayment                  ; avsCode                      ; SAPCpiOutboundCardPayment:avsCode                   ;                                                            ;                         
                                              ; OutboundOMMOrderOMSOrder:SAPCpiOutboundOrder                        ; requiredDeliveryDate         ; SAPCpiOutboundOrder:requiredDeliveryDate            ;                                                            ;                         
                                              ; OutboundOMMOrderOMSOrder:SAPCpiOutboundOrder                        ; comment                      ; SAPCpiOutboundOrder:comment                         ;                                                            ;                         
-                                             ; OutboundOMMOrderOMSOrder:SAPCpiOutboundOrder                        ; additionalProductDetails     ; SAPCpiOutboundOrder:additionalProductDetails        ;                                                            ;                         
+                                             ; OutboundOMMOrderOMSOrder:SAPCpiOutboundOrderItem                    ; additionalProductDetail      ; SAPCpiOutboundOrderItem:additionalProductDetail     ;                                                            ;                         
                                              
 #************************                    
 #*** Inbound B2BUnit ****                    
