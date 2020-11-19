@@ -13,6 +13,7 @@
 		<enumtype code="Sticker" autocreate="true" generate="true">
 			<description>Enum to show product status in PLP</description>
 			<value code="NEW" />
+			<value code="Featured"/>
 		</enumtype>
 		<enumtype code="Animal" autocreate="true" generate="true">
 			<description>Different animals for which the products are available</description>
@@ -33,6 +34,12 @@
 		</enumtype>
 
 		<enumtype code="RegionCode" dynamic="true" />
+		
+		<enumtype code="ProductReferenceTypeEnum" autocreate="false" generate="false">
+		<description>Show Alternative Products If Stock is out</description>
+			<value code="ALTERNATIVE_PRODUCTS"/>
+  		</enumtype>
+		
 	</enumtypes>
 
 	<maptypes>
@@ -76,6 +83,12 @@
 				<description>MediaContainers</description>
 				<modifiers read="true" write="true" search="true" optional="true" />
 			</targetElement>
+		</relation>
+		
+		<relation code="RestrictionsForNavigationNodes" generate="true" localized="false" autocreate="true">
+			<deployment table="Restrictions4Nodes" typecode="12068" />
+			<sourceElement qualifier="navigationNodes" type="CMSNavigationNode" cardinality="many" />
+			<targetElement qualifier="restrictions" type="AbstractRestriction" cardinality="many" collectiontype="list" ordered="true" />
 		</relation>
 
 	</relations>
@@ -265,6 +278,34 @@
 							<value>"thefield"</value>
 						</property>
 					</custom-properties>
+				</attribute>
+				<attribute autocreate="true" qualifier="metaDescriptionField" type="localized:java.lang.String">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property">
+						<columntype database="oracle">
+							<value>CLOB</value>
+						</columntype>
+						<columntype database="sap">
+							<value>NCLOB</value>
+						</columntype>
+						<columntype>
+							<value>HYBRIS.LONG_STRING</value>
+						</columntype>
+					</persistence>
+				</attribute>
+				<attribute autocreate="true" qualifier="pageTitleField" type="localized:java.lang.String">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property">
+						<columntype database="oracle">
+							<value>CLOB</value>
+						</columntype>
+						<columntype database="sap">
+							<value>NCLOB</value>
+						</columntype>
+						<columntype>
+							<value>HYBRIS.LONG_STRING</value>
+						</columntype>
+					</persistence>
 				</attribute>
 			</attributes>
 
@@ -605,8 +646,15 @@
 					</attribute>
 				</attributes>
 			</itemtype>
-
-
+         <itemtype code="ProductAddToCartComponent" autocreate="false"
+             generate="false">
+             <attributes>
+                 <attribute type="localized:java.lang.String" qualifier="outOfStockMessage">
+                     <persistence type="property" />
+                     <description>Used to show the localized message in case product is out of stock.</description>
+                 </attribute>
+             </attributes>
+         </itemtype>
 		</typegroup>
 
 		<typegroup name="jobs">
@@ -715,13 +763,29 @@
 		</typegroup>
 
 		<typegroup name="button">
-
-
 			<itemtype code="GallagherNewButtonComponent" autocreate="true" generate="true" extends="CMSLinkComponent">
 			</itemtype>
-
 		</typegroup>
-
-
+		
+		<typegroup name="Catalog">
+			<itemtype code="Category" autocreate="false" generate="false">
+	            <attributes>
+	                <attribute autocreate="true" qualifier="pageTitleField" type="localized:java.lang.String">
+						<modifiers read="true" write="true" search="true" optional="true" />
+						<persistence type="property">
+							<columntype database="oracle">
+								<value>CLOB</value>
+							</columntype>
+							<columntype database="sap">
+								<value>NCLOB</value>
+							</columntype>
+							<columntype>
+								<value>HYBRIS.LONG_STRING</value>
+							</columntype>
+						</persistence>
+					</attribute>
+	            </attributes>
+	        </itemtype>
+        </typegroup>
 	</itemtypes>
 </items>

@@ -190,7 +190,8 @@
 							<div class="row">
 								<c:forEach items="${l1.children}" var="topLevelChild"
 									varStatus="l3link">
-									<c:if test="${l3link.index eq 0}">
+									<c:set var="isCallNode" value="${fn:contains(topLevelChild.uid, 'CallUs')}"/>
+									<c:if test="${isCallNode}">
 										<div class="col-md-3 ${l1.uid}">
 											<c:set var="showLink" scope="page" value="false" />
 											<c:forEach items="${topLevelChild.entries}"
@@ -205,7 +206,7 @@
 												${topLevelChild.title}</div>
 										</div>
 									</c:if>
-									<c:if test="${l3link.index ne 0}">
+									<c:if test="${isCallNode eq false}">
 										<div class="col-md-3">
 											<div class="menu-container-title less-margin">
 

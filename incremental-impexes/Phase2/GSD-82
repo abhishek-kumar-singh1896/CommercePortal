@@ -1,0 +1,16 @@
+$productCatalog=amB2CCAProductCatalog
+$catalogVersions=catalogVersions(catalog(id),version); 
+$facetSearchConfigName=amB2CCAIndex
+$facetSearchConfigDescription=Animal Management B2C CA Solr Index
+$searchIndexNamePrefix=amB2CCA
+$solrIndexedType=amB2CCAProductType
+$indexBaseSite=amB2CCA
+$indexLanguages=en_CA,fr_CA
+$indexCurrencies=CAD
+ 
+# Import config properties into impex macros
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor] ; pk[unique=true] 
+
+
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]      ; type(code) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; useForSpellchecking[default=false] ; useForAutocomplete[default=false] ; fieldValueProvider                       ; valueProviderParameter         ; ftsPhraseQuery[default=false] ; ftsPhraseQueryBoost ; ftsQuery[default=false] ; ftsQueryBoost ; ftsFuzzyQuery[default=false] ; ftsFuzzyQueryBoost ; ftsWildcardQuery[default=false] ; ftsWildcardQueryType(code)[default=POSTFIX] ; ftsWildcardQueryBoost ; ftsWildcardQueryMinTermLength 
+                                  ; $solrIndexedType                         ; plpProductDescription  ; string     ;                    ;                         ; true                     ;                           ;                                    ;                                   ; springELValueProvider                    ; getPlpProductDescription(#lang)                               ;                               

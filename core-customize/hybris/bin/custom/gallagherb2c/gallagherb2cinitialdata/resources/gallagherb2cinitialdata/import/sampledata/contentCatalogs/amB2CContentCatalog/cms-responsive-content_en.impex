@@ -582,7 +582,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName
 ;;WeighinEid_link7;"Handlers and Drafters"
 ;;WeighinEid_link8;"EID Tag Readers "
 ;;WeighinEid_link9;"EID tag readeres and Barcoding Equipment"
-;;WeighinEid_link10;"Weighing Accessories"
+#;;WeighinEid_link10;"Weighing Accessories"
 ;;WeighinEid_link11;"Stock Prods"
 ;;WeighinEid_link12;"Stock Prods and Accessories"
 
@@ -743,3 +743,5 @@ INSERT_UPDATE CategoryFeatureComponent;$contentCV[unique=true];uid[unique=true];
 ;;FenceConductorsFeatureComponent;Fence Conductors;fence-conductors-category-img.jpg;"Upgrade your fence system with tools to help locate faults quickly, make fence and property more secure and much more."
 ;;EnergisersFeatureComponent;Energisers;energisers-category-img.jpg;"High quality, fully tested solar panels provide consistent, reliable power to your Battery Energizer."
 
+INSERT_UPDATE ProductAddToCartComponent ; $contentCV[unique=true] ; uid[unique=true] ; outOfStockMessage[lang=$lang]             
+                                        ;                         ; AddToCart        ; "<a href=""https:\\www.google.com"">Notify me when this product is available</a>" 

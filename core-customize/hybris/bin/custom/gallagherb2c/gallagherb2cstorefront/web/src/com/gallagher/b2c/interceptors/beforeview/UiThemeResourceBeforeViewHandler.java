@@ -7,23 +7,35 @@ import de.hybris.platform.acceleratorfacades.device.DeviceDetectionFacade;
 import de.hybris.platform.acceleratorfacades.device.data.DeviceData;
 import de.hybris.platform.acceleratorservices.uiexperience.UiExperienceService;
 import de.hybris.platform.acceleratorstorefrontcommons.interceptors.BeforeViewHandler;
+import de.hybris.platform.basecommerce.model.site.BaseSiteModel;
 import de.hybris.platform.cms2.model.site.CMSSiteModel;
 import de.hybris.platform.cms2.servicelayer.services.CMSSiteService;
+import de.hybris.platform.commercefacades.product.data.ProductData;
 import de.hybris.platform.commerceservices.enums.UiExperienceLevel;
 import de.hybris.platform.commerceservices.i18n.CommerceCommonI18NService;
 import de.hybris.platform.core.model.c2l.LanguageModel;
 import de.hybris.platform.core.model.user.CustomerModel;
+import de.hybris.platform.product.ProductService;
 import de.hybris.platform.servicelayer.config.ConfigurationService;
 import de.hybris.platform.servicelayer.user.UserService;
+import de.hybris.platform.store.BaseStoreModel;
+import de.hybris.platform.store.services.BaseStoreService;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gallagher.b2c.util.UiThemeUtils;
+import com.gallagher.core.enums.RegionCode;
+import com.gallagher.core.product.impl.GallagherProductService;
 import com.gallagher.facades.storesession.GallagherStoreSessionFacade;
 
 
@@ -42,6 +54,9 @@ public class UiThemeResourceBeforeViewHandler implements BeforeViewHandler
 
 	@Resource(name = "cmsSiteService")
 	private CMSSiteService cmsSiteService;
+
+	@Resource(name = "baseStoreService")
+	private BaseStoreService baseStoreService;
 
 	@Resource(name = "deviceDetectionFacade")
 	private DeviceDetectionFacade deviceDetectionFacade;
@@ -63,6 +78,12 @@ public class UiThemeResourceBeforeViewHandler implements BeforeViewHandler
 
 	@Resource(name = "userService")
 	private UserService userService;
+
+	@Resource(name = "gallagherProductService")
+	private GallagherProductService gallagherProductService;
+
+	@Resource(name = "productService")
+	private ProductService productService;
 
 	@Override
 	public void beforeView(final HttpServletRequest request, final HttpServletResponse response, final ModelAndView modelAndView)
@@ -99,7 +120,6 @@ public class UiThemeResourceBeforeViewHandler implements BeforeViewHandler
 
 		final String detectedUiExperienceCode = uiExperienceService.getDetectedUiExperienceLevel().getCode();
 		modelAndView.addObject("detectedUiExperienceCode", detectedUiExperienceCode);
-
 		final UiExperienceLevel overrideUiExperienceLevel = uiExperienceService.getOverrideUiExperienceLevel();
 		if (overrideUiExperienceLevel == null)
 		{
@@ -131,5 +151,87 @@ public class UiThemeResourceBeforeViewHandler implements BeforeViewHandler
 		{
 			modelAndView.addObject("showPreferences", false);
 		}
+
+		modelAndView.addObject("canonicalURL", request.getRequestURL());
+
+		final StringBuffer requestURL = request.getRequestURL();
+		Map<String, String> hreflangMap = new HashMap<>();
+		if (modelAndView.getModel().containsKey("product"))
+		{
+			final ProductData productData = (ProductData) modelAndView.getModel().get("product");
+			Collection<BaseStoreModel> stores;
+			if (StringUtils.isEmpty(productData.getBaseProduct()))
+			{
+				stores = gallagherProductService.getBaseStoresForBaseProduct(productData.getCode());
+			}
+			else
+			{
+				stores = gallagherProductService.getBaseStoresForVariant(productData.getCode());
+			}
+			hreflangMap = getHrefLangURL(stores, requestURL);
+		}
+		else
+		{
+			hreflangMap = getHrefLangURL(baseStoreService.getAllBaseStores(), requestURL);
+		}
+
+		modelAndView.addObject("hreflangMap", hreflangMap);
+	}
+
+
+	/**
+	 * @param stores
+	 * @param requestURL
+	 */
+
+	protected Map<String, String> getHrefLangURL(final Collection<BaseStoreModel> stores, final StringBuffer requestURL)
+	{
+		final Map<String, String> hreflangMap = new HashMap<>();
+		for (final BaseStoreModel store : stores)
+		{
+
+			if (store.getUid().contains("amB2C"))
+			{
+				for (final BaseSiteModel site : store.getCmsSites())
+				{
+					final CMSSiteModel cmsSite = (CMSSiteModel) site;
+					if (null != cmsSite.getRegionCode())
+					{
+						if (RegionCode.valueOf("global").equals(cmsSite.getRegionCode()))
+						{
+							final String valueString = "/am/" + cmsSite.getRegionCode().getCode() + "/"
+									+ cmsSite.getDefaultLanguage().getIsocode() + "/";
+
+							final String finalValue = gethreflangURL(requestURL, valueString);
+							hreflangMap.put("x-default", finalValue);
+						}
+						else
+						{
+							for (final LanguageModel language : store.getLanguages())
+							{
+								final String valueString = "/am/" + cmsSite.getRegionCode().getCode() + "/" + language.getIsocode() + "/";
+
+								final String finalValue = gethreflangURL(requestURL, valueString);
+								hreflangMap.put(language.getIsocode(), finalValue);
+							}
+						}
+					}
+				}
+			}
+		}
+		return hreflangMap;
+	}
+
+	public String gethreflangURL(final StringBuffer requestURL, final String valueString)
+	{
+		final int index1 = requestURL.indexOf("/am/");
+		final String sub1 = requestURL.substring(index1 + 4, requestURL.length());
+		final int index2 = sub1.indexOf("/");
+		final String sub2 = sub1.substring(index2 + 1, sub1.length());
+		final int index3 = sub2.indexOf("/");
+		final int initalIndex = index1;
+		final int endIndex = index1 + index2 + index3 + 6;
+		final String finalValue = requestURL.replace(initalIndex, endIndex, valueString).toString();
+		return finalValue;
 	}
 }

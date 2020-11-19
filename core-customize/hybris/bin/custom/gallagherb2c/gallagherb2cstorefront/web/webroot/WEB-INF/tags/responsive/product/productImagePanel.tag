@@ -43,7 +43,7 @@
 				        	<c:if test="${not empty fn:escapeXml(container.productb2c.url)}">
 		                    <li>
 		                    <div class="product-status"> 
-		                    <c:if test = "${not empty product.promoSticker}">
+		                    <c:if test = "${not empty product.promoSticker and fn:containsIgnoreCase(product.promoSticker, 'NEW')}">
 								<img src="${commonResourcePath}/images/${fn:toLowerCase(product.promoSticker)}.svg" />
 							</c:if>
 		                    </div>

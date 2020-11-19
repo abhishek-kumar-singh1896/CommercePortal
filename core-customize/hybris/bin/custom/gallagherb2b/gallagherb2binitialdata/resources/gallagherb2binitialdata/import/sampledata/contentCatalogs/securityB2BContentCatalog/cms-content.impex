@@ -135,6 +135,9 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;pa
 ;InvoiceNavNode;;InvoiceNavNode;MyAccountNavNode;;InvoiceNavNode
 ;OrderTemplatesNavNode;;OrderTemplatesNavNode;MyAccountNavNode;;OrderTemplatesNavNode
 
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef;restrictions(uid,$contentCV)
+;BulkOrderNavNode;;Bulk Order;B2BMyAccountNavNode;;BulkOrderNavNode;GallagherSiteTransactionRestriction
+
 ## entries of the above navigation nodes ##
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(&linkRef);
 ;ProductRegistrationNavNodeEntry;;ProductRegistrationNavNodeEntry;ProductRegistrationNavNode;ProductRegistrationLink;
@@ -152,6 +155,7 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 ;BillingHistoryNavNodeEntry;;BillingHistoryNavNodeEntry;BillingHistoryNavNode;BillingHistoryLink;
 ;InvoiceNavNodeEntry;;InvoiceNavNodeEntry;InvoiceNavNode;InvoicesLink
 ;OrderTemplatesNavNodeEntry;;OrderTemplatesNavNodeEntry;OrderTemplatesNavNode;OrderTemplatesLink
+;BulkOrderNavNodeEntry;;BulkOrderNavigationNodeEntry;BulkOrderNavNode;BulkOrderCategoryLink;
 
 ## links of the above navigattion entries ##
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;target(code)[default='sameWindow'];visible[default=true]
@@ -171,6 +175,8 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;PaymentHistoryLink;PaymentHistoryLink;/my-account/paymentHistory;PaymentHistoryLink;
 ;;InvoicesLink;InvoicesLink;/my-account/invoices;InvoicesLink;
 
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;linkName;url;&linkRef;target(code)[default='sameWindow'];visible[default=true]
+;;BulkOrderCategoryLink;BulkOrderCategoryLink;Bulk Order;/bulkOrderForm;BulkOrderCategoryLink
 
 ## level 3. children of Order Tools ##
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
@@ -1173,6 +1179,9 @@ INSERT_UPDATE CMSUserGroupRestriction;$contentCV[unique=true];uid[unique=true];n
 ## site logo ##
 INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/svg+xml'];altText;folder(qualifier)[default='images']
 ;;/images/theme/logo-gallagher.svg;logo-gallagher.svg;$siteResource/images/theme/logo-gallagher.svg;image/svg+xml;GALLAGHER SECURITY;
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];mime;realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];folder(qualifier)[default='documents']
+;;bulkOrderTemplate;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;BulkOrderTemplate.xlsx;$jarResourceCms/documents/BulkOrderTemplate.xlsx
 
 INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];mime;realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];folder(qualifier)[default='images']
 ;;addEditAddressPagePreview;text/png;AddEditAddressPage.png;$jarResourceCms/preview-images/securityB2B/AddEditAddressPage.png

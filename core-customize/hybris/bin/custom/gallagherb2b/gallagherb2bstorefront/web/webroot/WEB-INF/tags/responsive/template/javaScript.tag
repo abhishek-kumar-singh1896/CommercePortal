@@ -10,7 +10,9 @@
 
 <template:javaScriptVariables/>
 
-<script src="//qasecuritycms.gallagher.com/bundle/beacon"></script>
+<c:if test="${not empty siteCoreTagUrl}">
+	<script src="${siteCoreTagUrl}"></script>
+</c:if>
 <c:choose>
 	<c:when test="${wro4jEnabled}">
 	  	<script type="text/javascript" src="${contextPath}/wro/all_responsive.js"></script>

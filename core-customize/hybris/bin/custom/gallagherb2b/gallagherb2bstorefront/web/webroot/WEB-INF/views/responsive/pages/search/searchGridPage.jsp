@@ -7,7 +7,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
 <template:page pageTitle="${pageTitle}">
 
 	<div class="search-result-tab-out">
@@ -61,7 +60,7 @@
 
 			<!-- technical support tab  -->
             <!-- Begin Sign-In Touchpoint, Type = login -->
-           <script async="async" src="${mindtouchLoginSRC}"></script>
+           	<script async="async" src="${mindtouchLoginSRC}"></script>
             <div class="tab-pane <c:if test="${not empty technicalSupport}">active</c:if>" id="technicalSupport" role="tabpanel" style="height: 600px">
                 <script type="mindtouch/embed" id="${mindtouchLoginID}" data-search-query="${searchPageData.freeTextSearch}"></script>
             </div>
