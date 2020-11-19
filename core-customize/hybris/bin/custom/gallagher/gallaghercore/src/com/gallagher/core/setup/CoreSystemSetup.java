@@ -29,6 +29,8 @@ public class CoreSystemSetup extends AbstractSystemSetup
 	public static final String IMPORT_ESSENTIAL_DATA_SCPI = "importEssentialDataSCPIImpex";
 	public static final String IMPORT_SPRINT_1_IMPEX = "importSprint1Impex";
 	public static final String IMPORT_SPRINT_3_IMPEX = "importSprint3Impex";
+	public static final String IMPORT_ASYNC_PRICING = "importAsyncPricingImpex";
+
 
 	/**
 	 * This method will be called by system creator during initialization and system update. Be sure that this method can
@@ -63,6 +65,8 @@ public class CoreSystemSetup extends AbstractSystemSetup
 		params.add(createBooleanSystemSetupParameter(IMPORT_SPRINT_1_IMPEX, "Import Phase 2 - Sprint 1 Impexes", true));
 		params.add(createBooleanSystemSetupParameter(IMPORT_SPRINT_2_IMPEX, "Import Phase 2 - Sprint 2 Impexes", true));
 		params.add(createBooleanSystemSetupParameter(IMPORT_SPRINT_3_IMPEX, "Import Phase 2 - Sprint 3 Impexes", true));
+		params.add(createBooleanSystemSetupParameter(IMPORT_ASYNC_PRICING, "Import Async Pricing Impex", true));
+
 		return params;
 	}
 
@@ -154,6 +158,21 @@ public class CoreSystemSetup extends AbstractSystemSetup
 			importImpexFile(context, "/gallaghercore/import/Sprint3/SAPP2-151.impex");
 			importImpexFile(context, "/gallaghercore/import/Sprint3/SAPP2-86.impex");
 		}
+		final boolean importAsyncPricing = getBooleanSystemSetupParameter(context, IMPORT_ASYNC_PRICING);
+		if (importAsyncPricing)
+		{
+			importImpexFile(context, "/gallaghercore/import/AsyncPrice/asyncPrice-AU.impex");
+			importImpexFile(context, "/gallaghercore/import/AsyncPrice/asyncPrice-NZ.impex");
+			importImpexFile(context, "/gallaghercore/import/AsyncPrice/asyncPrice-GLOBAL.impex");
+			importImpexFile(context, "/gallaghercore/import/AsyncPrice/asyncPrice-ASIA.impex");
+			importImpexFile(context, "/gallaghercore/import/AsyncPrice/asyncPrice-CA.impex");
+			importImpexFile(context, "/gallaghercore/import/AsyncPrice/asyncPrice-STHAM.impex");
+			importImpexFile(context, "/gallaghercore/import/AsyncPrice/asyncPrice-UK.impex");
+			importImpexFile(context, "/gallaghercore/import/AsyncPrice/asyncPrice-US.impex");
+			importImpexFile(context, "/gallaghercore/import/AsyncPrice/asyncPrice_SCPI_Integration.impex");
+
+		}
+
 	}
 
 	protected void processCockpit(final SystemSetupContext context, final boolean importAccessRights,

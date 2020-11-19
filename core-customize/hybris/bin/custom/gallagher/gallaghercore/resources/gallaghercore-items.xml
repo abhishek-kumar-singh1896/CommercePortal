@@ -35,6 +35,7 @@
 
 		<enumtype code="RegionCode" dynamic="true" />
 		
+		<!-- <enumtype code="ConditionType" dynamic="true" /> -->
 		<enumtype code="ProductReferenceTypeEnum" autocreate="false" generate="false">
 		<description>Show Alternative Products If Stock is out</description>
 			<value code="ALTERNATIVE_PRODUCTS"/>
@@ -118,6 +119,21 @@
 					<persistence type="property" />
 					<defaultvalue>java.lang.Boolean.FALSE</defaultvalue>
 					<description>Attribute to identify the transactional / non transactional B2BUnit </description>
+				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="salesArea" type="java.lang.String">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property" />
+					<description>Attribute to identify the Sales Area of B2BUnit </description>
+				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="currency" type="Currency">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property" />
+					<description>Attribute to identify the currency associated with the B2BUnit </description>
+				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="customerGroup" type="java.lang.String">
+						<modifiers read="true" write="true" search="true" optional="true" />
+						<persistence type="property" />
+						<description>Attribute to identify the Customer Group associated with the B2BUnit </description>
 				</attribute>
 			</attributes>
 		</itemtype>
@@ -940,5 +956,84 @@
 </typegroup>
 		
 		
+		<typegroup name="price">
+			<itemtype code="PDTRow" autocreate="false" generate="false">
+				<description>Extending PDTRow type with an additional attribute.</description>
+				<attributes>
+					<attribute autocreate="true" generate="true" qualifier="salesArea" type="java.lang.String">
+						<modifiers read="true" write="true" search="true" optional="true" />
+						<persistence type="property" />
+						<description>Attribute to identify the Sales Area associated with the PDTRow </description>
+					</attribute>
+					<attribute qualifier="salesAreaMatchQualifier" type="java.lang.String" autocreate="true">
+						<persistence type="property" />
+						<modifiers read="true" write="true" search="true" optional="true" removable="false" />
+						<description>Internal attribute holding either value of Sales Area or Empty String for easier matching </description>
+					</attribute>
+					<attribute qualifier="customerGroup" type="java.lang.String" autocreate="true" generate="true" >
+						<modifiers read="true" write="true" search="true" optional="true" />
+						<persistence type="property" />
+						<description>Attribute to identify the Customer Group associated with the PDTRow </description>
+					</attribute>
+					<attribute qualifier="customerGroupMatchQualifier" type="java.lang.String" autocreate="true">
+						<persistence type="property" />
+						<modifiers read="true" write="true" search="true" optional="true" removable="false" />
+						<description>Internal attribute holding either value of Customer group or Empty String for easier matching </description>
+					</attribute>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="DiscountRow" autocreate="false" generate="false">
+				<description>Extending DiscountRow type with an additional attribute.</description>
+				<attributes>
+					<attribute autocreate="true" generate="true" qualifier="quantity" type="java.lang.Long">
+						<modifiers read="true" write="true" search="true" optional="true" />
+						<persistence type="property" />
+						<description>Attribute to identify the quantity for DiscountRow </description>
+					</attribute>
+					<attribute autocreate="true" generate="true" qualifier="conditionType" type="java.lang.String">
+						<modifiers read="true" write="true" search="true" optional="true" />
+						<persistence type="property" />
+						<description>Attribute to identify the Condition Type for DiscountRow </description>
+					</attribute>
+				<attribute qualifier="matchValue" type="java.lang.Integer" autocreate="true">
+					<persistence type="property"/>
+					<modifiers read="true" write="true" search="true" optional="true" removable="false"/>
+				</attribute>
+				</attributes>
+			</itemtype>
+		</typegroup>
+		
+		<typegroup name="Search">
+		  		<itemtype code="SolrIndexedProperty" autocreate="false" generate="false">
+			<attributes>
+				<attribute qualifier="salesArea" type="boolean">
+					<defaultvalue>java.lang.Boolean.TRUE</defaultvalue>
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="customerGroup" type="boolean">
+					<defaultvalue>java.lang.Boolean.TRUE</defaultvalue>
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="userPriceGroup" type="boolean">
+					<defaultvalue>java.lang.Boolean.FALSE</defaultvalue>
+					<persistence type="property" />
+				</attribute>	
+			</attributes>
+		</itemtype>
+		</typegroup>
+		
+		<typegroup name="Cart">
+			<itemtype code="Cart" autocreate="false" generate="false">
+				<description>Extending Cart type with additional attributes for sales area functionality</description>
+				<attributes>
+					<attribute autocreate="true" qualifier="salesArea" type="java.lang.String">
+						<description>set the sales area of the cart</description>
+						<persistence type="property"/>
+					</attribute>
+				</attributes>
+			</itemtype>		
+		</typegroup>
+
 	</itemtypes>
 </items>

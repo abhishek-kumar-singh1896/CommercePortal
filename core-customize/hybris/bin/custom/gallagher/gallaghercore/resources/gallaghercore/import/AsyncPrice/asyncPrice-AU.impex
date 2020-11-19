@@ -1,0 +1,45 @@
+$productCatalog=securityB2BAUProductCatalog
+$catalogVersions=catalogVersions(catalog(id),version); 
+$facetSearchConfigName=securityB2BAUIndex
+$facetSearchConfigDescription=Security B2B AU Solr Index
+$searchIndexNamePrefix=securityB2BAU
+$solrIndexedType=securityB2BAUProductType
+$indexBaseSite=securityB2BAU
+$indexLanguages=en,en_NZ, en_AU, en_US
+$indexCurrencies=NZD, AUD, USD
+
+
+# Define price ranges
+INSERT_UPDATE SolrValueRange ; &rangeValueRefID ; solrValueRangeSet(name)[unique=true] ; name[unique=true]   ; from ; to     
+                             ; rangeRefAUD1     ; securityB2BPriceRangeAUD             ; AU$0-AU$49.99       ; 0    ; 49.99  
+                             ; rangeRefAUD2     ; securityB2BPriceRangeAUD             ; AU$50-AU$199.99     ; 50   ; 199.99 
+                             ; rangeRefAUD3     ; securityB2BPriceRangeAUD             ; AU$200-AU$499.99    ; 200  ; 499.99 
+                             ; rangeRefAUD4     ; securityB2BPriceRangeAUD             ; AU$500-AU$999.99    ; 500  ; 999.99 
+                             ; rangeRefAUD5     ; securityB2BPriceRangeAUD             ; AU$1,000-AU$100,000 ; 1000 ; 100000  
+
+                             ; rangeRefNZDAUD1  ; securityB2BPriceRangeNZDAUD          ; NZ$0-NZ$49.99       ; 0    ; 49.99  
+                             ; rangeRefNZDAUD2  ; securityB2BPriceRangeNZDAUD          ; NZ$50-NZ$199.99     ; 50   ; 199.99 
+                             ; rangeRefNZDAUD3  ; securityB2BPriceRangeNZDAUD          ; NZ$200-NZ$499.99    ; 200  ; 499.99 
+                             ; rangeRefNZDAUD4  ; securityB2BPriceRangeNZDAUD          ; NZ$500-NZ$999.99    ; 500  ; 999.99 
+                             ; rangeRefNZDAUD5  ; securityB2BPriceRangeNZDAUD          ; NZ$1,000-NZ$100,000 ; 1000 ; 100000  
+                             
+                             ; rangeRefUSDAUD1  ; securityB2BPriceRangeUSDAUD          ; US$0-US$49.99       ; 0    ; 49.99  
+                             ; rangeRefUSDAUD2  ; securityB2BPriceRangeUSDAUD          ; US$50-US$199.99     ; 50   ; 199.99 
+                             ; rangeRefUSDAUD3  ; securityB2BPriceRangeUSDAUD          ; US$200-US$499.99    ; 200  ; 499.99 
+                             ; rangeRefUSDAUD4  ; securityB2BPriceRangeUSDAUD          ; US$500-US$999.99    ; 500  ; 999.99 
+                             ; rangeRefUSDAUD5  ; securityB2BPriceRangeUSDAUD          ; US$1,000-US$100,000 ; 1000 ; 100000 
+                                                          
+# Define price range set     
+INSERT_UPDATE SolrValueRangeSet ; name[unique=true]           ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                                
+                                ; securityB2BPriceRangeAUD    ; NZD       ; double ; rangeRefAUD1, rangeRefAUD2, rangeRefAUD3, rangeRefAUD4, rangeRefAUD5 
+                                ; securityB2BPriceRangeAUDNZD ; AUD       ; double ; rangeRefNZDAUD1, rangeRefNZDAUD2, rangeRefNZDAUD3, rangeRefNZDAUD4, rangeRefNZDAUD5 
+                                ; securityB2BPriceRangeUSDNZD ; USD       ; double ; rangeRefUSDAUD1, rangeRefUSDAUD2, rangeRefUSDAUD3, rangeRefUSDAUD4, rangeRefUSDAUD5 
+
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=true] ; facetType(code) ; facetSort(code) ; priority ; visible ; useForSpellchecking[default=false] ; useForAutocomplete[default=false] ; fieldValueProvider                   ; facetDisplayNameProvider          ; customFacetSortProvider ; topValuesProvider        ; rangeSets(name)          
+                                  ; $solrIndexedType                         ; price             ; double     ;                    ; true                    ;                          ;                           ;                     ; MultiSelectOr   ; Alpha           ; 4000     ; true    ;                                    ;                                   ; volumeAwareProductPriceValueProvider ;                                   ;                         ; defaultTopValuesProvider ; securityB2BPriceRangeAUD,securityB2BPriceRangeNZDAUD,securityB2BPriceRangeUSDAUD 
+
+
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]      ; type(code) ; sortableType(code) ; customerGroup[default=false]; salesArea[default=false]; userPriceGroup[default=false] ;currency[default=false] ; localized[default=false] ; multiValue[default=false] ; useForSpellchecking[default=false] ; useForAutocomplete[default=false] ; fieldValueProvider                         ; valueProviderParameter         ; ftsPhraseQuery[default=false] ; ftsPhraseQueryBoost ; ftsQuery[default=false] ; ftsQueryBoost ; ftsFuzzyQuery[default=false] ; ftsFuzzyQueryBoost ; ftsWildcardQuery[default=false] ; ftsWildcardQueryType(code)[default=POSTFIX] ; ftsWildcardQueryBoost ; ftsWildcardQueryMinTermLength 
+                                  ; $solrIndexedType                         ; priceValue             ; double     ;                    ; true                        ; true                    ; true                          ;true                    ;                          ;                           ;                                    ;                                   ; gallagherProductPricesValueResolver        ;                                ;                               ;                     ;                         ;               ;                              ;                    ;                                 ;                                             ;                       ;                               
+                                  ; $solrIndexedType                         ; priceRange             ; string     ;                    ; true                        ; true                    ; true                          ; true                   ;                          ;                           ;                                    ;                                   ; gallagherProductPriceRangeValueResolver    ;                                ;                               ;                     ;                         ;               ;                              ;                    ;                                 ;                                             ;                       ;                               
+                                  ; $solrIndexedType                         ; totalDiscounts         ; string     ;                    ; true                        ; true                    ; true                          ;true                    ;                          ;                           ;                                    ;                                   ; gallagherProductDiscountValueResolver      ;                                ;                               ;                     ;                         ;               ;                              ;                    ;                                 ;                                             ;                       ;                               

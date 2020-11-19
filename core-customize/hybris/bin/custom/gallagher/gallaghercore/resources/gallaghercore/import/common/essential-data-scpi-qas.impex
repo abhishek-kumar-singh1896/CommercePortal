@@ -156,6 +156,40 @@ INSERT_UPDATE IntegrationObjectItemAttribute ; integrationObjectItem(integration
                                              ; OutboundB2BCustomer:SAPCpiOutboundB2BContact                        ; deletedUnits                 ; SAPCpiOutboundB2BContact:deletedUnits               ;                                                            ;                         
                                              ; OutboundB2BCustomer:SAPCpiOutboundB2BContact                        ; uid                          ; SAPCpiOutboundB2BContact:emailID                    ;                                                            ; true                    
                                              
+
+#************************                    
+#*** Inbound B2BUnit ****                    
+#************************                    
+                                             
+INSERT_UPDATE IntegrationObjectItem ; integrationObject(code)[unique = true] ; code[unique = true] ; type(code) ; root[default = false] 
+                                    ; InboundB2BUnit                         ; Currency            ; Currency   ;                       ;  
+                                    
+INSERT_UPDATE IntegrationObjectItemAttribute ; integrationObjectItem(integrationObject(code), code)[unique = true] ; attributeName[unique = true] ; attributeDescriptor(enclosingType(code), qualifier) ; returnIntegrationObjectItem(integrationObject(code), code) ; unique[default = false] ; autoCreate[default = false] 
+                                             ; InboundB2BUnit:B2BUnit                                              ; transactional                ; B2BUnit:transactional                               ;                                                            ;                         ;                             
+                                             ; InboundB2BUnit:B2BUnit                                              ; salesArea                    ; B2BUnit:salesArea                                   ;                                                            ;                         ;                             
+
+#*************************                   
+#*** Inbound Price Row ***                   
+#*************************                   
+                                             
+INSERT_UPDATE IntegrationObjectItem ; integrationObject(code)[unique = true] ; code[unique = true] ; type(code) 
+                                    ; InboundPriceRow                        ; PriceRow            ; PriceRow   
+                                    
+INSERT_UPDATE IntegrationObjectItemAttribute ; integrationObjectItem(integrationObject(code), code)[unique = true] ; attributeName[unique = true] ; attributeDescriptor(enclosingType(code), qualifier) ; returnIntegrationObjectItem(integrationObject(code), code) ; unique[default = false] 
+                                             ; InboundPriceRow:PriceRow                                            ; salesArea                    ; PriceRow:salesArea                                  ;                                                            
+                                             
+                                             
+#****************************                
+#*** Inbound Discount Row ***                
+#****************************                
+                                             
+INSERT_UPDATE IntegrationObjectItem ; integrationObject(code)[unique = true] ; code[unique = true] ; type(code)  ; root[default = false] 
+                                    ; InboundDiscountRow                     ; DiscountRow         ; DiscountRow ; true                  ;  
+                                    
+INSERT_UPDATE IntegrationObjectItemAttribute ; integrationObjectItem(integrationObject(code), code)[unique = true] ; attributeName[unique = true] ; attributeDescriptor(enclosingType(code), qualifier) ; returnIntegrationObjectItem(integrationObject(code), code) ; unique[default = false] ; autoCreate[default = false] 
+                                             ; InboundDiscountRow:DiscountRow                                      ; salesArea                    ; DiscountRow:salesArea                               ;                                                            ;                         ;                             
+                                             ; InboundDiscountRow:DiscountRow                                      ; quantity                     ; DiscountRow:quantity                                ;                                                            ;                         ;                             
+                                             ; InboundDiscountRow:DiscountRow                                      ; conditionType                ; DiscountRow:conditionType                           ;                                                            ;                         ;                             
                                              
 INSERT_UPDATE SAPHTTPDestination ; httpDestinationName[unique=true] ; targetURL                            ; userid            
                                  ; GGLSCPI                          ; https://www.gmail.com?sap-client=007 ; CommerceCloud_Dev 
@@ -181,11 +215,4 @@ INSERT_UPDATE IntegrationObjectItemAttribute ; integrationObjectItem(integration
                                              ; OutboundOMMOrderOMSOrder:SAPCpiOutboundOrder                        ; requiredDeliveryDate         ; SAPCpiOutboundOrder:requiredDeliveryDate            ;                                                            ;                         
                                              ; OutboundOMMOrderOMSOrder:SAPCpiOutboundOrder                        ; comment                      ; SAPCpiOutboundOrder:comment                         ;                                                            ;                         
                                              ; OutboundOMMOrderOMSOrder:SAPCpiOutboundOrderItem                    ; additionalProductDetail      ; SAPCpiOutboundOrderItem:additionalProductDetail     ;                                                            ;                         
-                                             
-#************************
-#*** Inbound B2BUnit ****
-#************************
-
-INSERT_UPDATE IntegrationObjectItemAttribute; integrationObjectItem(integrationObject(code), code)[unique = true]; attributeName[unique = true]; attributeDescriptor(enclosingType(code), qualifier); returnIntegrationObjectItem(integrationObject(code), code); unique[default = false]; autoCreate[default = false] 
-; InboundB2BUnit:B2BUnit          	; transactional                	; B2BUnit:transactional                	;                                  	; 	;  
                                              

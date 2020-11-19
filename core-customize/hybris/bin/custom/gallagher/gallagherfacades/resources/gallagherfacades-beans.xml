@@ -163,4 +163,14 @@
 	<bean class="de.hybris.platform.commercefacades.product.data.CategoryData">
 		<property name="commentsQuestion" type="String" />
 	</bean>
+	
+	<bean class="de.hybris.platform.solrfacetsearch.config.IndexedProperty">
+		<property name="salesArea" type="boolean"/>
+		<property name="userPriceGroup" type="boolean"/>
+		<property name="customerGroup" type="boolean"/>
+	</bean>
+	
+	<bean class="de.hybris.platform.commercefacades.order.data.CartData">
+	    <property name="salesArea" type="String"/>
+	</bean>
 </beans>
