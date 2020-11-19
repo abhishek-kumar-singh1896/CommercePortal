@@ -8,6 +8,8 @@ $indexBaseSite=securityB2BAU
 $indexLanguages=en,en_NZ, en_AU, en_US
 $indexCurrencies=NZD, AUD, USD
 
+INSERT_UPDATE SolrFacetSearchConfig ; name[unique=true]      ; description                   ; indexNamePrefix        ; languages(isocode) ; currencies(isocode) ; solrServerConfig(name) ; solrSearchConfig(description) ; solrIndexConfig(name) ; solrIndexedTypes(identifier) ; enabledLanguageFallbackMechanism ; $catalogVersions                              
+                                    ; $facetSearchConfigName ; $facetSearchConfigDescription ; $searchIndexNamePrefix ; $indexLanguages    ; $indexCurrencies    ; Default                ; Default                       ; Default               ; $solrIndexedType             ; true                             ; $productCatalog:Online,$productCatalog:Staged 
 
 # Define price ranges
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID ; solrValueRangeSet(name)[unique=true] ; name[unique=true]   ; from ; to     
@@ -32,8 +34,8 @@ INSERT_UPDATE SolrValueRange ; &rangeValueRefID ; solrValueRangeSet(name)[unique
 # Define price range set     
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true]           ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                                
                                 ; securityB2BPriceRangeAUD    ; NZD       ; double ; rangeRefAUD1, rangeRefAUD2, rangeRefAUD3, rangeRefAUD4, rangeRefAUD5 
-                                ; securityB2BPriceRangeAUDNZD ; AUD       ; double ; rangeRefNZDAUD1, rangeRefNZDAUD2, rangeRefNZDAUD3, rangeRefNZDAUD4, rangeRefNZDAUD5 
-                                ; securityB2BPriceRangeUSDNZD ; USD       ; double ; rangeRefUSDAUD1, rangeRefUSDAUD2, rangeRefUSDAUD3, rangeRefUSDAUD4, rangeRefUSDAUD5 
+                                ; securityB2BPriceRangeNZDAUD ; AUD       ; double ; rangeRefNZDAUD1, rangeRefNZDAUD2, rangeRefNZDAUD3, rangeRefNZDAUD4, rangeRefNZDAUD5 
+                                ; securityB2BPriceRangeUSDAUD ; USD       ; double ; rangeRefUSDAUD1, rangeRefUSDAUD2, rangeRefUSDAUD3, rangeRefUSDAUD4, rangeRefUSDAUD5 
 
 INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; type(code) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=true] ; facetType(code) ; facetSort(code) ; priority ; visible ; useForSpellchecking[default=false] ; useForAutocomplete[default=false] ; fieldValueProvider                   ; facetDisplayNameProvider          ; customFacetSortProvider ; topValuesProvider        ; rangeSets(name)          
                                   ; $solrIndexedType                         ; price             ; double     ;                    ; true                    ;                          ;                           ;                     ; MultiSelectOr   ; Alpha           ; 4000     ; true    ;                                    ;                                   ; volumeAwareProductPriceValueProvider ;                                   ;                         ; defaultTopValuesProvider ; securityB2BPriceRangeAUD,securityB2BPriceRangeNZDAUD,securityB2BPriceRangeUSDAUD 

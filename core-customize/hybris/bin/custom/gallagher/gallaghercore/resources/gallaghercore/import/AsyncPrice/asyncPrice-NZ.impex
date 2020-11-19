@@ -8,7 +8,9 @@ $indexBaseSite=securityB2BNZ
 $indexLanguages=en,en_NZ, en_AU, en_US
 $indexCurrencies=NZD, AUD, USD
 
-
+INSERT_UPDATE SolrFacetSearchConfig ; name[unique=true]      ; description                   ; indexNamePrefix        ; languages(isocode) ; currencies(isocode) ; solrServerConfig(name) ; solrSearchConfig(description) ; solrIndexConfig(name) ; solrIndexedTypes(identifier) ; enabledLanguageFallbackMechanism ; $catalogVersions                              
+                                    ; $facetSearchConfigName ; $facetSearchConfigDescription ; $searchIndexNamePrefix ; $indexLanguages    ; $indexCurrencies    ; Default                ; Default                       ; Default               ; $solrIndexedType             ; true                             ; $productCatalog:Online,$productCatalog:Staged 
+ 
 # Define price ranges
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID ; solrValueRangeSet(name)[unique=true] ; name[unique=true]   ; from ; to     
                              ; rangeRefNZD1     ; securityB2BPriceRangeNZD             ; NZ$0-NZ$49.99       ; 0    ; 49.99  
