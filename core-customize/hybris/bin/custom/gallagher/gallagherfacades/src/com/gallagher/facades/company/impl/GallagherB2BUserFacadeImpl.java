@@ -49,11 +49,11 @@ public class GallagherB2BUserFacadeImpl extends DefaultB2BUserFacade
 		String updateUid = StringUtils.EMPTY;
 		if (StringUtils.isNotBlank(customerData.getDisplayUid()))
 		{
-			updateUid = customerData.getDisplayUid();
+			updateUid = BU.SEC.getCode().toLowerCase() + "|" + customerData.getDisplayUid();
 		}
 		else if (customerData.getEmail() != null)
 		{
-			updateUid = customerData.getEmail();
+			updateUid = BU.SEC.getCode().toLowerCase() + "|" + customerData.getEmail();
 		}
 		B2BCustomerModel customerModel = null;
 		try
