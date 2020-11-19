@@ -57,12 +57,14 @@ public class GallagherB2BUserFacadeImpl extends DefaultB2BUserFacade
 		B2BCustomerModel customerModel = null;
 		try
 		{
+			LOG.debug("Customer Uid to be updated :: " + updateUid);
 			customerModel = getUserService().getUserForUID(updateUid, B2BCustomerModel.class);
 		}
 		catch (final UnknownIdentifierException e)
 		{
 			LOG.error("Unknown identifier :: " + e.getMessage());
 		}
+
 		if (customerModel != null)
 		{
 			pushToMindTouch(customerModel);
