@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.LocaleUtils;
 import org.apache.log4j.Logger;
 
@@ -44,8 +45,17 @@ public class GallagherOrderEntryContributor extends DefaultOrderEntryContributor
 		for (final AbstractOrderEntryModel entry : entries)
 		{
 			final Map<String, Object> row = new HashMap<>();
-			row.put(GallagherOrderEntryCsvColumns.ADDITION_PRODUCT_DETAIL,
-					entry.getProductSpecificDetailsSubHeading() + entry.getDeliveryInstruction());
+			if (StringUtils.isNotEmpty(entry.getProductSpecificDetailsSubHeading())
+					&& StringUtils.isNotEmpty(entry.getDeliveryInstruction()))
+			{
+				row.put(GallagherOrderEntryCsvColumns.ADDITION_PRODUCT_DETAIL,
+						entry.getProductSpecificDetailsSubHeading() + entry.getDeliveryInstruction());
+			}
+			else
+			{
+				row.put(GallagherOrderEntryCsvColumns.ADDITION_PRODUCT_DETAIL, "");
+			}
+
 			row.put(OrderCsvColumns.ORDER_ID, order.getCode());
 			row.put(OrderEntryCsvColumns.ENTRY_NUMBER, entry.getEntryNumber());
 			row.put(OrderEntryCsvColumns.QUANTITY, entry.getQuantity());
