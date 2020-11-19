@@ -49,6 +49,7 @@ UPDATE ClassificationAttribute	;code[unique=true];name[lang=$lang];$classSystemV
 								;energy-stored;Energía Almacenada
 								;energy-output;Energía de Salida
 								;multiwire-distance-gallagher-recommendation;Distancia de alambres múltiples recomendada por Gallagher
+								;multiwire-distance-gallagher-recommendation-acres;Distancia de alambres múltiples recomendada por Gallagher
 								;multiwire-distance-ideal-conditions;Condiciones ideales de distancia de alambres múltiples
 								;height;Altura
 								;product-depth;Profundidad
@@ -101,3 +102,4 @@ UPDATE ClassificationAttribute	;code[unique=true];name[lang=$lang];$classSystemV
 								;width-or-length;Ancho o Largo
 								;diameter-or-width;Diámetro o ancho
 								;driver-capacity-long;Capacidad del conductor (largo)
+                        ;product-feature-number-of-openings;Product Features (Number of openings)

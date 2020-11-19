@@ -128,7 +128,7 @@ UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$so
                            ;                                                               ; i Series Compatible (Energizers)              ; i Series Compatible                    
                            ;                                                               ; Outdoors Suitable                             ; Outdoors Suitable                      
                            ;                                                               ; Property Size                                 ; Property Size                              
-                           ;                                                               ; Power Input                                   ; Power Input                                        
+                           ;                                                               ; Power Input                                   ; Power Source                                        
                            ;                                                               ; Watts                                         ; Watts                                           
                            ;                                                               ; Voltage                                       ; Voltage                                       
                            ;                                                               ; DC Input                                      ; DC Input                                      
@@ -138,7 +138,7 @@ UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$so
                            ;                                                               ; Product Height (Remotes)                      ; Product Height                               
                            ;                                                               ; Product Height (Power)                        ; Product Height                               
                            ;                                                               ; Diameter or Tape Width (Wire)                 ; Diameter or Tape Width                       
-                           ;                                                               ; Ohms Per Km (Wire)                            ; Ohms Per Km                                        
+                           ;                                                               ; Ohms Per Km (Wire)                            ; Resistance (Ohms / km)                                         
                            ;                                                               ; Warranty (Wire)                               ; Warranty                                  
                            ;                                                               ; Product Width (Posts)                         ; Product Width                                
                            ;                                                               ; Product Weight (Posts)                        ; Product Weight                                
@@ -174,6 +174,17 @@ UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$so
                            ;                                                               ; Product Type                                  ; Product Type                                       
                            ;                                                               ; Product Weight (Water)                        ; Product Weight                                
                            ;                                                               ; Warranty (Antenna)                            ; Warranty                                  
-                           ;                                                               ; animalCompatibility                           ; Animal Type                                        
+                           ;                                                               ; animalCompatibility                           ; Animal Compatibility                                        
                            ;                                                               ; Product Height (Platforms)                    ; Product Height                               
-                               
+						   ;                                                               ; Voltage at 2km of fence                       ; Voltage (kV) over 2km 							
+						   ;                                                               ; Voltage at 5km of fence                       ; Voltage (kV) over 5km 							
+						   ;                                                               ; Voltage at 10km of fence                      ; Voltage (kV) over 10km							
+						   ;                                                               ; Voltage at 500m of fence                      ; Voltage (kV) over 500m							
+						   ;                                                               ; Voltage at 1km of fence                       ; Voltage (kV) over 1km 					
+
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]                            ; visible; facet[default=false] ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facetType(code) ; facetSort(code) ; priority  ; fieldValueProvider                          ; customFacetSortProvider ; facetDisplayNameProvider           ; rangeSets(name) ; $classAttributeAssignment           ; displayName[lang=$lang]                                 
+								  ; $solrIndexedType                         ; Conductor Type                     			; true   ; true                 ; double                     ;                    ;                         ;                          ;                           ; MultiSelectOr   ; Alpha           ; 1000     ; commerceClassificationPropertyValueProvider ;                         ;  									;                 ; wire-and-cable:::Conductor-type:::: ; Conductor Type
+
+INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetSortProvider           ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
+									  ; Conductor Type:$solrIndexedType                        			;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+						   

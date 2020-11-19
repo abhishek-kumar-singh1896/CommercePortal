@@ -9,29 +9,29 @@
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
 # ImpEx for Importing Units into SecurityB2B Store
-
+ 
 # Macros / Replacement Parameter definitions
 $systemVersion=systemVersion(catalog(id[default='SecurityB2BClassification']),version[default='1.0'])[unique=true]
-
+ 
 #
 # Localization en
 #
 $lang=en
-
-UPDATE ClassificationAttributeUnit;code[unique=true];$systemVersion;name[lang=$lang]
-;mm;;mm;
-;Vdc;;Vdc;
-;mA;;mA;
-;m;;m;
-;ip-rating;;IP Rating;
-;ik-rating;;IK Rating;
-;inches;;""""
-;J;;J
-;ohms;;ohms
-;V-Hz;;V/Hz
-;W;;W
-;cel;;°C
-;fah;;°F
-;AES;;AES
-;km;;km
-;V;;V
+ 
+UPDATE ClassificationAttributeUnit ; code[unique=true] ; $systemVersion ; name[lang=$lang] 
+                                   ; mm                ;                ; mm                 
+                                   ; Vdc               ;                ; Vdc                
+                                   ; mA                ;                ; mA                 
+                                   ; m                 ;                ; m                  
+                                   ; ip-rating         ;                ; IP Rating          
+                                   ; ik-rating         ;                ; IK Rating          
+                                   ; inches            ;                ; """"             
+                                   ; J                 ;                ; J                
+                                   ; ohms              ;                ; ohms             
+                                   ; V-Hz              ;                ; V/Hz             
+                                   ; W                 ;                ; W                
+                                   ; cel               ;                ; °C               
+                                   ; fah               ;                ; °F               
+                                   ; AES               ;                ; AES              
+                                   ; km                ;                ; km               
+                                   ; V                 ;                ; V                

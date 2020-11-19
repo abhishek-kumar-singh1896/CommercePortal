@@ -9,7 +9,7 @@ $solrIndexedType=amB2CCAProductType
 $contentCatalogVersion=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalogName]),CatalogVersion.version[default=$version])[default=$contentCatalogName:$version]
 $productCatalog=amB2CCAProductCatalog
 $productCatalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='$version'])[unique=true,default=$productCatalog:$version]
-$lang=en_CA
+$lang=en
 
 INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetSortProvider           ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
                                       ; Use (Fence) :$solrIndexedType                                   ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
@@ -89,13 +89,14 @@ INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(id
                                       ; Capacity(L) (Watering)  :$solrIndexedType                       ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
                                       ; animalCompatibility:$solrIndexedType                            ;                     ; MultiSelectOr   ; 1000     ;                             ;                        ;                                 ;                                                                                                   
                                       ; Internal rechargeable battery:$solrIndexedType                  ;                     ; MultiSelectOr   ; 1000     ;                             ;                        ;                                 ;
+ 
                                       
 UPDATE SolrSearchQueryProperty ; indexedProperty(solrIndexedType(identifier),name)[unique=true] ; facetDisplayNameProvider           
                                       ; $solrIndexedType: Energy Stored                                 ; facetUnitSuffixDisplayNameProvider 
                                       ; $solrIndexedType: Typical Fence Distance                        ; facetUnitSuffixDisplayNameProvider 
                                       ; $solrIndexedType: Clean Wire Fence Distance                     ; facetUnitSuffixDisplayNameProvider 
-                                      ; $solrIndexedType: i Series Compatible (Energizers)              ;                                    
-                                      ; $solrIndexedType: Outdoors Suitable                             ;                                    
+                                      ; $solrIndexedType: i Series Compatible (Energizers)              ; facetUnitBooleanDisplayNameProvider                                   
+                                      ; $solrIndexedType: Outdoors Suitable                             ; facetUnitBooleanDisplayNameProvider
                                       ; $solrIndexedType: Property Size                                 ; facetUnitSuffixDisplayNameProvider 
                                       ; $solrIndexedType: Power Input                                   ;                                    
                                       ; $solrIndexedType: Watts                                         ; facetUnitSuffixDisplayNameProvider 
@@ -104,9 +105,9 @@ UPDATE SolrSearchQueryProperty ; indexedProperty(solrIndexedType(identifier),nam
                                       ; $solrIndexedType: Drafting                                      ;                                    
                                       ; $solrIndexedType: Capacity                                      ; facetUnitSuffixDisplayNameProvider 
                                       ; $solrIndexedType: Current                                       ; facetUnitSuffixDisplayNameProvider 
-                                      ; $solrIndexedType: Digital Display                               ;                                    
-                                      ; $solrIndexedType: i Series Compatible (Remotes)                 ;                                    
-                                      ; $solrIndexedType: i Series Compatible (Power)                   ;                                    
+                                      ; $solrIndexedType: Digital Display                               ; facetUnitBooleanDisplayNameProvider                                   
+                                      ; $solrIndexedType: i Series Compatible (Remotes)                 ; facetUnitBooleanDisplayNameProvider                                   
+                                      ; $solrIndexedType: i Series Compatible (Power)                   ; facetUnitBooleanDisplayNameProvider                                   
                                       ; $solrIndexedType: Gear Ratio                                    ;                                    
                                       ; $solrIndexedType: Conductor Capacity                            ;                                    
                                       ; $solrIndexedType: Pre-wound with                                ;                                    
@@ -123,17 +124,17 @@ UPDATE SolrSearchQueryProperty ; indexedProperty(solrIndexedType(identifier),nam
                                       ; $solrIndexedType: Wire Amount                                   ;                                    
                                       ; $solrIndexedType: Post Height (Pigtails)                        ; facetUnitSuffixDisplayNameProvider 
                                       ; $solrIndexedType: Number of Traits Recorded                     ;                                    
-                                      ; $solrIndexedType: EID Compatiable                               ;                                    
+                                      ; $solrIndexedType: EID Compatiable                               ; facetUnitBooleanDisplayNameProvider                                   
                                       ; $solrIndexedType: Internal rechargeable battery                 ;                                    
-                                      ; $solrIndexedType: Intergrated EID Reader                        ;                                    
-                                      ; $solrIndexedType: Compatible with Gallagher Livestock (Scales)  ;                                    
-                                      ; $solrIndexedType: View Pedigree Tree                            ;                                    
+                                      ; $solrIndexedType: Intergrated EID Reader                        ; facetUnitBooleanDisplayNameProvider                                   
+                                      ; $solrIndexedType: Compatible with Gallagher Livestock (Scales)  ; facetUnitBooleanDisplayNameProvider                                   
+                                      ; $solrIndexedType: View Pedigree Tree                            ; facetUnitBooleanDisplayNameProvider                                   
                                       ; $solrIndexedType: Use (Loadbars)                                ;                                    
                                       ; $solrIndexedType: Weighing Capacity (Loadbars)                  ; facetUnitSuffixDisplayNameProvider 
                                       ; $solrIndexedType: Weighing Capacity (Platforms)                 ; facetUnitSuffixDisplayNameProvider 
                                       ; $solrIndexedType: Product Type                                  ;                                    
-                                      ; $solrIndexedType: Compatible with Gallagher Livestock (EID)     ;                                    
-                                      ; $solrIndexedType: Rechargeable                                  ;                                    
+                                      ; $solrIndexedType: Compatible with Gallagher Livestock (EID)     ; facetUnitBooleanDisplayNameProvider                                   
+                                      ; $solrIndexedType: Rechargeable                                  ; facetUnitBooleanDisplayNameProvider                                   
                                       ; $solrIndexedType: Product Features (Trough)                     ;                                    
                                       ; $solrIndexedType: Capacity(L) (Trough)                          ; facetUnitSuffixDisplayNameProvider 
                                       ; $solrIndexedType: Product Features (Spring)                     ;                                    
@@ -174,7 +175,7 @@ UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$so
                            ;                                                               ; i Series Compatible (Energizers)             ; i Series Compatible                          
                            ;                                                               ; Outdoors Suitable                            ; Outdoors Suitable                            
                            ;                                                               ; Property Size                                ; Property Size                                     
-                           ;                                                               ; Power Input                                  ; Power Input                                               
+                           ;                                                               ; Power Input                                  ; Power Source                                               
                            ;                                                               ; Watts                                        ; Watts                                           
                            ;                                                               ; Voltage                                      ; Voltage                                           
                            ;                                                               ; DC Input                                     ; DC Input                                           
@@ -186,14 +187,14 @@ UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$so
                            ;                                                               ; Gear Ratio                                   ; Gear Ratio                                                
                            ;                                                               ; Conductor Capacity                           ; Conductor Capacity                                        
                            ;                                                               ; Pre-wound with                               ; Pre-wound with                                            
-                           ;                                                               ; Ohms Per Km (Tensile)                        ; Ohms Per Km                                               
-                           ;                                                               ; Voltage at 2km of fence                      ; Voltage at 2km of fence                              
-                           ;                                                               ; Voltage at 5km of fence                      ; Voltage at 5km of fence                              
-                           ;                                                               ; Voltage at 10km of fence                     ; Voltage at 10km of fence                             
-                           ;                                                               ; Voltage at 500m of fence                     ; Voltage at 500m of fence                             
-                           ;                                                               ; Voltage at 1km of fence                      ; Voltage at 1km of fence                              
+                           ;                                                               ; Ohms Per Km (Tensile)                        ; Resistance (Ohms / km)                                               
+                           ;                                                               ; Voltage at 2km of fence                      ; Voltage (kV) over 2km                              
+                           ;                                                               ; Voltage at 5km of fence                      ; Voltage (kV) over 5km                              
+                           ;                                                               ; Voltage at 10km of fence                     ; Voltage (kV) over 10km                             
+                           ;                                                               ; Voltage at 500m of fence                     ; Voltage (kV) over 500m                             
+                           ;                                                               ; Voltage at 1km of fence                      ; Voltage (kV) over 1km                              
                            ;                                                               ; Mixed Metals                                 ; Mixed Metals                                              
-                           ;                                                               ; Ohms Per Km (Tapes)                          ; Ohms Per Km                                               
+                           ;                                                               ; Ohms Per Km (Tapes)                          ; Resistance (Ohms / km)                                               
                            ;                                                               ; Length (Tapes)                               ; Length
                            ;                                                               ; Wire Amount                                  ; Wire Amount                                               
                            ;                                                               ; Post Height (Posts)                          ; Post Height
@@ -202,7 +203,7 @@ UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$so
                            ;                                                               ; Drafting                                     ; Drafting
                            ;                                                               ; Intergrated EID Reader                       ; Intergrated EID Reader
                            ;                                                               ; Compatible with Gallagher Livestock (Scales) ; Compatible with Gallagher Livestock
-                           ;                                                               ; View Pedigree Tree                           ; View Pedigree Tree
+                           ;                                                               ; View Pedigree Tree                           ; Pedigree Tree
                            ;                                                               ; Use (Loadbars)                               ; Use                                                       
                            ;                                                               ; Weighing Capacity (Loadbars)                 ; Weighing Capacity
                            ;                                                               ; Weighing Capacity (Platforms)                ; Weighing Capacity
@@ -241,6 +242,12 @@ UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$so
                            ;                                                               ; Gate Type                                    ; Gate Type                                                 
                            ;                                                               ; Length (Gates)                               ; Length
                            ;                                                               ; Use (Fence)                                  ; Use                                                       
-                           ;                                                               ; animalCompatibility                          ; Animal Type                                               
+                           ;                                                               ; animalCompatibility                          ; Animal Compatibility                                               
                            ;                                                               ; Post Height (Pigtails)                       ; Post Height
+
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]                            ; visible; facet[default=false] ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facetType(code) ; facetSort(code) ; priority  ; fieldValueProvider                          ; customFacetSortProvider ; facetDisplayNameProvider           ; rangeSets(name) ; $classAttributeAssignment           ; displayName[lang=$lang]                                 
+								  ; $solrIndexedType                         ; Conductor Type                     			; true   ; true                 ; double                     ;                    ;                         ;                          ;                           ; MultiSelectOr   ; Alpha           ; 1000     ; commerceClassificationPropertyValueProvider ;                         ;  									;                 ; wire-and-cable:::Conductor-type:::: ; Conductor Type
+
+INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetSortProvider           ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
+									  ; Conductor Type:$solrIndexedType                        			;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
  

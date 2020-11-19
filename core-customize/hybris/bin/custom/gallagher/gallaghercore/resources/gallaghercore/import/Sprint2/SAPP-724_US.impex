@@ -8,7 +8,7 @@ $solrIndexedType=amB2CUSProductType
 $contentCatalogVersion=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalogName]),CatalogVersion.version[default=Staged])[default=$contentCatalogName:Staged]
 $productCatalog=amB2CUSProductCatalog
 $productCatalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
-$lang=en_US
+$lang=en
 
 
 INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetSortProvider           ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
@@ -167,79 +167,85 @@ UPDATE  SolrSearchQueryProperty ; indexedProperty(solrIndexedType(identifier),na
                                 ; $solrIndexedType :Use (Fence)                                  ;                                     
                                 ; $solrIndexedType :animalCompatibility                          ;                                     
 
-UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$solrIndexedType] ; name[unique=true]                            ; displayName[lang=$lang]                                   
-                           ;                                                               ; Energy Stored                                ; Energy (Stored)                                   
-                           ;                                                               ; Typical Fence Distance                       ; Typical Fence Distance (Gallagher Recommendation) 
-                           ;                                                               ; Clean Wire Fence Distance                    ; Clean Wire Fence Distance
-                           ;                                                               ; i Series Compatible (Energizers)             ; i Series Compatible                           
-                           ;                                                               ; Outdoors Suitable                            ; Outdoors Suitable                             
-                           ;                                                               ; Property Size                                ; Property Size                                     
-                           ;                                                               ; Power Input                                  ; Power Input                                               
-                           ;                                                               ; Watts                                        ; Watts                                                 
-                           ;                                                               ; Voltage                                      ; Voltage                                               
-                           ;                                                               ; DC Input                                     ; DC Input                                              
-                           ;                                                               ; Capacity                                     ; Capacity                                             
-                           ;                                                               ; Current                                      ; Current                                              
-                           ;                                                               ; Digital Display                              ; Digital Display                               
-                           ;                                                               ; i Series Compatible (Remotes)                ; i Series Compatible                           
-                           ;                                                               ; i Series Compatible (Power)                  ; i Series Compatible                           
-                           ;                                                               ; Gear Ratio                                   ; Gear Ratio                                                
-                           ;                                                               ; Conductor Capacity                           ; Conductor Capacity                                        
-                           ;                                                               ; Pre-wound with                               ; Pre-wound with                                            
-                           ;                                                               ; Ohms Per Km (Tensile)                        ; Ohms Per Km                                               
-                           ;                                                               ; Voltage at 2km of fence                      ; Voltage at 2km of fence                               
-                           ;                                                               ; Voltage at 5km of fence                      ; Voltage at 5km of fence                               
-                           ;                                                               ; Voltage at 10km of fence                     ; Voltage at 10km of fence                              
-                           ;                                                               ; Voltage at 500m of fence                     ; Voltage at 500m of fence                              
-                           ;                                                               ; Voltage at 1km of fence                      ; Voltage at 1km of fence                               
-                           ;                                                               ; Mixed Metals                                 ; Mixed Metals                                              
-                           ;                                                               ; Ohms Per Km (Tapes)                          ; Ohms Per Km                                               
-                           ;                                                               ; Length (Tapes)                               ; Length                                            
-                           ;                                                               ; Wire Amount                                  ; Wire Amount                                               
-                           ;                                                               ; Post Height (Posts)                          ; Post Height                                       
-                           ;                                                               ; Number of Traits Recorded                    ; Number of Traits Recorded                                 
-                           ;                                                               ; EID Compatiable                              ; EID Compatiable                               
-                           ;                                                               ; Drafting                                     ; Drafting                                      
-                           ;                                                               ; Intergrated EID Reader                       ; Intergrated EID Reader                        
-                           ;                                                               ; Compatible with Gallagher Livestock (Scales) ; Compatible with Gallagher Livestock           
-                           ;                                                               ; View Pedigree Tree                           ; View Pedigree Tree                            
-                           ;                                                               ; Use (Loadbars)                               ; Use                                                       
-                           ;                                                               ; Weighing Capacity (Loadbars)                 ; Weighing Capacity                                    
-                           ;                                                               ; Weighing Capacity (Platforms)                ; Weighing Capacity                                    
-                           ;                                                               ; Product Type                                 ; Product Type                                              
-                           ;                                                               ; Compatible with Gallagher Livestock (EID)    ; Compatible with Gallagher Livestock           
-                           ;                                                               ; Rechargeable                                 ; Rechargeable                                  
-                           ;                                                               ; Product Features (Trough)                    ; Product Features                                          
-                           ;                                                               ; Capacity(L) (Trough)                         ; Capacity                                              
-                           ;                                                               ; Product Features (Spring)                    ; Product Features                                          
-                           ;                                                               ; Capacity(L) (Spring)                         ; Capacity                                              
-                           ;                                                               ; Product Features (EQUI)                      ; Product Features                                          
-                           ;                                                               ; Capacity(L) (EQUI)                           ; Capacity                                              
-                           ;                                                               ; Product Features (Mira)                      ; Product Features                                          
-                           ;                                                               ; Capacity(L) (Mira)                           ; Capacity                                              
-                           ;                                                               ; Product Features (E)                         ; Product Features                                          
-                           ;                                                               ; Capacity(L) (E)                              ; Capacity                                              
-                           ;                                                               ; Product Features (BIG)                       ; Product Features                                          
-                           ;                                                               ; Capacity(L) (BIG)                            ; Capacity                                              
-                           ;                                                               ; Product Features (PET)                       ; Product Features                                          
-                           ;                                                               ; Capacity(L) (PET)                            ; Capacity                                              
-                           ;                                                               ; Product Features (Watering)                  ; Product Features                                          
-                           ;                                                               ; Capacity(L) (Watering)                       ; Capacity                                              
-                           ;                                                               ; Post Height (Pigtails)                       ; Post Height                                       
-                           ;                                                               ; Number of Wires                              ; Number of Wires                                           
-                           ;                                                               ; Strainer Type                                ; Strainer Type                                             
-                           ;                                                               ; Includes Joint Clamp                         ; Includes Joint Clamp                          
-                           ;                                                               ; Warranty (Strainers)                         ; Warranty                                           
-                           ;                                                               ; Post Type (Insulators)                       ; Post Type                                                 
-                           ;                                                               ; Insulator Type                               ; Insulator Type                                            
-                           ;                                                               ; Wire Diameter                                ; Wire Diameter                                     
-                           ;                                                               ; Warranty (Insulators)                        ; Warranty                                           
-                           ;                                                               ; Product Weight (Insulators)                  ; Product Weight                                       
-                           ;                                                               ; Post Type (Offsets)                          ; Post Type                                                 
-                           ;                                                               ; Product Length (Offsets)                     ; Product Length                                    
-                           ;                                                               ; Mount Type                                   ; Mount Type                                                
-                           ;                                                               ; Gate Type                                    ; Gate Type                                                 
-                           ;                                                               ; Length (Gates)                               ; Length                                            
-                           ;                                                               ; Use (Fence)                                  ; Use                                                       
-                           ;                                                               ; animalCompatibility                          ; Animal Type                                               
+UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$solrIndexedType] ; name[unique=true]                        ; displayName[lang=$lang]                                   
+                           ;                                                                   ; Energy Stored                                ; Energy (Stored)                                   
+                           ;                                                                   ; Typical Fence Distance                       ; Typical Fence Distance (Gallagher Recommendation) 
+                           ;                                                                   ; Clean Wire Fence Distance                    ; Clean Wire Fence Distance
+                           ;                                                                   ; i Series Compatible (Energizers)             ; i Series Compatible                           
+                           ;                                                                   ; Outdoors Suitable                            ; Outdoors Suitable                             
+                           ;                                                                   ; Property Size                                ; Property Size                                     
+                           ;                                                                   ; Power Input                                  ; Power Source                                               
+                           ;                                                                   ; Watts                                        ; Watts                                                 
+                           ;                                                                   ; Voltage                                      ; Voltage                                               
+                           ;                                                                   ; DC Input                                     ; DC Input                                              
+                           ;                                                                   ; Capacity                                     ; Capacity                                             
+                           ;                                                                   ; Current                                      ; Current                                              
+                           ;                                                                   ; Digital Display                              ; Digital Display                               
+                           ;                                                                   ; i Series Compatible (Remotes)                ; i Series Compatible                           
+                           ;                                                                   ; i Series Compatible (Power)                  ; i Series Compatible                           
+                           ;                                                                   ; Gear Ratio                                   ; Gear Ratio                                                
+                           ;                                                                   ; Conductor Capacity                           ; Conductor Capacity                                        
+                           ;                                                                   ; Pre-wound with                               ; Pre-wound with                                            
+                           ;                                                                   ; Ohms Per Km (Tensile)                        ; Resistance (Ohms / km)                                               
+                           ;                                                                   ; Voltage at 2km of fence                      ; Voltage (kV) over 2km                               
+                           ;                                                                   ; Voltage at 5km of fence                      ; Voltage (kV) over 5km                               
+                           ;                                                                   ; Voltage at 10km of fence                     ; Voltage (kV) over 10km                              
+                           ;                                                                   ; Voltage at 500m of fence                     ; Voltage (kV) over 500m                              
+                           ;                                                                   ; Voltage at 1km of fence                      ; Voltage (kV) over 1km                               
+                           ;                                                                   ; Mixed Metals                                 ; Mixed Metals                                              
+                           ;                                                                   ; Ohms Per Km (Tapes)                          ; Resistance (Ohms / km)                                             
+                           ;                                                                   ; Length (Tapes)                               ; Length                                            
+                           ;                                                                   ; Wire Amount                                  ; Wire Amount                                               
+                           ;                                                                   ; Post Height (Posts)                          ; Post Height                                       
+                           ;                                                                   ; Number of Traits Recorded                    ; Number of Traits Recorded                                 
+                           ;                                                                   ; EID Compatiable                              ; EID Compatiable                               
+                           ;                                                                   ; Drafting                                     ; Drafting                                      
+                           ;                                                                   ; Intergrated EID Reader                       ; Intergrated EID Reader                        
+                           ;                                                                   ; Compatible with Gallagher Livestock (Scales) ; Compatible with Gallagher Livestock           
+                           ;                                                                   ; View Pedigree Tree                           ; Pedigree Tree                            
+                           ;                                                                   ; Use (Loadbars)                               ; Use                                                       
+                           ;                                                                   ; Weighing Capacity (Loadbars)                 ; Weighing Capacity                                    
+                           ;                                                                   ; Weighing Capacity (Platforms)                ; Weighing Capacity                                    
+                           ;                                                                   ; Product Type                                 ; Product Type                                              
+                           ;                                                                   ; Compatible with Gallagher Livestock (EID)    ; Compatible with Gallagher Livestock           
+                           ;                                                                   ; Rechargeable                                 ; Rechargeable                                  
+                           ;                                                                   ; Product Features (Trough)                    ; Product Features                                          
+                           ;                                                                   ; Capacity(L) (Trough)                         ; Capacity                                              
+                           ;                                                                   ; Product Features (Spring)                    ; Product Features                                          
+                           ;                                                                   ; Capacity(L) (Spring)                         ; Capacity                                              
+                           ;                                                                   ; Product Features (EQUI)                      ; Product Features                                          
+                           ;                                                                   ; Capacity(L) (EQUI)                           ; Capacity                                              
+                           ;                                                                   ; Product Features (Mira)                      ; Product Features                                          
+                           ;                                                                   ; Capacity(L) (Mira)                           ; Capacity                                              
+                           ;                                                                   ; Product Features (E)                         ; Product Features                                          
+                           ;                                                                   ; Capacity(L) (E)                              ; Capacity                                              
+                           ;                                                                   ; Product Features (BIG)                       ; Product Features                                          
+                           ;                                                                   ; Capacity(L) (BIG)                            ; Capacity                                              
+                           ;                                                                   ; Product Features (PET)                       ; Product Features                                          
+                           ;                                                                   ; Capacity(L) (PET)                            ; Capacity                                              
+                           ;                                                                   ; Product Features (Watering)                  ; Product Features                                          
+                           ;                                                                   ; Capacity(L) (Watering)                       ; Capacity                                              
+                           ;                                                                   ; Post Height (Pigtails)                       ; Post Height                                       
+                           ;                                                                   ; Number of Wires                              ; Number of Wires                                           
+                           ;                                                                   ; Strainer Type                                ; Strainer Type                                             
+                           ;                                                                   ; Includes Joint Clamp                         ; Includes Joint Clamp                          
+                           ;                                                                   ; Warranty (Strainers)                         ; Warranty                                           
+                           ;                                                                   ; Post Type (Insulators)                       ; Post Type                                                 
+                           ;                                                                   ; Insulator Type                               ; Insulator Type                                            
+                           ;                                                                   ; Wire Diameter                                ; Wire Diameter                                     
+                           ;                                                                   ; Warranty (Insulators)                        ; Warranty                                           
+                           ;                                                                   ; Product Weight (Insulators)                  ; Product Weight                                       
+                           ;                                                                   ; Post Type (Offsets)                          ; Post Type                                                 
+                           ;                                                                   ; Product Length (Offsets)                     ; Product Length                                    
+                           ;                                                                   ; Mount Type                                   ; Mount Type                                                
+                           ;                                                                   ; Gate Type                                    ; Gate Type                                                 
+                           ;                                                                   ; Length (Gates)                               ; Length                                            
+                           ;                                                                   ; Use (Fence)                                  ; Use                                                       
+                           ;                                                                   ; animalCompatibility                          ; Animal Compatibility                                               
+
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]                            ; visible; facet[default=false] ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facetType(code) ; facetSort(code) ; priority  ; fieldValueProvider                          ; customFacetSortProvider ; facetDisplayNameProvider           ; rangeSets(name) ; $classAttributeAssignment           ; displayName[lang=$lang]                                 
+								  ; $solrIndexedType                         ; Conductor Type                     			; true   ; true                 ; double                     ;                    ;                         ;                          ;                           ; MultiSelectOr   ; Alpha           ; 1000     ; commerceClassificationPropertyValueProvider ;                         ;  									;                 ; wire-and-cable:::Conductor-type:::: ; Conductor Type
+
+INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetSortProvider           ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
+									  ; Conductor Type:$solrIndexedType                        			;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
  
