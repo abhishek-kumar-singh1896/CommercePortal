@@ -156,11 +156,11 @@ INSERT_UPDATE SolrValueRangeSet ; name[unique=true]         ; qualifier ; type  
                                 ; TypicalFenceDistanceRange ;           ; double ; rangeTypicalFenceDistance1,rangeTypicalFenceDistance2,rangeTypicalFenceDistance3,rangeTypicalFenceDistance4,rangeTypicalFenceDistance5 
                                 
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID           ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to      
-                             ; rangeTypicalFenceDistance1 ; TypicalFenceDistanceRange            ; 0 - 10          ; 0    ; 10.999  
-                             ; rangeTypicalFenceDistance2 ; TypicalFenceDistanceRange            ; 11 - 20           ; 11   ; 20.999  
-                             ; rangeTypicalFenceDistance3 ; TypicalFenceDistanceRange            ; 21 - 50           ; 21   ; 50.999  
-                             ; rangeTypicalFenceDistance4 ; TypicalFenceDistanceRange            ; 51 - 100          ; 51   ; 100.999 
-                             ; rangeTypicalFenceDistance5 ; TypicalFenceDistanceRange            ; 101+              ; 101  ; 1000   
+                             ; rangeTypicalFenceDistance1 ; TypicalFenceDistanceRange            ; 0 - 10          ; 0    ; 10.999   
+                             ; rangeTypicalFenceDistance2 ; TypicalFenceDistanceRange            ; 11 - 18           ; 11   ; 18.999 
+                             ; rangeTypicalFenceDistance3 ; TypicalFenceDistanceRange            ; 19 - 25           ; 19   ; 25.999 
+                             ; rangeTypicalFenceDistance4 ; TypicalFenceDistanceRange            ; 26 - 49          ; 26   ; 49.999  
+                             ; rangeTypicalFenceDistance5 ; TypicalFenceDistanceRange            ; 50+              ; 50  ; 1000     
                              
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true]           ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                                                                                                                
                                 ; CleanWireFenceDistanceRange ;           ; double ; rangeCleanWireFenceDistance1,rangeCleanWireFenceDistance2,rangeCleanWireFenceDistance3,rangeCleanWireFenceDistance4,rangeCleanWireFenceDistance5 

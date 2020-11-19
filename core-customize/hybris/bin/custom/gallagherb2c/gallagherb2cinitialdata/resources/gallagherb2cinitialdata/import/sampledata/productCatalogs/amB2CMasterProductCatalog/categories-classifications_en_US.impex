@@ -81,3 +81,4 @@ UPDATE ClassificationAttribute	;code[unique=true];name[lang=$lang];$classSystemV
 								;length-inch;Length
 								;wire-diameter-inch;Wire Diameter
 								;weighing-capacity-lbs;Weighing Capacity
+                        ;product-feature-number-of-openings;Product Features (Number of openings)

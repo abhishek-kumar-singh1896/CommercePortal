@@ -89,6 +89,7 @@ INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(id
                                       ; Capacity(L) (Watering)  :$solrIndexedType                       ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
                                       ; animalCompatibility:$solrIndexedType                            ;                     ; MultiSelectOr   ; 1000     ;                             ;                        ;                                 ;                                                                                                   
                                       ; Internal rechargeable battery:$solrIndexedType                  ;                     ; MultiSelectOr   ; 1000     ;                             ;                        ;                                 ;
+ 
                                       
 UPDATE SolrSearchQueryProperty ; indexedProperty(solrIndexedType(identifier),name)[unique=true] ; facetDisplayNameProvider           
                                       ; $solrIndexedType: Energy Stored                                 ; facetUnitSuffixDisplayNameProvider 
