@@ -8,14 +8,20 @@ import de.hybris.platform.acceleratorstorefrontcommons.controllers.pages.Abstrac
 import de.hybris.platform.b2b.model.B2BCustomerModel;
 import de.hybris.platform.b2b.model.B2BUnitModel;
 import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
+import de.hybris.platform.cms2.model.site.CMSSiteModel;
+import de.hybris.platform.cms2.servicelayer.services.admin.CMSAdminSiteService;
+import de.hybris.platform.core.model.user.AddressModel;
 import de.hybris.platform.core.model.user.CustomerModel;
+import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 import de.hybris.platform.servicelayer.model.ModelService;
 import de.hybris.platform.servicelayer.user.UserService;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -52,6 +58,9 @@ public class ShowB2BUnitsController extends AbstractPageController
 	@Resource(name = "b2bUnitFacade")
 	protected GallagherB2BUnitFacade b2bUnitFacade;
 
+	@Resource(name = "cmsAdminSiteService")
+	protected CMSAdminSiteService cmsAdminSiteService;
+
 	@RequestMapping(method = RequestMethod.GET)
 	@RequireHardLogIn
 	public String setUpCustomerPreference(final Model model) throws CMSItemNotFoundException
@@ -69,7 +78,7 @@ public class ShowB2BUnitsController extends AbstractPageController
 
 	@RequestMapping(value = "/submit", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
-	public boolean populateCustomerPreferences(@ModelAttribute
+	public String populateCustomerPreferences(@ModelAttribute
 	final B2BUnitsForm b2bUnitsForm, final Model model, final RedirectAttributes redirectAttributes,
 			final BindingResult bindingResult)
 	{
@@ -91,7 +100,32 @@ public class ShowB2BUnitsController extends AbstractPageController
 			modelService.save(currentCustomer);
 			b2bUnitFacade.updateBranchInSession(getSessionService().getCurrentSession(), currentCustomer);
 		}
-		return true;
+		String redirectPath = "";
+		if (currentCustomer instanceof B2BCustomerModel && null != ((B2BCustomerModel) currentCustomer).getDefaultB2BUnit())
+		{
+			final Collection<AddressModel> addresses = ((B2BCustomerModel) currentCustomer).getDefaultB2BUnit().getAddresses();
+			if (CollectionUtils.isNotEmpty(addresses))
+			{
+				for (final AddressModel address : addresses)
+				{
+					if (null != address.getCountry())
+					{
+						final String regionCode = address.getCountry().getSecurityRegionCode().getCode();
+						try
+						{
+							final CMSSiteModel site = cmsAdminSiteService.getSiteForId("securityB2B" + regionCode.toUpperCase());
+							redirectPath = site.getRedirectURL();
+						}
+						catch (final UnknownIdentifierException exception)
+						{
+							redirectPath = "/security/global/en";
+						}
+						LOGGER.info("Redirection based upon country " + redirectPath);
+					}
+				}
+			}
+		}
+		return redirectPath;
 	}
 
 }
