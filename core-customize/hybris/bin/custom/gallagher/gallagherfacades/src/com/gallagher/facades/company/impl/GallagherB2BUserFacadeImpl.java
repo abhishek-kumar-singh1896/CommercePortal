@@ -4,6 +4,7 @@ import de.hybris.platform.b2b.model.B2BCustomerModel;
 import de.hybris.platform.b2bcommercefacades.company.impl.DefaultB2BUserFacade;
 import de.hybris.platform.commercefacades.user.data.CustomerData;
 import de.hybris.platform.servicelayer.event.EventService;
+import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 import de.hybris.platform.servicelayer.i18n.CommonI18NService;
 import de.hybris.platform.site.BaseSiteService;
 import de.hybris.platform.store.services.BaseStoreService;
@@ -44,13 +45,28 @@ public class GallagherB2BUserFacadeImpl extends DefaultB2BUserFacade
 		publishCustomerRegistrationEvent(customerData);
 
 
+		String updateUid = StringUtils.EMPTY;
 		if (StringUtils.isNotBlank(customerData.getDisplayUid()))
 		{
-			final B2BCustomerModel customerModel = getUserService().getUserForUID(customerData.getDisplayUid(),
-					B2BCustomerModel.class);
+			updateUid = customerData.getDisplayUid();
+		}
+		else if (customerData.getEmail() != null)
+		{
+			updateUid = customerData.getEmail();
+		}
+		B2BCustomerModel customerModel = null;
+		try
+		{
+			customerModel = getUserService().getUserForUID(updateUid, B2BCustomerModel.class);
+		}
+		catch (final UnknownIdentifierException e)
+		{
+			LOG.error("Unknown identifier :: " + e.getMessage());
+		}
+		if (customerModel != null)
+		{
 			pushToMindTouch(customerModel);
 		}
-
 	}
 
 	/**
