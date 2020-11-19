@@ -810,9 +810,6 @@ overflow :hidden; /* needs to be overflow to fix IE7*/
     padding-left: 1px;
     padding-right: 1px;
 }
-.bulkOrderDiv .site-search > .ui-front .bulk-order-information {
-   float: left;
-}
 
 .prod_add_to_cart #dropZone {
 	width: 100%;
@@ -925,11 +922,11 @@ form#item_form{
 }
 
 .bulk-order-table-container {
-    float: right;
     border: 1px solid #ccc;
     padding: 15px;
     margin-bottom: 20px;
-	
+    margin-top: 20px;
+    width:350px;
 }
 
 td.col-3-right a.cross-button {
@@ -2751,6 +2748,7 @@ td.col-3-right .cross-button{
 		margin-bottom: 0px;
 		padding: 0;
 		margin-top: 20px;
+		width: 100%;
 	}
 	.bulkOrderDiv .site-search > .ui-front .bulk-order-information{
 		float: none;
