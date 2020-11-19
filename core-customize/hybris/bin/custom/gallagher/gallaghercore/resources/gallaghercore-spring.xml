@@ -369,6 +369,18 @@
 	
     <bean id="gallagherProductService" class="com.gallagher.core.product.impl.GallagherDefaultProductServiceImpl" />
     
+    <bean id="gallagherMindTouchService" class="com.gallagher.core.services.impl.GallagherMindTouchServiceImpl">
+    <property name="mindTouchRoleMapping" ref="mindTouchRoleMapping"/>
+    </bean>
+    
+ <util:map id="mindTouchRoleMapping" map-class="java.util.HashMap" key-type="java.lang.String" value-type="java.lang.String"> 
+  <entry key="b2badmingroup" value="Channel Partner"/>
+  <entry key="b2bcustomergroup" value="Channel Partner"/>
+  <entry key="b2bconsultantgroup" value="Consultant"/>
+  <entry key="b2btechniciangroup" value="Channel Partner"/> 
+  <entry key="b2bendusergroup" value="End user"/> 
+</util:map>
+    
    <alias alias="facetUnitSuffixDisplayNameProvider" name="gallagherFacetUnitSuffixDisplayNameProvider" />
 	<bean id="gallagherFacetUnitSuffixDisplayNameProvider"
 		class="com.gallagher.core.solrfacetsearch.solr.impl.GallagherFacetUnitSuffixDisplayNameProvider" />

@@ -18,11 +18,13 @@ import de.hybris.platform.site.BaseSiteService;
 import de.hybris.platform.store.BaseStoreModel;
 import de.hybris.platform.store.services.BaseStoreService;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.dom4j.DocumentException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
@@ -30,6 +32,7 @@ import org.springframework.web.client.RestClientException;
 
 import com.gallagher.core.enums.BU;
 import com.gallagher.core.events.GallagherB2BRegistrationEvent;
+import com.gallagher.core.services.GallagherMindTouchService;
 import com.gallagher.keycloak.outboundservices.service.GallagherKeycloakService;
 import com.hybris.cockpitng.config.jaxb.wizard.CustomType;
 import com.hybris.cockpitng.core.model.WidgetModel;
@@ -78,6 +81,9 @@ public class GallagherSaveCustomerHandler implements FlowActionHandler
 	@Resource(name = "storeSessionFacade")
 	private StoreSessionFacade storeSessionFacade;
 
+	@Resource(name = "gallagherMindTouchService")
+	private GallagherMindTouchService gallagherMindTouchService;
+
 	@Override
 	public void perform(final CustomType customType, final FlowActionHandlerAdapter adapter, final Map<String, String> parameters)
 	{
@@ -112,6 +118,8 @@ public class GallagherSaveCustomerHandler implements FlowActionHandler
 			controller.getRenderer().refreshView();
 			final B2BCustomerModel savedCustomer = pushToC4C(adapter, isUserExist);
 			//adapter.custom();
+			pushToMindTouch(savedCustomer);
+
 			adapter.done();
 			if (savedCustomer != null)
 			{
@@ -122,6 +130,25 @@ public class GallagherSaveCustomerHandler implements FlowActionHandler
 		{
 			LOGGER.error("Exception occured while creationg user in Keycloak : " + exception);
 			notificationService.notifyUser((String) null, "c4cConnectionError", NotificationEvent.Level.FAILURE);
+		}
+	}
+
+	/**
+	 * @param savedCustomer
+	 */
+	private void pushToMindTouch(final B2BCustomerModel savedCustomer)
+	{
+		try
+		{
+			gallagherMindTouchService.pushCustomerToMindTouch(savedCustomer);
+		}
+		catch (final IOException e)
+		{
+			LOGGER.error("IOException while creating pushing user in mindTouch :: " + e.getMessage());
+		}
+		catch (final DocumentException e)
+		{
+			LOGGER.error("Document Exception while creating pushing user in mindTouch :: " + e.getMessage());
 		}
 	}
 
@@ -273,5 +300,22 @@ public class GallagherSaveCustomerHandler implements FlowActionHandler
 			language = baseStore.getLanguages().contains(sessionLanguage) ? sessionLanguage : baseStore.getDefaultLanguage();
 		}
 		return language;
+	}
+
+	/**
+	 * @return the gallagherMindTouchService
+	 */
+	public GallagherMindTouchService getGallagherMindTouchService()
+	{
+		return gallagherMindTouchService;
+	}
+
+	/**
+	 * @param gallagherMindTouchService
+	 *           the gallagherMindTouchService to set
+	 */
+	public void setGallagherMindTouchService(final GallagherMindTouchService gallagherMindTouchService)
+	{
+		this.gallagherMindTouchService = gallagherMindTouchService;
 	}
 }
