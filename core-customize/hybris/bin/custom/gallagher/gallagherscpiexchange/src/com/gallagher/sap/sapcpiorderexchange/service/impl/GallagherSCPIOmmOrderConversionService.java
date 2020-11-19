@@ -2,6 +2,7 @@ package com.gallagher.sap.sapcpiorderexchange.service.impl;
 
 import de.hybris.platform.core.model.order.OrderModel;
 import de.hybris.platform.sap.orderexchange.constants.OrderCsvColumns;
+import de.hybris.platform.sap.orderexchange.constants.OrderEntryCsvColumns;
 import de.hybris.platform.sap.orderexchange.constants.PartnerCsvColumns;
 import de.hybris.platform.sap.orderexchange.constants.PaymentCsvColumns;
 import de.hybris.platform.sap.orderexchange.constants.SalesConditionCsvColumns;
@@ -9,6 +10,7 @@ import de.hybris.platform.sap.orderexchange.outbound.RawItemContributor;
 import de.hybris.platform.sap.sapcpiadapter.data.SapCpiCreditCardPayment;
 import de.hybris.platform.sap.sapcpiadapter.data.SapCpiOrder;
 import de.hybris.platform.sap.sapcpiadapter.data.SapCpiOrderAddress;
+import de.hybris.platform.sap.sapcpiadapter.data.SapCpiOrderItem;
 import de.hybris.platform.sap.sapcpiadapter.data.SapCpiOrderPriceComponent;
 import de.hybris.platform.sap.sapcpiorderexchange.service.impl.SapCpiOmmOrderConversionService;
 
@@ -22,6 +24,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.gallagher.constants.GallagherOrderEntryCsvColumns;
 import com.gallagher.constants.GallagherPartnerCsvColumns;
 import com.gallagher.constants.GallagherPaymentCsvColumns;
 import com.gallagher.constants.GallagherSalesConditionCsvColumns;
@@ -63,8 +66,6 @@ public class GallagherSCPIOmmOrderConversionService extends SapCpiOmmOrderConver
 			sapCpiOrder.setDivision(orderModel.getStore().getSAPConfiguration().getSapcommon_division());
 			sapCpiOrder.setRequiredDeliveryDate(orderModel.getRequiredDeliveryDate());
 			sapCpiOrder.setComment(orderModel.getDeliveryInstructions());
-			sapCpiOrder.setAdditionalProductDetails(
-					orderModel.getProductSpecificDetailsSubHeading() + orderModel.getDeliveryInstruction());
 			orderModel.getStore().getSAPConfiguration().getSapDeliveryModes().stream()
 					.filter(entry -> entry.getDeliveryMode().getCode().contentEquals(orderModel.getDeliveryMode().getCode()))
 					.findFirst().ifPresent(entry -> sapCpiOrder.setShippingCondition(entry.getDeliveryValue()));
@@ -84,6 +85,33 @@ public class GallagherSCPIOmmOrderConversionService extends SapCpiOmmOrderConver
 		}
 
 		return sapCpiOrder;
+
+	}
+
+	@Override
+	protected List<SapCpiOrderItem> mapOrderItems(final OrderModel orderModel)
+	{
+
+
+		final List<SapCpiOrderItem> sapCpiOrderItems = new ArrayList<>();
+
+		getSapOrderEntryContributor().createRows(orderModel).forEach(row -> {
+
+			final SapCpiOrderItem sapCpiOrderItem = new SapCpiOrderItem();
+
+			sapCpiOrderItem.setOrderId(mapAttribute(OrderCsvColumns.ORDER_ID, row));
+			sapCpiOrderItem.setEntryNumber(mapAttribute(OrderEntryCsvColumns.ENTRY_NUMBER, row));
+			sapCpiOrderItem.setQuantity(mapAttribute(OrderEntryCsvColumns.QUANTITY, row));
+			sapCpiOrderItem.setProductCode(mapAttribute(OrderEntryCsvColumns.PRODUCT_CODE, row));
+			sapCpiOrderItem.setUnit(mapAttribute(OrderEntryCsvColumns.ENTRY_UNIT_CODE, row));
+			sapCpiOrderItem.setProductName(mapAttribute(OrderEntryCsvColumns.PRODUCT_NAME, row));
+			sapCpiOrderItem.setAdditionalProductDetail(mapAttribute(GallagherOrderEntryCsvColumns.ADDITION_PRODUCT_DETAIL, row));
+
+			sapCpiOrderItems.add(sapCpiOrderItem);
+
+		});
+
+		return sapCpiOrderItems;
 
 	}
 

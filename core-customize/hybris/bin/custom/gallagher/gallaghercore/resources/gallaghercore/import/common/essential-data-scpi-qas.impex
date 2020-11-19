@@ -180,7 +180,7 @@ INSERT_UPDATE IntegrationObjectItemAttribute ; integrationObjectItem(integration
                                              ; OutboundOMMOrderOMSOrder:SAPCpiOutboundAddress                      ; taxJurCode                   ; SAPCpiOutboundAddress: taxJurCode                   ;                                                            ;                         
                                              ; OutboundOMMOrderOMSOrder:SAPCpiOutboundOrder                        ; requiredDeliveryDate         ; SAPCpiOutboundOrder:requiredDeliveryDate            ;                                                            ;                         
                                              ; OutboundOMMOrderOMSOrder:SAPCpiOutboundOrder                        ; comment                      ; SAPCpiOutboundOrder:comment                         ;                                                            ;                         
-                                             ; OutboundOMMOrderOMSOrder:SAPCpiOutboundOrder                        ; additionalProductDetails     ; SAPCpiOutboundOrder:additionalProductDetails        ;                                                            ;                         
+                                             ; OutboundOMMOrderOMSOrder:SAPCpiOutboundOrderItem                    ; additionalProductDetail      ; SAPCpiOutboundOrderItem:additionalProductDetail     ;                                                            ;                         
                                              
 #************************
 #*** Inbound B2BUnit ****
