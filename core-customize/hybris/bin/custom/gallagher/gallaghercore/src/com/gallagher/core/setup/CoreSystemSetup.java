@@ -30,7 +30,6 @@ public class CoreSystemSetup extends AbstractSystemSetup
 	public static final String IMPORT_ESSENTIAL_DATA_SCPI = "importEssentialDataSCPIImpex";
 	public static final String IMPORT_ASYNC_PRICING = "importAsyncPricingImpex";
 
-
 	/**
 	 * This method will be called by system creator during initialization and system update. Be sure that this method can
 	 * be called repeatedly.
@@ -132,11 +131,10 @@ public class CoreSystemSetup extends AbstractSystemSetup
 
 		if (importSprint3Impex)
 		{
-			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP2-86.impex");
 			importImpexFile(context, "/gallaghercore/import/Sprint3/BaseStoreDeliveryModeAdd.impex");
 			importImpexFile(context, "/gallaghercore/import/Sprint3/SAPP2-151.impex");
-			importImpexFile(context, "/gallaghercore/import/Sprint3/SAPP2-86.impex");
 			importImpexFile(context, "/gallaghercore/import/Sprint3/SAPP2-166.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint3/SAPP2-86.impex");
 		}
 		final boolean importAsyncPricing = getBooleanSystemSetupParameter(context, IMPORT_ASYNC_PRICING);
 		if (importAsyncPricing)
