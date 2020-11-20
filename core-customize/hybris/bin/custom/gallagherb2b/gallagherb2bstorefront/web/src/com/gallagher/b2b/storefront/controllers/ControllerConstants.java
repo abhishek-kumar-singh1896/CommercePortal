@@ -183,6 +183,7 @@ public interface ControllerConstants
 				String MiniCartErrorPanel = "fragments/cart/miniCartErrorPanel"; // NOSONAR
 				String CartPopup = "fragments/cart/cartPopup"; // NOSONAR
 				String ExpandGridInCart = "fragments/cart/expandGridInCart"; // NOSONAR
+				String ProductRecommendationsPopup = "fragments/cart/productRecommendationsPopup"; // NOSONAR
 			}
 
 			interface Account // NOSONAR
