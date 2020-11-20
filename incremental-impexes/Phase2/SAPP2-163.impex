@@ -1,0 +1,18 @@
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$contentCatalog=securityB2BContentCatalog
+$contentCatalogName=Security B2B Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$jarResourceCms=jar:com.gallagher.b2b.initialdata.constants.B2badvanceInitialDataConstants&/gallagherb2binitialdata/import/coredata/contentCatalogs/securityB2BContentCatalog
+$lang=en
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];mime;realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];folder(qualifier)[default='documents']
+;;bulkOrderTemplate;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;BulkOrderTemplate.xlsx;$jarResourceCms/documents/BulkOrderTemplate.xlsx
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
+;BulkOrderNavNode;;Bulk Order;B2BMyAccountNavNode;;BulkOrderNavNode
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(&linkRef);
+;BulkOrderNavNodeEntry;;Bulk Order Navigation Node Entry;BulkOrderNavNode;BulkOrderCategoryLink;
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;linkName;url;&linkRef;target(code)[default='sameWindow'];visible[default=true];restrictions(uid,$contentCV)
+;;BulkOrderCategoryLink;BulkOrderCategoryLink;Bulk Order;/bulkOrderForm;BulkOrderCategoryLink;;;GallagherSiteTransactionRestriction

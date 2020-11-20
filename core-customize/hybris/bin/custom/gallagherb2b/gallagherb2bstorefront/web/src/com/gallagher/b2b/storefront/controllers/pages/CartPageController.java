@@ -38,6 +38,7 @@ import de.hybris.platform.commercefacades.order.data.CommerceSaveCartResultData;
 import de.hybris.platform.commercefacades.order.data.OrderEntryData;
 import de.hybris.platform.commercefacades.product.ProductFacade;
 import de.hybris.platform.commercefacades.product.ProductOption;
+import de.hybris.platform.commercefacades.product.data.CategoryData;
 import de.hybris.platform.commercefacades.product.data.ProductData;
 import de.hybris.platform.commercefacades.quote.data.QuoteData;
 import de.hybris.platform.commercefacades.voucher.VoucherFacade;
@@ -54,8 +55,10 @@ import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -654,11 +657,73 @@ public class CartPageController extends AbstractCartPageController
 			return getCartPageRedirectUrl();
 		}
 	}
+	
+
+	@RequestMapping(value = "/getRecommendedProducts", method = RequestMethod.GET)
+	public String getProductRecommendations(final Model model)
+	{
+		final Set<ProductData> recommendedProducts = new HashSet<ProductData>();
+		final Set<CategoryData> recommendedCategories = new HashSet<CategoryData>();
+		final CartData cartData = getCartFacade().getSessionCartWithEntryOrdering(false);
+
+		if (cartData.getEntries() != null && !cartData.getEntries().isEmpty())
+		{
+			for (final OrderEntryData entry : cartData.getEntries())
+			{
+				if (null != entry.getProduct().getRecommendedCategories() && !entry.getProduct().getRecommendedCategories().isEmpty())
+				{
+					recommendedCategories.addAll(entry.getProduct().getRecommendedCategories());
+				}
+				if (null != entry.getProduct().getRecommendedProducts() && !entry.getProduct().getRecommendedProducts().isEmpty())
+				{
+					recommendedProducts.addAll(entry.getProduct().getRecommendedProducts());
+				}
+			}
+			LOG.debug("Number of recommended products - "+recommendedProducts.size());
+			LOG.debug("Number of recommended categories - "+recommendedCategories.size());
+			model.addAttribute("recommendedProducts", recommendedProducts);
+			model.addAttribute("recommendedCategories", recommendedCategories);
+		}
+
+		return ControllerConstants.Views.Fragments.Cart.ProductRecommendationsPopup;
+	}
 
 	protected String getCartPageRedirectUrl()
 	{
 		final QuoteData quoteData = getCartFacade().getSessionCart().getQuoteData();
 		return quoteData != null ? String.format(REDIRECT_QUOTE_EDIT_URL, urlEncode(quoteData.getCode())) : REDIRECT_CART_URL;
+	}
+	
+	@Override
+	protected void createProductEntryList(final Model model, final CartData cartData)
+	{
+		boolean hasPickUpCartEntries = false;
+		boolean hasRecommendations = false;
+		if (cartData.getEntries() != null && !cartData.getEntries().isEmpty())
+		{
+			for (final OrderEntryData entry : cartData.getEntries())
+			{
+				if (!hasRecommendations
+						&& (null != entry.getProduct().getRecommendedProducts()
+								&& !entry.getProduct().getRecommendedProducts().isEmpty())
+						|| (null != entry.getProduct().getRecommendedCategories()
+								&& !entry.getProduct().getRecommendedCategories().isEmpty()))
+				{
+					hasRecommendations = true;
+				}
+				if (!hasPickUpCartEntries && entry.getDeliveryPointOfService() != null)
+				{
+					hasPickUpCartEntries = true;
+				}
+				final UpdateQuantityForm uqf = new UpdateQuantityForm();
+				uqf.setQuantity(entry.getQuantity());
+				model.addAttribute("updateQuantityForm" + entry.getEntryNumber(), uqf);
+				model.addAttribute("hasRecommendations", hasRecommendations);
+			}
+		}
+
+		model.addAttribute("cartData", cartData);
+		model.addAttribute("hasPickUpCartEntries", Boolean.valueOf(hasPickUpCartEntries));
 	}
 
 }

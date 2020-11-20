@@ -37,7 +37,8 @@ ACC.b2bUnitsPopup = {
 				data : formData.serialize(),
 				success : function(data) {
 					$('#b2bUnitOverlay').modal('hide');
-					location.reload();
+					//location.reload();
+					window.location.href=data;
 				},
 				error : function(data) {
 					console.log('An error occurred.');

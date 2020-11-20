@@ -7,7 +7,8 @@ ACC.cart = {
         "bindMultiDEntryRemoval",
         "bindMultidCartProduct",
         ["bindApplyVoucher", $("#js-voucher-apply-btn").length != 0],
-        ["bindToReleaseVoucher", $("#js-applied-vouchers").length != 0]
+        ["bindToReleaseVoucher", $("#js-applied-vouchers").length != 0],
+        "showRecommendationsForProducts"
     ],
 
     bindHelp: function () {
@@ -34,6 +35,45 @@ ACC.cart = {
             ACC.cart.populateAndShowEditableGrid(this, event);
         });
     },
+    
+    showRecommendationsForProducts : function() {
+
+	    $(document).ready(function(){   
+	    	var showPopup = $("#showRecommendationsForProducts").val();
+			if (showPopup == "true") {
+		    	$.ajax({
+					type : "GET",
+					url : ACC.config.encodedContextPath + "/cart/getRecommendedProducts",
+					success : function(data) {
+					
+						$('#recommendationsModal').append(data);
+						$('.flexslider').flexslider({
+			    		    animation: "slide",
+			    		    animationLoop: true,
+			    		    slideshow: false,
+			    		    itemWidth: 250,
+			    		    itemMargin: 10,
+			    		    minItems: 1,
+			    		    maxItems: 4,
+			    		    start: function(slider){
+        						$('.flexslider').resize();
+    						}
+			    		  });
+			    		  
+						$('#recommendations-overlay').show();
+						$('.close').click(function(){
+				    	 $('#recommendationsModal').empty();
+       						 $('.modaldata').hide();
+    					 });
+					},
+					error : function(data) {
+						console.log('An error occurred.');
+						console.log(data);
+					},
+				});
+				}
+	    	});
+	},
 
     bindMultiDEntryRemoval: function () {
         $(document).on("click", '.js-submit-remove-product-multi-d', function () {
