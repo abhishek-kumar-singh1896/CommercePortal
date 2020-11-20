@@ -54,7 +54,10 @@ ACC.cart = {
 			    		    itemWidth: 250,
 			    		    itemMargin: 10,
 			    		    minItems: 1,
-			    		    maxItems: 4
+			    		    maxItems: 4,
+			    		    start: function(slider){
+        						$('.flexslider').resize();
+    						}
 			    		  });
 			    		  
 						$('#recommendations-overlay').show();
