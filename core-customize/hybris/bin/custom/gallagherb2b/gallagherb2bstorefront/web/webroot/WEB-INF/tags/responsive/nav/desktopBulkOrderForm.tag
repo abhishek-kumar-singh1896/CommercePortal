@@ -79,6 +79,7 @@
 
 						</form>
 					  </div>
+					  <h3><b>Bulk Order Form</b></h3>
 					  <div class="bulk-order-table-container">
 					  <div class="bulk-order-table">
 						<table class="multi-add-product" id="qoTable">

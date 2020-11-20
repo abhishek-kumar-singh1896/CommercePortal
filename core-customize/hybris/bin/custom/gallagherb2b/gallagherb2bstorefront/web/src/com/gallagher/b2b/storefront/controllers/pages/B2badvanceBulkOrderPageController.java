@@ -4,6 +4,7 @@
 package com.gallagher.b2b.storefront.controllers.pages;
 
 import de.hybris.platform.acceleratorstorefrontcommons.annotations.RequireHardLogIn;
+import de.hybris.platform.acceleratorstorefrontcommons.breadcrumb.ResourceBreadcrumbBuilder;
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.pages.AbstractPageController;
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.util.GlobalMessages;
 import de.hybris.platform.catalog.CatalogService;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -55,6 +57,8 @@ public class B2badvanceBulkOrderPageController extends AbstractPageController
 	private static final String REDIRECT_BULK_ORDER_FORM_PAGE = REDIRECT_PREFIX + "/bulkOrderForm";
 	private static final String BULK_ORDER_FORM_PAGE = "bulkOrderForm";
 	private static final Integer INITIAL_BULK_ORDER_FORM_SIZE = 21;
+	private static final String BREADCRUMBS_ATTR = "breadcrumbs";
+	private static final String TEXT_BULK_ORDER = "text.account.bulkorder";
 
 	@Autowired
 	ProductService productService;
@@ -67,6 +71,9 @@ public class B2badvanceBulkOrderPageController extends AbstractPageController
 
 	@Autowired
 	CatalogService catalogService;
+	
+	@Resource(name = "accountBreadcrumbBuilder")
+	private ResourceBreadcrumbBuilder accountBreadcrumbBuilder;
 
 	/**
 	 * Method that initializes the order form page
@@ -89,6 +96,7 @@ public class B2badvanceBulkOrderPageController extends AbstractPageController
 		model.addAttribute("bulkOrderTemplateDownloadURL", mediaService
 				.getMedia(catalogService.getCatalogForId("securityB2BContentCatalog").getActiveCatalogVersion(), "bulkOrderTemplate")
 				.getDownloadURL());
+		model.addAttribute(BREADCRUMBS_ATTR, accountBreadcrumbBuilder.getBreadcrumbs(TEXT_BULK_ORDER));
 		model.addAttribute("metaRobots", "no-index,no-follow");
 		return ControllerConstants.Views.Pages.Order.BulkOrderForm;
 	}
