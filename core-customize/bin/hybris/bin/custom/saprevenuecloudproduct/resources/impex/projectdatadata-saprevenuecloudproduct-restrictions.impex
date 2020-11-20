@@ -1,0 +1,7 @@
+#******************************************
+#*** Create SAP Integration Test Users ****
+#******************************************
+INSERT_UPDATE Employee; UID[unique = true]         				 ; name                           			    ; groups(uid)[mode = append]                       			  
+                      ; sapInboundRCConfigUser 					 ; SAP Inbound Revenue Cloud Config User 		; sapInboundRCConfigGroup,integrationadmingroup					 
+                      ; sapInboundProductUser       			 ; SAP Inbound Product User        				; sapInboundProductGroup,integrationadmingroup      			 
+                      ; sapInboundSubscriptionPriceUser          ; SAP Inbound Subscription Price User          ; sapInboundSubscriptionPriceGroup,integrationadmingroup         

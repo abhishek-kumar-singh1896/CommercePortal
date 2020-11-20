@@ -1,0 +1,63 @@
+#***************************************************************************#
+#*** Please change only the sample data and do NOT change anything else! ***#                                                                                       #
+#***************************************************************************#
+
+#*********************************#
+#*** Sample Data To Be Changed ***#
+#*********************************#
+
+#**************************#
+#***  OAuth CredentialS ***#
+#**************************#
+$oAuthUrl = https://test.sap.hana.ondemand.com/oauth2/api/v1/token
+$clientId = sampleClientId
+$password = samplePassword
+
+#********************#
+#*** Product URL ***#
+#********************#
+$productUrl = https://tester.hana.ondemand.com/http/revenuecloud/product
+
+#*******************************#
+#*** Business Config URL ***#
+#*******************************#
+$businessConfigUrl = https://tester.hana.ondemand.com/http/revenuecloud/business-config
+
+#*****************************************#
+#***  DO NOT Change The Section Below! ***#
+#*****************************************#
+
+#**************************#
+#***  OAuth Credentials ***#
+#**************************#
+
+INSERT_UPDATE OAuthClientDetails; clientId[unique = true]; oAuthUrl; scope
+                                ; $clientId              ; $oAuthUrl
+                                
+INSERT_UPDATE ExposedOAuthCredential; id[unique = true]   ; oAuthClientDetails(clientId); password
+                                    ; scpiOauthCredential ; $clientId                   ; $password
+
+
+#**********************************#
+#************  Endpoints  *********#
+#**********************************#
+INSERT_UPDATE Endpoint; id[unique = true]             ; version[unique = true] ; specUrl                                ; name
+                      ; scpiProductEndpoint           ; unknown                ; $productUrl      				        ; scpiProductEndpoint
+                      ; scpiBusinessConfigEndpoint    ; unknown                ; $businessConfigUrl 					; scpiBusinessConfigEndpoint
+
+
+#****************************#
+#***  Destination Target  ***#
+#****************************#
+INSERT_UPDATE DestinationTarget; id[unique = true]
+                               ; scpiDestinationTarget
+
+
+
+#*******************************#
+#***  Consumed Destinations  ***#
+#*******************************#
+INSERT_UPDATE ConsumedDestination; id[unique = true]                ; url                          ; endpoint(id, version)                 ; credential(id)      ; additionalProperties(key, value)[map-delimiter = |]; destinationTarget(id)[default = scpiDestinationTarget]
+                                 ; scpiProductDestination           ; $productUrl                  ; scpiProductEndpoint:unknown           ; scpiOauthCredential ; "csrfURL->$productUrl"       				      ;
+                                 ; scpiBusinessConfigDestination    ; $businessConfigUrl           ; scpiBusinessConfigEndpoint:unknown    ; scpiOauthCredential ; "csrfURL->$businessConfigUrl"    				  ;
+                              

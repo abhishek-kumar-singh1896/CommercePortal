@@ -1,0 +1,30 @@
+
+#******************************************************************************#
+#************  Revenue Cloud OutboundSapRevenueCloudProductCronjob  *********#
+#******************************************************************************#
+
+INSERT_UPDATE IntegrationObject; code[unique = true]; integrationType(code) 
+; OutboundSapRevenueCloudProductCronjob; INBOUND 
+ 
+INSERT_UPDATE IntegrationObjectItem; integrationObject(code)[unique=true]; code[unique = true]; type(code) 
+; OutboundSapRevenueCloudProductCronjob	; SapRevenueCloudProductCronjob     	; SapRevenueCloudProductCronjob 
+; OutboundSapRevenueCloudProductCronjob	; SapRevenueCloudReplicationModeEnum	; SapRevenueCloudReplicationModeEnum 
+ 
+INSERT_UPDATE IntegrationObjectItemAttribute; integrationObjectItem(integrationObject(code), code)[unique = true]; attributeName[unique = true]; attributeDescriptor(enclosingType(code), qualifier); returnIntegrationObjectItem(integrationObject(code), code); unique[default = false] 
+; OutboundSapRevenueCloudProductCronjob:SapRevenueCloudProductCronjob     	; code           	; SapRevenueCloudProductCronjob:code           	;                                                                         	; true 
+; OutboundSapRevenueCloudProductCronjob:SapRevenueCloudProductCronjob     	; replicationTime	; SapRevenueCloudProductCronjob:replicationTime	;                                                                         	;  
+; OutboundSapRevenueCloudProductCronjob:SapRevenueCloudProductCronjob     	; replicationMode	; SapRevenueCloudProductCronjob:replicationMode	; OutboundSapRevenueCloudProductCronjob:SapRevenueCloudReplicationModeEnum	; true 
+; OutboundSapRevenueCloudProductCronjob:SapRevenueCloudReplicationModeEnum	; code           	; SapRevenueCloudReplicationModeEnum:code      	;                                                                         	; true 
+
+#**********************************************************************************#
+#***** Revenue Cloud OutboundSapRevenueCloudBusinessConfigCronjob  *********#
+#**********************************************************************************#
+
+INSERT_UPDATE IntegrationObject; code[unique = true]; integrationType(code) 
+; OutboundSapRevenueCloudBusinessConfigCronjob; INBOUND 
+ 
+INSERT_UPDATE IntegrationObjectItem; integrationObject(code)[unique=true]; code[unique = true]; type(code) 
+; OutboundSapRevenueCloudBusinessConfigCronjob	; CronJob	; CronJob 
+ 
+INSERT_UPDATE IntegrationObjectItemAttribute; integrationObjectItem(integrationObject(code), code)[unique = true]; attributeName[unique = true]; attributeDescriptor(enclosingType(code), qualifier); returnIntegrationObjectItem(integrationObject(code), code); unique[default = false]; autoCreate[default = false] 
+; OutboundSapRevenueCloudBusinessConfigCronjob:CronJob	; code	; CronJob:code	;      
