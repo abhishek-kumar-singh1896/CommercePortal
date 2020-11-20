@@ -365,7 +365,7 @@ function populateSucessData(data){
 			var csvErrors = '';
 			var count = 0;
 			$.each(dataJson.csvErrors, function(i, obj) {
-				csvErrors = csvErrors + '<p>' + obj + '</p>';
+				csvErrors = csvErrors + '<li>' + obj + '</li>';
 				count ++;
 			});
 				//console.log(csvErrors);
@@ -374,9 +374,14 @@ function populateSucessData(data){
 			document.getElementById('msgBox').innerHTML = '<p>' + errDivContent + '</p>';
 			$(document.getElementById('msgBox')).fadeIn();
 			
-			document.getElementById('msgBoxForRows').innerHTML =  csvErrors ;
+			document.getElementById('msgBoxForRowsList').innerHTML =  csvErrors ;
 			$('#msgBoxForRows').removeClass('qoRowsWithErrors');
 			$('#msgBoxForRows').addClass('qoRowsWithErrorsBlock');
+			}
+			else if(errorMsg == null || errorMsg == ''){
+			var msg = document.getElementById("rowsImportedSuccessMsg").value;
+			document.getElementById('msgBox').innerHTML = '<p id="success">' + msg + '</p>';
+			$(document.getElementById('msgBox')).fadeIn();
 			}
 		$("#dummyBrowseBtn").removeAttr("disabled");
 	}

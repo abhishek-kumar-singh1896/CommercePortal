@@ -10,13 +10,25 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="cms" uri="http://hybris.com/tld/cmstags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="account" tagdir="/WEB-INF/tags/responsive/account"%>
 
 <template:page pageTitle="${pageTitle}">
-	
+
 	<div id="globalMessages">
 		<common:globalMessages />
 	</div>
-	<div class="container">
-		<cms:component uid="BulkOrderFormPageComponent" />
+	<div class="content-inner account-section">
+		<div class="row">
+			<div class="col-md-2 col-md-offset-1 left-nav-menu">
+				<account:accountLeftNavigation />
+			</div>
+			<div class="col-sm-12 col-md-8 right-nav-content">
+				<div class="container">
+					<div class="bulkOrderNavDiv">
+						<cms:component uid="HomePageBulkOrderComponent" />
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </template:page>

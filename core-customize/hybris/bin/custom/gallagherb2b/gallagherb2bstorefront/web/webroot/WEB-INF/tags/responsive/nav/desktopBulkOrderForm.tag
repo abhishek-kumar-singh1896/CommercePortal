@@ -37,13 +37,50 @@
 					var="notImportedRowsError" />
 				<input type="hidden" value="${notImportedRowsError}"
 					id="notImportedRowsError" />
+				<spring:theme code="bulkorder.rows_imported_success_msg"
+					var="rowsImportedSuccessMsg" />
+				<input type="hidden" value="${rowsImportedSuccessMsg}"
+					id="rowsImportedSuccessMsg" />
 				<div style="display: none" id="msgBox">
 					<br />
 				</div>
-				<div id="msgBoxForRows" class="qoRowsWithErrorsBlock"></div>
+				<div id="msgBoxForRows" class="qoRowsWithErrorsBlock">
+					<ul id="msgBoxForRowsList"></ul>
+				</div>
 				<input type="hidden" value="${isValidProduct}" id="isValidProduct" />
 				<div class="site-search">
-					<div class="ui-front">
+					<div class="ui-front"> 
+					  <div class="bulk-order-information">
+					  	<h2><b>Upload Order</b></h2>
+					  	 
+						  <h3>The text file should list the product quantities and SKUs in the following format:</h3>
+						  <ul>
+							  <li>Quantity, SKU</li>
+							  <li>Select a file to upload. The file must be a spreadsheet with extension .xlsx</li>
+							  <li>Maximum file size: 10.00KB</li>
+							  <li><a href="${bulkOrderTemplateDownloadURL}">Download template example</a></li>
+						  </ul>  
+						  <button class="positive btn btn-primary" onclick="qoClickBrowse()"
+							id="dummyBrowseBtn">
+							<spring:theme code="bulkorder.upload_file" />
+						</button>
+						<button class="positive btn btn-primary" id="qoAddToCart"
+							onclick="qoAddToCart('${bulkorderUrl}')">
+							IMPORT
+							<%-- <spring:theme code="bulkorder.add_to_cart" /> --%>
+						</button>
+						<div class="dropFiles">
+						<div class="dropFilesOr">OR</div>
+						</div>
+						<form id="item_form" enctype="multipart/form-data">
+							<input type="file" accept=".xlsx" name="files" id="fileBrowseBtn"
+								style="display: none;" onchange="qoUploadFile()" />
+							<div id="dropZone">Drop your files here</div>
+
+						</form>
+					  </div>
+					  <h3><b>Bulk Order Form</b></h3>
+					  <div class="bulk-order-table-container">
 					  <div class="bulk-order-table">
 						<table class="multi-add-product" id="qoTable">
 						<tbody class="scroll-items-header">
@@ -104,31 +141,12 @@
 							</tbody>
 						</table>
 					  </div>
-					  <table class="multi-add-product" id="qoTable2">
-					  <tr>
-					  <td><button class="positive btn btn-primary glyphicon glyphicon-shopping-cart " id="qoAddToCart"
-							onclick="qoAddToCart('${bulkorderUrl}')">
-							<%-- <spring:theme code="bulkorder.add_to_cart" /> --%>
-						</button></td>
-					  
-					  <td>
-					  <button class="positive btn btn-primary" onclick="qoClickBrowse()"
-							id="dummyBrowseBtn">
-							<spring:theme code="bulkorder.upload_file" />
+					 
+					  <button class="positive btn btn-primary" onclick="addNewQoRow()">
+					  ADD ROW
 						</button>
-					  </td><td><a class="neutral" id="qoAddRow" onclick="addNewQoRow()">
-						</a></td></tr>
+</div>
 						
-						
-						
-						</table>
-
-						<form id="item_form" enctype="multipart/form-data">
-							<input type="file" accept="*.csv" name="files" id="fileBrowseBtn"
-								style="display: none;" onchange="qoUploadFile()" />
-							<div id="dropZone">Drop your files here</div>
-
-						</form>
 					</div>
 				</div>
 			</div>

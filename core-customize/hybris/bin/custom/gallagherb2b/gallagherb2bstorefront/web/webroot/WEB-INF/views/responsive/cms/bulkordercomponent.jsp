@@ -58,7 +58,7 @@
 </head>
 <c:choose>
 	<c:when test='${component.uid eq "HomePageBulkOrderComponent"}'>
-		<div class="hidden-xs hidden-sm">
+		<div >
 			<nav:desktopBulkOrderForm />
 		</div>
 	</c:when>
