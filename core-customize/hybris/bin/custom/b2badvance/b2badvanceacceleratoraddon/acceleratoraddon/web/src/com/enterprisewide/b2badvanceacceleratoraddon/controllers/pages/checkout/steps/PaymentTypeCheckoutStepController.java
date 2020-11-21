@@ -25,12 +25,16 @@ import de.hybris.platform.b2bcommercefacades.company.data.B2BUnitData;
 import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
 import de.hybris.platform.commercefacades.order.data.CartData;
 import de.hybris.platform.commercefacades.order.data.OrderEntryData;
+import de.hybris.platform.commercefacades.product.ProductFacade;
+import de.hybris.platform.commercefacades.product.ProductOption;
 import de.hybris.platform.commercefacades.product.data.CategoryData;
+import de.hybris.platform.commercefacades.product.data.ProductData;
 import de.hybris.platform.commerceservices.order.CommerceCartModificationException;
 import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.servicelayer.user.UserService;
 import de.hybris.platform.commercefacades.user.data.AddressData;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -68,6 +72,9 @@ public class PaymentTypeCheckoutStepController extends AbstractCheckoutStepContr
 
 	@Resource(name = "paymentTypeFormValidator")
 	private PaymentTypeFormValidator paymentTypeFormValidator;
+	
+	@Resource(name = "productVariantFacade")
+	private ProductFacade productFacade;
 
 	@ModelAttribute("paymentTypes")
 	public Collection<B2BPaymentTypeData> getAllB2BPaymentTypes()
@@ -103,6 +110,18 @@ public class PaymentTypeCheckoutStepController extends AbstractCheckoutStepContr
 			for (final CategoryData categoryData : cartEntry.getProduct().getCategories()) {
 				if (categoryData.getCode().equalsIgnoreCase("Software") && StringUtils.isNotEmpty(categoryData.getCommentsQuestion())) {
 					model.addAttribute("commentsQuestion", categoryData.getCommentsQuestion());
+					break;
+				}
+			}
+			if(cartEntry.getProduct().getBaseProduct()!=null) {
+				final ProductData baseProductData = productFacade.getProductForCodeAndOptions(cartEntry.getProduct().getBaseProduct(),
+						Arrays.asList(ProductOption.BASIC, ProductOption.PRICE, ProductOption.SUMMARY, ProductOption.DESCRIPTION,
+								ProductOption.CATEGORIES, ProductOption.PROMOTIONS, ProductOption.STOCK, ProductOption.VARIANT_FULL, ProductOption.DELIVERY_MODE_AVAILABILITY));
+				for (final CategoryData categoryData : baseProductData.getCategories()) {
+					if (categoryData.getCode().equalsIgnoreCase("Software") && StringUtils.isNotEmpty(categoryData.getCommentsQuestion())) {
+						model.addAttribute("commentsQuestion", categoryData.getCommentsQuestion());
+						break;
+					}
 				}
 			}
 		}
