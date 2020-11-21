@@ -84,7 +84,7 @@ public class VerifyCustomerHandler implements FlowActionHandler
 			notificationService.notifyUser((String) null, "invalidEmailAddress", NotificationEvent.Level.FAILURE);
 			success = false;
 		}
-		else if (userService.isUserExisting(email))
+		else if (userService.isUserExisting("sec|" + email))
 		{
 			notificationService.notifyUser((String) null, "duplicateHybrisCustomer", NotificationEvent.Level.FAILURE);
 			success = false;
