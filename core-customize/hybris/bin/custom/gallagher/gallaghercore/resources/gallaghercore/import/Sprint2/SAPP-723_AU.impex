@@ -177,4 +177,10 @@ INSERT_UPDATE SolrValueRange ; &rangeValueRefID            ; solrValueRangeSet(n
                              
 UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]         ; rangeSets(name)            
                            ; $solrIndexedType                         ; Post Height (WestOnFence) ; PostHeightWestonfenceRange 
-                           
+  
+  
+  
+  
+  
+  
+                          

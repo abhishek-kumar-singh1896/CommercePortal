@@ -188,23 +188,23 @@ UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[uni
 
                                                       
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true]              ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                                                               
-                                ; AutomaticWateringCapacityNumberOfHeadRange ;           ; double ; rangeAutomaticWateringCapacity1,rangeAutomaticWateringCapacity2,rangeAutomaticWateringCapacity3,rangeAutomaticWateringCapacity4,rangeAutomaticWateringCapacity5
+                                ; AutomaticWateringCapacityNumberUSOfHeadRange ;           ; double ; rangeAutomaticWateringCapacity1,rangeAutomaticWateringCapacity2,rangeAutomaticWateringCapacity3,rangeAutomaticWateringCapacity4,rangeAutomaticWateringCapacity5
                                 
 # Define ranges                 
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID        ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to     
-                             ; rangeAutomaticWateringCapacity1 ; AutomaticWateringCapacityNumberOfHeadRange       ; 1            ; 1    ; 1
-                             ; rangeAutomaticWateringCapacity2 ; AutomaticWateringCapacityNumberOfHeadRange       ; 2 - 49           ; 2   ; 49
-                             ; rangeAutomaticWateringCapacity3 ; AutomaticWateringCapacityNumberOfHeadRange       ; 50 - 100           ; 50   ; 100    
-                             ; rangeAutomaticWateringCapacity4 ; AutomaticWateringCapacityNumberOfHeadRange       ; 101 - 200               ; 101  ; 200   
-                             ;rangeAutomaticWateringCapacity1;AutomaticWateringCapacityNumberOfHeadRange ;201+ ; 201 ;999
+                             ; rangeAutomaticWateringCapacity1 ; AutomaticWateringCapacityNumberUSOfHeadRange       ; 1            ; 1    ; 1
+                             ; rangeAutomaticWateringCapacity2 ; AutomaticWateringCapacityNumberUSOfHeadRange       ; 2 - 49           ; 2   ; 49
+                             ; rangeAutomaticWateringCapacity3 ; AutomaticWateringCapacityNumberUSOfHeadRange       ; 50 - 100           ; 50   ; 100    
+                             ; rangeAutomaticWateringCapacity4 ; AutomaticWateringCapacityNumberUSOfHeadRange       ; 101 - 200               ; 101  ; 200   
+                             ;rangeAutomaticWateringCapacity5;AutomaticWateringCapacityNumberUSOfHeadRange ;201+ ; 201 ;999
                              
 UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]      ; rangeSets(name)                
-                           ; $solrIndexedType                         ; Capacity (Number of head)  (Trough)   ; AutomaticWateringCapacityNumberOfHeadRange 
-                           ; $solrIndexedType                         ; Capacity (Number of head)  (Spring)   ; AutomaticWateringCapacityNumberOfHeadRange 
-                           ; $solrIndexedType                         ; Capacity (Number of head)  (EQUI)     ; AutomaticWateringCapacityNumberOfHeadRange 
-                           ; $solrIndexedType                         ; Capacity (Number of head)  (Mira)     ; AutomaticWateringCapacityNumberOfHeadRange 
-                           ; $solrIndexedType                         ; Capacity (Number of head)  (E)        ; AutomaticWateringCapacityNumberOfHeadRange 
-                           ; $solrIndexedType                         ; Capacity (Number of head)  (BIG)      ; AutomaticWateringCapacityNumberOfHeadRange 
-                           ; $solrIndexedType                         ; Capacity (Number of head)  (PET)      ; AutomaticWateringCapacityNumberOfHeadRange 
-                           ; $solrIndexedType                         ; Capacity (Number of head)  (Watering) ; AutomaticWateringCapacityNumberOfHeadRange                            
+                           ; $solrIndexedType                         ; Capacity (Number of head)  (Trough)   ; AutomaticWateringCapacityNumberUSOfHeadRange
+                           ; $solrIndexedType                         ; Capacity (Number of head)  (Spring)   ; AutomaticWateringCapacityNumberUSOfHeadRange
+                           ; $solrIndexedType                         ; Capacity (Number of head)  (EQUI)     ; AutomaticWateringCapacityNumberUSOfHeadRange
+                           ; $solrIndexedType                         ; Capacity (Number of head)  (Mira)     ; AutomaticWateringCapacityNumberUSOfHeadRange
+                           ; $solrIndexedType                         ; Capacity (Number of head)  (E)        ; AutomaticWateringCapacityNumberUSOfHeadRange
+                           ; $solrIndexedType                         ; Capacity (Number of head)  (BIG)      ; AutomaticWateringCapacityNumberUSOfHeadRange
+                           ; $solrIndexedType                         ; Capacity (Number of head)  (PET)      ; AutomaticWateringCapacityNumberUSOfHeadRange
+                           ; $solrIndexedType                         ; Capacity (Number of head)  (Watering) ; AutomaticWateringCapacityNumberUSOfHeadRange                           
                            

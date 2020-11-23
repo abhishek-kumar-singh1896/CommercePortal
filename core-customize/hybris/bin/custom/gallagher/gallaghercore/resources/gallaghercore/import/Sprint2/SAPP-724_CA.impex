@@ -89,6 +89,29 @@ INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(id
                                       ; Capacity(L) (Watering)  :$solrIndexedType                       ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
                                       ; animalCompatibility:$solrIndexedType                            ;                     ; MultiSelectOr   ; 1000     ;                             ;                        ;                                 ;                                                                                                   
                                       ; Internal rechargeable battery:$solrIndexedType                  ;                     ; MultiSelectOr   ; 1000     ;                             ;                        ;                                 ;
+;Capacity (Number of head)  (Trough):$solrIndexedType    ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                                                                                                                                                                                                                                
+  
+;Capacity (Number of head)  (Spring)  :$solrIndexedType  ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                                                                                                                                                                                                                                
+;Capacity (Number of head)  (EQUI)    :$solrIndexedType  ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                                                                                                                                                                                                                                
+;Capacity (Number of head)  (Mira)    :$solrIndexedType  ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                                                                                                                                                                                                                                
+;Capacity (Number of head)  (E)       :$solrIndexedType  ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                                                                                                                                                                                                                                
+;Capacity (Number of head)  (BIG)     :$solrIndexedType  ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                                                                                                                                                                                                                                
+;Capacity (Number of head)  (PET)     :$solrIndexedType  ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                                                                                                                                                                                                                                
+;Capacity (Number of head)  (Watering):$solrIndexedType  ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                                                                                                                                                                                                                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
                                       
 UPDATE SolrSearchQueryProperty ; indexedProperty(solrIndexedType(identifier),name)[unique=true] ; facetDisplayNameProvider           
@@ -167,6 +190,7 @@ UPDATE SolrSearchQueryProperty ; indexedProperty(solrIndexedType(identifier),nam
                                       ; $solrIndexedType: Gate Type                                     ;                                    
                                       ; $solrIndexedType: Length (Gates)                                ; facetUnitSuffixDisplayNameProvider 
                                       ; $solrIndexedType: Use (Fence)                                   ;                                    
+                                   
  
 UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$solrIndexedType] ; name[unique=true]                            ; displayName[lang=$lang]                                   
                            ;                                                               ; Energy Stored                                ; Energy Stored                                  
@@ -244,10 +268,62 @@ UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$so
                            ;                                                               ; Use (Fence)                                  ; Use                                                       
                            ;                                                               ; animalCompatibility                          ; Animal Compatibility                                               
                            ;                                                               ; Post Height (Pigtails)                       ; Post Height
+                           
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+                           
+
+
 
 INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]                            ; visible; facet[default=false] ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facetType(code) ; facetSort(code) ; priority  ; fieldValueProvider                          ; customFacetSortProvider ; facetDisplayNameProvider           ; rangeSets(name) ; $classAttributeAssignment           ; displayName[lang=$lang]                                 
 								  ; $solrIndexedType                         ; Conductor Type                     			; true   ; true                 ; double                     ;                    ;                         ;                          ;                           ; MultiSelectOr   ; Alpha           ; 1000     ; commerceClassificationPropertyValueProvider ;                         ;  									;                 ; wire-and-cable:::Conductor-type:::: ; Conductor Type
 
 INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetSortProvider           ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
 									  ; Conductor Type:$solrIndexedType                        			;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+ 
+ 
+ 
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]                            ; visible; facet[default=false] ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facetType(code) ; facetSort(code) ; priority  ; fieldValueProvider                          ; customFacetSortProvider ; facetDisplayNameProvider           ; rangeSets(name) ; $classAttributeAssignment                                           
+                                   ; $solrIndexedType                         ; Capacity (Number of head)  (Trough)                      ; true   ; true                 ; double                     ;                    ;                         ;                          ;                           ; MultiSelectOr   ; Alpha           ; 1000     ; commerceClassificationPropertyValueProvider ;                         ; facetUnitSuffixDisplayNameProvider ;                 ; trough-valves:::capacity-number-of-head::::                                      
+                                  ; $solrIndexedType                         ; Capacity (Number of head)  (Spring)                      ; true   ; true                 ; double                     ;                    ;                         ;                          ;                           ; MultiSelectOr   ; Alpha           ; 1000     ; commerceClassificationPropertyValueProvider ;                         ; facetUnitSuffixDisplayNameProvider ;                 ; lil-spring:::capacity-number-of-head::::                                         
+                                  ; $solrIndexedType                         ; Capacity (Number of head)  (EQUI)                        ; true   ; true                 ; double                     ;                    ;                         ;                          ;                           ; MultiSelectOr   ; Alpha           ; 1000     ; commerceClassificationPropertyValueProvider ;                         ; facetUnitSuffixDisplayNameProvider ;                 ; equi-fount:::capacity-number-of-head::::                                         
+                                  ; $solrIndexedType                         ; Capacity (Number of head)  (Mira)                        ; true   ; true                 ; double                     ;                    ;                         ;                          ;                           ; MultiSelectOr   ; Alpha           ; 1000     ; commerceClassificationPropertyValueProvider ;                         ; facetUnitSuffixDisplayNameProvider ;                 ; mira-fount:::capacity-number-of-head::::                                         
+                                  ; $solrIndexedType                         ; Capacity (Number of head)  (E)                           ; true   ; true                 ; double                     ;                    ;                         ;                          ;                           ; MultiSelectOr   ; Alpha           ; 1000     ; commerceClassificationPropertyValueProvider ;                         ; facetUnitSuffixDisplayNameProvider ;                 ; e-fount:::capacity-number-of-head::::                                            
+                                  ; $solrIndexedType                         ; Capacity (Number of head)  (BIG)                         ; true   ; true                 ; double                     ;                    ;                         ;                          ;                           ; MultiSelectOr   ; Alpha           ; 1000     ; commerceClassificationPropertyValueProvider ;                         ; facetUnitSuffixDisplayNameProvider ;                 ; big-spring:::capacity-number-of-head::::                                         
+                                  ; $solrIndexedType                         ; Capacity (Number of head)  (PET)                         ; true   ; true                 ; double                     ;                    ;                         ;                          ;                           ; MultiSelectOr   ; Alpha           ; 1000     ; commerceClassificationPropertyValueProvider ;                         ; facetUnitSuffixDisplayNameProvider ;                 ; pet-tanks:::capacity-number-of-head::::                                          
+                                  ; $solrIndexedType                         ; Capacity (Number of head)  (Watering)                     ; true   ; true                 ; double                     ;                    ;                         ;                          ;                           ; MultiSelectOr   ; Alpha           ; 1000     ; commerceClassificationPropertyValueProvider ;                         ; facetUnitSuffixDisplayNameProvider ;                 ; watering-accessories:::capacity-number-of-head::::                               
+ 
+ 
+ 
+ INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetSortProvider           ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
+                                ; $solrIndexedType:Capacity (Number of head)  (Trough)    ; facetUnitSuffixDisplayNameProvider 
+
+                                   ; $solrIndexedType:Capacity (Number of head)  (Spring)    ; facetUnitSuffixDisplayNameProvider 
+                                   ; $solrIndexedType:Capacity (Number of head)  (EQUI)      ; facetUnitSuffixDisplayNameProvider 
+                                   ; $solrIndexedType:Capacity (Number of head)  (Mira)      ; facetUnitSuffixDisplayNameProvider 
+                                   ; $solrIndexedType:Capacity (Number of head)  (E)         ; facetUnitSuffixDisplayNameProvider 
+                                   ; $solrIndexedType:Capacity (Number of head)  (BIG)       ; facetUnitSuffixDisplayNameProvider 
+                                   ; $solrIndexedType:Capacity (Number of head)  (PET)       ; facetUnitSuffixDisplayNameProvider 
+                                   ; $solrIndexedType:Capacity (Number of head)  (Watering)  ; facetUnitSuffixDisplayNameProvider 
+ 
+UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$solrIndexedType] ; name[unique=true]                            ; displayName[lang=$lang]                                   
+                           ;                                                               ; Capacity (Number of head)  (Trough) ;Capacity (Number of head)
+                           ;                                                               ; Capacity (Number of head)  (Spring)  ;Capacity (Number of head)
+                           ;                                                               ; Capacity (Number of head)  (EQUI)    ;Capacity (Number of head)
+                           ;                                                               ; Capacity (Number of head)  (Mira)    ;Capacity (Number of head)
+                           ;                                                               ; Capacity (Number of head)  (E)       ;Capacity (Number of head)
+                           ;                                                               ; Capacity (Number of head)  (BIG)     ;Capacity (Number of head)
+                           ;                                                               ; Capacity (Number of head)  (PET)     ;Capacity (Number of head)
+                           ;                                                               ; Capacity (Number of head)  (Watering);Capacity (Number of head)
+ 
  

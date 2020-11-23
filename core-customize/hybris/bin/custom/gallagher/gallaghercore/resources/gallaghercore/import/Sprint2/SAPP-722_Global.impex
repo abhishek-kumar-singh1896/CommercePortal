@@ -3525,4 +3525,5 @@ INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                               
 
 INSERT_UPDATE AsFacet ; uid [unique=true]                                                ; valuesDisplayNameProvider  		   ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true]                   ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                        
 					  ; amB2CLatAmWireAndCableConductorTypeAsFacet                          ;                                    ; amB2CLatAmWireAndCableSearchConfiguration                ; Conductor Type                               ; MULTISELECT_OR  ; 1000     ;                              ; amB2CLatAmWireAndCableConductorTypeAsFacet                                
+
       

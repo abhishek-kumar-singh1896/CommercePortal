@@ -196,7 +196,7 @@ INSERT_UPDATE SolrValueRange ; &rangeValueRefID        ; solrValueRangeSet(name)
                              ; rangeAutomaticWateringCapacity2 ; AutomaticWateringCapacityNumberOfHeadRange       ; 2 - 49           ; 2   ; 49
                              ; rangeAutomaticWateringCapacity3 ; AutomaticWateringCapacityNumberOfHeadRange       ; 50 - 100           ; 50   ; 100    
                              ; rangeAutomaticWateringCapacity4 ; AutomaticWateringCapacityNumberOfHeadRange       ; 101 - 200               ; 101  ; 200   
-                             ;rangeAutomaticWateringCapacity1;AutomaticWateringCapacityNumberOfHeadRange ;201+ ; 201 ;999
+                             ;rangeAutomaticWateringCapacity5;AutomaticWateringCapacityNumberOfHeadRange ;201+ ; 201 ;999
                              
 UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]      ; rangeSets(name)                
                            ; $solrIndexedType                         ; Capacity (Number of head)  (Trough)   ; AutomaticWateringCapacityNumberOfHeadRange 
