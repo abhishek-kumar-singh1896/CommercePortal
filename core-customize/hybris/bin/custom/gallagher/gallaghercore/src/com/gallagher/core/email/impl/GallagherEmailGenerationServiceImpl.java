@@ -43,6 +43,8 @@ public class GallagherEmailGenerationServiceImpl extends DefaultEmailGenerationS
 	private static final String REPLY_TO = "replyTo";
 
 	private static final String ORDER_CONTEXT_CLASS_NAME = "GallagherOrderNotificationEmailContext";
+
+	private static final String SOM_EMAIL = "SOM.emailAddress.";
 	/**
 	 * {@inheritDoc}
 	 */
@@ -57,7 +59,7 @@ public class GallagherEmailGenerationServiceImpl extends DefaultEmailGenerationS
 		if (emailContext.getClass().getSimpleName().equals(ORDER_CONTEXT_CLASS_NAME))
 		{
 		final String uid = emailContext.getBaseSite().getUid();
-			final String email = getConfigurationService().getConfiguration().getString(uid);
+			final String email = getConfigurationService().getConfiguration().getString(SOM_EMAIL + uid);
 		final EmailAddressModel somAddress = getEmailService().getOrCreateEmailAddressForEmail(email,
 				emailContext.getToDisplayName());
 		toEmails.add(somAddress);
