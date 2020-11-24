@@ -50,7 +50,7 @@ public class GallagherDefaultProductServiceImpl implements GallagherProductServi
 	{
 		final Set<BaseStoreModel> baseStores = new HashSet<>();
 
-		final List<CatalogVersionModel> allAvailableCatalogVersionForCode = sessionService
+		final List<CatalogVersionModel> allAvailableApprovedCatalogVersionForCode = sessionService
 				.executeInLocalView(new SessionExecutionBody()
 				{
 					@Override
@@ -61,7 +61,7 @@ public class GallagherDefaultProductServiceImpl implements GallagherProductServi
 						{
 							searchRestrictionService.disableSearchRestrictions();
 							allAvailableCatalogVersionForCode = gallagherProductProcessingDao
-									.getAvailableCatalogVersionForCode(variantProductCode);
+									.getAvailableApprovedCatalogVersionForCode(variantProductCode);
 						}
 						catch (final UnknownIdentifierException e)
 						{
@@ -75,7 +75,61 @@ public class GallagherDefaultProductServiceImpl implements GallagherProductServi
 					}
 				});
 
-		for (final CatalogVersionModel catalogVer : allAvailableCatalogVersionForCode)
+		for (final CatalogVersionModel catalogVer : allAvailableApprovedCatalogVersionForCode)
+		{
+			if (catalogVer.getCatalog().getBaseStores().size() >= 1)
+			{
+				for (final BaseStoreModel store : catalogVer.getCatalog().getBaseStores())
+				{
+					baseStores.add(store);
+				}
+			}
+			catalogVer.getCatalog().getBaseStores();
+		}
+		return baseStores;
+	}
+
+	/**
+	 * Returns the Set of BaseStoreModel with approved catalog versions for base product
+	 *
+	 * @param variantProductCode
+	 * @param baseProductCode
+	 * @param baseStores
+	 * @param catalogId
+	 * @return storeCatalogMap
+	 */
+
+	@Override
+	public Set<BaseStoreModel> getBaseStoresForBaseProduct(final String baseProductCode)
+	{
+		final Set<BaseStoreModel> baseStores = new HashSet<>();
+
+		final List<CatalogVersionModel> allAvailableApprovedCatalogVersionForCode = sessionService
+				.executeInLocalView(new SessionExecutionBody()
+				{
+					@Override
+					public Object execute()
+					{
+						List<CatalogVersionModel> allAvailableCatalogVersionForCode;
+						try
+						{
+							searchRestrictionService.disableSearchRestrictions();
+							allAvailableCatalogVersionForCode = gallagherProductProcessingDao
+									.getApprovedCatalogVersionForBaseProduct(baseProductCode);
+						}
+						catch (final UnknownIdentifierException e)
+						{
+							allAvailableCatalogVersionForCode = null;
+						}
+						finally
+						{
+							searchRestrictionService.enableSearchRestrictions();
+						}
+						return allAvailableCatalogVersionForCode;
+					}
+				});
+
+		for (final CatalogVersionModel catalogVer : allAvailableApprovedCatalogVersionForCode)
 		{
 			if (catalogVer.getCatalog().getBaseStores().size() >= 1)
 			{
