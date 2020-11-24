@@ -441,7 +441,30 @@
 <p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.signature}</font></p>
 </td>
 </tr>
-
+<tr>
+									<td>&nbsp;</td>
+								</tr>
+								<tr>
+									<td height="30" align="center" valign="middle" bgcolor="#FF8400">
+										<font size="2" face="Calibri">
+											<a style="text-decoration:none" href="${ctx.messages.websitePage}">
+												<font color="#000000">${ctx.messages.website}</font>
+											</a> 
+											| 
+											<a style="text-decoration:none" href="${ctx.messages.contactUsPage}">
+												<font color="#000000">${ctx.messages.contactUs}</font>
+											</a> 
+											|
+											<a style="text-decoration:none" href="${ctx.messages.privacyStatementPage}">
+												<font color="#000000">${ctx.messages.privacyStatement}</font>
+											</a> 
+											&nbsp;&nbsp;
+										</font>
+									</td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+								</tr>
 
 </table>
 </td>
