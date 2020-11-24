@@ -210,6 +210,7 @@
 							<p style="margin:3px 0"><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.noDelivery}</font></p>
 						#end
 					</td>
+					#if(${ctx.order.deliveryMode.name})
 					<td width="34%" valign="top">
 						<font color="#333" size="2" face="Arial, Helvetica, sans-serif"><b>${ctx.messages.deliveryOptions}</b></font>
 						#if(${ctx.order.deliveryItemsQuantity} > 0)
@@ -220,7 +221,7 @@
 							<p style="margin:3px 0"><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">${ctx.messages.noDelivery}</font></p>
 						#end
 					</td>
-					
+				   #end	
 				</tr>
 				<tr>
 					<td width="34%" valign="top">
@@ -294,7 +295,7 @@
 												<p><font color="#666666" size="2" face="Arial, Helvetica, sans-serif">
 													<a href="${ctx.baseUrl}$entry.product.url"><font color="#666666"><b>$entry.product.name</b></font></a>
 													<br>
-													#if($entry.productSpecificDetailsSubHeading !='')
+													#if($entry.deliveryinstruction && $entry.productSpecificDetailsSubHeading)
 												<font color="#e96b04">	<b>${entry.productSpecificDetailsSubHeading}</b></font>:${entry.deliveryinstruction}
 													#end
 												</p>
