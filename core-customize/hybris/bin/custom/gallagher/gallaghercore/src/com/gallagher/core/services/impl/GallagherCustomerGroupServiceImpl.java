@@ -54,9 +54,9 @@ public class GallagherCustomerGroupServiceImpl implements GallagherCustomerGroup
 	}
 
 	@Override
-	public void setCurrentCustomerGroupInSession(final String salesArea)
+	public void setCurrentCustomerGroupInSession(final String customerGroup)
 	{
-		getSessionService().setAttribute(CURRENT_SESSION_CUSTOMER_GROUP, salesArea);
+		getSessionService().setAttribute(CURRENT_SESSION_CUSTOMER_GROUP, customerGroup);
 	}
 
 	/**
