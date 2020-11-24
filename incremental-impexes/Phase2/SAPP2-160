@@ -1,0 +1,18 @@
+INSERT_UPDATE SyncAttributeDescriptorConfig;syncJob(code)[unique=true,path-delimiter=!];attributeDescriptor(enclosingType(code),qualifier)[unique=true];includedInSync;copyByValue
+;sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged;Product:recommendedProducts;false;false
+;sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged;Product:recommendedProducts;false;false
+;sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged;Product:recommendedProducts;false;false
+;sync securityB2BMasterProductCatalog:Staged->securityB2BUSProductCatalog:Staged;Product:recommendedProducts;false;false
+;sync securityB2BMasterProductCatalog:Staged->securityB2BCAProductCatalog:Staged;Product:recommendedProducts;false;false
+;sync securityB2BMasterProductCatalog:Staged->securityB2BUKProductCatalog:Staged;Product:recommendedProducts;false;false
+;sync securityB2BMasterProductCatalog:Staged->securityB2BAsiaProductCatalog:Staged;Product:recommendedProducts;false;false
+;sync securityB2BMasterProductCatalog:Staged->securityB2BSthAMProductCatalog:Staged;Product:recommendedProducts;false;false
+
+;sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged;Product:recommendedCategories;false;false
+;sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged;Product:recommendedCategories;false;false
+;sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged;Product:recommendedCategories;false;false
+;sync securityB2BMasterProductCatalog:Staged->securityB2BUSProductCatalog:Staged;Product:recommendedCategories;false;false
+;sync securityB2BMasterProductCatalog:Staged->securityB2BCAProductCatalog:Staged;Product:recommendedCategories;false;false
+;sync securityB2BMasterProductCatalog:Staged->securityB2BUKProductCatalog:Staged;Product:recommendedCategories;false;false
+;sync securityB2BMasterProductCatalog:Staged->securityB2BAsiaProductCatalog:Staged;Product:recommendedCategories;false;false
+;sync securityB2BMasterProductCatalog:Staged->securityB2BSthAmProductCatalog:Staged;Product:recommendedCategories;false;false
