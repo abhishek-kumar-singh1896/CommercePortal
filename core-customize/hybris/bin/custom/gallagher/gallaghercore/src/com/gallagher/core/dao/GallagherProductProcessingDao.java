@@ -88,4 +88,15 @@ public interface GallagherProductProcessingDao
 	 */
 	ProductModel getBaseProductForProductReferenceSync(final CatalogVersionModel catalogVersion, final Date lastStartTime,
 			final ProductModel product);
+
+	/**
+	 * Returns a base Product, if some modification is done in ProductReferences attribute of given product.
+	 *
+	 * @param catalogVersion
+	 * @param lastStartTime
+	 * @param product
+	 * @return product
+	 */
+	ProductModel getBaseProductForRecommendationsSync(final CatalogVersionModel catalogVersion, final Date lastStartTime,
+			final ProductModel product);
 }

@@ -178,6 +178,46 @@ public class GallagherProductProcessingDaoImpl implements GallagherProductProces
 		}
 		return null;
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public ProductModel getBaseProductForRecommendationsSync(final CatalogVersionModel catalogVersion, final Date lastStartTime,
+			final ProductModel product)
+	{
+		final Map<String, Object> queryParameter = new HashMap<>();
+		final StringBuilder stringBuilder = new StringBuilder();
+		
+		stringBuilder.append("Select {").append(ProductModel.PK);
+		stringBuilder.append("} from {").append(SavedValuesModel._TYPECODE);
+		stringBuilder.append("} where {").append(SavedValuesModel.MODIFIEDITEM);
+		stringBuilder.append("} = ?").append(ProductModel.PK);
+		queryParameter.put(ProductModel.PK, product.getPk());
+		if (null != lastStartTime)
+		{
+			stringBuilder.append(" AND {").append(SavedValuesModel.MODIFIEDTIME).append("} > ?")
+			.append(SavedValuesModel.MODIFIEDTIME);
+			queryParameter.put(SavedValuesModel.MODIFIEDTIME, lastStartTime);
+		}
+		
+		final FlexibleSearchQuery fQuery = new FlexibleSearchQuery(stringBuilder.toString());
+		fQuery.addQueryParameters(queryParameter);
+		final SearchResult<SavedValuesModel> searchResult = flexibleSearchService.search(fQuery);
+		for (final SavedValuesModel savedValueModel : searchResult.getResult())
+		{
+			final Set<SavedValueEntryModel> fr = savedValueModel.getSavedValuesEntries();
+			for (final SavedValueEntryModel entryModel : fr)
+			{
+				if (StringUtils.isNotEmpty(entryModel.getModifiedAttribute())
+						&& (entryModel.getModifiedAttribute().equals("recommendedProducts") || entryModel.getModifiedAttribute().equals("recommendedCategories")))
+				{
+					return product;
+				}
+			}
+		}
+		return null;
+	}
 
 	/**
 	 * {@inheritDoc}
