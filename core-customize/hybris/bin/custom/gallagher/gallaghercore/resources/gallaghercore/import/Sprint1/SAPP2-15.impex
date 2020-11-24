@@ -13,11 +13,11 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;pa
 ;UpdatePasswordNavNode;;Update Password;B2BMyAccountNavNode;;UpdatePasswordNavNode
 ;OrderHistoryNavNode;;Order History;B2BMyAccountNavNode;;OrderHistoryNavNode
 ;AddressBookNavNode;;Address Book;B2BMyAccountNavNode;;AddressBookNavNode
-;MyQuotesNavNode;;My Quotes;B2BMyAccountNavNode;;MyQuotesNavNode
-;SavedCartsNavNode;;Saved Carts;B2BMyAccountNavNode;;SavedCartsNavNode
-;ImportSavedCartNavNode;;Import Saved Cart;B2BMyAccountNavNode;;ImportSavedCartNavNode
-;OrderTemplatesNavNode;;OrderTemplatesNavNode;B2BMyAccountNavNode;;OrderTemplatesNavNode
-;QuickOrderNavNode;;Quick Order;B2BMyAccountNavNode;;QuickOrderNavNode
+;MyQuotesNavNode;;My Quotes;;;MyQuotesNavNode
+;SavedCartsNavNode;;Saved Carts;;;SavedCartsNavNode
+;ImportSavedCartNavNode;;Import Saved Cart;;;ImportSavedCartNavNode
+;OrderTemplatesNavNode;;OrderTemplatesNavNode;;;OrderTemplatesNavNode
+;QuickOrderNavNode;;Quick Order;;;QuickOrderNavNode
 ;SupportTicketNavNode;;SupportTicketNavNode;B2BMyAccountNavNode;;SupportTicketNavNode
 ;UnitsNavNode;;Units;B2BMyCompanyNavNode;;UnitsNavNode
 ;UsersNavNode;;Users;B2BMyCompanyNavNode;;UsersNavNode
