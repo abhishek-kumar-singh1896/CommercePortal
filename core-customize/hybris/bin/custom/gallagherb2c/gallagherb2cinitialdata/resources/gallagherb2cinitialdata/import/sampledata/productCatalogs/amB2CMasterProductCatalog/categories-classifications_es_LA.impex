@@ -102,3 +102,4 @@ UPDATE ClassificationAttribute	;code[unique=true];name[lang=$lang];$classSystemV
 								;width-or-length;Ancho o Largo
 								;diameter-or-width;Diámetro o ancho
 								;driver-capacity-long;Capacidad del conductor (largo)
+                        ;product-feature-number-of-openings;Product Features (Number of openings)

@@ -75,3 +75,4 @@ UPDATE ClassificationAttribute	;code[unique=true];name[lang=$lang];$classSystemV
 								;view-pedigree-tree;View Pedigree Tree
 								;weighing-capacity;Weighing Capacity
 								;rechargeable;Rechargeable
+                        ;product-feature-number-of-openings;Product Features (Number of openings)

@@ -109,7 +109,7 @@ UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[uni
                            ; $solrIndexedType                         ; Voltage at 2km of fence                       ; Voltage2kmRange            
                            ; $solrIndexedType                         ; Voltage at 5km of fence                       ; Voltage5kmRange            
                            ; $solrIndexedType                         ; Voltage at 10km of fence                      ; Voltage10kmRange           
-                           ; $solrIndexedType                         ; Ohms Per Km (Wire)                           ; OhmsPerKmTapesRange        
-#                           ; $solrIndexedType                         ; Ohms Per Km                         ; OhmsPerKmWireAndCableRange 
+#                           ; $solrIndexedType                         ; Ohms Per Km (Wire)                           ; OhmsPerKmWireAndCableRange        
+                           ; $solrIndexedType                         ; Ohms Per Km                         ; OhmsPerKmTapesRange 
 #                           ; $solrIndexedType                         ; Number of Traits Recorded                     ; NumberOfTraitsRange  
  
