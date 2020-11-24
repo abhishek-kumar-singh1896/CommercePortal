@@ -254,6 +254,8 @@ INSERT_UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true]
 ;;weighing-capacity-lbs
 ;;multiwire-distance-gallagher-recommendation-acres
 ;;Conductor-type
+;;product-feature-number-of-openings
+;;capacity-number-of-head
 
 INSERT_UPDATE ClassAttributeAssignment;$attribute;$class;position;$unit;attributeType(code[default=string]);multiValued[default=false];range[default=false];localized[default=true]
 ;energy-stored;energizers;1;Joules;number
@@ -351,6 +353,8 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;power-system-accessories;digital-display;13;;boolean
 ;power-system-accessories;height;14;mm;number
 ;power-system-accessories;width-or-length;15;mm;number
+;power-system-accessories;product-type;16;;
+
 
 ;gallagher-westonfence;warranty;1;Years;number
 ;gallagher-westonfence;pack-size;2;
@@ -525,6 +529,10 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;reels-and-accessories-pf;height;10;mm;number
 ;reels-and-accessories-pf;width-or-length;11;mm;number
 ;reels-and-accessories-pf;driver-capacity-long;12;;
+;reels-and-accessories-pf;product-type;13;;
+;reels-and-accessories-pf;fence-type;14;;
+
+
 
 #;posts-pigtails-and-treadins-pf;animal-type;1;;
 ;posts-pigtails-and-treadins-pf;fence-type;2;;
@@ -782,6 +790,9 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;trough-valves;product-width-inch;6;inches;number
 ;trough-valves;product-depth-inch;7;inches;number
 ;trough-valves;product-weight-lbs;8;lbs;number
+;trough-valves;capacity-number-of-head;9;;number
+
+
 
 ;lil-spring;product-features;1;;
 #;lil-spring;animal-type;2;;
@@ -791,6 +802,8 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;lil-spring;product-width-inch;6;inches;number
 ;lil-spring;product-depth-inch;7;inches;number
 ;lil-spring;product-weight-lbs;8;lbs;number
+;lil-spring;capacity-number-of-head;9;;number
+
 
 ;equi-fount;product-features;1;;
 #;equi-fount;animal-type;2;;
@@ -800,6 +813,8 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;equi-fount;product-width-inch;6;inches;number
 ;equi-fount;product-depth-inch;7;inches;number
 ;equi-fount;product-weight-lbs;8;lbs ;number
+;equi-fount;capacity-number-of-head;9;;number
+
 
 ;mira-fount;product-features;1;;
 #;mira-fount;animal-type;2;;
@@ -809,6 +824,7 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;mira-fount;product-width-inch;6;inches;number
 ;mira-fount;product-depth-inch;7;inches;number
 ;mira-fount;product-weight-lbs;8;lbs ;number
+;mira-fount;capacity-number-of-head;9;;number
 
 ;e-fount;product-features;1;;
 #;e-fount;animal-type;2;;
@@ -818,6 +834,9 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;e-fount;product-width-inch;6;inches;number
 ;e-fount;product-depth-inch;7;inches;number
 ;e-fount;product-weight-lbs;8;lbs ;number
+;e-fount;capacity-number-of-head;9;;number
+
+
 
 ;big-spring;product-features;1;;
 #;big-spring;animal-type;2;;
@@ -827,6 +846,10 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;big-spring;product-width-inch;6;inches;number
 ;big-spring;product-depth-inch;7;inches;number
 ;big-spring;product-weight-lbs;8;lbs;number
+;big-spring;product-feature-number-of-openings;9;;number
+;big-spring;capacity-number-of-head;9;;number
+
+
 
 ;pet-tanks;product-features;1;;
 #;pet-tanks;animal-type;2;;
@@ -836,6 +859,8 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;pet-tanks;product-width-inch;6;inches;number
 ;pet-tanks;product-depth-inch;7;inches;number
 ;pet-tanks;product-weight-lbs;8;lbs;number
+;pet-tanks;capacity-number-of-head;9;;number
+
 
 ;watering-accessories ;product-features;1;;
 #;watering-accessories ;animal-type;2;;
@@ -845,4 +870,5 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;watering-accessories ;product-width-inch;6;inches;number
 ;watering-accessories ;product-depth-inch;7;inches;number
 ;watering-accessories ;product-weight;8;lbs;number
+;watering-accessories;capacity-number-of-head;9;;number
 

@@ -215,3 +215,11 @@ INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; n
 
 INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetSortProvider           ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
 									  ; Conductor Type:$solrIndexedType                        			;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
+
+									  
+									   
+ INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]                             ; type(code[default=string]) ; visible[default=false] ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facetType(code) ; facetSort(code) ; priority ; facet[default=false] ; fieldValueProvider                          ; customFacetSortProvider ; rangeSets(name) ; $classAttributeAssignment                                            
+                                    ; $solrIndexedType                         ; Product Width (Fence)                         ; double                     ;                    ;                    ;                         ;                          ;                           ; MultiSelectOr   ; Alpha           ; 1000     ; true   				; commerceClassificationPropertyValueProvider ;                         ;                 ; fence-tools-and-accessories:::product-width::::                      
+                                    ; $solrIndexedType                         ; Product Width (Gate)                          ; double                     ;                    ;                    ;                         ;                          ;                           ; MultiSelectOr   ; Alpha           ; 1000     ; true   				; commerceClassificationPropertyValueProvider ;                         ;                 ; gate-hardware:::product-width::::                                    
+  
+  

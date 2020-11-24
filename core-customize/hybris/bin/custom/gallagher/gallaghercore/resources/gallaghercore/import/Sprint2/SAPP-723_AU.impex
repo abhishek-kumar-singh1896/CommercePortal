@@ -41,10 +41,10 @@ INSERT_UPDATE SolrValueRangeSet ; name[unique=true] ; qualifier ; type   ; solrV
                                 ; EnergyStoredRange ;           ; double ; rangeEnergyStored1,rangeEnergyStored2,rangeEnergyStored3,rangeEnergyStored4,rangeEnergyStored5 
                                 
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID   ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to     
-                             ; rangeEnergyStored1 ; EnergyStoredRange                    ; 0.1 - 5           ; 0    ; 5.999  
-                             ; rangeEnergyStored2 ; EnergyStoredRange                    ; 6 - 10            ; 6    ; 10.999 
-                             ; rangeEnergyStored3 ; EnergyStoredRange                    ; 11 - 20           ; 11   ; 20.999 
-                             ; rangeEnergyStored4 ; EnergyStoredRange                    ; 21 - 50           ; 21   ; 50.999 
+                             ; rangeEnergyStored1 ; EnergyStoredRange                    ; 0.1 - 5.9           ; 0    ; 5.999  
+                             ; rangeEnergyStored2 ; EnergyStoredRange                    ; 6 - 10.9            ; 6    ; 10.999 
+                             ; rangeEnergyStored3 ; EnergyStoredRange                    ; 11 - 20.9           ; 11   ; 20.999 
+                             ; rangeEnergyStored4 ; EnergyStoredRange                    ; 21 - 50.9           ; 21   ; 50.999 
                              ; rangeEnergyStored5 ; EnergyStoredRange                    ; 51+	             ; 51   ; 9999    
                              
 UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; rangeSets(name)   
@@ -177,4 +177,10 @@ INSERT_UPDATE SolrValueRange ; &rangeValueRefID            ; solrValueRangeSet(n
                              
 UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]         ; rangeSets(name)            
                            ; $solrIndexedType                         ; Post Height (WestOnFence) ; PostHeightWestonfenceRange 
-                           
+  
+  
+  
+  
+  
+  
+                          

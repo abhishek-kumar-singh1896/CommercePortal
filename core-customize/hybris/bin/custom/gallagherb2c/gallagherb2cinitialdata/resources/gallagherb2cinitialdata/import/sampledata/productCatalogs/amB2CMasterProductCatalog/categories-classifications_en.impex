@@ -145,3 +145,4 @@ UPDATE ClassificationAttribute	;code[unique=true];name[lang=$lang];$classSystemV
 								;wire-amount;Wire Amount
 								;wire-diameter;Wire Diameter
 								;wire-type;Wire Type
+                        ;product-feature-number-of-openings;Product Features (Number of openings)
