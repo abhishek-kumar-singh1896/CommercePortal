@@ -1,7 +1,9 @@
 package com.gallagher.core.search.solrfacetsearch.provider.impl;
 
+import de.hybris.platform.b2b.model.B2BUnitModel;
 import de.hybris.platform.enumeration.EnumerationService;
 import de.hybris.platform.europe1.constants.Europe1Constants;
+import de.hybris.platform.europe1.enums.UserDiscountGroup;
 import de.hybris.platform.europe1.enums.UserPriceGroup;
 import de.hybris.platform.servicelayer.session.SessionService;
 import de.hybris.platform.solrfacetsearch.config.FacetSearchConfig;
@@ -13,12 +15,17 @@ import de.hybris.platform.storelocator.model.PointOfServiceModel;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
+import org.apache.commons.collections.CollectionUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
 
+import com.gallagher.core.dao.GallagherB2BUnitDao;
 import com.gallagher.core.search.solrfacetsearch.provider.GallagherQualifierProvider;
 
 
@@ -31,6 +38,9 @@ public class GallagherUserPriceGroupQualifierProvider implements GallagherQualif
 {
 	private SessionService sessionService;
 	private final Set<Class<?>> supportedTypes = Collections.singleton(PointOfServiceModel.class);
+
+	@Autowired
+	private GallagherB2BUnitDao b2bUnitDao;
 	private EnumerationService enumerationService;
 
 	/**
@@ -42,7 +52,7 @@ public class GallagherUserPriceGroupQualifierProvider implements GallagherQualif
 		Objects.requireNonNull(facetSearchConfig, "facetSearchConfig is null");
 		Objects.requireNonNull(indexedType, "indexedType is null");
 		final ArrayList qualifiers = new ArrayList();
-		final List<UserPriceGroup> userPriceGroups = enumerationService.getEnumerationValues(UserPriceGroup._TYPECODE);
+		final Set<UserPriceGroup> userPriceGroups = getUserPriceGroups();
 
 		for (final UserPriceGroup upg : userPriceGroups)
 		{
@@ -52,6 +62,40 @@ public class GallagherUserPriceGroupQualifierProvider implements GallagherQualif
 		}
 
 		return Collections.unmodifiableList(qualifiers);
+	}
+
+	/**
+	 * @return
+	 */
+	private Set<UserPriceGroup> getUserPriceGroups()
+	{
+
+		final List<B2BUnitModel> b2bUnits = getB2bUnitDao().getAllB2BUnits();
+		final Set<UserPriceGroup> userPriceGroups = new HashSet<>();
+		if (CollectionUtils.isNotEmpty(b2bUnits))
+		{
+			b2bUnits.stream().forEach(unit -> {
+				if (null != unit.getUserPriceGroup())
+				{
+					userPriceGroups.add(unit.getUserPriceGroup());
+				}
+
+				if (null != unit.getUserDiscountGroup())
+				{
+					final UserDiscountGroup discountGroup = unit.getUserDiscountGroup();
+					final Optional<UserPriceGroup> upgOptional = getEnumerationService().getEnumerationValues(UserPriceGroup.class)
+							.stream()
+							.filter(upg -> upg.getCode().equals(discountGroup.getCode())).findFirst();
+
+					if (upgOptional.isPresent())
+					{
+						userPriceGroups.add(upgOptional.get());
+					}
+				}
+			});
+		}
+		return userPriceGroups;
+
 	}
 
 	/**
@@ -173,20 +217,44 @@ public class GallagherUserPriceGroupQualifierProvider implements GallagherQualif
 		this.sessionService = sessionService;
 	}
 
-	public EnumerationService getEnumerationService()
+
+	/**
+	 * @return the b2bUnitDao
+	 */
+	public GallagherB2BUnitDao getB2bUnitDao()
 	{
-		return enumerationService;
+		return b2bUnitDao;
 	}
 
-	@Required
-	public void setEnumerationService(final EnumerationService enumerationService)
+	/**
+	 * @param b2bUnitDa
+	 *            the b2bUnitDao to set
+	 */
+	public void setB2bUnitDaofinal (final GallagherB2BUnitDao b2bUnitDao)
 	{
-		this.enumerationService = enumerationService;
+		this.b2bUnitDao = b2bUnitDao;
 	}
 
 	@Override
 	public Set<Class<?>> getSupportedTypes()
 	{
 		return this.supportedTypes;
+	}
+
+	/**
+	 * @return the enumerationService
+	 */
+	public EnumerationService getEnumerationService()
+	{
+		return enumerationService;
+	}
+
+	/**
+	 * @param enumerationService
+	 *           the enumerationService to set
+	 */
+	public void setEnumerationService(final EnumerationService enumerationService)
+	{
+		this.enumerationService = enumerationService;
 	}
 }

@@ -310,7 +310,6 @@ public class GallagherProductPriceRangeValueResolver extends ProductPricesValueR
 	protected void addFieldValues(final InputDocument document, final IndexedProperty indexedProperty,
 			final ValueResolverContext<Object, List<PriceInformation>> resolverContext) throws FieldValueProviderException
 	{
-		boolean hasPrice = false;
 
 		final List<PriceInformation> priceInformations = resolverContext.getQualifierData();
 		if (priceInformations != null)
@@ -318,14 +317,8 @@ public class GallagherProductPriceRangeValueResolver extends ProductPricesValueR
 			final Double priceValue = getPriceValue(indexedProperty, priceInformations);
 			if (priceValue != null)
 			{
-				hasPrice = true;
 				document.addField(indexedProperty, priceValue, resolverContext.getFieldQualifier());
 			}
-		}
-
-		if (!hasPrice)
-		{
-			document.addField(indexedProperty, new Double(0.0), resolverContext.getFieldQualifier());
 		}
 	}
 

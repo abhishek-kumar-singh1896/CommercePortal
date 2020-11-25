@@ -74,7 +74,7 @@ public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactor
 		final String salesArea = getSalesArea(ctx);
 		final String customerGroup = getCustomerGroup(ctx);
 
-		if (StringUtils.isBlank(salesArea))
+		if (StringUtils.isBlank(salesArea) || StringUtils.isBlank(customerGroup))
 		{
 			final Collection<PriceRow> result = super.queryPriceRows4Price(ctx, product, productGroup, user, userGroup, date,
 					currency, giveAwayMode);
@@ -114,7 +114,7 @@ public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactor
 		final String salesArea = getSalesArea(ctx);
 		final String customerGroup = getCustomerGroup(ctx);
 
-		if (StringUtils.isBlank(salesArea) || !salesArea.contains(SEPARATOR))
+		if (StringUtils.isBlank(salesArea) || !salesArea.contains(SEPARATOR) || StringUtils.isBlank(customerGroup))
 		{
 			final Collection<? extends AbstractDiscountRow> result = super.queryDiscounts4Price(ctx, product, productGroup, user,
 					userGroup);
