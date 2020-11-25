@@ -46,25 +46,27 @@ ACC.cart = {
 					url : ACC.config.encodedContextPath + "/cart/getRecommendedProducts",
 					success : function(data) {
 					
-						$('#recommendationsModal').append(data);
-						$('.flexslider').flexslider({
-			    		    animation: "slide",
-			    		    animationLoop: true,
-			    		    slideshow: false,
-			    		    itemWidth: 250,
-			    		    itemMargin: 10,
-			    		    minItems: 1,
-			    		    maxItems: 4,
-			    		    start: function(slider){
-        						$('.flexslider').resize();
-    						}
-			    		  });
-			    		  
-						$('#recommendations-overlay').show();
-						$('.close').click(function(){
-				    	 $('#recommendationsModal').empty();
-       						 $('.modaldata').hide();
-    					 });
+						if(!data || data!=null || data!=undefined){
+							$('#recommendationsModal').append(data);
+							$('.flexslider').flexslider({
+				    		    animation: "slide",
+				    		    animationLoop: true,
+				    		    slideshow: false,
+				    		    itemWidth: 250,
+				    		    itemMargin: 10,
+				    		    minItems: 1,
+				    		    maxItems: 4,
+				    		    start: function(slider){
+	        						$('.flexslider').resize();
+	    						}
+				    		  });
+				    		  
+							$('#recommendations-overlay').show();
+							$('.close').click(function(){
+					    	 $('#recommendationsModal').empty();
+	       						 $('.modaldata').hide();
+	    					 });
+						}	
 					},
 					error : function(data) {
 						console.log('An error occurred.');

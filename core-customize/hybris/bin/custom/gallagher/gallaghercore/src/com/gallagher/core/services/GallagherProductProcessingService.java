@@ -43,4 +43,13 @@ public interface GallagherProductProcessingService
 	 */
 	boolean syncProductReferenceForBaseProduct(final String catalogId, final Date lastStartTime);
 
+	/**
+	 * It will sync recommendedProducts and recommendedCategories attribute of base product only.
+	 *
+	 * @param catalogId
+	 * @param lastStartTime
+	 * @return process result
+	 */
+	boolean syncRecommendationsForBaseProduct(final String catalogId, final Date lastStartTime);
+
 }
