@@ -10,7 +10,6 @@ INSERT_UPDATE SolrValueRange ; &rangeValueRefID        ; solrValueRangeSet(name)
                              ; rangeMultiwireDistance4 ; MultiwireDistanceRange               ; 13 - 19           ; 13   ; 19.999 
                              ; rangeMultiwireDistance5 ; MultiwireDistanceRange               ; 20+           ; 20   ; 9999
                              
-                             
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true]         ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                                                                       
                                 ; PropertySizeHectaresRange ;           ; double ; rangePropertySizeHectare1,rangePropertySizeHectare2,rangePropertySizeHectare3,rangePropertySizeHectare4,rangePropertySizeHectare5
                                 
@@ -33,6 +32,9 @@ INSERT_UPDATE SolrValueRange ; &rangeValueRefID   ; solrValueRangeSet(name)[uniq
                              ; rangeEnergyStored5 ; EnergyStoredRange                    ; 51+	             ; 51   ; 9999   
 							 
                              
+UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; rangeSets(name)   
+                           ; $solrIndexedType                         ; Energy Stored     ; EnergyStoredRange 
+                               
                              
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true] ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)   
                                 ; Voltage500mRange  ;           ; double ; rangeVoltage500m1,rangeVoltage500m2 
