@@ -35,6 +35,7 @@
 		<property name="description" type="java.lang.String" />
 		<property name="mime" type="java.lang.String" />
 		<property name="size" type="java.lang.String" />
+		<property name="baseStoreCodes" type="java.util.List&lt;String>" />
 	</bean>
 
 	<bean class="de.hybris.platform.commercefacades.product.data.PDPSimulatorData">
