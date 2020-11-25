@@ -10,6 +10,7 @@ import de.hybris.platform.commercefacades.product.data.ProductData;
 import de.hybris.platform.core.model.media.MediaModel;
 import de.hybris.platform.core.model.product.ProductModel;
 import de.hybris.platform.servicelayer.dto.converter.ConversionException;
+import de.hybris.platform.store.BaseStoreModel;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -70,6 +71,15 @@ public class GallagherProductDataSheetPopulator<SOURCE extends ProductModel, TAR
 			imageData.setMime(dataSheet.getMime());
 			imageData.setImageType(imageType);
 			imageData.setSize(dataSheet.getSize() / 1000000.0 + " mb");
+			final List<String> baseStoreList = new ArrayList<>();
+			if (null != dataSheet.getBaseStores())
+			{
+				for (final BaseStoreModel store : dataSheet.getBaseStores())
+				{
+					baseStoreList.add(store.getUid());
+				}
+			}
+			imageData.setBaseStoreCodes(baseStoreList);
 			list.add(imageData);
 		}
 	}
