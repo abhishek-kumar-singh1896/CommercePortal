@@ -26,16 +26,8 @@ $picture=media(code, $contentCV);
 $siteResource=jar:com.gallagher.b2b.initialdata.constants.B2badvanceInitialDataConstants&/gallagherb2binitialdata/import/sampledata/contentCatalogs/$contentCatalog
 
 # Language
-$lang=en
+$lang=en_NZ
 
-INSERT_UPDATE IntegrationObjectItemAttribute ; integrationObjectItem(integrationObject(code), code)[unique = true] ; attributeName[unique = true] ; attributeDescriptor(enclosingType(code), qualifier) ; returnIntegrationObjectItem(integrationObject(code), code) ; unique[default = false] 
-                                             ; OutboundOMMOrderOMSOrder:SAPCpiOutboundOrder                        ; requiredDeliveryDate         ; SAPCpiOutboundOrder:requiredDeliveryDate            ;                                                            ;                         
-                                             ; OutboundOMMOrderOMSOrder:SAPCpiOutboundOrder                        ; comment                      ; SAPCpiOutboundOrder:comment                         ;                                                            ;                         
-                                             ; OutboundOMMOrderOMSOrder:SAPCpiOutboundOrderItem                    ; additionalProductDetail      ; SAPCpiOutboundOrderItem:additionalProductDetail     ;                                                            ;                         
-
-
-
-       
 
 # Email page Template
 INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
@@ -59,7 +51,7 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
  
  
  
-# Email Pages
+
 INSERT_UPDATE EmailPage ; $contentCV[unique=true] ; uid[unique=true]    ; name                  ; masterTemplate(uid,$contentCV) ; defaultPage ; approvalStatus(code)[default='approved'] ; fromEmail                        ; fromName          
                         ;                         ; OrderConfirmationEmail ; Customer Update Email ; OrderConfirmationEmailTemplate    ; true        ;                                          ; noreply@em90.comms.gallagher.com ; Gallagher Security
 
@@ -68,7 +60,8 @@ UPDATE EmailPage ; $contentCV[unique=true] ; uid[unique=true]    ; previewImage(
 
 UPDATE EmailPage ; $contentCV[unique=true] ; uid[unique=true]    ; fromEmail[lang=$lang]              ; fromName[lang=$lang]       
                  ;                         ; OrderConfirmationEmail ; "order@security.gallagher.com" ; "Gallagher Security"
- 
+   
+   
 # Email velocity templates
 INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
 ;securityB2B_Email_Order_Confirmation_Body;$gallagherEmailPackageName.GallagherOrderNotificationEmailContext
@@ -92,29 +85,3 @@ UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$c
 ;;EmailTopSlot;EmailBannerSaleNowOnImage
 ;;EmailBottomSlot;EmailBannerFreeDeliveryImage
 ;;EmailSiteLogoSlot;EmailBannerSiteLogo
-
-  
-  
- # Language
-# Media
-INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];folder(qualifier)[default='images']
-;;/images/theme/banner-free-delivery.jpg;banner-free-delivery.jpg;$siteResource/images/theme/banner-free-delivery.jpg;;
-;;/images/theme/banner-sale-now-on.jpg;banner-sale-now-on.jpg;$siteResource/images/theme/banner-sale-now-on.jpg;;
-;;/images/theme/logo-gallagher_email.png;logo-gallagher_email.png;$siteResource/images/theme/logo-gallagher.png;;
-
-# CMS Image Components
-UPDATE CMSImageComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
-;;EmailBannerFreeDeliveryImage;/images/theme/banner-free-delivery.jpg;
-;;EmailBannerSaleNowOnImage;/images/theme/banner-sale-now-on.jpg;
-;;EmailBannerSiteLogo;/images/theme/logo-gallagher_email.png;
-
-    
-INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];name;page;actions(uid,$contentCV);&componentRef
-;;CartComponent;Cart Display Component;cartDisplay.jsp;;CartComponent
-
-INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
-;;TopContent-cartPage;Top Slot for Cart Page;true;CartComponent
-    
-
- INSERT_UPDATE MiniCartComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;totalDisplay(code);shownProductCount;lightboxBannerComponent(&componentRef);restrictions(uid,$contentCV)
-;;MiniCart;Mini Cart;MiniCart;SUBTOTAL;3;;GallagherSiteTransactionRestriction                  
