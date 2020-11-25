@@ -81,12 +81,14 @@ function configureSingleAutocompleteRow(num, minChars, resultSize, url) {
          var imageurl = '';
          var imageCartUrl = '';
          counter++;
-         for (i = 0; i < item.images.length; i++) {
-             if (item.images[i].format == "thumbnail") {
-                 imageurl = item.images[i].url;
-             }
-             if (item.images[i].format == "cartIcon") {
-            	 imageCartUrl = item.images[i].url;
+         if(item.images != null){
+        	 for (i = 0; i < item.images.length; i++) {
+                 if (item.images[i].format == "thumbnail") {
+                     imageurl = item.images[i].url;
+                 }
+                 if (item.images[i].format == "cartIcon") {
+                	 imageCartUrl = item.images[i].url;
+                 }
              }
          }
          return $("<li id='licnt_" + counter + "'/>")
@@ -101,9 +103,11 @@ function configureSingleAutocompleteRow(num, minChars, resultSize, url) {
 function qoGenerateTdDivContent(code, manufacturer, name, imageUrl) {
 	var divContent = "<div style='clear: both; width:150px;'>" 
         +"<div class='pr-img'><img src='" + imageUrl + "' alt='' /></div>"
-        +"<div class='pr-code'>" + code + "</div>"
-        +"<div class='pr-manufacturer'>" + manufacturer + "</div>"
-        +"<div class='pr-name'>" + name + "</div></div>";
+        +"<div class='pr-code'>" + code + "</div>";
+        if(manufacturer != null){
+        	divContent= divContent + "<div class='pr-manufacturer'>" + manufacturer + "</div>";
+        }        
+        divContent=divContent +"<div class='pr-name'>" + name + "</div></div>";
 	return divContent;
 }
 
@@ -313,11 +317,13 @@ function populateSucessData(data){
 	             var manufacturer = obj.productData.manufacturer;
 	             var imageurl = '';
 	             $("#isValidProduct").val('true');
-	             for (i = 0; i < obj.productData.images.length; i++) {
-	            	 if (obj.productData.images[i].format == "thumbnail") {
-	                     imageurl = obj.productData.images[i].url;
-	                     break;
-	                 }
+	             if(obj.productData.images!=null){
+		             for (i = 0; i < obj.productData.images.length; i++) {
+		            	 if (obj.productData.images[i].format == "thumbnail") {
+		                     imageurl = obj.productData.images[i].url;
+		                     break;
+		                 }
+		             }
 	             }
 	             
 	             var divContent = qoGenerateTdDivContent(code, manufacturer, name, imageurl);
