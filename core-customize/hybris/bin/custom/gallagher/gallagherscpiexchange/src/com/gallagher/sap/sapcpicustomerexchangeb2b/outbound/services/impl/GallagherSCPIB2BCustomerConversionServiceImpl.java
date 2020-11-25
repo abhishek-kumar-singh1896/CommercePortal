@@ -95,6 +95,29 @@ public class GallagherSCPIB2BCustomerConversionServiceImpl extends SapCpiB2BCust
 
 	}
 
+	@Override
+	public SAPCpiOutboundB2BCustomerModel convertB2BCustomerToSapCpiBb2BCustomer(final B2BCustomerModel b2bCustomerModel,
+			final String sessionLanguage)
+	{
+
+		final SAPCpiOutboundB2BCustomerModel sapCpiOutboundB2BCustomer = new SAPCpiOutboundB2BCustomerModel();
+
+		// Hybris B2B Unit Maps To SAP B2B Customer
+		final B2BUnitModel rootB2BUnit = getB2bUnitService().getRootUnit(b2bCustomerModel.getDefaultB2BUnit());
+		sapCpiOutboundB2BCustomer.setUid(rootB2BUnit.getUid());
+		sapCpiOutboundB2BCustomer.setAddressUUID(readSapAddressUUID(rootB2BUnit));
+		mapOutboundDestination(sapCpiOutboundB2BCustomer);
+
+		// Hybris B2B Customers Maps To SAP B2B Contacts
+		final Set<SAPCpiOutboundB2BContactModel> sapCpiOutboundB2BContacts = new HashSet<>();
+
+		sapCpiOutboundB2BContacts.add(convertB2BContactToSapCpiBb2BContact(rootB2BUnit, b2bCustomerModel, sessionLanguage));
+		sapCpiOutboundB2BCustomer.setSapCpiOutboundB2BContacts(sapCpiOutboundB2BContacts);
+
+		return sapCpiOutboundB2BCustomer;
+
+	}
+
 	protected SAPCpiOutboundB2BContactModel convertB2BContactToSapCpiBb2BContact(final B2BUnitModel b2bUnitModel,
 			final B2BCustomerModel b2bCustomerModel, final String sessionLanguage, final List<String> addedUnits,
 			final List<String> deletedUnits)

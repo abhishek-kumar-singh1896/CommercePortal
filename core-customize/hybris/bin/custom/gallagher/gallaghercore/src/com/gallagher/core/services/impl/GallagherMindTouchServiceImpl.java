@@ -21,13 +21,14 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.Hex;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.dom4j.Attribute;
@@ -193,12 +194,22 @@ public class GallagherMindTouchServiceImpl implements GallagherMindTouchService
 				{
 					response.append(input);
 				}
-				LOG.info(response.toString());
+				LOG.debug(response.toString());
 				responseString = response.toString();
 			}
 
 			final String uid = getUserID(responseString);
-			assignGroupForUser(uid, token, customer);
+
+			final List<PrincipalGroupModel> userGroups = customer.getGroups().stream().filter(group -> isUserGroup(group))
+					.collect(Collectors.toList());
+
+			if (CollectionUtils.isNotEmpty(userGroups))
+			{
+				for (final PrincipalGroupModel principalGroup : userGroups)
+				{
+					assignGroupForUser(uid, token, principalGroup);
+				}
+			}
 		}
 		else
 		{
@@ -221,7 +232,7 @@ public class GallagherMindTouchServiceImpl implements GallagherMindTouchService
 	private String getUserXml(final B2BCustomerModel b2bCustomer)
 	{
 		final String userName = b2bCustomer.getKeycloakGUID();
-		final String email = b2bCustomer.getUid();
+		final String email = b2bCustomer.getEmailID();
 		final String fullName = b2bCustomer.getName();
 
 		final StringBuilder sb = new StringBuilder("<user>");
@@ -275,17 +286,16 @@ public class GallagherMindTouchServiceImpl implements GallagherMindTouchService
 	 * @param uid
 	 * @param token
 	 * @param customer
+	 * @param userGroups
 	 *
 	 */
-	private void assignGroupForUser(final String uid, final String token, final B2BCustomerModel customer) throws IOException
+	private void assignGroupForUser(final String uid, final String token, final PrincipalGroupModel principalUserGroup)
+			throws IOException
 	{
 		final String userName = getConfigurationService().getConfiguration().getString(AUTHENTICATION_URL_USERNAME);
 		final String password = getConfigurationService().getConfiguration().getString(AUTHENTICATION_URL_PASSWORD);
 
-		final Optional<PrincipalGroupModel> groupOptional = customer.getGroups().stream().filter(group -> isUserGroup(group))
-				.findFirst();
-
-		final String userGroup = groupOptional.isPresent() ? groupOptional.get().getUid() : StringUtils.EMPTY;
+		final String userGroup = principalUserGroup.getUid();
 
 		final String group = StringUtils.isNotBlank(userGroup)
 				? mindTouchRoleMapping.get(userGroup).replaceAll(WHITE_SPACE, "").toLowerCase()
@@ -293,7 +303,8 @@ public class GallagherMindTouchServiceImpl implements GallagherMindTouchService
 
 		final String groupId = getConfigurationService().getConfiguration().getString("mindtouch.group." + group);
 
-		if(StringUtils.isBlank(groupId)) {
+		if (StringUtils.isBlank(groupId))
+		{
 			throw new IOException("Group Id is blank, cannot be assigned");
 		}
 
