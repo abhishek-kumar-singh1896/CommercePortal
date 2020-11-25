@@ -124,7 +124,9 @@
 														</div>
 														<div class="pr-attr">
 															<div class="pr-code">${pr.code}</div>
+															<c:if test="${pr.manufacturer != 'null'}">
 															<div class="pr-manufacturer">${pr.manufacturer}</div>
+															</c:if>
 															<div class="pr-name">${pr.name}</div>
 														</div>
 													</div>
