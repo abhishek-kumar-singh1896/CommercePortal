@@ -10,7 +10,6 @@ INSERT_UPDATE SolrValueRange ; &rangeValueRefID        ; solrValueRangeSet(name)
                              ; rangeMultiwireDistance4 ; MultiwireDistanceRange               ; 13 - 19           ; 13   ; 19.999 
                              ; rangeMultiwireDistance5 ; MultiwireDistanceRange               ; 20+           ; 20   ; 9999
                              
-                             
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true]         ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)                                                                       
                                 ; PropertySizeHectaresRange ;           ; double ; rangePropertySizeHectare1,rangePropertySizeHectare2,rangePropertySizeHectare3,rangePropertySizeHectare4,rangePropertySizeHectare5
                                 
@@ -26,13 +25,16 @@ INSERT_UPDATE SolrValueRangeSet ; name[unique=true] ; qualifier ; type   ; solrV
                                 ; EnergyStoredRange ;           ; double ; rangeEnergyStored1,rangeEnergyStored2,rangeEnergyStored3,rangeEnergyStored4,rangeEnergyStored5 
                                 
 INSERT_UPDATE SolrValueRange ; &rangeValueRefID   ; solrValueRangeSet(name)[unique=true] ; name[unique=true] ; from ; to     
-                             ; rangeEnergyStored1 ; EnergyStoredRange                    ; 0.1 - 5           ; 0    ; 5.999  
-                             ; rangeEnergyStored2 ; EnergyStoredRange                    ; 6 - 10            ; 6    ; 10.999 
-                             ; rangeEnergyStored3 ; EnergyStoredRange                    ; 11 - 20           ; 11   ; 20.999 
-                             ; rangeEnergyStored4 ; EnergyStoredRange                    ; 21 - 50           ; 21   ; 50.999 
+                             ; rangeEnergyStored1 ; EnergyStoredRange                    ; 0.1 - 5.9           ; 0    ; 5.999  
+                             ; rangeEnergyStored2 ; EnergyStoredRange                    ; 6 - 10.9            ; 6    ; 10.999 
+                             ; rangeEnergyStored3 ; EnergyStoredRange                    ; 11 - 20.9           ; 11   ; 20.999 
+                             ; rangeEnergyStored4 ; EnergyStoredRange                    ; 21 - 50.9           ; 21   ; 50.999 
                              ; rangeEnergyStored5 ; EnergyStoredRange                    ; 51+	             ; 51   ; 9999   
 							 
                              
+UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; rangeSets(name)   
+                           ; $solrIndexedType                         ; Energy Stored     ; EnergyStoredRange 
+                               
                              
 INSERT_UPDATE SolrValueRangeSet ; name[unique=true] ; qualifier ; type   ; solrValueRanges(&rangeValueRefID)   
                                 ; Voltage500mRange  ;           ; double ; rangeVoltage500m1,rangeVoltage500m2 
@@ -109,7 +111,7 @@ UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[uni
                            ; $solrIndexedType                         ; Voltage at 2km of fence                       ; Voltage2kmRange            
                            ; $solrIndexedType                         ; Voltage at 5km of fence                       ; Voltage5kmRange            
                            ; $solrIndexedType                         ; Voltage at 10km of fence                      ; Voltage10kmRange           
-                           ; $solrIndexedType                         ; Ohms Per Km (Wire)                           ; OhmsPerKmTapesRange        
-#                           ; $solrIndexedType                         ; Ohms Per Km                         ; OhmsPerKmWireAndCableRange 
+#                           ; $solrIndexedType                         ; Ohms Per Km (Wire)                           ; OhmsPerKmWireAndCableRange        
+                           ; $solrIndexedType                         ; Ohms Per Km                         ; OhmsPerKmTapesRange 
 #                           ; $solrIndexedType                         ; Number of Traits Recorded                     ; NumberOfTraitsRange  
  

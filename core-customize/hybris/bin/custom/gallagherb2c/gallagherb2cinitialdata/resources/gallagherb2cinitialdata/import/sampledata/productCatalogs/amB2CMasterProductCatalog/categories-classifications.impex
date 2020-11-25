@@ -530,6 +530,7 @@ INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;position;$unit;attribut
 ;reels-and-accessories-pf;width-or-length;11;mm;number
 ;reels-and-accessories-pf;driver-capacity-long;12;;
 ;reels-and-accessories-pf;product-type;13;;
+;reels-and-accessories-pf;fence-type;14;;
 
 
 
