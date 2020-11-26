@@ -206,6 +206,11 @@
 					<persistence type="property" />
 					<description>Indicates email address of a Customer</description>
 				</attribute>
+			    <attribute autocreate="true" generate="true" qualifier="mindtouchID" type="java.lang.String">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<description>Used to store mindtouch ID</description>
+				</attribute>
 			</attributes>
 		</itemtype>
 		

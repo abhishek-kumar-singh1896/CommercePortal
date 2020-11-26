@@ -77,7 +77,14 @@ public class GallagherMindTouchServiceImpl implements GallagherMindTouchService
 
 	}
 
+	@Override
+	public void updateCustomerInMindTouch(final B2BCustomerModel customer) throws IOException, DocumentException
+	{
+		LOG.debug("Processing the user for Mindtouch");
+		final String token = getAuthentication();
+		updateUserInMindTouch(token, customer);
 
+	}
 	/**
 	 * This method authenticates the request
 	 *
@@ -151,23 +158,8 @@ public class GallagherMindTouchServiceImpl implements GallagherMindTouchService
 
 		LOG.info("Begin Creating User in Mindtouch!");
 
-		//Get the end point url
-		final URL url = new URL(endPointUrl);
-
-		final String auth = userName + ":" + password;
-		final byte[] encodedAuth = Base64.encodeBase64(auth.getBytes(StandardCharsets.UTF_8));
-		//Auth header value
-		final String authHeaderValue = "Basic " + new String(encodedAuth);
-
-		//Creating the connection for url
-		final HttpURLConnection con = (HttpURLConnection) url.openConnection();
-		con.setRequestMethod("POST");
-
-		//Setting request proeprty and header values
-		con.setRequestProperty(TOKEN_TYPE, token);
-		con.setRequestProperty("Content-Type", MediaType.TEXT_XML_VALUE);
-		con.setRequestProperty("Authorization", authHeaderValue);
-		con.setDoOutput(true);
+		final String httpMethod = "POST";
+		final HttpURLConnection con = createConnection(endPointUrl, token, httpMethod, userName, password);
 
 		try (final OutputStream outputStream = con.getOutputStream())
 		{
@@ -199,6 +191,7 @@ public class GallagherMindTouchServiceImpl implements GallagherMindTouchService
 			}
 
 			final String uid = getUserID(responseString);
+			customer.setMindtouchID(uid);
 
 			final List<PrincipalGroupModel> userGroups = customer.getGroups().stream().filter(group -> isUserGroup(group))
 					.collect(Collectors.toList());
@@ -216,6 +209,179 @@ public class GallagherMindTouchServiceImpl implements GallagherMindTouchService
 			throw new IOException("Error while creating user in mindtouch :: " + responseCode);
 		}
 
+	}
+
+
+	/**
+	 * @param endPointUrl
+	 * @param token
+	 * @param httpMethod
+	 * @param password
+	 * @param userName
+	 * @return
+	 * @throws IOException
+	 */
+	private HttpURLConnection createConnection(final String endPointUrl, final String token, final String httpMethod,
+			final String userName, final String password) throws IOException
+	{
+		//Get the end point url
+		final URL url = new URL(endPointUrl);
+
+		final String auth = userName + ":" + password;
+		final byte[] encodedAuth = Base64.encodeBase64(auth.getBytes(StandardCharsets.UTF_8));
+		//Auth header value
+		final String authHeaderValue = "Basic " + new String(encodedAuth);
+
+		//Creating the connection for url
+		final HttpURLConnection con = (HttpURLConnection) url.openConnection();
+		con.setRequestMethod(httpMethod);
+
+		//Setting request proeprty and header values
+		con.setRequestProperty(TOKEN_TYPE, token);
+		con.setRequestProperty("Content-Type", MediaType.TEXT_XML_VALUE);
+		con.setRequestProperty("Authorization", authHeaderValue);
+		con.setDoOutput(true);
+
+		return con;
+	}
+
+	/**
+	 * This method creates the user at mindtouch end
+	 *
+	 * @param token
+	 * @param user
+	 * @throws DocumentException
+	 */
+	private void updateUserInMindTouch(final String token, final B2BCustomerModel customer) throws IOException, DocumentException
+	{
+		final String userName = getConfigurationService().getConfiguration().getString(AUTHENTICATION_URL_USERNAME);
+		final String password = getConfigurationService().getConfiguration().getString(AUTHENTICATION_URL_PASSWORD);
+		final String endPoint = getConfigurationService().getConfiguration().getString(END_POINT_URL);
+
+		final String endPointUrl = endPoint + "/users/" + customer.getMindtouchID();
+
+		LOG.info("Updating User in Mindtouch!");
+
+		final String httpMethod = "GET";
+		final HttpURLConnection con = createConnection(endPointUrl, token, httpMethod, userName, password);
+
+		//Get the response code.
+		final int responseCode = con.getResponseCode();
+
+		//if status is 200 OK log the response
+		String responseString = StringUtils.EMPTY;
+
+		if (responseCode == HttpURLConnection.HTTP_OK)
+		{
+			LOG.info("User created sucessfully in mindtouch ");
+			try (final BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream())))
+			{
+				String input = StringUtils.EMPTY;
+				final StringBuilder response = new StringBuilder();
+
+				while ((input = in.readLine()) != null)
+				{
+					response.append(input);
+				}
+				LOG.debug(response.toString());
+				responseString = response.toString();
+			}
+
+			final String uid = getUserID(responseString);
+
+			updateCustomer(customer, uid, token);
+		}
+		else
+		{
+			throw new IOException("Error while creating user in mindtouch :: " + responseCode);
+		}
+
+	}
+
+	/**
+	 * @param customer
+	 * @param uid
+	 * @param token
+	 * @throws IOException
+	 */
+	private void updateCustomer(final B2BCustomerModel customer, final String uid, final String token) throws IOException
+	{
+		final String userName = getConfigurationService().getConfiguration().getString(AUTHENTICATION_URL_USERNAME);
+		final String password = getConfigurationService().getConfiguration().getString(AUTHENTICATION_URL_PASSWORD);
+		final String endPoint = getConfigurationService().getConfiguration().getString(END_POINT_URL);
+
+		final String endPointUrl = endPoint + "/users/" + uid;
+
+		LOG.info("Updating User in Mindtouch!");
+
+		final String httpMethod = "PUT";
+		final HttpURLConnection con = createConnection(endPointUrl, token, httpMethod, userName, password);
+
+		try (final OutputStream outputStream = con.getOutputStream())
+		{
+			final String userXml = getUserXml(customer);
+			LOG.debug(userXml);
+			outputStream.write(userXml.getBytes());
+		}
+
+		//Get the response code.
+		final int responseCode = con.getResponseCode();
+		LOG.info("Update status :: " + responseCode);
+		if (responseCode != 200)
+		{
+			throw new IOException("Status while updating user in mindtouch " + responseCode);
+		}
+
+	}
+
+	/**
+	 * This method assign group to the user.
+	 *
+	 * @param uid
+	 * @param token
+	 * @param customer
+	 * @param userGroups
+	 *
+	 */
+	private void assignGroupForUser(final String uid, final String token, final PrincipalGroupModel principalUserGroup)
+			throws IOException
+	{
+		final String userName = getConfigurationService().getConfiguration().getString(AUTHENTICATION_URL_USERNAME);
+		final String password = getConfigurationService().getConfiguration().getString(AUTHENTICATION_URL_PASSWORD);
+
+		final String userGroup = principalUserGroup.getUid();
+
+		final String group = StringUtils.isNotBlank(userGroup)
+				? mindTouchRoleMapping.get(userGroup).replaceAll(WHITE_SPACE, "").toLowerCase()
+				: StringUtils.EMPTY;
+
+		final String groupId = getConfigurationService().getConfiguration().getString("mindtouch.group." + group);
+
+		if (StringUtils.isBlank(groupId))
+		{
+			throw new IOException("Group Id is blank, cannot be assigned");
+		}
+
+		final String endPoint = getConfigurationService().getConfiguration().getString(END_POINT_URL);
+		final String endPointUrl = endPoint + "/groups/" + groupId + "/users";
+
+		final String httpMethod = "POST";
+		final HttpURLConnection con = createConnection(endPointUrl, token, httpMethod, userName, password);
+
+		try (final OutputStream os = con.getOutputStream())
+		{
+			final String userXml = "<users><user id=\"" + uid + "\"/></users>";
+			LOG.debug(userXml);
+			os.write(userXml.getBytes());
+		}
+		// For POST only - END
+
+		final int responseCode = con.getResponseCode();
+		if (responseCode != HttpURLConnection.HTTP_OK)
+		{
+			throw new IOException("Error while assigning user group in mindtouch :: " + responseCode);
+		}
+		LOG.debug("POST Response Code :: " + responseCode);
 	}
 
 
@@ -279,70 +445,6 @@ public class GallagherMindTouchServiceImpl implements GallagherMindTouchService
 		return userID;
 	}
 
-
-	/**
-	 * This method assign group to the user.
-	 *
-	 * @param uid
-	 * @param token
-	 * @param customer
-	 * @param userGroups
-	 *
-	 */
-	private void assignGroupForUser(final String uid, final String token, final PrincipalGroupModel principalUserGroup)
-			throws IOException
-	{
-		final String userName = getConfigurationService().getConfiguration().getString(AUTHENTICATION_URL_USERNAME);
-		final String password = getConfigurationService().getConfiguration().getString(AUTHENTICATION_URL_PASSWORD);
-
-		final String userGroup = principalUserGroup.getUid();
-
-		final String group = StringUtils.isNotBlank(userGroup)
-				? mindTouchRoleMapping.get(userGroup).replaceAll(WHITE_SPACE, "").toLowerCase()
-				: StringUtils.EMPTY;
-
-		final String groupId = getConfigurationService().getConfiguration().getString("mindtouch.group." + group);
-
-		if (StringUtils.isBlank(groupId))
-		{
-			throw new IOException("Group Id is blank, cannot be assigned");
-		}
-
-		final String endPoint = getConfigurationService().getConfiguration().getString(END_POINT_URL);
-		final String endPointUrl = endPoint + "/groups/" + groupId + "/users";
-
-		final URL obj = new URL(endPointUrl);
-
-		final String auth = userName + ":" + password;
-		final byte[] encodedAuth = Base64.encodeBase64(auth.getBytes(StandardCharsets.UTF_8));
-		final String authHeaderValue = "Basic " + new String(encodedAuth);
-
-
-		final HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-		con.setRequestMethod("POST");
-		con.setRequestProperty("X-Deki-Token", token);
-		con.setRequestProperty("Content-Type", "text/xml;utf-8");
-		con.setRequestProperty("Authorization", authHeaderValue);
-
-		LOG.debug("authheader " + authHeaderValue);
-		// For POST only - START
-		con.setDoOutput(true);
-
-		try (final OutputStream os = con.getOutputStream())
-		{
-			final String userXml = "<users><user id=\"" + uid + "\"/></users>";
-			LOG.debug(userXml);
-			os.write(userXml.getBytes());
-		}
-		// For POST only - END
-
-		final int responseCode = con.getResponseCode();
-		if (responseCode != HttpURLConnection.HTTP_OK)
-		{
-			throw new IOException("Error while assigning user group in mindtouch :: " + responseCode);
-		}
-		LOG.debug("POST Response Code :: " + responseCode);
-	}
 
 	/**
 	 * @param group

@@ -18,4 +18,11 @@ public interface GallagherMindTouchService
 {
 
 	void pushCustomerToMindTouch(final B2BCustomerModel customer) throws IOException, DocumentException;
+
+	/**
+	 * @param customer
+	 * @throws IOException
+	 * @throws DocumentException
+	 */
+	void updateCustomerInMindTouch(B2BCustomerModel customer) throws IOException, DocumentException;
 }

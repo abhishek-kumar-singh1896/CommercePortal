@@ -1,10 +1,11 @@
 package com.gallagher.facades.company.impl;
 
+import static de.hybris.platform.servicelayer.util.ServicesUtil.validateParameterNotNullStandardMessage;
+
 import de.hybris.platform.b2b.model.B2BCustomerModel;
 import de.hybris.platform.b2bcommercefacades.company.impl.DefaultB2BUserFacade;
 import de.hybris.platform.commercefacades.user.data.CustomerData;
 import de.hybris.platform.servicelayer.event.EventService;
-import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 import de.hybris.platform.servicelayer.i18n.CommonI18NService;
 import de.hybris.platform.site.BaseSiteService;
 import de.hybris.platform.store.services.BaseStoreService;
@@ -15,6 +16,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.dom4j.DocumentException;
 import org.springframework.beans.factory.annotation.Required;
+import org.springframework.util.Assert;
 
 import com.gallagher.core.enums.BU;
 import com.gallagher.core.events.GallagherB2BRegistrationEvent;
@@ -42,34 +44,34 @@ public class GallagherB2BUserFacadeImpl extends DefaultB2BUserFacade
 	@Override
 	public void updateCustomer(final CustomerData customerData)
 	{
-		super.updateCustomer(customerData);
+		updateCustomerData(customerData);
 		publishCustomerRegistrationEvent(customerData);
+	}
 
-
-		String updateUid = StringUtils.EMPTY;
-		if (StringUtils.isNotBlank(customerData.getDisplayUid()))
+	/**
+	 * @param customerData
+	 */
+	private void updateCustomerData(final CustomerData customerData)
+	{
+		validateParameterNotNullStandardMessage("customerData", customerData);
+		Assert.hasText(customerData.getFirstName(), "The field [FirstName] cannot be empty");
+		Assert.hasText(customerData.getLastName(), "The field [LastName] cannot be empty");
+		B2BCustomerModel customerModel;
+		if (StringUtils.isEmpty(customerData.getUid()))
 		{
-			updateUid = BU.SEC.getCode().toLowerCase() + "|" + customerData.getDisplayUid();
+			customerModel = this.getModelService().create(B2BCustomerModel.class);
 		}
-		else if (customerData.getEmail() != null)
+		else
 		{
-			updateUid = BU.SEC.getCode().toLowerCase() + "|" + customerData.getEmail();
+			customerModel = getUserService().getUserForUID(customerData.getUid(), B2BCustomerModel.class);
 		}
-		B2BCustomerModel customerModel = null;
-		try
-		{
-			LOG.debug("Customer Uid to be updated :: " + updateUid);
-			customerModel = getUserService().getUserForUID(updateUid, B2BCustomerModel.class);
-		}
-		catch (final UnknownIdentifierException e)
-		{
-			LOG.error("Unknown identifier :: " + e.getMessage());
-		}
-
+		
 		if (customerModel != null)
 		{
 			pushToMindTouch(customerModel);
 		}
+		getModelService().save(getB2BCustomerReverseConverter().convert(customerData, customerModel));
+		
 	}
 
 	/**
