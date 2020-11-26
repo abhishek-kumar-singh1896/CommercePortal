@@ -133,7 +133,7 @@ public class GallagherB2BCustomerInterceptor extends DefaultB2BCustomerIntercept
 		{
 			b2bCustomer.setSapReplicationInfo(String.format("Sent to Data Hub at %s", ZonedDateTime.now().format(DTF)));
 			b2bCustomer.setCustomerID((String) getSapContactIdGenerator().generate());
-			b2bCustomer.setLoginDisabled(true);
+			b2bCustomer.setLoginDisabled(false);
 			final String sessionLanguage = getStoreSessionFacade().getCurrentLanguage() != null
 					? getStoreSessionFacade().getCurrentLanguage().getIsocode()
 					: "en";
