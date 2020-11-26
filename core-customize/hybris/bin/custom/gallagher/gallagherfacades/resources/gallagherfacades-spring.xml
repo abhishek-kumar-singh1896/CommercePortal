@@ -353,6 +353,11 @@
 		<property name="productConverter" ref="productConverter"/>
 		<property name="categoryConverter" ref="categoryConverter"/>
 	</bean>
+		
+	<alias name="gallagherB2CCartPopulator" alias="cartPopulator"/>
+    <bean id="gallagherB2CCartPopulator" class="com.gallagher.facades.order.converters.populator.GallagherB2CCartPopulator"
+          parent="defaultCartPopulator">
+    </bean>
 	
     <bean parent="modifyPopulatorList">
         <property name="list" ref="orderEntryProductConverter"/>
