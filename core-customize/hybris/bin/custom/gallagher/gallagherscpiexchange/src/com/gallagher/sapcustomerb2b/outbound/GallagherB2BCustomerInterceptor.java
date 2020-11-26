@@ -13,6 +13,7 @@ import de.hybris.platform.servicelayer.model.ItemModelContextImpl;
 import de.hybris.platform.servicelayer.user.UserService;
 
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -117,6 +118,28 @@ public class GallagherB2BCustomerInterceptor extends DefaultB2BCustomerIntercept
 			LOGGER.debug("The modified B2B customer will be sent to SAP backend!");
 			((GallagherSCPIB2BCustomerOutboundService) getB2bCustomerExportService()).prepareAndSend(customerModel, sessionLanguage,
 					addedUnits, deletedUnits);
+		}
+
+	}
+
+	/**
+	 *
+	 */
+	@Override
+	protected void sendB2BCustomerToSapBackend(final B2BCustomerModel b2bCustomer)
+	{
+
+		if (b2bCustomer.getCustomerID() == null || b2bCustomer.getCustomerID().isEmpty())
+		{
+			b2bCustomer.setSapReplicationInfo(String.format("Sent to Data Hub at %s", ZonedDateTime.now().format(DTF)));
+			b2bCustomer.setCustomerID((String) getSapContactIdGenerator().generate());
+			b2bCustomer.setLoginDisabled(true);
+			final String sessionLanguage = getStoreSessionFacade().getCurrentLanguage() != null
+					? getStoreSessionFacade().getCurrentLanguage().getIsocode()
+					: "en";
+			LOGGER.debug("The new B2B customer will be sent to SAP backend!");
+			((GallagherSCPIB2BCustomerOutboundService) getB2bCustomerExportService()).prepareAndSend(b2bCustomer, sessionLanguage,
+					getUnits(b2bCustomer.getGroups()), null);
 		}
 
 	}
