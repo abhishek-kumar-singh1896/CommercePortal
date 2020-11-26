@@ -15,6 +15,7 @@
 		<div class="checkout-success__body__headline">
 			<spring:theme code="checkout.orderConfirmation.thankYouForOrder" />
 		</div>
+		<p><spring:theme code="text.account.order.orderConfimationText"/></p>
 		<p><spring:theme code="text.account.order.orderNumberLabel"/><b> ${fn:escapeXml(orderData.code)}</b></p>
 		<p><spring:theme code="checkout.orderConfirmation.copySentToShort"/><b> ${fn:escapeXml(email)}</b></p>
 		<spring:theme code="checkout.orderConfirmation.message"/>
