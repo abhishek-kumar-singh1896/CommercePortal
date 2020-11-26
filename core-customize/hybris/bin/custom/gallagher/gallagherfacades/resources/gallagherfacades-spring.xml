@@ -321,7 +321,11 @@
 		class="com.gallagher.facades.checkout.flow.impl.GallagherDefaultB2BCheckoutFacade">
 		<property name="b2BUnitService" ref="b2bUnitService"/>
 	</bean>
-	
+		
+	<alias name="gallagherB2CCartPopulator" alias="cartPopulator"/>
+    <bean id="gallagherB2CCartPopulator" class="com.gallagher.facades.order.converters.populator.GallagherB2CCartPopulator"
+          parent="defaultCartPopulator">
+    </bean>
 	 
 	  <bean id="gallagherB2BOrderPopulator" parent="b2bOrderPopulator"
 		class="com.gallagher.facades.order.converters.populator.GallagherB2BOrderPopulator">
