@@ -300,5 +300,10 @@
 	<alias name="gallagherCartFacade" alias="gglCartFacade" />
 	<bean id="gallagherCartFacade" class="com.gallagher.facades.order.impl.GallagherCartFacade"
 		parent="cartFacade" />
+		
+	<alias name="gallagherB2CCartPopulator" alias="cartPopulator"/>
+    <bean id="gallagherB2CCartPopulator" class="com.gallagher.facades.order.converters.populator.GallagherB2CCartPopulator"
+          parent="defaultCartPopulator">
+    </bean>
 	
 </beans>
