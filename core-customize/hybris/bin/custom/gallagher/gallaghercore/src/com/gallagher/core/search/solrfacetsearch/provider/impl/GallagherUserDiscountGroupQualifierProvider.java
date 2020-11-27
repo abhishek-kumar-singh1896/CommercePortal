@@ -41,6 +41,7 @@ public class GallagherUserDiscountGroupQualifierProvider implements GallagherQua
 	@Autowired
 	private GallagherB2BUnitDao b2bUnitDao;
 	private EnumerationService enumerationService;
+	public static final String B2BDEFAULTDISCOUNTGROUP = "B2B_DEFAULT_DISCOUNT_GROUP";
 
 	/**
 	 * {@inheritDoc}
@@ -71,6 +72,7 @@ public class GallagherUserDiscountGroupQualifierProvider implements GallagherQua
 
 		final List<B2BUnitModel> b2bUnits = getB2bUnitDao().getAllB2BUnits();
 		final Set<UserDiscountGroup> userDiscountGroups = new HashSet<>();
+		userDiscountGroups.add(getEnumerationService().getEnumerationValue(UserDiscountGroup._TYPECODE, B2BDEFAULTDISCOUNTGROUP));
 		if (CollectionUtils.isNotEmpty(b2bUnits))
 		{
 			b2bUnits.stream().forEach(unit -> {

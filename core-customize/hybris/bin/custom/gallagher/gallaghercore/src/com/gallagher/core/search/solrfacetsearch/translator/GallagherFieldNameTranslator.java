@@ -157,7 +157,7 @@ public class GallagherFieldNameTranslator extends DefaultFieldNameTranslator
 						{
 							final Qualifier upgQualifier = userPriceGroupQualifierProvider.getCurrentQualifier();
 							LOG.debug("upgQualifier during translation " + upgQualifier);
-							fieldQualifier = fieldQualifier + FIELDNAME_SEPARATOR + upgQualifier.toFieldQualifier() + upgSuffix;
+							fieldQualifier = fieldQualifier + upgSuffix + FIELDNAME_SEPARATOR + upgQualifier.toFieldQualifier();
 
 						}
 						if (customerGroupQualifierProvider != null && customerGroupQualifierProvider.canApply(indexedProperty)
