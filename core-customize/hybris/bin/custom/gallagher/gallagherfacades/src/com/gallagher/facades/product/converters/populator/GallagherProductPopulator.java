@@ -49,6 +49,7 @@ public class GallagherProductPopulator extends ProductPopulator
 		target.setSparePartsReferenceSubHeading(source.getSparePartsReferenceSubHeading());
 		target.setOthersReferenceHeading(source.getOthersReferenceHeading());
 		target.setOthersReferenceSubHeading(source.getOthersReferenceSubHeading());
+		target.setCodeCompare(source.getCode());
 		//		target.setMarketingDescription(source.getMarketingDescription());
 		super.populate(source, target);
 		if (!StringUtils.isEmpty(source.getMarketingDescription()))

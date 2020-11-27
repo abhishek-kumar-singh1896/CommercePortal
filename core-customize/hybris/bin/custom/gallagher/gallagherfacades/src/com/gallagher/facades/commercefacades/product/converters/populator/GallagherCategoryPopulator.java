@@ -20,6 +20,7 @@ public class GallagherCategoryPopulator extends CategoryPopulator
 	{
 		super.populate(source, target);
 		target.setDescription(source.getDescription());
+		target.setCodeCompare(source.getCode());
 	}
 
 }
