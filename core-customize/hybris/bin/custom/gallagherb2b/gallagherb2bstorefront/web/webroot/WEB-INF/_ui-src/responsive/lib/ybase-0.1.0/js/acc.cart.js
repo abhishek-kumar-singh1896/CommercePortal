@@ -47,21 +47,23 @@ ACC.cart = {
 					success : function(data) {
 					
 						if(!data || data!=null || data!=undefined){
+							$('#recommendationsModal').hide();
 							$('#recommendationsModal').append(data);
+							console.log(data);
 							$('.flexslider').flexslider({
 				    		    animation: "slide",
 				    		    animationLoop: true,
 				    		    slideshow: false,
-				    		    itemWidth: 250,
+				    		    itemWidth: 200,
 				    		    itemMargin: 10,
 				    		    minItems: 1,
-				    		    maxItems: 4,
+				    		    maxItems: 4,   
 				    		    start: function(slider){
-	        						$('.flexslider').resize();
+				    		    	$('#recommendationsModal').show();
+									$('#recommendations-overlay').show();
+									$('.flexslider').resize();
 	    						}
 				    		  });
-				    		  
-							$('#recommendations-overlay').show();
 							$('.close').click(function(){
 					    	 $('#recommendationsModal').empty();
 	       						 $('.modaldata').hide();
