@@ -65,7 +65,7 @@
                             <td class="hidden-sm hidden-md hidden-lg"><spring:theme
                                     code="text.account.orderHistory.datePlaced"/></td>
                             <td headers="header4" class="responsive-table-cell">
-                                <fmt:formatDate value="${order.placed}" dateStyle="medium" timeStyle="short" type="both"/>
+                                ${order.formattedOrderDate}
                             </td>
                             <td class="hidden-sm hidden-md hidden-lg responsive-table-cell-bold"><spring:theme code="text.account.orderHistory.total"/></td>
                             <td headers="header5" class="responsive-table-cell responsive-table-cell-bold">

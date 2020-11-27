@@ -379,13 +379,17 @@ public class CMSSiteFilter extends OncePerRequestFilter implements CMSFilter
 			final String remoteAddr = getClientIPAddress(request);
 			if (StringUtils.isEmpty(remoteAddr) || isLocalHost(remoteAddr))
 			{
+				LOG.info("Remote address for Timezone :: " + remoteAddr);
 				getSessionService().setAttribute(GallagherCoreConstants.GGL_TIMEZONE, TimeZone.getDefault());
 			}
 			else
 			{
 				getSessionService().setAttribute(GallagherCoreConstants.GGL_TIMEZONE,
 						gallagherLocationService.getTimezoneOfIPAddress(remoteAddr.split(",")[0]));
+				LOG.info(
+						"Remote address for Timezone :: " + gallagherLocationService.getTimezoneOfIPAddress(remoteAddr.split(",")[0]));
 			}
+
 		}
 	}
 
