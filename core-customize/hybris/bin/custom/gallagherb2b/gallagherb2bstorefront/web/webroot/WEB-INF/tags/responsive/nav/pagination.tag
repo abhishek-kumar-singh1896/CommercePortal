@@ -87,7 +87,7 @@
                             </div>
                          
                             <div class="form-group inline">
-							<c:if test="${showCurrPage}">
+<%-- 							<c:if test="${showCurrPage}">
 								<label class="control-label">Show </label>
 								<form id="salesForm" name="salesForm" method="get" action="#">
 									<select id="salesApplication" name="salesApplication"
@@ -100,7 +100,7 @@
 										</c:forEach>
 									</select>
 								</form>
-							</c:if>
+							</c:if> --%>
 						</div>
 						 <c:if test="${showDateRangeFilter}">
 						<div class="form-group inline" style='width: 189px; margin-left: 20px;'>
