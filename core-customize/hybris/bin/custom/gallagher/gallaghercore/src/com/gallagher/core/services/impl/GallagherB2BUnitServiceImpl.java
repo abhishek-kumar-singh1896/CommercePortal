@@ -16,6 +16,7 @@ import de.hybris.platform.core.model.security.PrincipalGroupModel;
 import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.core.model.user.UserModel;
 import de.hybris.platform.europe1.constants.Europe1Constants;
+import de.hybris.platform.europe1.enums.UserDiscountGroup;
 import de.hybris.platform.servicelayer.session.Session;
 import de.hybris.platform.servicelayer.session.SessionExecutionBody;
 import de.hybris.platform.site.BaseSiteService;
@@ -48,6 +49,7 @@ public class GallagherB2BUnitServiceImpl extends DefaultB2BUnitService implement
 	private static final String CURRENT_SESSION_CUSTOMER_GROUP = "currentSessionCustomerGroup";
 	public static final String CURRENCY_SESSION_ATTR_KEY = "currency".intern();
 	private static final String SESSION_CART_PARAMETER_NAME = "cart";
+	public static final String B2BDEFAULTDISCOUNTGROUP = "B2B_DEFAULT_DISCOUNT_GROUP";
 
 	@Autowired
 	private BaseStoreService baseStoreService;
@@ -199,7 +201,7 @@ public class GallagherB2BUnitServiceImpl extends DefaultB2BUnitService implement
 				return getTypeService().getEnumerationValue(unitModel.getUserDiscountGroup());
 			}
 		}
-		return null;
+		return getTypeService().getEnumerationValue(UserDiscountGroup._TYPECODE, B2BDEFAULTDISCOUNTGROUP);
 	}
 
 	/**

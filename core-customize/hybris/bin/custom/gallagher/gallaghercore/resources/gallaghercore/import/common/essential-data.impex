@@ -838,8 +838,9 @@ INSERT_UPDATE UserPriceGroup ; code[unique=true] ; name[lang=en]
                              ; ZC                ; "Co-Operative"         
                              ; ZU                ; "CEU USD"              
                              
-INSERT_UPDATE UserDiscountGroup ; code[unique=true] ; name[lang=en]          
-                                ;                   ;                        
+INSERT_UPDATE UserDiscountGroup ; code[unique=true] ; name[lang=en]  
+                                ;                   ;        
+                                ;B2B_DEFAULT_DISCOUNT_GROUP;A DEFAULT B2B USERDISCOUNTGROUP;          
                                 ; 03                ; "G0% F10%"             
                                 ; 04                ; "G0% Y10%"             
                                 ; 06                ; "G10% (ATS)"           

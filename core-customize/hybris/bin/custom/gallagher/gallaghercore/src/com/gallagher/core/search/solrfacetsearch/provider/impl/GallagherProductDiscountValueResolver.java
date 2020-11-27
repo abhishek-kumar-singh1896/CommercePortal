@@ -153,28 +153,24 @@ public class GallagherProductDiscountValueResolver extends ProductPricesValueRes
 					model,
 					resolverContext, salesAreaQualifierProvider, salesAreaQualifier, fieldQualifier);
 
-			final Collection<Qualifier> udgQualifiers = userDiscountGroupQualifierProvider
-					.getAvailableQualifiers(
+			final Collection<Qualifier> upgQualifiers = userPriceGroupQualifierProvider.getAvailableQualifiers(
 					facetSearchConfig1,
 					indexedType1);
 
-			for (final Qualifier udgQualifier : udgQualifiers)
+			for (final Qualifier upgQualifier : upgQualifiers)
 			{
 
-				final String udgFieldQualifier = indexQualifierData(document, batchContext, indexedProperties, model,
-						resolverContext,
-						userDiscountGroupQualifierProvider, udgQualifier, salesAreaFieldQualifier);
+				final String upgFieldQualifier = indexQualifierData(document, batchContext, indexedProperties, model, resolverContext,
+						userPriceGroupQualifierProvider, upgQualifier, salesAreaFieldQualifier);
 
-				final Collection<Qualifier> upgQualifiers = userPriceGroupQualifierProvider.getAvailableQualifiers(facetSearchConfig1,
-						indexedType1);
+				final Collection<Qualifier> udgQualifiers = userDiscountGroupQualifierProvider
+						.getAvailableQualifiers(facetSearchConfig1, indexedType1);
 
-				for (final Qualifier upgQualifier : upgQualifiers)
+				for (final Qualifier udgQualifier : udgQualifiers)
 				{
 
-					final String upgFieldQualifier = indexQualifierData(document, batchContext, indexedProperties,
-							model,
-							resolverContext,
-							userPriceGroupQualifierProvider, upgQualifier, udgFieldQualifier);
+					final String udgFieldQualifier = indexQualifierData(document, batchContext, indexedProperties, model,
+							resolverContext, userDiscountGroupQualifierProvider, udgQualifier, upgFieldQualifier);
 
 					final Collection<Qualifier> customerGroupQualifiers = customerGroupQualifierProvider
 							.getAvailableQualifiers(facetSearchConfig1, indexedType1);
@@ -183,14 +179,13 @@ public class GallagherProductDiscountValueResolver extends ProductPricesValueRes
 					{
 
 						indexQualifierData(document, batchContext, indexedProperties, model, resolverContext,
-								customerGroupQualifierProvider, customerGroupQualifier, upgFieldQualifier);
+								customerGroupQualifierProvider, customerGroupQualifier, udgFieldQualifier);
 					}
 					customerGroupQualifierProvider.removeQualifier();
-
 				}
-				userPriceGroupQualifierProvider.removeQualifier();
+				userDiscountGroupQualifierProvider.removeQualifier();
 			}
-			userDiscountGroupQualifierProvider.removeQualifier();
+			userPriceGroupQualifierProvider.removeQualifier();
 		}
 	}
 
@@ -586,7 +581,8 @@ public class GallagherProductDiscountValueResolver extends ProductPricesValueRes
 	}
 
 	/**
-	 * @param customerGroupQualifierProvider the customerGroupQualifierProvider to set
+	 * @param customerGroupQualifierProvider
+	 *           the customerGroupQualifierProvider to set
 	 */
 	public void setCustomerGroupQualifierProvider(final GallagherQualifierProvider customerGroupQualifierProvider)
 	{
