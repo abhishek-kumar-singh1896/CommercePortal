@@ -55,14 +55,15 @@
 	</bean>
 
 	<bean class="de.hybris.platform.commercefacades.product.data.ProductData">
-		<property name="promoSticker" type="String" />
-		<property name="videoDescription" type="String" />
-		<property name="simulator" type="de.hybris.platform.commercefacades.product.data.PDPSimulatorData" />
-		<property name="imageDescription" type="String" />
-		<property name="videos" type="java.util.List&lt;de.hybris.platform.commercefacades.product.data.ProductVideoData&gt;" />
-		<property name="logo" type="java.util.Collection&lt;de.hybris.platform.commercefacades.product.data.ImageData>" />
-		<property name="dataSheet" type="java.util.Collection&lt;de.hybris.platform.commercefacades.product.data.ImageData>" />
-		<property name="others" type="java.util.Collection&lt;de.hybris.platform.commercefacades.product.data.ImageData>" />
+		<property name="promoSticker" type="String"/>
+		<property name="videoDescription" type="String"/>
+		<property name="codeCompare" type="String" equals="true"/>
+		<property name="simulator" type="de.hybris.platform.commercefacades.product.data.PDPSimulatorData"/>
+		<property name="imageDescription" type="String"/>
+		<property name="videos" type="java.util.List&lt;de.hybris.platform.commercefacades.product.data.ProductVideoData&gt;"/>
+		<property name="logo" type="java.util.Collection&lt;de.hybris.platform.commercefacades.product.data.ImageData>"/>
+		<property name="dataSheet" type="java.util.Collection&lt;de.hybris.platform.commercefacades.product.data.ImageData>"/>
+		<property name="others" type="java.util.Collection&lt;de.hybris.platform.commercefacades.product.data.ImageData>"/>
 		<property name="animalCompatibility" type="java.util.List&lt;String&gt;" />
 		<property name="sparePartsReferenceHeading" type="String" />
 		<property name="sparePartsReferenceSubHeading" type="String" />
@@ -165,5 +166,9 @@
 	
 	<bean class="de.hybris.platform.commercefacades.product.data.CategoryData">
 		<property name="commentsQuestion" type="String" />
+	</bean>
+	
+	<bean class="de.hybris.platform.commercefacades.product.data.CategoryData">
+		<property name="codeCompare" equals="true" type="String"/>
 	</bean>
 </beans>
