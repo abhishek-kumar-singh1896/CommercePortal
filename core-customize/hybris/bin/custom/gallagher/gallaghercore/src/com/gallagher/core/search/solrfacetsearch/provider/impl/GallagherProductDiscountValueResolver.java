@@ -74,36 +74,40 @@ public class GallagherProductDiscountValueResolver extends ProductPricesValueRes
 		try
 		{
 			createLocalSessionContext();
-			final Object data = loadData(batchContext, indexedProperties, model);
-			final ValueResolverContext resolverContext = new ValueResolverContext();
-			resolverContext.setData(data);
-
-			final Iterator indexedType = indexedProperties.iterator();
-
-			while (indexedType.hasNext())
+			if (model.getCode().equals("nz-product") && model.getCatalogVersion().getActive())
 			{
-				final IndexedProperty facetSearchConfig = (IndexedProperty) indexedType.next();
-				if (!getQualifierProvider().canApply(facetSearchConfig))
+				final Object data = loadData(batchContext, indexedProperties, model);
+				final ValueResolverContext resolverContext = new ValueResolverContext();
+				resolverContext.setData(data);
+
+				final Iterator indexedType = indexedProperties.iterator();
+
+				while (indexedType.hasNext())
 				{
-					addFieldValues(document, facetSearchConfig, resolverContext, model, indexedProperties);
+					final IndexedProperty facetSearchConfig = (IndexedProperty) indexedType.next();
+					if (!getQualifierProvider().canApply(facetSearchConfig))
+					{
+						addFieldValues(document, facetSearchConfig, resolverContext, model, indexedProperties);
+					}
 				}
-			}
 
-			final FacetSearchConfig facetSearchConfig1 = batchContext.getFacetSearchConfig();
-			final IndexedType indexedType1 = batchContext.getIndexedType();
+				final FacetSearchConfig facetSearchConfig1 = batchContext.getFacetSearchConfig();
+				final IndexedType indexedType1 = batchContext.getIndexedType();
 
-			final Collection<Qualifier> qualifiers = getQualifierProvider().getAvailableQualifiers(facetSearchConfig1, indexedType1);
+				final Collection<Qualifier> qualifiers = getQualifierProvider().getAvailableQualifiers(facetSearchConfig1,
+						indexedType1);
 
-			for (final Qualifier qualifier : qualifiers)
-			{
-				salesAreaQualifierProvider.removeQualifier();
-				String fieldQualifier = StringUtils.EMPTY;
-				fieldQualifier = indexQualifierData(document, batchContext, indexedProperties, model, resolverContext,
-						getQualifierProvider(), qualifier, fieldQualifier);
+				for (final Qualifier qualifier : qualifiers)
+				{
+					salesAreaQualifierProvider.removeQualifier();
+					String fieldQualifier = StringUtils.EMPTY;
+					fieldQualifier = indexQualifierData(document, batchContext, indexedProperties, model, resolverContext,
+							getQualifierProvider(), qualifier, fieldQualifier);
 
-				processAdditionalPriceConditionQualifiers(document, batchContext, indexedProperties, model, resolverContext,
-						fieldQualifier);
-				salesAreaQualifierProvider.removeQualifier();
+					processAdditionalPriceConditionQualifiers(document, batchContext, indexedProperties, model, resolverContext,
+							fieldQualifier);
+					salesAreaQualifierProvider.removeQualifier();
+				}
 			}
 		}
 		finally
@@ -153,28 +157,24 @@ public class GallagherProductDiscountValueResolver extends ProductPricesValueRes
 					model,
 					resolverContext, salesAreaQualifierProvider, salesAreaQualifier, fieldQualifier);
 
-			final Collection<Qualifier> udgQualifiers = userDiscountGroupQualifierProvider
-					.getAvailableQualifiers(
+			final Collection<Qualifier> upgQualifiers = userPriceGroupQualifierProvider.getAvailableQualifiers(
 					facetSearchConfig1,
 					indexedType1);
 
-			for (final Qualifier udgQualifier : udgQualifiers)
+			for (final Qualifier upgQualifier : upgQualifiers)
 			{
 
-				final String udgFieldQualifier = indexQualifierData(document, batchContext, indexedProperties, model,
-						resolverContext,
-						userDiscountGroupQualifierProvider, udgQualifier, salesAreaFieldQualifier);
+				final String upgFieldQualifier = indexQualifierData(document, batchContext, indexedProperties, model, resolverContext,
+						userPriceGroupQualifierProvider, upgQualifier, salesAreaFieldQualifier);
 
-				final Collection<Qualifier> upgQualifiers = userPriceGroupQualifierProvider.getAvailableQualifiers(facetSearchConfig1,
-						indexedType1);
+				final Collection<Qualifier> udgQualifiers = userDiscountGroupQualifierProvider
+						.getAvailableQualifiers(facetSearchConfig1, indexedType1);
 
-				for (final Qualifier upgQualifier : upgQualifiers)
+				for (final Qualifier udgQualifier : udgQualifiers)
 				{
 
-					final String upgFieldQualifier = indexQualifierData(document, batchContext, indexedProperties,
-							model,
-							resolverContext,
-							userPriceGroupQualifierProvider, upgQualifier, udgFieldQualifier);
+					final String udgFieldQualifier = indexQualifierData(document, batchContext, indexedProperties, model,
+							resolverContext, userDiscountGroupQualifierProvider, udgQualifier, upgFieldQualifier);
 
 					final Collection<Qualifier> customerGroupQualifiers = customerGroupQualifierProvider
 							.getAvailableQualifiers(facetSearchConfig1, indexedType1);
@@ -183,14 +183,13 @@ public class GallagherProductDiscountValueResolver extends ProductPricesValueRes
 					{
 
 						indexQualifierData(document, batchContext, indexedProperties, model, resolverContext,
-								customerGroupQualifierProvider, customerGroupQualifier, upgFieldQualifier);
+								customerGroupQualifierProvider, customerGroupQualifier, udgFieldQualifier);
 					}
 					customerGroupQualifierProvider.removeQualifier();
-
 				}
-				userPriceGroupQualifierProvider.removeQualifier();
+				userDiscountGroupQualifierProvider.removeQualifier();
 			}
-			userDiscountGroupQualifierProvider.removeQualifier();
+			userPriceGroupQualifierProvider.removeQualifier();
 		}
 	}
 
