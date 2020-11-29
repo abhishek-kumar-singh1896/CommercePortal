@@ -352,3 +352,8 @@ UPDATE  SolrSearchQueryProperty ; indexedProperty(solrIndexedType(identifier),na
                                 ; $solrIndexedType :Voltage at 5km of fence (Tensile)            ; facetUnitSuffixDisplayNameProvider 
                                 ; $solrIndexedType :Voltage at 10km of fence (Tensile)           ; facetUnitSuffixDisplayNameProvider 
                                 
+UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$indexedType] ; name[unique=true]                  ; displayName[lang=$lang]          
+                           ; $solrIndexedType                                              ; Voltage at 2km of fence (Tensile)  ; Voltage (kV) over 2km (Tensile)  
+                           ; $solrIndexedType                                              ; Voltage at 5km of fence (Tensile)  ; Voltage (kV) over 5km (Tensile)  
+                           ; $solrIndexedType                                              ; Voltage at 10km of fence (Tensile) ; Voltage (kV) over 10km (Tensile) 
+                           
