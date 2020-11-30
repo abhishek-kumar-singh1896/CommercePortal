@@ -13,15 +13,21 @@
          start="approvalProcessStartAction" name="simpleapproval"
          processClass="de.hybris.platform.b2b.process.approval.model.B2BApprovalProcessModel">
 
-	<action id="approvalProcessStartAction" bean="approvalProcessStartAction">
-		<transition name="OK" to="approvalProcessCompleteAction"/>
+	<action id="approvalProcessStartAction" bean="b2bApprovalProcessStartAction">
+		<transition name="OK" to="accountStartFulfilmentProcessAction"/>
 		<transition name="NOK" to="error"/>
 	</action>
 
-	<action id="approvalProcessCompleteAction" bean="approvalProcessCompleteAction">
+	<action id="accountStartFulfilmentProcessAction" bean="startFulfilmentProcessAction">
+		<transition name="OK" to="approvalProcessCompleteAction" />
+		<transition name="NOK" to="error"/>
+	</action>
+	
+	<action id="approvalProcessCompleteAction" bean="b2bApprovalProcessCompleteAction">
 		<transition name="OK" to="success"/>
 		<transition name="NOK" to="error"/>
 	</action>
+	
 	<end id="error" state="ERROR">All went wrong.</end>
 	<end id="failed" state="FAILED">Order process failed.</end>
 	<end id="success" state="SUCCEEDED">Order process finished.</end>
