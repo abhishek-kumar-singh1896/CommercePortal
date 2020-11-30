@@ -149,7 +149,7 @@
   </tr>
   <tr>
     <td style="font-weight:bold;padding: 8px;text-align: left;">${ctx.order.code}</td>
-    <td style="font-weight:bold;padding: 8px;text-align: left;">${ctx.order.created}</td>
+    <td style="font-weight:bold;padding: 8px;text-align: left;">${ctx.order.formattedOrderDate}</td>
     <td style="font-weight:bold;padding: 8px;text-align: left;">${ctx.order.b2bUnit.name}</td>
   </tr>
   <tr>
