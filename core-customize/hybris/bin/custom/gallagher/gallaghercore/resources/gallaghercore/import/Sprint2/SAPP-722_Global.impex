@@ -2,6 +2,13 @@ $version=Staged
 $solrIndexedType=amB2CGlobalProductType
 $productCatalog=amB2CGlobalProductCatalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='$version'])[unique=true,default=$productCatalog:$version]
+
+$classSystemVersion=systemVersion(catalog(id[default='AMB2CClassification']),version[default='1.0'])
+$classCatalogVersion=catalogVersion(catalog(id[default='AMB2CClassification']),version[default='1.0'])
+$classAttribute=classificationAttribute(code,$classSystemVersion)
+$classClass=classificationClass(code,$classCatalogVersion)
+$classAttributeAssignment=classAttributeAssignment($classClass,$classAttribute,$classSystemVersion)
+
 $lang=en
  
  
@@ -1266,6 +1273,8 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalOffsetsProductTypeAsFacet                              ;                                     ; amB2CGlobalOffsetsSearchConfiguration                 ; Product Type                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalOffsetsProductTypeAsFacet                              
                       ; amB2CGlobalOffsetsProductWeightWaterAsFacet                       ; facetUnitSuffixDisplayNameProvider  ; amB2CGlobalOffsetsSearchConfiguration                 ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalOffsetsProductWeightWaterAsFacet                       
 #                     ; amB2CGlobalOffsetsWarrantyAntennaAsFacet                          ; facetUnitSuffixDisplayNameProvider  ; amB2CGlobalOffsetsSearchConfiguration                 ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalOffsetsWarrantyAntennaAsFacet                          
+                      ; amB2CGlobalOffsetsMountTypeAsFacet                                ;                                      ; amB2CGlobalOffsetsSearchConfiguration                ; Mount Type                                    ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalOffsetsMountTypeAsFacet                                
+
                       
 REMOVE AsFacet ; uid [unique=true]                               ; valuesDisplayNameProvider          ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                       
                ; amB2CGlobalOffsetsWarrantyRemotesAsFacet        ; facetUnitSuffixDisplayNameProvider ; amB2CGlobalOffsetsSearchConfiguration                 ; Warranty (Remotes)         ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalOffsetsWarrantyRemotesAsFacet        
@@ -1282,6 +1291,8 @@ REMOVE AsFacet ; uid [unique=true]                               ; valuesDisplay
                ; amB2CGlobalOffsetsProductDepthGatesAsFacet      ; facetUnitSuffixDisplayNameProvider ; amB2CGlobalOffsetsSearchConfiguration                 ; Product Depth (Gates)      ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalOffsetsProductDepthGatesAsFacet      
                
                
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]                            ; visible ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=false] ; facetType(code) ; facetSort(code) ; priority                                    ; fieldValueProvider                          ; customFacetSortProvider            ; $classAttributeAssignment                                           
+                                  ; $solrIndexedType                         ; Mount Type                                   ; true    ;                            ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000                                        ; commerceClassificationPropertyValueProvider ;                                    ; offsets:::mount-type::::                                            
                
                
                
@@ -1346,6 +1357,7 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalElectricGatesProductTypeAsFacet                              ;                                     ; amB2CGlobalElectricGatesSearchConfiguration           ; Product Type                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalElectricGatesProductTypeAsFacet                              
                       ; amB2CGlobalElectricGatesProductWeightWaterAsFacet                       ; facetUnitSuffixDisplayNameProvider  ; amB2CGlobalElectricGatesSearchConfiguration           ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalElectricGatesProductWeightWaterAsFacet                       
                       ; amB2CGlobalElectricGatesWarrantyAntennaAsFacet                          ; facetUnitSuffixDisplayNameProvider  ; amB2CGlobalElectricGatesSearchConfiguration           ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalElectricGatesWarrantyAntennaAsFacet                          
+                      ; amB2CGlobalElectricGatesMountTypeAsFacet                                ;                                     ; amB2CGlobalElectricGatesSearchConfiguration           ; Mount Type                                    ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalElectricGatesMountTypeAsFacet                                
                       
 INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                               ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                       
                               ; amB2CGlobalElectricGatesCategoryAsExcludedFacet ; amB2CGlobalElectricGatesSearchConfiguration           ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalElectricGatesCategoryAsExcludedFacet 
@@ -1470,6 +1482,8 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalFenceToolsAndAccessoriesProductTypeAsFacet                              ;                                     ; amB2CGlobalFenceToolsAndAccessoriesSearchConfiguration ; Product Type                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalFenceToolsAndAccessoriesProductTypeAsFacet                              
                       ; amB2CGlobalFenceToolsAndAccessoriesProductWeightWaterAsFacet                       ; facetUnitSuffixDisplayNameProvider  ; amB2CGlobalFenceToolsAndAccessoriesSearchConfiguration ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalFenceToolsAndAccessoriesProductWeightWaterAsFacet                       
                       ; amB2CGlobalFenceToolsAndAccessoriesWarrantyAntennaAsFacet                          ; facetUnitSuffixDisplayNameProvider  ; amB2CGlobalFenceToolsAndAccessoriesSearchConfiguration ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalFenceToolsAndAccessoriesWarrantyAntennaAsFacet                          
+                      ; amB2CGlobalFenceToolsAndAccessoriesUseFenceAsFacet                                 ;                                     ; amB2CGlobalFenceToolsAndAccessoriesSearchConfiguration ; Use (Fence)                                   ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalFenceToolsAndAccessoriesUseFenceAsFacet                               
+
                       
 INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                          ; searchConfiguration(uid,$catalogVersion)[unique=true]  ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                  
                               ; amB2CGlobalFenceToolsAndAccessoriesCategoryAsExcludedFacet ; amB2CGlobalFenceToolsAndAccessoriesSearchConfiguration ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalFenceToolsAndAccessoriesCategoryAsExcludedFacet 
@@ -1532,6 +1546,7 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
                       ; amB2CGlobalGateHardwareProductTypeAsFacet                              ;                                     ; amB2CGlobalGateHardwareSearchConfiguration            ; Product Type                                  ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalGateHardwareProductTypeAsFacet                              
                       ; amB2CGlobalGateHardwareProductWeightWaterAsFacet                       ; facetUnitSuffixDisplayNameProvider  ; amB2CGlobalGateHardwareSearchConfiguration            ; Product Weight (Water)                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalGateHardwareProductWeightWaterAsFacet                       
                       ; amB2CGlobalGateHardwareWarrantyAntennaAsFacet                          ; facetUnitSuffixDisplayNameProvider  ; amB2CGlobalGateHardwareSearchConfiguration            ; Warranty (Antenna)                            ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalGateHardwareWarrantyAntennaAsFacet                          
+                      ; amB2CGlobalGateHardwareProductTypeGATEAsFacet                          ;                                     ; amB2CGlobalGateHardwareSearchConfiguration            ; Product Type (GATE)                           ; MULTISELECT_OR  ; 1000     ;                              ; amB2CGlobalGateHardwareProductTypeGATEAsFacet                           
                       
 INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                              ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                      
                               ; amB2CGlobalGateHardwareCategoryAsExcludedFacet ; amB2CGlobalGateHardwareSearchConfiguration            ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CGlobalGateHardwareCategoryAsExcludedFacet 

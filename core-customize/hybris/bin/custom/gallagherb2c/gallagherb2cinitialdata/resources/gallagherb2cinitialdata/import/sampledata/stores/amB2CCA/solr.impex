@@ -99,7 +99,10 @@ INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; n
 
 
 
-
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]     ;  displayName            ; type(code[default=string]) ; visible[default=false] ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facetType(code) ; facetSort(code) ; priority ; facet[default=false] ; fieldValueProvider                          ; customFacetSortProvider ; rangeSets(name) ; $classAttributeAssignment                                            
+                                  ; $solrIndexedType                         ; Product Type (GATE)   ;  Product Type           ;                            ; true                   ;                    ;                         ;                          ;                           ; MultiSelectOr   ; Alpha           ; 1000     ; true   				; commerceClassificationPropertyValueProvider ;                         ;                 ; gate-hardware:::product-type::::                                   
+                                  ; $solrIndexedType                         ; Use (Fence)           ;  Use                    ;                            ; true                   ;                    ;                         ;                          ;                           ; MultiSelectOr   ; Alpha           ; 1000     ; true   				; commerceClassificationPropertyValueProvider ;                         ;                 ; fence-tools-and-accessories:::use::::                                   
+ 
 
 
                                   
