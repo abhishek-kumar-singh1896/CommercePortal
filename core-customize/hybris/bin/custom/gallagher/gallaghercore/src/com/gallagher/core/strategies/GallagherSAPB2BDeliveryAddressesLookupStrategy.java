@@ -8,8 +8,12 @@ import de.hybris.platform.b2b.model.B2BUnitModel;
 import de.hybris.platform.core.model.order.AbstractOrderModel;
 import de.hybris.platform.core.model.user.AddressModel;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import com.sap.hybris.sapcustomerb2b.inbound.DefaultSAPB2BDeliveryAddressesLookupStrategy;
 
@@ -27,6 +31,8 @@ public class GallagherSAPB2BDeliveryAddressesLookupStrategy extends DefaultSAPB2
 		final List<AddressModel> deliveryAddresses = getFallbackDeliveryAddressesLookupStrategy()
 				.getDeliveryAddressesForOrder(abstractOrder, visibleAddressesOnly);
 
+		final List<AddressModel> addresses = new ArrayList<>();
+
 		// retrieve B2B customer of order
 		final B2BCustomerModel b2bCustomer = (B2BCustomerModel) abstractOrder.getUser();
 
@@ -41,7 +47,8 @@ public class GallagherSAPB2BDeliveryAddressesLookupStrategy extends DefaultSAPB2
 		{
 			if (deliveryAddressesForB2BUnit != null && !deliveryAddressesForB2BUnit.isEmpty())
 			{
-				deliveryAddresses.addAll(deliveryAddressesForB2BUnit);
+				addresses.addAll(Stream.of(deliveryAddressesForB2BUnit, deliveryAddresses).flatMap(Collection::stream)
+						.collect(Collectors.toList()));
 			}
 		}
 		else
@@ -57,6 +64,6 @@ public class GallagherSAPB2BDeliveryAddressesLookupStrategy extends DefaultSAPB2
 			}
 		}
 
-		return deliveryAddresses;
+		return addresses;
 	}
 }
