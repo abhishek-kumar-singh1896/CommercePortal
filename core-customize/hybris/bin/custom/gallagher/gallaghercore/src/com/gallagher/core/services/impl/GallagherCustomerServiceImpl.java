@@ -125,10 +125,10 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 			else
 			{
 				/* Update name and email only if updated to avoid sending data to SCPI */
-				if (!retrieveUser.getName().equals(token.getName()) || !retrieveUser.getUid().equals(token.getEmail()))
+				if (!retrieveUser.getName().equals(token.getName()) || !retrieveUser.getUid().equals("am|" + token.getEmail()))
 				{
 					retrieveUser.setName(token.getName());
-					retrieveUser.setUid(token.getEmail());
+					retrieveUser.setUid("am|" + token.getEmail());
 				}
 				retrieveUser.setIsUserExist(true);
 				modelService.save(retrieveUser);
