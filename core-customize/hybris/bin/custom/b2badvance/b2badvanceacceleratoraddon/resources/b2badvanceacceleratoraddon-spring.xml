@@ -375,12 +375,12 @@
 	</bean>
 	
 	<bean id="b2bApprovalProcessStartAction"
-	      class="com.enterprisewide.b2badvanceacceleratoraddon.actions.ApprovalProcessStartAction"
+	      class="de.hybris.platform.b2b.process.approval.actions.ApprovalProcessStartAction"
 	      parent="approvalProcessStartAction">
 		<property name="eventService" ref="eventService"/>
 	</bean>
 	<bean id="b2bApprovalProcessCompleteAction"
-	      class="com.enterprisewide.b2badvanceacceleratoraddon.actions.ApprovalProcessCompleteAction"
+	      class="de.hybris.platform.b2b.process.approval.actions.ApprovalProcessCompleteAction"
 	      parent="approvalProcessCompleteAction">
 		<property name="eventService" ref="eventService"/>
 	</bean>

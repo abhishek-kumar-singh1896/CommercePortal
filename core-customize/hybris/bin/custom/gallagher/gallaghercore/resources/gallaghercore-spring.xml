@@ -415,4 +415,10 @@
 		<property name="interceptor" ref="gallagherB2BProductValidateInterceptor"/>
 		<property name="typeCode" value="Product"/>
 	</bean> -->
+	
+	<alias name="defaultAcceleratorB2BApprovalBusinessProcessStrategy" alias="b2bApprovalBusinessProcessStrategy" />
+	<bean id="defaultAcceleratorB2BApprovalBusinessProcessStrategy" class="de.hybris.platform.b2b.strategies.impl.DefaultB2BApprovalBusinessProcessStrategy" parent="defaultB2BApprovalBusinessProcessStrategy" >
+		<property name="processCode" value="simpleapproval"/>
+		<property name="processName" value="CREATED"/>
+	</bean>
 </beans>

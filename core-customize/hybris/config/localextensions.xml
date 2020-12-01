@@ -72,7 +72,7 @@
 	<!--<extension name='npmtestancillary' /> -->
 	<!--<extension name='liveeditaddon' /> -->
 	<extension name="npmancillary" />
-	<!-- <extension name="b2bapprovalprocess" /> -->
+	<extension name="b2bapprovalprocess" />
 	<extension name="b2bapprovalprocessfacades" />
 	<extension name='oauth2' />
 	<extension name='mediaweb' />
