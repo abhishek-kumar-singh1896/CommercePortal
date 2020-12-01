@@ -385,4 +385,9 @@
 	<bean id="gallagherCartFacade" class="com.gallagher.facades.order.impl.GallagherCartFacade"
 		parent="cartFacade" />
 	
+	<alias name="gallagherCommerceAddToCartStrategy" alias="commerceAddToCartStrategy"/>
+	<bean id="gallagherCommerceAddToCartStrategy" class="com.gallagher.facades.order.impl.GallagherCommerceAddToCartStrategy"
+		parent="defaultCommerceAddToCartStrategy" >
+	</bean>
+	
 </beans>
