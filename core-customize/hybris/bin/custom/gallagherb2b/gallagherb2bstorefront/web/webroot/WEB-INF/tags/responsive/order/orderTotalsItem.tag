@@ -44,7 +44,7 @@
                 </ycommerce:testId>
             </div>
         </c:if>
-        <<%-- div class="col-xs-6">
+        <%-- <div class="col-xs-6">
             <spring:theme code="text.account.order.shipping"/>
         </div>
         <div class="col-xs-6">
