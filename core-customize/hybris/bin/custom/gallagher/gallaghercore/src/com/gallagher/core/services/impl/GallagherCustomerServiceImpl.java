@@ -133,7 +133,7 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 						if (!retrieveUser.getName().equals(token.getName()) || !retrieveUser.getEmailID().equals(token.getEmail()))
 						{
 							retrieveUser.setName(token.getName());
-							retrieveUser.setUid(token.getEmail());
+							retrieveUser.setUid("am|" + token.getEmail());
 						}
 						retrieveUser.setIsUserExist(true);
 						modelService.save(retrieveUser);
@@ -164,10 +164,10 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 					if (SiteChannel.B2C.equals(channel) && retrieveUser.getClass() == CustomerModel.class)
 					{
 						/* Update name and email only if updated to avoid sending data to SCPI */
-						if (!retrieveUser.getName().equals(token.getName()) || !retrieveUser.getUid().equals(token.getEmail()))
+						if (!retrieveUser.getName().equals(token.getName()) || !retrieveUser.getEmailID().equals(token.getEmail()))
 						{
 							retrieveUser.setName(token.getName());
-							retrieveUser.setUid(token.getEmail());
+							retrieveUser.setUid("am|" + token.getEmail());
 						}
 						retrieveUser.setIsUserExist(true);
 						modelService.save(retrieveUser);

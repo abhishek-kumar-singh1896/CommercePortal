@@ -24,6 +24,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
 import org.dom4j.DocumentException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -116,14 +117,23 @@ public class GallagherSaveCustomerHandler implements FlowActionHandler
 			widget.setValue("newCust.emailID", email);
 			widget.setValue("newCust.businessUnit", BU.SEC);
 			controller.getRenderer().refreshView();
-			final B2BCustomerModel savedCustomer = pushToC4C(adapter, isUserExist);
-			//adapter.custom();
-			pushToMindTouch(savedCustomer);
 
-			adapter.done();
-			if (savedCustomer != null)
+			B2BCustomerModel b2bCustomer = null;
+			if (adapter.getWidgetInstanceManager().getModel().getValue("newCust", CustomerModel.class) instanceof B2BCustomerModel)
 			{
-				notificationService.notifyUser((String) null, "b2bCustomerCreated", NotificationEvent.Level.SUCCESS, savedCustomer);
+				b2bCustomer = (B2BCustomerModel) adapter.getWidgetInstanceManager().getModel().getValue("newCust",
+						CustomerModel.class);
+				pushToMindTouch(b2bCustomer);
+				widget.setValue("newCus.mindtouchID", b2bCustomer != null ? b2bCustomer.getMindtouchID() : StringUtils.EMPTY);
+
+				final B2BCustomerModel savedCustomer = pushToC4C(adapter, isUserExist, b2bCustomer);
+
+				adapter.done();
+				if (savedCustomer != null)
+				{
+					notificationService.notifyUser((String) null, "b2bCustomerCreated", NotificationEvent.Level.SUCCESS,
+							savedCustomer);
+				}
 			}
 		}
 		catch (final RestClientException | OAuth2Exception exception)
@@ -177,13 +187,11 @@ public class GallagherSaveCustomerHandler implements FlowActionHandler
 		return notificationService;
 	}
 
-	private B2BCustomerModel pushToC4C(final FlowActionHandlerAdapter adapter, final boolean isUserExist)
+	private B2BCustomerModel pushToC4C(final FlowActionHandlerAdapter adapter, final boolean isUserExist,
+			final B2BCustomerModel b2bCustomer)
 	{
-		final B2BCustomerModel b2bCustomer;
-		if (adapter.getWidgetInstanceManager().getModel().getValue("newCust", CustomerModel.class) instanceof B2BCustomerModel)
-		{
+
 			final GallagherB2BRegistrationEvent b2bRegistrationEvent = new GallagherB2BRegistrationEvent();
-			b2bCustomer = (B2BCustomerModel) adapter.getWidgetInstanceManager().getModel().getValue("newCust", CustomerModel.class);
 			final B2BUnitModel defaultB2BUnit = adapter.getWidgetInstanceManager().getModel().getValue("newCust.defaultB2BUnit",
 					B2BUnitModel.class);
 			String isoCode;
@@ -246,11 +254,7 @@ public class GallagherSaveCustomerHandler implements FlowActionHandler
 					b2bEventService.publishEvent(b2bRegistrationEvent);
 				}
 			});
-		}
-		else
-		{
-			b2bCustomer = null;
-		}
+
 		return b2bCustomer;
 	}
 

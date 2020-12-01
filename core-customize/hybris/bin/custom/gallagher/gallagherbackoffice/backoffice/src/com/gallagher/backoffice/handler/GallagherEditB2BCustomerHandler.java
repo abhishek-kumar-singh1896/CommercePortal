@@ -19,6 +19,7 @@ import de.hybris.platform.servicelayer.session.SessionService;
 import de.hybris.platform.site.BaseSiteService;
 import de.hybris.platform.store.BaseStoreModel;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -37,13 +38,16 @@ import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
+import org.dom4j.DocumentException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.gallagher.c4c.outboundservices.facade.GallagherC4COutboundServiceFacade;
 import com.gallagher.core.enums.BU;
 import com.gallagher.core.events.GallagherB2BCustomerUpdateEvent;
 import com.gallagher.core.services.GallagherB2BUnitService;
+import com.gallagher.core.services.GallagherMindTouchService;
 import com.gallagher.keycloak.outboundservices.service.GallagherKeycloakService;
 import com.hybris.backoffice.widgets.notificationarea.event.NotificationEvent.Level;
 import com.hybris.cockpitng.dataaccess.context.Context;
@@ -78,6 +82,9 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 	private BaseSiteService baseSiteService;
 	private SessionService sessionService;
 	private EventService eventService;
+
+	@Autowired
+	private GallagherMindTouchService gallagherMindTouchService;
 
 	@Resource(name = "gallagherB2BUnitService")
 	protected GallagherB2BUnitService b2bUnitService;
@@ -119,6 +126,19 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 			{
 				LOG.debug("Updating user profile in keycloak");
 				getGallagherKeycloakService().updateKeyCloakUserProfile(b2bCustomer);
+
+				try
+				{
+					gallagherMindTouchService.updateCustomerInMindTouch(currentCustomerModel);
+				}
+				catch (final IOException e)
+				{
+					LOG.error("IO exception while updating customer in mindtouch :: [{}]", e.getMessage());
+				}
+				catch (final DocumentException e)
+				{
+					LOG.error("Document exception while updating customer in mindtouch :: [{}]", e.getMessage());
+				}
 			}
 
 			final Context ctx = new DefaultContext();

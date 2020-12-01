@@ -154,6 +154,7 @@
                 <editorArea:section name="hmc.section.integration">
                     <editorArea:attribute qualifier="duplicate" />
                     <editorArea:attribute qualifier="keycloakGUID" />
+                    <editorArea:attribute qualifier="mindtouchID" readonly="true"/>
                     <editorArea:attribute qualifier="objectID" />
                     <editorArea:attribute qualifier="sapContactID" />
                     <editorArea:attribute qualifier="sapReplicationInfo" />
