@@ -369,5 +369,20 @@
 			</map>
 		</property>
 	</bean>
+	
+	<bean id="simpleApprovalProcess" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+		<property name="resource" value="classpath:/b2badvanceacceleratoraddon/processes/b2bsimpleorderapproval.xml"/>
+	</bean>
+	
+	<bean id="b2bApprovalProcessStartAction"
+	      class="de.hybris.platform.b2b.process.approval.actions.ApprovalProcessStartAction"
+	      parent="approvalProcessStartAction">
+		<property name="eventService" ref="eventService"/>
+	</bean>
+	<bean id="b2bApprovalProcessCompleteAction"
+	      class="de.hybris.platform.b2b.process.approval.actions.ApprovalProcessCompleteAction"
+	      parent="approvalProcessCompleteAction">
+		<property name="eventService" ref="eventService"/>
+	</bean>
     
 </beans>
