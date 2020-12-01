@@ -72,12 +72,10 @@
 											<c:when test="${not empty recommendedCategory.image}">
 												<c:set var="medias" value="${recommendedCategory.image}"/>
 													<c:if test="${tempicon == 0 }">
-														<c:if test="${medias.format eq 'product'}">
-															<c:set var="tempicon" value="1" />
+														<c:set var="tempicon" value="1" />
 															<div class="imageProduct">
 																<img src="${medias.url}" alt="${medias.altText}">
 															</div>
-														</c:if>
 													</c:if>
 											</c:when>
 											<c:otherwise>
