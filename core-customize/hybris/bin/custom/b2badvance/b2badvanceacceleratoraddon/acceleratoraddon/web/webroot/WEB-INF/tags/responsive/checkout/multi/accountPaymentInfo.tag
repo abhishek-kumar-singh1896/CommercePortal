@@ -26,10 +26,10 @@
                     <spring:theme code="checkout.multi.purchaseOrderNumber.label" htmlEscape="false"/>:&nbsp;-
                 </c:otherwise>
             </c:choose>
-            <br>
+            <%-- <br>
             <c:if test="${not empty cartData.requiredDeliveryDate}">
                     <spring:theme code="checkout.multi.requiredDeliveryDate.label" htmlEscape="false"/>:&nbsp;${fn:escapeXml(cartData.requiredDeliveryDate)}
-            </c:if>
+            </c:if> --%>
         </div>
     </li>
 </ul>
