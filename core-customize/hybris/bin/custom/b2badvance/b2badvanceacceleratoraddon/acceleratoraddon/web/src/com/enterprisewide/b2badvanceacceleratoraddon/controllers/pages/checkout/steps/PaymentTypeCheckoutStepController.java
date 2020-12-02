@@ -29,10 +29,11 @@ import de.hybris.platform.commercefacades.product.ProductFacade;
 import de.hybris.platform.commercefacades.product.ProductOption;
 import de.hybris.platform.commercefacades.product.data.CategoryData;
 import de.hybris.platform.commercefacades.product.data.ProductData;
+import de.hybris.platform.commercefacades.user.data.AddressData;
 import de.hybris.platform.commerceservices.order.CommerceCartModificationException;
 import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.servicelayer.user.UserService;
-import de.hybris.platform.commercefacades.user.data.AddressData;
+
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Collection;
@@ -72,7 +73,7 @@ public class PaymentTypeCheckoutStepController extends AbstractCheckoutStepContr
 
 	@Resource(name = "paymentTypeFormValidator")
 	private PaymentTypeFormValidator paymentTypeFormValidator;
-	
+
 	@Resource(name = "productVariantFacade")
 	private ProductFacade productFacade;
 
@@ -258,8 +259,15 @@ public class PaymentTypeCheckoutStepController extends AbstractCheckoutStepContr
 			paymentTypeForm.setB2bUnit(getAllB2BUnitData().get(0).getCode());
 		}
 
-		//set Current Date
-		paymentTypeForm.setRequiredDeliveryDate(dateToString);
+		//set Current Date if availaible in CartData
+		if (cartData.getRequiredDeliveryDate() != null && cartData.getRequiredDeliveryDate().length() != 0)
+		{
+			paymentTypeForm.setRequiredDeliveryDate(cartData.getRequiredDeliveryDate());
+		}
+		else
+		{
+			paymentTypeForm.setRequiredDeliveryDate(dateToString);
+		}
 
 		// set purchase order number
 		/*
