@@ -29,4 +29,10 @@ public interface GallagherB2BUnitService extends B2BUnitService<B2BUnitModel, B2
 	 * @return
 	 */
 	Pair<BaseSiteModel, BaseStoreModel> getBaseSiteAndStoreForUnit(B2BUnitModel defaultB2BUnit);
+
+	/**
+	 * @param currentCustomer
+	 * @return
+	 */
+	List<B2BUnitModel> getAllB2BData(CustomerModel currentCustomer);
 }

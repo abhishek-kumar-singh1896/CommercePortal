@@ -77,8 +77,8 @@ INSERT_UPDATE Trigger ; cronJob(code)[unique=true]        ; second ; minute ; ho
 $lang=en              
                       
 # Create CMS Site     
-UPDATE CMSSite ; uid[unique=true] ; name[lang=$lang]         ; locale[lang=$lang] 
-               ; securityB2BAsia  ; "Security B2B Asia Site" ; en_AS              
+UPDATE CMSSite ; uid[unique=true] ; name[lang=$lang]                              ; locale[lang=$lang] 
+               ; securityB2BAsia  ; "Products | Gallagher Security B2B Asia Site" ; en_AS              
                
 $siteUidAsia=securityB2BAsia
                
@@ -167,8 +167,8 @@ INSERT_UPDATE CMSSite ; uid[unique=true] ; previewURL
 $lang=en              
                       
 # Create CMS Site     
-UPDATE CMSSite      ; uid[unique=true] ; name[lang=$lang]       ; locale[lang=$lang] 
-                    ; securityB2BCA    ; "Security B2B CA Site" ; en_CA              
+UPDATE CMSSite      ; uid[unique=true] ; name[lang=$lang]                            ; locale[lang=$lang] 
+                    ; securityB2BCA    ; "Products | Gallagher Security B2B CA Site" ; en_CA              
                     
 ###############################
                     
@@ -236,8 +236,8 @@ INSERT_UPDATE Trigger ; cronJob(code)[unique=true]         ; second ; minute ; h
 $lang=en              
                       
 # Create CMS Site     
-UPDATE CMSSite ; uid[unique=true] ; name[lang=$lang]          ; locale[lang=$lang] 
-               ; securityB2BSthAm ; "Security B2B South America Site" ; en_ST              
+UPDATE CMSSite ; uid[unique=true] ; name[lang=$lang]                                       ; locale[lang=$lang] 
+               ; securityB2BSthAm ; "Products | Gallagher Security B2B South America Site" ; en_ST              
                
 $siteUidSthAm=securityB2BSthAm
                
@@ -316,8 +316,8 @@ INSERT_UPDATE Trigger ; cronJob(code)[unique=true]      ; second ; minute ; hour
 $lang=en              
                       
 # Create CMS Site     
-UPDATE CMSSite ; uid[unique=true] ; name[lang=$lang]       ; locale[lang=$lang] 
-               ; securityB2BUK    ; "Security B2B UK Site" ; en_UK              
+UPDATE CMSSite ; uid[unique=true] ; name[lang=$lang]                            ; locale[lang=$lang] 
+               ; securityB2BUK    ; "Products | Gallagher Security B2B UK Site" ; en_UK              
                
 $securityB2BUK=securityB2BUK
                
@@ -394,8 +394,8 @@ INSERT_UPDATE Trigger ; cronJob(code)[unique=true]      ; second ; minute ; hour
 $lang=en              
                       
 # Create CMS Site     
-UPDATE CMSSite ; uid[unique=true] ; name[lang=$lang]       ; locale[lang=$lang] 
-               ; securityB2BUS    ; "Security B2B US Site" ; en_US              
+UPDATE CMSSite ; uid[unique=true] ; name[lang=$lang]                            ; locale[lang=$lang] 
+               ; securityB2BUS    ; "Products | Gallagher Security B2B US Site" ; en_US              
                
                
 $securityB2BUS=securityB2BUS
