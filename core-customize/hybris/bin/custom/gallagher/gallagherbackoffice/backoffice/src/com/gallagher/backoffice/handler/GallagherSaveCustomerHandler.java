@@ -231,6 +231,8 @@ public class GallagherSaveCustomerHandler implements FlowActionHandler
 			b2bRegistrationEvent.setBaseStore(defaultBaseStore);
 			b2bRegistrationEvent.setSite(defaultSite);
 
+			LOGGER.info("\n\nDefault BaseStore in session:: " + defaultBaseStore.getUid());
+
 			final CurrencyModel currency = getCurrency(defaultBaseStore, b2bCustomer.getSessionCurrency());
 			b2bRegistrationEvent.setCurrency(currency);
 			b2bCustomer.setSessionCurrency(currency);
