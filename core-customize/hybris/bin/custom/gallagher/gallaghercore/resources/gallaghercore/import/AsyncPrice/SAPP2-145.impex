@@ -1,0 +1,2 @@
+INSERT_UPDATE UserDiscountGroup ; code[unique=true]          ; name[lang=en]                   
+                                ; B2B_DEFAULT_DISCOUNT_GROUP ; A DEFAULT B2B USERDISCOUNTGROUP ;  
