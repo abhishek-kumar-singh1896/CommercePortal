@@ -398,7 +398,13 @@ public class GallagherMindTouchServiceImpl implements GallagherMindTouchService
 	private String getUserXml(final B2BCustomerModel b2bCustomer)
 	{
 		final String userName = b2bCustomer.getKeycloakGUID();
-		final String email = b2bCustomer.getEmailID();
+		final String email = b2bCustomer.getUid();
+		String emailId = email;
+		if (email.startsWith("sec|"))
+		{
+			emailId = email.replace("sec|", "");
+		}
+
 		final String fullName = b2bCustomer.getName();
 
 		final StringBuilder sb = new StringBuilder("<user>");
@@ -408,7 +414,7 @@ public class GallagherMindTouchServiceImpl implements GallagherMindTouchService
 		sb.append("</username>");
 		sb.append(ENTER);
 		sb.append("<email>");
-		sb.append(email);
+		sb.append(emailId);
 		sb.append("</email>");
 		sb.append(ENTER);
 		sb.append("<fullname>");

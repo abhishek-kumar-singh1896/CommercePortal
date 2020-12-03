@@ -35,6 +35,7 @@ public class GallagherSCPIB2BCustomerConversionServiceImpl extends SapCpiB2BCust
 			final List<String> deletedUnits)
 	{
 		super.mapB2BContactInfo(b2bCustomer, sessionLanguage, sapCpiOutboundB2BContact);
+		sapCpiOutboundB2BContact.setEmail(b2bCustomer.getEmailID());
 		sapCpiOutboundB2BContact.setKeycloakGUID(b2bCustomer.getKeycloakGUID());
 		sapCpiOutboundB2BContact.setContactId(b2bCustomer.getSapContactID());
 		sapCpiOutboundB2BContact.setObjectID(b2bCustomer.getObjectID());
