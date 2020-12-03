@@ -44,7 +44,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gallagher.b2c.controllers.ControllerConstants;
-import com.gallagher.facades.order.impl.GallagherCartFacade;
 
 
 /**
@@ -61,9 +60,6 @@ public class AddToCartController extends AbstractController
 
 	private static final Logger LOG = Logger.getLogger(AddToCartController.class);
 
-	@Resource(name = "gglCartFacade")
-	private GallagherCartFacade gglCartFacade;
-
 	@Resource(name = "cartFacade")
 	private CartFacade cartFacade;
 
@@ -74,8 +70,9 @@ public class AddToCartController extends AbstractController
 	private GroupCartModificationListPopulator groupCartModificationListPopulator;
 
 	@RequestMapping(value = "/cart/add", method = RequestMethod.POST, produces = "application/json")
-	public String addToCart(@RequestParam("productCodePost") final String code, final Model model,
-			@Valid final AddToCartForm form, final BindingResult bindingErrors)
+	public String addToCart(@RequestParam("productCodePost")
+	final String code, final Model model, @Valid
+	final AddToCartForm form, final BindingResult bindingErrors)
 	{
 		if (bindingErrors.hasErrors())
 		{
@@ -93,8 +90,7 @@ public class AddToCartController extends AbstractController
 		{
 			try
 			{
-				//final CartModificationData cartModification = cartFacade.addToCart(code, qty);
-				final CartModificationData cartModification = gglCartFacade.addToCart(code, qty);
+				final CartModificationData cartModification = cartFacade.addToCart(code, qty);
 				model.addAttribute(QUANTITY_ATTR, Long.valueOf(cartModification.getQuantityAdded()));
 				model.addAttribute("entry", cartModification.getEntry());
 				model.addAttribute("cartCode", cartModification.getCartCode());
