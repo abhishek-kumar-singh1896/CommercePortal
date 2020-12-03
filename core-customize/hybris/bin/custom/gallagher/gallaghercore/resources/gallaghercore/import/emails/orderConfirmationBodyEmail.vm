@@ -144,12 +144,12 @@
   
   <tr>
     <td style=" padding: 8px;text-align: left;">ORDER NUMBER</td>
-    <td style=" padding: 8px;text-align: left;">DATE PLACEDS</td>
+    <td style=" padding: 8px;text-align: left;">DATE PLACED</td>
     <td style=" padding: 8px;text-align: left;">${ctx.messages.Account}</td>
   </tr>
   <tr>
     <td style="font-weight:bold;padding: 8px;text-align: left;">${ctx.order.code}</td>
-    <td style="font-weight:bold;padding: 8px;text-align: left;">${ctx.order.formattedOrderDate}textDate</td>
+    <td style="font-weight:bold;padding: 8px;text-align: left;">${ctx.order.formattedOrderDate}</td>
     <td style="font-weight:bold;padding: 8px;text-align: left;">${ctx.order.b2bUnit.name}</td>
   </tr>
   <tr>
