@@ -579,8 +579,8 @@
 		<property name="commercePriceService" ref="commercePriceService"/>
 	</bean>
 	
-	<alias name="gallagherCartFactory" alias="cartFactory"/>
-    <bean id="gallagherCartFactory" class="com.gallagher.core.services.impl.GallagherCartFactory" parent="commerceCartFactory"/>
+	<!-- <alias name="gallagherCartFactory" alias="cartFactory"/>
+    <bean id="gallagherCartFactory" class="com.gallagher.core.services.impl.GallagherCartFactory" parent="commerceCartFactory"/> -->
 	 <!-- SAPP2-147 -->
 	 
 	<alias alias="CustomerAccountService" name="gallagherCustomerAccountService" />
