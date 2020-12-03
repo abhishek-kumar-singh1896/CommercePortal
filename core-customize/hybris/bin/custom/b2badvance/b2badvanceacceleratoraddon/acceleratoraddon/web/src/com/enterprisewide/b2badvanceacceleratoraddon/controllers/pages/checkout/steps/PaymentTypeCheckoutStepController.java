@@ -106,26 +106,7 @@ public class PaymentTypeCheckoutStepController extends AbstractCheckoutStepContr
 	public String enterStep(final Model model, final RedirectAttributes redirectAttributes)
 			throws CMSItemNotFoundException, CommerceCartModificationException
 	{
-		final CartData cartData = getCheckoutFacade().getCheckoutCart();
-		for (final OrderEntryData cartEntry : cartData.getEntries()) {
-			for (final CategoryData categoryData : cartEntry.getProduct().getCategories()) {
-				if (categoryData.getCode().equalsIgnoreCase("Software") && StringUtils.isNotEmpty(categoryData.getCommentsQuestion())) {
-					model.addAttribute("commentsQuestion", categoryData.getCommentsQuestion());
-					break;
-				}
-			}
-			if(cartEntry.getProduct().getBaseProduct()!=null) {
-				final ProductData baseProductData = productFacade.getProductForCodeAndOptions(cartEntry.getProduct().getBaseProduct(),
-						Arrays.asList(ProductOption.BASIC, ProductOption.PRICE, ProductOption.SUMMARY, ProductOption.DESCRIPTION,
-								ProductOption.CATEGORIES, ProductOption.PROMOTIONS, ProductOption.STOCK, ProductOption.VARIANT_FULL, ProductOption.DELIVERY_MODE_AVAILABILITY));
-				for (final CategoryData categoryData : baseProductData.getCategories()) {
-					if (categoryData.getCode().equalsIgnoreCase("Software") && StringUtils.isNotEmpty(categoryData.getCommentsQuestion())) {
-						model.addAttribute("commentsQuestion", categoryData.getCommentsQuestion());
-						break;
-					}
-				}
-			}
-		}
+		setCommentQuestionOnCheckout(model);
 		model.addAttribute("cartData", cartData);
 		model.addAttribute("paymentTypeForm", preparePaymentTypeForm(cartData));
 		prepareDataForPage(model);
@@ -146,6 +127,8 @@ public class PaymentTypeCheckoutStepController extends AbstractCheckoutStepContr
 			throws CMSItemNotFoundException, CommerceCartModificationException
 	{
 		paymentTypeFormValidator.validate(paymentTypeForm, bindingResult);
+		
+		setCommentQuestionOnCheckout(model);
 
 		if (bindingResult.hasErrors())
 		{
@@ -300,8 +283,30 @@ public class PaymentTypeCheckoutStepController extends AbstractCheckoutStepContr
 			}
 		}
 	}
-
-
+	
+	protected void setCommentQuestionOnCheckout(final Model model)
+	{
+		final CartData cartData = getCheckoutFacade().getCheckoutCart();
+		for (final OrderEntryData cartEntry : cartData.getEntries()) {
+			for (final CategoryData categoryData : cartEntry.getProduct().getCategories()) {
+				if (categoryData.getCode().equalsIgnoreCase("Software") && StringUtils.isNotEmpty(categoryData.getCommentsQuestion())) {
+					model.addAttribute("commentsQuestion", categoryData.getCommentsQuestion());
+					break;
+				}
+			}
+			if(cartEntry.getProduct().getBaseProduct()!=null) {
+				final ProductData baseProductData = productFacade.getProductForCodeAndOptions(cartEntry.getProduct().getBaseProduct(),
+						Arrays.asList(ProductOption.BASIC, ProductOption.PRICE, ProductOption.SUMMARY, ProductOption.DESCRIPTION,
+								ProductOption.CATEGORIES, ProductOption.PROMOTIONS, ProductOption.STOCK, ProductOption.VARIANT_FULL, ProductOption.DELIVERY_MODE_AVAILABILITY));
+				for (final CategoryData categoryData : baseProductData.getCategories()) {
+					if (categoryData.getCode().equalsIgnoreCase("Software") && StringUtils.isNotEmpty(categoryData.getCommentsQuestion())) {
+						model.addAttribute("commentsQuestion", categoryData.getCommentsQuestion());
+						break;
+					}
+				}
+			}
+		}
+	}
 
 	protected CheckoutStep getCheckoutStep()
 	{
