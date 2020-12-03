@@ -172,6 +172,7 @@ public class CoreSystemSetup extends AbstractSystemSetup
 			importImpexFile(context, "/gallaghercore/import/AsyncPrice/asyncPrice-UK.impex");
 			importImpexFile(context, "/gallaghercore/import/AsyncPrice/asyncPrice-US.impex");
 			importImpexFile(context, "/gallaghercore/import/AsyncPrice/asyncPrice_SCPI_Integration.impex");
+			importImpexFile(context, "/gallaghercore/import/AsyncPrice/SAPP2-145.impex");
 
 		}
 
