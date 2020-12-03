@@ -970,6 +970,10 @@
             <description>Contains the Entries During Checkout</description>
 	    <persistence type="property" />
         </attribute>
+        <attribute type="java.lang.String" qualifier="formattedOrderDate" >				 
+            <description>Contains the formttedDate</description>
+	    <persistence type="property" />
+        </attribute>
     </attributes>
      </itemtype>
 </typegroup>

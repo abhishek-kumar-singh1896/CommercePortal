@@ -43,9 +43,17 @@ public class GallagherOrderNotificationEmailContext extends OrderNotificationEma
 	{
 		super.init(orderProcessModel, emailPageModel);
 		orderData = getOrderConverter().convert(orderProcessModel.getOrderEntry());
+		getOrder().setFormattedOrderDate(orderProcessModel.getFormattedOrderDate());
 		put(EMAIL, getCustomerEmailResolutionService().getEmailForCustomer(getCustomer(orderProcessModel)));
 		put(DISPLAY_NAME, getCustomer(orderProcessModel).getDisplayName());
 
+	}
+
+	@Override
+	public OrderData getOrder()
+	{
+		orderData = super.getOrder();
+		return orderData;
 	}
 
 	@Override
