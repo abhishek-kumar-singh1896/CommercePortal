@@ -175,8 +175,8 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;PaymentHistoryLink;PaymentHistoryLink;/my-account/paymentHistory;PaymentHistoryLink;
 ;;InvoicesLink;InvoicesLink;/my-account/invoices;InvoicesLink;
 
-INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;linkName;url;&linkRef;target(code)[default='sameWindow'];visible[default=true];restrictions(uid,$contentCV)
-;;BulkOrderCategoryLink;BulkOrderCategoryLink;Bulk Order;/bulkOrderForm;BulkOrderCategoryLink;;;GallagherSiteTransactionRestriction
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;linkName;url;&linkRef;target(code)[default='sameWindow'];visible[default=true];restrictions(uid,$contentCV);styleAttributes
+;;BulkOrderCategoryLink;BulkOrderCategoryLink;Bulk Order;/bulkOrderForm;BulkOrderCategoyLink;;;GallagherSiteTransactionRestriction;bulkOrderForm
 
 ## level 3. children of Order Tools ##
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
