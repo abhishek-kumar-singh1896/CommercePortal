@@ -106,7 +106,8 @@ public class PaymentTypeCheckoutStepController extends AbstractCheckoutStepContr
 	public String enterStep(final Model model, final RedirectAttributes redirectAttributes)
 			throws CMSItemNotFoundException, CommerceCartModificationException
 	{
-		setCommentQuestionOnCheckout(model);
+		final CartData cartData = getCheckoutFacade().getCheckoutCart();
+		setCommentQuestionOnCheckout(cartData,model);
 		model.addAttribute("cartData", cartData);
 		model.addAttribute("paymentTypeForm", preparePaymentTypeForm(cartData));
 		prepareDataForPage(model);
@@ -128,7 +129,8 @@ public class PaymentTypeCheckoutStepController extends AbstractCheckoutStepContr
 	{
 		paymentTypeFormValidator.validate(paymentTypeForm, bindingResult);
 		
-		setCommentQuestionOnCheckout(model);
+		final CartData cartData = getCheckoutFacade().getCheckoutCart();
+		setCommentQuestionOnCheckout(cartData,model);
 
 		if (bindingResult.hasErrors())
 		{
@@ -284,9 +286,8 @@ public class PaymentTypeCheckoutStepController extends AbstractCheckoutStepContr
 		}
 	}
 	
-	protected void setCommentQuestionOnCheckout(final Model model)
+	protected void setCommentQuestionOnCheckout(final CartData cartData,final Model model)
 	{
-		final CartData cartData = getCheckoutFacade().getCheckoutCart();
 		for (final OrderEntryData cartEntry : cartData.getEntries()) {
 			for (final CategoryData categoryData : cartEntry.getProduct().getCategories()) {
 				if (categoryData.getCode().equalsIgnoreCase("Software") && StringUtils.isNotEmpty(categoryData.getCommentsQuestion())) {
