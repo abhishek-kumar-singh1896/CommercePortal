@@ -225,6 +225,11 @@
 												<a href="${L1link}" id="mainNavLink${status.index+1}" class="${dropdownValue.item.styleAttributes}">
 												    ${dropdownValue.item.linkName} 
 												</a>
+												<c:if test="${dropdownValue.item.uid eq 'B2BProductsNavLink'}">
+													<div class="megamenu-out second-level-menu shadow-sm d-none" id="${checkNavigation}">
+		                                            <nav:topNavigation />
+	                                              </div>
+	                                              </c:if>
 											</li>
 										</c:forEach>
 									</c:forEach>
@@ -362,9 +367,9 @@
 							
 	</div>
 	
-	<div class="megamenu-out second-level-menu shadow-sm d-none" id="${checkNavigation}">
+<%-- 	<div class="megamenu-out second-level-menu shadow-sm d-none" id="${checkNavigation}">
 		<nav:topNavigation />
-	</div>
+	</div>  above--%>
 	
 	<div class="megamenu-out search-result-out search-link-container d-none" id="searchLink1Container">
        <div class="container">
