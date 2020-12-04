@@ -260,7 +260,7 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 						}
 						existingVariantProduct.setPartNumber(product.getPartNumber());
 						existingVariantProduct.setVideos(product.getVideos());
-						existingVariantProduct.setPriceOnApplication(product.getPriceOnApplication());
+						/* existingVariantProduct.setPriceOnApplication(product.getPriceOnApplication()); */
 						populateVariantData(product, existingVariantProduct);
 
 						populateImages(product, existingVariantProduct, regionalCatalogVersion);
@@ -299,7 +299,7 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 							continue;
 						}
 						newVariantProduct.setPartNumber(product.getPartNumber());
-						newVariantProduct.setPriceOnApplication(product.getPriceOnApplication());
+						/* newVariantProduct.setPriceOnApplication(product.getPriceOnApplication()); */
 						newVariantProduct.setVideos(product.getVideos());
 						newVariantProduct.setBaseProduct(baseProduct);
 						approveBaseProduct(newVariantProduct);
