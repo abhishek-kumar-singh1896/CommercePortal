@@ -23,6 +23,9 @@
 <!DOCTYPE html>
 <html lang="${fn:escapeXml(currentLanguage.isocode)}">
 <head>
+
+<%-- // TODO: Temporarily commented changes below to test cart session issue, so need to remove afterwards
+
 <sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')">
 	<input type="hidden" name="baseLoginURL" id="baseLoginURL"
 		value="${encodedContextPath}" />
@@ -76,6 +79,8 @@
     	}
     </script>
 </sec:authorize>
+
+--%>
 
 <script type="text/javascript">
 		var dataLayer = [];
