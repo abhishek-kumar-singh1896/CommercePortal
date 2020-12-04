@@ -163,11 +163,15 @@ public class GallagherB2BUnitFacadeImpl extends DefaultB2BUnitFacade implements 
 			{
 				if (StringUtils.equals(unit.getUid(), selectedUnit) && getB2BUnitService().getRootUnit(unit).equals(unit))//If parent unit then add child unit also in list
 				{
+					final B2BUnitModel parentUnit = unit;
+					b2bUnitList.add(unit);
 					for (final PrincipalGroupModel group : customerGroups)
 					{
 						if (group instanceof B2BUnitModel
-								&& getB2BUnitService().getRootUnit((B2BUnitModel) group).equals(unit))
+								&& getB2BUnitService().getRootUnit((B2BUnitModel) group).equals(unit)
+								&& !group.equals(parentUnit))
 						{
+
 							b2bUnitList.add((B2BUnitModel) group);
 						}
 					}
