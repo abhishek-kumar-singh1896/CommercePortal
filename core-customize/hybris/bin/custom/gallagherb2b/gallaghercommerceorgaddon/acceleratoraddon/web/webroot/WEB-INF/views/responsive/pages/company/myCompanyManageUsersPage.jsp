@@ -63,7 +63,7 @@
 				                                    <td class="hidden-sm hidden-md hidden-lg"><spring:theme code="text.company.column.name.name"/></td>
 				                                    <td class="responsive-table-cell">
 				                                        <ycommerce:testId code="my-company_username_label">
-				                                            <a href="${fn:escapeXml(viewUserUrl)}" class="responsive-table-link">${fn:escapeXml(user.firstName)}&nbsp;${fn:escapeXml(user.lastName)}</a>
+				                                            <a href="${fn:escapeXml(viewUserUrl)}" class="responsive-table-link" style="word-break: break-all;">${fn:escapeXml(user.firstName)}&nbsp;${fn:escapeXml(user.lastName)}</a>
 				                                        </ycommerce:testId>
 				                                    </td>
 				                                    <td class="hidden-sm hidden-md hidden-lg"><spring:theme code="text.company.column.roles.name"/></td>
