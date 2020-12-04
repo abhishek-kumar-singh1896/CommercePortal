@@ -269,3 +269,12 @@ INSERT_UPDATE SyncAttributeDescriptorConfig;syncJob(code)[unique=true,path-delim
 ;sync securityB2BMasterProductCatalog:Staged->securityB2BUKProductCatalog:Staged;Product:recommendedCategories;false;false
 ;sync securityB2BMasterProductCatalog:Staged->securityB2BAsiaProductCatalog:Staged;Product:recommendedCategories;false;false
 ;sync securityB2BMasterProductCatalog:Staged->securityB2BSthAmProductCatalog:Staged;Product:recommendedCategories;false;false
+
+;sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged;Product:priceOnApplication;false;false
+;sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged;Product:priceOnApplication;false;false
+;sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged;Product:priceOnApplication;false;false
+;sync securityB2BMasterProductCatalog:Staged->securityB2BUSProductCatalog:Staged;Product:priceOnApplication;false;false
+;sync securityB2BMasterProductCatalog:Staged->securityB2BCAProductCatalog:Staged;Product:priceOnApplication;false;false
+;sync securityB2BMasterProductCatalog:Staged->securityB2BUKProductCatalog:Staged;Product:priceOnApplication;false;false
+;sync securityB2BMasterProductCatalog:Staged->securityB2BAsiaProductCatalog:Staged;Product:priceOnApplication;false;false
+;sync securityB2BMasterProductCatalog:Staged->securityB2BSthAmProductCatalog:Staged;Product:priceOnApplication;false;false
