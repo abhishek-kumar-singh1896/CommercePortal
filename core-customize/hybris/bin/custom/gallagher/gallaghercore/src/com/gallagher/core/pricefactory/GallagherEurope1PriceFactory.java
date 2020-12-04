@@ -36,6 +36,7 @@ import java.util.Optional;
 import javax.annotation.Resource;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 
 import com.gallagher.core.jalo.GallagherDiscountRow;
 import com.gallagher.core.pdt.query.builder.GallagherPDTRowsQueryBuilder;
@@ -50,6 +51,8 @@ import com.gallagher.core.pdt.query.builder.GallagherPDTRowsQueryBuilder;
  */
 public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactory
 {
+	private static final Logger LOG = Logger.getLogger(GallagherEurope1PriceFactory.class);
+
 	private static final String CURRENT_SESSION_SALES_AREA = "currentSessionSalesArea";
 	private static final String CURRENT_SESSION_CUSTOMER_GROUP = "currentSessionCustomerGroup";
 	private static final String SEPARATOR = "_";
@@ -74,8 +77,10 @@ public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactor
 		final String salesArea = getSalesArea(ctx);
 		final String customerGroup = getCustomerGroup(ctx);
 
-		if (StringUtils.isBlank(salesArea) || StringUtils.isBlank(customerGroup))
+		LOG.debug("Customer group in session during price ::" + customerGroup);
+		if (StringUtils.isBlank(salesArea))
 		{
+			LOG.debug("Sales area is blank calling OOTB method for price");
 			final Collection<PriceRow> result = super.queryPriceRows4Price(ctx, product, productGroup, user, userGroup, date,
 					currency, giveAwayMode);
 			return result;
@@ -114,8 +119,10 @@ public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactor
 		final String salesArea = getSalesArea(ctx);
 		final String customerGroup = getCustomerGroup(ctx);
 
-		if (StringUtils.isBlank(salesArea) || !salesArea.contains(SEPARATOR) || StringUtils.isBlank(customerGroup))
+		LOG.debug("Customer group in session during price ::" + customerGroup);
+		if (StringUtils.isBlank(salesArea) || !salesArea.contains(SEPARATOR))
 		{
+			LOG.debug("Sales area is blank calling OOTB method for discount");
 			final Collection<? extends AbstractDiscountRow> result = super.queryDiscounts4Price(ctx, product, productGroup, user,
 					userGroup);
 			return result;
@@ -179,6 +186,7 @@ public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactor
 					ret.sort(new GallagherEurope1PriceFactory.DiscountRowMatchComparator());
 					final List<GallagherDiscountRow> discList = new ArrayList<>();
 					discList.add(ret.get(0));
+					LOG.debug("total discount rows matched " + discList.size());
 					return discList;
 				}
 
@@ -213,6 +221,7 @@ public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactor
 					final Currency currency = discRow.getCurrency();
 					if (!curr.equals(currency) && (base == null || !base.equals(currency)))
 					{
+						LOG.debug("removing discount row as it doesnt match currency");
 						it.remove();
 					}
 					else
@@ -251,6 +260,7 @@ public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactor
 					discRow = (GallagherDiscountRow) it.next();
 					if (quantity < Long.valueOf(discRow.getQuantityAsPrimitive()))
 					{
+						LOG.debug("removing discount row as it doesnt match quantity");
 						it.remove();
 					}
 					else
@@ -258,6 +268,7 @@ public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactor
 						final Currency currency = discRow.getCurrency();
 						if (!curr.equals(currency) && (base == null || !base.equals(currency)))
 						{
+							LOG.debug("removing discount row as it doesnt match currency");
 							it.remove();
 						}
 						else
