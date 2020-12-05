@@ -7,7 +7,7 @@ $defaultCurrencyAsia=USD
 $languagesAsia=en_AS
 $defaultLanguageAsia=en_AS
 $deliveryCountries=US
-$orderProcessCode=order-process
+$orderProcessCode=sap-order-process
 $pickupInStoreMode=DISABLED
 $customerAllowedToIgnoreSuggestions=true
 $paymentProvider=Mockup
@@ -49,7 +49,7 @@ $defaultCurrencyCA=CAD
 $languagesCA=en_CA
 $defaultLanguageCA=en_CA
 $deliveryCountries=CA
-$orderProcessCode=order-process
+$orderProcessCode=sap-order-process
 $pickupInStoreMode=DISABLED
 $customerAllowedToIgnoreSuggestions=true
 $paymentProvider=Mockup
@@ -92,7 +92,7 @@ $defaultCurrencySthAm=USD
 $languagesSthAm=en_ST
 $defaultLanguageSthAm=en_ST
 $deliveryCountries=US
-$orderProcessCode=order-process
+$orderProcessCode=sap-order-process
 $pickupInStoreMode=DISABLED
 $customerAllowedToIgnoreSuggestions=true
 $paymentProvider=Mockup
@@ -136,7 +136,7 @@ $defaultCurrencyUK=GBP
 $languagesUK=en_UK
 $defaultLanguageUK=en_UK
 $deliveryCountries=GB
-$orderProcessCode=order-process
+$orderProcessCode=sap-order-process
 $pickupInStoreMode=DISABLED
 $customerAllowedToIgnoreSuggestions=true
 $paymentProvider=Mockup
@@ -180,7 +180,7 @@ $defaultCurrencyUS=USD
 $languagesUS=en_US
 $defaultLanguageUS=en_US
 $deliveryCountries=US
-$orderProcessCode=order-process
+$orderProcessCode=sap-order-process
 $pickupInStoreMode=DISABLED
 $customerAllowedToIgnoreSuggestions=true
 $paymentProvider=Mockup
@@ -212,3 +212,25 @@ $storeUidUS=securityB2BUS
                  
 UPDATE BaseStore ; uid[unique=true] ; name[lang=$lang]        
                  ; $storeUidUS      ; "Security B2B US Store" ;  
+                 
+###########################################################################
+                 
+$storeUidNZ=securityB2BNZ
+$orderProcessCode=sap-order-process                 
+UPDATE BaseStore ; uid[unique=true] ; submitOrderProcessCode       
+                 ; $storeUidNZ      ; $orderProcessCode ;  
+                 
+###########################################################################
+                 
+$storeUidAU=securityB2BAU
+$orderProcessCode=sap-order-process                 
+UPDATE BaseStore ; uid[unique=true] ; submitOrderProcessCode       
+                 ; $storeUidAU      ; $orderProcessCode ;  
+                 
+###########################################################################
+                 
+$storeUidGlobal=securityB2BGlobal
+$orderProcessCode=sap-order-process                 
+UPDATE BaseStore ; uid[unique=true] ; submitOrderProcessCode       
+                 ; $storeUidGlobal      ; $orderProcessCode ;  
+                 

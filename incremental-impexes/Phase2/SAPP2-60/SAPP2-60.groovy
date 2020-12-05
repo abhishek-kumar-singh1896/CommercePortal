@@ -37,7 +37,7 @@ modelService.save(it);
 setupSolrIndexerService.createSolrIndexerCronJobs("amB2CCLIndex");
 
 
-FlexibleSearchQuery searchQuery = new FlexibleSearchQuery("select {pk} from {Product} where {eligibleForLatAm} is true");
+FlexibleSearchQuery searchQuery = new FlexibleSearchQuery("select {pk} from {Product} where {eligibleForLatAm} = 1");
 searchQuery.setCount(2000);
 def search = flexibleSearchService.search(searchQuery);
 
