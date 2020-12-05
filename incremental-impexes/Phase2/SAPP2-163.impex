@@ -14,5 +14,8 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;pa
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(&linkRef);
 ;BulkOrderNavNodeEntry;;Bulk Order Navigation Node Entry;BulkOrderNavNode;BulkOrderCategoryLink;
 
-INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;linkName;url;&linkRef;target(code)[default='sameWindow'];visible[default=true];restrictions(uid,$contentCV);styleAttributes
-;;BulkOrderCategoryLink;BulkOrderCategoryLink;Bulk Order;/bulkOrderForm;BulkOrderCategoyLink;;;GallagherSiteTransactionRestriction;bulkOrderForm
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;linkName;url;&linkRef;target(code)[default='sameWindow'];visible[default=true];restrictions(uid,$contentCV);styleAttributes;onlyOneRestrictionMustApply[default=false]
+;;BulkOrderCategoryLink;BulkOrderCategoryLink;Bulk Order;/bulkOrderForm;BulkOrderCategoyLink;;;GallagherSiteTransactionRestriction,MyAccountLinkCustomerGroupRestriction;bulkOrderForm
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV);onlyOneRestrictionMustApply[default=false]
+;;OrderHistoryLink;GallagherSiteTransactionRestriction,OrderhistoryUserGroupRestriction;
