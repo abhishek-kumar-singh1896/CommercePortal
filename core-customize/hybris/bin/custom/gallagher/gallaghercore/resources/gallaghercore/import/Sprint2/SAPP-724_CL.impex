@@ -1,12 +1,14 @@
+
+
 $classSystemVersion=systemVersion(catalog(id[default='AMB2CClassification']),version[default='1.0'])
 $classCatalogVersion=catalogVersion(catalog(id[default='AMB2CClassification']),version[default='1.0'])
 $classAttribute=classificationAttribute(code,$classSystemVersion)
 $classClass=classificationClass(code,$classCatalogVersion)
 $classAttributeAssignment=classAttributeAssignment($classClass,$classAttribute,$classSystemVersion)
 $contentCatalogName=amB2CContentCatalog
-$solrIndexedType=amB2CLatAmProductType
+$solrIndexedType=amB2CCLProductType
 $contentCatalogVersion=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalogName]),CatalogVersion.version[default=Staged])[default=$contentCatalogName:Staged]
-$productCatalog=amB2CLatAmProductCatalog
+$productCatalog=amB2CCLProductCatalog
 $productCatalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 $lang=en
 

@@ -1,6 +1,8 @@
+
+
 $version=Staged
-$solrIndexedType=amB2CLatAmProductType
-$productCatalog=amB2CLatAmProductCatalog
+$solrIndexedType=amB2CCLProductType
+$productCatalog=amB2CCLProductCatalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='$version'])[unique=true,default=$productCatalog:$version]
 
 ##################################################################################################################################
