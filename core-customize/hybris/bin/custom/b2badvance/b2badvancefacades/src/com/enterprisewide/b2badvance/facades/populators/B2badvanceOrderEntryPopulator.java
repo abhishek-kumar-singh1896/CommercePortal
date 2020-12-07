@@ -51,48 +51,29 @@ public class B2badvanceOrderEntryPopulator extends OrderEntryPopulator
 		if (null != source.getProductSpecificDetailsHeading(locale)
 				|| null != source.getProductSpecificDetailsHeading(fallbackLocale))
 		{
-			if (null != source.getProductSpecificDetailsHeading(locale))
-			{
-				target.setProductSpecificDetailsHeading(source.getProductSpecificDetailsHeading(locale));
-			}
-			else if (null != source.getProductSpecificDetailsHeading(fallbackLocale))
-			{
-				target.setProductSpecificDetailsHeading(source.getProductSpecificDetailsHeading(fallbackLocale));
-			}
+			target.setProductSpecificDetailsHeading(
+					(null != source.getProductSpecificDetailsHeading(locale)) ? source.getProductSpecificDetailsHeading(locale)
+							: source.getProductSpecificDetailsHeading(fallbackLocale));
+
 		}
 		else
 		{
-			if (null != source.getProduct().getProductSpecificDetailsHeading(locale))
-			{
-				target.setProductSpecificDetailsHeading(source.getProduct().getProductSpecificDetailsHeading(locale));
-			}
-			else if (null != source.getProduct().getProductSpecificDetailsHeading(fallbackLocale))
-			{
-				target.setProductSpecificDetailsHeading(source.getProduct().getProductSpecificDetailsHeading(fallbackLocale));
-			}
+			target.setProductSpecificDetailsHeading((null != source.getProduct().getProductSpecificDetailsHeading(locale))
+					? source.getProduct().getProductSpecificDetailsHeading(locale)
+					: source.getProduct().getProductSpecificDetailsHeading(fallbackLocale));
 		}
 		if (null != source.getProductSpecificDetailsSubHeading(locale)
 				|| null != source.getProductSpecificDetailsSubHeading(fallbackLocale))
 		{
-			if (null != source.getProductSpecificDetailsSubHeading(locale))
-			{
-				target.setProductSpecificDetailsSubHeading(source.getProductSpecificDetailsSubHeading(locale));
-			}
-			else if (null != source.getProductSpecificDetailsSubHeading(fallbackLocale))
-			{
-				target.setProductSpecificDetailsSubHeading(source.getProductSpecificDetailsSubHeading(fallbackLocale));
-			}
+			target.setProductSpecificDetailsSubHeading(
+					(null != source.getProductSpecificDetailsSubHeading(locale)) ? source.getProductSpecificDetailsSubHeading(locale)
+							: source.getProductSpecificDetailsSubHeading(fallbackLocale));
 		}
 		else
 		{
-			if (null != source.getProduct().getProductSpecificDetailsSubHeading(locale))
-			{
-				target.setProductSpecificDetailsSubHeading(source.getProduct().getProductSpecificDetailsSubHeading(locale));
-			}
-			else if (null != source.getProduct().getProductSpecificDetailsSubHeading(fallbackLocale))
-			{
-				target.setProductSpecificDetailsSubHeading(source.getProduct().getProductSpecificDetailsSubHeading(fallbackLocale));
-			}
+			target.setProductSpecificDetailsSubHeading((null != source.getProduct().getProductSpecificDetailsSubHeading(locale))
+					? source.getProduct().getProductSpecificDetailsSubHeading(locale)
+					: source.getProduct().getProductSpecificDetailsSubHeading(fallbackLocale));
 		}
 		target.setDeliveryinstruction(source.getDeliveryInstruction());
 		target.setDeliveredQuantity(source.getDeliveredQuantity());
