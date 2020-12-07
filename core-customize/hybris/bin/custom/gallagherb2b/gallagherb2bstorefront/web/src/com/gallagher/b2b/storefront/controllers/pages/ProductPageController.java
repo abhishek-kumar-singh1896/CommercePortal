@@ -161,7 +161,7 @@ public class ProductPageController extends AbstractPageController
 		boolean b2bUnitTransactional = false;
 		if (currentCustomer instanceof B2BCustomerModel && null != ((B2BCustomerModel) currentCustomer).getDefaultB2BUnit())
 		{
-			b2bUnitTransactional = ((B2BCustomerModel) currentCustomer).getDefaultB2BUnit().getTransactional();
+			b2bUnitTransactional = Boolean.TRUE.equals(((B2BCustomerModel) currentCustomer).getDefaultB2BUnit().getTransactional());
 
 		}
 		model.addAttribute("transactional", b2bUnitTransactional);
