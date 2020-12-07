@@ -7,7 +7,9 @@
 		<collectiontype code="Animals" elementtype="Animal" autocreate="true" generate="true" />
 		<collectiontype code="gallagherNavigationBarComponentList" elementtype="GallagherNavigationBarComponent"
 			autocreate="true" generate="true" type="list" />
-	</collectiontypes>
+		<collectiontype code="StudyCaseCollection" elementtype="StudyCase"
+			autocreate="true" type="list" />
+	</collectiontypes>	
 
 	<enumtypes>
 		<enumtype code="Sticker" autocreate="true" generate="true">
@@ -90,7 +92,22 @@
 			<sourceElement qualifier="navigationNodes" type="CMSNavigationNode" cardinality="many" />
 			<targetElement qualifier="restrictions" type="AbstractRestriction" cardinality="many" collectiontype="list" ordered="true" />
 		</relation>
-
+		
+		
+    	<!-- <relation code="Product2Addresses" generate="true" localized="false" autocreate="true">    				
+            <sourceElement type="Product" cardinality="one" qualifier="prod">
+                <modifiers read="true" write="false" initial="true" search="true" removable="false" optional="false"/>
+            </sourceElement>
+            <targetElement type="Address" cardinality="many" qualifier="addresses">
+                <modifiers read="true" write="true" search="true" optional="true" partof="true"/>
+                <custom-properties>
+                    <property name="condition.query">
+                        <value>"{original} is null"</value>
+                    </property>
+                </custom-properties>
+            </targetElement>
+        </relation> -->
+        
 	</relations>
 
 	<itemtypes>
@@ -305,10 +322,19 @@
 						<columntype>
 							<value>HYBRIS.LONG_STRING</value>
 						</columntype>
-					</persistence>
+					</persistence>				
 				</attribute>
-			</attributes>
-
+				<attribute autocreate="true" generate="true" qualifier="caseStudies" type="StudyCaseCollection">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<description>Case Studies Product.</description>
+				</attribute>
+				<!-- <attribute autocreate="true" generate="true" qualifier="addresses" type="AddressCollection">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<description>Case Studies Address.</description>
+				</attribute> -->												
+			</attributes>			
 		</itemtype>
 
 		<itemtype code="PDPSimulator" generate="true" autocreate="true">
@@ -381,6 +407,33 @@
 				<attribute qualifier="dropShipInd" type="java.lang.Integer">
 					<modifiers optional="true" />
 					<persistence type="property" />
+				</attribute>
+			</attributes>
+		</itemtype>
+				
+		<itemtype code="StudyCase" autocreate="true" generate="true">
+			<deployment table="StudyCase" typecode="30004" />
+			<attributes>
+				<attribute qualifier="code" type="java.lang.String">
+					<modifiers optional="false" unique="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="name" type="java.lang.String">
+					<modifiers optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="desc" type="java.lang.Integer">
+					<modifiers optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="link" type="java.lang.Integer">
+					<modifiers optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="picture" type="Media">
+					<description>Image</description>
+					<modifiers read="true" write="true" search="true" optional="true"/>
+					<persistence type="property"/>				
 				</attribute>
 			</attributes>
 		</itemtype>
@@ -787,5 +840,7 @@
 	            </attributes>
 	        </itemtype>
         </typegroup>
+        
 	</itemtypes>
+	
 </items>

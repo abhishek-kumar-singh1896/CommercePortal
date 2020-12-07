@@ -192,11 +192,27 @@
                 </editorArea:section>
                 <editorArea:section name="hmc.section.gallagher.Component.Simulator">
                     <editorArea:attribute qualifier="simulator"/>
-                </editorArea:section>
+                </editorArea:section>               
                 <editorArea:section name="hmc.section.gallagher.Component.SEOFields">
                     <editorArea:attribute qualifier="pageTitleField"/>
                     <editorArea:attribute qualifier="metaDescriptionField"/>
                 </editorArea:section>
+                <editorArea:section name="hmc.section.gallagher.Component.CaseStudies">
+					<editorArea:attribute qualifier="caseStudies"/>
+						<!-- <editorArea:editor-parameter>
+							<editorArea:name>configurableFlowConfigCtx</editorArea:name>
+							<editorArea:value>create-wizard-no-save</editorArea:value>
+						</editorArea:editor-parameter> -->
+					<!-- </editorArea:attribute> -->
+				</editorArea:section>
+				<!-- <editorArea:section name="hmc.section.gallagher.Component.Address">
+					<editorArea:attribute qualifier="addresses"/> -->
+						<!-- <editorArea:editor-parameter>
+							<editorArea:name>configurableFlowConfigCtx</editorArea:name>
+							<editorArea:value>create-wizard-no-save</editorArea:value>
+						</editorArea:editor-parameter> -->
+					<!-- </editorArea:attribute> -->
+				<!-- </editorArea:section> -->
             </editorArea:tab>
             <editorArea:tab name="hmc.tab.product.multimedia" position="18" merge-mode="REPLACE">
                 <editorArea:section name="hmc.section.product.pictures">
@@ -258,6 +274,14 @@
 				</editorArea:section>
 				<editorArea:section name="hmc.section.gallagher.Component.Simulator">
 					<editorArea:attribute qualifier="simulator" />
+				</editorArea:section>
+				<editorArea:section name="hmc.section.gallagher.Component.CaseStudies">
+					<editorArea:attribute qualifier="caseStudies"/>
+						<!-- <editorArea:editor-parameter>
+							<editorArea:name>configurableFlowConfigCtx</editorArea:name>
+							<editorArea:value>create-wizard-no-save</editorArea:value>
+						</editorArea:editor-parameter>
+					</editorArea:attribute> -->
 				</editorArea:section>
 			</editorArea:tab>
 			<editorArea:tab name="hmc.tab.product.multimedia" position="18" merge-mode="REPLACE">
@@ -405,6 +429,29 @@
             </wz:step>
 	    </wz:flow>
 	</context>
+	
+	<context component="create-wizard" type="StudyCase">
+		<wz:flow xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config" id="StudyCaseWizard" title="create.title(ctx.TYPE_CODE)">
+			<wz:prepare id="studycasePrepare">
+				<wz:initialize property="newStyCase" type="ctx.TYPE_CODE"/>
+			</wz:prepare>
+			<wz:step id="step1" label="create.casestudy.general.label" sublabel="create.casestudy.general.sublabel">
+				<wz:content id="step1.content">
+					<wz:property-list root="newStyCase">
+						<wz:property qualifier="link"/>
+						<wz:property qualifier="desc"/>
+						<wz:property qualifier="picture"/>
+					</wz:property-list>
+				</wz:content>
+				<wz:navigation id="step1.navigation">
+					<wz:cancel />
+					<wz:done visible="newStyCase.link != null AND newStyCase.desc != null AND newStyCase.picture != null">
+						<wz:save property="newStyCase" />
+					</wz:done>
+				</wz:navigation>				
+			</wz:step>			
+		</wz:flow>
+	</context>	
 	<context type="GallagherSovosConfigurartion" component="base" merge-by="type">
         <y:base>
             <y:labels>
