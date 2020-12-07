@@ -38,7 +38,7 @@ public class GallagherAddressValidator extends AddressValidator
 			postcodeField = addressForm.getPostcode().trim();
 			addressForm.setPostcode(postcodeField);
 		}
-		validateStringFieldForPostCode(postcodeField, AddressField.POSTCODE, MAX_POSTCODE_LENGTH, errors);
+		validateStringFieldForPostCode(addressForm, postcodeField, AddressField.POSTCODE, MAX_POSTCODE_LENGTH, errors);
 		/*
 		 * super.validateStandardFields(addressForm, errors); if ((errors.hasErrors() == true &&
 		 * addressForm.getPostcode().length() > 10) || errors.hasErrors() == false) { final String postCodeField =
@@ -66,14 +66,50 @@ public class GallagherAddressValidator extends AddressValidator
 		}
 	}
 
-	protected static void validateStringFieldForPostCode(final String addressField, final AddressField fieldType,
+	protected static void validateStringFieldForPostCode(final AddressForm addressForm, final String addressField,
+			final AddressField fieldType,
 			final int maxFieldLength, final Errors errors)
 	{
-		if (addressField == null || StringUtils.isEmpty(addressField) || (StringUtils.length(addressField) > maxFieldLength)
-				|| !Pattern.matches(("^[a-zA-Z0-9- ]+$"), addressField))
+		if (addressField == null || StringUtils.isEmpty(addressField) || (StringUtils.length(addressField) > maxFieldLength))
 		{
-			errors.rejectValue(fieldType.getFieldKey(), fieldType.getErrorKey());
+			if (validateCountrySpecificPostCode(addressField, addressForm))
+			{
+				errors.rejectValue(fieldType.getFieldKey(), fieldType.getErrorKey());
+			}
 		}
+	}
+
+	/**
+	 * @param addressField
+	 * @param addressForm
+	 */
+	private static boolean validateCountrySpecificPostCode(final String addressField, final AddressForm addressForm)
+	{
+		final String countryISOCode = addressForm.getCountryIso();
+		if (countryISOCode != null)
+		{
+			switch (CountryCode.lookup(countryISOCode))
+			{
+				case CANADA:
+					if (!Pattern.matches(("^(?!.*[DFIOQU])[A-VXY][0-9][A-Z] ?[0-9][A-Z][0-9]$"), addressField))
+					{
+						return true;
+					}
+					return false;
+				case USA:
+					if (!Pattern.matches(("^(?!.*[DFIOQU])[A-VXY][0-9][A-Z] ?[0-9][A-Z][0-9]$"), addressField))
+					{
+						return true;
+					}
+					return false;
+				default:
+					if (!Pattern.matches(("^[a-zA-Z0-9- ]+$"), addressField))
+					{
+						return true;
+					}
+			}
+		}
+		return false;
 	}
 }
 
