@@ -128,15 +128,18 @@ UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
 
 
 # 1.7 Sub Categories for 'automatic-watering'
-;trough-valves;;Trough Valves
-;lil-spring;;Lil'Spring 
+#;trough-valves;;Trough Valves
+;ball-waterers;;Ball Waterers
+#;lil-spring;;Lil'Spring 
+;open-trough-waterers;Open Trough Waterers
 ;equi-fount;;EQUIFount 
 ;mira-fount;;MiraFount
 ;e-fount;;E-Fount
 ;big-spring;;BIGSpring
-;pet-tanks;;Pet Tanks
+#;pet-tanks;;Pet Tanks
+;pet-waterers;;Pet Waterers
 ;watering-accessories;;Watering Accessories 
-
+ ;swine-waterers        ;                 ;Swine Waterers
  
 # 1.8 Sub Categories for 'stock-prods-main'
 

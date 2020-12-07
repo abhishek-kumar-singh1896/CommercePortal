@@ -5,20 +5,22 @@ $supercategories=source(code, $catalogVersion)[unique=true]
 $categories=target(code, $catalogVersion)[unique=true]
 # Language
 $lang=en
+
+
 # Insert Categories
 INSERT_UPDATE Category ; code[unique=true]    ; allowedPrincipals(uid)[default='customergroup'] ; $catalogVersion 
                        ; ball-waterers        
                        ; open-trough-waterers 
                        ; horse-waterers       
-                       ; pet-waterers 
-                       ;swine-waterers        
+                       ; pet-waterers         
+                       ; swine-waterers       
                        
 INSERT_UPDATE CategoryCategoryRelation ; $categories          ; $supercategories   
                                        ; ball-waterers        ; automatic-watering 
                                        ; open-trough-waterers ; automatic-watering 
                                        ; horse-waterers       ; automatic-watering 
                                        ; pet-waterers         ; automatic-watering 
-                                       ;swine-waterers        ;automatic-watering
+                                       ; swine-waterers       ; automatic-watering 
                                        
                                        
 UPDATE Category ; code[unique=true]    ; $catalogVersion ; name[lang=$lang]     
@@ -26,8 +28,6 @@ UPDATE Category ; code[unique=true]    ; $catalogVersion ; name[lang=$lang]
                 ; open-trough-waterers ;                 ; Open Trough Waterers 
                 ; horse-waterers       ;                 ; Horse Waterers       
                 ; pet-waterers         ;                 ; Pet Waterers         
-                ;swine-waterers        ;                 ;Swine Waterers
+                ; swine-waterers       ;                 ; Swine Waterers       
                 
-  
                 
- 

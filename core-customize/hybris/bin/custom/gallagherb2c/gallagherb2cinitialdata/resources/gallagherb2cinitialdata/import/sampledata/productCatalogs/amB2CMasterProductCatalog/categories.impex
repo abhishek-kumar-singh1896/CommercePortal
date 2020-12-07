@@ -120,15 +120,19 @@ INSERT_UPDATE Category;code[unique=true];allowedPrincipals(uid)[default='custome
 
 
 # 1.4 Sub Categories for 'automatic-watering'
-;trough-valves
-;lil-spring 
-;equi-fount 
+#;trough-valves
+;ball-waterers
+#;lil-spring 
+;open-trough-waterers
+#;equi-fount 
+;horse-waterers
 ;mira-fount
 ;e-fount
 ;big-spring
-;pet-tanks 
+#;pet-tanks 
+;pet-waterers
 ;watering-accessories 
-
+ ;swine-waterers 
 
 # 1.5 Sub Categories for 'apps-and-software'
 ;livestock
@@ -245,13 +249,18 @@ INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
 ;livestock;apps-and-software
 ;fence;apps-and-software
 
-;trough-valves;automatic-watering
-;lil-spring;automatic-watering
-;equi-fount;automatic-watering
+#;trough-valves;automatic-watering
+;ball-waterers;automatic-watering
+#;lil-spring;automatic-watering
+;open-trough-waterers;automatic-watering
+#;equi-fount;automatic-watering
+;horse-waterers;automatic-watering
 ;mira-fount;automatic-watering
 ;e-fount;automatic-watering
 ;big-spring;automatic-watering
-;pet-tanks;automatic-watering
-;watering-accessories;automatic-watering
+#;pet-tanks;automatic-watering
+;pet-waterers;automatic-watering
 
+;watering-accessories;automatic-watering
+;swine-waterers ;automatic-watering
 #;bargain-barn;promotions
