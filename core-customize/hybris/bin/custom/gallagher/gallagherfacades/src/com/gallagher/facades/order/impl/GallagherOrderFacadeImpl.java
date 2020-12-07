@@ -4,6 +4,7 @@
 package com.gallagher.facades.order.impl;
 
 import de.hybris.platform.b2b.model.B2BCustomerModel;
+import de.hybris.platform.b2b.model.B2BUnitModel;
 import de.hybris.platform.commercefacades.order.data.OrderData;
 import de.hybris.platform.commercefacades.order.data.OrderHistoryData;
 import de.hybris.platform.commercefacades.order.impl.DefaultOrderFacade;
@@ -11,10 +12,15 @@ import de.hybris.platform.commerceservices.search.pagedata.PageableData;
 import de.hybris.platform.commerceservices.search.pagedata.SearchPageData;
 import de.hybris.platform.core.enums.OrderStatus;
 import de.hybris.platform.core.model.order.OrderModel;
+import de.hybris.platform.core.model.security.PrincipalModel;
 import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.servicelayer.exceptions.ModelNotFoundException;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 import de.hybris.platform.store.BaseStoreModel;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -39,9 +45,20 @@ public class GallagherOrderFacadeImpl extends DefaultOrderFacade implements Gall
 	{
 		final CustomerModel currentCustomer = (CustomerModel) getUserService().getCurrentUser();
 		final BaseStoreModel currentBaseStore = getBaseStoreService().getCurrentBaseStore();
+		final List<B2BUnitModel> listOfB2BInGroup = new ArrayList<>();
+		final B2BUnitModel currentB2BUnit = ((B2BCustomerModel) currentCustomer).getDefaultB2BUnit();
+		final Set<PrincipalModel> membersGroups = currentB2BUnit.getMembers();
+		for (final PrincipalModel groups : membersGroups)
+		{
+			if (groups instanceof B2BUnitModel)
+			{
+				listOfB2BInGroup.add((B2BUnitModel) groups);
+			}
+		}
+		listOfB2BInGroup.add(currentB2BUnit);
 		final SearchPageData<OrderModel> orderResults = gallagherCustomerAccountService.getOrderListForB2BUnit(currentCustomer,
 				currentBaseStore,
-				statuses, pageableData, ((B2BCustomerModel) currentCustomer).getDefaultB2BUnit());
+				statuses, pageableData, listOfB2BInGroup);
 
 		return convertPageData(orderResults, getOrderHistoryConverter());
 	}

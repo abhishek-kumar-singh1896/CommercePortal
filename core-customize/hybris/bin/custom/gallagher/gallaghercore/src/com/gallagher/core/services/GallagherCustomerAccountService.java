@@ -11,6 +11,9 @@ import de.hybris.platform.core.model.order.OrderModel;
 import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.store.BaseStoreModel;
 
+import java.util.List;
+
+
 /**
  * @author abhinavgupta03
  *
@@ -18,7 +21,7 @@ import de.hybris.platform.store.BaseStoreModel;
 public interface GallagherCustomerAccountService
 {
 	public SearchPageData<OrderModel> getOrderListForB2BUnit(final CustomerModel customerModel, final BaseStoreModel store,
-			final OrderStatus[] status, final PageableData pageableData, B2BUnitModel b2bUnit);
+			final OrderStatus[] status, final PageableData pageableData, List<B2BUnitModel> b2bUnit);
 
 	public OrderModel getOrderForCodeForAdmin(final String code, final BaseStoreModel store);
 }
