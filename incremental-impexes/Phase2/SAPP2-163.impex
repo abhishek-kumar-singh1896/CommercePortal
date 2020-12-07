@@ -19,3 +19,9 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;lin
 
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV);onlyOneRestrictionMustApply[default=false]
 ;;OrderHistoryLink;GallagherSiteTransactionRestriction,OrderhistoryUserGroupRestriction;
+
+INSERT_UPDATE CMSUserGroupRestriction;$contentCV[unique=true];uid[unique=true];userGroups(uid);includeSubgroups;components(uid,$contentCV)
+;;SupportTicketUserGroupRestriction;b2bcustomergroup,b2badmingroup,b2btechniciangroup;true;AccountSupportTicketHistoryLink
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV);onlyOneRestrictionMustApply[default=false]
+;;AccountSupportTicketHistoryLink;GallagherSiteTransactionRestriction,SupportTicketUserGroupRestriction;
