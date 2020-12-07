@@ -2556,7 +2556,7 @@ INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                               
                               
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                          ; searchProfile(code,$catalogVersion) ; uniqueIdx                                 ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CCLTroughValvesSearchConfiguration ; amB2CCLAsCategoryAwareSearchProfile             ; amB2CCLTroughValvesSearchConfiguration ; trough-valves                  ;                              
-                                                 
+                                                  
 INSERT_UPDATE AsFacet ; uid [unique=true]                                                               ;valuesDisplayNameProvider 			 ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true]                                ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                                        
                       ; amB2CCLTroughValvesPriceAsFacet                                              ;									     ; amB2CCLTroughValvesSearchConfiguration             ; price                                                     ; MULTISELECT_OR  ; 4000     ;                              ; amB2CCLTroughValvesPriceAsFacet                                               
                       ; amB2CCLTroughValvesEnergíaAlmacenadaAsFacet                                  ;facetUnitSuffixDisplayNameProvider    ; amB2CCLTroughValvesSearchConfiguration             ; Energía Almacenada                                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CCLTroughValvesEnergíaAlmacenadaAsFacet                                   
@@ -2608,10 +2608,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
 INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                             ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                     
                               ; amB2CCLTroughValvesCategoryAsExcludedFacet ; amB2CCLTroughValvesSearchConfiguration             ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CCLTroughValvesCategoryAsExcludedFacet 
                               
-                              
+                             
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                       ; searchProfile(code,$catalogVersion) ; uniqueIdx                              ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CCLLilSpringSearchConfiguration ; amB2CCLAsCategoryAwareSearchProfile             ; amB2CCLLilSpringSearchConfiguration ; lil-spring                     ;                              
-                                                 
+                                               
 INSERT_UPDATE AsFacet ; uid [unique=true]                                                            ;valuesDisplayNameProvider 			 ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true]                                ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                                     
                       ; amB2CCLLilSpringPriceAsFacet                                              ;									     ; amB2CCLLilSpringSearchConfiguration                ; price                                                     ; MULTISELECT_OR  ; 4000     ;                              ; amB2CCLLilSpringPriceAsFacet                                               
                       ; amB2CCLLilSpringEnergíaAlmacenadaAsFacet                                  ;facetUnitSuffixDisplayNameProvider    ; amB2CCLLilSpringSearchConfiguration                ; Energía Almacenada                                        ; MULTISELECT_OR  ; 1000     ;                              ; amB2CCLLilSpringEnergíaAlmacenadaAsFacet                                   

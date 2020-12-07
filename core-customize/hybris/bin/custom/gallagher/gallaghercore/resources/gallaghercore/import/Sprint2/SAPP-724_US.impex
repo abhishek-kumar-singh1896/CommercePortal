@@ -9,8 +9,8 @@ $contentCatalogVersion=catalogVersion(CatalogVersion.catalog(Catalog.id[default=
 $productCatalog=amB2CUSProductCatalog
 $productCatalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 $lang=en
-
-
+ 
+ 
 INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetSortProvider           ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
                                       ; Use (Fence) :$solrIndexedType                                   ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
                                       ; Post Height (Pigtails):$solrIndexedType                         ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
@@ -88,13 +88,13 @@ INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(id
                                       ; Product Features (Watering)  :$solrIndexedType                  ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
                                       ; Capacity(L) (Watering)  :$solrIndexedType                       ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
                                       ; animalCompatibility:$solrIndexedType                            ;                     ; MultiSelectOr   ; 1000     ;                             ;                        ;                                 ;                                                                                                   
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
-                                
-
-
-
-
-
+                                      
+                                      
+                                      
+                                      
+                                      
+                                      
+                                      
 UPDATE  SolrSearchQueryProperty ; indexedProperty(solrIndexedType(identifier),name)[unique=true] ; facetDisplayNameProvider            
                                 ; $solrIndexedType :Energy Stored                                ; facetUnitSuffixDisplayNameProvider  
                                 ; $solrIndexedType :Typical Fence Distance                       ; facetUnitSuffixDisplayNameProvider  
@@ -170,150 +170,157 @@ UPDATE  SolrSearchQueryProperty ; indexedProperty(solrIndexedType(identifier),na
                                 ; $solrIndexedType :Length (Gates)                               ; facetUnitSuffixDisplayNameProvider  
                                 ; $solrIndexedType :Use (Fence)                                  ;                                     
                                 ; $solrIndexedType :animalCompatibility                          ;                                     
-                                 ; $solrIndexedType:Capacity (Number of head)  (Trough)    ; facetUnitSuffixDisplayNameProvider 
-                                 ; $solrIndexedType:Capacity (Number of head)  (Spring)    ; facetUnitSuffixDisplayNameProvider 
-                                 ; $solrIndexedType:Capacity (Number of head)  (EQUI)      ; facetUnitSuffixDisplayNameProvider 
-                                 ; $solrIndexedType:Capacity (Number of head)  (Mira)      ; facetUnitSuffixDisplayNameProvider 
-                                 ; $solrIndexedType:Capacity (Number of head)  (E)         ; facetUnitSuffixDisplayNameProvider 
-                                 ; $solrIndexedType:Capacity (Number of head)  (BIG)       ; facetUnitSuffixDisplayNameProvider 
-                                 ; $solrIndexedType:Capacity (Number of head)  (PET)       ; facetUnitSuffixDisplayNameProvider 
-                                 ; $solrIndexedType:Capacity (Number of head)  (Watering)  ; facetUnitSuffixDisplayNameProvider 
-
-
-
-
-UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$solrIndexedType] ; name[unique=true]                        ; displayName[lang=$lang]                                   
+                                ; $solrIndexedType:Capacity (Number of head)  (Trough)           ; facetUnitSuffixDisplayNameProvider  
+                                ; $solrIndexedType:Capacity (Number of head)  (Spring)           ; facetUnitSuffixDisplayNameProvider  
+                                ; $solrIndexedType:Capacity (Number of head)  (EQUI)             ; facetUnitSuffixDisplayNameProvider  
+                                ; $solrIndexedType:Capacity (Number of head)  (Mira)             ; facetUnitSuffixDisplayNameProvider  
+                                ; $solrIndexedType:Capacity (Number of head)  (E)                ; facetUnitSuffixDisplayNameProvider  
+                                ; $solrIndexedType:Capacity (Number of head)  (BIG)              ; facetUnitSuffixDisplayNameProvider  
+                                ; $solrIndexedType:Capacity (Number of head)  (PET)              ; facetUnitSuffixDisplayNameProvider  
+                                ; $solrIndexedType:Capacity (Number of head)  (Watering)         ; facetUnitSuffixDisplayNameProvider  
+                                
+                                
+                                
+                                
+UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$solrIndexedType] ; name[unique=true]                            ; displayName[lang=$lang]                           
                            ;                                                                   ; Energy Stored                                ; Energy (Stored)                                   
                            ;                                                                   ; Typical Fence Distance                       ; Typical Fence Distance (Gallagher Recommendation) 
-                           ;                                                                   ; Clean Wire Fence Distance                    ; Clean Wire Fence Distance
-                           ;                                                                   ; i Series Compatible (Energizers)             ; i Series Compatible                           
-                           ;                                                                   ; Outdoors Suitable                            ; Outdoors Suitable                             
+                           ;                                                                   ; Clean Wire Fence Distance                    ; Clean Wire Fence Distance                         
+                           ;                                                                   ; i Series Compatible (Energizers)             ; i Series Compatible                               
+                           ;                                                                   ; Outdoors Suitable                            ; Outdoors Suitable                                 
                            ;                                                                   ; Property Size                                ; Property Size                                     
-                           ;                                                                   ; Power Input                                  ; Power Source                                               
-                           ;                                                                   ; Watts                                        ; Watts                                                 
-                           ;                                                                   ; Voltage                                      ; Voltage                                               
-                           ;                                                                   ; DC Input                                     ; DC Input                                              
-                           ;                                                                   ; Capacity                                     ; Capacity                                             
-                           ;                                                                   ; Current                                      ; Current                                              
-                           ;                                                                   ; Digital Display                              ; Digital Display                               
-                           ;                                                                   ; i Series Compatible (Remotes)                ; i Series Compatible                           
-                           ;                                                                   ; i Series Compatible (Power)                  ; i Series Compatible                           
-                           ;                                                                   ; Gear Ratio                                   ; Gear Ratio                                                
-                           ;                                                                   ; Conductor Capacity                           ; Conductor Capacity                                        
-                           ;                                                                   ; Pre-wound with                               ; Pre-wound with                                            
-                           ;                                                                   ; Ohms Per Km (Tensile)                        ; Resistance (Ohms / km)                                               
-                           ;                                                                   ; Voltage at 2km of fence                      ; Voltage (kV) over 2km                               
-                           ;                                                                   ; Voltage at 5km of fence                      ; Voltage (kV) over 5km                               
-                           ;                                                                   ; Voltage at 10km of fence                     ; Voltage (kV) over 10km                              
-                           ;                                                                   ; Voltage at 500m of fence                     ; Voltage (kV) over 500m                              
-                           ;                                                                   ; Voltage at 1km of fence                      ; Voltage (kV) over 1km                               
-                           ;                                                                   ; Mixed Metals                                 ; Mixed Metals                                              
-                           ;                                                                   ; Ohms Per Km (Tapes)                          ; Resistance (Ohms / km)                                             
+                           ;                                                                   ; Power Input                                  ; Power Source                                      
+                           ;                                                                   ; Watts                                        ; Watts                                             
+                           ;                                                                   ; Voltage                                      ; Voltage                                           
+                           ;                                                                   ; DC Input                                     ; DC Input                                          
+                           ;                                                                   ; Capacity                                     ; Capacity                                          
+                           ;                                                                   ; Current                                      ; Current                                           
+                           ;                                                                   ; Digital Display                              ; Digital Display                                   
+                           ;                                                                   ; i Series Compatible (Remotes)                ; i Series Compatible                               
+                           ;                                                                   ; i Series Compatible (Power)                  ; i Series Compatible                               
+                           ;                                                                   ; Gear Ratio                                   ; Gear Ratio                                        
+                           ;                                                                   ; Conductor Capacity                           ; Conductor Capacity                                
+                           ;                                                                   ; Pre-wound with                               ; Pre-wound with                                    
+                           ;                                                                   ; Ohms Per Km (Tensile)                        ; Resistance (Ohms / km)                            
+                           ;                                                                   ; Voltage at 2km of fence                      ; Voltage (kV) over 2km                             
+                           ;                                                                   ; Voltage at 5km of fence                      ; Voltage (kV) over 5km                             
+                           ;                                                                   ; Voltage at 10km of fence                     ; Voltage (kV) over 10km                            
+                           ;                                                                   ; Voltage at 500m of fence                     ; Voltage (kV) over 500m                            
+                           ;                                                                   ; Voltage at 1km of fence                      ; Voltage (kV) over 1km                             
+                           ;                                                                   ; Mixed Metals                                 ; Mixed Metals                                      
+                           ;                                                                   ; Ohms Per Km (Tapes)                          ; Resistance (Ohms / km)                            
                            ;                                                                   ; Length (Tapes)                               ; Length                                            
-                           ;                                                                   ; Wire Amount                                  ; Wire Amount                                               
+                           ;                                                                   ; Wire Amount                                  ; Wire Amount                                       
                            ;                                                                   ; Post Height (Posts)                          ; Post Height                                       
-                           ;                                                                   ; Number of Traits Recorded                    ; Number of Traits Recorded                                 
-                           ;                                                                   ; EID Compatiable                              ; EID Compatiable                               
-                           ;                                                                   ; Drafting                                     ; Drafting                                      
-                           ;                                                                   ; Intergrated EID Reader                       ; Intergrated EID Reader                        
-                           ;                                                                   ; Compatible with Gallagher Livestock (Scales) ; Compatible with Gallagher Livestock           
-                           ;                                                                   ; View Pedigree Tree                           ; Pedigree Tree                            
-                           ;                                                                   ; Use (Loadbars)                               ; Use                                                       
-                           ;                                                                   ; Weighing Capacity (Loadbars)                 ; Weighing Capacity                                    
-                           ;                                                                   ; Weighing Capacity (Platforms)                ; Weighing Capacity                                    
-                           ;                                                                   ; Product Type                                 ; Product Type                                              
-                           ;                                                                   ; Compatible with Gallagher Livestock (EID)    ; Compatible with Gallagher Livestock           
-                           ;                                                                   ; Rechargeable                                 ; Rechargeable                                  
-                           ;                                                                   ; Product Features (Trough)                    ; Product Features                                          
-                           ;                                                                   ; Capacity(L) (Trough)                         ; Capacity                                              
-                           ;                                                                   ; Product Features (Spring)                    ; Product Features                                          
-                           ;                                                                   ; Capacity(L) (Spring)                         ; Capacity                                              
-                           ;                                                                   ; Product Features (EQUI)                      ; Product Features                                          
-                           ;                                                                   ; Capacity(L) (EQUI)                           ; Capacity                                              
-                           ;                                                                   ; Product Features (Mira)                      ; Product Features                                          
-                           ;                                                                   ; Capacity(L) (Mira)                           ; Capacity                                              
-                           ;                                                                   ; Product Features (E)                         ; Product Features                                          
-                           ;                                                                   ; Capacity(L) (E)                              ; Capacity                                              
-                           ;                                                                   ; Product Features (BIG)                       ; Product Features                                          
-                           ;                                                                   ; Capacity(L) (BIG)                            ; Capacity                                              
-                           ;                                                                   ; Product Features (PET)                       ; Product Features                                          
-                           ;                                                                   ; Capacity(L) (PET)                            ; Capacity                                              
-                           ;                                                                   ; Product Features (Watering)                  ; Product Features                                          
-                           ;                                                                   ; Capacity(L) (Watering)                       ; Capacity                                              
+                           ;                                                                   ; Number of Traits Recorded                    ; Number of Traits Recorded                         
+                           ;                                                                   ; EID Compatiable                              ; EID Compatiable                                   
+                           ;                                                                   ; Drafting                                     ; Drafting                                          
+                           ;                                                                   ; Intergrated EID Reader                       ; Intergrated EID Reader                            
+                           ;                                                                   ; Compatible with Gallagher Livestock (Scales) ; Compatible with Gallagher Livestock               
+                           ;                                                                   ; View Pedigree Tree                           ; Pedigree Tree                                     
+                           ;                                                                   ; Use (Loadbars)                               ; Use                                               
+                           ;                                                                   ; Weighing Capacity (Loadbars)                 ; Weighing Capacity                                 
+                           ;                                                                   ; Weighing Capacity (Platforms)                ; Weighing Capacity                                 
+                           ;                                                                   ; Product Type                                 ; Product Type                                      
+                           ;                                                                   ; Compatible with Gallagher Livestock (EID)    ; Compatible with Gallagher Livestock               
+                           ;                                                                   ; Rechargeable                                 ; Rechargeable                                      
+                           ;                                                                   ; Product Features (Trough)                    ; Product Features                                  
+                           ;                                                                   ; Capacity(L) (Trough)                         ; Capacity                                          
+                           ;                                                                   ; Product Features (Spring)                    ; Product Features                                  
+                           ;                                                                   ; Capacity(L) (Spring)                         ; Capacity                                          
+                           ;                                                                   ; Product Features (EQUI)                      ; Product Features                                  
+                           ;                                                                   ; Capacity(L) (EQUI)                           ; Capacity                                          
+                           ;                                                                   ; Product Features (Mira)                      ; Product Features                                  
+                           ;                                                                   ; Capacity(L) (Mira)                           ; Capacity                                          
+                           ;                                                                   ; Product Features (E)                         ; Product Features                                  
+                           ;                                                                   ; Capacity(L) (E)                              ; Capacity                                          
+                           ;                                                                   ; Product Features (BIG)                       ; Product Features                                  
+                           ;                                                                   ; Capacity(L) (BIG)                            ; Capacity                                          
+                           ;                                                                   ; Product Features (PET)                       ; Product Features                                  
+                           ;                                                                   ; Capacity(L) (PET)                            ; Capacity                                          
+                           ;                                                                   ; Product Features (Watering)                  ; Product Features                                  
+                           ;                                                                   ; Capacity(L) (Watering)                       ; Capacity                                          
                            ;                                                                   ; Post Height (Pigtails)                       ; Post Height                                       
-                           ;                                                                   ; Number of Wires                              ; Number of Wires                                           
-                           ;                                                                   ; Strainer Type                                ; Strainer Type                                             
-                           ;                                                                   ; Includes Joint Clamp                         ; Includes Joint Clamp                          
-                           ;                                                                   ; Warranty (Strainers)                         ; Warranty                                           
-                           ;                                                                   ; Post Type (Insulators)                       ; Post Type                                                 
-                           ;                                                                   ; Insulator Type                               ; Insulator Type                                            
+                           ;                                                                   ; Number of Wires                              ; Number of Wires                                   
+                           ;                                                                   ; Strainer Type                                ; Strainer Type                                     
+                           ;                                                                   ; Includes Joint Clamp                         ; Includes Joint Clamp                              
+                           ;                                                                   ; Warranty (Strainers)                         ; Warranty                                          
+                           ;                                                                   ; Post Type (Insulators)                       ; Post Type                                         
+                           ;                                                                   ; Insulator Type                               ; Insulator Type                                    
                            ;                                                                   ; Wire Diameter                                ; Wire Diameter                                     
-                           ;                                                                   ; Warranty (Insulators)                        ; Warranty                                           
-                           ;                                                                   ; Product Weight (Insulators)                  ; Product Weight                                       
-                           ;                                                                   ; Post Type (Offsets)                          ; Post Type                                                 
+                           ;                                                                   ; Warranty (Insulators)                        ; Warranty                                          
+                           ;                                                                   ; Product Weight (Insulators)                  ; Product Weight                                    
+                           ;                                                                   ; Post Type (Offsets)                          ; Post Type                                         
                            ;                                                                   ; Product Length (Offsets)                     ; Product Length                                    
-                           ;                                                                   ; Mount Type                                   ; Mount Type                                                
-                           ;                                                                   ; Gate Type                                    ; Gate Type                                                 
+                           ;                                                                   ; Mount Type                                   ; Mount Type                                        
+                           ;                                                                   ; Gate Type                                    ; Gate Type                                         
                            ;                                                                   ; Length (Gates)                               ; Length                                            
-                           ;                                                                   ; Use (Fence)                                  ; Use                                                       
-                           ;                                                                   ; animalCompatibility                          ; Animal Compatibility                                               
-                                                                                                                                                                    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]                            ; visible; facet[default=false] ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facetType(code) ; facetSort(code) ; priority  ; fieldValueProvider                          ; customFacetSortProvider ; facetDisplayNameProvider           ; rangeSets(name) ; $classAttributeAssignment           ; displayName[lang=$lang]                                 
-								  ; $solrIndexedType                         ; Conductor Type                     			; true   ; true                 ; double                     ;                    ;                         ;                          ;                           ; MultiSelectOr   ; Alpha           ; 1000     ; commerceClassificationPropertyValueProvider ;                         ;  									;                 ; wire-and-cable:::Conductor-type:::: ; Conductor Type
-
+                           ;                                                                   ; Use (Fence)                                  ; Use                                               
+                           ;                                                                   ; animalCompatibility                          ; Animal Compatibility                              
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true] ; visible ; facet[default=false] ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facetType(code) ; facetSort(code) ; priority ; fieldValueProvider                          ; customFacetSortProvider ; facetDisplayNameProvider ; rangeSets(name) ; $classAttributeAssignment           ; displayName[lang=$lang] 
+                                  ; $solrIndexedType                         ; Conductor Type    ; true    ; true                 ; double                     ;                    ;                         ;                          ;                           ; MultiSelectOr   ; Alpha           ; 1000     ; commerceClassificationPropertyValueProvider ;                         ;                          ;                 ; wire-and-cable:::Conductor-type:::: ; Conductor Type          
+                                  
+INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetSortProvider         ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
+                                      ; Conductor Type:$solrIndexedType                                 ;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider ;                        ;                                 ;                                                                                                   
+                                      
+                                      
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]                     ; visible ; facet[default=false] ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facetType(code) ; facetSort(code) ; priority ; fieldValueProvider                          ; customFacetSortProvider ; facetDisplayNameProvider           ; rangeSets(name) ; $classAttributeAssignment                          
+                                  ; $solrIndexedType                         ; Capacity (Number of head)  (Trough)   ; true    ; true                 ; double                     ;                    ;                         ;                          ;                           ; MultiSelectOr   ; Alpha           ; 1000     ; commerceClassificationPropertyValueProvider ;                         ; facetUnitSuffixDisplayNameProvider ;                 ; trough-valves:::capacity-number-of-head::::        
+                                  ; $solrIndexedType                         ; Capacity (Number of head)  (Spring)   ; true    ; true                 ; double                     ;                    ;                         ;                          ;                           ; MultiSelectOr   ; Alpha           ; 1000     ; commerceClassificationPropertyValueProvider ;                         ; facetUnitSuffixDisplayNameProvider ;                 ; lil-spring:::capacity-number-of-head::::           
+                                  ; $solrIndexedType                         ; Capacity (Number of head)  (EQUI)     ; true    ; true                 ; double                     ;                    ;                         ;                          ;                           ; MultiSelectOr   ; Alpha           ; 1000     ; commerceClassificationPropertyValueProvider ;                         ; facetUnitSuffixDisplayNameProvider ;                 ; equi-fount:::capacity-number-of-head::::           
+                                  ; $solrIndexedType                         ; Capacity (Number of head)  (Mira)     ; true    ; true                 ; double                     ;                    ;                         ;                          ;                           ; MultiSelectOr   ; Alpha           ; 1000     ; commerceClassificationPropertyValueProvider ;                         ; facetUnitSuffixDisplayNameProvider ;                 ; mira-fount:::capacity-number-of-head::::           
+                                  ; $solrIndexedType                         ; Capacity (Number of head)  (E)        ; true    ; true                 ; double                     ;                    ;                         ;                          ;                           ; MultiSelectOr   ; Alpha           ; 1000     ; commerceClassificationPropertyValueProvider ;                         ; facetUnitSuffixDisplayNameProvider ;                 ; e-fount:::capacity-number-of-head::::              
+                                  ; $solrIndexedType                         ; Capacity (Number of head)  (BIG)      ; true    ; true                 ; double                     ;                    ;                         ;                          ;                           ; MultiSelectOr   ; Alpha           ; 1000     ; commerceClassificationPropertyValueProvider ;                         ; facetUnitSuffixDisplayNameProvider ;                 ; big-spring:::capacity-number-of-head::::           
+                                  ; $solrIndexedType                         ; Capacity (Number of head)  (PET)      ; true    ; true                 ; double                     ;                    ;                         ;                          ;                           ; MultiSelectOr   ; Alpha           ; 1000     ; commerceClassificationPropertyValueProvider ;                         ; facetUnitSuffixDisplayNameProvider ;                 ; pet-tanks:::capacity-number-of-head::::            
+                                  ; $solrIndexedType                         ; Capacity (Number of head)  (Watering) ; true    ; true                 ; double                     ;                    ;                         ;                          ;                           ; MultiSelectOr   ; Alpha           ; 1000     ; commerceClassificationPropertyValueProvider ;                         ; facetUnitSuffixDisplayNameProvider ;                 ; watering-accessories:::capacity-number-of-head:::: 
+                                  
+                                  
+                                  
 INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetSortProvider           ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
-									  ; Conductor Type:$solrIndexedType                        			;                     ; MultiSelectOr   ; 1000     ; sizeAttributeSortProvider   ;                        ;                                 ;                                                                                                   
- 
- 
- INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]                            ; visible; facet[default=false] ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facetType(code) ; facetSort(code) ; priority  ; fieldValueProvider                          ; customFacetSortProvider ; facetDisplayNameProvider           ; rangeSets(name) ; $classAttributeAssignment                                           
-                                  ; $solrIndexedType                         ; Capacity (Number of head)  (Trough)                      ; true   ; true                 ; double                     ;                    ;                         ;                          ;                           ; MultiSelectOr   ; Alpha           ; 1000     ; commerceClassificationPropertyValueProvider ;                         ; facetUnitSuffixDisplayNameProvider ;                 ; trough-valves:::capacity-number-of-head::::                                      
-                                  ; $solrIndexedType                         ; Capacity (Number of head)  (Spring)                      ; true   ; true                 ; double                     ;                    ;                         ;                          ;                           ; MultiSelectOr   ; Alpha           ; 1000     ; commerceClassificationPropertyValueProvider ;                         ; facetUnitSuffixDisplayNameProvider ;                 ; lil-spring:::capacity-number-of-head::::                                         
-                                  ; $solrIndexedType                         ; Capacity (Number of head)  (EQUI)                        ; true   ; true                 ; double                     ;                    ;                         ;                          ;                           ; MultiSelectOr   ; Alpha           ; 1000     ; commerceClassificationPropertyValueProvider ;                         ; facetUnitSuffixDisplayNameProvider ;                 ; equi-fount:::capacity-number-of-head::::                                         
-                                  ; $solrIndexedType                         ; Capacity (Number of head)  (Mira)                        ; true   ; true                 ; double                     ;                    ;                         ;                          ;                           ; MultiSelectOr   ; Alpha           ; 1000     ; commerceClassificationPropertyValueProvider ;                         ; facetUnitSuffixDisplayNameProvider ;                 ; mira-fount:::capacity-number-of-head::::                                         
-                                  ; $solrIndexedType                         ; Capacity (Number of head)  (E)                           ; true   ; true                 ; double                     ;                    ;                         ;                          ;                           ; MultiSelectOr   ; Alpha           ; 1000     ; commerceClassificationPropertyValueProvider ;                         ; facetUnitSuffixDisplayNameProvider ;                 ; e-fount:::capacity-number-of-head::::                                            
-                                  ; $solrIndexedType                         ; Capacity (Number of head)  (BIG)                         ; true   ; true                 ; double                     ;                    ;                         ;                          ;                           ; MultiSelectOr   ; Alpha           ; 1000     ; commerceClassificationPropertyValueProvider ;                         ; facetUnitSuffixDisplayNameProvider ;                 ; big-spring:::capacity-number-of-head::::                                         
-                                  ; $solrIndexedType                         ; Capacity (Number of head)  (PET)                         ; true   ; true                 ; double                     ;                    ;                         ;                          ;                           ; MultiSelectOr   ; Alpha           ; 1000     ; commerceClassificationPropertyValueProvider ;                         ; facetUnitSuffixDisplayNameProvider ;                 ; pet-tanks:::capacity-number-of-head::::                                          
-                                  ; $solrIndexedType                         ; Capacity (Number of head)  (Watering)                     ; true   ; true                 ; double                     ;                    ;                         ;                          ;                           ; MultiSelectOr   ; Alpha           ; 1000     ; commerceClassificationPropertyValueProvider ;                         ; facetUnitSuffixDisplayNameProvider ;                 ; watering-accessories:::capacity-number-of-head::::                               
-       
- 
- 
-INSERT_UPDATE SolrSearchQueryProperty ; indexedProperty(name, solrIndexedType(identifier))[unique=true] ; facet[default=true] ; facetType(code) ; priority ; facetSortProvider           ; facetTopValuesProvider ; includeInResponse[default=true] ; searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType] 
-                                      ;Capacity (Number of head)  (Trough):$solrIndexedType    ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                                                                                                                                                                                                                                                                                        
-                                      ;Capacity (Number of head)  (Spring)  :$solrIndexedType  ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                                                                                                                                                                                                                                                                                        
-                                      ;Capacity (Number of head)  (EQUI)    :$solrIndexedType  ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                                                                                                                                                                                                                                                                                        
-                                      ;Capacity (Number of head)  (Mira)    :$solrIndexedType  ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                                                                                                                                                                                                                                                                                        
-                                      ;Capacity (Number of head)  (E)       :$solrIndexedType  ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                                                                                                                                                                                                                                                                                        
-                                      ;Capacity (Number of head)  (BIG)     :$solrIndexedType  ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                                                                                                                                                                                                                                                                                        
-                                      ;Capacity (Number of head)  (PET)     :$solrIndexedType  ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                                                                                                                                                                                                                                                                                        
-                                      ;Capacity (Number of head)  (Watering):$solrIndexedType  ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                                                                                                                                                                                                                                                                                        
- 
- 
- 
- UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$solrIndexedType] ; name[unique=true]                        ; displayName[lang=$lang]                                   
-                           ;                                                               ; Capacity (Number of head)  (Trough) ;Capacity (Number of head)          
-                           ;                                                               ; Capacity (Number of head)  (Spring)  ;Capacity (Number of head)         
-                           ;                                                               ; Capacity (Number of head)  (EQUI)    ;Capacity (Number of head)         
-                           ;                                                               ; Capacity (Number of head)  (Mira)    ;Capacity (Number of head)         
-                           ;                                                               ; Capacity (Number of head)  (E)       ;Capacity (Number of head)         
-                           ;                                                               ; Capacity (Number of head)  (BIG)     ;Capacity (Number of head)         
-                           ;                                                               ; Capacity (Number of head)  (PET)     ;Capacity (Number of head)         
-                           ;                                                               ; Capacity (Number of head)  (Watering);Capacity (Number of head)         
-                                                          
+                                      ; Capacity (Number of head)  (Trough):$solrIndexedType            ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+                                      ; Capacity (Number of head)  (Spring)  :$solrIndexedType          ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+                                      ; Capacity (Number of head)  (EQUI)    :$solrIndexedType          ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+                                      ; Capacity (Number of head)  (Mira)    :$solrIndexedType          ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+                                      ; Capacity (Number of head)  (E)       :$solrIndexedType          ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+                                      ; Capacity (Number of head)  (BIG)     :$solrIndexedType          ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+                                      ; Capacity (Number of head)  (PET)     :$solrIndexedType          ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+                                      ; Capacity (Number of head)  (Watering):$solrIndexedType          ;                     ; MultiSelectOr   ; 1000     ; numericFacetSortProviderAsc ;                        ;                                 ;                                                                                                   
+                                      
+                                      
+                                      
+UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$solrIndexedType] ; name[unique=true]                     ; displayName[lang=$lang]   
+                           ;                                                                   ; Capacity (Number of head)  (Trough)   ; Capacity (Number of head) 
+                           ;                                                                   ; Capacity (Number of head)  (Spring)   ; Capacity (Number of head) 
+                           ;                                                                   ; Capacity (Number of head)  (EQUI)     ; Capacity (Number of head) 
+                           ;                                                                   ; Capacity (Number of head)  (Mira)     ; Capacity (Number of head) 
+                           ;                                                                   ; Capacity (Number of head)  (E)        ; Capacity (Number of head) 
+                           ;                                                                   ; Capacity (Number of head)  (BIG)      ; Capacity (Number of head) 
+                           ;                                                                   ; Capacity (Number of head)  (PET)      ; Capacity (Number of head) 
+                           ;                                                                   ; Capacity (Number of head)  (Watering) ; Capacity (Number of head) 
+                           
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]           ; visible ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facet[default=false] ; facetType(code) ; facetSort(code) ; priority ; fieldValueProvider                          ; customFacetSortProvider ; $classAttributeAssignment                   
+                                  ; $solrIndexedType                         ; Product Features (Watering) ; false   ;                            ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; commerceClassificationPropertyValueProvider ;                         ; watering-accessories:::product-features:::: 
+                                  ; $solrIndexedType                         ; Capacity(L) (Watering)      ; false   ; double                     ;                    ;                         ;                          ;                           ; true                 ; MultiSelectOr   ; Alpha           ; 1000     ; commerceClassificationPropertyValueProvider ;                         ; watering-accessories:::capacity-l::::       
+                                  
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]                     ; visible ; facet[default=false] ; type(code[default=string]) ; sortableType(code) ; currency[default=false] ; localized[default=false] ; multiValue[default=false] ; facetType(code) ; facetSort(code) ; priority ; fieldValueProvider                          ; customFacetSortProvider ; facetDisplayNameProvider           ; rangeSets(name) ; $classAttributeAssignment                          
+                                  ; $solrIndexedType                         ; Capacity (Number of head)  (Watering) ; false   ; true                 ; double                     ;                    ;                         ;                          ;                           ; MultiSelectOr   ; Alpha           ; 1000     ; commerceClassificationPropertyValueProvider ;                         ; facetUnitSuffixDisplayNameProvider ;                 ; watering-accessories:::capacity-number-of-head:::: 
+                                  

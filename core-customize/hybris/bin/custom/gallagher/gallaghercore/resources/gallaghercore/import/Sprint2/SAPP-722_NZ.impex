@@ -3104,9 +3104,10 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
 INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                        ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                
                               ; amB2CNZAdditionalSystemComponentsCategoryAsExcludedFacet ; amB2CNZAdditionalSystemComponentsSearchConfiguration  ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZAdditionalSystemComponentsCategoryAsExcludedFacet 
                               
-                              
+
+                               
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                       ; searchProfile(code,$catalogVersion) ; uniqueIdx                              ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
-                                                 ; amB2CNZTroughValvesSearchConfiguration ; amB2CNZAsCategoryAwareSearchProfile ; amB2CNZTroughValvesSearchConfiguration ; trough-valves                  ;                              
+                                                 ; amB2CNZTroughValvesSearchConfiguration ; amB2CNZAsCategoryAwareSearchProfile                ; amB2CNZTroughValvesSearchConfiguration ; trough-valves                  ;                              
                                                  
 INSERT_UPDATE AsFacet ; uid [unique=true]                                                  ; valuesDisplayNameProvider           ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true]                    ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                          
                       ; amB2CNZTroughValvesPriceAsFacet                                    ;                                     ; amB2CNZTroughValvesSearchConfiguration                ; price                                         ; MULTISELECT_OR  ; 4000     ;                              ; amB2CNZTroughValvesPriceAsFacet                                    
@@ -3172,8 +3173,9 @@ INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                          ; sea
                               ; amB2CNZTroughValvesCategoryAsExcludedFacet ; amB2CNZTroughValvesSearchConfiguration                ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZTroughValvesCategoryAsExcludedFacet 
                               
                               
+                               
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                    ; searchProfile(code,$catalogVersion) ; uniqueIdx                           ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
-                                                 ; amB2CNZLilSpringSearchConfiguration ; amB2CNZAsCategoryAwareSearchProfile ; amB2CNZLilSpringSearchConfiguration ; lil-spring                     ;                              
+                                                 ; amB2CNZLilSpringSearchConfiguration ; amB2CNZAsCategoryAwareSearchProfile                ; amB2CNZLilSpringSearchConfiguration ; lil-spring                     ;                              
                                                  
 INSERT_UPDATE AsFacet ; uid [unique=true]                                               ; valuesDisplayNameProvider           ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true]                    ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                       
                       ; amB2CNZLilSpringPriceAsFacet                                    ;                                     ; amB2CNZLilSpringSearchConfiguration                   ; price                                         ; MULTISELECT_OR  ; 4000     ;                              ; amB2CNZLilSpringPriceAsFacet                                    
@@ -3238,9 +3240,9 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
 INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                       ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                               
                               ; amB2CNZLilSpringCategoryAsExcludedFacet ; amB2CNZLilSpringSearchConfiguration                   ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CNZLilSpringCategoryAsExcludedFacet 
                               
-                              
+                             
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                    ; searchProfile(code,$catalogVersion) ; uniqueIdx                           ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
-                                                 ; amB2CNZEquiFountSearchConfiguration ; amB2CNZAsCategoryAwareSearchProfile ; amB2CNZEquiFountSearchConfiguration ; equi-fount                     ;                              
+                                                 ; amB2CNZEquiFountSearchConfiguration ; amB2CNZAsCategoryAwareSearchProfile                ; amB2CNZEquiFountSearchConfiguration ; equi-fount                     ;                              
                                                  
 INSERT_UPDATE AsFacet ; uid [unique=true]                                               ; valuesDisplayNameProvider           ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true]                    ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                       
                       ; amB2CNZEquiFountPriceAsFacet                                    ;                                     ; amB2CNZEquiFountSearchConfiguration                   ; price                                         ; MULTISELECT_OR  ; 4000     ;                              ; amB2CNZEquiFountPriceAsFacet                                    
@@ -3508,8 +3510,9 @@ INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                       ; search
                               
                               
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                   ; searchProfile(code,$catalogVersion) ; uniqueIdx                          ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
-                                                 ; amB2CNZPetTanksSearchConfiguration ; amB2CNZAsCategoryAwareSearchProfile ; amB2CNZPetTanksSearchConfiguration ; pet-tanks                      ;                              
-                                                 
+                                                 ; amB2CNZPetTanksSearchConfiguration ; amB2CNZAsCategoryAwareSearchProfile                ; amB2CNZPetTanksSearchConfiguration ; pet-tanks                      ;                              
+ 
+                                                
 INSERT_UPDATE AsFacet ; uid [unique=true]                                              ; valuesDisplayNameProvider           ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true]                    ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                      
                       ; amB2CNZPetTanksPriceAsFacet                                    ;                                     ; amB2CNZPetTanksSearchConfiguration                    ; price                                         ; MULTISELECT_OR  ; 4000     ;                              ; amB2CNZPetTanksPriceAsFacet                                    
                       ; amB2CNZPetTanksEnergyStoredAsFacet                             ; facetUnitSuffixDisplayNameProvider  ; amB2CNZPetTanksSearchConfiguration                    ; Energy Stored                                 ; MULTISELECT_OR  ; 1000     ;                              ; amB2CNZPetTanksEnergyStoredAsFacet                             

@@ -3429,7 +3429,7 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
 INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                                        ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                                                
                               ; amB2CAUAdditionalSystemComponentsCategoryAsExcludedFacet ; amB2CAUAdditionalSystemComponentsSearchConfiguration  ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAUAdditionalSystemComponentsCategoryAsExcludedFacet 
                               
-                              
+                             
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                       ; searchProfile(code,$catalogVersion) ; uniqueIdx                              ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUTroughValvesSearchConfiguration ; amB2CAUAsCategoryAwareSearchProfile                ; amB2CAUTroughValvesSearchConfiguration ; trough-valves                  ;                              
                                                  
@@ -3577,7 +3577,7 @@ INSERT_UPDATE AsFacet ; uid [unique=true]                                       
 INSERT_UPDATE AsExcludedFacet ; uid [unique=true]                       ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true] ; uniqueIdx                               
                               ; amB2CAULilSpringCategoryAsExcludedFacet ; amB2CAULilSpringSearchConfiguration                   ; category                   ; MULTISELECT_OR  ; 6000     ;                              ; amB2CAULilSpringCategoryAsExcludedFacet 
                               
-                              
+                             
 INSERT_UPDATE AsCategoryAwareSearchConfiguration ; uid[unique=true]                    ; searchProfile(code,$catalogVersion) ; uniqueIdx                           ; category(code,$catalogVersion) ; $catalogVersion[unique=true] 
                                                  ; amB2CAUEquiFountSearchConfiguration ; amB2CAUAsCategoryAwareSearchProfile                ; amB2CAUEquiFountSearchConfiguration ; equi-fount                     ;                              
                                                  
