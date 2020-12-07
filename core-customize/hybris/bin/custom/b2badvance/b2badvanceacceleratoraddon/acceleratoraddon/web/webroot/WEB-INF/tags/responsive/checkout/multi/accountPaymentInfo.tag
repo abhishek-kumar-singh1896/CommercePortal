@@ -30,6 +30,10 @@
             <c:if test="${not empty cartData.requiredDeliveryDate}">
                     <spring:theme code="checkout.multi.requiredDeliveryDate.label" htmlEscape="false"/>:&nbsp;${fn:escapeXml(cartData.requiredDeliveryDate)}
             </c:if>
+            <br>
+            <c:if test="${not empty cartData.deliveryInstructions}">
+                    <spring:theme code="checkout.multi.comment.label" htmlEscape="false"/>:&nbsp;${fn:escapeXml(cartData.deliveryInstructions)}
+            </c:if>
         </div>
     </li>
 </ul>
