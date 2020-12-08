@@ -39,6 +39,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
 
@@ -95,7 +96,8 @@ public class PaymentTypeCheckoutStepController extends AbstractCheckoutStepContr
 
 		final CustomerModel currentCustomer = (CustomerModel) userService.getCurrentUser();
 		final List<B2BUnitData> b2bUnitData = b2bUnitFacade.getAllB2BData(currentCustomer);
-		return b2bUnitData;
+		List<B2BUnitData> b2bUnits = b2bUnitData.stream().filter(unit->unit.isTransactional()).collect(Collectors.toList());
+		return b2bUnits;
 	}
 
 	@Override
