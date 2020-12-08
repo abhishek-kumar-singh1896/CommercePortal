@@ -68,8 +68,7 @@ public class GallagherFieldNameTranslator extends DefaultFieldNameTranslator
 					: null;
 
 			QualifierProvider salesAreaQualifierProvider = valueProvider instanceof GallagherProductPricesValueResolver
-					? ((GallagherProductPricesValueResolver) valueProvider)
-							.getSalesAreaQualifierProvider()
+					? ((GallagherProductPricesValueResolver) valueProvider).getSalesAreaQualifierProvider()
 					: null;
 
 			if (salesAreaQualifierProvider == null)
@@ -87,8 +86,7 @@ public class GallagherFieldNameTranslator extends DefaultFieldNameTranslator
 			}
 
 			QualifierProvider userPriceGroupQualifierProvider = valueProvider instanceof GallagherProductPricesValueResolver
-					? ((GallagherProductPricesValueResolver) valueProvider)
-							.getUserPriceGroupQualifierProvider()
+					? ((GallagherProductPricesValueResolver) valueProvider).getUserPriceGroupQualifierProvider()
 					: null;
 
 			if (userPriceGroupQualifierProvider == null)
@@ -137,8 +135,10 @@ public class GallagherFieldNameTranslator extends DefaultFieldNameTranslator
 						String upgSuffix = StringUtils.EMPTY;
 						if (userPriceGroupQualifierProvider instanceof GallagherUserDiscountGroupQualifierProvider)
 						{
-							final UserPriceGroup userPriceGroup = (UserPriceGroup) getSessionService().getAttribute(Europe1Constants.PARAMS.UPG);
-							if(userPriceGroup != null) {
+							final UserPriceGroup userPriceGroup = (UserPriceGroup) getSessionService()
+									.getAttribute(Europe1Constants.PARAMS.UPG);
+							if (userPriceGroup != null)
+							{
 								upgSuffix = FIELDNAME_SEPARATOR + userPriceGroup.getCode();
 								LOG.debug("userPriceGroup during translation " + userPriceGroup);
 							}
@@ -171,8 +171,16 @@ public class GallagherFieldNameTranslator extends DefaultFieldNameTranslator
 					}
 				}
 			}
-			LOG.debug("indexedProperty, fieldQualifier, fieldType during translating property " + indexedProperty.getName()
-					+ " "
+			else if (indexedProperty.isLocalized())
+			{
+				fieldQualifier = searchQuery.getLanguage();
+			}
+			else if (indexedProperty.isCurrency())
+			{
+
+				fieldQualifier = searchQuery.getCurrency();
+			}
+			LOG.debug("indexedProperty, fieldQualifier, fieldType during translating property " + indexedProperty.getName() + " "
 					+ fieldQualifier + " " + fieldType);
 			return getFieldNameProvider().getFieldName(indexedProperty, fieldQualifier, fieldType);
 		}
