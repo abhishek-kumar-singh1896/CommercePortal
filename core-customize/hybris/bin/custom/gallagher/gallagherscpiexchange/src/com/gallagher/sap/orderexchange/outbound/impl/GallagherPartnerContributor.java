@@ -11,6 +11,7 @@ import de.hybris.platform.core.model.user.UserModel;
 import de.hybris.platform.sap.orderexchange.constants.OrderCsvColumns;
 import de.hybris.platform.sap.orderexchange.constants.PartnerCsvColumns;
 import de.hybris.platform.sap.orderexchange.constants.PartnerRoles;
+import de.hybris.platform.sap.orderexchange.outbound.B2CCustomerHelper;
 import de.hybris.platform.sap.orderexchange.outbound.impl.DefaultPartnerContributor;
 
 import java.util.ArrayList;
@@ -32,6 +33,8 @@ public class GallagherPartnerContributor extends DefaultPartnerContributor
 {
 	@Resource
 	private CustomerEmailResolutionService customerEmailResolutionService;
+
+	private B2CCustomerHelper b2CCustomerHelper;
 
 	@Override
 	protected Map<String, Object> mapAddressData(final OrderModel order, final AddressModel address)
@@ -131,6 +134,20 @@ public class GallagherPartnerContributor extends DefaultPartnerContributor
 		}
 
 		return result;
+	}
+
+	@Override
+	@SuppressWarnings("javadoc")
+	public B2CCustomerHelper getB2CCustomerHelper()
+	{
+		return b2CCustomerHelper;
+	}
+
+	@Override
+	@SuppressWarnings("javadoc")
+	public void setB2CCustomerHelper(final B2CCustomerHelper b2cCustomerHelper)
+	{
+		b2CCustomerHelper = b2cCustomerHelper;
 	}
 
 }

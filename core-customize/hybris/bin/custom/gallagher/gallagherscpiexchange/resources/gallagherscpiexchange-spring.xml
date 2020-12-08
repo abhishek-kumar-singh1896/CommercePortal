@@ -61,8 +61,9 @@
 		class="com.gallagher.sap.orderexchange.outbound.impl.GallagherOrderEntryContributor" parent="defaultSapOrderEntryContributor" />
 
 	<alias name="gallagherPartnerContributor" alias="sapPartnerContributor"/>
-	<bean id="gallagherPartnerContributor" class="com.gallagher.sap.orderexchange.outbound.impl.GallagherPartnerContributor" parent="defaultSapPartnerContributor"/>
-	
+	<bean id="gallagherPartnerContributor" class="com.gallagher.sap.orderexchange.outbound.impl.GallagherPartnerContributor" parent="defaultSapPartnerContributor">
+		<property name="b2CCustomerHelper" ref="sapOrderexchangeB2CCustomerHelper" />
+	</bean>
 	<alias name="gallagherPaymentContributor" alias="sapPaymentContributor"/>
 	<bean id="gallagherPaymentContributor" class="com.gallagher.sap.orderexchange.outbound.impl.GallagherPaymentContributor" parent="defaultSapPaymentContributor">
 		<property name="configurationService" ref="configurationService" />
