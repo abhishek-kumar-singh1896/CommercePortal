@@ -12,6 +12,8 @@ import de.hybris.platform.commercefacades.product.data.ProductData;
 import de.hybris.platform.commercefacades.search.converters.populator.SearchResultVariantProductPopulator;
 import de.hybris.platform.commerceservices.search.resultdata.SearchResultValueData;
 import de.hybris.platform.core.model.c2l.CurrencyModel;
+import de.hybris.platform.core.model.user.UserModel;
+import de.hybris.platform.servicelayer.user.UserService;
 import de.hybris.platform.site.BaseSiteService;
 
 import java.math.BigDecimal;
@@ -34,6 +36,9 @@ public class GallagherSearchResultProductPopulator extends SearchResultVariantPr
 
 	@Autowired
 	private BaseSiteService baseSiteService;
+
+	@Autowired
+	private UserService userService;
 
 	@Override
 	public void populate(final SearchResultValueData source, final ProductData target)
@@ -100,6 +105,23 @@ public class GallagherSearchResultProductPopulator extends SearchResultVariantPr
 	protected DiscountData createDiscountData()
 	{
 		return new DiscountData();
+	}
+
+	@Override
+	protected void populatePrices(final SearchResultValueData source, final ProductData target)
+	{
+		final BaseSiteModel cmssite = getBaseSiteService().getCurrentBaseSite();
+		final UserModel user = userService.getCurrentUser();
+		if (cmssite != null && cmssite.getUid().contains("B2B") && userService.isAnonymousUser(user))
+		{
+			target.setVolumePricesFlag(null);
+			target.setPrice(null);
+		}
+		else
+		{
+			super.populatePrices(source, target);
+		}
+
 	}
 
 	@Override
