@@ -37,7 +37,7 @@ public class GallagherCustomerAccountDaoImpl extends DefaultCustomerAccountDao i
 	private static final String FILTER_ORDER_STATUS = " AND {" + OrderModel.STATUS + "} NOT IN (?filterStatusList)";
 
 	private static final String FIND_ORDERS_BY_CUSTOMER_STORE_QUERY = "SELECT {" + OrderModel.PK + "}, {" + OrderModel.CREATIONTIME
-			+ "}, {" + OrderModel.CODE + "} FROM {" + OrderModel._TYPECODE + "} WHERE {" + OrderModel.UNIT + "} = ?unit AND {"
+			+ "}, {" + OrderModel.CODE + "} FROM {" + OrderModel._TYPECODE + "} WHERE {" + OrderModel.UNIT + "} IN (?unit) AND {"
 			+ OrderModel.VERSIONID + "} IS NULL AND {" + OrderModel.STORE + "} = ?store";
 
 	private static final String FIND_ORDERS_BY_CUSTOMER_STORE_QUERY_AND_STATUS = FIND_ORDERS_BY_CUSTOMER_STORE_QUERY + " AND {"
@@ -54,7 +54,7 @@ public class GallagherCustomerAccountDaoImpl extends DefaultCustomerAccountDao i
 
 	@Override
 	public SearchPageData<OrderModel> findOrdersForB2BUnit(final CustomerModel customerModel, final BaseStoreModel store,
-			final OrderStatus[] status, final PageableData pageableData, final B2BUnitModel b2bUnit)
+			final OrderStatus[] status, final PageableData pageableData, final List<B2BUnitModel> b2bUnit)
 	{
 		validateParameterNotNull(customerModel, "Customer must not be null");
 		validateParameterNotNull(store, "Store must not be null");

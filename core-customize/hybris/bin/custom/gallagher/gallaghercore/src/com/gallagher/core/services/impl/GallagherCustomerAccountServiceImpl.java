@@ -14,6 +14,8 @@ import de.hybris.platform.core.model.order.OrderModel;
 import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.store.BaseStoreModel;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import com.gallagher.core.dao.GallagherCustomerAccountDao;
@@ -31,7 +33,7 @@ public class GallagherCustomerAccountServiceImpl extends DefaultCustomerAccountS
 
 	@Override
 	public SearchPageData<OrderModel> getOrderListForB2BUnit(final CustomerModel customerModel, final BaseStoreModel store,
-			final OrderStatus[] status, final PageableData pageableData, final B2BUnitModel b2bUnit)
+			final OrderStatus[] status, final PageableData pageableData, final List<B2BUnitModel> b2bUnit)
 	{
 		validateParameterNotNull(customerModel, "Customer model cannot be null");
 		validateParameterNotNull(store, "Store must not be null");

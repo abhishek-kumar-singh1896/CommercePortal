@@ -144,13 +144,13 @@ INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
 ;gates;gates
 ;gate-hardware-sgh;gate-hardware-sgh
 
-;trough-valves;trough-valves
-;lil-spring;lil-spring
-;equi-fount;equi-fount
+;ball-waterers;trough-valves
+;open-trough-waterers;lil-spring
+; horse-waterers;equi-fount
 ;mira-fount;mira-fount
 ;e-fount;e-fount
 ;big-spring;big-spring
-;pet-tanks;pet-tanks
+; pet-waterers;pet-tanks
 ;watering-accessories;watering-accessories 
 
 

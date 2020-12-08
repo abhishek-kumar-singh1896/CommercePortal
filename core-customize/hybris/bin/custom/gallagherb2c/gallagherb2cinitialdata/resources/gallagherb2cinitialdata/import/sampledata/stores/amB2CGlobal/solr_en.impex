@@ -3,63 +3,68 @@ $indexedType=amB2CGlobalProductType
  
 # Language
 $lang=en
-UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$indexedType] ; name[unique=true]                             ; displayName[lang=$lang]                            
-                           ;                                                               ; Energy Stored                                 ; Energy (Stored)                           
-                           ;                                                               ; Multiwire Distance (Gallagher Recommendation) ; Multiwire Distance (Gallagher Recommendation)  
-                           ;                                                               ; i Series Compatible (Energizers)              ; i Series Compatible                    
-                           ;                                                               ; Outdoors Suitable                             ; Outdoors Suitable                      
-                           ;                                                               ; Property Size                                 ; Property Size                              
-                           ;                                                               ; Power Input                                   ; Power Source                                        
-                           ;                                                               ; Watts                                         ; Watts                                           
+UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true,default=$indexedType] ; name[unique=true]                             ; displayName[lang=$lang]                       
+                           ;                                                               ; Energy Stored                                 ; Energy (Stored)                               
+                           ;                                                               ; Multiwire Distance (Gallagher Recommendation) ; Multiwire Distance (Gallagher Recommendation) 
+                           ;                                                               ; i Series Compatible (Energizers)              ; i Series Compatible                           
+                           ;                                                               ; Outdoors Suitable                             ; Outdoors Suitable                             
+                           ;                                                               ; Property Size                                 ; Property Size                                 
+                           ;                                                               ; Power Input                                   ; Power Source                                  
+                           ;                                                               ; Watts                                         ; Watts                                         
                            ;                                                               ; Voltage                                       ; Voltage                                       
                            ;                                                               ; DC Input                                      ; DC Input                                      
                            ;                                                               ; Capacity                                      ; Capacity                                      
                            ;                                                               ; Current                                       ; Current                                       
-                           ;                                                               ; Warranty (Remotes)                            ; Warranty                                  
-                           ;                                                               ; Product Height (Remotes)                      ; Product Height                               
-                           ;                                                               ; Product Height (Power)                        ; Product Height                               
-                           ;                                                               ; Diameter or Tape Width (Wire)                 ; Diameter or Tape Width                       
-                           ;                                                               ; Ohms Per Km (Wire)                            ; Resistance (Ohms / km)                                         
-                           ;                                                               ; Warranty (Wire)                               ; Warranty                                  
-                           ;                                                               ; Product Width (Posts)                         ; Product Width                                
+                           ;                                                               ; Warranty (Remotes)                            ; Warranty                                      
+                           ;                                                               ; Product Height (Remotes)                      ; Product Height                                
+                           ;                                                               ; Product Height (Power)                        ; Product Height                                
+                           ;                                                               ; Diameter or Tape Width (Wire)                 ; Diameter or Tape Width                        
+                           ;                                                               ; Ohms Per Km (Wire)                            ; Resistance (Ohms / km)                        
+                           ;                                                               ; Warranty (Wire)                               ; Warranty                                      
+                           ;                                                               ; Product Width (Posts)                         ; Product Width                                 
                            ;                                                               ; Product Weight (Posts)                        ; Product Weight                                
-                           ;                                                               ; Product Depth (Strainers)                     ; Product Depth                                
+                           ;                                                               ; Product Depth (Strainers)                     ; Product Depth                                 
                            ;                                                               ; Product Weight (Strainers)                    ; Product Weight                                
-                           ;                                                               ; Product Width (Insulators)                    ; Product Width                                
+                           ;                                                               ; Product Width (Insulators)                    ; Product Width                                 
                            ;                                                               ; Product Weight (Insulators)                   ; Product Weight                                
-                           ;                                                               ; Product Depth (Insulators)                    ; Product Depth                                
-                           ;                                                               ; Post Type                                     ; Post Type                                          
-                           ;                                                               ; Warranty (Electric Gates)                     ; Warranty                                  
-                           ;                                                               ; Gate Type                                     ; Gate Type                                          
-                           ;                                                               ; Product Height (Fence)                        ; Product Height                               
-                           ;                                                               ; Product Width (Fence)                         ; Product Width                                
-                           ;                                                               ; Diameter or Tape Width (Tapes)                ; Diameter or Tape Width                       
+                           ;                                                               ; Product Depth (Insulators)                    ; Product Depth                                 
+                           ;                                                               ; Post Type                                     ; Post Type                                     
+                           ;                                                               ; Warranty (Electric Gates)                     ; Warranty                                      
+                           ;                                                               ; Gate Type                                     ; Gate Type                                     
+                           ;                                                               ; Product Height (Fence)                        ; Product Height                                
+                           ;                                                               ; Product Width (Fence)                         ; Product Width                                 
+                           ;                                                               ; Diameter or Tape Width (Tapes)                ; Diameter or Tape Width                        
                            ;                                                               ; Product Weight (Tapes)                        ; Product Weight                                
-                           ;                                                               ; Pre-wound with                                ; Pre-wound with                                     
-                           ;                                                               ; Warranty (Reels)                              ; Warranty                                  
-                           ;                                                               ; Product-Height (Reels)                        ; Product-Height                               
-                           ;                                                               ; Wire Amount                                   ; Wire Amount                                        
-                           ;                                                               ; Height (Posts)                                ; Height                                       
-                           ;                                                               ; Warranty (Posts)                              ; Warranty                                  
-                           ;                                                               ; Warranty (Portable)                           ; Warranty                                  
-                           ;                                                               ; Product Width (Portable)                      ; Product Width                                
-                           ;                                                               ; Product Depth (Portable)                      ; Product Depth                                
-                           ;                                                               ; Product Depth (Gates)                         ; Product Depth                                
-                           ;                                                               ; Wifi                                          ; Wifi                                   
-                           ;                                                               ; Number of Traits Recorded                     ; Number of Traits Recorded                          
-                           ;                                                               ; Product-Height (Scales)                       ; Product-Height                               
+                           ;                                                               ; Pre-wound with                                ; Pre-wound with                                
+                           ;                                                               ; Warranty (Reels)                              ; Warranty                                      
+                           ;                                                               ; Product-Height (Reels)                        ; Product-Height                                
+                           ;                                                               ; Wire Amount                                   ; Wire Amount                                   
+                           ;                                                               ; Height (Posts)                                ; Height                                        
+                           ;                                                               ; Warranty (Posts)                              ; Warranty                                      
+                           ;                                                               ; Warranty (Portable)                           ; Warranty                                      
+                           ;                                                               ; Product Width (Portable)                      ; Product Width                                 
+                           ;                                                               ; Product Depth (Portable)                      ; Product Depth                                 
+                           ;                                                               ; Product Depth (Gates)                         ; Product Depth                                 
+                           ;                                                               ; Wifi                                          ; Wifi                                          
+                           ;                                                               ; Number of Traits Recorded                     ; Number of Traits Recorded                     
+                           ;                                                               ; Product-Height (Scales)                       ; Product-Height                                
                            ;                                                               ; Product-Weight (Loadbars)                     ; Product-Weight                                
                            ;                                                               ; Weighing Capacity (Platforms)                 ; Weighing Capacity                             
-                           ;                                                               ; Product Width (Platforms)                     ; Product Width                                
+                           ;                                                               ; Product Width (Platforms)                     ; Product Width                                 
                            ;                                                               ; Product Weight (Platforms)                    ; Product Weight                                
-                           ;                                                               ; Product Type                                  ; Product Type                                       
+                           ;                                                               ; Product Type                                  ; Product Type                                  
                            ;                                                               ; Product Weight (Water)                        ; Product Weight                                
-                           ;                                                               ; Warranty (Antenna)                            ; Warranty                                  
-                           ;                                                               ; animalCompatibility                           ; Animal Compatibility                                        
-                           ;                                                               ; Conductor Type                                ; Conductor Type                                        
-                           ;                                                               ; Product Height (Platforms)                    ; Product Height                               
-								   ;                                                               ; Voltage at 2km of fence                       ; Voltage (kV) over 2km 							
-								   ;                                                               ; Voltage at 5km of fence                       ; Voltage (kV) over 5km 							
-								   ;                                                               ; Voltage at 10km of fence                      ; Voltage (kV) over 10km							
-								   ;                                                               ; Voltage at 500m of fence                      ; Voltage (kV) over 500m							
-						   		;                                                               ; Voltage at 1km of fence                       ; Voltage (kV) over 1km 							
+                           ;                                                               ; Warranty (Antenna)                            ; Warranty                                      
+                           ;                                                               ; animalCompatibility                           ; Animal Compatibility                          
+                           ;                                                               ; Conductor Type                                ; Conductor Type                                
+                           ;                                                               ; Product Height (Platforms)                    ; Product Height                                
+                           ;                                                               ; Voltage at 2km of fence                       ; Voltage (kV) over 2km                         
+                           ;                                                               ; Voltage at 5km of fence                       ; Voltage (kV) over 5km                         
+                           ;                                                               ; Voltage at 10km of fence                      ; Voltage (kV) over 10km                        
+                           ;                                                               ; Voltage at 500m of fence                      ; Voltage (kV) over 500m                        
+                           ;                                                               ; Voltage at 1km of fence                       ; Voltage (kV) over 1km                         
+                           ;                                                               ; EID Compatiable                               ; EID Compatiable                                    
+                           ;                                                               ; Drafting                                      ; Drafting                                      
+                           ;                                                               ; Intergrated EID Reader                        ; Intergrated EID Reader                        
+                           ;                                                               ; Compatible with Gallagher Livestock (Scales)  ; Compatible with Gallagher Livestock           
+                           ;                                                               ; View Pedigree Tree                            ; Pedigree Tree                                 

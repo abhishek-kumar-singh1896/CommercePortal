@@ -8,6 +8,8 @@ import de.hybris.platform.core.model.order.OrderModel;
 import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.store.BaseStoreModel;
 
+import java.util.List;
+
 
 /**
  * @author abhinavgupta03
@@ -16,7 +18,7 @@ import de.hybris.platform.store.BaseStoreModel;
 public interface GallagherCustomerAccountDao
 {
 	public SearchPageData<OrderModel> findOrdersForB2BUnit(final CustomerModel customerModel, final BaseStoreModel store,
-			final OrderStatus[] status, final PageableData pageableData, final B2BUnitModel b2bUnit);
+			final OrderStatus[] status, final PageableData pageableData, final List<B2BUnitModel> b2bUnit);
 
 	public OrderModel findOrderByCodeForAdmin(final String code, final BaseStoreModel store);
 

@@ -95,7 +95,7 @@ public class GallagherB2BCustomerPopulator extends B2BCustomerPopulator
 	{
 		final List<B2BUnitData> units = new ArrayList<>();
 		// minimal properties are populated, as require by customer paginated page.
-		final Set<PrincipalGroupModel> allGroups = customer.getAllGroups();
+		final Set<PrincipalGroupModel> allGroups = customer.getGroups();
 		for (final PrincipalGroupModel group : allGroups)
 		{
 			if (group instanceof B2BUnitModel)

@@ -30,7 +30,7 @@
 						<%-- <product:productPromotionSection product="${product}"/> --%>
 						<c:choose>
 							<c:when test="${not priceOnApplication}">
-								<c:if test="${not fn:contains(isUserAnonymous, 'anonymous')}">
+								<c:if test="${not fn:contains(isUserAnonymous, 'anonymous') && transactional}">
 									<ycommerce:testId
 										code="productDetails_productNamePrice_label_${product.code}">
 										<product:productPricePanel product="${product}" />

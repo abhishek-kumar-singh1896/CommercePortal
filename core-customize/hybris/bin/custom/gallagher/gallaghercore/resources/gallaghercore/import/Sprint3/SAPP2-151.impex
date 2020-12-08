@@ -61,7 +61,7 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
  
 # Email Pages
 INSERT_UPDATE EmailPage ; $contentCV[unique=true] ; uid[unique=true]    ; name                  ; masterTemplate(uid,$contentCV) ; defaultPage ; approvalStatus(code)[default='approved'] ; fromEmail                        ; fromName          
-                        ;                         ; OrderConfirmationEmail ; Customer Update Email ; OrderConfirmationEmailTemplate    ; true        ;                                          ; noreply@em90.comms.gallagher.com ; Gallagher Security
+                        ;                         ; OrderConfirmationEmail ; Order Confirmation Email ; OrderConfirmationEmailTemplate    ; true        ;                                          ; noreply@em90.comms.gallagher.com ; Gallagher Security
 
 UPDATE EmailPage ; $contentCV[unique=true] ; uid[unique=true]    ; previewImage(code, $contentCV)
                  ;                         ; OrderConfirmationEmail ; EmailPageModel_preview        
@@ -77,7 +77,7 @@ INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)
 
 # CMS components and Email velocity templates
 UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
- ;securityB2B_Email_Order_Confirmation_Body;"Order Confirmation Email Body";$emailResource/orderConfirmationBodyEmail.vm
+ ;securityB2B_Email_Order_Confirmation_Body;"Order Confirmation Email Body";$emailResource/email-orderConfirmBodyEmail.vm
  ;securityB2B_Email_Order_Confirmation_Subject;"Order Confirmation Email Subject";$emailResource/email-orderConfirmationSubject.vm
    
    
