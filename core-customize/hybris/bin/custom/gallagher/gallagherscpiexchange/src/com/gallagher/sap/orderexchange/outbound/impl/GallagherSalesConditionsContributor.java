@@ -4,7 +4,6 @@ import de.hybris.platform.core.model.order.AbstractOrderEntryModel;
 import de.hybris.platform.core.model.order.OrderModel;
 import de.hybris.platform.sap.orderexchange.constants.OrderCsvColumns;
 import de.hybris.platform.sap.orderexchange.constants.SalesConditionCsvColumns;
-import de.hybris.platform.sap.orderexchange.constants.SaporderexchangeConstants;
 import de.hybris.platform.sap.orderexchange.outbound.impl.DefaultSalesConditionsContributor;
 import de.hybris.platform.util.TaxValue;
 
@@ -80,7 +79,17 @@ public class GallagherSalesConditionsContributor extends DefaultSalesConditionsC
 		final Map<String, Object> row = new HashMap<>();
 		row.put(OrderCsvColumns.ORDER_ID, order.getCode());
 		row.put(SalesConditionCsvColumns.CONDITION_ENTRY_NUMBER, entry.getEntryNumber());
-		row.put(SalesConditionCsvColumns.CONDITION_CODE, getGrossPrice());
+		if (null != order.getUnit() && order.getUnit().getSalesArea().contains("_"))
+		{
+			String conditionCode = null;
+			conditionCode = order.getUnit().getSalesArea();
+			conditionCode = conditionCode.substring(conditionCode.indexOf("_") + 1, conditionCode.lastIndexOf("_"));
+			row.put(SalesConditionCsvColumns.CONDITION_CODE, "PR" + conditionCode);
+		}
+		else
+		{
+			row.put(SalesConditionCsvColumns.CONDITION_CODE, getGrossPrice());
+		}
 		row.put(SalesConditionCsvColumns.CONDITION_VALUE, entry.getBasePrice());
 		row.put(SalesConditionCsvColumns.CONDITION_UNIT_CODE, entry.getUnit().getCode());
 		row.put(SalesConditionCsvColumns.CONDITION_PRICE_QUANTITY, entry.getProduct().getPriceQuantity());
@@ -98,30 +107,7 @@ public class GallagherSalesConditionsContributor extends DefaultSalesConditionsC
 	{
 		if (order.getPaymentCost() != null && order.getPaymentCost() > 0)
 		{
-			if (null != order.getUnit())
-			{
-				final Map<String, Object> row = new HashMap<>();
-				row.put(OrderCsvColumns.ORDER_ID, order.getCode());
-				row.put(SalesConditionCsvColumns.CONDITION_ENTRY_NUMBER, SaporderexchangeConstants.HEADER_ENTRY);
-				String conditionCode = null;
-				if (null != order.getUnit().getSalesArea() && order.getUnit().getSalesArea().contains("_"))
-				{
-					conditionCode = order.getUnit().getSalesArea();
-					conditionCode = conditionCode.substring(conditionCode.indexOf("_") + 1, conditionCode.lastIndexOf("_"));
-				}
-				row.put(SalesConditionCsvColumns.CONDITION_CODE, conditionCode);
-				row.put(SalesConditionCsvColumns.CONDITION_VALUE, order.getPaymentCost());
-				row.put(SalesConditionCsvColumns.CONDITION_CURRENCY_ISO_CODE, order.getCurrency().getIsocode());
-				row.put(SalesConditionCsvColumns.CONDITION_COUNTER, getConditionCounterPaymentCost());
-				row.put(SalesConditionCsvColumns.ABSOLUTE, Boolean.TRUE);
-				getBatchIdAttributes().forEach(row::putIfAbsent);
-				row.put("dh_batchId", order.getCode());
-				result.add(row);
-			}
-			else
-			{
-				super.createPaymentCostRow(order, result);
-			}
+			super.createPaymentCostRow(order, result);
 		}
 	}
 
