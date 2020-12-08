@@ -81,10 +81,18 @@ public class GallagherSalesConditionsContributor extends DefaultSalesConditionsC
 		row.put(SalesConditionCsvColumns.CONDITION_ENTRY_NUMBER, entry.getEntryNumber());
 		if (null != order.getUnit() && order.getUnit().getSalesArea().contains("_"))
 		{
-			String conditionCode = null;
-			conditionCode = order.getUnit().getSalesArea();
-			conditionCode = conditionCode.substring(conditionCode.indexOf("_") + 1, conditionCode.lastIndexOf("_"));
-			row.put(SalesConditionCsvColumns.CONDITION_CODE, "PR" + conditionCode);
+			try
+			{
+				String conditionCode = null;
+				conditionCode = order.getUnit().getSalesArea();
+				conditionCode = conditionCode.substring(conditionCode.indexOf("_") + 1, conditionCode.lastIndexOf("_"));
+				row.put(SalesConditionCsvColumns.CONDITION_CODE, "PR" + conditionCode);
+			}
+			catch (final StringIndexOutOfBoundsException ex)
+			{
+				LOGGER.error("Salesarea " + order.getUnit().getSalesArea() + " is not in correct format!!!!!!!!");
+				row.put(SalesConditionCsvColumns.CONDITION_CODE, getGrossPrice());
+			}
 		}
 		else
 		{
