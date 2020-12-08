@@ -89,7 +89,7 @@ public class RegisterPageController extends AbstractRegisterPageController
 				response.addCookie(KeycloakCookieBasedRedirect.createCookieFromRedirectUrl(getRedirectUrl(request)));
 			}
 			String language = "en";
-			if (redirectURL.contains("LATAM"))
+			if (redirectURL.contains("es_CL"))
 			{
 				language = "es";
 			}
