@@ -16,6 +16,12 @@
 		<value>DATASHEET</value>
 		<value>OTHERS</value>
 	</enum>
+	
+  	<!-- Add custom categories to ticket -->	
+	<enum class="de.hybris.platform.customerticketingfacades.data.TicketCategory">
+        <value>SECURITY_TECHNICAL_SUPPORT</value>		          
+        <value>SECURITY_SALES</value>
+	</enum>	
 
 	<bean class="de.hybris.platform.commercefacades.user.data.CustomerData">
 		<property name="duplicate" type="java.lang.Boolean" />
