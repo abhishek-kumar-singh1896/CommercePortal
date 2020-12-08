@@ -122,6 +122,11 @@ public class GallagherDefaultB2BCheckoutFacade extends DefaultB2BCheckoutFacade
 
 		removeDeliveryAddress();
 		removeDeliveryMode();
+
+		if (b2bUnitDataCode != null)
+		{
+			cartModel.setUnit(b2bUnitModel);
+		}
 	}
 
 	protected void setRequiredDeliveryDate(final String requiredDate, final CartModel cartModel)
