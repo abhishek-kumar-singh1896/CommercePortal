@@ -53,12 +53,14 @@ ACC.autocomplete = {
 											: null
 							)
 							.append($("<div>").addClass("name").html(ACC.sanitizer.sanitize(item.value)));
-					if(item.discount){
+					if(item.discount && item.price){
 						
 						renderHtml.append($("<div>").addClass("price").append($("<span>").addClass("strike-through bold").text(item.price+" ")).append($("<span>").addClass("discounted bold").text(item.discount)));
 					}else {
 						
-						renderHtml.append($("<div>").addClass("price").text(item.price))
+						if(item.price){
+							renderHtml.append($("<div>").addClass("price").text(item.price))
+						}
 					}
 
 					return $("<li>")
@@ -99,7 +101,7 @@ ACC.autocomplete = {
 								manufacturer: ACC.sanitizer.sanitize(obj.manufacturer),
 								url:  ACC.config.encodedContextPath + obj.url,
 								price: obj.price ? obj.price.formattedValue : null,
-								discount:obj.totalDiscounts?obj.totalDiscounts[0].value:null,
+								discount:obj.totalDiscounts && obj.totalDiscounts.length>0 ?obj.totalDiscounts[0].value:null,
 								type: "productResult",
 								image: (obj.images!=null && self.options.displayProductImages) ? obj.images[1].url : null // prevent errors if obj.images = null
 							});

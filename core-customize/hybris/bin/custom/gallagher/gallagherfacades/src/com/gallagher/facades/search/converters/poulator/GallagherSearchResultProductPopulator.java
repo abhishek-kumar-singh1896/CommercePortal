@@ -84,9 +84,18 @@ public class GallagherSearchResultProductPopulator extends SearchResultVariantPr
 	{
 
 		final String totalDiscountsString = this.<String> getValue(source, "totalDiscounts");
-		if (totalDiscountsString != null)
+		final BaseSiteModel cmssite = getBaseSiteService().getCurrentBaseSite();
+		final UserModel user = userService.getCurrentUser();
+		if (cmssite != null && cmssite.getUid().contains("B2B") && userService.isAnonymousUser(user))
 		{
-			target.setTotalDiscounts(Collections.singletonList(createTotalDiscounts(totalDiscountsString)));
+			target.setTotalDiscounts(null);
+		}
+		else
+		{
+			if (StringUtils.isNotBlank(totalDiscountsString))
+			{
+				target.setTotalDiscounts(Collections.singletonList(createTotalDiscounts(totalDiscountsString)));
+			}
 		}
 	}
 
