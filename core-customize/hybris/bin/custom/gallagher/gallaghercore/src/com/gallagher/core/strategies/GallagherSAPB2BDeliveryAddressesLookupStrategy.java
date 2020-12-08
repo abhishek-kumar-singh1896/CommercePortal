@@ -10,11 +10,8 @@ import de.hybris.platform.core.model.user.AddressModel;
 import de.hybris.platform.servicelayer.session.SessionService;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import javax.annotation.Resource;
 
@@ -41,10 +38,8 @@ public class GallagherSAPB2BDeliveryAddressesLookupStrategy extends DefaultSAPB2
 			final boolean visibleAddressesOnly)
 	{
 		// retrieve default delivery addresses for order
-		final List<AddressModel> deliveryAddresses = getFallbackDeliveryAddressesLookupStrategy()
+		List<AddressModel> deliveryAddresses = getFallbackDeliveryAddressesLookupStrategy()
 				.getDeliveryAddressesForOrder(abstractOrder, visibleAddressesOnly);
-
-		final List<AddressModel> addresses = new ArrayList<>();
 
 		// retrieve B2B customer of order
 		final B2BCustomerModel b2bCustomer = (B2BCustomerModel) abstractOrder.getUser();
@@ -60,17 +55,17 @@ public class GallagherSAPB2BDeliveryAddressesLookupStrategy extends DefaultSAPB2
 			addressesForB2BUnit.stream().forEach(add -> deliveryAddressesForB2BUnit.add(add));
 		}
 		// merge delivery addresses for order and for B2B unit
-		if (deliveryAddresses != null && !deliveryAddresses.isEmpty())
+		if (CollectionUtils.isNotEmpty(deliveryAddresses))
 		{
 			if (CollectionUtils.isNotEmpty(deliveryAddressesForB2BUnit))
 			{
-				addresses.addAll(Stream.of(deliveryAddressesForB2BUnit, deliveryAddresses).flatMap(Collection::stream)
-						.collect(Collectors.toList()));
+				deliveryAddressesForB2BUnit.addAll(deliveryAddresses);
+				deliveryAddresses = deliveryAddressesForB2BUnit;
 			}
 		}
 		else
 		{
-			if (deliveryAddressesForB2BUnit != null && !deliveryAddressesForB2BUnit.isEmpty())
+			if (CollectionUtils.isNotEmpty(deliveryAddressesForB2BUnit))
 			{
 				return deliveryAddressesForB2BUnit;
 
@@ -81,7 +76,7 @@ public class GallagherSAPB2BDeliveryAddressesLookupStrategy extends DefaultSAPB2
 			}
 		}
 
-		return addresses;
+		return deliveryAddresses;
 	}
 
 	/**
