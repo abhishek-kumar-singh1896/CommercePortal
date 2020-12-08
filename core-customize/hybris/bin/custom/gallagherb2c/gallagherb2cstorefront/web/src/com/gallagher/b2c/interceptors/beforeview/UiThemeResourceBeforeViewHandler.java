@@ -113,7 +113,7 @@ public class UiThemeResourceBeforeViewHandler implements BeforeViewHandler
 			uiLocales = "ca";
 		}
 
-		if (language.contains("LA"))
+		if (language.contains("es_CL"))
 		{
 			uiLocales = "es";
 		}
