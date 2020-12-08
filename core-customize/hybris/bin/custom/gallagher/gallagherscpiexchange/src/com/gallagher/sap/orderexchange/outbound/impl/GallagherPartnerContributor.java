@@ -57,15 +57,23 @@ public class GallagherPartnerContributor extends DefaultPartnerContributor
 			deliveryAddress = paymentAddress;
 		}
 
-		//		final String b2cCustomer = b2CCustomerHelper.determineB2CCustomer(order);
-		//		final String b2bUnit = b2cCustomer != null ? b2cCustomer
-		//				: order.getStore().getSAPConfiguration().getSapcommon_referenceCustomer();
-		final String b2bUnit = order.getUnit().getUid();
+		String sapcommon_Customer = null;
+		if (null != order.getUnit())
+		{
+			sapcommon_Customer = order.getUnit().getUid();
+		}
+		else
+		{
+
+			final String b2cCustomer = b2CCustomerHelper.determineB2CCustomer(order);
+			sapcommon_Customer = b2cCustomer != null ? b2cCustomer
+					: order.getStore().getSAPConfiguration().getSapcommon_referenceCustomer();
+		}
 
 		final String deliveryAddressNumber = getShipToAddressNumber();
 		Map<String, Object> row = mapAddressData(order, deliveryAddress);
 		row.put(PartnerCsvColumns.PARTNER_ROLE_CODE, PartnerRoles.SHIP_TO.getCode());
-		row.put(PartnerCsvColumns.PARTNER_CODE, b2bUnit);
+		row.put(PartnerCsvColumns.PARTNER_CODE, sapcommon_Customer);
 		row.put(PartnerCsvColumns.DOCUMENT_ADDRESS_ID, deliveryAddressNumber);
 		getBatchIdAttributes().forEach(row::putIfAbsent);
 		row.put("dh_batchId", order.getCode());
@@ -77,7 +85,7 @@ public class GallagherPartnerContributor extends DefaultPartnerContributor
 			final String paymentAddressNumber = getSoldToAddressNumber();
 			row = mapAddressData(order, paymentAddress);
 			row.put(PartnerCsvColumns.PARTNER_ROLE_CODE, PartnerRoles.BILL_TO.getCode());
-			row.put(PartnerCsvColumns.PARTNER_CODE, b2bUnit);
+			row.put(PartnerCsvColumns.PARTNER_CODE, sapcommon_Customer);
 			row.put(PartnerCsvColumns.DOCUMENT_ADDRESS_ID, paymentAddressNumber);
 			getBatchIdAttributes().forEach(row::putIfAbsent);
 			row.put("dh_batchId", order.getCode());
@@ -92,7 +100,7 @@ public class GallagherPartnerContributor extends DefaultPartnerContributor
 		}
 
 		row.put(PartnerCsvColumns.PARTNER_ROLE_CODE, PartnerRoles.SOLD_TO.getCode());
-		row.put(PartnerCsvColumns.PARTNER_CODE, b2bUnit);
+		row.put(PartnerCsvColumns.PARTNER_CODE, sapcommon_Customer);
 		row.put(PartnerCsvColumns.DOCUMENT_ADDRESS_ID, soldToAddressNumber);
 		getBatchIdAttributes().forEach(row::putIfAbsent);
 		row.put("dh_batchId", order.getCode());
@@ -104,18 +112,24 @@ public class GallagherPartnerContributor extends DefaultPartnerContributor
 		final UserModel salesRep = order.getPlacedBy();
 		if (salesRep != null)
 		{
-
 			row = new HashMap<String, Object>();
 			row.put(OrderCsvColumns.ORDER_ID, order.getCode());
 			row.put(PartnerCsvColumns.LANGUAGE_ISO_CODE, order.getLanguage().getIsocode());
 			row.put(PartnerCsvColumns.PARTNER_ROLE_CODE, PartnerRoles.PLACED_BY.getCode());
-			row.put(PartnerCsvColumns.PARTNER_CODE, b2bUnit);
+			if (null != order.getUnit())
+			{
+				row.put(PartnerCsvColumns.PARTNER_CODE, sapcommon_Customer);
+			}
+			else
+			{
+				row.put(PartnerCsvColumns.PARTNER_CODE, salesRep.getUid());
+			}
 			row.put(PartnerCsvColumns.DOCUMENT_ADDRESS_ID, "");
 			getBatchIdAttributes().forEach(row::putIfAbsent);
 			row.put("dh_batchId", order.getCode());
 			result.add(row);
-
 		}
+
 		return result;
 	}
 
