@@ -102,6 +102,8 @@ public class GallagherProductDiscountPopulator<SOURCE extends ProductModel, TARG
 			{
 				netPrice = priceData.getValue().doubleValue()
 						- (priceData.getValue().doubleValue() * (info.getDiscountValue().getValue() / 100));
+
+				netPrice = netPrice > 0 ? netPrice : 0.0;
 			}
 
 			final String netProductValue = priceData.getCurrencySymbol() + String.format("%.2f", netPrice);

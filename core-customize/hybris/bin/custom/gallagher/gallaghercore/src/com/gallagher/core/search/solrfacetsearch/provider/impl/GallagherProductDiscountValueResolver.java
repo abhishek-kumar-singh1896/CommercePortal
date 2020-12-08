@@ -429,7 +429,7 @@ public class GallagherProductDiscountValueResolver extends ProductPricesValueRes
 					- (priceInfo.getPriceValue().getValue() * (discInfo.getDiscountValue().getValue() / 100));
 		}
 
-		return netPrice;
+		return netPrice > 0 ? netPrice : 0.0;
 	}
 
 	/**
