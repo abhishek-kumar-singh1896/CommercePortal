@@ -54,9 +54,9 @@
                                             <p><b><font color="#322e2c" size="2" face="Calibri">${ctx.messages.getMessage('nameUpdated', ${ctx.name})}</font></b></p>
 										  </li>
 										 #end
-										 #if(${ctx.uid})
+										 #if(${ctx.emailID})
 										  <li>
-                                            <p><b><font color="#322e2c" size="2" face="Calibri">${ctx.messages.getMessage('emailUpdated', ${ctx.uid})}</font></b></p>
+                                            <p><b><font color="#322e2c" size="2" face="Calibri">${ctx.messages.getMessage('emailUpdated', ${ctx.emailID})}</font></b></p>
 										 </li>
 										 #end
 										 #if(${ctx.loginDisabled})
