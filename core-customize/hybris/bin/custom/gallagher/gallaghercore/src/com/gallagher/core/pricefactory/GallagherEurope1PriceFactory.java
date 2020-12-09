@@ -12,7 +12,6 @@ import de.hybris.platform.europe1.jalo.DiscountRow;
 import de.hybris.platform.europe1.jalo.PDTRowsQueryBuilder.QueryWithParams;
 import de.hybris.platform.europe1.jalo.PriceRow;
 import de.hybris.platform.jalo.SessionContext;
-import de.hybris.platform.jalo.c2l.C2LManager;
 import de.hybris.platform.jalo.c2l.Currency;
 import de.hybris.platform.jalo.enumeration.EnumerationValue;
 import de.hybris.platform.jalo.flexiblesearch.FlexibleSearch;
@@ -89,10 +88,8 @@ public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactor
 		{
 			final GallagherPDTRowsQueryBuilder builder = this.getPDTRowsQueryBuilderFor(TC.PRICEROW);
 			final QueryWithParams queryAndParams = builder.withAnyProduct().withAnyUser().withAnySalesArea().withAnyCustomerGroup()
-					.withProduct(
-							productPk)
-					.withProductId(productId).withProductGroup(productGroupPk).withUser(userPk).withUserGroup(userGroupPk)
-					.withSalesArea(salesArea).withCustomerGroup(customerGroup).build();
+					.withProduct(productPk).withProductId(productId).withProductGroup(productGroupPk).withUser(userPk)
+					.withUserGroup(userGroupPk).withSalesArea(salesArea).withCustomerGroup(customerGroup).build();
 
 
 
@@ -133,10 +130,8 @@ public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactor
 
 		final GallagherPDTRowsQueryBuilder builder = this.getPDTRowsQueryBuilderFor(discountRowTypeCode);
 		final QueryWithParams queryAndParams = builder.withAnyProduct().withAnyUser().withAnySalesArea().withAnyCustomerGroup()
-				.withProduct(
-						productPk)
-				.withProductId(productId).withProductGroup(productGroupPk).withUser(userPk).withUserGroup(userGroupPk)
-				.withSalesArea(salesAreaSubString).withCustomerGroup(customerGroup).build();
+				.withProduct(productPk).withProductId(productId).withProductGroup(productGroupPk).withUser(userPk)
+				.withUserGroup(userGroupPk).withSalesArea(salesAreaSubString).withCustomerGroup(customerGroup).build();
 
 		return FlexibleSearch.getInstance().search(ctx, queryAndParams.getQuery(), queryAndParams.getParams(),
 				DiscountRow.class)
@@ -179,8 +174,7 @@ public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactor
 					product, productGroup, user, userGroup);
 			if (!rows.isEmpty())
 			{
-				final List<GallagherDiscountRow> ret = (List<GallagherDiscountRow>) filterDiscountRows4Price(rows, qtd, currency,
-						date);
+				final List<GallagherDiscountRow> ret = (List<GallagherDiscountRow>) filterDiscountRows4Price(rows, qtd, date);
 				if (ret.size() > 1)
 				{
 					ret.sort(new GallagherEurope1PriceFactory.DiscountRowMatchComparator());
@@ -199,8 +193,9 @@ public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactor
 		}
 	}
 
+
 	protected List<? extends AbstractDiscountRow> filterDiscountRows4Price(final Collection<? extends AbstractDiscountRow> rows,
-			final Date date, final Currency curr)
+			final Long _quantity, final Date date)
 	{
 		if (rows.isEmpty())
 		{
@@ -208,47 +203,7 @@ public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactor
 		}
 		else
 		{
-			final Currency base = curr.isBase() ? null : C2LManager.getInstance().getBaseCurrency();
-			final List<? extends AbstractDiscountRow> ret = new ArrayList(rows);
-			final ListIterator it = ret.listIterator();
-
-			while (true)
-			{
-				GallagherDiscountRow discRow;
-				while (it.hasNext())
-				{
-					discRow = (GallagherDiscountRow) it.next();
-					final Currency currency = discRow.getCurrency();
-					if (!curr.equals(currency) && (base == null || !base.equals(currency)))
-					{
-						LOG.debug("removing discount row as it doesnt match currency");
-						it.remove();
-					}
-					else
-					{
-						final DateRange dataRange = discRow.getDateRange();
-						if (dataRange != null && !dataRange.encloses(date))
-						{
-							it.remove();
-						}
-					}
-				}
-				return ret;
-			}
-		}
-	}
-
-	protected List<? extends AbstractDiscountRow> filterDiscountRows4Price(final Collection<? extends AbstractDiscountRow> rows,
-			final Long _quantity, final Currency curr, final Date date)
-	{
-		if (rows.isEmpty())
-		{
-			return Collections.EMPTY_LIST;
-		}
-		else
-		{
-			final Currency base = curr.isBase() ? null : C2LManager.getInstance().getBaseCurrency();
-			final List<? extends AbstractDiscountRow> ret = new ArrayList(rows);
+			final List<? extends AbstractDiscountRow> ret = new ArrayList<>(rows);
 			final ListIterator it = ret.listIterator();
 			final long quantity = _quantity == 0L ? 1L : _quantity;
 
@@ -265,19 +220,10 @@ public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactor
 					}
 					else
 					{
-						final Currency currency = discRow.getCurrency();
-						if (!curr.equals(currency) && (base == null || !base.equals(currency)))
+						final DateRange dataRange = discRow.getDateRange();
+						if (dataRange != null && !dataRange.encloses(date))
 						{
-							LOG.debug("removing discount row as it doesnt match currency");
 							it.remove();
-						}
-						else
-						{
-							final DateRange dataRange = discRow.getDateRange();
-							if (dataRange != null && !dataRange.encloses(date))
-							{
-								it.remove();
-							}
 						}
 					}
 				}
@@ -310,7 +256,7 @@ public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactor
 					product, productGroup, user, userGroup);
 			if (!rows.isEmpty())
 			{
-				final List<GallagherDiscountRow> ret = (List<GallagherDiscountRow>) filterDiscountRows4Price(rows, date, curr);
+				final List<GallagherDiscountRow> ret = (List<GallagherDiscountRow>) filterDiscountRows4Price(rows, date);
 				if (ret.size() > 1)
 				{
 					ret.sort(new GallagherEurope1PriceFactory.DiscountRowMatchComparator());

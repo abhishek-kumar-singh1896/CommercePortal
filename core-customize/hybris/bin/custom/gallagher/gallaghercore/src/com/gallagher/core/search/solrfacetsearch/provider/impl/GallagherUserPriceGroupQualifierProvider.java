@@ -1,6 +1,5 @@
 package com.gallagher.core.search.solrfacetsearch.provider.impl;
 
-import de.hybris.platform.b2b.constants.B2BConstants;
 import de.hybris.platform.b2b.model.B2BUnitModel;
 import de.hybris.platform.enumeration.EnumerationService;
 import de.hybris.platform.europe1.constants.Europe1Constants;
@@ -73,8 +72,6 @@ public class GallagherUserPriceGroupQualifierProvider implements GallagherQualif
 
 		final List<B2BUnitModel> b2bUnits = getB2bUnitDao().getAllB2BUnits();
 		final Set<UserPriceGroup> userPriceGroups = new HashSet<>();
-		userPriceGroups
-				.add(getEnumerationService().getEnumerationValue(UserPriceGroup._TYPECODE, B2BConstants.B2BDEFAULTPRICEGROUP));
 		if (CollectionUtils.isNotEmpty(b2bUnits))
 		{
 			b2bUnits.stream().forEach(unit -> {
