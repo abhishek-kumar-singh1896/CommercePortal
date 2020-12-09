@@ -49,6 +49,9 @@ public class ShowB2BUnitsController extends AbstractPageController
 	@SuppressWarnings("unused")
 	private static final Logger LOGGER = Logger.getLogger(ShowB2BUnitsController.class);
 
+	private static final String ASIA = "Asia";
+	private static final String STHAM = "SthAm";
+
 	@Resource(name = "userService")
 	private UserService userService;
 
@@ -113,7 +116,19 @@ public class ShowB2BUnitsController extends AbstractPageController
 						final String regionCode = address.getCountry().getSecurityRegionCode().getCode();
 						try
 						{
-							final CMSSiteModel site = cmsAdminSiteService.getSiteForId("securityB2B" + regionCode.toUpperCase());
+							CMSSiteModel site;
+							if (regionCode.equalsIgnoreCase("asia"))
+							{
+								site = cmsAdminSiteService.getSiteForId("securityB2B" + ASIA);
+							}
+							else if (regionCode.equalsIgnoreCase("stham"))
+							{
+								site = cmsAdminSiteService.getSiteForId("securityB2B" + STHAM);
+							}
+							else
+							{
+								site = cmsAdminSiteService.getSiteForId("securityB2B" + regionCode.toUpperCase());
+							}
 							redirectPath = site.getRedirectURL();
 						}
 						catch (final UnknownIdentifierException exception)
