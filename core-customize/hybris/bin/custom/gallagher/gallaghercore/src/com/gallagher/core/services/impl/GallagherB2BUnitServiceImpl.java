@@ -16,6 +16,7 @@ import de.hybris.platform.core.model.security.PrincipalGroupModel;
 import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.core.model.user.UserModel;
 import de.hybris.platform.europe1.constants.Europe1Constants;
+import de.hybris.platform.europe1.enums.UserDiscountGroup;
 import de.hybris.platform.servicelayer.session.Session;
 import de.hybris.platform.servicelayer.session.SessionExecutionBody;
 import de.hybris.platform.site.BaseSiteService;
@@ -192,18 +193,6 @@ public class GallagherB2BUnitServiceImpl extends DefaultB2BUnitService implement
 		}
 	}
 
-	@Override
-	protected EnumerationValueModel lookupPriceGroupFromClosestParent(final B2BUnitModel unitOfCustomer)
-	{
-		for (final B2BUnitModel unitModel : getAllParents(unitOfCustomer))
-		{
-			if (unitModel.getUserPriceGroup() != null)
-			{
-				return getTypeService().getEnumerationValue(unitModel.getUserPriceGroup());
-			}
-		}
-		return null;
-	}
 	protected EnumerationValueModel lookupDiscountGroupFromClosestParent(final B2BUnitModel unitOfCustomer)
 	{
 		for (final B2BUnitModel unitModel : getAllParents(unitOfCustomer))
@@ -213,7 +202,7 @@ public class GallagherB2BUnitServiceImpl extends DefaultB2BUnitService implement
 				return getTypeService().getEnumerationValue(unitModel.getUserDiscountGroup());
 			}
 		}
-		return null;
+		return getTypeService().getEnumerationValue(UserDiscountGroup._TYPECODE, B2BDEFAULTDISCOUNTGROUP);
 	}
 
 	public List<B2BUnitModel> getAllB2BData(final CustomerModel currentCustomer)
