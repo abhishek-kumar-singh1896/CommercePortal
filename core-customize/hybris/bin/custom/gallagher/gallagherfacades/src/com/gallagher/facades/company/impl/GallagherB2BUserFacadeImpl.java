@@ -65,12 +65,15 @@ public class GallagherB2BUserFacadeImpl extends DefaultB2BUserFacade
 		{
 			customerModel = getUserService().getUserForUID(customerData.getUid(), B2BCustomerModel.class);
 		}
+		final B2BCustomerModel customer = getB2BCustomerReverseConverter().convert(customerData, customerModel);
 
-		getModelService().save(getB2BCustomerReverseConverter().convert(customerData, customerModel));
-		if (customerModel != null)
+		if (customer != null)
 		{
-			pushToMindTouch(customerModel);
+			pushToMindTouch(customer);
 		}
+
+		getModelService().save(customer);
+
 	}
 
 	/**
