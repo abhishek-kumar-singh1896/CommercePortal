@@ -78,6 +78,59 @@ h4 {
     }
   }
 
+  .search-results {
+    &.search-result-list {
+      padding-top: 5px;
+    }
+  }
+
+  .case-study-block {
+    display: inline-block;
+  }
+
+  .case-study-block-content {
+    overflow: hidden;
+  }
+
+  .case-study-block-content {
+    overflow: hidden;
+  }
+
+  .case-study-block-image {
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    padding: 40%;
+  }
+
+  .case-study-text {
+    height: 120px;
+    padding-bottom: 0;
+  }
+
+  .field-title {
+    font-weight: 600;
+    color: #000;
+    margin-top: 1em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  .link {
+    background: transparent;
+  }
+
+  .component {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1500px;
+    margin: auto;
+    padding-top: 3em;
+  }
+
   .product-code {
     margin-bottom: 30px;
     font-size: $font-size-12px;

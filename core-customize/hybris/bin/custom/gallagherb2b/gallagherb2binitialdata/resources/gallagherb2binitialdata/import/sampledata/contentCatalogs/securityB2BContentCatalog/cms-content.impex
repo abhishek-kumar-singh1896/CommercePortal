@@ -429,6 +429,7 @@ INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];name;
 ;;ProductDocumentTabComponent;Product Document Tab;/WEB-INF/views/responsive/pages/product/productDocumentTab.jsp;;ProductDocumentTabComponent
 ;;ProductVideosTabComponent;Product Videos Tab;/WEB-INF/views/responsive/pages/product/productVideosTab.jsp;;ProductVideosTabComponent
 
+
 ##INSERT_UPDATE CMSTabParagraphComponent;$contentCV[unique=true];uid[unique=true];name;visible;&componentRef
 ###;;deliveryTab;Delivery tab;true;deliveryTab
 
