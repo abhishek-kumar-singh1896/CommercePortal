@@ -35,6 +35,7 @@ import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.servicelayer.user.UserService;
 
 import java.text.SimpleDateFormat;
+import java.text.ParseException; 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
@@ -44,6 +45,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Resource;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -62,6 +64,7 @@ import com.gallagher.facades.GallagherB2BUnitFacade;;
 public class PaymentTypeCheckoutStepController extends AbstractCheckoutStepController
 {
 	private final static String PAYMENT_TYPE = "payment-type";
+	private static final Logger LOG = Logger.getLogger(PaymentTypeCheckoutStepController.class);
 
 	@Resource(name = "checkoutFlowFacade")
 	private B2badvanceCheckoutFacade checkoutFlowFacade;
@@ -247,15 +250,31 @@ public class PaymentTypeCheckoutStepController extends AbstractCheckoutStepContr
 		}
 
 		//set Current Date if availaible in CartData
+		Date todaysDate = null; 
+      Date requiredDate = null;
+      try
+		{
+			todaysDate = formatter.parse(dateToString);
+			requiredDate = formatter.parse(cartData.getRequiredDeliveryDate());
+		}
+		catch(ParseException ex)
+		{
+			LOG.error("Error while parsing date :: "+ex.getMessage());
+		}
+      
 		if (cartData.getRequiredDeliveryDate() != null && cartData.getRequiredDeliveryDate().length() != 0)
 		{
-			paymentTypeForm.setRequiredDeliveryDate(cartData.getRequiredDeliveryDate());
+	      if(todaysDate != null && requiredDate!= null && requiredDate.before(todaysDate)) {
+	      	paymentTypeForm.setRequiredDeliveryDate(dateToString);
+	      }else {
+	      	paymentTypeForm.setRequiredDeliveryDate(cartData.getRequiredDeliveryDate());
+	      }
 		}
 		else
 		{
 			paymentTypeForm.setRequiredDeliveryDate(dateToString);
 		}
-
+		
 		// set purchase order number
 		/*
 		 * paymentTypeForm.setPurchaseOrderNumber(cartData.getPurchaseOrderNumber());
