@@ -86,6 +86,10 @@ public class GallagherSalesConditionsContributor extends DefaultSalesConditionsC
 				String conditionCode = null;
 				conditionCode = order.getUnit().getSalesArea();
 				conditionCode = conditionCode.substring(conditionCode.indexOf("_") + 1, conditionCode.lastIndexOf("_"));
+				if (!conditionCode.equals("EX"))
+				{
+					conditionCode = "00";
+				}
 				row.put(SalesConditionCsvColumns.CONDITION_CODE, "PR" + conditionCode);
 			}
 			catch (final StringIndexOutOfBoundsException ex)
