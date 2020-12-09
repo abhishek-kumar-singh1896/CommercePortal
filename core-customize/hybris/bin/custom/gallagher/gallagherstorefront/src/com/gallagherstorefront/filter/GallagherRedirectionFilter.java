@@ -56,6 +56,10 @@ public class GallagherRedirectionFilter extends GenericFilterBean
 
 	private static final String IP_SERVICE = "https://ipinfo.io/%s/country";
 
+	private static final String ASIA = "Asia";
+
+	private static final String STHAM = "SthAm";
+
 	private static final Logger LOG = LoggerFactory.getLogger(GallagherRedirectionFilter.class.getName());
 
 	@Resource(name = "baseSiteService")
@@ -113,7 +117,19 @@ public class GallagherRedirectionFilter extends GenericFilterBean
 			final RegionCode regionCode = isSecurity ? country.getSecurityRegionCode() : country.getRegionCode();
 			if (regionCode != null)
 			{
-				final StringBuilder regionSite = new StringBuilder(base).append(regionCode.getCode().toUpperCase());
+				StringBuilder regionSite;
+				if (regionCode.getCode().equalsIgnoreCase("asia"))
+				{
+					regionSite = new StringBuilder(base).append(ASIA);
+				}
+				else if (regionCode.getCode().equalsIgnoreCase("stham"))
+				{
+					regionSite = new StringBuilder(base).append(STHAM);
+				}
+				else
+				{
+					regionSite = new StringBuilder(base).append(regionCode.getCode().toUpperCase());
+				}
 				site = baseSiteService.getBaseSiteForUID(regionSite.toString());
 			}
 		}
