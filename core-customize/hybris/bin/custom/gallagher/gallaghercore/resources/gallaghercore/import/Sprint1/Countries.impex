@@ -46,15 +46,15 @@ UPDATE Language ; isocode[unique=true] ; name[lang=$lang]        ; name[lang=es_
 # Full country list conforming to ISO 3166-1 alpha-2
 INSERT_UPDATE Country ; isocode[unique=true] ; name[lang=en]                                  ; regionCode(code)[default=global] ; securityRegionCode(code)[default=global] ; active[default=true] 
                       ; AD                   ; "Andorra"                                      ;                                  ; uk                                       
-                      ; AE                   ; "United Arab Emirates"                         ;                                  ; asia                                     
-                      ; AF                   ; "Afghanistan"                                  ;                                  ; asia                                     
-                      ; AG                   ; "Antigua and Barbuda"                          ;                                  
+                      ; AE                   ; "United Arab Emirates"                         ;                                  ;                                      
+                      ; AF                   ; "Afghanistan"                                  ;                                  ;                                      
+                      ; AG                   ; "Antigua and Barbuda"                          ;                                  ; us
                       ; AI                   ; "Anguilla"                                     ;                                  
                       ; AL                   ; "Albania"                                      ;                                  ; uk                                       
                       ; AM                   ; "Armenia"                                      ;                                  ; uk                                       
                       ; AO                   ; "Angola"                                       ;                                  
-                      ; AQ                   ; "Antarctica"                                   ;                                  
-                      ; AR                   ; "Argentina"                                    ; cl                               ; stham                                    
+                      ; AQ                   ; "Antarctica"                                   ;                                  ; nz
+                      ; AR                   ; "Argentina"                                    ; cl                               ; us                                    
                       ; AS                   ; "American Samoa"                               ;                                  
                       ; AT                   ; "Austria"                                      ;                                  ; uk                                       
                       ; AU                   ; "Australia"                                    ; au                               ; au                                       
@@ -63,7 +63,7 @@ INSERT_UPDATE Country ; isocode[unique=true] ; name[lang=en]                    
                       ; AZ                   ; "Azerbaijan"                                   ;                                  ; uk                                       
                       ; BA                   ; "Bosnia and Herzegovina"                       ;                                  ; uk                                       
                       ; BB                   ; "Barbados"                                     ;                                  
-                      ; BD                   ; "Bangladesh"                                   ;                                  ; asia                                     
+                      ; BD                   ; "Bangladesh"                                   ;                                  ;                                      
                       ; BE                   ; "Belgium"                                      ;                                  ; uk                                       
                       ; BF                   ; "Burkina Faso"                                 ;                                  
                       ; BG                   ; "Bulgaria"                                     ;                                  ; uk                                       
@@ -72,42 +72,42 @@ INSERT_UPDATE Country ; isocode[unique=true] ; name[lang=en]                    
                       ; BJ                   ; "Benin"                                        ;                                  
                       ; BL                   ; "Saint Barthélemy"                             ;                                  
                       ; BM                   ; "Bermuda"                                      ;                                  
-                      ; BN                   ; "Brunei Darussalam"                            ;                                  ; asia                                     
-                      ; BO                   ; "Bolivia"                                      ; cl                               ; stham                                    
+                      ; BN                   ; "Brunei Darussalam"                            ;                                  ;                                      
+                      ; BO                   ; "Bolivia"                                      ; cl                               ; us                                    
                       ; BQ                   ; "Bonaire, Saint Eustatius and Saba"            ;                                  
-                      ; BR                   ; "Brazil"                                       ; cl                               ; stham                                    
+                      ; BR                   ; "Brazil"                                       ; cl                               ; us                                    
                       ; BS                   ; "Bahamas"                                      ;                                  
-                      ; BT                   ; "Bhutan"                                       ;                                  ; asia                                     
-                      ; BV                   ; "Bouvet Island"                                ;                                  ; nz                                       
+                      ; BT                   ; "Bhutan"                                       ;                                  ;                                      
+                      ; BV                   ; "Bouvet Island"                                ;                                  ;                                        
                       ; BW                   ; "Botswana"                                     ;                                  
                       ; BY                   ; "Belarus"                                      ;                                  ; uk                                       
                       ; BZ                   ; "Belize"                                       ;                                  
                       ; CA                   ; "Canada"                                       ; ca                               ; ca                                       
-                      ; CC                   ; "Cocos (Keeling) Islands"                      ;                                  ; asia                                     
+                      ; CC                   ; "Cocos (Keeling) Islands"                      ;                                  ;                                      
                       ; CD                   ; "Congo, the Democratic Republic of the"        ;                                  
                       ; CF                   ; "Central African Republic"                     ;                                  
                       ; CG                   ; "Congo"                                        ;                                  
                       ; CH                   ; "Switzerland"                                  ;                                  ; uk                                       
                       ; CI                   ; "Cote d'Ivoire"                                ;                                  
-                      ; CK                   ; "Cook Islands"                                 ;                                  
-                      ; CL                   ; "Chile"                                        ; cl                               ; stham                                    
+                      ; CK                   ; "Cook Islands"                                 ;                                  ; nz
+                      ; CL                   ; "Chile"                                        ; cl                               ; us                                    
                       ; CM                   ; "Cameroon"                                     ;                                  
                       ; CN                   ; "China"                                        ;                                  ; asia                                     
-                      ; CO                   ; "Colombia"                                     ; cl                               ; stham                                    
-                      ; CR                   ; "Costa Rica"                                   ; cl                               ;                                     
-                      ; CU                   ; "Cuba"                                         ; cl                               ;                                     
+                      ; CO                   ; "Colombia"                                     ; cl                               ; us                                    
+                      ; CR                   ; "Costa Rica"                                   ; cl                               ; us                                    
+                      ; CU                   ; "Cuba"                                         ; cl                               ; us                                    
                       ; CV                   ; "Cape Verde"                                   ;                                  
                       ; CW                   ; "Curaçao"                                      ;                                  
-                      ; CX                   ; "Christmas Island"                             ;                                  ; asia                                     
+                      ; CX                   ; "Christmas Island"                             ;                                  ;                                      
                       ; CY                   ; "Cyprus"                                       ;                                  ; uk                                       
                       ; CZ                   ; "Czech Republic"                               ;                                  ; uk                                       
                       ; DE                   ; "Germany"                                      ;                                  ; uk                                       
                       ; DJ                   ; "Djibouti"                                     ;                                  
                       ; DK                   ; "Denmark"                                      ;                                  ; uk                                       
-                      ; DM                   ; "Dominica"                                     ;                                  
-                      ; DO                   ; "Dominican Republic"                           ; cl                               ;                                     
+                      ; DM                   ; "Dominica"                                     ;                                  ; us
+                      ; DO                   ; "Dominican Republic"                           ; cl                               ; us                                    
                       ; DZ                   ; "Algeria"                                      ;                                  
-                      ; EC                   ; "Ecuador"                                      ; cl                               ; stham                                    
+                      ; EC                   ; "Ecuador"                                      ; cl                               ;                                     
                       ; EE                   ; "Estonia"                                      ;                                  ; uk                                       
                       ; EG                   ; "Egypt"                                        ;                                  
                       ; EH                   ; "Western Sahara"                               ;                                  
@@ -116,65 +116,65 @@ INSERT_UPDATE Country ; isocode[unique=true] ; name[lang=en]                    
                       ; ET                   ; "Ethiopia"                                     ;                                  
                       ; FI                   ; "Finland"                                      ;                                  ; uk                                       
                       ; FJ                   ; "Fiji"                                         ;                                  ; nz                                       
-                      ; FK                   ; "Falkland Islands"                             ;                                  ; stham                                    
-                      ; FM                   ; "Micronesia, Federated States of"              ;                                  
+                      ; FK                   ; "Falkland Islands"                             ;                                  ; us                                    
+                      ; FM                   ; "Micronesia, Federated States of"              ;                                  ; us
                       ; FO                   ; "Faroe Islands"                                ;                                  
                       ; FR                   ; "France"                                       ;                                  ; uk                                       
                       ; GA                   ; "Gabon"                                        ;                                  
                       ; GB                   ; "United Kingdom"                               ;                                  ; uk                                       
                       ; GD                   ; "Grenada"                                      ;                                  
                       ; GE                   ; "Georgia"                                      ;                                  ; uk                                       
-                      ; GF                   ; "French Guiana"                                ;                                  
-                      ; GG                   ; "Guernsey"                                     ;                                  
+                      ; GF                   ; "French Guiana"                                ;                                  ; us
+                      ; GG                   ; "Guernsey"                                     ;                                  ; uk
                       ; GH                   ; "Ghana"                                        ;                                  
                       ; GI                   ; "Gibraltar"                                    ;                                  
                       ; GL                   ; "Greenland"                                    ;                                  
                       ; GM                   ; "Gambia"                                       ;                                  
                       ; GN                   ; "Guinea"                                       ;                                  
-                      ; GP                   ; "Guadeloupe"                                   ;                                  
+                      ; GP                   ; "Guadeloupe"                                   ;                                  ; us
                       ; GQ                   ; "Equatorial Guinea"                            ;                                  
                       ; GR                   ; "Greece"                                       ;                                  ; uk                                       
-                      ; GS                   ; "South Georgia and the South Sandwich Islands" ;                                  ; stham                                    
-                      ; GT                   ; "Guatemala"                                    ; cl                               ; stham                                    
+                      ; GS                   ; "South Georgia and the South Sandwich Islands" ;                                  ;                                     
+                      ; GT                   ; "Guatemala"                                    ; cl                               ; us                                    
                       ; GU                   ; "Guam"                                         ;                                  
                       ; GW                   ; "Guinea-Bissau"                                ;                                  
-                      ; GY                   ; "Guyana"                                       ;                                  ; stham                                    
+                      ; GY                   ; "Guyana"                                       ;                                  ; us                                    
                       ; HK                   ; "Hong Kong, China"                             ;                                  ; asia                                     
                       ; HM                   ; "Heard Island and McDonald Islands"            ;                                  
-                      ; HN                   ; "Honduras"                                     ; cl                               ;                                     
-                      ; HR                   ; "Croatia"                                      ;                                  
-                      ; HT                   ; "Haiti"                                        ; cl                               ;                                     
+                      ; HN                   ; "Honduras"                                     ; cl                               ; us                                    
+                      ; HR                   ; "Croatia"                                      ;                                  ; uk
+                      ; HT                   ; "Haiti"                                        ; cl                               ; us                                    
                       ; HU                   ; "Hungary"                                      ;                                  ; uk                                       
                       ; ID                   ; "Indonesia"                                    ;                                  ; asia                                     
                       ; IE                   ; "Ireland"                                      ;                                  ; uk                                       
-                      ; IL                   ; "Israel"                                       ;                                  ; asia                                     
-                      ; IM                   ; "Isle of Man"                                  ;                                  
+                      ; IL                   ; "Israel"                                       ;                                  ;                                      
+                      ; IM                   ; "Isle of Man"                                  ;                                  ; uk
                       ; IN                   ; "India"                                        ;                                  
-                      ; IO                   ; "British Indian Ocean Territory"               ;                                  ; asia                                     
-                      ; IQ                   ; "Iraq"                                         ;                                  ; asia                                     
-                      ; IR                   ; "Iran"                                         ;                                  ; asia                                     
+                      ; IO                   ; "British Indian Ocean Territory"               ;                                  ;                                      
+                      ; IQ                   ; "Iraq"                                         ;                                  ;                                      
+                      ; IR                   ; "Iran"                                         ;                                  ;                                      
                       ; IS                   ; "Iceland"                                      ;                                  ; uk                                       
                       ; IT                   ; "Italy"                                        ;                                  ; uk                                       
-                      ; JE                   ; "Jersey"                                       ;                                  
-                      ; JM                   ; "Jamaica"                                      ;                                  
-                      ; JO                   ; "Jordan"                                       ;                                  ; asia                                     
+                      ; JE                   ; "Jersey"                                       ;                                  ; uk
+                      ; JM                   ; "Jamaica"                                      ;                                  ; us
+                      ; JO                   ; "Jordan"                                       ;                                  ;                                      
                       ; JP                   ; "Japan"                                        ;                                  ; asia                                     
                       ; KE                   ; "Kenya"                                        ;                                  
-                      ; KG                   ; "Kyrgyzstan"                                   ;                                  ; asia                                     
+                      ; KG                   ; "Kyrgyzstan"                                   ;                                  ;                                      
                       ; KH                   ; "Cambodia"                                     ;                                  ; asia                                     
                       ; KI                   ; "Kiribati"                                     ;                                  
                       ; KM                   ; "Comoros"                                      ;                                  
                       ; KN                   ; "Saint Kitts and Nevis"                        ;                                  
                       ; KP                   ; "Korea, Democratic People's Republic of"       ;                                  ; asia                                     
                       ; KR                   ; "Korea, Republic of"                           ;                                  ; asia                                     
-                      ; KW                   ; "Kuwait"                                       ;                                  ; asia                                     
-                      ; KY                   ; "Cayman Islands"                               ;                                  ; asia                                     
-                      ; KZ                   ; "Kazakhstan"                                   ;                                  ; asia                                     
-                      ; LA                   ; "Lao People's Democratic Republic"             ;                                  ; asia                                     
-                      ; LB                   ; "Lebanon"                                      ;                                  ; asia                                     
+                      ; KW                   ; "Kuwait"                                       ;                                  ;                                      
+                      ; KY                   ; "Cayman Islands"                               ;                                  ; us                                     
+                      ; KZ                   ; "Kazakhstan"                                   ;                                  ; uk                                     
+                      ; LA                   ; "Lao People's Democratic Republic"             ;                                  ;                                      
+                      ; LB                   ; "Lebanon"                                      ;                                  ;                                      
                       ; LC                   ; "Saint Lucia"                                  ;                                  
                       ; LI                   ; "Liechtenstein"                                ;                                  ; uk                                       
-                      ; LK                   ; "Sri Lanka"                                    ;                                  ; asia                                     
+                      ; LK                   ; "Sri Lanka"                                    ;                                  ;                                      
                       ; LR                   ; "Liberia"                                      ;                                  
                       ; LS                   ; "Lesotho"                                      ;                                  
                       ; LT                   ; "Lithuania"                                    ;                                  ; uk                                       
@@ -190,54 +190,54 @@ INSERT_UPDATE Country ; isocode[unique=true] ; name[lang=en]                    
                       ; MH                   ; "Marshall Islands"                             ;                                  
                       ; MK                   ; "Macedonia"                                    ;                                  ; uk                                       
                       ; ML                   ; "Mali"                                         ;                                  
-                      ; MM                   ; "Myanmar"                                      ;                                  ; asia                                     
-                      ; MN                   ; "Mongolia"                                     ;                                  ; asia                                     
+                      ; MM                   ; "Myanmar"                                      ;                                  ;                                      
+                      ; MN                   ; "Mongolia"                                     ;                                  ;                                      
                       ; MO                   ; "Macao, China"                                 ;                                  ; asia                                     
-                      ; MP                   ; "Northern Mariana Islands"                     ;                                  
+                      ; MP                   ; "Northern Mariana Islands"                     ;                                  ; us
                       ; MQ                   ; "Martinique"                                   ;                                  
                       ; MR                   ; "Mauritania"                                   ;                                  
                       ; MS                   ; "Montserrat"                                   ;                                  
-                      ; MT                   ; "Malta"                                        ;                                  
+                      ; MT                   ; "Malta"                                        ;                                  ; uk
                       ; MU                   ; "Mauritius"                                    ;                                  
-                      ; MV                   ; "Maldives"                                     ;                                  ; asia                                     
+                      ; MV                   ; "Maldives"                                     ;                                  ;                                      
                       ; MW                   ; "Malawi"                                       ;                                  
-                      ; MX                   ; "Mexico"                                       ; cl                               ;                                     
+                      ; MX                   ; "Mexico"                                       ; cl                               ; us                                    
                       ; MY                   ; "Malaysia"                                     ;                                  ; asia                                     
                       ; MZ                   ; "Mozambique"                                   ;                                  
                       ; NA                   ; "Namibia"                                      ;                                  
-                      ; NC                   ; "New Caledonia"                                ;                                  
+                      ; NC                   ; "New Caledonia"                                ;                                  ; us
                       ; NE                   ; "Niger"                                        ;                                  
-                      ; NF                   ; "Norfolk Island"                               ;                                  
+                      ; NF                   ; "Norfolk Island"                               ;                                  ; nz
                       ; NG                   ; "Nigeria"                                      ;                                  
                       ; NI                   ; "Nicaragua"                                    ; cl                               ;                                     
                       ; NL                   ; "Netherlands"                                  ;                                  ; uk                                       
                       ; NO                   ; "Norway"                                       ;                                  ; uk                                       
-                      ; NP                   ; "Nepal"                                        ;                                  ; asia                                     
+                      ; NP                   ; "Nepal"                                        ;                                  ;                                      
                       ; NR                   ; "Nauru"                                        ;                                  
-                      ; NU                   ; "Niue"                                         ;                                  
+                      ; NU                   ; "Niue"                                         ;                                  ; nz
                       ; NZ                   ; "New Zealand"                                  ; nz                               ; nz                                       
-                      ; OM                   ; "Oman"                                         ;                                  ; asia                                     
-                      ; PA                   ; "Panama"                                       ; cl                               ;                                     
-                      ; PE                   ; "Peru"                                         ; cl                               ; stham                                    
-                      ; PF                   ; "French Polynesia"                             ;                                  
+                      ; OM                   ; "Oman"                                         ;                                  ;                                      
+                      ; PA                   ; "Panama"                                       ; cl                               ; us                                    
+                      ; PE                   ; "Peru"                                         ; cl                               ; us                                    
+                      ; PF                   ; "French Polynesia"                             ;                                  ; nz
                       ; PG                   ; "Papua New Guinea"                             ;                                  ; au                                       
                       ; PH                   ; "Philippines"                                  ;                                  ; asia                                     
-                      ; PK                   ; "Pakistan"                                     ;                                  ; asia                                     
+                      ; PK                   ; "Pakistan"                                     ;                                  ;                                      
                       ; PL                   ; "Poland"                                       ;                                  ; uk                                       
                       ; PM                   ; "Saint Pierre and Miquelon"                    ;                                  
                       ; PN                   ; "Pitcairn"                                     ;                                  
-                      ; PR                   ; "Puerto Rico"                                  ; cl                               ;                                     
-                      ; PS                   ; "Palestinian Territory"                        ;                                  ; asia                                     
+                      ; PR                   ; "Puerto Rico"                                  ; cl                               ; us                                    
+                      ; PS                   ; "Palestinian Territory"                        ;                                  ;                                      
                       ; PT                   ; "Portugal"                                     ;                                  ; uk                                       
                       ; PW                   ; "Palau"                                        ;                                  
-                      ; PY                   ; "Paraguay"                                     ; cl                               ; stham                                    
-                      ; QA                   ; "Qatar"                                        ;                                  ; asia                                     
+                      ; PY                   ; "Paraguay"                                     ; cl                               ; us                                    
+                      ; QA                   ; "Qatar"                                        ;                                  ;                                      
                       ; RE                   ; "Reunion"                                      ;                                  
                       ; RO                   ; "Romania"                                      ;                                  ; uk                                       
                       ; RS                   ; "Serbia"                                       ;                                  ; uk                                       
-                      ; RU                   ; "Russian Federation"                           ;                                  ; asia                                     
+                      ; RU                   ; "Russian Federation"                           ;                                  ; uk                                     
                       ; RW                   ; "Rwanda"                                       ;                                  
-                      ; SA                   ; "Saudi Arabia"                                 ;                                  ; asia                                     
+                      ; SA                   ; "Saudi Arabia"                                 ;                                  ;                                      
                       ; SB                   ; "Solomon Islands"                              ;                                  
                       ; SC                   ; "Seychelles"                                   ;                                  
                       ; SD                   ; "Sudan"                                        ;                                  
@@ -251,23 +251,23 @@ INSERT_UPDATE Country ; isocode[unique=true] ; name[lang=en]                    
                       ; SM                   ; "San Marino"                                   ;                                  ; uk                                       
                       ; SN                   ; "Senegal"                                      ;                                  
                       ; SO                   ; "Somalia"                                      ;                                  
-                      ; SR                   ; "Suriname"                                     ;                                  
+                      ; SR                   ; "Suriname"                                     ;                                  ; us
                       ; ST                   ; "Sao Tome and Principe"                        ;                                  
-                      ; SV                   ; "El Salvador"                                  ; cl                               ; stham                                    
+                      ; SV                   ; "El Salvador"                                  ; cl                               ;                                     
                       ; SX                   ; "Sint Maarten (Dutch part)"                    ;                                  
-                      ; SY                   ; "Syrian Arab Republic"                         ;                                  ; asia                                     
+                      ; SY                   ; "Syrian Arab Republic"                         ;                                  ;                                      
                       ; SZ                   ; "Swaziland"                                    ;                                  
                       ; TC                   ; "Turks and Caicos Islands"                     ;                                  
                       ; TD                   ; "Chad"                                         ;                                  
                       ; TF                   ; "French Southern Territories"                  ;                                  
                       ; TG                   ; "Togo"                                         ;                                  
                       ; TH                   ; "Thailand"                                     ;                                  ; asia                                     
-                      ; TJ                   ; "Tajikistan"                                   ;                                  ; asia                                     
+                      ; TJ                   ; "Tajikistan"                                   ;                                  ;                                      
                       ; TK                   ; "Tokelau"                                      ;                                  
-                      ; TL                   ; "Timor-Leste"                                  ;                                  ; asia                                     
-                      ; TM                   ; "Turkmenistan"                                 ;                                  ; asia                                     
+                      ; TL                   ; "Timor-Leste"                                  ;                                  ;                                      
+                      ; TM                   ; "Turkmenistan"                                 ;                                  ;                                      
                       ; TN                   ; "Tunisia"                                      ;                                  
-                      ; TO                   ; "Tonga"                                        ;                                  
+                      ; TO                   ; "Tonga"                                        ;                                  ; nz
                       ; TR                   ; "Turkey"                                       ;                                  ; uk                                       
                       ; TT                   ; "Trinidad and Tobago"                          ;                                  
                       ; TV                   ; "Tuvalu"                                       ;                                  
@@ -277,17 +277,17 @@ INSERT_UPDATE Country ; isocode[unique=true] ; name[lang=en]                    
                       ; UG                   ; "Uganda"                                       ;                                  
                       ; UM                   ; "United States Minor Outlying Islands"         ;                                  ; us                                       
                       ; US                   ; "United States"                                ; us                               ; us                                       
-                      ; UY                   ; "Uruguay"                                      ; cl                               ; stham                                    
-                      ; UZ                   ; "Uzbekistan"                                   ;                                  ; asia                                     
-                      ; VA                   ; "Holy See (Vatican City State)"                ;                                  
+                      ; UY                   ; "Uruguay"                                      ; cl                               ; us                                    
+                      ; UZ                   ; "Uzbekistan"                                   ;                                  ;                                      
+                      ; VA                   ; "Holy See (Vatican City State)"                ;                                  ; uk
                       ; VC                   ; "Saint Vincent and the Grenadines"             ;                                  
-                      ; VE                   ; "Venezuela"                                    ; cl                               ; stham                                    
-                      ; VG                   ; "Virgin Islands, British"                      ;                                  ; us                                       
-                      ; VI                   ; "Virgin Islands, U.S."                         ;                                  ; us                                       
+                      ; VE                   ; "Venezuela"                                    ; cl                               ; us                                    
+                      ; VG                   ; "Virgin Islands, British"                      ;                                  ;                                        
+                      ; VI                   ; "Virgin Islands, U.S."                         ;                                  ;                                        
                       ; VN                   ; "Viet Nam"                                     ;                                  ; asia                                     
                       ; VU                   ; "Vanuatu"                                      ;                                  
                       ; WF                   ; "Wallis and Futuna"                            ;                                  
-                      ; WS                   ; "Samoa"                                        ;                                  
+                      ; WS                   ; "Samoa"                                        ;                                  ; nz
                       ; YE                   ; "Yemen"                                        ;                                  ; asia                                     
                       ; YT                   ; "Mayotte"                                      ;                                  
                       ; ZA                   ; "South Africa"                                 ;                                  
