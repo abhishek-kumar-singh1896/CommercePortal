@@ -4,6 +4,7 @@
 package com.gallagher.facades.search.converters.poulator;
 
 import de.hybris.platform.acceleratorfacades.order.data.PriceRangeData;
+import de.hybris.platform.b2b.model.B2BCustomerModel;
 import de.hybris.platform.basecommerce.model.site.BaseSiteModel;
 import de.hybris.platform.commercefacades.product.data.DiscountData;
 import de.hybris.platform.commercefacades.product.data.PriceData;
@@ -12,6 +13,7 @@ import de.hybris.platform.commercefacades.product.data.ProductData;
 import de.hybris.platform.commercefacades.search.converters.populator.SearchResultVariantProductPopulator;
 import de.hybris.platform.commerceservices.search.resultdata.SearchResultValueData;
 import de.hybris.platform.core.model.c2l.CurrencyModel;
+import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.core.model.user.UserModel;
 import de.hybris.platform.servicelayer.user.UserService;
 import de.hybris.platform.site.BaseSiteService;
@@ -22,6 +24,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -86,7 +89,8 @@ public class GallagherSearchResultProductPopulator extends SearchResultVariantPr
 		final String totalDiscountsString = this.<String> getValue(source, "totalDiscounts");
 		final BaseSiteModel cmssite = getBaseSiteService().getCurrentBaseSite();
 		final UserModel user = userService.getCurrentUser();
-		if (cmssite != null && cmssite.getUid().contains("B2B") && userService.isAnonymousUser(user))
+		if (cmssite != null && cmssite.getUid().contains("B2B") && userService.isAnonymousUser(user)
+				|| BooleanUtils.isFalse(isB2BUnitTansactional()))
 		{
 			target.setTotalDiscounts(null);
 		}
@@ -97,6 +101,29 @@ public class GallagherSearchResultProductPopulator extends SearchResultVariantPr
 				target.setTotalDiscounts(Collections.singletonList(createTotalDiscounts(totalDiscountsString)));
 			}
 		}
+	}
+
+	private boolean isB2BUnitTansactional()
+	{
+
+		final BaseSiteModel cmssite = getBaseSiteService().getCurrentBaseSite();
+		boolean b2bUnitTransactional = true;
+
+		if (cmssite != null && cmssite.getUid().contains("B2B"))
+		{
+			final CustomerModel currentCustomer = (CustomerModel) userService.getCurrentUser();
+			if (currentCustomer instanceof B2BCustomerModel && null != ((B2BCustomerModel) currentCustomer).getDefaultB2BUnit())
+			{
+				b2bUnitTransactional = Boolean.TRUE
+						.equals(((B2BCustomerModel) currentCustomer).getDefaultB2BUnit().getTransactional());
+
+			}
+			else
+			{
+				return false;
+			}
+		}
+		return b2bUnitTransactional;
 	}
 
 	/**
@@ -121,7 +148,8 @@ public class GallagherSearchResultProductPopulator extends SearchResultVariantPr
 	{
 		final BaseSiteModel cmssite = getBaseSiteService().getCurrentBaseSite();
 		final UserModel user = userService.getCurrentUser();
-		if (cmssite != null && cmssite.getUid().contains("B2B") && userService.isAnonymousUser(user))
+		if (cmssite != null && cmssite.getUid().contains("B2B") && userService.isAnonymousUser(user)
+				|| BooleanUtils.isFalse(isB2BUnitTansactional()))
 		{
 			target.setVolumePricesFlag(null);
 			target.setPrice(null);
@@ -139,20 +167,27 @@ public class GallagherSearchResultProductPopulator extends SearchResultVariantPr
 		final BaseSiteModel cmssite = getBaseSiteService().getCurrentBaseSite();
 		if (cmssite != null && cmssite.getUid().contains("B2B"))
 		{
-			final PriceRangeData priceRange = new PriceRangeData();
-			final String priceRangeValue = (String) source.getValues().get(PRICE_RANGE);
-
-			if (StringUtils.isNotEmpty(priceRangeValue))
+			final UserModel user = userService.getCurrentUser();
+			if (userService.isAnonymousUser(user) || BooleanUtils.isFalse(isB2BUnitTansactional()))
 			{
-				final CurrencyModel currency = getCommonI18NService().getCurrentCurrency();
-				final PriceData priceData = getPriceDataFactory()
-						.create(PriceDataType.FROM,
-						BigDecimal.valueOf(Double.valueOf(priceRangeValue)), currency);
+				target.setPriceRange(null);
+			}
+			else
+			{
+				final PriceRangeData priceRange = new PriceRangeData();
+				final String priceRangeValue = (String) source.getValues().get(PRICE_RANGE);
 
-				priceRange.setMaxPrice(priceData);
-				priceRange.setMinPrice(priceData);
+				if (StringUtils.isNotEmpty(priceRangeValue))
+				{
+					final CurrencyModel currency = getCommonI18NService().getCurrentCurrency();
+					final PriceData priceData = getPriceDataFactory().create(PriceDataType.FROM,
+							BigDecimal.valueOf(Double.valueOf(priceRangeValue)), currency);
 
-				target.setPriceRange(priceRange);
+					priceRange.setMaxPrice(priceData);
+					priceRange.setMinPrice(priceData);
+
+					target.setPriceRange(priceRange);
+				}
 			}
 		}
 		else
