@@ -45,11 +45,11 @@ public class GallagherOrderEntryContributor extends DefaultOrderEntryContributor
 		for (final AbstractOrderEntryModel entry : entries)
 		{
 			final Map<String, Object> row = new HashMap<>();
-			if (StringUtils.isNotEmpty(entry.getProductSpecificDetailsHeading())
+			if (StringUtils.isNotEmpty(entry.getProductSpecificDetailsSubHeading())
 					&& StringUtils.isNotEmpty(entry.getDeliveryInstruction()))
 			{
 				row.put(GallagherOrderEntryCsvColumns.ADDITION_PRODUCT_DETAIL,
-						entry.getProductSpecificDetailsHeading() + " " + entry.getDeliveryInstruction());
+						entry.getProductSpecificDetailsSubHeading() + entry.getDeliveryInstruction());
 			}
 			else
 			{
