@@ -8,14 +8,18 @@ import de.hybris.platform.commercefacades.user.data.CustomerData;
 import de.hybris.platform.core.model.c2l.CurrencyModel;
 import de.hybris.platform.core.model.c2l.LanguageModel;
 import de.hybris.platform.core.model.security.PrincipalGroupModel;
+import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.core.model.user.UserModel;
 import de.hybris.platform.servicelayer.config.ConfigurationService;
 import de.hybris.platform.servicelayer.dto.converter.Converter;
 import de.hybris.platform.servicelayer.event.EventService;
+import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 import de.hybris.platform.servicelayer.internal.model.impl.ModelValueHistory;
 import de.hybris.platform.servicelayer.model.ItemModelContextImpl;
+import de.hybris.platform.servicelayer.model.ModelService;
 import de.hybris.platform.servicelayer.session.SessionExecutionBody;
 import de.hybris.platform.servicelayer.session.SessionService;
+import de.hybris.platform.servicelayer.user.UserService;
 import de.hybris.platform.site.BaseSiteService;
 import de.hybris.platform.store.BaseStoreModel;
 
@@ -92,6 +96,12 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 	@Resource(name = "configurationService")
 	private ConfigurationService configurationService;
 
+	@Autowired
+	private UserService userService;
+
+	@Autowired
+	private ModelService modelService;
+
 	@Override
 	public Object performSave(final WidgetInstanceManager widgetInstanceManager, final Object currentObject)
 			throws ObjectSavingException
@@ -121,6 +131,7 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 				throw new ObjectSavingException(EMAIL_ALREADY_PRESENT, new Throwable(EMAIL_ALREADY_PRESENT));
 			}
 
+			CustomerModel amCustomer = null;
 			final Map<String, String> modifiedAttributesMap = getModifiedAttributesMap(currentCustomerModel);
 			if (MapUtils.isNotEmpty(modifiedAttributesMap))
 			{
@@ -130,6 +141,19 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 				try
 				{
 					gallagherMindTouchService.updateCustomerInMindTouch(currentCustomerModel);
+					if (getMonitoredAttributes().contains("uid"))
+					{
+
+						final ItemModelContextImpl context = (ItemModelContextImpl) currentCustomerModel.getItemModelContext();
+						final ModelValueHistory history = context.getValueHistory();
+						final String originalUid = (String) history.getOriginalValue("uid");
+						final String oldUid = originalUid.substring(4, originalUid.length());
+
+						amCustomer = (CustomerModel) userService.getUserForUID("am|" + oldUid);
+						final String newUid = currentCustomerModel.getUid();
+						amCustomer.setUid("am|" + newUid.substring(4, newUid.length()));
+						modelService.save(amCustomer);
+					}
 				}
 				catch (final IOException e)
 				{
@@ -138,6 +162,10 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 				catch (final DocumentException e)
 				{
 					LOG.error("Document exception while updating customer in mindtouch :: [{}]", e.getMessage());
+				}
+				catch (final UnknownIdentifierException e)
+				{
+					LOG.error("No b2c customer found with email:: [{}]", email);
 				}
 			}
 
