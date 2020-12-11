@@ -36,38 +36,38 @@
 								</tr>
 								<tr>
 									<td align="left" valign="top">
-										<p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.getMessage('salutation', ${ctx.firstName})},</font></p>
-											<p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.message}</font></p>
+										<p><font color="#322e2c" size="2" face="Calibri">Hi ${ctx.firstName},</font></p>
+											<p><font color="#322e2c" size="2" face="Calibri">The following changes to your Gallagher Security account have been made: </font></p>
 										<ul>	
                                           #if(${ctx.b2bUnitRemoved})
                                           <li>
-                                           <p><b><font color="#322e2c" size="2" face="Calibri">${ctx.messages.getMessage('accountRemoved', ${ctx.b2bUnitRemoved})}</font></b></p>
+                                           <p><b><font color="#322e2c" size="2" face="Calibri">Account removed - ${ctx.b2bUnitRemoved}</font></b></p>
                                           </li> 
                                            #end
                                           #if(${ctx.b2bUnitAdded})
                                           <li>
-                                            <p><b><font color="#322e2c" size="2" face="Calibri">${ctx.messages.getMessage('accountAdded', ${ctx.b2bUnitAdded})}</font></b></p>
+                                            <p><b><font color="#322e2c" size="2" face="Calibri">Account added - ${ctx.b2bUnitAdded}</font></b></p>
 										  </li>
 										  #end
 										 #if(${ctx.name})
 										  <li>
-                                            <p><b><font color="#322e2c" size="2" face="Calibri">${ctx.messages.getMessage('nameUpdated', ${ctx.name})}</font></b></p>
+                                            <p><b><font color="#322e2c" size="2" face="Calibri">Name updated  - ${ctx.name}</font></b></p>
 										  </li>
 										 #end
 										 #if(${ctx.emailID})
 										  <li>
-                                            <p><b><font color="#322e2c" size="2" face="Calibri">${ctx.messages.getMessage('emailUpdated', ${ctx.emailID})}</font></b></p>
+                                            <p><b><font color="#322e2c" size="2" face="Calibri">Email  updated - ${ctx.emailID}</font></b></p>
 										 </li>
 										 #end
 										 #if(${ctx.loginDisabled})
 										  <li>
-                                            <p><b><font color="#322e2c" size="2" face="Calibri">${ctx.messages.getMessage('access', ${ctx.loginDisabled})}</font></b></p>
+                                            <p><b><font color="#322e2c" size="2" face="Calibri">Access - ${ctx.loginDisabled}</font></b></p>
 										 </li>
 										 #end
 										 
 										<br>
-										<p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.complimentaryClosing}</font></p>
-										<p><font color="#322e2c" size="2" face="Calibri">${ctx.messages.signature}</font></p>
+										<p><font color="#322e2c" size="2" face="Calibri">Thank you,</font></p>
+										<p><font color="#322e2c" size="2" face="Calibri">Gallagher online services</font></p>
 										</ul>
 									</td>
 								</tr>
@@ -77,16 +77,16 @@
 								<tr>
 									<td height="30" align="center" valign="middle" bgcolor="#FF8400">
 										<font size="2" face="Calibri">
-											<a style="text-decoration:none" href="${ctx.messages.websitePage}">
-												<font color="#000000">${ctx.messages.website}</font>
+											<a style="text-decoration:none" href="https://security.gallagher.com">
+												<font color="#000000">Website</font>
 											</a> 
 											| 
-											<a style="text-decoration:none" href="${ctx.messages.contactUsPage}">
-												<font color="#000000">${ctx.messages.contactUs}</font>
+											<a style="text-decoration:none" href="https://security.gallagher.com/Contact-Us">
+												<font color="#000000">Contact Us</font>
 											</a> 
 											|
-											<a style="text-decoration:none" href="${ctx.messages.privacyStatementPage}">
-												<font color="#000000">${ctx.messages.privacyStatement}</font>
+											<a style="text-decoration:none" href="https://security.gallagher.com/Privacy-Statement">
+												<font color="#000000">Privacy Statement</font>
 											</a> 
 											&nbsp;&nbsp;
 										</font>
