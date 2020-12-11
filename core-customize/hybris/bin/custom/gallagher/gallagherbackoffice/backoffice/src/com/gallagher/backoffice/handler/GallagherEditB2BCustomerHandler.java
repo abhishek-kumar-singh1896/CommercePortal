@@ -209,6 +209,11 @@ public class GallagherEditB2BCustomerHandler extends DefaultEditorAreaLogicHandl
 			LOG.debug("The [{}] attribute [{}], has been updated from [{}] to [{}]!", itemModel.getItemtype(), itemProperty,
 					history.getOriginalValue(itemProperty), itemModel.getProperty(itemProperty));
 			modifiedAttributesMap.put(itemProperty, itemModel.getProperty(itemProperty));
+			if (itemProperty.equals("uid"))
+			{
+				final String uid = itemModel.getProperty(itemProperty);
+				modifiedAttributesMap.put("emailID", uid.substring(4, uid.length()));
+			}
 		}
 		return modifiedAttributesMap;
 
