@@ -55,6 +55,14 @@ public class GallagherProductPriceRangeValueResolver extends ProductPricesValueR
 		ServicesUtil.validateParameterNotNull("model", "model instance is null");
 		if (CollectionUtils.isNotEmpty(model.getVariants()))
 		{
+			ServicesUtil.validateParameterNotNull("model", "model instance is null");
+			final IndexedProperty indexProperty = indexedProperties.iterator().next();
+			if (!salesAreaQualifierProvider.canApply(indexProperty) && !userPriceGroupQualifierProvider.canApply(indexProperty)
+					&& !customerGroupQualifierProvider.canApply(indexProperty))
+			{
+				super.resolve(document, batchContext, indexedProperties, model);
+				return;
+			}
 			try
 			{
 				createLocalSessionContext();
@@ -78,6 +86,13 @@ public class GallagherProductPriceRangeValueResolver extends ProductPricesValueR
 				final Collection<Qualifier> qualifiers = getQualifierProvider().getAvailableQualifiers(facetSearchConfig1,
 						indexedType1);
 
+				final Collection<Qualifier> salesAreaQualifiers = salesAreaQualifierProvider
+						.getAvailableQualifiers(facetSearchConfig1, indexedType1);
+				final Collection<Qualifier> upgQualifiers = userPriceGroupQualifierProvider.getAvailableQualifiers(facetSearchConfig1,
+						indexedType1);
+				final Collection<Qualifier> customerGroupQualifiers = customerGroupQualifierProvider
+						.getAvailableQualifiers(facetSearchConfig1, indexedType1);
+
 				for (final Qualifier qualifier : qualifiers)
 				{
 					salesAreaQualifierProvider.removeQualifier();
@@ -86,7 +101,7 @@ public class GallagherProductPriceRangeValueResolver extends ProductPricesValueR
 							getQualifierProvider(), qualifier, fieldQualifier);
 
 					processAdditionalPriceConditionQualifiers(document, batchContext, indexedProperties, model, resolverContext,
-							fieldQualifier);
+							fieldQualifier, salesAreaQualifiers, upgQualifiers, customerGroupQualifiers);
 					salesAreaQualifierProvider.removeQualifier();
 				}
 			}
@@ -112,35 +127,29 @@ public class GallagherProductPriceRangeValueResolver extends ProductPricesValueR
 	 *           the resolver context
 	 * @param fieldQualifier
 	 *           the field qualifier
+	 * @param customerGroupQualifiers2
+	 * @param upgQualifiers2
+	 * @param salesAreaQualifiers2
 	 * @throws FieldValueProviderException
 	 *            the field value provider exception
 	 */
 	private void processAdditionalPriceConditionQualifiers(final InputDocument document, final IndexerBatchContext batchContext,
 			final Collection<IndexedProperty> indexedProperties, final ProductModel model,
-			final ValueResolverContext resolverContext, final String fieldQualifier) throws FieldValueProviderException
+			final ValueResolverContext resolverContext, final String fieldQualifier, final Collection<Qualifier> salesAreaQualifiers,
+			final Collection<Qualifier> upgQualifiers, final Collection<Qualifier> customerGroupQualifiers)
+			throws FieldValueProviderException
 	{
-		final FacetSearchConfig facetSearchConfig1 = batchContext.getFacetSearchConfig();
-		final IndexedType indexedType1 = batchContext.getIndexedType();
-		final Collection<Qualifier> salesAreaQualifiers = salesAreaQualifierProvider.getAvailableQualifiers(facetSearchConfig1,
-				indexedType1);
 
 		for (final Qualifier salesAreaQualifier : salesAreaQualifiers)
 		{
 			final String salesAreaFieldQualifier = indexQualifierData(document, batchContext, indexedProperties, model,
 					resolverContext, salesAreaQualifierProvider, salesAreaQualifier, fieldQualifier);
 
-			final Collection<Qualifier> upgQualifiers = userPriceGroupQualifierProvider.getAvailableQualifiers(facetSearchConfig1,
-					indexedType1);
-
 			for (final Qualifier upgQualifier : upgQualifiers)
 			{
 
 				final String upgFieldQualifier = indexQualifierData(document, batchContext, indexedProperties, model, resolverContext,
-						userPriceGroupQualifierProvider,
-						upgQualifier, salesAreaFieldQualifier);
-
-				final Collection<Qualifier> customerGroupQualifiers = customerGroupQualifierProvider
-						.getAvailableQualifiers(facetSearchConfig1, indexedType1);
+						userPriceGroupQualifierProvider, upgQualifier, salesAreaFieldQualifier);
 
 				for (final Qualifier customerGroupQualifier : customerGroupQualifiers)
 				{
@@ -266,13 +275,7 @@ public class GallagherProductPriceRangeValueResolver extends ProductPricesValueR
 	private void processQualifierforIndex(final InputDocument document, final Collection<IndexedProperty> indexedProperties,
 			final ValueResolverContext resolverContext, final QualifierProvider qualifierProvider) throws FieldValueProviderException
 	{
-		for (final IndexedProperty indexedProperty : indexedProperties)
-		{
-			if (qualifierProvider.canApply(indexedProperty))
-			{
-				addFieldValues(document, indexedProperty, resolverContext);
-			}
-		}
+		addFieldValues(document, indexedProperties.iterator().next(), resolverContext);
 	}
 
 	/**
