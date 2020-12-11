@@ -4,6 +4,7 @@
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <c:set var="isUserAnonymous" value="${sessionScope.jalosession}" />
 
@@ -28,24 +29,25 @@
 				<div class="col-lg-6">
 					<div class="product-details">
 						<%-- <product:productPromotionSection product="${product}"/> --%>
-						<c:choose>
-							<c:when test="${not priceOnApplication}">
-								<c:if test="${not fn:contains(isUserAnonymous, 'anonymous') && transactional}">
-									<ycommerce:testId
-										code="productDetails_productNamePrice_label_${product.code}">
-										<product:productPricePanel product="${product}" />
-									</ycommerce:testId>
-								</c:if>
-							</c:when>
-							<c:otherwise>
-								<cms:pageSlot position="POA" var="component">
-									<cms:component component="${component}" />
-								</cms:pageSlot>
-							</c:otherwise>
-						</c:choose>
+						<sec:authorize access="!hasRole('ROLE_B2BENDUSERGROUP')">
+							<c:choose>
+								<c:when test="${not priceOnApplication}">
+									<c:if test="${not fn:contains(isUserAnonymous, 'anonymous') && transactional}">
+										<ycommerce:testId
+											code="productDetails_productNamePrice_label_${product.code}">
+											<product:productPricePanel product="${product}" />
+										</ycommerce:testId>
+									</c:if>
+								</c:when>
+								<c:otherwise>
+									<cms:pageSlot position="POA" var="component">
+										<cms:component component="${component}" />
+									</cms:pageSlot>
+								</c:otherwise>
+							</c:choose>
+						</sec:authorize>
 
 						<!--	<div class="description">${ycommerce:sanitizeHTML(product.summary)}</div>   -->
-
 						<div class="short-description">${product.description}</div>
 
 						<div class="partNumber">SKU: ${product.partNumber}</div>
