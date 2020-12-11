@@ -69,10 +69,20 @@ public class GallagherCheckoutDeliveryInstructionFacadeImpl extends DefaultCheck
 				{
 					deliveryInstrutionsData.setProductSpecificDetailsHeading(cartEntry.getProductSpecificDetailsHeading());
 				}
+				else
+				{
+					deliveryInstrutionsData
+							.setProductSpecificDetailsHeading(cartEntry.getProduct().getProductSpecificDetailsHeading());
+				}
 
 				if (StringUtils.isNotEmpty(cartEntry.getProductSpecificDetailsSubHeading()))
 				{
 					deliveryInstrutionsData.setProductSpecificDetailsSubHeading(cartEntry.getProductSpecificDetailsSubHeading());
+				}
+				else
+				{
+					deliveryInstrutionsData
+							.setProductSpecificDetailsSubHeading(cartEntry.getProduct().getProductSpecificDetailsSubHeading());
 				}
 
 			}

@@ -49,7 +49,7 @@ public class GallagherOrderEntryContributor extends DefaultOrderEntryContributor
 					&& StringUtils.isNotEmpty(entry.getDeliveryInstruction()))
 			{
 				row.put(GallagherOrderEntryCsvColumns.ADDITION_PRODUCT_DETAIL,
-						entry.getProductSpecificDetailsSubHeading() + entry.getDeliveryInstruction());
+						entry.getProductSpecificDetailsSubHeading() + " " + entry.getDeliveryInstruction());
 			}
 			else
 			{
