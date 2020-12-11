@@ -6,6 +6,7 @@ package com.gallagher.core.services.impl;
 import de.hybris.platform.b2b.model.B2BCustomerModel;
 import de.hybris.platform.b2b.model.B2BUnitModel;
 import de.hybris.platform.core.model.security.PrincipalGroupModel;
+import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.core.model.user.UserGroupModel;
 import de.hybris.platform.servicelayer.config.ConfigurationService;
 
@@ -78,7 +79,7 @@ public class GallagherMindTouchServiceImpl implements GallagherMindTouchService
 	}
 
 	@Override
-	public void updateCustomerInMindTouch(final B2BCustomerModel customer) throws IOException, DocumentException
+	public void updateCustomerInMindTouch(final CustomerModel customer) throws IOException, DocumentException
 	{
 		LOG.debug("Processing the user for Mindtouch");
 		final String token = getAuthentication();
@@ -252,7 +253,7 @@ public class GallagherMindTouchServiceImpl implements GallagherMindTouchService
 	 * @param user
 	 * @throws DocumentException
 	 */
-	private void updateUserInMindTouch(final String token, final B2BCustomerModel customer) throws IOException, DocumentException
+	private void updateUserInMindTouch(final String token, final CustomerModel customer) throws IOException, DocumentException
 	{
 		final String userName = getConfigurationService().getConfiguration().getString(AUTHENTICATION_URL_USERNAME);
 		final String password = getConfigurationService().getConfiguration().getString(AUTHENTICATION_URL_PASSWORD);
@@ -273,7 +274,7 @@ public class GallagherMindTouchServiceImpl implements GallagherMindTouchService
 
 		if (responseCode == HttpURLConnection.HTTP_OK)
 		{
-			LOG.info("User created sucessfully in mindtouch ");
+			LOG.info("User updated sucessfully in mindtouch ");
 			try (final BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream())))
 			{
 				String input = StringUtils.EMPTY;
@@ -304,7 +305,7 @@ public class GallagherMindTouchServiceImpl implements GallagherMindTouchService
 	 * @param token
 	 * @throws IOException
 	 */
-	private void updateCustomer(final B2BCustomerModel customer, final String uid, final String token) throws IOException
+	private void updateCustomer(final CustomerModel customer, final String uid, final String token) throws IOException
 	{
 		final String userName = getConfigurationService().getConfiguration().getString(AUTHENTICATION_URL_USERNAME);
 		final String password = getConfigurationService().getConfiguration().getString(AUTHENTICATION_URL_PASSWORD);
@@ -395,17 +396,17 @@ public class GallagherMindTouchServiceImpl implements GallagherMindTouchService
 	 * @return
 	 */
 	@SuppressWarnings("unused")
-	private String getUserXml(final B2BCustomerModel b2bCustomer)
+	private String getUserXml(final CustomerModel customer)
 	{
-		final String userName = b2bCustomer.getKeycloakGUID();
-		final String email = b2bCustomer.getUid();
+		final String userName = customer.getKeycloakGUID();
+		final String email = customer.getUid();
 		String emailId = email;
 		if (email.startsWith("sec|"))
 		{
 			emailId = email.replace("sec|", "");
 		}
 
-		final String fullName = b2bCustomer.getName();
+		final String fullName = customer.getName();
 
 		final StringBuilder sb = new StringBuilder("<user>");
 		sb.append(ENTER);

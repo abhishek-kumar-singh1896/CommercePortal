@@ -19,6 +19,7 @@
         <requires-extension name="gallagheroutboundservices"/>
                 		
         <requires-extension name="sapcustomerb2b"/>
+        <requires-extension name="gallagherscpiexchange"/>
         <coremodule generated="true" manager="com.gallagher.core.jalo.GallagherCoreManager" packageroot="com.gallagher.core"/>
                 		
         

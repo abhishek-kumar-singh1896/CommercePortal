@@ -4,6 +4,7 @@
 package com.gallagher.core.services.impl;
 
 import de.hybris.platform.b2b.model.B2BCustomerModel;
+import de.hybris.platform.commercefacades.storesession.StoreSessionFacade;
 import de.hybris.platform.commercefacades.user.data.CustomerData;
 import de.hybris.platform.commerceservices.customer.CustomerAccountService;
 import de.hybris.platform.commerceservices.customer.DuplicateUidException;
@@ -20,6 +21,7 @@ import de.hybris.platform.servicelayer.user.UserService;
 import de.hybris.platform.site.BaseSiteService;
 import de.hybris.platform.store.services.BaseStoreService;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -27,6 +29,8 @@ import javax.annotation.Resource;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
+import org.dom4j.DocumentException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
@@ -37,8 +41,10 @@ import com.gallagher.core.daos.GallagherCustomerDao;
 import com.gallagher.core.dtos.GallagherAccessToken;
 import com.gallagher.core.enums.BU;
 import com.gallagher.core.services.GallagherCustomerService;
+import com.gallagher.core.services.GallagherMindTouchService;
 import com.gallagher.keycloak.outboundservices.service.GallagherKeycloakService;
 import com.gallagher.outboundservices.response.dto.GallagherInboundCustomerEntry;
+import com.gallagher.sap.sapcpicustomerexchange.service.impl.GallagherSCPICustomerOutboundService;
 
 
 /**
@@ -82,6 +88,15 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 
 	@Resource(name = "gallagherKeycloakService")
 	private GallagherKeycloakService keycloakService;
+
+	@Autowired
+	private GallagherMindTouchService gallagherMindtouchService;
+
+	@Autowired
+	private GallagherSCPICustomerOutboundService gallagherSCPICustomerOutboundService;
+
+	@Resource(name = "storeSessionFacade")
+	private StoreSessionFacade storeSessionFacade;
 
 	/**
 	 * {@inheritDoc}
@@ -311,6 +326,8 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 		final ChangeUIDEvent event = new ChangeUIDEvent(currentUser.getOriginalUid(), newUid);
 		currentUser.setOriginalUid(newUid);
 
+		final String currentUserEmail = currentUser.getEmailID();
+
 		// check uniqueness only if the uids are case insensitive different
 		if (!currentUser.getUid().equalsIgnoreCase(newUid))
 		{
@@ -325,6 +342,30 @@ public class GallagherCustomerServiceImpl implements GallagherCustomerService
 				currentUser.setEmailID(newUidLower);
 			}
 		}
+
+
+			try
+			{
+				final B2BCustomerModel b2bCustomer = (B2BCustomerModel) userService
+						.getUserForUID(BU.SEC.getCode().toLowerCase() + "|" + currentUserEmail);
+				b2bCustomer.setUid(BU.SEC.getCode().toLowerCase() + "|" + newUidLower.substring(3, newUidLower.length()));
+				gallagherMindtouchService.updateCustomerInMindTouch(b2bCustomer);
+
+				final String sessionLanguage = storeSessionFacade.getCurrentLanguage().getIsocode();
+				gallagherSCPICustomerOutboundService.sendCustomerData(b2bCustomer,
+						getBaseStoreService().getCurrentBaseStore().getUid(),
+						sessionLanguage, null);
+				modelService.save(b2bCustomer);
+			}
+			catch (final UnknownIdentifierException ex)
+			{
+				LOGGER.error("B2B customer not found for email ::" + currentUserEmail);
+			}
+			catch (IOException | DocumentException e)
+			{
+				LOGGER.error("Error while updating customer in mindtouch");
+			}
+
 		//adjustPassword(currentUser, newUidLower, currentPassword);
 		modelService.save(currentUser);
 		getEventService().publishEvent(initializeEvent(event, currentUser));
