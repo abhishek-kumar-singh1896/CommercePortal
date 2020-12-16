@@ -29,9 +29,18 @@ public class GallagherFacetUnitSuffixDisplayNameProvider implements FacetDisplay
 	public String getDisplayName(final SearchQuery query, final IndexedProperty property, final String facetValue)
 	{
 		final Locale locale = getLocale(query.getLanguage());
-		final String unit = property.getClassAttributeAssignment().getUnit().getSymbol();
-		LOG.info("unit>>" + unit + "- name value>>" + property.getClassAttributeAssignment().getUnit().getName(locale));
-		return facetValue + " " + unit;
+		try
+		{
+			final String unit = property.getClassAttributeAssignment().getUnit().getSymbol();
+			LOG.info("unit>>" + unit + "- name value>>" + property.getClassAttributeAssignment().getUnit().getName(locale));
+			return facetValue + " " + unit;
+		}
+		catch (final NullPointerException ex)
+		{
+			LOG.error("Unit or symbol is null for pk : " + property.getClassAttributeAssignment().getPk(), ex);
+			return facetValue;
+		}
+
 	}
 
 	/**
