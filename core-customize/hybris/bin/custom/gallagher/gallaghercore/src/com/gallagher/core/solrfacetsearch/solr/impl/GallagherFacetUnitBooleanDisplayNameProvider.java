@@ -3,10 +3,13 @@
  */
 package com.gallagher.core.solrfacetsearch.solr.impl;
 
+import de.hybris.platform.commerceservices.i18n.CommerceCommonI18NService;
 import de.hybris.platform.solrfacetsearch.config.IndexedProperty;
 import de.hybris.platform.solrfacetsearch.provider.FacetDisplayNameProvider;
 import de.hybris.platform.solrfacetsearch.provider.FacetValueDisplayNameProvider;
 import de.hybris.platform.solrfacetsearch.search.SearchQuery;
+
+import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
 
@@ -20,17 +23,37 @@ public class GallagherFacetUnitBooleanDisplayNameProvider implements FacetDispla
 {
 	private static final Logger LOG = Logger.getLogger(GallagherFacetUnitBooleanDisplayNameProvider.class);
 
+	@Resource(name = "commerceCommonI18NService")
+	private CommerceCommonI18NService commerceCommonI18NService;
+
 	@Override
 	public String getDisplayName(final SearchQuery query, final IndexedProperty property, final String facetValue)
 	{
-		LOG.info("facetValue>>" + facetValue);
 		if (Boolean.valueOf(facetValue))
 		{
-			return "Yes";
+			if (commerceCommonI18NService.getCurrentLanguage().equals("es_CL"))
+			{
+				return "Si";
+			}
+			else if (commerceCommonI18NService.getCurrentLanguage().equals("fr_CA"))
+			{
+				return "Oui";
+			}
+			else
+			{
+				return "Yes";
+			}
 		}
 		else
 		{
-			return "No";
+			if (commerceCommonI18NService.getCurrentLanguage().equals("fr_CA"))
+			{
+				return "Non";
+			}
+			else
+			{
+				return "No";
+			}
 		}
 	}
 
