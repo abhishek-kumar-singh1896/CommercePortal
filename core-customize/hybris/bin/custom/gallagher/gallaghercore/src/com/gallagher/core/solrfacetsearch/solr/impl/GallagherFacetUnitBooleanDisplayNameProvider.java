@@ -29,8 +29,6 @@ public class GallagherFacetUnitBooleanDisplayNameProvider implements FacetDispla
 	@Override
 	public String getDisplayName(final SearchQuery query, final IndexedProperty property, final String facetValue)
 	{
-		LOG.info("language for GallagherFacetUnitBooleanDisplayNameProvider:: "
-				+ commerceCommonI18NService.getCurrentLanguage().getIsocode());
 		if (Boolean.valueOf(facetValue))
 		{
 			if (commerceCommonI18NService.getCurrentLanguage().getIsocode().equals("es_CL"))

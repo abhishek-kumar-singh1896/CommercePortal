@@ -32,7 +32,7 @@ public class GallagherFacetUnitSuffixDisplayNameProvider implements FacetDisplay
 		try
 		{
 			final String unit = property.getClassAttributeAssignment().getUnit().getSymbol();
-			LOG.info("unit>>" + unit + "- name value>>" + property.getClassAttributeAssignment().getUnit().getName(locale));
+			//			LOG.info("unit>>" + unit + "- name value>>" + property.getClassAttributeAssignment().getUnit().getName(locale));
 			return facetValue + " " + unit;
 		}
 		catch (final NullPointerException ex)
