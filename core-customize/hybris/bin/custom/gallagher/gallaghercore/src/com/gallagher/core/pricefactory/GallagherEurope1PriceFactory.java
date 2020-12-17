@@ -76,10 +76,10 @@ public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactor
 		final String salesArea = getSalesArea(ctx);
 		final String customerGroup = getCustomerGroup(ctx);
 
-		LOG.info("Customer group in session during price ::" + customerGroup);
+		//		LOG.info("Customer group in session during price ::" + customerGroup);
 		if (StringUtils.isBlank(salesArea))
 		{
-			LOG.info("Sales area is blank calling OOTB method for price");
+			//			LOG.info("Sales area is blank calling OOTB method for price");
 			final Collection<PriceRow> result = super.queryPriceRows4Price(ctx, product, productGroup, user, userGroup, date,
 					currency, giveAwayMode);
 			return result;
@@ -116,10 +116,10 @@ public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactor
 		final String salesArea = getSalesArea(ctx);
 		final String customerGroup = getCustomerGroup(ctx);
 
-		LOG.info("Customer group in session during price ::" + customerGroup);
+		//		LOG.info("Customer group in session during price ::" + customerGroup);
 		if (StringUtils.isBlank(salesArea) || !salesArea.contains(SEPARATOR))
 		{
-			LOG.info("Sales area is blank calling OOTB method for discount");
+			//			LOG.info("Sales area is blank calling OOTB method for discount");
 			final Collection<? extends AbstractDiscountRow> result = super.queryDiscounts4Price(ctx, product, productGroup, user,
 					userGroup);
 			return result;
@@ -133,8 +133,7 @@ public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactor
 				.withProduct(productPk).withProductId(productId).withProductGroup(productGroupPk).withUser(userPk)
 				.withUserGroup(userGroupPk).withSalesArea(salesAreaSubString).withCustomerGroup(customerGroup).build();
 
-		return FlexibleSearch.getInstance().search(ctx, queryAndParams.getQuery(), queryAndParams.getParams(),
-				DiscountRow.class)
+		return FlexibleSearch.getInstance().search(ctx, queryAndParams.getQuery(), queryAndParams.getParams(), DiscountRow.class)
 				.getResult();
 
 
@@ -180,7 +179,7 @@ public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactor
 					ret.sort(new GallagherEurope1PriceFactory.DiscountRowMatchComparator());
 					final List<GallagherDiscountRow> discList = new ArrayList<>();
 					discList.add(ret.get(0));
-					LOG.info("total discount rows matched " + discList.size());
+					//					LOG.info("total discount rows matched " + discList.size());
 					return discList;
 				}
 
@@ -215,7 +214,7 @@ public class GallagherEurope1PriceFactory extends CatalogAwareEurope1PriceFactor
 					discRow = (GallagherDiscountRow) it.next();
 					if (quantity < Long.valueOf(discRow.getQuantityAsPrimitive()))
 					{
-						LOG.info("removing discount row as it doesnt match quantity");
+						//						LOG.info("removing discount row as it doesnt match quantity");
 						it.remove();
 					}
 					else

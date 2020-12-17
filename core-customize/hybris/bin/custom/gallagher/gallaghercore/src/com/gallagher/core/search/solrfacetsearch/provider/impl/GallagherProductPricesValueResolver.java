@@ -24,6 +24,7 @@ import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 
 import com.gallagher.core.search.solrfacetsearch.provider.GallagherQualifierProvider;
 
@@ -34,6 +35,7 @@ import com.gallagher.core.search.solrfacetsearch.provider.GallagherQualifierProv
  */
 public class GallagherProductPricesValueResolver extends ProductPricesValueResolver
 {
+	private static final Logger LOG = Logger.getLogger(GallagherProductPricesValueResolver.class);
 
 	public static final String FIELDNAME_SEPARATOR = "_";
 
@@ -90,14 +92,13 @@ public class GallagherProductPricesValueResolver extends ProductPricesValueResol
 					indexedType1);
 			final Collection<Qualifier> customerGroupQualifiers = customerGroupQualifierProvider
 					.getAvailableQualifiers(facetSearchConfig1, indexedType1);
-
+			LOG.info("Prices for product :: " + model.getCode());
 
 			for (final Qualifier qualifier : qualifiers)
 			{
 				salesAreaQualifierProvider.removeQualifier();
 				String fieldQualifier = StringUtils.EMPTY;
-				fieldQualifier = indexQualifierData(document, batchContext, indexedProperties, model,
-						resolverContext,
+				fieldQualifier = indexQualifierData(document, batchContext, indexedProperties, model, resolverContext,
 						getQualifierProvider(), qualifier, fieldQualifier);
 
 				processAdditionalPriceConditionQualifiers(document, batchContext, indexedProperties, model, resolverContext,
