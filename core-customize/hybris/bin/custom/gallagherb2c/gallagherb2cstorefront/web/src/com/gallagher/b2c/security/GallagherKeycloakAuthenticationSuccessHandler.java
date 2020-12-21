@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticationEntryPoint;
 import org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticationSuccessHandler;
 import org.keycloak.adapters.springsecurity.authentication.KeycloakCookieBasedRedirect;
@@ -51,7 +52,7 @@ public class GallagherKeycloakAuthenticationSuccessHandler implements Authentica
 			final Authentication authentication) throws IOException, ServletException
 	{
 		final String location = KeycloakCookieBasedRedirect.getRedirectUrlFromCookie(request);
-		if (location == null)
+		if (StringUtils.isBlank(location))
 		{
 			if (fallback != null)
 			{
