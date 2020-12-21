@@ -52,6 +52,8 @@ public class GallagherKeycloakAuthenticationSuccessHandler implements Authentica
 			final Authentication authentication) throws IOException, ServletException
 	{
 		final String location = KeycloakCookieBasedRedirect.getRedirectUrlFromCookie(request);
+		LOG.info("onAuthenticationSuccess location:: " + location);
+		LOG.info("onAuthenticationSuccess fallback:: " + fallback);
 		if (StringUtils.isBlank(location))
 		{
 			if (fallback != null)
@@ -70,7 +72,7 @@ public class GallagherKeycloakAuthenticationSuccessHandler implements Authentica
 				response.addCookie(KeycloakCookieBasedRedirect.createCookieFromRedirectUrl(null));
 
 				//response.sendRedirect(siteCoreUrl + location);
-				LOG.info("onAuthenticationSuccess sendRedirect:: ", location);
+				LOG.info("onAuthenticationSuccess sendRedirect:: " + location);
 				response.sendRedirect(location);
 			}
 			catch (final IOException e)
