@@ -69,6 +69,7 @@ public class GallagherKeycloakAuthenticationSuccessHandler implements Authentica
 				response.addCookie(KeycloakCookieBasedRedirect.createCookieFromRedirectUrl(null));
 
 				//response.sendRedirect(siteCoreUrl + location);
+				LOG.info("onAuthenticationSuccess sendRedirect:: ", location);
 				response.sendRedirect(location);
 			}
 			catch (final IOException e)
