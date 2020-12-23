@@ -81,13 +81,11 @@ public class RegisterPageController extends AbstractRegisterPageController
 	public String doRegister(final Model model, @RequestParam(value = "code", required = false)
 	final String code, final HttpServletRequest request, final HttpServletResponse response) throws CMSItemNotFoundException
 	{
-		LOG.info("RegisterPageController code:: " + code);
 		final String redirectURL = getSiteBaseUrlResolutionService().getWebsiteUrlForSite(getBaseSiteService().getCurrentBaseSite(),
 				true, "/register");
 		String redirectURI = null;
 		if (StringUtils.isEmpty(code))
 		{
-			LOG.info("RegisterPageController getRedirectUrl:: " + getRedirectUrl(request));
 			if (StringUtils.isNotEmpty(getRedirectUrl(request)))
 			{
 				response.addCookie(KeycloakCookieBasedRedirect.createCookieFromRedirectUrl(getRedirectUrl(request)));
@@ -104,13 +102,10 @@ public class RegisterPageController extends AbstractRegisterPageController
 			}
 			redirectURI = REDIRECT_PREFIX + MessageFormat.format(
 					getConfigurationService().getConfiguration().getString("keycloak.registrations.url"), redirectURL, language);
-			LOG.info("RegisterPageController redirectURI:: " + redirectURI);
 		}
 		else
 		{
 			redirectURI = REDIRECT_PREFIX + "/login";
-
-			LOG.info("RegisterPageController redirectURI:: " + redirectURI);
 		}
 		return redirectURI;
 	}
