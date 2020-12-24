@@ -29,12 +29,14 @@
         </div>
     </c:if>
 
-    <div class="stock-wrapper clearfix">
+    <%-- <div class="stock-wrapper clearfix">
         <ycommerce:testId code="productDetails_productInStock_label">
             <b2b-product:productStockThreshold product="${product}"/>
         </ycommerce:testId>
         <product:productFutureAvailability product="${product}" futureStockEnabled="${futureStockEnabled}" />
-    </div>
+    </div> --%>
+    
+    <br>
 
     <div class="actions">
 <%--         <c:if test="${multiDimensionalProduct}" > --%>
