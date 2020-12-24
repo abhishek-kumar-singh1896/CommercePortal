@@ -395,34 +395,37 @@ public class CartPageController extends AbstractCartPageController
 				// Success in removing entry
 				GlobalMessages.addFlashMessage(redirectModel, GlobalMessages.CONF_MESSAGES_HOLDER, "basket.page.message.remove");
 			}
-			else
-			{
-				// Success in update quantity
-				GlobalMessages.addFlashMessage(redirectModel, GlobalMessages.CONF_MESSAGES_HOLDER, "basket.page.message.update");
-			}
+			/*
+			 * else { // Success in update quantity GlobalMessages.addFlashMessage(redirectModel,
+			 * GlobalMessages.CONF_MESSAGES_HOLDER, "basket.page.message.update"); }
+			 */
 		}
 		else if (cartModification.getQuantity() > 0)
 		{
 			// Less than successful
 			GlobalMessages.addFlashMessage(redirectModel, GlobalMessages.ERROR_MESSAGES_HOLDER,
 					"basket.page.message.update.reducedNumberOfItemsAdded.lowStock", new Object[]
-					{ XSSFilterUtil.filter(cartModification.getEntry().getProduct().getName()), Long.valueOf(cartModification.getQuantity()), form.getQuantity(), request.getRequestURL().append(cartModification.getEntry().getProduct().getUrl()) });
+					{ XSSFilterUtil.filter(cartModification.getEntry().getProduct().getName()),
+							Long.valueOf(cartModification.getQuantity()), form.getQuantity(),
+							request.getRequestURL().append(cartModification.getEntry().getProduct().getUrl()) });
 		}
 		else
 		{
 			// No more stock available
 			GlobalMessages.addFlashMessage(redirectModel, GlobalMessages.ERROR_MESSAGES_HOLDER,
 					"basket.page.message.update.reducedNumberOfItemsAdded.noStock", new Object[]
-					{ XSSFilterUtil.filter(cartModification.getEntry().getProduct().getName()), request.getRequestURL().append(cartModification.getEntry().getProduct().getUrl()) });
+					{ XSSFilterUtil.filter(cartModification.getEntry().getProduct().getName()),
+							request.getRequestURL().append(cartModification.getEntry().getProduct().getUrl()) });
 		}
 	}
 
 	@SuppressWarnings("boxing")
 	@ResponseBody
 	@RequestMapping(value = "/updateMultiD", method = RequestMethod.POST)
-	public CartData updateCartQuantitiesMultiD(@RequestParam("entryNumber") final Integer entryNumber,
-			@RequestParam("productCode") final String productCode, final Model model, @Valid final UpdateQuantityForm form,
-			final BindingResult bindingResult)
+	public CartData updateCartQuantitiesMultiD(@RequestParam("entryNumber")
+	final Integer entryNumber, @RequestParam("productCode")
+	final String productCode, final Model model, @Valid
+	final UpdateQuantityForm form, final BindingResult bindingResult)
 	{
 		if (bindingResult.hasErrors())
 		{
