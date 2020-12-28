@@ -12,7 +12,6 @@ import de.hybris.platform.acceleratorstorefrontcommons.constants.WebConstants;
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.pages.checkout.steps.AbstractCheckoutStepController;
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.util.GlobalMessages;
 import de.hybris.platform.acceleratorstorefrontcommons.forms.AddressForm;
-import de.hybris.platform.acceleratorstorefrontcommons.util.AddressDataUtil;
 import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
 import de.hybris.platform.cms2.model.pages.ContentPageModel;
 import de.hybris.platform.commercefacades.address.data.AddressVerificationResult;
@@ -38,6 +37,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gallagher.b2c.controllers.ControllerConstants;
+import com.gallagher.b2c.form.GallagherAddressForm;
+import com.gallagher.b2c.util.GallagherAddressDataUtil;
 import com.gallagher.b2c.validators.GallagherAddressValidator;
 
 
@@ -49,8 +50,18 @@ public class DeliveryAddressCheckoutStepController extends AbstractCheckoutStepC
 	private static final String SHOW_SAVE_TO_ADDRESS_BOOK_ATTR = "showSaveToAddressBook";
 	private static final String REDIRECT_TO_EDIT_ADDRESS_PAGE = REDIRECT_PREFIX + "/my-account/edit-address/";
 
-	@Resource(name = "addressDataUtil")
-	private AddressDataUtil addressDataUtil;
+	@Resource(name = "gallagherAddressDataUtil")
+	private GallagherAddressDataUtil gallagherAddressDataUtil;
+
+	public GallagherAddressDataUtil getGallagherAddressDataUtil()
+	{
+		return gallagherAddressDataUtil;
+	}
+
+	public void setGallagherAddressDataUtil(final GallagherAddressDataUtil gallagherAddressDataUtil)
+	{
+		this.gallagherAddressDataUtil = gallagherAddressDataUtil;
+	}
 
 	@Resource(name = "gallagherAddressValidator")
 	private GallagherAddressValidator gallagheraddressValidator;
@@ -70,14 +81,14 @@ public class DeliveryAddressCheckoutStepController extends AbstractCheckoutStepC
 		getCheckoutFacade().setDeliveryAddressIfAvailable();
 		final CartData cartData = getCheckoutFacade().getCheckoutCart();
 
-		populateCommonModelAttributes(model, cartData, new AddressForm());
+		populateCommonModelAttributes(model, cartData, new GallagherAddressForm());
 
 		return ControllerConstants.Views.Pages.MultiStepCheckout.AddEditDeliveryAddressPage;
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	@RequireHardLogIn
-	public String add(final AddressForm addressForm, final BindingResult bindingResult, final Model model,
+	public String add(final GallagherAddressForm addressForm, final BindingResult bindingResult, final Model model,
 			final RedirectAttributes redirectModel) throws CMSItemNotFoundException
 	{
 		final CartData cartData = getCheckoutFacade().getCheckoutCart();
@@ -92,7 +103,7 @@ public class DeliveryAddressCheckoutStepController extends AbstractCheckoutStepC
 			return ControllerConstants.Views.Pages.MultiStepCheckout.AddEditDeliveryAddressPage;
 		}
 
-		final AddressData newAddress = addressDataUtil.convertToAddressData(addressForm);
+		final AddressData newAddress = getGallagherAddressDataUtil().convertToAddressData(addressForm);
 
 		processAddressVisibilityAndDefault(addressForm, newAddress);
 
@@ -158,11 +169,11 @@ public class DeliveryAddressCheckoutStepController extends AbstractCheckoutStepC
 			addressData = getCheckoutFacade().getDeliveryAddressForCode(editAddressCode);
 		}
 
-		final AddressForm addressForm = new AddressForm();
+		final GallagherAddressForm addressForm = new GallagherAddressForm();
 		final boolean hasAddressData = addressData != null;
 		if (hasAddressData)
 		{
-			addressDataUtil.convert(addressData, addressForm);
+			getGallagherAddressDataUtil().convert(addressData, addressForm);
 		}
 
 		final CartData cartData = getCheckoutFacade().getCheckoutCart();
@@ -178,7 +189,7 @@ public class DeliveryAddressCheckoutStepController extends AbstractCheckoutStepC
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	@RequireHardLogIn
-	public String edit(final AddressForm addressForm, final BindingResult bindingResult, final Model model,
+	public String edit(final GallagherAddressForm addressForm, final BindingResult bindingResult, final Model model,
 			final RedirectAttributes redirectModel) throws CMSItemNotFoundException
 	{
 		getAddressValidator().validate(addressForm, bindingResult);
@@ -192,7 +203,7 @@ public class DeliveryAddressCheckoutStepController extends AbstractCheckoutStepC
 			return ControllerConstants.Views.Pages.MultiStepCheckout.AddEditDeliveryAddressPage;
 		}
 
-		final AddressData newAddress = addressDataUtil.convertToAddressData(addressForm);
+		final AddressData newAddress = getGallagherAddressDataUtil().convertToAddressData(addressForm);
 
 		processAddressVisibility(addressForm, newAddress);
 
@@ -265,12 +276,12 @@ public class DeliveryAddressCheckoutStepController extends AbstractCheckoutStepC
 
 	@RequestMapping(value = "/select", method = RequestMethod.POST)
 	@RequireHardLogIn
-	public String doSelectSuggestedAddress(final AddressForm addressForm, final RedirectAttributes redirectModel)
+	public String doSelectSuggestedAddress(final GallagherAddressForm addressForm, final RedirectAttributes redirectModel)
 	{
 		final Set<String> resolveCountryRegions = org.springframework.util.StringUtils
 				.commaDelimitedListToSet(Config.getParameter("resolve.country.regions"));
 
-		final AddressData selectedAddress = addressDataUtil.convertToAddressData(addressForm);
+		final AddressData selectedAddress = getGallagherAddressDataUtil().convertToAddressData(addressForm);
 		final CountryData countryData = selectedAddress.getCountry();
 
 		if (!resolveCountryRegions.contains(countryData.getIsocode()))

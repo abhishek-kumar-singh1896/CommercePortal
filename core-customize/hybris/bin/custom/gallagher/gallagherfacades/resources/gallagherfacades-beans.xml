@@ -180,4 +180,8 @@
 	<bean class="de.hybris.platform.commercefacades.product.data.CategoryData">
 		<property name="codeCompare" equals="true" type="String"/>
 	</bean>
+	
+	<bean class="de.hybris.platform.commercefacades.user.data.AddressData">
+		<property name="streetNumber" type="java.lang.String"/>
+	</bean>
 </beans>
