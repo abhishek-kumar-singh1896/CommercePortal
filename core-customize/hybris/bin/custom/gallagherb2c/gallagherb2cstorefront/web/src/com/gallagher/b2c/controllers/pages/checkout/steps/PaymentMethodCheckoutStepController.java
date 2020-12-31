@@ -17,7 +17,6 @@ import de.hybris.platform.acceleratorstorefrontcommons.controllers.util.GlobalMe
 import de.hybris.platform.acceleratorstorefrontcommons.forms.AddressForm;
 import de.hybris.platform.acceleratorstorefrontcommons.forms.PaymentDetailsForm;
 import de.hybris.platform.acceleratorstorefrontcommons.forms.SopPaymentDetailsForm;
-import de.hybris.platform.acceleratorstorefrontcommons.util.AddressDataUtil;
 import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
 import de.hybris.platform.cms2.model.pages.ContentPageModel;
 import de.hybris.platform.commercefacades.order.data.CCPaymentInfoData;
@@ -50,6 +49,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gallagher.b2c.controllers.ControllerConstants;
+import com.gallagher.b2c.form.GallagherAddressForm;
+import com.gallagher.b2c.util.GallagherAddressDataUtil;
+import com.gallagher.b2c.validators.GallagherPaymentDetailsForm;
+import com.gallagher.b2c.validators.GallagherPaymentDetailsValidator;
 
 
 @Controller
@@ -62,8 +65,21 @@ public class PaymentMethodCheckoutStepController extends AbstractCheckoutStepCon
 
 	private static final Logger LOGGER = Logger.getLogger(PaymentMethodCheckoutStepController.class);
 
-	@Resource(name = "addressDataUtil")
-	private AddressDataUtil addressDataUtil;
+	//	@Resource(name = "addressDataUtil")
+	private GallagherAddressDataUtil addressDataUtil;
+
+	public GallagherAddressDataUtil getAddressDataUtil()
+	{
+		return addressDataUtil;
+	}
+
+	@Resource(name = "gallagherPaymentDetailsValidator")
+	private GallagherPaymentDetailsValidator gallagherPaymentDetailsValidator;
+
+	public GallagherPaymentDetailsValidator getGallagherPaymentDetailsValidator()
+	{
+		return gallagherPaymentDetailsValidator;
+	}
 
 	@ModelAttribute("billingCountries")
 	public Collection<CountryData> getBillingCountries()
@@ -192,10 +208,10 @@ public class PaymentMethodCheckoutStepController extends AbstractCheckoutStepCon
 	@RequestMapping(value =
 	{ "/add" }, method = RequestMethod.POST)
 	@RequireHardLogIn
-	public String add(final Model model, @Valid final PaymentDetailsForm paymentDetailsForm, final BindingResult bindingResult)
-			throws CMSItemNotFoundException
+	public String add(final Model model, @Valid
+	final GallagherPaymentDetailsForm paymentDetailsForm, final BindingResult bindingResult) throws CMSItemNotFoundException
 	{
-		getPaymentDetailsValidator().validate(paymentDetailsForm, bindingResult);
+		getGallagherPaymentDetailsValidator().validate(paymentDetailsForm, bindingResult);
 		setupAddPaymentPage(model);
 
 		final CartData cartData = getCheckoutFacade().getCheckoutCart();
@@ -225,8 +241,8 @@ public class PaymentMethodCheckoutStepController extends AbstractCheckoutStepCon
 		}
 		else
 		{
-			final AddressForm addressForm = paymentDetailsForm.getBillingAddress();
-			addressData = addressDataUtil.convertToAddressData(addressForm);
+			final GallagherAddressForm addressForm = paymentDetailsForm.getBillingAddress();
+			addressData = getAddressDataUtil().convertToAddressData(addressForm);
 			addressData.setShippingAddress(Boolean.TRUE.equals(addressForm.getShippingAddress()));
 			addressData.setBillingAddress(Boolean.TRUE.equals(addressForm.getBillingAddress()));
 		}
@@ -246,8 +262,8 @@ public class PaymentMethodCheckoutStepController extends AbstractCheckoutStepCon
 		return getCheckoutStep().nextStep();
 	}
 
-	protected boolean checkPaymentSubscription(final Model model, @Valid final PaymentDetailsForm paymentDetailsForm,
-			final CCPaymentInfoData newPaymentSubscription)
+	protected boolean checkPaymentSubscription(final Model model, @Valid
+	final GallagherPaymentDetailsForm paymentDetailsForm, final CCPaymentInfoData newPaymentSubscription)
 	{
 		if (newPaymentSubscription != null && StringUtils.isNotBlank(newPaymentSubscription.getSubscriptionId()))
 		{
@@ -265,7 +281,8 @@ public class PaymentMethodCheckoutStepController extends AbstractCheckoutStepCon
 		return true;
 	}
 
-	protected void fillInPaymentData(@Valid final PaymentDetailsForm paymentDetailsForm, final CCPaymentInfoData paymentInfoData)
+	protected void fillInPaymentData(@Valid
+	final GallagherPaymentDetailsForm paymentDetailsForm, final CCPaymentInfoData paymentInfoData)
 	{
 		paymentInfoData.setId(paymentDetailsForm.getPaymentId());
 		paymentInfoData.setCardType(paymentDetailsForm.getCardTypeCode());
@@ -284,8 +301,8 @@ public class PaymentMethodCheckoutStepController extends AbstractCheckoutStepCon
 
 	@RequestMapping(value = "/remove", method = RequestMethod.POST)
 	@RequireHardLogIn
-	public String remove(@RequestParam(value = "paymentInfoId") final String paymentMethodId,
-			final RedirectAttributes redirectAttributes) throws CMSItemNotFoundException
+	public String remove(@RequestParam(value = "paymentInfoId")
+	final String paymentMethodId, final RedirectAttributes redirectAttributes) throws CMSItemNotFoundException
 	{
 		getUserFacade().unlinkCCPaymentInfo(paymentMethodId);
 		GlobalMessages.addFlashMessage(redirectAttributes, GlobalMessages.CONF_MESSAGES_HOLDER,
@@ -303,7 +320,8 @@ public class PaymentMethodCheckoutStepController extends AbstractCheckoutStepCon
 	 */
 	@RequestMapping(value = "/choose", method = RequestMethod.GET)
 	@RequireHardLogIn
-	public String doSelectPaymentMethod(@RequestParam("selectedPaymentMethodId") final String selectedPaymentMethodId)
+	public String doSelectPaymentMethod(@RequestParam("selectedPaymentMethodId")
+	final String selectedPaymentMethodId)
 	{
 		if (StringUtils.isNotBlank(selectedPaymentMethodId))
 		{

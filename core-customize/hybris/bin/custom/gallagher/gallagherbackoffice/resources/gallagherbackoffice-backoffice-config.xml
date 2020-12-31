@@ -369,6 +369,7 @@
 			<editorArea:tab name="hmc.gallagher" position="3">
 				<editorArea:section name="hmc.section.gallagher">
 					<editorArea:attribute qualifier="geoCode" />
+					<editorArea:attribute qualifier="gallagherStreetNumber" />
 				</editorArea:section>
 			</editorArea:tab>
 		</editorArea:editorArea>

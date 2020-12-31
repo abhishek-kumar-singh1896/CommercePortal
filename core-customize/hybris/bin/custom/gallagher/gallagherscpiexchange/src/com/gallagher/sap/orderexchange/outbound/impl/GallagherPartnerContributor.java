@@ -41,6 +41,7 @@ public class GallagherPartnerContributor extends DefaultPartnerContributor
 	{
 		final Map<String, Object> row = super.mapAddressData(order, address);
 		row.put(GallagherPartnerCsvColumns.TAX_JURISDICTION_CODE, address.getGeoCode());
+		row.put(GallagherPartnerCsvColumns.GALLAGHER_STREET_NUMBER, address.getGallagherStreetNumber());
 		if (address.getEmail() == null)
 		{
 			final String email = customerEmailResolutionService.getEmailForCustomer(((CustomerModel) order.getUser()));

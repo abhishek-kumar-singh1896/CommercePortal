@@ -17,6 +17,9 @@
 				<attribute qualifier="taxJurCode" type="java.lang.String">
 					<persistence type="property" />
 				</attribute>
+				<attribute qualifier="gallagherStreetNumber" type="java.lang.String">
+					<persistence type="property" />
+				</attribute>
 			</attributes>
 		</itemtype>
 		<itemtype code="SAPCpiOutboundCardPayment" generate="false" autocreate="false">

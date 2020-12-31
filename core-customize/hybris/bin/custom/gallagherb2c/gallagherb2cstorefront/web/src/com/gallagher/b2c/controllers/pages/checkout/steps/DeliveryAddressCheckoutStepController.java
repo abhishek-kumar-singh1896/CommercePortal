@@ -11,7 +11,6 @@ import de.hybris.platform.acceleratorstorefrontcommons.checkout.steps.validation
 import de.hybris.platform.acceleratorstorefrontcommons.constants.WebConstants;
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.pages.checkout.steps.AbstractCheckoutStepController;
 import de.hybris.platform.acceleratorstorefrontcommons.controllers.util.GlobalMessages;
-import de.hybris.platform.acceleratorstorefrontcommons.forms.AddressForm;
 import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
 import de.hybris.platform.cms2.model.pages.ContentPageModel;
 import de.hybris.platform.commercefacades.address.data.AddressVerificationResult;
@@ -51,16 +50,11 @@ public class DeliveryAddressCheckoutStepController extends AbstractCheckoutStepC
 	private static final String REDIRECT_TO_EDIT_ADDRESS_PAGE = REDIRECT_PREFIX + "/my-account/edit-address/";
 
 	@Resource(name = "gallagherAddressDataUtil")
-	private GallagherAddressDataUtil gallagherAddressDataUtil;
+	private GallagherAddressDataUtil addressDataUtil;
 
-	public GallagherAddressDataUtil getGallagherAddressDataUtil()
+	public GallagherAddressDataUtil getAddressDataUtil()
 	{
-		return gallagherAddressDataUtil;
-	}
-
-	public void setGallagherAddressDataUtil(final GallagherAddressDataUtil gallagherAddressDataUtil)
-	{
-		this.gallagherAddressDataUtil = gallagherAddressDataUtil;
+		return addressDataUtil;
 	}
 
 	@Resource(name = "gallagherAddressValidator")
@@ -103,7 +97,7 @@ public class DeliveryAddressCheckoutStepController extends AbstractCheckoutStepC
 			return ControllerConstants.Views.Pages.MultiStepCheckout.AddEditDeliveryAddressPage;
 		}
 
-		final AddressData newAddress = getGallagherAddressDataUtil().convertToAddressData(addressForm);
+		final AddressData newAddress = getAddressDataUtil().convertToAddressData(addressForm);
 
 		processAddressVisibilityAndDefault(addressForm, newAddress);
 
@@ -135,7 +129,7 @@ public class DeliveryAddressCheckoutStepController extends AbstractCheckoutStepC
 		return getCheckoutStep().nextStep();
 	}
 
-	protected void processAddressVisibilityAndDefault(final AddressForm addressForm, final AddressData newAddress)
+	protected void processAddressVisibilityAndDefault(final GallagherAddressForm addressForm, final AddressData newAddress)
 	{
 		if (addressForm.getSaveInAddressBook() != null)
 		{
@@ -173,7 +167,7 @@ public class DeliveryAddressCheckoutStepController extends AbstractCheckoutStepC
 		final boolean hasAddressData = addressData != null;
 		if (hasAddressData)
 		{
-			getGallagherAddressDataUtil().convert(addressData, addressForm);
+			getAddressDataUtil().convert(addressData, addressForm);
 		}
 
 		final CartData cartData = getCheckoutFacade().getCheckoutCart();
@@ -203,7 +197,7 @@ public class DeliveryAddressCheckoutStepController extends AbstractCheckoutStepC
 			return ControllerConstants.Views.Pages.MultiStepCheckout.AddEditDeliveryAddressPage;
 		}
 
-		final AddressData newAddress = getGallagherAddressDataUtil().convertToAddressData(addressForm);
+		final AddressData newAddress = getAddressDataUtil().convertToAddressData(addressForm);
 
 		processAddressVisibility(addressForm, newAddress);
 
@@ -239,7 +233,7 @@ public class DeliveryAddressCheckoutStepController extends AbstractCheckoutStepC
 		return getCheckoutStep().nextStep();
 	}
 
-	protected void processAddressVisibility(final AddressForm addressForm, final AddressData newAddress)
+	protected void processAddressVisibility(final GallagherAddressForm addressForm, final AddressData newAddress)
 	{
 
 		if (addressForm.getSaveInAddressBook() == null)
@@ -269,7 +263,7 @@ public class DeliveryAddressCheckoutStepController extends AbstractCheckoutStepC
 		final ContentPageModel multiCheckoutSummaryPage = getContentPageForLabelOrId(MULTI_CHECKOUT_SUMMARY_CMS_PAGE_LABEL);
 		storeCmsPageInModel(model, multiCheckoutSummaryPage);
 		setUpMetaDataForContentPage(model, multiCheckoutSummaryPage);
-		model.addAttribute("addressForm", new AddressForm());
+		model.addAttribute("addressForm", new GallagherAddressForm());
 
 		return getCheckoutStep().currentStep();
 	}
@@ -281,7 +275,7 @@ public class DeliveryAddressCheckoutStepController extends AbstractCheckoutStepC
 		final Set<String> resolveCountryRegions = org.springframework.util.StringUtils
 				.commaDelimitedListToSet(Config.getParameter("resolve.country.regions"));
 
-		final AddressData selectedAddress = getGallagherAddressDataUtil().convertToAddressData(addressForm);
+		final AddressData selectedAddress = getAddressDataUtil().convertToAddressData(addressForm);
 		final CountryData countryData = selectedAddress.getCountry();
 
 		if (!resolveCountryRegions.contains(countryData.getIsocode()))
@@ -336,7 +330,7 @@ public class DeliveryAddressCheckoutStepController extends AbstractCheckoutStepC
 			throws CMSItemNotFoundException
 	{
 		final CartData cartData = getCheckoutFacade().getCheckoutCart();
-		AddressForm addressForm = null;
+		GallagherAddressForm addressForm = null;
 		final boolean flag = false;
 		final ValidationResults validationResults = getCheckoutStep().validate(redirectAttributes);
 		if (getCheckoutStep().checkIfValidationErrors(validationResults))
@@ -370,9 +364,9 @@ public class DeliveryAddressCheckoutStepController extends AbstractCheckoutStepC
 		return getCheckoutStep().nextStep();
 	}
 
-	private AddressForm populateAddressForm(final AddressData selectedAddressData)
+	private GallagherAddressForm populateAddressForm(final AddressData selectedAddressData)
 	{
-		final AddressForm addressForm = new AddressForm();
+		final GallagherAddressForm addressForm = new GallagherAddressForm();
 		addressForm.setCountryIso(selectedAddressData.getCountry().getIsocode());
 		addressForm.setTitleCode(selectedAddressData.getTitleCode());
 		addressForm.setFirstName(selectedAddressData.getFirstName());
@@ -426,8 +420,8 @@ public class DeliveryAddressCheckoutStepController extends AbstractCheckoutStepC
 		return getCheckoutStep(DELIVERY_ADDRESS);
 	}
 
-	protected void populateCommonModelAttributes(final Model model, final CartData cartData, final AddressForm addressForm)
-			throws CMSItemNotFoundException
+	protected void populateCommonModelAttributes(final Model model, final CartData cartData,
+			final GallagherAddressForm addressForm) throws CMSItemNotFoundException
 	{
 		model.addAttribute("cartData", cartData);
 		model.addAttribute("addressForm", addressForm);

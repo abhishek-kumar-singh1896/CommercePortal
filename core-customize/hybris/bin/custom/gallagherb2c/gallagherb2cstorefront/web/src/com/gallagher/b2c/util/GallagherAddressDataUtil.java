@@ -39,6 +39,7 @@ public class GallagherAddressDataUtil
 		target.setTownCity(source.getTown());
 		target.setPostcode(source.getPostalCode());
 		target.setCountryIso(source.getCountry().getIsocode());
+		target.setStreetNumber(source.getStreetNumber());
 	}
 
 	public void convert(final AddressData source, final GallagherAddressForm target)
@@ -62,30 +63,29 @@ public class GallagherAddressDataUtil
 		return addressData;
 	}
 
-	public AddressData convertToAddressData(final GallagherAddressForm GallagherAddressForm)
+	public AddressData convertToAddressData(final GallagherAddressForm addressForm)
 	{
 		final AddressData addressData = new AddressData();
-		addressData.setId(GallagherAddressForm.getAddressId());
-		addressData.setTitleCode(GallagherAddressForm.getTitleCode());
-		addressData.setFirstName(GallagherAddressForm.getFirstName());
-		addressData.setLastName(GallagherAddressForm.getLastName());
-		addressData.setLine1(GallagherAddressForm.getLine1());
-		addressData.setLine2(GallagherAddressForm.getLine2());
-		addressData.setTown(GallagherAddressForm.getTownCity());
-		addressData.setPostalCode(GallagherAddressForm.getPostcode());
+		addressData.setId(addressForm.getAddressId());
+		addressData.setTitleCode(addressForm.getTitleCode());
+		addressData.setFirstName(addressForm.getFirstName());
+		addressData.setLastName(addressForm.getLastName());
+		addressData.setLine1(addressForm.getLine1());
+		addressData.setLine2(addressForm.getLine2());
+		addressData.setTown(addressForm.getTownCity());
+		addressData.setPostalCode(addressForm.getPostcode());
 		addressData.setBillingAddress(false);
 		addressData.setShippingAddress(true);
-		addressData.setPhone(GallagherAddressForm.getPhone());
-
-		if (GallagherAddressForm.getCountryIso() != null)
+		addressData.setPhone(addressForm.getPhone());
+		addressData.setStreetNumber(addressForm.getStreetNumber());
+		if (addressForm.getCountryIso() != null)
 		{
-			final CountryData countryData = getI18NFacade().getCountryForIsocode(GallagherAddressForm.getCountryIso());
+			final CountryData countryData = getI18NFacade().getCountryForIsocode(addressForm.getCountryIso());
 			addressData.setCountry(countryData);
 		}
-		if (GallagherAddressForm.getRegionIso() != null && !StringUtils.isEmpty(GallagherAddressForm.getRegionIso()))
+		if (addressForm.getRegionIso() != null && !StringUtils.isEmpty(addressForm.getRegionIso()))
 		{
-			final RegionData regionData = getI18NFacade().getRegion(GallagherAddressForm.getCountryIso(),
-					GallagherAddressForm.getRegionIso());
+			final RegionData regionData = getI18NFacade().getRegion(addressForm.getCountryIso(), addressForm.getRegionIso());
 			addressData.setRegion(regionData);
 		}
 

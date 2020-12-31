@@ -48,5 +48,9 @@
 			</map>
 		</property>
 	</bean>
+	
+	<alias name="gallagherAddressDataUtil" alias="gallagherAddressDataUtil"/>
+	<bean id="gallagherAddressDataUtil" class="com.gallagher.b2c.util.GallagherAddressDataUtil" >
+	</bean>
 
 </beans>

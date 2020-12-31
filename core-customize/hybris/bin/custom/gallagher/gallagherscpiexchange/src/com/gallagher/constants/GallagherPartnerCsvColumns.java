@@ -15,4 +15,7 @@ public class GallagherPartnerCsvColumns
 
 	@SuppressWarnings("javadoc")
 	public static final String TAX_JURISDICTION_CODE = "taxJurCode";
+
+	@SuppressWarnings("javadoc")
+	public static final String GALLAGHER_STREET_NUMBER = "gallagherStreetNumber";
 }

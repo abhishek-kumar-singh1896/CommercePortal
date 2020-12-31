@@ -534,6 +534,10 @@
 					<description></description>
 					<persistence type="property"/>
 				</attribute>
+				<attribute qualifier="gallagherStreetNumber" type="java.lang.String">
+					<description></description>
+					<persistence type="property"/>
+				</attribute>
 			</attributes>
 		</itemtype>
 

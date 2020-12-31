@@ -178,6 +178,7 @@ public class GallagherSCPIOmmOrderConversionService extends SapCpiOmmOrderConver
 			sapCpiOrderAddress.setTelNumber(mapAttribute(PartnerCsvColumns.TEL_NUMBER, row));
 			sapCpiOrderAddress.setTitleCode(mapAttribute(PartnerCsvColumns.TITLE, row));
 			sapCpiOrderAddress.setTaxJurCode(mapAttribute(GallagherPartnerCsvColumns.TAX_JURISDICTION_CODE, row));
+			sapCpiOrderAddress.setGallagherStreetNumber(mapAttribute(GallagherPartnerCsvColumns.GALLAGHER_STREET_NUMBER, row));
 
 			if (sapCpiOrderAddress.getDocumentAddressId() != null && !sapCpiOrderAddress.getDocumentAddressId().isEmpty())
 			{

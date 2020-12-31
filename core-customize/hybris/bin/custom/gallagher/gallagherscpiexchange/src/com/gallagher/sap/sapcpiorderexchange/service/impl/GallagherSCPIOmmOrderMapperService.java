@@ -156,6 +156,7 @@ public class GallagherSCPIOmmOrderMapperService extends SapCpiOmmOrderMapperServ
 			sapCpiOutboundAddress.setEmail(address.getEmail());
 			sapCpiOutboundAddress.setLanguageIsoCode(address.getLanguageIsoCode());
 			sapCpiOutboundAddress.setTaxJurCode(address.getTaxJurCode());
+			sapCpiOutboundAddress.setGallagherStreetNumber(address.getGallagherStreetNumber());
 
 			sapCpiOutboundAddresses.add(sapCpiOutboundAddress);
 

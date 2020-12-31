@@ -12,6 +12,7 @@
 
 	<bean class="de.hybris.platform.sap.sapcpiadapter.data.SapCpiOrderAddress">
 		<property name="taxJurCode" type="String" />
+		<property name="gallagherStreetNumber" type="String" />
 	</bean>
 
 	<!-- SapCpiCreditCardPayment -->

@@ -381,4 +381,10 @@
 		parent="defaultCommerceAddToCartStrategy" >
 	</bean>
 	
+	<alias name="gallagherAddressReversePopulator"
+		alias="addressReversePopulator" />
+	<bean id="gallagherAddressReversePopulator"
+		class="com.gallagher.facades.user.converters.populator.GallagherAddressReversePopulator"
+		parent="defaultAddressReversePopulator">
+	</bean>
 </beans>
