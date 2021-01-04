@@ -108,7 +108,8 @@
     "gallagherb2cstorefront",
     "gallagherstorefront",
 	"gallagherscpiexchange",
-	"paymetric"
+	"paymetric",
+	"gallaghercustomerticketingaddon"
   ],
   "useConfig": {
     "solr": {
