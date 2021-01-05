@@ -35,14 +35,6 @@
                         </c:if>
                     </ycommerce:testId>
                 </div>
-                 <div class="item-group">
-                    <ycommerce:testId code="orderDetail_overviewOrderStatus_label">
-                        <span class="item-label"><spring:theme code="text.account.orderHistory.requestedDeliveryDate"/></span>
-                        <c:if test="${not empty orderData.requiredDeliveryDate}">
-                            <span class="item-value"><spring:theme code="${fn:escapeXml(orderData.requiredDeliveryDate)}"/></span>
-                        </c:if>
-                    </ycommerce:testId>
-                </div>
             </div>
             <div class="col-sm-4 item-wrapper">
                 <div class="item-group">
@@ -59,22 +51,14 @@
                 </div>
                 <div class="item-group">
                     <c:if test="${orderData.paymentType.code=='ACCOUNT'}">
-                        <ycommerce:testId code="orderDetail_overviewParentBusinessUnit_label">
-                            <span class="item-label"><spring:theme code="text.account.order.orderDetails.ParentBusinessUnit"/></span>
-                            <span class="item-value">${fn:escapeXml(orderData.b2bUnit.unit.name)}</span>
-                        </ycommerce:testId>
-                    </c:if>
-                </div>
-            </div>
-            <div class="col-sm-4 item-wrapper">
-                <div class="item-group">
-                    <c:if test="${orderData.paymentType.code=='ACCOUNT'}">
                         <ycommerce:testId code="orderDetail_overviewCostCenter_label">
                             <span class="item-label"><spring:theme code="text.account.order.orderDetails.CostCenter"/></span>
                             <span class="item-value">${fn:escapeXml(orderData.b2bUnit.name)}</span>
                         </ycommerce:testId>
                     </c:if>
                 </div>
+            </div>
+            <div class="col-sm-4 item-wrapper">
                 <c:if test="${orderData.deliveryInstructions ne null}">
                 <div class="item-group">
                     <ycommerce:testId code="orderDetail_overviewOrderTotal_label">
@@ -87,6 +71,14 @@
                     <ycommerce:testId code="orderDetail_overviewOrderTotal_label">
                         <span class="item-label"><spring:theme code="text.account.order.total"/></span>
                         <span class="item-value"><format:price priceData="${order.totalPrice}"/></span>
+                    </ycommerce:testId>
+                </div>
+                <div class="item-group">
+                    <ycommerce:testId code="orderDetail_overviewOrderStatus_label">
+                        <span class="item-label"><spring:theme code="text.account.orderHistory.requestedDeliveryDate"/></span>
+                        <c:if test="${not empty orderData.requiredDeliveryDate}">
+                            <span class="item-value"><spring:theme code="${fn:escapeXml(orderData.requiredDeliveryDate)}"/></span>
+                        </c:if>
                     </ycommerce:testId>
                 </div>
                 <div class="item-group">
