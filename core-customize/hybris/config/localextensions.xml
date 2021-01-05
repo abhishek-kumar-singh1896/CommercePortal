@@ -14,7 +14,7 @@
 	<extension name='orderselfserviceaddon' />
 	<extension name='customersupportbackoffice' />
 	<extension name='customerticketingaddon' />
-	<extension name='gallaghercustomerticketingaddon' />
+	<!-- <extension name='gallaghercustomerticketingaddon' /> -->
 	<extension name='commerceorgsamplesaddon' />
 	<extension name='rulebuilderbackoffice' />
 	<extension name='couponbackoffice' />
@@ -83,8 +83,8 @@
 	<extension name="b2badvancecore" />
 	<extension name="b2badvancefacades" />
 	<extension name="b2badvancetest" />
-	<extension name='b2badvanceacceleratoraddon' />
-	<extension name="b2badvancecommercewebservices" />
+	<extension name='b2badvanceacceleratoraddon' /><!-- 
+	<extension name="b2badvancecommercewebservices" /> -->
 	<extension name="b2badvancebackoffice" />
 	<extension name="addonsupport" />
 	<extension name="b2badvanceoutboundintegration" />
@@ -127,5 +127,6 @@
 	<extension name="gallagherstorefront" />
 	<extension name="gallagherscpiexchange" />
 	<extension name="paymetric" />
+	<extension name="gallaghercustomerticketaddon" />
   </extensions>
 </hybrisconfig>

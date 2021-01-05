@@ -29,7 +29,7 @@
         
         
         
-        <requires-extension name="gallaghercustomerticketingaddon"/>
+        <requires-extension name="gallaghercustomerticketaddon"/>
         <requires-extension name="assistedservicestorefront"/>
                 
         
