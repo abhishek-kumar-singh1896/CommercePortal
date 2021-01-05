@@ -433,13 +433,13 @@
 	<context component="create-wizard" type="StudyCase">
 		<wz:flow xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config" id="StudyCaseWizard" title="create.title(ctx.TYPE_CODE)">
 			<wz:prepare id="studycasePrepare">
-				<wz:initialize property="newStyCase" type="ctx.TYPE_CODE"/>
+				<wz:initialize property="newStyCase" type="StudyCase"/>
 			</wz:prepare>
 			<wz:step id="step1" label="create.casestudy.general.label" sublabel="create.casestudy.general.sublabel">
 				<wz:content id="step1.content">
 					<wz:property-list root="newStyCase">
-						<wz:property qualifier="link"/>
-						<wz:property qualifier="desc"/>
+						<wz:property qualifier="link" />
+						<wz:property qualifier="desc" />
 						<wz:property qualifier="picture"/>
 					</wz:property-list>
 				</wz:content>
@@ -448,10 +448,13 @@
 					<wz:done visible="newStyCase.link != null AND newStyCase.desc != null AND newStyCase.picture != null">
 						<wz:save property="newStyCase" />
 					</wz:done>
+					<!-- <wz:save property="newStyCase"/> -->
 				</wz:navigation>				
 			</wz:step>			
 		</wz:flow>
 	</context>	
+	
+	
 	<context type="GallagherSovosConfigurartion" component="base" merge-by="type">
         <y:base>
             <y:labels>
