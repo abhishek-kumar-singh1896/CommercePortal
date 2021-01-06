@@ -64,9 +64,11 @@
 		<maptype code="VideoDataMap" argumenttype="java.lang.String" returntype="java.lang.String" generate="true"
 			autocreate="true" />
 		<maptype code="modifiedAttributesMap" argumenttype="java.lang.String" returntype="java.lang.String" generate="true"
+			autocreate="true" />
+		<maptype code="DiscountClassesMap" argumenttype="java.lang.String" returntype="java.lang.String" generate="true"
 			autocreate="true" />	
 	</maptypes>
-
+	
 	<relations>
 		<relation code="BaseStoreProductRelation" autocreate="true" generate="true" localized="false">
 			<deployment table="BaseStoreProductRelation" typecode="30000" />
@@ -417,6 +419,10 @@
 					<modifiers optional="true" />
 					<persistence type="property" />
 					<description>Case Studies Product.</description>
+				</attribute>
+				<attribute qualifier="discountClasses" type="DiscountClassesMap">
+					<persistence type="property"></persistence>
+					<modifiers read="true" write="true" optional="true" />
 				</attribute>
 				<!-- <attribute autocreate="true" generate="true" qualifier="addresses" type="AddressCollection">
 					<modifiers optional="true" />

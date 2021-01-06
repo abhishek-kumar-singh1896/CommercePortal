@@ -3,6 +3,7 @@
  */
 package com.gallagher.core.services.impl;
 
+import de.hybris.platform.basecommerce.model.site.BaseSiteModel;
 import de.hybris.platform.catalog.CatalogVersionService;
 import de.hybris.platform.catalog.enums.ArticleApprovalStatus;
 import de.hybris.platform.catalog.model.CatalogVersionModel;
@@ -10,10 +11,13 @@ import de.hybris.platform.catalog.model.ProductFeatureModel;
 import de.hybris.platform.catalog.model.ProductReferenceModel;
 import de.hybris.platform.category.CategoryService;
 import de.hybris.platform.category.model.CategoryModel;
+import de.hybris.platform.cms2.model.site.CMSSiteModel;
 import de.hybris.platform.core.model.c2l.LanguageModel;
+import de.hybris.platform.core.model.enumeration.EnumerationValueModel;
 import de.hybris.platform.core.model.media.MediaContainerModel;
 import de.hybris.platform.core.model.media.MediaModel;
 import de.hybris.platform.core.model.product.ProductModel;
+import de.hybris.platform.europe1.enums.ProductDiscountGroup;
 import de.hybris.platform.product.ProductService;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 import de.hybris.platform.servicelayer.media.MediaService;
@@ -479,7 +483,9 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 			// checking if there is some change related to product reference
 			final ProductModel syncProduct = gallagherProductProcessingDao.getBaseProductForProductReferenceSync(catalogVersion,
 					lastStartTime, product);
-			if (null != syncProduct)
+			final ProductModel syncDiscountClassProduct = gallagherProductProcessingDao
+					.getBaseProductForDiscountClassSync(catalogVersion, lastStartTime, product);
+			if (null != syncProduct || null != syncDiscountClassProduct)
 			{
 				try
 				{
@@ -506,7 +512,15 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 
 						try
 						{
-							populateBaseProductRefenceData(product, baseProduct, regionalCatalogVersion, catalogId, lastStartTime);
+							if (null != syncProduct)
+							{
+								populateBaseProductRefenceData(product, baseProduct, regionalCatalogVersion, catalogId, lastStartTime);
+							}
+
+							if (null != syncDiscountClassProduct)
+							{
+								populateBaseProductRefenceData(product, baseProduct, regionalCatalogVersion, catalogId, lastStartTime);
+							}
 
 							modelService.save(baseProduct);
 						}
@@ -591,6 +605,68 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 			}
 		}
 		return success;
+	}
+
+	@Override
+	public boolean syncDiscountClassesForBase(final String catalogId, final Date lastStartTime)
+	{
+		final CatalogVersionModel catalogVersion = catalogVersionService.getCatalogVersion(catalogId, STAGED);
+
+		final List<ProductModel> products = gallagherProductProcessingDao.getBaseProductsForSync(catalogVersion, lastStartTime);
+		boolean success = true;
+		for (final ProductModel product : products)
+		{
+			// checking if there is some change related to product reference
+			final ProductModel syncProduct = gallagherProductProcessingDao.getBaseProductForDiscountClassSync(catalogVersion,
+					lastStartTime, product);
+			if (null != syncProduct)
+			{
+				try
+				{
+					final String baseProductCode = product.getCode();
+					final List<BaseStoreModel> baseStores = new ArrayList<>();
+					baseStores.addAll(product.getBaseStores());
+
+					if (product.isEligibleForLatAm() && catalogId.contains("B2C"))
+					{
+						baseStores.add(baseStoreService.getBaseStoreForUid("amB2CLatAm"));
+					}
+
+					final Map<BaseStoreModel, CatalogVersionModel> storeCatalogMap = processVariantProductForCode(baseProductCode,
+							baseProductCode, baseStores, catalogId);
+
+					for (final BaseStoreModel baseStore : baseStores)
+					{
+						final CatalogVersionModel regionalCatalogVersion = storeCatalogMap.get(baseStore);
+
+						final ProductModel baseProduct = productService.getProductForCode(regionalCatalogVersion, baseProductCode);
+
+						LOGGER.info("Processing " + baseProduct + " with base store " + baseStore.getName()
+								+ " for populating product references in base product");
+
+						try
+						{
+							populateBaseProductRefenceData(product, baseProduct, regionalCatalogVersion, catalogId, lastStartTime);
+
+							modelService.save(baseProduct);
+						}
+						catch (final UnknownIdentifierException exception)
+						{
+							LOGGER.info("Base Product with code " + baseProductCode + " and CatalogVersion "
+									+ regionalCatalogVersion.getCatalog().getId() + " not found");
+						}
+					}
+				}
+				catch (final Exception ex)
+				{
+					success = false;
+					LOGGER.error(
+							"There is some problem while populating prduct reference in base Product [" + product.getCode() + "]" + ex);
+				}
+			}
+		}
+		return success;
+
 	}
 
 	/**
@@ -717,6 +793,88 @@ public class GallagherProductProcessingServiceImpl implements GallagherProductPr
 			modelService.saveAll(newProductReferences);
 			regionalProduct.setProductReferences(newProductReferences);
 		}
+	}
+
+	/**
+	 * Populate the Product References from Master Product or Master Variant Product to Regional Product or Regional
+	 * Variant Product
+	 *
+	 * @param product
+	 * @param regionalProduct
+	 *           or regionalVariantProduct
+	 * @param regionalCatalogVersion
+	 * @param catalogId
+	 * @param lastStartTime
+	 */
+
+	private void populateBaseProductDiscountClassData(final ProductModel product, final ProductModel regionalProduct,
+			final CatalogVersionModel regionalCatalogVersion, final String catalogId, final Date lastStartTime)
+	{
+		final Map<String, String> discountClasses = product.getDiscountClasses();
+		final Map<String, String> newDiscountClasses = new HashMap<String, String>();
+		final Map<String, String> oldDiscountClasses = regionalProduct.getDiscountClasses();
+		if (oldDiscountClasses.size() > 0)
+		{
+			modelService.removeAll(oldDiscountClasses);
+		}
+		if (discountClasses.size() > 0)
+		{
+			/*
+			 * for (final ProductReferenceModel referenceModel : discountClasses) {
+			 *
+			 * ProductModel refProduct = null; try { refProduct = productService.getProductForCode(regionalCatalogVersion,
+			 * referenceModel.getTarget().getCode()); } catch (final UnknownIdentifierException exception) {
+			 * LOGGER.info("Base Product with code " + referenceModel.getTarget().getCode() + " and CatalogVersion " +
+			 * regionalCatalogVersion.getCatalog().getId() + " not found"); } if (null != refProduct) { final
+			 * ProductReferenceModel newProductReference = modelService.clone(referenceModel);
+			 * newProductReference.setActive(referenceModel.getActive()); newProductReference.setSource(regionalProduct);
+			 * newProductReference.setDescription(referenceModel.getDescription());
+			 * newProductReference.setPreselected(referenceModel.getPreselected());
+			 * newProductReference.setQuantity(referenceModel.getQuantity());
+			 * newProductReference.setReferenceType(referenceModel.getReferenceType());
+			 * newProductReference.setTarget(refProduct); newProductReferences.add(newProductReference); } }
+			 */
+			String regionCode = null;
+			final Collection<BaseStoreModel> baseStores = regionalCatalogVersion.getCatalog().getBaseStores();
+			for (final BaseStoreModel bs : baseStores)
+			{
+				final Collection<BaseSiteModel> cs = bs.getCmsSites();
+				for (final BaseSiteModel site : cs)
+				{
+					regionCode = ((CMSSiteModel) site).getRegionCode().getCode();
+				}
+			}
+
+			for (final Map.Entry<String, String> entry : discountClasses.entrySet())
+			{
+				System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+			}
+
+			discountClasses.get(regionCode);
+			if (null != ProductDiscountGroup.valueOf(discountClasses.get(regionCode)))
+			{
+
+			}
+			else
+			{
+
+			}
+			regionalProduct.setEurope1PriceFactory_PDG(ProductDiscountGroup.valueOf(discountClasses.get(regionCode)));
+			//regionalProduct.setEurope1PriceFactory_PDG(createProductDiscountGroup(discountClasses.get(regionCode)));
+			/*
+			 * modelService.save(regionalProduct); regionalProduct.setProductReferences(newProductReferences);
+			 */
+		}
+	}
+
+	public EnumerationValueModel createProductDiscountGroup(final String discountGroupCode)
+	{
+		final EnumerationValueModel productDiscountGroup = modelService.create(ProductDiscountGroup._TYPECODE);
+		productDiscountGroup.setCode(discountGroupCode);
+		productDiscountGroup.setName(discountGroupCode);
+		modelService.save(productDiscountGroup);
+
+		return productDiscountGroup;
 	}
 
 	/**
