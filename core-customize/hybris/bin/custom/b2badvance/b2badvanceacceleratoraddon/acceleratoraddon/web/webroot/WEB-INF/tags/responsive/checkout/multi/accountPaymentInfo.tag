@@ -20,10 +20,10 @@
             <br>
             <c:choose>
                 <c:when test="${not empty cartData.purchaseOrderNumber}">
-                    <b><spring:theme code="checkout.multi.purchaseOrderNumber.label" htmlEscape="false"/></b>&nbsp;:&nbsp;${fn:escapeXml(cartData.purchaseOrderNumber)}
+                    <b><spring:theme code="checkout.multi.po.label" htmlEscape="false"/></b>&nbsp;:&nbsp;${fn:escapeXml(cartData.purchaseOrderNumber)}
                 </c:when>
                 <c:otherwise>
-                    <spring:theme code="checkout.multi.purchaseOrderNumber.label" htmlEscape="false"/>:&nbsp;-
+                    <spring:theme code="checkout.multi.po.label" htmlEscape="false"/>:&nbsp;-
                 </c:otherwise>
             </c:choose>
             <br>
