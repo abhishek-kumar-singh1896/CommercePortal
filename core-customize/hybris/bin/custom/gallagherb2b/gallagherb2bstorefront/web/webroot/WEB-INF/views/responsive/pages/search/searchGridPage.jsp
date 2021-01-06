@@ -6,6 +6,7 @@
 <%@ taglib prefix="product" tagdir="/WEB-INF/tags/responsive/product"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <template:page pageTitle="${pageTitle}">
 
@@ -60,18 +61,24 @@
 
 			<!-- technical support tab  -->
             <!-- Begin Sign-In Touchpoint, Type = login -->
-            <%-- <sec:authorize access="hasAnyRole('ROLE_MINDTOUCHDOCGROUP')"> --%>
+            <sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
            	<script async="async" src="${mindtouchLoginSRC}"></script>
             <div class="tab-pane <c:if test="${not empty technicalSupport}">active</c:if>" id="technicalSupport" role="tabpanel" style="height: 600px">
                 <script type="mindtouch/embed" id="${mindtouchLoginID}" data-search-query="${searchPageData.freeTextSearch}"></script>
             </div>
-            <%-- </sec:authorize> --%>
+            </sec:authorize>
             
-            <%-- <sec:authorize access="!hasAnyRole('ROLE_MINDTOUCHDOCGROUP')"> --%>           	
+            <sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')">           	
             <div class="tab-pane <c:if test="${not empty technicalSupport}">active</c:if>" id="technicalSupport" role="tabpanel" style="height: 600px">
-                <h2>Sorry, you don't have access to the files</h2>
+                <!-- <div class="mt-search-unavailable"> -->
+                <div style="font-size:15px; margin-left:30px;margin-top:30px;">
+                	<p>This content may be restricted to Gallagher Channel Partners and employees. <a href="/security/nz/en_NZ/login" title="LOGIN">Please log on to the Security Hub</a> to view these results.</p>
+                	<p>If you do not have a Security Hub logon and would like access, <a href="https://security.gallagher.com/Contact-Us" title="Contact Us">You can register here.</a></p>
+                	<p>If you're logged in and receive this message,there may be no search results available. Please try a different search term.</p>
+                </div>
             </div>
-            <%-- </sec:authorize> --%>
+            </sec:authorize>
+            
 			<script>
                                                   document.addEventListener('mindtouch-web-widget:search:ready', ({ data }) => {
                                                     const searchWidget = data.widget;
