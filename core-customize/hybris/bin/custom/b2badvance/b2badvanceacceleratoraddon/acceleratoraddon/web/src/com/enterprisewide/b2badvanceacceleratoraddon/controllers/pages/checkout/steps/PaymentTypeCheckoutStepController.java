@@ -143,10 +143,9 @@ public class PaymentTypeCheckoutStepController extends AbstractCheckoutStepContr
 			{
 				GlobalMessages.addErrorMessage(model, "checkout.error.requiredDelivery.Date");
 			}
-			else
-			{
-			GlobalMessages.addErrorMessage(model, "checkout.error.paymenttype.formentry.invalid");
-			}
+			/*
+			 * else { GlobalMessages.addErrorMessage(model, "checkout.error.paymenttype.formentry.invalid"); }
+			 */
 			model.addAttribute("paymentTypeForm", paymentTypeForm);
 			prepareDataForPage(model);
 			storeCmsPageInModel(model, getContentPageForLabelOrId(MULTI_CHECKOUT_SUMMARY_CMS_PAGE_LABEL));
