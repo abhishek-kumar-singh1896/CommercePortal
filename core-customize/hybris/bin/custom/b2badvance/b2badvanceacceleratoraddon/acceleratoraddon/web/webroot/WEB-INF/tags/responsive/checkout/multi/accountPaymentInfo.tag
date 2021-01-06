@@ -13,9 +13,9 @@
         </div>
         <div class="address">
             <spring:theme code="text.company.user.${cartData.b2bCustomerData.titleCode}.name" text="N/A"/>&nbsp;${fn:escapeXml(cartData.b2bCustomerData.firstName)}&nbsp;${fn:escapeXml(cartData.b2bCustomerData.lastName)}
-            <c:if test="${(not empty cartData.costCenter) and (not empty cartData.costCenter.code)}">
+            <c:if test="${(not empty cartData.b2bUnit) and (not empty cartData.b2bUnit.code)}">
                 <br>
-                <spring:theme code="checkout.multi.costCenter.label" htmlEscape="false"/>:&nbsp;${fn:escapeXml(cartData.costCenter.name)}
+                <spring:theme code="checkout.multi.costCenter.label" htmlEscape="false"/>:&nbsp;${fn:escapeXml(cartData.b2bUnit.code)}
             </c:if>
             <br>
             <c:choose>
