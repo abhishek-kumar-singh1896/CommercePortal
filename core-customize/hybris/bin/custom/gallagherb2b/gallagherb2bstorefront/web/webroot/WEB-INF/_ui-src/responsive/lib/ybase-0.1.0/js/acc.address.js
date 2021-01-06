@@ -259,7 +259,7 @@ ACC.address = {
 			dataType: "html",
 			beforeSend: function ()
 			{
-				$("#i18nAddressForm").html(ACC.address.spinner);
+				//$("#i18nAddressForm").html(ACC.address.spinner);
 			}
 		}).done(function (data)
 				{
