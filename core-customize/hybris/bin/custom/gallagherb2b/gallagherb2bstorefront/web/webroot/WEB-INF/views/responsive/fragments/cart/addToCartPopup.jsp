@@ -65,7 +65,7 @@
             </c:if>
             
             <c:if test="${not empty product.productSpecificDetailsSubHeading}">
-            	<div class="shoppingHeading">${product.productSpecificDetailsSubHeading}</div>
+            	<div>${product.productSpecificDetailsSubHeading}</div>
             </c:if>
             
             <c:if test="${not empty product.productSpecificDetailsSubHeading}">
