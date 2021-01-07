@@ -116,4 +116,16 @@ public interface GallagherProductProcessingDao
 	 * @return availableCatalogVersions
 	 */
 	List<CatalogVersionModel> getApprovedCatalogVersionForBaseProduct(final String baseProductCode);
+
+	/**
+	 * Returns a base Product, if some modification is done in productDiscount attribute of given product.
+	 *
+	 * @param catalogVersion
+	 * @param lastStartTime
+	 * @param product
+	 * @return product
+	 */
+	ProductModel getBaseProductForDiscountClassSync(final CatalogVersionModel catalogVersion, final Date lastStartTime,
+			final ProductModel product);
+
 }

@@ -51,5 +51,4 @@ public interface GallagherProductProcessingService
 	 * @return process result
 	 */
 	boolean syncRecommendationsForBaseProduct(final String catalogId, final Date lastStartTime);
-
 }
