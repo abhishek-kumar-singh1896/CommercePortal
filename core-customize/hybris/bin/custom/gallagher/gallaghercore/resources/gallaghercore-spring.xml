@@ -368,4 +368,13 @@
 	</bean>
 	
     <bean id="gallagherProductService" class="com.gallagher.core.product.impl.GallagherDefaultProductServiceImpl" />
+    
+    <alias name="gallagherTicketAttachmentService" alias="ticketAttachmentsService"/>
+    <bean id="gallagherTicketAttachmentService" class="com.gallagher.core.ticket.service.impl.GallagherTicketAttachmentsService" parent="defaultTicketAttachmentsService"/>
+    
+    <bean id="invalidUploadedFormats" class="java.lang.String">
+		<constructor-arg>
+			<value>${customersupportattachments.invalidFormats}</value>
+		</constructor-arg>
+	</bean>
 </beans>

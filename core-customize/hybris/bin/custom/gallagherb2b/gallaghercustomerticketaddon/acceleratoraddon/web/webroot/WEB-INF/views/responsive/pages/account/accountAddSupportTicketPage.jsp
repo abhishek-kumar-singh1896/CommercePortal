@@ -39,7 +39,11 @@
                             <label class="control-label file-upload__label" for="files"> <spring:theme code="text.account.supporttickets.createTicket.selectFile" text="Select a file"/> </label>
                             <div class="file-upload__wrapper btn btn-default btn-small">
                                 <span> <spring:theme code="text.account.supporttickets.createTicket.chooseFile" text="Choose file"/> </span>
-                                <input type="file" name="files" id="attachmentFiles" multiple size="60" class="file-upload__input js-file-upload__input" data-max-upload-size="${maxUploadSize}"/>
+                                <span class="invalid-Uploaded-Formats" data-invalid-formats="${invalidFileFormat}"/>
+                                <span class="total-Uploaded-Files-limit" data-max-files-upload="${maxUploadedFiles}"/>
+                                <input type="file" name="files" id="attachmentFiles" multiple size="60" class="file-upload__input js-file-upload__input" data-max-upload-size="${maxUploadSize}" multiple="multiple"/>
+                            
+                            <input type="hidden" id="fileUploadStatus">
                             </div>
                             <span class="file-upload__file-name js-file-upload__file-name">
                                 <spring:theme code="text.account.supporttickets.createTicket.noFileChosen"/>
@@ -109,6 +113,8 @@
         <span id="supporttickets-tryLater"><spring:theme code="text.account.supporttickets.tryLater"/></span>
         <span id="attachment-file-max-size-exceeded-error-message"><spring:theme code="text.account.supporttickets.fileMaxSizeExceeded"/></span>
         <span id="file-too-large-message"><spring:theme code="text.account.supporttickets.file.is.large.than" arguments="${maxUploadSizeMB}"/></span>
+        <span id="file-format-message"><spring:theme code="text.account.supporttickets.file.unsupported.formats"/></span>
+         <span id="file-upload-limit-message"><spring:theme code="text.account.supporttickets.file.upload.limit" arguments="${maxUploadedFiles}"/></span>
     </div>
     <common:globalMessagesTemplates/>
 </c:if>

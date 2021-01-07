@@ -30,6 +30,7 @@ public final class GallaghercustomerticketaddonConstants extends GeneratedGallag
 	public static final String MAX_UPLOAD_SIZE = "maxUploadSize";
 	public static final String MAX_UPLOAD_SIZE_MB = "maxUploadSizeMB";
 	public static final String MAX_FILES_UPLOAD = "maxUploadedFiles";
+	public static final String INVALID_FILE_FORMATS = "invalidFileFormat";
 	public static final String TEXT_SUPPORT_TICKETING_TRY_LATER = "text.account.supporttickets.tryLater";
 	public static final String TEXT_SUPPORT_TICKETING_HISTORY = "text.account.supporttickets.history";
 	public static final String TEXT_SUPPORT_TICKETING_UPDATE = "text.account.supporttickets.updateSupportTicket";

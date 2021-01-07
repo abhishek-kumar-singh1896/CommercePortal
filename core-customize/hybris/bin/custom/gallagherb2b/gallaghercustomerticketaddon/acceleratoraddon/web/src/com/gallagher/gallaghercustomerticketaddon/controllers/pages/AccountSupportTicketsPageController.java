@@ -64,7 +64,7 @@ import com.sap.security.core.server.csi.XSSEncoder;
 /**
  * Controller for Customer Support tickets.
  */
-@Controller
+@Controller("accountSupportTicketsPageController")
 @RequestMapping("/my-account")
 public class AccountSupportTicketsPageController extends AbstractSearchPageController
 {
@@ -78,7 +78,7 @@ public class AccountSupportTicketsPageController extends AbstractSearchPageContr
 	private long maxUploadSizeValue;
 
 	@Resource(name = "maxFilesUpload")
-	private long maxFilesUpload;
+	private String maxFilesUpload;
 
 	@Resource(name = "accountBreadcrumbBuilder")
 	private ResourceBreadcrumbBuilder accountBreadcrumbBuilder;
@@ -98,6 +98,9 @@ public class AccountSupportTicketsPageController extends AbstractSearchPageContr
 	@Resource(name = "allowedUploadedFormats")
 	private String allowedUploadedFormats;
 
+	@Resource(name = "invalidUploadedFormats")
+	private String invalidUploadedFormats;
+	
 	private final String[] DISALLOWED_FIELDS = new String[] {};
 
 	@InitBinder
@@ -172,7 +175,9 @@ public class AccountSupportTicketsPageController extends AbstractSearchPageContr
 		model.addAttribute(GallaghercustomerticketaddonConstants.MAX_UPLOAD_SIZE_MB,
 				FileUtils.byteCountToDisplaySize(maxUploadSizeValue));
 		model.addAttribute(GallaghercustomerticketaddonConstants.MAX_FILES_UPLOAD,
-				FileUtils.byteCountToDisplaySize(maxFilesUpload));
+				Integer.valueOf(maxFilesUpload));
+		model.addAttribute(GallaghercustomerticketaddonConstants.INVALID_FILE_FORMATS,(invalidUploadedFormats));
+		
 		try
 		{
 			model.addAttribute(GallaghercustomerticketaddonConstants.SUPPORT_TICKET_ASSOCIATED_OBJECTS,

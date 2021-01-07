@@ -22,7 +22,7 @@
            
     <context:annotation-config/> 
 
-	<context:component-scan base-package="com.gallagher.gallaghercustomerticketaddon.controllers"/>
+	<context:component-scan base-package="com.gallagher.gallaghercustomerticketaddon.controllers" scope-resolver="de.hybris.platform.spring.IgnoreTenantScopeMetadataResolver"/>
 
 	<!-- Expose /acceleratoraddon/web/webroot/WEB-INF/messages/base.js.properties  resource bundle as javascript variables -->
 	<bean id="defaultGallaghercustomerticketaddonJavaScriptMessageResourceAccessor" parent="abstractJavaScriptMessageResourceAccessor">
@@ -83,5 +83,11 @@
 	
 	<bean id="maxFilesUpload" class="java.lang.Long">
 		<constructor-arg type="long" value="10"/>
+	</bean>
+	
+	<bean id="invalidUploadedFormats" class="java.lang.String">
+		<constructor-arg>
+			<value>${customersupportattachments.invalidFormats}</value>
+		</constructor-arg>
 	</bean>
 </beans>
