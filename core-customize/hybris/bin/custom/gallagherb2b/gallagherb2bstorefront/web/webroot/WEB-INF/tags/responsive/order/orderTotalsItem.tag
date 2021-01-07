@@ -44,7 +44,7 @@
                 </ycommerce:testId>
             </div>
         </c:if>
-        <div class="col-xs-6">
+        <%-- <div class="col-xs-6">
             <spring:theme code="text.account.order.shipping"/>
         </div>
         <div class="col-xs-6">
@@ -64,7 +64,7 @@
                     <format:price priceData="${order.totalTax}"/>
                 </div>
             </div>
-        </c:if>
+        </c:if> --%>
 
         <div class="col-xs-6">
             <div class="totals">
@@ -92,7 +92,7 @@
         </c:choose>
     </div>
 </div>
-
+<spring:theme code="text.account.order.tax.instruction"/>
 <div class="account-orderdetail-orderTotalDiscount-section">
     <c:if test="${not order.net}">
         <div class="order-total__taxes">

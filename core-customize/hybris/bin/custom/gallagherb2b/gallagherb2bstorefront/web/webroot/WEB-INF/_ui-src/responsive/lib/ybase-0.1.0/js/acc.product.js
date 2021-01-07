@@ -84,10 +84,16 @@ ACC.product = {
         }
         var titleHeader = $('#addToCartTitle').html();
 
-        ACC.colorbox.open(titleHeader, {
-            html: cartResult.addToCartLayer,
-            width: "460px"
-        });
+        	ACC.colorbox.open(titleHeader, {
+                html: cartResult.addToCartLayer,
+                width: "460px",
+            	onLoad : function() {
+					$('html, body').css('overflow', 'hidden');
+				},
+				onClosed:function() {
+			        $('html, body').css('overflow', '');
+			    }
+            });
 
         var productCode = $('[name=productCodePost]', formElement).val();
         var quantityField = $('[name=qty]', formElement).val();

@@ -1,0 +1,105 @@
+# ImpEx for Importing Classification Categories into Animal Management B2C Store 
+
+# Macros / Replacement Parameter definitions
+$productCatalog=amB2CMasterProductCatalog
+$productCatalogName=Animal Management B2C Chile Product Catalog
+$classCatalogVersion=catalogversion(catalog(id[default='AMB2CClassification']),version[default='1.0'])[unique=true,default='AMB2CClassification:1.0']
+$classSystemVersion=systemVersion(catalog(id[default='AMB2CClassification']),version[default='1.0'])[unique=true]
+$lang=es_CL
+
+
+UPDATE ClassificationClass;code[unique=true];name[lang=$lang];$classCatalogVersion
+
+;earthing;Conexión a tierra
+;power-system-accessories;Accesorios para los Sistemas de Energía
+
+;weigh-scales-and-data-collectors;Weigh Scales and Data Collectors
+;loadbars-and-accessories;Barras de carga y accesorios
+;platforms;Plataformas
+;eid-tag-readers;Lectores de etiquetas IDE
+
+;water-flow-indicator;Water Flow Indicator 
+;one-tank-systems;Sistemas de Estanque Único
+;additional-system-components;Componentes Adicionales del Sistema
+
+UPDATE ClassificationClass;code[unique=true];name[lang=$lang];$classCatalogVersion
+;wire-and-cable;Alambres y Cables
+;clamps-and-joiners;Abrazaderas y Conectores
+;posts;Postes
+;strainers;Tensores
+;insulators;Aisladores
+;offsets;Desplazadores
+;electric-gates;Portones eléctricos
+;tapes-wires-and-braids-pf;Cintas, Cordones y Alambre
+;reels-and-accessories-pf;Carretes y Accesorios
+;posts-pigtails-and-treadins-pf;Postes - Cola de Chancho y Estacas múltiples
+;all-in-one-portable-fences;Cercos portátiles todo en uno
+;weigh-scales-and-data-collectors;Colectores de Datos y Pesaje de Ganado
+;loadbars-and-accessories;Barras de carga y accesorios
+;drafters;Apartadores
+;eid-tag-readers;Lectores de etiquetas
+;one-tank-systems;Sistemas de Estanque Único
+;antennae-and-cables;Antenas y Cable
+;additional-system-components;Componentes Adicionales del Sistema
+;energizers;Energizadores de Cerco
+
+
+
+UPDATE ClassificationAttribute	;code[unique=true];name[lang=$lang];$classSystemVersion
+								;energy-stored;Energía Almacenada
+								;energy-output;Energía de Salida
+								;multiwire-distance-gallagher-recommendation;Distancia de alambres múltiples recomendada por Gallagher
+								;multiwire-distance-gallagher-recommendation-acres;Distancia de alambres múltiples recomendada por Gallagher
+								;multiwire-distance-ideal-conditions;Condiciones ideales de distancia de alambres múltiples
+								;height;Altura
+								;product-depth;Profundidad
+								;product-weight;Peso del Producto
+								;property-size;Tamaño de la propiedad
+								;watts;Watts
+								;warranty;Garantía
+								;i-series-compatible;i Series Compatible
+								;outdoors-suitable;Outdoors Suitable
+								;power-input;Power Input
+								;measures-voltage;Measures Voltage
+								;measures-current;Measures Current
+								;digital-display;Digital Display
+								;voltage-at-2km;Voltaje (kV) a 2 km del cerco
+								;voltage-at-5km;Voltaje (kV) a 5 km del cerco
+								;ohms-per-km;Ohms Per Km
+								;voltage-at-10km;Voltaje (kV) a 10 km del cerco
+								;post-height;Post Height
+								#;animal;Animal
+								;number-of-wires;Number of Wires
+								;strainer-type;Strainer Type
+								;includes-joint-clamp;Includes Joint Clamp
+								;post-type;Post Type
+								;insulator-type;Insulator Type
+								;mount-type;Mount Type
+								;product-length;Product Length
+								;gate-type;Gate Type
+								;length;Length
+								;voltage-at-500m;Voltaje (kV) a 500m del cerco
+								;voltage-at-1km;Voltaje (kV) a 1km del cerco
+								;diameter-or-tape-width;Diámetro o ancho de la cinta
+								;mixed-metals;Mixed Metals
+								;gear-ratio;Proporción de Engranaje
+								;pre-wound-with;Pre-wound with
+								#;animal-type;Animal Type
+								;fence-type;Fence Type
+								;wire;Wire Amount
+								;wire-type;Wire Type
+								;wifi;Wifi
+								;number-of-traits-recorded;Number of Traits Recorded
+								;eid-compatiable;EID Compatiable
+								;internal-rechargeable-battery;Internal rechargeable battery
+								;drafting;Drafting
+								;intergrated-eid-reader;Intergrated EID Reader
+								;livestock-web-mobile-app;Compatible with Gallagher Livestock web/mobile app
+								;view-pedigree-tree;View Pedigree Tree
+								;use;Use
+								;weighing-capacity;Capacidad de pesaje
+								;product-type;Product Type
+								;width-or-length;Ancho o Largo
+								;diameter-or-width;Diámetro o ancho
+								;driver-capacity-long;Capacidad del conductor (largo)
+                        ;product-feature-number-of-openings;Product Features (Number of openings)

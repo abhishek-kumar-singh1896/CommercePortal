@@ -1,0 +1,21 @@
+                
+$productCatalog=amB2CMasterProductCatalog
+$productCatalogName=Animal Management B2C US Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$classCatalogVersion=catalogversion(catalog(id[default='AMB2CClassification']),version[default='1.0'])[unique=true,default='AMB2CClassification:1.0']
+$classSystemVersion=systemVersion(catalog(id[default='AMB2CClassification']),version[default='1.0'])[unique=true]
+$class=classificationClass(ClassificationClass.code,$classCatalogVersion)[unique=true]
+$supercategories=source(code, $classCatalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+$attribute=classificationAttribute(code,$classSystemVersion)[unique=true]
+$unit=unit(code,$classSystemVersion)
+
+
+
+
+
+INSERT_UPDATE CategoryCategoryRelation ; $categories          ; $supercategories     
+                                       ; ball-waterers        ; trough-valves        
+                                       ; open-trough-waterers ; lil-spring           
+                                       ; horse-waterers       ; equi-fount           
+                                       ; pet-waterers         ; pet-tanks            

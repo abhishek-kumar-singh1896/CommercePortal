@@ -18,6 +18,7 @@ import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
 import org.springframework.web.client.RestClientException;
 
 import com.gallagher.c4c.outboundservices.facade.GallagherC4COutboundServiceFacade;
+import com.gallagher.core.enums.BU;
 import com.gallagher.outboundservices.constants.GallagheroutboundservicesConstants;
 import com.gallagher.outboundservices.response.dto.GallagherInboundCustomerEntry;
 import com.hybris.cockpitng.config.jaxb.wizard.CustomType;
@@ -83,7 +84,7 @@ public class VerifyCustomerHandler implements FlowActionHandler
 			notificationService.notifyUser((String) null, "invalidEmailAddress", NotificationEvent.Level.FAILURE);
 			success = false;
 		}
-		else if (userService.isUserExisting(email))
+		else if (userService.isUserExisting("sec|" + email))
 		{
 			notificationService.notifyUser((String) null, "duplicateHybrisCustomer", NotificationEvent.Level.FAILURE);
 			success = false;
@@ -94,8 +95,21 @@ public class VerifyCustomerHandler implements FlowActionHandler
 			{
 				final WidgetModel widget = adapter.getWidgetInstanceManager().getModel();
 
-				final List<GallagherInboundCustomerEntry> existingCustomers = getGallagherC4COutboundServiceFacade()
-						.getCustomerInfoFromC4C(email, null);
+				/*
+				 * final List<GallagherInboundCustomerEntry> existingCustomers = getGallagherC4COutboundServiceFacade()
+				 * .getCustomerInfoFromC4C(email, null);
+				 */
+
+				List<GallagherInboundCustomerEntry> existingCustomers = null;
+
+				if (isB2B)
+				{
+					existingCustomers = getGallagherC4COutboundServiceFacade().getCustomerInfoFromC4C(email, null, BU.SEC.getCode());
+				}
+				else
+				{
+					existingCustomers = getGallagherC4COutboundServiceFacade().getCustomerInfoFromC4C(email, null, BU.AM.getCode());
+				}
 
 				if ((CollectionUtils.isNotEmpty(existingCustomers) && existingCustomers.size() > 1))
 				{

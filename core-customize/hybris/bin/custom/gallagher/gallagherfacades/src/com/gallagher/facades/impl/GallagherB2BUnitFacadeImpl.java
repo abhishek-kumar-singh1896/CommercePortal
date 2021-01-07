@@ -12,14 +12,22 @@ import de.hybris.platform.b2bcommercefacades.company.impl.DefaultB2BUnitFacade;
 import de.hybris.platform.commercefacades.user.data.CustomerData;
 import de.hybris.platform.commerceservices.search.pagedata.PageableData;
 import de.hybris.platform.commerceservices.search.pagedata.SearchPageData;
+import de.hybris.platform.core.model.user.CustomerModel;
+import de.hybris.platform.core.model.user.UserModel;
+import de.hybris.platform.servicelayer.session.Session;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import javax.annotation.Resource;
 
 import org.apache.commons.beanutils.BeanPropertyValueEqualsPredicate;
 import org.apache.commons.collections.CollectionUtils;
 
+import com.gallagher.core.services.GallagherB2BUnitService;
 import com.gallagher.facades.GallagherB2BUnitFacade;
 
 
@@ -30,6 +38,8 @@ import com.gallagher.facades.GallagherB2BUnitFacade;
 public class GallagherB2BUnitFacadeImpl extends DefaultB2BUnitFacade implements GallagherB2BUnitFacade
 {
 
+	@Resource(name = "gallagherB2BUnitService")
+	protected GallagherB2BUnitService b2bUnitService;
 
 	public SearchPageData<CustomerData> getPagedTechniciansForUnit(final PageableData pageableData, final String unitUid)
 	{
@@ -66,4 +76,55 @@ public class GallagherB2BUnitFacadeImpl extends DefaultB2BUnitFacade implements 
 		return b2BUnits;
 	}
 
+	public List<B2BUnitModel> getAllB2BUnits(final CustomerModel customer)
+	{
+		return getB2bUnitService().getAllB2BUnits(customer);
+
+	}
+
+	public void updateBranchInSession(final Session session, final UserModel currentUser)
+	{
+		getB2BUnitService().updateBranchInSession(getSessionService().getCurrentSession(), currentUser);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see com.gallagher.facades.GallagherB2BUnitFacade#getAllB2BData(de.hybris.platform.core.model.user.CustomerModel)
+	 */
+	@Override
+	public List<B2BUnitData> getAllB2BData(final CustomerModel currentCustomer)
+	{
+		final List<B2BUnitModel> b2bUnitList = getB2bUnitService().getAllB2BData(currentCustomer);
+		final List<B2BUnitData> b2bUnitData = new ArrayList();
+
+
+		for (final B2BUnitModel b2bModel : b2bUnitList)
+		{
+			final B2BUnitData unitData = getB2BUnitConverter().convert(b2bModel);
+			unitData.setCode(unitData.getUid());
+			b2bUnitData.add(unitData);
+		}
+		return b2bUnitData;
+	}
+
+
+
+	/**
+	 * @return the b2bUnitService
+	 */
+	public GallagherB2BUnitService getB2bUnitService()
+	{
+		return b2bUnitService;
+	}
+
+
+	/**
+	 * @param b2bUnitService
+	 *           the b2bUnitService to set
+	 */
+	public void setB2bUnitService(final GallagherB2BUnitService b2bUnitService)
+	{
+		this.b2bUnitService = b2bUnitService;
+	}
 }

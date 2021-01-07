@@ -523,6 +523,11 @@ overflow :hidden; /* needs to be overflow to fix IE7*/
 	overflow: visible;
 }
 
+.bulkOrderNavDiv .scroller{
+	position: relative;
+	overflow: hidden;
+}
+
 * /
 	/*
 
@@ -705,17 +710,18 @@ overflow :hidden; /* needs to be overflow to fix IE7*/
 	-moz-border-top-colors: none;
 	background: #f4f4f4; /* #ffffff none repeat scroll 0 0 */;
 	border-color: -moz-use-text-color #bfbfbf #bfbfbf;
-	border-image: none;
+/* 	border-image: none;
 	border-style: none solid solid;
 	border-width: 0 1px 1px;
-	box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
+	box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4); */
 	left: auto;
 	padding: 20px;
-	position: absolute;
-	text-align: left;
-    width: 350px;
-	z-index: 99;
-	height: 615px;
+	/* position: absolute;
+	text-align: left; */
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+	/* z-index: 99; */
 }
 
 .product-add-container table.multi-add-product tr td.col-1-left {
@@ -733,24 +739,23 @@ overflow :hidden; /* needs to be overflow to fix IE7*/
 .bulkOrderDiv .site-search ul.ui-autocomplete  li.ui-menu-item .image-container,
 .mobileBulkOrder .site-search ul.ui-autocomplete  li.ui-menu-item .image-container
 {
-	float: left;
-	width: 30%;
+	width: 100%;
 }
 
 .bulkOrderDiv .site-search ul.ui-autocomplete  li.ui-menu-item .product-attr,
 .mobileBulkOrder .site-search ul.ui-autocomplete  li.ui-menu-item .product-attr{
-	float: left;
-	width: 70%;
+	width: 100%;
+	display: block;
 }
 
 .bulkOrderDiv .site-search ul.ui-autocomplete  li.ui-menu-item .product-attr .attr,
 .mobileBulkOrder .site-search ul.ui-autocomplete  li.ui-menu-item .product-attr .attr {
-	padding: 3px 3px 3px 40px;
+	padding: 3px;
 }
 
 .bulkOrderDiv .site-search ul.ui-autocomplete li.ui-menu-item .product-attr .name,
 .mobileBulkOrder .site-search ul.ui-autocomplete li.ui-menu-item .product-attr .name {
-	padding: 0 3px 3px 40px;
+	padding: 0 3px 3px 3px;
 }
 
 .pr-img {
@@ -790,27 +795,24 @@ overflow :hidden; /* needs to be overflow to fix IE7*/
     overflow-y: auto;
     overflow-x: hidden;
     display: block;
-    background-color: #0B1F58;
     margin: 5px;
 }
 
-
+.bulkOrderNavDiv .bulkOrderDiv {
+	height: 100%
+}
 .bulkOrderDiv .site-search > .ui-front {
     padding: 0px 0px;
 } 
 
 .bulkOrderDiv .site-search > .ui-front .bulk-order-table {
-    border: 1px solid #0B1F58;
+    border: 1px solid #838385;
     padding-left: 1px;
     padding-right: 1px;
 }
 
 .prod_add_to_cart #dropZone {
 	width: 100%;
-}
-
-div#msgBox {
-    margin-top: -15px;
 }
 
 div#msgBox > p {
@@ -837,6 +839,7 @@ div#msgBoxForRows.qoRowsWithErrors {
 }
 div#msgBoxForRows.qoRowsWithErrorsBlock {
 	display: block;
+	color: red;
 }
 
 .bulkOrderNavLink.sub::after {
@@ -854,15 +857,31 @@ position: absolute;
     z-index: 1001;
 }
 #dropZone {
-        background: gray;
-        border: black dashed 3px;
+        background: #d5d5d5;
         width: 134px;
-        padding: 50px;
         text-align: center;
-        color: white;
-        height:18px;
+        color: black;
+        padding: 70px 50px;
+	    height: 150px;
+	    margin-top: 20px;
     }
-
+.dropFiles{
+	    border-bottom: 1px solid #626262;
+    margin-top: 30px;
+    width: 70%;
+    position: relative;
+    margin-left: 100px;
+}
+.multi-add-product .scroll-items-header th{
+	background-color: #ff8400;
+}
+.dropFilesOr{
+	       position: absolute;
+    background: #f4f4f4;
+    padding: 10px;
+    top: -21px;
+    left: 50%;
+}
 .scroller {
 	border: 0px;
 }
@@ -881,6 +900,7 @@ position: absolute;
 .product-add-container .prod_add_to_cart a#qoAddRow {
     margin-right: 21px;
     margin-top: 15px;
+    margin-bottom: 15px;
     float: right;
     background-image: url(../images/button/ico-add.png);
     height: 25px;
@@ -888,31 +908,50 @@ position: absolute;
     padding: 0px;
     display: inline;
 }
+.product-add-container .prod_add_to_cart span#qoAddRowIcon {
 
-.navigation--bottom .nav__links--products li a.cross-button {
+    background-image: url(../images/button/ico-add-orange.png);
+    padding: 0px;
+    height: 25px;
+    width: 25px;
+    display: inline-block;
+    vertical-align: sub;
+}
+form#item_form{
+	clear: both;
+}
+
+.bulk-order-table-container {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width:350px;
+}
+
+td.col-3-right a.cross-button {
 	 background-image: url(../images/button/ico-cross.png);
 	 height: 20px;
      width: 20px;
      padding: 0;
 }
 
-.product-add-container .prod_add_to_cart button#qoAddToCart {
+/* .product-add-container .prod_add_to_cart button#qoAddToCart {
     width: 80px;
     height: 40px;
-}
+} */
 
-.product-add-container .prod_add_to_cart button#dummyBrowseBtn {
+/* .product-add-container .prod_add_to_cart button#dummyBrowseBtn {
     height: 41px;
     margin-left: 42px;
     padding: 6px 12px;
-}
+} */
 
 .multi-add-product th {
 	padding-top: 8px;
 	padding-bottom: 8px;
 	padding-left: 0;
 	padding-right: 0;
-	color: #ffffff;
 }
 
 .multi-add-product th.qty-header {
@@ -939,7 +978,7 @@ position: absolute;
 }
 
 .bulkOrderNavDiv ul.ui-autocomplete li a {
-	display: table;
+	display: block;
     width: 100%;
     color: inherit;
     text-decoration: none;
@@ -2685,4 +2724,36 @@ position: absolute;
 }
 .email-conflict-error {
 	display:none;
+}
+
+div#msgBox > p#success {
+    color: #0edd4d;
+}
+
+td.col-3-right .cross-button{
+	     display: block;
+	     margin-right: 18px;
+}
+
+@media screen and (max-width: 768px) {
+	.dropFiles {
+		display: none;
+	}
+	.bulkOrderNavDiv #item_form{
+		display: none;
+	}
+	.bulk-order-table-container{
+		float: none;
+		border: none;
+		margin-bottom: 0px;
+		padding: 0;
+		margin-top: 20px;
+		width: 100%;
+	}
+	.bulkOrderDiv .site-search > .ui-front .bulk-order-information{
+		float: none;
+	}
+	.bulkOrderNavDiv {
+		overflow-y: scroll;
+	}
 }

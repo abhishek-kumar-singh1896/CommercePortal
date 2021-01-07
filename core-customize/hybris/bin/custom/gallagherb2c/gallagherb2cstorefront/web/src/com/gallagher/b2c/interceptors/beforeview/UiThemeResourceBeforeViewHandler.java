@@ -105,6 +105,19 @@ public class UiThemeResourceBeforeViewHandler implements BeforeViewHandler
 		final String commonResourcePath = siteRootUrl + "/" + COMMON;
 		final String encodedContextPath = request.getContextPath();
 		final LanguageModel currentLanguage = commerceCommonI18NService.getCurrentLanguage();
+		final String language = currentLanguage != null ? currentLanguage.getIsocode() : "en";
+		String uiLocales = "en";
+
+		if (language.contains("fr_CA"))
+		{
+			uiLocales = "ca";
+		}
+
+		if (language.contains("es_CL"))
+		{
+			uiLocales = "es";
+		}
+
 
 		modelAndView.addObject("contextPath", contextPath);
 		modelAndView.addObject("sharedResourcePath", sharedResourcePath);
@@ -117,6 +130,7 @@ public class UiThemeResourceBeforeViewHandler implements BeforeViewHandler
 		modelAndView.addObject("themeName", themeName);
 		modelAndView.addObject("uiExperienceLevel", uiExperienceCode);
 		modelAndView.addObject("regionCode", regionCode);
+		modelAndView.addObject("uiLocales", uiLocales);
 
 		final String detectedUiExperienceCode = uiExperienceService.getDetectedUiExperienceLevel().getCode();
 		modelAndView.addObject("detectedUiExperienceCode", detectedUiExperienceCode);

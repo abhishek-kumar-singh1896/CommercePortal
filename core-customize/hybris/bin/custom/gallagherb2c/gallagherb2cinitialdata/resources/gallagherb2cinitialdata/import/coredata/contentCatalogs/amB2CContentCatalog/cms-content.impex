@@ -16,8 +16,8 @@ $jarResourceCms=$config-jarResourceCmsValue
 # These define the layout for pages
 # "FrontendTemplateName" is used to define the JSP that should be used to render the page for pages with multiple possible layouts.
 # "RestrictedPageTypes" is used to restrict templates to page types
-INSERT_UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];name;frontendTemplateName;restrictedPageTypes(code);active[default=true]
-;;ProductDetailsPageTemplate;Product Details Page Template;product/productLayout2Page;ProductPage
+INSERT_UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true]				;name							;frontendTemplateName		;restrictedPageTypes(code);active[default=true]
+						  ;						  ;ProductDetailsPageTemplate	;Product Details Page Template	;product/productLayout2Page	;ProductPage
 ;;ProductListPageTemplate;Product List Page Template;category/productListPage;CategoryPage
 ;;ProductGridPageTemplate;Product Grid Page Template;category/productGridPage;CategoryPage
 ;;SearchResultsListPageTemplate;Search Results List Page Template;search/searchListPage;ContentPage

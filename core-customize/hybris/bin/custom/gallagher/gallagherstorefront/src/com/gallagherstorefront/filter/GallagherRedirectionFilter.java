@@ -56,6 +56,10 @@ public class GallagherRedirectionFilter extends GenericFilterBean
 
 	private static final String IP_SERVICE = "https://ipinfo.io/%s/country";
 
+	private static final String ASIA = "Asia";
+
+	private static final String STHAM = "SthAm";
+
 	private static final Logger LOG = LoggerFactory.getLogger(GallagherRedirectionFilter.class.getName());
 
 	@Resource(name = "baseSiteService")
@@ -80,9 +84,11 @@ public class GallagherRedirectionFilter extends GenericFilterBean
 
 		final String requestURI = req.getServerName();
 		String base = null;
+		boolean isSecurity = false;
 		if (requestURI.contains(SECURITY))
 		{
 			base = SECURITY_BASE;
+			isSecurity = true;
 		}
 		else
 		{
@@ -108,10 +114,22 @@ public class GallagherRedirectionFilter extends GenericFilterBean
 		if (site == null)
 		{
 			final CountryModel country = commonI18NService.getCountry(countryCode.trim());
-			final RegionCode regionCode = country.getRegionCode();
+			final RegionCode regionCode = isSecurity ? country.getSecurityRegionCode() : country.getRegionCode();
 			if (regionCode != null)
 			{
-				final StringBuilder regionSite = new StringBuilder(base).append(regionCode.getCode().toUpperCase());
+				StringBuilder regionSite;
+				if (regionCode.getCode().equalsIgnoreCase("asia"))
+				{
+					regionSite = new StringBuilder(base).append(ASIA);
+				}
+				else if (regionCode.getCode().equalsIgnoreCase("stham"))
+				{
+					regionSite = new StringBuilder(base).append(STHAM);
+				}
+				else
+				{
+					regionSite = new StringBuilder(base).append(regionCode.getCode().toUpperCase());
+				}
 				site = baseSiteService.getBaseSiteForUID(regionSite.toString());
 			}
 		}

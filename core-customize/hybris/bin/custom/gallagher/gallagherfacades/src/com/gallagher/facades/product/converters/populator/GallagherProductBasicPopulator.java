@@ -26,5 +26,16 @@ public class GallagherProductBasicPopulator<SOURCE extends ProductModel, TARGET 
 			productData.setName(productMarktingDescription);
 		}
 		productData.setPartNumber((String) getProductAttribute(productModel, ProductModel.PARTNUMBER));
+
+		if (!StringUtils.isEmpty((String) getProductAttribute(productModel, ProductModel.PRODUCTSPECIFICDETAILSHEADING)))
+		{
+			productData.setProductSpecificDetailsHeading((String) getProductAttribute(productModel, ProductModel.PRODUCTSPECIFICDETAILSHEADING));
+		}
+
+		if (!StringUtils.isEmpty((String) getProductAttribute(productModel, ProductModel.PRODUCTSPECIFICDETAILSSUBHEADING)))
+		{
+			productData.setProductSpecificDetailsSubHeading(
+					(String) getProductAttribute(productModel, ProductModel.PRODUCTSPECIFICDETAILSSUBHEADING));
+		}
 	}
 }

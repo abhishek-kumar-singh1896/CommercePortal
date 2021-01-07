@@ -51,7 +51,7 @@ UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript
  ;securityB2B_Email_Order_Cancelled_Subject;"Order Cancelled Email Subject";$emailResource/email-orderCancelledSubject.vm
  ;securityB2B_Email_Order_Collection_Reminder_Body;"Order Collection Reminder Body";$emailResource/email-orderCollectionReminderBody.vm
  ;securityB2B_Email_Order_Collection_Reminder_Subject;"Order Collection Reminder Subject";$emailResource/email-orderCollectionReminderSubject.vm
- ;securityB2B_Email_Order_Confirmation_Body;"Order Confirmation Email Body";$emailResource/email-orderConfirmationBody.vm
+ ;securityB2B_Email_Order_Confirmation_Body;"Order Confirmation Email Body";$emailResource/orderConfirmationBodyEmail.vm
  ;securityB2B_Email_Order_Confirmation_Subject;"Order Confirmation Email Subject";$emailResource/email-orderConfirmationSubject.vm
  ;securityB2B_Email_Order_Move_To_CS_Body;"Order Move To CS Body";$emailResource/email-orderMoveToCsBody.vm
  ;securityB2B_Email_Order_Move_To_CS_Subject;"Order Move To CS Subject";$emailResource/email-orderMoveToCsSubject.vm
@@ -71,7 +71,8 @@ UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript
  ;securityB2B_Email_Quote_To_Expire_Soon_Subject;"Quote To Expire Soon Subject";$emailResource/email-quoteToExpireSoonSubject.vm
  ;securityB2B_Email_Ready_For_Pickup_Body;"Ready For Pickup Email Body";$emailResource/email-readyForPickupBody.vm
  ;securityB2B_Email_Ready_For_Pickup_Subject;"Ready For Pickup Email Subject";$emailResource/email-readyForPickupSubject.vm
-
+ ;securityB2B_Email_Customer_Update_Body;"Customer Update Email Body";$emailResource/email-customerUpdateBody.vm
+ ;securityB2B_Email_Customer_Update_Subject;"Customer Update Email Subject";$emailResource/email-customerUpdateSubject.vm
 # CMS components and Email velocity templates
 UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
  ;securityB2B_Email_Order_ApprovalRejection_Body;"Buyer Approval Rejection Email Body";$jarEmailResource/email-orderApprovalRejectionBody.vm

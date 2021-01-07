@@ -248,8 +248,8 @@ public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
 		final GallagherKeycloakUserRequest request = new GallagherKeycloakUserRequest();
-		request.setUsername(customerData.getUid());
-		request.setEmail(customerData.getUid());
+		request.setUsername(customerData.getEmail());
+		request.setEmail(customerData.getEmail());
 		request.setFirstName(customerData.getFirstName());
 		request.setLastName(customerData.getLastName());
 		request.setEnabled(true);
@@ -274,8 +274,8 @@ public class GallagherKeycloakServiceImpl implements GallagherKeycloakService
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
 		final GallagherKeycloakUserRequest request = new GallagherKeycloakUserRequest();
-		request.setEmail(customerData.getUid());
-		request.setUsername(customerData.getUid());
+		request.setEmail(customerData.getEmail());
+		request.setUsername(customerData.getEmail());
 		request.setEnabled(true);
 
 		final HttpEntity<GallagherKeycloakUserRequest> entity = new HttpEntity<>(request, headers);

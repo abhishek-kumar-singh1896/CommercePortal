@@ -19,18 +19,22 @@
         </div>
     </div>
 
-    <div class="well-content">
+    <%-- <div class="well-content">
         <div class="row">
             <div class="col-md-4 order-shipping-method">
                 <div class="label-order"><spring:theme code="text.shippingMethod" /></div>
-                <div class="value-order">${orderData.deliveryMode.name}<br>${orderData.deliveryMode.description}</div>
-            </div>
+                <div class="value-order">${orderData.deliveryMode.name}
+                <c:if test="${orderData.deliveryMode.name ne orderData.deliveryMode.description}">
+                <br>
+                ${orderData.deliveryMode.description}
+                </c:if>
+                </div>            </div>
         </div>
-    </div>
-     <div class="well-content col-md-4 order-shipping-method">
+    </div> --%>
+     <%-- <div class="well-content col-md-4 order-shipping-method">
      	<div class="label-order"><spring:theme code="text.deliveryInstructions" /></div>
          	<div class="value-order">${orderData.deliveryInstructions}</div>
-      </div>
+      </div> --%>
     
 </div>
 
@@ -42,7 +46,9 @@
             <li class="item__info"><spring:theme code="basket.page.item"/></li>
             <li class="item__price"><spring:theme code="basket.page.price"/></li>
             <li class="item__quantity"><spring:theme code="basket.page.qty"/></li>
+            <li class="item__quantity"><spring:theme code="basket.page.delQty"/></li>
             <li class="item__total--column"><spring:theme code="basket.page.total"/></li>
+            <li class="item__status--column"><spring:theme code="basket.page.status"/></li>
         </ul>
     </li>
 	<c:forEach items="${order.unconsignedEntries}" var="entry" varStatus="loop">

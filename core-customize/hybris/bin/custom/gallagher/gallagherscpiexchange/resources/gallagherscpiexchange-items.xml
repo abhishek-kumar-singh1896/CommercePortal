@@ -41,5 +41,22 @@
 				</attribute>
 			</attributes>
 		</itemtype>
+		<itemtype code="SAPCpiOutboundOrder" generate="false" autocreate="false">
+			<attributes>
+				<attribute qualifier="requiredDeliveryDate" type="java.lang.String">
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="comment" type="java.lang.String">
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+		</itemtype>
+		<itemtype code="SAPCpiOutboundOrderItem" generate="false" autocreate="false">
+            <attributes>
+                <attribute qualifier="additionalProductDetail" type="java.lang.String">
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
 	</itemtypes>
 </items>

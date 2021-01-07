@@ -7,7 +7,13 @@
 		<collectiontype code="Animals" elementtype="Animal" autocreate="true" generate="true" />
 		<collectiontype code="gallagherNavigationBarComponentList" elementtype="GallagherNavigationBarComponent"
 			autocreate="true" generate="true" type="list" />
-	</collectiontypes>
+		<collectiontype code="ProductsList" elementtype="Product"
+			autocreate="true" generate="true" type="list" />
+		<collectiontype code="CategoriesList" elementtype="Category"
+			autocreate="true" generate="true" type="list" />
+		<collectiontype code="StudyCaseCollection" elementtype="StudyCase"
+			autocreate="true" type="list" />
+	</collectiontypes>	
 
 	<enumtypes>
 		<enumtype code="Sticker" autocreate="true" generate="true">
@@ -35,6 +41,7 @@
 
 		<enumtype code="RegionCode" dynamic="true" />
 		
+		<!-- <enumtype code="ConditionType" dynamic="true" /> -->
 		<enumtype code="ProductReferenceTypeEnum" autocreate="false" generate="false">
 		<description>Show Alternative Products If Stock is out</description>
 			<value code="ALTERNATIVE_PRODUCTS"/>
@@ -46,13 +53,28 @@
 			<value code="SECURITY_SALES" />
 		</enumtype>  		
 		
+		<enumtype code="OrderEntryItemStatus" autocreate="true" generate="true">
+			<value code="OPEN" />
+			<value code="COMPLETED" />
+			<value code="IN_PROCESS" />
+		</enumtype>
+		
+		<enumtype code="BU" autocreate="true" generate="true">
+			<description>Enum to identify user in AM and security </description>
+			<value code="AM"></value>
+			<value code="SEC"></value>
+		</enumtype>
 	</enumtypes>
 
 	<maptypes>
 		<maptype code="VideoDataMap" argumenttype="java.lang.String" returntype="java.lang.String" generate="true"
 			autocreate="true" />
+		<maptype code="modifiedAttributesMap" argumenttype="java.lang.String" returntype="java.lang.String" generate="true"
+			autocreate="true" />
+		<maptype code="DiscountClassesMap" argumenttype="java.lang.String" returntype="java.lang.String" generate="true"
+			autocreate="true" />	
 	</maptypes>
-
+	
 	<relations>
 		<relation code="BaseStoreProductRelation" autocreate="true" generate="true" localized="false">
 			<deployment table="BaseStoreProductRelation" typecode="30000" />
@@ -96,13 +118,54 @@
 			<sourceElement qualifier="navigationNodes" type="CMSNavigationNode" cardinality="many" />
 			<targetElement qualifier="restrictions" type="AbstractRestriction" cardinality="many" collectiontype="list" ordered="true" />
 		</relation>
-
+		
+		
+    	<!-- <relation code="Product2Addresses" generate="true" localized="false" autocreate="true">    				
+            <sourceElement type="Product" cardinality="one" qualifier="prod">
+                <modifiers read="true" write="false" initial="true" search="true" removable="false" optional="false"/>
+            </sourceElement>
+            <targetElement type="Address" cardinality="many" qualifier="addresses">
+                <modifiers read="true" write="true" search="true" optional="true" partof="true"/>
+                <custom-properties>
+                    <property name="condition.query">
+                        <value>"{original} is null"</value>
+                    </property>
+                </custom-properties>
+            </targetElement>
+        </relation> -->
+        
 	</relations>
 
 	<itemtypes>
 
 		<!-- Add your item definitions here -->
 		<!-- Add your item definitions here -->
+		<itemtype code="B2BUnit" autocreate="false" generate="false">
+			<description>Extending B2BUnit type with an additional attribute.</description>
+			<attributes>
+				<attribute autocreate="true" generate="true" qualifier="transactional" type="java.lang.Boolean">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property" />
+					<defaultvalue>java.lang.Boolean.FALSE</defaultvalue>
+					<description>Attribute to identify the transactional / non transactional B2BUnit </description>
+				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="salesArea" type="java.lang.String">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property" />
+					<description>Attribute to identify the Sales Area of B2BUnit </description>
+				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="currency" type="Currency">
+					<modifiers read="true" write="true" search="true" optional="true" />
+					<persistence type="property" />
+					<description>Attribute to identify the currency associated with the B2BUnit </description>
+				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="customerGroup" type="java.lang.String">
+						<modifiers read="true" write="true" search="true" optional="true" />
+						<persistence type="property" />
+						<description>Attribute to identify the Customer Group associated with the B2BUnit </description>
+				</attribute>
+			</attributes>
+		</itemtype>
 		<itemtype code="Customer" autocreate="false" generate="false">
 			<description>Extending Customer type with an additional attribute.</description>
 			<attributes>
@@ -158,16 +221,30 @@
 					<persistence type="property" />
 					<description>Indicates customer C4C accountId</description>
 				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="businessUnit" type="BU">
+					<modifiers optional="false" unique="true" read="true" write="true" search="true"/>
+					<persistence type="property" />
+					<description>Identifies customer in AM and Security site</description>
+				</attribute>
+				<attribute autocreate="true" qualifier="emailID" type="java.lang.String">
+					<modifiers optional="true" unique="false" read="true" write="true" />
+					<persistence type="property" />
+					<description>Indicates email address of a Customer</description>
+				</attribute>
+			    <attribute autocreate="true" generate="true" qualifier="mindtouchID" type="java.lang.String">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<description>Used to store mindtouch ID</description>
+				</attribute>
 			</attributes>
 		</itemtype>
-
+		
 		<itemtype code="Product" autocreate="false" generate="false">
 			<description>Extending Product type with additional attributes of status and animals.</description>
 			<attributes>
 				<attribute autocreate="true" generate="true" qualifier="promoSticker" type="Sticker">
 					<modifiers optional="true" />
 					<persistence type="property" />
-					<description>Indicates status of product</description>
 				</attribute>
 				<attribute autocreate="true" generate="true" qualifier="animalCompatibility" type="Animals">
 					<modifiers optional="true" />
@@ -209,6 +286,12 @@
 					<persistence type="property" />
 					<defaultvalue>false</defaultvalue>
 					<description>Flag to identify Product is eligible for LatAm Market.</description>
+				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="eligibleForChile" type="boolean">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<defaultvalue>false</defaultvalue>
+					<description>Flag to identify Product is eligible for Chile.</description>
 				</attribute>
 				<attribute qualifier="videos" type="VideoDataMap">
 					<persistence type="property"></persistence>
@@ -311,10 +394,48 @@
 						<columntype>
 							<value>HYBRIS.LONG_STRING</value>
 						</columntype>
-					</persistence>
+					</persistence>				
 				</attribute>
-			</attributes>
-
+				<attribute autocreate="true" generate="true" qualifier="priceOnApplication" type="java.lang.Boolean">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<description>Attribute for product POA</description>
+				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="productSpecificDetailsHeading" type="localized:java.lang.String">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<description>Attribute for product specific details Heading</description>
+				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="productSpecificDetailsSubHeading" type="localized:java.lang.String">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<description>Attribute for product specific details sub Heading</description>
+				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="recommendedProducts" type="ProductsList">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<description>Attribute for recommended products for the product</description>
+				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="recommendedCategories" type="CategoriesList">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<description>Attribute for recommended categories for the product</description>
+				</attribute>
+				<attribute autocreate="true" generate="true" qualifier="caseStudies" type="StudyCaseCollection">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<description>Case Studies Product.</description>
+				</attribute>
+				<attribute qualifier="discountClasses" type="DiscountClassesMap">
+					<persistence type="property"></persistence>
+					<modifiers read="true" write="true" optional="true" />
+				</attribute>
+				<!-- <attribute autocreate="true" generate="true" qualifier="addresses" type="AddressCollection">
+					<modifiers optional="true" />
+					<persistence type="property" />
+					<description>Case Studies Address.</description>
+				</attribute> -->												
+			</attributes>			
 		</itemtype>
 
 		<itemtype code="PDPSimulator" generate="true" autocreate="true">
@@ -390,11 +511,48 @@
 				</attribute>
 			</attributes>
 		</itemtype>
+				
+		<itemtype code="StudyCase" autocreate="true" generate="true">
+			<deployment table="StudyCase" typecode="30004" />
+			<attributes>
+				<attribute qualifier="code" type="java.lang.String">
+					<modifiers optional="false" unique="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="name" type="java.lang.String">
+					<modifiers optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="desc" type="java.lang.String">
+					<modifiers optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="link" type="java.lang.String">
+					<modifiers optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="picture" type="Media">
+					<description>Image</description>
+					<modifiers read="true" write="true" search="true" optional="true"/>
+					<persistence type="property"/>				
+				</attribute>
+			</attributes>
+		</itemtype>
 		
 		<itemtype code="Address" autocreate="false" generate="false">
 			<description>Extending Address type geoCode attribute.</description>
 			<attributes>
 				<attribute qualifier="geoCode" type="java.lang.String">
+					<description></description>
+					<persistence type="property"/>
+				</attribute>
+			</attributes>
+		</itemtype>
+		
+		<itemtype code="B2BUnit" autocreate="false" generate="false">
+			<description>Extending Address type geoCode attribute.</description>
+			<attributes>
+				<attribute qualifier="link" type="java.lang.String">
 					<description></description>
 					<persistence type="property"/>
 				</attribute>
@@ -662,7 +820,7 @@
              </attributes>
          </itemtype>
 		</typegroup>
-
+		
 		<typegroup name="jobs">
 			<itemtype code="GallagherCatalogVersionSyncJob" autocreate="true" generate="true" extends="CatalogVersionSyncJob"
 				jaloclass="com.gallagher.core.jalo.synchronization.GallagherCatalogVersionSyncJob">
@@ -707,6 +865,9 @@
 					<attribute qualifier="regionCode" type="RegionCode">
 						<persistence type="property" />
 					</attribute>
+					<attribute qualifier="securityRegionCode" type="RegionCode">
+						<persistence type="property" />
+					</attribute>
 				</attributes>
 			</itemtype>
 		</typegroup>
@@ -740,6 +901,39 @@
 				<attributes>
 					<attribute qualifier="taxTransactionDocId" type="java.lang.String">
 						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="deliveryInstruction" type="java.lang.String">
+						<persistence type="property" />
+						<modifiers optional="true" />
+					</attribute>
+					<attribute autocreate="true" generate="true" qualifier="productSpecificDetailsHeading" type="localized:java.lang.String">
+						<modifiers optional="true" />
+						<persistence type="property" />
+						<description>Attribute for product specific details Heading</description>
+					</attribute>
+					<attribute autocreate="true" generate="true" qualifier="productSpecificDetailsSubHeading" type="localized:java.lang.String">
+						<modifiers optional="true" />
+						<persistence type="property" />
+						<description>Attribute for product specific details sub Heading</description>
+					</attribute>
+				</attributes>
+			</itemtype>
+			<itemtype code="AbstractOrderEntry" autocreate="false" generate="false">
+				<description>Extends existing type with additional attributes.</description>
+				<attributes>
+					<attribute qualifier="deliveryInstruction" type="java.lang.String">
+						<persistence type="property" />
+						<modifiers optional="true" />
+					</attribute>
+					<attribute autocreate="true" generate="true" qualifier="productSpecificDetailsHeading" type="localized:java.lang.String">
+						<modifiers optional="true" />
+						<persistence type="property" />
+						<description>Attribute for product specific details Heading</description>
+					</attribute>
+					<attribute autocreate="true" generate="true" qualifier="productSpecificDetailsSubHeading" type="localized:java.lang.String">
+						<modifiers optional="true" />
+						<persistence type="property" />
+						<description>Attribute for product specific details sub Heading</description>
 					</attribute>
 				</attributes>
 			</itemtype>
@@ -779,6 +973,19 @@
 				</attributes>
 			</itemtype>
 		</typegroup>
+		
+		<typegroup name="Email">
+		 	<itemtype code="StoreFrontCustomerUpdateProcess" extends="StoreFrontCustomerProcess"
+				autocreate="true" generate="true" jaloclass="de.hybris.platform.commerceservices.jalo.process.StoreFrontCustomerUpdateProcess">
+				<description>Represents customer update related store front business process.</description>
+				<attributes>
+					<attribute qualifier="modifiedAttributesMap" type="modifiedAttributesMap">
+						<persistence type="property" />
+						<description>Attribute contains customer's updated attributes that will be used in the process.</description>
+					</attribute>
+				</attributes>
+			</itemtype>
+		</typegroup>
 
 		<typegroup name="button">
 			<itemtype code="GallagherNewButtonComponent" autocreate="true" generate="true" extends="CMSLinkComponent">
@@ -802,8 +1009,148 @@
 							</columntype>
 						</persistence>
 					</attribute>
+					<attribute autocreate="true" qualifier="commentsQuestion" type="localized:java.lang.String">
+                    <modifiers read="true" write="true" search="true" optional="true" />
+                    <persistence type="property">
+                        <columntype database="oracle">
+                            <value>CLOB</value>
+                        </columntype>
+                        <columntype database="sap">
+                            <value>NCLOB</value>
+                        </columntype>
+                        <columntype>
+                            <value>HYBRIS.LONG_STRING</value>
+                        </columntype>
+                    </persistence>
+                	</attribute>
 	            </attributes>
 	        </itemtype>
         </typegroup>
+        
+		<typegroup name="order">
+		    <itemtype code="AbstractOrderEntry" autocreate="false"
+					generate="false">
+					<attributes>
+						<attribute qualifier="b2bUnit" type="B2BUnit">
+							<modifiers read="true" write="true" search="true" />
+							<persistence type="property" />
+						</attribute>
+						<attribute qualifier="status" type="OrderEntryItemStatus">
+							<modifiers read="true" write="true" search="true" />
+							<persistence type="property" />
+						</attribute>
+						<attribute qualifier="deliveredQuantity" type="java.lang.Long">
+							<modifiers read="true" write="true" search="true" />
+							<persistence type="property" />
+						</attribute>
+					</attributes>
+				</itemtype>
+		
+		    <itemtype code="AbstractOrder" autocreate="false"
+					generate="false">
+					<attributes>
+						<attribute qualifier="requiredDeliveryDate" type="java.lang.String">
+							<modifiers read="true" write="true" search="true" />
+							<persistence type="property" />
+						</attribute>
+					</attributes>
+				</itemtype>
+		</typegroup>
+	<typegroup name="Email">
+		<itemtype code="OrderProcess" autocreate="false" generate="false">
+    <attributes>
+	<attribute type="Order" qualifier="orderEntry" >				 
+            <description>Contains the Entries During Checkout</description>
+	    <persistence type="property" />
+        </attribute>
+        <attribute type="java.lang.String" qualifier="formattedOrderDate" >				 
+            <description>Contains the formttedDate</description>
+	    <persistence type="property" />
+        </attribute>
+    </attributes>
+     </itemtype>
+</typegroup>
+		
+		
+		<typegroup name="price">
+			<itemtype code="PDTRow" autocreate="false" generate="false">
+				<description>Extending PDTRow type with an additional attribute.</description>
+				<attributes>
+					<attribute autocreate="true" generate="true" qualifier="salesArea" type="java.lang.String">
+						<modifiers read="true" write="true" search="true" optional="true" />
+						<persistence type="property" />
+						<description>Attribute to identify the Sales Area associated with the PDTRow </description>
+					</attribute>
+					<attribute qualifier="salesAreaMatchQualifier" type="java.lang.String" autocreate="true">
+						<persistence type="property" />
+						<modifiers read="true" write="true" search="true" optional="true" removable="false" />
+						<description>Internal attribute holding either value of Sales Area or Empty String for easier matching </description>
+					</attribute>
+					<attribute qualifier="customerGroup" type="java.lang.String" autocreate="true" generate="true" >
+						<modifiers read="true" write="true" search="true" optional="true" />
+						<persistence type="property" />
+						<description>Attribute to identify the Customer Group associated with the PDTRow </description>
+					</attribute>
+					<attribute qualifier="customerGroupMatchQualifier" type="java.lang.String" autocreate="true">
+						<persistence type="property" />
+						<modifiers read="true" write="true" search="true" optional="true" removable="false" />
+						<description>Internal attribute holding either value of Customer group or Empty String for easier matching </description>
+					</attribute>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="DiscountRow" autocreate="false" generate="false">
+				<description>Extending DiscountRow type with an additional attribute.</description>
+				<attributes>
+					<attribute autocreate="true" generate="true" qualifier="quantity" type="java.lang.Long">
+						<modifiers read="true" write="true" search="true" optional="true" />
+						<persistence type="property" />
+						<description>Attribute to identify the quantity for DiscountRow </description>
+					</attribute>
+					<attribute autocreate="true" generate="true" qualifier="conditionType" type="java.lang.String">
+						<modifiers read="true" write="true" search="true" optional="true" />
+						<persistence type="property" />
+						<description>Attribute to identify the Condition Type for DiscountRow </description>
+					</attribute>
+				<attribute qualifier="matchValue" type="java.lang.Integer" autocreate="true">
+					<persistence type="property"/>
+					<modifiers read="true" write="true" search="true" optional="true" removable="false"/>
+				</attribute>
+				</attributes>
+			</itemtype>
+		</typegroup>
+		
+		<typegroup name="Search">
+		  		<itemtype code="SolrIndexedProperty" autocreate="false" generate="false">
+			<attributes>
+				<attribute qualifier="salesArea" type="boolean">
+					<defaultvalue>java.lang.Boolean.TRUE</defaultvalue>
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="customerGroup" type="boolean">
+					<defaultvalue>java.lang.Boolean.TRUE</defaultvalue>
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="userPriceGroup" type="boolean">
+					<defaultvalue>java.lang.Boolean.FALSE</defaultvalue>
+					<persistence type="property" />
+				</attribute>	
+			</attributes>
+		</itemtype>
+		</typegroup>
+		
+		<typegroup name="Cart">
+			<itemtype code="Cart" autocreate="false" generate="false">
+				<description>Extending Cart type with additional attributes for sales area functionality</description>
+				<attributes>
+					<attribute autocreate="true" qualifier="salesArea" type="java.lang.String">
+						<description>set the sales area of the cart</description>
+						<persistence type="property"/>
+					</attribute>
+				</attributes>
+			</itemtype>		
+		</typegroup>
+
 	</itemtypes>
+	
 </items>

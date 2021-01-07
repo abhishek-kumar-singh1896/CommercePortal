@@ -6,6 +6,7 @@
 <%@ taglib prefix="action" tagdir="/WEB-INF/tags/responsive/action" %>
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 <c:set var="isUserAnonymous" value="${sessionScope.jalosession}" />
@@ -40,13 +41,15 @@
 					</c:forEach>
 				</div>
 			</c:if>
-			
+			<sec:authorize access="!hasRole('ROLE_B2BENDUSERGROUP')">
 			<c:if test = "${not fn:contains(isUserAnonymous, 'anonymous')}">
 				<ycommerce:testId code="product_productPrice">
 					<div class="price"><product:productListerItemPrice product="${product}"/></div>
 				</ycommerce:testId>
 			</c:if>
-
+			</sec:authorize>
+			
+			
 			<c:forEach var="variantOption" items="${product.variantOptions}">
 				<c:forEach items="${variantOption.variantOptionQualifiers}" var="variantOptionQualifier">
 					<c:if test="${variantOptionQualifier.qualifier eq 'rollupProperty'}">

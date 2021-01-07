@@ -27,6 +27,10 @@ public class CoreSystemSetup extends AbstractSystemSetup
 	public static final String IMPORT_ACCESS_RIGHTS = "accessRights";
 	public static final String IMPORT_SPRINT_2_IMPEX = "importSprint2Impex";
 	public static final String IMPORT_ESSENTIAL_DATA_SCPI = "importEssentialDataSCPIImpex";
+	public static final String IMPORT_SPRINT_1_IMPEX = "importSprint1Impex";
+	public static final String IMPORT_SPRINT_3_IMPEX = "importSprint3Impex";
+	public static final String IMPORT_ASYNC_PRICING = "importAsyncPricingImpex";
+
 
 	/**
 	 * This method will be called by system creator during initialization and system update. Be sure that this method can
@@ -57,8 +61,11 @@ public class CoreSystemSetup extends AbstractSystemSetup
 		final List<SystemSetupParameter> params = new ArrayList<>();
 
 		params.add(createBooleanSystemSetupParameter(IMPORT_ACCESS_RIGHTS, "Import Users & Groups", true));
-		params.add(createBooleanSystemSetupParameter(IMPORT_SPRINT_2_IMPEX, "Import Phase 2 - Sprint 2 Impexes", true));
 		params.add(createBooleanSystemSetupParameter(IMPORT_ESSENTIAL_DATA_SCPI, "Essential data SCPI", true));
+		params.add(createBooleanSystemSetupParameter(IMPORT_SPRINT_1_IMPEX, "Import Phase 2 - Sprint 1 Impexes", true));
+		params.add(createBooleanSystemSetupParameter(IMPORT_SPRINT_2_IMPEX, "Import Phase 2 - Sprint 2 Impexes", true));
+		params.add(createBooleanSystemSetupParameter(IMPORT_SPRINT_3_IMPEX, "Import Phase 2 - Sprint 3 Impexes", true));
+		params.add(createBooleanSystemSetupParameter(IMPORT_ASYNC_PRICING, "Import Async Pricing Impex", true));
 
 		return params;
 	}
@@ -97,11 +104,75 @@ public class CoreSystemSetup extends AbstractSystemSetup
 
 		final boolean importSprint2Impex = getBooleanSystemSetupParameter(context, IMPORT_SPRINT_2_IMPEX);
 
-
 		if (importSprint2Impex)
 		{
+			importImpexFile(context, "/laminexcore/import/Sprint2/SAPP2-67.impex");
 			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP2-59.impex");
-			importImpexFile(context, "/gallaghercore/import/Sprint2/CmsLinkRestriction.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-722_AU.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-722_CA.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-722_Global.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-722_LatAm.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-722_NZ.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-722_US.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-723_AU.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-723_CA.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-723_Global.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-723_LatAm.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-723_NZ.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-723_US.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-724_AU.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-724_CA.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-724_Global.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-724_LatAm.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-724_NZ.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP-724_US.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP2-90_AU.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP2-90_NZ.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP2-90_Global.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint2/SAPP2-86.impex");
+		}
+
+		final boolean importSprint1Impex = getBooleanSystemSetupParameter(context, IMPORT_SPRINT_1_IMPEX);
+
+		if (importSprint1Impex)
+		{
+			importImpexFile(context, "/gallaghercore/import/Sprint1/SAPP2-15.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint1/Countries.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint1/ProductCatalog.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint1/Store.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint1/Sites.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint1/email_content.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint1/SolrAsia.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint1/SolrCA.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint1/SolrSTHAM.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint1/SolrUK.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint1/SolrUS.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint1/SAPP2-16.impex");
+		}
+
+		final boolean importSprint3Impex = getBooleanSystemSetupParameter(context, IMPORT_SPRINT_3_IMPEX);
+
+		if (importSprint3Impex)
+		{
+			importImpexFile(context, "/gallaghercore/import/Sprint3/SAPP2-162.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint3/BaseStoreDeliveryModeAdd.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint3/SAPP2-151.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint3/SAPP2-86.impex");
+			importImpexFile(context, "/gallaghercore/import/Sprint3/SAPP2-166.impex");
+		}
+		final boolean importAsyncPricing = getBooleanSystemSetupParameter(context, IMPORT_ASYNC_PRICING);
+		if (importAsyncPricing)
+		{
+			importImpexFile(context, "/gallaghercore/import/AsyncPrice/asyncPrice-AU.impex");
+			importImpexFile(context, "/gallaghercore/import/AsyncPrice/asyncPrice-NZ.impex");
+			importImpexFile(context, "/gallaghercore/import/AsyncPrice/asyncPrice-GLOBAL.impex");
+			importImpexFile(context, "/gallaghercore/import/AsyncPrice/asyncPrice-ASIA.impex");
+			importImpexFile(context, "/gallaghercore/import/AsyncPrice/asyncPrice-CA.impex");
+			importImpexFile(context, "/gallaghercore/import/AsyncPrice/asyncPrice-STHAM.impex");
+			importImpexFile(context, "/gallaghercore/import/AsyncPrice/asyncPrice-UK.impex");
+			importImpexFile(context, "/gallaghercore/import/AsyncPrice/asyncPrice-US.impex");
+			importImpexFile(context, "/gallaghercore/import/AsyncPrice/asyncPrice_SCPI_Integration.impex");
+			importImpexFile(context, "/gallaghercore/import/AsyncPrice/SAPP2-145.impex");
 
 		}
 

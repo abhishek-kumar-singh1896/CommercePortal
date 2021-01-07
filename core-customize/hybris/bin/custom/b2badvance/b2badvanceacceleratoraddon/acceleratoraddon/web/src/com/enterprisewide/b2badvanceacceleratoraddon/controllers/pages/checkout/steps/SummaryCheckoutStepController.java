@@ -29,10 +29,15 @@ import de.hybris.platform.commercefacades.order.data.CartData;
 import de.hybris.platform.commercefacades.order.data.OrderEntryData;
 import de.hybris.platform.commercefacades.product.ProductOption;
 import de.hybris.platform.commercefacades.product.data.ProductData;
+import de.hybris.platform.commerceservices.event.AbstractCommerceUserEvent;
 import de.hybris.platform.commerceservices.order.CommerceCartModificationException;
+import de.hybris.platform.core.model.order.OrderModel;
+import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.cronjob.enums.DayOfWeek;
 import de.hybris.platform.order.InvalidCartException;
 import de.hybris.platform.payment.AdapterException;
+import de.hybris.platform.servicelayer.event.EventService;
+import de.hybris.platform.servicelayer.user.UserService;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -57,8 +62,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.enterprisewide.b2badvance.facades.checkout.flow.B2badvanceCheckoutFacade;
+import com.enterprisewide.b2badvance.facades.order.B2BAdvanceOrderDetailsFacade;
 import com.enterprisewide.b2badvanceacceleratoraddon.controllers.B2badvanceacceleratoraddonControllerConstants;
 import com.enterprisewide.b2badvanceacceleratoraddon.forms.PlaceOrderForm;
+import com.gallagher.core.events.GallagherB2BOrderConfirmationEvent;
 
 
 @Controller
@@ -76,6 +83,36 @@ public class SummaryCheckoutStepController extends AbstractCheckoutStepControlle
 	@Resource(name = "checkoutFlowFacade")
 	private B2badvanceCheckoutFacade checkoutFlowFacade;
 
+
+	@Resource(name = "b2badvanceOrderDetailsFacade")
+	private B2BAdvanceOrderDetailsFacade b2badvanceOrderDetailsFacade;
+
+	@Resource(name = "eventService")
+	private EventService eventService;
+
+	@Resource(name = "userService")
+	private UserService userService;
+
+	public UserService getUserService()
+	{
+		return userService;
+	}
+
+	public void setUserService(final UserService userService)
+	{
+		this.userService = userService;
+	}
+
+	public EventService getEventService()
+	{
+		return eventService;
+	}
+
+	public void setEventService(final EventService eventService)
+	{
+		this.eventService = eventService;
+	}
+
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
 	@RequireHardLogIn
 	@Override
@@ -90,7 +127,8 @@ public class SummaryCheckoutStepController extends AbstractCheckoutStepControlle
 			{
 				final String productCode = entry.getProduct().getCode();
 				final ProductData product = getProductFacade().getProductForCodeAndOptions(productCode, Arrays.asList(
-						ProductOption.BASIC, ProductOption.PRICE, ProductOption.VARIANT_MATRIX_BASE, ProductOption.PRICE_RANGE));
+						ProductOption.BASIC, ProductOption.PRICE, ProductOption.VARIANT_MATRIX_BASE, ProductOption.PRICE_RANGE,
+						ProductOption.IMAGES));
 				entry.setProduct(product);
 			}
 		}
@@ -266,14 +304,11 @@ public class SummaryCheckoutStepController extends AbstractCheckoutStepControlle
 		}
 		final CartData cartData = getCheckoutFacade().getCheckoutCart();
 
-		if (!getCheckoutFacade().containsTaxValues())
-		{
-			LOG.error(String.format(
-					"Cart %s does not have any tax values, which means the tax cacluation was not properly done, placement of order can't continue",
-					cartData.getCode()));
-			GlobalMessages.addErrorMessage(model, "checkout.error.tax.missing");
-			invalid = true;
-		}
+		/*
+		 * if (!getCheckoutFacade().containsTaxValues()) { LOG.error(String.format(
+		 * "Cart %s does not have any tax values, which means the tax cacluation was not properly done, placement of order can't continue"
+		 * , cartData.getCode())); GlobalMessages.addErrorMessage(model, "checkout.error.tax.missing"); invalid = true; }
+		 */
 
 		if (!cartData.isCalculated())
 		{
@@ -296,6 +331,16 @@ public class SummaryCheckoutStepController extends AbstractCheckoutStepControlle
 		return invalid;
 	}
 
+	public B2BAdvanceOrderDetailsFacade getB2badvanceOrderDetailsFacade()
+	{
+		return b2badvanceOrderDetailsFacade;
+	}
+
+	public void setB2badvanceOrderDetailsFacade(final B2BAdvanceOrderDetailsFacade b2badvanceOrderDetailsFacade)
+	{
+		this.b2badvanceOrderDetailsFacade = b2badvanceOrderDetailsFacade;
+	}
+
 	protected CheckoutFacade getB2BCheckoutFacade()
 	{
 		return (CheckoutFacade) this.getCheckoutFacade();
@@ -303,6 +348,9 @@ public class SummaryCheckoutStepController extends AbstractCheckoutStepControlle
 
 	protected String redirectToOrderConfirmationPage(final PlaceOrderData placeOrderData, final AbstractOrderData orderData)
 	{
+		final OrderModel model = getB2badvanceOrderDetailsFacade().getB2bOrderService().getOrderByCode(orderData.getCode());
+
+
 		if (Boolean.TRUE.equals(placeOrderData.getNegotiateQuote()))
 		{
 			return REDIRECT_URL_QUOTE_ORDER_CONFIRMATION + orderData.getCode();
@@ -311,7 +359,32 @@ public class SummaryCheckoutStepController extends AbstractCheckoutStepControlle
 		{
 			return REDIRECT_URL_REPLENISHMENT_CONFIRMATION + ((ScheduledCartData) orderData).getJobCode();
 		}
+
+		final CustomerModel currentUser = (CustomerModel) getUserService().getCurrentUser();
+
+		if (model != null)
+		{
+			eventService.publishEvent(initializeEvent(
+					new GallagherB2BOrderConfirmationEvent(model, model.getStore(), model.getSite(), model.getCurrency()),
+					currentUser));
+		}
+
+
 		return REDIRECT_URL_ORDER_CONFIRMATION + orderData.getCode();
+	}
+
+
+
+	/**
+	 * @param orderPlacedEvent
+	 * @param currentUser
+	 * @return
+	 */
+	private AbstractCommerceUserEvent initializeEvent(final GallagherB2BOrderConfirmationEvent orderEvent,
+			final CustomerModel currentUser)
+	{
+		orderEvent.setCustomer(currentUser);
+		return orderEvent;
 	}
 
 	@RequestMapping(value = "/back", method = RequestMethod.GET)
@@ -341,9 +414,8 @@ public class SummaryCheckoutStepController extends AbstractCheckoutStepControlle
 		return checkoutFlowFacade;
 	}
 
-
 	@InitBinder
-	protected void initBinder(final ServletRequestDataBinder binder)
+	protected void initBinder(final ServletRequestDataBinder binder)//preprocess the web request
 	{
 		final Locale currentLocale = getI18nService().getCurrentLocale();
 		final String formatString = getMessageSource().getMessage(TEXT_STORE_DATEFORMAT_KEY, null, DEFAULT_DATEFORMAT,
@@ -352,5 +424,8 @@ public class SummaryCheckoutStepController extends AbstractCheckoutStepControlle
 		final CustomDateEditor editor = new CustomDateEditor(dateFormat, true);
 		binder.registerCustomEditor(Date.class, editor);
 	}
+
+
+
 
 }

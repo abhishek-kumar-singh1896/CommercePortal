@@ -905,7 +905,7 @@ INSERT_UPDATE GallagherRegionRestriction;$contentCV[unique=true];uid[unique=true
 										;						;GallagherCAENRegionRestriction	;Gallagher Canada English Region Restriction;GallagherCAENRegionRestriction	;ca		;en
 										;						;GallagherCAFRRegionRestriction	;Gallagher Canada French Region Restriction	;GallagherCAFRRegionRestriction	;ca		;fr
 										;						;GallagherGlRegionRestriction	;Gallagher Global Region Restriction		;GallagherGlRegionRestriction	;global	;
-										;						;GallagherLATAMRegionRestriction;Gallagher Latin America Region Restriction	;GallagherLATAMRegionRestriction;latam	;
+										;						;GallagherCLRegionRestriction;Gallagher Chile Region Restriction	;GallagherCLRegionRestriction;cl	;
 										;						;GallagherNZRegionRestriction	;Gallagher New Zealand Region Restriction	;GallagherNZRegionRestriction	;nz		;
 										;						;GallagherUSRegionRestriction	;Gallagher United States Region Restriction	;GallagherUSRegionRestriction	;us		;
 										;						;GallagherCAENCARegionRestriction;Gallagher Canada en_CA Region Restriction	;GallagherCAENCARegionRestriction;ca		;en_CA

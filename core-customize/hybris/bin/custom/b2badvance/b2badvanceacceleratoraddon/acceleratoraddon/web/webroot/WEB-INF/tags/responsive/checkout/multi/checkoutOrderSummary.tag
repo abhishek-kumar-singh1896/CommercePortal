@@ -44,11 +44,11 @@
 
 <div class="place-order-form visible-xs">
     <form:form action="${placeOrderUrl}" id="placeOrderForm1" modelAttribute="placeOrderForm">
-             <div class="deliveryInstructions">
+             <%-- <div class="deliveryInstructions">
               <label>Delivery Instructions:</label>
               <textarea name="deliveryInstructions" id="deliveryInstructions">${placeOrderForm.deliveryInstructions}
                                                       </textarea>
-          </div>
+          </div> --%>
     
         <div class="checkbox">
             <label> <form:checkbox id="Terms1" path="termsCheck" />
@@ -59,12 +59,12 @@
         <button id="placeOrder" type="submit" class="btn btn-primary btn-block btn-place-order btn-block btn-lg checkoutSummaryButton" disabled="disabled">
             <spring:theme code="checkout.summary.placeOrder"/>
         </button>
-        <button id="scheduleReplenishment" type="button" class="btn btn-default btn-block scheduleReplenishmentButton checkoutSummaryButton" disabled="disabled">
+        <%-- <button id="scheduleReplenishment" type="button" class="btn btn-default btn-block scheduleReplenishmentButton checkoutSummaryButton" disabled="disabled">
             <spring:theme code="checkout.summary.scheduleReplenishment"/>
         </button>
         <button id="requestQuote" type="button" class="btn btn-default btn-block requestQuoteButton checkoutSummaryButton" disabled="disabled">
             <spring:theme code="checkout.summary.requestQuote"/>
-        </button>
+        </button> --%>
         <b2b-multi-checkout:requestQuote/>
     </form:form>
 </div>

@@ -36,6 +36,8 @@ public class GallagherAuthenticationSuccessHandler implements AuthenticationSucc
 {
 	private static final Logger LOGGER = LoggerFactory.getLogger(GallagherAuthenticationSuccessHandler.class);
 	private static final String FARWORD_SLASH = "/";
+	private static final String ASIA = "Asia";
+	private static final String STHAM = "SthAm";
 
 	private final AuthenticationSuccessHandler fallback;
 	private final UserService userService;
@@ -64,11 +66,23 @@ public class GallagherAuthenticationSuccessHandler implements AuthenticationSucc
 				{
 					if (null != address.getCountry())
 					{
-						final String regionCode = address.getCountry().getRegionCode().getCode();
+						final String regionCode = address.getCountry().getSecurityRegionCode().getCode();
 						String redirectPath;
 						try
 						{
-							final CMSSiteModel site = cmsAdminSiteService.getSiteForId("securityB2B" + regionCode.toUpperCase());
+							CMSSiteModel site;
+							if (regionCode.equalsIgnoreCase("asia"))
+							{
+								site = cmsAdminSiteService.getSiteForId("securityB2B" + ASIA);
+							}
+							else if (regionCode.equalsIgnoreCase("stham"))
+							{
+								site = cmsAdminSiteService.getSiteForId("securityB2B" + STHAM);
+							}
+							else
+							{
+								site = cmsAdminSiteService.getSiteForId("securityB2B" + regionCode.toUpperCase());
+							}
 							redirectPath = site.getRedirectURL();
 						}
 						catch (final UnknownIdentifierException exception)

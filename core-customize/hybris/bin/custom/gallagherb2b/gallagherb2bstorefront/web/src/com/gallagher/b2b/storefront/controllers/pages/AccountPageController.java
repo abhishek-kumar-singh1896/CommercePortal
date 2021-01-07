@@ -29,6 +29,7 @@ import de.hybris.platform.acceleratorstorefrontcommons.forms.validation.ProfileV
 import de.hybris.platform.acceleratorstorefrontcommons.forms.verification.AddressVerificationResultHandler;
 import de.hybris.platform.acceleratorstorefrontcommons.strategy.CustomerConsentDataStrategy;
 import de.hybris.platform.acceleratorstorefrontcommons.util.AddressDataUtil;
+import de.hybris.platform.b2b.model.B2BCustomerModel;
 import de.hybris.platform.b2bacceleratorservices.enums.CheckoutPaymentType;
 import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
 import de.hybris.platform.commercefacades.address.AddressVerificationFacade;
@@ -53,9 +54,12 @@ import de.hybris.platform.commerceservices.enums.SalesApplication;
 import de.hybris.platform.commerceservices.search.pagedata.PageableData;
 import de.hybris.platform.commerceservices.search.pagedata.SearchPageData;
 import de.hybris.platform.commerceservices.util.ResponsiveUtils;
+import de.hybris.platform.core.model.security.PrincipalGroupModel;
+import de.hybris.platform.core.model.user.CustomerModel;
 import de.hybris.platform.servicelayer.exceptions.AmbiguousIdentifierException;
 import de.hybris.platform.servicelayer.exceptions.ModelNotFoundException;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
+import de.hybris.platform.servicelayer.user.UserService;
 import de.hybris.platform.util.Config;
 
 import java.util.ArrayList;
@@ -93,6 +97,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.enterprisewide.b2badvance.facades.order.B2BAdvanceOrderDetailsFacade;
 import com.enterprisewide.b2badvance.order.SalesApplicationData;
 import com.gallagher.b2b.storefront.controllers.ControllerConstants;
+import com.gallagher.facades.order.GallagherOrderFacade;
 import com.gallagher.keycloak.outboundservices.service.GallagherKeycloakService;
 
 
@@ -163,6 +168,9 @@ public class AccountPageController extends AbstractSearchPageController
 	@Resource(name = "orderFacade")
 	private OrderFacade orderFacade;
 
+	@Resource(name = "gallagherOrderFacade")
+	private GallagherOrderFacade gallagherOrderFacade;
+
 	@Resource(name = "b2badvanceOrderDetailsFacade")
 	private B2BAdvanceOrderDetailsFacade b2badvanceOrderDetailsFacade;
 
@@ -210,6 +218,9 @@ public class AccountPageController extends AbstractSearchPageController
 
 	@Resource(name = "gallagherKeycloakService")
 	private GallagherKeycloakService gallagherKeycloakService;
+
+	@Resource(name = "userService")
+	private UserService userService;
 
 	protected PasswordValidator getPasswordValidator()
 	{
@@ -327,9 +338,29 @@ public class AccountPageController extends AbstractSearchPageController
 	final ShowMode showMode, @RequestParam(value = "sort", required = false)
 	final String sortCode, final Model model) throws CMSItemNotFoundException
 	{
-		// Handle paged search results
+		final SearchPageData<OrderHistoryData> searchPageData;
+		boolean isB2BAdminUser = false;
+		final CustomerModel currentCustomer = (CustomerModel) userService.getCurrentUser();
+
+		for (final PrincipalGroupModel principalGroupModel : ((B2BCustomerModel) currentCustomer).getGroups()) {
+			if (principalGroupModel.getUid().equals("b2badmingroup"))
+			{
+				isB2BAdminUser = true;
+			}
+		}
+
+		//Handle paged search results
 		final PageableData pageableData = createPageableData(page, 5, sortCode, showMode);
-		final SearchPageData<OrderHistoryData> searchPageData = orderFacade.getPagedOrderHistoryForStatuses(pageableData);
+
+		if (isB2BAdminUser)
+		{
+			searchPageData = gallagherOrderFacade.getPagedOrderHistoryBUnit(pageableData);
+		}
+		else
+		{
+			searchPageData = orderFacade.getPagedOrderHistoryForStatuses(pageableData);
+		}
+
 		populateModel(model, searchPageData, showMode);
 
 		storeCmsPageInModel(model, getContentPageForLabelOrId(ORDER_HISTORY_CMS_PAGE));
@@ -344,9 +375,31 @@ public class AccountPageController extends AbstractSearchPageController
 	public String order(@PathVariable("orderCode")
 	final String orderCode, final Model model, final RedirectAttributes redirectModel) throws CMSItemNotFoundException
 	{
+		final OrderData orderDetails;
+		boolean isB2BAdminUser = false;
+
 		try
 		{
-			final OrderData orderDetails = orderFacade.getOrderDetailsForCode(orderCode);
+
+			final CustomerModel currentCustomer = (CustomerModel) userService.getCurrentUser();
+
+			for (final PrincipalGroupModel principalGroupModel : ((B2BCustomerModel) currentCustomer).getGroups())
+			{
+				if (principalGroupModel.getUid().equals("b2badmingroup"))
+				{
+					isB2BAdminUser = true;
+				}
+			}
+
+			if (isB2BAdminUser)
+			{
+				orderDetails = gallagherOrderFacade.getOrderDetailsForCodeForAdmin(orderCode);
+			}
+			else
+			{
+				orderDetails = orderFacade.getOrderDetailsForCode(orderCode);
+			}
+
 			model.addAttribute("orderData", orderDetails);
 
 			final List<Breadcrumb> breadcrumbs = accountBreadcrumbBuilder.getBreadcrumbs(null);
@@ -859,7 +912,7 @@ public class AccountPageController extends AbstractSearchPageController
 		GlobalMessages.addFlashMessage(redirectModel, GlobalMessages.CONF_MESSAGES_HOLDER, "account.confirmation.address.added",
 				null);
 
-		return REDIRECT_TO_EDIT_ADDRESS_PAGE + newAddress.getId();
+		return REDIRECT_TO_ADDRESS_BOOK_PAGE;
 	}
 
 	protected void setUpAddressFormAfterError(final AddressForm addressForm, final Model model)

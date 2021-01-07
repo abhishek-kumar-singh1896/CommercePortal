@@ -135,6 +135,9 @@ INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;pa
 ;InvoiceNavNode;;InvoiceNavNode;MyAccountNavNode;;InvoiceNavNode
 ;OrderTemplatesNavNode;;OrderTemplatesNavNode;MyAccountNavNode;;OrderTemplatesNavNode
 
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
+;BulkOrderNavNode;;Bulk Order;B2BMyAccountNavNode;;BulkOrderNavNode
+
 ## entries of the above navigation nodes ##
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(&linkRef);
 ;ProductRegistrationNavNodeEntry;;ProductRegistrationNavNodeEntry;ProductRegistrationNavNode;ProductRegistrationLink;
@@ -152,6 +155,7 @@ INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;n
 ;BillingHistoryNavNodeEntry;;BillingHistoryNavNodeEntry;BillingHistoryNavNode;BillingHistoryLink;
 ;InvoiceNavNodeEntry;;InvoiceNavNodeEntry;InvoiceNavNode;InvoicesLink
 ;OrderTemplatesNavNodeEntry;;OrderTemplatesNavNodeEntry;OrderTemplatesNavNode;OrderTemplatesLink
+;BulkOrderNavNodeEntry;;BulkOrderNavigationNodeEntry;BulkOrderNavNode;BulkOrderCategoryLink;
 
 ## links of the above navigattion entries ##
 INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;target(code)[default='sameWindow'];visible[default=true]
@@ -171,6 +175,17 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;PaymentHistoryLink;PaymentHistoryLink;/my-account/paymentHistory;PaymentHistoryLink;
 ;;InvoicesLink;InvoicesLink;/my-account/invoices;InvoicesLink;
 
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;linkName;url;&linkRef;target(code)[default='sameWindow'];visible[default=true];restrictions(uid,$contentCV);styleAttributes;onlyOneRestrictionMustApply[default=false]
+;;BulkOrderCategoryLink;BulkOrderCategoryLink;Bulk Order;/bulkOrderForm;BulkOrderCategoyLink;;;GallagherSiteTransactionRestriction,MyAccountLinkCustomerGroupRestriction;bulkOrderForm
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV);onlyOneRestrictionMustApply[default=false]
+;;OrderHistoryLink;GallagherSiteTransactionRestriction,OrderhistoryUserGroupRestriction;
+
+INSERT_UPDATE MiniCartComponent;$contentCV[unique=true];uid[unique=true];restrictions(uid,$contentCV);onlyOneRestrictionMustApply[default=false]
+;;MiniCart;GallagherSiteTransactionRestriction,MyAccountAddToCartUserRestriction;
+
+INSERT_UPDATE CMSUserGroupRestriction;$contentCV[unique=true];uid[unique=true];userGroups(uid);includeSubgroups
+;;SupportTicketUserGroupRestriction;b2bcustomergroup,b2btechniciangroup;true
 
 ## level 3. children of Order Tools ##
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
@@ -397,7 +412,7 @@ INSERT_UPDATE NavigationComponent;$contentCV[unique=true];uid[unique=true];name;
 ;;OrderToolsComponent;Order Tools Component;nav-order-tools;OrderToolsComponent;OrderToolsNavNode;GallagherSiteTransactionRestriction
 
 INSERT_UPDATE MiniCartComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;totalDisplay(code);shownProductCount;lightboxBannerComponent(&componentRef);restrictions(uid,$contentCV)
-;;MiniCart;Mini Cart;MiniCart;SUBTOTAL;3;LightboxHomeDeliveryBannerComponent;GallagherSiteTransactionRestriction
+;;MiniCart;Mini Cart;MiniCart;SUBTOTAL;3;;GallagherSiteTransactionRestriction
 
 INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink
 ;;LightboxHomeDeliveryBannerComponent;Lightbox Home Delivery Banner Component;LightboxHomeDeliveryBannerComponent;
@@ -413,6 +428,7 @@ INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];name;
 ;;ProductReviewsTabComponent;Product Reviews Tab;/WEB-INF/views/responsive/pages/product/productReviewsTab.jsp;;ProductReviewsTabComponent
 ;;ProductDocumentTabComponent;Product Document Tab;/WEB-INF/views/responsive/pages/product/productDocumentTab.jsp;;ProductDocumentTabComponent
 ;;ProductVideosTabComponent;Product Videos Tab;/WEB-INF/views/responsive/pages/product/productVideosTab.jsp;;ProductVideosTabComponent
+
 
 ##INSERT_UPDATE CMSTabParagraphComponent;$contentCV[unique=true];uid[unique=true];name;visible;&componentRef
 ###;;deliveryTab;Delivery tab;true;deliveryTab
@@ -654,7 +670,7 @@ INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];positi
 ;;BottomContentSlotForCartPage;BottomContentSlot;;BottomContentSlot-cartPage
 
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
-;;TopContent-cartPage;Top Slot for Cart Page;true;NextDayDeliveryBanner120,CartComponent
+;;TopContent-cartPage;Top Slot for Cart Page;true;CartComponent
 ;;EmptyCartMiddleContent-cartPage;Empty Cart Middle Slot for Cart Page;true;EmptyCartParagraphComponent
 ;;CenterLeftContentSlot-cartPage;Center Left Content Slot for Cart Page;true;PromotionsComponent,PotentialPromotionsComponent
 ;;CenterRightContentSlot-cartPage;Center Right Content Slot for Cart Page;true;CartTotalsComponent
@@ -1164,7 +1180,7 @@ INSERT_UPDATE CMSInverseRestriction;$contentCV[unique=true];name;originalRestric
 ;;Logged in User;anonymousUserRestriction;loggedInUser;QuickOrderLink
 
 INSERT_UPDATE CMSUserGroupRestriction;$contentCV[unique=true];uid[unique=true];name;userGroups(uid);includeSubgroups;components(&linkRef)
-;;MyAccountLinkCustomerGroupRestriction;My Account Link Customer Group Restriction;b2bcustomergroup;true;AddressBookLink,PaymentDetailsLink,MyQuotesLink,OrderHistoryLink,BillingHistoryLink,PaymentHistoryLink,MyReplenishmentOrdersLink
+;;MyAccountLinkCustomerGroupRestriction;My Account Link Customer Group Restriction;b2bcustomergroup;true;AddressBookLink,PaymentDetailsLink,MyQuotesLink,BillingHistoryLink,PaymentHistoryLink,MyReplenishmentOrdersLink
 ;;MyAccountLinkApproverGroupRestriction;My Account Link Approver Group Restriction;b2bapprovergroup;true;ApprovalDashboardLink
 ###### Restriction End ######
 
@@ -1173,6 +1189,9 @@ INSERT_UPDATE CMSUserGroupRestriction;$contentCV[unique=true];uid[unique=true];n
 ## site logo ##
 INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/svg+xml'];altText;folder(qualifier)[default='images']
 ;;/images/theme/logo-gallagher.svg;logo-gallagher.svg;$siteResource/images/theme/logo-gallagher.svg;image/svg+xml;GALLAGHER SECURITY;
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];mime;realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];folder(qualifier)[default='documents']
+;;bulkOrderTemplate;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;BulkOrderTemplate.xlsx;$jarResourceCms/documents/BulkOrderTemplate.xlsx
 
 INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];mime;realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true];folder(qualifier)[default='images']
 ;;addEditAddressPagePreview;text/png;AddEditAddressPage.png;$jarResourceCms/preview-images/securityB2B/AddEditAddressPage.png
@@ -1639,7 +1658,7 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;AccountSupportTicketHistoryLink;AccountSupportTicketHistoryLink;/my-account/support-tickets;AccountSupportTicketHistoryLink;AccountSupportTicketHistoryLink;;;;
 
 INSERT_UPDATE CMSUserGroupRestriction;$contentCV[unique=true];uid[unique=true];name;userGroups(uid);includeSubgroups;components(uid,$contentCV)
-;;SupportTicketUserGroupRestriction;Account Support Ticket User Group Restriction;b2bcustomergroup,b2badmingroup;true;AccountSupportTicketHistoryLink
+;;SupportTicketUserGroupRestriction;Account Support Ticket User Group Restriction;b2bcustomergroup,b2btechniciangroup;true;AccountSupportTicketHistoryLink
 ### customerticketingaddon END
 
 
@@ -2151,20 +2170,35 @@ INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url
 ;;nzB2BLink;B2B New Zealand Link;$websiteBaseURL/security/nz/en_nz/?clear=true; New Zealand;nzB2BLink;nzB2BLink
 ;;auB2BLink;B2B Australia Link;$websiteBaseURL/security/au/en_au/?clear=true; Australia;auB2BLink;auB2BLink
 ;;globalB2BLink;B2B Global Link;$websiteBaseURL/security/global/en/?clear=true; Global;globalB2BLink;globalB2BLink
+;;usB2BLink;B2B US Link;$websiteBaseURL/security/us/en/?clear=true; United States;usB2BLink;usB2BLink
+;;caB2BLink;B2B CA Link;$websiteBaseURL/security/ca/en/?clear=true; Canada;caB2BLink;caB2BLink
+;;ukB2BLink;B2B UK Link;$websiteBaseURL/security/uk/en/?clear=true; United Kingdom/Europe;ukB2BLink;ukB2BLink
+;;asiaB2BLink;B2B Asia Link;$websiteBaseURL/security/asia/en/?clear=true; Asia;asiaB2BLink;asiaB2BLink
+;;sthamB2BLink;B2B South America Link;$websiteBaseURL/security/stham/en/?clear=true; South America;sthamB2BLink;sthamB2BLink
 
 INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV);
 ;nzB2BNavEntry;;B2B New Zealand navigation entry;nzB2BNavNode;nzB2BLink
 ;auB2BNavEntry;;B2B Australia navigation entry;auB2BNavNode;auB2BLink
 ;globalB2BNavEntry;;B2B Global navigation entry;globalB2BNavNode;globalB2BLink
+;usB2BNavEntry;;B2B US navigation entry;usB2BNavNode;usB2BLink
+;caB2BNavEntry;;B2B CA navigation entry;caB2BNavNode;caB2BLink
+;ukB2BNavEntry;;B2B UK navigation entry;ukB2BNavNode;ukB2BLink
+;asiaB2BNavEntry;;B2B Asia navigation entry;asiaB2BNavNode;asiaB2BLink
+;sthamB2BNavEntry;;B2B South America navigation entry;sthamB2BNavNode;sthamB2BLink
 
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;&nodeRef;children(uid,$contentCV);links(&linkRef);
 ;nzB2BNavNode;;New Zealand navigation node;nzB2BNavNode
 ;auB2BNavNode;;Australia navigation node;auB2BNavNode
 ;globalB2BNavNode;;Global navigation node;globalB2BNavNode
+;usB2BNavNode;;US navigation node;usB2BNavNode
+;caB2BNavNode;;CA navigation node;caB2BNavNode
+;ukB2BNavNode;;UK navigation node;ukB2BNavNode
+;asiaB2BNavNode;;Asia navigation node;asiaB2BNavNode
+;sthamB2BNavNode;;South America navigation node;sthamB2BNavNode
 
 INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&componentRef);&nodeRef;children(uid, $contentCV)
-;B2BcountryDropdownNavNod;;Country drop down;root;;B2BcountryDropdownNavNod;nzB2BNavNode,auB2BNavNode,globalB2BNavNode
+;B2BcountryDropdownNavNod;;Country drop down;root;;B2BcountryDropdownNavNod;nzB2BNavNode,auB2BNavNode,usB2BNavNode,caB2BNavNode,ukB2BNavNode,asiaB2BNavNode,sthamB2BNavNode,globalB2BNavNode
 
 INSERT_UPDATE GallagherFooterNavigationComponent;$contentCV[unique=true];uid[unique=true];countryDropdownLinkNagivationNode(&nodeRef);&componentRef
 ;;B2BGallagherFooterNavigationComponent;B2BcountryDropdownNavNod;B2BGallagherFooterNavigationComponent
@@ -2541,8 +2575,48 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 ############################## B2B Header user dropdown ends ##############################
 
 
+#### Price on Application Component for Product Details Page ####
 
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;linkname;&componentRef
+;;priceOnApplicationLinkComponent;priceOnApplicationLinkComponent;"/";"Price on Application";priceOnApplicationLinkComponent
 
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;POA;;;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;priceOnAppSlot-productDetailsPage;Price on Application Slot for Product Details Page;true;priceOnApplicationLinkComponent
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;POA-ProductDetailsPageTemplate;POA;;priceOnAppSlot-productDetailsPage;true
+#### Price on Application Component for Product Details Page ####
+
+##### Base Store Delivery Mode - free-standard-shipping #####
+
+INSERT_UPDATE BaseStore2DeliveryModeRel;source(uid)[unique=true];target(code)[unique=true]
+;securityB2BSthAm;free-standard-shipping
+
+INSERT_UPDATE BaseStore2DeliveryModeRel;source(uid)[unique=true];target(code)[unique=true]
+;securityB2BAsia;free-standard-shipping
+
+INSERT_UPDATE BaseStore2DeliveryModeRel;source(uid)[unique=true];target(code)[unique=true]
+;securityB2BCA;free-standard-shipping
+
+INSERT_UPDATE BaseStore2DeliveryModeRel;source(uid)[unique=true];target(code)[unique=true]
+;securityB2BUK;free-standard-shipping
+
+INSERT_UPDATE BaseStore2DeliveryModeRel;source(uid)[unique=true];target(code)[unique=true]
+;securityB2BUS;free-standard-shipping
+
+INSERT_UPDATE BaseStore2DeliveryModeRel;source(uid)[unique=true];target(code)[unique=true]
+;securityB2BGlobal;free-standard-shipping
+
+INSERT_UPDATE BaseStore2DeliveryModeRel;source(uid)[unique=true];target(code)[unique=true]
+;securityB2BAU;free-standard-shipping
+
+INSERT_UPDATE BaseStore2DeliveryModeRel;source(uid)[unique=true];target(code)[unique=true]
+;securityB2BNZ;free-standard-shipping
+
+##### Base Store Delivery Mode - free-standard-shipping #####
 
 
 

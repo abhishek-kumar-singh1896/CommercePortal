@@ -2,7 +2,8 @@ ACC.productDetail = {
 
     _autoload: [
         "initPageEvents",
-        "bindVariantOptions"
+        "bindVariantOptions",
+        ["bindVideoPlayPause", $(".with-video").length != 0]
     ],
 
 
@@ -74,6 +75,7 @@ ACC.productDetail = {
     },
 
     initPageEvents: function () {
+    	
         $(document).on("click", '.js-qty-selector .js-qty-selector-minus', function () {
             ACC.productDetail.checkQtySelector(this, "minus");
         })
@@ -131,6 +133,22 @@ ACC.productDetail = {
         ACC.productDetail.bindCurrentType();
     },
 
+	bindVideoPlayPause : function() {
+		window.onload = function() {
+			setTimeout(function() {
+				$('.slide video').bind('play pause', function(e) {
+					var currentVideo = $(this)[0];
+					if (currentVideo.paused === true) {
+						$(currentVideo.closest('.slide')).find('.overlayText').show();
+					} else {
+						$(currentVideo.closest('.slide')).find('.overlayText').hide();
+					}
+				});
+			}, 1000);
+
+		};
+	},
+	
     bindCurrentStyle: function () {
         var currentStyle = $("#currentStyleValue").data("styleValue");
         var styleSpan = $(".styleName");

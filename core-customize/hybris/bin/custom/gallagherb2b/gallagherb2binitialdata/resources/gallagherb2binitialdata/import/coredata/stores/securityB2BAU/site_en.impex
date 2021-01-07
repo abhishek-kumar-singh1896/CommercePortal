@@ -11,10 +11,10 @@
 #
 # Import the CMS Site configuration for the SecurityB2B store
 #
-
+ 
 # Language
 $lang=en
-
+ 
 # Create CMS Site
-UPDATE CMSSite;uid[unique=true];name[lang=$lang];locale[lang=$lang]
- ;securityB2BAU;"Security B2B AU Site";en_AU
+UPDATE CMSSite ; uid[unique=true] ; name[lang=$lang]                            ; locale[lang=$lang] 
+               ; securityB2BAU    ; "Products | Gallagher Security B2B AU Site" ; en_AU              

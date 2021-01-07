@@ -8,24 +8,32 @@
 
 <ul class="checkout-order-summary-list">
     <li class="checkout-order-summary-list-heading">
-        <div class="title">
+        <%-- <div class="title">
             <spring:theme code="checkout.multi.payment"/>
         </div>
-        <div class="address">
-            <spring:theme code="text.company.user.${cartData.b2bCustomerData.titleCode}.name" text="N/A"/>&nbsp;${fn:escapeXml(cartData.b2bCustomerData.firstName)}&nbsp;${fn:escapeXml(cartData.b2bCustomerData.lastName)}
-            <c:if test="${(not empty cartData.costCenter) and (not empty cartData.costCenter.code)}">
-                <br>
-                <spring:theme code="checkout.multi.costCenter.label" htmlEscape="false"/>:&nbsp;${fn:escapeXml(cartData.costCenter.name)}
+        <div class="address"> --%>
+            <%-- <spring:theme code="text.company.user.${cartData.b2bCustomerData.titleCode}.name" text="N/A"/>&nbsp;${fn:escapeXml(cartData.b2bCustomerData.firstName)}&nbsp;${fn:escapeXml(cartData.b2bCustomerData.lastName)} --%>
+            <c:if test="${(not empty cartData.b2bUnit) and (not empty cartData.b2bUnit.name)}">
+                <!-- <br> -->
+                <b><spring:theme code="checkout.multi.costCenter.label" htmlEscape="false"/></b>&nbsp;:&nbsp;${fn:escapeXml(cartData.b2bUnit.name)}
             </c:if>
             <br>
             <c:choose>
                 <c:when test="${not empty cartData.purchaseOrderNumber}">
-                    <spring:theme code="checkout.multi.purchaseOrderNumber.label" htmlEscape="false"/>:&nbsp;${fn:escapeXml(cartData.purchaseOrderNumber)}
+                    <b><spring:theme code="checkout.multi.po.label" htmlEscape="false"/></b>&nbsp;:&nbsp;${fn:escapeXml(cartData.purchaseOrderNumber)}
                 </c:when>
                 <c:otherwise>
-                    <spring:theme code="checkout.multi.purchaseOrderNumber.label" htmlEscape="false"/>:&nbsp;-
+                    <spring:theme code="checkout.multi.po.label" htmlEscape="false"/>:&nbsp;-
                 </c:otherwise>
             </c:choose>
-        </div>
+            <br>
+            <c:if test="${not empty cartData.requiredDeliveryDate}">
+                    <b><spring:theme code="checkout.multi.requiredDeliveryDate.label" htmlEscape="false"/></b>&nbsp;:&nbsp;${fn:escapeXml(cartData.requiredDeliveryDate)}
+            </c:if>
+            <br>
+            <c:if test="${not empty cartData.deliveryInstructions}">
+                    <b><spring:theme code="checkout.multi.comment.label" htmlEscape="false"/></b>&nbsp;:&nbsp;${fn:escapeXml(cartData.deliveryInstructions)}
+            </c:if>
+        <!-- </div> -->
     </li>
 </ul>

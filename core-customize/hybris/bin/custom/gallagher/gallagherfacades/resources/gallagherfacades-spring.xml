@@ -167,6 +167,7 @@
 		parent="defaultProductPopulator">
 		<property name="productPricePopulator" ref="productPricePopulator" />
 		<property name="productGalleryImagesPopulator" ref="productGalleryImagesPopulator" />
+		<property name="productDiscountPopulator" ref="gallagherProductDiscountPopulator"/>
 	</bean>
 
 	<alias name="gallagherCustomerFacade" alias="customerFacade" />
@@ -257,6 +258,7 @@
 		<property name="baseSiteService" ref="baseSiteService" />
 		<property name="baseStoreService" ref="baseStoreService" />
 		<property name="commonI18NService" ref="commonI18NService" />
+		<property name="gallagherMindTouchService" ref="gallagherMindTouchService"/>
 	</bean>
 	
 	<alias name="gallagherCmsLinkComponentValidator" alias="cmsLinkComponentValidator"/>
@@ -297,9 +299,14 @@
 		<property name="remove" ref="groupOrderEntryPopulator"/>
 	</bean>
 	
+	<alias name="gallagherSearchResponseFacetsPopulator" alias="commerceSearchResponseFacetsPopulator" />
+	<bean id="gallagherSearchResponseFacetsPopulator"
+		class="com.gallagher.facades.search.solrfacetsearch.populators.GallagherSearchResponseFacetsPopulator" parent="defaultCommerceSearchResponseFacetsPopulator" />
+
 	<alias name="gallagherCartFacade" alias="gglCartFacade" />
 	<bean id="gallagherCartFacade" class="com.gallagher.facades.order.impl.GallagherCartFacade"
 		parent="cartFacade" />
+
     <bean id="gallagherTicketQuotesAssociationStrategy" class="com.gallagher.facades.customerticket.strategies.GallagherTicketQuotesAssociationStrategy">
     	<property name="ticketAssociationCoverter" ref="ticketAssociationCoverter"/>
     </bean>    
@@ -314,5 +321,79 @@
 			</list>
 		</property>			
 	</bean>    	
+
+	<bean id="gallagherOrderNotificationEmailContext" 
+	class="com.gallagher.facades.process.email.context.GallagherOrderNotificationEmailContext"
+		parent="orderNotificationEmailContext" >
+	<property name="orderConverter" ref="orderConverter"/>
+	</bean>
+	<bean id="gallagherCheckoutDeliveryInstructionFacadeImpl" class="com.gallagher.facades.checkout.flow.impl.GallagherCheckoutDeliveryInstructionFacadeImpl"
+		parent="defaultCheckoutFacade">
+	</bean>
+	
+	<alias name="gallagherDefaultB2BCheckoutFacade" alias="b2bCheckoutFacade" />
+	<bean id="gallagherDefaultB2BCheckoutFacade" parent="defaultB2BCheckoutFacade"
+		class="com.gallagher.facades.checkout.flow.impl.GallagherDefaultB2BCheckoutFacade">
+		<property name="b2BUnitService" ref="b2bUnitService"/>
+	</bean>
+		
+	  <bean id="gallagherB2BOrderPopulator" parent="b2bOrderPopulator"
+		class="com.gallagher.facades.order.converters.populator.GallagherB2BOrderPopulator">
+		<property name="b2BUnitConverter" ref="b2bUnitConverter" />
+		<property name="b2bCustomerConverter" ref="customerConverter"/>
+	</bean> 
+	  	
+	<bean id="gallagherB2BCartPopulator" class="com.gallagher.facades.order.converters.populator.GallagherB2BCartPopulator" parent="b2bCartPopulator">
+     <property name="b2BUnitConverter" ref="b2bUnitConverter" />		
+      </bean>
+      
+      <bean parent="modifyPopulatorList">
+		<property name="list" ref="cartConverter"/>
+		<property name="add" ref="gallagherB2BCartPopulator"/>
+	</bean>	
+	
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="orderConverter"/>
+		<property name="add" ref="gallagherB2BOrderPopulator"/>
+	</bean>
+	
+	<bean id="gallagherCustomerUpdateEmailContext"
+	      class="com.gallagher.facades.process.email.context.GallagherCustomerUpdateEmailContext"
+	         parent="customerEmailContext" scope="prototype">
+    </bean>
+
+   	<alias name="gallagherIndexedPropertyPopulator" alias="indexedPropertyPopulator" />
+	<bean id="gallagherIndexedPropertyPopulator" class="com.gallagher.facades.search.solrfacetsearch.populators.GallagherIndexedPropertyPopulator"
+		parent="defaultIndexedPropertyPopulator" />
+
+    <bean id="gallagherProductDiscountPopulator" class="com.gallagher.facades.product.converters.populator.GallagherProductDiscountPopulator">
+     <property name="discountService" ref="discountService"/>
+     <property name="sessionService" ref="sessionService"/>
+    </bean>
+    
+	<alias name="gallagherProductRecommendationsPopulator" alias="productRecommendationsPopulator" />
+	<bean id="gallagherProductRecommendationsPopulator"
+		class="com.gallagher.facades.product.converters.populator.GallagherProductRecommendationsPopulator">
+		<property name="productConverter" ref="productConverter"/>
+		<property name="categoryConverter" ref="categoryConverter"/>
+	</bean>
+		
+	<alias name="gallagherB2CCartPopulator" alias="cartPopulator"/>
+    <bean id="gallagherB2CCartPopulator" class="com.gallagher.facades.order.converters.populator.GallagherB2CCartPopulator"
+          parent="defaultCartPopulator">
+    </bean>
+	
+    <bean parent="modifyPopulatorList">
+        <property name="list" ref="orderEntryProductConverter"/>
+        <property name="add" ref="productRecommendationsPopulator"/>
+    </bean>
+	
+	<alias name="gallagherOrderFacade" alias="orderFacade"/>
+	<bean id="gallagherOrderFacade" class="com.gallagher.facades.order.impl.GallagherOrderFacadeImpl" parent="defaultOrderFacade" />
+ 	
+	<alias name="gallagherCommerceAddToCartStrategy" alias="commerceAddToCartStrategy"/>
+	<bean id="gallagherCommerceAddToCartStrategy" class="com.gallagher.facades.order.impl.GallagherCommerceAddToCartStrategy"
+		parent="defaultCommerceAddToCartStrategy" >
+	</bean>
 	
 </beans>

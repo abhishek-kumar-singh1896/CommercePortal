@@ -1,0 +1,7 @@
+                                    
+INSERT_UPDATE IntegrationObjectItemAttribute ; integrationObjectItem(integrationObject(code), code)[unique = true] ; attributeName[unique = true] ; attributeDescriptor(enclosingType(code), qualifier) ; returnIntegrationObjectItem(integrationObject(code), code) ; unique[default = false] ; autoCreate[default = false] 
+                                             ; OutboundC4cCustomer:Customer                                        ; uid                          ; Customer:emailID                                    ;                                                            ; true                    ;                             
+                                             
+INSERT_UPDATE IntegrationObjectItemAttribute ; integrationObjectItem(integrationObject(code), code)[unique = true] ; attributeName[unique = true] ; attributeDescriptor(enclosingType(code), qualifier) ; returnIntegrationObjectItem(integrationObject(code), code) ; unique[default = false] 
+                                             ; OutboundB2BCustomer:SAPCpiOutboundB2BContact                        ; uid                          ; SAPCpiOutboundB2BContact:emailID                    ;                                                            ; true                    
+                                             

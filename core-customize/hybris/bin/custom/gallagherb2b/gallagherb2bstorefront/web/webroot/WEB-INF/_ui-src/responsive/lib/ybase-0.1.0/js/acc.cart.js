@@ -7,9 +7,35 @@ ACC.cart = {
         "bindMultiDEntryRemoval",
         "bindMultidCartProduct",
         ["bindApplyVoucher", $("#js-voucher-apply-btn").length != 0],
-        ["bindToReleaseVoucher", $("#js-applied-vouchers").length != 0]
+        ["bindToReleaseVoucher", $("#js-applied-vouchers").length != 0],
+        "showRecommendationsForProducts",
+        "setCookie",
+        "getCookie"
     ],
-
+  
+    setCookie: function(cname, cvalue, exdays) {
+	  var d = new Date();
+	  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+	  var expires = "expires="+ d.toUTCString();
+	  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+	},
+	
+	getCookie: function(cname) {
+	  var name = cname + "=";
+	  var decodedCookie = decodeURIComponent(document.cookie);
+	  var ca = decodedCookie.split(';');
+	  for(var i = 0; i <ca.length; i++) {
+	    var c = ca[i];
+	    while (c.charAt(0) == ' ') {
+	      c = c.substring(1);
+	    }
+	    if (c.indexOf(name) == 0) {
+	      return c.substring(name.length, c.length);
+	    }
+	  }
+	  return "";
+	},
+	
     bindHelp: function () {
         $(document).on("click", ".js-cart-help", function (e) {
             e.preventDefault();
@@ -34,6 +60,49 @@ ACC.cart = {
             ACC.cart.populateAndShowEditableGrid(this, event);
         });
     },
+    
+    showRecommendationsForProducts : function() {
+
+	    $(document).ready(function(){   
+	    	var showPopup = $("#showRecommendationsForProducts").val();
+			if (showPopup == "true" && (!ACC.cart.getCookie("ShowRecommendations") || ACC.cart.getCookie("ShowRecommendations") != $("ul.item__list__cart").children("li.item__list--item").length)) {
+		    	$.ajax({
+					type : "GET",
+					url : ACC.config.encodedContextPath + "/cart/getRecommendedProducts",
+					success : function(data) {
+						ACC.cart.setCookie("ShowRecommendations",$("ul.item__list__cart").children("li.item__list--item").length,1);
+						if(!data || data!=null || data!=undefined){
+							$('#recommendationsModal').hide();
+							$('#recommendationsModal').append(data);
+							console.log(data);
+							$('.flexslider').flexslider({
+				    		    animation: "slide",
+				    		    animationLoop: true,
+				    		    slideshow: false,
+				    		    itemWidth: 200,
+				    		    itemMargin: 10,
+				    		    minItems: 1,
+				    		    maxItems: 4,   
+				    		    start: function(slider){
+				    		    	$('#recommendationsModal').show();
+									$('#recommendations-overlay').show();
+									$('.flexslider').resize();
+	    						}
+				    		  });
+							$('.close').click(function(){
+					    	 $('#recommendationsModal').empty();
+	       						 $('.modaldata').hide();
+	    					 });
+						}	
+					},
+					error : function(data) {
+						console.log('An error occurred.');
+						console.log(data);
+					},
+				});
+				}
+	    	});
+	},
 
     bindMultiDEntryRemoval: function () {
         $(document).on("click", '.js-submit-remove-product-multi-d', function () {

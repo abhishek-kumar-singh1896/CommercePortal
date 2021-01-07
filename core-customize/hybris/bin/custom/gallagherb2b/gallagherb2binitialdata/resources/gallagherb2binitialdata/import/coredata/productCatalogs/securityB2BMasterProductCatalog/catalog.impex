@@ -15,7 +15,7 @@
 $classificationCatalog=AMB2CClassification
 $productCatalog=securityB2BMasterProductCatalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
-$languages=en,en_AU,en_NZ
+$languages=en,en_AU,en_NZ,en_UK,en_AS,en_ST,en_CA,en_US
 $lang=en,en_AU,en_NZ
  
 # Product catalog

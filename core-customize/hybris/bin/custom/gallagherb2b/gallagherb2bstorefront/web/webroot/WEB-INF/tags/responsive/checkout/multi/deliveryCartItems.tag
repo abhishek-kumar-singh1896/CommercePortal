@@ -147,11 +147,11 @@
 					</c:if>
 					<common:configurationInfos entry="${entry}"/>
 				</div>
-				<c:if test="${entry.product.multidimensional}" >
+				<%-- <c:if test="${entry.product.multidimensional}" >
 					<a href="#" id="QuantityProductToggle" data-index="${loop.index}" class="showQuantityProductOverlay updateQuantityProduct-toggle">
 						<span><spring:theme code="order.product.seeDetails"/></span>
 					</a>
-				</c:if>
+				</c:if> --%>
 				
 				<spring:url value="/checkout/multi/getReadOnlyProductVariantMatrix" var="targetUrl"/>
 				<grid:gridWrapper entry="${entry}" index="${loop.index}" styleClass="display-none"

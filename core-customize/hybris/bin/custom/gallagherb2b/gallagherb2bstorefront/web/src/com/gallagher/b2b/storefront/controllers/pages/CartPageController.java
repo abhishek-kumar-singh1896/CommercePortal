@@ -38,6 +38,7 @@ import de.hybris.platform.commercefacades.order.data.CommerceSaveCartResultData;
 import de.hybris.platform.commercefacades.order.data.OrderEntryData;
 import de.hybris.platform.commercefacades.product.ProductFacade;
 import de.hybris.platform.commercefacades.product.ProductOption;
+import de.hybris.platform.commercefacades.product.data.CategoryData;
 import de.hybris.platform.commercefacades.product.data.ProductData;
 import de.hybris.platform.commercefacades.quote.data.QuoteData;
 import de.hybris.platform.commercefacades.voucher.VoucherFacade;
@@ -54,8 +55,10 @@ import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -392,34 +395,37 @@ public class CartPageController extends AbstractCartPageController
 				// Success in removing entry
 				GlobalMessages.addFlashMessage(redirectModel, GlobalMessages.CONF_MESSAGES_HOLDER, "basket.page.message.remove");
 			}
-			else
-			{
-				// Success in update quantity
-				GlobalMessages.addFlashMessage(redirectModel, GlobalMessages.CONF_MESSAGES_HOLDER, "basket.page.message.update");
-			}
+			/*
+			 * else { // Success in update quantity GlobalMessages.addFlashMessage(redirectModel,
+			 * GlobalMessages.CONF_MESSAGES_HOLDER, "basket.page.message.update"); }
+			 */
 		}
 		else if (cartModification.getQuantity() > 0)
 		{
 			// Less than successful
 			GlobalMessages.addFlashMessage(redirectModel, GlobalMessages.ERROR_MESSAGES_HOLDER,
 					"basket.page.message.update.reducedNumberOfItemsAdded.lowStock", new Object[]
-					{ XSSFilterUtil.filter(cartModification.getEntry().getProduct().getName()), Long.valueOf(cartModification.getQuantity()), form.getQuantity(), request.getRequestURL().append(cartModification.getEntry().getProduct().getUrl()) });
+					{ XSSFilterUtil.filter(cartModification.getEntry().getProduct().getName()),
+							Long.valueOf(cartModification.getQuantity()), form.getQuantity(),
+							request.getRequestURL().append(cartModification.getEntry().getProduct().getUrl()) });
 		}
 		else
 		{
 			// No more stock available
 			GlobalMessages.addFlashMessage(redirectModel, GlobalMessages.ERROR_MESSAGES_HOLDER,
 					"basket.page.message.update.reducedNumberOfItemsAdded.noStock", new Object[]
-					{ XSSFilterUtil.filter(cartModification.getEntry().getProduct().getName()), request.getRequestURL().append(cartModification.getEntry().getProduct().getUrl()) });
+					{ XSSFilterUtil.filter(cartModification.getEntry().getProduct().getName()),
+							request.getRequestURL().append(cartModification.getEntry().getProduct().getUrl()) });
 		}
 	}
 
 	@SuppressWarnings("boxing")
 	@ResponseBody
 	@RequestMapping(value = "/updateMultiD", method = RequestMethod.POST)
-	public CartData updateCartQuantitiesMultiD(@RequestParam("entryNumber") final Integer entryNumber,
-			@RequestParam("productCode") final String productCode, final Model model, @Valid final UpdateQuantityForm form,
-			final BindingResult bindingResult)
+	public CartData updateCartQuantitiesMultiD(@RequestParam("entryNumber")
+	final Integer entryNumber, @RequestParam("productCode")
+	final String productCode, final Model model, @Valid
+	final UpdateQuantityForm form, final BindingResult bindingResult)
 	{
 		if (bindingResult.hasErrors())
 		{
@@ -654,11 +660,73 @@ public class CartPageController extends AbstractCartPageController
 			return getCartPageRedirectUrl();
 		}
 	}
+	
+
+	@RequestMapping(value = "/getRecommendedProducts", method = RequestMethod.GET)
+	public String getProductRecommendations(final Model model)
+	{
+		final Set<ProductData> recommendedProducts = new HashSet<ProductData>();
+		final Set<CategoryData> recommendedCategories = new HashSet<CategoryData>();
+		final CartData cartData = getCartFacade().getSessionCartWithEntryOrdering(false);
+
+		if (cartData.getEntries() != null && !cartData.getEntries().isEmpty())
+		{
+			for (final OrderEntryData entry : cartData.getEntries())
+			{
+				if (null != entry.getProduct().getRecommendedCategories() && !entry.getProduct().getRecommendedCategories().isEmpty())
+				{
+					recommendedCategories.addAll(entry.getProduct().getRecommendedCategories());
+				}
+				if (null != entry.getProduct().getRecommendedProducts() && !entry.getProduct().getRecommendedProducts().isEmpty())
+				{
+					recommendedProducts.addAll(entry.getProduct().getRecommendedProducts());
+				}
+			}
+			LOG.info("Number of recommended products - " + recommendedProducts.size());
+			LOG.info("Number of recommended categories - " + recommendedCategories.size());
+			model.addAttribute("recommendedProducts", recommendedProducts);
+			model.addAttribute("recommendedCategories", recommendedCategories);
+		}
+
+		return ControllerConstants.Views.Fragments.Cart.ProductRecommendationsPopup;
+	}
 
 	protected String getCartPageRedirectUrl()
 	{
 		final QuoteData quoteData = getCartFacade().getSessionCart().getQuoteData();
 		return quoteData != null ? String.format(REDIRECT_QUOTE_EDIT_URL, urlEncode(quoteData.getCode())) : REDIRECT_CART_URL;
+	}
+	
+	@Override
+	protected void createProductEntryList(final Model model, final CartData cartData)
+	{
+		boolean hasPickUpCartEntries = false;
+		boolean hasRecommendations = false;
+		if (cartData.getEntries() != null && !cartData.getEntries().isEmpty())
+		{
+			for (final OrderEntryData entry : cartData.getEntries())
+			{
+				if (!hasRecommendations
+						&& (null != entry.getProduct().getRecommendedProducts()
+								&& !entry.getProduct().getRecommendedProducts().isEmpty())
+						|| (null != entry.getProduct().getRecommendedCategories()
+								&& !entry.getProduct().getRecommendedCategories().isEmpty()))
+				{
+					hasRecommendations = true;
+				}
+				if (!hasPickUpCartEntries && entry.getDeliveryPointOfService() != null)
+				{
+					hasPickUpCartEntries = true;
+				}
+				final UpdateQuantityForm uqf = new UpdateQuantityForm();
+				uqf.setQuantity(entry.getQuantity());
+				model.addAttribute("updateQuantityForm" + entry.getEntryNumber(), uqf);
+				model.addAttribute("hasRecommendations", hasRecommendations);
+			}
+		}
+
+		model.addAttribute("cartData", cartData);
+		model.addAttribute("hasPickUpCartEntries", Boolean.valueOf(hasPickUpCartEntries));
 	}
 
 }

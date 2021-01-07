@@ -44,7 +44,7 @@
                 </ycommerce:testId>
             </div>
         </c:if>
-        <div class="col-xs-6">
+        <%-- <div class="col-xs-6">
             <spring:theme code="text.account.order.shipping"/>
         </div>
         <div class="col-xs-6">
@@ -53,7 +53,7 @@
                     <format:price priceData="${order.deliveryCost}" displayFreeForZero="true"/>
                 </ycommerce:testId>
             </div>
-        </div>
+        </div> --%>
 
         <c:if test="${order.net}">
             <div class="col-xs-6">

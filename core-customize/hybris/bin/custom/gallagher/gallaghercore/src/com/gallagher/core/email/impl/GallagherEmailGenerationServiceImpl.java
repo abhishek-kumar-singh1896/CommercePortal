@@ -15,9 +15,12 @@ import de.hybris.platform.acceleratorservices.model.email.EmailAddressModel;
 import de.hybris.platform.acceleratorservices.model.email.EmailMessageModel;
 import de.hybris.platform.acceleratorservices.process.email.context.AbstractEmailContext;
 import de.hybris.platform.processengine.model.BusinessProcessModel;
+import de.hybris.platform.servicelayer.config.ConfigurationService;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.annotation.Resource;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -29,9 +32,19 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class GallagherEmailGenerationServiceImpl extends DefaultEmailGenerationService
 {
+	@Resource(name = "configurationService")
+	private ConfigurationService configurationService;
+
+	public ConfigurationService getConfigurationService()
+	{
+		return configurationService;
+	}
 
 	private static final String REPLY_TO = "replyTo";
 
+	private static final String ORDER_CONTEXT_CLASS_NAME = "GallagherOrderNotificationEmailContext";
+
+	private static final String SOM_EMAIL = "SOM.emailAddress.";
 	/**
 	 * {@inheritDoc}
 	 */
@@ -43,6 +56,14 @@ public class GallagherEmailGenerationServiceImpl extends DefaultEmailGenerationS
 		final EmailAddressModel toAddress = getEmailService().getOrCreateEmailAddressForEmail(emailContext.getToEmail(),
 				emailContext.getToDisplayName());
 		toEmails.add(toAddress);
+		if (emailContext.getClass().getSimpleName().equals(ORDER_CONTEXT_CLASS_NAME))
+		{
+		final String uid = emailContext.getBaseSite().getUid();
+			final String email = getConfigurationService().getConfiguration().getString(SOM_EMAIL + uid);
+		final EmailAddressModel somAddress = getEmailService().getOrCreateEmailAddressForEmail(email,
+				emailContext.getToDisplayName());
+		toEmails.add(somAddress);
+		}
 		final EmailAddressModel fromAddress = getEmailService().getOrCreateEmailAddressForEmail(emailContext.getFromEmail(),
 				emailContext.getFromDisplayName());
 		String replyTo = (String) emailContext.get(REPLY_TO);
@@ -53,4 +74,5 @@ public class GallagherEmailGenerationServiceImpl extends DefaultEmailGenerationS
 		return getEmailService().createEmailMessage(toEmails, new ArrayList<EmailAddressModel>(),
 				new ArrayList<EmailAddressModel>(), fromAddress, replyTo, emailSubject, emailBody, null);
 	}
+
 }

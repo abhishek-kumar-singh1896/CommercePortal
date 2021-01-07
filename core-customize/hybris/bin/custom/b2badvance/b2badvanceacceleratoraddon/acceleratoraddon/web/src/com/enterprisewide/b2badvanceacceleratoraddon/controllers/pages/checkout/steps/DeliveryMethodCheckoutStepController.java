@@ -20,20 +20,19 @@ import de.hybris.platform.cms2.exceptions.CMSItemNotFoundException;
 import de.hybris.platform.commercefacades.order.data.CartData;
 import de.hybris.platform.commerceservices.order.CommerceCartModificationException;
 import de.hybris.platform.order.InvalidCartException;
-import com.enterprisewide.b2badvance.facades.checkout.flow.B2badvanceCheckoutFacade;
-import com.enterprisewide.b2badvanceacceleratoraddon.forms.DeliveryMethodForm;
 
 import javax.annotation.Resource;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.enterprisewide.b2badvance.facades.checkout.flow.B2badvanceCheckoutFacade;
 import com.enterprisewide.b2badvanceacceleratoraddon.controllers.B2badvanceacceleratoraddonControllerConstants;
+import com.enterprisewide.b2badvanceacceleratoraddon.forms.DeliveryMethodForm;
 
 
 @Controller
@@ -41,7 +40,7 @@ import com.enterprisewide.b2badvanceacceleratoraddon.controllers.B2badvanceaccel
 public class DeliveryMethodCheckoutStepController extends AbstractCheckoutStepController
 {
 	private static final String DELIVERY_METHOD = "delivery-method";
-	
+
 	@Resource(name = "checkoutFlowFacade")
 	private B2badvanceCheckoutFacade checkoutFlowFacade;
 
@@ -56,7 +55,7 @@ public class DeliveryMethodCheckoutStepController extends AbstractCheckoutStepCo
 
 		final CartData cartData = getCheckoutFacade().getCheckoutCart();
 		model.addAttribute("cartData", cartData);
-		model.addAttribute("deliveryMethods", getCheckoutFacade().getSupportedDeliveryModes());
+		/* model.addAttribute("deliveryMethods", getCheckoutFacade().getSupportedDeliveryModes()); */
 		this.prepareDataForPage(model);
 		storeCmsPageInModel(model, getContentPageForLabelOrId(MULTI_CHECKOUT_SUMMARY_CMS_PAGE_LABEL));
 		setUpMetaDataForContentPage(model, getContentPageForLabelOrId(MULTI_CHECKOUT_SUMMARY_CMS_PAGE_LABEL));
@@ -68,37 +67,41 @@ public class DeliveryMethodCheckoutStepController extends AbstractCheckoutStepCo
 		return B2badvanceacceleratoraddonControllerConstants.Views.Pages.MultiStepCheckout.ChooseDeliveryMethodPage;
 	}
 
-//	/**
-//	 * This method gets called when the "Use Selected Delivery Method" button is clicked. It sets the selected delivery
-//	 * mode on the checkout facade and reloads the page highlighting the selected delivery Mode.
-//	 *
-//	 * @param selectedDeliveryMethod
-//	 *           - the id of the delivery mode.
-//	 * @return - a URL to the page to load.
-//	 */
-//	@RequestMapping(value = "/select", method = RequestMethod.GET)
-//	@RequireHardLogIn
-//	public String doSelectDeliveryMode(@RequestParam("delivery_method") final String selectedDeliveryMethod)
-//	{
-//		if (StringUtils.isNotEmpty(selectedDeliveryMethod))
-//		{
-//			getCheckoutFacade().setDeliveryMode(selectedDeliveryMethod);
-//		}
-//		
-//		return getCheckoutStep().nextStep();
-//	}
-	
+	//	/**
+	//	 * This method gets called when the "Use Selected Delivery Method" button is clicked. It sets the selected delivery
+	//	 * mode on the checkout facade and reloads the page highlighting the selected delivery Mode.
+	//	 *
+	//	 * @param selectedDeliveryMethod
+	//	 *           - the id of the delivery mode.
+	//	 * @return - a URL to the page to load.
+	//	 */
+	//	@RequestMapping(value = "/select", method = RequestMethod.GET)
+	//	@RequireHardLogIn
+	//	public String doSelectDeliveryMode(@RequestParam("delivery_method") final String selectedDeliveryMethod)
+	//	{
+	//		if (StringUtils.isNotEmpty(selectedDeliveryMethod))
+	//		{
+	//			getCheckoutFacade().setDeliveryMode(selectedDeliveryMethod);
+	//		}
+	//
+	//		return getCheckoutStep().nextStep();
+	//	}
+
 	@RequestMapping(value = "/select")
 	@RequireHardLogIn
-	public String doSelectDeliveryMode(@ModelAttribute("deliveryMethod") final DeliveryMethodForm deliveryMethodForm, final Model model,
-			final RedirectAttributes redirectModel)
-					throws CMSItemNotFoundException, InvalidCartException, CommerceCartModificationException
+	public String doSelectDeliveryMode(@ModelAttribute("deliveryMethod")
+	final DeliveryMethodForm deliveryMethodForm, final Model model, final RedirectAttributes redirectModel)
+			throws CMSItemNotFoundException, InvalidCartException, CommerceCartModificationException
 	{
-		if (StringUtils.isNotEmpty(deliveryMethodForm.getDeliveryMethod()))
-		{
-			getCheckoutFacade().setDeliveryMode(deliveryMethodForm.getDeliveryMethod());
-		}
-		getCheckoutFlowFacade().setDeliveryInstructions(deliveryMethodForm.getDeliveryInstructions());
+
+		/*
+		 * if (StringUtils.isNotEmpty(deliveryMethodForm.getDeliveryMethod())) {
+		 *
+		 * getCheckoutFacade().setDeliveryMode(deliveryMethodForm.getDeliveryMethod());
+		 * getCheckoutFacade().setDeliveryMode("free-standard-shipping"); }
+		 */
+		getCheckoutFacade().setDeliveryMode("free-standard-shipping");
+		/* getCheckoutFlowFacade().setDeliveryInstructions(deliveryMethodForm.getDeliveryInstructions()); */
 		return getCheckoutStep().nextStep();
 	}
 
@@ -122,7 +125,7 @@ public class DeliveryMethodCheckoutStepController extends AbstractCheckoutStepCo
 	{
 		return getCheckoutStep(DELIVERY_METHOD);
 	}
-	
+
 	@Override
 	protected B2badvanceCheckoutFacade getCheckoutFlowFacade()
 	{

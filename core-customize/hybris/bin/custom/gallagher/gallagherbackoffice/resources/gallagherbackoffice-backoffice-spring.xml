@@ -21,5 +21,17 @@
 	<alias name="gallagherBackofficeSynchronizationFacade" alias="synchronizationFacade"/>
    <bean id="gallagherBackofficeSynchronizationFacade"
           class="com.gallagher.backoffice.sync.facades.GallagherSynchronizationFacadeImpl" parent="defaultBackofficeSynchronizationFacade" />
+          
+     <alias name="gallagherDefaultEditorAreaLogicHandler" alias="editorAreaLogicHandler"/>
+     <bean id="gallagherDefaultEditorAreaLogicHandler" class="com.gallagher.backoffice.handler.GallagherEditB2BCustomerHandler" parent="defaultEditorAreaLogicHandler">
+      <property name="gallagherKeycloakService" ref="gallagherKeycloakService"/>
+      <property name="customerConverter" ref="customerConverter"/> 
+      <property name="baseSiteService" ref="baseSiteService"/>
+      <property name="notificationService" ref="notificationService"/>
+      <property name="sessionService" ref="sessionService"/>
+      <property name="storeSessionFacade" ref="storeSessionFacade"/>
+      <property name="eventService" ref="eventService"/>
+      <property name="gallagherC4COutboundServiceFacade" ref="gallagherC4COutboundServiceFacade"/>
+     </bean>     
 
 </beans>

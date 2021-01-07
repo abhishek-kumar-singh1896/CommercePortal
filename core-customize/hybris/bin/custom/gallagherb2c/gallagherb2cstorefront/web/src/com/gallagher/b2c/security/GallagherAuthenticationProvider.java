@@ -29,6 +29,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.gallagher.core.dtos.GallagherAccessToken;
 import com.gallagher.facades.customer.GallagherCustomerFacade;
+
+
 /**
  * @author nagarro
  *
@@ -67,7 +69,7 @@ public class GallagherAuthenticationProvider extends AbstractAcceleratorAuthenti
 		customerFacade.updateCommerceCustomer(galToken, SiteChannel.B2C);
 		try
 		{
-			userDetails = retrieveUser(userEmail);
+			userDetails = retrieveUser("am|" + userEmail);
 
 		}
 		catch (final UsernameNotFoundException arg5)

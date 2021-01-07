@@ -24,12 +24,14 @@ import com.microsoft.sqlserver.jdbc.StringUtils;
 public class GallagherProductPopulator extends ProductPopulator
 {
 	private Populator<ProductModel, ProductData> productPricePopulator;
+	private Populator<ProductModel, ProductData> productDiscountPopulator;
 	private Populator<ProductModel, ProductData> productGalleryImagesPopulator;
 
 	@Override
 	public void populate(final ProductModel source, final ProductData target)
 	{
 		getProductPricePopulator().populate(source, target);
+		getProductDiscountPopulator().populate(source, target);
 		getProductGalleryImagesPopulator().populate(source, target);
 		target.setDescription(source.getDescription());
 		if (null != source.getPromoSticker())
@@ -49,6 +51,7 @@ public class GallagherProductPopulator extends ProductPopulator
 		target.setSparePartsReferenceSubHeading(source.getSparePartsReferenceSubHeading());
 		target.setOthersReferenceHeading(source.getOthersReferenceHeading());
 		target.setOthersReferenceSubHeading(source.getOthersReferenceSubHeading());
+		target.setCodeCompare(source.getCode());
 		//		target.setMarketingDescription(source.getMarketingDescription());
 		super.populate(source, target);
 		if (!StringUtils.isEmpty(source.getMarketingDescription()))
@@ -89,6 +92,23 @@ public class GallagherProductPopulator extends ProductPopulator
 	public void setProductPricePopulator(final Populator<ProductModel, ProductData> productPricePopulator)
 	{
 		this.productPricePopulator = productPricePopulator;
+	}
+
+	/**
+	 * @return the productDiscountPopulator
+	 */
+	public Populator<ProductModel, ProductData> getProductDiscountPopulator()
+	{
+		return productDiscountPopulator;
+	}
+
+	/**
+	 * @param productDiscountPopulator
+	 *           the productDiscountPopulator to set
+	 */
+	public void setProductDiscountPopulator(final Populator<ProductModel, ProductData> productDiscountPopulator)
+	{
+		this.productDiscountPopulator = productDiscountPopulator;
 	}
 
 }

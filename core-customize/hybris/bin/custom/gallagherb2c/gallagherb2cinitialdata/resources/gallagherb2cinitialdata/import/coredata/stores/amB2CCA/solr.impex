@@ -78,6 +78,10 @@ INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; n
                                   ; $solrIndexedType                         ; plpProductDescription  ; string     ;                    ;                         ; true                     ;                           ;                                    ;                                   ; springELValueProvider                    ; getPlpProductDescription(#lang)                               ;                               
                                   ; $solrIndexedType                         ; modifiedtime           ; date       ;                    ;                         ;                          ;                           ;                                    ;                                   ; defaultDateValueResolver                 ;                                
                                   ; $solrIndexedType                         ; item                   ; text       ;                    ;                         ;                          ; true                      ;                                    ;                                   ; gallagherVariantCodeValueResolver          ;                                ;                               ;                     ; true                    ;               ; true                         ;                    ; true                            ;                                             ;                       ;                               
+
+#hiding animalCompatibility
+INSERT_UPDATE SolrIndexedProperty ; solrIndexedType(identifier)[unique=true] ; name[unique=true]      ; visible
+											 ; $solrIndexedType								  ; animalCompatibility    ; false
                                   
                                   
 # Category fields                 

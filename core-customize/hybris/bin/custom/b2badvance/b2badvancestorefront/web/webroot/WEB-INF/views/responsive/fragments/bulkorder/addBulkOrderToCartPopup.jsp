@@ -46,7 +46,7 @@
 										<c:url value="${entry.product.url}" var="entryProductUrl"/>
 											<div class="thumb">
 												<a href="${entryProductUrl}">
-													<product:productPrimaryImage product="${entry.product}" format="cartIcon"/>
+													<product:productIconImage product="${entry.product}" format="thumbnail"/>
 												</a>
 											</div>
 											

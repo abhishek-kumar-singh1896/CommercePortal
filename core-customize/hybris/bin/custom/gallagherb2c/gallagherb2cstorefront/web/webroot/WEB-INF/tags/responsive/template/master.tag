@@ -23,7 +23,7 @@
 <!DOCTYPE html>
 <html lang="${fn:escapeXml(currentLanguage.isocode)}">
 <head>
-<sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')">
+<%-- <sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')">
 	<input type="hidden" name="baseLoginURL" id="baseLoginURL"
 		value="${encodedContextPath}" />
 	<script
@@ -75,7 +75,7 @@
         });
     	}
     </script>
-</sec:authorize>
+</sec:authorize> --%>
 
 <script type="text/javascript">
 		var dataLayer = [];

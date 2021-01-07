@@ -155,6 +155,7 @@ public interface ControllerConstants
 			{
 				String WriteReview = "pages/product/writeReview"; // NOSONAR
 				String OrderForm = "pages/product/productOrderFormPage"; // NOSONAR
+				String DownloadProductDetails = "pages/product/downloadProductDetails"; // NOSONAR
 			}
 
 			interface QuickOrder // NOSONAR
@@ -182,6 +183,7 @@ public interface ControllerConstants
 				String MiniCartErrorPanel = "fragments/cart/miniCartErrorPanel"; // NOSONAR
 				String CartPopup = "fragments/cart/cartPopup"; // NOSONAR
 				String ExpandGridInCart = "fragments/cart/expandGridInCart"; // NOSONAR
+				String ProductRecommendationsPopup = "fragments/cart/productRecommendationsPopup"; // NOSONAR
 			}
 
 			interface Account // NOSONAR
@@ -217,6 +219,16 @@ public interface ControllerConstants
 			{
 				String QuickOrderLineItem = "fragments/quickOrder/quickOrderLineItem"; // NOSONAR
 				String TemplateRestorePopup = "fragments/quickOrder/templateRestorePopup"; // NOSONAR
+			}
+
+			interface B2BUnits
+			{
+				String B2BUnitsPopup = "fragments/b2bunits/b2bUnitsOverlay";
+			}
+
+			interface DeliveryComments // NOSONAR
+			{
+				String DeliveryInstructionPopup = "fragments/deliveryComments/deliveryCommentsPopup"; // NOSONAR
 			}
 		}
 	}

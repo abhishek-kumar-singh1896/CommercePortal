@@ -6,38 +6,56 @@
 <%@ taglib prefix="cms" uri="http://hybris.com/tld/cmstags"%>
 <section id="${fn:replace(title,' ', '')}" class="common-sub-tab-section ptb-xs-0">
 	<c:if test="${not empty product.dataSheet}">
-    <div class="container">
+		<c:set var="dataSheet" value="false" />
+		<c:forEach var="media" items="${product.dataSheet}">
+			<c:if test="${not empty media.baseStoreCodes}">
+				<c:forEach var="baseStore" items="${media.baseStoreCodes}">
+					<c:if test="${baseStore eq currentBaseStore}">
+						<c:set var="dataSheet" value="true" />
+					</c:if>
+				</c:forEach>
+			</c:if>
+		</c:forEach>
+		<c:if test="${dataSheet}">
+		<div class="container">
         <div class="how-to-download-section">
             <h4 class="small-section-sub-title">Related documents</h4>
 
             <ul class="row align-items-stretch">
             	<c:forEach var="media" items="${product.dataSheet}">
-                <li class="col-md-3 col-6">
-                    <div class="download-column-out">
-                        <div class="download-column-title">
-                            <a target="_blank" href="${media.url}">
-                                ${media.description}
-                            </a>
-                        </div>
-                        <div class="download-column-bottom-section">
-                        	<!-- <a target="_blank" href="http://raymor.co.nz/wp-content/uploads/2016/10/567903_Raymor_WallBasins_Quartz-WEB.pdf"> -->
-                        	<a target="_blank" href="${media.url}">
-                            <span class="document-icon">
-                                <svg>
-                                    <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#pdf-download" />
-                                </svg>
-                            </span>
-                            </a>
-                            <span>
-                                ${media.size}
-                            </span>
-                        </div>
-                    </div>
-                </li>
+	            	<c:if test="${not empty media.baseStoreCodes}">
+		            	<c:forEach var="baseStore" items="${media.baseStoreCodes}">
+			            	<c:if test="${baseStore eq currentBaseStore}">
+				                <li class="col-md-3 col-6">
+				                    <div class="download-column-out">
+				                        <div class="download-column-title">
+				                            <a target="_blank" href="${media.url}">
+				                                ${media.description}
+				                            </a>
+				                        </div>
+				                        <div class="download-column-bottom-section">
+				                        	<!-- <a target="_blank" href="http://raymor.co.nz/wp-content/uploads/2016/10/567903_Raymor_WallBasins_Quartz-WEB.pdf"> -->
+				                        	<a target="_blank" href="${media.url}">
+				                            <span class="document-icon">
+				                                <svg>
+				                                    <use xlink:href="${commonResourcePath}/images/gallagher-icons.svg#pdf-download" />
+				                                </svg>
+				                            </span>
+				                            </a>
+				                            <span>
+				                                ${media.size}
+				                            </span>
+				                        </div>
+				                    </div>
+				                </li>
+			                </c:if>
+		                </c:forEach>
+		            </c:if>
                 </c:forEach>
             </ul>
         </div>
     </div>
+    </c:if>
     </c:if>
 
 	<cms:pageSlot position="RegisterProduct" var="comp" >

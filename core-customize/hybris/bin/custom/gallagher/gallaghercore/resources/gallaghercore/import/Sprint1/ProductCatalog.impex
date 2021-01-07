@@ -1,0 +1,480 @@
+$productCatalog=securityB2BAsiaProductCatalog
+$classificationCatalog=SecurityB2BClassification
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$languages=en_AS,en
+ 
+# Product catalog
+INSERT_UPDATE Catalog ; id[unique=true] 
+                      ; $productCatalog 
+                      
+# Product versions for product catalogs
+INSERT_UPDATE CatalogVersion ; catalog(id)[unique=true] ; version[unique=true] ; active ; languages(isoCode) ; readPrincipals(uid)                         ; writePrincipals(uid)          
+                             ; $productCatalog          ; Staged               ; false  ; $languages         ; employeegroup,backofficeproductmanagergroup ; backofficeproductmanagergroup 
+                             ; $productCatalog          ; Online               ; true   ; $languages         ; employeegroup,backofficeproductmanagergroup ; backofficeproductmanagergroup 
+                             
+# SecurityB2B Classification catalog
+INSERT_UPDATE ClassificationSystem ; id[unique=true]        
+                                   ; $classificationCatalog 
+                                   
+# Insert Classifications System Version
+INSERT_UPDATE ClassificationSystemVersion ; catalog(id)[unique=true] ; version[unique=true] ; active ; inclPacking[virtual=true,default=true] ; inclDuty[virtual=true,default=true] ; inclFreight[virtual=true,default=true] ; inclAssurance[virtual=true,default=true] 
+                                          ; $classificationCatalog   ; 1.0                  ; true   
+                                          
+# Create default tax row for all products in product catalog
+INSERT_UPDATE TaxRow ; $catalogVersion ; tax(code)[unique=true] ; pg(code)[unique=true] ; ug(code)[unique=true] ; absolute[default=false] 
+#                    ;                 ; us-sales-tax-full      ; us-sales-tax-full     ; us-taxes              
+#                    ;                 ; ca-sales-tax-full      ; ca-sales-tax-full     ; ca-taxes              
+                     ;                 ; au-gst                 ;                       ;                       
+                     
+                     
+$lang=en             
+                     
+$productCatalog=securityB2BAsiaProductCatalog
+$classificationCatalog=SecurityB2BClassification
+                     
+UPDATE Catalog ; id[unique=true]        ; name[lang=$lang]                    
+               ; $classificationCatalog ; "Security B2B Classification"       ;  
+               ; $productCatalog        ; "Security B2B Asia Product Catalog" ;  
+               
+$productCatalog=securityB2BCAProductCatalog
+$classificationCatalog=SecurityB2BClassification
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$languages=en_CA,en
+               
+# Product catalog
+INSERT_UPDATE Catalog ; id[unique=true] 
+                      ; $productCatalog 
+                      
+# Product versions for product catalogs
+INSERT_UPDATE CatalogVersion ; catalog(id)[unique=true] ; version[unique=true] ; active ; languages(isoCode) ; readPrincipals(uid)                         ; writePrincipals(uid)          
+                             ; $productCatalog          ; Staged               ; false  ; $languages         ; employeegroup,backofficeproductmanagergroup ; backofficeproductmanagergroup 
+                             ; $productCatalog          ; Online               ; true   ; $languages         ; employeegroup,backofficeproductmanagergroup ; backofficeproductmanagergroup 
+                             
+# SecurityB2B Classification catalog
+INSERT_UPDATE ClassificationSystem ; id[unique=true]        
+                                   ; $classificationCatalog 
+                                   
+# Insert Classifications System Version
+INSERT_UPDATE ClassificationSystemVersion ; catalog(id)[unique=true] ; version[unique=true] ; active ; inclPacking[virtual=true,default=true] ; inclDuty[virtual=true,default=true] ; inclFreight[virtual=true,default=true] ; inclAssurance[virtual=true,default=true] 
+                                          ; $classificationCatalog   ; 1.0                  ; true   
+                                          
+$lang=en                                  
+                                          
+$productCatalog=securityB2BCAProductCatalog
+$classificationCatalog=SecurityB2BClassification
+                                          
+UPDATE Catalog ; id[unique=true]        ; name[lang=$lang]                  
+               ; $classificationCatalog ; "Security B2B Classification"     ;  
+               ; $productCatalog        ; "Security B2B CA Product Catalog" ;  
+               
+               
+$productCatalog=securityB2BSthAmProductCatalog
+$classificationCatalog=SecurityB2BClassification
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$languages=en_ST,en
+               
+# Product catalog
+INSERT_UPDATE Catalog ; id[unique=true] 
+                      ; $productCatalog 
+                      
+# Product versions for product catalogs
+INSERT_UPDATE CatalogVersion ; catalog(id)[unique=true] ; version[unique=true] ; active ; languages(isoCode) ; readPrincipals(uid)                         ; writePrincipals(uid)          
+                             ; $productCatalog          ; Staged               ; false  ; $languages         ; employeegroup,backofficeproductmanagergroup ; backofficeproductmanagergroup 
+                             ; $productCatalog          ; Online               ; true   ; $languages         ; employeegroup,backofficeproductmanagergroup ; backofficeproductmanagergroup 
+                             
+# SecurityB2B Classification catalog
+INSERT_UPDATE ClassificationSystem ; id[unique=true]        
+                                   ; $classificationCatalog 
+                                   
+# Insert Classifications System Version
+INSERT_UPDATE ClassificationSystemVersion ; catalog(id)[unique=true] ; version[unique=true] ; active ; inclPacking[virtual=true,default=true] ; inclDuty[virtual=true,default=true] ; inclFreight[virtual=true,default=true] ; inclAssurance[virtual=true,default=true] 
+                                          ; $classificationCatalog   ; 1.0                  ; true   
+                                          
+$lang=en                                  
+                                          
+$productCatalog=securityB2BSthAmProductCatalog
+$classificationCatalog=SecurityB2BClassification
+                                          
+UPDATE Catalog ; id[unique=true]        ; name[lang=$lang]                        
+               ; $classificationCatalog ; "Security B2B Classification"           ;  
+               ; $productCatalog        ; "Security B2B South AM Product Catalog" ;  
+               
+$productCatalog=securityB2BUKProductCatalog
+$classificationCatalog=SecurityB2BClassification
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$languages=en_UK,en
+               
+# Product catalog
+INSERT_UPDATE Catalog ; id[unique=true] 
+                      ; $productCatalog 
+                      
+# Product versions for product catalogs
+INSERT_UPDATE CatalogVersion ; catalog(id)[unique=true] ; version[unique=true] ; active ; languages(isoCode) ; readPrincipals(uid)                         ; writePrincipals(uid)          
+                             ; $productCatalog          ; Staged               ; false  ; $languages         ; employeegroup,backofficeproductmanagergroup ; backofficeproductmanagergroup 
+                             ; $productCatalog          ; Online               ; true   ; $languages         ; employeegroup,backofficeproductmanagergroup ; backofficeproductmanagergroup 
+                             
+# SecurityB2B Classification catalog
+INSERT_UPDATE ClassificationSystem ; id[unique=true]        
+                                   ; $classificationCatalog 
+                                   
+# Insert Classifications System Version
+INSERT_UPDATE ClassificationSystemVersion ; catalog(id)[unique=true] ; version[unique=true] ; active ; inclPacking[virtual=true,default=true] ; inclDuty[virtual=true,default=true] ; inclFreight[virtual=true,default=true] ; inclAssurance[virtual=true,default=true] 
+                                          ; $classificationCatalog   ; 1.0                  ; true   
+                                          
+$lang=en                                  
+                                          
+$productCatalog=securityB2BUKProductCatalog
+$classificationCatalog=SecurityB2BClassification
+                                          
+UPDATE Catalog ; id[unique=true]        ; name[lang=$lang]                  
+               ; $classificationCatalog ; "Security B2B Classification"     ;  
+               ; $productCatalog        ; "Security B2B UK Product Catalog" ;  
+               
+               
+$productCatalog=securityB2BUSProductCatalog
+$classificationCatalog=SecurityB2BClassification
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$languages=en_US,en
+               
+# Product catalog
+INSERT_UPDATE Catalog ; id[unique=true] 
+                      ; $productCatalog 
+                      
+# Product versions for product catalogs
+INSERT_UPDATE CatalogVersion ; catalog(id)[unique=true] ; version[unique=true] ; active ; languages(isoCode) ; readPrincipals(uid)                         ; writePrincipals(uid)          
+                             ; $productCatalog          ; Staged               ; false  ; $languages         ; employeegroup,backofficeproductmanagergroup ; backofficeproductmanagergroup 
+                             ; $productCatalog          ; Online               ; true   ; $languages         ; employeegroup,backofficeproductmanagergroup ; backofficeproductmanagergroup 
+                             
+# SecurityB2B Classification catalog
+INSERT_UPDATE ClassificationSystem ; id[unique=true]        
+                                   ; $classificationCatalog 
+                                   
+# Insert Classifications System Version
+INSERT_UPDATE ClassificationSystemVersion ; catalog(id)[unique=true] ; version[unique=true] ; active ; inclPacking[virtual=true,default=true] ; inclDuty[virtual=true,default=true] ; inclFreight[virtual=true,default=true] ; inclAssurance[virtual=true,default=true] 
+                                          ; $classificationCatalog   ; 1.0                  ; true   
+                                          
+$lang=en                                  
+                                          
+$productCatalog=securityB2BUSProductCatalog
+$classificationCatalog=SecurityB2BClassification
+                                          
+UPDATE Catalog ; id[unique=true]        ; name[lang=$lang]                  
+               ; $classificationCatalog ; "Security B2B Classification"     ;  
+               ; $productCatalog        ; "Security B2B US Product Catalog" ;  
+               
+               
+$productCatalog=securityB2BMasterProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$languages=en,en_AU,en_NZ,en_UK,en_AS,en_ST,en_CA,en_US
+               
+# Product catalog
+INSERT_UPDATE Catalog ; id[unique=true] 
+                      ; $productCatalog 
+                      
+# Product versions for product catalogs
+INSERT_UPDATE CatalogVersion ; catalog(id)[unique=true] ; version[unique=true] ; active ; languages(isoCode) ; readPrincipals(uid)                         ; writePrincipals(uid)          
+                             ; $productCatalog          ; Staged               ; false  ; $languages         ; employeegroup,backofficeproductmanagergroup ; backofficeproductmanagergroup 
+                             ; $productCatalog          ; Online               ; false  ; $languages         ; employeegroup,backofficeproductmanagergroup ; backofficeproductmanagergroup 
+                             
+                             
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor] ; pk[unique=true] 
+                                                                                                           
+$contentCatalog=securityB2BContentCatalog                                                                  
+$languages=en,de,en_AU,en_NZ,en_UK,en_AS,en_ST,en_CA,en_US                                                 
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$websiteBaseURL=$config-website.base.url.https.b2b                                                         
+                                                                                                           
+# Content catalog for CMS contents                                                                         
+INSERT_UPDATE ContentCatalog ; id[unique=true] 
+                             ; $contentCatalog 
+                             
+# Catalog versions for content catalogs
+INSERT_UPDATE CatalogVersion ; catalog(id)[unique=true] ; version[unique=true] ; active ; languages(isoCode) 
+                             ; $contentCatalog          ; Staged               ; false  ; $languages         
+                             ; $contentCatalog          ; Online               ; true   ; $languages         
+                             
+                             
+                             
+INSERT_UPDATE CMSLinkComponent ; $contentCV[unique=true] ; uid[unique=true] ; name                   ; url                                              ; linkName[lang=en]     ; &linkRef      ; &componentRef ; target(code)[default='sameWindow'] 
+                               ;                         ; nzB2BLink        ; B2B New Zealand Link   ; $websiteBaseURL/security/nz/en_NZ/?clear=true    ; New Zealand           ; nzB2BLink     ; nzB2BLink     
+                               ;                         ; auB2BLink        ; B2B Australia Link     ; $websiteBaseURL/security/au/en_AU/?clear=true    ; Australia             ; auB2BLink     ; auB2BLink     
+                               ;                         ; globalB2BLink    ; B2B Global Link        ; $websiteBaseURL/security/global/en/?clear=true   ; Global                ; globalB2BLink ; globalB2BLink 
+                               ;                         ; usB2BLink        ; B2B US Link            ; $websiteBaseURL/security/us/en_US/?clear=true    ; United States         ; usB2BLink     ; usB2BLink     
+                               ;                         ; caB2BLink        ; B2B CA Link            ; $websiteBaseURL/security/ca/en_CA/?clear=true    ; Canada                ; caB2BLink     ; caB2BLink     
+                               ;                         ; ukB2BLink        ; B2B UK Link            ; $websiteBaseURL/security/uk/en_UK/?clear=true    ; United Kingdom/Europe ; ukB2BLink     ; ukB2BLink     
+                               ;                         ; asiaB2BLink      ; B2B Asia Link          ; $websiteBaseURL/security/asia/en_AS/?clear=true  ; Asia                  ; asiaB2BLink   ; asiaB2BLink   
+                               ;                         ; sthamB2BLink     ; B2B South America Link ; $websiteBaseURL/security/stham/en_ST/?clear=true ; South America         ; sthamB2BLink  ; sthamB2BLink  
+                               
+INSERT_UPDATE CMSNavigationEntry ; uid[unique=true]  ; $contentCV[unique=true] ; name                               ; navigationNode(&nodeRef) ; item(CMSLinkComponent.uid,CMSLinkComponent.$contentCV) ;  
+                                 ; nzB2BNavEntry     ;                         ; B2B New Zealand navigation entry   ; nzB2BNavNode             ; nzB2BLink                                              
+                                 ; auB2BNavEntry     ;                         ; B2B Australia navigation entry     ; auB2BNavNode             ; auB2BLink                                              
+                                 ; globalB2BNavEntry ;                         ; B2B Global navigation entry        ; globalB2BNavNode         ; globalB2BLink                                          
+                                 ; usB2BNavEntry     ;                         ; B2B US navigation entry            ; usB2BNavNode             ; usB2BLink                                              
+                                 ; caB2BNavEntry     ;                         ; B2B CA navigation entry            ; caB2BNavNode             ; caB2BLink                                              
+                                 ; ukB2BNavEntry     ;                         ; B2B UK navigation entry            ; ukB2BNavNode             ; ukB2BLink                                              
+                                 ; asiaB2BNavEntry   ;                         ; B2B Asia navigation entry          ; asiaB2BNavNode           ; asiaB2BLink                                            
+                                 ; sthamB2BNavEntry  ;                         ; B2B South America navigation entry ; sthamB2BNavNode          ; sthamB2BLink                                           
+                                 
+                                 
+INSERT_UPDATE CMSNavigationNode ; uid[unique=true] ; $contentCV[unique=true] ; name                          ; &nodeRef         ; children(uid,$contentCV) ; links(&linkRef) ;  
+                                ; nzB2BNavNode     ;                         ; New Zealand navigation node   ; nzB2BNavNode     
+                                ; auB2BNavNode     ;                         ; Australia navigation node     ; auB2BNavNode     
+                                ; globalB2BNavNode ;                         ; Global navigation node        ; globalB2BNavNode 
+                                ; usB2BNavNode     ;                         ; US navigation node            ; usB2BNavNode     
+                                ; caB2BNavNode     ;                         ; CA navigation node            ; caB2BNavNode     
+                                ; ukB2BNavNode     ;                         ; UK navigation node            ; ukB2BNavNode     
+                                ; asiaB2BNavNode   ;                         ; Asia navigation node          ; asiaB2BNavNode   
+                                ; sthamB2BNavNode  ;                         ; South America navigation node ; sthamB2BNavNode  
+                                
+INSERT_UPDATE CMSNavigationNode ; uid[unique=true]         ; $contentCV[unique=true] ; name              ; parent(uid, $contentCV) ; links(&componentRef) ; &nodeRef                 ; children(uid, $contentCV)                                                                                        
+                                ; B2BcountryDropdownNavNod ;                         ; Country drop down ; root                    ;                      ; B2BcountryDropdownNavNod ; nzB2BNavNode,auB2BNavNode,usB2BNavNode,caB2BNavNode,ukB2BNavNode,asiaB2BNavNode,sthamB2BNavNode,globalB2BNavNode 
+                                
+INSERT_UPDATE GallagherFooterNavigationComponent ; $contentCV[unique=true] ; uid[unique=true]                      ; countryDropdownLinkNagivationNode(&nodeRef) ; &componentRef                         
+                                                 ;                         ; B2BGallagherFooterNavigationComponent ; B2BcountryDropdownNavNod                    ; B2BGallagherFooterNavigationComponent 
+                                                 
+                                                 
+############################## Sync Setup #############################3
+$productCatalog=securityB2BUSProductCatalog      
+                                                 
+$sourceProductCV=sourceVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default='$productCatalog:Staged']
+$targetProductCV=targetVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default='$productCatalog:Online']
+                                                 
+INSERT_UPDATE CatalogVersionSyncJob ; code[unique=true]                               ; $sourceProductCV ; $targetProductCV ;  
+                                    ; sync securityB2BUSProductCatalog:Staged->Online ;                  ;                  ;  ;  
+                                    
+#----------------------------------------------------------------------
+                                    
+$productCatalog=securityB2BCAProductCatalog
+                                    
+$sourceProductCV=sourceVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default='$productCatalog:Staged']
+$targetProductCV=targetVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default='$productCatalog:Online']
+                                    
+INSERT_UPDATE CatalogVersionSyncJob ; code[unique=true]                               ; $sourceProductCV ; $targetProductCV ;  
+                                    ; sync securityB2BCAProductCatalog:Staged->Online ;                  ;                  ;  ;  
+                                    
+#----------------------------------------------------------------------
+                                    
+$productCatalog=securityB2BUKProductCatalog
+                                    
+$sourceProductCV=sourceVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default='$productCatalog:Staged']
+$targetProductCV=targetVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default='$productCatalog:Online']
+                                    
+INSERT_UPDATE CatalogVersionSyncJob ; code[unique=true]                               ; $sourceProductCV ; $targetProductCV ;  
+                                    ; sync securityB2BUKProductCatalog:Staged->Online ;                  ;                  ;  ;  
+                                    
+#----------------------------------------------------------------------
+                                    
+$productCatalog=securityB2BAsiaProductCatalog
+                                    
+$sourceProductCV=sourceVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default='$productCatalog:Staged']
+$targetProductCV=targetVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default='$productCatalog:Online']
+                                    
+INSERT_UPDATE CatalogVersionSyncJob ; code[unique=true]                                 ; $sourceProductCV ; $targetProductCV ;  
+                                    ; sync securityB2BAsiaProductCatalog:Staged->Online ;                  ;                  ;  ;  
+                                    
+#----------------------------------------------------------------------
+                                    
+$productCatalog=securityB2BSthAmProductCatalog
+                                    
+$sourceProductCV=sourceVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default='$productCatalog:Staged']
+$targetProductCV=targetVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default='$productCatalog:Online']
+                                    
+INSERT_UPDATE CatalogVersionSyncJob ; code[unique=true]                                  ; $sourceProductCV ; $targetProductCV ;  
+                                    ; sync securityB2BSthAmProductCatalog:Staged->Online ;                  ;                  ;  ;  
+###################################3
+                                    
+$productCatalogMaster=securityB2BMasterProductCatalog
+$productCatalogUS=securityB2BUSProductCatalog
+$productCatalogCA=securityB2BCAProductCatalog
+$productCatalogUK=securityB2BUKProductCatalog
+$productCatalogAsia=securityB2BAsiaProductCatalog
+$productCatalogSthAm=securityB2BSthAmProductCatalog
+                                    
+$sourceProductCV=sourceVersion(catalog(id[default=$productCatalogMaster]),version[default='Staged'])[unique=true,default='$productCatalogMaster:Staged']
+$targetProductCVUS=targetVersion(catalog(id[default=$productCatalogUS]),version[default='Staged'])[unique=true,default='$productCatalogUS:Staged']
+$targetProductCVCA=targetVersion(catalog(id[default=$productCatalogCA]),version[default='Staged'])[unique=true,default='$productCatalogCA:Staged']
+$targetProductCVUK=targetVersion(catalog(id[default=$productCatalogUK]),version[default='Staged'])[unique=true,default='$productCatalogUK:Staged']
+$targetProductCVAsia=targetVersion(catalog(id[default=$productCatalogAsia]),version[default='Staged'])[unique=true,default='$productCatalogAsia:Staged']
+$targetProductCVSthAm=targetVersion(catalog(id[default=$productCatalogSthAm]),version[default='Staged'])[unique=true,default='$productCatalogSthAm:Staged']
+                                    
+                                    
+                                    
+REMOVE GallagherCatalogVersionSyncJob ; code[unique=true]                                                               
+                                      ; sync securityB2BMasterProductCatalog:Staged->securityB2BUSProductCatalog:Staged ; syncUser ; securityB2BUS ;  ;  ;  
+                                      
+REMOVE GallagherCatalogVersionSyncJob ; code[unique=true]                                                               
+                                      ; sync securityB2BMasterProductCatalog:Staged->securityB2BCAProductCatalog:Staged ; syncUser ; securityB2BCA ;  ;  ;  
+                                      
+REMOVE GallagherCatalogVersionSyncJob ; code[unique=true]                                                               
+                                      ; sync securityB2BMasterProductCatalog:Staged->securityB2BUKProductCatalog:Staged ; syncUser ; securityB2BUK ;  ;  ;  
+                                      
+REMOVE GallagherCatalogVersionSyncJob ; code[unique=true]                                                                 
+                                      ; sync securityB2BMasterProductCatalog:Staged->securityB2BAsiaProductCatalog:Staged ; syncUser ; securityB2BAsia ;  ;  ;  
+                                      
+REMOVE GallagherCatalogVersionSyncJob ; code[unique=true]                                                                  
+                                      ; sync securityB2BMasterProductCatalog:Staged->securityB2BSthAmProductCatalog:Staged ; syncUser ; securityB2BSthAm ;  ;  ;  
+                                      
+                                      
+                                      
+INSERT_UPDATE GallagherCatalogVersionSyncJob ; code[unique=true]                                                               ; sessionUser(uid) ; baseStore(uid) ; $sourceProductCV ; $targetProductCVUS ;  
+                                             ; sync securityB2BMasterProductCatalog:Staged->securityB2BUSProductCatalog:Staged ; syncUser         ; securityB2BUS  ;                  ;                    ;  
+                                             
+INSERT_UPDATE GallagherCatalogVersionSyncJob ; code[unique=true]                                                               ; sessionUser(uid) ; baseStore(uid) ; $sourceProductCV ; $targetProductCVCA ;  
+                                             ; sync securityB2BMasterProductCatalog:Staged->securityB2BCAProductCatalog:Staged ; syncUser         ; securityB2BCA  ;                  ;                    ;  
+                                             
+INSERT_UPDATE GallagherCatalogVersionSyncJob ; code[unique=true]                                                               ; sessionUser(uid) ; baseStore(uid) ; $sourceProductCV ; $targetProductCVUK ;  
+                                             ; sync securityB2BMasterProductCatalog:Staged->securityB2BUKProductCatalog:Staged ; syncUser         ; securityB2BUK  ;                  ;                    ;  
+                                             
+INSERT_UPDATE GallagherCatalogVersionSyncJob ; code[unique=true]                                                                 ; sessionUser(uid) ; baseStore(uid)  ; $sourceProductCV ; $targetProductCVAsia ;  
+                                             ; sync securityB2BMasterProductCatalog:Staged->securityB2BAsiaProductCatalog:Staged ; syncUser         ; securityB2BAsia ;                  ;                      ;  
+                                             
+INSERT_UPDATE GallagherCatalogVersionSyncJob ; code[unique=true]                                                                  ; sessionUser(uid) ; baseStore(uid)   ; $sourceProductCV ; $targetProductCVSthAm ;  
+                                             ; sync securityB2BMasterProductCatalog:Staged->securityB2BSthAmProductCatalog:Staged ; syncUser         ; securityB2BSthAm ;                  ;                       ;  
+                                             
+                                             
+                                             
+# Synchronization Job Restriction            
+$productQueryPrefix={baseProductCode} IS NULL AND {approvalStatus} =({{SELECT {pk} from {ArticleApprovalStatus} where {code}='approved'}})
+$productQuery={baseProductCode} IS NULL AND {approvalStatus} =({{SELECT {pk} from {ArticleApprovalStatus} where {code}='approved'}}) AND ?session.currentJob.baseStore IN ({{SELECT {SOURCE} FROM {BaseStoreProductRelation} where {TARGET} = {item:PK}}})
+                                             
+$mediaQueryPrefix={code} IS NOT NULL         
+$mediaQuery=?session.currentJob.baseStore IN ({{SELECT {SOURCE} FROM {BaseStoreMediaRelation} where {TARGET} = {item:PK}}})
+                                             
+$mediaContainerQueryPrefix={qualifier} IS NOT NULL
+$mediaContainerQuery=?session.currentJob.baseStore IN ({{SELECT {SOURCE} FROM {BaseStoreMediaContainerRelation} where {TARGET} = {item:PK}}})
+                                             
+INSERT_UPDATE JobSearchRestriction ; code[unique=true]                               ; job(code)[path-delimiter=!]                                                        ; type(code) ; query               
+                                   ; B2BMaster->B2BUS-SyncJob-Product-Restriction    ; sync securityB2BMasterProductCatalog:Staged->securityB2BUSProductCatalog:Staged    ; Product    ; $productQueryPrefix 
+                                   ; B2BMaster->B2BCA-SyncJob-Product-Restriction    ; sync securityB2BMasterProductCatalog:Staged->securityB2BCAProductCatalog:Staged    ; Product    ; $productQueryPrefix 
+                                   ; B2BMaster->B2BUK-SyncJob-Product-Restriction    ; sync securityB2BMasterProductCatalog:Staged->securityB2BUKProductCatalog:Staged    ; Product    ; $productQueryPrefix 
+                                   ; B2BMaster->B2BAsia-SyncJob-Product-Restriction  ; sync securityB2BMasterProductCatalog:Staged->securityB2BAsiaProductCatalog:Staged  ; Product    ; $productQueryPrefix 
+                                   ; B2BMaster->B2BSthAm-SyncJob-Product-Restriction ; sync securityB2BMasterProductCatalog:Staged->securityB2BSthAmProductCatalog:Staged ; Product    ; $productQueryPrefix 
+                                   ; B2BMaster->B2BUS-SyncJob-Product-Restriction    ; sync securityB2BMasterProductCatalog:Staged->securityB2BUSProductCatalog:Staged    ; Product    ; $productQuery       
+                                   ; B2BMaster->B2BCA-SyncJob-Product-Restriction    ; sync securityB2BMasterProductCatalog:Staged->securityB2BCAProductCatalog:Staged    ; Product    ; $productQuery       
+                                   ; B2BMaster->B2BUK-SyncJob-Product-Restriction    ; sync securityB2BMasterProductCatalog:Staged->securityB2BUKProductCatalog:Staged    ; Product    ; $productQuery       
+                                   ; B2BMaster->B2BAsia-SyncJob-Product-Restriction  ; sync securityB2BMasterProductCatalog:Staged->securityB2BAsiaProductCatalog:Staged  ; Product    ; $productQuery       
+                                   ; B2BMaster->B2BSthAm-SyncJob-Product-Restriction ; sync securityB2BMasterProductCatalog:Staged->securityB2BSthAmProductCatalog:Staged ; Product    ; $productQuery       
+                                   
+                                   
+INSERT_UPDATE JobSearchRestriction ; code[unique=true]                                      ; job(code)[path-delimiter=!]                                                        ; type(code)     ; query                      
+                                   
+                                   ; B2BMaster->B2BUS-SyncJob-Media-Restriction             ; sync securityB2BMasterProductCatalog:Staged->securityB2BUSProductCatalog:Staged    ; Media          ; $mediaQueryPrefix          
+                                   ; B2BMaster->B2BUS-SyncJob-Media-Restriction             ; sync securityB2BMasterProductCatalog:Staged->securityB2BUSProductCatalog:Staged    ; Media          ; $mediaQuery                
+                                   ; B2BMaster->B2BCA-SyncJob-Media-Restriction             ; sync securityB2BMasterProductCatalog:Staged->securityB2BCAProductCatalog:Staged    ; Media          ; $mediaQueryPrefix          
+                                   ; B2BMaster->B2BCA-SyncJob-Media-Restriction             ; sync securityB2BMasterProductCatalog:Staged->securityB2BCAProductCatalog:Staged    ; Media          ; $mediaQuery                
+                                   ; B2BMaster->B2BUK-SyncJob-Media-Restriction             ; sync securityB2BMasterProductCatalog:Staged->securityB2BUKProductCatalog:Staged    ; Media          ; $mediaQueryPrefix          
+                                   ; B2BMaster->B2BUK-SyncJob-Media-Restriction             ; sync securityB2BMasterProductCatalog:Staged->securityB2BUKProductCatalog:Staged    ; Media          ; $mediaQuery                
+                                   ; B2BMaster->B2BAsia-SyncJob-Media-Restriction           ; sync securityB2BMasterProductCatalog:Staged->securityB2BAsiaProductCatalog:Staged  ; Media          ; $mediaQueryPrefix          
+                                   ; B2BMaster->B2BAsia-SyncJob-Media-Restriction           ; sync securityB2BMasterProductCatalog:Staged->securityB2BAsiaProductCatalog:Staged  ; Media          ; $mediaQuery                
+                                   ; B2BMaster->B2BSthAm-SyncJob-Media-Restriction          ; sync securityB2BMasterProductCatalog:Staged->securityB2BSthAmProductCatalog:Staged ; Media          ; $mediaQueryPrefix          
+                                   ; B2BMaster->B2BSthAm-SyncJob-Media-Restriction          ; sync securityB2BMasterProductCatalog:Staged->securityB2BSthAmProductCatalog:Staged ; Media          ; $mediaQuery                
+                                   ; B2BMaster->B2BUS-SyncJob-MediaContainer-Restriction    ; sync securityB2BMasterProductCatalog:Staged->securityB2BUSProductCatalog:Staged    ; MediaContainer ; $mediaContainerQueryPrefix 
+                                   ; B2BMaster->B2BUS-SyncJob-MediaContainer-Restriction    ; sync securityB2BMasterProductCatalog:Staged->securityB2BUSProductCatalog:Staged    ; MediaContainer ; $mediaContainerQuery       
+                                   ; B2BMaster->B2BCA-SyncJob-MediaContainer-Restriction    ; sync securityB2BMasterProductCatalog:Staged->securityB2BCAProductCatalog:Staged    ; MediaContainer ; $mediaContainerQueryPrefix 
+                                   ; B2BMaster->B2BCA-SyncJob-MediaContainer-Restriction    ; sync securityB2BMasterProductCatalog:Staged->securityB2BCAProductCatalog:Staged    ; MediaContainer ; $mediaContainerQuery       
+                                   ; B2BMaster->B2BUK-SyncJob-MediaContainer-Restriction    ; sync securityB2BMasterProductCatalog:Staged->securityB2BUKProductCatalog:Staged    ; MediaContainer ; $mediaContainerQueryPrefix 
+                                   ; B2BMaster->B2BUK-SyncJob-MediaContainer-Restriction    ; sync securityB2BMasterProductCatalog:Staged->securityB2BUKProductCatalog:Staged    ; MediaContainer ; $mediaContainerQuery       
+                                   ; B2BMaster->B2BAsia-SyncJob-MediaContainer-Restriction  ; sync securityB2BMasterProductCatalog:Staged->securityB2BAsiaProductCatalog:Staged  ; MediaContainer ; $mediaContainerQueryPrefix 
+                                   ; B2BMaster->B2BAsia-SyncJob-MediaContainer-Restriction  ; sync securityB2BMasterProductCatalog:Staged->securityB2BAsiaProductCatalog:Staged  ; MediaContainer ; $mediaContainerQuery       
+                                   ; B2BMaster->B2BSthAm-SyncJob-MediaContainer-Restriction ; sync securityB2BMasterProductCatalog:Staged->securityB2BSthAmProductCatalog:Staged ; MediaContainer ; $mediaContainerQueryPrefix 
+                                   ; B2BMaster->B2BSthAm-SyncJob-MediaContainer-Restriction ; sync securityB2BMasterProductCatalog:Staged->securityB2BSthAmProductCatalog:Staged ; MediaContainer ; $mediaContainerQuery       
+                                   
+                                   
+INSERT_UPDATE SyncAttributeDescriptorConfig ; syncJob(code)[unique=true,path-delimiter=!]                                         ; attributeDescriptor(enclosingType(code),qualifier)[unique=true] ; includedInSync ; copyByValue 
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BUSProductCatalog:Staged     ; Product:europe1Prices                                           ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BCAProductCatalog:Staged     ; Product:europe1Prices                                           ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BUKProductCatalog:Staged     ; Product:europe1Prices                                           ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BAsiaProductCatalog:Staged   ; Product:europe1Prices                                           ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BSthAmProductCatalog:Staged  ; Product:europe1Prices                                           ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged     ; Product:ownEurope1Prices                                        ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged     ; Product:ownEurope1Prices                                        ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged ; Product:ownEurope1Prices                                        ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BUSProductCatalog:Staged     ; Product:ownEurope1Prices                                        ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BCAProductCatalog:Staged     ; Product:ownEurope1Prices                                        ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BUKProductCatalog:Staged     ; Product:ownEurope1Prices                                        ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BAsiaProductCatalog:Staged   ; Product:ownEurope1Prices                                        ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BSthAmProductCatalog:Staged  ; Product:ownEurope1Prices                                        ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged     ; Product:europe1Discounts                                        ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged     ; Product:europe1Discounts                                        ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged ; Product:europe1Discounts                                        ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BUSProductCatalog:Staged     ; Product:europe1Discounts                                        ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BCAProductCatalog:Staged     ; Product:europe1Discounts                                        ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BUKProductCatalog:Staged     ; Product:europe1Discounts                                        ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BAsiaProductCatalog:Staged   ; Product:europe1Discounts                                        ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BSthAmProductCatalog:Staged  ; Product:europe1Discounts                                        ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged     ; Product:ownEurope1Discounts                                     ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged     ; Product:ownEurope1Discounts                                     ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged ; Product:ownEurope1Discounts                                     ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BUSProductCatalog:Staged     ; Product:ownEurope1Discounts                                     ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BCAProductCatalog:Staged     ; Product:ownEurope1Discounts                                     ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BUKProductCatalog:Staged     ; Product:ownEurope1Discounts                                     ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BAsiaProductCatalog:Staged   ; Product:ownEurope1Discounts                                     ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BSthAmProductCatalog:Staged  ; Product:ownEurope1Discounts                                     ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged     ; Product:recommendedProducts                                     ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged     ; Product:recommendedProducts                                     ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged ; Product:recommendedProducts                                     ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BUSProductCatalog:Staged     ; Product:recommendedProducts                                     ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BCAProductCatalog:Staged     ; Product:recommendedProducts                                     ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BUKProductCatalog:Staged     ; Product:recommendedProducts                                     ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BAsiaProductCatalog:Staged   ; Product:recommendedProducts                                     ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BSthAMProductCatalog:Staged  ; Product:recommendedProducts                                     ; false          ; false       
+                                            
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged     ; Product:recommendedCategories                                   ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged     ; Product:recommendedCategories                                   ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged ; Product:recommendedCategories                                   ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BUSProductCatalog:Staged     ; Product:recommendedCategories                                   ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BCAProductCatalog:Staged     ; Product:recommendedCategories                                   ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BUKProductCatalog:Staged     ; Product:recommendedCategories                                   ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BAsiaProductCatalog:Staged   ; Product:recommendedCategories                                   ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BSthAmProductCatalog:Staged  ; Product:recommendedCategories                                   ; false          ; false       
+                                            
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged     ; Product:priceOnApplication                                      ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged     ; Product:priceOnApplication                                      ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged ; Product:priceOnApplication                                      ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BUSProductCatalog:Staged     ; Product:priceOnApplication                                      ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BCAProductCatalog:Staged     ; Product:priceOnApplication                                      ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BUKProductCatalog:Staged     ; Product:priceOnApplication                                      ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BAsiaProductCatalog:Staged   ; Product:priceOnApplication                                      ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BSthAmProductCatalog:Staged  ; Product:priceOnApplication                                      ; false          ; false       
+                                            
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged     ; Product:discountClasses                                         ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged     ; Product:discountClasses                                         ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged ; Product:discountClasses                                         ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BUSProductCatalog:Staged     ; Product:discountClasses                                         ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BCAProductCatalog:Staged     ; Product:discountClasses                                         ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BUKProductCatalog:Staged     ; Product:discountClasses                                         ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BAsiaProductCatalog:Staged   ; Product:discountClasses                                         ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BSthAmProductCatalog:Staged  ; Product:discountClasses                                         ; false          ; false       
+                                            
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged     ; Product:Europe1PriceFactory_PDG                                 ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged     ; Product:Europe1PriceFactory_PDG                                 ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged ; Product:Europe1PriceFactory_PDG                                 ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BUSProductCatalog:Staged     ; Product:Europe1PriceFactory_PDG                                 ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BCAProductCatalog:Staged     ; Product:Europe1PriceFactory_PDG                                 ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BUKProductCatalog:Staged     ; Product:Europe1PriceFactory_PDG                                 ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BAsiaProductCatalog:Staged   ; Product:Europe1PriceFactory_PDG                                 ; false          ; false       
+                                            ; sync securityB2BMasterProductCatalog:Staged->securityB2BSthAmProductCatalog:Staged  ; Product:Europe1PriceFactory_PDG                                 ; false          ; false       
+#############################################################################################
+                                            
+                                            
+INSERT_UPDATE CompositeEntry ; code[unique=true]                  ; compositeCronjob(code)      ; compositeCronJobPOS[unique=true] ; executableCronJob(code)[unique=true]    ; triggerableJob(code)[path-delimiter=!]                                              
+                             ; securityProductCompositeJobEntry1  ; securityProductCompositeJob ; 1                                ; securityB2BBynderSyncCronJob            ;                                                                                     
+                             ; securityProductCompositeJobEntry2  ; securityProductCompositeJob ; 2                                ; SecurityMediaConversionMaster           ;                                                                                     
+                             ; securityProductCompositeJobEntry3  ; securityProductCompositeJob ; 3                                ;                                         ; sync securityB2BMasterProductCatalog:Staged->securityB2BNZProductCatalog:Staged     
+                             ; securityProductCompositeJobEntry4  ; securityProductCompositeJob ; 4                                ;                                         ; sync securityB2BMasterProductCatalog:Staged->securityB2BAUProductCatalog:Staged     
+                             ; securityProductCompositeJobEntry5  ; securityProductCompositeJob ; 5                                ;                                         ; sync securityB2BMasterProductCatalog:Staged->securityB2BGlobalProductCatalog:Staged 
+                             ; securityProductCompositeJobEntry6  ; securityProductCompositeJob ; 6                                ;                                         ; sync securityB2BMasterProductCatalog:Staged->securityB2BUSProductCatalog:Staged     
+                             ; securityProductCompositeJobEntry7  ; securityProductCompositeJob ; 7                                ;                                         ; sync securityB2BMasterProductCatalog:Staged->securityB2BCAProductCatalog:Staged     
+                             ; securityProductCompositeJobEntry8  ; securityProductCompositeJob ; 8                                ;                                         ; sync securityB2BMasterProductCatalog:Staged->securityB2BAsiaProductCatalog:Staged   
+                             ; securityProductCompositeJobEntry9  ; securityProductCompositeJob ; 9                                ;                                         ; sync securityB2BMasterProductCatalog:Staged->securityB2BSthAmProductCatalog:Staged  
+                             ; securityProductCompositeJobEntry10 ; securityProductCompositeJob ; 10                               ;                                         ; sync securityB2BMasterProductCatalog:Staged->securityB2BUKProductCatalog:Staged     
+                             ; securityProductCompositeJobEntry11 ; securityProductCompositeJob ; 11                               ; securityB2BProductTransformationCronjob 
+                             ; securityProductCompositeJobEntry12 ; securityProductCompositeJob ; 12                               ;                                         ; sync securityB2BNZProductCatalog:Staged->Online                                     
+                             ; securityProductCompositeJobEntry13 ; securityProductCompositeJob ; 13                               ;                                         ; sync securityB2BAUProductCatalog:Staged->Online                                     
+                             ; securityProductCompositeJobEntry14 ; securityProductCompositeJob ; 14                               ;                                         ; sync securityB2BGlobalProductCatalog:Staged->Online                                 
+                             ; securityProductCompositeJobEntry15 ; securityProductCompositeJob ; 15                               ;                                         ; sync securityB2BUSProductCatalog:Staged->Online                                     
+                             ; securityProductCompositeJobEntry16 ; securityProductCompositeJob ; 16                               ;                                         ; sync securityB2BCAProductCatalog:Staged->Online                                     
+                             ; securityProductCompositeJobEntry17 ; securityProductCompositeJob ; 17                               ;                                         ; sync securityB2BAsiaProductCatalog:Staged->Online                                   
+                             ; securityProductCompositeJobEntry18 ; securityProductCompositeJob ; 18                               ;                                         ; sync securityB2BSthAmProductCatalog:Staged->Online                                  
+                             ; securityProductCompositeJobEntry19 ; securityProductCompositeJob ; 19                               ;                                         ; sync securityB2BUKProductCatalog:Staged->Online                                     
+                             

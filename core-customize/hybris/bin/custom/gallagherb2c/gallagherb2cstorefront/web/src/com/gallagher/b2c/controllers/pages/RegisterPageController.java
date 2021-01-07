@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.keycloak.adapters.springsecurity.authentication.KeycloakCookieBasedRedirect;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,6 +38,7 @@ import com.gallagher.b2c.controllers.ControllerConstants;
 @RequestMapping(value = "/register")
 public class RegisterPageController extends AbstractRegisterPageController
 {
+	private static final Logger LOG = LoggerFactory.getLogger(RegisterPageController.class);
 	private HttpSessionRequestCache httpSessionRequestCache;
 
 	@Resource(name = "siteBaseUrlResolutionService")
@@ -78,7 +81,6 @@ public class RegisterPageController extends AbstractRegisterPageController
 	public String doRegister(final Model model, @RequestParam(value = "code", required = false)
 	final String code, final HttpServletRequest request, final HttpServletResponse response) throws CMSItemNotFoundException
 	{
-
 		final String redirectURL = getSiteBaseUrlResolutionService().getWebsiteUrlForSite(getBaseSiteService().getCurrentBaseSite(),
 				true, "/register");
 		String redirectURI = null;
@@ -88,8 +90,18 @@ public class RegisterPageController extends AbstractRegisterPageController
 			{
 				response.addCookie(KeycloakCookieBasedRedirect.createCookieFromRedirectUrl(getRedirectUrl(request)));
 			}
-			redirectURI = REDIRECT_PREFIX + MessageFormat
-					.format(getConfigurationService().getConfiguration().getString("keycloak.registrations.url"), redirectURL);
+			String language = "en";
+			if (redirectURL.contains("es_CL"))
+			{
+				language = "es";
+			}
+
+			if (redirectURL.contains("fr_CA"))
+			{
+				language = "ca";
+			}
+			redirectURI = REDIRECT_PREFIX + MessageFormat.format(
+					getConfigurationService().getConfiguration().getString("keycloak.registrations.url"), redirectURL, language);
 		}
 		else
 		{

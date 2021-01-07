@@ -40,6 +40,7 @@ import de.hybris.platform.core.model.product.ProductModel;
 import de.hybris.platform.product.ProductService;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 import de.hybris.platform.servicelayer.session.SessionService;
+import de.hybris.platform.store.services.BaseStoreService;
 import de.hybris.platform.util.Config;
 
 import java.io.UnsupportedEncodingException;
@@ -132,6 +133,9 @@ public class ProductPageController extends AbstractPageController
 	@Resource(name = "storeSessionFacade")
 	protected GallagherStoreSessionFacade storeSessionFacade;
 
+	@Resource(name = "baseStoreService")
+	private BaseStoreService baseStoreService;
+
 	@RequestMapping(value = PRODUCT_CODE_PATH_VARIABLE_PATTERN, method = RequestMethod.GET)
 	public String productDetail(@PathVariable("productCode")
 	final String encodedProductCode, final Model model, final HttpServletRequest request, final HttpServletResponse response)
@@ -174,6 +178,7 @@ public class ProductPageController extends AbstractPageController
 		}
 
 		model.addAttribute("metatags", metadata);
+		model.addAttribute("currentBaseStore", baseStoreService.getCurrentBaseStore().getUid());
 		return getViewForPage(model);
 	}
 

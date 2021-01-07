@@ -10,7 +10,7 @@
 <c:url value="/cart/checkout" var="checkoutUrl" scope="session"/>
 <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-7 col-lg-6 pull-right cart-actions--print">
-        <div class="express-checkout">
+     <%--    <div class="express-checkout">
             <div class="headline"><spring:theme code="text.expresscheckout.header"/></div>
             <strong><spring:theme code="text.expresscheckout.title"/></strong>
             <ul>
@@ -29,7 +29,7 @@
                      </div>
                 </c:if>
            </sec:authorize>
-        </div>
+        </div> --%>
     </div>
 </div>
 
@@ -46,10 +46,10 @@
         <sec:authorize access="!hasAnyRole('ROLE_ANONYMOUS')">
             <c:if test="${not empty siteQuoteEnabled and siteQuoteEnabled eq 'true'}">
                 <div class="col-sm-4 col-md-3 col-md-offset-3 pull-right">
-                    <button class="btn btn-default btn-block btn--continue-shopping js-continue-shopping-button"    data-continue-shopping-url="${fn:escapeXml(createQuoteUrl)}">
+                    <%-- <button class="btn btn-default btn-block btn--continue-shopping js-continue-shopping-button"    data-continue-shopping-url="${fn:escapeXml(createQuoteUrl)}">
                         <spring:theme code="quote.create"/>
-                    </button>
-                </div>
+                    </button> --%>
+                </div> 
             </c:if>
         </sec:authorize>
 
@@ -68,11 +68,11 @@
             <div class="col-xs-12 col-sm-5 col-md-3 col-lg-2 pull-right">
                 <input type="hidden" name="flow" id="flow"/>
                 <input type="hidden" name="pci" id="pci"/>
-                <select id="selectAltCheckoutFlow" class="doFlowSelectedChange form-control">
+               <%--  <select id="selectAltCheckoutFlow" class="doFlowSelectedChange form-control">
                     <option value="select-checkout"><spring:theme code="checkout.checkout.flow.select"/></option>
                     <option value="multistep"><spring:theme code="checkout.checkout.multi"/></option>
                     <option value="multistep-pci"><spring:theme code="checkout.checkout.multi.pci"/></option>
-                </select>
+                </select> --%>
                 <select id="selectPciOption" class="display-none">
                     <option value=""><spring:theme code="checkout.checkout.multi.pci.select"/></option>
                     <c:if test="${!isOmsEnabled}">

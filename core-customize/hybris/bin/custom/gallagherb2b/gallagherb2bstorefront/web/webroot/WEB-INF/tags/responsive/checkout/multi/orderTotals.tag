@@ -39,7 +39,7 @@
 			</span>
 		</div>
 	</c:if>
-	<c:if test="${not empty cartData.deliveryCost}">
+	<%-- <c:if test="${not empty cartData.deliveryCost}">
 		<div class="shipping">
 			<spring:theme code="basket.page.totals.delivery"/>
 			<span>
@@ -48,22 +48,22 @@
 				</ycommerce:testId>
 			</span>
 		</div>
-	</c:if>
-	<c:if test="${cartData.net && cartData.totalTax.value > 0 && showTax}">
+	</c:if> --%>
+	<%-- <c:if test="${cartData.net && cartData.totalTax.value > 0 && showTax}">
 		<div class="tax">
 			<spring:theme code="basket.page.totals.netTax"/>
 			<span>
 				<format:price priceData="${cartData.totalTax}"/>
 			</span>
 		</div>
-	</c:if>
+	</c:if> --%>
 	<div class="totals">
 		<spring:theme code="basket.page.totals.total"/>
 		<span>
 			<ycommerce:testId code="cart_totalPrice_label">
 				<c:choose>
 					<c:when test="${showTax}">
-						<format:price priceData="${cartData.totalPriceWithTax}"/>
+						<format:price priceData="${cartData.totalPrice}"/>
 					</c:when>
 					<c:otherwise>
 						<format:price priceData="${cartData.totalPrice}"/>
@@ -82,14 +82,14 @@
 			</ycommerce:testId>
 		</div>
 	</c:if>
-	<c:if test="${cartData.net && not showTax }">
+	<%-- <c:if test="${cartData.net && not showTax }">
 		<div class="realTotals">
 			<ycommerce:testId code="cart_taxes_label">
 				<p>
-					<spring:theme code="basket.page.totals.noNetTax"/>
+					<b><spring:theme code="basket.page.totals.noNetTax"/></b>
 				</p>
 			</ycommerce:testId>
 		</div>
-	</c:if>
+	</c:if> --%>
 </div>
 	

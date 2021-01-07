@@ -1,0 +1,275 @@
+$contentCatalog=securityB2BContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$lang=en
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&componentRef);&nodeRef
+;B2BMyAccountNavNode;;My Account;B2badvanceNavNode;;B2BMyAccountNavNode
+;B2BMyCompanyNavNode;;My Company;B2badvanceNavNode;;B2BMyCompanyNavNode
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
+;PersonalDetailsNavNode;;Personal Details;B2BMyAccountNavNode;;PersonalDetailsNavNode
+;UpdateEmailNavNode;;Update Email;B2BMyAccountNavNode;;UpdateEmailNavNode
+;UpdatePasswordNavNode;;Update Password;B2BMyAccountNavNode;;UpdatePasswordNavNode
+;OrderHistoryNavNode;;Order History;B2BMyAccountNavNode;;OrderHistoryNavNode
+;AddressBookNavNode;;Address Book;B2BMyAccountNavNode;;AddressBookNavNode
+;MyQuotesNavNode;;My Quotes;;;MyQuotesNavNode
+;SavedCartsNavNode;;Saved Carts;;;SavedCartsNavNode
+;ImportSavedCartNavNode;;Import Saved Cart;;;ImportSavedCartNavNode
+;OrderTemplatesNavNode;;OrderTemplatesNavNode;;;OrderTemplatesNavNode
+;QuickOrderNavNode;;Quick Order;;;QuickOrderNavNode
+;SupportTicketNavNode;;SupportTicketNavNode;B2BMyAccountNavNode;;SupportTicketNavNode
+;UnitsNavNode;;Units;B2BMyCompanyNavNode;;UnitsNavNode
+;UsersNavNode;;Users;B2BMyCompanyNavNode;;UsersNavNode
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(&linkRef);
+;OrderHistoryNavNodeEntry;;OrderHistoryNavNodeEntry;OrderHistoryNavNode;OrderHistoryLink;
+;AddressBookNavNodeEntry;;AddressBookNavNodeEntry;AddressBookNavNode;AddressBookLink;
+;MyQuotesNavNodeEntry;;MyQuotesNavNodeEntry;MyQuotesNavNode;MyQuotesLink;
+;SavedCartsNavNodeEntry;;SavedCartsNavNodeEntry;SavedCartsNavNode;SavedCartsLink;
+;ImportSavedCartNavNodeEntry;;ImportSavedCartNavNodeEntry;ImportSavedCartNavNode;ImportSavedCartLink;
+;OrderTemplatesNavNodeEntry;;OrderTemplatesNavNodeEntry;OrderTemplatesNavNode;OrderTemplatesLink
+;QuickOrderNavNodeEntry;;QuickOrderNavNodeEntry;QuickOrderNavNode;QuickOrderLink;
+;SupportTicketNavNodeEntry;;SupportTicketNavNodeEntry;SupportTicketNavNode;AccountSupportTicketHistoryLink;
+;UnitsNavNodeEntry;;Units Nav Node Entry;UnitsNavNode;UnitsLink;
+;UsersNavNodeEntry;;Users Nav Node Entry;UsersNavNode;UsersLink;
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;styleAttributes;target(code)[default='sameWindow'];visible[default=true]
+;;PersonalDetailsLink;PersonalDetailsLink;/my-account/update-profile;PersonalDetailsLink;update-profile;
+;;UpdateEmailLink;UpdateEmailLink;/my-account/update-email;UpdateEmailLink;update-email;
+;;UpdatePasswordLink;UpdatePasswordLink;/my-account/update-password;UpdatePasswordLink;updatePassword;
+;;AddressBookLink;AddressBookLink;/my-account/address-book;AddressBookLink;address-book,add-edit-address;
+;;OrderHistoryLink;OrderHistoryLink;/my-account/orders;OrderHistoryLink;orders,order;
+;;MyQuotesLink;MyQuotesLink;/my-account/my-quotes;MyQuotesLink;my-quotes,quoteEditPage;
+;;SavedCartsLink;SavedCartsLink;/my-account/saved-carts;SavedCartsLink;saved-carts;
+;;ImportSavedCartLink;Import Saved Cart Link;/import/csv/saved-cart;ImportSavedCartLink;importCSVSavedCartPage;
+;;OrderTemplatesLink;OrderTemplatesLink;/my-account/quick-order-templates;OrderTemplatesLink;order-templates;
+;;QuickOrderLink;Quick Order Link;/quickOrder;QuickOrderLink;
+;;AccountSupportTicketHistoryLink;AccountSupportTicketHistoryLink;/my-account/support-tickets;AccountSupportTicketHistoryLink;support-tickets,add-support,update-support-ticket;
+;;UnitsLink;Company Manage Units Link;/my-company/organization-management/manage-units/;UnitsLink;manageUnits;
+;;UsersLink;Company Manage Users Link;/my-company/organization-management/manage-users/;UsersLink;my-company,organizationManagement;
+
+INSERT_UPDATE CMSUserGroupRestriction;$contentCV[unique=true];uid[unique=true];name;userGroups(uid);includeSubgroups;components(uid,$contentCV)
+;;MyAccountLinkCustomerGroupRestriction;My Account Link Customer Group Restriction;b2bcustomergroup;true;AddressBookLink,PaymentDetailsLink,MyQuotesLink,OrderHistoryLink,BillingHistoryLink,PaymentHistoryLink,MyReplenishmentOrdersLink,SavedCartsLink,ImportSavedCartLink,OrderTemplatesLink,QuickOrderLink
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkname;name;url;&linkRef;&componentRef;target(code)[default='sameWindow'];
+;;B2BMyAccountLinkComponent;My Account;B2B My Account Link Component;/my-account/update-profile;B2BMyAccountLinkComponent;B2BMyAccountLinkComponent;;;		
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV)
+                         ;;B2BAccountSlot;B2BMyAccountLinkComponent
+
+#1. AccountPageTemplate						 
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='AccountPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;B2BAccount;;CMSLinkComponent;narrow
+
+INSERT_UPDATE  ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='AccountPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BAccount-AccountPage;B2BAccount;;B2BAccountSlot;true				
+
+#2. LandingPage2Template
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='LandingPage2Template'];validComponentTypes(code);compTypeGroup(code)
+;B2BAccount;;CMSLinkComponent;narrow
+
+INSERT_UPDATE  ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage2Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BAccount-LandingPage2;B2BAccount;;B2BAccountSlot;true	
+
+#3. ProductDetailsPageTemplate
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;B2BAccount;;CMSLinkComponent;narrow
+
+INSERT_UPDATE  ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BAccount-ProductDetailsPage;B2BAccount;;B2BAccountSlot;true	
+
+#4. ProductListPageTemplate
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ProductListPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;B2BAccount;;CMSLinkComponent;narrow
+
+INSERT_UPDATE  ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductListPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BAccount-ProductListPage;B2BAccount;;B2BAccountSlot;true	
+
+#5. SearchResultsGridPageTemplate
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='SearchResultsGridPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;B2BAccount;;CMSLinkComponent;narrow
+
+INSERT_UPDATE  ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsGridPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BAccount-SearchResultsGridPage;B2BAccount;;B2BAccountSlot;true	
+
+#6. ProductGridPageTemplate
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ProductGridPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;B2BAccount;;CMSLinkComponent;narrow
+
+INSERT_UPDATE  ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductGridPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BAccount-ProductGridPage;B2BAccount;;B2BAccountSlot;true	
+
+#7. CheckoutLoginPageTemplate
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='CheckoutLoginPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;B2BAccount;;CMSLinkComponent;narrow
+
+INSERT_UPDATE  ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CheckoutLoginPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BAccount-CheckoutLoginPage;B2BAccount;;B2BAccountSlot;true	
+
+#8. MultiStepCheckoutSummaryPageTemplate
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='MultiStepCheckoutSummaryPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;B2BAccount;;CMSLinkComponent;narrow
+
+INSERT_UPDATE  ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='MultiStepCheckoutSummaryPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BAccount-MultiStepCheckoutSummaryPage;B2BAccount;;B2BAccountSlot;true	
+
+#9. CartPageTemplate
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='CartPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;B2BAccount;;CMSLinkComponent;narrow
+
+INSERT_UPDATE  ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CartPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BAccount-CartPage;B2BAccount;;B2BAccountSlot;true	
+
+#10. LoginPageTemplate
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='LoginPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;B2BAccount;;CMSLinkComponent;narrow
+
+INSERT_UPDATE  ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LoginPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BAccount-LoginPage;B2BAccount;;B2BAccountSlot;true	
+
+#11. OrderConfirmationPageTemplate
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='OrderConfirmationPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;B2BAccount;;CMSLinkComponent;narrow
+
+INSERT_UPDATE  ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='OrderConfirmationPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BAccount-OrderConfirmationPage;B2BAccount;;B2BAccountSlot;true	
+
+#12. StoreFinderPageTemplate
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='StoreFinderPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;B2BAccount;;CMSLinkComponent;narrow
+
+INSERT_UPDATE  ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='StoreFinderPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BAccount-StoreFinderPage;B2BAccount;;B2BAccountSlot;true	
+
+#13. ErrorPageTemplate
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ErrorPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;B2BAccount;;CMSLinkComponent;narrow
+
+INSERT_UPDATE  ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ErrorPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BAccount-ErrorPage;B2BAccount;;B2BAccountSlot;true	
+
+#14. SearchResultsEmptyPageTemplate
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='SearchResultsEmptyPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;B2BAccount;;CMSLinkComponent;narrow
+
+INSERT_UPDATE  ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsEmptyPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BAccount-SearchResultsEmptyPage;B2BAccount;;B2BAccountSlot;true	
+
+#15. SearchResultsListPageTemplate
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='SearchResultsListPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;B2BAccount;;CMSLinkComponent;narrow
+
+INSERT_UPDATE  ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchResultsListPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BAccount-SearchResultsListPage;B2BAccount;;B2BAccountSlot;true	
+
+#16. CategoryPageTemplate
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='CategoryPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;B2BAccount;;CMSLinkComponent;narrow
+
+INSERT_UPDATE  ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CategoryPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BAccount-CategoryPage;B2BAccount;;B2BAccountSlot;true	
+
+#17. LandingPage1Template
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='LandingPage1Template'];validComponentTypes(code);compTypeGroup(code)
+;B2BAccount;;CMSLinkComponent;narrow
+
+INSERT_UPDATE  ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage1Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BAccount-LandingPage1;B2BAccount;;B2BAccountSlot;true	
+
+#18. LandingPage3Template
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='LandingPage3Template'];validComponentTypes(code);compTypeGroup(code)
+;B2BAccount;;CMSLinkComponent;narrow
+
+INSERT_UPDATE  ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage3Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BAccount-LandingPage3;B2BAccount;;B2BAccountSlot;true	
+
+#19. LandingPage4Template
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='LandingPage4Template'];validComponentTypes(code);compTypeGroup(code)
+;B2BAccount;;CMSLinkComponent;narrow
+
+INSERT_UPDATE  ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage4Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BAccount-LandingPage4;B2BAccount;;B2BAccountSlot;true	
+
+#20. LandingPage5Template
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='LandingPage5Template'];validComponentTypes(code);compTypeGroup(code)
+;B2BAccount;;CMSLinkComponent;narrow
+
+INSERT_UPDATE  ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage5Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BAccount-LandingPage5;B2BAccount;;B2BAccountSlot;true	
+
+#21. LandingPage6Template
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='LandingPage6Template'];validComponentTypes(code);compTypeGroup(code)
+;B2BAccount;;CMSLinkComponent;narrow
+
+INSERT_UPDATE  ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LandingPage6Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BAccount-LandingPage6;B2BAccount;;B2BAccountSlot;true	
+
+#22. ContentPage1Template
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ContentPage1Template'];validComponentTypes(code);compTypeGroup(code)
+;B2BAccount;;CMSLinkComponent;narrow
+
+INSERT_UPDATE  ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ContentPage1Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BAccount-ContentPage1;B2BAccount;;B2BAccountSlot;true	
+
+#23. SearchAdvancedResultsEmptyPageTemplate
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='SearchAdvancedResultsEmptyPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;B2BAccount;;CMSLinkComponent;narrow
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='SearchAdvancedResultsEmptyPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BAccount-SearchAdvancedResultsEmptyPage;B2BAccount;;B2BAccountSlot;true
+
+#24. QuoteEditPageTemplate
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='QuoteEditPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;B2BAccount;;CMSLinkComponent;narrow
+
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='QuoteEditPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BAccount-QuoteEditPage;B2BAccount;;B2BAccountSlot;true
+
+#25. ProductComparisonPageTemplate
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ProductComparisonPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;B2BAccount;;CMSLinkComponent;narrow
+
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductComparisonPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BAccount-ProductComparisonPage;B2BAccount;;B2BAccountSlot;true
+
+#26. BulkOrderFormPageTemplate
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='BulkOrderFormPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;B2BAccount;;CMSLinkComponent;narrow
+
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='BulkOrderFormPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BAccount-BulkOrderFormPage;B2BAccount;;B2BAccountSlot;true
+
+#27. QuickOrderPageTemplate
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='QuickOrderPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;B2BAccount;;CMSLinkComponent;narrow
+
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='QuickOrderPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BAccount-QuickOrderPage;B2BAccount;;B2BAccountSlot;true
+
+#28. CompanyPageTemplate
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='CompanyPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;B2BAccount;;CMSLinkComponent;narrow
+
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CompanyPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;B2BAccount-CompanyPage;B2BAccount;;B2BAccountSlot;true
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

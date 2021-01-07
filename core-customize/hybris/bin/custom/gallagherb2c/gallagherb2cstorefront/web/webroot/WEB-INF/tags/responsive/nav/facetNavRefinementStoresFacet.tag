@@ -17,7 +17,7 @@
 	<div class="facet js-facet js-shop-stores-facet">
 		<div class="facet__name js-facet-name">
 			<span class="glyphicon facet__arrow"></span>
-			<spring:theme code="search.nav.facetTitle" arguments="${facetData.name}"/>
+			${facetData.name}
 		</div>
 
 		<div class="facet__values js-facet-values">

@@ -79,7 +79,29 @@ public class GallagherSalesConditionsContributor extends DefaultSalesConditionsC
 		final Map<String, Object> row = new HashMap<>();
 		row.put(OrderCsvColumns.ORDER_ID, order.getCode());
 		row.put(SalesConditionCsvColumns.CONDITION_ENTRY_NUMBER, entry.getEntryNumber());
-		row.put(SalesConditionCsvColumns.CONDITION_CODE, getGrossPrice());
+		if (null != order.getUnit() && order.getUnit().getSalesArea().contains("_"))
+		{
+			try
+			{
+				String conditionCode = null;
+				conditionCode = order.getUnit().getSalesArea();
+				conditionCode = conditionCode.substring(conditionCode.indexOf("_") + 1, conditionCode.lastIndexOf("_"));
+				if (!conditionCode.equals("EX"))
+				{
+					conditionCode = "00";
+				}
+				row.put(SalesConditionCsvColumns.CONDITION_CODE, "PR" + conditionCode);
+			}
+			catch (final StringIndexOutOfBoundsException ex)
+			{
+				LOGGER.error("Salesarea " + order.getUnit().getSalesArea() + " is not in correct format!!!!!!!!");
+				row.put(SalesConditionCsvColumns.CONDITION_CODE, getGrossPrice());
+			}
+		}
+		else
+		{
+			row.put(SalesConditionCsvColumns.CONDITION_CODE, getGrossPrice());
+		}
 		row.put(SalesConditionCsvColumns.CONDITION_VALUE, entry.getBasePrice());
 		row.put(SalesConditionCsvColumns.CONDITION_UNIT_CODE, entry.getUnit().getCode());
 		row.put(SalesConditionCsvColumns.CONDITION_PRICE_QUANTITY, entry.getProduct().getPriceQuantity());

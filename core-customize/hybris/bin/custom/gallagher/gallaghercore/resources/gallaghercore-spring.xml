@@ -260,6 +260,28 @@
 		<property name="type" value="${keygen.order.code.type}" />
 		<property name="template" value="${keygen.order.code.template}" />
 	</bean>
+	
+	<bean id="gglB2BOrderCodeGenerator" class="de.hybris.platform.servicelayer.keygenerator.impl.PersistentKeyGenerator">
+		<property name="key" value="${keygen.ggl.b2b.order.code.name}" />
+		<property name="digits" value="${keygen.order.code.digits}" />
+		<property name="start" value="${keygen.ggl.b2b.order.code.start}" />
+		<property name="type" value="${keygen.order.code.type}" />
+		<property name="template" value="${keygen.order.code.template}" />
+	</bean>
+	
+	<alias name="gglB2BCreateOrderFromCartStrategy" alias="defaultB2BCreateOrderFromCartStrategy" />
+	<bean id="gglB2BCreateOrderFromCartStrategy"
+	      class="de.hybris.platform.b2b.strategies.impl.DefaultB2BCreateOrderFromCartStrategy"
+	      parent="createOrderFromCartStrategy">
+		<property name="businessProcessStrategies">
+			<list>
+				<ref bean="b2bApprovalBusinessProcessStrategy"/>
+				<ref bean="b2bQuoteBusinessProcessStrategy"/>
+				<ref bean="b2bQuoteApprovalBusinessProcessStrategy"/>
+			</list>
+		</property>
+		<property name="keyGenerator" ref="gglB2BOrderCodeGenerator"></property>
+	</bean> 
 
 	<bean id="itemUniqueAttributesValidatorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
 		<property name="interceptor" ref="UniqueAttributesValidator" />
@@ -360,11 +382,18 @@
     <bean id="gallagherCustomerDefaultGroupInterceptor"
 	      class="com.gallagher.core.b2b.interceptor.GallagherB2BCustomerInitDefaultsInterceptor" parent="customerDefaultGroupInterceptor">
 	</bean>
+    <bean id="gallagherProductValidatorInterceptor"
+	      class="com.gallagher.core.b2b.interceptor.GallagherProductValidatorInterceptor"/>
 	
 	<bean id="customerDefaultGroupInterceptorMapping"
 	      class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
 		<property name="interceptor" ref="gallagherCustomerDefaultGroupInterceptor"/>
 		<property name="typeCode" value="B2BCustomer"/>
+	</bean>
+	<bean id="gallagherProductInterceptorMapping"
+	      class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="gallagherProductValidatorInterceptor"/>
+		<property name="typeCode" value="Product"/>
 	</bean>
 	
     <bean id="gallagherProductService" class="com.gallagher.core.product.impl.GallagherDefaultProductServiceImpl" />
@@ -376,5 +405,213 @@
 		<constructor-arg>
 			<value>${customersupportattachments.invalidFormats}</value>
 		</constructor-arg>
+	</bean>
+	
+    <bean id="gallagherMindTouchService" class="com.gallagher.core.services.impl.GallagherMindTouchServiceImpl">
+    <property name="mindTouchRoleMapping" ref="mindTouchRoleMapping"/>
+    </bean>
+    
+ <util:map id="mindTouchRoleMapping" map-class="java.util.HashMap" key-type="java.lang.String" value-type="java.lang.String"> 
+  <entry key="b2badmingroup" value="Channel Partner"/>
+  <entry key="b2bcustomergroup" value="Channel Partner"/>
+  <entry key="b2bconsultantgroup" value="Consultant"/>
+  <entry key="b2btechniciangroup" value="Channel Partner"/> 
+  <entry key="b2bendusergroup" value="End user"/> 
+</util:map>
+    
+   <alias alias="facetUnitSuffixDisplayNameProvider" name="gallagherFacetUnitSuffixDisplayNameProvider" />
+	<bean id="gallagherFacetUnitSuffixDisplayNameProvider"
+		class="com.gallagher.core.solrfacetsearch.solr.impl.GallagherFacetUnitSuffixDisplayNameProvider" />
+	
+	<alias alias="facetUnitPrefixDisplayNameProvider" name="gallagherFacetUnitPrefixDisplayNameProvider" />
+	<bean id="gallagherFacetUnitPrefixDisplayNameProvider"
+		class="com.gallagher.core.solrfacetsearch.solr.impl.GallagherFacetUnitPrefixDisplayNameProvider" />
+		
+	<alias alias="facetUnitBooleanDisplayNameProvider" name="gallagherFacetUnitBooleanDisplayNameProvider" />
+	<bean id="gallagherFacetUnitBooleanDisplayNameProvider"
+		class="com.gallagher.core.solrfacetsearch.solr.impl.GallagherFacetUnitBooleanDisplayNameProvider" />
+	
+	<alias alias="b2bDeliveryAddressesLookupStrategy" name="gallagherSAPB2BDeliveryAddressesLookupStrategy" />
+	<bean name="gallagherSAPB2BDeliveryAddressesLookupStrategy" class="com.gallagher.core.strategies.GallagherSAPB2BDeliveryAddressesLookupStrategy"
+		parent="defaultSAPB2BDeliveryAddressesLookupStrategy">
+		<property name="b2bUnitService" ref="defaultSAPB2BUnitService" />
+	</bean>
+			<bean id="gallagherB2BOrderConfirmationEventListener"
+		class="com.gallagher.core.events.GallagherB2BOrderConfirmationEventListener" parent="abstractAcceleratorSiteEventListener">
+			<property name="modelService" ref="modelService" />
+	      <property name="businessProcessService" ref="businessProcessService" />
+	</bean>
+	
+	<bean id="glOrderNotificationEmailProcessDefinitionResource"
+		class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+		<property name="resource" value="classpath:/gallaghercore/processes/orderConfirmationEmailProcess.xml" />
+	</bean>
+	
+	<!-- <bean id="gallagherB2BProductValidateInterceptor" class="com.gallagher.core.b2b.interceptor.GallagherB2BProductValidateInterceptor">
+	</bean>
+
+	<bean id="gallagherB2BProductValidateInterceptorMapping"
+	      class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="gallagherB2BProductValidateInterceptor"/>
+		<property name="typeCode" value="Product"/>
+	</bean> -->
+   	
+   	<bean id="generateCustomerUpdateEmail" parent="abstractGenerateEmailAction">
+	 <property name="frontendTemplateName" value="CustomerUpdateEmailTemplate"/>
+    </bean>
+    
+    <bean id="gallagherB2BCustomerUpdateEventListener"
+		class="com.gallagher.core.events.GallagherB2BCustomerUpdateEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService" />
+		<property name="businessProcessService" ref="businessProcessService" />
+	</bean>
+    
+    <bean id="glCustomerUpdateEmailProcessDefinitionResource"
+		class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+		<property name="resource" value="classpath:/gallaghercore/processes/customerUpdateEmailProcess.xml" />
+	</bean>
+	
+    <!-- <alias alias="userService" name="gallagherUserService" />
+	<bean id="gallagherUserService" parent="defaultUserService" class="com.gallagher.core.user.service.impl.GallagherUserServiceImpl" />
+	
+	<alias name="gallagherUserDao" alias="userDao"/>
+	<bean id="gallagherUserDao" class="com.gallagher.core.user.daos.impl.GallagherUserDaoImpl"/> -->
+	
+	<!-- register the customer interceptor to modify the UID -->
+	<bean id="gallagherCustomerInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="gallagherCustomerInterceptor" />
+		<property name="typeCode" value="Customer" />
+	</bean>
+
+	<!-- interceptor to modify the uid (BU+UID) -->
+	<bean id="gallagherCustomerInterceptor" class="com.gallagher.core.customer.interceptor.GallagherCustomerInitDefaultInterceptor" autowire="byName">
+	</bean>
+	
+	<alias alias="customerEmailResolutionService" name="gallagherCustomerEmailResolutionService"/>
+	<bean id="gallagherCustomerEmailResolutionService" class="com.gallagher.core.customer.impl.GallagherCustomerEmailResolutionServiceImpl" >
+	</bean>
+
+	<bean id="europe1.manager" class="com.gallagher.core.pricefactory.GallagherEurope1PriceFactory" init-method="init" destroy-method="destroy">
+		<property name="retrieveChannelStrategy" ref="retrieveChannelStrategy" />
+	</bean>
+
+	<!-- Custom Jalo Class for PriceRow -->
+	<bean id="de.hybris.platform.europe1.jalo.PriceRow" class="com.gallagher.core.jalo.GallagherPriceRow" scope="prototype" />
+	
+	<bean id="de.hybris.platform.europe1.jalo.DiscountRow" class="com.gallagher.core.jalo.GallagherDiscountRow" scope="prototype" />
+
+	<!-- Custom Price Row Interceptor -->
+	<bean id="gallagherPriceRowPrepareInterceptor" class="com.gallagher.core.pdt.interceptor.GallagherPriceRowPrepareInterceptor"
+		parent="gallagherPdtRowPrepareInterceptor">
+	</bean>
+
+	<bean id="gallagherPdtRowPrepareInterceptor" class="com.gallagher.core.pdt.interceptor.GallagherPDTRowPrepareInterceptor"
+		abstract="true" parent="pdtRowPrepareInterceptor">
+	</bean>
+
+	<bean id="priceRowPrepareInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="gallagherPriceRowPrepareInterceptor" />
+		<property name="typeCode" value="PriceRow" />
+	</bean>
+	
+	
+	<bean id="gallagherDiscountRowPrepareInterceptor" class="com.gallagher.core.pdt.interceptor.GallagherDiscountRowPrepareInterceptor"
+            parent="gallagherPdtRowPrepareInterceptor">
+    </bean>
+
+
+    <bean id="discountRowPrepareInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+        <property name="interceptor" ref="gallagherDiscountRowPrepareInterceptor"/>
+        <property name="typeCode" value="DiscountRow"/>
+    </bean>
+    
+
+    <!-- SAPP2-147 -->
+    <bean id="gallagherProductPricesValueResolver" class="com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherProductPricesValueResolver"
+		parent="productPricesValueResolver">
+		<property name="customerGroupQualifierProvider" ref="customerGroupQualifierProvider"/>
+		<property name="salesAreaQualifierProvider" ref="salesAreaQualifierProvider" />
+		<property name="userPriceGroupQualifierProvider" ref="userPriceGroupQualifierProvider" />
+		<property name="commercePriceService" ref="commercePriceService"/>
+	</bean>
+
+	<bean id="salesAreaQualifierProvider" class="com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherSalesAreaQualifierProvider">
+		<property name="salesAreaService" ref="gallagherSalesAreaService" />
+		<property name="sessionService" ref="sessionService" />
+	</bean>
+	
+	<bean id="customerGroupQualifierProvider" class="com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherCustomerGroupQualifierProvider">
+		<property name="customerGroupService" ref="gallagherCustomerGroupService" />
+		<property name="sessionService" ref="sessionService" />
+	</bean>
+	
+	<bean id="userPriceGroupQualifierProvider" class="com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherUserPriceGroupQualifierProvider">
+		<property name="sessionService" ref="sessionService" />
+		<property name="enumerationService" ref="enumerationService" />
+	</bean>
+	
+	<bean id="userDiscountGroupQualifierProvider" class="com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherUserDiscountGroupQualifierProvider">
+		<property name="sessionService" ref="sessionService" />
+		<property name="enumerationService" ref="enumerationService" />
+	</bean>
+	
+	<bean id="gallagherSalesAreaService" class="com.gallagher.core.services.impl.GallagherSalesAreaServiceImpl">
+		<property name="sessionService" ref="sessionService" />
+		<property name="b2bUnitDao" ref="gallagherB2BUnitDao"/>
+	</bean>
+	
+		<bean id="gallagherCustomerGroupService" class="com.gallagher.core.services.impl.GallagherCustomerGroupServiceImpl">
+		<property name="sessionService" ref="sessionService" />
+		<property name="b2bUnitDao" ref="gallagherB2BUnitDao"/>
+	</bean>
+	
+	<bean id="fieldNameTranslator" class="com.gallagher.core.search.solrfacetsearch.translator.GallagherFieldNameTranslator">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider" />
+		<property name="valueProviderSelectionStrategy" ref="valueProviderSelectionStrategy" />
+		<property name="salesAreaService" ref="gallagherSalesAreaService" />
+		<property name="userService" ref="userService"/>
+	</bean>
+	
+	<bean id="gallagherB2BUnitDao" class="com.gallagher.core.dao.impl.GallagherB2BUnitDaoImpl"/> 
+	
+	<alias alias="b2bUnitService" name="gallagherB2BUnitService"/>
+    <bean id="gallagherB2BUnitService" class="com.gallagher.core.services.impl.GallagherB2BUnitServiceImpl" parent="defaultB2BUnitService"/>
+    
+    <bean id="gallagherProductDiscountValueResolver" class="com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherProductDiscountValueResolver" parent="productPricesValueResolver">
+    <property name="salesAreaQualifierProvider" ref="salesAreaQualifierProvider" />
+    <property name="customerGroupQualifierProvider" ref="customerGroupQualifierProvider"/>
+    <property name="userDiscountGroupQualifierProvider" ref="userDiscountGroupQualifierProvider" />
+    <property name="userPriceGroupQualifierProvider" ref="userPriceGroupQualifierProvider" />
+    <property name="discountService" ref="discountService" />
+    <property name="commonI18NService" ref="commonI18NService" />
+    </bean>
+    
+    
+	 <bean id="gallagherProductPriceRangeValueResolver" class="com.gallagher.core.search.solrfacetsearch.provider.impl.GallagherProductPriceRangeValueResolver"
+		parent="productPricesValueResolver">
+		<property name="customerGroupQualifierProvider" ref="customerGroupQualifierProvider"/>
+		<property name="salesAreaQualifierProvider" ref="salesAreaQualifierProvider" />
+		<property name="userPriceGroupQualifierProvider" ref="userPriceGroupQualifierProvider" />
+		<property name="commercePriceService" ref="commercePriceService"/>
+	</bean>
+	
+	<alias name="gallagherCartFactory" alias="cartFactory"/>
+    <bean id="gallagherCartFactory" class="com.gallagher.core.services.impl.GallagherCartFactory" parent="commerceCartFactory"/>
+	 <!-- SAPP2-147 -->
+
+	<alias alias="CustomerAccountService" name="gallagherCustomerAccountService" />
+	<bean name="gallagherCustomerAccountService" class="com.gallagher.core.services.impl.GallagherCustomerAccountServiceImpl"
+		parent="defaultCustomerAccountService">
+	</bean>
+	
+	<alias alias="CustomerAccountDao" name="gallagherCustomerAccountDao" />
+	<bean name="gallagherCustomerAccountDao" class="com.gallagher.core.dao.impl.GallagherCustomerAccountDaoImpl"
+		parent="defaultCustomerAccountDao">
+	</bean>
+	
+	<alias name="defaultAcceleratorB2BApprovalBusinessProcessStrategy" alias="b2bApprovalBusinessProcessStrategy" />
+	<bean id="defaultAcceleratorB2BApprovalBusinessProcessStrategy" class="de.hybris.platform.b2b.strategies.impl.DefaultB2BApprovalBusinessProcessStrategy" parent="defaultB2BApprovalBusinessProcessStrategy" >
+		<property name="processCode" value="simpleapproval"/>
+		<property name="processName" value="CREATED"/>
 	</bean>
 </beans>

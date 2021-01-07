@@ -15,8 +15,20 @@
 		<div class="checkout-success__body__headline">
 			<spring:theme code="checkout.orderConfirmation.thankYouForOrder" />
 		</div>
+		<p><spring:theme code="text.account.order.orderConfimationText"/></p>
 		<p><spring:theme code="text.account.order.orderNumberLabel"/><b> ${fn:escapeXml(orderData.code)}</b></p>
-		<p><spring:theme code="checkout.orderConfirmation.copySentToShort"/><b> ${fn:escapeXml(email)}</b></p>
+		<p><spring:theme code="checkout.orderConfirmation.copySentToShort"/><b>
+         <c:set var="emailString" value="${fn:escapeXml(email)}"/>
+         <c:set var="length" value="${fn:length(emailString)}"/>
+         <c:choose>
+             <c:when test="${fn:startsWith(emailString, 'sec|')}">
+                 ${fn:substring(emailString, 4, length)}
+             </c:when>
+             <c:otherwise>
+                 ${emailString}
+             </c:otherwise>
+         </c:choose>
+         </b></p>
 	</div>
 	
 	<order:giftCoupons giftCoupons="${giftCoupons}"/>

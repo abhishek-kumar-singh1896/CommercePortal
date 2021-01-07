@@ -273,7 +273,7 @@
 		<property name="sessionService" ref="sessionService" />
 		<property name="productFacade" ref="productFacade" />
 		<property name="productService" ref="productService" />
-		<property name="cartFacade" ref="cartFacade" />
+		<property name="cartFacade" ref="gglCartFacade" />
 		<property name="productConverter" ref="productConverter" />
 		<property name="productConfiguredPopulator" ref="productConfiguredPopulator" />
 		<property name="bulkOrderCartItemConverter" ref="bulkOrderCartItemConverter" />
@@ -422,4 +422,8 @@
 		<property name="list" ref="cartConverter"/>
 		<property name="remove" ref="groupOrderEntryPopulator"/>
 	</bean>
+	
+	    
+	
 </beans>
+

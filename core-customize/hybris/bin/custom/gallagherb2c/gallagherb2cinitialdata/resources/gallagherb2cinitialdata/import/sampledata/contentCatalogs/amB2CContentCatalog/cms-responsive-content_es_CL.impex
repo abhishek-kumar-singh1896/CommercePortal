@@ -1,0 +1,97 @@
+$contentCatalog=amB2CContentCatalog
+$contentCatalogName=Animal Management B2C Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=amB2CMasterProductCatalog
+$productCatalogName=Animal Management B2C Chile Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV)
+$medias=medias(code, $contentCV);
+$mediaContainer=media(qualifier, $contentCV)[lang=$lang];
+$siteResource=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.gallagher.b2c.constants.Gallagherb2cinitialdataConstants&/gallagherb2cinitialdata/import/sampledata/productCatalogs/$productCatalog
+# Language
+$lang=es_CL
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
+;;PowerEnergisers_link;"Energizadores de Cerco"
+;;PowerEnergisers_link7;"Controles remotos y Tésters"
+;;PowerEnergisers_link9;"Conexión a tierra "
+;;PowerEnergisers_link10;"Accesorios para los Sistemas de Energía"
+
+;;WeighinEid_link;"Colectores de Datos y Pesaje de Ganado"
+;;WeighinEid_link2;"Barras de carga y accesorios"
+;;WeighinEid_link4;"Plataformas"
+;;WeighinEid_link6;"Apartadores"
+;;WeighinEid_link8;"Lectores de etiquetas IDE"
+;;WeighinEid_link11;"Picanas"
+
+;;WWM_link1;"Sistemas de Estanque Único"
+;;WWM_link2;"Antenas y Cable"
+;;WWM_link3;"Componentes Adicionales del Sistema"
+
+;;PermanentfencingWireandCable_link2;"Alambres y Cables"
+;;PermanentfencingWireandCable_link3;"Abrazaderas y Conectores"
+;;PermanentfencingWireandCable_link4;"Postes"
+;;PermanentfencingWireandCable_link5;"Tensioners"
+;;PermanentfencingWireandCable_link6;"Aisladores"
+;;PermanentfencingWireandCable_link7;"Desplazadores"
+;;PermanentfencingWireandCable_link8;"Portones eléctricos"
+;;PermanentfencingWireandCable_link9;"Paso Pivote"
+;;PermanentfencingWireandCable_link12;"Herrajes para Puertas"
+;;PermanentfencingWireandCable_link14;"Puertas de Acero"
+;;PortablefencingTapesWiresBraids_nav_link;"Cintas, Cordones y Alambre"
+;;PortablefencingTapesWiresBraids_nav_link1;"Carretes y Accesorios"
+;;PortablefencingTapesWiresBraids_nav_link2;"Postes - Cola de Chancho y Estacas múltiples"
+;;PortablefencingTapesWiresBraids_nav_link3;"Cercos portátiles todo en uno"
+
+;;AllElectricFencingLink;"Todas Cercado Eléctrico"
+;;AllWeighingEIDLink;"Todas Pesaje e Identificación Electrónica"
+;;AllWirelessWaterMonitoringLink;"Todas Monitoreo Inalámbrico del Agua"
+
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];title[lang=$lang];&nodeRef
+;Electricfencing_Nav;;"Cercado Eléctrico";Electricfencing_Nav
+;WeighingEID_Nav;;"Pesaje e Identificación Electrónica";WeighingEID_Nav
+;WirelessWaterMonitoring_Nav;;"Monitoreo Inalámbrico del Agua";WirelessWaterMonitoring_Nav
+
+;ElectricfencingPower_Nav;;"Energia";ElectricfencingPower_Nav
+;ElectricfencingPermanentfencing_Nav;;"Cerco Permanente";ElectricfencingPermanentfencing_Nav
+;ElectricfencingPortablefencing_Nav;;"Cerco Portátil";ElectricfencingPortablefencing_Nav
+
+;PowerEnergisers_nav;;"Energia";PowerEnergisers_nav
+;PermanentfencingWireandCable_nav;;"Cerco Permanente";PermanentfencingWireandCable_nav
+;PortablefencingTapesWiresBraids_nav;;"Cerco Portátil";PortablefencingTapesWiresBraids_nav
+
+;WWMNode_Nav;;"Monitoreo Inalámbrico del Agua";WWMNode_Nav
+
+;WeighinEidNode_nav;;"Pesaje e Identificación Electrónica";WeighinEidNode_nav
+
+
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content[lang=$lang]
+;;registerProductPopupSubHeading;"Si estas caracterÃ­sticas no concuerdan con tu producto, por favor contacta al Equipo de AtenciÃ³n al Cliente. Email:<a href='mailto:info@gallagher.cl' target='_blank'> info@gallagher.cl </a> | Fono: Â Â (+56) (64) 2 260402"
+
+
+UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
+                       ;;AboutSAPCommerceLink;"About SAP Commerce Cloud"
+                       ;;AgileCommerceBlogLink;"Agile Commerce Blog"
+                       ;;AllBrandsCategoryLink;"Animal Management"
+                       ;;ElectricFencingCategoryLink;"Electric Fencing"
+                       ;;DocumentationLink;"Documentation"
+                       ;;FAQLink;"FAQ"
+                       ;;FacebookLink;"Facebook"
+                       ;;HomepageNavLink;"Home"
+                       ;;TwitterLink;"Twitter"
+                       ;;VisitSAPLink;"Visit SAP"
+                       ;;ProductsFooterLink;"Products"
+                       ;;ElectricFencingFooterLink;"Cercado Eléctrico"
+                       ;;WeighingEIDFooterLink;"Pesaje e Identificación Electrónica"
+                       ;;WirelessMonitoringFooterLink;"Monitoreo Inalámbrico del Agua"
+                       ;;AppsSoftFooterLink;"Apps and Software"
+#;;SteelGatesHardwareFooterLink;"Steel Gates and Hardware"
+#;;FarmInfoToolsFooterLink;"Farm Information Tools"
+#;;StockProdsFooterLink;"Stock Prods"
+                       ;;AboutUsFooterLink;"About Us"
+                       ;;SupportFooterLink;"Support"
+                       ;;ContactFooterLink;"Contact Us"
+                       ;;NewsEventsFooterLink;"News & Events"
+                       ;;InnovationAwardsFooterLink;"Innovation & Awards"
