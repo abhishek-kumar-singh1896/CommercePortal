@@ -219,6 +219,9 @@
 						</editorArea:editor-parameter> -->
 					<!-- </editorArea:attribute> -->
 				</editorArea:section>
+				<editorArea:section name="hmc.section.gallagher.Component.DiscountClasses">
+                    <editorArea:attribute qualifier="discountClasses"/>
+                </editorArea:section>
 				<!-- <editorArea:section name="hmc.section.gallagher.Component.Address">
 					<editorArea:attribute qualifier="addresses"/> -->
 						<!-- <editorArea:editor-parameter>

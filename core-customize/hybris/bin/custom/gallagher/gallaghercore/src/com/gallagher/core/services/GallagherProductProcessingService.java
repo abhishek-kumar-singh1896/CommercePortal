@@ -51,14 +51,4 @@ public interface GallagherProductProcessingService
 	 * @return process result
 	 */
 	boolean syncRecommendationsForBaseProduct(final String catalogId, final Date lastStartTime);
-
-	/**
-	 * It will sync DiscountClasses attribute of base product only.
-	 *
-	 * @param catalogId
-	 * @param lastStartTime
-	 * @return process result
-	 */
-	boolean syncDiscountClassesForBase(final String catalogId, final Date lastStartTime);
-
 }
