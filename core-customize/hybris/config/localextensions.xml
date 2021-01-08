@@ -114,6 +114,7 @@
 	<extension name="sapcpiorderexchange" />
 	<extension name="sapcpiorderexchangeb2b" />
 	<extension name="ysaporderfulfillment" />
+	<extension name="warehousing" />
 	
 	<extension name="gallagheroutboundservices" />
 	<extension name="gallaghercore" />
