@@ -90,6 +90,7 @@
 		<script type="text/javascript" src="${commonResourcePath}/js/custom/acc.header.js"></script>
 		<script type="text/javascript" src="${commonResourcePath}/js/custom/acc.b2bUnitsPopup.js"></script>
 		<script type="text/javascript" src="${commonResourcePath}/js/custom/acc.checkoutCustom.js"></script>
+		<script type="text/javascript" src="${commonResourcePath}/js/custom/acc.gallaghercustomerticketaddon.js"></script>
 		
       <%--  <script type="text/javascript" src="${commonResourcePath}/js/custom/acc.b2bDatePicker.js"></script> --%>
 		<script type="text/javascript" src="${commonResourcePath}/js/jquery.flexslider.js"></script>
