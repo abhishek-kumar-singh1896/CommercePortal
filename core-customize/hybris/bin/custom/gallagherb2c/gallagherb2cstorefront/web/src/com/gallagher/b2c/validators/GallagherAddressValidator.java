@@ -66,6 +66,7 @@ public class GallagherAddressValidator implements Validator
 			addressForm.setPhone(phoneNumber);
 		}
 		validateStringFieldForPhoneNumber(phoneNumber, errors);
+		validateStringFieldForStreetNumber(addressForm.getStreetNumber(), errors);
 	}
 
 	protected void validateCountrySpecificFields(final GallagherAddressForm addressForm, final Errors errors)
@@ -95,6 +96,14 @@ public class GallagherAddressValidator implements Validator
 					validateStringFieldLength(addressForm.getTitleCode(), AddressField.TITLE, MAX_FIELD_LENGTH, errors);
 					break;
 			}
+		}
+	}
+
+	private void validateStringFieldForStreetNumber(final String streetNumber, final Errors errors)
+	{
+		if (streetNumber.length() > 10)
+		{
+			errors.rejectValue("streetNumber", "address.streetNumber.invalid");
 		}
 	}
 
