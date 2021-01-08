@@ -224,15 +224,19 @@ public class GallagherKeycloakAuthenticationProcessingFilter extends AbstractAut
 	private String getRedirectUrl(final HttpServletRequest request, final KeycloakDeployment deployment)
 	{
 		String redirectURI = null;
-		/*
-		 * if (request.getRequestURI().contains("/login")) {
-		 *
-		 * if (StringUtils.isNotEmpty(request.getHeader("referer")) &&
-		 * !(request.getHeader("referer").contains(deployment.getAuthUrl().getHost()))) { redirectURI =
-		 * request.getHeader("referer"); } } else {
-		 */
-		redirectURI = request.getRequestURI();
-		//		}
+		if (request.getRequestURI().contains("/login"))
+		{
+
+			if (StringUtils.isNotEmpty(request.getHeader("referer"))
+					&& !(request.getHeader("referer").contains(deployment.getAuthUrl().getHost())))
+			{
+				redirectURI = request.getHeader("referer");
+			}
+		}
+		else
+		{
+			redirectURI = request.getRequestURI();
+		}
 		return redirectURI;
 	}
 
