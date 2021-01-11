@@ -64,11 +64,11 @@ import com.sap.security.core.server.csi.XSSEncoder;
 /**
  * Controller for Customer Support tickets.
  */
-@Controller("accountSupportTicketsPageController")
+@Controller("gallagherAccountSupportTicketsPageController")
 @RequestMapping("/my-account")
-public class AccountSupportTicketsPageController extends AbstractSearchPageController
+public class GallagherAccountSupportTicketsPageController extends AbstractSearchPageController
 {
-	private static final Logger LOG = Logger.getLogger(AccountSupportTicketsPageController.class);
+	private static final Logger LOG = Logger.getLogger(GallagherAccountSupportTicketsPageController.class);
 
 	// CMS Pages
 	private static final String SUPPORT_TICKET_CODE_PATH_VARIABLE_PATTERN = "{ticketId:.*}";
