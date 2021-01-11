@@ -13,13 +13,18 @@ import de.hybris.platform.servicelayer.user.UserService;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.util.Assert;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.gallagher.facades.storesession.GallagherStoreSessionFacade;
 
@@ -113,5 +118,46 @@ public class GallagherStoreSessionFacadeImpl extends DefaultStoreSessionFacade i
 	{
 		return siteConfigService.getString(new StringBuilder(path).append(".").append(getCurrentLanguage().getIsocode()).toString(),
 				"/");
+	}
+
+	@Override
+	protected void initializeSessionLanguage(final List<Locale> preferredLocales)
+	{
+		if (preferredLocales != null && !preferredLocales.isEmpty())
+		{
+			// Find the preferred locale that is in our set of supported languages
+			final Collection<LanguageData> storeLanguages = getAllLanguages();
+			if (storeLanguages != null && !storeLanguages.isEmpty())
+			{
+				final LanguageData bestLanguage = findBestLanguage(storeLanguages, preferredLocales);
+				if (bestLanguage != null)
+				{
+					setCurrentLanguage(StringUtils.defaultString(bestLanguage.getIsocode()));
+					return;
+				}
+			}
+		}
+
+		final RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
+		if (requestAttributes instanceof ServletRequestAttributes)
+		{
+			final HttpServletRequest request = ((ServletRequestAttributes) requestAttributes).getRequest();
+			final String requestedUri = request.getRequestURI();
+			final String languageIso = requestedUri.split("/")[3];
+
+			final LanguageModel languageModel = getCommonI18NService().getLanguage(languageIso.trim());
+			if (languageModel != null)
+			{
+				getCommonI18NService().setCurrentLanguage(languageModel);
+				return;
+			}
+		}
+
+		// Try to use the default language for the site
+		final LanguageData defaultLanguage = getDefaultLanguage();
+		if (defaultLanguage != null)
+		{
+			setCurrentLanguage(defaultLanguage.getIsocode());
+		}
 	}
 }

@@ -28,6 +28,7 @@ import de.hybris.platform.jalo.JaloObjectNoLongerValidException;
 import de.hybris.platform.jalo.c2l.LocalizableItem;
 import de.hybris.platform.order.CartService;
 import de.hybris.platform.order.impl.DefaultCartService;
+import de.hybris.platform.servicelayer.i18n.CommonI18NService;
 import de.hybris.platform.servicelayer.model.AbstractItemModel;
 import de.hybris.platform.servicelayer.model.ModelService;
 import de.hybris.platform.servicelayer.session.SessionService;
@@ -46,6 +47,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -92,6 +94,9 @@ public class CMSSiteFilter extends OncePerRequestFilter implements CMSFilter
 	private CMSPageContextService cmsPageContextService;
 	private SiteChannelValidationStrategy siteChannelValidationStrategy;
 
+	@Autowired
+	private CommonI18NService commonI18NService;
+
 	@Resource(name = "urlEncoderFacade")
 	private UrlEncoderFacade urlEncoderFacade;
 
@@ -119,6 +124,7 @@ public class CMSSiteFilter extends OncePerRequestFilter implements CMSFilter
 		final CmsPageRequestContextData cmsPageRequestContextData = getCmsPageContextService()
 				.initialiseCmsPageContextForRequest(httpRequest);
 
+		setLanguageInSession(httpRequest);
 		// check whether exits valid preview data
 		if (cmsPageRequestContextData.getPreviewData() == null)
 		{
@@ -154,6 +160,25 @@ public class CMSSiteFilter extends OncePerRequestFilter implements CMSFilter
 
 			// proceed filters
 			filterChain.doFilter(httpRequest, httpResponse);
+		}
+	}
+
+	/**
+	 * @param httpRequest
+	 */
+	private void setLanguageInSession(final HttpServletRequest httpRequest)
+	{
+		final String requestedUri = httpRequest.getRequestURI();
+		final String[] uriComponents = requestedUri.split("/");
+		if (uriComponents.length > 3)
+		{
+			final String languageIso = requestedUri.split("/")[3];
+
+			final LanguageModel languageModel = commonI18NService.getLanguage(languageIso);
+			if (languageModel != null)
+			{
+				commonI18NService.setCurrentLanguage(languageModel);
+			}
 		}
 	}
 
